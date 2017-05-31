@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: required
-ms.date: 04/05/2017
+ms.date: 05/01/2017
 ms.author: betorres
-translationtype: Human Translation
-ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
-ms.openlocfilehash: ab273c56fe9818ea65979376ec829032f67f04ed
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 16cb5a1e16a59200f0e731622398efcf24c3f777
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -62,11 +63,11 @@ Azure 搜尋服務會收集三個不同計量的資料︰
 >
 
 ### <a name="using-the-rest-api"></a>使用 REST API
-Azure 搜尋服務 REST API 和 .NET SDK 都提供以程式設計方式存取服務度量。  如果您正使用 [索引子](https://msdn.microsoft.com/library/azure/dn946891.aspx) 從 Azure SQL 資料庫或 DocumentDB 載入索引，則用來取得您所需數字的其他 API 也可供使用。
+Azure 搜尋服務 REST API 和 .NET SDK 都提供以程式設計方式存取服務度量。  如果您使用[索引子](https://msdn.microsoft.com/library/azure/dn946891.aspx)從 Azure SQL Database 或 Azure Cosmos DB 載入索引，則有其他 API 可取得您所需的數字。
 
-* [取得索引統計資料](https://msdn.microsoft.com/library/azure/dn798942.aspx)
-* [文件計數](https://msdn.microsoft.com/library/azure/dn798924.aspx)
-* [取得索引子狀態](https://msdn.microsoft.com/library/azure/dn946884.aspx)
+* [取得索引統計資料](/rest/api/searchservice/get-index-statistics)
+* [文件計數](/rest/api/searchservice/count-documents)
+* [取得索引子狀態](/rest/api/searchservice/get-indexer-status)
 
 ## <a name="how-to-export-logs-and-metrics"></a>如何匯出記錄和計量
 

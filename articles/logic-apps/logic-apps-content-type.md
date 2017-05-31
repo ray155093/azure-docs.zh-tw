@@ -13,11 +13,12 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/18/2016
-ms.author: jehollan
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: d0d283f21caf53406c51670e75bf2796a175be51
-ms.lasthandoff: 03/25/2017
+ms.author: LADocs; jehollan
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 291fb1bb3a8925ccc39d846d23328f028cb826b8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -54,7 +55,7 @@ ms.lasthandoff: 03/25/2017
 
 ### <a name="parse-json-action"></a>「剖析 JSON」動作
 
-`Parse JSON` 動作可讓您將 JSON 內容剖析為易記權杖，以便在邏輯應用程式中使用。 此動作類似於要求觸發程序，可讓您輸入或產生所要剖析內容的 JSON 結構描述。 此工具可讓您更容易地從服務匯流排、DocumentDb 等取用資料。
+`Parse JSON` 動作可讓您將 JSON 內容剖析為易記權杖，以便在邏輯應用程式中使用。 此動作類似於要求觸發程序，可讓您輸入或產生所要剖析內容的 JSON 結構描述。 此工具可讓您更容易地從服務匯流排、Azure Cosmos DB 等取用資料。
 
 ![剖析 JSON](./media/logic-apps-content-type/ParseJSON.png)
 

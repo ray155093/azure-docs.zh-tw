@@ -12,12 +12,13 @@ ms.devlang: rest-api
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: search
-ms.date: 09/07/2016
+ms.date: 05/01/2017
 ms.author: brjohnst
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 524d3300e621d8e383833198c14c2e2e8461683b
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: ea3fc801074bb6d7e7c32574bc94702c79a61185
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -1120,7 +1121,7 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 ## <a name="document-operations"></a>文件操作
 在 Azure 搜尋中，索引是儲存在雲端並使用您上傳到服務的 JSON 文件來填入。 您上傳的所有文件會包含您搜尋資料的主體。 文件會包含欄位，其中一些欄位會在它們上傳時語彙基元化為搜尋字詞。 Azure 搜尋服務 API 中的 `/docs` URL 區段表示索引中的文件集合。 在集合中執行的所有操作 (例如，上傳、合併、刪除或查詢文件) 都會在單一索引的內容中執行，因此，這些操作的 URL 一律會以 `/indexes/[index name]/docs` 為開頭來做為指定的索引名稱。
 
-應用程式的程式碼必須產生 JSON 文件，才能上傳至 Azure 搜尋，或者，如果資料來源是 Azure SQL Database 或 DocumentDB，則可使用 [索引子](https://msdn.microsoft.com/library/dn946891.aspx) 來載入文件。 通常，索引是從您提供的單一資料集填入。
+應用程式的程式碼必須產生 JSON 文件，才能上傳至 Azure 搜尋服務，或者，如果資料來源是 Azure SQL Database 或 Azure Cosmos DB，則可使用[索引子 (英文)](https://msdn.microsoft.com/library/dn946891.aspx) 來載入文件。 通常，索引是從您提供的單一資料集填入。
 
 您應該規劃針對每個想要搜尋的項目擁有一份文件。 電影出租應用程式可能是每部電影有一份文件、店面應用程式可能是每個 SKU 有一份文件、線上課程應用程式可能是每個課程有一份文件、研究公司可能會在他們的存放庫中針對每份學術報告有一份文件，依此類推。
 

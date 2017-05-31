@@ -14,34 +14,44 @@ ms.topic: article
 ms.date: 04/03/2017
 ms.author: spelluru
 published: true
-translationtype: Human Translation
-ms.sourcegitcommit: db0face48d84680eabd82245bd38bd49b204f9ae
-ms.openlocfilehash: a88b791bad9f71f16700ccc7efdee8ef493478a9
-ms.lasthandoff: 02/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: f29bb67ea50c531278e546c9fde88fd53230bc3c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 ---
 # <a name="release-notes-for-data-management-gateway"></a>資料管理閘道的版本資訊
 現代資料整合的挑戰之一是順暢地在內部部署和雲端之間來回移動資料。 Data Factory 藉由「資料管理閘道」讓這項整合變得順暢無比；「資料管理閘道」是一個您可以在內部部署環境安裝來啟用混合式資料移動功能的代理程式。
 
-如需有關「資料管理閘道」的詳細資訊及其使用方式，請參閱下列文章： 
+如需有關「資料管理閘道」的詳細資訊及其使用方式，請參閱下列文章：
 
 *  [資料管理閘道](data-factory-data-management-gateway.md)
-*  [在內部部署和雲端之間使用 Azure Data Factory 移動資料](data-factory-move-data-between-onprem-and-cloud.md) 
+*  [在內部部署和雲端之間使用 Azure Data Factory 移動資料](data-factory-move-data-between-onprem-and-cloud.md)
 
 
-## <a name="current-version-2762192"></a>目前版本 (2.7.6219.2)
-
-### <a name="whats-new"></a>新功能
-- 您現在可以使用服務主體向 Azure Data Lake Store 進行驗證。 先前我們只支援 OAuth。
-- 我們已封裝新的驅動程式，以便從閘道中之內部部署資料存放區上的 Oracle 讀取資料。
+## <a name="current-version-2963132"></a>目前版本 (2.9.6313.2)
 
 ### <a name="enhancements-"></a>增強功能
-- 改善了從 Oracle 資料來源讀取資料的效能。
-- 已修正︰OData 來源 OAuth 權杖到期問題。
-- 已修正︰無法讀取 Oracle 十進位超過 28 位元的問題。
+-    您可以新增 DNS 項目來將「服務匯流排」加入白名單，而不是將所有 Azure IP 位址都加入防火牆的白名單 (如有需要)。 以下提供更多詳細資料。
+-    您現在可以將資料複製到單一區塊 Blob 或從該 Blob 複製資料，Blob 最大可達 4.75 TB，這是區塊 Blob 的最大支援大小。 (之前的上限為 195 GB)。
+-    已修正：在進行複製活動期間將數個較小檔案解壓縮時發生的憶體不足問題。
+-    已修正：使用等冪功能從 Document DB 複製到內部部署 SQL 時發生的索引超出範圍問題。
+-    已修正：來自「複製精靈」的 SQL 清除指令碼無法在內部部署 SQL 上運作。
+-    已修正：結尾含有空格的資料行名稱在複製活動中無法運作。
 
 
 ## <a name="earlier-versions"></a>較早的版本
+
+## <a name="28662833"></a>2.8.66283.3
+### <a name="enhancements-"></a>增強功能
+- 已修正：在閘道機器重新啟動時發生遺失認證的問題。
+- 已修正：使用備份檔進行閘道還原時發生的註冊問題。
+
+
+## <a name="2762401"></a>2.7.6240.1
+### <a name="enhancements-"></a>增強功能
+- 已修正：從作為來源的 Oracle 讀取的十進位 Null 值不正確。
 
 ## <a name="2661922"></a>2.6.6192.2
 ### <a name="whats-new"></a>新功能
@@ -63,7 +73,7 @@ ms.lasthandoff: 02/13/2017
 
 ### <a name="whats-new"></a>新功能
 
-- 您現在可以在本機上儲存資料來源認證。 認證會加密。 資料來源認證可以使用從現有閘道匯出、在內部部署上的所有備份檔案復原和還原。 
+- 您現在可以在本機上儲存資料來源認證。 認證會加密。 資料來源認證可以使用從現有閘道匯出、在內部部署上的所有備份檔案復原和還原。
 
 ### <a name="enhancements-"></a>增強功能
 
@@ -89,7 +99,7 @@ ms.lasthandoff: 02/13/2017
 
 *  DB2 驅動程式現已包含在閘道安裝封裝中。 您不需要另外安裝。 
 *  DB2 驅動程式現可支援適用於 i (AS/400) 的 z/OS 和 DB2 以及早已支援的平台 (Linux、Unix 和 Windows)。 
-*  支援使用 DocumentDB 做為內部部署資料存放區的來源或目的地
+*  支援使用 Azure Cosmos DB 作為內部部署資料存放區的來源或目的地
 *  支援在冷/熱 Blob 儲存體以及早已支援的一般用途儲存體帳戶來回複製資料。 
 *  可讓您透過閘道以遠端登入權限連線到內部部署 SQL Server。  
 
@@ -105,7 +115,7 @@ ms.lasthandoff: 02/13/2017
 
     *  重新組織並簡化控制項。
 
-    *  您可以使用 [無程式碼複製預覽工具](data-factory-copy-data-wizard-tutorial.md)從儲存體複製資料。 如需此功能的一般詳細資料，請參閱 [分段複製](data-factory-copy-activity-performance.md#staged-copy) 。 
+    *  您可以使用 [無程式碼複製預覽工具](data-factory-copy-data-wizard-tutorial.md)從儲存體複製資料。 如需此功能的一般詳細資料，請參閱 [分段複製](data-factory-copy-activity-performance.md#staged-copy) 。
 *  您可以使用「資料管理閘道」，將資料從內部部署 SQL Server 資料庫直接輸入到 Azure Machine Learning 中。
 
 *  效能改進
@@ -120,7 +130,7 @@ ms.lasthandoff: 02/13/2017
 
 *  閘道事件記錄檔的大小上限已經從 1 MB 增加到 40 MB。
 
-*  如果在閘道自動更新期間必須重新啟動，則會顯示警告對話方塊。 您可以選擇立即重新啟動，或之後再重新啟動。 
+*  如果在閘道自動更新期間必須重新啟動，則會顯示警告對話方塊。 您可以選擇立即重新啟動，或之後再重新啟動。
 
 *  如果自動更新失敗，閘道安裝程式最多會重試自動更新 3 次。
 
@@ -226,7 +236,7 @@ ms.lasthandoff: 02/13/2017
 
 ### <a name="1253031"></a>1.2.5303.1
 
-*  修正逾時問題以支援更多耗時的資料來源連線。 
+*  修正逾時問題以支援更多耗時的資料來源連線。
 
 ### <a name="1155268"></a>1.1.5526.8
 

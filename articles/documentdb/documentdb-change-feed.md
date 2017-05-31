@@ -1,79 +1,80 @@
 ---
-title: "使用 Azure DocumentDB 中的變更摘要支援 | Microsoft Docs"
-description: "使用 Azure DocumentDB 的「變更摘要」支援來追蹤 DocumentDB 文件中的變更，並執行以事件為基礎的處理 (例如觸發程序) 以及讓快取和分析系統保持最新狀態。"
+title: "使用 Azure Cosmos DB 中的變更摘要支援 | Microsoft Docs"
+description: "使用 Azure Cosmos DB 的變更摘要支援來追蹤文件中的變更，並執行以事件為基礎的處理 (例如觸發程序)，以及讓快取和分析系統保持最新狀態。"
 keywords: "變更摘要"
-services: documentdb
+services: cosmosdb
 author: arramac
 manager: jhubbard
 editor: mimig
 documentationcenter: 
 ms.assetid: 2d7798db-857f-431a-b10f-3ccbc7d93b50
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: rest-api
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: arramac
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 1ddf62c155264c5f76d8fd738b979c21cb527962
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: d702bdd4d1db89c6714d4dca132dcd896c1ece4d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="working-with-the-change-feed-support-in-azure-documentdb"></a>使用 Azure DocumentDB 中的變更摘要支援
-[Azure DocumentDB](documentdb-introduction.md) 是快速且具有彈性的 NoSQL 資料庫服務，可用來儲存大量的交易式和操作資料，且具有可預測的讀取和寫入個位數毫秒延遲。 這使得它適合用於 IoT、遊戲、零售，以及操作記錄應用程式。 這些應用程式中的一個常見設計模式，便是追蹤 DocumentDB 資料的變更，並且根據這些變更來更新具體化檢視、執行即時分析、將資料封存到冷儲存體，以及在特定事件上觸發通知。 DocumentDB 的「變更摘要」支援允許您針對每一個模式建置有效率且可調整的解決方案。
+# <a name="working-with-the-change-feed-support-in-azure-cosmos-db"></a>使用 Azure Cosmos DB 中的變更摘要支援
+[Azure Cosmos DB](../cosmos-db/introduction.md) 是一項快速且有彈性的全域複製資料庫服務，可用來儲存大量的交易式和操作資料，且具有可預測的讀取和寫入個位數毫秒延遲。 這使得它適合用於 IoT、遊戲、零售，以及操作記錄應用程式。 這些應用程式中的一個常見設計模式是，追蹤對 Azure Cosmos DB 資料所做的變更，並根據這些變更來更新具體化檢視、執行即時分析、將資料封存到冷儲存體，以及在特定事件上觸發通知。 Azure Cosmos DB 中的**變更摘要支援**允許您針對每一個模式建置有效率且可調整的解決方案。
 
-透過「變更摘要」支援，DocumentDB 會提供一份 DocumentDB 集合內的文件排序清單，並以文件的修改順序做出排序。 此摘要可用來接聽集合內的資料修改，並執行下列動作：
+透過變更摘要支援，Azure Cosmos DB 提供一份 Azure Cosmos DB 集合內的文件排序清單，並以文件的修改順序做出排序。 此摘要可用來接聽集合內的資料修改，並執行下列動作：
 
 * 於插入或修改文件時觸發 API 呼叫
 * 執行即時 (串流) 更新處理
 * 與快取、搜尋引擎或資料倉儲進行資料同步處理
 
-DocumentDB 中的變更會加以保存，且可以進行非同步處理，並分散到一或多個取用者以進行平行處理。 讓我們看看「變更摘要」的 API，以及您如何使用 API 來建置可調整的即時應用程式。
+Azure Cosmos DB 中的變更會加以保存，且可進行非同步處理，並分散到一或多個取用者以進行平行處理。 讓我們看看適用於變更摘要的 API，以及您如何使用它們來建置可調整的即時應用程式。 本文示範如何透過 Azure Cosmos DB DocumentDB API 使用空間資料。 
 
-![使用 DocumentDB「變更摘要」以提供即時分析和事件導向運算案例](./media/documentdb-change-feed/changefeed.png)
+![使用 Azure Cosmos DB 變更摘要來提供即時分析和事件導向的計算案例](./media/documentdb-change-feed/changefeed.png)
 
 ## <a name="use-cases-and-scenarios"></a>使用個案和案例
-「變更摘要」允許透過大量寫入來有效處理大型資料集，並提供查詢整個資料集以識別變更的項目的替代方式。 例如，您可以有效率地執行下列工作︰
+變更摘要允許透過大量寫入來有效處理大型資料集，並提供查詢整個資料集以識別已變更之項目的替代方式。 例如，您可以有效率地執行下列工作︰
 
-* 透握儲存在 Azure DocumentDB 中的資料更新快取、搜尋索引或資料倉儲。
-* 實作應用程式層級資料階層處理和資料保存，也就是在 DocumentDB 中儲存「熱資料」，並將「冷資料」淘汰到 [Azure Blob 儲存體](../storage/storage-introduction.md)或 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)。
+* 透過儲存在 Azure Cosmos DB 中的資料，來更新快取、搜尋索引或資料倉儲。
+* 實作應用程式層級的資料階層處理和封存，也就是在 Azure Cosmos DB 中儲存「熱資料」，並將「冷資料」淘汰到 [Azure Blob 儲存體](../storage/storage-introduction.md)或 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)。
 * 使用 [Apache Hadoop](documentdb-run-hadoop-with-hdinsight.md) 在資料上實作批次分析。
-* 透過 DocumentDB [在 Azure 上實作 Lambda 管線 (英文)](https://blogs.technet.microsoft.com/msuspartner/2016/01/27/azure-partner-community-big-data-advanced-analytics-and-lambda-architecture/)。 DocumentDB 提供一個可調整的資料庫解決方案，可以處理擷取和查詢，並實作具有低 TCO 的 Lambda 架構。 
-* 透過不同的資料分割配置，執行零停機時間移轉至另一個 Azure DocumentDB 帳戶。
+* 透過 Azure Cosmos DB [在 Azure 上實作 Lambda 管線 (英文)](https://blogs.technet.microsoft.com/msuspartner/2016/01/27/azure-partner-community-big-data-advanced-analytics-and-lambda-architecture/)。 Azure Cosmos DB 提供一個可調整的資料庫解決方案，可以處理擷取和查詢，並實作具有低 TCO 的 Lambda 架構。 
+* 透過不同的分割配置，執行零停機時間移轉至另一個 Azure Cosmos DB 帳戶。
 
-**搭配 Azure DocumentDB 使用 Lambda 管線進行擷取和查詢：**
+**搭配 Azure Cosmos DB 使用 Lambda 管線進行擷取和查詢：**
 
-![適用於擷取和查詢的 Azure DocumentDB 型 Lambda 管線](./media/documentdb-change-feed/lambda.png)
+![適用於擷取和查詢的 Azure Cosmos DB 型 Lambda 管線](./media/documentdb-change-feed/lambda.png)
 
-您可以使用 DocumentDB 來接收與儲存來自裝置、感應器、基礎結構和應用程式的事件資料，並透過 [Azure 串流分析](../stream-analytics/stream-analytics-documentdb-output.md)、[Apache Storm](../hdinsight/hdinsight-storm-overview.md) 或 [Apache Spark](../hdinsight/hdinsight-apache-spark-overview.md) 即時處理這些事件。 
+您可以使用 Azure Cosmos DB 來接收與儲存來自裝置、感應器、基礎結構和應用程式的事件資料，並透過 [Azure 串流分析](../stream-analytics/stream-analytics-documentdb-output.md)、[Apache Storm](../hdinsight/hdinsight-storm-overview.md) 或 [Apache Spark](../hdinsight/hdinsight-apache-spark-overview.md) 即時處理這些事件。 
 
-在 Web 和行動應用程式內，您可以追蹤例如變更客戶設定檔、喜好設定或位置等的事件，以觸發像是使用 [Azure Functions](../azure-functions/functions-bindings-documentdb.md) 或[應用程式服務](https://azure.microsoft.com/services/app-service/)傳送推播通知到客戶裝置的特定動作。 例如，如果您使用 DocumentDB 來建置遊戲，您可以根據完成遊戲的分數，使用「變更摘要」來實作即時排行榜。
+在 Web 和行動應用程式內，您可以追蹤例如變更客戶設定檔、喜好設定或位置等的事件，以觸發像是使用 [Azure Functions](../azure-functions/functions-bindings-documentdb.md) 或[應用程式服務](https://azure.microsoft.com/services/app-service/)傳送推播通知到客戶裝置的特定動作。 例如，如果您使用 Azure Cosmos DB 來建置遊戲，就可以根據完成遊戲的分數，使用變更摘要來實作即時排行榜。
 
-## <a name="how-change-feed-works-in-azure-documentdb"></a>變更摘要在 Azure DocumentDB 中的運作方式
-DocumentDB 提供以累加方式讀取對 DocumentDB 集合做出之更新的功能。 此變更摘要具有下列屬性：
+## <a name="how-change-feed-works-in-azure-cosmos-db"></a>變更摘要在 Azure Cosmos DB 中的運作方式
+Azure Cosmos DB 提供以累加方式讀取對 Azure Cosmos DB 集合做出之更新的功能。 此變更摘要具有下列屬性：
 
-* 變更會在 DocumentDB 中持續保存，並且可以非同步處理。
+* 變更會在 Azure Cosmos DB 中持續保存，並且可以非同步處理。
 * 集合內的文件變更會立即在變更摘要中提供。
 * 每個文件變更僅會在變更摘要中出現一次。 變更記錄檔中只會包含指定文件的最新變更。 中繼變更可能無法使用。
 * 變更摘要會依照各個資料分割索引鍵值內的修改順序排序。 跨資料分割索引鍵值順序不會是固定的。
 * 變更可以從任何時間點同步處理，也就是說，可用變更沒有固定的資料保留期限。
 * 變更會以資料分割索引鍵區塊為單位提供。 這項功能可讓大型集合的變更由多個取用者/伺服器平行處理。
-* 應用程式可以在相同的集合上同時要求多個「變更摘要」。
+* 應用程式可以在同一個集合上同時要求多個變更摘要。
 
-根據預設，DocumentDB 的「變更摘要」會針對所有帳戶啟用，且不會對您的帳戶產生任何額外的成本。 和 DocumentDB 的任何其他作業相同，您可以在您寫入區域或任何[讀取區域](documentdb-distribute-data-globally.md)中使用[佈建輸送量](documentdb-request-units.md)以讀取變更摘要。 變更摘要包含對集合內文件進行的插入與更新作業。 您可以擷取刪除項目，方法是在您的文件內設定「虛刪除」旗標來取代刪除動作。 或者，您可以透過 [TTL 功能](documentdb-time-to-live.md)針對您的文件設定有限的逾期期限 (例如 24 小時)，並使用該屬性的值擷取刪除項目。 使用此解決方案，您必須在比 TTL 逾期期限更短的時間間隔內處理變更。 文件集合內每個資料分割索引鍵範圍都可使用變更摘要，因此可以分散到一或多個取用者以進行平行處理。 
+預設會針對所有帳戶啟用 Azure Cosmos DB 的變更摘要，且不會對您的帳戶產生任何額外的成本。 就像是 Azure Cosmos DB 的任何其他作業，您可以在寫入區域或任何[讀取區域](documentdb-distribute-data-globally.md)中使用[佈建輸送量](documentdb-request-units.md)來讀取變更摘要。 變更摘要包含對集合內文件進行的插入與更新作業。 您可以擷取刪除項目，方法是在您的文件內設定「虛刪除」旗標來取代刪除動作。 或者，您可以透過 [TTL 功能](documentdb-time-to-live.md)針對您的文件設定有限的逾期期限 (例如 24 小時)，並使用該屬性的值擷取刪除項目。 使用此解決方案，您必須在比 TTL 逾期期限更短的時間間隔內處理變更。 文件集合內每個資料分割索引鍵範圍都可使用變更摘要，因此可以分散到一或多個取用者以進行平行處理。 
 
-![DocumentDB 變更摘要的分散式處理](./media/documentdb-change-feed/changefeedvisual.png)
+![Azure Cosmos DB 變更摘要的分散式處理](./media/documentdb-change-feed/changefeedvisual.png)
 
-在下一節中，我們會說明如何使用 DocumentDB REST API 和 SDK 存取摘要變更。 對於 .NET 應用程式，我們建議針對處理來自變更摘要的事件使用「變更摘要處理器程式庫」[]()。
+在下一節中，我們會說明如何使用 Azure Cosmos DB REST API 和 SDK 存取摘要變更。 對於 .NET 應用程式，我們建議針對處理來自變更摘要的事件使用「變更摘要處理器程式庫」[]()。
 
 ## <a id="rest-apis"></a>使用 REST API 和 SDK
-DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集合內的資料會針對延展性和效能，使用[資料分割索引鍵](documentdb-partition-data.md)以邏輯方式分組。 DocumentDB 提供各種用來存取此資料的 API，包括依識別碼查閱 (Read/Get)、查詢及讀取摘要 (掃描) 進行查詢。 變更摘要可以透過將兩個新的要求標頭填入至 DocumentDB 的 `ReadDocumentFeed` API 來取得，並且可以跨資料分割索引鍵的範圍來平行處理。
+Azure Cosmos DB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集合內的資料會針對延展性和效能，使用[資料分割索引鍵](documentdb-partition-data.md)以邏輯方式分組。 Azure Cosmos DB 提供各種用來存取此資料的 API，包括依識別碼查閱 (Read/Get)、查詢及讀取摘要 (掃描)。 變更摘要可以透過將兩個新的要求標頭填入至 DocumentDB 的 `ReadDocumentFeed` API 來取得，並且可以跨分割區索引鍵的範圍來平行處理。
 
 ### <a name="readdocumentfeed-api"></a>ReadDocumentFeed API
-讓我們快速看一下 ReadDocumentFeed 的運作方式。 DocumentDB 支援透過 `ReadDocumentFeed` API 讀取集合內文件的摘要。 例如，下列要求會傳回 `serverlogs` 集合內文件的頁面。 
+讓我們快速看一下 ReadDocumentFeed 的運作方式。 Azure Cosmos DB 支援透過 `ReadDocumentFeed` API 讀取集合內文件的摘要。 例如，下列要求會傳回 `serverlogs` 集合內文件的頁面。 
 
     GET https://mydocumentdb.documents.azure.com/dbs/smalldb/colls/serverlogs HTTP/1.1
     x-ms-date: Tue, 22 Nov 2016 17:05:14 GMT
@@ -89,7 +90,7 @@ DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集�
 
 **序列讀取文件摘要**
 
-您也可以使用其中一個支援的 [DocumentDB SDK](documentdb-sdk-dotnet.md) 擷取文件摘要。 例如，下列程式碼片段會示範如何在 .NET 中執行 ReadDocumentFeed。
+您也可以使用其中一個支援的 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 來擷取文件摘要。 例如，下列程式碼片段會示範如何在 .NET 中執行 ReadDocumentFeed。
 
     FeedResponse<dynamic> feedResponse = null;
     do
@@ -99,11 +100,11 @@ DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集�
     while (feedResponse.ResponseContinuation != null);
 
 ### <a name="distributed-execution-of-readdocumentfeed"></a>ReadDocumentFeed 的分散式執行
-針對包含數 TB 以上資料或需內嵌大量更新的集合，序列執行單一用戶端電腦的讀取摘要可能不夠實際。 為了支援這些巨量資料案例，DocumentDB 提供在多個用戶端讀取者/取用者之間明確分散 `ReadDocumentFeed` 呼叫的 API。 
+針對包含數 TB 以上資料或需內嵌大量更新的集合，序列執行單一用戶端電腦的讀取摘要可能不夠實際。 為了支援這些巨量資料案例，Azure Cosmos DB 提供在多個用戶端讀取者/取用者之間明確分散 `ReadDocumentFeed` 呼叫的 API。 
 
 **分散式讀取文件摘要**
 
-若要提供可調整的累加式變更處理，DocumentDB 會根據資料分割索引鍵的範圍，支援變更摘要 API 的向外延展模型。
+若要提供可調整的累加式變更處理，Azure Cosmos DB 會根據分割區索引鍵的範圍，支援變更摘要 API 的向外延展模型。
 
 * 您可以針對執行 `ReadPartitionKeyRanges` 呼叫的集合取得資料分割索引鍵範圍的清單。 
 * 針對每個資料分割索引鍵範圍，您可以執行 `ReadDocumentFeed` 來讀取該範圍內資料分割索引鍵的文件。
@@ -169,7 +170,7 @@ DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集�
     </tr>        
 </table>
 
-您可以使用其中一個支援的 [DocumentDB SDK](documentdb-sdk-dotnet.md) 來這麼做。 例如，下列程式碼片段顯示如何在 .NET 中擷取資料分割索引鍵範圍。
+您可以使用其中一個支援的 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 來執行此動作。 例如，下列程式碼片段顯示如何在 .NET 中擷取資料分割索引鍵範圍。
 
     string pkRangesResponseContinuation = null;
     List<PartitionKeyRange> partitionKeyRanges = new List<PartitionKeyRange>();
@@ -185,10 +186,10 @@ DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集�
     }
     while (pkRangesResponseContinuation != null);
 
-DocumentDB 支援針對每個資料分割索引鍵範圍進行文件擷取，方法是設定選擇性的 `x-ms-documentdb-partitionkeyrangeid` 標頭。 
+Azure Cosmos DB 支援針對每個分割區索引鍵範圍進行文件擷取，方法是設定選擇性的 `x-ms-documentdb-partitionkeyrangeid` 標頭。 
 
 ### <a name="performing-an-incremental-readdocumentfeed"></a>執行累加式 ReadDocumentFeed
-ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理的案例/工作：
+ReadDocumentFeed 支援下列在 Azure Cosmos DB 集合中進行累加式變更處理的案例/工作：
 
 * 從開始 (也就是集合建立開始) 讀取所有文件變更。
 * 從目前時間讀取包含未來更新的所有文件變更。
@@ -309,7 +310,7 @@ ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理
         return checkpoints;
     }
 
-下列程式碼片段顯示如何使用「變更摘要」支援和先前的函式，透過 DocumentDB 即時處理變更。 第一次呼叫會傳回集合中所有的文件，而第二次呼叫只會傳回於最後一個檢查點之後建立的兩個文件。
+下列程式碼片段示範如何使用變更摘要支援和先前的函式，透過 Azure Cosmos DB 即時處理變更。 第一次呼叫會傳回集合中所有的文件，而第二次呼叫只會傳回於最後一個檢查點之後建立的兩個文件。
 
     // Returns all documents in the collection.
     Dictionary<string, string> checkpoints = await GetChanges(client, collection, new Dictionary<string, string>());
@@ -332,7 +333,7 @@ ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理
     }
 
 ## <a id="change-feed-processor"></a>變更摘要處理器程式庫
-[DocumentDB 變更摘要處理器程式庫 (英文)](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/ChangeFeedProcessor) 可用來將來自變更摘要的事件處理分散到多個取用者。 在 .NET 平台上建置變更摘要讀取器時，您應該使用這項實作。 `ChangeFeedProcessorHost` 類別能為事件處理器實作提供安全執行緒、多處理序、安全的執行階段環境，進而提供檢查點和分割區租用管理。
+[Azure Cosmos DB 變更摘要處理器程式庫 (英文)](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/ChangeFeedProcessor) 可用來將來自變更摘要的事件處理分散到多個取用者。 在 .NET 平台上建置變更摘要讀取器時，您應該使用這項實作。 `ChangeFeedProcessorHost` 類別能為事件處理器實作提供安全執行緒、多處理序、安全的執行階段環境，進而提供檢查點和分割區租用管理。
 
 若要使用 [`ChangeFeedProcessorHost`](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/ChangeFeedProcessor/DocumentDB.ChangeFeedProcessor/ChangeFeedEventHost.cs) 類別，您可以實作 [`IChangeFeedObserver`](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/ChangeFeedProcessor/DocumentDB.ChangeFeedProcessor/IChangeFeedObserver.cs)。 這個介面包含三個方法：
 
@@ -340,13 +341,13 @@ ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理
 * CloseAsync
 * ProcessEventsAsync
 
-若要啟動事件處理，請具現化 ChangeFeedProcessorHost，並為 DocumentDB 集合提供適當的參數。 接著，呼叫 `RegisterObserverAsync` 以向執行階段註冊 `IChangeFeedObserver` 實作。 此時，主機會嘗試使用「窮盡」演算法取得 DocumentDB 集合內每個分割區索引鍵範圍的租用。 這些租用將延續一段指定時間，然後必須更新。 本案例中，當新節點上線時，背景工作執行個體會保留租用，而每當取得更多租用的嘗試發生時，負載會隨著在節點之間轉移。
+若要啟動事件處理，請具現化 ChangeFeedProcessorHost，並為 Azure Cosmos DB 集合提供適當的參數。 接著，呼叫 `RegisterObserverAsync` 以向執行階段註冊 `IChangeFeedObserver` 實作。 此時，主機會嘗試使用「窮盡」演算法，來取得 Azure Cosmos DB 集合內每個分割區索引鍵範圍的租用。 這些租用將延續一段指定時間，然後必須更新。 本案例中，當新節點上線時，背景工作執行個體會保留租用，而每當取得更多租用的嘗試發生時，負載會隨著在節點之間轉移。
 
-![使用 DocumentDB 變更摘要處理器主機](./media/documentdb-change-feed/changefeedprocessor.png)
+![使用 Azure Cosmos DB 變更摘要處理器主機](./media/documentdb-change-feed/changefeedprocessor.png)
 
-經過一段時間後，均衡的局面將會出現。 此動態功能可讓您將 CPU 架構自動調整套用至消費者，以便進行向上和向下調整。 如果 DocumentDB 中出現可用變更的速度超出取用者的處理能力，取用者上的 CPU 提升可用來引發背景工作執行個體計數的自動調整。
+經過一段時間後，均衡的局面將會出現。 此動態功能可讓您將 CPU 架構自動調整套用至消費者，以便進行向上和向下調整。 如果 Azure Cosmos DB 中出現可用變更的速度超出取用者的處理能力，可以使用取用者上的 CPU 提升來引發背景工作執行個體計數的自動調整。
 
-`ChangeFeedProcessorHost` 類別也會使用個別的 DocumentDB 租用集合來實作檢查點機制。 這項機制能儲存每個資料分割的位移，方便各個取用者判斷前一個取用者的最後一個檢查點。 由於資料分割會透過租用在節點之間轉換，因此這是能促進負載移位的同步處理機制。
+`ChangeFeedProcessorHost` 類別也會使用個別的 Azure Cosmos DB 租用集合來實作檢查點機制。 這項機制能儲存每個資料分割的位移，方便各個取用者判斷前一個取用者的最後一個檢查點。 由於資料分割會透過租用在節點之間轉換，因此這是能促進負載移位的同步處理機制。
 
 
 以下是簡單變更摘要處理器主機的程式碼片段，該主機會將變更列印到主控台：
@@ -373,7 +374,7 @@ ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理
     }
 ```
 
-下列程式碼片段示範如何註冊新主機，以接聽來自 DocumentDB 集合的變更。 我們在此設定了個別的集合，跨多個取用者管理對資料分割的租用：
+下列程式碼片段示範如何註冊新主機，以接聽來自 Azure Cosmos DB 集合的變更。 我們在此設定了個別的集合，跨多個取用者管理對資料分割的租用：
 
 ```cs
     string hostName = Guid.NewGuid().ToString();
@@ -397,10 +398,10 @@ ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理
     await host.RegisterObserverAsync<DocumentFeedObserver>();
 ```
 
-在本文中，我們提供 DocumentDB「變更摘要」支援的逐步解說，以及如何使用 DocumentDB REST API 及/或 SDK 追蹤對 DocumentDB 資料所進行的變更。 
+在本文中，我們提供 Azure Cosmos DB 之變更摘要支援的逐步解說，以及如何使用 REST API 及/或 SDK 追蹤對 Azure Cosmos DB 資料所做的變更。 
 
 ## <a name="next-steps"></a>後續步驟
-* 請嘗試 [GitHub 上的 DocumentDB 變更摘要程式碼範例 (英文)](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/ChangeFeed)
-* 深入了解 [DocumentDB 的資源模型和階層](documentdb-resources.md)
-* 使用 [DocumentDB SDK](documentdb-sdk-dotnet.md) 或 [REST API (英文)](https://msdn.microsoft.com/library/azure/dn781481.aspx) 開始撰寫程式碼
+* 嘗試 [GitHub 上的 Azure Cosmos DB 變更摘要程式碼範例 (英文)](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/ChangeFeed)
+* 深入了解 [Azure Cosmos DB 的資源模型和階層](documentdb-resources.md)
+* 使用 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 開始撰寫程式碼
 

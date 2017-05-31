@@ -14,12 +14,13 @@ ms.custom: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 03/17/2017
+ms.date: 05/09/2017
 ms.author: mikeray
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 67663af0913a03f2001b4cce6f9f49ee91195026
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: bb58cd7a00bc8eb5eaf2ea5a7a8f7641b0502ed9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -110,7 +111,7 @@ ms.lasthandoff: 04/06/2017
     >[!WARNING]
    >如果您使用「儲存空間」但未取消選取 [新增適合的儲存裝置到叢集]，Windows 就會在進行叢集程序時將虛擬機器中斷連結。 因此，它們將不會顯示在「磁碟管理員」或「總管」中，直到您使用 PowerShell 將儲存空間從叢集中移除後再重新連接為止。 儲存空間可將多個磁碟分組為存放集區。 如需詳細資訊，請參閱[儲存空間](https://technet.microsoft.com/library/hh831739)。
 
-1. 按 [下一步] 。
+1. 按一下 [下一步] 。
 
 1. 按一下 [完成] 。
 
@@ -134,9 +135,9 @@ ms.lasthandoff: 04/06/2017
 
    使用「建立共用資料夾精靈」來建立共用。
 
-1. 在 [資料夾路徑] 上，按一下 [瀏覽]，然後找出或建立共用資料夾的路徑。 按 [下一步] 。
+1. 在 [資料夾路徑] 上，按一下 [瀏覽]，然後找出或建立共用資料夾的路徑。 按一下 [下一步] 。
 
-1. 在 [名稱、描述和設定] 中，確認共用名稱和路徑。 按 [下一步] 。
+1. 在 [名稱、描述和設定] 中，確認共用名稱和路徑。 按一下 [下一步] 。
 
 1. 在 [共用資料夾權限] 上，設定 [自訂權限]。 按一下 [自訂]。
 
@@ -171,9 +172,9 @@ ms.lasthandoff: 04/06/2017
    >[!TIP]
    >Windows Server 2016 支援雲端見證。 如果您選擇此類型的見證，就不需要檔案共用見證。 如需詳細資訊，請參閱[為容錯移轉叢集部署雲端見證 (Deploy a cloud witness for a Failover Cluster)](http://technet.microsoft.com/windows-server-docs/failover-clustering/deploy-cloud-witness)。 本教學課程使用檔案共用見證，這是舊版作業系統所支援的類型。
 
-1. 在 [設定檔按共用見證] 上，輸入您所建立共用的路徑。 按 [下一步] 。
+1. 在 [設定檔按共用見證] 上，輸入您所建立共用的路徑。 按一下 [下一步] 。
 
-1. 確認 [確認] 上的設定。 按 [下一步] 。
+1. 確認 [確認] 上的設定。 按一下 [下一步] 。
 
 1. 按一下 [完成] 。
 
@@ -236,9 +237,9 @@ Repeat these steps on the second SQL Server.
 
    使用「建立共用資料夾精靈」來建立共用。
 
-1. 在 [資料夾路徑] 上，按一下 [瀏覽]，然後找出或建立資料庫備份共用資料夾的路徑。 按 [下一步] 。
+1. 在 [資料夾路徑] 上，按一下 [瀏覽]，然後找出或建立資料庫備份共用資料夾的路徑。 按一下 [下一步] 。
 
-1. 在 [名稱、描述和設定] 中，確認共用名稱和路徑。 按 [下一步] 。
+1. 在 [名稱、描述和設定] 中，確認共用名稱和路徑。 按一下 [下一步] 。
 
 1. 在 [共用資料夾權限] 上，設定 [自訂權限]。 按一下 [自訂]。
 
@@ -274,7 +275,7 @@ Repeat these steps on the second SQL Server.
 
     ![啟動新增可用性群組精靈](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/56-newagwiz.png)
 
-2. 在 [簡介] 頁面上，按 [下一步]。 在 [指定可用性群組名稱] 頁面的 [可用性群組名稱] 中，輸入「可用性群組」的名稱 (例如 **AG1**)。 按 [下一步] 。
+2. 在 [簡介] 頁面上，按 [下一步]。 在 [指定可用性群組名稱] 頁面的 [可用性群組名稱] 中，輸入「可用性群組」的名稱 (例如 **AG1**)。 按一下 [下一步] 。
 
     ![新增 AG 精靈：指定 AG 名稱](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/58-newagname.png)
 
@@ -297,7 +298,7 @@ Repeat these steps on the second SQL Server.
 
     ![新增 AG 精靈：選取初始資料同步處理](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/66-endpoint.png)
 
-8. 在 [選取初始資料同步處理] 頁面中，選取 [完整]，然後指定一個共用網路位置。 針對位置，請使用[您所建立的備份共用](#backupshare)。 在此範例中是 **\\\\\<第一部 SQL Server\>\Backup\**。 按 [下一步] 。
+8. 在 [選取初始資料同步處理] 頁面中，選取 [完整]，然後指定一個共用網路位置。 針對位置，請使用[您所建立的備份共用](#backupshare)。 在此範例中是 **\\\\\<第一部 SQL Server\>\Backup\**。 按一下 [下一步] 。
 
    >[!NOTE]
    >完整同步處理會完整備份第一個 SQL Server 執行個體上的資料庫，然後將它還原到第二個執行個體。 就大型資料庫而言，不建議進行完整同步處理，因為可能費時很久。 您可以手動備份並使用 `NO RECOVERY` 來還原備份，以縮短此時間。 如果在設定「可用性群組」之前已經使用 `NO RECOVERY` 在第二部 SQL Server 上還原資料庫，請選擇 [僅聯結]。 如果您想要在設定「可用性群組」之後進行備份，請選擇 [略過初始資料同步處理]。
@@ -355,7 +356,7 @@ Repeat these steps on the second SQL Server.
    | 設定 | 欄位 |
    | --- | --- |
    | **名稱** |使用負載平衡器的文字名稱，例如 **sqlLB**。 |
-   | **配置** |內部 |
+   | **類型** |內部 |
    | **虛擬網路** |使用 Azure 虛擬網路的名稱。 |
    | **子網路** |使用虛擬機器所在子網路的名稱。  |
    | **IP 位址指派** |靜態 |
@@ -382,6 +383,7 @@ Repeat these steps on the second SQL Server.
    | 設定 | 說明 | 範例
    | --- | --- |---
    | **名稱** | 輸入文字名稱 | SQLLBBE
+   | **與下列產生關聯** | 從清單中挑選 | 可用性集合
    | **可用性設定組** | 使用您 SQL Server 所在可用性設定組的名稱 | sqlAvailabilitySet |
    | **虛擬機器** |兩個 Azure SQL Server VM 名稱 | sqlserver-0、sqlserver-1
 
@@ -391,9 +393,7 @@ Repeat these steps on the second SQL Server.
 
 1. 針對可用性設定組，選擇 SQL Server 所在的可用性設定組。
 
-1. 針對虛擬機器，將兩部 SQL Server 都包含在內。 請勿包含檔案共用見證伺服器。 您的選項看起來應該像下圖：
-
-   ![在資源群組中尋找負載平衡器](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/88-configurebepool.png)
+1. 針對虛擬機器，將兩部 SQL Server 都包含在內。 請勿包含檔案共用見證伺服器。
 
 1. 按一下 [確定]  以建立後端集區。
 
@@ -469,7 +469,7 @@ Repeat these steps on the second SQL Server.
 1. 使用 **sqlcmd** 公用程式來測試連線。 例如，下列指令碼會透過接聽程式搭配 Windows 驗證，建立與主要複本的 **sqlcmd** 連線︰
 
     ```
-    sqlmd -S <listenerName> -E
+    sqlcmd -S <listenerName> -E
     ```
 
     如果接聽程式使用預設連接埠 (1433) 以外的連接埠，請在連接字串中指定該連接埠。 例如，下列 sqlcmd 命令會連線到位於連接埠 1435 的接聽程式︰

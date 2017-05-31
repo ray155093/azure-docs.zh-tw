@@ -1,34 +1,35 @@
 ---
-title: "Azure DocumentDB 入口網站工具︰指令碼總管 | Microsoft Docs"
-description: "了解 DocumentDB 指令碼總管，它是 Azure 入口網站工具，可讓您管理 DocumentDB 伺服器端程式設計成品 (包括 JavaScript 預存程序、觸發程序和使用者定義的函式)。"
+title: "Azure Cosmos DB 入口網站工具︰指令碼總管 | Microsoft Docs"
+description: "了解「Azure Cosmos DB 指令碼總管」，這是一種「Azure 入口網站」工具，可讓您管理 Azure Cosmos DB 伺服器端程式設計成品，包括 JavaScript 預存程序、觸發程序及使用者定義函數。"
 keywords: "javascript 編輯器"
-services: documentdb
+services: cosmosdb
 author: kirillg
 manager: jhubbard
 editor: monicar
 documentationcenter: 
 ms.assetid: 9d0620da-2449-4c17-82a4-24aaa46e9b3e
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/14/2017
 ms.author: kirillg
-translationtype: Human Translation
-ms.sourcegitcommit: 429687c6e5a196a3b489dc4dd79ae886b7ad9c38
-ms.openlocfilehash: ccff673996d53d2b3b2c177bfb6fff01613b7097
-ms.lasthandoff: 02/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: e9c3e92dd1c35ff6893565e61f7e7b940b6ede7e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="create-and-run-stored-procedures-triggers-and-user-defined-functions-using-the-documentdb-script-explorer"></a>使用 DocumentDB 指令碼總管建立和執行預存程序、觸發程序和使用者定義函式
-本文提供 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 指令碼總管的概述，它是 Azure 入口網站中的 JavaScript 編輯器，可讓您檢視並執行 DocumentDB 伺服器端程式設計成品 (包括預存程序、觸發程序和使用者定義的函式)。 請閱讀 [預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文中更多有關 DocumentDB 伺服器端程式設計的資訊。
+# <a name="create-and-run-stored-procedures-triggers-and-user-defined-functions-using-the-azure-cosmos-db-script-explorer"></a>使用 Azure Cosmos DB 指令碼總管來建立和執行預存程序、觸發程序及使用者定義函數
+本文提供 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) 指令碼總管的概述，這是 Azure 入口網站中的 JavaScript 編輯器，可讓您檢視和執行 Cosmos DB 伺服器端程式設計成品，包括預存程序、觸發程序及使用者定義函數。 若要深入了解 Cosmos DB 伺服器端程式設計，請參閱[預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文。
 
 ## <a name="launch-script-explorer"></a>啟動指令碼總管
-1. 在 [Azure 入口網站](https://portal.azure.com)的左側導覽中，按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。 
+1. 在 [Azure 入口網站](https://portal.azure.com)的左側導覽中，按一下 ![Azure Cosmos DB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [Azure Cosmos DB]。 
 
-    如果看不到 [NoSQL (DocumentDB)]，按一下底部的 [更多服務]，然後按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。
+    如果看不到 [Azure Cosmos DB]，請按一下底部的 [更多服務]，然後按一下 ![Azure Cosmos DB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [Azure Cosmos DB]。
 2. 在資源功能表中，按一下 [指令碼總管] 。
    
     ![[指令碼總管] 命令的螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorercommand.png)
@@ -47,7 +48,7 @@ ms.lasthandoff: 02/15/2017
     ![[指令碼總管] 重新整理命令螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorerrefresh.png)
 
 ## <a name="create-view-and-edit-stored-procedures-triggers-and-user-defined-functions"></a>建立、監視及編輯預存程序、觸發程序和使用者定義的函式
-[指令碼總管] 可讓您輕鬆地在 DocumentDB 伺服器端程式設計成品上執行 CRUD 作業。  
+「指令碼總管」可讓您在 Cosmos DB 伺服器端程式設計成品上輕鬆地執行 CRUD 作業。  
 
 * 若要建立指令碼，只要在 [指令碼總管] 內按一下適用的建立命令、提供識別碼、輸入指令碼的內容，然後按一下 [儲存] 即可。
   
@@ -109,6 +110,5 @@ Azure 入口網站中的 [指令碼總管] 只是在 DocumentDB 中使用預存�
 ## <a name="next-steps"></a>後續步驟
 深入了解 [預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文中有關 DocumentDB 伺服器端程式設計的資訊。
 
-[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/) 也是很實用的資源，可引導您深入了解 DocumentDB。  
 
 

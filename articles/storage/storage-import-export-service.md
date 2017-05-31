@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: muralikk
-translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: 132c1cf6b06924b8d23d696ea732856886be975d
-ms.lasthandoff: 05/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 1aebecdaacd3525bec07a9359e52d2bc3d1539de
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -76,7 +77,8 @@ WAImportExport 工具只與 64 位元 Windows 作業系統相容。 請參閱 [�
 >
 
 ### <a name="hard-disk-drives"></a>硬碟
-只有 2.5 英吋的 SSD 或 2.5 英吋/3.5 英吋的 SATA II 或 III 內接式硬碟能夠用於匯入/匯出服務。 您可以使用高達 10 TB 的硬碟。
+僅支援使用 2.5 英吋的 SSD 或是 2.5 英吋或 3.5 英吋的 SATA II 或 III 內接式 HDD 來搭配匯入/匯出服務。 單一匯入/匯出作業最多可以有 10 個 HDD/SSD，且每個個別 HDD/SSD 的大小不拘。 您可以將大量的磁碟機分散到多個作業，而且可建立的作業數目並無限制。 
+
 若為匯入工作，將只會處理磁碟機上的第一個資料磁碟區。 此資料磁碟區必須以 NTFS 格式化。
 
 > [!IMPORTANT]
@@ -508,6 +510,14 @@ Azure 資料中心會將不符支援需求的磁碟機退回給您。 如果包�
 
 請參閱 [Azure 備份中的離線備份工作流程](../backup/backup-azure-backup-import-export.md)。
 
+**一次出貨最多可以有多少個 HDD？
+
+一次出貨的 HDD 數量沒有限制，而且如果磁碟屬於多個作業，建議 a) 在磁碟加上所對應作業名稱的標籤。 b) 以帶有 -1、-2 等尾碼的追蹤號碼來更新作業。
+  
+**磁碟匯入/匯出所支援的最大區塊 Blob 和分頁 Blob 大小是多少？
+
+最大區塊 Blob 大小大約是 4.768 TB 或 5,000,000 MB。
+最大分頁 Blob 大小為 1 TB。
 ## <a name="next-steps"></a>後續步驟
 
 * [設定 WAImportExport 工具](storage-import-export-tool-how-to.md)

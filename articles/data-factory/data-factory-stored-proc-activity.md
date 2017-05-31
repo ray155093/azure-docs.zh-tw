@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/06/2017
+ms.date: 05/22/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: db3645304ab1274da7cd312bf01bbdb0fd158beb
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: 726f1e2caa4ad313510355c52bcdc100fc1fb488
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -35,9 +35,20 @@ ms.lasthandoff: 05/03/2017
 > * [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)
 > * [.NET 自訂活動](data-factory-use-custom-activities.md)
 
-您在 Data Factory [管線](data-factory-create-pipelines.md)中使用資料轉換活動，以轉換和處理您的原始資料以進行預測和深入了解。 預存程序活動是 Data Factory 支援的其中一個轉換活動。 本文是根據 [資料轉換活動](data-factory-data-transformation-activities.md) 一文，它呈現資料轉換和支援的轉換活動的一般概觀。
+## <a name="overview"></a>概觀
+您在 Data Factory [管線](data-factory-create-pipelines.md)中使用資料轉換活動，以轉換和處理您的原始資料以進行預測和深入了解。 預存程序活動是 Data Factory 支援的其中一個轉換活動。 本文是以[資料轉換活動](data-factory-data-transformation-activities.md)一文為基礎，提供 Data Factory 中資料轉換及所支援轉換活動的一般概觀。
 
-您可以使用預存程序活動，以叫用下列其中一個資料存放區中的預存程序：您的企業或 Azure 虛擬機器 (VM) 中的 Azure SQL Database、Azure SQL 資料倉儲、SQL Server 資料庫。  如果您使用 SQL Server，請在裝載資料庫的同一部電腦上或可存取資料庫的個別電腦上安裝資料管理閘道。 資料管理閘道是一套透過安全且可管理的方式，將內部部署/Azure VM 上的資料來源連結至雲端服務的元件。 如需詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)文章。
+您可以使用「預存程序活動」來叫用您企業或 Azure 虛擬機器 (VM) 中的下列其中一個資料存放區： 
+
+- Azure SQL Database
+- Azure SQL 資料倉儲
+- SQL Server Database。  如果您使用 SQL Server，請在裝載資料庫的同一部電腦上或可存取資料庫的個別電腦上安裝資料管理閘道。 資料管理閘道是一套透過安全且可管理的方式，將內部部署/Azure VM 上的資料來源連結至雲端服務的元件。 如需詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)文章。
+
+> [!IMPORTANT]
+> 將資料複製到 Azure SQL Database 或 SQL Server 時，您可以使用 **sqlWriterStoredProcedureName** 屬性在複製活動中設定 **SqlSink** 以叫用預存程序。 如需詳細資訊，請參閱[從複製活動叫用預存程序](data-factory-invoke-stored-procedure-from-copy-activity.md)。 如需有關此屬性的詳細資料，請參閱下列連接器文章：[Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties)、[SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties)。
+>  
+> 從 Azure SQL Database、SQL Server 或「Azure SQL 資料倉儲」複製資料時，您可以使用 **sqlReaderStoredProcedureName** 屬性在複製活動中設定 **SqlSource**，以叫用預存程序從來源資料庫讀取資料。 如需詳細資訊，請參閱下列連接器文章：[Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties)、[SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties)、[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)          
+
 
 下列逐步解說會在管線中使用預存程序活動，來叫用 Azure SQL Database 中的預存程序。 
 
@@ -96,7 +107,7 @@ ms.lasthandoff: 05/03/2017
    ![Data Factory 首頁](media/data-factory-stored-proc-activity/data-factory-home-page.png)
 
 ### <a name="create-an-azure-sql-linked-service"></a>建立 Azure SQL 連結服務
-建立 Data Factory 之後，您可以建立 Azure SQL 連結的服務，將 Azure SQL Database 連結到 Data Factory。 此資料庫包含 sampletable 資料表和 sp_sample 預存程序。
+建立 Data Factory 之後，您需建立 Azure SQL 已連結服務，將包含 sampletable 資料表和 sp_sample 預存程序的 Azure SQL Database 連結到 Data Factory。
 
 1. 在 **SProcDF** 的 [Data Factory] 刀鋒視窗上，按一下 [製作和部署] 來啟動 Data Factory 編輯器。
 2. 在命令列上按一下 [新增資料儲存區]，然後選擇 [Azure SQL Database]。 您應該會在編輯器中看到用來建立 Azure SQL 連結服務的 JSON 指令碼。
@@ -115,6 +126,8 @@ ms.lasthandoff: 05/03/2017
     ![含連結服務的樹狀檢視](media/data-factory-stored-proc-activity/tree-view.png)
 
 ### <a name="create-an-output-dataset"></a>建立輸出資料表
+即使預存程序不會產生任何資料，您也必須為預存程序活動指定輸出資料集。 這是因為輸出資料集會驅動活動排程 (活動的執行頻率 - 每小時、每天等)。 輸出資料集必須使用參考了想在其中執行預存程序之 Azure SQL Database、Azure SQL 資料倉儲或 SQL Server Database 的 **連結服務** 。 輸出資料集可以用來傳遞預存程序結果，以供管線中的另一個活動 ([鏈結活動](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)) 進行後續處理。 不過，Data Factory 不會自動將預存程序的輸出寫入至此資料集。 它是會寫入至輸出資料集所指向之 SQL 資料表的預存程序。 在某些情況下，輸出資料集可以是「虛擬資料集」(此資料集指向並未真正存有預存程序輸出資料的資料表)。 此虛擬資料集僅用來指定用於執行預存程序活動的排程。 
+
 1. 按一下 **...更多** (工具列上)，按一下 新增資料集，然後按一下 Azure SQL。 命令列的 [新資料集]，然後選取 [Azure SQL]。
 
     ![含連結服務的樹狀檢視](media/data-factory-stored-proc-activity/new-dataset.png)
@@ -141,9 +154,15 @@ ms.lasthandoff: 05/03/2017
     ![含連結服務的樹狀檢視](media/data-factory-stored-proc-activity/tree-view-2.png)
 
 ### <a name="create-a-pipeline-with-sqlserverstoredprocedure-activity"></a>使用 SqlServerStoredProcedure 活動建立管線
-現在，讓我們使用 SqlServerStoredProcedure 活動來建立管線。
+現在，讓我們使用預存程序活動來建立管線。 
 
-1. 如果沒看到此按鈕，請按一下工具列 **...命令列上的 [更多]**，然後按一下 [新增管線]。
+請注意下列屬性： 
+
+- **type** 屬性會設定為 **SqlServerStoredProcedure**。 
+- 類型屬性中的 **storedProcedureName** 會設定為 **sp_sample** (預存程序的名稱)。
+- **storedProcedureParameters** 區段包含一個名為 **DataTime** 的參數。 JSON 中參數的名稱和大小寫必須符合預存程序定義中參數的名稱和大小寫。 如果您需要為參數傳遞 null，請使用此語法：`"param1": null` (全部小寫)。
+ 
+1. 按一下 **...命令列上的 [更多]**，然後按一下 [新增管線]。
 2. 複製/貼上下列 JSON 程式碼片段：   
 
     ```JSON
@@ -171,16 +190,12 @@ ms.lasthandoff: 05/03/2017
                     "name": "SprocActivitySample"
                 }
             ],
-             "start": "2016-08-02T00:00:00Z",
-             "end": "2016-08-02T05:00:00Z",
+             "start": "2017-04-02T00:00:00Z",
+             "end": "2017-04-02T05:00:00Z",
             "isPaused": false
         }
     }
     ```
-
-    將 **storedProcedureName** 設定為 **sp_sample**。 **DateTime** 參數的名稱和大小寫必須符合預存程序定義中參數的名稱和大小寫。
-
-    如果您要為參數傳遞 null，請使用語法："param1": null (全部小寫)。
 3. 若要部署管線，請按一下工具列上的 [部署]。  
 
 ### <a name="monitor-the-pipeline"></a>監視管線
@@ -199,10 +214,74 @@ ms.lasthandoff: 05/03/2017
 
    如需監視 Azure Data Factory 管線的詳細資訊，請參閱 [監視管線](data-factory-monitor-manage-pipelines.md) 。  
 
-> [!NOTE]
-> 在此範例中，SprocActivitySample 沒有輸入。 如果您想要鏈結此活動與活動上游 (亦即預先處理)，可以使用上游活動的輸出做為此活動的輸入。 在此情況下，上游活動完成且能使用上游活動的輸出 (處於就緒狀態) 之前，此活動不會執行。 輸入無法直接用來作為預存程序活動的參數。 如需有關將管線中的活動鏈結的詳細資訊，請參閱[管線中的多個活動](data-factory-create-pipelines.md#multiple-activities-in-a-pipeline)
->
->
+
+## <a name="specify-an-input-dataset"></a>指定輸入資料集
+在本逐步解說中，預存程序活動沒有任何輸入資料集。 如果您指定輸入資料集，則預存程序活動將會等到輸入資料集配量可供使用 (處於「就緒」狀態) 之後，才會執行。 此資料集可以是外部資料集 (不是由相同管線中的另一個活動所產生)，也可以是上游活動 (執行順序在此活動之前的活動) 所產生的內部資料集。 您可以為預存程序活動指定多個輸入資料集。 如果您這麼做，預存程序活動將只會在所有輸入資料集配量都可供使用 (處於「就緒」狀態) 時，才會執行。 在預存程序中輸入資料集無法做為參數取用。 它只會用來在啟動預存程序活動之前檢查相依性。
+
+## <a name="chaining-with-other-activities"></a>與其他活動鏈結
+如果您想要將此活動與上游活動進行鏈結，請指定上游活動的輸出作為此活動的輸入。 當您這麼做時，預存程序活動將會等到上游活動完成且上游活動的輸出資料集可供使用 (處於「就緒」狀態) 之後，才會執行。 您可以指定多個上游活動的輸出資料集作為預存程序活動的輸入資料集。 如果您這麼做，預存程序活動將只會在所有輸入資料集配量都可供使用時，才會執行。  
+
+在下列範例中，複製活動的輸出是 OutputDataset，這是預存程序活動的輸入。 因此，預存程序活動將會等到複製活動完成且 OutputDataset 配量可供使用 (處於「就緒」狀態) 之後，才會執行。 如果您指定多個輸入資料集，則預存程序活動將會等到所有輸入資料集配量都可供使用 (處於「就緒」狀態) 之後，才會執行。 輸入資料集無法直接用來作為預存程序活動的參數。 
+
+如需有關將活動鏈結的詳細資訊，請參閱[管線中的多個活動](data-factory-create-pipelines.md#multiple-activities-in-a-pipeline)
+
+```json
+{
+
+    "name": "ADFTutorialPipeline",
+    "properties": {
+        "description": "Copy data from a blob to blob",
+        "activities": [
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "BlobSource"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 0,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [ { "name": "InputDataset" } ],
+                "outputs": [ { "name": "OutputDataset" } ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "executionPriorityOrder": "NewestFirst"
+                },
+                "name": "CopyFromBlobToSQL"
+            },
+            {
+                "type": "SqlServerStoredProcedure",
+                "typeProperties": {
+                    "storedProcedureName": "SPSproc"
+                },
+                "inputs": [ { "name": "OutputDataset" } ],
+                "outputs": [ { "name": "SQLOutputDataset" } ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 3
+                },
+                "name": "RunStoredProcedure"
+            }
+
+        ],
+        "start": "2017-04-12T00:00:00Z",
+        "end": "2017-04-13T00:00:00Z",
+        "isPaused": false,
+    }
+}
+```
+
+同樣地，若要將預存程序活動與「下游活動」(執行順序在預存程序活動之後的活動) 連結，請在管線中指定預存程序活動的輸出資料集作為下游活動的輸入。
+
+> [!IMPORTANT]
+> 將資料複製到 Azure SQL Database 或 SQL Server 時，您可以使用 **sqlWriterStoredProcedureName** 屬性在複製活動中設定 **SqlSink** 以叫用預存程序。 如需詳細資訊，請參閱[從複製活動叫用預存程序](data-factory-invoke-stored-procedure-from-copy-activity.md)。 如需有關此屬性的詳細資料，請參閱下列連接器文章：[Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties)、[SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties)。
+>  
+> 從 Azure SQL Database、SQL Server 或「Azure SQL 資料倉儲」複製資料時，您可以使用 **sqlReaderStoredProcedureName** 屬性在複製活動中設定 **SqlSource**，以叫用預存程序從來源資料庫讀取資料。 如需詳細資訊，請參閱下列連接器文章：[Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties)、[SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties)、[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)          
 
 ## <a name="json-format"></a>JSON 格式
 以下是 JSON 格式來定義預存程序活動︰
@@ -226,7 +305,8 @@ ms.lasthandoff: 05/03/2017
 }
 ```
 
-## <a name="json-properties"></a>JSON 屬性
+下表說明這些 JSON 屬性：
+
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | 名稱 | 活動的名稱 |是 |
@@ -234,7 +314,7 @@ ms.lasthandoff: 05/03/2017
 | 類型 | 必須設定為：**SqlServerStoredProcedure** | 是 |
 | 輸入 | 選用。 如果您有指定輸入資料集，它必須可供使用 (「就緒」狀態)，預存程序活動才能執行。 在預存程序中輸入資料集無法做為參數取用。 它只會用來在啟動預存程序活動之前檢查相依性。 |否 |
 | 輸出 | 您必須指定預存程序活動的輸出資料集。 輸出資料集會指定預存程序活動的 **排程** (每小時、每週、每月等)。 <br/><br/>輸出資料集必須使用參考了想在其中執行預存程序之 Azure SQL Database、Azure SQL 資料倉儲或 SQL Server Database 的 **連結服務** 。 <br/><br/>輸出資料集可以用來傳遞預存程序結果，以供管線中的另一個活動 ([鏈結活動](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)) 進行後續處理。 不過，Data Factory 不會自動將預存程序的輸出寫入至此資料集。 它是會寫入至輸出資料集所指向之 SQL 資料表的預存程序。 <br/><br/>在某些情況下，輸出資料集可以是 **虛擬資料集**，只會用來指定用於執行預存程序活動的排程。 |是 |
-| storedProcedureName |指定 Azure SQL Database 或 Azure SQL 資料倉儲中預存程序的名稱，由輸出資料表使用的連結的服務代表。 |是 |
+| storedProcedureName |指定 Azure SQL Database、「Azure SQL 資料倉儲」或 SQL Server 資料庫中預存程序 (由輸出資料表所使用的已連結服務代表) 的名稱。 |是 |
 | storedProcedureParameters |指定預存程序參數的值。 如果您要為參數傳遞 null，請使用語法："param1": null (全部小寫)。 請參閱下列範例以了解如何使用這個屬性。 |否 |
 
 ## <a name="passing-a-static-value"></a>傳遞靜態值

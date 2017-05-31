@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 04/10/2017
 ms.author: padmavc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: e28c1410145d8da168a73e74251ac037997d1752
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 197df490690754730425231f358fde31d17dcfad
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -45,7 +45,7 @@ B2B 工作負載涉及金錢交易，例如訂單和發票。 在災害事件期
 
 4. 邏輯應用程式整合帳戶中的商務持續性是設計來按照 B2B 通訊協定 (X12、AS2 和 EDIFACT) 進行支援。  若要了解詳細的步驟，請選取個別的連結。
 
-5. 建議也將所有主要區域的資源部署在次要地區。 主要區域的資源包括 Azure SQL Database 或 Azure DocumentDB、Azure 服務匯流排/用來傳訊的 Azure 事件中樞，Azure API 管理，以及 Azure App Service 的 Logic Apps 功能。   
+5. 建議也將所有主要區域的資源部署在次要地區。 主要區域的資源包括 Azure SQL Database 或 Azure Cosmos DB、Azure 服務匯流排/用來傳訊的 Azure 事件中樞，Azure API 管理，以及 Azure App Service 的 Logic Apps 功能。   
 
 6. 建立從主要區域到次要地區的連線。 若要提取主要區域的執行狀態，請在次要地區中建立邏輯應用程式。 它應該有觸發程序和動作。 觸發程序需連線至主要區域整合帳戶。 動作需連線至次要地區整合帳戶。 根據時間間隔，觸發程序會輪詢主要區域執行狀態資料表，並提取新的記錄 (如果有)。 動作會將它們更新至次要地區整合帳戶。 此程序有助於將累加式執行階段狀態從主要區域更新到次要地區。
 

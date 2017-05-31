@@ -1,38 +1,39 @@
 ---
-title: "DocumentDB 的 SQL 語法和 SQL 查詢 | Microsoft Docs"
-description: "了解 DocumentDB (NoSQL 資料庫) 的 SQL 語法、資料庫概念和 SQL 查詢。 SQL 可以做為 DocumentDB 中的 JSON 查詢語言。"
+title: "Azure Cosmos DB 的 SQL 語法和 SQL 查詢 | Microsoft Docs"
+description: "了解 Azure Cosmos DB 的 SQL 語法、資料庫概念及 SQL 查詢。 SQL 可作為 Azure Cosmos DB 中的 JSON 查詢語言。"
 keywords: "sql 語法, sql 查詢, sql 查詢, json 查詢語言, 資料庫概念和 sql 查詢, 彙總函式"
-services: documentdb
+services: cosmosdb
 documentationcenter: 
 author: arramac
 manager: jhubbard
 editor: monicar
 ms.assetid: a73b4ab3-0786-42fd-b59b-555fce09db6e
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/08/2017
 ms.author: arramac
-translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: c1360cb76c6fe8fd5177f13ea67f2109b5777521
-ms.lasthandoff: 04/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 11dc9d2e4c6cabfbfe7d68c88e5b210c94a3ec64
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="sql-query-and-sql-syntax-in-documentdb"></a>DocumentDB 中的 SQL 查詢和 SQL 語法
-Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 查詢語言來查詢文件。 DocumentDB 確實是無結構描述。 由於它是直接在資料庫引擎內使用 JSON 資料模型，因此它提供不需明確的結構描述或建立次要索引，即可自動編製 JSON 文件索引的功能。 
+# <a name="sql-query-and-sql-syntax-in-azure-cosmos-db"></a>Azure Cosmos DB 中的 SQL 查詢和 SQL 語法
+Microsoft Azure Cosmos DB 支援使用 SQL (結構化查詢語言) 作為 JSON 查詢語言來查詢文件。 Cosmos DB 確實無結構描述。 由於它是直接在資料庫引擎內使用 JSON 資料模型，因此它提供不需明確的結構描述或建立次要索引，即可自動編製 JSON 文件索引的功能。 
 
-在為 DocumentDB 設計查詢語言時，我們有兩個謹記的目標：
+為 Cosmos DB 設計查詢語言時，我們心中懷有兩個目標：
 
-* 我們想要支援 SQL，而不是發明新的 JSON 查詢語言。 SQL 是一種最熟悉且熱門的查詢語言。 DocumentDB SQL 提供一個正式的程式設計模型，可在 JSON 文件上進行豐富的查詢。
-* 由於 JSON 文件資料庫可以直接在資料庫引擎中執行 JavaScript，因此，我們想要使用 JavaScript 的程式設計模型做為查詢語言的基礎。 DocumentDB SQL 是以 JavaScript 的類型系統、運算式評估和函數叫用為基礎。 這除了其他功能之外，還進而提供自然程式設計模型來進行關聯式投射、跨 JSON 文件的階層式導覽、自我聯結、空間查詢，以及叫用完全以 JavaScript 撰寫的使用者定義函式 (UDF)。 
+* 我們想要支援 SQL，而不是發明新的 JSON 查詢語言。 SQL 是一種最熟悉且熱門的查詢語言。 Cosmos DB SQL 提供一個正式的程式設計模型，可在 JSON 文件上進行豐富的查詢。
+* 由於 JSON 文件資料庫可以直接在資料庫引擎中執行 JavaScript，因此，我們想要使用 JavaScript 的程式設計模型做為查詢語言的基礎。 DocumentDB API SQL 是以 JavaScript 的類型系統、運算式評估和函數叫用為基礎。 這除了其他功能之外，還進而提供自然程式設計模型來進行關聯式投射、跨 JSON 文件的階層式導覽、自我聯結、空間查詢，以及叫用完全以 JavaScript 撰寫的使用者定義函式 (UDF)。 
 
 我們相信這些功能的重點是減少應用程式與資料庫之間的摩擦，而且對開發人員的生產力而言十分重要。
 
-建議您透過觀看下列影片 (影片中 Aravind Ramachandran 會示範 DocumentDB 的查詢功能)，以及瀏覽我們的 [Query Playground (查詢遊樂場)](http://www.documentdb.com/sql/demo) (您可以在其中試試 DocumentDB，並對我們的資料集執行 SQL 查詢)，來開始著手。
+建議您透過觀看下列影片 (影片中 Aravind Ramachandran 會示範 Cosmos DB 的查詢功能)，以及瀏覽我們的 [Query Playground (查詢遊樂場)](http://www.documentdb.com/sql/demo) (您可以在其中試試 Cosmos DB，並對我們的資料集執行 SQL 查詢)，來開始著手。
 
 > [!VIDEO https://channel9.msdn.com/Shows/Data-Exposed/DataExposedQueryingDocumentDB/player]
 > 
@@ -40,8 +41,8 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
 
 接著再回到本文，我們將會從 SQL 查詢教學課程開始，帶領您演練一些簡易的 JSON 文件和 SQL 命令。
 
-## <a id="GettingStarted"></a>開始使用 DocumentDB 中的 SQL 命令
-為了查看 DocumentDB SQL 如何運作，讓我們從一些簡單的 JSON 文件開始著手，然後對其逐步執行一些簡單查詢。 請考慮有關兩個家族的這兩份 JSON 文件。 請注意，使用 DocumentDB，我們不需要明確地建立任何結構描述或次要索引。 我們只需要將 JSON 文件插入到 DocumentDB 集合中，再接著進行查詢即可。 這裡有 Andersen 一家的簡單 JSON 文件，包括這一家的父母、孩子 (以及寵物)、地址及註冊資訊。 這份文件包含字串、數字、布林值、陣列和巢狀屬性。 
+## <a id="GettingStarted"></a>開始在 Cosmos DB 中使用 SQL 命令
+為了查看 Cosmos DB SQL 如何運作，讓我們從一些簡單的 JSON 文件開始著手，然後對其逐步執行一些簡單的查詢。 請考慮有關兩個家族的這兩份 JSON 文件。 請注意，使用 Cosmos DB 時，我們不需要明確地建立任何結構描述或次要索引。 我們只需要將 JSON 文件插入到 Cosmos DB 集合中，再接著進行查詢即可。 這裡有 Andersen 一家的簡單 JSON 文件，包括這一家的父母、孩子 (以及寵物)、地址及註冊資訊。 這份文件包含字串、數字、布林值、陣列和巢狀屬性。 
 
 **文件**  
 
@@ -100,7 +101,7 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
 }
 ```
 
-現在，讓我們嘗試對此資料執行一些查詢，以了解 DocumentDB SQL 的一些重要部分。 例如，下列查詢將會傳回 id 欄位符合 `AndersenFamily`的文件。 因為它是 `SELECT *`，所以查詢的輸出是完整 JSON 文件：
+現在，讓我們嘗試對此資料執行一些查詢，以了解 DocumentDB API SQL 的一些重要部分。 例如，下列查詢將會傳回 id 欄位符合 `AndersenFamily`的文件。 因為它是 `SELECT *`，所以查詢的輸出是完整 JSON 文件：
 
 **查詢**
 
@@ -165,29 +166,29 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
     ]
 
 
-我們想要透過目前所看到的範例來指出 DocumentDB 查詢語言的一些重要部分：  
+我們想要透過目前所看到的範例來指出 Cosmos DB 查詢語言的一些重要部分：  
 
-* 因為 DocumentDB SQL 處理 JSON 值，所以它處理樹狀形式的實體，而不是資料列和資料行。 因此，此語言可讓您參考樹狀目錄中任意深度的節點 (例如 `Node1.Node2.Node3…..Nodem`)，該節點與參考 `<table>.<column>` 之兩個部分參考的關聯式 SQL 類似。   
+* 因為 DocumentDB API SQL 的處理對象是 JSON 值，所以它處理的是樹狀形式的實體，而不是資料列和資料行。 因此，此語言可讓您參考樹狀目錄中任意深度的節點 (例如 `Node1.Node2.Node3…..Nodem`)，該節點與參考 `<table>.<column>` 之兩個部分參考的關聯式 SQL 類似。   
 * 結構化查詢語言可處理無結構描述資料。 因此，需要動態繫結類型系統。 相同的運算式可能會對不同的文件產生不同的類型。 查詢的結果會是有效的 JSON 值，但不保證會是固定的結構描述。  
-* DocumentDB 只支援嚴謹的 JSON 文件。 這表示類型系統和運算式只能處理 JSON 類型。 如需詳細資料，請參閱 [JSON 規格](http://www.json.org/) 。  
-* DocumentDB 集合是 JSON 文件的無結構描述容器。 集合中文件內及跨文件之資料實體中的關係，會由內含項目以隱含方式擷取，而不是由主索引鍵和外部索引鍵關係擷取。 這是本文稍後討論之文件內聯結中值得指出的重要部分。
+* Cosmos DB 只支援嚴謹的 JSON 文件。 這表示類型系統和運算式只能處理 JSON 類型。 如需詳細資料，請參閱 [JSON 規格](http://www.json.org/) 。  
+* Cosmos DB 集合是 JSON 文件的無結構描述容器。 集合中文件內及跨文件之資料實體中的關係，會由內含項目以隱含方式擷取，而不是由主索引鍵和外部索引鍵關係擷取。 這是本文稍後討論之文件內聯結中值得指出的重要部分。
 
-## <a id="Indexing"></a>DocumentDB 索引編製
-在進入 DocumentDB SQL 語法之前，有必要先探索 DocumentDB 的索引設計。 
+## <a id="Indexing"></a> Cosmos DB 索引編製
+在進入 DocumentDB API SQL 語法之前，有必要先探索 Cosmos DB API 的索引設計。 
 
 資料庫索引的目的是要在使用最少資源 (例如 CPU、輸入/輸出) 的情況下，以各種方式提供查詢，同時兼顧良好的輸送量和低延遲。 通常，選擇適用於資料庫查詢的正確索引需要經過相當的規劃和實驗。 此方式對資料不符合嚴謹結構描述的無結構描述資料庫而言是種挑戰，而且發展十分迅速。 
 
-因此，我們在設計 DocumentDB 索引子系統時，設定了下列目標：
+因此，我們在設計 Cosmos DB 索引子系統時，設定了下列目標：
 
 * 在不需要結構描述的情況下，對文件編製索引：索引子系統不需要任何結構描述資訊，或提出任何文件結構描述的相關假設。 
-* 支援有效率、豐富階層式及關聯式查詢：索引可有效率地支援 DocumentDB 查詢語言，包括支援階層式和關聯式投射。
+* 支援有效率、豐富階層式及關聯式查詢：索引可有效率地支援 Cosmos DB 查詢語言，包括支援階層式和關聯式投射。
 * 支援在面對持續大量寫入時進行一致查詢：在面對持續大量寫入時，針對具有一致查詢的高寫入輸送量工作負載，會以累加、有效率及線上方式更新索引。 一致的索引更新對於提供一致性層級的查詢十分重要，在此層級中是由使用者設定文件服務。
 * 支援多重租用：由於是使用保留型模型進行跨租用戶的資源控管，因此會在為每一複本配置的系統資源 (CPU、記憶體、輸入/輸出) 預算內執行索引更新。 
-* 儲存體效率：基於成本效益，索引的磁碟儲存體額外負荷有所限制且可預測。 這十分重要，因為 DocumentDB 允許開發人員在索引額外負荷與查詢效能之間做出成本取捨。  
+* 儲存體效率：基於成本效益，索引的磁碟儲存體額外負荷有所限制且可預測。 這十分重要，因為 Cosmos DB 允許開發人員在索引額外負荷與查詢效能之間做出成本取捨。  
 
-如需示範如何為集合設定索引編製原則的範例，請參閱 MSDN 上的 [DocumentDB 範例](https://github.com/Azure/azure-documentdb-net) 。 現在，讓我們深入討論 DocumentDB SQL 語法。
+如需示範如何為集合設定索引編製原則的範例，請參閱 MSDN 上的 [Azure Cosmos DB 範例 (英文)](https://github.com/Azure/azure-documentdb-net)。 現在，讓我們深入討論 Azure Cosmos DB SQL 語法。
 
-## <a id="Basics"></a>DocumentDB SQL 查詢的基本概念
+## <a id="Basics"></a>Azure Cosmos DB SQL 查詢的基本概念
 根據 ANSI-SQL 標準，每個查詢都會包含 SELECT 子句以及選擇性的 FROM 和 WHERE 子句。 針對每個查詢，通常都會列舉 FROM 子句中的來源。 接著，會對來源套用 WHERE 子句中的篩選，以擷取 JSON 文件的子集。 最後，使用 SELECT 子句來投射選取清單中所要求的 JSON 值。
 
     SELECT <select_list> 
@@ -281,7 +282,7 @@ WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。 它會指定條件
     }]
 
 
-前一個範例已顯示簡單的相等查詢。 DocumentDB SQL 也支援各種純量運算式。 最常用的是二元和一元運算式。 來源 JSON 物件中的屬性參考也是有效的運算式。 
+前一個範例已顯示簡單的相等查詢。 DocumentDB API SQL 也支援各種純量運算式。 最常用的是二元和一元運算式。 來源 JSON 物件中的屬性參考也是有效的運算式。 
 
 下列是目前支援的二元運算式，而且可以用於查詢中 (如下列範例所示)：  
 
@@ -339,7 +340,7 @@ WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。 它會指定條件
 除了二元和一元運算子之外，還允許屬性參照。 例如，`SELECT * FROM Families f WHERE f.isRegistered` 所傳回的 JSON 文件包含屬性 `isRegistered` 且屬性值等於 JSON `true` 值。 任何其他值 (false、null、Undefined、`<number>`、`<string>`、`<object>`、`<array>` 等) 則會導致從結果中排除來源文件。 
 
 ### <a name="equality-and-comparison-operators"></a>相等和比較運算子
-下表顯示 DocumentDB SQL 中任何兩個 JSON 類型之間的相等比較結果。
+下表顯示 DocumentDB API SQL 中任何兩個 JSON 類型之間的相等比較結果。
 
 <table style = "width:300px">
    <tbody>
@@ -534,7 +535,7 @@ Undefined </td>
 
 如需更快速的查詢執行時間，請記得針對經過 BETWEEN 子句篩選的任何數值屬性/路徑，建立使用範圍索引類型的檢索原則。 
 
-在 DocumentDB 和 ANSI SQL 中使用 BETWEEN 的主要差異在於，您可以表示針對混合類型屬性的範圍查詢，比方說，在某些文件中 「 成績 」 可能是數字 (5) ，而在其他文件中可能會是字串 ("grade4")。 在這些情況下 (像在 JavaScript 中)，這兩種不同類型之間的比較會產生 「 未定義 」，並略過文件。
+在 DocumentDB API 和 ANSI SQL 中使用 BETWEEN 的主要差異在於，您可以表示針對混合類型屬性的範圍查詢，比方說，在某些文件中 "grade" 可能是數字 (5) ，而在其他文件中可能會是字串 ("grade4")。 在這些情況下 (像在 JavaScript 中)，這兩種不同類型之間的比較會產生 「 未定義 」，並略過文件。
 
 ### <a name="logical-and-or-and-not-operators"></a>邏輯 (AND、OR 和 NOT) 運算子
 邏輯運算子的運算對象是布林值。 下表顯示這些運算子的邏輯真值表。
@@ -751,7 +752,7 @@ SELECT 子句 (**`SELECT <select_list>`**) 是必要項目，並指定將從查�
 
 
 ### <a name="object-and-array-creation"></a>物件和陣列建立
-DocumentDB SQL 的另一個重要功能是建立陣列/物件。 在前一個範例中，請注意，我們已建立新的 JSON 物件。 同樣地，您也可以建構陣列 (如下列範例所示)。
+DocumentDB API SQL 的另一個重要功能是建立陣列/物件。 在前一個範例中，請注意，我們已建立新的 JSON 物件。 同樣地，您也可以建構陣列 (如下列範例所示)。
 
 **查詢**
 
@@ -924,7 +925,7 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
         "$1": 1
     }]
 
-下表顯示 DocumentDB 中支援的彙總函式清單。 `SUM` 和 `AVG` 是對數值執行，而 `COUNT`、`MIN`和 `MAX` 則可對數字、字串、布林值和 null 執行。 
+下表顯示 DocumentDB API 中支援的彙總函式清單。 `SUM` 和 `AVG` 是對數值執行，而 `COUNT`、`MIN`和 `MAX` 則可對數字、字串、布林值和 null 執行。 
 
 | 使用量 | 說明 |
 |-------|-------------|
@@ -990,7 +991,7 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
 ## <a id="Advanced"></a>進階資料庫概念和 SQL 查詢
 
 ### <a id="Iteration"></a>反覆運算
-在 DocumentDB SQL 中已透過 **IN** 關鍵字加入新的建構，以支援反覆運算 JSON 陣列。 FROM 來源支援反覆運算。 讓我們從下列範例開始：
+在 DocumentDB API SQL 中已透過 **IN** 關鍵字加入新的建構，以支援對 JSON 陣列的反覆查看。 FROM 來源支援反覆運算。 讓我們從下列範例開始：
 
 **查詢**
 
@@ -1084,7 +1085,7 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
     ]
 
 ### <a id="Joins"></a>聯結
-在關聯式資料庫中，跨資料表的聯結需求極為重要。 就設計正規化結構描述而言，邏輯上需要它。 與此相反的是，DocumentDB 會處理無結構描述文件的反正規化資料模型。 這在邏輯上等同於「自我聯結」。
+在關聯式資料庫中，跨資料表的聯結需求極為重要。 就設計正規化結構描述而言，邏輯上需要它。 與此相反的是，DocumentDB API 會處理無結構描述文件的反正規化資料模型。 這在邏輯上等同於「自我聯結」。
 
 語言支援的語法是 <from_source1> JOIN <from_source2> JOIN ...JOIN <from_sourceN>。 整體而言，這會傳回一組 **N**-Tuple (具有 **N** 個值的 Tuple)。 每個 Tuple 所擁有的值，都是將所有集合別名在其個別集合上反覆運算所產生。 換句話說，這是參與聯結之集的完整交叉乘積。
 
@@ -1233,17 +1234,17 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
 
 
 ## <a id="JavaScriptIntegration"></a>JavaScript 整合
-DocumentDB 提供一個程式設計模型，以根據預存程序和觸發程序，直接對集合執行 JavaScript 型應用程式邏輯。 這允許：
+Azure Cosmos DB 提供一個程式設計模型，可藉由預存程序和觸發程序，直接對集合執行 JavaScript 型應用程式邏輯。 這允許：
 
 * 藉由直接在資料庫引擎內深入整合 JavaScript 執行階段，對集合中的文件執行高效能交易式 CRUD 操作和查詢。 
-* 將控制流程、變數範圍限制、指派以及例外狀況處理基本類型與資料庫交易的整合自然模型化。 如需 JavaScript 整合之 DocumentDB 支援的詳細資料，請參閱 JavaScript 伺服器端程式設計文件。
+* 將控制流程、變數範圍限制、指派以及例外狀況處理基本類型與資料庫交易的整合自然模型化。 如需有關 JavaScript 整合之 Azure Cosmos DB 支援的詳細資料，請參閱 JavaScript 伺服器端程式設計文件。
 
 ### <a id="UserDefinedFunctions"></a>使用者定義函數 (UDF)
-除了本文中已定義的類型之外，DocumentDB SQL 還支援使用者定義函式 (UDF)。 特別的是，如果開發人員可以傳入零個或多個引數並傳回單一引數結果，則支援純量 UDF。 系統會檢查所有這些引數是否為合法的 JSON 值。  
+除了本文中已定義的類型之外，DocumentDB API SQL 還支援「使用者定義函數」(UDF)。 特別的是，如果開發人員可以傳入零個或多個引數並傳回單一引數結果，則支援純量 UDF。 系統會檢查所有這些引數是否為合法的 JSON 值。  
 
-DocumentDB SQL 語法已延伸，可支援使用這些使用者定義函式的自訂應用程式邏輯。 您可以向 DocumentDB 註冊 UDF，然後在 SQL 查詢中參照它。 實際上，UDF 是特別設計來透過查詢進行叫用。 這項選擇的必然結果，就是 UDF 無法存取其他 JavaScript 類型 (預存程序和觸發程序) 擁有的內容物件。 因為查詢是以唯讀形式執行，所以可以在主要或次要複本上執行。 因此，與其他 JavaScript 類型不同，UDF 是設計成在次要複本上執行。
+DocumentDB API SQL 語法已延伸，可支援使用這些「使用者定義函數」的自訂應用程式邏輯。 您可以向 DocumentDB API 註冊 UDF，然後在 SQL 查詢中參照它。 實際上，UDF 是特別設計來透過查詢進行叫用。 這項選擇的必然結果，就是 UDF 無法存取其他 JavaScript 類型 (預存程序和觸發程序) 擁有的內容物件。 因為查詢是以唯讀形式執行，所以可以在主要或次要複本上執行。 因此，與其他 JavaScript 類型不同，UDF 是設計成在次要複本上執行。
 
-以下是如何在 DocumentDB 資料庫中註冊 UDF 的範例 (特別是在文件集合下)。
+以下是如何在 Cosmos DB 資料庫 (更明確地說是在文件集合下) 註冊 UDF 的範例。
 
        UserDefinedFunction regexMatchUdf = new UserDefinedFunction
        {
@@ -1262,7 +1263,7 @@ DocumentDB SQL 語法已延伸，可支援使用這些使用者定義函式的�
 我們現在可以在投射的查詢中使用此 UDF。 必須以區分大小寫的前置詞 "udf." 來限定 UDF (當從查詢內呼叫時)。 
 
 > [!NOTE]
-> 在 2015 年 3 月 17 日以前，DocumentDB 支援無 "udf." 前置詞的 UDF 呼叫， 例如 SELECT REGEX_MATCH()。 這種呼叫模式已被取代。  
+> 在 2015 年 3 月 17 日以前，Cosmos DB 支援無 "udf." 前置詞的 UDF 呼叫， 例如 SELECT REGEX_MATCH()。 這種呼叫模式已被取代。  
 > 
 > 
 
@@ -1344,21 +1345,21 @@ UDF 也可以用於篩選內 (如下面範例所示)，同樣是以 "udf." 前�
     ]
 
 
-如同上述範例所示，UDF 可將 JavaScript 語言的強大功能與 DocumentDB SQL 整合來提供可進行程式設計的豐富介面，以在內建 JavaScript 執行階段功能的協助下，執行複雜的程序性、條件式邏輯。
+如上述範例所示，UDF 會將 JavaScript 語言的強大功能與 DocumentDB API SQL 整合來提供可進行程式設計的豐富介面，以在內建的 JavaScript 執行階段功能協助下，執行複雜的程序性、條件式邏輯。
 
-在處理 UDF 的目前階段 (WHERE 子句或 SELECT 子句) 中，DocumentDB SQL 針對來源中的每個文件提供 UDF 的引數。 結果會緊密整合至整體執行管線。 如果 JSON 值中沒有 UDF 參數所參照的屬性，則會將參數視為 undefined，因此，而整個略過 UDF 叫用。 同樣地，如果 UDF 的結果為未定義，便不會被納入結果中。 
+在處理 UDF 的目前階段 (WHERE 子句或 SELECT 子句) 中，DocumentDB API SQL 會針對來源中的每個文件提供 UDF 的引數。 結果會緊密整合至整體執行管線。 如果 JSON 值中沒有 UDF 參數所參照的屬性，則會將參數視為 undefined，因此，而整個略過 UDF 叫用。 同樣地，如果 UDF 的結果為未定義，便不會被納入結果中。 
 
 簡言之，UDF 是在進行查詢時執行複雜商務邏輯的不錯工具。
 
 ### <a name="operator-evaluation"></a>運算子評估
-DocumentDB 憑藉著為 JSON 資料庫，來描繪 JavaScript 運算子和其評估語意。 雖然 DocumentDB 嘗試保留 JSON 支援方面的 JavaScript 語意，但是在部分執行個體中，作業評估還是會偏離。
+Cosmos DB 藉由作為 JSON 資料庫，可將 JavaScript 運算子與其評估語意做比較。 雖然 Cosmos DB 嘗試以 JSON 支援的形式保留 JavaScript 語意，但是在部分執行個體中，作業評估還是會偏離。
 
-與傳統 SQL 不同，在 DocumentDB SQL 中，除非從資料庫實際擷取值，否則通常不知道值的類型。 為了有效率地執行查詢，大部分的運算子都有嚴謹的類型需求。 
+與傳統 SQL 不同，在 DocumentDB API SQL 中，通常要等到從資料庫實際擷取值，才會知道值的類型。 為了有效率地執行查詢，大部分的運算子都有嚴謹的類型需求。 
 
-與 JavaScript 不同，DocumentDB SQL 不會執行隱含轉換。 例如，類似 `SELECT * FROM Person p WHERE p.Age = 21` 的查詢會針對包含 Age 屬性且值為 21 的文件進行比對。 任何其他 Age 屬性符合字串 "21" 或其他可能之無限制變化 (例如 "021"、"21.0"、"0021"、"00021" 等等) 的文件，則不會成為比對的結果。 這與 JavaScript 形成對比，在 JavaScript 中，會將字串值隱含地轉換成數字 (根據運算子，例如：==)。 這項選擇對 DocumentDB SQL 中有效率的索引比對十分重要。 
+與 JavaScript 不同，DocumentDB API SQL 並不會執行隱含轉換。 例如，類似 `SELECT * FROM Person p WHERE p.Age = 21` 的查詢會針對包含 Age 屬性且值為 21 的文件進行比對。 任何其他 Age 屬性符合字串 "21" 或其他可能之無限制變化 (例如 "021"、"21.0"、"0021"、"00021" 等等) 的文件，則不會成為比對的結果。 這與 JavaScript 形成對比，在 JavaScript 中，會將字串值隱含地轉換成數字 (根據運算子，例如：==)。 這項選擇對 DocumentDB API SQL 中有效率的索引比對十分重要。 
 
 ## <a name="parameterized-sql-queries"></a>參數化 SQL 查詢
-DocumentDB 支援查詢使用以類似 @ 標記法表示的參數。 參數化 SQL 提供使用者輸入的健全處理和逸出，防止透過 SQL 插入式意外洩露資料。 
+Cosmos DB 支援含有以常見的 @ 標記法表示之參數的查詢。 參數化 SQL 提供使用者輸入的健全處理和逸出，防止透過 SQL 插入式意外洩露資料。 
 
 比方說，您可以撰寫查詢，將姓氏和地址 (州) 做為參數，然後根據使用者輸入，使用各種不同姓氏和地址 (州) 的值執行查詢。
 
@@ -1366,7 +1367,7 @@ DocumentDB 支援查詢使用以類似 @ 標記法表示的參數。 參數化 S
     FROM Families f
     WHERE f.lastName = @lastName AND f.address.state = @addressState
 
-您接著可以將這項要求傳送至 DocumentDB 做為參數化 JSON 查詢，如下所示。
+您可以接著將此要求傳送給 Cosmos DB 作為參數化 JSON 查詢，如下所示。
 
     {      
         "query": "SELECT * FROM Families f WHERE f.lastName = @lastName AND f.address.state = @addressState",     
@@ -1385,10 +1386,10 @@ DocumentDB 支援查詢使用以類似 @ 標記法表示的參數。 參數化 S
         ] 
     }
 
-參數值可以是任何有效的 JSON (字串、數字、布林值、null，甚至是陣列或巢狀 JSON)。 而且因為 DocumentDB 屬於無結構描述，系統不會針對任何類型驗證參數。
+參數值可以是任何有效的 JSON (字串、數字、布林值、null，甚至是陣列或巢狀 JSON)。 此外，由於 Cosmos DB 並無結構描述，因此系統不會對照任何類型來驗證參數。
 
 ## <a id="BuiltinFunctions"></a>內建函數
-DocumentDB 也支援一般作業的數個內建函數，這些函數可用於查詢內，例如使用者定義函數 (UDF)。
+Cosmos DB 也支援一些適用於一般作業的內建函數，這些函數可在像是使用者定義函數 (UDF) 之類的查詢內使用。
 
 | 函式群組          | 作業                                                                                                                                          |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1440,7 +1441,7 @@ DocumentDB 也支援一般作業的數個內建函數，這些函數可用於查
 
     [4]
 
-相較於 ANSI SQL，DocumentDB 函數的主要差異在於它們的設計用途是有效搭配使用無結構描述資料和混合的結構描述資料。 例如，如果您有一個文件的 [大小] 屬性已遺失，或具有非數值的值 (例如 "unknown")，該文件就會被略過而不會傳回錯誤。
+相較於 ANSI SQL，Cosmos DB 函數的主要差異在於，其設計目的是要與無結構描述資料及混合的結構描述資料有效搭配運作。 例如，如果您有一個文件的 [大小] 屬性已遺失，或具有非數值的值 (例如 "unknown")，該文件就會被略過而不會傳回錯誤。
 
 ### <a name="type-checking-functions"></a>類型檢查函數
 類型檢查函數可讓您檢查 SQL 查詢中的運算式類型。 類型檢查函數可在屬性類型為變數或未知時，用來快速判斷文件中的屬性類型。 以下是支援的內建類型檢查函數資料表。
@@ -1608,7 +1609,7 @@ DocumentDB 也支援一般作業的數個內建函數，這些函數可用於查
     }]
 
 ### <a name="spatial-functions"></a>空間函數
-DocumentDB 支援下列開放地理空間協會 (OGC) 的內建函數，以用於查詢地理空間。 
+Cosmos DB 支援下列「開放地理空間協會」(OGC) 內建地理空間查詢函數。 
 
 <table>
 <tr>
@@ -1651,14 +1652,14 @@ DocumentDB 支援下列開放地理空間協會 (OGC) 的內建函數，以用�
       "id": "WakefieldFamily"
     }]
 
-如需 DocumentDB 支援之地理空間的詳細資料，請參閱 [使用 Azure DocumentDB 中的地理空間資料](documentdb-geospatial.md)。 這樣會包裝空間函式以及 DocumentDB 的 SQL 語法。 現在讓我們看看 LINQ 查詢如何運作，以及它如何與我們到目前為止所見到的語法互動。
+如需有關 Cosmos DB 中的地理空間支援詳細資料，請參閱[使用 Azure Cosmos DB 中的地理空間資料](documentdb-geospatial.md)。 其中提供 Cosmos DB 之空間函數及 SQL 語法的概要。 現在讓我們看看 LINQ 查詢如何運作，以及它如何與我們到目前為止所見到的語法互動。
 
-## <a id="Linq"></a>LINQ 到 DocumentDB SQL
-LINQ 是一種 .NET 程式設計模型，此模型會將運算表示為對物件串流的查詢。 DocumentDB 提供用戶端程式庫，以透過促進 JSON 與 .NET 物件之間的轉換，以及從小部分的 LINQ 查詢對應至 DocumentDB 查詢，來與 LINQ 互動。 
+## <a id="Linq"></a>LINQ 到 DocumentDB API SQL
+LINQ 是一種 .NET 程式設計模型，此模型會將運算表示為對物件串流的查詢。 Cosmos DB 提供一個用戶端程式庫，可透過協助 JSON 與 .NET 物件之間的轉換，以及 LINQ 查詢子集與 Cosmos DB 查詢的對應，來與 LINQ 互動。 
 
-下圖顯示使用 DocumentDB 支援 LINQ 查詢的架構。  開發人員可以使用 DocumentDB 用戶端來建立 **IQueryable** 物件，此物件會直接查詢 DocumentDB 查詢提供者，而此查詢提供者會接著將 LINQ 查詢轉譯成 DocumentDB 查詢。 然後，將查詢傳遞給 DocumentDB 伺服器，以擷取一組具有 JSON 格式的結果。 傳回的結果會在用戶端進行還原序列化，變成 .NET 物件的串流。
+下圖顯示使用 Cosmos DB 來支援 LINQ 查詢的架構。  開發人員可以使用 Cosmos DB 用戶端來建立 **IQueryable** 物件，以直接查詢 Cosmos DB 查詢提供者，而此查詢提供者會接著將 LINQ 查詢轉譯成 Cosmos DB 查詢。 然後，將此查詢傳遞給 Cosmos DB 伺服器，以擷取一組以 JSON 格式表示的結果。 傳回的結果會在用戶端進行還原序列化，變成 .NET 物件的串流。
 
-![使用 DocumentDB 支援 LINQ 查詢的架構 - SQL 語法、JSON 查詢語言、資料庫概念和 SQL 查詢][1]
+![使用 DocumentDB API 來支援 LINQ 查詢的架構 - SQL 語法、JSON 查詢語言、資料庫概念及 SQL 查詢][1]
 
 ### <a name="net-and-json-mapping"></a>.NET 和 JSON 對應
 .NET 物件與 JSON 文件之間的對應是自然的，亦即每個資料成員欄位都會對應至 JSON 物件，其中欄位名稱對應至物件的「索引鍵」部分，而「值」部分則遞迴地對應至物件的值部分。 請思考一下下列範例。 建立的 Family 物件對應至 JSON 文件 (如下所示)。 而反之亦然，JSON 文件會對應回 .NET 物件。
@@ -1743,7 +1744,7 @@ LINQ 是一種 .NET 程式設計模型，此模型會將運算表示為對物件
 
 
 ### <a name="linq-to-sql-translation"></a>LINQ 至 SQL 轉譯
-DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最佳對應。 在下列描述中，我們假設讀者對 LINQ 有基本的認識。
+Cosmos DB 查詢提供者會盡力將 LINQ 查詢對應至 Cosmos DB SQL 查詢。 在下列描述中，我們假設讀者對 LINQ 有基本的認識。
 
 首先，針對類型系統，我們支援所有 JSON 基本類型：數值類型、布林值、字串及 null。 只支援這些 JSON 類型。 下列是支援的純量運算式。
 
@@ -1780,7 +1781,7 @@ DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最�
 * **其他**：支援聯合和條件式運算子的轉譯。 可根據內容將 Contains 轉譯為字串 CONTAINS、ARRAY_CONTAINS 或 SQL IN。
 
 ### <a name="sql-query-operators"></a>SQL 查詢運算子
-以下一些範例說明如何將一些標準 LINQ 查詢運算子往下轉譯為 DocumentDB 查詢。
+以下是一些範例，說明如何將一些標準 LINQ 查詢運算子一路轉譯成 Cosmos DB 查詢。
 
 #### <a name="select-operator"></a>Select 運算子
 語法為 `input.Select(x => f(x))`，其中 `f` 是純量運算式。
@@ -1869,7 +1870,7 @@ DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最�
 
 
 ### <a name="composite-sql-queries"></a>複合 SQL 查詢
-您可以包含上述的運算子，以形成功能更強大的查詢。 由於 DocumentDB 支援巢狀集合，因此這個組合可以是串連或巢狀形式。
+您可以包含上述的運算子，以形成功能更強大的查詢。 由於 Cosmos DB 支援巢狀集合，因此這個組合可以採用串連或巢狀的形式。
 
 #### <a name="concatenation"></a>串連
 語法為 `input(.|.SelectMany())(.Select()|.Where())*`。 串連查詢的開頭可以是選用的 `SelectMany` 查詢，其後接著多個 `Select` 或 `Where` 運算子。
@@ -1971,16 +1972,16 @@ DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最�
 
 
 ## <a id="ExecutingSqlQueries"></a>執行 SQL 查詢
-DocumentDB 公開資源的方式是透過 REST API，此 API 可供任何能發出 HTTP/HTTPS 要求的語言呼叫。 此外，DocumentDB 還為數種熱門語言 (例如 .NET、Node.js、JavaScript 和 Python) 提供程式設計程式庫。 REST API 和各種程式庫都支援透過 SQL 進行查詢。 .NET SDK 除了 SQL 之外，也支援 LINQ 查詢。
+Cosmos DB 公開資源的方式是透過 REST API，任何能夠發出 HTTP/HTTPS 要求的語言都可呼叫此 API。 此外，Cosmos DB 還為數種熱門語言 (例如 .NET、Node.js、JavaScript 和 Python) 提供程式設計程式庫。 REST API 和各種程式庫都支援透過 SQL 進行查詢。 .NET SDK 除了 SQL 之外，也支援 LINQ 查詢。
 
-下列範例顯示如何建立查詢，並針對 DocumentDB 資料庫帳戶提交它。
+下列範例顯示如何建立查詢，並針對 Cosmos DB 資料庫帳戶提交它。
 
 ### <a id="RestAPI"></a>REST API
-DocumentDB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使用 Azure 訂用帳戶佈建資料庫帳戶。 DocumentDB 資源模型包含某個資料庫帳戶下的一組資源，其中每個資源都可透過邏輯和穩定 URI 來定址。 在本文件中，一組資源稱為摘要。 資料庫帳戶包含一組資料庫，而每個資料庫都包含多個集合，且各集合因此會包含文件、UDF 和其他資源類型。
+Cosmos DB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使用 Azure 訂用帳戶佈建資料庫帳戶。 Cosmos DB 資源模型包含某個資料庫帳戶下的一組資源，其中每個資源都可透過邏輯和穩定 URI 來定址。 在本文件中，一組資源稱為摘要。 資料庫帳戶包含一組資料庫，而每個資料庫都包含多個集合，且各集合因此會包含文件、UDF 和其他資源類型。
 
-與這些資源的基本互動模型是透過具有其標準解譯的 HTTP 動詞命令 GET、PUT、POST 和 DELETE。 POST 動詞命令用於建立新的資源、執行預存程序或發出 DocumentDB 查詢。 查詢一律是唯讀作業，而且沒有任何副作用。
+與這些資源的基本互動模型是透過具有其標準解譯的 HTTP 動詞命令 GET、PUT、POST 和 DELETE。 POST 動詞命令可用於建立新的資源、執行預存程序或發出 Cosmos DB 查詢。 查詢一律是唯讀作業，而且沒有任何副作用。
 
-下列範例示範針對集合進行之 DocumentDB 查詢的 POST，此集合包含我們到目前為止檢閱過的兩個範例文件。 查詢具有 JSON 名稱屬性的簡單篩選。 請注意 `x-ms-documentdb-isquery` 和內容類型的用法：`application/query+json` 標頭表示該作業是一項查詢。
+下列範例示範針對集合進行之 DocumentDB API 查詢的 POST，此集合包含我們到目前為止檢閱過的兩個範例文件。 查詢具有 JSON 名稱屬性的簡單篩選。 請注意 `x-ms-documentdb-isquery` 和內容類型的用法：`application/query+json` 標頭表示該作業是一項查詢。
 
 **要求**
 
@@ -2104,9 +2105,9 @@ DocumentDB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使�
 
 如果查詢的結果無法放入結果的單一頁面內，則 REST API 會透過 `x-ms-continuation-token` 傳回接續 Token。 用戶端可以透過在後續結果中包括標頭，以將結果分頁。 每頁的結果數目也可以透過 `x-ms-max-item-count` 數字標頭來控制。 如果指定的查詢有一個彙總函數 (如 `COUNT`)，則查詢頁面可對結果頁面傳回部分彙總的值。 用戶端必須對這些結果執行第二層彙總以產生最終結果，例如，對個別頁面中傳回的計數執行加總以傳回總計數。
 
-若要管理查詢的資料一致性原則，請使用 `x-ms-consistency-level` 標頭 (例如，所有 REST API 要求)。 針對工作階段一致性，也需要在查詢要求中回應最新的 `x-ms-session-token` Cookie 標頭。 請注意，所查詢集合的索引原則也可能會影響查詢結果的一致性。 運用預設索引原則設定，集合的索引一律會具有最新文件內容，而且查詢結果會符合針對資料所選擇的一致性。 如果編索引原則放寬為 Lazy，則查詢可能會傳回過時的結果。 如需詳細資訊，請參閱 [DocumentDB 一致性層級][consistency-levels]。
+若要管理查詢的資料一致性原則，請使用 `x-ms-consistency-level` 標頭 (例如，所有 REST API 要求)。 針對工作階段一致性，也需要在查詢要求中回應最新的 `x-ms-session-token` Cookie 標頭。 請注意，所查詢集合的索引原則也可能會影響查詢結果的一致性。 運用預設索引原則設定，集合的索引一律會具有最新文件內容，而且查詢結果會符合針對資料所選擇的一致性。 如果編索引原則放寬為 Lazy，則查詢可能會傳回過時的結果。 如需詳細資訊，請參閱 [Azure Cosmos DB 一致性層級][consistency-levels]。
 
-如果集合上所設定的索引原則無法支援指定的查詢，則 DocumentDB 伺服器會傳回 400「不正確的要求」。 針對範圍查詢 (針對雜湊 (相等) 查閱所設定的路徑) 以及明確地排除不進行編製索引的路徑，會傳回此訊息。 `x-ms-documentdb-query-enable-scan` 標頭可以指定成允許查詢在無法使用索引時執行掃描。
+如果集合上所設定的索引原則無法支援指定的查詢，Azure Cosmos DB 伺服器就會傳回 400「錯誤的要求」。 針對範圍查詢 (針對雜湊 (相等) 查閱所設定的路徑) 以及明確地排除不進行編製索引的路徑，會傳回此訊息。 `x-ms-documentdb-query-enable-scan` 標頭可以指定成允許查詢在無法使用索引時執行掃描。
 
 ### <a id="DotNetSdk"></a>C# (.NET) SDK
 .NET SDK 支援 LINQ 和 SQL 查詢。 下列範例顯示如何執行稍早在本文件中介紹的簡單篩選查詢。
@@ -2195,16 +2196,16 @@ DocumentDB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使�
 
 .NET 用戶端會在 foreach 區塊中自動逐一查看查詢結果的所有頁面 (如上所示)。 .NET SDK 中也提供 REST API 小節所介紹的查詢選項，方法是在 CreateDocumentQuery 方法中使用 `FeedOptions` and `FeedResponse` 類別。 頁數可以透過 `MaxItemCount` 設定來控制。 
 
-您也可以明確地控制分頁，方法是使用 `IQueryable` 物件來建立 `IDocumentQueryable`，然後讀取 ` ResponseContinuationToken` 值，並將它們以 `RequestContinuationToken` 的形式在 `FeedOptions` 中傳回。 `EnableScanInQuery` 可以設定為在設定的索引編製原則不支援查詢時啟用掃描。 對於分割集合，您可以使用 `PartitionKey` 來針對單一分割執行查詢 (雖然 DocumentDB 可以從查詢文字自動擷取)，以及使用 `EnableCrossPartitionQuery` 以執行可能需要針對多個分割執行的查詢。 
+您也可以明確地控制分頁，方法是使用 `IQueryable` 物件來建立 `IDocumentQueryable`，然後讀取 ` ResponseContinuationToken` 值，並將它們以 `RequestContinuationToken` 的形式在 `FeedOptions` 中傳回。 `EnableScanInQuery` 可以設定為在設定的索引編製原則不支援查詢時啟用掃描。 對於已分割的集合，您可以使用 `PartitionKey` 來針對單一分割區執行查詢 (雖然 Cosmos DB 可以從查詢文字自動擷取)，以及使用 `EnableCrossPartitionQuery` 以執行可能需要針對多個分割區執行的查詢。 
 
-如需更多包含查詢的範例，請參閱 [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net) 。 
+如需更多包含查詢的範例，請參閱 [Azure Cosmos DB .NET 範例](https://github.com/Azure/azure-documentdb-net)。 
 
 > [!NOTE]
 > 若要執行彙總查詢，您需要 SDK 1.12.0 或更高版本。 不支援彙總函式的 LINQ 支援，但會在 .NET SDK 1.13.0 中提供支援。
 >
 
 ### <a id="JavaScriptServerSideApi"></a>JavaScript 伺服器端 API
-DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序，直接對集合執行 JavaScript 型應用程式邏輯。 在集合層級註冊的 JavaScript 邏輯接著可以對給定集合之文件的作業發出資料庫作業。 這些作業會包裝在環境 ACID 交易中。
+Cosmos DB 提供一個程式設計模型，可使用預存程序和觸發程序，直接對集合執行 JavaScript 型應用程式邏輯。 在集合層級註冊的 JavaScript 邏輯接著可以對給定集合之文件的作業發出資料庫作業。 這些作業會包裝在環境 ACID 交易中。
 
 下列範例示範如何在 JavaScript 伺服器 API 中使用 queryDocuments，從預存程序和觸發程序內發出查詢。
 
@@ -2239,10 +2240,10 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
     }
 
 ## <a id="References"></a>參考
-1. [Azure DocumentDB 簡介][introduction]
-2. [DocumentDB SQL 規格](http://go.microsoft.com/fwlink/p/?LinkID=510612)
-3. [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
-4. [DocumentDB 一致性層級][consistency-levels]
+1. [Azure Cosmos DB 簡介][introduction]
+2. [Azure Cosmos DB SQL 規格](http://go.microsoft.com/fwlink/p/?LinkID=510612)
+3. [Azure Cosmos DB .NET 範例](https://github.com/Azure/azure-documentdb-net)
+4. [Azure Cosmos DB 一致性層級][consistency-levels]
 5. ANSI SQL 2011 [http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=53681](http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=53681)
 6. JSON [http://json.org/](http://json.org/)
 7. Javascript 規格 [http://www.ecma-international.org/publications/standards/Ecma-262.htm](http://www.ecma-international.org/publications/standards/Ecma-262.htm) 

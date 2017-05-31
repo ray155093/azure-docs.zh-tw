@@ -12,17 +12,19 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 11/01/2016
+ms.date: 05/01/2017
 ms.author: eugenesh
-translationtype: Human Translation
-ms.sourcegitcommit: c98251147bca323d31213a102f607e995b37e0ec
-ms.openlocfilehash: 801a9d0e92a248d2e9843f13cfce74b948cf0d4b
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 356ceb98106d080d8c24dedc3547bee33750156e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="indexer-operations-azure-search-service-rest-api-2015-02-28-preview"></a>索引子作業 (Azure 搜尋服務 REST API：2015-02-28-Preview)
 > [!NOTE]
-> 本文說明 [2015-02-28-Preview REST API](search-api-2015-02-28-preview.md)的索引子。 此 API 版本使用文件擷取功能新增 Azure Blob 儲存體索引子和 Azure 表格儲存體索引子預覽版，加上其他改進功能。 此 API 也支援正式運作 (GA) 的索引子，包括 Azure SQL Database、Azure VM 上的 SQL Server 以及 Azure DocumentDB 的索引子。
+> 本文說明 [2015-02-28-Preview REST API](search-api-2015-02-28-preview.md)的索引子。 此 API 版本使用文件擷取功能新增 Azure Blob 儲存體索引子和 Azure 表格儲存體索引子預覽版，加上其他改進功能。 此 API 也支援正式運作 (GA) 的索引子，包括 Azure SQL Database、Azure VM 上的 SQL Server 以及 Azure Cosmos DB 的索引子。
 > 
 > 
 
@@ -41,8 +43,8 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 
 目前支援下列資料來源：
 
-* **Azure SQL Database** 和 **Azure VM 上的 SQL Server**。 如需目標逐步解說，請參閱[本文](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)。 
-* **Azure DocumentDB**。 如需目標逐步解說，請參閱 [本文](search-howto-index-documentdb.md)。 
+* **Azure SQL Database** 和 **Azure VM 上的 SQL Server**。 如需目標逐步解說，請參閱 [本文](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)。 
+* **Azure Cosmos DB**。 如需目標逐步解說，請參閱 [本文](search-howto-index-documentdb.md)。 
 * **Azure Blob 儲存體**，包括下列文件格式：PDF、Microsoft Office (DOCX/DOC、XSLX/XLS、PPTX/PPT、MSG)、HTML、XML、ZIP 以及純文字檔案 (包括 JSON)。 如需目標逐步解說，請參閱[本文](search-howto-indexing-azure-blob-storage.md)。
 * **Azure 資料表儲存體**。 如需目標逐步解說，請參閱 [本文](search-howto-indexing-azure-tables.md)。
 
@@ -123,13 +125,13 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 * `description`：選用說明。 
 * `type`：必要。 必須是下列其中一種支援的資料來源類型：
   * `azuresql` - Azure SQL Database 或 Azure VM 中的 SQL Server
-  * `documentdb` - Azure DocumentDB
+  * `documentdb` - Azure Cosmos DB
   * `azureblob` - Azure Blob 儲存體
   * `azuretable` - Azure 資料表儲存體
 * `credentials`：
   * 必要的 `connectionString` 屬性可指定資料來源的連接字串。 連接字串的格式依據資料來源類型而定： 
     * 若是 Azure SQL，則通常為 SQL Server 連接字串。 如果您是使用 Azure 入口網站來擷取連接字串，請使用 `ADO.NET connection string` 選項。
-    * 若是 DocumentDB，則連接字串必須為下列格式： `"AccountEndpoint=https://[your account name].documents.azure.com;AccountKey=[your account key];Database=[your database id]"`。 所有值都是必要的。 您可以在 [Azure 入口網站](https://portal.azure.com/)中找到這些值。  
+    * 若是 Azure Cosmos DB，則連接字串必須為下列格式：`"AccountEndpoint=https://[your account name].documents.azure.com;AccountKey=[your account key];Database=[your database id]"`。 所有值都是必要的。 您可以在 [Azure 入口網站](https://portal.azure.com/)中找到這些值。  
     * 就「Azure Blob 儲存體」和「資料表儲存體」而言，這會是儲存體帳戶連接字串。 [這裡](https://azure.microsoft.com/documentation/articles/storage-configure-connection-string/)有格式的相關說明。 需要有 HTTPS 端點通訊協定。  
 * `container` (必要)：使用 `name` 和 `query` 屬性來指定要編製索引的資料： 
   * `name` (必要)：
@@ -167,7 +169,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
         "highWaterMarkColumnName" : "[a row version or last_updated column name]" 
     } 
 
-若是使用 DocumentDB 資料來源，則必須使用 DocumentDB 所提供的 `_ts` 屬性。 
+若是使用 Azure Cosmos DB 資料來源，則必須使用 Azure Cosmos DB 所提供的 `_ts` 屬性。 
 
 使用 Azure Blob 資料來源時，Azure 搜尋服務會根據 Blob 上次修改的時間戳記，自動使用高水位線變更偵測原則；您不需要自行指定這種原則。   
 
@@ -412,7 +414,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 * `maxFailedItems` ：在索引子執行發生錯誤前，可能無法編製索引的項目數。 預設值為 0。 [取得索引子狀態](#GetIndexerStatus) 作業可傳回失敗項目的相關資訊。 
 * `maxFailedItemsPerBatch` ：在索引子執行發生錯誤前，每個批次中可能無法編製索引的項目數。 預設值為 0。
 * `base64EncodeKeys`：指定文件金鑰是否要進行 base-64 編碼。 針對文件金鑰中可使用的字元，Azure 搜尋服務有加諸限制。 但在您的來源資料中的值，可能包含無效字元。 如果您必須將這些值編製索引為文件金鑰，可將此旗標設為 true。 預設值為 `false`。
-* `batchSize`：指定從資料來源讀取並以單一批次編製索引來提升效能的項目數。 預設值取決於資料來源類型：Azure SQL 和 DocumentDB 的預設值為 1000，而 Azure Blob 儲存體的預設值為 10。
+* `batchSize`：指定從資料來源讀取並以單一批次編製索引來提升效能的項目數。 預設值取決於資料來源類型：Azure SQL 和 Azure Cosmos DB 的預設值為 1000，而 Azure Blob 儲存體的預設值為 10。
 
 **欄位對應**
 
@@ -796,9 +798,4 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 <td>不支援；Azure 搜尋服務目前僅支援基本類型與字串集合</td>
 </tr>
 </table>
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

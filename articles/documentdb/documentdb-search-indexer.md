@@ -1,13 +1,13 @@
 ---
-title: "使用索引子連接 DocumentDB 與 Azure 搜尋服務 | Microsoft Docs"
-description: "本文將說明如何在 DocumentDB 中使用 Azure 搜尋服務索引子做為資料來源。"
-services: documentdb
+title: "使用索引子連接 Azure Cosmos DB 與 Azure 搜尋服務 | Microsoft Docs"
+description: "本文將說明如何在 Azure Cosmos DB 中使用 Azure 搜尋服務索引子做為資料來源。"
+services: cosmosdb
 documentationcenter: 
 author: mimig1
 manager: jhubbard
 editor: 
 ms.assetid: fdef3d1d-b814-4161-bdb8-e47d29da596f
-ms.service: documentdb
+ms.service: cosmosdb
 ms.devlang: rest-api
 ms.topic: article
 ms.tgt_pltfrm: NA
@@ -16,22 +16,23 @@ ms.date: 01/10/2017
 ms.author: mimig
 redirect_url: https://docs.microsoft.com/azure/search/search-howto-index-documentdb
 ROBOTS: NOINDEX, NOFOLLOW
-translationtype: Human Translation
-ms.sourcegitcommit: 9a5416b1c26d1e8eaecec0ada79d357f32ca5ab1
-ms.openlocfilehash: c318d7133e26ec3a39d6fc97b0693b44d742d456
-ms.lasthandoff: 01/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: b3a62c693ff672458955789cde9d5be96cac9c58
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="connecting-documentdb-with-azure-search-using-indexers"></a>使用索引子連接 DocumentDB 與 Azure 搜尋
-如果您想要實作 DocumentDB 資料上的絕佳搜尋經驗，請在 DocumentDB 中使用 Azure 搜尋索引子！ 在本文中，我們將說明如何整合 Azure DocumentDB 與 Azure 搜尋，而不需要撰寫任何程式碼來維護索引的基礎結構！
+# <a name="connecting-azure-cosmos-db-with-azure-search-using-indexers"></a>使用索引子連接 Azure Cosmos DB 與 Azure 搜尋服務
+如果您想要實作 Cosmos DB 資料上的絕佳搜尋經驗，請在 Cosmos DB 中使用 Azure 搜尋服務索引子！ 在本文中，我們將說明如何整合 Azure Cosmos DB 與 Azure 搜尋服務，但不需要撰寫任何程式碼來維護索引基礎結構！
 
-若要設定此功能，您必須[設定 Azure 搜尋服務帳戶](../search/search-create-service-portal.md) (您不需要升級至標準搜尋)，然後呼叫 [Azure 搜尋 REST API](https://msdn.microsoft.com/library/azure/dn798935.aspx) 以建立 DocumentDB **資料來源**和該資料來源的**索引子**。
+若要設定此功能，您必須[設定 Azure 搜尋服務帳戶](../search/search-create-service-portal.md) (您不需要升級至標準搜尋)，然後呼叫 [Azure 搜尋服務 REST API (英文)](https://msdn.microsoft.com/library/azure/dn798935.aspx) 以建立 Cosmos DB「資料來源」和該資料來源的「索引子」。
 
 為了傳送要求來與 REST API 互動，您可以使用 [Postman](https://www.getpostman.com/)、[Fiddler](http://www.telerik.com/fiddler)，或您喜好的任何工具。
 
-## <a name="a-idconceptsaazure-search-indexer-concepts"></a><a id="Concepts"></a>Azure 搜尋服務索引子概念
-Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操作這些資料來源的索引子。
+## <a id="Concepts"></a>Azure 搜尋服務索引子概念
+Azure 搜尋服務支援建立與管理資料來源 (包括 Cosmos DB) 和操作這些資料來源的索引子。
 
 「 **資料來源** 」指定哪些資料需要編製索引、存取資料的認證，以及啟用 Azure 搜尋服務的原則，以便有效地識別資料中的變更 (例如修改或刪除集合內的文件)。 資料來源會被定義為獨立的資源，因此可供多個索引子使用。
 
@@ -41,7 +42,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 * 依照排程將索引與資料來源中的變更同步。 排程是索引子定義的一部分。
 * 視需要叫用索引的隨選更新。
 
-## <a name="a-idcreatedatasourceastep-1-create-a-data-source"></a><a id="CreateDataSource"></a>步驟 1：建立資料來源
+## <a id="CreateDataSource"></a>步驟 1：建立資料來源
 發出 HTTP POST 要求，以便在您的 Azure 搜尋服務中建立新的資料來源，包括下列要求標頭。
 
     POST https://[Search service name].search.windows.net/datasources?api-version=[api-version]
@@ -52,22 +53,22 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
 要求的主體包含資料來源定義，其中應包含下列欄位：
 
-* **名稱**：選擇任何名稱，以代表您的 DocumentDB 資料庫。
+* **名稱**：選擇任何名稱，以代表您的 Cosmos DB 資料庫。
 * **類型：**使用 `documentdb`。
 * **認證**：
   
-  * **connectionString**：必要。 以下列格式指定 Azure DocumentDB 資料庫的連接資訊： `AccountEndpoint=<DocumentDB endpoint url>;AccountKey=<DocumentDB auth key>;Database=<DocumentDB database id>`
+  * **connectionString**：必要。 以下列格式指定 Azure Cosmos DB 資料庫的連接資訊：`AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`
 * **容器**：
   
-  * **名稱**：必要。 指定要編製索引的 DocumentDB 集合的識別碼。
+  * **名稱**：必要。 指定要編製索引的 DocumentDB API 集合的識別碼。
   * **查詢**：選擇性。 您可以指定查詢將任意 JSON 文件簡維成 Azure 搜尋服務可以編製索引的一般結構描述。
 * **dataChangeDetectionPolicy**：選擇性。 請參閱以下的 [資料變更偵測原則](#DataChangeDetectionPolicy) 。
 * **dataDeletionDetectionPolicy**：選擇性。 請參閱以下的 [資料刪除偵測原則](#DataDeletionDetectionPolicy) 。
 
 請參閱下面的 [要求本文範例](#CreateDataSourceExample)。
 
-### <a name="a-iddatachangedetectionpolicyacapturing-changed-documents"></a><a id="DataChangeDetectionPolicy"></a>擷取已變更的文件
-資料變更偵測原則是用來有效識別已變更的資料項目。 目前，唯一支援的原則是使用 DocumentDB 所提供之 `_ts` 上次修改時間戳記屬性的 `High Water Mark` 原則，指定方式如下：
+### <a id="DataChangeDetectionPolicy"></a>擷取已變更的文件
+資料變更偵測原則是用來有效識別已變更的資料項目。 目前，唯一支援的原則是使用 Cosmos DB 所提供之 `_ts` 上次修改時間戳記屬性的 `High Water Mark` 原則，指定方式如下：
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
@@ -78,7 +79,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
     SELECT s.id, s.Title, s.Abstract, s._ts FROM Sessions s WHERE s._ts >= @HighWaterMark
 
-### <a name="a-iddatadeletiondetectionpolicyacapturing-deleted-documents"></a><a id="DataDeletionDetectionPolicy"></a>擷取已刪除的文件
+### <a id="DataDeletionDetectionPolicy"></a>擷取已刪除的文件
 當從來源資料表中刪除資料列時，您也應該在搜尋索引中刪除這些資料列。 資料刪除偵測原則可用來有效識別刪除的資料項目。 目前，唯一支援的原則是「 `Soft Delete` 」原則 (刪除會標示為某種形式的旗標)，指定方式如下：
 
     {
@@ -92,8 +93,8 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 > 
 > 
 
-### <a name="a-idleveagingqueriesaleveraging-queries"></a><a id="LeveagingQueries"></a>利用查詢
-除了擷取已變更和刪除的文件之外，指定 DocumentDB 查詢也可用來簡維巢狀屬性、回溯陣列、投影 JSON 屬性，以及篩選要編製索引的資料。 處理要編製索引的資料可以改善「Azure 搜尋服務」索引子的效能。
+### <a id="LeveagingQueries"></a>利用查詢
+除了擷取已變更和刪除的文件之外，指定 DocumentDB API 查詢也可用來簡維巢狀屬性、回溯陣列、投影 JSON 屬性，以及篩選要編製索引的資料。 處理要編製索引的資料可以改善「Azure 搜尋服務」索引子的效能。
 
 範例文件︰
 
@@ -128,7 +129,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
     SELECT * FROM c WHERE c.company = "microsoft" and c._ts >= @HighWaterMark
 
 
-### <a name="a-idcreatedatasourceexamplearequest-body-example"></a><a id="CreateDataSourceExample"></a>要求本文範例
+### <a id="CreateDataSourceExample"></a>要求本文範例
 下列範例會建立包含自訂查詢和原則提示的資料來源：
 
     {
@@ -155,7 +156,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 ### <a name="response"></a>Response
 如果已成功建立該資料來源，您將會收到一則 HTTP 201 已建立的回應。
 
-## <a name="a-idcreateindexastep-2-create-an-index"></a><a id="CreateIndex"></a>步驟 2：建立索引
+## <a id="CreateIndex"></a>步驟 2：建立索引
 建立目標 Azure 搜尋服務索引 (如果您尚未建立)。 您可以從 [Azure 入口網站 UI](../search/search-create-index-portal.md) 或使用[建立索引 API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 來執行此作業。
 
     POST https://[Search service name].search.windows.net/indexes?api-version=[api-version]
@@ -182,7 +183,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 | GeoJSON 物件，例如 { "type": "Point"、"coordinates": [ long, lat ] } |Edm.GeographyPoint |
 | 其他 JSON 物件 |N/A |
 
-### <a name="a-idcreateindexexamplearequest-body-example"></a><a id="CreateIndexExample"></a>要求本文範例
+### <a id="CreateIndexExample"></a>要求本文範例
 下列範例會建立包含識別碼和描述欄位的索引：
 
     {
@@ -205,7 +206,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 ### <a name="response"></a>Response
 如果已成功建立該索引，您將會收到一則 [HTTP 201 已建立] 的回應。
 
-## <a name="a-idcreateindexerastep-3-create-an-indexer"></a><a id="CreateIndexer"></a>步驟 3：建立索引子
+## <a id="CreateIndexer"></a>步驟 3：建立索引子
 您可以使用包含下列標頭的 HTTP POST 要求，在 Azure 搜尋服務內建立新的索引子。
 
     POST https://[Search service name].search.windows.net/indexers?api-version=[api-version]
@@ -219,13 +220,13 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 * **targetIndexName**：必要。 現有索引的名稱。
 * **排程**：選擇性。 請參閱以下的 [索引排程](#IndexingSchedule) 。
 
-### <a name="a-idindexingschedulearunning-indexers-on-a-schedule"></a><a id="IndexingSchedule"></a>依照排程執行索引子
+### <a id="IndexingSchedule"></a>依照排程執行索引子
 索引子可以選擇性地指定排程。 如有排程，索引子將會依照排程定期執行。 排程具有下列屬性：
 
 * **間隔**：必要。 可用以指定索引子執行間隔或期間的持續時間值。 允許的最小間隔為 5 分鐘；最長間隔為一天。 其必須格式化為 XSD "dayTimeDuration" 值 ( [ISO 8601 持續時間](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) 值的受限子集)。 間隔的模式為： `P(nD)(T(nH)(nM))`。 範例：`PT15M` 代表每隔 15 分鐘，`PT2H` 代表每隔 2 個小時。
 * **startTime**：必要。 指定索引子應該開始執行的 UTC 日期時間。
 
-### <a name="a-idcreateindexerexamplearequest-body-example"></a><a id="CreateIndexerExample"></a>要求本文範例
+### <a id="CreateIndexerExample"></a>要求本文範例
 下列範例會建立索引子，可將資料從 `myDocDbDataSource` 資料來源所參考的集合，依照排程 (從 2015 年 1 月 1 日 UTC 開始，每小時執行一次) 複製到 `mySearchIndex` 索引。
 
     {
@@ -238,7 +239,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 ### <a name="response"></a>Response
 如果已成功建立該索引子，您將會收到一則 [HTTP 201 已建立] 的回應。
 
-## <a name="a-idrunindexerastep-4-run-an-indexer"></a><a id="RunIndexer"></a>步驟 4：執行索引子
+## <a id="RunIndexer"></a>步驟 4：執行索引子
 為了依照排程定期執行，您也可以發出下列 HTTP POST 要求，視需要叫用索引子：
 
     POST https://[Search service name].search.windows.net/indexers/[indexer name]/run?api-version=[api-version]
@@ -247,7 +248,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 ### <a name="response"></a>Response
 如果已成功叫用該索引子，您將會收到一則 [HTTP 202 已接受] 的回應。
 
-## <a name="a-namegetindexerstatusastep-5-get-indexer-status"></a><a name="GetIndexerStatus"></a>步驟 5：取得索引子狀態
+## <a name="GetIndexerStatus"></a>步驟 5：取得索引子狀態
 您可以發出 HTTP GET 要求來擷取索引子的目前狀態和執行記錄：
 
     GET https://[Search service name].search.windows.net/indexers/[indexer name]/status?api-version=[api-version]
@@ -286,10 +287,10 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
 執行歷程記錄包含多達 50 個最近完成的執行，以倒序的方式進行儲存 (因此最新的執行會排在回應中的第一位)。
 
-## <a name="a-namenextstepsanext-steps"></a><a name="NextSteps"></a>接續步驟
-恭喜！ 您剛剛了解如何使用 DocumentDB 的索引子來整合 Azure DocumentDB 與 Azure 搜尋服務。
+## <a name="NextSteps"></a>接續步驟
+恭喜！ 您剛剛了解如何使用 Cosmos DB 的索引子來整合 Azure Cosmos DB 與 Azure 搜尋服務。
 
-* 若要深入了解 Azure DocumentDB，請參閱 [DocumentDB 服務頁面](https://azure.microsoft.com/services/documentdb/)。
+* 若要深入了解 Cosmos DB，請參閱 [Azure Cosmos DB 服務頁面](https://azure.microsoft.com/services/documentdb/)。
 * 若要深入了解 Azure 搜尋服務，請參閱 [搜尋服務頁面](https://azure.microsoft.com/services/search/)。
 
 

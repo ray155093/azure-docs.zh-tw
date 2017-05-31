@@ -12,12 +12,13 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 05/09/2017
 ms.author: robinsh
-translationtype: Human Translation
-ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
-ms.openlocfilehash: 680f41dc15b9681059847174a6910cfc937abd8b
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 7b91be16b5820f379f7408b477311ea86b213ccd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -29,23 +30,15 @@ ms.lasthandoff: 04/21/2017
 ## <a name="overview"></a>概觀
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 您可以使用[用戶端加密](storage-client-side-encryption.md)、HTTPs 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。 儲存體服務加密可提供待用加密，並以完全透明的方式處理加密、解密和金鑰管理。 所有資料都使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (可用的最強區塊加密方式之一) 進行加密。
 
-SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用於 Azure Blob 儲存體和檔案儲存體 (預覽)。 它也適用於下列各項︰
+SSE 的運作方式是在將資料寫入「Azure 儲存體」時加密資料，並且可用於「Azure Blob 儲存體」和「檔案儲存體」。 它也適用於下列各項︰
 
-* 一般用途儲存體帳戶和 Blob 儲存體帳戶
-* 標準儲存體和進階儲存體 
+* 標準儲存體：Blob 和檔案儲存體的一般用途帳戶及 Blob 儲存體帳戶
+* 進階儲存體 
 * 所有備援層級 (LRS、ZRS、GRS、RA-GRS)
 * Azure Resource Manager 儲存體帳戶 (但不是傳統帳戶) 
-* Blob 儲存體的所有區域。 對於檔案儲存體，請檢查 [可用性] 區段。
-
-儲存體服務加密 – 檔案預覽 SSE 現在可用於將檔案儲存體中的資料加密。 這目前為預覽狀態。 下面是提供檔案儲存體 SSE 的區域清單。
-
-若要參與 SSE 檔案預覽，請連絡 ssediscussions@microsoft.com。
+* 所有區域。
 
 若要深入了解，請參閱常見問題集。
-
-### <a name="availability-for-file-storage"></a>檔案儲存體的可用性
-檔案儲存體的儲存體服務加密目前在所有 Azure 區域提供。
-
 
 若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://azure.portal.com)並選取儲存體帳戶。 在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
 
@@ -58,22 +51,17 @@ SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用
 按一下 [加密] 設定之後，您可以啟用或停用「儲存體服務加密」。
 
 ![顯示 [加密] 屬性的入口網站螢幕擷取畫面](./media/storage-service-encryption/image2.png)
-<br/>*圖 1.1：為 Blob 服務啟用 SSE (步驟 2)*
+<br/>*圖 3：為 Blob 和檔案服務啟用 SSE (步驟 2)*
 
-![顯示 [加密] 屬性的入口網站螢幕擷取畫面](./media/storage-service-encryption/image4.png)
-<br/>*圖 2.1：為檔案服務啟用 SSE (步驟 2)*
 ## <a name="encryption-scenarios"></a>加密案例
-可以在儲存體帳戶層級啟用儲存體服務加密。 它支援下列客戶案例：
+可以在儲存體帳戶層級啟用儲存體服務加密。 啟用之後，客戶將選擇要加密的服務。 它支援下列客戶案例：
 
-* Blob 儲存體與檔案儲存體的加密。
-* 只有針對 Blob 服務才支援加密已移轉到 Resource Manager 儲存體帳戶的傳統儲存體帳戶，針對檔案服務則不支援。
-* 只有針對新建立的儲存體帳戶才支援加密檔案儲存體。
+* 加密 Resource Manager 帳戶中的「Blob 儲存體」和「檔案儲存體」。
+* 加密從傳統儲存體帳戶移轉至 Resource Manager 儲存體帳戶的「Blob 和檔案服務」。
 
 SSE 有下列限制：
 
 * 不支援傳統儲存體帳戶的加密。
-* 只有針對 Blob 服務才支援加密已移轉到 Resource Manager 儲存體帳戶的傳統儲存體帳戶，針對檔案服務則不支援。
-* 只有針對新建立的儲存體帳戶才支援加密檔案儲存體。
 * 現有資料 - SSE 只會加密啟用加密之後新建立的資料。 例如，如果您建立新的 Resource Manager 儲存體帳戶但是未開啟加密，然後您將 Blob 或封存的 VHD 上傳至該儲存體帳戶並開啟 SSE，則那些 Blob 將不會加密，除非它們被重新寫入或複製。
 * Marketplace 支援 - 允許使用 [Azure 入口網站](https://portal.azure.com)、PowerShell 及 Azure CLI 來加密從 Marketplace 建立的 VM。 VHD 基底影像將保持未加密狀態；不過，在 VM 啟動之後完成的任何寫入將會加密。
 * 系統不會將資料表和佇列資料加密。
@@ -133,19 +121,19 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 
 答︰您可以建立新的 Resource Manager 儲存體帳戶，並且使用 [AzCopy](storage-use-azcopy.md) ，從現有的傳統儲存體帳戶將資料複製到新建立的 Resource Manager 儲存體帳戶。 
 
-若將您的傳統儲存體帳戶移轉到 Resource Manager 儲存體帳戶，在移轉期間將不會加密資料。 然而，若移轉儲存體帳戶並啟用加密，系統將會加密寫入到該儲存體帳戶的所有新資料。 如需詳細資訊，請參閱 [Platform Supported Migration of IaaS Resources from Classic to Resource Manager (從傳統移轉至 Resource Manager 的平台支援 IaaS 資源移轉)](https://azure.microsoft.com/blog/iaas-migration-classic-resource-manager/)。 請注意，只有針對 Blob 儲存體才支援此功能。 對於檔案儲存體預覽，使用者必須建立新的 Resource Manager 儲存體帳戶。
+如果您將傳統儲存體帳戶移轉至 Resource Manager 儲存體帳戶，此作業會立即進行，它會變更您帳戶的類型，但不會影響您現有的資料。 只有在啟用加密之後，才會加密所有新資料。 如需詳細資訊，請參閱 [Platform Supported Migration of IaaS Resources from Classic to Resource Manager (從傳統移轉至 Resource Manager 的平台支援 IaaS 資源移轉)](https://azure.microsoft.com/blog/iaas-migration-classic-resource-manager/)。 請注意，只有針對 Blob 和「檔案」服務才支援此功能。
 
 **問：我有現有的 Resource Manager 儲存體帳戶。可以在其上啟用 SSE 嗎？**
 
-答︰是，但只會加密新寫入的 Blob。 並不會返回及加密已經存在的資料。 尚未針對檔案儲存體預覽支援此功能。
+答︰是，但只會加密新寫入的資料。 並不會返回及加密已經存在的資料。 尚未針對檔案儲存體預覽支援此功能。
 
 **問︰我想要加密現有 Resource Manager 儲存體帳戶中目前的資料？**
 
-答︰您可以在 Resource Manager 儲存體帳戶中隨時啟用 SSE。 不過，不會加密已經存在的 Blob。 若要加密這些 Blob，您可以將它們複製到另一個名稱或另一個容器，然後移除未加密的版本。尚未針對檔案儲存體預覽支援此功能
+答︰您可以在 Resource Manager 儲存體帳戶中隨時啟用 SSE。 不過，不會加密已經存在的資料。 若要加密現有的資料，您可以將它們複製到另一個名稱或另一個容器，然後移除未加密的版本。
 
 **問︰我正在使用進階儲存體，我是否可以使用 SSE？**
 
-答：是，標準儲存體與進階儲存體都支援 SSE。尚未針對檔案儲存體預覽支援此功能。
+答︰是，SSE 支援標準儲存體和進階儲存體。  「檔案服務」不支援「進階儲存體」。
 
 **問︰如果我建立新的儲存體帳戶，並啟用 SSE，然後使用該儲存體帳戶建立新的 VM，是否表示我的 VM 會加密？**
 

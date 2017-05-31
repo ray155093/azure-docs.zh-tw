@@ -1,48 +1,49 @@
 ---
-title: "Azure DocumentDB 社群、新聞及活動 | Microsoft Docs"
-description: "加入 Azure DocumentDB 社群以建立關係、展現您的工作以及磨練您的技能。"
-services: documentdb
+title: "Azure Cosmos DB 社群、新聞及活動 | Microsoft Docs"
+description: "加入Azure Cosmos DB 社群來建立關係、展現您的工作以及磨練您的技能。"
+services: cosmosdb
 documentationcenter: 
 author: aliuy
 manager: jhubbard
 editor: mimig
 ms.assetid: cfdf15da-3ddc-43a1-af64-789eea5f6ddd
-ms.service: documentdb
+ms.service: cosmosdb
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/07/2017
 ms.author: andrl
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: a7c366d29cf163c9c30c72751a992a0ebb3462cd
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: a630467a2b5866e675bf008ae8d5d321a44389a3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="community-portal"></a>社群入口網站
 ## <a name="community-spotlight"></a>社群焦點
-讓我們推銷您的專案！ 讓我們看看您使用 DocumentDB 進行的絕佳專案，我們很樂意與全世界分享您的才華。 若要提交您的專案，請傳送電子郵件給我們︰ [askdocdb@microsoft.com](mailto:askdocdb@microsoft.com)。
+讓我們推銷您的專案！ 讓我們看看您使用 Azure Cosmos DB 進行的絕佳專案、新一代的 DocumentDB 堆疊，而且我們很樂意與全世界分享您的才華。 若要提交您的專案，請傳送電子郵件給我們︰ [askdocdb@microsoft.com](mailto:askdocdb@microsoft.com)。
 
 ### <a name="documentdb-lumenize"></a>documentdb-lumenize
 *由 Larry Maccherone 撰寫*
 
-彙總 (群組依據、樞紐分析表和 N 維 Cube) 和時間序列轉換為 DocumentDB 中的預存程序。
+彙總 (群組依據、樞紐分析表和 N 維 Cube) 和時間序列轉換為 Azure Cosmos DB DocumentDB API 中的預存程序。
 
 在 [GitHub](https://github.com/lmaccherone/documentdb-lumenize) 和 [npm](https://www.npmjs.com/package/lumenize) 上了解相關資訊。
 
 ### <a name="documentdb-studio"></a>DocumentDB Studio
 *由 Ming Liu 撰寫*
 
-Microsoft Azure DocumentDB 服務的用戶端管理檢視器/總管。
+Azure Cosmos DB DocumentDB API 服務的用戶端管理檢視器/總管。
 
 在 [GitHub](https://github.com/mingaliu/DocumentDBStudio) 上了解相關資訊。
 
 ### <a name="doqmentdb"></a>DoQmentDB
 *由 Ariel Mashraki 撰寫*
 
-DoQmentDB 是一個以 Node.js Promise 為基礎的用戶端，可在 DocumentDB 的頂端提供類似 MongoDB 的階層。
+DoQmentDB 是一個以 Node.js Promise 為基礎的用戶端，可在 Azure Cosmos DB 的頂端提供類似 MongoDB 的階層。
 
 在 [GitHub](https://github.com/a8m/doqmentdb) 和 [npm](https://www.npmjs.com/package/doqmentdb) 上了解相關資訊。
 
@@ -56,21 +57,21 @@ DoQmentDB 是一個以 Node.js Promise 為基礎的用戶端，可在 DocumentDB
 ### <a name="swagger-rest-api-for-documentdb"></a>DocumentDB 的 Swagger REST API
 *由 Howard Edidin 撰寫*
 
-可以輕鬆部署為 API 應用程式的 DocumentDB REST API Swagger 檔案。
+可以輕鬆部署為 API 應用程式的 Azure Cosmos DB DocumentDB REST API Swagger 檔案。
 
 在 [GitHub](https://github.com/HEDIDIN/DocumentDB-REST/tree/master/DocumentDBRestApi) 上了解相關資訊。
 
 ### <a name="fluent-plugin-documentdb"></a>fluent-plugin-documentdb
 *作者 Yoichi Kawasaki*
 
-fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛程式。
+fluent-plugin-documentdb 是用於輸出到 Azure Cosmos DB DocumentDB API 的 Fluentd 外掛程式。
 
 在 [GitHub](https://github.com/yokawasa/fluent-plugin-documentdb) 和 [rubygems](https://rubygems.org/gems/fluent-plugin-documentdb) 上了解相關資訊。
 
-*在 [GitHub](https://github.com/search?p=4&q=documentdb&type=Repositories) 上尋找更多開放原始碼 DocumentDB 專案。*
+*在 [GitHub](https://github.com/search?p=4&q=documentdb&type=Repositories) 上尋找更多開放原始碼 Azure Cosmos DB 專案。*
 
 ## <a name="news-blogs-and-articles"></a>新聞、部落格和文章
-您可以關注 [我們的部落格](https://azure.microsoft.com/blog/tag/documentdb/)來隨時獲得最新的 DocumentDB 新聞和功能。
+您可以關注[我們的部落格](https://azure.microsoft.com/blog/tag/documentdb/)，以隨時獲得最新的 Azure Cosmos DB 新聞和功能。
 
 **社群貼文：**
 
@@ -231,10 +232,10 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 | --- | --- | --- |
 | 文件 |[azure-content](https://github.com/Azure/azure-content/tree/master/articles/documentdb) |[文件網站](https://azure.microsoft.com/documentation/services/documentdb/) |
 | Hadoop 連接器 |[azure-documentdb-hadoop](https://github.com/Azure/azure-documentdb-hadoop) |[Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-documentdb-hadoop%22) |
-| 資料移轉工具 |[azure-documentdb-datamigrationtool](https://github.com/Azure/azure-documentdb-datamigrationtool) |[Microsoft 下載中心](http://www.microsoft.com/en-us/download/details.aspx?id=46436) |
+| 資料移轉工具 |[azure-documentdb-datamigrationtool](https://github.com/Azure/azure-documentdb-datamigrationtool) |[Microsoft 下載中心](http://www.microsoft.com/download/details.aspx?id=46436) |
 
-## <a name="documentdb-wizards"></a>DocumentDB 精靈
-DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他們在 Azure DocumentDB 上之經驗的最佳典範。 他們和社群及 DocumentDB 小組分享了他們超乎常人的熱情、實用的知識以及技術專長。
+## <a name="azure-cosmos-db-wizards"></a>Azure Cosmos DB 行家
+Azure Cosmos DB 行家是社群領導者，他們是在協助其他人充分利用他們在 Azure Cosmos DB (新一代的 Azure DocumentDB) 上之經驗的最佳典範。 他們和社群及 Azure Cosmos DB 小組分享了他們超乎常人的熱情、實用的知識以及技術專長。
 
 | 精靈 | 圖片 |
 | --- | --- |
@@ -247,6 +248,6 @@ DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他
 |  [Santosh Hari](https://twitter.com/_s_hari) |[![Santosh Hari](./media/documentdb-community/wizard-santosh-hari.jpg)](https://twitter.com/_s_hari) |
 | [Matías Quaranta](https://twitter.com/ealsur) |[![Matías Quaranta](./media/documentdb-community/wizard-matias-quaranta.jpg)](https://twitter.com/ealsur) |
 
-想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。 如果您想提名自己或其他人，請 [傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
+想要成為 Azure Cosmos DB 行家嗎？ 由於是否能成為一位行家並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。 如果您想提名自己或其他人，請 [傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
 
 

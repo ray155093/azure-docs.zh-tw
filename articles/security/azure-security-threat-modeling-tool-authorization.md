@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/07/2017
 ms.author: rodsan
-translationtype: Human Translation
-ms.sourcegitcommit: 8251f44200c11d3efcec04b7ac99857232b2f9ed
-ms.openlocfilehash: 9c5483e73874b0f030f7fd99cad4430b70e378a8
-ms.lasthandoff: 02/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5ab74442ad5bb084d04cfda5969a54102132884e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.lasthandoff: 02/15/2017
 | 資料庫 | <ul><li>[確保使用最低權限的帳戶連線到資料庫伺服器](#privileged-server)</li><li>[實作資料列層級安全性 RLS，以防止租用戶存取彼此的資料](#rls-tenants)</li><li>[系統管理員角色只能具備有效的必要使用者](#sysadmin-users)</li></ul> |
 | IoT 雲端閘道 | <ul><li>[使用最低權限的權杖連線到雲端閘道](#cloud-least-privileged)</li></ul> |
 | Azure 事件中樞 | <ul><li>[使用僅限傳送權限 SAS 金鑰來產生裝置權杖](#sendonly-sas)</li><li>[請勿使用可供直接存取事件中樞的存取權杖](#access-tokens-hub)</li><li>[使用具有所需最低權限的 SAS 金鑰來連線到事件中樞](#sas-minimum-permissions)</li></ul> |
-| Azure Document DB | <ul><li>[盡可能使用資源權杖來連線到 DocumentDB](#resource-docdb)</li></ul> |
+| Azure Cosmos DB | <ul><li>[盡可能使用資源權杖來連線到 Azure Cosmos DB](#resource-docdb)</li></ul> |
 | Azure 信任邊界 | <ul><li>[使用 RBAC 啟用 Azure 訂用帳戶的精細存取管理](#grained-rbac)</li></ul> |
 | Service Fabric 信任邊界 | <ul><li>[使用 RBAC 限制用戶端對於叢集作業的存取](#cluster-rbac)</li></ul> |
 | Dynamics CRM | <ul><li>[執行安全性模型化並視需要使用欄位層級安全性](#modeling-field)</li></ul> |
@@ -42,7 +43,7 @@ ms.lasthandoff: 02/15/2017
 | IoT 裝置 | <ul><li>[如果支援各種需要不同權限層級的動作，則在裝置中執行授權檢查](#device-permission)</li></ul> |
 | IoT 現場閘道 | <ul><li>[如果支援各種需要不同權限層級的動作，則在現場閘道中執行授權檢查](#field-permission)</li></ul> |
 
-## <a name="a-idacl-restricted-accessaensure-that-proper-acls-are-configured-to-restrict-unauthorized-access-to-data-on-the-device"></a><a id="acl-restricted-access"></a>確保設定正確的 ACL 以將未經授權的存取限制於裝置上的資料
+## <a id="acl-restricted-access"></a>確保設定正確的 ACL 以將未經授權的存取限制於裝置上的資料
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -53,7 +54,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | 確保設定正確的 ACL 以將未經授權的存取限制於裝置上的資料|
 
-## <a name="a-idsensitive-directoryaensure-that-sensitive-user-specific-application-content-is-stored-in-user-profile-directory"></a><a id="sensitive-directory"></a>確保敏感性使用者特有應用程式內容會儲存在使用者設定檔目錄中
+## <a id="sensitive-directory"></a>確保敏感性使用者特有應用程式內容會儲存在使用者設定檔目錄中
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -64,7 +65,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | 確保敏感性使用者特有應用程式內容會儲存在使用者設定檔目錄中。 這是為了防止多位電腦使用者存取彼此的資料。|
 
-## <a name="a-iddeployed-privilegesaensure-that-the-deployed-applications-are-run-with-least-privileges"></a><a id="deployed-privileges"></a>確保已部署的應用程式是以最低權限執行
+## <a id="deployed-privileges"></a>確保已部署的應用程式是以最低權限執行
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -75,7 +76,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | 確保已部署的應用程式是以最低權限執行。 |
 
-## <a name="a-idsequential-logicaenforce-sequential-step-order-when-processing-business-logic-flows"></a><a id="sequential-logic"></a>在處理商務邏輯流程時強制執行循序步驟順序
+## <a id="sequential-logic"></a>在處理商務邏輯流程時強制執行循序步驟順序
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -86,7 +87,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | 若要確認此階段是經由正版使用者執行，您可以強制應用程式只能依照循序步驟順序處理商務邏輯流程 (以現實人類時間處理所有的步驟)，而不處理順序混亂、另一位使用者已略過的步驟、已處理的步驟，或太快提交的交易。|
 
-## <a name="a-idrate-enumerationaimplement-rate-limiting-mechanism-to-prevent-enumeration"></a><a id="rate-enumeration"></a>實作速率限制機制以防止列舉
+## <a id="rate-enumeration"></a>實作速率限制機制以防止列舉
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -97,7 +98,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | 確保敏感性識別碼是隨機的。 在匿名頁面上實作 CAPTCHA 控制。 確保錯誤和例外狀況不得顯示特定資料|
 
-## <a name="a-idprinciple-least-privilegeaensure-that-proper-authorization-is-in-place-and-principle-of-least-privileges-is-followed"></a><a id="principle-least-privilege"></a>確保施行適當的授權並遵循最低權限的原則
+## <a id="principle-least-privilege"></a>確保施行適當的授權並遵循最低權限的原則
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -108,7 +109,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | <p>原則表示只能夠提供該使用者所需的權限給使用者帳戶。 例如，備份使用者不必安裝軟體︰因此，備份使用者只有權限執行備份和備份相關應用程式。 任何其他權限 (例如安裝新的軟體) 都會遭到封鎖。 此原則也適用於通常在一般使用者帳戶中作業的個人電腦使用者，而且只會在情況絕對必要時，才會開啟特殊權限、受密碼保護的帳戶 (也就是超級使用者)。 </p><p>此原則也可適用於您的 Web 應用程式。 與其完全相依於使用工作階段的角色型驗證方法，我們寧願透過以資料庫為基礎的驗證系統將權限指派給使用者。 我們仍使用工作階段，以便識別使用者是否已正確登入，只是現在我們不會將特定角色指派給該使用者，而會將相關權限指派給他，以確認他有權在系統上執行哪些動作。 此外，這個方法的大問題是，每當使用者必須獲派較少的權限時，便會立即套用您的變更，因為指派不會依賴必須先到期的工作階段。</p>|
 
-## <a name="a-idlogic-request-parametersabusiness-logic-and-resource-access-authorization-decisions-should-not-be-based-on-incoming-request-parameters"></a><a id="logic-request-parameters"></a>商務邏輯和資源存取授權決策不應以傳入的要求參數為基礎
+## <a id="logic-request-parameters"></a>商務邏輯和資源存取授權決策不應以傳入的要求參數為基礎
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -127,7 +128,7 @@ WHERE userID=:id < - session var
 ```
 可能的攻擊者目前無法竄改及變更應用程式作業，因為會在伺服器端處理用於擷取資料的識別碼。
 
-## <a name="a-idenumerable-browsingaensure-that-content-and-resources-are-not-enumerable-or-accessible-via-forceful-browsing"></a><a id="enumerable-browsing"></a>確保無法透過強迫瀏覽來列舉或存取內容和資源
+## <a id="enumerable-browsing"></a>確保無法透過強迫瀏覽來列舉或存取內容和資源
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -138,7 +139,7 @@ WHERE userID=:id < - session var
 | 參考              | N/A  |
 | 步驟 | <p>敏感性靜態和組態檔不得保留在 web 根目錄中。 對於不需要公開的內容，則應套用適當的存取控制項，或移除內容本身。</p><p>此外，強迫瀏覽通常結合暴力密碼破解技術，會儘可能嘗試存取較多的 URL 以列舉伺服器上的目錄和檔案，藉此搜集資訊。 攻擊者可能會檢查常見現有檔案的所有變化。 例如，密碼檔案搜尋會包含下列檔案：psswd.txt、password.htm、password.dat 和其他變化。</p><p>若要避免這個問題，應包含暴力密碼破解嘗試偵測功能。</p>|
 
-## <a name="a-idprivileged-serveraensure-that-least-privileged-accounts-are-used-to-connect-to-database-server"></a><a id="privileged-server"></a>確保使用最低權限的帳戶連線到資料庫伺服器
+## <a id="privileged-server"></a>確保使用最低權限的帳戶連線到資料庫伺服器
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -149,7 +150,7 @@ WHERE userID=:id < - session var
 | 參考              | [SQL Database 權限階層](https://msdn.microsoft.com/library/ms191465)、[SQL Database 安全性實體](https://msdn.microsoft.com/library/ms190401) |
 | 步驟 | 應該使用最低權限的帳戶連線到資料庫。 應用程式登入應受限於資料庫，應該只能執行所選的程序。 應用程式的登入應該沒有直接的資料表存取權。 |
 
-## <a name="a-idrls-tenantsaimplement-row-level-security-rls-to-prevent-tenants-from-accessing-each-others-data"></a><a id="rls-tenants"></a>實作資料列層級安全性 RLS，以防止租用戶存取彼此的資料
+## <a id="rls-tenants"></a>實作資料列層級安全性 RLS，以防止租用戶存取彼此的資料
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -162,7 +163,7 @@ WHERE userID=:id < - session var
 
 請注意，最新的資料庫功能 RLS 只適用於 2016 以後的 SQL Server 和 Azure SQL Database。 如果未實作最新的 RLS 功能，則應確保資料存取是受限的。使用檢視和程序
 
-## <a name="a-idsysadmin-usersasysadmin-role-should-only-have-valid-necessary-users"></a><a id="sysadmin-users"></a>系統管理員角色只能具備有效的必要使用者
+## <a id="sysadmin-users"></a>系統管理員角色只能具備有效的必要使用者
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -173,7 +174,7 @@ WHERE userID=:id < - session var
 | 參考              | [SQL Database 權限階層](https://msdn.microsoft.com/library/ms191465)、[SQL Database 安全性實體](https://msdn.microsoft.com/library/ms190401) |
 | 步驟 | SysAdmin 固定伺服器角色的成員應該非常有限，而且永遠不會包含應用程式所用的帳戶。  請檢閱角色的使用者清單，並移除任何不必要的帳戶|
 
-## <a name="a-idcloud-least-privilegedaconnect-to-cloud-gateway-using-least-privileged-tokens"></a><a id="cloud-least-privileged"></a>使用最低權限的權杖連線到雲端閘道
+## <a id="cloud-least-privileged"></a>使用最低權限的權杖連線到雲端閘道
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -184,7 +185,7 @@ WHERE userID=:id < - session var
 | 參考              | [IoT 中樞存取控制](https://azure.microsoft.com/documentation/articles/iot-hub-devguide/#Security) |
 | 步驟 | 提供連線到雲端閘道 (IoT 中樞) 之各種元件的最低權限。 典型範例 – 裝置管理/佈建元件使用登錄讀取/寫入時、事件處理器 (ASA) 使用服務連線。 使用裝置認證的個別裝置連接|
 
-## <a name="a-idsendonly-sasause-a-send-only-permissions-sas-key-for-generating-device-tokens"></a><a id="sendonly-sas"></a>使用僅限傳送權限 SAS 金鑰來產生裝置權杖
+## <a id="sendonly-sas"></a>使用僅限傳送權限 SAS 金鑰來產生裝置權杖
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -195,7 +196,7 @@ WHERE userID=:id < - session var
 | 參考              | [事件中樞驗證和安全性模型概觀](https://azure.microsoft.com/documentation/articles/event-hubs-authentication-and-security-model-overview/) |
 | 步驟 | SAS 金鑰用來產生個別的裝置權杖。 針對指定的發佈者產生裝置權杖時使用僅限傳送的權限 SAS 金鑰|
 
-## <a name="a-idaccess-tokens-hubado-not-use-access-tokens-that-provide-direct-access-to-the-event-hub"></a><a id="access-tokens-hub"></a>請勿使用可供直接存取事件中樞的存取權杖
+## <a id="access-tokens-hub"></a>請勿使用可供直接存取事件中樞的存取權杖
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -206,7 +207,7 @@ WHERE userID=:id < - session var
 | 參考              | [事件中樞驗證和安全性模型概觀](https://azure.microsoft.com/documentation/articles/event-hubs-authentication-and-security-model-overview/) |
 | 步驟 | 應不會將授與事件中樞直接存取權的權杖提供給裝置。 使用裝置的最低權限權杖 (僅可供存取發佈者)，有助於識別惡意或遭到入侵的裝置，並將它列入黑名單。|
 
-## <a name="a-idsas-minimum-permissionsaconnect-to-event-hub-using-sas-keys-that-have-the-minimum-permissions-required"></a><a id="sas-minimum-permissions"></a>使用具有所需最低權限的 SAS 金鑰來連線到事件中樞
+## <a id="sas-minimum-permissions"></a>使用具有所需最低權限的 SAS 金鑰來連線到事件中樞
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -217,7 +218,7 @@ WHERE userID=:id < - session var
 | 參考              | [事件中樞驗證和安全性模型概觀](https://azure.microsoft.com/documentation/articles/event-hubs-authentication-and-security-model-overview/) |
 | 步驟 | 將最低權限提供給連線到事件中樞的各種後端應用程式。 為每個後端應用程式產生個別的 SAS 金鑰，並且僅提供必要的權限 (傳送、接收或管理) 給它們。|
 
-## <a name="a-idresource-docdbause-resource-tokens-to-connect-to-documentdb-whenever-possible"></a><a id="resource-docdb"></a>盡可能使用資源權杖來連線到 DocumentDB
+## <a id="resource-docdb"></a>盡可能使用資源權杖來連線到 Cosmos DB
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -226,9 +227,9 @@ WHERE userID=:id < - session var
 | 適用的技術 | 泛型 |
 | 屬性              | N/A  |
 | 參考              | N/A  |
-| 步驟 | 資源權杖會與 DocumentDB 權限資源相關聯，並擷取資料庫使用者與使用者所具備之特定 DocumentDB 應用程式資源 (例如集合、文件) 權限之間的關係。 如果無法放心託付用戶端處理主要或唯讀金鑰，則一律使用資源權杖來存取 DocumentDB - 就像一般使用者應用程式 (行動裝置或桌上型電腦用戶端)。從後端應用程式使用主要金鑰或唯讀金鑰，以便安全地儲存這些金鑰。|
+| 步驟 | 資源權杖會與 Cosmos DB 權限資源相關聯，並擷取資料庫使用者與該使用者所具備之特定 Cosmos DB 應用程式資源 (例如集合、文件) 權限之間的關係。 如果無法放心託付用戶端 (例如行動裝置或桌上型電腦用戶端等使用者應用程式) 處理主要或唯讀金鑰，請一律使用資源權杖來存取 Cosmos DB。請從可以安全地儲存主要金鑰或唯讀金鑰的後端應用程式使用這些金鑰。|
 
-## <a name="a-idgrained-rbacaenable-fine-grained-access-management-to-azure-subscription-using-rbac"></a><a id="grained-rbac"></a>使用 RBAC 啟用 Azure 訂用帳戶的精細存取管理
+## <a id="grained-rbac"></a>使用 RBAC 啟用 Azure 訂用帳戶的精細存取管理
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -239,7 +240,7 @@ WHERE userID=:id < - session var
 | 參考              | [使用角色指派來管理 Azure 訂用帳戶資源的存取權](https://azure.microsoft.com/documentation/articles/role-based-access-control-configure/)  |
 | 步驟 | Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。 使用 RBAC，您可以僅授與使用者執行其作業所需的存取權。|
 
-## <a name="a-idcluster-rbacarestrict-clients-access-to-cluster-operations-using-rbac"></a><a id="cluster-rbac"></a>使用 RBAC 限制用戶端對於叢集作業的存取
+## <a id="cluster-rbac"></a>使用 RBAC 限制用戶端對於叢集作業的存取
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -250,7 +251,7 @@ WHERE userID=:id < - session var
 | 參考              | [Service Fabric 用戶端的角色型存取控制](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security-roles/) |
 | 步驟 | <p>Azure Service Fabric 針對連線到 Service Fabric 叢集的用戶端，支援兩種不同的存取控制類型：系統管理員和使用者。 存取控制可讓叢集系統管理員針對不同的使用者群組限制特定叢集作業的存取權，讓叢集更加安全。</p><p>系統管理員可以完整存取管理功能 (包括讀取/寫入功能)。 使用者預設只具有管理功能的讀取存取權 (例如查詢功能)，以及解析應用程式和服務的能力。</p><p>您可在建立叢集時為每個角色提供個別的憑證，以指定兩個用戶端角色 (系統管理員和用戶端)。</p>|
 
-## <a name="a-idmodeling-fieldaperform-security-modeling-and-use-field-level-security-where-required"></a><a id="modeling-field"></a>執行安全性模型化並視需要使用欄位層級安全性
+## <a id="modeling-field"></a>執行安全性模型化並視需要使用欄位層級安全性
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -261,7 +262,7 @@ WHERE userID=:id < - session var
 | 參考              | N/A  |
 | 步驟 | 執行安全性模型化並視需要使用欄位層級安全性|
 
-## <a name="a-idportal-securityaperform-security-modeling-of-portal-accounts-keeping-in-mind-that-the-security-model-for-the-portal-differs-from-the-rest-of-crm"></a><a id="portal-security"></a>執行入口網站帳戶的安全性模型化，並記住，入口網站的安全性模型與 CRM 的其餘部分不同
+## <a id="portal-security"></a>執行入口網站帳戶的安全性模型化，並記住，入口網站的安全性模型與 CRM 的其餘部分不同
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -272,7 +273,7 @@ WHERE userID=:id < - session var
 | 參考              | N/A  |
 | 步驟 | 執行入口網站帳戶的安全性模型化，並記住，入口網站的安全性模型與 CRM 的其餘部分不同|
 
-## <a name="a-idpermission-entitiesagrant-fine-grained-permission-on-a-range-of-entities-in-azure-table-storage"></a><a id="permission-entities"></a>在 Azure 表格儲存體中授與某個實體範圍的精細權限
+## <a id="permission-entities"></a>在 Azure 表格儲存體中授與某個實體範圍的精細權限
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -283,7 +284,7 @@ WHERE userID=:id < - session var
 | 參考              | [如何使用 SAS 將存取權委派給 Azure 儲存體帳戶中的物件](https://azure.microsoft.com/documentation/articles/storage-security-guide/#_data-plane-security) |
 | 步驟 | 在特定商務案例中，Azure 表格儲存體可能必須儲存能滿足不同合作夥伴需求的敏感性資料。 例如，屬於不同的國家/地區的敏感性資料。 在這類情況下，藉由指定資料分割和資料列金鑰範圍來建構 SAS 簽章，使用者便可存取特定國家/地區特有的資料。| 
 
-## <a name="a-idrbac-azure-manageraenable-role-based-access-control-rbac-to-azure-storage-account-using-azure-resource-manager"></a><a id="rbac-azure-manager"></a>使用 Azure Resource Manager 啟用 Azure 儲存體帳戶的角色型存取控制 (RBAC)
+## <a id="rbac-azure-manager"></a>使用 Azure Resource Manager 啟用 Azure 儲存體帳戶的角色型存取控制 (RBAC)
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -294,7 +295,7 @@ WHERE userID=:id < - session var
 | 參考              | [如何使用角色型存取控制 (RBAC) 保護儲存體帳戶](https://azure.microsoft.com/documentation/articles/storage-security-guide/#management-plane-security) |
 | 步驟 | <p>當您建立新的儲存體帳戶時，可以選取傳統或 Azure Resource Manager 的部署模型。 在 Azure 中建立資源的傳統模型只允許以孤注一擲的方式存取訂用帳戶，接著存取儲存體帳戶。</p><p>使用 Azure Resource Manager (ARM) 模型，您可以將儲存體帳戶放置於資源群組中，並使用 Azure Active Directory 來控制該特定儲存體帳戶之管理平面的存取。 例如，您可以為特定使用者提供存取儲存體帳戶金鑰的能力，而其他使用者可以檢視儲存體帳戶的相關資訊，但是無法存取儲存體帳戶金鑰。</p>|
 
-## <a name="a-idrooting-detectionaimplement-implicit-jailbreak-or-rooting-detection"></a><a id="rooting-detection"></a>實作隱含的越獄或 Root 權限入侵偵測
+## <a id="rooting-detection"></a>實作隱含的越獄或 Root 權限入侵偵測
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -305,7 +306,7 @@ WHERE userID=:id < - session var
 | 參考              | N/A  |
 | 步驟 | <p>如果電話遭到 Root 權限或越獄入侵，應用程式應保護其本身的組態和使用者資料。 Root 權限/越獄入侵意味著未經授權的存取，一般使用者不會在自己的電話上這麼做。 因此在應用程式啟動時，應用程式應具有隱含的偵測邏輯，以偵測電話的 Root 權限是否已遭到入侵。</p><p>偵測邏輯可直接存取通常只有根使用者可以存取的檔案，例如︰</p><ul><li>/system/app/Superuser.apk</li><li>/sbin/su</li><li>/system/bin/su</li><li>/system/xbin/su</li><li>/data/local/xbin/su</li><li>/data/local/bin/su</li><li>/system/sd/xbin/su</li><li>/system/bin/failsafe/su</li><li>/data/local/su</li></ul><p>如果應用程式可以存取上述任何檔案，這表示應用程式是以根使用者身分執行。</p>|
 
-## <a name="a-idweak-class-wcfaweak-class-reference-in-wcf"></a><a id="weak-class-wcf"></a>WCF 中的弱式類別參考
+## <a id="weak-class-wcf"></a>WCF 中的弱式類別參考
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -342,7 +343,7 @@ WHERE userID=:id < - session var
 </system.serviceModel>
 ```
 
-## <a name="a-idwcf-authzawcf-implement-authorization-control"></a><a id="wcf-authz"></a>WCF 實作授權控制
+## <a id="wcf-authz"></a>WCF 實作授權控制
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -390,7 +391,7 @@ return result;
 }
 ```
 
-## <a name="a-idauthz-aspnetaimplement-proper-authorization-mechanism-in-aspnet-web-api"></a><a id="authz-aspnet"></a>在 ASP.NET Web API 中實作適當的授權機制
+## <a id="authz-aspnet"></a>在 ASP.NET Web API 中實作適當的授權機制
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -441,7 +442,7 @@ public class CustomController : ApiController
 }
 ```
 
-## <a name="a-iddevice-permissionaperform-authorization-checks-in-the-device-if-it-supports-various-actions-that-require-different-permission-levels"></a><a id="device-permission"></a>如果支援各種需要不同權限層級的動作，則在裝置中執行授權檢查
+## <a id="device-permission"></a>如果支援各種需要不同權限層級的動作，則在裝置中執行授權檢查
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -452,7 +453,7 @@ public class CustomController : ApiController
 | 參考              | N/A  |
 | 步驟 | <p>裝置應授權呼叫端檢查呼叫端是否具有執行所要求動作的必要權限。 例如：假設裝置是可從雲端監視的「智慧型門鎖」，而且會提供遠端鎖定大門等功能。</p><p>只有在有人實際帶著卡片接近大門時，「智慧型門鎖」才會提供解除鎖定功能。 在此案例中，遠端命令和控制項的實作方式應該如下：不提供任何將大門解除鎖定的功能，因為雲端閘道未經授權傳送命令來將大門解除鎖定。</p>|
 
-## <a name="a-idfield-permissionaperform-authorization-checks-in-the-field-gateway-if-it-supports-various-actions-that-require-different-permission-levels"></a><a id="field-permission"></a>如果支援各種需要不同權限層級的動作，則在現場閘道中執行授權檢查
+## <a id="field-permission"></a>如果支援各種需要不同權限層級的動作，則在現場閘道中執行授權檢查
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -462,3 +463,4 @@ public class CustomController : ApiController
 | 屬性              | N/A  |
 | 參考              | N/A  |
 | 步驟 | 現場閘道應授權呼叫端檢查呼叫端是否具有執行所要求動作的必要權限。 例如︰系統管理員使用者介面/API 應使用不同的權限來設定與其連線的現場閘道 v/s 裝置。|
+

@@ -1,6 +1,6 @@
 ---
 title: "將 X12 訊息解碼 - Azure Logic Apps | Microsoft Docs"
-description: "在 Azure Logic Apps 的企業整合套件中使用 X12 解碼器，針對交易集驗證 EDI 及產生 XML"
+description: "在 Azure Logic Apps 的企業整合套件中使用 X12 訊息解碼器，針對交易集進行驗證 EDI 並產生通知"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
@@ -13,17 +13,18 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
-ms.author: padmavc
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 717069dbe211ea9cc04925875e0f28c85ef25ac2
-ms.lasthandoff: 03/10/2017
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 6408fdf494035b37e0025dd8439e800a80bffb4e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="decode-x12-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>使用企業整合套件將 Azure Logic Apps 的 X12 訊息解碼
 
-使用解碼 X12 訊息連接器，可以驗證 EDI 和夥伴特定屬性，產生每個交易集的 XML 文件，以及產生已處理交易的通知。 若要使用此連接器，您必須將連接器新增至邏輯應用程式中的現有觸發程序。
+使用 Decode X12 訊息連接器，您可以對照交易夥伴協議來驗證信封、驗證 EDI 和夥伴特定的屬性、將交換分割為交易集或保留整個交換，並產生已處理交易的通知。 若要使用此連接器，您必須將連接器新增至邏輯應用程式中的現有觸發程序。
 
 ## <a name="before-you-start"></a>開始之前
 
@@ -72,7 +73,6 @@ ms.lasthandoff: 03/10/2017
 X12 解碼連接器會執行下列工作︰
 
 * 針對交易夥伴合約驗證信封
-* 產生每個交易集的 XML 文件。
 * 驗證 EDI 和夥伴特定屬性
   * EDI 結構驗證，以及擴充的結構描述驗證
   * 驗證交換信封的結構。
@@ -83,14 +83,21 @@ X12 解碼連接器會執行下列工作︰
   * 針對先前已接收的交換檢查交換控制編號。
   * 針對交換中的其他群組控制編號檢查群組控制編號。
   * 針對該群組中其他交易集控制編號檢查交易集控制編號。
-* 將整個交換轉換為 XML 
-  * 將交換分割為交易集 - 暫停發生錯誤的交易集︰將交換中每個交易集剖析為個別的 XML 文件。 如果交換中有一或多個交易集無法通過驗證，X12 解碼只會暫停那些交易集。
-  * 將交換分割為交易集 - 暫停發生錯誤的交換︰將交換中每個交易集剖析為個別的 XML 文件。  如果交換中有一或多個交易集無法通過驗證，X12 解碼會暫停整個交換。
-  * 保留交換 - 暫停發生錯誤的交易集︰建立整個批次交換的 XML 文件。 X12 解碼只會暫停未通過驗證的交易集，而繼續處理所有其他的交易集
-  * 保留交換 - 暫停發生錯誤的交換︰建立整個批次交換的 XML 文件。 如果交換中有一或多個交易集無法通過驗證，X12 解碼會暫停整個交換。 
+* 將交換分割為交易集，或保留整個交換︰
+  * 將交換分割為交易集 - 暫止發生錯誤的交易集︰將交換分割為交易集，並剖析每個交易集。 
+  X12 Decode 動作只會輸出未通過 `badMessages` 驗證的交易集，並將剩餘的交易輸出到 `goodMessages`。
+  * 將交換分割為交易集 - 暫止發生錯誤的交換︰將交換分割為交易集，並剖析每個交易集。 
+  如果交換中有一或多個交易集無法通過驗證，X12 Decode 動作會將該交換中的所有交易集輸出到 `badMessages`。
+  * 保留交換 - 暫止發生錯誤的交易集︰保留交換並處理整個批次交換。 
+  X12 Decode 動作只會輸出未通過 `badMessages` 驗證的交易集，並將剩餘的交易輸出到 `goodMessages`。
+  * 保留交換 - 暫止發生錯誤的交換︰保留交換並處理整個批次交換。 
+  如果交換中有一或多個交易集無法通過驗證，X12 Decode 動作會將該交換中的所有交易集輸出到 `badMessages`。 
 * 產生技術和/或功能確認 (若已設定)。
   * 標頭驗證後會產生技術確認。 技術確認會報告位址接收者處理交換標頭和結尾的狀態。
   * 內文驗證後會產生功能確認。 功能確認會報告處理接收的文件時遇到的每個錯誤
+
+## <a name="view-the-swagger"></a>檢視 Swagger
+請參閱 [Swagger 詳細資料](/connectors/x12/)。 
 
 ## <a name="next-steps"></a>後續步驟
 [深入了解企業整合套件](../logic-apps/logic-apps-enterprise-integration-overview.md "了解企業整合套件") 

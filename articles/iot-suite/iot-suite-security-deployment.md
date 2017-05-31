@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/04/2017
 ms.author: yurid
-translationtype: Human Translation
-ms.sourcegitcommit: 8b453c7fe85a60791867d1c49fc2350e5f51a489
-ms.openlocfilehash: c18267b62b415015eb1e1b557c5dd60a51df415b
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 503cb1c10b60ed6f50b7153b7f0772d46eac8646
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -107,7 +108,7 @@ Azure IoT 中樞和可能是解決方案一部份的其他服務，允許使用 
 
 由 Azure IoT 中樞內嵌的資料可供各種不同服務使用，例如 Azure 串流分析和 Azure Blob 儲存體。 這些服務允許管理存取。 在下面深入了解這些服務和可用選項：
 
-* [Azure DocumentDB][lnk-docdb]：可調整且已完全編製索引的資料庫服務，適用於半結構化資料，可管理您所佈建裝置的中繼資料，例如，屬性、組態及安全性內容。 DocumentDB 提供高效能且高輸送量的處理、無從驗證結構描述且編製索引的資料，以及豐富的 SQL 查詢介面。
+* [Azure Cosmos DB][lnk-docdb]：可調整且已完全編製索引的資料庫服務，適用於半結構化資料，可管理您所佈建裝置的中繼資料，例如，屬性、設定及安全性內容。 Cosmos DB 提供高效能且高輸送量的處理、無從驗證結構描述且編製索引的資料，以及豐富的 SQL 查詢介面。
 * [Azure 串流分析][lnk-asa]：雲端中處理的即時串流讓您能夠快速開發並部署低成本的分析方案，以在第一時間提供裝置、感應器、基礎結構與應用程式的深入剖析資料。 來自這個完全受管理服務的資料可調整為任何數量，但仍可達到高輸送量、低遲性和恢復功能。
 * [Azure App Service][lnk-appservices]：一個雲端平台，可供建置功能強大的 Web 和行動應用程式來連接各地的資料；不論是在雲端還是內部部署環境內。 建置吸引客戶參與的 iOS、Android 和 Windows 版行動應用程式。 與軟體即服務 (SaaS) 和企業應用程式整合，讓您能夠立即連線到數十種雲端服務和企業應用程式。 使用您愛用的語言 (.NET、Node.JS、PHP、Python 或 Java) 和整合式開發環境 (IDE) 撰寫程式碼，以前所未有的速度建置 Web 應用程式和 API。
 * [Logic Apps][lnk-logicapps]：Azure App Service 的 Logic Apps 功能可協助您將 IoT 解決方案整合到現有的企業營運系統並自動化工作流程處理。 Logic Apps 可讓開發人員設計從觸發程序開始，然後執行一系列步驟的工作流程 — 使用功能強大的連接器來與您的商務程序整合的規則和動作。 Logic Apps 提供與 SaaS、雲端架構及內部部署應用程式的廣大生態系統的即時連接。
@@ -144,3 +145,4 @@ Azure IoT 中樞和可能是解決方案一部份的其他服務，允許使用 
 [lnk-predictive-overview]: iot-suite-predictive-overview.md
 [lnk-faq]: iot-suite-faq.md
 [lnk-devguide-security]: ../iot-hub/iot-hub-devguide-security.md
+

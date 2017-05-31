@@ -1,45 +1,38 @@
 ---
-title: "使用 MongoDB API 來建立 DocumentDB Web 應用程式 | Microsoft 文件"
-description: "NoSQL 教學課程，使用 MongoDB 適用的 DocumentDB API 來建立線上資料庫 Web 應用程式。"
+title: "使用 Azure Cosmos DB 適用於 MongoDB 的 API 建置 Web 應用程式 | Microsoft Docs"
+description: "使用適用於 MongoDB 的 API 建立線上資料庫 Web 應用程式的 Azure Cosmos DB 教學課程。"
 keywords: "mongodb 範例"
-services: documentdb
+services: cosmosdb
 author: AndrewHoh
 manager: jhubbard
 editor: 
 documentationcenter: 
 ms.assetid: 61a2ab3a-2fc3-4d49-a263-ed87c66628f6
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/06/2017
+ms.date: 04/28/2017
 ms.author: anhoh
-translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: c37304efecb2de247a2d63fe244e71c96966ebe0
-ms.lasthandoff: 03/08/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 3242e3382c5920e69db5ecdbfc2462456aea94bd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="web-application-development-with-documentdb-api-for-mongodb"></a>使用 DocumentDB 開發 Web 應用程式：適用於 MongoDB 的 API
-> [!div class="op_single_selector"]
-> * [.NET](documentdb-dotnet-application.md)
-> * [.NET for MongoDB](documentdb-mongodb-application.md)
-> * [Node.js](documentdb-nodejs-application.md)
-> * [Java](documentdb-java-application.md)
-> * [Python](documentdb-python-application.md)
-> 
-> 
+# <a name="azure-cosmos-db-connect-to-a-mongodb-app-using-net"></a>Azure Cosmos DB：使用 .NET 連線到 MongoDB 應用程式
 
-此範例將示範如何使用 .NET 來建立 DocumentDB：適用於 MongoDB 的 API Web 應用程式。
+此範例將示範如何使用 .NET 建置適用於 MongoDB Web 應用程式的 API。
 
 若要使用此範例，您必須︰
 
-* [建立](documentdb-create-mongodb-account.md) Azure DocumentDB：適用於 MongoDB 的 API 帳戶。
+* [建立](documentdb-create-mongodb-account.md) Azure Cosmos DB 資料庫。
 * 擷取 MongoDB [連接字串](documentdb-connect-mongodb-account.md)資訊。
 
-您可以使用[在連線至在虛擬機器上執行之 MongoDB 的 Azure 中建立 Web 應用程式](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md)教學課程，以最少的修改快速設定 MongoDB 應用程式 (在本機或發佈至 Azure Web 應用程式)，連線至 DocumentDB：適用於 MongoDB 的 API。  
+您可以使用[在 Azure 中建立一個連線到在虛擬機器上執行之 MongoDB 的 Web 應用程式](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md)教學課程，在進行最少修改的情況下，快速設定連線到適用於 MongoDB 之 API 帳戶的 MongoDB 應用程式 (在本機或發佈至 Azure Web 應用程式)。  
 
 1. 請遵循教學課程，只有一項修改。  使用下列項目取代 Dal.cs 程式碼：
 
@@ -187,5 +180,5 @@ ms.lasthandoff: 03/08/2017
 3. 使用應用程式！
 
 ## <a name="next-steps"></a>後續步驟
-* 了解如何[使用 MongoChef](documentdb-mongodb-mongochef.md) 和[使用 RoboMongo](documentdb-mongodb-robomongo.md) 來搭配 DocumentDB：適用於 MongoDB 的 API 帳戶。
+* 了解如何[使用 MongoChef](documentdb-mongodb-mongochef.md) 和[使用 RoboMongo](documentdb-mongodb-robomongo.md) 搭配 Azure Cosmos DB 適用於 MongoDB 的 API 帳戶。
 

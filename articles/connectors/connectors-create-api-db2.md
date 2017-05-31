@@ -14,10 +14,12 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 09/26/2016
-ms.author: plarsen
-translationtype: Human Translation
-ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
-ms.openlocfilehash: bba03cfb21e8eebdbf67152de9c6e2da6f22f5a2
+ms.author: plarsen; ladocs
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 2dc4c912f018f5d71d8c874763f204cf6c2c415b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -270,133 +272,6 @@ DB2 連接器支援下列邏輯應用程式動作：
     
     ![](./media/connectors-create-api-db2/Db2connectorDeleteRowOutputs.png)
 
-## <a name="technical-details"></a>技術詳細資料
-## <a name="actions"></a>動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 DB2 資料庫連接器包含下列動作。 
-
-| 動作 | 說明 |
-| --- | --- |
-| [GetRow](connectors-create-api-db2.md#get-row) |從 DB2 資料表擷取單一資料列 |
-| [GetRows](connectors-create-api-db2.md#get-rows) |從 DB2 資料表擷取多個資料列 |
-| [InsertRow](connectors-create-api-db2.md#insert-row) |在 DB2 資料表中插入新的資料列 |
-| [DeleteRow](connectors-create-api-db2.md#delete-row) |刪除 DB2 資料表中的資料列 |
-| [GetTables](connectors-create-api-db2.md#get-tables) |從 DB2 資料庫擷取資料表 |
-| [UpdateRow](connectors-create-api-db2.md#update-row) |更新 DB2 資料表中的現有資料列 |
-
-### <a name="action-details"></a>動作詳細資料
-在本節中，請查看每個動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
-
-#### <a name="get-row"></a>取得單一資料列
-從 DB2 資料表擷取單一資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |DB2 資料表的名稱 |
-| 識別碼 * |資料列識別碼 |要擷取之資料列的唯一識別碼 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-項目
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| ItemInternalId |string |
-
-#### <a name="get-rows"></a>取得多個資料列
-從 DB2 資料表擷取多個資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |DB2 資料表的名稱 |
-| $skip |略過計數 |要略過的項目數目 (預設值 = 0) |
-| $top |最大取得計數 |要擷取的項目數目上限 (預設值 = 256) |
-| $filter |篩選查詢 |用來限制項目數目的 ODATA filter 查詢 |
-| $orderby |排序依據 |用來指定項目順序的 ODATA orderBy 查詢 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-ItemsList
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-#### <a name="insert-row"></a>插入資料列
-在 DB2 資料表中插入新的資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |DB2 資料表的名稱 |
-| 項目 * |資料列 |要在指定的 DB2 資料表中插入的資料列 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-項目
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| ItemInternalId |string |
-
-#### <a name="delete-row"></a>刪除資料列
-刪除 DB2 資料表中的資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |DB2 資料表的名稱 |
-| 識別碼* |資料列識別碼 |要刪除的資料列的唯一識別碼 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-無。
-
-#### <a name="get-tables"></a>取得資料表
-從 DB2 資料庫擷取資料表。  
-
-這個呼叫沒有參數。 
-
-##### <a name="output-details"></a>輸出詳細資料
-TablesList
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-#### <a name="update-row"></a>更新資料列
-更新 DB2 資料表中的現有資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |DB2 資料表的名稱 |
-| 識別碼* |資料列識別碼 |要更新的資料列的唯一識別碼 |
-| 項目 * |資料列 |值已更新的資料列 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-項目
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| ItemInternalId |string |
-
-### <a name="http-responses"></a>HTTP 回應
-呼叫不同動作時，您可能會收到特定回應。 下表概述回應及其說明︰  
-
-| 名稱 | 說明 |
-| --- | --- |
-| 200 |OK |
-| 202 |已接受 |
-| 400 |不正確的要求 |
-| 401 |未經授權 |
-| 403 |禁止 |
-| 404 |找不到 |
-| 500 |內部伺服器錯誤。 發生未知錯誤 |
-| 預設值 |作業失敗。 |
-
 ## <a name="supported-db2-platforms-and-versions"></a>支援的 DB2 平台和版本
 此連接器支援以下 IBM DB2 平台和版本，以及 IBM DB2 相容產品 (例如 IBM Bluemix dashDB)，而這些產品支援分散式關聯資料庫架構 (DRDA) SQL 存取管理員 (SQLAM) 版本 10 和 11：
 
@@ -408,12 +283,10 @@ TablesList
 * IBM DB2 for LUW 11
 * IBM DB2 for LUW 10.5
 
+## <a name="view-the-swagger"></a>檢視 Swagger
+請參閱 [Swagger 詳細資料](/connectors/db2/)。 
+
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/20/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: bf4e400e30cc93ca8fa0cc727ada0f1b224b05cb
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 70a598c9a5bf514f62baa0c5275b2e44cd9776b8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -69,7 +70,7 @@ ms.lasthandoff: 04/21/2017
 ## <a name="databases"></a>資料庫
 | 服務 | 已啟用資源管理員 | REST API | 範本格式 |
 | --- | --- | --- | --- | --- |
-| DocumentDB |是 |[DocumentDB REST](/rest/api/documentdbresourceprovider) |[DocumentDB 資源](/azure/templates/microsoft.documentdb/databaseaccounts) |
+| Azure Cosmos DB |是 |[Azure Cosmos DB REST](/rest/api/documentdbresourceprovider) |[Azure Cosmos DB 資源](/azure/templates/microsoft.documentdb/databaseaccounts) |
 | Redis 快取 |是 | [Redis 快取 REST API](/rest/api/redis) |[Redis 資源](/azure/templates/microsoft.cache/redis) |
 | SQL Database |是 |[SQL Database REST](/rest/api/sql) |[SQL Database 資源](/azure/templates/microsoft.sql/servers) |
 | SQL 資料倉儲 |是 | | |

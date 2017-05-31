@@ -14,9 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
-translationtype: Human Translation
-ms.sourcegitcommit: ba958d029e5bf1bc914a2dff4b6c09282d578c67
-ms.openlocfilehash: 02bf4191e60bfe7a49a37eed10f7571e08502150
+ms.custom: aaddev
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: b665f45c66b35ab93e19ed1b54a6e215c93dcf57
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -26,8 +29,8 @@ v2.0 端點可以使用 Azure AD，利用業界標準通訊協定 (OpenID Connec
 
 > [!NOTE]
 > v2.0 端點並非支援每個 Azure Active Directory 案例和功能。  若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
-> 
-> 
+>
+>
 
 ## <a name="the-basics"></a>基本概念
 幾乎在所有的 OAuth 和 OpenID Connect 流程中，都有四個參與交換的合作對象：
@@ -79,12 +82,5 @@ OAuth 2.0 和 OpenID Connect 的 v2.0 實作會廣泛運用持有人權杖，包
 * [使用 OpenID Connect 建置 Web 應用程式](active-directory-v2-protocols-oidc.md)
 * [使用 OAuth 2.0 隱含流程建置單一頁面應用程式](active-directory-v2-protocols-implicit.md)
 * [使用 OAuth 2.0 用戶端認證流程建置精靈或伺服器端處理程序](active-directory-v2-protocols-oauth-client-creds.md)
-* 透過 OAuth 2.0 代理者流程在 Web API 中取得權杖 (敬請期待)
-
-<!-- - Get tokens using a username & password with the OAuth 2.0 Resource Owner Password Credentials Flow (coming soon) --> 
-
-
-
-<!--HONumber=Jan17_HO4-->
-
+* [透過 OAuth 2.0 代理者流程在 Web API 中取得權杖](active-directory-v2-protocols-oauth-on-behalf-of.md)
 

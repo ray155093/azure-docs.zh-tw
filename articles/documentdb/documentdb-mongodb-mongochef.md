@@ -1,44 +1,45 @@
 ---
-title: "搭配 Azure DocumentDB 使用 MongoDB 與 MongoChef | Microsoft Docs"
-description: "了解如何使用 MongoChef 搭配 DocumentDB：適用於 MongoDB 的 API 帳戶"
+title: "使用 MongoChef 連絡 Azure Cosmos DB | Microsoft Docs"
+description: "了解如何使用 MongoChef 搭配 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶"
 keywords: MongoChef
-services: documentdb
+services: cosmosdb
 author: AndrewHoh
 manager: jhubbard
 editor: 
 documentationcenter: 
 ms.assetid: 352c5fb9-8772-4c5f-87ac-74885e63ecac
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/06/2017
+ms.date: 04/27/2017
 ms.author: anhoh
-translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: eb5a10e414a4dcce50b34a54d0e56fd5f7a16737
-ms.lasthandoff: 03/08/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 8363b73cfae818449e5a907a17e742bf97e5107a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="use-mongochef-with-a-documentdb-api-for-mongodb-account"></a>使用 MongoChef 搭配 DocumentDB：適用於 MongoDB 的 API 帳戶
+# <a name="use-mongochef-with-an-azure-cosmos-db-api-for-mongodb-account"></a>使用 MongoChef 搭配 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶
 
-若要連線到 Azure DocumentDB：適用於 MongoDB 的 API 帳戶，您必須︰
+若要連線到 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶，您必須︰
 
 * 下載並安裝 [MongoChef](http://3t.io/mongochef)
-* 具備您的 DocumentDB：適用於 MongoDB 的 API 帳戶的[連接字串](documentdb-connect-mongodb-account.md)資訊
+* 具備您的 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶[連接字串](documentdb-connect-mongodb-account.md)資訊
 
 ## <a name="create-the-connection-in-mongochef"></a>在 MongoChef 中建立連接
-若要將 DocumentDB：適用於 MongoDB 的 API 帳戶新增至 MongoChef 連線管理員，請執行下列步驟。
+若要將 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶新增至 MongoChef 連線管理員，請執行下列步驟。
 
-1. 使用[這裡](documentdb-connect-mongodb-account.md)的指示來擷取 DocumentDB：適用於 MongoDB 的 API 的連線資訊。
+1. 使用[這裡](documentdb-connect-mongodb-account.md)的指示來擷取 Azure Cosmos DB：適用於 MongoDB 的 API 的連線資訊。
 
     ![[連接字串] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionStringBlade.png)
 2. 按一下 [連接] 以開啟 [連接管理員]，然後按一下 [新增連線]
 
     ![[MongoChef 連接管理員] 的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManager.png)
-3. 在 [新增連線]視窗中，請在 [伺服器] 索引標籤上輸入 DocumentDB：適用於 MongoDB 的 API 帳戶的主機 (FQDN) 和連接埠。
+3. 在 [新增連線]視窗中，在 [伺服器] 索引標籤上輸入 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶的主機 (FQDN) 和連接埠。
 
     ![[MongoChef 連接管理員伺服器] 索引標籤的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManagerServerTab.png)
 4. 在 [新增連線] 視窗中，請在 [驗證] 索引標籤上選擇驗證模式 [標準 (MONGODB-CR 或 SCARM-SHA-1)]，並輸入使用者名稱和密碼。  接受預設的驗證資料庫 (管理員)，或提供您自己的值。
@@ -116,5 +117,5 @@ ms.lasthandoff: 03/08/2017
     ![Mongo Chef 查詢結果的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/QueryDocument1.png)
 
 ## <a name="next-steps"></a>後續步驟
-* 瀏覽 DocumentDB：適用於 MongoDB 的 API [範例](documentdb-mongodb-samples.md)。
+* 瀏覽 Azure Cosmos DB：適用於 MongoDB 的 API [範例](documentdb-mongodb-samples.md)。
 

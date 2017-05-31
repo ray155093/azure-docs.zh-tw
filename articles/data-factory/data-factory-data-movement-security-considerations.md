@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 04/28/2017
 ms.author: jingwang
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: ee4c87be43354696c63533d8cbf618b26a2708d3
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: de9453e6764279c481e569542433d095772f304d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -56,7 +56,28 @@ Azure Data Factory 可透過使用「受 Microsoft 管理的憑證」來「加�
 > 所有連到 **Azure SQL Database** 和「Azure SQL 資料倉儲」的連線在資料透過傳輸進出資料庫時，一律都需要加密 (SSL/TLS)。 使用 JSON 編輯器來編寫管線時，請在「連接字串」中新增 **encryption** 屬性並將它設定為 **true**。 當您使用[複製精靈](data-factory-azure-copy-wizard.md)時，精靈預設會設定這個屬性。 針對「Azure 儲存體」，您可以在連接字串中使用 **HTTPS**。
 
 ### <a name="data-encryption-at-rest"></a>待用資料加密
-許多資料存放區都支援待用資料加密。 建議您為這些資料存放區啟用資料加密機制。 例如，為 Azure SQL Database 和「Azure SQL 資料倉儲」啟用「透明資料加密」(TDE)。 
+有些資料存放區支援待用資料加密。 建議您為這些資料存放區啟用資料加密機制。 
+
+#### <a name="azure-sql-data-warehouse"></a>Azure SQL 資料倉儲
+「Azure SQL 資料倉儲」中的「透明資料加密」(TDE) 可以對待用資料執行即時加密和解密，協助防止惡意活動的威脅。 用戶端並不會察覺到這個過程。 如需詳細資訊，請參閱[保護 SQL 資料倉儲中的資料庫](../sql-data-warehouse/sql-data-warehouse-overview-manage-security.md)。
+
+#### <a name="azure-sql-database"></a>Azure SQL Database
+Azure SQL Database 也支援透明資料加密 (TDE)，TDE 可在不需變更應用程式的情況下，對資料執行即時加密和解密，協助防止惡意活動的威脅。 用戶端並不會察覺到這個過程。 若要深入了解，請參閱 [Azure SQL Database 的透明資料加密](https://docs.microsoft.com/sql/relational-databases/security/encryption/transparent-data-encryption-with-azure-sql-database)。 
+
+#### <a name="azure-data-lake-store"></a>Azure Data Lake Store
+Azure Data Lake Store 也針對儲存在帳戶中的資料提供加密功能。 啟用加密功能時，Data Lake Store 會在保存資料之前先自動加密資料，並在擷取資料之前先解密資料，因此存取該資料的用戶端並不會察覺這個過程。 如需詳細資訊，請參閱 [Azure Data Lake Store 安全性](../data-lake-store/data-lake-store-security-overview.md)。 
+
+#### <a name="azure-blob-storage-and-azure-table-storage"></a>Azure Blob 儲存體和 Azure 資料表儲存體
+「Azure Blob 儲存體」和「Azure 資料表儲存體」支援「儲存體服務加密」(SSE)，此功能會在將資料保存到儲存體之前先自動加密資料，並在擷取資料之前先解密資料。 如需詳細資訊，請參閱[待用資料的 Azure 儲存體服務加密](../storage/storage-service-encryption.md)。
+
+#### <a name="amazon-s3"></a>Amazon S3
+Amazon S3 同時支援用戶端和伺服器的待用資料加密。 如需詳細資訊，請參閱[使用加密來保護資料 (英文)](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html)。 目前，Data Factory 並不支援虛擬私人雲端 (VPC) 內的 Amazon S3。
+
+#### <a name="amazon-redshift"></a>Amazon Redshift
+Amazon Redshift 支援叢集待用資料加密。 如需詳細資訊，請參閱 [Amazon Redshift 資料庫加密 (英文)](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)。 目前，Data Factory 並不支援 VPC 內的 Amazon Redshift。 
+
+#### <a name="salesforce"></a>Salesforce
+Salesforce 支援「Shield 平台加密」，可加密所有檔案、附件、自訂欄位。 如需詳細資訊，請參閱[了解 Web 伺服器 OAuth 驗證流程 (英文)](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm)。  
 
 ## <a name="hybrid-scenarios-using-data-management-gateway"></a>混合式案例 (使用資料管理閘道)
 混合式案例需要您在內部部署網路中或是虛擬網路 (Azure) 或虛擬私人雲端 (Amazon) 內安裝「資料管理閘道」。 此閘道必須能夠存取本機資料存放區。 如需有關閘道的詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)。 
@@ -135,7 +156,7 @@ Azure Data Factory 可透過使用「受 Microsoft 管理的憑證」來「加�
 | `*.azuredatalakestore.net` | 443 | (選擇性) 當您的目的地是 Azure Data Lake Store 時，需要提供此資訊。 | 
 
 > [!NOTE] 
-> 您可能需要依個別資料來源所需，在公司防火牆層級管理連接埠/將網域加入白名單。 上表僅使用 Azure SQL Database、「Azure SQL 資料倉儲」、Azure Data Lake Store 作為範例。   
+> 您可能需要依個別資料來源所需，在公司防火牆層級管理連接埠/將網域加入白名單。 此表格僅使用 Azure SQL Database、「Azure SQL 資料倉儲」、Azure Data Lake Store 作為範例。   
 
 下表提供「Windows 防火牆」的「輸入連接埠」需求。
 
@@ -153,7 +174,7 @@ Azure Data Factory 可透過使用「受 Microsoft 管理的憑證」來「加�
 - [Azure SQL Database](../sql-database/sql-database-firewall-configure.md) 
 - [Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md#create-a-server-level-firewall-rule-in-the-azure-portal)
 - [Azure Data Lake Store](../data-lake-store/data-lake-store-secure-data.md#set-ip-address-range-for-data-access)
-- [Azure Document DB](../documentdb/documentdb-firewall-support.md)
+- [Azure Cosmos DB](../documentdb/documentdb-firewall-support.md)
 - [Amazon Redshift](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) 
 
 ## <a name="frequently-asked-questions"></a>常見問題集

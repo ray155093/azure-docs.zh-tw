@@ -16,10 +16,10 @@ ms.date: 04/21/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: b600b7d67de24eab5395f085a2a424159b14ff28
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: a0a3b7ad7757439b5f73c38e759761f671ca2e17
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/10/2017
 
 ---
 # <a name="built-in-roles-for-azure-role-based-access-control"></a>Azure 角色型存取控制的內建角色
@@ -55,7 +55,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [Data Factory 參與者](#data-factory-contributor) |可以建立和管理 Data Factory 以及其中的子資源。 |
 | [DevTest Labs 使用者](#devtest-labs-user) |可以檢視所有項目，並連接、啟動、重新啟動和關閉虛擬機器 |
 | [DNS 區域參與者](#dns-zone-contributor) |可以管理 DNS 區域和記錄 |
-| [DocumentDB 帳戶參與者](#documentdb-account-contributor) |可以管理 DocumentDB 帳戶 |
+| [Azure Cosmos DB 帳戶參與者](#documentdb-account-contributor) |可以管理 Azure Cosmos DB 帳戶 |
 | [Intelligent Systems 帳戶參與者](#intelligent-systems-account-contributor) |可以管理 Intelligent Systems 帳戶 |
 | [監視讀取器](#monitoring-reader) |可以讀取所有監視資料 |
 | [監視參與者](#monitoring-contributor) |可以讀取監視資料並編輯監視設定 |
@@ -365,8 +365,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/\* |建立和管理支援票證 |
 
-### <a name="documentdb-account-contributor"></a>DocumentDB 帳戶參與者
-可以管理 DocumentDB 帳戶
+### <a name="azure-cosmos-db-account-contributor"></a>Azure Cosmos DB 帳戶參與者
+可以管理 Azure Cosmos DB 帳戶
 
 | **動作** |  |
 | --- | --- |

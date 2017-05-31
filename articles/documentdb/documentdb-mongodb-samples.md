@@ -1,28 +1,29 @@
 ---
-title: "使用 MongoDB API 來建立 DocumentDB 應用程式 | Microsoft 文件"
-description: "NoSQL 教學課程，使用 MongoDB 適用的 DocumentDB API 來建立線上資料庫。"
+title: "使用 MongoDB API 建置 Azure Cosmos DB 應用程式 | Microsoft Docs"
+description: "使用適用於 MongoDB 的 DocumentDB API 建立線上資料庫的教學課程。"
 keywords: "mongodb 範例"
-services: documentdb
+services: cosmosdb
 author: AndrewHoh
 manager: jhubbard
 editor: 
 documentationcenter: 
 ms.assetid: fb38bc53-3561-487d-9e03-20f232319a87
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/06/2017
+ms.date: 04/27/2017
 ms.author: anhoh
-translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 867ec5d0b27e790f3b00c94a4e5d14e4b2b17f73
-ms.lasthandoff: 03/08/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: d4243fc1400c4e9ad545060f253ae46a579e406f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="build-a-documentdb-api-for-mongodb-app-using-nodejs"></a>使用 Node.js API 建置 DocumentDB：適用於 MongoDB 的 API
+# <a name="build-an-azure-cosmos-db-api-for-mongodb-app-using-nodejs"></a>使用 Node.js 建置 Azure Cosmos DB：適用於 MongoDB 的 API 應用程式
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
@@ -33,11 +34,11 @@ ms.lasthandoff: 03/08/2017
 >  
 >
 
-此範例將示範如何使用 Node.js 來建立 DocumentDB：適用於 MongoDB 的 API 主控台應用程式。
+此範例將示範如何使用 Node.js 建置 Azure Cosmos DB：適用於 MongoDB 的 API 主控台應用程式。
 
 若要使用此範例，您必須︰
 
-* [建立](documentdb-create-mongodb-account.md) Azure DocumentDB：適用於 MongoDB 的 API 帳戶。
+* [建立](documentdb-create-mongodb-account.md) Azure Cosmos DB：適用於 MongoDB 的 API 帳戶。
 * 擷取 MongoDB [連接字串](documentdb-connect-mongodb-account.md)資訊。
 
 ## <a name="create-the-app"></a>建立應用程式
@@ -132,5 +133,5 @@ ms.lasthandoff: 03/08/2017
 3. 開啟您最愛的終端機，執行 **npm install mongodb --save**，然後使用 **node app.js** 執行您的應用程式
 
 ## <a name="next-steps"></a>後續步驟
-* 了解如何[使用 MongoChef](documentdb-mongodb-mongochef.md) 搭配 DocumentDB：適用於 MongoDB 的 API 帳戶。
+* 了解如何[使用 MongoChef](documentdb-mongodb-mongochef.md) 搭配您的 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶。
 
