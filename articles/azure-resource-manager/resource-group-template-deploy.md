@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/30/2017
+ms.date: 05/15/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: 093a63504843f63e25adb8b0247ebe82bc331061
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 48e2f606ff676ca1c3217ac4fcca75db0d283616
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -34,13 +34,13 @@ ms.lasthandoff: 05/02/2017
 
 ## <a name="deploy-a-template-from-your-local-machine"></a>從本機電腦部署範本
 
-將資源部署至 Azure 時，您應該執行下列動作：
+將資源部署至 Azure 時，您應該：
 
 1. 登入您的 Azure 帳戶
-2. 建立資源群組，作為要部署之資源的容器
+2. 建立資源群組，作為已部署資源的容器。 資源群組的名稱只能包含英數字元、句點 (.)、底線、連字號及括弧。 最多可有 90 個字元。 不能以句點結束。
 3. 將範本部署至資源群組，範本中定義要建立的資源
 
-範本可以包含讓您自訂部署的參數。 例如，您可以提供針對特定環境 (例如開發、測試和生產) 量身訂做的值。 範例範本中定義儲存體帳戶 SKU 的參數。
+範本可以包含讓您自訂部署的參數。 例如，您可以提供針對特定環境 (例如開發、測試和生產) 量身訂做的值。 範例範本會定義儲存體帳戶 SKU 的參數。
 
 下列範例會建立資源群組，並從您的本機電腦部署範本：
 
@@ -60,7 +60,7 @@ ProvisioningState       : Succeeded
 
 ## <a name="deploy-a-template-from-an-external-source"></a>從外部來源部署範本
 
-您可能希望將 Resource Manager 範本儲存在外部位置，而不是儲存在您的本機電腦。 您可以將範本儲存在原始檔控制存放庫 (例如 GitHub)。 或者，您可以將它們儲存在 Azure 儲存體帳戶中，讓組織共用存取。
+您可能希望將 Resource Manager 範本儲存在外部位置，而不是儲存在您的本機電腦。 您可以將範本儲存在原始檔控制存放庫 (例如 GitHub) 中。 或者，您可以將它們儲存在 Azure 儲存體帳戶中，讓組織共用存取。
 
 若要部署外部範本，請使用 **TemplateUri** 參數。 使用範本中的 URI 部署 GitHub 上的範例範本。
 
@@ -70,11 +70,11 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -storageAccountType Standard_GRS
 ```
 
-上述範例需要有範本的公開存取 URI，這適用於大部分的情況，因為您的範本應該不包含機密資料。 如果您需要指定機密資料 (例如系統管理員密碼)，請傳遞此值作為安全參數。 不過，如果不希望將範本公開存取，您可以將它儲存在私人儲存體容器中加以保護。 關於部署需要共用存取簽章 (SAS) 權杖之範本的詳細資訊，請參閱[使用 SAS 權杖部署私人範本](resource-manager-powershell-sas-token.md)。
+上述範例針對範本需要可公開存取 URI，這適用於大部分的案例，因為您的範本不應該包含機密資料。 如果您需要指定機密資料 (例如系統管理員密碼)，請將該值以安全參數傳遞。 不過，如果不希望將範本公開存取，您可以將它儲存在私人儲存體容器中加以保護。 如需部署需要共用存取簽章 (SAS) 權杖之範本的相關資訊，請參閱[使用 SAS 權杖部署私人範本](resource-manager-powershell-sas-token.md)。
 
 ## <a name="parameter-files"></a>參數檔案
 
-相對於在您的指令碼中將參數當作內嵌值傳遞，您可能會發現使用包含參數值的 JSON 檔案較為容易。 參數檔必須是下列格式︰
+相對於在您的指令碼中將參數做為內嵌值傳遞，使用包含該參數值的 JSON 檔案可能較為容易。 參數檔必須是下列格式︰
 
 ```json
 {
@@ -88,7 +88,7 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
 }
 ```
 
-請注意，參數區段包含符合您範本 (storageAccountType) 中所定義之參數的參數名稱。 參數檔案包含參數的值。 這個值會在部署期間自動傳遞至範本。 您可以針對不同的部署案例建立多個參數檔案，然後傳入適當的參數檔案。 
+請注意，參數區段包含符合於範本中所定義之參數 (storageAccountType) 的參數名稱。 參數檔案包含參數的值。 這個值會在部署期間自動傳遞至範本。 您可以針對不同的部署案例建立多個參數檔案，然後傳遞適當的參數檔案。 
 
 複製上述的範例，然後另存檔案，名稱為 `storage.parameters.json`。
 
@@ -154,7 +154,7 @@ New-AzureRmResourceGroupDeployment -Mode Complete -Name ExampleDeployment `
 
 ## <a name="sample-template"></a>範例範本
 
-本主題中的範例使用下列範本。 複製並另存檔案，名稱為 storage.json。 若要了解如何建立此範本，請參閱[建立第一個 Azure Resource Manager 範本](resource-manager-create-first-template.md)。  
+下列範本適用於本主題中的範例。 請複製它並另存為名叫 storage.json 的檔案。 若要了解如何建立此範本，請參閱[建立第一個 Azure Resource Manager 範本](resource-manager-create-first-template.md)。  
 
 ```json
 {
@@ -202,7 +202,7 @@ New-AzureRmResourceGroupDeployment -Mode Complete -Name ExampleDeployment `
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* 本文中的範例會將資源部署至預設訂用帳戶中的資源群組。 若要使用不同的訂用帳戶，請參閱[管理多個 Azure 訂用帳戶](/powershell/azure/manage-subscriptions-azureps)。
+* 本主題中的範例會將資源部署到您預設訂用帳戶中的資源群組。 若要使用不同的訂用帳戶，請參閱[管理多個 Azure 訂用帳戶](/powershell/azure/manage-subscriptions-azureps)。
 * 如需部署範本的完整範例指令碼，請參閱 [Resource Manager 範本部署指令碼](resource-manager-samples-powershell-deploy.md)。
 * 若要了解如何在您的範本中定義參數，請參閱[了解 Azure Resource Manager 範本的結構和語法](resource-group-authoring-templates.md)。
 * 如需解決常見部署錯誤的秘訣，請參閱[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。

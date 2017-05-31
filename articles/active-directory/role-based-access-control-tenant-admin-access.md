@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/09/2017
+ms.date: 05/09/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: b9eb9c7f59d0936364bad788ed3b6635b2453739
-ms.openlocfilehash: 9bcad7aaf7f1bd8c51dbfa88381276a70a4def5c
-ms.lasthandoff: 02/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 0fa44799a0bd49d3d96a1916f32e6452405abce8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.lasthandoff: 02/10/2017
 
 角色型存取控制可協助租用戶系統管理員取得存取權限暫時提升，以便他們可以比平常授與更高的權限。 租用戶管理員可以視需要將自己提升至使用者存取系統管理員角色。 該角色提供租用戶系統管理員權限，可在 "/" 的範圍內授與自己或其他角色。
 
-這項功能很重要，因為它可讓租用戶管理員查看組織中的所有訂用帳戶。 它也可讓自動化應用程式 (如發票開立與稽核) 存取所有訂用帳戶，並從帳單或資產管理的觀點提供組織狀態的精確檢視。  
+這項功能很重要，因為它可讓租用戶管理員查看組織中的所有訂用帳戶。 它也可讓自動化應用程式 (如發票開立與稽核) 存取所有的訂用帳戶，並針對帳單或資產管理提供組織狀態的精確檢視。  
 
 ## <a name="how-to-use-elevateaccess-to-give-tenant-access"></a>如何使用 elevateAccess 提供租用戶存取
 

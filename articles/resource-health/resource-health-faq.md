@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: Supportability
 ms.date: 06/01/2016
 ms.author: BernardoAMunoz
-translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: 570688ae363e223d792bec8e6b13d4ec50412130
-ms.lasthandoff: 04/04/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 41522a85cac05304b3ae60c45b48920eefbe8f5c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -61,7 +62,7 @@ ms.lasthandoff: 04/04/2017
 有三個不同的健全狀態︰
 1. 可用︰Azure 平台沒有任何可能會影響此資源的已知問題
 2. 無法使用︰資源健康狀態偵測到會影響資源的問題
-3. 未知︰資源健康狀態可以判斷資源的健康情況，因為它已停止接收相關的資訊。 
+3. 未知︰資源健康狀態無法判斷資源的健康情況，因為它已停止接收相關的資訊。 
 
 ## <a name="what-does-the-unknown-status-mean-is-something-wrong-with-my-resource"></a>不明狀態的意義為何？ 我的資源有什麼問題嗎？
 當資源健康狀態停止接收特定資源的相關資訊時，健全狀態會設定為未知。 儘管此狀態不是資源狀態的明確指示，如果您遇到問題，則可能表示 Azure 發生問題。
@@ -84,7 +85,7 @@ ms.lasthandoff: 04/04/2017
 登入 Azure 入口網站之後，您可以使用多種方式來存取資源健康狀態︰
 1. 瀏覽至您的資源。 在左側導覽中，按一下 [資源健康狀態]。
 2. 移至 [Azure 監視器] 刀鋒視窗。  在左側導覽中，按一下 [資源健康狀態]。
-3. 按一下入口網站右上角的問號，然後選取 [說明 + 支援]，即可將 [說明 + 支援] 刀鋒視窗開啟。 將刀鋒視窗開啟後，按一下 [資源健康狀態]
+3. 按一下入口網站右上角的問號，然後選取 [說明 + 支援]，即可將 [說明 + 支援] 刀鋒視窗開啟。 將刀鋒視窗開啟後，按一下 [資源健康狀態]****
 
 您也可以使用資源健康狀態 API 取得資源的健康情況相關資訊。
 

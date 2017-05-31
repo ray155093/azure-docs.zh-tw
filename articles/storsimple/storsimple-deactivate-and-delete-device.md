@@ -12,13 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/27/2017
+ms.date: 05/17/2017
 ms.author: anbacker
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 80fde4dfe7de89dffd39242d94fe46f68e41d611
-ms.openlocfilehash: 833dee54ef9de46c50e9e760594359baf4f89b5e
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: c000a642aa088ac80cc7077453b87e9a47f96900
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.lasthandoff: 02/28/2017
 當您停用裝置時，將無法再存取以本機方式儲存在裝置上的任何資料。 只有儲存於雲端之裝置的相關聯資料可以復原。  
 
 > [!WARNING]
-> 停用是永久性的作業，而且無法復原。 停用的服務無法向 StorSimple Manager 服務登錄，除非由原廠預先重設。 
+> 停用是永久性的作業，而且無法復原。 停用的服務無法向 StorSimple Manager 服務登錄，除非先重設為預設的原廠設定。 
 > 
 > 原廠重設程序會刪除以本機方式儲存在裝置上的所有資料。 因此，在您停用裝置之前，您必須擷取所有資料的雲端快照集。 這樣可讓您在稍後的階段中復原所有的資料。
 > 

@@ -14,10 +14,10 @@ ms.workload: na
 ms.date: 05/04/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: 7914b9f1f747d246f58c19b7faf56357bd39a201
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 8271c10cceb7a98879b06704b65a716cd9ac6822
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -42,6 +42,19 @@ ms.lasthandoff: 05/04/2017
 
 ```powershell
 Login-AzureRmAccount
+```
+
+如果您有多個 Azure 訂用帳戶，則登入 Azure 即會為您授與和您認證相關聯之所有 Azure 訂用帳戶的存取權。 使用下列命令來列出可供您使用的 Azure 訂用帳戶：
+
+```powershell
+Get-AzureRMSubscription
+```
+
+使用下列命令，選取您想要用來執行命令以建立 IoT 中樞的訂用帳戶。 您可以使用來自上一個命令之輸出內的訂用帳戶名稱或識別碼︰
+
+```powershell
+Select-AzureRMSubscription `
+    -SubscriptionName "{your subscription name}"
 ```
 
 ## <a name="create-resource-group"></a>建立資源群組
@@ -111,7 +124,7 @@ Remove-AzureRmResourceGroup -Name MyIoTRG1
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
+* [使用 IoT Edge 來模擬裝置][lnk-iotedge]
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
@@ -122,5 +135,5 @@ Remove-AzureRmResourceGroup -Name MyIoTRG1
 [lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
 [lnk-sdks]: iot-hub-devguide-sdks.md
 
-[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-iotedge]: iot-hub-linux-iot-edge-simulated-device.md
 

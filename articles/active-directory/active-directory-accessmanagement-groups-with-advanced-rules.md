@@ -1,6 +1,6 @@
 ---
-title: "使用屬性來建立進階規則 | Microsoft Docs"
-description: "《使用說明》用來建立進階的群組規則，包括支援的運算式規則運算子和參數。"
+title: "根據 Azure Active Directory 中的使用者屬性以動態方式填入群組 | Microsoft Docs"
+description: "說明如何建立群組成員資格的進階規則，包括支援的運算式規則運算子和參數。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,18 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/08/2017
+ms.date: 05/14/2017
 ms.author: curtand
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: d00375d9bc696b41a074eebe6d205e6907a54c4b
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: b0c8eb46b6c01662f0b53213843f8a7ad295e5aa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
-# <a name="using-attributes-to-create-advanced-rules"></a>使用屬性來建立進階規則
-Azure 傳統入口網站可讓您建立進階規則，以對 Azure Active Directory (Azure AD) 群組啟用更複雜的屬性型動態成員資格。  
+# <a name="populate-groups-dynamically-based-on-user-attributes"></a>根據使用者屬性以動態方式填入群組 
+Azure 傳統入口網站可讓您對 Azure Active Directory (Azure AD) 群組啟用更複雜的屬性型動態成員資格。  
 
 當使用者的任何屬性變更時，系統會評估目錄中的所有動態群組規則，以查看使用者的屬性變更是否會觸發任何的群組新增或移除。 如果使用者滿足群組規則，則使用者會新增為該群組的成員。 如果他們不再滿足其所屬群組的規則，則會從該群組的成員中移除。
 

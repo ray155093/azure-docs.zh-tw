@@ -15,10 +15,11 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/05/2016
 ms.author: jonatul
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: f15654f621bafb2617bdb456bbda0233db656be5
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 5818986c939c464a364c52ab31225e15130ab30e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 ---
 
@@ -66,9 +67,11 @@ CNAME 記錄集不能與其他具有相同名稱的記錄集共存。 例如，�
 
 ### <a name="ns-records"></a>NS 記錄
 
-在每個區域頂點 (名稱 = '@') 會自動建立 NS 記錄集，並在刪除該區域時自動將其刪除 (無法個別刪除)。  可以修改此記錄集的 TTL，但無法修改記錄，因為依照預先設定，記錄會參考指派給該區域的 Azure DNS 名稱伺服器。
+區域頂點 (名稱 '@') 的 NS 記錄集會在每個 DNS 區域自動建立，並在刪除該區域時自動將其刪除 (無法個別刪除)。
 
-除了在區域頂點，您可以在該區域內建立和刪除其他 NS 記錄。  這可讓您設定子區域 (請參閱[在 Azure DNS 中委派子網域](dns-domain-delegation.md)。)
+此記錄集包含指派給區域的 Azure DNS 名稱伺服器的名稱。 您可以將其他名稱伺服器新增至此 NS 記錄集，以支援使用多個 DNS 提供者的共同裝載網域。 您也可以修改此記錄集的 TTL 和中繼資料。 不過，您無法移除或修改預先填入的 Azure DNS 名稱伺服器。 
+
+請注意，這只適用於區域頂點的 NS 記錄集。 區域中的其他 NS 記錄集 (如用於委派子區域) 可以建立、修改和刪除，沒有條件約束。
 
 ### <a name="soa-records"></a>SOA 記錄
 

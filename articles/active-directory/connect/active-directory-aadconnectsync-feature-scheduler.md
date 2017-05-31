@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/28/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: feb6e388a98cd6e133d010cada97f895140c3f4f
-ms.openlocfilehash: ee9a3b605c5445007f880a37e96c2326dd7c9b89
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: fe7f508ed1c4eb57663f7e252d286719af03dbb1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -45,7 +46,7 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 
 如果您在執行這個 Cmdlet 時看到 **無法使用同步命令或 Cmdlet** ，則表示 PowerShell 模組並未載入。 如果您在網域控制站或 PowerShell 限制層級高於預設設定的伺服器上執行 Azure AD Connect，即會發生此問題。 如果您看到此錯誤，則請執行 `Import-Module ADSync` ，以使 Cmdlet 可供使用。
 
-* **AllowedSyncCycleInterval**。 Azure AD 可允許發生同步處理的最高頻率間隔。 同步處理頻率一旦超過此設定，即不受支援。
+* **AllowedSyncCycleInterval**。 Azure AD 所允許的同步處理週期最短時間間隔。 同步處理頻率一旦超過此設定，即不受支援。
 * **CurrentlyEffectiveSyncCycleInterval**。 目前作用中的排程。 如果頻率未高於 AllowedSyncInterval，其值就會與 CustomizedSyncInterval (如果已設定) 相同。 如果您使用 1.1.281 之前的組件且變更 CustomizedSyncCycleInterval，將會在下一個同步處理循環後才生效。 從組建 1.1.281 起，變更立即生效。
 * **CustomizedSyncCycleInterval**。 如果您想要讓排程器以預設值 30 分鐘以外的任何其他頻率執行，那麼您要設定此設定。 在上圖中，已將排程器改為設定成每小時執行一次。 如果您將此設定設定成低於 AllowedSyncInterval 的值，則會使用後者。
 * **NextSyncCyclePolicyType**。 Delta (差異) 或 Initial (初始)。 定義下一次執行應該只處理差異變更，還是應該進行完整匯入並同步處理。 後者會一併重新處理任何新的或已變更的規則。

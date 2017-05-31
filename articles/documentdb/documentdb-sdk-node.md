@@ -1,24 +1,25 @@
 ---
 title: "Azure DocumentDB Node.js API、SDK 和資源 | Microsoft Docs"
 description: "了解所有 Node.js API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Node.js SDK 每個版本之間的變更。"
-services: documentdb
+services: cosmosdb
 documentationcenter: nodejs
 author: rnagpal
 manager: jhubbard
 editor: cgronlun
 ms.assetid: 9d5621fa-0e11-4619-a28b-a19d872bcf37
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 03/16/2017
+ms.date: 05/10/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: dd6e6184dd755ea356cae1c4d50a2b7ba39da9fb
-ms.lasthandoff: 03/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: d7cbebf9864c21c21ba14c0d45eb20d42e3732dc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.lasthandoff: 03/17/2017
 > * [Node.js](documentdb-sdk-node.md)
 > * [Java](documentdb-sdk-java.md)
 > * [Python](documentdb-sdk-python.md)
-> * [REST](https://docs.microsoft.com/en-us/rest/api/documentdb/)
+> * [REST](https://docs.microsoft.com/rest/api/documentdb/)
 > * [REST 資源提供者](https://docs.microsoft.com/rest/api/documentdbresourceprovider/)
 > * [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
 > 
@@ -56,6 +57,12 @@ ms.lasthandoff: 03/17/2017
 
 ## <a name="release-notes"></a>版本資訊
 
+### <a name="1.12.0"/>1.12.0</a>
+* 新增[每分鐘的要求單位 (RU/m)](../cosmos-db/request-units-per-minute.md) 功能的支援。
+* 新增對新[一致性層級](documentdb-consistency-levels.md) ConsistentPrefix 的支援。
+* 新增 UriFactory 的支援。
+* 修正 unicode 支援錯誤。 (GitHub 問題 #171)
+
 ### <a name="1.11.0"/>1.11.0</a>
 * 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。
 * 新增控制跨分割區查詢平行處理程度的選項。
@@ -78,7 +85,7 @@ ms.lasthandoff: 03/17/2017
 
 ### <a name="1.9.0"/>1.9.0</a>
 * 新加入已節流處理要求的重試原則支援。 (已節流處理的要求會收到要求率太大的例外狀況，即錯誤碼 429。)根據預設，發生錯誤碼 429 時，DocumentDB 會遵守回應標頭中的 retryAfter 時間，並針對每個要求重試九次。 如果您想要忽略伺服器在多次重試之間傳回的 retryAfter 時間，現在可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中設定固定的重試間隔時間。 DocumentDB 現在會針對每個節流處理中的要求等候最多 30 秒 (不論重試計數為何)，並傳回包含錯誤碼 429 的回應。 您也可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中覆寫該時間。
-* DocumentDB 現在會傳回 x-ms-throttle-retry-count 和 x-ms-throttle-retry-wait-time-ms 做為每個要求的回應標頭，其代表節流重試計數和要求歷經多次重試的累積時間。
+* Cosmos DB 現在會傳回 x-ms-throttle-retry-count 和 x-ms-throttle-retry-wait-time-ms 作為每個要求的回應標頭，其代表節流重試計數和要求歷經多次重試的累積時間。
 * 新增 RetryOptions 類別，以及公開 ConnectionPolicy 類別上的 RetryOptions 屬性，使其能用來覆寫某些預設的重試選項。
 
 ### <a name="1.8.0"/>1.8.0</a>
@@ -152,12 +159,13 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 新的功能與最佳化項目只會新增至目前的 SDK，因此建議您一律盡早升級至最新的 SDK 版本。
 
-使用已停用之 SDK 的任何 DocumentDB 要求都將被服務拒絕。
+服務將會拒絕使用已停用 SDK 的任何 Cosmos DB 要求。
 
 <br/>
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.12.0](#1.12.0) |2017 年 5 月 10 日 |--- |
 | [1.11.0](#1.11.0) |2017 年 3 月 16 日 |--- |
 | [1.10.2](#1.10.2) |2017 年 1 月 27 日 |--- |
 | [1.10.1](#1.10.1) |2016 年 12 月 22 日 |--- |
@@ -188,6 +196,6 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 [!INCLUDE [documentdb-sdk-faq](../../includes/documentdb-sdk-faq.md)]
 
 ## <a name="see-also"></a>另請參閱
-若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
+若要深入了解 Cosmos DB，請參閱 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
 

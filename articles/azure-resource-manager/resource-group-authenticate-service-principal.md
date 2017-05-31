@@ -12,22 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 04/03/2017
+ms.date: 05/15/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: eb6bddbe4220418f7c525985ab6a15524589829e
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 2f8067a1a4ff7abfc41b28cbfd3482be11ae0e23
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
 # <a name="use-azure-powershell-to-create-a-service-principal-to-access-resources"></a>使用 Azure PowerShell 建立用來存取資源的服務主體
-> [!div class="op_single_selector"]
-> * [PowerShell](resource-group-authenticate-service-principal.md)
-> * [Azure CLI](resource-group-authenticate-service-principal-cli.md)
-> * [入口網站](resource-group-create-service-principal-portal.md)
-> 
-> 
 
 當您有 App 或指令碼需要存取資源時，可以設定 App 的身分識別，並使用 App 自己的認證進行驗證。 此身分識別就是所謂的服務主體。 這種方法可讓您︰
 
@@ -43,8 +38,30 @@ ms.lasthandoff: 04/27/2017
 
 現在，繼續進行[密碼](#create-service-principal-with-password)或[憑證](#create-service-principal-with-certificate)驗證的章節。
 
+## <a name="powershell-commands"></a>PowerShell 命令
+
+若要設定服務主體，您要使用︰
+
+| 命令 | 說明 |
+| ------- | ----------- | 
+| [New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) | 建立 Azure Active Directory 服務主體 |
+| [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment) | 在指定的範圍中，將指定的 RBAC 角色指派給指定的主體。 |
+
+
 ## <a name="create-service-principal-with-password"></a>使用密碼建立服務主體
-下列指令碼會建立您應用程式的身分識別，並將它指派給指定範圍內的參與者角色︰
+
+若要使用您訂用帳戶的參與者角色來建立服務主體，請使用︰ 
+
+```powershell
+Login-AzureRmAccount
+$sp = New-AzureRmADServicePrincipal -DisplayName exampleapp -Password "{provide-password}"
+Sleep 20
+New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
+```
+
+範例會睡 20 秒，留一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
+
+下列指令碼可讓您指定預設訂用帳戶以外的範圍，然後如果發生錯誤，就重試角色指派︰
 
 ```powershell
 Param (
@@ -62,14 +79,14 @@ Param (
 
  [Parameter(Mandatory=$true)]
  [String] $Password
- )
+)
 
  Login-AzureRmAccount
  Import-Module AzureRM.Resources
 
  if ($SubscriptionId -eq "") 
  {
-    $SubscriptionId = (Get-AzureRmContext).Subscription.SubscriptionId
+    $SubscriptionId = (Get-AzureRmContext).Subscription.Id
  }
  else
  {
@@ -85,11 +102,9 @@ Param (
     $Scope = (Get-AzureRmResourceGroup -Name $ResourceGroup -ErrorAction Stop).ResourceId
  }
 
- # Create Azure Active Directory application with password
- $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $ApplicationDisplayName) -Password $Password
-
+ 
  # Create Service Principal for the AD app
- $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId 
+ $ServicePrincipal = New-AzureRMADServicePrincipal -DisplayName $ApplicationDisplayName -Password $Password
  Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id 
 
  $NewRole = $null
@@ -98,8 +113,8 @@ Param (
  {
     # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
     Sleep 15
-    New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
-    $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
+    New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $ServicePrincipal.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
+    $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $ServicePrincipal.ApplicationId -ErrorAction SilentlyContinue
     $Retries++;
  }
 ```
@@ -108,7 +123,6 @@ Param (
 
 * 若要授與身分識別存取預設訂用帳戶，您不需要提供 ResourceGroup 或 SubscriptionId 參數。
 * 只有當您想要將角色指派的範圍限制為資源群組時，才指定 ResourceGroup 參數。
-* 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
 *  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
 * 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
 * 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
@@ -129,7 +143,22 @@ Login-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId {tenant-id}
 ```
 
 ## <a name="create-service-principal-with-self-signed-certificate"></a>使用自我簽署憑證建立服務主體
-若要使用 Windows 10 的 Azure PowerShell 2.0 或 Windows Server 2016 Technical Preview 產生自我簽署的憑證與服務主體，請使用下列指令碼︰
+
+若要使用自我簽署的憑證和訂用帳戶的參與者角色來建立服務主體，請使用︰ 
+
+```powershell
+Login-AzureRmAccount
+$cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=exampleappScriptCert" -KeySpec KeyExchange
+$keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
+
+$sp = New-AzureRMADServicePrincipal -DisplayName exampleapp -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore
+Sleep 20
+New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
+```
+
+範例會睡 20 秒，留一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
+
+下列指令碼可讓您指定預設訂用帳戶以外的範圍，然後如果發生錯誤，就重試角色指派。 您必須擁有 Windows 10 或 Windows Server 2016 的 Azure PowerShell 2.0。
 
 ```powershell
 Param (
@@ -151,7 +180,7 @@ Param (
 
  if ($SubscriptionId -eq "") 
  {
-    $SubscriptionId = (Get-AzureRmContext).Subscription.SubscriptionId
+    $SubscriptionId = (Get-AzureRmContext).Subscription.Id
  }
  else
  {
@@ -170,10 +199,7 @@ Param (
  $cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=exampleappScriptCert" -KeySpec KeyExchange
  $keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
 
- # Use Key credentials
- $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $ApplicationDisplayName) -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore
-
- $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId 
+ $ServicePrincipal = New-AzureRMADServicePrincipal -DisplayName $ApplicationDisplayName -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore
  Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id 
 
  $NewRole = $null
@@ -182,8 +208,8 @@ Param (
  {
     # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
     Sleep 15
-    New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
-    $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
+    New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $ServicePrincipal.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
+    $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $ServicePrincipal.ApplicationId -ErrorAction SilentlyContinue
     $Retries++;
  }
 ```
@@ -192,8 +218,7 @@ Param (
 
 * 若要授與身分識別存取預設訂用帳戶，您不需要提供 ResourceGroup 或 SubscriptionId 參數。
 * 只有當您想要將角色指派的範圍限制為資源群組時，才指定 ResourceGroup 參數。
-* 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
-*  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
+* 在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
 * 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
 * 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
 
@@ -277,10 +302,7 @@ Param (
  $KeyCredential.KeyId = $KeyId
  $KeyCredential.CertValue = $KeyValue
 
- # Use Key credentials
- $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $KeyId) -KeyCredentials $keyCredential
-
- $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId 
+ $ServicePrincipal = New-AzureRMADServicePrincipal -DisplayName $ApplicationDisplayName -KeyCredentials $keyCredential
  Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id 
 
  $NewRole = $null
@@ -300,8 +322,7 @@ Param (
 有關指令碼的一些注意事項︰
 
 * 存取限域為訂用帳戶。
-* 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
-*  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
+* 在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
 * 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
 * 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
 
@@ -426,5 +447,6 @@ Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
 * 如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
 * 如需應用程式和服務主體的詳細說明，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。 
 * 如需 Azure Active Directory 驗證的詳細資訊，請參閱 [Azure AD 的驗證案例](../active-directory/active-directory-authentication-scenarios.md)。
+* 如需可授與或拒絕使用者的可用動作清單，請參閱 [Azure Resource Manager 資源提供者作業](../active-directory/role-based-access-control-resource-provider-operations.md)。
 
 

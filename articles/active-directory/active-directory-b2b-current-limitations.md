@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2B 共同作業的限制 | Microsoft Docs"
-description: "Azure Active Directory B2B 共同作業預覽的目前限制"
+description: "Azure Active Directory B2B 共同作業目前的限制"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 04/12/2017
+ms.date: 05/04/2017
 ms.author: sasubram
-translationtype: Human Translation
-ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
-ms.openlocfilehash: cdc951d4e16e7f0df425dba7c33d86255276f526
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: f13f4ac6e32f568fb5f56261b542e0e2c49f5b3d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -33,7 +34,7 @@ Azure Active Directory (Azure AD) B2B 共同作業目前受限於本文所述的
 
 
 ## <a name="instant-on"></a>即時
-在 B2B 共同作業流程中，我們會新增使用者到目錄中，並在邀請兌換與應用程式指派等期間動態更新它們。 更新與寫入通常會在一個目錄執行個體中進行，而且必須複寫到所有執行個體。 複寫可能會需要一些時間才能完成。 有時，當系統在一個目錄執行個體中寫入或更新物件，而將擷取此物件的呼叫負載平衡至另一個執行個體時，這便導致發生授權問題。 我們已進行許多工作來消除或減少這些複寫延遲，但在一些罕見的情況下，仍然可能會發生延遲。 如果發生該情況，請重新整理或重試來提供幫助。 如果您正在使用我們的 API 來撰寫應用程式，則採用某種讓步來重試是可減輕此問題的良好防禦性做法。
+在 B2B 共同作業流程中，我們會新增使用者到目錄中，並在邀請兌換與應用程式指派等期間動態更新它們。 更新與寫入通常會在一個目錄執行個體中進行，而且必須複寫到所有執行個體。 在所有執行個體都更新後，複寫作業便已完成。 有時，當系統在一個目錄執行個體中寫入或更新物件，而將擷取此物件的呼叫負載平衡至另一個執行個體時，這便導致發生授權問題。 我們已進行許多工作來消除或減少這些複寫延遲，但在一些罕見的情況下，仍然可能會發生延遲。 如果發生該情況，請重新整理或重試來提供幫助。 如果您正在使用我們的 API 來撰寫應用程式，則採用某種讓步來重試是可減輕此問題的良好防禦性做法。
 
 ## <a name="next-steps"></a>後續步驟
 

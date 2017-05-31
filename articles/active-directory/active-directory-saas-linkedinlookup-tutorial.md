@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 04/20/2017
 ms.author: jeedes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
-ms.openlocfilehash: f343d8dbbd80de1a50b625e949377aa7c48d0cae
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: a4160a89c6a06222a9239d996fcca822e1a50382
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/29/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -114,7 +114,7 @@ LinkedIn Lookup 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_LinkedIn_admin_011.png)
 
-5. 按一下 [或按一下這裡以從表單載入和複製個別欄位]，並複製 [實體識別碼] 和 [判斷提示取用者存取 (ACS) URL]
+5. 按一下 [或按一下這裡以從表單載入和複製個別欄位]，並複製 [實體識別碼] 和 [判斷提示取用者存取 (ACS) URL]****
 
     ![設定單一登入](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_LinkedIn_admin_032.png)
 
@@ -122,9 +122,9 @@ LinkedIn Lookup 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedInlookup_url.png)
 
-    a. 在 [識別碼] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [實體 ID] 
+    a. 在 [識別碼] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [實體 ID]**** 
 
-    b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [判斷提示取用者存取 (ACS) URL]
+    b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [判斷提示取用者存取 (ACS) URL]****
 
 7. 如果您想要以 **SP** 起始模式設定應用程式，請勾選 [顯示進階 URL 設定]：
 
@@ -145,13 +145,13 @@ LinkedIn Lookup 與 Azure AD 整合提供下列優點：
     | --- | --- |    
     | department| user.department |
 
-       ![Creating an Azure AD test user](./media/active-directory-saas-LinkedInlookup-tutorial/userattribute.png)
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-LinkedInlookup-tutorial/userattribute.png)
 
-       a. Click **Add attribute** to open the attribute details page add the department attribute as shown below-
+   a. 按一下 [新增屬性]，以開啟屬性的詳細資料頁面，如下所示新增部門屬性
 
-       ![Creating an Azure AD test user](./media/active-directory-saas-LinkedInlookup-tutorial/adduserattribute.png)
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-LinkedInlookup-tutorial/adduserattribute.png)
    
-       b. Click **Ok** to save the attribute.
+   b.這是另一個 C# 主控台應用程式。 按一下 [確定] 以儲存屬性。
 
 10. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將 XML 檔案儲存在您的電腦上。
 
@@ -165,7 +165,7 @@ LinkedIn Lookup 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedIn_metadata_03.png)
 
-13. 按一下 [開啟] 以啟用 SSO。 SSO 狀態會從 [未連線] 變更為 [已連線]
+13. 按一下 [開啟] 以啟用 SSO。 SSO 狀態會從 [未連線] 變更為 [已連線]****
 
     ![設定單一登入](./media/active-directory-saas-LinkedInlookup-tutorial/tutorial_linkedIn_admin_05.png)
 

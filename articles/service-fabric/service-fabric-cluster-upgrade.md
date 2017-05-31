@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/22/2017
 ms.author: chackdan
-translationtype: Human Translation
-ms.sourcegitcommit: 0231c3148d03ffef0a518a68bb79398462da2605
-ms.openlocfilehash: 89721efbb9f05871716ca1b16ad0d54eaf1ffd62
-ms.lasthandoff: 12/07/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 0b63228e5b09f5d22fc55818986a0a2eb1204278
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -206,7 +207,7 @@ Microsoft 會維護 Azure 叢集中執行的網狀架構程式碼和組態。 �
 請參閱 [Service Fabric 叢集網狀架構設定](service-fabric-cluster-fabric-settings.md) ，以了解該自訂什麼及如何自訂。
 
 ### <a name="os-patches-on-the-vms-that-make-up-the-cluster"></a>組成叢集的 VM 上的作業系統修補程式
-這項功能在未來，會規劃成一個自動化功能。 但目前您必須負責修補 VM。 您必須一次修補一部 VM，如此才不會一次關閉一部以上的 VM。
+請參閱[修補程式協調流程應用程式](service-fabric-patch-orchestration-application.md)，可在叢集上部署，以協調的方式從 Windows Update 安裝修補程式，讓服務隨時可供使用。 
 
 ### <a name="os-upgrades-on-the-vms-that-make-up-the-cluster"></a>組成叢集的 VM 上的作業系統升級
 如果您必須升級叢集的虛擬機器上的作業系統映像，則必須一次升級一部 VM。 您要負責這項升級，因為目前沒有將這項升級自動化。

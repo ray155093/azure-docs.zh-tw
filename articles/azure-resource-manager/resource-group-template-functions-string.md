@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/26/2017
+ms.date: 05/15/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 9b75d0ede3ec1b291936ee0a53778afe10ba91db
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 9932ac04699f49b7a3ea3dabe4d380fdc4d05ec1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -591,7 +591,7 @@ JSON 物件。
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |是 |string |其中包含要尋找之項目的值。 |
+| stringToSearch |是 |字串 |其中包含要尋找之項目的值。 |
 | stringToFind |是 |string |要尋找的值。 |
 
 ### <a name="examples"></a>範例
@@ -793,7 +793,7 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | stringToSearch |是 |字串 |其中包含要尋找之項目的值。 |
-| stringToFind |是 |字串 |要尋找的值。 |
+| stringToFind |是 |string |要尋找的值。 |
 
 ### <a name="examples"></a>範例
 
@@ -939,21 +939,21 @@ JSON 物件。
 <a id="replace" />
 
 ## <a name="replace"></a>取代
-`replace(originalString, oldCharacter, newCharacter)`
+`replace(originalString, oldString, newString)`
 
-在由另一個字元取代的指定字串中，傳回具備一個字元的所有執行個體的新字串。
+傳回具備由另一個字串取代的一個字串之所有執行個體的新字串。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| originalString |是 |字串 |具有由另一個字元取代之某個字元的所有執行個體的值。 |
-| oldCharacter |是 |字串 |要從原始字串中移除的字元。 |
-| newCharacter |是 |字串 |要新增來取代移除字元的字元。 |
+| originalString |是 |字串 |具備由另一個字串取代的一個字串之所有執行個體的值。 |
+| oldString |是 |字串 |要從原始字串中移除的字串。 |
+| newString |是 |字串 |要新增來取代移除之字串的字串。 |
 
 ### <a name="examples"></a>範例
 
-下列範例顯示如何從使用者提供的字串中移除所有的連字號。
+下列範例會示範如何從使用者提供的字串中將所有的連字號移除，以及如何使用另一個字串來取代一部分的字串。
 
 ```json
 {
@@ -967,9 +967,13 @@ JSON 物件。
     },
     "resources": [],
     "outputs": {
-        "stringOutput": {
+        "firstOutput": {
             "type": "string",
             "value": "[replace(parameters('testString'),'-', '')]"
+        },
+        "secodeOutput": {
+            "type": "string",
+            "value": "[replace(parameters('testString'),'1234', 'xxxx')]"
         }
     }
 }

@@ -12,13 +12,13 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/30/2017
+ms.date: 05/15/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: 5a788f87693ebb09ed40cb71983fce4014c907f1
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 9c9eff8c828329b9d8358f88b90c174c64f5c29f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -37,8 +37,8 @@ ms.lasthandoff: 05/02/2017
 將資源部署至 Azure 時，您應該：
 
 1. 登入您的 Azure 帳戶
-2. 建立資源群組，做為已部署資源的容器
-3. 將定義要建立之資源的範本部署至資源群組
+2. 建立資源群組，作為已部署資源的容器。 資源群組的名稱只能包含英數字元、句點 (.)、底線、連字號及括弧。 最多可有 90 個字元。 不能以句點結束。
+3. 將範本部署至資源群組，範本中定義要建立的資源
 
 範本可以包含讓您自訂部署的參數。 例如，您可以提供針對特定環境 (例如開發、測試和生產) 量身訂做的值。 範例範本會定義儲存體帳戶 SKU 的參數。 
 
@@ -63,7 +63,7 @@ az group deployment create \
 
 ## <a name="deploy-a-template-from-an-external-source"></a>從外部來源部署範本
 
-相較於在您的本機電腦上儲存 Resource Manager 範本，您可能會想要將它們儲存在外部位置。 您可以將範本儲存在原始檔控制存放庫 (例如 GitHub) 中。 或者，您可以將它們儲存在 Azure 儲存體帳戶中，以在組織內共用存取。
+您可能希望將 Resource Manager 範本儲存在外部位置，而不是儲存在您的本機電腦。 您可以將範本儲存在原始檔控制存放庫 (例如 GitHub) 中。 或者，您可以將它們儲存在 Azure 儲存體帳戶中，以在組織內共用存取。
 
 若要部署外部範本，請使用 **template-uri** 參數。 在範例中使用 URI 以部署來自 GitHub 的範例範本。
    
@@ -75,7 +75,7 @@ az group deployment create \
     --parameters "{\"storageAccountType\":{\"value\":\"Standard_GRS\"}}"
 ```
 
-上述範例針對範本需要可公開存取 URI，這適用於大部分的案例，因為您的範本不應該包含機密資料。 如果您需要指定機密資料 (例如系統管理員密碼)，請將該值以安全參數傳遞。 不過，如果您不希望讓範本可公開存取，可以將範本儲存在私用儲存體容器中加以保護。 如需部署需要共用存取簽章 (SAS) 權杖之範本的相關資訊，請參閱[使用 SAS 權杖部署私人範本](resource-manager-cli-sas-token.md)。
+上述範例針對範本需要可公開存取 URI，這適用於大部分的案例，因為您的範本不應該包含機密資料。 如果您需要指定機密資料 (例如系統管理員密碼)，請將該值以安全參數傳遞。 不過，如果不希望將範本公開存取，您可以將它儲存在私人儲存體容器中加以保護。 如需部署需要共用存取簽章 (SAS) 權杖之範本的相關資訊，請參閱[使用 SAS 權杖部署私人範本](resource-manager-cli-sas-token.md)。
 
 ## <a name="parameter-files"></a>參數檔案
 
@@ -127,7 +127,7 @@ az group deployment validate \
       ...
 ```
 
-如果偵測到錯誤，命令會傳回錯誤訊息。 例如，嘗試針對儲存體帳戶 SKU 傳遞不正確的值，會傳回下列錯誤：
+如果偵測到錯誤，命令會傳回錯誤訊息。 例如，嘗試針對儲存體帳戶 SKU 傳遞不正確的值，則會傳回下列錯誤：
 
 ```azurecli
 {

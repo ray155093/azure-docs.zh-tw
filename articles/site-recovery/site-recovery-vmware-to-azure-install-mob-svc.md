@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: backup-recovery
-ms.date: 2/20/2017
+ms.date: 5/11/2017
 ms.author: anoopkv
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 6437190ac58a021ce84993f667bbb5fad6031bb3
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 6e91a8b21fe7bfe2c6944cfa1c10d835a75ddd13
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 ---
 
@@ -53,14 +54,18 @@ Azure Site Recovery 行動服務會擷取電腦上的資料寫入，然後將它
 |---|--|
 |Microsoft-ASR\_UA\*Windows\*release.exe | Windows Server 2008 R2 SP1 (64 位元) </br> Windows Server 2012 (64 位元) </br> Windows Server 2012 R2 (64 位元) |
 |Microsoft-ASR\_UA\*RHEL6-64*release.tar.gz| Red Hat Enterprise Linux (RHEL) 6.4、6.5、6.6、6.7、6.8 (僅限 64 位元) </br> CentOS 6.4、6.5、6.6、6.7、6.8 (僅限 64 位元) |
+|Microsoft-ASR\_UA\*RHEL7-64\*release.tar.gz | Red Hat Enterprise Linux (RHEL) 7.1、7.2 (僅限 64 位元) </br> CentOS 7.0、7.1、7.2 (僅限 64 位元)</br> CentOs 7.3 (僅限移轉) |
 |Microsoft-ASR\_UA\*SLES11-SP3-64\*release.tar.gz| SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元)|
-|Microsoft-ASR_UA\*OL6-64\*release.tar.gz | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元)|
+|Microsoft-ASR\_UA\*SLES11-SP4-64\*release.tar.gz| SUSE Linux Enterprise Server 11 SP4 (僅限 64 位元)|
+|Microsoft-ASR\_UA\*OL6-64\*release.tar.gz | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元)|
+|Microsoft-ASR\_UA\*UBUNTU-14.04-64\*release.tar.gz | Ubuntu Linux 14.04 (僅限 64 位元)|
 
 
 ## <a name="install-mobility-service-manually-by-using-the-gui"></a>使用 GUI 手動安裝行動服務
 
->[!NOTE]
+>[!IMPORTANT]
 > 以 GUI 為基礎的安裝只適用於 Windows 作業系統。
+> 如果您是使用設定伺服器從一個 Azure 訂用帳戶/區域將 Azure IaaS 虛擬機器複寫到另一個 Azure 訂用帳戶/區域，請使用以命令列為基礎的安裝方法
 
 [!INCLUDE [site-recovery-install-mob-svc-gui](../../includes/site-recovery-install-mob-svc-gui.md)]
 

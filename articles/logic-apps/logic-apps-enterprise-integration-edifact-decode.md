@@ -1,6 +1,6 @@
 ---
 title: "將 EDIFACT 訊息解碼 - Azure Logic Apps | Microsoft Docs"
-description: "在 Azure Logic Apps 的企業整合套件中使用 EDIFACT 解碼器，針對交易集驗證 EDI 及產生 XML"
+description: "在 Azure Logic Apps 的企業整合套件中使用 EDIFACT 解碼器，針對交易集驗證 EDI 及產生通知"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
@@ -13,18 +13,19 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
-ms.author: padmavc
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 176963837f4f3fc8b89e31000ef8722ef3258b11
-ms.lasthandoff: 03/10/2017
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 39d9661adc90e6113e2152d844473f9f4caa755a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
 
 # <a name="decode-edifact-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>使用企業整合套件將 Azure Logic Apps 的 EDIFACT 訊息解碼
 
-使用解碼 EDIFACT 訊息連接器，可以驗證 EDI 和夥伴特定屬性，產生每個交易集的 XML 文件，以及產生已處理交易的通知。 若要使用此連接器，您必須將連接器新增至邏輯應用程式中的現有觸發程序。
+使用 Decode EDIFACT 訊息連接器，您可以驗證 EDI 和夥伴特定的屬性、將交換分割為交易集或保留整個交換，並產生已處理交易的通知。 若要使用此連接器，您必須將連接器新增至邏輯應用程式中的現有觸發程序。
 
 ## <a name="before-you-start"></a>開始之前
 
@@ -72,28 +73,34 @@ ms.lasthandoff: 03/10/2017
 
 解碼 EDIFACT 連接器會執行下列工作︰ 
 
-* 比對傳送者辨識符號和識別項，以及接收者辨識符號和識別項，以解析合約
-* 將單一訊息中的多個交換分割成個別的交換分割。
-* 針對交易夥伴合約驗證信封
+* 針對交易夥伴協議驗證信封。
+* 比對傳送者辨識符號和識別項，以及接收者辨識符號和識別項，以解析合約。
+* 在交換具有多個交易時，根據合約的接收設定組態，將交換分割成多筆交易。
 * 解譯交換。
-* 驗證 EDI 和夥伴特定屬性，包括
-  * 驗證交換信封的結構。
-  * 針對控制結構描述進行信封的結構描述驗證。
-  * 針對訊息結構描述進行交易集資料元素的結構描述驗證。
+* 驗證 EDI 和夥伴特定屬性，包括：
+  * 驗證交換信封結構
+  * 針對控制結構描述進行信封的結構描述驗證
+  * 針對訊息結構描述進行交易集資料元素的結構描述驗證
   * 對交易集資料元素執行 EDI 驗證
 * 驗證交換、群組和交易集控制編號並未重複 (若已設定) 
   * 針對先前已接收的交換檢查交換控制編號。 
   * 針對交換中的其他群組控制編號檢查群組控制編號。 
   * 針對該群組中其他交易集控制編號檢查交易集控制編號。
-* 產生每個交易集的 XML 文件。
-* 將整個交換轉換為 XML 
-  * 將交換分割為交易集 - 暫停發生錯誤的交易集︰將交換中每個交易集剖析為個別的 XML 文件。 如果交換中有一或多個交易集無法通過驗證，則 EDIFACT 解碼只會暫停那些交易集。 
-  * 將交換分割為交易集 - 暫停發生錯誤的交換︰將交換中每個交易集剖析為個別的 XML 文件。  如果交換中有一或多個交易集無法通過驗證，則 EDIFACT 解碼會暫停整個交換。
-  * 保留交換 - 暫停發生錯誤的交易集︰建立整個批次交換的 XML 文件。 EDIFACT 解碼只會暫停未通過驗證的交易集，而繼續處理所有其他的交易集
-  * 保留交換 - 暫停發生錯誤的交換︰建立整個批次交換的 XML 文件。 如果交換中有一或多個交易集無法通過驗證，則 EDIFACT 解碼會暫停整個交換。 
+* 將交換分割為交易集，或保留整個交換︰
+  * 將交換分割為交易集 - 暫停發生錯誤的交易集︰將交換分割為交易集，並剖析每個交易集。 
+  X12 Decode 動作只會輸出未通過 `badMessages`驗證的交易集，並將剩餘的交易輸出到 `goodMessages`。
+  * 將交換分割為交易集 - 暫停發生錯誤的交換︰將交換分割為交易集，並剖析每個交易集。 
+  如果交換中有一或多個交易集無法通過驗證，X12 Decode 動作會將該交換中的所有交易集輸出到 `badMessages`。
+  * 保留交換 - 暫停發生錯誤的交易集︰保留交換並處理整個批次交換。 
+  X12 Decode 動作只會輸出未通過 `badMessages`驗證的交易集，並將剩餘的交易輸出到 `goodMessages`。
+  * 保留交換 - 暫停發生錯誤的交換︰保留交換並處理整個批次交換。 
+  如果交換中有一或多個交易集無法通過驗證，X12 Decode 動作會將該交換中的所有交易集輸出到 `badMessages`。
 * 產生技術 (控制) 和/或功能確認 (若已設定)。
   * 技術確認或 CONTRL ACK 會報告完整接收的交換所進行的語法檢查結果。
   * 功能確認會確認接受或拒絕已接收的交換或群組
+
+## <a name="view-swagger-file"></a>檢視 Swagger 檔案
+若要檢視 EDIFACT 連接器的 Swagger 詳細資料，請參閱 [EDIFACT](/connectors/edifact/)。
 
 ## <a name="next-steps"></a>後續步驟
 [深入了解企業整合套件](logic-apps-enterprise-integration-overview.md "了解企業整合套件") 

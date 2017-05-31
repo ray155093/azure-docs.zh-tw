@@ -13,10 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 04/20/2017
 ms.author: markgal;
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 34146bd110661c12c4ec1e11d34d7bdfa3cac688
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: faa3c9d5de759e4d8c0589153ea93e83a580f983
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -93,7 +94,7 @@ Azure 備份伺服器預設會透過 HTTPS 通道與 vCenter Server 進行通訊
 
   ![包含錯誤的憑證對話方塊 ](./media/backup-azure-backup-server-vmware/certificate-store-selected.png)
 
-  選擇的憑證存放區會顯示在**憑證匯入精靈**中。 按 [下一步] 。
+  選擇的憑證存放區會顯示在**憑證匯入精靈**中。 按一下 [下一步] 。
 
   ![包含錯誤的憑證對話方塊 ](./media/backup-azure-backup-server-vmware/certificate-import-wizard2.png)
 
@@ -260,7 +261,7 @@ Azure 備份伺服器會使用使用者名稱和密碼來驗證 vCenter Server�
 
 ## <a name="add-the-vcenter-server-to-azure-backup-server"></a>將 vCenter Server 新增至 Azure 備份伺服器
 
-若要開啟 [新增實際執行伺服器] 精靈
+若要開啟 [新增實際執行伺服器] 精靈：
 
 1. 在 Azure 備份伺服器主控台中，依序按一下 [管理][實際執行伺服器] 及 [新增]。
 

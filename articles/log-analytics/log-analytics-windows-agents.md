@@ -3,7 +3,7 @@ title: "將 Windows 電腦連接到 Azure Log Analytics | Microsoft Docs"
 description: "本文說明使用自訂版本的 Microsoft Monitoring Agent (MMA) 將內部部署基礎結構中的 Windows 電腦連接到 Log Analytics 服務的步驟。"
 services: log-analytics
 documentationcenter: 
-author: bandersmsft
+author: MGoedtel
 manager: carmonm
 editor: 
 ms.assetid: 932f7b8c-485c-40c1-98e3-7d4c560876d2
@@ -12,13 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
-ms.author: banders
+ms.date: 05/12/2017
+ms.author: magoedte
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 0868eb2269b3675a132e106cd66740b0ce52b00a
-ms.lasthandoff: 03/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: d95ab33460d5d86b1d2f6d7f0d4e7a9040568c29
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -43,15 +44,37 @@ ms.lasthandoff: 03/07/2017
 
 ![oms-direct-agent-diagram](./media/log-analytics-windows-agents/oms-direct-agent-diagram.png)
 
+如果您的 IT 安全性原則不允許網路上的電腦連線到網際網路，您可以將電腦設定為連線到 OMS 閘道。 如需如何設定伺服器以透過 OMS 閘道與 OMS 服務進行通訊的詳細資訊和步驟，請參閱[使用 OMS 閘道將電腦連線到 OMS](log-analytics-oms-gateway.md)。
 
 ## <a name="system-requirements-and-required-configuration"></a>系統需求和所需的設定
-在安裝或部署代理程式之前，請檢閱下列詳細資料，以確保您符合必要需求。
+在安裝或部署代理程式之前，請檢閱下列詳細資料，以確保您符合需求。
 
 - 您只能將 OMS MMA 安裝在執行 Windows Server 2008 SP1 或更新版本亦或是 Windows 7 SP1 或更新版本的電腦上。
-- 您將需要 OMS 訂用帳戶。  如需其他資訊，請參閱 [Log Analytics 入門](log-analytics-get-started.md)。
+- 您需要 Azure 訂用帳戶。  如需詳細資訊，請參閱[開始使用 Log Analytics](log-analytics-get-started.md)。
 - 每一部 Windows 電腦都必須能夠使用 HTTPS 連線到網際網路或連線到 OMS 閘道。 此連線可以是直接連線、透過 Proxy 連線、或透過 OMS 閘道連線。
 - OMS MMA 可以安裝在獨立電腦、伺服器和虛擬機器上。 如果您想要將 Azure 託管的虛擬機器連接至 OMS，請參閱 [將 Azure 虛擬機器連接至 Log Analytics](log-analytics-azure-vm-extension.md)。
-- 代理程式必須使用 TCP 連接埠 443 來收送各種資源。 如需詳細資訊，請參閱 [在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md)。
+- 代理程式必須使用 TCP 連接埠 443 來收送各種資源。
+
+### <a name="network"></a>網路
+
+Windows 代理程式若要連線到 OMS 服務並向其註冊，就必須能夠存取網路資源，包括連接埠號碼和網域 URL。
+
+- 對於 Proxy 伺服器，您需要確保代理程式設定中已設定了適當的 Proxy 伺服器資源。
+- 對於會限制網際網路存取的防火牆，您或您的網路工程師必須將防火牆設定為允許存取 OMS。 您不需要在代理程式設定中進行任何動作。
+
+下表說明通訊所需資源。
+
+>[!NOTE]
+>下列某些資源所提到的 Operational Insights 是 OMS 的上一個版本。 不過，列出的資源將會在未來變更。
+
+| 代理程式資源 | 連接埠 | 略過 HTTPS 檢查 |
+|---|---|---|
+| *.ods.opinsights.azure.com | 443 | 是 |
+| *.oms.opinsights.azure.com | 443 | 是 |
+| *.blob.core.windows.net | 443 | 是 |
+| *.azure-automation.net | 443 | 是 |
+
+
 
 ## <a name="download-the-agent-setup-file-from-oms"></a>從 OMS 下載代理程式安裝檔案
 1. 在 OMS 入口網站的 [概觀] 頁面中，按一下 [設定] 圖格。  按一下頂端的 [連接的來源] 索引標籤。  
@@ -65,7 +88,7 @@ ms.lasthandoff: 03/07/2017
 2. 在 [歡迎] 頁面中按 [下一步] 。
 3. 閱讀 [授權條款] 頁面上的授權，然後按一下 [我接受] 。
 4. 在 [目的地資料夾] 頁面中，變更或保留預設的安裝資料夾，然後按一下 [下一步] 。
-5. 在 [代理程式安裝程式選項] 頁面中，您可以選擇將代理程式連接至 Azure Log Analytics (OMS)、Operations Manager，或者，如果您想要稍後再設定代理程式可以選擇保留空白。 按一下頁面底部的 [新增] 來單一登入應用程式。   
+5. 在 [代理程式安裝程式選項] 頁面中，您可以選擇將代理程式連接至 Azure Log Analytics (OMS)、Operations Manager，或者，如果您想要稍後再設定代理程式可以選擇保留空白。 按一下 [下一步] 。   
     - 如果您選擇連接至 Azure Log Analytics (OMS)，請將您在上一個程序複製到 [記事本] 的內容貼到 [工作區識別碼] 和 [工作區索引鍵 (主索引鍵)]，然後按 [下一步]。  
         ![貼上工作區識別碼和主索引鍵](./media/log-analytics-windows-agents/connect-workspace.png)
     - 如果您選擇連接到 Operations Manager，請輸入 [管理群組名稱]、[管理伺服器] 名稱、[管理伺服器連接埠]，然後按一下 [下一步]。 在 [代理程式動作帳戶] 頁面上，選擇本機系統帳戶或本機網域帳戶，然後按一下 [下一步] 。  
@@ -75,24 +98,96 @@ ms.lasthandoff: 03/07/2017
 7. 在 [組態完成] 頁面中，按一下 [完成] 。
 8. 完成時，[Microsoft 監視代理程式] 會出現在 [控制台] 中。 您可以檢閱您的設定，並確認代理程式已連接到 Operational Insights (OMS)。 當連接到 OMS，代理程式會顯示訊息︰**Microsoft Monitoring Agent 已成功連接到 Microsoft Operations Management Suite 服務。**
 
+## <a name="configure-proxy-settings"></a>進行 Proxy 設定
+
+您可以使用以下程序來使用控制台為 Microsoft Monitoring Agent 設定 Proxy 設定。 您需要針對每部伺服器使用此程序。 如果您需要設定許多伺服器，使用指令碼將此程序自動化會比較容易。 如果是，請參閱下一個程序 [使用指令碼設定 Microsoft Monitoring Agent 的 Proxy 設定](#to-configure-proxy-settings-for-the-microsoft-monitoring-agent-using-a-script)。
+
+### <a name="to-configure-proxy-settings-for-the-microsoft-monitoring-agent-using-control-panel"></a>使用控制台設定 Microsoft Monitoring Agent 的 Proxy 設定
+1. 開啟 [ **控制台**]。
+2. 開啟 [ **Microsoft Monitoring Agent**].
+3. 按一下 [ **Proxy 設定** ] 索引標籤。  
+    ![[Proxy 設定] 索引標籤](./media/log-analytics-windows-agents/proxy-direct-agent-proxy.png)
+4. 選取 [ **使用 Proxy 伺服器** ] 並輸入 URL 與連接埠號碼 (如果需要)，如範例所示。 如果您的 Proxy 伺服器需要驗證，請輸入使用者名稱與密碼以存取 Proxy 伺服器。
+
+
+### <a name="verify-agent-connectivity-to-oms"></a>確認代理程式能夠連線到 OMS
+
+您可以使用下列程序，輕鬆地確認代理程式是否能夠與 OMS 通訊︰
+
+1.    在具有 Windows 代理程式的電腦上，開啟 [控制台]。
+2.    開啟 [Microsoft Monitoring Agent]。
+3.    按一下 [Azure Log Analytics (OMS)] 索引標籤。
+4.    在 [狀態] 欄中，您應該會看到代理程式已成功連線到 Operations Management Suite 服務。
+
+![代理程式已連線](./media/log-analytics-windows-agents/mma-connected.png)
+
+
+### <a name="to-configure-proxy-settings-for-the-microsoft-monitoring-agent-using-a-script"></a>使用指令碼設定 Microsoft Monitoring Agent 的 Proxy 設定
+複製下列範例、以您的環境的特定資訊進行更新、儲存為 PS1 副檔名，然後在直接連接到 OMS 服務的每一部電腦上執行指令碼。
+
+    param($ProxyDomainName="http://proxy.contoso.com:80", $cred=(Get-Credential))
+
+    # First we get the Health Service configuration object.  We need to determine if we
+    #have the right update rollup with the API we need.  If not, no need to run the rest of the script.
+    $healthServiceSettings = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
+
+    $proxyMethod = $healthServiceSettings | Get-Member -Name 'SetProxyInfo'
+
+    if (!$proxyMethod)
+    {
+         Write-Output 'Health Service proxy API not present, will not update settings.'
+         return
+    }
+
+    Write-Output "Clearing proxy settings."
+    $healthServiceSettings.SetProxyInfo('', '', '')
+
+    $ProxyUserName = $cred.username
+
+    Write-Output "Setting proxy to $ProxyDomainName with proxy username $ProxyUserName."
+    $healthServiceSettings.SetProxyInfo($ProxyDomainName, $ProxyUserName, $cred.GetNetworkCredential().password)
+
+
+
 ## <a name="install-the-agent-using-the-command-line"></a>使用命令列安裝代理程式
 - 修改，然後搭配使用下列範例與命令列來安裝代理程式。 這個範例會執行完全無訊息安裝。
 
     >[!NOTE]
     如果您想要升級代理程式，您需要使用 Log Analytics 指令碼 API。 請參閱下一節來升級代理程式。
 
-    ```
+    ```dos
     MMASetup-AMD64.exe /Q:A /R:N /C:"setup.exe /qn ADD_OPINSIGHTS_WORKSPACE=1 OPINSIGHTS_WORKSPACE_ID=<your workspace id> OPINSIGHTS_WORKSPACE_KEY=<your workspace key> AcceptEndUserLicenseAgreement=1"
     ```
 
 代理程式使用 `/c` 命令將 IExpress 用作其自我解壓縮程式。 您可以在 [IExpress 的命令列參數](https://support.microsoft.com/help/197147/command-line-switches-for-iexpress-software-update-packages)中查看命令列參數，然後更新範例以符合您的需求。
 
-## <a name="upgrade-the-agent-and-add-a-workspace-using-a-script"></a>使用指令碼升級代理程式和加入工作區
-您可以參考下列 PowerShell 範例，使用 Log Analytics 指令碼 API 來升級代理程式和加入工作區。
+|MMA 專屬選項                   |注意事項         |
+|---------------------------------------|--------------|
+|ADD_OPINSIGHTS_WORKSPACE               | 1 = 將代理程式設定為向工作區報告                |
+|OPINSIGHTS_WORKSPACE_ID                | 要新增之工作區的工作區識別碼 (guid)                    |
+|OPINSIGHTS_WORKSPACE_KEY               | 用來向工作區進行初始驗證的工作區金鑰 |
+|OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE  | 指定工作區所在的雲端環境 <br> 0 = Azure 商業雲端 (預設值) <br> 1 = Azure Government |
 
-```
+>[!NOTE]
+如果您在使用 `OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE` 參數時收到 `Command line option syntax error.`，您可以使用下列因應措施︰
+```dos
+MMASetup-AMD64.exe /C /T:.\MMAExtract
+cd .\MMAExtract
+setup.exe /qn ADD_OPINSIGHTS_WORKSPACE=1 OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE=1 OPINSIGHTS_WORKSPACE_ID=<your workspace id> OPINSIGHTS_WORKSPACE_KEY=<your workspace key> AcceptEndUserLicenseAgreement=1
+
+## Add a workspace using a script
+Add a workspace using the Log Analytics agent scripting API with the following example:
+
+```PowerShell
 $mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
 $mma.AddCloudWorkspace($workspaceId, $workspaceKey)
+$mma.ReloadConfiguration()
+```
+
+若要在適用於美國政府的 Azure 中新增工作區，請使用下列指令碼範例︰
+```PowerShell
+$mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
+$mma.AddCloudWorkspace($workspaceId, $workspaceKey, 1)
 $mma.ReloadConfiguration()
 ```
 
@@ -112,11 +207,11 @@ $mma.ReloadConfiguration()
 
 1. 從 [http://www.powershellgallery.com/packages/xPSDesiredStateConfiguration](http://www.powershellgallery.com/packages/xPSDesiredStateConfiguration) 將 xPSDesiredStateConfiguration DSC 模組匯入 Azure 自動化。  
 2.    建立 Azure 自動化的 *OPSINSIGHTS_WS_ID* 和 *OPSINSIGHTS_WS_KEY* 變數資產。 將 *OPSINSIGHTS_WS_ID* 設定為您的 OMS Log Analytics 工作區識別碼，將 *OPSINSIGHTS_WS_KEY* 設定為工作區的主索引鍵。
-3.    使用以下指令碼並將其儲存為 MMAgent.ps1
+3.    使用下列指令碼並將其儲存為 MMAgent.ps1
 4.    修改並使用下列範例來使用 Azure 自動化中的 DSC 安裝代理程式。 使用 Azure 自動化介面或 Cmdlet 將 MMAgent.ps1 匯入 Azure 自動化。
-5.    指派節點至設定。 在 15 分鐘內，節點會檢查其設定，且 MMA 會被推送至節點。
+5.    指派節點至設定。 在 15 分鐘內，節點會檢查其設定，然後系統會將 MMA 推送至節點。
 
-```
+```PowerShell
 Configuration MMAgent
 {
     $OIPackageLocalPath = "C:\MMASetup-AMD64.exe"
@@ -157,7 +252,7 @@ Configuration MMAgent
 
 MMAgent.ps1 指令碼中的 `ProductId value`，對應不同的代理程式版本。 當每個代理程式的更新的版本發佈時，ProductId 的值隨之變更。 因此，當未來 ProductId 變更時，您可以使用簡單的指令碼找到代理程式版本。 在測試伺服器上安裝最新的代理程式版本之後，您可以使用下列指令碼取得已安裝的 ProductId 值。 您可以使用最新的 ProductId 值，更新 MMAgent.ps1 指令碼中的這個值。
 
-```
+```PowerShell
 $InstalledApplications  = Get-ChildItem hklm:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
 
 
@@ -215,19 +310,8 @@ foreach ($Application in $InstalledApplications)
 8.    在 [代理程式動作帳戶] 頁面下，選擇本機系統帳戶或本機網域帳戶。
 9.    按一下 [確定] 關閉 [新增管理群組] 對話方塊，然後按一下 [確定] 關閉 [Microsoft 監視代理程式內容] 對話方塊。
 
-## <a name="optionally-configure-agents-to-use-the-oms-gateway"></a>(選擇性) 將代理程式設定為使用 OMS 閘道
-
-如果您有未連線到網際網路的伺服器或用戶端，您仍然可以使用 OMS 閘道轉寄站讓它們將資料傳送至 OMS。  當您使用閘道時，代理程式的所有資料會都透過可存取網際網路的單一伺服器傳送。 閘道會將資料直接從代理程式傳輸到 OMS，不會對傳輸的任何資料做分析。
-
-若要深入了解閘道，包括設定與組態，請參閱[OMS 閘道](log-analytics-oms-gateway.md)。
-
-如需如何設定代理程式使用 Proxy 伺服器 (此案例中是 OMS 閘道)，請參閱[在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md)。
-
-## <a name="optionally-configure-proxy-and-firewall-settings"></a>(選擇性) 設定 Proxy 和防火牆設定 
-如果您環境中的 Proxy 伺服器或防火牆有網際網路存取上的限制，請參閱 [在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md) ，讓代理程式可與 OMS 服務通訊。
 
 ## <a name="next-steps"></a>後續步驟
 
-- [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md) ，以加入功能和收集資料。
-- [在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md) ，讓代理程式可與 Log Analytics 服務通訊。
+- [從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)，以新增功能和收集資料。
 

@@ -1,6 +1,6 @@
 ---
-title: "搭配 Azure IoT 閘道 SDK 使用實體裝置 | Microsoft Docs"
-description: "如何使用 Texas Instruments SensorTag 裝置，透過 Raspberry Pi 3 上執行的閘道器將資料傳送至 IoT 中樞。 閘道器是使用 Azure IoT 閘道 SDK 所建置。"
+title: "搭配 Azure IoT Edge 使用實體裝置 | Microsoft Docs"
+description: "如何使用 Texas Instruments SensorTag 裝置，透過 Raspberry Pi 3 上執行的 IoT Edge 閘道將資料傳送至 IoT 中樞。 閘道是使用 Azure IoT Edge 所建置的。"
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -14,16 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/28/2017
 ms.author: andbuc
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: 962092622e6bbfcfc2376d0885e6806be9cb5abf
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 6cf31f57da5d903efc0e522ca606957f09b28bd6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
-# <a name="use-the-azure-iot-gateway-sdk-to-send-device-to-cloud-messages-with-a-physical-device-linux"></a>使用 Azure IoT 閘道 SDK 搭配實體裝置來傳送裝置到雲端訊息 (Linux)
+# <a name="use-azure-iot-edge-to-send-device-to-cloud-messages-with-a-physical-device-linux"></a>使用 Azure IoT Edge 搭配實體裝置來傳送裝置到雲端訊息 (Linux)
 
-本逐步解說的[藍牙低功耗範例][lnk-ble-samplecode]示範如何使用 [Azure IoT 閘道 SDK][lnk-sdk]以便：
+本逐步解說的[藍牙低功耗範例][lnk-ble-samplecode]示範如何使用 [Azure IoT Edge][lnk-sdk] 以便：
 
 * 從實體裝置將裝置對雲端遙測轉送至 IoT 中樞。
 * 將命令從 IoT 中樞路由傳送至實體裝置。
@@ -35,16 +36,16 @@ ms.lasthandoff: 03/31/2017
 
 ## <a name="architecture"></a>架構
 
-本逐步解說會示範如何在執行 Raspbian Linux 的 Raspberry Pi 3 上建置和執行 IoT 閘道。 閘道是使用 IoT 閘道 SDK 建置而成。 這個範例會使用 Texas Instruments SensorTag 藍牙低功耗 (BLE) 裝置來收集溫度資料。
+本逐步解說會示範如何在執行 Raspbian Linux 的 Raspberry Pi 3 上建置和執行 IoT Edge 閘道。 閘道是使用 IoT Edge 所建置的。 這個範例會使用 Texas Instruments SensorTag 藍牙低功耗 (BLE) 裝置來收集溫度資料。
 
-當您執行閘道時，它會執行下列動作︰
+當您執行 IoT Edge 閘道時，它會執行下列動作︰
 
 * 使用藍牙低功耗 (BLE) 通訊協定連接到 SensorTag 裝置。
 * 使用 HTTP 通訊協定來連接到「IoT 中樞」。
 * 將遙測從 SensorTag 裝置轉送到 IoT 中樞。
 * 將命令從 IoT 中樞路由傳送到 SensorTag 裝置。
 
-閘道包含下列模組︰
+閘道包含下列 IoT Edge 模組︰
 
 * 「BLE 模組」  ，可與 BLE 裝置接合，以接收來自裝置的溫度資料，並將命令傳送到裝置。
 * 「BLE 雲端至裝置模組」，可將來自雲端的 JSON 訊息轉譯為「BLE 模組」所用的 BLE 指示。
@@ -211,52 +212,52 @@ BLE 模組會透過 BlueZ 堆疊與藍牙硬體通訊。 您需要 5.37 版的 B
     [CHG] Device A0:E6:F8:B5:F6:00 Connected: no
     ```
 
-您現在已經準備好在 Raspberry Pi 3 上執行 BLE 閘道範例。
+您現在已經準備好在 Raspberry Pi 3 上執行 BLE IoT Edge 範例。
 
-## <a name="run-the-ble-gateway-sample"></a>執行 BLE 閘道範例
+## <a name="run-the-iot-edge-ble-sample"></a>執行 IoT Edge BLE 範例
 
-若要執行 BLE 範例，您必須完成三項工作︰
+若要執行 IoT Edge BLE 範例，您必須完成三項工作︰
 
 * 在您的 IoT 中樞上設定兩個範例裝置。
-* 在 Raspberry Pi 3 裝置上建置「IoT 閘道 SDK」。
+* 在 Raspberry Pi 3 裝置上建置 IoT Edge。
 * 在 Raspberry Pi 3 裝置上設定和執行 BLE 範例。
 
-在撰寫本文的當時，「IoT 閘道 SDK」只支援在 Linux 上使用 BLE 模組的閘道。
+在撰寫本文時，IoT Edge 只支援在 Linux 上使用 BLE 模組的閘道。
 
 ### <a name="configure-two-sample-devices-in-your-iot-hub"></a>在您的 IoT 中樞上設定兩個範例裝置
 
 * 於 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]時，您需要中樞名稱才能完成此逐步解說。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
 * 在您的 IoT 中樞新增一個名為 **SensorTag_01** 的裝置，並記下其識別碼和裝置金鑰。 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，將這個裝置新增到您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。 當您設定閘道時，您會將此裝置對應到 SensorTag 裝置。
 
-### <a name="build-the-azure-iot-gateway-sdk-on-your-raspberry-pi-3"></a>在 Raspberry Pi 3 上建置 Azure IoT 閘道 SDK
+### <a name="build-azure-iot-edge-on-your-raspberry-pi-3"></a>在 Raspberry Pi 3 上建置 Azure IoT Edge
 
-安裝 Azure IoT 閘道 SDK 的相依項目：
+安裝 Azure IoT Edge 的相依項目：
 
 `sudo apt-get install cmake uuid-dev curl libcurl4-openssl-dev libssl-dev`
 
-使用下列命令將「IoT 閘道 SDK」及其所有子模組複製到主目錄︰
+使用下列命令將 IoT Edge 及其所有子模組複製到主目錄︰
 
 `cd ~`
 
-`git clone --recursive https://github.com/Azure/azure-iot-gateway-sdk.git`
+`git clone --recursive https://github.com/Azure/iot-edge.git`
 
-`cd azure-iot-gateway-sdk`
+`cd iot-edge`
 
 `git submodule update --init --recursive`
 
-當您的 Raspberry Pi 3 上擁有「IoT 閘道 SDK」儲存機制的完整複本時，您就可以使用下列命令，從包含該 SDK 的資料夾建置它：
+當您的 Raspberry Pi 3 上擁有 IoT Edge 存放庫的完整複本時，您就可以使用下列命令，從包含該 SDK 的資料夾建置它：
 
 `./tools/build.sh`
 
 ### <a name="configure-and-run-the-ble-sample-on-your-raspberry-pi-3"></a>在 Raspberry Pi 3 上設定和執行 BLE 範例
 
-若要啟動並執行範例，您必須設定參與閘道的每個模組。 這個組態是以 JSON 檔案來提供，您必須設定所有五個參與的模組。 存放庫中有一個名為 **gateway\_sample.json** 的範例 JSON 檔案，您可以把它當作起點，開始建立自己的組態檔。 這個檔案位於「IoT 閘道 SDK」儲存機制本機複本的 **samples/ble_gateway/src** 資料夾中。
+若要啟動並執行範例，您必須設定參與閘道的每個 IoT Edge 模組。 這個組態是以 JSON 檔案來提供，您必須設定所有五個參與的 IoT Edge 模組。 存放庫中有一個名為 **gateway\_sample.json** 的範例 JSON 檔案，您可以把它當作起點，開始建立自己的組態檔。 這個檔案位於 IoT Edge 存放庫本機複本的 **samples/ble_gateway/src** 資料夾中。
 
-下列各節說明如何編輯 BLE 範例的這個組態檔，並假設「IoT 閘道 SDK」儲存機制位於 Raspberry Pi 3 上的 **/home/pi/azure-iot-gateway-sdk/** 資料夾中。 如果存放庫位於其他地方，請據以調整路徑。
+下列各節說明如何編輯 BLE 範例的這個組態檔，並假設 IoT Edge 存放庫位於 Raspberry Pi 3 上的 **/home/pi/iot-edge/** 資料夾中。 如果存放庫位於其他地方，請據以調整路徑。
 
 #### <a name="logger-configuration"></a>記錄器組態
 
-假設閘道存放庫位於 **/home/pi/azure-iot-gateway-sdk/** 資料夾中，請以如下方式設定記錄器模組：
+假設閘道存放庫位於 **/home/pi/iot-edge/** 資料夾中，請以如下方式設定記錄器模組：
 
 ```json
 {
@@ -411,7 +412,7 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何�
 
 #### <a name="routing-configuration"></a>路由組態
 
-下列組態可確保下列模組之間的路由：
+下列組態可確保 IoT Edge 模組之間的下列路由：
 
 * **Logger** 模組接收並記錄所有訊息。
 * **SensorTag** 模組會將訊息傳送至 **mapping** 和 **BLE Printer** 模組。
@@ -432,7 +433,7 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何�
  ]
 ```
 
-若要執行範例，請將 JSON 組態檔的路徑傳遞到 **ble\_gateway** 二進位檔。 下列命令假設您正在使用 **gateway_sample.json** 組態檔。 在 Raspberry Pi 上從 **azure-iot-gateway-sdk** 資料夾執行此命令：
+若要執行範例，請將 JSON 組態檔的路徑傳遞到 **ble\_gateway** 二進位檔。 下列命令假設您正在使用 **gateway_sample.json** 組態檔。 在 Raspberry Pi 上從 **iot-edge** 資料夾執行此命令：
 
 ```
 ./build/samples/ble_gateway/ble_gateway ./samples/ble_gateway/src/gateway_sample.json
@@ -440,7 +441,7 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何�
 
 執行範例之前，您可能需要按下 SensorTag 上的小按鈕，以使其變成可探索的項目。
 
-當您執行範例時，可以使用[裝置總管](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer)或 [iothub-explorer](https://github.com/Azure/iothub-explorer) 工具，監視閘道從 SensorTag 裝置轉送的訊息。
+當您執行範例時，可以使用 [Device Explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) 或 [iothub-explorer](https://github.com/Azure/iothub-explorer) 工具，監視 IoT Edge 閘道從 SensorTag 裝置轉送的訊息。
 
 ## <a name="send-cloud-to-device-messages"></a>傳送雲端到裝置訊息
 
@@ -502,19 +503,19 @@ BLE 模組也支援從 IoT 中樞傳送命令至裝置。 您可以使用[裝置
 
 ## <a name="next-steps"></a>後續步驟
 
-如果您想要更進一步了解「IoT 閘道 SDK」並實驗一些程式碼範例，請瀏覽下列開發人員教學課程和資源：
+如果您想要更進一步了解 IoT Edge 並實驗一些程式碼範例，請瀏覽下列開發人員教學課程和資源：
 
-* [Azure IoT 閘道 SDK][lnk-sdk]
+* [Azure IoT Edge][lnk-sdk]
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
 * [IoT 中樞開發人員指南][lnk-devguide]
 
 <!-- Links -->
-[lnk-ble-samplecode]: https://github.com/Azure/azure-iot-gateway-sdk/tree/master/samples/ble_gateway
+[lnk-ble-samplecode]: https://github.com/Azure/iot-edge/tree/master/samples/ble_gateway
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
 [lnk-explorer-tools]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md
-[lnk-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
+[lnk-sdk]: https://github.com/Azure/iot-edge/
 [lnk-noobs]: https://www.raspberrypi.org/documentation/installation/noobs.md
 [lnk-raspbian]: https://www.raspberrypi.org/downloads/raspbian/
 

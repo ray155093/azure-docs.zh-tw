@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/06/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 6d878b00094f573adc440d2384c426506fea0a40
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 9ea3896f73e0e97b89743d8b17c8fd1e723153c3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -120,6 +121,52 @@ while(true)
 {"id":"Device5","eTag":"MA==","status":"enabled","authentication":{"symmetricKey":{"primaryKey":"abc=","secondaryKey":"def="}}}
 ```
 
+如果裝置有對應項資料，則對應項資料也會隨著裝置資料來匯出。 下列範例示範此格式。 「twinETag」行到結尾的所有資料都是對應項資料。
+```
+{
+   "id":"export-6d84f075-0",
+   "eTag":"MQ==",
+   "status":"enabled",
+   "statusReason":"firstUpdate",
+   "authentication":null,
+   "twinETag":"AAAAAAAAAAI=",
+   "tags":{
+      "Location":"LivingRoom"
+   },
+   "properties":{
+      "desired":{
+         "Thermostat":{
+            "Temperature":75.1,
+            "Unit":"F"
+         },
+         "$metadata":{
+            "$lastUpdated":"2017-03-09T18:30:52.3167248Z",
+            "$lastUpdatedVersion":2,
+            "Thermostat":{
+               "$lastUpdated":"2017-03-09T18:30:52.3167248Z",
+               "$lastUpdatedVersion":2,
+               "Temperature":{
+                  "$lastUpdated":"2017-03-09T18:30:52.3167248Z",
+                  "$lastUpdatedVersion":2
+               },
+               "Unit":{
+                  "$lastUpdated":"2017-03-09T18:30:52.3167248Z",
+                  "$lastUpdatedVersion":2
+               }
+            }
+         },
+         "$version":2
+      },
+      "reported":{
+         "$metadata":{
+            "$lastUpdated":"2017-03-09T18:30:51.1309437Z"
+         },
+         "$version":1
+      }
+   }
+}
+```
+
 如果您需要存取程式碼中的這項資料，可以使用 **ExportImportDevice** 類別輕鬆地將此資料還原序列化。 下列 C# 程式碼片段示範如何讀取先前匯出至區塊 Blob 的裝置資訊：
 
 ```csharp
@@ -170,6 +217,8 @@ using (var streamReader = new StreamReader(await blob.OpenReadAsync(AccessCondit
 JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
 ```
 
+這個方法也可用來匯入裝置對應項的資料。 資料輸入的格式和 **ExportDevicesAsync** 的區段中所顯示的格式相同。 如此一來，已匯出的資料也可以重新匯入。 $metadata 是選擇性參數。
+
 ## <a name="import-behavior"></a>匯入行為
 
 您可以使用 **ImportDevicesAsync** 方法，在您的身分識別登錄中執行下列大量作業：
@@ -179,18 +228,21 @@ JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasU
 * 大量變更狀態 (啟用或停用裝置)
 * 大量指派新的裝置驗證金鑰
 * 大量自動重新產生裝置驗證金鑰
+* 大量更新對應項資料
 
 您可以在單一 **ImportDevicesAsync** 呼叫中執行上述作業的任意組合。 比方說，您可以同時間註冊新裝置並刪除或更新現有裝置。 搭配 **ExportDevicesAsync** 方法一起使用時，您可以將某個 IoT 中樞內的所有裝置移轉到另一個 IoT 中樞。
+
+如果匯入檔案指定對應項中繼資料，則此中繼資料會覆寫對應項的現有中繼資料。 如果未指定，則只有 `lastUpdateTime` 中繼資料會使用目前的時間來更新。 
 
 在每個裝置的匯入序列化資料中使用選擇性的 **importMode** 屬性控制每個裝置的匯入程序。 **ImportMode** 屬性具有下列選項：
 
 | importMode | 說明 |
 | --- | --- |
-| **createOrUpdate** |如果不存在具有指定 **識別碼**的裝置，則表示是新註冊的裝置。 <br/>如果裝置已存在，則會以所提供的輸入資料覆寫現有資訊，而不管 **ETag** 值為何。 |
-| **create** |如果不存在具有指定 **識別碼**的裝置，則表示是新註冊的裝置。 <br/>如果裝置已存在，則會在記錄檔中寫入錯誤。 |
+| **createOrUpdate** |如果不存在具有指定 **識別碼**的裝置，則表示是新註冊的裝置。 <br/>如果裝置已存在，則會以所提供的輸入資料覆寫現有資訊，而不管 **ETag** 值為何。 <br> 使用者可以選擇性地指定對應項資料以及裝置資料。 對應項的 etag (若已指定) 會與裝置的 etag 分開處理。 如果現有對應項的 etag 有不相符之處，系統會在記錄檔中寫入錯誤。 |
+| **create** |如果不存在具有指定 **識別碼**的裝置，則表示是新註冊的裝置。 <br/>如果裝置已存在，則會在記錄檔中寫入錯誤。 <br> 使用者可以選擇性地指定對應項資料以及裝置資料。 對應項的 etag (若已指定) 會與裝置的 etag 分開處理。 如果現有對應項的 etag 有不相符之處，系統會在記錄檔中寫入錯誤。 |
 | **update** |如果已存在具有指定**識別碼**的裝置，則會以所提供的輸入資料覆寫現有資訊，而不管 **ETag** 值為何。 <br/>如果裝置不存在，則會在記錄檔中寫入錯誤。 |
 | **pdateIfMatchETagu** |如果已存在具有指定**識別碼**的裝置，則當 **ETag** 相符時，才會以所提供的輸入資料覆寫現有資訊。 <br/>如果裝置不存在，則會在記錄檔中寫入錯誤。 <br/>如果 **ETag** 不相符，則會在記錄檔中寫入錯誤。 |
-| **createOrUpdateIfMatchETag** |如果不存在具有指定 **識別碼**的裝置，則表示是新註冊的裝置。 <br/>如果裝置已存在，則當 **ETag** 相符時，才會以所提供的輸入資料覆寫現有資訊。 <br/>如果 **ETag** 不相符，則會在記錄檔中寫入錯誤。 |
+| **createOrUpdateIfMatchETag** |如果不存在具有指定 **識別碼**的裝置，則表示是新註冊的裝置。 <br/>如果裝置已存在，則當 **ETag** 相符時，才會以所提供的輸入資料覆寫現有資訊。 <br/>如果 **ETag** 不相符，則會在記錄檔中寫入錯誤。 <br> 使用者可以選擇性地指定對應項資料以及裝置資料。 對應項的 etag (若已指定) 會與裝置的 etag 分開處理。 如果現有對應項的 etag 有不相符之處，系統會在記錄檔中寫入錯誤。 |
 | **delete** |如果已存在具有指定**識別碼**的裝置，則會遭到刪除，而不管 **ETag** 值為何。 <br/>如果裝置不存在，則會在記錄檔中寫入錯誤。 |
 | **deleteIfMatchETag** |如果已存在具有指定**識別碼**的裝置，則只會在 **ETag** 相符時予以刪除。 如果裝置不存在，則會在記錄檔中寫入錯誤。 <br/>如果 ETag 不相符，則會在記錄檔中寫入錯誤。 |
 
@@ -355,11 +407,11 @@ static string GetContainerSasUri(CloudBlobContainer container)
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
 * [IoT 中樞開發人員指南][lnk-devguide]
-* [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
+* [使用 IoT Edge 來模擬裝置][lnk-iotedge]
 
 [lnk-metrics]: iot-hub-metrics.md
 [lnk-monitor]: iot-hub-operations-monitoring.md
 
 [lnk-devguide]: iot-hub-devguide.md
-[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-iotedge]: iot-hub-linux-iot-edge-simulated-device.md
 

@@ -14,10 +14,10 @@ ms.workload: na
 ms.date: 05/11/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 942e3b4fbc9a954eae0cc609e800d0fe0b882475
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: 1436b39fdb9a66a00903442496cc5203b47c1bcb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -30,7 +30,7 @@ ms.lasthandoff: 05/11/2017
 
 ## <a name="example-template"></a>範本範例
 
-若要將目標放在不同的資源，您必須在部署期間使用巢狀或連結的範本。 `Microsoft.Resources/deployments` 資源類型所提供的 `resourceGroup` 參數，可讓您指定與父系範本所使用之資源群組不同的資源群組。 執行部署之前，所有資源群組都必須存在。 下列範例會部署兩個儲存體帳戶 - 一個是在部署期間指定的資源群組中，另一個是在名為 `crossResourceGroupDeployment` 的資源群組中：
+若要將目標放在不同的資源，您必須在部署期間使用巢狀或連結的範本。 `Microsoft.Resources/deployments` 資源類型會提供`resourceGroup` 參數，可讓您為巢狀部署指定不同的資源群組。 執行部署之前，所有資源群組都必須存在。 下列範例會部署兩個儲存體帳戶 - 一個是在部署期間指定的資源群組中，另一個是在名為 `crossResourceGroupDeployment` 的資源群組中：
 
 ```json
 {
@@ -123,3 +123,4 @@ az group deployment create \
 * 若要了解如何在您的範本中定義參數，請參閱[了解 Azure Resource Manager 範本的結構和語法](resource-group-authoring-templates.md)。
 * 如需解決常見部署錯誤的秘訣，請參閱[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
 * 如需部署需要 SAS 權杖之範本的詳細資訊，請參閱[使用 SAS 權杖部署私人範本](resource-manager-powershell-sas-token.md)。
+

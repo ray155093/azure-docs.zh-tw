@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/08/2017
 ms.author: elioda
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 78fce5e464e065620e2f2da7f001d34b5cfd7a9f
-ms.lasthandoff: 03/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 0fc61b9f0f99055ec99383f6ac32f5fff762fa84
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -154,7 +155,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
+* [使用 IoT Edge 來模擬裝置][lnk-iotedge]
 
 <!-- Images. -->
 
@@ -185,7 +186,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 [lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
 [lnk-sdks]: iot-hub-devguide-sdks.md
 
-[lnk-gateway]: iot-hub-windows-gateway-sdk-simulated-device.md
+[lnk-iotedge]: iot-hub-windows-iot-edge-simulated-device.md
 
 
 

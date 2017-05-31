@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/29/2017
+ms.date: 05/12/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 5b7e2d8df2723f77aa8283d9faab22656198ed47
-ms.lasthandoff: 03/30/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 3f9fb86a5bf63d24432c1ba9945a4da6cf794f13
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -66,7 +67,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 
 ### <a name="microsoft-peering"></a>Microsoft 對等互連
 * [Office 365](http://aka.ms/ExpressRouteOffice365)
-* 大部分的 Dynamics 365 服務 (先前稱為 CRM Online)
+* Dynamics 365 (之前稱為 CRM Online)
   * Dynamics 365 for Sales
   * Dynamics 365 for Customer Service
   * Dynamics 365 for Field Service
@@ -89,7 +90,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 請參閱 [ExpressRoute 必要條件頁面](expressroute-prerequisites.md) 以取得相關需求。
 
 ### <a name="are-connections-to-expressroute-redundant"></a>連線至 ExpressRoute 是多餘的嗎？
-是。 為提供高可用性，每個 Express Route 電路都設有交叉連線的備援配對。
+是。 為提供高可用性，每個 ExpressRoute 線路都設有交叉連線的備援配對。
 
 ### <a name="will-i-lose-connectivity-if-one-of-my-expressroute-links-fail"></a>如果我的其中一個 ExpressRoute 連結失敗，連線是否就會中斷？
 如果其中一個交叉連線失敗，您的連線就會中斷。 您可以使用備援連線來支援網路的負載。 為取得失敗恢復，您可以在其他對等互連位置額外建立多個電路。
@@ -193,7 +194,7 @@ ExpressRoute Premium 是下面所列功能的集合。
 * 將私用對等互連的路由表限制，從 4000 個路由提高到 10,000 個路由。
 * 提高可連線到 ExpressRoute 電路的 VNet 數目 (預設值為 10)。 如需詳細資訊，請參閱下表。
 * 透過 Microsoft 核心網路的全球連線。 您現在能夠將某一個地緣政治區域中的 VNet 與另一個區域中的 ExpressRoute 電路連結。 **範例：** 您可以將在歐洲西部建立的 VNet created 連結至在矽谷建立的 ExpressRoute 電路。 **其他範例︰**公用對等互連上會公告其他地緣政治區域的首碼，舉例來說，讓您可以從矽谷的線路連線至歐洲西部的 SQL Azure。
-* 可連線至 Office 365 服務和 CRM Online。
+* 連線到 Office 365 和 Dynamics 365。
 
 ### <a name="how-many-vnets-can-i-link-to-an-expressroute-circuit-if-i-enabled-expressroute-premium"></a>如果已啟用 ExpressRoute Premium，我可以將多少個 VNet 連結至 ExpressRoute 電路？
 下表顯示 ExpressRoute 限制和每個 ExpressRoute 電路的 VNet 數目。
@@ -215,31 +216,31 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### <a name="do-i-pay-for-expressroute-premium-in-addition-to-standard-expressroute-charges"></a>除了標準的 ExpressRoute 費用以外，我是否仍需支付 ExpressRoute Premium？
 是。 除了 ExpressRoute 電路費用和連線提供者所需費用以外，還需另行支付 ExpressRoute Premium 費用。
 
-## <a name="expressroute-and-office-365-services-and-crm-online"></a>ExpressRoute 與 Office 365 服務和 CRM Online
+## <a name="expressroute-for-office-365-and-dynamics-365"></a>Office 365 和 Dynamics 365 的 ExpressRoute
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
-### <a name="how-do-i-create-an-expressroute-circuit-to-connect-to-office-365-services-and-crm-online"></a>我要如何建立可連線到 Office 365 服務和 CRM Online 的ExpressRoute 電路？
+### <a name="how-do-i-create-an-expressroute-circuit-to-connect-to-office-365-services-and-dynamics-365"></a>我要如何建立可連線到 Office 365 服務和 Dynamics 365 的ExpressRoute 線路？
 1. 請檢閱 [ExpressRoute 必要條件頁面](expressroute-prerequisites.md)，以確定您符合需求。
 2. 請檢閱 [ExpressRoute 合作夥伴和位置](expressroute-locations.md) 中的服務提供者和位置清單，以確定符合您的連線需求。
 3. 透過檢閱 [Office 365 的網路規劃和效能調整](http://aka.ms/tune/)來計劃您的容量需求。
 4. 遵循以下工作流程中所列的步驟來設定連線： [ExpressRoute 工作流程線路佈建和線路狀態](expressroute-workflows.md)。
 
 > [!IMPORTANT]
-> 設定與 Office 365 服務和 CRM Online 的連線時，請確定您已啟用 ExpressRoute 進階附加元件。
+> 設定與 Office 365 服務和 Dynamics 365 的連線時，請確定您已啟用 ExpressRoute 進階附加元件。
 > 
 > 
 
-### <a name="do-i-need-to-enable-azure-public-peering-to-connect-to-office-365-services-and-crm-online"></a>我是否需要啟用 Azure 公用對等以連接至 Office 365 服務和 CRM Online？
+### <a name="do-i-need-to-enable-azure-public-peering-to-connect-to-office-365-services-and-dynamics-365"></a>我是否需要啟用 Azure 公用對等以連線至 Office 365 服務和 Dynamics 365？
 否，您只需要啟用 Microsoft 對等互連。 將會透過 Microsoft 對等互連傳送至 Azure AD 的驗證流量。 
 
-### <a name="can-my-existing-expressroute-circuits-support-connectivity-to-office-365-services-and-crm-online"></a>我的現有 ExpressRoute 電路是否支援與 Office 365 服務和 CRM Online 連線？
+### <a name="can-my-existing-expressroute-circuits-support-connectivity-to-office-365-services-and-dynamics-365"></a>我的現有 ExpressRoute 線路是否支援與 Office 365 服務和 Dynamics 365 連線？
 是。 您可以設定現有 ExpressRoute 電路以支援與 Office 365 服務的連線。 請確保您有足夠的容量可以連線到 Office 365 服務，並確定您已啟用進階附加元件。 [Office 365 的網路規劃和效能調整](http://aka.ms/tune/) 將協助您計劃連線需求。 另請參閱 [建立和修改 ExpressRoute 電路](expressroute-howto-circuit-classic.md)。
 
 ### <a name="what-office-365-services-can-be-accessed-over-an-expressroute-connection"></a>透過 ExpressRoute 連線可以存取哪些 Office 365 服務？
 請參閱 [Office 365 URL 與 IP 位址範圍](http://aka.ms/o365endpoints)頁面，以取得透過 ExpressRoute 支援的最新服務清單。
 
-### <a name="how-much-does-expressroute-for-office-365-services-and-crm-online-cost"></a>適用於 Office 365 服務和 CRM Online 的 ExpressRoute 費用是多少？
-必須啟用進階附加元件，才能使用 Office 365 服務和 CRM Online。 [價格詳細資料頁面](https://azure.microsoft.com/pricing/details/expressroute/) 提供 ExpressRoute 費用的詳細資料。
+### <a name="how-much-does-expressroute-for-office-365-services-and-dynamics-365-cost"></a>適用於 Office 365 服務和 Dynamics 365 的 ExpressRoute 費用是多少？
+必須啟用進階附加元件，才能使用 Office 365 服務和 Dynamics 365。 [價格詳細資料頁面](https://azure.microsoft.com/pricing/details/expressroute/) 提供 ExpressRoute 費用的詳細資料。
 
 ### <a name="what-regions-is-expressroute-for-office-365-supported-in"></a>哪些區域支援 ExpressRoute for Office 365？
 如需支援 ExpressRoute 的合作夥伴和位置清單詳細資訊，請參閱 [ExpressRoute 合作夥伴和位置](expressroute-locations.md) 。

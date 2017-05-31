@@ -13,10 +13,10 @@ ms.workload: identity
 ms.date: 04/28/2017
 ms.author: jaboes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
-ms.openlocfilehash: 3d32ded77382fe852682d63c96a66aacd141fdf6
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 95c6a1e9cfadeb19a0ec5a53fffb15ef220bfec0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/01/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -162,7 +162,7 @@ ms.lasthandoff: 05/01/2017
 |/service/authorizationServers/write|建立新的授權伺服器，或更新現有授權伺服器的詳細資料|
 |/service/authorizationServers/delete|移除現有的授權伺服器|
 |/service/reports/bySubscription/read|取得依訂用帳戶來彙總的報告。|
-|/service/reports/byRequest/read|取得會重新張貼資料的要求|
+|/service/reports/byRequest/read|取得報告資料的要求|
 |/service/reports/byOperation/read|取得依作業來彙總的報告|
 |/service/reports/byGeo/read|取得依地理區域來彙總的報告|
 |/service/reports/byUser/read|取得依開發人員來彙總的報告。|

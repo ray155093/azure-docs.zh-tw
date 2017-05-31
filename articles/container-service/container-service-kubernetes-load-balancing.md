@@ -14,19 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/30/2017
+ms.date: 05/17/2017
 ms.author: danlep
-translationtype: Human Translation
-ms.sourcegitcommit: e89ec01cb47a87a45378f73d138224095bcbebed
-ms.openlocfilehash: 201d98c4f4ff29393ad308824ed0575f1ff602ee
-ms.lasthandoff: 02/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 9046879158a4617d478bcf1157d5ead3c1054fd8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
 # <a name="load-balance-containers-in-a-kubernetes-cluster-in-azure-container-service"></a>在 Azure Container Service 中針對 Kubernetes 叢集內的容器進行負載平衡 
 本文將介紹在 Azure Container Service 中 Kubernetes 叢集內進行負載平衡。 負載平衡提供服務可供外部存取的 IP 位址，並將網路流量分散於代理程式 VM 中執行的 Pod 之間。
 
-您可以設定 Kubernetes 服務使用 [Azure Load Balancer](../load-balancer/load-balancer-overview.md) 來管理外部網路 (TCP 或 UDP) 流量。 透過其他設定，便可以達成 HTTP 或 HTTPS 流量 (或更進階的案例) 的負載平衡和路由。
+您可以設定 Kubernetes 服務使用 [Azure Load Balancer](../load-balancer/load-balancer-overview.md) 來管理外部網路 (TCP) 流量。 透過其他設定，便可以達成 HTTP 或 HTTPS 流量 (或更進階的案例) 的負載平衡和路由。
 
 ## <a name="prerequisites"></a>必要條件
 * 在 Azure Container Service 中[部署 Kubernetes 叢集](container-service-kubernetes-walkthrough.md)
@@ -34,7 +35,7 @@ ms.lasthandoff: 02/27/2017
 
 ## <a name="azure-load-balancer"></a>Azure Load Balancer
 
-根據預設，在 Azure Container Service 中部署的 Kubernetes 叢集包含代理程式 VM 的網際網路對應 Azure Load Balancer。 (將針對主要 VM 設定個別的負載平衡器資源)。Azure Load Balancer 是第 4 層 (TCP、UDP) 負載平衡器。
+根據預設，在 Azure Container Service 中部署的 Kubernetes 叢集包含代理程式 VM 的網際網路對應 Azure Load Balancer。 (將針對主要 VM 設定個別的負載平衡器資源)。Azure Load Balancer 是第 4 層負載平衡器。 目前，負載平衡器只支援 Kubernetes 中的 TCP 流量。
 
 建立 Kubernetes 服務時，您可以自動設定 Azure Load Balancer 允許存取服務。 若要設定負載平衡器，請將服務 `type` 設定為 `LoadBalancer`。 負載平衡器會建立一個規則，將連入服務流量的公用 IP 位址和連接埠號碼對應到代理程式 VM 中 Pod 的私人 IP 位址和連接埠號碼 (回應流量反之亦然)。 
 

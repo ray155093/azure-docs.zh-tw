@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: e9171844e2fbac7a4e734be9144b30d1bbd0397f
-ms.lasthandoff: 03/30/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: f36ce029acebfccdfa84122a86ea3a642c048b8c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -76,6 +77,12 @@ IoT 中樞會對其不同功能強制實施其他限制。
 
 > [!NOTE]
 > 您目前可以連線到單一 IoT 中樞的裝置數目上限為 500,000 個。 如果您想要上調此限制，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
+
+## <a name="latency"></a>延遲
+IoT 中樞會努力地為所有作業提供低延遲的服務。 不過，由於網路狀況和其他無法預期的因素，它並無法保證最大延遲。因此在設計解決方案時，請避免假設 IoT 中樞作業會獲得最大延遲。 請將 IoT 中樞佈建在與您的裝置最靠近的 Azure 區域，並考慮使用 Azure IoT Edge 在裝置或靠近裝置的閘道上執行無法容忍延遲的作業。
+
+如先前所述，多個 IoT 中樞單位既會影響節流功能，又不會提供額外的延遲好處或保證。
+若作業的延遲時間莫名其妙增加，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
 
 ## <a name="next-steps"></a>後續步驟
 此 IoT 中樞開發人員指南中的其他參考主題包括︰

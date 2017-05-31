@@ -12,12 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/25/2017
+ms.date: 05/16/2017
 ms.author: shlo
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 446a7b585ca1204d49d76f71106799cbd2b0aa70
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 3013607e62a3ac532cb0c035130fe35e503a345c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -40,6 +41,7 @@ ms.lasthandoff: 03/29/2017
 | [搭配內部部署 Hortonworks Hadoop 的混合式管線](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HybridPipelineWithOnPremisesHortonworksHadoop) |此範例使用內部部署 Hadoop 叢集做為在 Data Factory 中執行作業的運算目標，就像您會在雲端新增其他運算目標 (例如以 HDInsight 為基礎的 Hadoop 叢集) 一樣。 |
 | [JSON 轉換工具](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSONConversionTool) |此工具可讓您將 2015-07-01-preview 之前的 JSON 版本轉換成最新版本或 2015-07-01-preview (預設)。 |
 | [U-SQL 範例輸入檔](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/U-SQL%20Sample%20Input%20File) |此檔案是 U-SQL 活動所使用的範例檔案。 |
+| [刪除 blob 檔案](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/DeleteBlobFileFolderCustomActivity) | 本範例將示範 C# 檔案，該檔案可以作為 ADF 自訂 .net 活動的一部分，以在複製檔案之後從來源 Azure Blob 位置刪除檔案。|
 
 ## <a name="azure-resource-manager-templates"></a>Azure 資源管理員範本
 您可以在 GitHub 上找到下列適用於 Data Factory 的 Azure Resource Manager 範本。
@@ -101,7 +103,7 @@ ms.lasthandoff: 03/29/2017
    3. 選取您要在其中建立 Data Factory 的 [Azure 訂用帳戶]  。
    4. 選取 Data Factory 的 [資源群組]  。
    5. 針對 [區域]，選取 [美國西部]、[美國東部] 或 [北歐]。
-   6. 按 [下一步]。
+   6. 按一下 [下一步] 。
 6. 在 [設定資料存放區] 頁面中，指定現有的 [Azure SQL Database] 和 [Azure 儲存體帳戶]，或建立資料庫/儲存體，然後按 [下一步]。
 7. 在 [設定計算] 頁面中，選取預設值，然後按 [下一步]。
 8. 在 [摘要] 頁面中，檢閱所有設定，然後按 [下一步]。

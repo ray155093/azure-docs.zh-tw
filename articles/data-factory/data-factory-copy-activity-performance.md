@@ -12,12 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/14/2017
+ms.date: 05/16/2017
 ms.author: jingwang
-translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 0637fb4d7c6cb8c3cfd4aab5d06571bd83f59683
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 183cb2ad4f2a80f9a0e1e7a33f1cacae006c0df4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -113,7 +114,7 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 cloudDataMovementUnits 屬性的允許值是 1 (預設值)、2、4、8、16 和 32。 根據您的資料模式，複製作業會在執行階段使用的 **實際雲端 DMU 數目** 等於或小於所設定的值。
 
 > [!NOTE]
-> 如果您需要更多雲端 DMU 以提高輸送量，請連絡 [Azure 支援](https://azure.microsoft.com/support/)。 目前只有當您是將多個檔案從 Blob 儲存體/Data Lake Store/Amazon S3/雲端 FTP 複製到 Blob 儲存體/Data Lake Store/Azure SQL Database 時，設定 8 及 8 以上的值才有作用。
+> 如果您需要更多雲端 DMU 以提高輸送量，請連絡 [Azure 支援](https://azure.microsoft.com/support/)。 目前只有當您是將多個檔案從 Blob 儲存體/Data Lake Store/Amazon S3/雲端 FTP/雲端 SFTP 複製到 Blob 儲存體/Data Lake Store/Azure SQL Database 時，設定 8 及 8 以上的值才有作用。
 >
 >
 
@@ -307,15 +308,15 @@ cloudDataMovementUnits 屬性的允許值是 1 (預設值)、2、4、8、16 和 
 * 對於必須使用**資料管理閘道**的**內部部署關聯式資料庫** (如 SQL Server 和 Oracle)，請參閱[資料管理閘道的考量](#considerations-for-data-management-gateway)一節。
 
 ### <a name="nosql-stores"></a>NoSQL 存放區
-*(包括表格儲存體和 Azure DocumentDB)*
+(包括表格儲存體和 Azure Cosmos DB)
 
 * 針對 **表格儲存體**：
   * **資料分割**：將資料寫入至交錯的資料分割會大幅降低效能。 請依資料分割索引鍵來排序來源資料，使資料能有效率地依序插入資料分割中，或者，調整邏輯以將資料寫入單一資料分割中。
-* 針對 **DocumentDB**：
-  * **批次大小**：**writeBatchSize** 屬性會設定對 DocumentDB 服務提出建立文件的平行要求數目。 增加 **writeBatchSize** 時，您可預期有更好的效能，因為對 DocumentDB 傳送了更多的平行要求。 不過，在寫入至 DocumentDB 時請注意節流問題 (錯誤訊息為「要求率偏高」)。 有各種因素會導致發生節流，包括文件大小、文件中的詞彙數目，以及目標集合的索引編製原則。 若要達到更高的複製輸送量，請考慮使用更好的集合 (例如 S3)。
+* 針對 **Azure Cosmos DB**：
+  * **批次大小**：**writeBatchSize** 屬性會設定對 Azure Cosmos DB 服務提出建立文件的平行要求數目。 增加 **writeBatchSize** 時，您可預期有更好的效能，因為對 Azure Cosmos DB 傳送了更多的平行要求。 不過，在寫入至 Azure Cosmos DB 時請注意節流問題 (錯誤訊息為「要求率偏高」)。 有各種因素會導致發生節流，包括文件大小、文件中的詞彙數目，以及目標集合的索引編製原則。 若要達到更高的複製輸送量，請考慮使用更好的集合 (例如 S3)。
 
 ## <a name="considerations-for-serialization-and-deserialization"></a>序列化和還原序列化的考量
-如果您的輸入資料集或輸出資料集是檔案，就可能發生序列化和還原序列化。 目前，複製活動可支援 Avro 和文字 (例如 CSV 和 TSV) 資料格式。
+如果您的輸入資料集或輸出資料集是檔案，就可能發生序列化和還原序列化。 請參閱[支援的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)，其中具有關於複製活動支援檔案格式的詳細資訊。
 
 **複製行為**：
 
@@ -339,7 +340,7 @@ cloudDataMovementUnits 屬性的允許值是 1 (預設值)、2、4、8、16 和 
 ## <a name="considerations-for-column-mapping"></a>資料行對應的考量
 您可以在複製活動中設定 **columnMappings** 屬性以將所有或部分的輸入資料行對應至輸出資料行。 資料移動服務從來源讀取資料之後，必須先對資料執行資料行對應，再將資料寫入至接收。 這項額外處理會降低複製輸送量。
 
-如果您的來源資料存放區是可查詢的 (例如，如果是 SQL Database 或 SQL Server 之類的關聯式存放區，或如果是表格儲存體或 DocumentDB 之類的 NoSQL 存放區)，請考慮將資料行篩選和重新排序邏輯推送至 **查詢** 屬性，而不使用資料行對應。 如此一來，便會在資料移動服務從來源資料存放區讀取資料時發生投射，而大幅提高效率。
+如果您的來源資料存放區是可查詢的 (例如，如果是 SQL Database 或 SQL Server 之類的關聯式存放區，或如果是表格儲存體或 Azure Cosmos DB 之類的 NoSQL 存放區)，請考慮將資料行篩選和重新排序邏輯推送至 **查詢** 屬性，而不使用資料行對應。 如此一來，便會在資料移動服務從來源資料存放區讀取資料時發生投射，而大幅提高效率。
 
 ## <a name="considerations-for-data-management-gateway"></a>資料管理閘道的考量
 如需閘道器設定的建議，請參閱 [使用資料管理閘道的考量](data-factory-data-management-gateway.md#considerations-for-using-gateway)。
@@ -406,7 +407,7 @@ cloudDataMovementUnits 屬性的允許值是 1 (預設值)、2、4、8、16 和 
 * Azure 儲存體 (包括 Blob 儲存體和表格儲存體)：[Azure 儲存體的擴充性目標](../storage/storage-scalability-targets.md)和 [Azure 儲存體效能和擴充性檢查清單](../storage/storage-performance-checklist.md)
 * Azure SQL Database：您可以 [監視效能](../sql-database/sql-database-single-database-monitor.md) ，並檢查資料庫交易單位 (DTU) 百分比
 * Azure SQL 資料倉儲：其能力會以資料倉儲單位 (DWU) 來測量；請參閱 [管理 Azure SQL 資料倉儲中的計算能力 (概觀)](../sql-data-warehouse/sql-data-warehouse-manage-compute-overview.md)
-* Azure DocumentDB： [DocumentDB 中的效能層級](../documentdb/documentdb-performance-levels.md)
+* Azure Cosmos DB：[Azure Cosmos DB 中的效能等級](../documentdb/documentdb-performance-levels.md)
 * 內部部署 SQL Server： [效能的監視與微調](https://msdn.microsoft.com/library/ms189081.aspx)
 * 內部部署檔案伺服器： [檔案伺服器的效能微調](https://msdn.microsoft.com/library/dn567661.aspx)
 

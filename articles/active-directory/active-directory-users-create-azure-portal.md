@@ -1,5 +1,6 @@
 ---
-title: "將新的使用者新增到 Azure Active Directory 預覽版 | Microsoft Docs"
+
+title: "將使用者新增至 Azure Active Directory | Microsoft Docs"
 description: "說明如何在 Azure Active Directory 中新增新的使用者或變更使用者資訊。"
 services: active-directory
 documentationcenter: 
@@ -12,28 +13,29 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 05/04/2017
 ms.author: curtand;jeffsta
-translationtype: Human Translation
-ms.sourcegitcommit: f0e7890ba4c7ef281558886f8cb8bcc429944f06
-ms.openlocfilehash: 9c0c15c0bf876110fcf9dd01a7930d3b226dfbc4
-ms.lasthandoff: 02/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 5f1f28b6e0135fbd76fa5f6664f457f259dd9dd4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
-# <a name="add-new-users-to-azure-active-directory-preview"></a>將新的使用者新增到 Azure Active Directory 預覽版
+# <a name="add-new-users-to-azure-active-directory"></a>將新的使用者新增至 Azure Active Directory
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-users-create-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-create-users.md)
 >
 >
 
-本文說明如何透過 Azure Active Directory (Azure AD) 預覽版，在您的組織中新增新的使用者。 [預覽版有何功能？](active-directory-preview-explainer.md)
+本文說明如何透過 Azure Active Directory (Azure AD)，在您的組織中新增新的使用者。 
 
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
-   ![開啟使用者管理](./media/active-directory-users-create-azure-portal/create-users-user-management.png)
+   ![開啟使用者和群組](./media/active-directory-users-create-azure-portal/create-users-user-management.png)
 3. 在 [使用者和群組] 刀鋒視窗上，選取 [所有使用者]，然後選取 [新增]。
 
    ![選取 [新增] 命令](./media/active-directory-users-create-azure-portal/create-users-add-command.png)

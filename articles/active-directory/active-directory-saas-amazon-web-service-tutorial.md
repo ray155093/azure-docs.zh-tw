@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 04/07/2017
 ms.author: jeedes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: b06e4fc6e0ba18778731a72127f9ba154e773253
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 61999ebea05371c53e5ff27644a68039db1aef96
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -132,8 +132,8 @@ To enable single sign-on with Amazon Web Services (AWS), it must be configured t
     
     | 屬性名稱  | 屬性值 | 命名空間 |
     | --------------- | --------------- | --------------- |
-    | rolesessionname | user.userprincipalname | https://aws.amazon.com/SAML/Attributes |
-    | 角色               | user.assignedroles | 保留為空白 |
+    | RoleSessionName | user.userprincipalname | https://aws.amazon.com/SAML/Attributes |
+    | 角色               | user.assignedroles |  https://aws.amazon.com/SAML/Attributes |
     
     >[!TIP]
     >您需要設定在 Azure AD 中的使用者佈建，以從 AWS 主控台擷取所有角色。 請參閱下面的佈建步驟。
@@ -424,3 +424,4 @@ To ensure users can sign-in to Amazon Web Services (AWS) after it has been confi
 [39]: ./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_provisioning_automatic.png
 [40]: ./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_provisioning_testconnection.png
 [41]: ./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_provisioning_on.png
+

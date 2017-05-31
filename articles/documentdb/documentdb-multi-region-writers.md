@@ -1,13 +1,13 @@
 ---
-title: "使用 Azure DocumentDB 的多重主機資料庫架構 | Microsoft Docs"
-description: "了解如何設計應用程式架構，使用 Azure DocumentDB 在多個地理區域進行本機讀取和寫入。"
-services: documentdb
+title: "使用 Azure Cosmos DB 的多重主機資料庫架構 | Microsoft Docs"
+description: "了解如何設計應用程式架構，使用 Azure Cosmos DB 在多個地理區域進行本機讀取和寫入。"
+services: cosmosdb
 documentationcenter: 
 author: arramac
 manager: jhubbard
 editor: 
 ms.assetid: 706ced74-ea67-45dd-a7de-666c3c893687
-ms.service: documentdb
+ms.service: cosmosdb
 ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -15,20 +15,21 @@ ms.workload: na
 ms.date: 01/25/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: d6292567bbf7afd71b21be3b236537c609c63644
-ms.lasthandoff: 03/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: e0648e80d4bef0a98854a85e36bc48dcc209eb47
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
-# <a name="multi-master-globally-replicated-database-architectures-with-documentdb"></a>使用 DocumentDB 的多重主機全域複寫資料庫架構
-DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)，可讓您以低延遲存取工作負載中的任何位置，將資料散發到多個區域。 此模型通常用於發行者/取用者工作負載，寫入器在單一地理區域中，而讀取器 (讀取) 分散在世界各地的其他區域。 
+# <a name="multi-master-globally-replicated-database-architectures-with-azure-cosmos-db"></a>使用 Azure Cosmos DB 的多重主機全域複寫資料庫架構
+Azure Cosmos DB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)，可讓您以低延遲存取工作負載中的任何位置，將資料散發到多個區域。 此模型通常用於發行者/取用者工作負載，寫入器在單一地理區域中，而讀取器 (讀取) 分散在世界各地的其他區域。 
 
-您也可以使用 DocumentDB 的全域複寫支援，建置其寫入器和讀取器遍布全球的應用程式。 本文概述的模式可讓使用 Azure DocumentDB 的分散式寫入器達成本機寫入及本機讀取存取。
+您也可以使用 Azure Cosmos DB 的全域複寫支援，建置其寫入器和讀取器遍布全球的應用程式。 本文概述的模式可讓使用 Azure Cosmos DB 的分散式寫入器達成本機寫入及本機讀取存取。
 
 ## <a id="ExampleScenario"></a>內容發佈 - 範例案例
-讓我們看看真實世界的案例，說明如何利用 DocumentDB 使用分散在世界各地多重區域/多重主機讀寫模式。 以建置在 DocumentDB 上的內容發佈平台為例。 這個平台必須符合以下一些需求，才能獲得絕佳發行者和取用者使用者體驗。
+讓我們看看真實世界的案例，說明如何利用 Azure Cosmos DB 使用分散在世界各地多重區域/多重主機讀寫模式。 以建置在 Azure Cosmos DB 上的內容發佈平台為例。 這個平台必須符合以下一些需求，才能獲得絕佳發行者和取用者使用者體驗。
 
 * 作者與訂閱者都分散在世界各地 
 * 作者必須將 (寫入) 文章發佈到其本機 (最接近) 的區域
@@ -37,9 +38,9 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
 * 訂閱者必須能從其本機區域讀取文章。 他們也能將評論加入這些文章。 
 * 包括文章作者在內的任何人都可以從本機區域檢視所有文章附加的評論。 
 
-假設有數百萬取用者與發行者，而文章有數十億篇，我們很快會面臨調整規模以及保證本機存取的問題。 和大部分擴充性問題一樣，解決方案就是要有良好的資料分割策略。 接下來，讓我們看看如何將文章、評論及通知的模型建立為文件、設定 DocumentDB 帳戶以及實作資料存取層。 
+假設有數百萬取用者與發行者，而文章有數十億篇，我們很快會面臨調整規模以及保證本機存取的問題。 和大部分擴充性問題一樣，解決方案就是要有良好的資料分割策略。 接下來，讓我們看看如何將文章、評論及通知的模型建立為文件、設定 Azure Cosmos DB 帳戶以及實作資料存取層。 
 
-如果您想要深入了解資料分割和資料分割索引鍵，請參閱 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。
+如果您想要深入了解資料分割和資料分割索引鍵，請參閱 [Azure Cosmos DB 的資料分割與調整規模](documentdb-partition-data.md)。
 
 ## <a id="ModelingNotifications"></a>建立模型通知
 通知是使用者特有的資料輸入。 因此，通知文件的存取模式都是以單一使用者而言。 例如，您可以「發佈給使用者的通知」或「擷取指定使用者的所有通知」。 因此，這類資料分割索引鍵的最佳選擇會是 `UserId`。
@@ -92,11 +93,13 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
     }
 
 ## <a id="ModelingArticles"></a>建立模型文件
-一旦透過通知來識別文章，後續查詢通常會以 `ArticleId` 為基礎。 因此選擇 `ArticleID` 當成資料分割索引鍵，可提供在 DocumentDB 集合內儲存文章最佳的發佈方式。 
+一旦透過通知來識別文章，後續查詢通常會以 `Article.Id` 為基礎。 因此選擇 `Article.Id` 當成資料分割索引鍵，可提供在 Azure Cosmos DB 集合內儲存文章最佳的發佈方式。 
 
     class Article 
     { 
-        // Unique ID for Article public string Id { get; set; }
+        // Unique ID for Article 
+        public string Id { get; set; }
+        
         public string PartitionKey 
         { 
             get 
@@ -162,8 +165,8 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
         public async Task<IEnumerable<Review>> ReadReviewsAsync(string articleId); 
     }
 
-## <a id="Architecture"></a>DocumentDB 帳戶組態
-若要保證本機讀取和寫入，不只要針對資料分割索引鍵，也要根據區域的地理存取模式來分割資料。 模型依存於每個區域的異地複寫 Azure DocumentDB 資料庫帳戶。 以兩個區域為例，多重區域寫入設定如下︰
+## <a id="Architecture"></a>Azure Cosmos DB 帳戶組態
+若要保證本機讀取和寫入，不只要針對資料分割索引鍵，也要根據區域的地理存取模式來分割資料。 模型依存於每個區域的異地複寫 Azure Cosmos DB 資料庫帳戶。 以兩個區域為例，多重區域寫入設定如下︰
 
 | 帳戶名稱 | 寫入區域 | 讀取區域 |
 | --- | --- | --- |
@@ -172,7 +175,7 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
 
 下圖顯示如何以這種設定在一般應用程式中執行讀取和寫入︰
 
-![Azure DocumentDB 多重主機架構](./media/documentdb-multi-region-writers/documentdb-multi-master.png)
+![Azure Cosmos DB 多重主機架構](./media/documentdb-multi-region-writers/documentdb-multi-master.png)
 
 如何在`West US`區域中執行的 DAL 中，初始化用戶端的程式碼片段如下。
     
@@ -309,12 +312,15 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
         return reviews;
     }
 
-因此，選擇良好的分割索引鍵和靜態帳戶型的資料分割，您就可以使用 Azure DocumentDB 達到多重區域本機寫入和讀取。
+因此，選擇良好的分割索引鍵和靜態帳戶型的資料分割，您就可以使用 Azure Cosmos DB 達到多重區域本機寫入和讀取。
 
 ## <a id="NextSteps"></a>接續步驟
-我們會在本文說明如何使用發佈為範例案例的內容，利用 DocumentDB 使用分散在世界各地的多重區域讀取和寫入模式。
+我們會在本文說明如何使用發佈為範例案例的內容，利用 Azure Cosmos DB 使用分散在世界各地的多重區域讀取和寫入模式。
 
-* 了解 DocumentDB 如何支援[全域散發](documentdb-distribute-data-globally.md)功能
-* 了解 [Azure DocumentDB 中的自動化和手動容錯移轉](documentdb-regional-failovers.md)
-* 了解[使用 DocumentDB 的全域一致性](documentdb-consistency-levels.md)
-* 使用 [Azure DocumentDB SDK](documentdb-developing-with-multiple-regions.md) 進行多重區域開發
+* 了解 Azure Cosmos DB 如何支援[全域發佈](documentdb-distribute-data-globally.md)
+* 了解 [Azure Cosmos DB 中的自動化和手動容錯移轉](documentdb-regional-failovers.md)
+* 了解 [Azure Cosmos DB 的全域一致性](documentdb-consistency-levels.md)
+* 使用 [Azure Cosmos DB - DocumentDB API](../cosmos-db/tutorial-global-distribution-documentdb.md) 進行多區域開發
+* 使用 [Azure Cosmos DB - MongoDB API](../cosmos-db/tutorial-global-distribution-MongoDB.md) 進行多區域開發
+* 使用 [Azure Cosmos DB - Table API](../cosmos-db/tutorial-global-distribution-table.md) 進行多區域開發
+
