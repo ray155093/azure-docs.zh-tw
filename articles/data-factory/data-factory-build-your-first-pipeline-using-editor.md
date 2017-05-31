@@ -1,26 +1,10 @@
 ---
-title: "建置您的第一個 Data Factory (Azure 入口網站) | Microsoft Docs"
-description: "在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立範例 Azure Data Factory 管線。"
-services: data-factory
-documentationcenter: 
-author: spelluru
-manager: jhubbard
-editor: monicar
-ms.assetid: d5b14e9e-e358-45be-943c-5297435d402d
-ms.service: data-factory
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: hero-article
-ms.date: 04/17/2017
-ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: fbf77e9848ce371fd8d02b83275eb553d950b0ff
-ms.openlocfilehash: c9f2e3beafd19e0d4d62e409a80da336be17b90b
-ms.lasthandoff: 02/03/2017
+標題：建置您的第一個資料處理站 (Azure 入口網站) | Microsoft Docs 描述：在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立範例 Azure Data Factory 管線。
+services: data-factory documentationcenter: '' author: spelluru manager: jhubbard editor: monicar
 
+ms.assetid: d5b14e9e-e358-45be-943c-5297435d402d ms.service: data-factory ms.workload: data-services ms.tgt_pltfrm: na ms.devlang: na ms.topic: hero-article ms.date: 04/17/2017 ms.author: spelluru
 
----
+---3
 # <a name="tutorial-build-your-first-azure-data-factory-using-azure-portal"></a>教學課程：使用 Azure 入口網站建置您的第一個 Azure Data Factory
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-build-your-first-pipeline.md)
@@ -34,9 +18,9 @@ ms.lasthandoff: 02/03/2017
 在本文中，您會了解如何使用 [Azure 入口網站](https://portal.azure.com/) 來建立您的第一個 Azure Data Factory。 若要使用其他工具/SDK 進行本教學課程，請選取下拉式清單的其中一個選項。 
 
 > [!NOTE]
-> 本教學課程中的資料管線會轉換輸入資料來產生輸出資料。 它不會將資料從來源資料存放區複製到目的地資料存放區。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+> 本教學課程中的資料管線會轉換輸入資料來產生輸出資料。 它不是將資料從來源資料存放區，複製到目的地資料存放區。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 > 
-> 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[在 Data Factory 中排程和執行](data-factory-scheduling-and-execution.md)。 
+> 本教學課程只使用一種活動類型︰複製。 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
 
 ## <a name="prerequisites"></a>必要條件
 1. 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。
@@ -61,13 +45,15 @@ ms.lasthandoff: 02/03/2017
    >
 4. 選取您想要建立 Data Factory 的 [Azure 訂用帳戶]  。
 5. 請選取現有的 **資源群組** ，或建立資源群組。 在教學課程中，建立名稱如下的資源群組： **ADFGetStartedRG**。
-6. 按一下 [新增 Data Factory] 刀鋒視窗上的 [建立]。
+6. 選取 Data Factory 的 [位置]  。 下拉式清單中只會顯示 Data Factory 服務支援的區域。
+7. 選取 [釘選到儀表板]。 
+8. 按一下 [新增 Data Factory] 刀鋒視窗上的 [建立]。
 
    > [!IMPORTANT]
    > 若要建立 Data Factory 執行個體，您必須是訂用帳戶/資源群組層級的 [Data Factory 參與者](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) 角色成員。
    >
    >
-7. 您會看到 Data Factory 建立在 Azure 入口網站的「開始面板」  中，如下所示：   
+7. 在儀表板上，您會看到狀態如下的下列圖格︰正在部署資料處理站。    
 
    ![建立 Data Factory 狀態](./media/data-factory-build-your-first-pipeline-using-editor/creating-data-factory-image.png)
 8. 恭喜！ 您已成功建立您的第一個 Data Factroy。 在 Data Factory 成功建立後，您會看到 Data Factory 頁面，顯示 Data Factory 的內容。     
@@ -114,7 +100,6 @@ ms.lasthandoff: 02/03/2017
       "properties": {
         "type": "HDInsightOnDemand",
         "typeProperties": {
-          "version": "3.2",
           "clusterSize": 1,
           "timeToLive": "00:30:00",
           "linkedServiceName": "AzureStorageLinkedService"
@@ -127,7 +112,6 @@ ms.lasthandoff: 02/03/2017
 
    | 屬性 | 說明 |
    |:--- |:--- |
-   | 版本 |指定所建立的 HDInsight 版本為 3.2。 |
    | ClusterSize |指定 HDInsight 叢集的大小。 |
    | TimeToLive |指定 HDInsight 叢集在被刪除之前的閒置時間。 |
    | linkedServiceName |指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶。 |
@@ -184,13 +168,16 @@ ms.lasthandoff: 02/03/2017
 
    | 屬性 | 說明 |
    |:--- |:--- |
-   | 類型 |類型屬性設為 AzureBlob，因為資料位於 Azure Blob 儲存體。 |
-   | linkedServiceName |表示您稍早建立的 AzureStorageLinkedService。 |
-   | fileName |這是選用屬性。 如果您省略此屬性，會挑選位於 folderPath 的所有檔案。 在這種情況下，只會處理 input.log。 |
-   | 類型 |記錄檔為文字格式，因此我們會使用 TextFormat。 |
-   | columnDelimiter |記錄檔案中的資料行會以逗號字元 (,) 分隔 |
-   | frequency/interval |頻率設為「每月」且間隔為 1，表示每個月都會可取得輸入配量。 |
-   | external |如果輸入資料不是由 Data Factory 服務產生，此屬性會設為 true。 |
+   | 類型 |type 屬性會設為 **AzureBlob**，因為資料位於 Azure Blob 儲存體中。 |
+   | linkedServiceName |表示您稍早建立的 **AzureStorageLinkedService**。 |
+   | folderPath | 指定包含輸入 Blob 的 Blob **容器**和**資料夾**。 | 
+   | fileName |這是選用屬性。 如果您省略此屬性，會挑選位於 folderPath 的所有檔案。 在本教學課程中，只會處理 **input.log**。 |
+   | 類型 |記錄檔為文字格式，因此我們會使用 **TextFormat**。 |
+   | columnDelimiter |記錄檔案中的資料行會以**逗號字元 (`,`)** 分隔 |
+   | frequency/interval |頻率設為「每月」且間隔為 **1**，表示每個月都會可取得輸入配量。 |
+   | external | 如果輸入資料不是由此管線產生，此屬性會設為 **true**。 在本教學課程中，input.log 檔案不是由此管線產生，因此我們會將屬性設為 true。 |
+
+    如需這些 JSON 屬性的詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)一文。
 3. 按一下命令列的 [部署]  以部署新建立的資料集。 您應該會看到左側樹狀檢視中的資料集。
 
 ### <a name="create-output-dataset"></a>建立輸出資料集
@@ -391,4 +378,3 @@ ms.lasthandoff: 02/03/2017
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
-

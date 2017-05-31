@@ -1,4 +1,4 @@
-您可以使用 **Get-AzureVNetConnection** 來驗證傳統虛擬網路閘道的連線。 
+您可以使用 'Get-AzureVNetConnection' Cmdlet，驗證連線是否成功。
 
 1. 請使用下列 Cmdlet 範例，並將值設定為與您狀況相符的值。 如果虛擬網路的名稱包含空格，則必須以引號括住。
 

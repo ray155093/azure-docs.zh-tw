@@ -15,10 +15,10 @@ ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: 95691b6e59f5e21e7c6cff9f4222bcffade57973
+ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
+ms.openlocfilehash: 9d788bf8e41fe225a4c24a4f5b464e8664f3d677
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 05/22/2017
 
 
 ---
@@ -37,6 +37,8 @@ ms.lasthandoff: 05/16/2017
 
 > [!NOTE]
 > 本教學課程不會顯示如何使用 Azure Data Factory 複製資料。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+> 
+> 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
 
 
 ## <a name="walkthrough-create-and-publish-data-factory-entities"></a>逐步解說︰建立和發佈 Data Factory 實體
@@ -55,8 +57,8 @@ ms.lasthandoff: 05/16/2017
 5. 發佈之後，您可使用 Azure 入口網站刀鋒視窗和「監視及管理應用程式」來監視管線。 
   
 ### <a name="prerequisites"></a>必要條件
-1. 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。 您也可以選取頂端下拉式清單中的 [概觀和必要條件] 選項來切換文章。 完成必要條件之後，選取下拉式清單中的 [Visual Studio] 選項，以切換回這篇文章。  
-2. 您必須是 **Azure 訂用帳戶的系統管理員** ，才能將 Visual Studio 中的 Data Factory 實體發佈至 Azure Data Factory。 
+1. 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。 您也可以選取頂端下拉式清單中的 [概觀和必要條件] 選項來切換文章。 完成必要條件之後，選取下拉式清單中的 [Visual Studio] 選項，以切換回這篇文章。
+2. 若要建立 Data Factory 執行個體，您必須是訂用帳戶/資源群組層級的 [Data Factory 參與者](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) 角色成員。  
 3. 您必須已在電腦上安裝下列項目：
    * Visual Studio 2013 或 Visual Studio 2015
    * 下載 Azure SDK for Visual Studio 2013 或 Visual Studio 2015。 瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)，然後按一下 [.NET] 區段中的 [VS 2013] 或 [VS 2015]。

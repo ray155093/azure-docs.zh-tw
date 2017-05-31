@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 3/13/2017
 ms.author: parakhj
-translationtype: Human Translation
-ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
-ms.openlocfilehash: e04fbd97dd4d5ecaf12edf47d80572b32d29ed00
-ms.lasthandoff: 03/23/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 414c684c78314a92bbbe12e6164e2b10fb682b0f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 
@@ -51,7 +52,9 @@ ms.lasthandoff: 03/23/2017
 4. 將 [包括 web 應用程式 / web API] 切換為 [是]。 **回覆 URL** 是 Azure AD B2C 傳回您應用程式要求之任何權杖的所在端點。 例如，輸入 `https://localhost:44316/`。
 5. 按一下 [建立]  以註冊您的應用程式。
 6. 按一下您剛才建立的應用程式，並複製稍後要在程式碼中使用的全域唯一 **應用程式用戶端識別碼** 。 
-7. 若您的 Web 應用程式也會呼叫 Azure AD B2C 所保護的 Web API，您可移至 [金鑰] 刀鋒視窗並按一下 [產生金鑰] 按鈕，以建立 [應用程式密碼]。
+7. 若您的 Web 應用程式也會呼叫 Azure AD B2C 所保護的 Web API，建議您：
+   1. 移至 [金鑰] 刀鋒視窗，然後按一下 [產生金鑰] 按鈕，以建立 [應用程式祕密]。
+   2. 按一下 [API 存取]，按一下 [新增] 並選取您的 Web API 和範圍 (權限)。
 
 > [!NOTE]
 > **應用程式密碼** 是重要的安全性認證，應該適當地加以保護。
@@ -78,7 +81,9 @@ ms.lasthandoff: 03/23/2017
 5. 輸入**重新導向 URI** 與自訂配置。 例如，com.onmicrosoft.contoso.appname://redirect/path。 請確定您選擇 [良好重新導向 URI](#choosing-a-redirect-uri)。
 6. 按一下 [儲存] 以註冊您的應用程式。
 7. 按一下您剛才建立的應用程式，並複製稍後要在程式碼中使用的全域唯一 **應用程式用戶端識別碼** 。
-8. 若您的原生應用程式也會呼叫 Azure AD B2C 所保護的 Web API，您可移至 [金鑰] 刀鋒視窗並按一下 [產生金鑰] 按鈕，以建立 [應用程式密碼]。
+8. 若您的原生應用程式也會呼叫 Azure AD B2C 所保護的 Web API，建議您：
+   1. 移至 [金鑰] 刀鋒視窗，然後按一下 [產生金鑰] 按鈕，以建立 [應用程式祕密]。
+   2. 按一下 [API 存取]，按一下 [新增] 並選取您的 Web API 和範圍 (權限)。
 
 > [!NOTE]
 > **應用程式密碼** 是重要的安全性認證，應該適當地加以保護。
@@ -89,9 +94,7 @@ ms.lasthandoff: 03/23/2017
 * **唯一**︰每個應用程式的重新導向 URI 的配置都應該是唯一。 在我們的範例 (com.onmicrosoft.contoso.appname://redirect/path) 中，我們會使用 com.onmicrosoft.contoso.appname 做為配置。 我們建議您遵循此模式。 如果兩個應用程式共用相同的配置，使用者會看到「選擇應用程式」的對話方塊。 如果使用者選擇不正確，登入將會失敗。 
 * **完成**︰重新導向 URI 必須有配置和路徑。 路徑必須在網域之後包含至少一個正斜線 (例如，//contoso/ 可使用，而 //contoso 會失敗)。 
 
-## <a name="build-a-quick-start-application"></a>建置快速啟動應用程式
-您現已在 Azure AD B2C 註冊應用程式，只需完成其中一個快速啟動教學課程，即可開始操作和執行。 以下是一些建議：
-
-[!INCLUDE [active-directory-v2-quickstart-table](../../includes/active-directory-b2c-quickstart-table.md)]
+## <a name="build-an-application"></a>建置應用程式
+您現已在 Azure AD B2C 註冊應用程式，只需完成其中一個[快速啟動教學課程](active-directory-b2c-overview.md#get-started)，即可開始操作和執行。
 
 

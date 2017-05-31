@@ -16,10 +16,10 @@ ms.workload: big-data
 ms.date: 05/01/2017
 ms.author: omravi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: 143d48b9fc551ade0d0fd043cdb0cf1f3340a9af
+ms.sourcegitcommit: 300958a69fc854cb8db02120a383a4cbbfcacd7b
+ms.openlocfilehash: e975c6d8f217bc73948c0c046204b16b1a742bc7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/20/2017
 
 ---
 
@@ -36,7 +36,7 @@ Time Series Insights 環境有兩種獨立的存取原則︰
 *    建立和刪除環境、事件來源、參考資料集，以及
 *    管理資料存取原則。
 
-資料存取原則可授與下列權限：發出資料查詢、在環境中操作參考資料，以及儲存與環境相關聯的共用查詢和觀點。
+資料存取原則可授與下列權限：發出資料查詢、在環境中操作參考資料，以及共用與環境相關聯的已儲存查詢和檢視方塊。
 
 這兩種原則能夠清楚區隔環境管理存取權與環境內資料存取權。 比方說，可以設定環境，以便移除環境擁有者/建立者的資料存取權。 獲准讀取環境中資料的使用者與服務，可能無法存取環境的組態。
 

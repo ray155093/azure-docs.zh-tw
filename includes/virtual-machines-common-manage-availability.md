@@ -7,9 +7,9 @@
 為了減少一或多個這些事件造成的停機所帶來的影響，建議您為虛擬機器使用下列高可用性的最佳做法：
 
 * [針對備援在可用性設定組中設定多部虛擬機器]
+* [將受控磁碟使用於可用性設定組中的 VM]
 * [將每個應用程式層設定至不同的可用性設定組中]
 * [將負載平衡器與可用性設定組結合]
-* [將受控磁碟使用於可用性設定組中的 VM]
 
 ## <a name="configure-multiple-virtual-machines-in-an-availability-set-for-redundancy"></a>針對備援在可用性設定組中設定多部虛擬機器
 若要為應用程式提供備援，建議您在可用性設定組中，將兩部以上的虛擬機器組成群組。 這項組態可以確保在規劃或未規劃的維護事件發生期間，至少有一部虛擬機器可以使用，且符合 99.95% 的 Azure SLA。 如需相關資訊，請參閱 [虛擬機器的 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。
@@ -24,9 +24,23 @@
 <!--Image reference-->
    ![更新網域和容錯網域組態的概念圖](./media/virtual-machines-common-manage-availability/ud-fd-configuration.png)
 
-### <a name="managed-disk-fault-domains-and-availability-sets"></a>受控磁碟的容錯網域和可用性設定組
-若 VM 使用 [Azure 受控磁碟](../articles/storage/storage-faq-for-disks.md)，VM 會在使用受管理的可用性設定組時配合使用受控磁碟容錯網域。 此一配合行為可確保連接到 VM 的所有受控磁碟都位於相同的受控磁碟容錯網域。 在受管理的可用性設定組中只能建立使用受控磁碟的 VM。 受控磁碟容錯網域數目會依區域而異，每個區域會有兩個或三個受控磁碟容錯網域。
+## <a name="use-managed-disks-for-vms-in-an-availability-set"></a>將受控磁碟使用於可用性設定組中的 VM
+如果您目前使用 VM 搭配非受控磁碟，強烈建議您[將可用性設定組中的 VM 轉換為受控磁碟](../articles/virtual-machines/windows/convert-unmanaged-to-managed-disks.md#convert-vms-in-an-availability-set-to-managed-disks-in-a-managed-availability-set)。
 
+[受控磁碟](../articles/storage/storage-managed-disks-overview.md)可確保可用性設定組中的 VM 磁碟彼此充分隔離，以避免單一失敗點，為可用性設定組提供更高的可靠性。 它的作法是自動將磁碟放在不同的儲存體叢集中。 如果因為硬體或軟體失敗造成儲存體叢集失敗，則只有磁碟在這些戳記上的 VM 執行個體才會失敗。 
+
+![受控磁碟 FD](./media/virtual-machines-common-manage-availability/md-fd.png)
+
+> [!IMPORTANT]
+> 受控可用性設定組的容錯網域數目會依區域而異，每個區域會有兩個或三個。 下表顯示每個區域擁有的數目：
+
+[!INCLUDE [managed-disks-common-fault-domain-region-list](managed-disks-common-fault-domain-region-list.md)]
+
+如果您打算使用 VM 搭配[非受控磁碟](../articles/storage/storage-about-disks-and-vhds-windows.md#types-of-disks)，請針對 VM 的虛擬硬碟 (VHD) 在其中儲存為[分頁 Blob](https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs#about-page-blobs) 的儲存體帳戶，遵循以下的最佳做法。 
+
+1. **將與 VM 相關聯的所有磁碟 (OS 和資料) 保留於相同的儲存體帳戶中**
+2. 將更多VHD 新增至儲存體帳戶之前，**請檢閱儲存體帳戶中非受控磁碟數目的[限制](../articles/storage/storage-scalability-targets.md)**
+3. **針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。** 請勿與相同可用性設定組中的多個 VM 共用儲存體帳戶。 如果遵循上述最佳做法，即可接受位於不同可用性設定組的 VM 共用儲存體帳戶。
 
 ## <a name="configure-each-application-tier-into-separate-availability-sets"></a>將每個應用程式層設定至不同的可用性設定組中
 若虛擬機器幾乎都一樣，且對應用程式而言具有相同用途，建議您針對每個應用程式層設定可用性設定組。  若您在相同的可用性設定組中放入兩個不同的階層，則可以一次重新啟動位於相同應用程式層的所有虛擬機器。 您可以藉由在可用性設定組中為每個層設定至少兩部虛擬機器，確保每個層中至少有一部虛擬機器可供使用。
@@ -41,21 +55,11 @@
 
 若負載平衡器沒有設定為平衡多部虛擬機器之間的流量，則所有計劃性維護事件都只會影響處理流量的虛擬機器，並導致應用程式層中斷。 將同一個層的多部虛擬機器放在相同的負載平衡器和可用性設定組下，可讓至少一個執行個體持續處理流量。
 
-## <a name="use-managed-disks-for-vms-in-an-availability-set"></a>將受控磁碟使用於可用性設定組中的 VM
-如果您目前使用 VM 搭配非受控磁碟，強烈建議您[將可用性設定組中的 VM 轉換為受控磁碟](../articles/virtual-machines/windows/convert-unmanaged-to-managed-disks.md#convert-vms-in-an-availability-set-to-managed-disks-in-a-managed-availability-set)。
-
-[受控磁碟](../articles/storage/storage-managed-disks-overview.md)可確保可用性設定組中的 VM 磁碟彼此充分隔離，以避免單一失敗點，為可用性設定組提供更高的可靠性。 它的作法是自動以不同的儲存體縮放單位 (戳記) 來放置磁碟。 如果因為硬體或軟體失敗造成戳記失敗，則只有磁碟在這些戳記上的 VM 執行個體才會失敗。 
-
-如果您打算使用 VM 搭配[非受控磁碟](../articles/storage/storage-about-disks-and-vhds-windows.md#types-of-disks)，請針對 VM 的虛擬硬碟 (VHD) 在其中儲存為[分頁 Blob](https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs#about-page-blobs) 的儲存體帳戶，遵循以下的最佳做法。 
-
-1. **將與 VM 相關聯的所有磁碟 (OS 和資料) 保留於相同的儲存體帳戶中**
-2. 將更多VHD 新增至儲存體帳戶之前，**請檢閱儲存體帳戶中非受控磁碟數目的[限制](../articles/storage/storage-scalability-targets.md)**
-3. **針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。** 請勿與相同可用性設定組中的多個 VM 共用儲存體帳戶。 如果遵循上述最佳做法，即可接受位於不同可用性設定組的 VM 共用儲存體帳戶。
 
 <!-- Link references -->
 [針對備援在可用性設定組中設定多部虛擬機器]: #configure-multiple-virtual-machines-in-an-availability-set-for-redundancy
 [將每個應用程式層設定至不同的可用性設定組中]: #configure-each-application-tier-into-separate-availability-sets
 [將負載平衡器與可用性設定組結合]: #combine-a-load-balancer-with-availability-sets
 [Avoid single instance virtual machines in availability sets]: #avoid-single-instance-virtual-machines-in-availability-sets
-[Use Managed Disks for VMs in Availability Set]: #use-managed-disks-for-vms-in-availability-set
+[將受控磁碟使用於可用性設定組中的 VM]: #use-managed-disks-for-vms-in-an-availability-set
 

@@ -14,17 +14,17 @@ ms.devlang: azurecli
 ms.topic: hero-article
 ms.date: 05/10/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: fa02abd9176fa17df3b2d7f396988b72c28a473c
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 793d948b25a2b6c408359de03433746a9494e1d1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/25/2017
 
 ---
 # <a name="create-an-azure-database-for-postgresql-using-the-azure-cli"></a>使用 Azure CLI 建立 Azure Database for PostgreSQL
 
 Azure Database for PostgreSQL 是一個受管理的服務，可讓您在雲端執行、管理及調整高可用性 PostgreSQL 資料庫。 Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本快速入門說明如何使用 Azure CLI 在 [Azure 資源群組](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)中建立 Azure Database for PostgreSQL 伺服器。
 
-若要完成本快速入門，請確定您已安裝最新的 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)。 
+若要完成本快速入門，請確定您已安裝最新的 [Azure CLI 2.0](/cli/azure/install-azure-cli)。 
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
 
@@ -46,9 +46,9 @@ az account set --subscription 00000000-0000-0000-0000-000000000000
 az group create --name myresourcegroup --location westus
 ```
 
-## <a name="create-an-azure-database-for-postgresql-server"></a>建立 Azure Database for PostgreSQL 伺服器
+## <a name="create-an-azure-database-for-postgresql-server"></a>建立適用於 PostgreSQL 的 Azure 資料庫伺服器
 
-使用 **az postgres server create** 命令建立 [Azure Database for PostgreSQL 伺服器](overview.md)。 一個伺服器包含一組當作群組管理的資料庫。 
+使用 [az postgres server create](/cli/azure/postgres/server#create) 命令來建立[適用於 PostgreSQL 的 Azure 資料庫伺服器](overview.md)。 一個伺服器包含一組當作群組管理的資料庫。 
 
 下列範例會使用伺服器管理員登入 `mylogin` 在 `myresourcegroup` 資源群組中建立名為 `mypgserver-20170401` 的伺服器。 伺服器的名稱會對應至 DNS 名稱，因此必須是 Azure 中全域唯一的。 將 `<server_admin_password>` 替換成您自己的值。
 ```azurecli
@@ -63,9 +63,9 @@ az postgres server create --resource-group myresourcegroup --name mypgserver-201
 
 ## <a name="configure-a-server-level-firewall-rule"></a>設定伺服器層級防火牆規則
 
-使用 **az postgres server firewall-rule create** 命令建立 Azure PostgreSQL 伺服器層級防火牆規則。 伺服器層級的防火牆規則允許外部應用程式 (例如 [psql](https://www.postgresql.org/docs/9.2/static/app-psql.html) 或 [PgAdmin](https://www.pgadmin.org/)) 穿過 Azure PostgreSQL 服務防火牆連線到您的伺服器。 
+使用 [az postgres server firewall-rule create](/cli/azure/postgres/server/firewall-rule#create) 命令來建立 Azure PostgreSQL 伺服器層級防火牆規則。 伺服器層級防火牆規則可允許外部應用程式 (例如 [psql](https://www.postgresql.org/docs/9.2/static/app-psql.html) 或 [PgAdmin](https://www.pgadmin.org/)) 穿過 Azure PostgreSQL 服務防火牆連線到您的伺服器。 
 
-您可以設定一個防火牆規則，來涵蓋能夠從您網路連線的 IP 範圍。 下列範例使用 **az postgres server firewall-rule create** 建立 IP 位址範圍的防火牆規則 `AllowAllIps`。 若要開啟所有 IP 位址，請使用 0.0.0.0 作為起始 IP 位址，並使用 255.255.255.255 作為結束位址。
+您可以設定一個防火牆規則，來涵蓋能夠從您網路連線的 IP 範圍。 下列範例使用 [az postgres server firewall-rule create](/cli/azure/postgres/server/firewall-rule#create) 來建立某個 IP 位址範圍的防火牆規則 `AllowAllIps`。 若要開啟所有 IP 位址，請使用 0.0.0.0 作為起始 IP 位址，並使用 255.255.255.255 作為結束位址。
 ```azurecli
 az postgres server firewall-rule create --resource-group myresourcegroup --server mypgserver-20170401 --name AllowAllIps --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 ```
@@ -81,7 +81,7 @@ az postgres server firewall-rule create --resource-group myresourcegroup --serve
 az postgres server show --resource-group myresourcegroup --name mypgserver-20170401
 ```
 
-結果為 JSON 格式。 請記下 **administratorLogin** 和 **fullyQualifiedDomainName**。
+結果會採用 JSON 格式。 請記下 **administratorLogin** 和 **fullyQualifiedDomainName**。
 ```json
 {
   "administratorLogin": "mylogin",
@@ -108,14 +108,14 @@ az postgres server show --resource-group myresourcegroup --name mypgserver-20170
 
 ## <a name="connect-to-postgresql-database-using-psql"></a>使用 psql 連線到 PostgreSQL 資料庫
 
-如果您的用戶端電腦已安裝 PostgreSQL，您可以使用 [psql](https://www.postgresql.org/docs/9.6/static/app-psql.html) 的本機執行個體來連線到 Azure PostgreSQL 伺服器。 讓我們現在使用 psql 命令列公用程式來連線到 Azure PostgreSQL 伺服器。
+如果您的用戶端電腦已安裝 PostgreSQL，您可以使用 [psql](https://www.postgresql.org/docs/9.6/static/app-psql.html) 的本機執行個體來連線到 Azure PostgreSQL 伺服器。 現在我們將使用 psql 命令列公用程式來連線到 Azure PostgreSQL 伺服器。
 
-1. 執行下列 psql 命令以連線到 Azure Database for PostgreSQL 伺服器
+1. 執行下列 psql 命令以連線到「適用於 PostgreSQL 的 Azure 資料庫」伺服器
 ```bash
 psql --host=<servername> --port=<port> --username=<user@servername> --dbname=<dbname>
 ```
 
-  例如，下列命令可使用存取認證，連線到 PostgreSQL 伺服器 **mypgserver-20170401.postgres.database.azure.com** 上名為 **postgres** 的預設資料庫。 系統提示您輸入密碼時，請輸入您選擇的 `<server_admin_password>`。
+  例如，下列命令會使用存取認證，連線到 PostgreSQL 伺服器 **mypgserver-20170401.postgres.database.azure.com** 上名為 **postgres** 的預設資料庫。 系統提示輸入密碼時，請輸入您選擇的 `<server_admin_password>`。
   
   ```bash
 psql --host=mypgserver-20170401.postgres.database.azure.com --port=5432 --username=mylogin@mypgserver-20170401 --dbname=postgres
@@ -146,9 +146,9 @@ CREATE DATABASE mypgsqldb;
 
     ![pgAdmin - 建立 - 伺服器](./media/quickstart-create-server-database-azure-cli/2-pgadmin-create-server.png)
 5.    按一下 [儲存] 。
-6.    在瀏覽器的左側窗格中展開 [伺服器群組]。 選擇您的伺服器 **Azure PostgreSQL 伺服器**。
-7.  選擇您連線到的 [伺服器]，然後選擇其下的 [資料庫]。 
-8.    以滑鼠右鍵按一下 [資料庫] 以建立資料庫。
+6.    在左側的 [Browser (瀏覽器)] 窗格中，展開 [Server Groups (伺服器群組)]。 選擇您的伺服器 [Azure PostgreSQL 伺服器]。
+7.  選擇您連線到的 [Server (伺服器)]，然後選擇其下的 [Databases (資料庫)]。 
+8.    以滑鼠右鍵按一下 [Databases (資料庫)] 以建立資料庫。
 9.    選擇資料庫名稱 **mypgsqldb** 以及其擁有者作為伺服器管理員登入 **mylogin**。
 10. 按一下 [儲存] 以建立空白資料庫。
 11. 在 [瀏覽器] 中展開 [伺服器] 群組。 展開您所建立的伺服器，並請參閱其下的資料庫 **mypgsqldb**。
@@ -157,7 +157,7 @@ CREATE DATABASE mypgsqldb;
 
 ## <a name="clean-up-resources"></a>清除資源
 
-刪除 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)，以清除您在快速入門中建立的所有資源。
+刪除 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)以清除您在快速入門中建立的所有資源。
 
 > [!TIP]
 > 此集合中的其他快速入門會以本快速入門為基礎。 如果您打算繼續進行後續的快速入門，請勿清除在此快速入門中建立的資源。 如果您不打算繼續，請使用下列步驟，在 Azure CLI 中刪除本快速入門所建立的所有資源。
@@ -166,7 +166,7 @@ CREATE DATABASE mypgsqldb;
 az group delete --name myresourcegroup
 ```
 
-如果您只想要刪除一個新建立的伺服器：
+如果您只想要刪除一個新建立的伺服器，您可以執行 [az postgres server delete](/cli/azure/postgres/server#delete) 命令。
 ```azurecli
 az postgres server delete --resource-group myresourcegroup --name mypgserver-20170401
 ```

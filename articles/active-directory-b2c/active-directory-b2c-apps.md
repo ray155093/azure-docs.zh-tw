@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/06/2016
 ms.author: dastrock
-translationtype: Human Translation
-ms.sourcegitcommit: 4b13c040a15bef2f04d2cd2126e2270d061898bd
-ms.openlocfilehash: 7d582960e615962a3952dd2f58c74ed91e5c450d
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 762af7e09342f1bb51352e6c3d104bd4d8944e65
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -120,7 +122,7 @@ Web API 接收的權杖可以來自許多類型的應用程式，包括 Web 應�
 ![原生應用程式泳道映像](./media/active-directory-b2c-apps/native.png)
 
 ## <a name="current-limitations"></a>目前的限制
-Azure AD B2C 目前不支援下列類型的應用程式，但正在規劃中。 [限制和約束](active-directory-b2c-limitations.md)中說明 Azure AD B2C 相關的其他限制和約束。
+Azure AD B2C 目前不支援下列類型的應用程式，但正在規劃中。 
 
 ### <a name="daemonsserver-side-apps"></a>精靈/伺服器端應用程式
 如果應用程式含有長時間執行的處理序或不需要使用者操作，也仍然需要方法來存取受保護的資源，例如 Web API。 這些應用程式可以使用應用程式身分識別 (而非使用者委派身分識別) 和使用 OAuth 2.0 用戶端認證流程，以驗證及取得權杖。
@@ -131,9 +133,4 @@ Azure AD B2C 目前不支援此流程。 這些應用程式只有在互動式使
 許多架構中都有一個 Web API 需要呼叫另一個下游 Web API，而兩者都受 Azure AD B2C 保護。 此案例常見於有 Web API 後端的原生用戶端。 這接著會呼叫 Microsoft 線上服務，例如 Azure AD Graph API。
 
 使用 OAuth 2.0 JWT 持有人認證授與可支援此鏈結的 Web API 案例，亦稱為代理者流程。  不過，Azure AD B2C 目前未實作代理者流程。
-
-
-
-<!--HONumber=Dec16_HO4-->
-
 

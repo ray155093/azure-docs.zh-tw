@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 05fe90fe8d4320f3be2a08fed5902cf5c25dd87b
+ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
+ms.openlocfilehash: 460276303f026553e1ea374f85759937afe90dfa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/22/2017
 
 
 ---
@@ -37,13 +37,16 @@ ms.lasthandoff: 05/17/2017
 
 在本文中，您會了解如何使用 Microsoft Visual Studio 建立資料處理站，其中有管線可將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。 如果您不熟悉 Azure Data Factory，請先詳閱 [Azure Data Factory 簡介](data-factory-introduction.md)一文，再進行本教學課程。   
 
-本教學課程中的資料管線會將資料從來源資料存放區，複製到目的地資料存放區。 它不會轉換輸入資料來產生輸出資料。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
+在本教學課程中，您可以建立包含一個活動的管線：複製活動。 複製活動會將資料從支援的資料存放區複製到支援的接收資料存放區。 如需作為來源和接收區支援的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。 如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)。
 
-本教學課程只使用一種活動類型︰複製。 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。 
+一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[管線中的多個活動](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
+
+> [!NOTE] 
+> 本教學課程中的資料管線會將資料從來源資料存放區，複製到目的地資料存放區。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
 
 ## <a name="prerequisites"></a>必要條件
-1. 詳讀 [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 一文並完成 **必要** 步驟。 
-2. 您必須是 **Azure 訂用帳戶的系統管理員** 才能發佈 Data Factory 實體至 Azure Data Factory。  
+1. 詳讀 [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 一文並完成 **必要** 步驟。       
+2. 若要建立 Data Factory 執行個體，您必須是訂用帳戶/資源群組層級的 [Data Factory 參與者](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) 角色成員。
 3. 您必須已在電腦上安裝下列項目： 
    * Visual Studio 2013 或 Visual Studio 2015
    * 下載 Azure SDK for Visual Studio 2013 或 Visual Studio 2015。 瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)，然後按一下 [.NET] 區段中的 [VS 2013] 或 [VS 2015]。
@@ -104,6 +107,7 @@ Azure SQL 連結服務可將 Azure SQL Database 連結到資料處理站。 從 
 2. 這次，請選取 [Azure SQL 連結服務]，然後按一下 [新增]。 
 3. 在 **AzureSqlLinkedService1.json 檔案**中，以您的 Azure SQL Server 名稱、資料庫名稱、使用者帳戶名稱和密碼取代 `<servername>`、`<databasename>`、`<username@servername>` 和 `<password>`。    
 4. 儲存 **AzureSqlLinkedService1.json** 檔案。 
+    
     如需這些 JSON 屬性的詳細資訊，請參閱 [Azure SQL Database 連接器](data-factory-azure-sql-connector.md#linked-service-properties)。
 
 
@@ -214,6 +218,7 @@ Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連
     資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
 
     如需這些 JSON 屬性的詳細資訊，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#dataset-properties)一文。
+
 ## <a name="create-pipeline"></a>建立管線
 在此步驟中您會建立管線，其中含有使用 **InputDataset** 作為輸入和使用 **OutputDataset** 作為輸出的**複製活動**。
 
@@ -261,8 +266,8 @@ Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連
            }
          }
        ],
-       "start": "2015-07-12T00:00:00Z",
-       "end": "2015-07-13T00:00:00Z",
+       "start": "2017-05-11T00:00:00Z",
+       "end": "2017-05-12T00:00:00Z",
        "isPaused": false
      }
     }
@@ -340,7 +345,19 @@ Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連
 > 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的管理員/共同管理員
 
 ## <a name="monitor-pipeline"></a>監視管線
-如需如何使用 Azure 入口網站來監視您在本教學課程中建立的管線和資料集的指示，請參閱 [監視資料集和管線](data-factory-copy-activity-tutorial-using-azure-portal.md#monitor-pipeline) 。 Visual Studio 目前不支援監視 Data Factory 管線。  
+瀏覽至您的資料處理站首頁：
+
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 按一下左側功能表上的 [更多服務]，然後按一下 [Data Factory]。
+
+    ![瀏覽 Data Factory](media/data-factory-copy-activity-tutorial-using-visual-studio/browse-data-factories.png)
+3. 開始輸入您的資料處理站名稱。
+
+    ![資料處理站名稱](media/data-factory-copy-activity-tutorial-using-visual-studio/enter-data-factory-name.png) 
+4. 按一下結果清單中您的資料處理站，以查看您的資料處理站首頁。
+
+    ![Data Factory 首頁](media/data-factory-copy-activity-tutorial-using-visual-studio/data-factory-home-page.png)
+5. 請遵循[監視資料集和管線](data-factory-copy-activity-tutorial-using-azure-portal.md#monitor-pipeline)中的指示，監視您在本教學課程中建立的管線和資料集。 Visual Studio 目前不支援監視 Data Factory 管線。 
 
 ## <a name="summary"></a>摘要
 在本教學課程中，您已建立要將資料從 Azure Blob 複製到 Azure SQL 資料庫的 Azure Data Factory。 您已使用 Visual Studio 建立 Data Factory、連結服務、資料集和管線。 以下是您在本教學課程中執行的高階步驟：  
@@ -352,7 +369,6 @@ Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連
 3. 建立可描述管線輸入資料和輸出資料的 **資料集**。
 4. 建立具有**複製活動**的**管線**，以 **BlobSource** 做為來源並以 **SqlSink** 做為接收器。 
 
-## <a name="next-steps"></a>後續步驟
 若要了解如何使用 HDInsight Hive 活動以利用 Azure HDInsight 叢集轉換資料，請參閱[教學課程︰使用 Hadoop 叢集建置第一個管線來轉換資料](data-factory-build-your-first-pipeline.md)。
 
 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[在 Data Factory 中排程和執行](data-factory-scheduling-and-execution.md)。 
@@ -366,7 +382,8 @@ Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連
     ![Server Explorer](./media/data-factory-copy-activity-tutorial-using-visual-studio/server-explorer.png)
 
 ## <a name="create-a-visual-studio-project-for-an-existing-data-factory"></a>建立現有資料處理站的 Visual Studio 專案
-3. 您可以在 Server Explorer 中的資料處理站上按一下滑鼠右鍵，並選取 [將 Data Factory 匯出至新的專案]，以便根據現有的資料處理站建立 Visual Studio 專案。
+
+- 在 Server Explorer 中的資料處理站上按一下滑鼠右鍵，並選取 [將 Data Factory 匯出至新的專案]，以便根據現有的資料處理站建立 Visual Studio 專案。
 
     ![匯出 Data Factory 至 VS 專案](./media/data-factory-copy-activity-tutorial-using-visual-studio/export-data-factory-menu.png)  
 
@@ -495,4 +512,4 @@ Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
-如需您在資料存放區的複製精靈中看到的欄位/屬性詳細資訊，請按一下資料表中資料存放區的連結。
+若要深入了解如何從資料存放區雙向複製資料，請按一下資料表中資料存放區的連結。

@@ -15,10 +15,10 @@ ms.workload: storage-backup-recovery
 ms.date: 05/08/2017
 ms.author: raynew
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 1e48b0848c9f286f3bb0b3758403135a4f280bc0
+ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
+ms.openlocfilehash: 0ce6114073b80c1d9bb719654ab8cebc30dfefac
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/19/2017
 
 
 ---
@@ -153,9 +153,9 @@ Azure Site Recovery 提供災害復原，方法為將環境中的重要元件複
 * 使用 Site Recovery 將您的 Citrix XenApp 和 XenDesktop 部署移轉至 Azure，來簡化雲端移轉。
 * 藉由建立類似生產的隨選複本來進行測試和偵錯，以簡化 Citrix XenApp/XenDesktop 測試。
 * 此解決方案僅適用於 Windows Server 作業系統虛擬桌面，而不適用於用戶端虛擬桌面，因為尚未支援在 Azure 中進行用戶端虛擬桌面的授權。 
-[深入了解](https://azure.microsoft.com/en-us/pricing/licensing-faq/)如何在 Azure 中進行用戶端/伺服器桌面的授權。
+[深入了解](https://azure.microsoft.com/pricing/licensing-faq/)如何在 Azure 中進行用戶端/伺服器桌面的授權。
 
-[深入了解](https://aka.ms/citrix-xenapp-xendesktop-with-asr)如何保護 Citrix XenApp 和 XenDesktop 部署。
+[深入了解](site-recovery-citrix-xenapp-and-xendesktop.md)如何保護 Citrix XenApp 和 XenDesktop 部署。 或者，您可以參考詳述相同功能的 [Citrix 白皮書](https://aka.ms/citrix-xenapp-xendesktop-with-asr)。 
 
 ## <a name="next-steps"></a>後續步驟
 [檢查必要條件](site-recovery-prereq.md) 

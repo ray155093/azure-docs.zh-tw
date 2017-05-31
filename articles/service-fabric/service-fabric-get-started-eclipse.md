@@ -1,4 +1,4 @@
----
+--- 
 title: "適用於 Eclipse 的 Azure Service Fabric 外掛程式 | Microsoft Docs"
 description: "開始使用適用於 Eclipse 的 Service Fabric 外掛程式。"
 services: service-fabric
@@ -12,12 +12,13 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 04/06/2017
+ms.date: 05/03/2016
 ms.author: saysa
-translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 0407eab7e70649999ba07730425366b7b62e4e7a
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: c50c77b3288bc0a2d9148d04c6fc45aa24882ebb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -34,8 +35,8 @@ Eclipse 是 Java 開發人員最普遍使用的整合式的開發環境 (IDE) �
     -   若要檢查並安裝 Eclipse Neon 的更新，前往 [說明] > [檢查更新]。
 
 2.  若要安裝 Service Fabric 外掛程式，在 Eclipse Neon 中，前往 [說明] > [安裝新軟體]。
-  1.    在 [使用] 文字方塊中，輸入︰**http://dl.windowsazure.com/eclipse/servicefabric**。
-  2.    按一下 [新增]。
+  1.    在 [使用] 文字方塊中，輸入 **http://dl.microsoft.com/eclipse**。
+  2.    按一下 [新增] 。
     ![適用於 Eclipse Neon 的 Service Fabric 外掛程式][sf-eclipse-plugin-install]
   3.    選取 Service Fabric 外掛程式，然後按 [下一步]。
   4.    完成安裝步驟，然後接受 Microsoft 軟體授權條款。
@@ -43,7 +44,7 @@ Eclipse 是 Java 開發人員最普遍使用的整合式的開發環境 (IDE) �
 如果您已安裝 Service Fabric 外掛程式，請確定您擁有的是最新版本。 若要檢查可用的更新，前往 [說明] > [安裝詳細資料]。 在已安裝外掛程式的清單中，選取 Service Fabric，然後按一下 [更新]。 將安裝可用的更新。
 
 > [!NOTE]
-> 如果安裝或更新 Service Fabric 外掛程式時很緩慢，可能是因為 Eclipse 設定。 Eclipse 會收集所有變更的中繼資料，以更新使用您 Eclipse 執行個體註冊的網站。 若要加速檢查及安裝 Service Fabric 外掛程式更新的程序，前往 [可用的軟體站台]。 清除所有站台的核取方塊，除了指向 Service Fabric 外掛程式位置 (http://dl.windowsazure.com/eclipse/servicefabric) 的站台以外。
+> 如果安裝或更新 Service Fabric 外掛程式時很緩慢，可能是因為 Eclipse 設定。 Eclipse 會收集所有變更的中繼資料，以更新使用您 Eclipse 執行個體註冊的網站。 若要加速檢查及安裝 Service Fabric 外掛程式更新的程序，前往 [可用的軟體站台]。 清除所有網站的核取方塊，除了指向 Service Fabric 外掛程式位置 (http://dl.microsoft.com/eclipse/azure/servicefabric) 的網站以外。
 
 ## <a name="create-a-service-fabric-application-in-eclipse"></a>在 Eclipse 中建立 Service Fabric 應用程式
 
@@ -123,6 +124,12 @@ Eclipse 是 Java 開發人員最普遍使用的整合式的開發環境 (IDE) �
 5.  新增服務之後，您的整體專案結構看起來類似下列專案︰
 
     ![Service Fabric 新增服務第 4 頁][add-service/p4]
+
+## <a name="edit-manifest-versions-of-your-service-fabric-java-application"></a>編輯 Service Fabric Java 應用程式的資訊清單版本
+
+若要編輯資訊清單版本，以滑鼠右鍵按一下專案，移至 **Service Fabric**，然後從功能表下拉式清單中選取 [編輯資訊清單版本...]。 在精靈中，您可以更新應用程式資訊清單、服務資訊清單的資訊清單版本，以及 **Code**、**Config** 和 **Data** 套件的版本。
+
+如果您勾選 [自動更新應用程式和服務版本] 選項，然後更新版本，則會自動更新資訊清單版本。 若要提供範例，您先選取核取方塊，然後將 **Code** 的版本從 0.0.0 更新為 0.0.1 並按一下 [完成]，然後服務資訊清單版本和應用程式資訊清單版本將會自動更新為 0.0.1。
 
 ## <a name="upgrade-your-service-fabric-java-application"></a>升級 Service Fabric Java 應用程式
 

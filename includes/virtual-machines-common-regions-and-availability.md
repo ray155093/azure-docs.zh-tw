@@ -94,6 +94,13 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 #### <a name="managed-disk-fault-domains-and-availability-sets"></a>受控磁碟的容錯網域和可用性設定組
 若 VM 使用 [Azure 受控磁碟](../articles/storage/storage-faq-for-disks.md)，VM 會在使用受管理的可用性設定組時配合使用受控磁碟容錯網域。 此一配合行為可確保連接到 VM 的所有受控磁碟都位於相同的受控磁碟容錯網域。 在受管理的可用性設定組中只能建立使用受控磁碟的 VM。 受控磁碟容錯網域數目會依區域而異，每個區域會有兩個或三個受控磁碟容錯網域。
 
+![受控磁碟 FD](./media/virtual-machines-common-manage-availability/md-fd.png)
+
+> [!IMPORTANT]
+> 受控可用性設定組的容錯網域數目會依區域而異，每個區域會有兩個或三個。 下表顯示每個區域擁有的數目：
+
+[!INCLUDE [managed-disks-common-fault-domain-region-list](managed-disks-common-fault-domain-region-list.md)]
+
 ### <a name="update-domains"></a>更新網域
 更新網域是可以同時進行維護或重新啟動的基礎硬體邏輯群組。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些更新網域。 此方法可確保當 Azure 平台進行定期維護時，您的應用程式至少有一個執行個體一直保持執行中。 重新啟動的更新網域順序可能不會在規劃的維護事件期間循序進行，而只會一次重新啟動一個更新網域。
 

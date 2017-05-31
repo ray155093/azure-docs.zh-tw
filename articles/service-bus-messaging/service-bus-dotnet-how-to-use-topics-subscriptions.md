@@ -14,10 +14,11 @@ ms.devlang: dotnet
 ms.topic: get-started-article
 ms.date: 03/23/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: bec18e91ef8798a791d4b1fe93bd529593197e01
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 5ff7783081a722474bbbc38795e88da05bca78d2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -177,7 +178,7 @@ if (!namespaceManager.SubscriptionExists("TestTopic", "AllMessages"))
 
 訂用帳戶所支援的最具彈性篩選器類型是實作 SQL92 子集的 [SqlFilter][SqlFilter] 類別。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用的運算式詳細資訊，請參閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
 
-以下範例將建立名為 **HighMessages** 的訂用帳戶，其帶有只選取自訂 **MessageNumber** 屬性大於 3 之訊息的 [SqlFilter][SqlFilter] 物件。
+以下範例將建立名為 **HighMessages** 的訂用帳戶，其帶有只選取自訂 [MessageId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.messageid#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) 屬性大於 3 之訊息的 [SqlFilter][SqlFilter] 物件。
 
 ```csharp
 // Create a "HighMessages" filtered subscription.
@@ -189,7 +190,7 @@ namespaceManager.CreateSubscription("TestTopic",
    highMessagesFilter);
 ```
 
-同樣地，下列範例將建立名為 **LowMessages** 並帶有只選取 **MessageNumber** 屬性小於或等於 3 之訊息的 [SqlFilter][SqlFilter] 訂用帳戶。
+同樣地，下列範例將建立名為 **LowMessages** 並帶有只選取 [MessageId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.messageid#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) 屬性小於或等於 3 之訊息的 [SqlFilter][SqlFilter] 訂用帳戶。
 
 ```csharp
 // Create a "LowMessages" filtered subscription.
@@ -218,9 +219,9 @@ TopicClient Client =
 Client.Send(new BrokeredMessage());
 ```
 
-傳送至服務匯流排主題的訊息是 [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) 類別的執行個體。 **BrokeredMessage** 物件具有一組標準屬性 (例如 [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) 和 [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive))、一個用來保存自訂應用程式特定屬性的目錄，以及一堆任意的應用程式資料。 應用程式可設定訊息內文，方法是將任何可序列化物件傳遞到 **BrokeredMessage** 物件的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。 也可以提供 **System.IO.Stream** 物件。
+傳送至服務匯流排主題的訊息是 [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) 類別的執行個體。 **BrokeredMessage** 物件具有一組標準屬性 (例如 [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) 和 [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive))、一個用來保存自訂應用程式特定屬性的目錄，以及一堆任意的應用程式資料。 應用程式可設定訊息內文，方法是將任何可序列化物件傳遞到 **BrokeredMessage** 物件的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。 也可以提供 **System.IO.Stream** 物件。
 
-下列範例將示範如何傳送五則測試訊息至上述程式碼範例中所取得的 **TestTopic** [TopicClient](/dotnet/api/microsoft.servicebus.messaging.topicclient) 物件。 請注意，迴圈反覆運算上每個訊息的 [MessageId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) 屬性值會有變化 (這可判斷接收訊息的訂用帳戶為何)。
+下列範例將示範如何傳送五則測試訊息至上述程式碼範例中所取得的 **TestTopic** [TopicClient](/dotnet/api/microsoft.servicebus.messaging.topicclient) 物件。 請注意，迴圈反覆運算上每個訊息的 [MessageId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.messageid#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) 屬性值會有變化 (這可判斷接收訊息的訂用帳戶為何)。
 
 ```csharp
 for (int i=0; i<5; i++)
@@ -289,7 +290,7 @@ Client.OnMessage((message) =>
 
 與訂用帳戶內鎖定訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，並讓訊息可以被重新接收。
 
-如果應用程式在處理訊息之後但尚未發出 [Complete](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete) 要求時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為「至少處理一次」，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 [MessageId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) 屬性來達到此目的，該屬性會在各個傳遞嘗試中會保持不變。
+如果應用程式在處理訊息之後但尚未發出 [Complete](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete) 要求時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為「至少處理一次」，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 [MessageId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.messageid#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) 屬性來達到此目的，該屬性會在各個傳遞嘗試中會保持不變。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
 以下範例將示範如何從 **HowToSample** 服務命名空間中刪除 **TestTopic** 主題。
