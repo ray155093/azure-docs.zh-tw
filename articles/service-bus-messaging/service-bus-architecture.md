@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/22/2017
+ms.date: 05/18/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 3df12cd8700a75c1288967e86cd92e6ed4886d59
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: ced46c64c1c105aa987759e05ab3680bc399f9a0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -32,7 +33,7 @@ ms.lasthandoff: 03/24/2017
 * **一組閘道器節點。** 閘道節點會驗證傳入要求並處理轉送要求。 每個閘道器節點都有一個公用 IP 位址。
 * **一組訊息代理程式節點。** 訊息代理程式節點會處理關於訊息實體的要求。
 * **一個閘道器存放區。** 閘道器存放區會保存此縮放單位中定義的每個實體的資料。 閘道器存放區是在 SQL Azure 資料庫上實作。
-* **多個訊息存放區。** 訊息存放區會保存此縮放單位中定義的所有佇列、主題和訂用帳戶的訊息。 它也包含所有訂用帳戶資料。 除非啟用了[分割訊息實體](service-bus-partitioning.md)，佇列或主題才會對應至一個訊息存放區。 訂用帳戶是儲存在與父項主題相同的訊息存放區。 除了服務匯流排[進階傳訊](service-bus-premium-messaging.md)以外，訊息存放區會在 SQL Azure 資料庫之上實作。
+* **多個訊息存放區。** 訊息存放區會保存此縮放單位中定義的所有佇列、主題和訂用帳戶的訊息。 它也包含所有訂用帳戶資料。 除非啟用了[分割傳訊實體](service-bus-partitioning.md)，佇列或主題才會對應至一個傳訊存放區。 訂用帳戶是儲存在與父項主題相同的訊息存放區。 除了服務匯流排[進階傳訊](service-bus-premium-messaging.md)以外，訊息存放區會在 SQL Azure 資料庫之上實作。
 
 ## <a name="containers"></a>容器
 每個訊息實體都會指派給特定的容器。 容器是一種邏輯建構，僅使用一個訊息存放區來儲存此容器所有相關資料。 每個容器都會被指派至訊息代理程式節點。 通常，容器較訊息代理程式節點多。 因此，每個訊息代理程式節點會載入多個容器。 訊息代理程式節點的容器分配會經過組織，使得平均地載入所有的訊息代理程式節點。 如果載入模式變更 (例如其中一個容器變得十分忙碌)，或訊息代理程式節點會變成暫時無法使用，容器會在訊息代理程式節點間重新分配。
@@ -40,14 +41,14 @@ ms.lasthandoff: 03/24/2017
 ## <a name="processing-of-incoming-messaging-requests"></a>處理內送訊息要求
 當用戶端傳送要求至服務匯流排時，Azure 負載平衡器會將其路由到任何一個閘道器節點。 閘道器節點會授權要求。 如果要求考量訊息實體 (佇列、主題、訂用帳戶)，則閘道器節點會在閘道器存放區中在尋找實體，並判斷實體位在哪個訊息存放區。 它接著會查詢哪些訊息代理程式節點目前正在服務此容器，並將要求傳送至該訊息代理程式節點。 訊息代理程式節點會處理要求並更新容器存放區中的實體狀態。 訊息代理程式節點接著會傳送回應給閘道器節點，閘道器節點會傳送適當的回應給發出原始要求的用戶端。
 
-![處理內送訊息要求](./media/service-bus-architecture/IC690644.png)
+![處理內送訊息要求](./media/service-bus-architecture/ic690644.png)
 
 ## <a name="processing-of-incoming-relay-requests"></a>處理內送轉送要求
-當用戶端傳送要求至服務匯流排時，Azure 負載平衡器會將其路由到任何一個閘道器節點。 如果要求為接聽要求，閘道器節點會建立新的轉送。 如果要求為特定轉送的連線要求，閘道器節點會轉送連線要求給擁有轉送的閘道器節點。 擁有轉送的閘道器節點會傳送會合要求到接聽用戶端，要求接聽程式建立接收連線要求的閘道器節點的暫時通道。
+當用戶端傳送要求至 [Azure 轉送](/azure/service-bus-relay/)服務時，Azure Load Balancer 會將其路由到任何一個閘道器節點。 如果要求為接聽要求，閘道器節點會建立新的轉送。 如果要求為特定轉送的連線要求，閘道器節點會轉送連線要求給擁有轉送的閘道器節點。 擁有轉送的閘道器節點會傳送會合要求到接聽用戶端，要求接聽程式建立接收連線要求的閘道器節點的暫時通道。
 
 建立轉送連線時，用戶端可以透過用來會合的閘道節點交換訊息。
 
-![處理內送 WCF 轉送要求](./media/service-bus-architecture/IC690645.png)
+![處理內送 WCF 轉送要求](./media/service-bus-architecture/ic690645.png)
 
 ## <a name="next-steps"></a>後續步驟
 既然您已閱讀服務匯流排架構的概觀，請參閱下列連結取得詳細資訊：

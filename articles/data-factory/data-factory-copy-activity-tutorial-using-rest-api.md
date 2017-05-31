@@ -1,6 +1,6 @@
 ---
-title: "教學課程：使用 REST API 建立具有複製活動的管線 | Microsoft Docs"
-description: "在本教學課程中，您會使用 REST API，建立具有複製活動的 Azure Data Factory 管線。"
+title: "教學課程︰使用 REST API 建立 Azure Data Factory 管線 |Microsoft Docs"
+description: "在本教學課程中，您會使用 REST API 建立具有複製活動的 Azure Data Factory 管線，以將資料從 Azure Blob 儲存體複製到 Azure SQL Database。"
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,14 +14,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: f4d2535e929996101f6e22ffbd0b2105e8fbf2a8
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 070d5754049205ca70ba2e1124f087ffc9d396f3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
-# <a name="tutorial-create-a-pipeline-with-copy-activity-using-rest-api"></a>教學課程：使用 REST API 建立具有複製活動的管線
+# <a name="tutorial-use-rest-api-to-create-an-azure-data-factory-pipeline-to-copy-data"></a>教學課程︰使用 REST API 建立 Azure Data Factory 管線來複製資料 
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -34,12 +35,16 @@ ms.lasthandoff: 04/27/2017
 > 
 > 
 
-本教學課程示範如何使用 REST API 建立和監視 Azure Data Factory。 Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
+在本文中，您會了解如何使用 REST API 建立資料處理站，其中有管線可將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。 如果您不熟悉 Azure Data Factory，請先詳閱 [Azure Data Factory 簡介](data-factory-introduction.md)一文，再進行本教學課程。   
+
+在本教學課程中，您可以建立包含一個活動的管線：複製活動。 複製活動會將資料從支援的資料存放區複製到支援的接收資料存放區。 如需作為來源和接收區支援的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。 如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)。
+
+一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[管線中的多個活動](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
 
 > [!NOTE]
 > 這篇文章並未涵蓋所有的 Data Factory REST API。 如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory REST API 參考](/rest/api/datafactory/) 。
-> 
-> 本教學課程中的資料管線會將資料從來源資料存放區複製到目的地資料存放區。 它不會轉換輸入資料來產生輸出資料。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
+>  
+> 本教學課程中的資料管線會將資料從來源資料存放區，複製到目的地資料存放區。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
 
 ## <a name="prerequisites"></a>必要條件
 * 請檢閱 [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 並完成 **必要** 步驟。
@@ -96,8 +101,6 @@ ms.lasthandoff: 04/27/2017
 ### <a name="azurestoragelinkedservicejson"></a>azurestoragelinkedservice.json
 > [!IMPORTANT]
 > 以 Azure 儲存體帳戶的名稱和金鑰取代 **accountname** 和 **accountkey**。 若要了解如何取得儲存體存取金鑰，請參閱 [檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#manage-your-storage-access-keys)
-> 
-> 
 
 ```JSON
 {
@@ -111,11 +114,13 @@ ms.lasthandoff: 04/27/2017
 }
 ```
 
+如需 JSON 屬性的詳細資訊，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)。
+
 ### <a name="azuersqllinkedservicejson"></a>azuersqllinkedservice.json
 > [!IMPORTANT]
 > 將 **servername**、**databasename**、**username** 和 **password** 替換為您的 Azure SQL Server 名稱、SQL Database 名稱、使用者帳戶及帳戶的密碼。  
 > 
-> 
+>
 
 ```JSON
 {
@@ -129,6 +134,8 @@ ms.lasthandoff: 04/27/2017
     }
 }
 ```
+
+如需 JSON 屬性的詳細資訊，請參閱 [Azure SQL 連結服務](data-factory-azure-sql-connector.md#linked-service-properties)。
 
 ### <a name="inputdatasetjson"></a>inputdataset.json
 
@@ -165,34 +172,20 @@ ms.lasthandoff: 04/27/2017
 }
 ```
 
-JSON 定義會定義名為 **AzureBlobInput**的資料集，以表示管線中活動的輸入資料。 此外，它也會指定將輸入資料放在 Blob 容器 **adftutorial** 的 **emp.txt** 檔案中。 
+下表提供程式碼片段中所使用之 JSON 屬性的描述：
 
- 請注意下列幾點： 
+| 屬性 | 說明 |
+|:--- |:--- |
+| 類型 | type 屬性會設為 **AzureBlob**，因為資料位於 Azure Blob 儲存體中。 |
+| linkedServiceName | 表示您稍早建立的 **AzureStorageLinkedService**。 |
+| folderPath | 指定包含輸入 Blob 的 Blob **容器**和**資料夾**。 在本教學課程中，adftutorial 是 blob 容器，而資料夾是根資料夾。 | 
+| fileName | 這是選用屬性。 如果您省略此屬性，則會挑選 folderPath 中的所有檔案。 在本教學課程中，會針對 fileName 指定 **emp.txt**，因此只會挑選該檔案進行處理。 |
+| format -> type |輸入檔為文字格式，因此我們會使用 **TextFormat**。 |
+| columnDelimiter | 輸入檔案中的資料行會以**逗號字元 (`,`)** 分隔。 |
+| frequency/interval | frequency 會設為 **Hour** 且 interval 會設為 **1**，表示**每小時**都可取得輸入配量。 換句話說，Data Factory 服務會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 它會尋找管線開始和結束時間內 (而非這些時間之前或之後) 的資料。  |
+| external | 如果資料不是由此管線產生，此屬性會設為 **true**。 本教學課程中的輸入資料位於 emp.txt 檔案中，該檔案不是由此管線產生，因此我們會將此屬性設定為 true。 |
 
-* 資料集 **type** 設為 **AzureBlob**。
-* **linkedServiceName** 設為 **AzureStorageLinkedService**。 
-* **folderPath** 設為 **adftutorial** 容器，而 **fileName** 設為 **emp.txt**。  
-* 格式 **type** 設為 **TextFormat**
-* 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (columnDelimiter)    
-* **availability** 設定為**每小時**，且 (frequency 設定為小時，interval 設定為 1)。 因此，Data Factory 會每小時都在指定之 Blob 容器 (adftutorial) 的根資料夾中尋找輸入資料。 
-
-如果您未指定輸入資料集的 **fileName**，則輸入資料夾 (folderPath) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
-
-如果您未指定**輸出資料表**的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.&lt;Guid&gt;.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt.)。
-
-若要根據 **SliceStart** 時間動態設定 **folderPath** 和 **fileName**，請使用 **partitionedBy** 屬性。 在下列範例中，folderPath 使用 SliceStart (所處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。 例如，如果配量產生於 2014-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2014/10/20，而 fileName 設定為 08.csv。 
-
-```JSON
-  "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
-"fileName": "{Hour}.csv",
-"partitionedBy": 
-[
-    { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
-    { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } }, 
-    { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } }, 
-    { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } } 
-],
-```
+如需這些 JSON 屬性的詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)一文。
 
 ### <a name="outputdatasetjson"></a>outputdataset.json
 
@@ -222,16 +215,18 @@ JSON 定義會定義名為 **AzureBlobInput**的資料集，以表示管線中�
   }
 }
 ```
+下表提供程式碼片段中所使用之 JSON 屬性的描述：
 
-JSON 定義會定義名為 **AzureSqlOutput**的資料集，以表示管線中活動的輸出資料。 此外，它也會指定將結果存放在 AzureSqlLinkedService 所代表的資料庫的 **emp** 資料表中。 **availability** 區段指定每小時產生一次輸出資料集 (頻率：小時，間隔：1)。
+| 屬性 | 說明 |
+|:--- |:--- |
+| 類型 | type 屬性會設為 **AzureSqlTable**，因為資料已複製到 Azure SQL Database 中的資料表。 |
+| linkedServiceName | 表示您稍早建立的 **AzureSqlLinkedService**。 |
+| tableName | 指定作為資料複製目的地的**資料表**。 | 
+| frequency/interval | frequency 會設為**Hour** 且 interval 為**1**，這表示會在管線開始和結束時間之間 (而非這些時間之前或之後) **每小時**產生輸出配量。  |
 
-請注意下列幾點： 
+資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
 
-* 資料集 **type** 設為 **AzureSQLTable**。
-* **linkedServiceName** 設為 **AzureSqlLinkedService**。
-* **tablename** 設為 **emp**。
-* 資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
-* **availability** 設定為**每小時**，且 (frequency 設定為小時，interval 設定為 1)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
+如需這些 JSON 屬性的詳細資訊，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#dataset-properties)一文。
 
 ### <a name="pipelinejson"></a>pipeline.json
 
@@ -273,30 +268,27 @@ JSON 定義會定義名為 **AzureSqlOutput**的資料集，以表示管線中�
         }
       }
     ],
-    "start": "2016-08-12T00:00:00Z",
-    "end": "2016-08-13T00:00:00Z"
+    "start": "2017-05-11T00:00:00Z",
+    "end": "2017-05-12T00:00:00Z"
   }
 }
 ```
 
 請注意下列幾點：
 
-* 在活動區段中，只會有一個活動的 **type** 設為 **CopyActivity**。
-* 活動的輸入設為 **AzureBlobInput**，活動的輸出則設為 **AzureSqlOutput**。
-* 在 **transformation** 區段中，來源類型指定為 **BlobSource**，接收類型指定為 **SqlSink**。
-
-將 **start** 屬性的值替換為目前日期，並將 **end**值替換為隔天的日期。 在日期時間中，您只指定日期部分，並略過時間部分。 例如，"2015-02-03"，這相當於 "2015-02-03T00:00:00Z"
-
-開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2014-10-14T16:32:41Z。 **end** 時間為選擇性項目，但在本教學課程中會用到。 
-
+- 在活動區段中，只會有一個 **type** 設為 **Copy** 的活動。 如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)。 在 Data Factory 解決方案中，您也可以使用[資料轉換活動](data-factory-data-transformation-activities.md)。
+- 活動的輸入設為 **AzureBlobInput**，活動的輸出則設為 **AzureSqlOutput**。 
+- 在 **typeProperties** 區段中，來源類型指定為 **BlobSource**，接收類型指定為 **SqlSink**。 如需複製活動作為來源和接收器支援的資料存放區完整清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 若要了解如何使用特定支援的資料存放區作為來源/接收器，請按一下資料表中的連結。  
+ 
+將 **start** 屬性的值替換為目前日期，並將 **end**值替換為隔天的日期。 在日期時間中，您只指定日期部分，並略過時間部分。 例如，"2017-02-03"，這相當於 "2017-02-03T00:00:00Z"
+ 
+開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2016-10-14T16:32:41Z。 **end** 時間為選擇性項目，但在本教學課程中會用到。 
+ 
 如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。
+ 
+在上述範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
 
-在此範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
-
-> [!NOTE]
-> 如需上述範例中使用的 JSON 屬性的詳細資訊，請參閱 [管線的剖析](data-factory-create-pipelines.md) 。
-> 
-> 
+如需管線定義中 JSON 屬性的說明，請參閱[建立管線](data-factory-create-pipelines.md)一文。 如需複製活動定義中 JSON 屬性的說明，請參閱[資料移動活動](data-factory-data-movement-activities.md)。 如需 BlobSource 所支援 JSON 屬性的說明，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md)一文。 如需 SqlSink 支援的 JSON 屬性說明，請參閱 [Azure SQL Database 連接器](data-factory-azure-sql-connector.md)一文。
 
 ## <a name="set-global-variables"></a>設定全域變數
 在 Azure PowerShell 中，將值取代為您自己的值之後，執行下列命令：
@@ -313,6 +305,11 @@ $tenant = "<Azure tenant ID>";
 $subscription_id="<Azure subscription ID>";
 
 $rg = "ADFTutorialResourceGroup"
+```
+
+更新您正在使用的資料處理站名稱之後，執行下列命令︰ 
+
+```
 $adf = "ADFCopyTutorialDF"
 ```
 
@@ -332,10 +329,11 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
 
 1. 將命令指派給名為 **cmd**的變數。 
    
-    確認您在此指定的名稱 (ADFCopyTutorialDF) 符合在 **datafactory.json**指定的名稱。 
+    > [!IMPORTANT]
+    > 確認您在此指定的名稱 (ADFCopyTutorialDF) 符合在 **datafactory.json**指定的名稱。 
    
     ```PowerShell
-    $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data “@datafactory.json” https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/ADFCopyTutorialDF?api-version=2015-10-01};
+    $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data “@datafactory.json” https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/ADFCopyTutorialDF0411?api-version=2015-10-01};
     ```
 2. 使用 **Invoke-Command**執行命令。
    
@@ -376,12 +374,14 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
 建立管線之前，您必須先建立一些 Data Factory 項目。 您會先建立連結服務，將來源和目的地資料存放區連結至您的資料存放區。 然後，定義輸入和輸出資料集，以表示連結資料存放區中的資料。 最後，建立會使用這些資料集之活動的管線。
 
 ## <a name="create-linked-services"></a>建立連結服務
-連結服務會將資料存放區或計算服務連結至 Azure Data Factory。 資料存放區可以是 Azure 儲存體、Azure SQL Database 或內部部署 SQL Server 資料庫，且內含 Data Factory 管線的輸入資料或儲存其輸出資料。 計算服務是處理輸入資料並產生輸出資料的服務。 
+您在資料處理站中建立的連結服務會將您的資料存放區和計算服務連結到資料處理站。 在本教學課程中，您不會使用任何計算服務，例如 Azure HDInsight 或 Azure Data Lake Analytics。 您可以使用兩種類型的資料存放區：Azure 儲存體 (來源) 和 Azure SQL Database (目的地)。 因此，您可以建立名為 AzureStorageLinkedService 和 AzureSqlLinkedService 的兩個連結服務︰類型為 AzureStorage 和 AzureSqlDatabase。  
 
-在此步驟中，您將建立兩個連結服務：**AzureStorageLinkedService** 和 **AzureSqlLinkedService**。 AzureStorageLinkedService 連結服務會連結 Azure 儲存體帳戶，而 AzureSqlLinkedService 會將 Azure SQL Database 連結至 Data Factory： **ADFCopyTutorialDF**。 您稍後會在本教學課程中建立管線，以將資料從 AzureStorageLinkedService 中的 Blob 容器複製到 AzureSqlLinkedService 中的 SQL 資料表。
+AzureStorageLinkedService 會將 Azure 儲存體帳戶連結至資料處理站。 此儲存體帳戶是您在其中建立容器並將資料上傳為[必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)一部分的帳戶。   
+
+AzureSqlLinkedService 會將 Azure SQL Database 連結至資料處理站。 從 Blob 儲存體複製的資料會儲存在此資料庫中。 您在此資料庫中建立了 emp 資料表，作為[必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)的一部分。  
 
 ### <a name="create-azure-storage-linked-service"></a>建立 Azure 儲存體連結服務
-在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。 在本教學課程中，您會使用 Azure 儲存體帳戶來存放輸入資料。 
+在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的資料處理站。 在此區段中指定您 Azure 儲存體帳戶的名稱和金鑰。 如需用來定義 Azure 儲存體連結服務之 JSON 屬性的詳細資料，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)。  
 
 1. 將命令指派給名為 **cmd**的變數。 
 
@@ -389,6 +389,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
     $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data "@azurestoragelinkedservice.json" https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/linkedservices/AzureStorageLinkedService?api-version=2015-10-01};
     ```
 2. 使用 **Invoke-Command**執行命令。
+
     ```PowerShell   
     $results = Invoke-Command -scriptblock $cmd;
     ```
@@ -399,7 +400,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
     ```
 
 ### <a name="create-azure-sql-linked-service"></a>建立 Azure SQL 連結服務
-在此步驟中，您會將您的 Azure SQL Database 連結到您的 Data Factory。 在本教學課程中，您會使用相同的 Azure SQL Database 來存放輸出資料。
+在此步驟中，您會將您的 Azure SQL Database 連結到您的 Data Factory。 在此區段中指定 Azure SQL 伺服器名稱、資料庫名稱、使用者名稱和使用者密碼。 如需用來定義 Azure SQL 連結服務之 JSON 屬性的詳細資料，請參閱 [Azure SQL 連結服務](data-factory-azure-sql-connector.md#linked-service-properties)。
 
 1. 將命令指派給名為 **cmd**的變數。 
    
@@ -418,46 +419,14 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
     ```
 
 ## <a name="create-datasets"></a>建立資料集
-在上一個步驟中，您已建立連結服務 **AzureStorageLinkedService** 和 **AzureSqlLinkedService**，將 Azure 儲存體帳戶和 Azure SQL Database 連結至 Data Factory：**ADFCopyTutorialDF**。 在此步驟中，您會建立資料集，而這些資料集在下一個步驟所建立的管線中代表複製活動的輸入和輸出資料。 
+在上一個步驟中，您已建立可將 Azure 儲存體帳戶和 Azure SQL Database 連結至資料處理站的連結服務。 在此步驟中，您會定義名為 AzureBlobInput 和 AzureSqlOutput 的兩個資料集，它們分別代表 AzureStorageLinkedService 和 AzureSqlLinkedService 所參照資料存放區中儲存的輸入和輸出資料。
 
-本教學課程中的輸入資料集是指 Azure 儲存體中 AzureStorageLinkedService 所指向的 Blob 容器。 輸出資料集則是指 Azure SQL Database 中 AzureSqlLinkedService 所指向的 SQL 資料表。  
+Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連線到 Azure 儲存體帳戶的連接字串。 而且，輸入 Blob 資料集 (AzureBlobInput) 會指定包含輸入資料的容器和資料夾。  
 
-### <a name="prepare-azure-blob-storage-and-azure-sql-database-for-the-tutorial"></a>準備教學課程所需的 Azure Blob 儲存體和 Azure SQL 資料庫
-執行下列步驟來準備本教學課程中的 Azure Blob 儲存體和 Azure SQL Database。 
-
-* 在 **AzureStorageLinkedService** 所指向的 Azure Blob 儲存體中，建立名為 **adftutorial** 的 Blob 容器。 
-* 建立文字檔 **emp.txt**，並以 Blob 形式上傳至 **adftutorial** 容器。 
-* 在 **AzureSqlLinkedService** 所指向的 Azure SQL Database中，建立名為 **emp** 的資料表。
-
-1. 啟動 [記事本]。 複製以下文字，並命名為 **emp.txt**，然後儲存至您硬碟上的 **C:\ADFGetStartedPSH** 資料夾。 
-
-    ```   
-    John, Doe
-    Jane, Doe
-    ```
-2. 使用 [Azure 儲存體總管](https://azurestorageexplorer.codeplex.com/)這類的工具建立 **adftutorial** 容器，以及將 **emp.txt** 檔案上傳至該容器。
-   
-    ![Azure 儲存體總管](media/data-factory-copy-activity-tutorial-using-powershell/getstarted-storage-explorer.png)
-3. 使用以下 SQL 指令碼，在您的 Azure SQL Database 中建立 **emp** 資料表。  
-
-    ```SQL
-    CREATE TABLE dbo.emp 
-    (
-        ID int IDENTITY(1,1) NOT NULL,
-        FirstName varchar(50),
-        LastName varchar(50),
-    )
-    GO
-
-    CREATE CLUSTERED INDEX IX_emp_ID ON dbo.emp (ID); 
-    ```
-
-    如果您的電腦上已安裝 SQL Server 2014：請遵循 [步驟 2：使用 SQL Server Management Studio 連接到管理 Azure SQL Database 的 SQL Database][sql-management-studio] 文章中的指示，連接到您的 Azure SQL Server，並執行 SQL 指令碼。
-
-    如果不允許您的用戶端存取 Azure SQL Server，則必須將 Azure SQL Server 的防火牆設定成允許從您的電腦 (IP 位址) 存取。 請參閱 [本文](../sql-database/sql-database-configure-firewall-settings.md) 的步驟，為 Azure SQL Server 設定防火牆。
+同樣第，Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連線到 Azure SQL Database 的連接字串。 而且，輸出 SQL 資料表資料集 (OututDataset) 會指定資料庫中作為 Blob 儲存體資料複製目的地的資料表。 
 
 ### <a name="create-input-dataset"></a>建立輸入資料集
-在此步驟中，您將在 **AzureStorageLinkedService** 連結服務所代表的 Azure 儲存體中，建立指向 Blob 容器的 **AzureBlobInput** 資料集。 此 Blob 容器 (adftutorial) 包含的輸入資料位於：**emp.txt** 檔案中。 
+在此步驟中，您將在 AzureStorageLinkedService 連結服務所代表的 Azure 儲存體中，建立名為 AzureBlobInput 的資料集，該資料集會指向 Blob 容器 (adftutorial) 根資料夾中的 Blob 檔案 (emp.txt)。 如果您未指定 (或跳過) fileName 的值，則輸入資料夾中所有 Blob 資料都會複製到目的地。 在本教學課程中，您可指定 fileName 的值。 
 
 1. 將命令指派給名為 **cmd**的變數。 
 
@@ -476,7 +445,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
     ```
 
 ### <a name="create-output-dataset"></a>建立輸出資料集
-在此步驟中，您會建立名為 **AzureSqlOutput**的輸出資料表。 此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表 (emp)。 管線會將輸入 Blob 中的資料複製到 **emp** 資料表。 
+Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連線到 Azure SQL Database 的連接字串。 您在此步驟中建立的輸出 SQL 資料表資料集 (OututDataset) 會指定資料庫中作為 Blob 儲存體資料複製目的地的資料表。
 
 1. 將命令指派給名為 **cmd**的變數。
 
@@ -495,7 +464,9 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
     ``` 
 
 ## <a name="create-pipeline"></a>建立管線
-在此步驟中，您會建立管線，其中含有使用 **AzureBlobInput** 做為輸入和使用 **AzureSqlOutput** 做為輸出的**複製活動**。
+在此步驟中，您會建立管線，其中含有使用 **AzureBlobInput** 作為輸入和使用 **AzureSqlOutput** 作為輸出的**複製活動**。
+
+目前，驅動排程的是輸出資料集。 在本教學課程中，輸出資料集設定成一小時產生一次配量。 管線具有相隔一天 (也就是 24 小時) 的開始時間和結束時間。 因此，管線會產生輸出資料集的 24 個配量。 
 
 1. 將命令指派給名為 **cmd**的變數。
 
@@ -522,8 +493,11 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
 $ds ="AzureSqlOutput"
 ```
 
+> [!IMPORTANT] 
+> 請確定在下列命令中指定的開始和結束時間符合管線的開始和結束時間。 
+
 ```PowerShell
-$cmd = {.\curl.exe -X GET -H "Authorization: Bearer $accessToken" https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/datasets/$ds/slices?start=1970-01-01T00%3a00%3a00.0000000Z"&"end=2016-08-12T00%3a00%3a00.0000000Z"&"api-version=2015-10-01};
+$cmd = {.\curl.exe -X GET -H "Authorization: Bearer $accessToken" https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/datasets/$ds/slices?start=2017-05-11T00%3a00%3a00.0000000Z"&"end=2017-05-12T00%3a00%3a00.0000000Z"&"api-version=2015-10-01};
 ```
 
 ```PowerShell
@@ -538,7 +512,7 @@ IF ((ConvertFrom-Json $results2).value -ne $NULL) {
 }
 ```
 
-執行這些命令，直到您看到配量處於 [就緒] 狀態或 [失敗] 狀態。 當配量處於 [就緒] 狀態時，請檢查您的 Azure SQL Database 的 **emp** 資料表中的輸出資料。 
+執行 Invoke-Command 和下一個命令，直到您看到配量處於 [就緒] 狀態或 [失敗] 狀態。 當配量處於 [就緒] 狀態時，請檢查您的 Azure SQL Database 的 **emp** 資料表中的輸出資料。 
 
 對於每個配量，來源檔案中有兩個資料列會複製到 Azure SQL Database 中的 emp 資料表。 因此，成功處理所有配量 (處於 [就緒] 狀態) 後，您會在 emp 資料表中看到 24 筆新記錄。 
 
@@ -552,26 +526,9 @@ IF ((ConvertFrom-Json $results2).value -ne $NULL) {
 3. 建立可描述管線輸入資料和輸出資料的 **資料集**。
 4. 建立具有複製活動的 **管線** ，以 BlobSource 做為來源並以 SqlSink 做為接收器。 
 
-## <a name="see-also"></a>另請參閱
-| 主題 | 說明 |
-|:--- |:--- |
-| [資料移動活動](data-factory-data-movement-activities.md) |本文提供您在本教學課程中使用的複製活動詳細資訊。 |
-| [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-| [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
-| [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
-| [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
+## <a name="next-steps"></a>後續步驟
+在本教學課程中，您可使用 Azure Blob 儲存體作為來源資料存放區以及使用 Azure SQL Database 作為複製作業的目的地資料存放區。 下表提供複製活動所支援作為來源或目的地的資料存放區清單： 
 
-[use-custom-activities]: data-factory-use-custom-activities.md
-[troubleshoot]: data-factory-troubleshoot.md
-[developer-reference]: http://go.microsoft.com/fwlink/?LinkId=516908
+[!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
-[azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-
-[azure-portal]: http://portal.azure.com
-[download-azure-powershell]: /powershell/azureps-cmdlets-docs
-[data-factory-introduction]: data-factory-introduction.md
-
-[image-data-factory-get-started-storage-explorer]: ./media/data-factory-copy-activity-tutorial-using-powershell/getstarted-storage-explorer.png
-
-[sql-management-studio]: ../sql-database/sql-database-manage-azure-ssms.md
-
+若要深入了解如何從資料存放區雙向複製資料，請按一下資料表中資料存放區的連結。

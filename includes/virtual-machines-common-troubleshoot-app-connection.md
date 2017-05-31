@@ -2,27 +2,25 @@
 
 如果您在使用 RDP 或 SSH 連接到 VM 時發生問題，請先參閱下列其中一篇文章︰
 
-* [針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [針對以 Linux 為基礎的 Azure 虛擬機器的安全殼層 (SSH) 連線進行疑難排解](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+* [針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
+* [針對以 Linux 為基礎的 Azure 虛擬機器的安全殼層 (SSH) 連線進行疑難排解](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md)。
 
 > [!NOTE]
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../articles/resource-manager-deployment-model.md)。 本文將說明如何使用這兩個模型，但 Microsoft 建議大多數新的部署請使用資源管理員模型。
-> 
-> 
 
 如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。 或者，您也可以提出 Azure 支援事件。 請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後選取 [取得支援]。
 
-## <a name="quick-start-troubleshooting-endpoint-connectivity-problems"></a>快速開始為端點連線能力問題進行疑難排解
+## <a name="quick-start-troubleshooting-steps"></a>快速入門的疑難排解步驟
 如果您在連接到應用程式時發生問題，請嘗試下列一般疑難排解步驟。 請在每個步驟之後，嘗試重新連接到您的應用程式︰
 
 * 重新啟動虛擬機器
 * 重新建立端點/防火牆規則/網路安全性群組 (NSG) 規則
-  * [傳統模型 - 管理雲端服務端點](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
   * [資源管理員模型 - 管理網路安全性群組](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+  * [傳統模型 - 管理雲端服務端點](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
 * 從不同的位置 (例如不同的 Azure 虛擬網路) 進行連線
 * 重新部署虛擬機器
-  * [重新部署 Windows VM](../articles/virtual-machines/windows/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-  * [重新部署 Linux VM](../articles/virtual-machines/linux/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+  * [重新部署 Windows VM](../articles/virtual-machines/windows/redeploy-to-new-node.md)
+  * [重新部署 Linux VM](../articles/virtual-machines/linux/redeploy-to-new-node.md)
 * 重新建立虛擬機器
 
 如需詳細資訊，請參閱 [疑難排解端點連接能力 (RDP/SSH/HTTP 等失敗問題)](https://social.msdn.microsoft.com/Forums/azure/en-US/538a8f18-7c1f-4d6e-b81c-70c00e25c93d/troubleshooting-endpoint-connectivity-rdpsshhttp-etc-failures?forum=WAVirtualMachinesforWindows)。
@@ -44,6 +42,7 @@
    * 是否已經有防火牆規則會防止流量正確地流動？
 
 針對正透過站對站 VPN 或 ExpressRoute 連線存取應用程式的用戶端電腦，可能造成問題的主要區域是應用程式和 Azure 虛擬機器。
+
 若要判斷問題的來源並更正，請遵循下列步驟。
 
 ## <a name="step-1-access-application-from-target-vm"></a>步驟 1︰從目標 VM 存取應用程式
@@ -115,7 +114,7 @@
 * 來自 Azure 虛擬機器的輸入應用程式回應流量。
 
 ## <a name="additional-resources"></a>其他資源
-[針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
 
-[疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+[疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md)
 

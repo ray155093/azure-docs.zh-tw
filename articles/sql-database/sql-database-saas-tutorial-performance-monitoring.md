@@ -1,6 +1,6 @@
 ---
-title: "監視 SQL Database SaaS 應用程式的效能 | Microsoft Docs"
-description: "監視及管理 Azure SQL Database 範例 Wingtip Tickets (WTP) 應用程式的效能"
+title: "監視多租用戶 SaaS 應用程式中許多 Azure SQL Database 的效能 | Microsoft Docs"
+description: "監視及管理 Azure SQL Database 範例 Wingtip SaaS 應用程式的效能"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -17,18 +17,18 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: af9511978718af10c97bee6af3a2835c9d2c1ff4
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 54f29cc816d356e22b425f3824ef89800c017e61
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
-# <a name="monitor-performance-of-the-wtp-sample-saas-application"></a>監視 WTP 範例 SaaS 應用程式的效能
+# <a name="monitor-performance-of-the-wingtip-saas-application"></a>監視 Wingtip SaaS 應用程式的效能
 
 在本教學課程中，將示範 SQL Database 和彈性集區的內建監視與警示功能，以及探索 SaaS 應用程式中所使用的數個關鍵效能管理案例。
 
-Wingtip Tickets 應用程式使用單一租用戶資料模型，其中每個場地 (租用戶) 都有各自的資料庫。 與許多 SaaS 應用程式類似，預期的租用戶工作負載模式無法預測且偶爾發生。 換句話說，票證銷售可能會在任何時間發生。 若要利用這種一般資料庫使用模式，租用戶資料庫要部署到彈性資料庫集區中。 彈性集區可透過跨多個資料庫共用資源，來最佳化解決方案的成本。 使用這種類型的模式，請務必監視資料庫和集區資源使用量，以確保合理地跨集區平衡負載。 您也必須確定個別的資料庫擁有足夠的資源，且集區未達到其 [eDTU](sql-database-what-is-a-dtu.md) 限制。 本教學課程將探討監視及管理資料庫與集區的方式，以及如何採取矯正措施以回應工作負載的變化。
+Wingtip SaaS 應用程式使用單一租用戶資料模型，其中每個場地 (租用戶) 都有各自的資料庫。 與許多 SaaS 應用程式類似，預期的租用戶工作負載模式無法預測且偶爾發生。 換句話說，票證銷售可能會在任何時間發生。 若要利用這種一般資料庫使用模式，租用戶資料庫要部署到彈性資料庫集區中。 彈性集區可透過跨多個資料庫共用資源，來最佳化解決方案的成本。 使用這種類型的模式，請務必監視資料庫和集區資源使用量，以確保合理地跨集區平衡負載。 您也必須確定個別的資料庫擁有足夠的資源，且集區未達到其 [eDTU](sql-database-what-is-a-dtu.md) 限制。 本教學課程將探討監視及管理資料庫與集區的方式，以及如何採取矯正措施以回應工作負載的變化。
 
 在本教學課程中，您將了解如何：
 
@@ -42,7 +42,7 @@ Wingtip Tickets 應用程式使用單一租用戶資料模型，其中每個場�
 
 若要完成本教學課程，請確定已完成下列必要條件：
 
-* 已部署 WTP 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 WTP SaaS 應用程式](sql-database-saas-tutorial.md)
+* 已部署 Wingtip SaaS 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
 * 已安裝 Azure PowerShell。 如需詳細資料，請參閱[開始使用 Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps)
 
 ## <a name="introduction-to-saas-performance-management-patterns"></a>SaaS 效能管理模式簡介
@@ -66,7 +66,7 @@ Wingtip Tickets 應用程式使用單一租用戶資料模型，其中每個場�
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 [用於下載 Wingtip SaaS 指令碼的步驟](sql-database-wtp-overview.md#download-the-wingtip-saas-scripts)。
 
 ## <a name="provision-additional-tenants"></a>佈建其他租用戶
 
@@ -80,7 +80,7 @@ Wingtip Tickets 應用程式使用單一租用戶資料模型，其中每個場�
 
 指令碼將在五分鐘內部署 17 個租用戶。
 
-*New-TenantBatch* 指令碼會使用建立租用戶批次之 [Resource Manager](../azure-resource-manager/index.md) 範本的巢狀或連結集合，根據預設會複製類別目錄伺服器上的 **baseTenantDb** 資料庫，以建立新的租用戶資料庫，然後在類別目錄中註冊這些資料庫，最後則使用租用戶名稱和場地類型將它們初始化。 這與 WTP 應用程式佈建新租用戶的方式一致。 針對 *baseTenantDB* 所做的任何變更會套用至之後所佈建的任何新租用戶。 請參閱[結構描述管理教學課程](sql-database-saas-tutorial-schema-management.md)，以了解如何針對「現有」租用戶資料庫 (包括「標準」資料庫) 進行結構描述變更。
+*New-TenantBatch* 指令碼會使用建立租用戶批次之 [Resource Manager](../azure-resource-manager/index.md) 範本的巢狀或連結集合，根據預設會複製類別目錄伺服器上的 **baseTenantDb** 資料庫，以建立新的租用戶資料庫，然後在類別目錄中註冊這些資料庫，最後則使用租用戶名稱和場地類型將它們初始化。 這與應用程式佈建新租用戶的方式一致。 針對 *baseTenantDB* 所做的任何變更會套用至之後所佈建的任何新租用戶。 請參閱[結構描述管理教學課程](sql-database-saas-tutorial-schema-management.md)，以了解如何針對「現有」租用戶資料庫 (包括「標準」資料庫) 進行結構描述變更。
 
 ## <a name="simulate-different-usage-patterns-by-generating-different-load-types"></a>透過產生不同的負載類型來模擬不同的使用模式
 
@@ -168,7 +168,7 @@ Wingtip Tickets 應用程式使用單一租用戶資料模型，其中每個場�
 1. 監視上方圖表上增加的集區 DTU 使用量。 需要花數分鐘讓新的高負載開始作用，但您應該很快會看到集區開始達到 100% 使用率，而隨著負載穩定進入新的模式，它會快速地使集區多載。
 
 
-1. 若要相應增加集區，按一下 [設定集區]
+1. 若要相應增加集區，按一下 [設定集區]****
 1. 調整 [集區 eDTU] 滑桿至 100 (建議您不要設為更高的值，以限制成本)。 請注意，集區中所有資料庫的可用彙總儲存體 (由 [集區 GB] 指示) 如何連結到 eDTU 設定，而且也會增加。 變更集區 eDTU 不會變更每個資料庫設定 (仍然是每個資料庫最高 50 eDTU)。 您可以在 [設定集區] 刀鋒視窗右側看到每個資料庫的設定。
 1. 按一下 [儲存] 以提交要求。 針對「標準」集區，變更通常需要花 3-5 分鐘的時間。
 
@@ -222,7 +222,7 @@ Wingtip Tickets 應用程式使用單一租用戶資料模型，其中每個場�
 
 ## <a name="other-performance-management-patterns"></a>其他效能管理模式
 
-**預先調整** 在您探索如何調整隔離資料庫的練習 6 中，您知道要尋找的資料庫。 如果 Contoso 演藝廳管理已通知 WTP 即將發生的票證銷售，則資料庫可能已預先移出集區。 否則，它可能會需要集區或資料庫上的警示來了解發生的事件。 您不會想要從集區中其他抱怨效能降低的租用戶得知這件事。 而且如果租用戶可以預測需要其他資源多久的時間，您可以設定 Azure 自動化 Runbook 將資料庫移出集區，然後依定義的排程將它重新移回到集區中。
+**預先調整** 在您探索如何調整隔離資料庫的練習 6 中，您知道要尋找的資料庫。 如果 Contoso 演藝廳管理已通知 Wingtips 即將發生的票證銷售，則資料庫可能已預先移出集區。 否則，它可能會需要集區或資料庫上的警示來了解發生的事件。 您不會想要從集區中其他抱怨效能降低的租用戶得知這件事。 而且如果租用戶可以預測需要其他資源多久的時間，您可以設定 Azure 自動化 Runbook 將資料庫移出集區，然後依定義的排程將它重新移回到集區中。
 
 **租用戶自助調整** 因為調整是可以透過管理 API 輕鬆呼叫的工作，您可以輕易地在您的租用戶面向應用程式中建立調整租用戶資料庫的能力，並以 SaaS 服務的功能形式提供。 例如，讓租用戶自行管理相應增加和減少，或許會直接影響其計費！
 
@@ -247,7 +247,7 @@ Wingtip Tickets 應用程式使用單一租用戶資料模型，其中每個場�
 
 ## <a name="additional-resources"></a>其他資源
 
-* [建置在初始 Wingtip Tickets Platform (WTP) 應用程式部署上的其他教學課程](sql-database-wtp-overview.md#sql-database-wtp-saas-tutorials)
+* 其他[以 Wingtip SaaS 應用程式部署為基礎的教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [SQL 彈性集區](sql-database-elastic-pool.md)
 * [Azure 自動化](../automation/automation-intro.md)
 * [Log Analytics](sql-database-saas-tutorial-log-analytics.md) - 設定及使用 Log Analytics 教學課程

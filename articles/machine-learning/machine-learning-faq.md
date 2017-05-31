@@ -13,17 +13,22 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/23/2017
+ms.date: 05/23/2017
 ms.author: garye
-translationtype: Human Translation
-ms.sourcegitcommit: 21d2c20a3ac8dc4fee0680028d6c004c80a3ae38
-ms.openlocfilehash: 2835e4e8be2a11b659118f836d53c84a2c021263
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: bb4d64f799027c9af74fd50ab724449bdede7804
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
 # <a name="azure-machine-learning-frequently-asked-questions-billing-capabilities-limitations-and-support"></a>Azure Machine Learning 常見問題集：計費、功能、限制及支援
 以下是有關 Azure Machine Learning 的一些常見問題和對應解答，而 Azure Machine Learning 是適合透過 Web 服務開發預測性模型和運作方案的雲端服務。 這個常見問題涵蓋如何使用服務的相關問題，包括計費模型、功能、限制及支援。
+
+**是否有您無法在這裡找到的問題？**
+
+Azure Machine Learning 在 MSDN 上有一個論壇，資料科學社群的成員可在其中詢問有關 Azure Machine Learning 的問題。 此論壇由 Azure Machine Learning 團隊控管。 移至 [Azure Machine Learning 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=MachineLearning)，搜尋答案或張貼您自己的新問題。
 
 ## <a name="general-questions"></a>一般問題
 **什麼是 Azure Machine Learning 服務？**

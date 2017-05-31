@@ -17,10 +17,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: a0742a004b618dda304618bca21ae715552c16e6
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 5331f9a7b46f1dd31d4aa246ad9d188b5a5afc19
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 05/12/2017
 
 若要完成本教學課程，請確定符合下列必要條件：
 
-* 已部署 WTP 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 WTP SaaS 應用程式](sql-database-saas-tutorial.md)
+* 已部署 Wingtip SaaS 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
 * 已安裝 Azure PowerShell。 如需詳細資料，請參閱[開始使用 Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps)
 * 已安裝最新版的 SQL Server Management Studio (SSMS)。 [下載並安裝 SSMS](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
 
@@ -47,7 +47,7 @@ SaaS 應用程式的其中一個絕佳機會是使用儲存在雲端的豐富租
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 [用於下載 Wingtip SaaS 指令碼的步驟](sql-database-wtp-overview.md#download-the-wingtip-saas-scripts)。
 
 ## <a name="deploy-a-database-for-tenant-analytics-results"></a>部署租用戶分析結果的資料庫
 
@@ -68,14 +68,14 @@ SaaS 應用程式的其中一個絕佳機會是使用儲存在雲端的豐富租
 
 此指令碼會建立一個作業，以擷取所有租用戶的票證購買資訊。 一旦彙總成單一資料表，您就可以取得有關各租用戶票證購買模式的豐富詳細計量。
 
-1. 開啟 SSMS 並連線到 catalog-\<user\>.database.windows.net 伺服器
-1. 開啟 ...\\Learning Modules\\Operational Analytics\\Tenant Analytics\\TicketPurchasesfromAllTenants.sql
-1. 修改 \<WtpUser\>，使用您在 **sp\_add\_target\_group\_member** 和 **sp\_add\_jobstep** 指令碼上方部署 WTP 應用程式時使用的使用者名稱
-1. 按一下滑鼠右鍵並選取 [連線]，然後連線到 catalog-\<WtpUser\>.database.windows.net 伺服器 (如果您尚未連接)
+1. 開啟 SSMS 並連線到 catalog-&lt;user&gt;.database.windows.net 伺服器
+1. 開啟 ...\\Learning Modules\\Operational Analytics\\Tenant Analytics\\TicketPurchasesfromAllTenants.sql**
+1. 修改 &lt;User&gt;，使用您在 **sp\_add\_target\_group\_member** 和 **sp\_add\_jobstep** 指令碼上方部署 Wingtip SaaS 應用程式時使用的使用者名稱
+1. 按一下滑鼠右鍵並選取 [連線]，然後連線到 catalog-&lt;User&gt;.database.windows.net 伺服器 (如果您尚未連線)
 1. 確定您已連線到 **jobaccount** 資料庫，然後按 **F5** 以執行指令碼
 
 * **sp\_add\_target\_group** 會建立名為 TenantGroup 的目標群組，我們現在需要新增目標成員。
-* **sp\_add\_target\_group\_member** 會新增「伺服器」 目標成員類型，其認為在作業執行時該伺服器內的所有資料庫 (請注意，這是在作業執行時含有租用戶資料庫的 customer1-&lt;WtpUser&gt; 伺服器) 都應該包含在作業中。
+* **sp\_add\_target\_group\_member** 會新增「伺服器」 目標成員類型，其認為在作業執行時該伺服器內的所有資料庫 (請注意，這是在作業執行時含有租用戶資料庫的 customer1-&lt;User&gt; 伺服器) 都應該包含在作業中。
 * **sp\_add\_job** 會建立新的每週排定作業，其名稱為「所有租用戶的票證購買」
 * **sp\_add\_jobstep** 會建立含有 T-SQL 命令文字的作業步驟，以擷取所有租用戶的所有票證購買資訊，並將傳回的結果集複製到名為 AllTicketsPurchasesfromAllTenants 的資料表中
 * 指令碼中的其餘檢視會顯示物件是否存在，以及監視作業執行。 檢閱 [生命週期] 資料行中的狀態值以監視狀態。 一旦成功，便已所有租用戶資料庫和含有參考資料表的其他兩個資料庫上順利完成此作業。
@@ -90,8 +90,8 @@ SaaS 應用程式的其中一個絕佳機會是使用儲存在雲端的豐富租
 
 1. 開啟 SSMS 並連線到 catalog-&lt;User&gt;.database.windows.net 伺服器
 1. 開啟 …\\Learning Modules\\Provision and Catalog\\Operational Analytics\\Tenant Analytics\\Results-TicketPurchasesfromAllTenants.sql 檔案
-1. 修改 &lt;WtpUser&gt;，使用您在指令碼和 **sp\_add\_jobstep** 預存程序中部署 WTP 應用程式時使用的使用者名稱
-1. 按一下滑鼠右鍵並選取 [連線]，然後連線到 catalog-\<WtpUser\>.database.windows.net 伺服器 (如果您尚未連線)
+1. 修改 &lt;User&gt;，使用您在指令碼和 **sp\_add\_jobstep** 預存程序中部署 Wingtip SaaS 應用程式時使用的使用者名稱
+1. 按一下滑鼠右鍵並選取 [連線]，然後連線到 catalog-&lt;User&gt;.database.windows.net 伺服器 (如果您尚未連線)
 1. 確定您已連線到 **tenantanalytics** 資料庫，然後按 **F5** 以執行指令碼
 
 成功執行指令碼應會導致類似的結果︰
@@ -119,5 +119,5 @@ SaaS 應用程式的其中一個絕佳機會是使用儲存在雲端的豐富租
 
 ## <a name="additional-resources"></a>其他資源
 
-* [以初始 Wingtip Tickets Platform (WTP) 應用程式部署為基礎的其他教學課程](sql-database-wtp-overview.md#sql-database-wtp-saas-tutorials)
+* 其他[以 Wingtip SaaS 應用程式為基礎的教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [彈性作業](sql-database-elastic-jobs-overview.md)

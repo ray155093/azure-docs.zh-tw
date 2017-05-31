@@ -3,8 +3,8 @@ title: "透過 .NET SDK 開始使用 Azure Data Lake Analytics | Microsoft Docs"
 description: "了解如何透過 .NET SDK 建立 Data Lake Analytics 帳戶、建立 Data Lake Analytics 工作，以及提交以 U-SQL 撰寫的工作。 "
 services: data-lake-analytics
 documentationcenter: 
-author: edmacauley
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: 1dfcbc3d-235d-4074-bc2a-e96def8298b6
 ms.service: data-lake-analytics
@@ -14,36 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/26/2016
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: 8e092e30c9c4186e4687efeacf9ea1f6b4bf431c
-ms.openlocfilehash: f617d997bc34d39f7635a87c4e5c88b1ebdc0ff8
+ms.translationtype: Human Translation
+ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
+ms.openlocfilehash: cef4219080d58f9f55fb10ce4d96e309b5891735
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/23/2017
 
 
 ---
-# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-net-sdk"></a>教學課程：透過 .NET SDK 開始使用 Azure 資料湖分析
+# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-net-sdk"></a>教學課程：透過 .NET SDK 開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-了解如何使用 Azure .NET SDK 將以 [U-SQL](data-lake-analytics-u-sql-get-started.md) 撰寫的作業提交到 Data Lake Analytics。 如需有關資料湖分析的詳細資訊，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
+了解如何使用 Azure .NET SDK 將以 [U-SQL](data-lake-analytics-u-sql-get-started.md) 撰寫的作業提交到 Data Lake Analytics。 如需有關 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 
-在本教學課程中，您會開發 C# 主控台應用程式來提交 U-SQL 作業，以讀取定位鍵分隔值 (TSV) 檔案，並將該檔案轉換為逗號分隔值 (CSV) 檔案。 若要使用其他支援的工具進行同一個教學課程，請按一下本文最上方的索引標籤。
+在本教學課程中，您會開發 C# 主控台應用程式來提交 U-SQL 作業，以讀取定位鍵分隔值 (TSV) 檔案，並將該檔案轉換為逗號分隔值 (CSV) 檔案。 
 
 ## <a name="prerequisites"></a>必要條件
-開始進行本教學課程之前，您必須具備下列條件：
 
 * **已安裝 Visual Studio 2015、Visual Studio 2013 更新 4，或具有 Visual C++ 的 Visual Studio 2012**。
 * **Microsoft Azure SDK for .NET 2.5 版或更新版本**。  使用 [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來進行安裝。
-* **Azure 資料湖分析帳戶**。 請參閱 [使用 Azure .NET SDK 管理 Data Lake Analytics](data-lake-analytics-manage-use-dotnet-sdk.md)。
+* **Azure Data Lake Analytics 帳戶**。 
 
-## <a name="create-console-application"></a>建立主控台應用程式
-在本教學課程中，您會處理一些搜尋記錄檔。  搜尋記錄檔可以儲存在資料湖存放區或 Azure Blob 儲存體中。 
+## <a name="create-a-c-console-application"></a>建立 C# 主控台應用程式
 
 您可以在公用 Azure Blob 容器中找到搜尋記錄檔範例。 在應用程式中，您會將該檔案下載到您的工作站，然後再將其上傳到您 Data Lake Analytics 帳戶的預設 Data Lake Store 帳戶中。
 
 **若要建立 U-SQL 指令碼**
 
-Data Lake Analytics 作業是以 U-SQL 語言撰寫。 若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
-
-使用下列 U-SQL 指令碼建立 **SampleUSQLScript.txt** 檔案，然後將檔案放在 **C:\temp\** 路徑中。  此路徑會在您於下一個程序建立的 .NET 應用程式中硬式編碼。  
+使用下列 U-SQL 指令碼建立 **SampleUSQLScript.usql** 文字檔案，然後將檔案放在 `C:\temp\` 路徑中。  此路徑會在您於下一個程序建立的 .NET 應用程式中硬式編碼。  
 
     @searchlog =
         EXTRACT UserId          int,
@@ -60,22 +58,9 @@ Data Lake Analytics 作業是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
         TO "/Output/SearchLog-from-Data-Lake.csv"
     USING Outputters.Csv();
 
-此 U-SQL 指令碼會使用 **Extractors.Tsv()** 讀取來源資料檔案，然後使用 **Outputters.Csv()** 建立 csv 檔案。 
+此 U-SQL 指令碼會使用 `Extractors.Tsv()` 讀取來源資料檔案，然後使用 `Outputters.Csv()` 建立 csv 檔案。 
 
-在 C# 程式中，您必須準備 **/Samples/Data/SearchLog.tsv** 檔案及 **/Output/** 資料夾。    
-
-使用儲存在預設資料湖帳戶中檔案的相對路徑，是比較容易的方法。 您也可以使用絕對路徑。  例如 
-
-    adl://<Data LakeStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
-
-您必須使用絕對路徑存取連結儲存體帳戶中的檔案。  儲存在連結 Azure 儲存體帳戶中之檔案的語法是：
-
-    wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
-
-> [!NOTE]
-> 目前沒有任何關於使用 Azure Data Lake 服務的已知問題。  如果範例應用程式已中斷或發生錯誤，您可能需要手動刪除指令碼所建立的 Data Lake Store 和 Data Lake Analytics 帳戶。  如果您不熟悉 Azure 入口網站，[使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md) 指南可協助您開始。       
-> 
-> 
+在 C# 程式中，您必須準備 `/Samples/Data/SearchLog.tsv` 檔案及 `/Output/` 資料夾。    
 
 **若要建立應用程式**
 
@@ -248,15 +233,10 @@ Data Lake Analytics 作業是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
 
 ## <a name="see-also"></a>另請參閱
 * 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
-* 若要了解更複雜的查詢，請參閱 [使用 Azure 資料湖分析來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
-* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
+* 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
+* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
 * 若要了解 U-SQL，請參閱[開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
 * 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
-* 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
+* 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 
 

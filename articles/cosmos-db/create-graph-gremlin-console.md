@@ -1,23 +1,23 @@
 ---
-title: "Azure Cosmos DB 教學課程︰在 Gremlin 主控台中建立、查詢和周遊 | Microsoft Docs"
+title: "Azure Cosmos DB 教學課程︰在Apache TinkerPops Gremlin 主控台中建立、查詢和周遊 | Microsoft Docs"
 description: "Azure Cosmos DB 快速入門，說明如何使用 Azure Cosmos DB 圖形 API建立頂點、邊緣和查詢。"
-services: cosmosdb
+services: cosmos-db
 author: AndrewHoh
 manager: jhubbard
 editor: monicar
 ms.assetid: bf08e031-718a-4a2a-89d6-91e12ff8797d
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: terminal
 ms.topic: hero-article
-ms.date: 05/10/2017
+ms.date: 05/19/2017
 ms.author: anhoh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: fb27ba1a70959ba92fbd021e9e42438081000e45
+ms.sourcegitcommit: 300958a69fc854cb8db02120a383a4cbbfcacd7b
+ms.openlocfilehash: caf3b69b25ccd15322054a0bbf95fc2a5816e00a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/20/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 05/10/2017
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
 
-本快速入門會示範如何使用 Azure 入口網站建立 Azure Cosmos DB 帳戶、資料庫和圖形 (容器)，然後使用 [Gremlin 主控台](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console)來處理圖形 API (預覽) 資料。 在本教學課程中，您將建立和查詢頂點和邊緣、更新頂點屬性、查詢頂點、周遊該圖形，以及刪除頂點。
+本快速入門會示範如何使用 Azure 入口網站建立 Azure Cosmos DB 帳戶、資料庫和圖形 (容器)，然後從 [Apache TinkerPop](http://tinkerpop.apache.org) 使用 [Gremlin 主控台](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console)來處理圖形 API (預覽) 資料。 在本教學課程中，您將建立和查詢頂點和邊緣、更新頂點屬性、查詢頂點、周遊該圖形，以及刪除頂點。
 
 ![Apache Gremlin 主控台中的 Azure Cosmos DB](./media/create-graph-gremlin-console/gremlin-console.png)
 
@@ -41,11 +41,11 @@ Gremlin 主控台是以 Groovy/Java 為基礎並且在 Linux、Mac 和 Windows �
 
 ## <a name="create-a-database-account"></a>建立資料庫帳戶
 
-[!INCLUDE [cosmosdb-create-dbaccount-graph](../../includes/cosmosdb-create-dbaccount-graph.md)]
+[!INCLUDE [cosmos-db-create-dbaccount-graph](../../includes/cosmos-db-create-dbaccount-graph.md)]
 
 ## <a name="add-a-graph"></a>新增圖形
 
-[!INCLUDE [cosmosdb-create-graph](../../includes/cosmosdb-create-graph.md)]
+[!INCLUDE [cosmos-db-create-graph](../../includes/cosmos-db-create-graph.md)]
 
 ## <a id="ConnectAppService"></a>連線到您的應用程式服務
 1. 啟動 Gremlin 主控台之前，請建立或修改 apache-tinkerpop-gremlin-console-3.2.4/conf目錄中的 remote-secure.yaml 組態檔。
@@ -55,8 +55,8 @@ Gremlin 主控台是以 Groovy/Java 為基礎並且在 Linux、Mac 和 Windows �
     ---|---|---
     主機|***.graphs.azure.com|您可以從 Azure 入口網站擷取的圖形服務 URI
     連接埠|443|設為 443
-    使用者名稱|您的使用者名稱|`/dbs/<db>/colls/<coll>` 形式的資源。
-    密碼|您的主要金鑰|Azure Cosmos DB 的主要金鑰
+    使用者名稱|您的使用者名稱**|`/dbs/<db>/colls/<coll>` 形式的資源。
+    密碼|您的主要金鑰**|Azure Cosmos DB 的主要金鑰
     ConnectionPool|{enableSsl: true}|SSL 的連線集區設定
     serializer|{ className:org.apache.tinkerpop.gremlin.<br>driver.ser.GraphSONMessageSerializerV1d0,<br> config: { serializeResultToString: true }}|設為這個值
 
@@ -254,7 +254,7 @@ Gremlin 主控台是以 Groovy/Java 為基礎並且在 Linux、Mac 和 Windows �
 
 ## <a name="review-slas-in-the-azure-portal"></a>在 Azure 入口網站中檢閱 SLA
 
-[!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmosdb-tutorial-review-slas.md)]
+[!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>清除資源
 
@@ -269,4 +269,3 @@ Gremlin 主控台是以 Groovy/Java 為基礎並且在 Linux、Mac 和 Windows �
 
 > [!div class="nextstepaction"]
 > [使用 Gremlin 進行查詢](tutorial-query-graph.md)
-

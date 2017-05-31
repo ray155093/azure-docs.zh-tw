@@ -15,10 +15,10 @@ ms.topic: hero-article
 ms.date: 05/05/2017
 ms.author: cephalin
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 773d616b2a5815158971d63d005fae605450ac98
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 018a46452c13886b9519ed5d2311bc65649c3c69
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -87,27 +87,15 @@ ms.lasthandoff: 05/09/2017
 
 ## <a name="create-an-app-service-plan"></a>建立應用程式服務方案
 
-Azure Web 應用程式也需要「App Service 方案」。 
-
-> [!NOTE]
-> App Service 方案代表用來裝載應用程式的實體資源集合。 所有指派給 App Service 方案的應用程式都會共用它所定義的資源，而讓您節省裝載多個應用程式時的成本。 
->
-> App Service 方案可定義：
->
-> - 區域 (北歐、美國東部、東南亞)
-> - 執行個體大小 (小型、中型、大型)
-> - 級別計數 (一、二或三個執行個體等) 
-> - SKU (免費、共用、基本、標準、進階)
->
->
+[!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
 按一下 [App Service 方案] 旁邊的 [新增]。 
 
 在 [設定 App Service 方案] 對話方塊中，使用下列設定來設定新的 App Service 方案︰
 
 - **App Service 方案**：輸入 **myAppServicePlan**。 
-- **位置**︰選擇 [西歐]，或您喜歡的任何其他區域。
-- **大小**︰選擇 [免費]，或您喜歡的任何其他[定價層](https://azure.microsoft.com/pricing/details/app-service/)。
+- **位置**︰選擇 [西歐]，或您附近的區域。
+- **大小**︰選擇 [免費] 或其他[定價層](https://azure.microsoft.com/pricing/details/app-service/)。
 
 按一下 [確定] 。
 

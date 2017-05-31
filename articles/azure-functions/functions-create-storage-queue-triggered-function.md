@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 04/25/2017
 ms.author: glenga
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: e6cf8797d08609f847e33f88e78fbcd3f3743a08
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 42fabff59577db5feb98e5c03d7a2b6d3d2461c3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -29,15 +29,11 @@ ms.lasthandoff: 05/12/2017
 
 ![檢視記錄中的訊息。](./media/functions-create-storage-queue-triggered-function/function-app-in-portal-editor.png)
 
-完成本主題中的所有步驟需要不到 5 分鐘的時間。
-
 ## <a name="prerequisites"></a>必要條件
-
-在執行此範例之前，您必須執行下列項目︰
 
 - 下載並安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
+- 您需要 Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 

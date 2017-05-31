@@ -12,13 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/02/2017
+ms.date: 05/23/2017
 ms.author: magoedte
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 03a6c1f20632691c08f5de4afe74eacc6f79608e
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: ff8d911750a551f4a099fcba13841c98881104a9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -51,7 +51,11 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 在更新部署中指定的日期和時間，目標電腦會以平行方式執行部署。  系統會先執行掃描，以確認安裝仍然需要並加以安裝。  請務必注意，對於 WSUS 用戶端電腦而言，如果未在 WSUS 中核准更新，則更新部署會失敗。  套用更新的結果會轉送給 OMS 在儀表板中進行處理及彙總，或藉以搜尋事件。     
 
 ## <a name="prerequisites"></a>必要條件
-* 此解決方案支援針對 Windows Server 2008 和更新版本執行更新評估，以及針對 Windows Server 2012 和更新版本執行更新部署。  不支援「伺服器核心」和「Nano 伺服器」安裝選項。
+* 此解決方案支援針對 Windows Server 2008 和更新版本執行更新評估，以及針對 Windows Server 2008 R2 和更新版本執行更新部署。  不支援「伺服器核心」和「Nano 伺服器」安裝選項。
+
+    > [!NOTE]
+    > 支援將更新部署到 Windows Server 2008 R2 需要 .NET Framework 4.5 和 WMF 5.0 或更新版本。
+    >  
 * 不支援 Windows 用戶端作業系統。  
 * Windows 代理程式必須設定為可與 Windows Server Update Services (WSUS) 伺服器通訊，或必須能夠存取 Microsoft Update。  
   
@@ -205,7 +209,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 | 屬性 | 說明 |
 | --- | --- |
-| 類型 |更新 |
+| 類型 |更新** |
 | SourceSystem |核准之更新安裝的來源。<br>可能的值包括：<br>- Microsoft Update<br>- Windows Update<br>- SCCM<br>- Linux 伺服器 (擷取自套件管理員) |
 | 已核准 |指定是否已核准安裝更新。<br> 在 Linux 伺服器中，此屬性目前是選擇性的，因為其修補並非由 OMS 負責管理。 |
 | Windows 的分類 |更新的分類。<br>可能的值包括：<br>- 應用程式<br>- 重大更新<br>- 定義更新<br>- 功能套件<br>- 安全性更新<br>- Service Pack<br>- 更新彙總套件<br>- 更新 |
