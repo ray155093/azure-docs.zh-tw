@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/06/2017
 ms.author: edmaca, yanacai
-translationtype: Human Translation
-ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
-ms.openlocfilehash: c26ac89bd7ef494331ba309aacf87de03506ac4c
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 9be337c3e04959a1ad2152c989c8532383362521
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -41,7 +42,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
     (選擇性) 您可以完成[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md) 一文中的下列兩個小節，建立您的帳戶並以手動方式上傳資料：
 
     1. [建立 Azure Data Lake Analytics 帳戶](data-lake-analytics-get-started-portal.md#create-data-lake-analytics-account)。
-    2. [將 SearchLog.tsv 上傳到預設 Data Lake 儲存體帳戶](data-lake-analytics-get-started-portal.md#prepare-source-data)。
+    2. [將 SearchLog.tsv 上傳到預設 Data Lake 儲存體帳戶](data-lake-analytics-get-started-portal.md)。
 
 ## <a name="connect-to-azure"></a>連接到 Azure
 **連線至 Data Lake Analytics**
@@ -198,7 +199,7 @@ Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
 
 ## <a name="run-u-sql-locally"></a>在本機執行 U-SQL
 
-您可以使用 Azure Data Lake Tools for Visual Studio 和 Azure Data Lake U-SQL SDK，和在 Azure Data Lake 服務中一樣地在工作站上執行 U-SQL 作業。 這兩個本機執行功能可節省您對 U-SQL 作業進行測試和偵錯的時間。 
+您可以使用 Azure Data Lake Tools for Visual Studio 和 Azure Data Lake U-SQL SDK，和在 Azure Data Lake 服務中一樣地在工作站上執行 U-SQL 作業。 這兩個本機執行功能可節省您對 U-SQL 作業進行測試和偵錯的時間。
 
 * [使用本機執行和 Azure Data Lake U-SQL SDK 對 U-SQL 作業進行測試和偵錯](data-lake-analytics-data-lake-tools-local-run.md)
 

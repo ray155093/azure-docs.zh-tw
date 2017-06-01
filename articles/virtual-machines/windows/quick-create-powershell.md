@@ -15,12 +15,12 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 05/02/2017
 ms.author: nepeters
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 7e00a1fd047cd38b8fb8a7d9e2e03fd203dbaaab
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: dacea9ef9b502ecd264dd4fcd1e8f4ef23f48c87
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
-
+ms.lasthandoff: 06/01/2017
 
 ---
 
@@ -145,7 +145,7 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
 ![IIS 預設網站](./media/quick-create-powershell/default-iis-website.png) 
 
-## <a name="delete-virtual-machine"></a>刪除虛擬機器
+## <a name="clean-up-resources"></a>清除資源
 
 若不再需要，您可以使用 [Remove-AzureRmResourceGroup](/powershell/module/azurerm.resources/remove-azurermresourcegroup) 命令來移除資源群組、VM 和所有相關資源。
 

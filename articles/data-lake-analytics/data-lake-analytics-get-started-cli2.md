@@ -14,10 +14,10 @@ ms.workload: big-data
 ms.date: 04/06/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 25278e621155e7c90b5bb870d08793d285f4edff
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 3f957bda2c38bdeac3ee6b0dbd94fac497c8f7cf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -56,15 +56,15 @@ az account set --subscription <subscription id>
 您需要 Data Lake Analytics 帳戶，才能執行作業。 若要建立 Data Lake Analytics 帳戶，您必須指定下列項目：
 
 * **Azure 資源群組**。 Data Lake Analytics 帳戶必須建立在 Azure 資源群組內。 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 可讓您將應用程式中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除應用程式的所有資源。  
-  
+
     若要列出訂用帳戶下的現有資源群組：
-  
+
     ```azurecli
-    az group list 
+    az group list
     ```
 
     若要建立新的資源群組：
-  
+
     ```azurecli
     az group create --name "<Resource Group Name>" --location "<Azure Location>"
     ```
@@ -72,15 +72,15 @@ az account set --subscription <subscription id>
 * **Data Lake Analytics 帳戶名稱**。 每一個 Data Lake Analytics 帳戶都有名稱。
 * **位置**。 使用其中一個支援 Data Lake Analytics 的 Azure 資料中心。
 * **預設 Data Lake Store 帳戶**：每個 Data Lake Analytics 帳戶都有一個預設的 Data Lake Store 帳戶。
-  
+
     若要列出現有的 Data Lake Store 帳戶：
 
     ```azurecli
     az dls account list
     ```
-  
+
     建立新的 Data Lake Store 帳戶：
-  
+
     ```azurecli
     az dls account create --account "<Data Lake Store Account Name>" --resource-group "<Resource Group Name>"
     ```
@@ -99,9 +99,9 @@ az dla account show --account "<Data Lake Analytics Account Name>"
 ```
 
 ## <a name="upload-data-to-data-lake-store"></a>將資料上傳至 Data Lake Store
-在本教學課程中，您會處理一些搜尋記錄檔。  搜尋記錄檔可以儲存在 Data Lake Store 或 Azure Blob 儲存體中。 
+在本教學課程中，您會處理一些搜尋記錄檔。  搜尋記錄檔可以儲存在 Data Lake Store 或 Azure Blob 儲存體中。
 
-Azure 入口網站會提供使用者介面，可將範例資料檔案複製到預設的 Data Lake Store 存放區帳戶，其中包括搜尋記錄檔案。 若要將資料上傳至預設 Data Lake Store 帳戶，請參閱 [準備來源資料](data-lake-analytics-get-started-portal.md#prepare-source-data) 。
+Azure 入口網站會提供使用者介面，可將範例資料檔案複製到預設的 Data Lake Store 存放區帳戶，其中包括搜尋記錄檔案。 若要將資料上傳至預設 Data Lake Store 帳戶，請參閱 [準備來源資料](data-lake-analytics-get-started-portal.md) 。
 
 若要使用 CLI 2.0 上傳檔案，請使用下列命令：
 
@@ -118,7 +118,7 @@ Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
 **建立 Data Lake Analytics 工作指令碼**
 
 使用下列 U-SQL 指令碼建立文字檔，並將該檔案儲存到您的工作站：
-  
+
     @searchlog =
         EXTRACT UserId          int,
                 Start           DateTime,
@@ -133,8 +133,8 @@ Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
     OUTPUT @searchlog   
         TO "/Output/SearchLog-from-Data-Lake.csv"
     USING Outputters.Csv();
-  
-此 U-SQL 指令碼會使用 **Extractors.Tsv()** 讀取來源資料檔案，然後使用 **Outputters.Csv()** 建立 csv 檔案。 
+
+此 U-SQL 指令碼會使用 **Extractors.Tsv()** 讀取來源資料檔案，然後使用 **Outputters.Csv()** 建立 csv 檔案。
 
 除非您將來源檔案複製到其他位置，否則請勿修改這兩個路徑。  Data Lake Analytics 將建立輸出資料夾 (若尚未建立)。
 
@@ -145,11 +145,11 @@ Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
 您必須使用絕對路徑存取連結儲存體帳戶中的檔案。  儲存在連結 Azure 儲存體帳戶中之檔案的語法是：
 
     wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
-  
+
   > [!NOTE]
   > 目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 容器。      
-  > 
-  > 
+  >
+  >
 
 **提交作業**
 
@@ -184,7 +184,7 @@ az dla job cancel --account "<Data Lake Analytics Account Name>" --job-identity 
 
 ```azurecli
 az dls fs list --account "<Data Lake Store Account Name>" --source-path "/Output" --destination-path "<Destintion>"
-az dls fs preview --account "<Data Lake Store Account Name>" --path "/Output/SearchLog-from-Data-Lake.csv" 
+az dls fs preview --account "<Data Lake Store Account Name>" --path "/Output/SearchLog-from-Data-Lake.csv"
 az dls fs preview --account "<Data Lake Store Account Name>" --path "/Output/SearchLog-from-Data-Lake.csv" --length 128 --offset 0
 az dls fs downlod --account "<Data Lake Store Account Name>" --source-path "/Output/SearchLog-from-Data-Lake.csv" --destintion-path "<Destination Path and File Name>"
 ```
@@ -205,5 +205,4 @@ az dls fs downlod --account "myadlsaccount" --source-path "/Output/SearchLog-fro
 * 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 * 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
 * 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
-
 

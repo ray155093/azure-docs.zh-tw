@@ -1,13 +1,13 @@
 ---
 title: "使用 Node.js 將 MongoDB 應用程式連線至 Azure Cosmos DB | Microsoft Docs"
 description: "了解如何將現有的 Node.js MongoDB 應用程式連線至 Azure Cosmos DB"
-services: cosmosdb
+services: cosmos-db
 documentationcenter: 
 author: mimig1
 manager: jhubbard
 editor: 
 ms.assetid: 
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.custom: quick start connect
 ms.workload: 
 ms.tgt_pltfrm: na
@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 0e5657e4d110af095c934431cb6e3bf8824f791d
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: bfdf42ef717c090bffb89e9f276a135c58b1884f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/10/2017
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
 
-本快速入門示範如何使用以 Node.js 撰寫的現有 [MongoDB](../documentdb/documentdb-protocol-mongodb.md) 應用程式，並將它連線到可支援 MongoDB 用戶端連線的 Azure Cosmos DB 資料庫。 換句話說，您的 Node.js 應用程式只知道它使用 MongoDB API 連線到資料庫。 對於資料儲存在 Azure Cosmos DB 中的應用程式而言是透明的。
+本快速入門示範如何使用以 Node.js 撰寫的現有 [MongoDB](mongodb-introduction.md) 應用程式，並將它連線到可支援 MongoDB 用戶端連線的 Azure Cosmos DB 資料庫。 換句話說，您的 Node.js 應用程式只知道它使用 MongoDB API 連線到資料庫。 對於資料儲存在 Azure Cosmos DB 中的應用程式而言是透明的。
 
 完成之後，您的 MEAN 應用程式 (MongoDB、Express、AngularJS 及 Node.js) 將會在 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) 上執行。 
 
@@ -137,7 +137,7 @@ DB/databaseAccounts/<cosmosdb_name>",
 
 ## <a name="retrieve-the-key"></a>擷取金鑰
 
-若要連線至 Azure Cosmos DB 資料庫，您需要資料庫金鑰。 使用 [az documentdb list-keys](/cli/azure/documentdb#list-keys) 命令來擷取主索引鍵。
+若要連線至 Azure Cosmos DB 資料庫，您需要資料庫金鑰。 使用 [az cosmosdb list-keys](/cli/azure/cosmosdb#list-keys) 命令來擷取主要金鑰。
 
 ```azurecli
 az cosmosdb list-keys --name <cosmosdb_name> --resource-group myResourceGroup
@@ -174,7 +174,7 @@ module.exports = {
 ```
 
 > [!NOTE] 
-> `ssl=true` 選項很重要，因為 [Azure Cosmos DB 需要 SSL](../documentdb/documentdb-connect-mongodb-account.md#connection-string-requirements)。 
+> `ssl=true` 選項很重要，因為 [Azure Cosmos DB 需要 SSL](connect-mongodb-account.md#connection-string-requirements)。 
 >
 >
 
@@ -239,5 +239,5 @@ git commit -m "configured MongoDB connection string"
 在本快速入門中，您已了解如何建立 Azure Cosmos DB 帳戶，以及如何使用 [資料總管] 建立 MongoDB 集合。 您現在可以將 MongoDB 資料移轉到 Azure Cosmos DB。  
 
 > [!div class="nextstepaction"]
-> [將 MongoDB 資料匯入到 Azure Cosmos DB](../documentdb/documentdb-mongodb-migrate.md)
+> [將 MongoDB 資料匯入到 Azure Cosmos DB](mongodb-migrate.md)
 

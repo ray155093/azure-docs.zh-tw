@@ -16,10 +16,10 @@ ms.custom: overview
 ms.date: 2/28/2017
 ms.author: jrj;barbkess
 ms.translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: fd35b0e5c57e47c5e79fe926f24fb21089cbf89a
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 70e0cb62ff9da5486e956a59a110e12093e90f5d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/18/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -144,7 +144,7 @@ SQL 資料倉儲提供產品層級的服務等級協定 (SLA) 做為 Microsoft O
 <!--MSDN references-->
 
 <!--Other Web references-->
-[客戶成功案例]: https://customers.microsoft.com/search?sq=&ff=story_products_services%26%3EAzure%2FAzure%2FAzure%20SQL%20Data%20Warehouse%26%26story_product_families%26%3EAzure%2FAzure%26%26story_product_categories%26%3EAzure&p=0
+[客戶成功案例]: https://azure.microsoft.com/en-us/case-studies/?service=sql-data-warehouse
 [部落格]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/
 [客戶諮詢小組部落格]: https://blogs.msdn.microsoft.com/sqlcat/tag/sql-dw/
 [功能要求]: https://feedback.azure.com/forums/307516-sql-data-warehouse
