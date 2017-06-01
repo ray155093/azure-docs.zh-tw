@@ -14,14 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
 ms.openlocfilehash: ec1c54c8520170cd19095bf8d752c79c2fd812d8
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/15/2017
 
 
 ---
 # <a name="review-the-dashboard-monitor-scale-configure-and-hybrid-connection-tabs"></a>檢閱儀表板、監視器、調整、設定和混合式連線索引標籤
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 在您建立 BizTalk 服務和部署應用程式之後，您可以變更某些 BizTalk 服務設定和監視應用程式效能。 
 
 當您開啟 Azure 傳統入口網站時，會自動進入 [ **所有項目** ] 索引標籤。 若要檢視 BizTalk 服務，請在 [所有項目] 索引標籤中選取 BizTalk 服務，或選取 [BIZTALK 服務] 索引標籤，然後選取您的 BizTalk 服務名稱。

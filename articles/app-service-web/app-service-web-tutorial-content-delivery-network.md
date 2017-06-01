@@ -1,13 +1,15 @@
 ---
 title: "將內容傳遞網路 (CDN) 新增至 Azure App Service | Microsoft Docs"
 description: "將內容傳遞網路 (CDN) 新增至 Azure App Service，以從您在世界各地的客戶附近的伺服器快取和傳遞靜態檔案。"
-services: app-service
+services: app-service\web
 author: syntaxc4
 ms.author: cfowler
 ms.date: 05/01/2017
-ms.topic: hero-article
+ms.topic: article
 ms.service: app-service-web
 manager: erikre
+ms.workload: web
+ms.custom: mvc
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
 ms.openlocfilehash: 7208abc0e6eaa9067c5bb36a09e1bfd276fe0b0c

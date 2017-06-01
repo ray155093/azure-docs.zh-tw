@@ -14,13 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2016
 ms.author: deonhe
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 1013419f9283c3e81a6a6e8ed56a34d6ee5937ea
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
 # <a name="administration-and-development-task-list-in-biztalk-services"></a>BizTalk 服務的管理與開發工作清單
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 ## <a name="getting-started"></a>開始使用
 使用「Microsoft Azure BizTalk 服務」時，應考量數項內部部署與雲端架構元件。 開始操作前，請考量下列處理流程：  
 
@@ -53,10 +58,5 @@ ms.openlocfilehash: 1013419f9283c3e81a6a6e8ed56a34d6ee5937ea
 [學習和建立訊息對應與轉換](https://msdn.microsoft.com/library/azure/hh689905.aspx)  
 [使用 BizTalk 配接器服務 (BAS)](https://msdn.microsoft.com/library/azure/hh689889.aspx)  
 [Azure BizTalk 服務](http://go.microsoft.com/fwlink/p/?LinkID=303664)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

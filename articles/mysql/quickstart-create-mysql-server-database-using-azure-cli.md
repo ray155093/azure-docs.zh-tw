@@ -51,7 +51,7 @@ az group create --name mycliresource --location westus
 下列範例會在資源群組 `mycliresource` 的 `westus` 中建立名稱為 `mycliserver` 的「適用於 MySQL 的 Azure 資料庫」伺服器。 此伺服器具有一個名為 `myadmin` 且密碼為 `Password01!` 的系統管理員登入。 建立的伺服器為 [基本] 效能層級，並有 **50** 個計算單位在伺服器中的所有資料庫之間共用。 視應用程式需求而定，您可以相應增加或減少計算和儲存體。
 
 ```azurecli
-az mysql server create --resource-group mycliresource --name mycliserver--location westus --user myadmin --password Password01! --performance-tier Basic --compute-units 50
+az mysql server create --resource-group mycliresource --name mycliserver --location westus --admin-user myadmin --admin-password Password01! --performance-tier Basic --compute-units 50
 ```
 
 ![使用 Azure CLI 建立 Azure Database for MySQL 伺服器](./media/quickstart-create-mysql-server-database-using-azure-cli/3_az-mysq-server-create.png)
