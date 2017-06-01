@@ -11,13 +11,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/20/2017
+ms.date: 05/24/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 35264f1ec5df5a3e171f7631e0d3b46bf9c0b8e7
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 21c42a747a08c5386c65d10190baf0054a7adef8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -48,21 +49,24 @@ Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-ana
 ## <a name="saved-searches"></a>儲存的搜尋
 在解決方案中包含[儲存的搜尋](../log-analytics/log-analytics-log-searches.md)，可讓使用者查詢您解決方案所收集的資料。  儲存的搜尋將出現在 OMS 入口網站中的 [我的最愛] 下方，以及 Azure 入口網站中 [儲存的搜尋] 下方。  每個警示也會需要儲存的搜尋。   
 
-[Log Analytics 儲存的搜尋](../log-analytics/log-analytics-log-searches.md)資源都具有 `Microsoft.OperationalInsights/workspaces/savedSearches` 類型，並具備下列結構。 
+[Log Analytics 儲存的搜尋](../log-analytics/log-analytics-log-searches.md)資源都具有 `Microsoft.OperationalInsights/workspaces/savedSearches` 類型，並具備下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
 
     {
-        "name": "<name-of-savedsearch>"
+        "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearch').Name)]",
         "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
-        "apiVersion": "<api-version-of-resource>",
-        "dependsOn": []
-        "tags": {},
+        "apiVersion": "[variables('LogAnalyticsApiVersion')]",
+        "dependsOn": [
+        ],
+        "tags": { },
         "properties": {
             "etag": "*",
-            "query": "<query-to-run>",
-            "displayName": "<saved-search-display-name>",
-            "category": ""<saved-search-category>"
+            "query": "[variables('SavedSearch').Query]",
+            "displayName": "[variables('SavedSearch').DisplayName]",
+            "category": "[variables('SavedSearch').Category]"
         }
     }
+
+
 
 下表說明儲存的搜尋的每個屬性。 
 
@@ -90,22 +94,25 @@ Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-ana
 
 ### <a name="schedule-resource"></a>排程資源
 
-儲存的搜尋可以有一或多個排程，其中每個排程均代表不同的警示規則。 排程會定義搜尋的執行頻率，以及擷取資料的時間間隔。  排程資源具有 `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/` 類型，並具備下列結構。 
+儲存的搜尋可以有一或多個排程，其中每個排程均代表不同的警示規則。 排程會定義搜尋的執行頻率，以及擷取資料的時間間隔。  排程資源具有 `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/` 類型，並具備下列結構。 這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+
 
     {
-      "name": "<name-of-schedule-resource>",
-      "type": "Microsoft.OperationalInsights/workspaces/savedSearches/schedules/",
-      "apiVersion": "<api-version-of-resource>",
-      "dependsOn": [
-        "<name-of-saved-search>"
-      ],
-      "properties": {  
-        "etag": "*",               
-        "interval": <schedule-interval-in-minutes>,
-        "queryTimeSpan": <query-timespan-in-minutes>,
-        "enabled": <schedule-enabled>       
-      }
+        "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearch').Name, '/', variables('Schedule').Name)]",
+        "type": "Microsoft.OperationalInsights/workspaces/savedSearches/schedules/",
+        "apiVersion": "[variables('LogAnalyticsApiVersion')]",
+        "dependsOn": [
+            "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'), '/savedSearches/', variables('SavedSearch').Name)]"
+        ],
+        "properties": {
+            "etag": "*",
+            "interval": "[variables('Schedule').Interval]",
+            "queryTimeSpan": "[variables('Schedule').TimeSpan]",
+            "enabled": "[variables('Schedule').Enabled]"
+        }
     }
+
+
 
 下表會說明排程資源的屬性。
 
@@ -127,43 +134,41 @@ Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-ana
 
 每個排程都會有一個**警示**動作。  這會定義警示的詳細資料，以及選擇性地定義通知和修復動作的詳細資料。  通知會將電子郵件傳送到一或多個地址。  修復會在 Azure 自動化中啟動 Runbook，以嘗試修復偵測到的問題。
 
-警示動作具備下列結構。
+警示動作具備下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+
+
 
     {
-        "name": "<name-of-the-action>",
+        "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearch').Name, '/', variables('Schedule').Name, '/', variables('Alert').Name)]",
         "type": "Microsoft.OperationalInsights/workspaces/savedSearches/schedules/actions",
-        "apiVersion": "<api-version-of-resource>",
+        "apiVersion": "[variables('LogAnalyticsApiVersion')]",
         "dependsOn": [
-            <name-of-schedule>
+            "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'), '/savedSearches/', variables('SavedSearch').Name, '/schedules/', variables('Schedule').Name)]"
         ],
         "properties": {
             "etag": "*",
             "type": "Alert",
-            "name": "<display-name-of-alert>",
-            "description": "<description-of-alert>",
-            "severity": "<severity-of-alert>",
+            "name": "[variables('Alert').Name]",
+            "description": "[variables('Alert').Description]",
+            "severity": "[variables('Alert').Severity]",
             "threshold": {
-                "operator": "<threshold-operator>",
-                "value": "<threshold-value>"
+                "operator": "[variables('Alert').Threshold.Operator]",
+                "value": "[variables('Alert').Threshold.Value]",
                 "metricsTrigger": {
-                    "triggerCondition": "<trigger-condition>",
-                    "operator": "<trigger-operator>",
-                    "value": "<trigger-value>"
+                    "triggerCondition": "[variables('Alert').Threshold.Trigger.Condition]",
+                    "operator": "[variables('Alert').Trigger.Operator]",
+                    "value": "[variables('Alert').Trigger.Value]"
                 },
-            },
-            "throttling": {
-                "durationInMinutes": "<throttling-duration-in-minutes>"
             },
             "emailNotification": {
                 "recipients": [
-                    <mail-recipients>
+                    "[variables('Alert').Recipients]"
                 ],
-                "subject": "<mail-subject>",
-                "attachment": "None"
+                "subject": "[variables('Alert').Subject]"
             },
             "remediation": {
-                "runbookName": "<name-of-runbook>",
-                "webhookUri": "<runbook-uri>"
+                "runbookName": "[variables('Alert').Remedition.RunbookName]",
+                "webhookUri": "[variables('Alert').Remedition.WebhookUri]"
             }
         }
     }
@@ -232,20 +237,19 @@ Webhook 動作會呼叫 URL 並選擇性地提供要傳送的承載，以啟動�
 如果您的警示會呼叫 webhook，則除了**警示**動作資源之外，還需要一種 **Webhook** 類型的動作資源。  
 
     {
-        "name": "<name-of-the-action>",
-        "type": "Microsoft.OperationalInsights/workspaces/savedSearches/schedules/actions",
-        "apiVersion": "<api-version-of-resource>",
-        "dependsOn": [
-            <name-of-schedule>
-            <name-of-alert-action>
-        ],
-        "properties": {
-            "etag": "*",
-            "type": "Webhook",
-            "name": "<display-name-of-action>",
-            "severity": "<severity-of-alert>",
-            "customPayload": "<payload-to-send>"
-        }
+      "name": "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearch').Name, '/', variables('Schedule').Name, '/', variables('Webhook').Name)]",
+      "type": "Microsoft.OperationalInsights/workspaces/savedSearches/schedules/actions/",
+      "apiVersion": "[variables('LogAnalyticsApiVersion')]",
+      "dependsOn": [
+            "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'), '/savedSearches/', variables('SavedSearch').Name, '/schedules/', variables('Schedule').Name)]"
+      ],
+      "properties": {
+        "etag": "*",
+        "type": "[variables('Alert').Webhook.Type]",
+        "name": "[variables('Alert').Webhook.Name]",
+        "webhookUri": "[variables('Alert').Webhook.webhookUri]",
+        "customPayload": "[variables('Alert').Webhook.CustomPayLoad]"
+      }
     }
 
 下表會說明 Webhook 動作資源的屬性。

@@ -16,10 +16,11 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: cynthn
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 9da3cf830857211fe414f55e250e222b9d17438b
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 098904d8b5262d8a19d1c10003e0bcaa668ef2dc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -42,7 +43,7 @@ ms.lasthandoff: 03/31/2017
 |----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | 您可能想要將現有的 AWS EC2 執行個體移轉至 Azure 受控磁碟                                     | [從 Amazon Web Services (AWS) 移轉至 Azure 受控磁碟](aws-to-azure.md)                           |
 | 您想要將來自 AWS 和其他虛擬化平台的 VM 做為映像來建立多個 Azure VM。 | [將一般化 VHD 上傳至 Azure，並使用受控磁碟建立新的 VM](upload-generalized-managed.md) |
-| 您想要在 Azure 中重新建立唯一自訂的 VM。                                                      | [將特製化 VHD 上傳至 Azure，並使用受控磁碟建立新的 VM](upload-specialized.md)         |
+| 您想要在 Azure 中重新建立唯一自訂的 VM。                                                      | [將特製化 VHD 上傳至 Azure，並使用受控磁碟建立新的 VM](create-vm-specialized.md)         |
 
 
 ## <a name="overview-of-managed-disks"></a>受控磁碟概觀

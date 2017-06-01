@@ -14,13 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: c4a8ea0612ab4792f2fccb2295bdf365b742111d
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: c0c83361f94ffd9c30d7fcc551ff4b85ad7d6fa5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
 # <a name="biztalk-services-troubleshoot-using-operation-logs"></a>BizTalk 服務：使用作業記錄檔進行疑難排解
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 ## <a name="what-are-the-operation-logs"></a>什麼是作業記錄檔
 「作業記錄檔」是 Azure 傳統入口網站提供的一個管理服務功能，可讓您檢視在 Azure 服務上執行的作業 (包括 BizTalk 服務) 的歷程記錄檔。 它可讓您檢視與 BizTalk 訂用帳戶的管理作業相關歷程資料，最遠可回溯 180 天。
 
@@ -36,7 +41,7 @@ ms.openlocfilehash: c4a8ea0612ab4792f2fccb2295bdf365b742111d
 3. 選取核取記號以檢視篩選清單。 下圖顯示 testbiztalkservice 的相關活動： ![檢視作業記錄檔][ViewLogs] 
 4. 若要檢視特定作業的詳細資訊，請選取資料列，然後按一下底部工作列中的 [ **詳細資料** ]。
 
-## <a name="a-namebizopsaoperations-tracked-using-azure-management-services"></a><a name="bizops"></a>使用 Azure 管理服務進行追蹤的作業
+## <a name="bizops"></a>使用 Azure 管理服務進行追蹤的作業
 下表列出可使用 Azure 管理服務進行追蹤的作業：
 
 | 作業名稱 | 工作 |
@@ -69,10 +74,5 @@ ms.openlocfilehash: c4a8ea0612ab4792f2fccb2295bdf365b742111d
 * [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 [ViewLogs]: ./media/biztalk-troubleshoot-using-ops-logs/Operation-Logs.png
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

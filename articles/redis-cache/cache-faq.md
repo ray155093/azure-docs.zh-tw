@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 04/27/2017
+ms.date: 05/25/2017
 ms.author: sdanie
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: cbd764b3c6ce912c825aa2756ac6f35c23d047bf
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: eeddc0da23192a0082f2fcddbb0cc5f3e4a72074
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -76,8 +77,6 @@ ms.lasthandoff: 04/26/2017
 本節的常見問題集涵蓋常見的監視和疑難排解問題。 如需監視 Azure Redis 快取執行個體和進行疑難排解的詳細資訊，請參閱[如何監視 Azure Redis 快取](cache-how-to-monitor.md)和[如何針對 Azure Redis 快取進行疑難排解](cache-how-to-troubleshoot.md)。
 
 * [如何監視快取的健全狀況和效能？](#how-do-i-monitor-the-health-and-performance-of-my-cache)
-* [我的快取診斷儲存體帳戶設定已變更，發生了什麼事？](#my-cache-diagnostics-storage-account-settings-changed-what-happened)
-* [為什麼會針對某些新的快取啟用診斷，而不會針對其他快取啟用診斷？](#why-are-diagnostics-enabled-for-some-new-caches-but-not-others)
 * [為什麼看到逾時？](#why-am-i-seeing-timeouts)
 * [我的用戶端為什麼中斷與快取的連線？](#why-was-my-client-disconnected-from-the-cache)
 
@@ -427,12 +426,6 @@ Redis 快取**資源功能表**也包含數個工具，可監控快取並進行�
 * **新增支援要求** 提供選項來提出快取的支援要求。
 
 這些工具可讓您監視 Azure Redis 快取執行個體的健全狀況，並協助您管理快取應用程式。 如需詳細資訊，請參閱[如何設定 Azure Redis 快取](cache-configure.md)的＜支援和疑難排解設定＞一節。
-
-### <a name="my-cache-diagnostics-storage-account-settings-changed-what-happened"></a>我的快取診斷儲存體帳戶設定已變更，發生了什麼事？
-在相同區域和訂用帳戶中，快取會共用診斷儲存體設定，當組態變更時 (啟用/停用診斷或變更儲存體帳戶)，會套用至訂用帳戶中所有位於該區域的快取。 如果適用於快取的診斷設定已變更，請進行檢查，以查看相同訂用帳戶與區域中其他快取的診斷設定是否已變更。 有一個檢查方法是，針對 `Write DiagnosticSettings` 事件檢視快取的稽核記錄檔。 如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../azure-resource-manager/resource-group-audit.md)。 如需有關監視 Azure Redis 快取事件的詳細資訊，請參閱 [作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
-
-### <a name="why-are-diagnostics-enabled-for-some-new-caches-but-not-others"></a>為什麼會針對某些新的快取啟用診斷，而不會針對其他快取啟用診斷？
-在相同區域和訂用帳戶中，快取會共用相同的診斷儲存體設定。 如果有其他快取已啟用診斷，而您在與該快取相同的區域和訂用帳戶中建立新快取，則在新快取中會使用相同設定來啟用診斷。
 
 <a name="cache-timeouts"></a>
 

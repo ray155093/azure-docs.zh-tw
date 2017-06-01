@@ -13,24 +13,26 @@ ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
-ms.date: 05/07/2017
-ms.author: meetb;carlrab;sstein
+ms.date: 05/24/2017
+ms.author: meetb
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 2e2138b88bd15f8c3e86aba8593f684ce0dc8b80
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 5fae11119500fd3be3af3e573d45f6cc5880e037
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
-
+ms.lasthandoff: 05/26/2017
 
 ---
 # <a name="azure-sql-database-use-python-to-connect-and-query-data"></a>Azure SQL Database︰使用 Python 來連接及查詢資料
 
  此快速入門示範如何使用 [Python](https://python.org) 來連線至 Azure SQL Database，然後從 Mac OS、Ubuntu Linux 和 Windows 平台使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
+## <a name="prerequisites"></a>必要條件
+
 本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
+- [建立 DB - PowerShell](sql-database-get-started-powershell.md)
 
 ## <a name="install-the-python-and-database-communication-libraries"></a>安裝 Python 與資料庫通訊程式庫
 

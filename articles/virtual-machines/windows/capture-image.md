@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/15/2017
 ms.author: cynthn
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 7316782a1884f4affe5041bf767aa0e32946fbe0
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 8f1d488fd8f71bf90c8bf7b7c1544445ffbd7686
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -26,8 +27,30 @@ ms.lasthandoff: 04/27/2017
 本文說明如何使用 Azure PowerShell 建立一般化 Azure VM的映像。 然後可以使用映像來建立另一個 VM。 此映像包含作業系統磁碟與連結到虛擬機器的資料磁碟。 映像不包含虛擬網路資源，因此您需要在建立新的 VM 時設定這些資源。 
 
 ## <a name="prerequisites"></a>必要條件
-* 您必須擁有[一般化 VM](generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 將 VM 一般化會移除您的所有個人帳戶資訊，以及其他項目，並準備電腦作為映像。 您也可以使用 `sudo waagent -deprovision+user` 將 Linux VM 一般化，然後使用 PowerShell 來擷取該 VM. 如需有關使用 CLI 來擷取 VM 的資訊，請參閱[如何使用 Azure CLI 來一般化和擷取 Linux 虛擬機器](../linux/capture-image.md)
-* 您需要安裝 Azure PowerShell 1.0.x 版或更新版本。 如果您尚未安裝 PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 以了解安裝步驟。
+您需要安裝 Azure PowerShell 1.0.x 版或更新版本。 如果您尚未安裝 PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 以了解安裝步驟。
+
+## <a name="generalize-the-windows-vm-using-sysprep"></a>使用 Sysprep 將 Windows VM 一般化
+
+Sysprep 會移除您的所有個人帳戶資訊以及其他項目，並準備電腦以做為映像。 如需 Sysprep 的詳細資訊，請參閱 [如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx)。
+
+請確定 Sysprep 支援電腦上執行的伺服器角色。 如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
+
+> [!IMPORTANT]
+> 如果您是第一次在將 VHD 上傳至 Azure 之前執行 Sysprep，請確定您已[準備好 VM](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 再執行 Sysprep。 
+> 
+> 
+
+1. 登入 Windows 虛擬機器。
+2. 以系統管理員身分開啟 [命令提示字元] 視窗。 切換至 **%windir%\system32\sysprep** 目錄，然後執行 `sysprep.exe`。
+3. 在 [系統準備工具] 對話方塊中，選取 [進入系統全新體驗 (OOBE)]，並確認已勾選 [一般化] 核取方塊。
+4. 在 [關機選項] 中選取 [關機]。
+5. 按一下 [確定] 。
+   
+    ![啟動 Sysprep](./media/upload-generalized-managed/sysprepgeneral.png)
+6. Sysprep 完成時，會關閉虛擬機器。 不要重新啟動 VM。
+
+
+您也可以使用 `sudo waagent -deprovision+user` 將 Linux VM 一般化，然後使用 PowerShell 來擷取該 VM. 如需有關使用 CLI 來擷取 VM 的資訊，請參閱[如何使用 Azure CLI 來一般化和擷取 Linux 虛擬機器](../linux/capture-image.md)
 
 ## <a name="log-in-to-azure-powershell"></a>登入 Azure PowerShell
 1. 開啟 Azure PowerShell，並登入您的 Azure 帳戶。

@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 05/17/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 3ffc28d899ca65167b8bb80b6b9499524b7c3393
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: c9025cc569ceddfb8ecba370ffcb08c3aa5324dc
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/18/2017
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 05/18/2017
 本文件中的步驟使用 [Maven](http://maven.apache.org/) 來建立專案。 Maven是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 ## <a name="requirements"></a>需求
 

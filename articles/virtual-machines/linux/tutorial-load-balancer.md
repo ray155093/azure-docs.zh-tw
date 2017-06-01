@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/02/2017
 ms.author: iainfou
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 079289f385266293ecfce7cd02b1673a774afbbe
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 817f6763ba663de994a40aefcda31dc8466ef12a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
+ms.lasthandoff: 06/01/2017
 
 ---
 
@@ -35,8 +36,9 @@ ms.lasthandoff: 05/15/2017
 > * 檢視作用中的負載平衡器
 > * 新增和移除虛擬機器的負載平衡器
 
-本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 
 
+[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
 ## <a name="azure-load-balancer-overview"></a>Azure Load Balancer 概觀
 Azure Load Balancer 是 Layer-4 (TCP、UDP) 負載平衡器，可將連入流量分散於狀況良好的 VM 來提供高可用性。 負載平衡器健康狀態探查會監視每部 VM 上指定的連接埠，且只會將流量分散至作業 VM。
@@ -53,7 +55,7 @@ Azure Load Balancer 是 Layer-4 (TCP、UDP) 負載平衡器，可將連入流量
 ## <a name="create-azure-load-balancer"></a>建立 Azure Load Balancer
 本節將詳細說明如何建立及設定負載平衡器的每個元件。 請先使用 [az group create](/cli/azure/group#create) 建立資源群組，才可建立負載平衡器。 下列範例會在 eastus 位置建立名為 myResourceGroupLoadBalancer 的資源群組：
 
-```azurecli
+```azurecli-interactive
 az group create --name myResourceGroupLoadBalancer --location eastus
 ```
 

@@ -1,13 +1,13 @@
 ---
 title: "Azure Cosmos DB：使用 .NET 搭配圖形 API 進行開發 | Microsoft Docs"
 description: "了解如何使用 .NET 搭配 Azure Cosmos DB 的 DocumentDB API 進行開發"
-services: cosmosdb
+services: cosmos-db
 documentationcenter: 
 author: mimig1
 manager: jhubbard
 editor: 
 ms.assetid: cc8df0be-672b-493e-95a4-26dd52632261
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.workload: 
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 64c412fc6b47da73e5430a4db4c007e4cf95aa47
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 94909fd1db426267eb60e5d7f4d753de82ca0377
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -45,7 +45,7 @@ Gremlin 是一個函式程式設計語言，可支援寫入作業 (DML) 及查�
 請確定您具有下列項目：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/free/)。 
-    * 或者，您可以使用 [Azure DocumentDB 模擬器](../documentdb/documentdb-nosql-local-emulator.md)來進行本教學課程。
+    * 或者，您可以使用 [Azure DocumentDB 模擬器](local-emulator.md)來進行本教學課程。
 * [Visual Studio](http://www.visualstudio.com/)。
 
 ## <a name="create-database-account"></a>建立資料庫帳戶
@@ -55,11 +55,11 @@ Gremlin 是一個函式程式設計語言，可支援寫入作業 (DML) 及查�
 > [!TIP]
 > * 已經有 Azure Cosmos DB 帳戶？ 如果是，請直接跳到[設定您的 Visual Studio 方案](#SetupVS)
 > * 您是否已有 Azure DocumentDB 帳戶？ 如果是，您的帳戶現在會是 Azure Cosmos DB 帳戶，且您可以直接跳到[設定您的 Visual Studio 方案](#SetupVS)。  
-> * 如果您使用「Azure Cosmos DB 模擬器」，請依照 [Azure Cosmos DB 模擬器](../documentdb/documentdb-nosql-local-emulator.md)的步驟來設定模擬器，然後直接跳到[設定您的 Visual Studio 方案](#SetupVS)。 
+> * 如果您使用「Azure Cosmos DB 模擬器」，請依照 [Azure Cosmos DB 模擬器](local-emulator.md)的步驟來設定模擬器，然後直接跳到[設定您的 Visual Studio 方案](#SetupVS)。 
 >
 > 
 
-[!INCLUDE [cosmosdb-create-dbaccount-graph](../../includes/cosmosdb-create-dbaccount-graph.md)]
+[!INCLUDE [cosmos-db-create-dbaccount-graph](../../includes/cosmos-db-create-dbaccount-graph.md)]
 
 ## <a id="SetupVS"></a>設定您的 Visual Studio 方案
 1. 在電腦上開啟 **Visual Studio**。
@@ -98,7 +98,7 @@ DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
 
 ## <a id="create-database"></a>建立資料庫 
 
-現在，使用來自 [DocumentDB .NET SDK](../documentdb/documentdb-sdk-dotnet.md) 之 **DocumentClient** 類別的 [CreateDatabaseAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) 方法或 [CreateDatabaseIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseifnotexistsasync.aspx) 方法，來建立 Azure Cosmos DB [資料庫](../documentdb/documentdb-resources.md#databases)。  
+現在，使用來自 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 之 **DocumentClient** 類別的 [CreateDatabaseAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) 方法或 [CreateDatabaseIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseifnotexistsasync.aspx) 方法，來建立 Azure Cosmos DB [資料庫](documentdb-resources.md#databases)。  
 
 ```csharp 
 Database database = await client.CreateDatabaseIfNotExistsAsync(new Database { Id = "graphdb" }); 

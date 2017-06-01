@@ -18,10 +18,10 @@ ms.workload: big-data
 ms.date: 04/05/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: b6c554a21e143e71dcc68e6c36fb25074dc95d5b
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: e75bc8b74f965a0d4509b6967f1cdc7fa32eec56
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -48,7 +48,7 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
 * HDInsight 叢集上以 Linux 為基礎的 Hadoop。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 版本取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 * SSH 用戶端或本機 Beeline 用戶端。 本文件中的大部分步驟都假設您從連往叢集的 SSH 工作階段使用 Beeline。 如需從叢集外部執行 Beeline 的相關資訊，請參閱[從遠端使用 Beeline](#remote) 一節。
 

@@ -14,9 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
+ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 6f50ced708cb79a39e190657e4720c515c09990f
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: ad4160abfef748033eeb84a2f07a37124ce3b4b1
 ms.contentlocale: zh-tw
 
 
@@ -47,14 +48,14 @@ ms.contentlocale: zh-tw
 <add key="Tenant" value="common" />
 <add key="Authority" value="https://login.microsoftonline.com/{0}/v2.0" /> 
 ```
-9. 用您剛剛註冊的應用程式識別碼取代 `ClientId`
-10. 用您專案的 SSL URL 取代 `redirectUri` 
+<!-- Workaround for Docs conversion bug -->
+<ol start="9">
+<li>
+用您剛剛註冊的應用程式識別碼取代 `ClientId`
+</li>
+<li>
+用您專案的 SSL URL 取代 `redirectUri`
+</li>
+</ol>
 <!-- End Docs -->
-
-> 注意
-> ### <a name="restricting-users-from-only-one-organization-to-sign-in-to-your-application"></a>只將來自一個組織的使用者限制為登入您的應用程式
-> 根據預設值，下列帳戶可以登入您的應用程式：個人帳戶 (包括 outlook.com、live.com 和其他帳戶)，以及來自已經整合 Azure Active Directory 之公司或組織的公司與學校帳戶。 如果您想要讓應用程式只接受來自某一個組織的登入，請將 `web.config` 中的 `Tenant` 參數從 `Common` 取代為該組織的租用戶名稱 (例如 `contoso.onmicrosoft.com`)。 完成之後，請將您 OWIN 啟動類別中的 *ValidateIssuer* 引數變更為 `true`。
-若只要允許來自某一特定組織清單的使用者登入，請將 `ValidateIssuer` 設定為 `true` 並使用 `ValidIssuers` 參數指定組織清單。
-另一個選項是實作自訂方法，使用 `IssuerValidator parameter` 驗證簽發者。 如需 `TokenValidationParameters` 的相關詳細資訊，請參閱[這篇](https://msdn.microsoft.com/en-us/library/system.identitymodel.tokens.tokenvalidationparameters(v=vs.114).aspx) MSDN 文章。
-
 

@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: 02add070405f3f00d3631362a2b139239d44c34d
-ms.lasthandoff: 03/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 5be8e103f9a1f32117a4ed3be73bff021db1186d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 ---
 
@@ -25,7 +26,8 @@ ms.lasthandoff: 03/28/2017
 
 > [!div class="op_single_selector"]
 > - [PowerShell](network-watcher-topology-powershell.md)
-> - [CLI](network-watcher-topology-cli.md)
+> - [CLI 1.0](network-watcher-topology-cli-nodejs.md)
+> - [CLI 2.0](network-watcher-topology-cli.md)
 > - [REST API](network-watcher-topology-rest.md)
 
 網路監看員的拓撲功能可以視覺方式呈現訂用帳戶中的網路資源。 在入口網站中，會自動向您呈現這個視覺效果。 透過 PowerShell 即可擷取入口網站拓撲檢視背後的資訊。

@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 03/12/2017
 ms.author: raynew
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: b7b7347fef8ea6f6bf643e98bbcc0a6292c083ed
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: de45957d4531202005d6b38e8b218ffe023fa0b2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -272,10 +272,6 @@ Site Recovery 會使用指定的設定連接至 VMware 伺服器並探索 VM。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication7.png)
 13. 按一下 [啟用複寫] 。 您可以在 [設定]  >  [作業]  >  [Site Recovery 作業] 中，追蹤 [啟用保護] 作業的進度。 執行 [完成保護]  作業之後，機器即準備好進行容錯移轉。
-
-啟用複寫後，如果您設定推入安裝，將會安裝行動服務。 在 VM 上推入安裝行動服務之後，保護作業會啟動且失敗。 在失敗之後，您需要手動重新啟動每一部機器。 然後，保護作業會再次啟動，並進行初始複寫。
-
-
 
 ### <a name="view-and-manage-vm-properties"></a>檢視及管理 VM 屬性
 

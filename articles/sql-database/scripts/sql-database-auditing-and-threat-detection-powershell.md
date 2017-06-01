@@ -14,25 +14,25 @@ ms.devlang: PowerShell
 ms.topic: article
 ms.tgt_pltfrm: sql-database
 ms.workload: database
-ms.date: 05/19/2017
+ms.date: 05/23/2017
 ms.author: janeng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 528cb66bee6717a10864a78498c5004337bece02
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 5bb1f0b4b6e548cf4164dae55d13cbebb660232f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/26/2017
 
 ---
 
 # <a name="configure-sql-database-auditing-and-threat-detection-using-powershell"></a>使用 PowerShell 設定 SQL Database 稽核與威脅偵測
 
-此範例 PowerShell 指令碼會設定 SQL Database 稽核與威脅偵測。 若要執行此範例，確定您已安裝最新版的 [Azure PowerShell](/powershell/azure/overview)。
+此範例 PowerShell 指令碼會設定 SQL Database 稽核與威脅偵測。 
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[主要](../../../powershell_scripts/sql-database/database-auditing-and-threat-detection/database-auditing-and-threat-detection.ps1 "設定稽核與威脅偵測")]
+[!code-powershell[主要](../../../powershell_scripts/sql-database/database-auditing-and-threat-detection/database-auditing-and-threat-detection.ps1?highlight=13-14 "設定稽核與威脅偵測")]
 
 ## <a name="clean-up-deployment"></a>清除部署
 

@@ -14,13 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: 941a7f15da94d92e3c0f65ea61247608c18be029
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 1b70fc3d199d7f1521acb534dafec8fb3e69500e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
 # <a name="migrating-biztalk-server-edi-solutions-to-biztalk-services-technical-guide"></a>BizTalk Server EDI 解決方案移轉至 BizTalk 服務：技術指南
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 作者：Tim Wieman 和 Nitin Mehrotra
 
 審稿者：Karthik Bharthy
@@ -121,9 +126,4 @@ Microsoft Azure BizTalk 服務會定期更新以新增更多特性和功能。 �
 [使用 Azure 開發企業應用程式](https://msdn.microsoft.com/library/azure/hh674490.aspx)
 
 [EDImessageflow]: ./media/biztalk-migrating-to-edi-guide/IC719455.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
