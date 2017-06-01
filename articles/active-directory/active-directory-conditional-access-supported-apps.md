@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 04/11/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: 0d9afb1554158a4d88b7f161c62fa51c1bf61a7d
-ms.openlocfilehash: 569777b7034ebeccddf6d9ef89ee2f9fb667cc3f
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: 40eb1d80830818a492c78d5091aaa9cca8d48f16
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -68,7 +69,7 @@ Exchange 提供兩個主要的通訊協定類別。 檢閱下列選項，然後�
 * **舊版通訊協定**。 您可以使用 AD FS 來封鎖舊版通訊協定。 這會封鎖對於舊版 Office 用戶端的存取，例如，未啟用新式驗證的 Office 2013 及更早的 Office 版本。
 
 ### <a name="use-ad-fs-to-block-legacy-protocol"></a>使用 AD FS 來封鎖舊版通訊協定
-您可以使用下列範例規則，在 AD FS 層級封鎖舊版通訊協定存取。 從兩個常見的組態中進行選擇。
+您可以使用下列範例發行授權規則，在 AD FS 層級封鎖舊版通訊協定存取。 從兩個常見的組態中進行選擇。
 
 #### <a name="option-1-allow-exchange-activesync-and-allow-legacy-apps-but-only-on-the-intranet"></a>選項 1︰允許 Exchange ActiveSync，並且允許舊版應用程式 (但僅限內部網路)
 將下列三個規則套用到適用於 Microsoft Office 365 身分識別平台的 AD FS 信賴憑證者信任，Exchange ActiveSync 流量以及瀏覽器和新式驗證流量就會有存取權。 來自外部網路的舊版應用程式會遭到封鎖。

@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 2/17/2017
 ms.author: asgang
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 06ac75a40ed1dc97046836388bb7938dabd2b9ac
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: f78a857a795031f6188635091c76431cd5440d1c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -37,8 +38,9 @@ ms.lasthandoff: 04/12/2017
 
 ## <a name="enable-replication"></a>啟用複寫
 #### <a name="before-you-start"></a>開始之前
-如果您要複寫 VMware 虛擬機器，請注意下列事項︰
+當您要複寫 VMware 虛擬機器時，請注意下列事項︰
 
+* 您的 Azure 使用者帳戶必須具有特定[權限](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines)，才能將新的虛擬機器複寫至 Azure。
 * 系統會每隔 15 分鐘探索 VMware VM 一次。 在探索之後，可能需要 15 分鐘以上，VMware VM 才會出現在入口網站中。 同樣地，當您加入新的 vCenter 伺服器或 vSphere 主機時，探索可能需要 15 分鐘以上。
 * 虛擬機器上的環境變更 (例如 VMware 工具安裝) 會花上 15 分鐘以上的時間，才會在入口網站更新。
 * 您可以在 [組態伺服器] 刀鋒視窗上 vCenter 伺服器/vSphere 主機的 [上次連絡時間] 欄位中，查看 VMware VM 的上次探索時間。
@@ -105,19 +107,20 @@ ms.lasthandoff: 04/12/2017
 ![啟用複寫](./media/site-recovery-vmware-to-azure/VMProperties_AVSET.png)
 
 *資源群組*
-   
-  * 您可以選取電腦將成為其後置容錯移轉一部分的[資源群組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines)。 您可以在容錯移轉之前隨時變更這項設定。 
-  
+
+  * 您可以選取電腦將成為其後置容錯移轉一部分的[資源群組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines)。 您可以在容錯移轉之前隨時變更這項設定。
+
 > [!NOTE]
 > 容錯移轉後，如果將電腦移轉到不同的資源群組，則會中斷電腦的保護設定。
- 
+
 *可用性設定組*
 
-如果您的電腦必須是其中一個後置容錯移轉，您可以選取[可用性設定組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)。 當選取可用性設定組時，請記住︰
+如果您的電腦必須是其中一個後置容錯移轉，您可以選取[可用性設定組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)。
+當選取可用性設定組時，請記住︰
 
 * 只將屬於指定之資源群組的可用性設定組列出  
-* 虛擬網路不同的電腦不可在相同的可用性設定組中 
-* 只有相同大小的虛擬機器可在相同的可用性設定組中 
+* 虛擬網路不同的電腦不可在相同的可用性設定組中
+* 只有相同大小的虛擬機器可在相同的可用性設定組中
 
 網路屬性
 

@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/02/2017
+ms.date: 05/08/2017
 ms.author: nitinme
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 0053f93218e9fec4d72fb229bfb2c6159d8b5bc7
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: d129ea9e5f3e320ccd705028f9860188babe2fe4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -55,7 +56,7 @@ ms.lasthandoff: 04/27/2017
 ## <a name="create-a-data-lake-store-account"></a>建立 Data Lake Store 帳戶
 若要建立 Data Lake Store 帳戶，請執行下列作業︰
 
-1. 從您的桌面開啟 PowerShell 視窗，然後輸入下列程式碼片段：
+1. 從您的桌面開啟 PowerShell 視窗，然後輸入下列程式碼片段。 當系統提示您登入時，請以其中一個訂用帳戶管理員或擁有者身分登入。 
 
         # Sign in to your Azure account
         Login-AzureRmAccount
@@ -73,26 +74,42 @@ ms.lasthandoff: 04/27/2017
     > 如果您註冊 Data Lake Store 資源提供者並收到類似 `Register-AzureRmResourceProvider : InvalidResourceNamespace: The resource namespace 'Microsoft.DataLakeStore' is invalid` 的錯誤，您的訂用帳戶可能不在 Data Lake Store 的允許清單中。 若要針對 Data Lake Store 公開預覽版來啟用 Azure 訂用帳戶，請遵循[透過 Azure 入口網站開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)中的指示操作。
     >
 
-2. 當系統提示您登入時，請以其中一個訂用帳戶管理員或擁有者身分登入。
-3. Data Lake Store 帳戶與 Azure 資源群組相關聯。 從建立資源群組著手。
+2. Data Lake Store 帳戶與 Azure 資源群組相關聯。 從建立資源群組著手。
 
         $resourceGroupName = "<your new resource group name>"
         New-AzureRmResourceGroup -Name $resourceGroupName -Location "East US 2"
 
-    ![建立 Azure 資源群組](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.PS.CreateResourceGroup.png "建立 Azure 資源群組")
+    您應該會看到如下的輸出：
+
+        ResourceGroupName : hdiadlgrp
+        Location          : eastus2
+        ProvisioningState : Succeeded
+        Tags              :
+        ResourceId        : /subscriptions/<subscription-id>/resourceGroups/hdiadlgrp
+
 3. 建立 Data Lake Store 帳戶。 您指定的帳戶名稱必須只包含小寫字母和數字。
 
         $dataLakeStoreName = "<your new Data Lake Store name>"
         New-AzureRmDataLakeStoreAccount -ResourceGroupName $resourceGroupName -Name $dataLakeStoreName -Location "East US 2"
 
-    ![建立 Azure Data Lake 帳戶](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.PS.CreateADLAcc.png "建立 Azure Data Lake 帳戶")
-4. 確認已成功建立帳戶。
+    您應該會看到如下的輸出：
 
-        Test-AzureRmDataLakeStoreAccount -Name $dataLakeStoreName
+        ...
+        ProvisioningState           : Succeeded
+        State                       : Active
+        CreationTime                : 5/5/2017 10:53:56 PM
+        EncryptionState             : Enabled
+        ...
+        LastModifiedTime            : 5/5/2017 10:53:56 PM
+        Endpoint                    : hdiadlstore.azuredatalakestore.net
+        DefaultGroup                :
+        Id                          : /subscriptions/<subscription-id>/resourceGroups/hdiadlgrp/providers/Microsoft.DataLakeStore/accounts/hdiadlstore
+        Name                        : hdiadlstore
+        Type                        : Microsoft.DataLakeStore/accounts
+        Location                    : East US 2
+        Tags                        : {}
 
-    輸出應該為 **True**。
-
-5. 使用 Data Lake Store 做為預設儲存體時，您需要指定根路徑，而叢集特定檔案會在叢集建立期間複製到該路徑。 若要建立根路徑 (也就是程式碼片段中的 **/clusters/hdiadlcluster**)，請使用下列 Cmdlet:
+4. 使用 Data Lake Store 做為預設儲存體時，您需要指定根路徑，而叢集特定檔案會在叢集建立期間複製到該路徑。 若要建立根路徑 (也就是程式碼片段中的 **/clusters/hdiadlcluster**)，請使用下列 Cmdlet:
 
         $myrootdir = "/"
         New-AzureRmDataLakeStoreItem -Folder -AccountName $dataLakeStoreName -Path $myrootdir/clusters/hdiadlcluster
@@ -120,7 +137,7 @@ ms.lasthandoff: 04/27/2017
 
         pvk2pfx -pvk mykey.pvk -spc CertFile.cer -pfx CertFile.pfx -po <password>
 
-    系統提示您時，請輸入您稍早指定的私密金鑰密碼。 您針對 **-po** 參數指定的值是與 .pfx 檔案相關聯的密碼。 命令成功完成之後，您應該也會在您指定的憑證目錄中看到 CertFile.pfx。
+    系統提示您時，請輸入您稍早指定的私密金鑰密碼。 您針對 **-po** 參數指定的值是與 .pfx 檔案相關聯的密碼。 命令成功完成之後，在您指定的憑證目錄中，您應該也會看到 **CertFile.pfx**。
 
 ### <a name="create-an-azure-ad-and-a-service-principal"></a>建立 Azure AD 和服務主體
 在這一節中，您會建立 Azure AD 應用程式的服務主體、指派角色給服務主體，並藉由提供憑證驗證為服務主體。 若要在 Azure AD 中建立應用程式，請執行下列命令：
@@ -172,7 +189,7 @@ ms.lasthandoff: 04/27/2017
         $location = "East US 2"
         $storageAccountName = $dataLakeStoreName                          # Data Lake Store account name
         $storageRootPath = "<Storage root path you specified earlier>" # E.g. /clusters/hdiadlcluster
-        $clusterName = $containerName                   # As a best practice, have the same name for the cluster and container
+        $clusterName = "<unique cluster name>"
         $clusterNodes = <ClusterSizeInNodes>            # The number of nodes in the HDInsight cluster
         $httpCredentials = Get-Credential
         $sshCredentials = Get-Credential

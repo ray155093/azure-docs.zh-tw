@@ -15,10 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 04/14/2016
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: c29a6627f712b9d89ac65e845f3ccb4fb87bf8fb
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 6457b7d30b12a7bb138f9912e21418742814be09
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -34,7 +35,7 @@ Microsoft 用戶端應用程式 (例如 Power BI Desktop 和 Excel) 會安裝這
 用於用戶端連線的用戶端程式庫，與從 Azure Analysis Services 伺服器連接到資料來源所需的資料提供者不同。 若要深入了解資料來源連接，請參閱[資料來源連接](analysis-services-datasource.md)。
 
 ## <a name="download-the-latest-preview-client-libraries"></a>下載最新的**預覽**用戶端程式庫  
-請使用下列用戶端程式庫來取得最新的錯誤修正和更新。 連線到 Azure Analysis Services 或 SQL Server vNext Analysis Services 時，建議使用下列用戶端程式庫。
+請使用下列用戶端程式庫來取得最新的錯誤修正和更新。 連線到 Azure Analysis Services 或 SQL Server 2017 Analysis Services 時，建議使用下列用戶端程式庫。
 
 [MSOLAP (amd64) 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.500.170/amd64/SQL_AS_OLEDB.msi)</br>
 [MSOLAP (x86) 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.500.170/x86/SQL_AS_OLEDB.msi)</br>

@@ -11,12 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/04/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 564dd782834898709f89f85e10627d07b17138ce
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 3f6ae31f577eb1bc70a06e183518aadbc6279159
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -138,7 +139,7 @@ Cloud App Discovery 是一項 [Azure AD Premium](https://azure.microsoft.com/pri
 | 了解其運作方式，並尋找常見問題的解答 |[自動化 SaaS 應用程式使用者佈建和解除佈建](active-directory-saas-app-provisioning.md) |
 | 設定如何在 Azure AD 與您的 SaaS 應用程式之間對應資訊 |[自訂屬性對應](active-directory-saas-customizing-attribute-mappings.md)<br><br>[撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md) |
 | 如何對任何支援 SCIM 通訊協定的應用程式啟用自動化佈建 |[對任何啟用 SCIM 的應用程式設定自動化使用者佈建](active-directory-scim-provisioning.md) |
-| 取得佈建失敗的通知 |[佈建通知](active-directory-saas-account-provisioning-notifications.md) |
+| 如何針對使用者佈建提出報告和進行疑難排解 |[關於使用者自動佈建的報告](active-directory-saas-provisioning-reporting.md)<br><br>[佈建通知](active-directory-saas-account-provisioning-notifications.md)<br><br>[針對使用者佈建進行疑難排解](active-directory-application-provisioning-content-map.md) |
 | 根據應用程式的屬性值限制可以佈建應用程式的人員 |[範圍篩選器](active-directory-saas-scoping-filters.md) |
 
 自動化使用者佈建適用於所有版本的 Azure AD，每個使用者最多十個應用程式。 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 支援無限多個應用程式。 如果您的組織具有 [Azure AD Basic](https://azure.microsoft.com/pricing/details/active-directory/) 或 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/)，您就可以[使用群組來管理要佈建哪些使用者](#managing-access-to-applications)。
@@ -168,16 +169,16 @@ Cloud App Discovery 是一項 [Azure AD Premium](https://azure.microsoft.com/pri
 群組型應用程式存取管理適用於 [Azure AD Basic](https://azure.microsoft.com/pricing/details/active-directory/) 和 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/)。 自助式群組管理、自助式應用程式管理以及動態群組是 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 功能。
 
 ### <a name="b2b-collaboration-enable-partner-access-to-applications"></a>B2B 共同作業：啟用應用程式的合作夥伴存取
-如果您的公司已與其他公司合作，則您可能需要管理公司應用程式的合作夥伴存取。 Azure Active Directory B2B 共同作業提供簡單且安全的方式，與合作夥伴共用您的應用程式。 這項功能目前只能預覽。
+如果您的公司已與其他公司合作，則您可能需要管理公司應用程式的合作夥伴存取。 Azure Active Directory B2B 共同作業提供簡單且安全的方式，與合作夥伴共用您的應用程式。
 
 | 文章指南 |  |
 |:---:| --- |
 | 不同 Azure AD 功能的概觀，協助您管理外部使用者，例如合作夥伴、 客戶等。 |[比較 Azure AD 中管理外部身分識別的功能](active-directory-b2b-compare-external-identities.md) |
-| 簡介 B2B 共同作業預覽，以及如何開始使用 |[與 Azure AD 的簡單安全雲端合作夥伴整合](active-directory-b2b-what-is-azure-ad-b2b.md)<br /><br />[Azure Active Directory B2B 共同作業](active-directory-b2b-collaboration-overview.md) |
-| 深入探討 Azure AD B2B 共同作業及其使用方式 |[B2B 共同作業：運作方式](active-directory-b2b-how-it-works.md)<br /><br />[Azure AD B2B 共同作業預覽目前的限制](active-directory-b2b-current-preview-limitations.md)<br /><br />[使用 Azure AD B2B 共同作業預覽的詳細逐步解說](active-directory-b2b-detailed-walkthrough.md) |
+| 簡介 B2B 共同作業，以及如何開始使用 |[與 Azure AD 的簡單安全雲端合作夥伴整合](active-directory-b2b-what-is-azure-ad-b2b.md)<br /><br />[Azure Active Directory B2B 共同作業](active-directory-b2b-collaboration-overview.md) |
+| 深入探討 Azure AD B2B 共同作業及其使用方式 |[B2B 共同作業：運作方式](active-directory-b2b-how-it-works.md)<br /><br />[Azure AD B2B 共同作業目前的限制](active-directory-b2b-current-limitations.md)<br /><br />[使用 Azure AD B2B 共同作業的詳細逐步解說](active-directory-b2b-detailed-walkthrough.md) |
 | 具有 Azure AD B2B 共同作業如何運作的技術詳細資料參考文章 |[適用於新增合作夥伴使用者的 CSV 檔案格式](active-directory-b2b-references-csv-file-format.md)<br /><br />[受 Azure AD B2B 共同作業影響的使用者屬性](active-directory-b2b-references-external-user-object-attribute-changes.md)<br /><br />[合作夥伴使用者的使用者權杖格式](active-directory-b2b-references-external-user-token-format.md) |
 
-「B2B 共同作業」預覽目前適用於 [所有版本的 Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/)。
+「B2B 共同作業」目前適用於[所有版本的 Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/)。
 
 ### <a name="access-panel-a-portal-for-accessing-apps-and-self-service-features"></a>存取面板：存取應用程式和自助式功能的入口網站
 使用者可以在 Azure AD 存取面板上啟動應用程式和存取自助式功能，而自助式功能可讓使用者管理自己的應用程式和群組成員資格。 除了存取面板外，下列清單還包括其他存取啟用 SSO 之應用程式的選項。

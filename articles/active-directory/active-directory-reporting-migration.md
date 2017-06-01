@@ -1,4 +1,5 @@
 ---
+
 title: "在 Azure 入口網站中尋找活動報告 | Microsoft Docs"
 description: "了解如何在 Azure 入口網站中尋找 Azure Active Directory 活動報告。"
 services: active-directory
@@ -12,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/01/2017
+ms.date: 05/04/2017
 ms.author: dhanyahk;markvi
-translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: f2f5ed98df88df69ee300c9da94ad013a631b3b9
-ms.lasthandoff: 03/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 7f6d82d211e9b3d25b0efe62ab8dd32f827b08ef
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -124,8 +126,8 @@ Azure 傳統入口網站中的報告分為下列幾類：
 
 如需安全性報告的詳細資訊，請參閱︰
 
-- [Azure Active Directory 入口網站 (預覽版) 中有風險的使用者安全性報告](active-directory-reporting-security-user-at-risk.md)
-- [Azure Active Directory 入口網站 (預覽版) 中有風險的登入報告](active-directory-reporting-security-risky-sign-ins.md)
+- [Azure Active Directory 入口網站中有風險使用者的安全性報告](active-directory-reporting-security-user-at-risk.md)
+- [Azure Active Directory 入口網站中有風險的登入報告](active-directory-reporting-security-risky-sign-ins.md)
 
 
 ## <a name="activity-reports-in-the-azure-classic-portal-vs-the-azure-portal"></a>Azure 傳統入口網站與 Azure 入口網站中活動報告的比較

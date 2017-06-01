@@ -3,8 +3,8 @@ title: "新增 Excel 連接器 | Microsoft Docs"
 description: "搭配 REST API 參數來使用 Excel 連接器的概觀"
 services: 
 documentationcenter: 
-author: msftman
-manager: erikre
+author: MandiOhlinger
+manager: anneta
 editor: 
 tags: connectors
 ms.assetid: 03af8652-9223-4348-9490-602872a680f0
@@ -14,211 +14,24 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/23/2016
-ms.author: deonhe
-translationtype: Human Translation
-ms.sourcegitcommit: 5c585b988cc1989288e1e5953d1bdab6b5281707
-ms.openlocfilehash: aa8b95bd92d6bed60ba20ffd28e53d26930d7a31
+ms.author: mandia; ladocs
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 423731710c5584f91188a72702b188636d3104e5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
 # <a name="get-started-with-the-excel-connector"></a>開始使用 Excel 連接器
-目前，Logic Apps 中沒有任何 Excel 連接器。 
+Logic Apps 中沒有任何 Excel 連接器。 
 
 ## <a name="to-use-excel-data"></a>使用 Excel 資料
 您可以將 Excel 資料儲存為儲存體資料夾中的逗號分隔值 (CSV) 檔案，例如 [OneDrive](connectors-create-api-onedrive.md)。 您也可以搭配使用此 CSV 檔案與 [一般檔案連接器](../logic-apps/logic-apps-enterprise-integration-flatfile.md)。
 
-<!---
+## <a name="view-the-swagger"></a>檢視 Swagger
 
-There is no Excel connector in Logic Apps. Originally, this topic only referenced PowerApps. Removed all PowerApps references. 
+請參閱 [Swagger 詳細資料](/connectors/excel/)。
 
-
-
-Connect to Excel to insert a row, delete a row, and more. 
-
-## Triggers and actions
-Excel includes the following action. There are no triggers. 
-
-|Trigger|Actions|
-|--- | ---|
-|None | <ul><li>Get rows</li><li>Insert row</li><li>Delete row</li><li>Get row</li><li>Get tables</li><li>Update row</li></ul>
-
-All connectors support data in JSON and XML formats. 
-
-## Swagger REST API reference
-Applies to version: 1.0.
-
-### Inserts a new row into an Excel table
-```POST: /datasets/{dataset}/tables/{table}/items``` 
-
-
-
-| Name| Data Type|Required|Located In|Default Value|Description|
-| ---|---|---|---|---|---|
-|dataset|string|yes|path|none|Excel file name|
-|table|string|yes|path|none|Excel table name|
-|item| |yes|body|none|Row to insert into the specified Excel table|
-
-
-### Response
-
-|Name|Description|
-|---|---|
-|200|OK|
-|default|Operation Failed.|
-
-
-
-
-### Retrieves a single row from an Excel table
-```GET: /datasets/{dataset}/tables/{table}/items/{id}``` 
-
-
-
-| Name| Data Type|Required|Located In|Default Value|Description|
-| ---|---|---|---|---|---|
-|dataset|string|yes|path|none|Excel file name|
-|table|string|yes|path|none|Excel table name|
-|id|string|yes|path|none|Unique identifier of row to retrieve|
-
-
-### Response
-
-|Name|Description|
-|---|---|
-|200|OK|
-|default|Operation Failed.|
-
-
-
-
-### Deletes a row from an Excel table
-```DELETE: /datasets/{dataset}/tables/{table}/items/{id}``` 
-
-
-
-| Name| Data Type|Required|Located In|Default Value|Description|
-| ---|---|---|---|---|---|
-|dataset|string|yes|path|none|Excel file name|
-|table|string|yes|path|none|Excel table name|
-|id|string|yes|path|none|Unique identifier of the row to delete|
-
-
-### Response
-
-|Name|Description|
-|---|---|
-|200|OK|
-|default|Operation Failed.|
-
-
-
-
-### Updates an existing row in an Excel table
-```PATCH: /datasets/{dataset}/tables/{table}/items/{id}``` 
-
-
-
-| Name| Data Type|Required|Located In|Default Value|Description|
-| ---|---|---|---|---|---|
-|dataset|string|yes|path|none|Excel file name|
-|table|string|yes|path|none|Excel table name|
-|id|string|yes|path|none|Unique identifier of the row to update|
-|item| |yes|body|none|Row with updated values|
-
-
-### Response
-
-|Name|Description|
-|---|---|
-|200|OK|
-|default|Operation Failed.|
-
-
-
-
-## Object definitions
-
-#### DataSetsMetadata
-
-| Name | Data Type | Required|
-|---|---|---|
-|tabular|not defined|no|
-|blob|not defined|no|
-
-#### TabularDataSetsMetadata
-
-| Name | Data Type |Required|
-|---|---|---|
-|source|string|no|
-|displayName|string|no|
-|urlEncoding|string|no|
-|tableDisplayName|string|no|
-|tablePluralName|string|no|
-
-#### BlobDataSetsMetadata
-
-| Name | Data Type |Required|
-|---|---|---|
-|source|string|no|
-|displayName|string|no|
-|urlEncoding|string|no|
-
-#### TableMetadata
-
-| Name | Data Type |Required|
-|---|---|---|
-|name|string|no|
-|title|string|no|
-|x-ms-permission|string|no|
-|schema|not defined|no|
-
-#### DataSetsList
-
-| Name | Data Type |Required|
-|---|---|---|
-|value|array|no|
-
-#### DataSet
-
-| Name | Data Type |Required|
-|---|---|---|
-|Name|string|no|
-|DisplayName|string|no|
-
-#### Table
-
-| Name | Data Type |Required|
-|---|---|---|
-|Name|string|no|
-|DisplayName|string|no|
-
-#### Item
-
-| Name | Data Type |Required|
-|---|---|---|
-|ItemInternalId|string|no|
-
-#### TablesList
-
-| Name | Data Type |Required|
-|---|---|---|
-|value|array|no|
-
-#### ItemsList
-
-| Name | Data Type |Required|
-|---|---|---|
-|value|array|no|
-
-
-## Next Steps
-[Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md)  
-
-
--->
-
-
-
-<!--HONumber=Jan17_HO3-->
-
-
+## <a name="more-connectors"></a>其他連接器
+返回 [API 清單](apis-list.md)。

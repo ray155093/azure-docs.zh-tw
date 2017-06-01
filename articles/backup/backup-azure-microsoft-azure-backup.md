@@ -16,10 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 1/10/2017
 ms.author: masaran;trinadhk;pullabhk;markgal
-translationtype: Human Translation
-ms.sourcegitcommit: d8289128414bc67a7c064c827a9bec047f6f22bc
-ms.openlocfilehash: 1462ee0e247fb5d590a70d23ece5723a065b4140
-ms.lasthandoff: 01/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: e8838095d621957fe6b4ee50464154617e1c4740
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -69,9 +70,12 @@ Azure 備份伺服器承襲了 Data Protection Manager (DPM) 的大部分工作�
 您可以使用 Windows Server Deduplication 為 DPM 儲存體刪除重複資料。 深入了解在 Hyper-V VM 中部署時， [DPM 和重複資料刪除](https://technet.microsoft.com/library/dn891438.aspx) 如何搭配運作。
 
 > [!NOTE]
-> 您無法在執行為網域控制站的機器上安裝 Azure 備份伺服器。
->
->
+> Azure 備份伺服器的設計目的是在專用、單一用途的伺服器上執行。 您無法在下列位置安裝 Azure 備份伺服器︰
+> - 執行為網域控制站的電腦
+> - 安裝應用程式伺服器角色所在的電腦
+> - 本身是 System Center Operations Manager 管理群組的電腦
+> - Exchange Server 執行所在的電腦
+> - 本身是叢集節點的電腦
 
 您必須將 Azure 備份伺服器加入網域。 如果您打算將伺服器移到不同的網域，建議您先將伺服器加入新網域，再安裝 Azure 備份伺服器。 若在部署後將現有的 Azure 備份伺服器機器移至新網域，該動作將「不受支援」 。
 
@@ -195,12 +199,12 @@ Azure 備份伺服器承襲了 Data Protection Manager (DPM) 的大部分工作�
    >
 4. 提供 Microsoft Azure 備份伺服器檔案的安裝位置，按 [下一步] 。
 
-    ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/space-screen.png)
+    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/space-screen.png)
 
     備份至 Azure 需要暫存位置。 請確保暫存位置至少為打算備份至雲端的資料的 5%。 在磁碟保護方面，安裝完成之後必須設定獨立的磁碟。 如需有關存放集區的詳細資訊，請參閱 [設定存放集區和磁碟儲存體](https://technet.microsoft.com/library/hh758075.aspx)。
 5. 為受限的本機使用者帳戶提供強式密碼，按 [下一步] 。
 
-    ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/security-screen.png)
+    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/security-screen.png)
 6. 選取是否要使用 *Microsoft Update* 檢查更新，按 [下一步]。
 
    > [!NOTE]
@@ -208,15 +212,15 @@ Azure 備份伺服器承襲了 Data Protection Manager (DPM) 的大部分工作�
    >
    >
 
-    ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/update-opt-screen2.png)
+    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/update-opt-screen2.png)
 7. 檢閱「設定值摘要」，按一下 [安裝]。
 
-    ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/summary-screen.png)
+    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/summary-screen.png)
 8. 安裝分階段執行。 在第一個階段中，會將 Microsoft Azure 復原服務代理程式安裝在伺服器上。 精靈也會檢查網際網路連線。 如果可連線至網際網路，您可以繼續安裝，否則必須提供 Proxy 詳細資料來連線到網際網路。
 
     下一個步驟是設定 Microsoft Azure 復原服務代理程式。 在設定的過程中，您將必須提供保存庫認證，以向復原服務保存庫註冊機器。 您也須提供複雜密碼來加密/解密 Azure 與您的內部部署之間所傳送的資料。 您可以自動產生複雜密碼，或提供您自己的複雜密碼，最少 16 個字元。 繼續執行精靈，直到代理程式完成設定。
 
-    ![Azure 備份伺服器必要條件&2;](./media/backup-azure-microsoft-azure-backup/mars/04.png)
+    ![Azure 備份伺服器必要條件 2](./media/backup-azure-microsoft-azure-backup/mars/04.png)
 9. Microsoft Azure 備份伺服器順利完成註冊後，整體安裝精靈會繼續安裝及設定 SQL Server 和 Azure 備份伺服器的元件。 SQL Server 元件安裝完成後，會安裝 Azure 備份伺服器元件。
 
     ![Azure 備份伺服器](./media/backup-azure-microsoft-azure-backup/final-install/venus-installation-screen.png)

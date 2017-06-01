@@ -15,12 +15,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/01/2017
 ms.author: davidmu
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 6d87b94df7e03bfe3255a16d30cd82ff6ce08428
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 7ddd9244558479f1fc77c0a9f3d02d0d3b95ca9f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
-
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="overview-of-windows-virtual-machines-in-azure"></a>Azure 中的 Windows 虛擬機器概觀
@@ -50,7 +50,7 @@ Azure 虛擬機器可用於許多用途。 部分範例如下：
 ### <a name="naming"></a>命名
 虛擬機器指派一個[名稱](infrastructure-naming-guidelines.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)給它，而它設定一個電腦名稱作為作業系統的一部分。 VM 的名稱最多可為 15 個字元。
 
-如果您使用 Azure 來建立作業系統磁碟，則電腦名稱和虛擬機器名稱為相同。 如果您[上傳並使用您自己的映像](upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (該映像包含先前所設定的作業系統)，並用它來建立虛擬機器，則名稱可能會不同。 我們建議您，當您上傳自己的映像檔時，將作業系統中的電腦名稱設為與虛擬機器的名稱相同。
+如果您使用 Azure 來建立作業系統磁碟，則電腦名稱和虛擬機器名稱為相同。 如果您[上傳並使用您自己的映像](upload-generalized-managed.md) (該映像包含先前所設定的作業系統)，並用它來建立虛擬機器，則名稱可能會不同。 我們建議您，當您上傳自己的映像檔時，將作業系統中的電腦名稱設為與虛擬機器的名稱相同。
 
 ### <a name="locations"></a>位置
 Azure 中所建立的所有資源分散在世界各地的多個[地理區域](https://azure.microsoft.com/regions/)。 通常，當您建立 VM 時，區域稱為**位置**。 針對 VM，位置會指定虛擬硬碟所儲存的位置。
@@ -84,7 +84,7 @@ Azure 提供許多 [Marketplace 映像](https://azure.microsoft.com/marketplace/
 | Azure PowerShell |[Get-AzureRMVMImagePublisher](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/get-azurermvmimagepublisher) -Location "location"<BR>[Get-AzureRMVMImageOffer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/get-azurermvmimageoffer) -Location "location" -Publisher "publisherName"<BR>[Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) -Location "location" -Publisher "publisherName" -Offer "offerName" |
 | REST API |[列出映像發行者](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publishers)<BR>[列出映像優惠](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publisher-offers)<BR>[列出映像 SKU](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publisher-offer-skus) |
 
-您可以選擇[上傳並使用您自己的映像](upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，當您這麼做時，不會使用發行者名稱、優惠和 SKU。
+您可以選擇[上傳並使用您自己的映像](upload-generalized-managed.md#upload-the-vhd-to-your-storage-account)，當您這麼做時，不會使用發行者名稱、優惠和 SKU。
 
 ### <a name="extensions"></a>擴充功能
 VM [擴充](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)會透過 post 部署設定及自動化工作為您的 VM 提供其他功能。

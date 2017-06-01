@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 10/05/2016
 ms.author: v-sharos@microsoft.com
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 27231cef19e7f624c2c09b0aae2ea3d503fb8e3d
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 8824568e9e4204a567cc08a10608cf835aa7164b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -188,13 +189,19 @@ StorSimple 會隨著使用模式變更而調整並重新排列資料和儲存體
 6. Microsoft Azure 會在其資料中心和遠端資料中心建立多個資料複本，確保災害發生時可以復原資料。 
 7. 當檔案伺服器要求雲端中儲存的資料時，StorSimple 會順暢地傳回它，並將複本儲存在 StorSimple 裝置的 SSD 層上。
 
+#### <a name="how-storsimple-manages-cloud-data"></a>StorSimple 管理雲端資料的方式
+
+StorSimple 會跨所有快照集和主要資料 (主機寫入的資料) 將客戶資料進行重複資料刪除。 儘管重複資料刪除適合用來提升儲存效率，但它會使「存在雲端中的資料」這個問題變得複雜。 階層式的主要資料和快照集資料會彼此重疊。 雲端中的資料單一區塊可用來作為階層式的主要資料，且還會由數個快照集所參考。 每個雲端快照集都會確保所有時間點資料的副本都會鎖定於雲端，直到將該快照集刪除為止。
+
+僅當沒有參考到該資料時，才會將資料從雲端刪除。 例如，如果我們採用 StorSimple 裝置中所有資料的雲端快照集，然後刪除一些主要資料，會看到_主要資料_立即降低。 包括階層式資料和備份的_雲端資料_則會維持不變。 這是因為仍有快照集會參考雲端資料。 在將雲端快照集刪除之後 (和其他參考相同資料的快照集)，雲端耗用量就會降低。 我們在移除雲端資料之前，會檢查已無快照集仍參考該資料。 此程序稱為_記憶體回收_，並且會在裝置上以背景服務執行。 並不會立即移除雲端資料，因為記憶體回收服務在刪除之前，會檢查對該資料的其他參考。 記憶體回收的速度會依快照集的總數和資料的總數而定。 一般而言，會在一週以內將雲端資料清除。
+
+
 ### <a name="thin-provisioning"></a>精簡佈建
-精簡佈建是一種虛擬化技術，精簡佈建中的可用儲存體會顯示超過實體資源。 與其預先保留足夠的儲存空間，StorSimple 會使用精簡佈建來配置剛好符合目前需求的足夠空間。 雲端儲存體的彈性本質正好支援這種方法，因為 StorSimple 可以增加或減少雲端儲存體以符合不斷變更的需求。 
+精簡佈建是一種虛擬化技術，精簡佈建中的可用儲存體會顯示超過實體資源。 與其預先保留足夠的儲存空間，StorSimple 會使用精簡佈建來配置剛好符合目前需求的足夠空間。 雲端儲存體的彈性本質正好支援這種方法，因為 StorSimple 可以增加或減少雲端儲存體以符合不斷變更的需求。
 
 > [!NOTE]
 > 本機固定磁碟區不會精簡佈建。 建立磁碟區時，配置給本機專用磁碟區的儲存體會完整佈建。
-> 
-> 
+
 
 ### <a name="deduplication-and-compression"></a>重複資料刪除和壓縮
 Microsoft Azure StorSimple 會使用重複資料刪除和資料壓縮，來進一步降低儲存體需求。
@@ -203,8 +210,7 @@ Microsoft Azure StorSimple 會使用重複資料刪除和資料壓縮，來進�
 
 > [!NOTE]
 > 本機固定磁碟區上的資料不會進行重複資料刪除或壓縮。 不過，本機固定磁碟區的備份會進行重複資料刪除和壓縮。
-> 
-> 
+
 
 ## <a name="storsimple-workload-summary"></a>StorSimple 工作負載摘要
 下表顯示所支援 StorSimple 工作負載的摘要。

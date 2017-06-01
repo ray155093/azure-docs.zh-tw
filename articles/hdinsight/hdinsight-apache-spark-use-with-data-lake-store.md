@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/21/2017
 ms.author: nitinme
-translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: c801dc221d4aaa2c3ed0a7d10c5d58065b26e427
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 24e0372f024e574d049c63f444b5e8f6b0dfd065
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -28,8 +29,6 @@ ms.lasthandoff: 03/22/2017
 在本教學課程中，您可使用 HDInsight Spark 叢集提供的 Jupyter Notebook 來執行可從 Data Lake Store 帳戶讀取資料的作業。
 
 ## <a name="prerequisites"></a>必要條件
-
-* Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 * Azure Data Lake Store 帳戶。 遵循 [使用 Azure 入口網站開始使用 Azure 資料湖存放區](../data-lake-store/data-lake-store-get-started-portal.md)的指示。
 
@@ -83,7 +82,7 @@ ms.lasthandoff: 03/22/2017
 
 3. 建立新的 Notebook。 按一下 [新增]，然後按一下 [PySpark]。
 
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-use-with-data-lake-store/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-use-with-data-lake-store/hdinsight-create-jupyter-notebook.png "建立新的 Jupyter Notebook")
 
 4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。 當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。 首先，您可以匯入此案例所需的類型。 方法是將下列程式碼片段貼到儲存格中，然後按下 **SHIFT + ENTER**。
 
@@ -91,7 +90,7 @@ ms.lasthandoff: 03/22/2017
 
     每當您在 Jupyter 中執行作業時，網頁瀏覽器視窗標題將會顯示 Notebook 標題和 **(忙碌)** 狀態。 您也會在右上角的 **PySpark** 文字旁看到一個實心圓。 工作完成後，實心圓將變成空心圓。
 
-     ![Jupyter Notebook 作業的狀態](./media/hdinsight-apache-spark-use-with-data-lake-store/hdispark.jupyter.job.status.png "Jupyter Notebook 作業的狀態")
+     ![Jupyter Notebook 作業的狀態](./media/hdinsight-apache-spark-use-with-data-lake-store/hdinsight-jupyter-job-status.png "Jupyter Notebook 作業的狀態")
 
 5. 使用您複製到 Data Lake Store 帳戶的 **HVAC.csv** 檔案，將範例資料載入到暫存資料表中。 您可以使用下列 URL 模式，存取 Data Lake Store 帳戶中的資料。
 
@@ -131,11 +130,11 @@ ms.lasthandoff: 03/22/2017
 
 7. 一旦工作順利完成後，預設會顯示下列表格式輸出。
 
-      ![查詢結果的資料表輸出](./media/hdinsight-apache-spark-use-with-data-lake-store/tabular.output.png "查詢結果的資料表輸出")
+      ![查詢結果的資料表輸出](./media/hdinsight-apache-spark-use-with-data-lake-store/jupyter-tabular-output.png "查詢結果的資料表輸出")
 
      您也可以查看其他視覺效果中的結果。 例如，相同輸出的區域圖看起來會如下所示。
 
-     ![查詢結果的區域圖](./media/hdinsight-apache-spark-use-with-data-lake-store/area.output.png "查詢結果的區域圖")
+     ![查詢結果的區域圖](./media/hdinsight-apache-spark-use-with-data-lake-store/jupyter-area-output.png "查詢結果的區域圖")
 
 8. 應用程式執行完畢之後，您應該要關閉 Notebook 來釋放資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。 這樣就能夠結束並關閉 Notebook。
 

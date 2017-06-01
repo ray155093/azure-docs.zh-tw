@@ -12,13 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/09/2017
+ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: de997066642c72a0a9e1d7210a96a3904580e6ed
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 4371092aa31db444c4ca0374b4b2e7d700029a8b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.lasthandoff: 04/12/2017
 >
 
 > [!IMPORTANT]
-> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
+> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
 >
 
 
@@ -206,7 +207,7 @@ ms.lasthandoff: 04/12/2017
   >
   >     java.exe-jar [SQuirreL jar 檔案的路徑]
 5. 按一下 [ **確定** ] 以確認建立目標目錄。
-6. 預設設定是安裝基底和標準封裝。  按 [下一步] 。
+6. 預設設定是安裝基底和標準封裝。  按一下 [下一步] 。
 7. 依序按兩下 [下一步] 和 [完成]。
 
 **安裝 Phoenix 驅動程式**

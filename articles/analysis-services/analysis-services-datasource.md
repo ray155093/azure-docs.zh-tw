@@ -15,19 +15,18 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 04/14/2017
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: a287ebd634a9305229424d0efea266146f88a952
-ms.openlocfilehash: 234032630cb3911deb7c7d32cfc4963ad6aee43f
-ms.lasthandoff: 01/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: aebabd15e781e726def545960ce3c1ec7674c530
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
 # <a name="datasource-connections"></a>資料來源連線
-Azure Analysis Services 中的資料模型連線至某些資料來源時，可能需要不同的資料提供者。 在某些情況下，使用如 SQL Server Native Client (SQLNCLI11) 等原生提供者連線至資料來源的表格式模型可能會傳回錯誤。
+Azure Analysis Services 中的資料模型連線至某些資料來源時，可能需要不同的資料提供者。 在某些情況下，使用原生提供者 (例如 SQL Server Native Client (SQLNCLI11)) 連接到資料來源的表格式模型可能會傳回錯誤。
 
-例如，當您有 In-Memory 或 DirectQuery 資料模型與雲端資料來源 (如 Azure SQL Database) 連線時，如果您使用 SQLOLEDB 以外的原生提供者，可能會看見以下的錯誤訊息：**“The provider 'SQLNCLI11.1' is not registered”** (尚未註冊提供者 'SQLNCLI11.1')。
-
-或者，當您有 DirectQuery 模型與內部部署資料來源連線時，如果您使用原生提供者，可能會看見錯誤訊息：**“Error creating OLE DB row set.Incorrect syntax near 'LIMIT'”** (建立 OLE DB 列集時發生錯誤。'LIMIT' 附近的語法錯誤)。
+對於與雲端資料來源 (如 Azure SQL Database) 連線的 In-Memory 或 DirectQuery 資料模型，如果您使用 SQLOLEDB 以外的原生提供者，可能會看見以下的錯誤訊息：**“The provider 'SQLNCLI11.1' is not registered”** (尚未註冊提供者 'SQLNCLI11.1')。 或者，當您有 DirectQuery 模型與內部部署資料來源連線時，如果您使用原生提供者，可能會看見錯誤訊息：**“Error creating OLE DB row set.Incorrect syntax near 'LIMIT'”** (建立 OLE DB 列集時發生錯誤。'LIMIT' 附近的語法錯誤)。
 
 ## <a name="data-source-providers"></a>資料來源提供者
 與雲端或內部部署中的資料來源連線時，In-Memory 或 DirectQuery 資料模型支援下列資料來源提供者：
@@ -76,6 +75,7 @@ Azure Analysis Services 中的資料模型連線至某些資料來源時，可�
 * 如果使用 SQL 驗證，模擬應為服務帳戶。
 
 ## <a name="next-steps"></a>後續步驟
-如果您有內部部署資料來源，請務必安裝 [內部部署閘道](analysis-services-gateway.md)。 若要深入了解在 SSDT 或 SSMS 中管理您伺服器的相關資訊，請參閱[管理您的伺服器](analysis-services-manage.md)。
+如果您有內部部署資料來源，請務必安裝 [內部部署閘道](analysis-services-gateway.md)。   
+若要深入了解在 SSDT 或 SSMS 中管理您伺服器的相關資訊，請參閱[管理您的伺服器](analysis-services-manage.md)。
 
 

@@ -1,13 +1,13 @@
 ---
 title: "Azure CosmosDB︰使用 .NET 和 DocumentDB API 建置 Web 應用程式 | Microsoft Docs"
 description: "提供 .NET 程式碼範例，您可用來連線及查詢 Azure Cosmos DB DocumentDB API"
-services: cosmosdb
+services: cosmos-db
 documentationcenter: 
 author: mimig1
 manager: jhubbard
 editor: 
 ms.assetid: 
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.custom: quick start connect
 ms.workload: 
 ms.tgt_pltfrm: na
@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 2c05863d8a891f8edf95afa73782e2d498c9bc4e
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 899c710318fee46a93b3f54a68cb9027589f7177
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/10/2017
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
 
-本快速入門會示範如何使用 Azure 入口網站建立 Azure Cosmos DB 帳戶、文件資料庫和集合。 您會接著建置和部署以 [DocumentDB .NET API](../documentdb/documentdb-sdk-dotnet.md) 為基礎的待辦事項清單 Web 應用程式，如下列螢幕擷取畫面所示。 
+本快速入門會示範如何使用 Azure 入口網站建立 Azure Cosmos DB 帳戶、文件資料庫和集合。 您會接著建置和部署以 [DocumentDB .NET API](documentdb-sdk-dotnet.md) 為基礎的待辦事項清單 Web 應用程式，如下列螢幕擷取畫面所示。 
 
 ![具有範例資料的待辦事項應用程式](./media/create-documentdb-dotnet/azure-comosdb-todo-app-list.png)
 
@@ -37,14 +37,17 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
+<a id="create-account"></a>
 ## <a name="create-a-database-account"></a>建立資料庫帳戶
 
-[!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
+[!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
+<a id="create-collection"></a>
 ## <a name="add-a-collection"></a>新增集合
 
-[!INCLUDE [cosmosdb-create-collection](../../includes/cosmosdb-create-collection.md)]
+[!INCLUDE [cosmos-db-create-collection](../../includes/cosmos-db-create-collection.md)]
 
+<a id="add-sample-data"></a>
 ## <a name="add-sample-data"></a>新增範例資料
 
 您現在可以使用 [資料總管] 將資料新增至您的新集合。
@@ -142,7 +145,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="review-slas-in-the-azure-portal"></a>在 Azure 入口網站中檢閱 SLA
 
-[!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmosdb-tutorial-review-slas.md)]
+[!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>清除資源
 
@@ -156,7 +159,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 在本快速入門中，您已了解如何建立 Azure Cosmos DB 帳戶、如何使用 [資料總管] 建立集合，以及如何執行 Web 應用程式。 您現在可以將其他資料匯入到 Cosmos DB 帳戶。 
 
 > [!div class="nextstepaction"]
-> [將資料匯入到 Azure Cosmos DB](../documentdb/documentdb-import-data.md)
+> [將資料匯入到 Azure Cosmos DB](import-data.md)
 
 
 

@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/03/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 764b54dd7fa6ac8d7b3fadb0745f06cbd3bff689
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 136de1c5599fa3c66f90c32c2f0599b166197928
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.lasthandoff: 04/17/2017
 | [遠端桌面](hdinsight-hadoop-use-mapreduce-remote-desktop.md) (HDInsight 3.2 和 3.3) |透過 **遠端桌面** |Windows |Windows |
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.2 和 3.3 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 ## <a id="whatis"></a>什麼是 MapReduce
 
@@ -172,7 +173,7 @@ HDInsight 可以使用各種方法執行 HiveQL 工作。 請使用下表決定�
 | [遠端桌面](hdinsight-hadoop-use-mapreduce-remote-desktop.md) (HDInsight 3.2 和 3.3) |透過 **遠端桌面** |Windows |Windows |
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.2 和 3.3 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 ## <a id="nextsteps"></a>接續步驟
 

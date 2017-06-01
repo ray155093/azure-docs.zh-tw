@@ -13,11 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
-ms.author: padmavc
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 507fb3200fe62aaa813464e5d6152a79907fdef7
-ms.lasthandoff: 04/06/2017
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: e83488f4ec420c2af40d373239ba6989387da3cb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -93,6 +94,9 @@ ms.lasthandoff: 04/06/2017
 * 要求技術和/或功能確認 (若已設定)。
   * 做為技術確認，CONTRL 訊息會指示交換的接收。
   * 做為功能確認，CONTRL 訊息會指示接受或拒絕接收的交換、群組或訊息，並列出錯誤或不支援的功能清單
+
+## <a name="view-swagger-file"></a>檢視 Swagger 檔案
+若要檢視 EDIFACT 連接器的 Swagger 詳細資料，請參閱 [EDIFACT](/connectors/edifact/)。
 
 ## <a name="next-steps"></a>後續步驟
 [深入了解企業整合套件](logic-apps-enterprise-integration-overview.md "了解企業整合套件") 

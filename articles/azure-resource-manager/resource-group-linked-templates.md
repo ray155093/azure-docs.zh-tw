@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/14/2017
+ms.date: 05/24/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 78b8902927977c3b7dca3bd6e24633858ef8e6e9
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 9ab6d3e5e41f155b1404cee8a555078409c09c60
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 05/11/2017
 ```json
 "resources": [ 
   { 
-      "apiVersion": "2015-01-01", 
+      "apiVersion": "2017-05-10", 
       "name": "linkedTemplate", 
       "type": "Microsoft.Resources/deployments", 
       "properties": { 
@@ -53,7 +53,7 @@ ms.lasthandoff: 05/11/2017
 如同其他資源類型，您可以設定連結的範本和其他資源之間的相依性。 因此，當其他資源需要來自連結的範本的輸出值時，您就能夠確定已在資源需要之前部署連結的範本。 或者，當連結的範本仰賴其他資源時，您可以確定已在連結的範本之前先部署其他資源。 您可以使用下列語法，擷取連結的範本的值：
 
 ```json
-"[reference('linkedTemplate').outputs.exampleProperty]"
+"[reference('linkedTemplate').outputs.exampleProperty.value]"
 ```
 
 Azure Resource Manager 服務必須能夠存取連結的範本。 您無法為連結的範本指定本機檔案或只可在本機網路存取的檔案。 您可以只提供 URI 值，其中包含 **http** 或 **https**。 有一個選項是將連結的範本放在儲存體帳戶中，並將 URI 用於該項目，如下列範例所示：
@@ -75,7 +75,7 @@ Azure Resource Manager 服務必須能夠存取連結的範本。 您無法為�
 },
 "resources": [
     {
-        "apiVersion": "2015-01-01",
+        "apiVersion": "2017-05-10",
         "name": "linkedTemplate",
         "type": "Microsoft.Resources/deployments",
         "properties": {
@@ -101,7 +101,7 @@ Resource Manager 會以個別部署的方式來處理每一個連結的範本。
 ```json
 "resources": [ 
   { 
-     "apiVersion": "2015-01-01", 
+     "apiVersion": "2017-05-10", 
      "name": "linkedTemplate", 
      "type": "Microsoft.Resources/deployments", 
      "properties": { 
@@ -142,116 +142,6 @@ Resource Manager 會以個別部署的方式來處理每一個連結的範本。
 }
 ```
 
-## <a name="conditionally-linking-to-templates"></a>有條件地連結至範本
-您可以連結至不同的範本，方法是以建構連結範本的 URI 所用的變數值來傳遞。 當您需要在部署期間指定要使用的連結範本時，這個方法很好用。 例如，您可以為現有儲存體帳戶指定一個要使用的範本，並為新的儲存體帳戶指定另一個要使用的範本。
-
-下列範例顯示的是儲存體帳戶名稱的參數以及用來指定儲存體帳戶是新的或現有的參數。
-
-```json
-"parameters": {
-    "storageAccountName": {
-        "type": "String"
-    },
-    "newOrExisting": {
-        "type": "String",
-        "allowedValues": [
-            "new",
-            "existing"
-        ]
-    }
-},
-```
-
-為範本 URI 建立變數，其中包含新的或現有的參數值。
-
-```json
-"variables": {
-    "templatelink": "[concat('https://raw.githubusercontent.com/exampleuser/templates/master/',parameters('newOrExisting'),'StorageAccount.json')]"
-},
-```
-
-將該變數值提供給部署資源。
-
-```json
-"resources": [
-    {
-        "apiVersion": "2015-01-01",
-        "name": "linkedTemplate",
-        "type": "Microsoft.Resources/deployments",
-        "properties": {
-            "mode": "incremental",
-            "templateLink": {
-                "uri": "[variables('templatelink')]",
-                "contentVersion": "1.0.0.0"
-            },
-            "parameters": {
-                "StorageAccountName": {
-                    "value": "[parameters('storageAccountName')]"
-                }
-            }
-        }
-    }
-],
-```
-
-URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAccount.json**。 為那些 URI 建立範本。
-
-下列範例顯示的是 **existingStorageAccount.json** 範本。
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "storageAccountName": {
-      "type": "String"
-    }
-  },
-  "variables": {},
-  "resources": [],
-  "outputs": {
-    "storageAccountInfo": {
-      "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0])]",
-      "type" : "object"
-    }
-  }
-}
-```
-
-下一個範例顯示的是 **newStorageAccount.json** 範本。 請注意，就像現有儲存體帳戶範本所示，儲存體帳戶物件會傳回輸出中。 主範本搭配任一連結範本都能運作。
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "storageAccountName": {
-      "type": "string"
-    }
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Storage/storageAccounts",
-      "name": "[parameters('StorageAccountName')]",
-      "apiVersion": "2016-01-01",
-      "location": "[resourceGroup().location]",
-      "sku": {
-        "name": "Standard_LRS"
-      },
-      "kind": "Storage",
-      "properties": {
-      }
-    }
-  ],
-  "outputs": {
-    "storageAccountInfo": {
-      "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('StorageAccountName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0])]",
-      "type" : "object"
-    }
-  }
-}
-```
-
 ## <a name="complete-example"></a>完整範例
 以下範例範本顯示連結範本的簡化設定，以說明本文章中的幾個概念。 範例會假設已經將範本新增到儲存體帳戶中的同一個容器，且已經關閉公開存取。 連結的範本會在 **outputs** 區段中將一個值傳遞給主範本。
 
@@ -266,7 +156,7 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
   },
   "resources": [
     {
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2017-05-10",
       "name": "linkedTemplate",
       "type": "Microsoft.Resources/deployments",
       "properties": {

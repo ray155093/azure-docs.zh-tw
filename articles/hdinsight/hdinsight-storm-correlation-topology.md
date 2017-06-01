@@ -16,10 +16,11 @@ ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: d0a5bc9d3365a48b03d6f53c21d672a928777956
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 21ce246fab787e06576a295ec4ea45ae3fdfc379
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 ---
 # <a name="correlate-events-that-arrive-at-different-times-using-storm-and-hbase"></a>在不同時間使用 Storm 和 HBase 抵達的事件相互關聯
@@ -40,7 +41,7 @@ ms.lasthandoff: 04/12/2017
 * Apache HBase on HDInsight 叢集 (Linux 或 Windows 型)。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 * 開發環境為 [Java](https://java.com) 1.7 或更新版本。 當拓撲提交到 HDInsight 叢集時，會使用 Java 來封裝它。
 

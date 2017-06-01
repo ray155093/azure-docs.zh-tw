@@ -3,7 +3,7 @@ title: "了解 Azure Service Fabric 支援選項 | Microsoft Docs"
 description: "支援的 Azure Service Fabric 叢集版本和檔案支援票證連結。"
 services: service-fabric
 documentationcenter: .net
-author: ChackDan
+author: pkc
 manager: timlt
 editor: 
 ms.assetid: 
@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/10/2017
-ms.author: chackdan
-translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 44e95f78b5fe592713570e53f2469c88202a02aa
-ms.lasthandoff: 03/11/2017
+ms.date: 05/05/2017
+ms.author: pkc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: f87aec3698addae135d4c934bb7217d9fae0e571
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -82,8 +83,14 @@ ms.lasthandoff: 03/11/2017
 | 5.3.121 之前的所有叢集版本 |2017 年 1 月 20 日 |
 | 5.3.* |2017 年 2 月 24 日 |
 | 5.4.* |2017 年 5 月 10 日     |
-| 5.5.* |目前版本，沒有結束日期
+| 5.5.* |2017 年 7 月 10 日    |
+| 5.6.* |目前版本，沒有結束日期
 
+<a id="previewversion"></a>
+## <a name="service-fabric-preview-versions---unsupported-for-production-use"></a>Service Fabric 預覽版本 - 不支援用於生產環境。
+有時候，我們會以預覽形式發行包含我們想得到意見反應之重要功能的版本。 這些預覽版本只能用於測試目的。 您的生產叢集應一律執行支援的穩定 Service Fabric 版本。 預覽版本一律從 255 作為主要和次要版本號碼的開頭。 例如，如果您看到 Service Fabric 版本 255.255.5703.949，該發行版本只能使用於測試叢集並處於預覽狀態。 這些預覽版本也會在 [Service Fabric 小組部落格](https://blogs.msdn.microsoft.com/azureservicefabric)上宣告，並且有內含功能的詳細資料。
+
+這些預覽版本沒有付費的支援選項。 使用[報告 Azure Service Fabric 問題](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support#report-azure-service-fabric-issues)底下所列的其中一個選項來提出問題或提供意見反應。
 
 ## <a name="next-steps"></a>後續步驟
 

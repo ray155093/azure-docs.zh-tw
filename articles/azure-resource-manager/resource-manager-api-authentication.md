@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 12/27/2016
 ms.author: dugill;tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 8a8a28e6491855434c4445bedd5644d7da109f8a
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
+ms.openlocfilehash: 7830dc4774652f4d108e98660dce3bcea7b32d05
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/23/2017
 
 
 ---
@@ -31,8 +32,6 @@ ms.lasthandoff: 04/21/2017
 2. **僅限應用程式存取**︰適用於執行協助程式服務和已排程之作業的應用程式。 應用程式的身分識別會獲得資源的直接存取權。 此方式適用於需要長期無周邊 (自動) 存取 Azure 的應用程式。
 
 本主題提供建立應用程式來運用這兩種授權方法的逐步指示。 它會說明如何使用 REST API 或 C# 執行每個步驟。 完整的 ASP.NET MVC 應用程式可在 [https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense](https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense)取得。
-
-本主題的所有程式碼都會作為 Web 應用程式執行，您可以在 [http://vipswapper.azurewebsites.net/cloudsense](http://vipswapper.azurewebsites.net/cloudsense)上試用。
 
 ## <a name="what-the-web-app-does"></a>Web 應用程式的功用
 Web 應用程式：

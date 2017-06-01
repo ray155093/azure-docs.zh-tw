@@ -12,13 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/27/2017
+ms.date: 05/12/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: db3a68e532775728099854a46d1ad0841e38b4a8
-ms.openlocfilehash: 3161a05a051ba741cf76e149f7b5e5a4324be0a4
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: 5ce72ffef4394bf3bbe39fa420c4fcaa965ae35c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -69,6 +70,9 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 ### <a name="creating-a-schedule"></a>建立排程
 使用 Put 方法並指定唯一的排程識別碼，以建立新的排程。  請注意，兩個排程即使其已儲存的相關聯搜尋不同，也不能有相同的識別碼。  當您在 OMS 主控台中建立排程時，將會建立 GUID 做為排程識別碼。
 
+> [!NOTE]
+> Log Analytics API 所建立並儲存的所有搜尋、排程和動作，都必須使用小寫名稱。
+
     $scheduleJson = "{'properties': { 'Interval': 15, 'QueryTimeSpan':15, 'Active':'true' } }"
     armclient put /subscriptions/{Subscription ID}/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/{Search ID}/schedules/mynewschedule?api-version=2015-03-20 $scheduleJson
 
@@ -107,6 +111,9 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 
 ### <a name="creating-or-editing-actions"></a>建立或編輯動作
 使用 Put 方法並指定排程特有的動作識別碼，以建立新的動作。  當您在 OMS 主控台中建立動作時，動作識別碼會使用 GUID。
+
+> [!NOTE]
+> Log Analytics API 所建立並儲存的所有搜尋、排程和動作，都必須使用小寫名稱。
 
 針對已儲存的相同搜尋，使用 Put 方法並指定現有的動作識別碼，以修改該排程。  要求的主體必須包含排程的 etag。
 

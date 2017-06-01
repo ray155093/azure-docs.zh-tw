@@ -14,13 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
 ms.openlocfilehash: e14f42497d5ee0c89fe1fa0824431e2d82e6555a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
 # <a name="biztalk-services-throttling"></a>BizTalk 服務：節流
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 Azure BizTalk 服務根據兩個條件實作服務節流：記憶體使用量和同時訊息處理的數量。 本主題列出節流閾值，並說明發生節流狀況時的執行階段行為。
 
 ## <a name="throttling-thresholds"></a>節流閾值
@@ -65,10 +70,5 @@ Azure BizTalk 服務進入節流狀態時會發生下列情況：
 * [BizTalk 服務：儀表板、監視和調整索引標籤](http://go.microsoft.com/fwlink/p/?LinkID=302281)<br/>
 * [BizTalk 服務：備份與還原](http://go.microsoft.com/fwlink/p/?LinkID=329873)<br/>
 * [BizTalk 服務：簽發者名稱和簽發者金鑰](http://go.microsoft.com/fwlink/p/?LinkID=303941)<br/>
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

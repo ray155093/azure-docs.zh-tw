@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: hero-=article
 ms.date: 04/05/2017
 ms.author: raynew
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 8b0985ec5b4fec39e9277b81f7bbecc7d50065e1
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 7de37f106e33d425b3b497cec640bac3fa4afa74
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -289,6 +290,8 @@ Site Recovery 會提供 Capacity Planner 以協助您為來源環境、Site Reco
 
 ## <a name="enable-replication"></a>啟用複寫
 
+在開始之前，請確定您的 Azure 使用者帳戶具有必要的[權限](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines)，才能將新的虛擬機器複寫至 Azure。
+
 立即啟用複寫，如下所示︰
 
 1. 按一下 [步驟 2: 複寫應用程式]  >  [來源]。 第一次啟用複寫之後，請按一下保存庫中的 [+複寫]，以對其他機器啟用複寫。
@@ -350,7 +353,25 @@ Site Recovery 會提供 Capacity Planner 以協助您為來源環境、Site Reco
      * 如果 VM 有多張網路介面卡，則全部會連接至相同的網路。
 
      ![啟用複寫](./media/site-recovery-vmm-to-azure/test-failover4.png)
+
 4. 在 [磁碟]  中，您可以看見 VM 上將要複寫的作業系統和資料磁碟。
+
+#### <a name="managed-disks"></a>受控磁碟
+
+在 [計算和網路] > [計算屬性] 中，如果您想要將受控磁碟連結至您要移轉至 Azure 的電腦上，可以將 VM 的 [使用受控磁碟] 設定為 [是]。 受控磁碟會管理與 VM 磁碟相關的儲存體帳戶，從而簡化 Azure IaaS VM 的磁碟管理。 [深入了解受控磁碟](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview)。
+
+   - 只有容錯移轉至 Azure 的受控磁碟會加以建立並連結至虛擬機器。 啟用保護時，內部部署電腦的資料會繼續複寫至儲存體帳戶。
+   只有使用 Resource Manager 部署模型部署的虛擬機器才能建立受控磁碟。  
+
+  > [!NOTE]
+  > 具有受控磁碟的電腦目前不支援從 Azure 容錯回復到內部部署 Hyper-V 環境。 只在您想要將這台電腦移轉至 Azure 時，才將 [使用受控磁碟] 設定為 [是]。
+
+   - 當您將 [使用受控磁碟] 設定為 [是] 時，只能選取資源群組中 [使用受控磁碟] 設定為 [是] 的可用性設定組。 這是因為只有當 [使用受控磁碟] 屬性設定為 [是] 時，具有受控磁碟的虛擬機器才能成為可用性設定組的一部分。 請確定您建立的可用性設定組，是以容錯移轉時使用受控磁碟的意圖作為基礎設定 [使用受控磁碟] 屬性。  同樣地，當您將 [使用受控磁碟] 設定為 [否] 時，只能選取資源群組中 [使用受控磁碟] 屬性設定為 [否] 的可用性設定組。 [深入了解受控磁碟和可用性設定組](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set)。
+
+  > [!NOTE]
+  > 如果用於複寫的儲存體帳戶在任何時間點透過儲存體服務加密進行加密，在容錯移轉期間建立受控磁碟就會失敗。 您可以將 [使用受控磁碟] 設定為 [否] 並重試容錯移轉，或將虛擬機器保護停用，並在未於任何時間點啟用儲存體服務加密的儲存體帳戶中加以保護。
+  > [深入了解儲存體服務加密及受控磁碟](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview#managed-disks-and-encryption)。
+
 
 ## <a name="test-the-deployment"></a>測試部署
 

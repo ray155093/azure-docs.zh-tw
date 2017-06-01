@@ -12,17 +12,38 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 4/11/2017
+ms.date: 5/1/2017
 ms.author: raiye
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 51b5c32eb73dc70b4019e60342db659959cc93bb
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: f084e9cbb4a14308e1e9d7a62c9f800b8c965d91
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
 # <a name="azure-guest-os"></a>Azure 客體作業系統
 下表為適用於 Azure 客體作業系統的 Microsoft Security Response Center (MSRC) 更新。 請搜尋本文章以判斷特定更新是否適用於您使用的客體作業系統。 已引進更新的特定[系列][family-explain]會持續推出更新。
+
+## <a name="april-guest-os"></a>四月客體 OS
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| --- | --- | --- | --- | --- |
+| Rel 17-04 |  [4015217]  |WS 2016 OS 品質改進 | 5.6 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4015546]  |只有 Windows 安全性 |2.61 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4015547]  |只有 Windows 安全性 |4.41 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4015548]  |只有 Windows 安全性 |3.48 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4014661]  |Internet explorer |2.61, 3.48, 4.41 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4014550]; [4014560]; [4014562]; [4014556]; [4014574] |.NET 安全性 |4.41 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4014564]; [4014572]; [4014549] |.NET 安全性 |3.48 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4014566]; [4014552]; [4014573]; [4014558]  |.NET 安全性 |2.61 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4015546]; [4015547]; [4015548]; [4015217]  |CVE-2017-0181 |5.6 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4015546]; [4015547]; [4015548]; [4015217]  |CVE-2017-0163; CVE-2017-0183; CVE-2017-0184; CVE-2017-0184; CVE-2017-0185; CVE-2017-0168 |2.61, 3.48, 4.41 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4015546]; [4015547]; [4015548]; [4015217]  |CVE-2017-0178; CVE-2017-0179; CVE-2017-0162; CVE-2017-0169 |4.41 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4015546]; [4015547]; [4015548]; [4015217]  |CVE-2017-0182; CVE-2017-0186; CVE-2017-0191 |2.61, 3.48, 4.41, 5.6 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4015193]  |Windows for Magallanes (智利) 中的 DST 變更 |2.61, 3.48, 4.41 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4012215]  |適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的 2017 年 3 月安全性每月品質彙總套件 |2.61 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4012217]  |適用於 Windows Server 2012 的 2017 年 3 月安全性每月品質彙總套件 |3.48 | 2017 年 4 月 11 日 |
+| Rel 17-04 |  [4012216]  |適用於 Windows 8.1 和 Windows Server 2012 R2 的 2017 年 3 月安全性每月品質彙總套件 |4.41 | 2017 年 4 月 11 日 |
 
 ## <a name="march-guest-os"></a>三月客體作業系統
 | 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
@@ -37,8 +58,6 @@ ms.lasthandoff: 04/12/2017
 | N/A |  [3205409] |適用於 Windows Server 2012 的 2016 年 12 月安全性每月品質彙總套件 |3.47 |2017 年 3 月 14 日 |
 | N/A |  [3205401] |適用於 Windows 8.1 和 Windows Server 2012 R2 的 2016 年 12 月安全性每月品質彙總套件 |4.40 |2017 年 3 月 14 日 |
 | N/A |  [3211320] |適用於 Windows 10 版本 1607 和 Windows Server 2016 的維護堆疊更新：2017 年 1 月 24 日 |5.5 |2017 年 3 月 14 日 |
-
-
 
 ## <a name="january-guest-os"></a>一月客體作業系統
 | 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
@@ -420,6 +439,30 @@ ms.lasthandoff: 04/12/2017
 | N/A |[3007054] |在 Windows 的 Windows 市集應用程式中列印文件時，一律會顯示受 PIN 保護的列印選項 |4.15、3.22,、2.34 |2015 年 1 月 13 日 |
 | N/A |[2999802] |在 Windows 中列印虛線時會變成實線 |4.15、3.22,、2.34 |2015 年 1 月 13 日 |
 | N/A |[2896881] |在 Windows 中於登入程序期間使用 AddPrinterConnection VBScript 命令對應使用者印表機時，登入時間過長 |4.15、3.22,、2.34 |2015 年 1 月 13 日 |
+
+[4015217]: http://support.microsoft.com/kb/4015217
+[4015546]: http://support.microsoft.com/kb/4015546
+[4015547]: http://support.microsoft.com/kb/4015547
+[4015548]: http://support.microsoft.com/kb/4015548
+[4014661]: http://support.microsoft.com/kb/4014661
+[4014550]: http://support.microsoft.com/kb/4014550
+[4014560]: http://support.microsoft.com/kb/4014560
+[4014562]: http://support.microsoft.com/kb/4014562
+[4014556]: http://support.microsoft.com/kb/4014556
+[4014574]: http://support.microsoft.com/kb/4014574
+[4014564]: http://support.microsoft.com/kb/4014564
+[4014572]: http://support.microsoft.com/kb/4014572
+[4014549]: http://support.microsoft.com/kb/4014549
+[4014566]: http://support.microsoft.com/kb/4014566
+[4014552]: http://support.microsoft.com/kb/4014552
+[4014573]: http://support.microsoft.com/kb/4014573
+[4014558]: http://support.microsoft.com/kb/4014558
+[4015217]: http://support.microsoft.com/kb/4015217
+[4015193]: http://support.microsoft.com/kb/4015193
+[4012215]: http://support.microsoft.com/kb/4012215
+[4012217]: http://support.microsoft.com/kb/4012217
+[4012216]: http://support.microsoft.com/kb/4012216
+
 
 [4013429]: http://support.microsoft.com/kb/4013429 
 [4012212]: http://support.microsoft.com/kb/4012212 

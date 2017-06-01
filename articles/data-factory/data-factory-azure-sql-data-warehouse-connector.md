@@ -14,20 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: jingwang
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: c491e8c8ac994ff5c303499a100f0a5307760f8e
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 02c5b7c8932a08bac4bc9e89bd7df3b3e5c57f94
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
 # <a name="move-data-to-and-from-azure-sql-data-warehouse-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料
 本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出「Azure SQL 資料倉儲」。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。  
 
-您可以將資料從任何支援的來源資料存放區複製到「Azure SQL 資料倉儲」，或從「Azure SQL 倉儲」製到任何支援的接收資料存放區。 如需複製活動所支援作為來源或接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。
-
 > [!TIP]
 > 若要達到最佳效能，請使用 PolyBase 將資料載入 Azure SQL 資料倉儲。 如需詳細資訊，請參閱 [使用 PolyBase 將資料載入 Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#use-polybase-to-load-data-into-azure-sql-data-warehouse) 。 如需使用案例的逐步解說，請參閱[使用 Azure Data Factory 在 15 分鐘內將 1 TB 載入至 Azure SQL 資料倉儲](data-factory-load-sql-data-warehouse.md)。
+
+## <a name="supported-scenarios"></a>支援的案例
+您可以**從 Azure SQL 資料倉儲**將資料複製到下列資料存放區：
+
+[!INCLUDE [data-factory-supported-sinks](../../includes/data-factory-supported-sinks.md)]
+
+您可以從下列資料存放區將資料複製**到 Azure SQL 資料倉儲**：
+
+[!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
+
+> [!TIP]
+> 從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲時，如果目的地存放區中沒有資料表，Data Factory 可以使用來源資料存放區中的資料表結構描述，在 SQL 資料倉儲中自動建立資料表。 請參閱[自動建立資料表](#auto-table-creation)以取得詳細資料。
 
 ## <a name="supported-authentication-type"></a>支援的驗證類型
 Azure SQL 資料倉儲連接器支援基本驗證。
@@ -37,18 +48,16 @@ Azure SQL 資料倉儲連接器支援基本驗證。
 
 要建立將資料複製到 Azure SQL 資料倉儲，或複製 Azure SQL 資料倉儲資料的管線，最簡單的方法是使用複製資料精靈。 請參閱[教學課程︰使用 Data Factory 將資料載入 SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-load-with-data-factory.md)以取得使用複製資料精靈建立管線的快速逐步解說。
 
-> [!TIP]
-> 從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲時，如果目的地存放區中沒有資料表，Data Factory 可以使用來源資料存放區中的資料表結構描述，在 SQL 資料倉儲中自動建立資料表。 請參閱[自動建立資料表](#auto-table-creation)以取得詳細資料。
-
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API**及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
 不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線：
 
-1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
-2. 建立**資料集**，代表複製作業的輸入和輸出資料。
-3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。
+1. 建立 **Data Factory**。 一個資料處理站可包含一或多個管線。 
+2. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。 例如，如果您將資料從 Azure blob 儲存體複製到 Azure SQL 資料倉儲，您會建立兩個連結服務，將 Azure 儲存體帳戶和 Azure SQL 資料倉儲連結至資料處理站。 有關 Azure SQL 資料倉儲專屬的連結服務屬性，請參閱[連結服務屬性](#linked-service-properties)一節。 
+3. 建立**資料集**，代表複製作業的輸入和輸出資料。 在上一個步驟所述的範例中，您會建立資料集來指定 blob 容器和包含輸入資料的資料夾。 您還會建立另一個資料集來指定 Azure SQL 資料倉儲中的資料表，以保存從 Blob 儲存體複製的資料。 有關 Azure SQL 資料倉儲專屬的資料集屬性，請參閱[資料集屬性](#dataset-properties)一節。
+4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在稍早所述的範例中，您會使用 BlobSource 作為來源，以及使用 SqlDWSink 作為複製活動的接收器。 同樣地，如果您是從 Azure SQL 資料倉儲複製到 Azure Blob 儲存體，則需要在複製活動中使用 SqlDWSource 和 BlobSink。 有關 Azure SQL 資料倉儲專屬的複製活動屬性，請參閱[複製活動屬性](#copy-activity-properties)一節。 如需有關如何使用資料存放區作為來源或接收器的詳細資訊，請在上一節按一下適用於您的資料存放區的連結。
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到「Azure SQL 資料倉儲」(或從「Azure SQL 資料倉儲」複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples)一節。
+使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到「Azure SQL 資料倉儲」(或從「Azure SQL 資料倉儲」複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples-for-copying-data-to-and-from-sql-data-warehouse)一節。
 
 下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義「Azure SQL 資料倉儲」特定的 Data Factory 實體：
 
@@ -211,7 +220,7 @@ SQL 資料倉儲 PolyBase 直接支援 Azure Blob 和 Azure Data Lake Store (使
 5. 目前沒有任何 `columnMapping` 使用於相關聯的複製活動。
 
 ### <a name="staged-copy-using-polybase"></a>使用 PolyBase 分段複製
-當來源資料不符合上一節介紹的準則時，您可以啟用透過過渡暫存 Azure Blob 儲存體 (不能是進階儲存體) 複製資料。 在此情況下，Azure Data Factory 會自動執行資料轉換，以符合 PolyBase 的資料格式需求，然後使用 PolyBase 將資料載入到 SQL 資料倉儲，最後從 Blog 儲存體清空您的暫存資料。 如需透過暫存 Azure Blob 複製資料通常如何運作的詳細資訊，請參閱 [分段複製](data-factory-copy-activity-performance.md#staged-copy) 。
+當來源資料不符合上一節介紹的準則時，您可以啟用透過過渡暫存 Azure Blob 儲存體 (不能是進階儲存體) 複製資料。 在此情況下，Azure Data Factory 會自動執行資料轉換，以符合 PolyBase 的資料格式需求，然後使用 PolyBase 將資料載入到 SQL 資料倉儲，最後從 Blob 儲存體清空您的暫存資料。 如需透過暫存 Azure Blob 複製資料通常如何運作的詳細資訊，請參閱 [分段複製](data-factory-copy-activity-performance.md#staged-copy) 。
 
 > [!NOTE]
 > 當您使用 PolyBase 和分段，將資料從內部部署資料存放區複製到 Azure SQL 資料倉儲時，如果您的「資料管理閘道」版本低於 2.4，就必須在閘道電腦上安裝 JRE (Java Runtime Environment)，以便用來將來源資料轉換為適當格式。 建議您將閘道升級為最新的版本，以避免這類相依性。
@@ -244,7 +253,7 @@ SQL 資料倉儲 PolyBase 直接支援 Azure Blob 和 Azure Data Lake Store (使
 ```
 
 ## <a name="best-practices-when-using-polybase"></a>使用 PolyBase 時的最佳作法
-以下是一般[Azure SQL 資料倉儲最佳做法](../sql-data-warehouse/sql-data-warehouse-best-practices.md)的補充資訊。
+除了 [Azure SQL 資料倉儲的最佳做法](../sql-data-warehouse/sql-data-warehouse-best-practices.md)之外，下列章節還提供其他最佳做法。
 
 ### <a name="required-database-permission"></a>必要的資料庫權限
 若要使用 PolyBase，要用來將資料載入 SQL 資料倉儲的使用者必須具備目標資料庫的 ["CONTROL" 權限](https://msdn.microsoft.com/library/ms191291.aspx)。 達到此目標的其中一個方法是將該使用者新增為 "db_owner" 角色的成員。 依照[本節](../sql-data-warehouse/sql-data-warehouse-overview-manage-security.md#authorization)了解如何進行這項動作。
@@ -366,10 +375,10 @@ Data Factory 會以和來源資料存放區中的資料表相同的名稱，在�
 
 您也可以在複製活動定義中，將來自來源資料集的資料行與來自接收資料集的資料行對應。 如需詳細資料，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
 
-## <a name="json-examples"></a>JSON 範例
+## <a name="json-examples-for-copying-data-to-and-from-sql-data-warehouse"></a>往返 SQL 資料倉儲複製資料的 JSON 範例
 以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure SQL 資料倉儲和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。
 
-## <a name="example-copy-data-from-azure-sql-data-warehouse-to-azure-blob"></a>範例：將資料從 Azure SQL 資料倉儲複製到 Azure Blob
+### <a name="example-copy-data-from-azure-sql-data-warehouse-to-azure-blob"></a>範例：將資料從 Azure SQL 資料倉儲複製到 Azure Blob
 此範例會定義下列 Data Factory 實體：
 
 1. [AzureSqlDW](#linked-service-properties)類型的連結服務。
@@ -496,7 +505,7 @@ Data Factory 會以和來源資料存放區中的資料表相同的名稱，在�
 }
 ```
 
-**具有 SqlDWSource 和 BlobSink 的管線中複製活動：**
+**管線中使用 SqlDWSource 和 BlobSink 的複製活動：**
 
 此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **SqlDWSource**，而 **sink** 類型設為 **BlobSink**。 針對 **SqlReaderQuery** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
 
@@ -555,7 +564,7 @@ Data Factory 會以和來源資料存放區中的資料表相同的名稱，在�
 >
 >
 
-## <a name="example-copy-data-from-azure-blob-to-azure-sql-data-warehouse"></a>範例：將資料從 Azure Blob 複製到 Azure SQL 資料倉儲
+### <a name="example-copy-data-from-azure-blob-to-azure-sql-data-warehouse"></a>範例：將資料從 Azure Blob 複製到 Azure SQL 資料倉儲
 此範例會定義下列 Data Factory 實體：
 
 1. [AzureSqlDW](#linked-service-properties)類型的連結服務。

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: fb660384f2f9f569bcfbe7fa7d5c1f7ce772cacd
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: ba842028ecda47b8011cba948d7c92417214c2d0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -85,7 +86,12 @@ ms.lasthandoff: 04/20/2017
 ## <a name="restore"></a>還原
 在還原時，您的備份檔案必須位於您為伺服器所設定的儲存體帳戶中。 如果您需要將備份檔案從內部部署位置移至儲存體帳戶，請使用 [Microsoft Azure 儲存體總管](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer)或 [AzCopy](../storage/storage-use-azcopy.md) 命令列公用程式。 
 
-如果您要從內部部署 SQL Server Analysis Services 伺服器來還原表格式 1200 模型資料庫，您必須先從該模型的角色中移除所有網域使用者，再將他們新增回角色中以成為 Azure Active Directory 使用者。 這些角色將會相同。
+
+
+> [!NOTE]
+> 如果您要從內部部署 SQL Server Analysis Services 伺服器來還原表格式模型資料庫，您必須先從該模型的角色中移除所有網域使用者，再將他們新增回角色中成為 Azure Active Directory 使用者。 這些角色將會相同。
+> 
+> 
 
 ### <a name="to-restore-by-using-ssms"></a>使用 SSMS 來進行還原
 

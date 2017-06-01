@@ -14,12 +14,12 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: cephalin
+ms.custom: mvc
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
 ms.openlocfilehash: 000440fb2c38eadc0ffdcab84a3c23bb034e834f
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/09/2017
-
 
 ---
 # <a name="map-an-existing-custom-dns-name-to-azure-web-apps"></a>將現有的自訂 DNS 名稱對應至 Azure Web Apps
@@ -78,7 +78,7 @@ ms.lasthandoff: 05/09/2017
 
 ![檢查定價層](./media/app-service-web-tutorial-custom-domain/check-pricing-tier.png)
 
-**免費**層不支援自訂 DNS。 如果您需要相應增加，請遵循下一節進行。 否則，請關閉 [選擇定價層] 刀鋒視窗，然後跳至 [對應 CNAME 記錄][](#cname) 或 [對應 A 記錄][](#a)。
+**免費**層不支援自訂 DNS。 如果您需要相應增加，請遵循下一節進行。 否則，請關閉 [選擇定價層] 刀鋒視窗，然後跳至 [對應 CNAME 記錄](#cname) 或 [對應 A 記錄](#a)。
 
 ### <a name="scale-up-your-app-service-plan"></a>相應增加您的 App Service 方案
 

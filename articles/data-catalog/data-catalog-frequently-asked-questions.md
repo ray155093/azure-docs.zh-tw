@@ -13,11 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 01/23/2017
+ms.date: 05/15/2017
 ms.author: maroche
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 76cc9c79851cc040e6a36c5499a77c0d95948154
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: c91f840077ccd9e55a403533c97a852542f0d326
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -108,7 +110,7 @@ Azure 資料目錄強化技術性和非技術性使用者的能力，包括：
 我們正積極將更多資料來源加入 Azure 資料目錄。 如果有您希望我們支援的資料來源，請在 [Azure 資料目錄論壇](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)提出建議 (如果已建議，請表達支持)。
 
 ## <a name="q-how-is-azure-data-catalog-related-to-the-data-catalog-in-power-bi-for-office-365"></a>問：Azure 資料目錄與 Power BI for Office 365 中的資料目錄有何關係？
-您可將 Azure 資料目錄視為進化版的「資料目錄」。 Azure 資料目錄在資料來源發行和探索方面提供類似的功能，但著重於更廣泛的案例，且不依賴 Office 365。 在 Azure 資料目錄公開推出不久之後，這兩個目錄將合併成單一服務。
+您可將 Azure 資料目錄視為 Power BI 中進化版的「資料目錄」。 從 2017 年春季開始，Azure 資料目錄用來在 Excel 2016 和 Power Query for Excel 中共用和探索查詢。 Excel 中的資料目錄功能適用於具有 Power BI Pro 授權的使用者。
 
 ## <a name="q-what-permissions-does-a-user-need-to-register-assets-with-azure-data-catalog"></a>問：使用者向 Azure 資料目錄註冊資產需要什麼權限？
 執行 Azure 資料目錄註冊工具的使用者，在資料來源上需要有權限從來源讀取中繼資料。 如果使用者也選擇包含預覽，則使用者必須也有權限從註冊的物件讀取資料。
@@ -127,9 +129,4 @@ Azure 資料目錄是可以同時使用雲端和內部部署資料來源的雲�
 
 ## <a name="q-my-question-isnt-answered-here--what-should-i-do"></a>問：這裡沒有解答我的問題 – 我該怎麼辦？
 請前往 [Azure 資料目錄論壇](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)。 那裡提出的問題會在這裡找到答案。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

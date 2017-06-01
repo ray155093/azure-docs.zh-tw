@@ -14,13 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/20/2017
+ms.date: 05/05/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: a7240c52e9351a60e3cf577d8112862c7dc8d913
-ms.lasthandoff: 03/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: d4c509c43ff647f3d9b96ffd136073312a81049b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -115,8 +116,7 @@ ms.lasthandoff: 03/14/2017
 如果是群組授權指派，未指定使用位置的任何使用者會繼承目錄的位置。 如果您在不同的位置有使用者，請確定先在使用者物件中正確反映，然後再將使用者新增至具有授權的群組。
 
 ## <a name="use-powershell-to-see-who-has-inherited-and-direct-licenses"></a>使用 PowerShell 查看誰具有繼承和直接授權
-
-在 Azure AD 版本的公開預覽期間，無法使用 PowerShell 來完全掌控群組授權指派。 不過，它可以用來探索關於使用者狀態的基本資訊，以及判斷授權是繼承自群組還是直接指派。 下列程式碼範例示範系統管理員如何產生有關授權指派的基本報告。
+當群組型授權處於公開預覽狀態時，PowerShell 無法用來完全掌控群組授權指派。 不過，它可以用來探索關於使用者狀態的基本資訊，以及判斷授權是繼承自群組還是直接指派。 下列程式碼範例示範系統管理員如何產生有關授權指派的基本報告。
 
 1. 執行 `connect-msolservice` Cmdlet 來驗證並連線至您的租用戶。
 

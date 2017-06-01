@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/19/2016
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: c6de21da824a6e81c38f36c41c05ddd704fadcb6
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: e2bfbdd5ca8ec178c2c32c7b52637a8ec7e88a4c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -345,7 +346,6 @@ Redis 只會使用單一節點類型，因此您將建立名為 node-resources.j
 **針對 Marketplace 調整已設定解決方案範圍的範本**
 
 ## <a name="next-steps"></a>後續步驟
-* 如需如何在 Azure 資源管理員中處理安全性的建議，請參閱 [Azure 資源管理員的安全性考量](best-practices-resource-manager-security.md)
 * 若要了解進出範本的共用狀態，請參閱〈 [Azure 資源管理員範本中的共用狀態](best-practices-resource-manager-state.md)〉。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 

@@ -14,13 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
 ms.openlocfilehash: 4fb13a158c660105a5fc8f79a92c67ba65c5356d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
 # <a name="biztalk-services-issuer-name-and-issuer-key"></a>BizTalk 服務：簽發者名稱和簽發者金鑰
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 Azure BizTalk 服務使用服務匯流排簽發者名稱和簽發者金鑰，以及存取控制簽發者名稱和簽發者金鑰。 具體而言：
 
 | 工作 | 什麼簽發者名稱和簽發者金鑰 |
@@ -97,10 +102,5 @@ BizTalk 配接器服務會使用服務匯流排簽發者名稱和簽發者金鑰
 * [BizTalk 服務：儀表板、監視和調整索引標籤](http://go.microsoft.com/fwlink/p/?LinkID=302281)<br/>
 * [BizTalk 服務：備份與還原](http://go.microsoft.com/fwlink/p/?LinkID=329873)<br/>
 * [BizTalk 服務：節流](http://go.microsoft.com/fwlink/p/?LinkID=302282)<br/>
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

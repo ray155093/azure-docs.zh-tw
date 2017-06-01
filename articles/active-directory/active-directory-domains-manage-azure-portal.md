@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Active Directory 預覽版中管理自訂網域名稱 | Microsoft Docs"
+title: "管理 Azure Active Directory 中的自訂網域名稱 | Microsoft Docs"
 description: "Azure Active Directory 中管理網域的管理概念和做法"
 services: active-directory
 documentationcenter: 
@@ -12,16 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 05/04/2017
 ms.author: curtand;jeffsta
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 9dd64868be0899ebfc6414e0dc9e6e62d864e88e
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: b483dcce0bec933e5dab6c990f4912cb596ebda0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="managing-custom-domain-names-in-your-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中管理自訂網域名稱
-網域名稱是許多目錄資源識別項的重要部分：它可能是使用者的使用者名稱或電子郵件地址的一部分、群組位址的一部分，也可能是應用程式的應用程式識別碼 URI 的一部分。 Azure Active Directory (Azure AD) 預覽版中的資源可包含已驗證為目錄 (其中含有該資源) 所擁有的網域名稱。 [預覽版有何功能？](active-directory-preview-explainer.md)  只有全域管理員可以在 Azure AD 中執行網域管理工作。
+# <a name="managing-custom-domain-names-in-your-azure-active-directory"></a>管理 Azure Active Directory 中的自訂網域名稱
+網域名稱是許多目錄資源識別項的重要部分：它可能是使用者的使用者名稱或電子郵件地址的一部分、群組位址的一部分，也可能是應用程式的應用程式識別碼 URI 的一部分。 Azure Active Directory (Azure AD) 中的資源可包含已驗證為目錄 (其中含有資源) 所擁有的網域名稱。 只有全域管理員可以在 Azure AD 中執行網域管理工作。
 
 ## <a name="set-the-primary-domain-name-for-your-azure-ad-directory"></a>設定 Azure AD 目錄的主要網域名稱
 建立目錄時，初始網域名稱 (例如 ‘contoso.onmicrosoft.com’) 同時也是主要網域名稱。 當您建立新的使用者時，主要網域即為新使用者的預設網域名稱。 這可以簡化系統管理員在入口網站中建立新使用者的程序。 變更主要網域名稱：
@@ -59,17 +61,12 @@ ms.openlocfilehash: 9dd64868be0899ebfc6414e0dc9e6e62d864e88e
 您必須變更或刪除 Azure AD 目錄中任何這類資源，才能刪除自訂網域名稱。
 
 ## <a name="use-powershell-or-graph-api-to-manage-domain-names"></a>使用 PowerShell 或圖形 API 來管理網域名稱
-在 Azure Active Directory 中，大部分的網域管理工作都可以使用 Microsoft PowerShell 來完成，或使用 Azure AD 圖形 API 以程式設計方式來完成。
+在 Azure Active Directory 中，大部分的網域名稱管理工作也都可以使用 Microsoft PowerShell 來完成，或使用 Azure AD 圖形 API 以程式設計方式來完成。
 
 * [使用 PowerShell 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
 * [使用圖形 API 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)
 
 ## <a name="next-steps"></a>後續步驟
 * [新增自訂網域名稱](active-directory-domains-add-azure-portal.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

@@ -1,5 +1,6 @@
 ---
-title: "在 Azure Active Directory 預覽版中管理群組的成員 | Microsoft Docs"
+
+title: "在 Azure Active Directory 中管理群組的成員 | Microsoft Docs"
 description: "如何在 Azure Active Directory 的群組中新增或移除使用者和裝置"
 services: active-directory
 documentationcenter: 
@@ -12,18 +13,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
+ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 58768cd59a922483bcb37797a6dcd515d159ef4c
-ms.openlocfilehash: 3373af848720c7c04e679d7fd4b075c5571fb417
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 044e88f95712e1cc5b5532f5492c78d711a8d858
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
 # <a name="manage-group-membership-for-users-in-your-azure-active-directory-tenant"></a>管理 Azure Active Directory 租用戶中使用者的群組成員資格
-本文說明如何在 Azure Active Directory (Azure AD) 預覽版中管理群組的成員。 [預覽版有何功能？](active-directory-preview-explainer.md)
+本文說明如何在 Azure Active Directory (Azure AD) 中管理群組的成員。
 
 ## <a name="how-do-i-find-the-members-and-manage-them"></a>如何尋找成員及管理這些成員？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。

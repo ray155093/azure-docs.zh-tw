@@ -1,6 +1,6 @@
 ---
 
-title: "Azure Active Directory 預覽版中以屬性為基礎的動態群組成員資格 | Microsoft Docs"
+title: "Azure Active Directory 中以屬性為基礎的動態群組成員資格 | Microsoft Docs"
 description: "如何建立動態群組成員資格的進階規則，包括支援的運算式規則運算子和參數。"
 services: active-directory
 documentationcenter: 
@@ -13,20 +13,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/07/2017
+ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 6ef550047a28a6070cad5da2e00cf18fbca3f9fa
-ms.lasthandoff: 03/09/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: da03dc8afa58ddfe97301dabed186ed325410937
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="create-attribute-based-rules-for-dynamic-group-membership-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中針對動態群組成員資格建立以屬性為基礎的規則
-Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (Azure AD) 預覽版群組啟用更複雜的屬性型動態成員資格。 [預覽版有何功能？](active-directory-preview-explainer.md) 
-
-本文將詳細說明用以建立動態成員資格規則的屬性和語法。
+# <a name="create-attribute-based-rules-for-dynamic-group-membership-in-azure-active-directory"></a>在 Azure Active Directory 中針對動態群組成員資格建立以屬性為基礎的規則
+在 Azure Active Directory (Azure AD) 中，您可以建立進階規則，以對群組啟用更複雜的屬性型動態成員資格。 本文將詳細說明用以建立動態成員資格規則的屬性和語法。
 
 ## <a name="to-create-the-advanced-rule"></a>建立進階規則
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。

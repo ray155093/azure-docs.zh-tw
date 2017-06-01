@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Active Directory 預覽版中停用企業應用程式的使用者登入 | Microsoft Docs"
+title: "在 Azure Active Directory 中停用企業應用程式的使用者登入 | Microsoft Docs"
 description: "如何在 Azure Active Directory 中停用企業應用程式，讓任何使用者都無法登入它"
 services: active-directory
 documentationcenter: 
@@ -12,16 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 05/04/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: c57505d037d991f3c0d720a481393ec2ae6b8069
-ms.openlocfilehash: ef6ae32c1d9b2e417d2a766207575f19aa06feaa
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 5d27046370eada0c371c94fb573fa1bcf536f7cf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
-# <a name="disable-user-sign-ins-for-an-enterprise-app-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中停用企業應用程式的使用者登入
-在 Azure Active Directory (Azure AD) 預覽版中，您可以輕鬆停用企業應用程式，讓任何使用者都無法登入它。 [預覽版有何功能？](active-directory-preview-explainer.md) 您必須具備適當的權限，才能管理企業應用程式。 在目前的預覽版中，您必須是目錄的全域管理員。
+# <a name="disable-user-sign-ins-for-an-enterprise-app-in-azure-active-directory"></a>在 Azure Active Directory 中停用企業應用程式的使用者登入
+在 Azure Active Directory (Azure AD) 中，您可以輕鬆停用企業應用程式，讓任何使用者都無法登入它。 您必須具備適當的權限，才能管理企業應用程式，而且必須是目錄的全域管理員。
 
 ## <a name="how-do-i-disable-user-sign-ins"></a>如何停用使用者登入？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
@@ -42,9 +44,4 @@ ms.openlocfilehash: ef6ae32c1d9b2e417d2a766207575f19aa06feaa
 * [將使用者或群組指派給企業應用程式](active-directory-coreapps-assign-user-azure-portal.md)
 * [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-azure-portal.md)
 * [變更企業應用程式的名稱或標誌](active-directory-coreapps-change-app-logo-user-azure-portal.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

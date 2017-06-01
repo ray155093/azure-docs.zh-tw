@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 864526efd2bc90bdd4beeb4c81173e85eee6f34b
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 44e0d7c920bc32bf3293ca5ab197b6d2332a43f8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -35,7 +36,6 @@ ms.lasthandoff: 04/27/2017
 > * [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)
 > * [.NET 自訂活動](data-factory-use-custom-activities.md)
 
-
 您可以在 Azure Data Factory 管線中使用兩種活動。
 
 - [資料移動活動](data-factory-data-movement-activities.md)，可在[支援的來源與接收資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)之間移動資料。
@@ -51,7 +51,7 @@ ms.lasthandoff: 04/27/2017
 > - 自訂的 .NET 活動只會在 Windows 架構的 HDInsight 叢集上執行。 這項限制的因應措施是使用 Map Reduce 活動以在 Linux 架構的 HDInsight 叢集上執行自訂的 Java 程式碼。 另一個選項是使用 VM 的 Azure Batch 集區來執行自訂活動，而非使用 HDInsight 叢集來執行。
 > - 您不能使用自訂活動中的資料管理閘道來存取內部部署資料來源。 目前在 Data Factory 中，[資料管理閘道](data-factory-data-management-gateway.md)只支援複製活動和預存程序活動。   
 
-## <a name="walkthrough"></a>逐步介紹
+## <a name="walkthrough-create-a-custom-activity"></a>逐步解說：建立自訂活動
 ### <a name="prerequisites"></a>必要條件
 * Visual Studio 2012/2013/2015
 * 下載並安裝 [Azure .NET SDK][azure-developer-center]
@@ -63,7 +63,7 @@ ms.lasthandoff: 04/27/2017
 
 1. 使用 **Azure 入口網站** 建立 [Azure Batch 帳戶](http://portal.azure.com)。 請參閱[建立和管理 Azure Batch 帳戶][batch-create-account]一文以取得指示。
 2. 記下 Azure Batch 帳戶名稱、帳戶金鑰、URI，以及集區名稱。 您需要它們來建立 Azure Batch 連結服務。
-    1. 在 Azure Batch 帳戶首頁上，您會看到一串 URL 為下列格式︰`https://myaccount.westus.batch.azure.com`。 在此範例中，**myaccount** 是 Azure Batch 帳戶的名稱。 您在連結服務的定義中使用之 URI 是不含帳戶名稱的 URL。 例如： `https://westus.batch.azure.com`。
+    1. 在 Azure Batch 帳戶首頁上，您會看到一串 URL 為下列格式︰`https://myaccount.westus.batch.azure.com`。 在此範例中，**myaccount** 是 Azure Batch 帳戶的名稱。 您在連結服務的定義中使用之 URI 是不含帳戶名稱的 URL。 例如： `https://<region>.batch.azure.com`。
     2. 在左窗格上按一下 [金鑰]，然後複製**主要存取金鑰**。
     3. 若要使用現有的集區，在功能表上按一下 [集區]，記下集區的**識別碼**。 如果您沒有現有的集區，請移至下一個步驟。     
 2. 建立 **Azure Batch 集區**。
@@ -88,7 +88,7 @@ ms.lasthandoff: 04/27/2017
 1. 建立包含簡單資料轉換/處理邏輯的自訂活動。
 2. 透過使用自訂活動的管線建立 Azure Data Factory。
 
-## <a name="create-a-custom-activity"></a>建立自訂活動
+### <a name="create-a-custom-activity"></a>建立自訂活動
 若要建立 .NET 自訂活動，您必須利用實作 **IDotNetActivity** 介面的類別建立 **.NET 類別庫**專案。 這個介面只有一個方法： [Execute](https://msdn.microsoft.com/library/azure/mt603945.aspx) ，其簽章為：
 
 ```csharp
@@ -112,10 +112,10 @@ public IDictionary<string, string> Execute(
 ### <a name="procedure"></a>程序
 1. 建立 **.NET 類別庫** 專案。
    <ol type="a">
-     <li>啟動 <b>Visual Studio 2015</b> 或 <b>Visual Studio 2013</b> 或 <b>Visual Studio 2012</b>。</li>
+     <li>啟動 <b>Visual Studio 2017</b> 或 <b>Visual Studio 2015</b> 或 <b>Visual Studio 2013</b> 或 <b>Visual Studio 2012</b>。</li>
      <li>按一下 [檔案]<b></b>，指向 [新增]<b></b>，然後按一下 [專案]<b></b>。</li>
      <li>展開 [範本]<b></b>，然後選取 [Visual C#]<b></b>。 在此逐步解說中，您使用 C# 中，但您可以使用任何 .NET 語言來開發自訂活動。</li>
-     <li>從右邊的專案類型清單中選取 [類別庫]<b></b>。</li>
+     <li>從右邊的專案類型清單中選取 [類別庫]<b></b>。 在 VS 2017 中，選擇 <b>類別庫 (.NET Framework)</b> </li>
      <li>在 [名稱]<b></b> 輸入 <b>MyDotNetActivity</b>。</li>
      <li>在 [位置]<b></b> 選取 <b>C:\ADFGetStarted</b>。</li>
      <li>按一下 [確定] <b></b> 以建立專案。</li>
@@ -137,16 +137,27 @@ public IDictionary<string, string> Execute(
 5. 將下列 **using** 陳述式加入至專案的原始程式檔。
 
     ```csharp
-    using System.IO;
-    using System.Globalization;
-    using System.Diagnostics;
-    using System.Linq;
 
-    using Microsoft.Azure.Management.DataFactories.Models;
-    using Microsoft.Azure.Management.DataFactories.Runtime;
+// Comment these lines if using VS 2017
+using System.IO;
+using System.Globalization;
+using System.Diagnostics;
+using System.Linq;
+// --------------------
 
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Blob;
+// Comment these lines if using <= VS 2015
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+// ---------------------
+
+using Microsoft.Azure.Management.DataFactories.Models;
+using Microsoft.Azure.Management.DataFactories.Runtime;
+
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
     ```
 6. 將 **namespace** 的名稱變更為 **MyDotNetActivityNS**。
 
@@ -378,14 +389,13 @@ public IDictionary<string, string> Execute(
     > 自訂活動之 zip 檔案中的所有檔案都必須位於 **最上層** 且不包含任何子資料夾。
 
     ![二進位輸出檔案](./media/data-factory-use-custom-activities/Binaries.png)
-14. 如果名為 **customactivitycontainer** 的 Blob 容器不存在，請自行建立。
+14. 如果名為 **customactivitycontainer** 的 Blob 容器不存在，請自行建立。    
 15. 將 MyDotNetActivity.zip 做為 Blob 上傳至稱為 AzureStorageLinkedService 的**一般用途** Azure Blob 儲存體 (不保留/cool Blob 儲存體) 中。  
 
-> [!NOTE]
-> 如果您將這個 .NET 活動專案加入 Visual Studio 中包含 Data Factory 專案的方案，並從 Data Factory 應用程式專案加入 .NET 活動的參考，您就不需要執行最後兩個步驟，也就是建立 zip 檔案，和手動上傳到一般用途 Azure Blob 儲存體。 當您使用 Visual Studio 發佈 Data Factory 實體時，發佈程序會自動完成這些步驟。 請參閱[使用 Visual Studio 建置您的第一個管線](data-factory-build-your-first-pipeline-using-vs.md)和[從 Azure Blob 複製資料到 Azure SQL](data-factory-copy-activity-tutorial-using-visual-studio.md)一文，以了解如何使用 Visual Studio 建立並發佈 Data Factory 實體。  
+> [!IMPORTANT]
+> 如果您將這個 .NET 活動專案加入 Visual Studio 中包含 Data Factory 專案的方案，並從 Data Factory 應用程式專案加入 .NET 活動的參考，您就不需要執行最後兩個步驟，也就是建立 zip 檔案，和手動上傳到一般用途 Azure Blob 儲存體。 當您使用 Visual Studio 發佈 Data Factory 實體時，發佈程序會自動完成這些步驟。 如需詳細資訊，請參閱[Visual Studio 中的 Data Factory 專案](#data-factory-project-in-visual-studio)一節。
 
-
-## <a name="create-a-data-factory"></a>建立 Data Factory 
+## <a name="create-a-pipeline-with-custom-activity"></a>建立具有自訂活動的管線
 您已建立自訂活動，並將二進位檔的 zip 檔案上傳至**一般用途** Azure 儲存體帳戶中的 blob 容器。 在本節中，您將透過使用自訂活動的管線建立 Azure Data Factory。
 
 自訂活動的輸入資料集代表 blob 儲存體中 adftutorial 容器之 customactivityinput 資料夾中的輸入 blob (檔案)。 活動的輸出資料集代表 blob 儲存體中 adftutorial 容器之 customactivityinput 資料夾中的輸出 blob。
@@ -650,7 +660,21 @@ test custom activity Microsoft test custom activity Microsoft
 
 如需有關監視資料集和管線的詳細步驟，請參閱 [監視和管理管線](data-factory-monitor-manage-pipelines.md) 。      
 
-### <a name="data-factory-and-batch-integration"></a>Data Factory 和 Batch 整合
+## <a name="data-factory-project-in-visual-studio"></a>Visual Studio 中的 Data Factory 專案  
+您可以使用 Visual Studio (而不是使用 Azure 入口網站) 來建立並發佈 Data Factory 實體。 如需使用 Visual Studio 建立並發佈 Data Factory 實體的詳細資訊，請參閱[使用 Visual Studio 建置您的第一個管線](data-factory-build-your-first-pipeline-using-vs.md)和[從 Azure Blob 複製資料到 Azure SQL](data-factory-copy-activity-tutorial-using-visual-studio.md)一文。
+
+如果您在 Visual Studio 中建立 Data Factory 專案，請執行下列額外步驟︰
+ 
+1. 將 Data Factory 專案新增至包含自訂活動專案的 Visual Studio 解決方案。 
+2. 從 Data Factory 專案將參考新增至 .NET 活動專案。 以滑鼠右鍵按一下 Data Factory 專案，指向 [新增]，然後按一下 [參考]。 
+3. 在 [新增參考] 對話方塊中，選取 **MyDotNetActivity** 專案，然後按一下 [確定]。
+4. 建置及發佈解決方案。
+
+    > [!IMPORTANT]
+    > 當您發佈 Data Factory 實體時，系統會自動為您建立 zip 檔，並且上傳至 blob 容器：customactivitycontainer。 如果 blob 容器不存在，也會自動建立。  
+
+
+## <a name="data-factory-and-batch-integration"></a>Data Factory 和 Batch 整合
 Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolname: job-xxx**。 按一下左側功能表中的 [作業]。 
 
 ![Azure Data Factory - Batch 作業](media/data-factory-use-custom-activities/data-factory-batch-jobs.png)
@@ -880,7 +904,7 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 ```
 
 ## <a name="create-a-custom-activity-by-using-net-sdk"></a>使用 .NET SDK 建立自訂活動
-下列程式碼會使用 .NET SDK，以從本文的逐步解說建立資料處理站。 您可以在[這篇文章](data-factory-copy-activity-tutorial-using-dotnet-api.md)中找到有關使用 SDK 以利用程式設計方式來建立管線的詳細資料
+在這篇文章的逐步解說中，您會使用 Azure 入口網站建立具有管線 (使用自訂活動) 的資料處理站。 下列程式碼會示範如何改為使用 .NET SDK 建立資料處理站。 您可以在[使用 .NET API 建立具有複製活動的管線](data-factory-copy-activity-tutorial-using-dotnet-api.md)一文中找到使用 SDK 以程式設計方式建立管線的詳細資訊。 
 
 ```csharp
 using System;
@@ -1119,8 +1143,11 @@ namespace DataFactoryAPITestApp
 }
 ```
 
+## <a name="debug-custom-activity-in-visual-studio"></a>在 Visual Studio 中針對自訂活動進行偵錯
+GitHub 上的 [Azure Data Factory - 本機環境](https://github.com/gbrueckl/Azure.DataFactory.LocalEnvironment) 範例包含可讓您在 Visual Studio 內針對自訂 .NET 活動進行偵錯的工具。  
 
-## <a name="examples"></a>範例
+
+## <a name="sample-custom-activities-on-github"></a>GitHub 上的範例自訂活動
 | 範例 | 自訂活動的工作內容 |
 | --- | --- |
 | [HTTP 資料下載程式](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HttpDataDownloaderSample)。 |使用 Data Factory 的自訂 C# 活動，從 HTTP 端點將資料下載到 Azure Blob 儲存體。 |
@@ -1128,8 +1155,6 @@ namespace DataFactoryAPITestApp
 | [執行 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)。 |在已安裝 R 的 HDInsight 叢集上執行 RScript.exe 來叫用 R 指令碼。 |
 | [跨 AppDomain.NET 活動](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) |使用非 Data Factory 啟動器所使用的組件版本 |
 | [重新處理 Azure Analysis Services 中的模型](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/AzureAnalysisServicesProcessSample) |  重新處理 Azure Analysis Services 中的模型。 |
-| [在本機對自訂活動進行偵錯](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ADFCustomActivityRunner) | 自訂活動執行器可讓您使用管線中所設定的資訊，來逐步執行 Azure Data Factory (ADF) 的自訂 .NET 活動並對其進行偵錯。 | 
-
 
 [batch-net-library]: ../batch/batch-dotnet-get-started.md
 [batch-create-account]: ../batch/batch-account-create-portal.md

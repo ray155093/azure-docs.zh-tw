@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/10/2017
 ms.author: markgal;trinadhk;
-translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: a7b55e3949cf8406f7c62e9dfd6cc1567d3a5996
-ms.lasthandoff: 03/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 52b7360230efd0a63e411339fe32f929a905391d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -49,8 +50,6 @@ ms.lasthandoff: 03/14/2017
 
 ## <a name="download-the-vault-credential-file"></a>下載保存庫認證檔
 內部部署機器必須先驗證備份保存庫，才能將資料備份至 Azure。 驗證是透過「保存庫認證」 來達成。 保存庫認證檔會透過安全通道，從傳統入口網站下載。 憑證私密金鑰不會保存在入口網站或服務中。
-
-深入了解如何 [使用保存庫認證來驗證備份服務](backup-introduction-to-azure-backup.md#what-is-the-vault-credential-file)。
 
 ### <a name="to-download-the-vault-credential-file-to-a-local-machine"></a>將保存庫認證檔下載至本機電腦
 1. 在左側導覽窗格中，按一下 [復原服務] ，然後選取您所建立的備份保存庫。
@@ -116,7 +115,7 @@ ms.lasthandoff: 03/14/2017
 3. 在排程備份精靈的 [開始使用] 頁面上，按 [下一步] 。
 4. 在 [選取要備份的項目] 頁面上，按一下 [新增項目] 。
 5. 選取您要備份的檔案和資料夾，然後按一下 [確定] 。
-6. 按 [下一步] 。
+6. 按一下 [下一步] 。
 7. 在 [指定備份排程] 頁面上，指定[備份排程]，然後按 [下一步]。
 
     您可以排程每日 (一天最多三次) 或每週備份。

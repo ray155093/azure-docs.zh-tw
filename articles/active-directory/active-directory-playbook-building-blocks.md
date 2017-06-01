@@ -1,31 +1,33 @@
 ---
-title: "Azure Active Directory PoC 腳本構成要素 | Microsoft Docs"
+
+title: "Azure Active Directory 概念證明腳本構成要素 | Microsoft Docs"
 description: "探索並快速實作身分識別和存取管理案例"
 services: active-directory
 keywords: "azure active directory, 腳本, 概念證明, PoC"
 documentationcenter: 
 author: dstefanMSFT
-manager: asuthar
+manager: femila
 ms.assetid: 
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 4/12/2017
+ms.date: 05/04/2017
 ms.author: dstefan
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: b6f26a338450619cef012467bf78b9469622ba08
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 9c81bc0c702d559eee8b5fbf2a0508697f4276a0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
 # <a name="azure-active-directory-proof-of-concept-playbook-building-blocks"></a>Azure Active Directory 概念證明腳本：構成要素
 
-## <a name="catalog-of-actors"></a>執行者目錄
+## <a name="catalog-of-roles"></a>角色目錄
 
-| 執行者 | 說明 | PoC 責任 |
+| 角色 | 說明 | 概念證明 (PoC) 責任 |
 | --- | --- | --- |
 | **身分識別架構 / 開發小組** | 此小組通常負責設計解決方案、實作原型、推動核准，以及最後將解決方案交付運作 | 他們會提供環境，並從管理的角度評估不同的案例 |
 | **內部部署身分識別作業小組** | 管理內部部署的不同身分識別來源：Active Directory 樹系、LDAP 目錄、HR 系統，以及同盟識別提供者。 | 提供 PoC 案例所需的內部部署資源存取權。<br/>應該儘量不要牽涉到他們|
@@ -184,7 +186,7 @@ ms.lasthandoff: 04/27/2017
 | 步驟 | 資源 |
 | --- | --- |
 | 安裝瀏覽器擴充功能 | [適用於 IE 的存取面板擴充功能](https://account.activedirectory.windowsazure.com/Applications/Installers/x64/Access%20Panel%20Extension.msi)<br/>[適用於 Chrome 的存取面板擴充功能](https://go.microsoft.com/fwLink/?LinkID=311859&clcid=0x409)<br/>[適用於 Firefox 的存取面板擴充功能](https://go.microsoft.com/fwLink/?LinkID=626998&clcid=0x409) |
-| 從資源庫設定應用程式 | [Azure Active Directory 中企業應用程式管理的新功能：全新和改進的應用程式資源庫](active-directory-enterprise-apps-whats-new-azure-portal.md#the-new-and-improved-application-gallery) |
+| 從資源庫設定應用程式 | [Azure Active Directory 中企業應用程式管理的新功能：全新和改進的應用程式資源庫](active-directory-enterprise-apps-whats-new-azure-portal.md#improvements-to-the-azure-active-directory-application-gallery) |
 | 設定密碼 SSO | [在新的 Azure 入口網站中管理企業應用程式的單一登入：密碼型登入](active-directory-enterprise-apps-manage-sso.md#password-based-sign-on) |
 | 將應用程式指派給「必要條件」中所識別的群組 | [在 Azure Active Directory 中將使用者或群組指派給企業應用程式](active-directory-coreapps-assign-user-azure-portal.md) |
 | 以具有存取權的測試使用者身分登入 https://myapps.microsoft.com/ |  |
@@ -210,7 +212,7 @@ ms.lasthandoff: 04/27/2017
 | 必要條件 | 資源 |
 | --- | --- |
 | 事先備妥的目標應用程式清單和確切的登入 URL。 您可以使用 Twitter 作為範例。 | [Microsoft Azure Marketplace 上的 Twitter](https://azuremarketplace.microsoft.com/marketplace/apps/aad.twitter)<br/>[註冊 Twitter](https://twitter.com/signup?lang=en) |
-| 此 SaaS 應用程式的共用認證。 | [使用 Azure AD 來共用帳戶](active-directory-sharing-accounts.md)<br/>[Azure AD 的 Facebook、Twitter 及 LinkedIn 自動密碼變換現在已提供預覽版！- Enterprise Mobility and Security 部落格 (英文)](https://blogs.technet.microsoft.com/enterprisemobility/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview/) |
+| 此 SaaS 應用程式的共用認證。 | [使用 Azure AD 來共用帳戶](active-directory-sharing-accounts.md)<br/>[Azure AD 的 Facebook、Twitter 及 LinkedIn 自動密碼變換現在已提供預覽版！- Enterprise Mobility and Security 部落格 (英文)](https://blogs.technet.microsoft.com/enterprisemobility/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview/) - Enterprise Mobility and Security Blog] (https://blogs.technet.microsoft.com/enterprisemobility/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview/ ) |
 | 至少兩個將存取相同帳戶之小組成員的認證。 他們必須是安全性群組的成員。 | [在 Azure Active Directory 中將使用者或群組指派給企業應用程式](active-directory-coreapps-assign-user-azure-portal.md) |
 | 對電腦的本機系統管理員存取權，以部署適用於 Internet Explorer、Chrome 或 Firefox 的「存取面板擴充功能」 | [適用於 IE 的存取面板擴充功能](https://account.activedirectory.windowsazure.com/Applications/Installers/x64/Access%20Panel%20Extension.msi)<br/>[適用於 Chrome 的存取面板擴充功能](https://go.microsoft.com/fwLink/?LinkID=311859&clcid=0x409)<br/>[適用於 Firefox 的存取面板擴充功能](https://go.microsoft.com/fwLink/?LinkID=626998&clcid=0x409) |
 
@@ -219,7 +221,7 @@ ms.lasthandoff: 04/27/2017
 | 步驟 | 資源 |
 | --- | --- |
 | 安裝瀏覽器擴充功能 | [適用於 IE 的存取面板擴充功能](https://account.activedirectory.windowsazure.com/Applications/Installers/x64/Access%20Panel%20Extension.msi)<br/>[適用於 Chrome 的存取面板擴充功能](https://go.microsoft.com/fwLink/?LinkID=311859&clcid=0x409)<br/>[適用於 Firefox 的存取面板擴充功能](https://go.microsoft.com/fwLink/?LinkID=626998&clcid=0x409) |
-| 從資源庫設定應用程式 | [Azure Active Directory 中企業應用程式管理的新功能：全新和改進的應用程式資源庫](active-directory-enterprise-apps-whats-new-azure-portal.md#the-new-and-improved-application-gallery) |
+| 從資源庫設定應用程式 | [Azure Active Directory 中企業應用程式管理的新功能：全新和改進的應用程式資源庫](active-directory-enterprise-apps-whats-new-azure-portal.md#improvements-to-the-azure-active-directory-application-gallery) |
 | 設定密碼 SSO | [在新的 Azure 入口網站中管理企業應用程式的單一登入：密碼型登入](active-directory-enterprise-apps-manage-sso.md#password-based-sign-on) |
 | 為「必要條件」中所識別的群組指派認證時，將應用程式指派給他們 | [在 Azure Active Directory 中將使用者或群組指派給企業應用程式](active-directory-coreapps-assign-user-azure-portal.md) |
 | 以不同的使用者身分登入來以「相同共用帳戶」身分存取應用程式  |  |
@@ -287,7 +289,7 @@ ms.lasthandoff: 04/27/2017
 | 新增一般 LDAP 連接器 | [一般 LDAP 連接器技術參考：建立新的連接器](./connect/active-directory-aadconnectsync-connector-genericldap.md#create-a-new-connector) |
 | 為已建立的連接器建立執行設定檔 (完整匯入、差異匯入、完整同步處理、差異同步處理、匯出) | [建立管理代理程式執行設定檔 (英文)](https://technet.microsoft.com/library/jj590219(v=ws.10).aspx)<br/> [使用連接器搭配 Auzre AD Connect Sync Service Manager](./connect/active-directory-aadconnectsync-service-manager-ui-connectors.md)|
 | 執行完整匯入設定檔，並確認連接器空間中有物件 | [搜尋連接器空間物件](https://technet.microsoft.com/library/jj590287(v=ws.10).aspx)<br/>[使用連接器搭配 Auzre AD Connect Sync Service Manager：搜尋連接器空間](./connect/active-directory-aadconnectsync-service-manager-ui-connectors.md#search-connector-space) |
-| 建立同步處理規則，讓 Metaverse 中的物件具有必要的工作負載屬性 | [Azure AD Connect 同步處理：變更預設組態的最佳做法：同步處理規則的變更](/connect/active-directory-aadconnectsync-best-practices-changing-default-configuration.md#changes-to-synchronization-rules)<br/>[Azure AD Connect 同步處理：了解宣告式佈建](./connect/active-directory-aadconnectsync-understanding-declarative-provisioning.md)<br/>[Azure AD Connect 同步處理：了解宣告式佈建運算式](./connect/active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) |
+| 建立同步處理規則，讓 Metaverse 中的物件具有必要的工作負載屬性 | [Azure AD Connect 同步處理：變更預設組態的最佳做法：同步處理規則的變更](./connect/active-directory-aadconnectsync-best-practices-changing-default-configuration.md#changes-to-synchronization-rules)<br/>[Azure AD Connect 同步處理：了解宣告式佈建](./connect/active-directory-aadconnectsync-understanding-declarative-provisioning.md)<br/>[Azure AD Connect 同步處理：了解宣告式佈建運算式](./connect/active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) |
 | 啟動完整的同步處理週期 | [Azure AD Connect 同步處理：排程器：啟動排程器](./connect/active-directory-aadconnectsync-feature-scheduler.md#start-the-scheduler) |
 | 發生問題時進行疑難排解 | [針對未同步至 Azure AD 的物件進行疑難排解](./connect/active-directory-aadconnectsync-troubleshoot-object-not-syncing.md) |
 | 確認 LDAP 使用者可以登入及存取應用程式 | https://myapps.microsoft.com |
@@ -381,8 +383,8 @@ ms.lasthandoff: 04/27/2017
 | 必要條件 | 資源 |
 | --- | --- |
 | 在您的租用戶中啟用自助式密碼管理。 | [IT 系統管理員的 Azure Active Directory 密碼重設](active-directory-passwords.md) |
-| 啟用密碼回寫以管理來自內部部署環境的密碼。 請注意，這需要特定的 Azure AD Connect 版本 | [密碼回寫先決條件](active-directory-passwords-getting-started.md#writeback-prerequisites) |
-| 識別將使用此功能的 PoC 使用者，並確定他們是安全性群組的成員。 使用者必須是非系統管理員，才能完整展示此功能 | [自訂：Azure AD 密碼管理：限制對密碼重設的存取](active-directory-passwords-customize.md#restrict-access-to-password-reset) |
+| 啟用密碼回寫以管理來自內部部署環境的密碼。 請注意，這需要特定的 Azure AD Connect 版本 | [密碼回寫先決條件](active-directory-passwords-writeback.md) |
+| 識別將使用此功能的 PoC 使用者，並確定他們是安全性群組的成員。 使用者必須是非系統管理員，才能完整展示此功能 | [自訂：Azure AD 密碼管理：限制對密碼重設的存取](active-directory-passwords-writeback.md) |
 
 
 ### <a name="steps"></a>步驟

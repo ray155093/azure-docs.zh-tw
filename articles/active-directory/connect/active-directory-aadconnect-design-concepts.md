@@ -15,9 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: Identity
 ms.date: 02/07/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
-ms.openlocfilehash: 177c622171c4b0e1813c85d1c22bda87aeafce06
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: f824f80aaba2cd2de7590ecf4560bb5559a66e82
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -70,6 +72,64 @@ sourceAnchor 屬性會區分大小寫。 "JohnDoe" 與 "johndoe" 是不同的值
 * 如果您安裝其他 Azure AD Connect 伺服器，您必須選取如先前所用的相同 sourceAnchor 屬性。 如果您稍早已使用 DirSync 並移至 Azure AD Connect，則必須使用 **objectGUID** ，因為這是 DirSync 所用的屬性。
 * 如果 sourceAnchor 值在物件匯出至 Azure AD 之後變更，則 Azure AD Connect Sync 會擲回錯誤，並在修正問題且於來源目錄中將 sourceAnchor 變回之前，不允許對此物件進行任何其他變更。
 
+## <a name="using-msds-consistencyguid-as-sourceanchor"></a>使用 msDS-ConsistencyGuid 來作為 sourceAnchor
+根據預設，Azure AD Connect (1.1.486.0 版或較舊版本) 會使用 objectGUID 來作為 sourceAnchor 屬性。 ObjectGUID 是由系統所產生。 您並無法在建立內部部署 AD 物件時指定它的值。 如 [sourceAnchor](#sourceanchor) 一節所述，在某些情況下，您需要指定 sourceAnchor 值。 如果您遇到這類情況，則必須使用可設定的 AD 屬性 (例如，msDS-ConsistencyGuid) 來作為 sourceAnchor 屬性。
+
+Azure AD Connect (1.1.524.0 版和更新版本) 現在可協助您使用 msDS-ConsistencyGuid 來作為 sourceAnchor 屬性。 在使用此功能時，Azure AD Connect 會自動將同步處理規則設定為︰
+
+1. 使用 msDS-ConsistencyGuid 來作為使用者物件的 sourceAnchor 屬性。 若為其他物件類型，則要使用 ObjectGUID。
+
+2. 對於未填入 msDS-ConsistencyGuid 屬性的給定內部部署 AD 使用者物件，Azure AD Connect 會將其 objectGUID 值反向寫入內部部署 Active Directory 中的 msDS-ConsistencyGuid 屬性。 該物件在填入 msDS-ConsistencyGuid 屬性之後，Azure AD Connect 便會將其匯出至 Azure AD。
+
+>[!NOTE]
+> 在內部部署 AD 物件匯入到 Azure AD Connect (也就是，匯入到 AD 連接器空間並投影到 Metaverse) 之後，您就無法再變更其 sourceAnchor 值。 若要對給定的內部部署 AD 物件指定 sourceAnchor 值，請先設定其 msDS-ConsistencyGuid 屬性，再將其匯入到 Azure AD Connect。
+
+### <a name="how-to-enable-the-consistencyguid-feature"></a>如何啟用 ConsistencyGuid 功能
+目前來說，只有在安裝新的 Azure AD Connect 時，才能啟用此功能。
+
+#### <a name="express-installation"></a>快速安裝
+使用快速模式來安裝 Azure AD Connect 時，Azure AD Connect 精靈會使用下列邏輯，自動決定最適合作為 sourceAnchor 屬性的 AD 屬性︰
+
+* 首先，Azure AD Connect 精靈會向 Azure AD 租用戶進行查詢，以擷取之前的 Azure AD Connect 安裝 (如果有的話) 中作為 sourceAnchor 屬性的 AD 屬性。 如果可以取得這項資訊，Azure AD Connect 就會使用相同的 AD 屬性。 如果無法取得這項資訊...
+
+* 精靈會檢查內部部署 Active Directory 中的 msDS-ConsistencyGuid 屬性狀態。 如果目錄中沒有任何物件設定了此屬性，精靈就會使用 msDS-ConsistencyGuid 來作為 sourceAnchor 屬性。 如果目錄中有一或多個物件設定了此屬性，則精靈會認為其他應用程式正在使用此屬性，因此此屬性不適合作為 sourceAnchor 屬性...
+
+* 在此情況下，精靈會轉為使用 objectGUID 來作為 sourceAnchor 屬性。
+
+* 在決定好 sourceAnchor 屬性之後，精靈會將此資訊儲存在 Azure AD 租用戶中。 未來在安裝 Azure AD Connect 時，系統便會使用此資訊。
+
+  >[!NOTE]
+  > 較新版本的 Azure AD Connect (1.1.524.0 版和更新版本) 才會在 Azure AD 租用戶中儲存有關所使用之 sourceAnchor 屬性的資訊。 較舊版本的 Azure AD Connect 則不會這麼做。
+
+在快速安裝完成之後，精靈會通知您它已挑選哪個屬性來作為 sourceAnchor 屬性。
+
+![精靈的通知指出它已挑選 AD 屬性來作為 sourceAnchor](./media/active-directory-aadconnect-design-concepts/consistencyGuid-01.png)
+
+#### <a name="custom-installation"></a>自訂安裝
+使用自訂模式來安裝 Azure AD Connect 時，Azure AD Connect 精靈會提供兩個選項供您設定 sourceAnchor 屬性︰
+
+![自訂安裝 - sourceAnchor 設定](./media/active-directory-aadconnect-design-concepts/consistencyGuid-02.png)
+
+| 設定 | 說明 |
+| --- | --- |
+| 讓 Azure 為我管理來源錨點 | 如果您想要 Azure AD 為您挑選屬性，請選取此選項。 如果您選取此選項，Azure AD Connect 精靈會套用[快速安裝期間所使用的相同邏輯來選取 sourceAnchor 屬性](#express-installation)。 和快速安裝一樣，在自訂安裝完成之後，精靈會通知您它已挑選哪個屬性來作為 sourceAnchor 屬性。 |
+| 特定的屬性 | 如果您希望指定現有的 AD 屬性作為 sourceAnchor 屬性，請選取此選項。 |
+
+### <a name="permission-required"></a>所需權限
+若要讓這項功能生效，用來與內部部署 Active Directory 同步的 AD DS 帳戶，必須獲得內部部署 Active Directory 中 msDS-ConsistencyGuid 屬性的寫入權限。
+
+### <a name="impact-on-ad-fs-or-third-party-federation-configuration"></a>對 AD FS 或第三方同盟設定的影響
+如果您要使用 Azure AD Connect 來管理內部部署 AD FS 的部署，Azure AD Connect 會自動將宣告規則更新為使用同樣的 AD 屬性來作為 sourceAnchor。 這種作法可確保 ADFS 所產生的 ImmutableID 宣告會與匯出至 Azure AD 的 sourceAnchor 值保持一致。
+
+如果您要在 Azure AD Connect 之外管理 AD FS，或是要使用第三方同盟伺服器來進行驗證，則必須手動更新 ImmutableID 宣告的宣告規則，使其與匯出到 Azure AD 的 sourceAnchor 值保持一致，詳情如[修改 AD FS 宣告規則](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-federation-management#modclaims)一節所述。 安裝完成後，精靈會傳回下列警告︰
+
+![第三方同盟設定](./media/active-directory-aadconnect-design-concepts/consistencyGuid-03.png)
+
+### <a name="adding-new-directories-to-existing-deployment"></a>在現有部署中新增目錄
+假設您已部署 Azure AD Connect 並啟用 ConsistencyGuid 功能，而現在您想要在部署中新增另一個目錄。 當您嘗試新增目錄時，Azure AD Connect 精靈會檢查目錄中 msDS-ConsistencyGuid 屬性的狀態。 如果目錄中有一或多個物件設定了此屬性，則精靈會認為其他應用程式正在使用此屬性，並傳回如下圖所示的錯誤。 如果您確定現有應用程式並沒有使用此屬性，則請連絡支援人員，以了解該如何隱藏此錯誤。
+
+![在現有部署中新增目錄](./media/active-directory-aadconnect-design-concepts/consistencyGuid-04.png)
+
 ## <a name="azure-ad-sign-in"></a>Azure AD 登入
 整合您的內部部署目錄與 Azure AD 時，請務必了解同步處理設定對使用者驗證的方式有何影響。 Azure AD 使用 userPrincipalName (UPN) 來驗證使用者。 不過，當您同步處理使用者時，必須小心選擇要用於 userPrincipalName 值的屬性。
 
@@ -95,10 +155,5 @@ Azure AD Connect 會偵測您是否在無法路由傳送的網域環境中執行
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

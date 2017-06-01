@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 02/24/2017
 ms.author: marsma
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: e041a4d88d93b5ea9fcd792800c4a12a6a44ce36
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 1cab34785d6e4f7751245ebf77b29fa8dc3c685b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -91,7 +91,10 @@ Blob 儲存體提供三種類型的 Blob，包括區塊 Blob、附加 Blob 及�
 若是超大型資料集，網路限制會使得透過線路上傳或下載資料至 Blob 儲存體變得不切實際，您可以將硬碟送至 Microsoft，以便直接從資料中心匯入或匯出資料。 請參閱 [使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體](storage-import-export-service.md)。
 
 ## <a name="table-storage"></a>表格儲存體
-[!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)] 新式應用程式通常會要求以超越前幾代軟體需求的延伸性和彈性來儲存資料。 表格儲存體提供高可用性且可大幅擴充的儲存體，方便您的應用程式自動擴充以滿足使用者需求。 表格儲存體屬於 Microsoft 的 NoSQL 索引鍵屬性儲存，它的無結構描述設計讓它有別於傳統的關聯式資料庫。 透過無結構描述資料儲存，便可輕易隨著應用程式發展需求改寫資料。 表格儲存體非常容易使用，方便開發人員可以快速建立應用程式。 所有類型的應用程式都可以用快速且具成本效益的方式存取資料。  相較於類似資料量的傳統 SQL，表格儲存體通常可大幅降低成本。
+
+[!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
+
+新式應用程式通常會要求以超越前幾代軟體需求的延伸性和彈性儲存資料。 表格儲存體提供高可用性且可大幅擴充的儲存體，方便您的應用程式自動擴充以滿足使用者需求。 表格儲存體屬於 Microsoft 的 NoSQL 索引鍵屬性儲存，它的無結構描述設計讓它有別於傳統的關聯式資料庫。 透過無結構描述資料儲存，便可輕易隨著應用程式發展需求改寫資料。 表格儲存體非常容易使用，方便開發人員可以快速建立應用程式。 所有類型的應用程式都可以用快速且具成本效益的方式存取資料。  相較於類似資料量的傳統 SQL，表格儲存體通常可大幅降低成本。
 
 表格儲存體屬於索引鍵屬性儲存，代表資料表中的每個值會與具型別的屬性名稱一起儲存。 屬性名稱可用來篩選與指定選取條件。 一組屬性及其值就構成一個實體。 因為表格儲存體沒有結構描述，因此相同資料表中的兩個實體可包含不同屬性集合，且這些屬性可以是不同類型。
 

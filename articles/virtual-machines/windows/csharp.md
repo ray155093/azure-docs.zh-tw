@@ -15,14 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/01/2017
 ms.author: davidmu
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: f4c63af2d873fb11c8503a30b104b9b7db7f74f0
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: 7f708087dda4cfb7e998b42ce36632d5764c6c0e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="deploy-an-azure-virtual-machine-using-c"></a>使用 C 來部署 Azure 虛擬機器# #
+# <a name="deploy-an-azure-virtual-machine-using-c"></a>使用 C# 來部署 Azure 虛擬機器 #
 
 本文說明如何使用 C# 來建立 Azure 虛擬機器及支援它的資源。
 
@@ -34,15 +35,15 @@ ms.lasthandoff: 04/03/2017
 
 1. 如果您尚未安裝 [Visual Studio](https://www.visualstudio.com/)，請進行安裝。
 2. 在 Visual Studio 中，按一下 [檔案] > [新增] > [專案]。
-3. 在 [範本] > [Visual C#] 中，選取 [主控台應用程式]，輸入專案的名稱和位置，然後按一下 [確定]。
+3. 在 [範本] > [Visual C#] 中，選取 [主控台應用程式 (.NET Framework)]，輸入專案的名稱和位置，然後按一下 [確定]。
 
 ## <a name="step-2-install-libraries"></a>步驟 2：安裝程式庫
 
 NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 若要取得在 Visual Studio 中所需要的程式庫，請執行下列步驟：
 
 
-1. 在 [方案總管] 中，於專案名稱上按一下滑鼠右鍵、按一下 [管理 NuGet 套件]，然後按一下 [瀏覽]。
-2. 在搜尋方塊中輸入 *Microsoft.IdentityModel.Clients.ActiveDirectory*，按一下 [安裝]，然後依照指示操作來安裝套件。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下專案名稱，按一下 [管理方案的 NuGet 套件]，然後按一下 [瀏覽]。
+2. 在搜尋方塊中輸入 *Microsoft.IdentityModel.Clients.ActiveDirectory*，選取您的專案，按一下 [安裝]，然後依照指示安裝套件。
 3. 在頁面的頂端，選取 [包含發行前版本] 。 在搜尋方塊中輸入 *Microsoft.Azure.Management.Compute*，按一下 [安裝]，然後依照指示操作來安裝套件。
 4. 在搜尋方塊中輸入 *Microsoft.Azure.Management.Network*，按一下 [安裝]，然後依照指示操作來安裝套件。
 5. 在搜尋方塊中輸入 *Microsoft.Azure.Management.Storage*，按一下 [安裝]，然後依照指示操作來安裝套件。
@@ -54,7 +55,7 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
 
 在您開始此步驟之前，請確定您可以存取 [Active Directory 服務主體](../../resource-group-authenticate-service-principal.md)。 從服務主體中，您會取得向 Azure Resource Manager 驗證要求的權杖。
 
-1. 開啟您建立之專案的 Program.cs 檔案，然後將這些 using 陳述式新增至檔案頂端：
+1. 開啟您建立之專案的 Program.cs 檔案，然後將這些 using 陳述式新增至檔案頂端的現有陳述式：
    
     ```
     using Microsoft.Azure;
@@ -75,8 +76,8 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
     ```    
     private static async Task<AuthenticationResult> GetAccessTokenAsync()
     {
-      var cc = new ClientCredential("{client-id}", "{client-secret}");
-      var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
+      var cc = new ClientCredential("client-id", "client-secret");
+      var context = new AuthenticationContext("https://login.windows.net/tenant-id");
       var token = await context.AcquireTokenAsync("https://management.azure.com/", cc);
       if (token == null)
       {
@@ -88,9 +89,9 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
 
     取代下列值：
     
-    - 將 *{client-id}* 取代成 Azure Active Directory 應用程式的識別碼。 您可以在 AD 應用程式的 [屬性] 刀鋒視窗上找到此識別碼。 若要在 Azure 入口網站中尋找您的 AD 應用程式，請按一下資源功能表中的 [Azure Active Directory]，然後按一下 [應用程式註冊]。
-    - 將 *{client-secret}* 取代成 AD 應用程式的存取金鑰。 您可以在 AD 應用程式的 [屬性] 刀鋒視窗上找到此識別碼。
-    - 將 *{tenant-id}* 取代成您訂用帳戶的租用戶識別碼。 您可以在 Azure 入口網站中 Azure Active Directory 的 [屬性] 刀鋒視窗上找到租用戶識別碼。 其標示為 [目錄識別碼]。
+    - 將 *client-id* 取代成 Azure Active Directory 應用程式的識別碼。 您可以在 AD 應用程式的 [屬性] 刀鋒視窗上找到此識別碼。 若要在 Azure 入口網站中尋找您的 AD 應用程式，請按一下資源功能表中的 [Azure Active Directory]，然後按一下 [應用程式註冊]。
+    - 將 *client-secret* 取代成 AD 應用程式的存取金鑰。 您可以在 AD 應用程式的 [屬性] 刀鋒視窗上找到此識別碼。
+    - 將 *tenant-id* 取代成訂用帳戶的租用戶識別碼。 您可以在 Azure 入口網站中 Azure Active Directory 的 [屬性] 刀鋒視窗上找到租用戶識別碼。 其標示為 [目錄識別碼]。
 
 3. 若要呼叫您剛才新增的方法，請將下列程式碼新增至 Program.cs 檔案中的 Main 方法：
    
@@ -101,7 +102,7 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
 
 4. 儲存 Program.cs 檔案。
 
-## <a name="step-3-create-the-resources"></a>步驟 3：建立資源
+## <a name="step-4-create-the-resources"></a>步驟 4：建立資源
 
 ### <a name="register-the-providers-and-create-a-resource-group"></a>註冊提供者，並建立資源群組
 
@@ -360,8 +361,8 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
                 new NetworkInterfaceIPConfiguration
                   {
                     Name = nicName,
-                    PublicIPAddress = pubipResponse,
-                    Subnet = subnetResponse
+                    PublicIPAddress = publicIP,
+                    Subnet = subnet
                   }
               }
           }

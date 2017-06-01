@@ -12,17 +12,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 2/6/2017
+ms.date: 5/16/2017
 ms.author: msfussell
-translationtype: Human Translation
-ms.sourcegitcommit: 93e0493e6a62a70a10b8315142765a3c3892acd1
-ms.openlocfilehash: abf5e4bc69aa32ca9af8998ef81de20baae24560
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: b8334d0ca0d1460edad9b0ef399e9b3428b1ef8d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
-# <a name="preview-service-fabric-and-containers"></a>預覽︰Service Fabric 和容器
+# <a name="service-fabric-and-containers"></a>Service Fabric 和容器
 > [!NOTE]
-> 這項功能在 Linux 和 Windows Server 2016 中處於預覽階段。 
+> Linux 的這項功能處於預覽狀態。 
 >   
 
 ## <a name="introduction"></a>簡介
@@ -92,9 +94,4 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
 [將 Docker 容器部署至 Linux 上的 Service Fabric](service-fabric-deploy-container-linux.md)
 
 [Image1]: media/service-fabric-containers/Service-Fabric-Types-of-Isolation.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

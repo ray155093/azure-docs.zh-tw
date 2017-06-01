@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 04/28/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
-ms.openlocfilehash: aeb0b665b8295bba30d8c6c47cc88e446693c91f
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 64b09448149b7e1efd8b76663a27b6c7ec1eb3c7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/01/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -28,9 +28,9 @@ ms.lasthandoff: 05/01/2017
 您可以使用 Azure IoT 中樞和 Azure IoT 裝置 SDK 來建置物聯網 (IoT) 解決方案。
 
 * Azure IoT 中樞是雲端中完全受管理的服務，可安全地連線、監視及管理您的 IoT 裝置。 您可以使用 Azure IoT 裝置 SDK 來實作您的 IoT 裝置。
-* 使用在更複雜的 IoT 案例中使用 IoT 閘道，您在此案例中必須考慮諸如傳統裝置、頻寬成本、安全性和隱私權原則或邊緣資料處理等因素。 在這些情況下，您可以使用 Azure IoT 閘道 SDK 來建立可將裝置連線到 IoT 中樞的閘道裝置。
+* 使用在更複雜的 IoT 案例中使用 IoT 閘道，您在此案例中必須考慮諸如傳統裝置、頻寬成本、安全性和隱私權原則或邊緣資料處理等因素。 在這些情況下，您可以使用 Azure IoT Edge 來實作閘道以將裝置連線到 IoT 中樞。
 
-## <a name="what-do-the-tutorials-cover"></a>這些教學課程的涵蓋範圍
+## <a name="what-the-tutorials-cover"></a>這些教學課程的涵蓋範圍
 
 這些教學課程將為您介紹 Azure IoT 中樞與裝置的 SDK。 這些教學課程涵蓋的常見 IoT 案例會說明 IoT 中樞的功能。 教學課程也將說明如何將 IoT 中樞與其他 Azure 服務和工具結合，建置更強大的 IoT 解決方案。 在教學課程中，您可以選擇使用模擬或實際的 IoT 裝置。 此外，您可以了解如何使用閘道來將裝置連線到您的 IoT 中樞。
 
@@ -47,7 +47,7 @@ ms.lasthandoff: 05/01/2017
 | Adafruit Feather M0             | [Arduino][M0_Ard]              |
 | 模擬裝置                | [.NET][Sim_NET]、[Java][Sim_Jav]、[Node.js][Sim_Nd]、[Python][Sim_Pyth]              |
 
-此外，您可以使用閘道來將裝置連線到您的 IoT 中樞。
+此外，您可以使用 IoT Edge 閘道來將裝置連線到您的 IoT 中樞。
 
 | 閘道裝置               | 程式設計語言 | 平台         |
 |------------------------------|----------------------|------------------|
@@ -84,8 +84,8 @@ ms.lasthandoff: 05/01/2017
 [Sim_Nd]: iot-hub-node-node-getstarted.md
 [Sim_Pyth]: iot-hub-python-getstarted.md
 [NUC_Lnx]: iot-hub-gateway-kit-c-lesson1-set-up-nuc.md
-[Sim_Lnx]: iot-hub-linux-gateway-sdk-get-started.md
-[Sim_Win]: iot-hub-windows-gateway-sdk-get-started.md
+[Sim_Lnx]: iot-hub-linux-iot-edge-get-started.md
+[Sim_Win]: iot-hub-windows-iot-edge-get-started.md
 [Mg_IoT_Hub_Msg]: iot-hub-explorer-cloud-device-messaging.md
 [Mg_IoT_Dv]: iot-hub-device-management-iothub-explorer.md
 [Sv_IoT_Msg_Stor]: iot-hub-store-data-in-azure-table-storage.md

@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Active Directory 預覽版中建立使用者群組 | Microsoft Docs"
+title: "在 Azure Active Directory 中建立使用者群組 | Microsoft Docs"
 description: "如何在 Azure Active Directory 中建立群組並將成員新增到群組中"
 services: active-directory
 documentationcenter: 
@@ -12,13 +12,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
+ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 58768cd59a922483bcb37797a6dcd515d159ef4c
-ms.openlocfilehash: 4b85a754dfa9632f27308a3d9234213533dea4c4
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 9636d26ec62bb83b30fdc4ae8b1701da8ab532e8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.lasthandoff: 03/01/2017
 >
 >
 
-本文說明如何在 Azure Active Directory (Azure AD) 預覽版中建立及填入新群組。 [預覽版有何功能？](active-directory-preview-explainer.md) 您可以使用群組來執行管理工作，例如將授權或權限一次指派給數個使用者或裝置。
+本文說明如何在 Azure Active Directory 中建立及填入新群組。 您可以使用群組來執行管理工作，例如將授權或權限一次指派給數個使用者或裝置。
 
 ## <a name="how-do-i-create-a-group"></a>如何建立群組？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。

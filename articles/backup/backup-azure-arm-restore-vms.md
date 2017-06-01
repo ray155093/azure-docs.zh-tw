@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/12/2017
 ms.author: markgal;trinadhk;
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 61f09a6f103b9cedaf19f1128a21fa8d5df974a1
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: ff505246bef15d180e3844558d68a425df60c35f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -102,7 +103,7 @@ ms.lasthandoff: 03/31/2017
    * 還原完整虛擬機器
    * 還原備份的磁碟
 
-入口網站提供還原 VM 專用的「快速建立」選項。 如果您想要自訂 VM 組態，或在建立新的 VM 選擇時所建立的資源名稱，請使用 PowerShell 或入口網站來還原備份的磁碟，並使用 PowerShell 命令，將它們連結至所選擇的 VM 組態，或使用還原磁碟隨附的範本來自訂還原的 VM。 有關如何還原具有多個 NIC 或在負載平衡器管理之下的 VM 的詳細資訊，請參閱[還原具有特殊網路組態的 VM](#restoring-vms-with-special-network-configurations)。 
+入口網站提供還原 VM 專用的「快速建立」選項。 如果您想要自訂 VM 組態，或在建立新的 VM 選擇時所建立的資源名稱，請使用 PowerShell 或入口網站來還原備份的磁碟，並使用 PowerShell 命令，將它們連結至所選擇的 VM 組態，或使用還原磁碟隨附的範本來自訂還原的 VM。 有關如何還原具有多個 NIC 或在負載平衡器管理之下的 VM 的詳細資訊，請參閱[還原具有特殊網路組態的 VM](#restoring-vms-with-special-network-configurations)。 如果您的 Windows VM 使用[中樞授權](../virtual-machines/windows/hybrid-use-benefit-licensing.md)，您必須還原磁碟，並且使用以下所述的 PowerShell/範本以建立 VM，以及確定在建立 VM 以獲得已還原 VM 上的中樞優點時，將 LicenseType 指定為 "Windows_Server"。 
  
 ## <a name="create-a-new-vm-from-restore-point"></a>從還原點建立新的 VM
 如果您還沒有[選取還原點](#restoring-vms-with-special-network-configurations)，請先選取，再繼續從還原點建立新的 VM。 選取還原點之後，在 [還原組態] 刀鋒視窗上，輸入或選取下列各欄位的值︰
@@ -194,6 +195,7 @@ ms.lasthandoff: 03/31/2017
 * 出現在備份組態期間的擴充功能，將會安裝但不會啟用。 如果您看到任何問題，請重新安裝擴充功能。 
 * 如果備份的 VM 具有靜態 IP，還原後，還原的 VM 將會有動態 IP，以避免在建立還原的 VM 時發生衝突。 深入了解如何[將靜態 IP 加入至還原的 VM](../virtual-network/virtual-networks-reserved-private-ip.md#how-to-add-a-static-internal-ip-to-an-existing-vm)
 * 還原的 VM 不會有可用性設定值組。 從 PowerShell 建立 VM 或使用還原的磁碟建立範本時，我們建議使用還原磁碟選項和[新增可用性設定組](../virtual-machines/windows/create-availability-set.md#use-powershell-to-create-an-availability-set)。 
+
 
 ## <a name="backup-for-restored-vms"></a>備份已還原的 VM
 如果您已將 VM 還原至相同的資源群組，並使用與原始備份 VM 相同的名稱，則會在還原後於 VM 上繼續進行備份。 如果您已將 VM 還原至不同的資源群組，或為還原的 VM 指定不同名稱，系統會將該 VM 視為新 VM，因此您需要為還原 VM 設定備份。

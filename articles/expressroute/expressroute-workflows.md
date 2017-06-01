@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 05/12/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 570a98aafca6babc5a7089880d4120c2a8f4a0d8
-ms.openlocfilehash: 5a275620639a801d7e60ef9ada1af29062dfe440
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: cba1b2cfee379e7d2b079bcb3089981ef1044d66
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -34,7 +36,7 @@ ms.openlocfilehash: 5a275620639a801d7e60ef9ada1af29062dfe440
    
    * 啟用 Azure 私用對等 - 您必須啟用此對等，才能連接到部署在虛擬網路內的 VM / 雲端服務。
    * 啟用 Azure 公用對等 - 如果您想要連接到裝載於公用 IP 位址的 Azure 服務，則必須啟用 Azure 公用對等。 如果您已選擇啟用 Azure 私用對等的預設路由，則這是存取 Azure 資源的條件。
-   * 啟用 Microsoft 對等 - 您必須啟用此對等，才能存取 Office 365 和 CRM 線上服務。 
+   * 啟用 Microsoft 對等 - 您必須啟用此對等，才能存取 Office 365 和 Dynamics 365。 
      
      > [!IMPORTANT]
      > 必須確定您使用個別的 Proxy / 邊緣來連接到 Microsoft，而不是您用於網際網路的 Proxy / 邊緣。 ExpressRoute 和網際網路使用相同的邊緣會導致路由不對稱，並造成網路連線中斷。
@@ -115,10 +117,5 @@ BGP 佈建狀態可讓您知道 Microsoft 邊緣是否已啟用 BGP 工作階段
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-arm.md)
   * [設定路由](expressroute-howto-routing-arm.md)
   * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

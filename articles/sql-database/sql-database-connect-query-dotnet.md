@@ -13,13 +13,13 @@ ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 05/07/2017
-ms.author: andrela;sstein;carlrab
+ms.date: 05/23/2017
+ms.author: andrela
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 0dff167c370fcd2df40aa2ac302d0f09990e1d41
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 4faa029062fef6495debd5d787a1d86f4747453b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -27,14 +27,17 @@ ms.lasthandoff: 05/09/2017
 
 此快速入門示範如何使用 [C# 和 ADO.NET](https://msdn.microsoft.com/library/kb9s9ks0.aspx) 來連線至 Azure SQL Database，然後從 Windows、Mac OS 和 Ubuntu Linux 平台使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
+## <a name="prerequisites"></a>必要條件
+
 本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
+- [建立 DB - PowerShell](sql-database-get-started-powershell.md)
 
 ## <a name="install-net"></a>安裝 .NET
 
-本節中的步驟假設您已熟悉使用 .NET 進行開發，且不熟悉 Azure SQL Database。 如果您不熟悉使用 .NET 進行開發，請前往[使用 SQL Server 建置應用程式](https://www.microsoft.com/en-us/sql-server/developer-get-started/)並選取 **C#**，然後選取您的作業系統。
+本節中的步驟假設您已熟悉使用 .NET 進行開發，且不熟悉 Azure SQL Database。 如果您不熟悉使用 .NET 進行開發，請前往[使用 SQL Server 建置應用程式](https://www.microsoft.com/sql-server/developer-get-started/)並選取 **C#**，然後選取您的作業系統。
 
 ### <a name="windows-net-framework-and-net-core"></a>**Windows .NET Framework 和 .NET Core**
 

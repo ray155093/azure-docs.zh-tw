@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 62f674945745eb019c92173798b6eef43337c9f3
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 09ececc567c09ea4e0b77d4d37445b7c232de23c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -188,7 +188,7 @@ ms.lasthandoff: 05/18/2017
 
 1. [建立具有 MongoDB 通訊協定支援的 Cosmos DB 帳戶](../documentdb/documentdb-create-mongodb-account.md)。
 2. [建立 Cosmos DB 集合和資料庫](../documentdb/documentdb-create-collection.md)。 集合的名稱並不重要，但是當您從 Sails.js 連線時，需要資料庫的名稱。
-3. [尋找您 Cosmos DB 資料庫的連線資訊](../documentdb/documentdb-connect-mongodb-account.md#a-idgetcustomconnectiona-get-the-mongodb-connection-string-to-customize)。
+3. [尋找您 Cosmos DB 資料庫的連線資訊](../cosmos-db/connect-mongodb-account.md#a-idgetcustomconnectiona-get-the-mongodb-connection-string-to-customize)。
 2. 從命令列終端機安裝 MongoDB 配接器︰
 
         npm install sails-mongo --save
@@ -206,7 +206,7 @@ ms.lasthandoff: 05/18/2017
         },
 
     > [!NOTE] 
-    > `ssl: true` 選項很重要，因為 [Cosmos DB 需要](../documentdb/documentdb-connect-mongodb-account.md#connection-string-requirements)。 
+    > `ssl: true` 選項很重要，因為 [Cosmos DB 需要](../cosmos-db/connect-mongodb-account.md#connection-string-requirements)。 
     >
     >
 

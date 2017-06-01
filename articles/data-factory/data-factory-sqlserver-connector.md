@@ -12,19 +12,27 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/04/2017
+ms.date: 05/16/2017
 ms.author: jingwang
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 70c7e2334336be78d26784815fb988ce1d22eb12
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 25fca1ac29817fc6d72dd5ec5033a2962f3f0be4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
 # <a name="move-data-to-and-from-sql-server-on-premises-or-on-iaas-azure-vm-using-azure-data-factory"></a>使用 Azure Data Factory 從 SQL Server 內部部署或 IaaS (Azure VM) 上來回移動資料
 本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出內部部署 SQL Server 資料庫。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
 
-您可以將資料從任何支援的來源資料存放區複製到 SQL Server 資料庫，或從 SQL Server 資料庫複製到任何支援的接收資料存放區。 如需複製活動所支援作為來源或接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 
+## <a name="supported-scenarios"></a>支援的案例
+您可以**從 SQL Server 資料庫**將資料複製到下列資料存放區：
+
+[!INCLUDE [data-factory-supported-sink](../../includes/data-factory-supported-sinks.md)]
+
+您可以從下列資料存放區將資料複製**到 SQL Server 資料庫**：
+
+[!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 ## <a name="supported-sql-server-versions"></a>支援的 SQL Server 版本
 這個 SQL Server 連接器支援使用 SQL 驗證和 Windows 驗證，在裝載於內部部署或在 Azure IaaS 中的下列版本個體間往返複製資料︰SQL Server 2016、SQL Server 2014、SQL Server 2012、SQL Server 2008 R2、SQL Server 2008、SQL Server 2005
@@ -45,11 +53,12 @@ ms.lasthandoff: 04/12/2017
 
 不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
 
-1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
-2. 建立**資料集**，代表複製作業的輸入和輸出資料。 
-3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
+1. 建立 **Data Factory**。 一個資料處理站可包含一或多個管線。 
+2. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。 例如，如果您從 SQL Server 資料庫將資料複製到 Azure Blob 儲存體，您會建立兩個連結服務，將 SQL Server 資料庫和 Azure 儲存體帳戶連結至資料處理站。 有關 SQL Server 資料庫專屬的連結服務屬性，請參閱[連結服務屬性](#linked-service-properties)一節。 
+3. 建立**資料集**，代表複製作業的輸入和輸出資料。 在上一個步驟所述的範例中，您會建立資料集來指定 SQL Server 資料庫中包含輸入資料的 SQL 資料表。 您還會建立另一個資料集來指定 blob 容器和資料夾，以保存從 SQL Server 資料庫複製的資料。 有關 SQL Server 資料庫專屬的資料集屬性，請參閱[資料集屬性](#dataset-properties)一節。
+4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在稍早所述的範例中，您使用 SqlSource 作為來源，以及使用 BlobSink 作為複製活動的接收器。 同樣地，如果您是從 Azure Blob 儲存體複製到 SQL Server 資料庫，則需要在複製活動中使用 BlobSource 和 SqlSink。 有關 SQL Server 資料庫專屬的複製活動屬性，請參閱[複製活動屬性](#copy-activity-properties)一節。 如需有關如何使用資料存放區作為來源或接收器的詳細資訊，請在上一節按一下適用於您的資料存放區的連結。 
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到內部部署 SQL Server 資料庫 (或從內部部署 SQL Server 資料庫複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples)一節。 
+使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到內部部署 SQL Server 資料庫 (或從內部部署 SQL Server 資料庫複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples-for-copying-data-from-and-to-sql-server)一節。 
 
 下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 SQL Server 特有的 Data Factory 實體： 
 
@@ -161,7 +170,7 @@ ms.lasthandoff: 04/12/2017
 | sqlWriterTableType |指定要在預存程序中使用的資料表類型名稱。 複製活動可讓正在移動的資料可用於此資料表類型的暫存資料表。 然後，預存程序程式碼可以合併正在複製的資料與現有的資料。 |資料表類型名稱。 |否 |
 
 
-## <a name="json-examples"></a>JSON 範例
+## <a name="json-examples-for-copying-data-from-and-to-sql-server"></a>往返 SQL Server 複製資料的 JSON 範例
 以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 下列範例說明如何將資料複製到 SQL Server 和「Azure Blob 儲存體」，以及從這兩處複製資料。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。     
 
 ## <a name="example-copy-data-from-sql-server-to-azure-blob"></a>範例：將資料從 SQL Server 複製到 Azure Blob

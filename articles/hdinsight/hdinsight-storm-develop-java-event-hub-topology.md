@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/03/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: e650731c3186b47adeb0e799a852961c30338550
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
+ms.openlocfilehash: ec20115e8316b96d740e1966494096964ec884b1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/22/2017
 
 
 ---
@@ -33,7 +34,7 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 * Apache Storm on HDInsight cluster 3.5 版。 如需詳細資訊，請參閱[開始使用 Storm on HDInsight cluster](hdinsight-apache-storm-tutorial-get-started-linux.md)。
 
     > [!IMPORTANT]
-    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 和 3.4 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 * [Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)。
 
@@ -242,6 +243,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
     <includePluginDependencies>false</includePluginDependencies>
     <classpathScope>compile</classpathScope>
     <mainClass>${storm.topology}</mainClass>
+    <cleanupDaemonThreads>false</cleanupDaemonThreads>
     </configuration>
 </plugin>
 ```

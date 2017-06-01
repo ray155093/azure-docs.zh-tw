@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/14/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: edda959693061850248ba97795c2390a592cbb21
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 36ede2b1c2964f85c454ffd1a653c90296bb307a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.lasthandoff: 04/17/2017
 了解如何透過與 HDInsight 叢集的 SSH 連線以互動方式執行 Pig 作業。 Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要輸出的轉換。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要以 Linux 為基礎的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 元件版本設定](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> 此文件中的步驟需要以 Linux 為基礎的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 ## <a id="ssh"></a>使用 SSH 連線
 

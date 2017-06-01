@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/24/2017
+ms.date: 05/05/2017
 ms.author: chackdan
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: e8d6f7c41287f5f785a52ae82bb156008d7e2699
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: c38b337d67b518f68be6dc8255fa97b78ba89dae
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -42,14 +43,14 @@ ms.lasthandoff: 04/27/2017
 * 您無法預測未來，因此請利用您所知道的事實，決定您的應用程式一開始所需的節點類型的數目。 您之後都可以新增或移除節點類型。 Service Fabric 叢集必須至少有一個節點類型。
 
 ## <a name="the-properties-of-each-node-type"></a>每個節點類型的屬性
-**節點類型**就像是雲端服務中的角色。 可用來定義定義 VM 的大小、VM 的數目，以及 VM 的屬性。 在 Service Fabric 叢集中定義的每個節點類型，都會安裝為不同的虛擬機器擴展集 (VMSS)。 VMSS 是一種 Azure 計算資源，可以用來將一組虛擬機器當做一個集合加以部署和管理。 如果定義為不同的 VMSS，則每個節點類型都可以獨立相應增加或相應減少、可以開放不同組的連接埠，而且可以有不同的容量計量。
+**節點類型**就像是雲端服務中的角色。 可用來定義定義 VM 的大小、VM 的數目，以及 VM 的屬性。 在 Service Fabric 叢集中定義的每個節點類型都會安裝為不同的虛擬機器擴展集。 虛擬機器擴展集是一個 Azure 計算資源，可以用來將一組 VM 當做一個集合加以部署和管理。 如果定義為不同的虛擬機器擴展集，則每個節點類型都可以獨立相應增加或相應減少、可以開放不同組的連接埠，而且可以有不同的容量度量。
 
-請參閱[這份文件](service-fabric-cluster-nodetypes.md)，以更仔細了解 Nodetypes 與 VMSS 的關聯性、如何 RDP 至其中一個執行個體、開啟新連接埠等。
+請參閱[這份文件](service-fabric-cluster-nodetypes.md)，以更仔細了解 Nodetypes 與虛擬機器擴展集的關聯性、如何 RDP 至其中一個執行個體、開啟新連接埠等。
 
 您的叢集可以多個節點類型，但主要節點類型 (您在入口網站定義的第一個節點類型) 必須至少有 5 個 VM 供叢集用於生產工作負載 (或至少有 3 個 VM 供測試叢集使用)。 如果您要使用 Resource Manager 範本建立叢集，您會在節點類型定義下找到 **is Primary** 屬性。 主要節點類型就是放置 Service Fabric 系統服務所在的節點類型。  
 
 ### <a name="primary-node-type"></a>主要節點類型
-若是包含多個節點類型的叢集，您必須選擇其中一個做為主要節點類型。 以下是主要節點類型的特性︰
+若是包含多個節點類型的叢集，您必須選擇其中一個作為主要節點類型。 以下是主要節點類型的特性︰
 
 * 主要節點類型的 **VM 大小下限**取決於您選擇的**持久性層級**。 持久性層級的預設值為 Bronze。 如需有關持久性層級的定義以及可採用的值，請向下捲動。  
 * 主要節點類型的 **VM 數目下限**取決於您選擇的**可靠性層級**。 可靠性層級的預設值為 Silver。 如需有關可靠性層級的定義以及可採用的值，請向下捲動。 
@@ -78,7 +79,7 @@ ms.lasthandoff: 04/27/2017
 ## <a name="the-reliability-characteristics-of-the-cluster"></a>叢集的可靠性特性
 可靠性層級用來設定您想要在此叢集中的主要節點類型上執行的系統服務複本數目。 複本數目越多，叢集中的系統服務越可靠。  
 
-可靠性層級可以採用以下的值。
+可靠性層級可以採用以下的值：
 
 * Platinum - 執行包含 9 個目標複本集的系統服務
 * Gold - 執行包含 7 個目標複本集的系統服務
@@ -90,17 +91,18 @@ ms.lasthandoff: 04/27/2017
 > 
 > 
 
- 您可以選擇將叢集的可靠性從一個層級更新為另一個層級。 如此一來就會觸發變更系統服務複本集計數所需的叢集升級。 請先等候升級完成，再對叢集進行任何其他變更，例如新增節點等等。您可以在 Service Fabric Explorer 上或執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) 監視升級的進度
+ 您可以選擇將叢集的可靠性從一個層級更新為另一個層級。 如此一來就會觸發變更系統服務複本集計數所需的叢集升級。 請先等候升級完成，再對叢集進行任何其他變更，例如新增節點。  您可以在 Service Fabric Explorer 上或執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) 監視升級的進度
 
 
 ## <a name="primary-node-type---capacity-guidance"></a>主要節點類型 - 容量指引
 
 以下是規劃主要節點類型容量的指引
 
-1. **VM 執行個體數目︰**若在 Azure 中執行任何生產工作負載，您必須指定 Silver 或更高的可靠性層級，而這會轉譯為最小的主要節點類型大小 5。
-2. **VM SKU：**主要節點類型是執行系統服務的地方，因此，您為此而選擇的 VM SKU，必須考量您打算投入叢集的整體尖峰負載。 我用比喻來闡明我的意思 - 將主要節點類型想像成您的「肺」，它供應氧氣給您的腦，如果腦沒有足夠的氧氣，您的身體就會出問題。 
+1. **要在 Azure 中執行任何生產工作負載的 VM 執行個體數目**︰您必須指定最小的主要節點類型大小 5。
+2. **要在 Azure 中執行測試工作負載的 VM 執行個體數目︰**您可以指定最小的主要節點類型大小 1 或 3。 以特殊組態執行的一個節點叢集，因此不支援該叢集的相應放大。 一個節點叢集有沒有可靠性且在您的 Resource Manager 範本中，您必須移除/不指定該組態 (不設定組態值並不足夠)。 如果您透過入口網站設定一個節點叢集，則會自動處理組態。 1 和 3 個節點叢集不支援執行生產工作負載。 
+3. **VM SKU：**主要節點類型是執行系統服務的地方，因此，您為此而選擇的 VM SKU，必須考量您打算投入叢集的整體尖峰負載。 我用比喻來闡明我的意思 - 將主要節點類型想像成您的「肺」，它供應氧氣給您的腦，如果腦沒有足夠的氧氣，您的身體就會出問題。 
 
-叢集的容量需求完全取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供定性的指引，但以下是概括性的指引，可協助您開始進行
+叢集的容量需求取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供定性的指引，但以下是概括性的指引，可協助您開始進行
 
 生產工作負載 
 
@@ -108,18 +110,18 @@ ms.lasthandoff: 04/27/2017
 - 建議的 VM SKU 是標準 D3 或標準 D3_V2 或對等項目，並搭配至少 14 GB 的本機 SSD。
 - 支援使用的最小 VM SKU 是標準 D1 或標準 D1_V2 或對等項目，並搭配至少 14 GB 的本機 SSD。 
 - 局部核心 VM SKU 不支援生產工作負載，例如標準 A0。
-- 基於效能理由，標準 A1 SKU 確定不支援生產工作負載。
+- 基於效能理由，標準 A1 SKU 不支援生產工作負載。
 
 
 ## <a name="non-primary-node-type---capacity-guidance-for-stateful-workloads"></a>非主要節點類型 - 具狀態工作負載的容量指引
 
 請參閱以下內容，以了解使用 Service Fabric 可靠集合或 Reliable Actors 的工作負載。 深入了解[程式設計模型](service-fabric-choose-framework.md)。
 
-1. **VM 執行個體數目︰**對於具狀態生產工作負載，建議使用目標複本計數至少為 5 來執行工作負載。 這表示在穩定狀態下，最後每個容錯網域和升級網域中會有一個複本 (來自複本集)。 系統服務的整個可靠性層級概念，實際上只是為系統服務指定此設定。
+1. **VM 執行個體數目︰**對於具狀態生產工作負載，建議使用目標複本計數至少為 5 來執行工作負載。 這表示在穩定狀態下，最後每個容錯網域和升級網域中會有一個複本 (來自複本集)。 主要節點類型的整個可靠性層級概念，是為系統服務指定此設定。
 
 因此，對於生產工作負載，如果您執行具狀態工作負載，建議的最小非主要節點類型大小為 5。
 
-2. **VM SKU：**這是執行應用程式服務的節點類型，因此，您為此而選擇的 VM SKU，必須考量您打算投入每個節點的尖峰負載。 Nodetype 的容量需求完全取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供定性的指引，但以下是概括性的指引，可協助您開始進行
+2. **VM SKU：**這是執行應用程式服務的節點類型，因此，您為此而選擇的 VM SKU，必須考量您打算投入每個節點的尖峰負載。 Nodetype 的容量需求取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供定性的指引，但以下是概括性的指引，可協助您開始進行
 
 生產工作負載 
 
@@ -136,7 +138,7 @@ ms.lasthandoff: 04/27/2017
 **VM 執行個體數目︰**對於無狀態的生產工作負載，支援的最小非主要節點類型大小為 2。 這可讓您執行應用程式的兩個無狀態執行個體，在遺失 VM 執行個體的情況下，您的服務仍可繼續運作。 
 
 > [!NOTE]
-> 如果您的叢集在小於 5.6 的 Service Fabric 版本上執行，由於執行階段的瑕疵 (已規劃在 5.6 中修正)，將非主要節點類型相應減少到小於 5 時，將會導致叢集健全狀況變得狀況不良，直到您以適當的節點名稱呼叫 [Remove-ServiceFabricNodeState cmd](https://docs.microsoft.com/powershell/servicefabric/vlatest/Remove-ServiceFabricNodeState) 為止。 如需詳細資訊，請參閱[放大或縮小執行 Service Fabric 叢集](service-fabric-cluster-scale-up-down.md)
+> 如果您的叢集在小於 5.6 的 Service Fabric 版本上執行，由於執行階段的瑕疵 (此問題已在 5.6 中修正)，將非主要節點類型相應減少到小於 5 時，會導致叢集健康情況變得狀況不良，直到您以適當的節點名稱呼叫 [Remove-ServiceFabricNodeState cmd](https://docs.microsoft.com/powershell/servicefabric/vlatest/Remove-ServiceFabricNodeState) 為止。 如需詳細資訊，請參閱[放大或縮小執行 Service Fabric 叢集](service-fabric-cluster-scale-up-down.md)
 > 
 >
 
@@ -157,7 +159,7 @@ ms.lasthandoff: 04/27/2017
 
 * [Service Fabric 叢集安全性](service-fabric-cluster-security.md)
 * [Service Fabric 健康情況模型簡介](service-fabric-health-introduction.md)
-* [Nodetypes 與 VMSS 的關聯性](service-fabric-cluster-nodetypes.md)
+* [Nodetypes 與虛擬機器擴展集的關聯性](service-fabric-cluster-nodetypes.md)
 
 <!--Image references-->
 [SystemServices]: ./media/service-fabric-cluster-capacity/SystemServices.png

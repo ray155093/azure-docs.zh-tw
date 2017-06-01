@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: bb6f3a7710c52a210ea8014430285ba8917cc895
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 0ce1dbf9f2baf9369875370866690010fe8e9e37
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -29,8 +30,8 @@ ms.lasthandoff: 04/07/2017
 
 ### <a name="azure-ad"></a>Azure AD
 * Azure 訂用帳戶或 [Azure 試用版訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)。 此訂閱僅需要用來存取 Azure 入口網站，而不會用於 Azure AD Connect。 如果您正在使用 PowerShell 或 Office 365，則不需要 Azure 訂用帳戶來使用 Azure AD Connect。 如果您有 Office 365 授權，也可以使用 Office 365 入口網站。 使用付費的 Office 365 授權，您也可以從 Office 365 入口網站登入 Azure 入口網站。
-  * 您也可以在 [Azure 入口網站](https://portal.azure.com)中使用 Azure AD 預覽功能。 此入口網站不需要 Azure 授權。
-* [新增並驗證](../active-directory-add-domain.md) 您計畫使用於 Azure AD 中的網域。 例如，如果您計畫讓使用者使用 contoso.com，請確定此網域已經過驗證，而且您不是只使用 contoso.onmicrosoft.com 預設網域。
+  * 您也可以使用 [Azure 入口網站](https://portal.azure.com)。 此入口網站不需要 Azure AD 授權。
+* [新增並驗證](../active-directory-domains-add-azure-portal.md) 您計畫使用於 Azure AD 中的網域。 例如，如果您計畫讓使用者使用 contoso.com，請確定此網域已經過驗證，而且您不是只使用 contoso.onmicrosoft.com 預設網域。
 * Azure AD 租用戶預設允許 5 萬個物件。 當您驗證網域後，此限額會增加到 30 萬個物件。 如果您在 Azure AD 中需要更多的物件，您必須洽詢支援人員以增加此限額。 如果您需要 50 萬個以上的物件，您需要如 Office 365、Azure AD Basic、Azure AD Premium 或 Enterprise Mobility + Security 等授權。
 
 ### <a name="prepare-your-on-premises-data"></a>準備您的內部部署資料
@@ -53,6 +54,7 @@ ms.lasthandoff: 04/07/2017
 * 如果您打算使用「密碼同步處理」 功能，Azure AD Connect 伺服器必須是 Windows Server 2008 R2 SP1 或更新版本。
 * 如果您計畫使用「群組受管理的服務帳戶」，則 Azure AD Connect 伺服器必須位於 Windows Server 2012 或更新版本上。
 * Azure AD Connect 伺服器必須已安裝 [.NET Framework 4.5.1](#component-prerequisites) 或更新的版本及 [Microsoft PowerShell 3.0](#component-prerequisites) 或更新的版本。
+* Azure AD Connect 伺服器不得啟用 PowerShell 轉譯群組原則。
 * 如果部署的是 Active Directory Federation Services，則安裝 AD FS 或 Web 應用程式 Proxy 的伺服器必須是 Windows Server 2012 R2 或更新版本。 [Windows 遠端管理](#windows-remote-management) ，才能執行遠端安裝。
 * 如果部署的是 Active Directory 同盟服務，則您需要 [SSL 憑證](#ssl-certificate-requirements)。
 * 如果部署的是 Active Directory 同盟服務，您就需要設定 [名稱解析](#name-resolution-for-federation-servers)。
@@ -103,6 +105,8 @@ ms.lasthandoff: 04/07/2017
         </defaultProxy>
     </system.net>
 ```
+
+* 當 Azure AD Connect 在同步處理目錄的過程中對 Azure AD 傳送了 Web 要求，Azure AD 最多可能需要 5 分鐘的時間才會回應。 Proxy 伺服器常會有連線閒置逾時設定。 請確定此設定至少設為 6 分鐘以上。
 
 如需詳細資訊，請參閱關於[預設 Proxy 元素 (英文)](https://msdn.microsoft.com/library/kd3cf2ex.aspx) 的 MSDN。  
 如需連線問題的詳細資訊，請參閱[針對連線問題進行疑難排解](active-directory-aadconnect-troubleshoot-connectivity.md)。

@@ -14,12 +14,12 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: cephalin
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: a0e245121f2a9ff4109b281cd7286ed601bf64ac
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: c5ec6dc244cc70591806dab171a289a0e55ff0a0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
-
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="bind-an-existing-custom-ssl-certificate-to-azure-web-apps"></a>將現有的自訂 SSL 憑證繫結至 Azure Web Apps
@@ -45,7 +45,7 @@ ms.lasthandoff: 05/09/2017
 在依照本教學課程進行之前，請先確定您已完成下列項目：
 
 - [建立 App Service 應用程式](/azure/app-service/)
-- [將自訂 DNS 名稱對應至 Web 應用程式](web-sites-custom-domain-name.md)
+- [將自訂 DNS 名稱對應至 Web 應用程式](app-service-web-tutorial-custom-domain.md)
 - 取得受信任憑證授權單位所核發的 SSL 憑證
 
 <a name="requirements"></a>
@@ -88,7 +88,7 @@ ms.lasthandoff: 05/09/2017
 
 ![檢查定價層](./media/app-service-web-tutorial-custom-ssl/check-pricing-tier.png)
 
-不支援**免費**和**共用**層中的自訂 SSL。 如果您需要相應增加，請遵循下一節進行。 否則，請關閉 [選擇定價層] 刀鋒視窗，然後跳至 [將 SSL 憑證上傳並繫結][](#upload)。
+不支援**免費**和**共用**層中的自訂 SSL。 如果您需要相應增加，請遵循下一節進行。 否則，請關閉 [選擇定價層] 刀鋒視窗，然後跳至 [將 SSL 憑證上傳並繫結](#upload)。
 
 ### <a name="scale-up-your-app-service-plan"></a>相應增加您的 App Service 方案
 

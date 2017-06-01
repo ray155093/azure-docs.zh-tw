@@ -1,4 +1,4 @@
----
+﻿---
 title: "使用 Azure Resource Manager 範本建立多個 VM 環境和 PaaS 資源 | Microsoft Docs"
 description: "了解如何從 Azure Resource Manager 範本在 Azure DevTest Labs 中建立多個 VM 環境和 PaaS 資源"
 services: devtest-lab,virtual-machines,visual-studio-online
@@ -14,23 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/31/2017
 ms.author: tarcher
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 0fbe1af87594aacd2eee4f706429e3674548d3fd
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 0b402602ed80d9eef5313fb29ba2bd05644f11f8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
 
 # <a name="create-multi-vm-environments-and-paas-resources-with-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本建立多個 VM 環境和 PaaS 資源
 
-[Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)可讓您輕鬆地[建立，並將 VM 新增至實驗室](./devtest-lab-add-vm-with-artifacts.md)。 這適用於一次建立一個 VM。 不過，如果環境包含多個 VM，則每個 VM 都必須分別建立。 針對多層式 Web 應用程式或 SharePoint 伺服器陣列的情況，需要有機制以允許在單一步驟中建立多個 VM。 使用 Azure Resource Manager 範本，您現在可以定義 Azure 方案的基礎結構和組態，並在一致的狀態中重複部署多個 VM。 此功能可提供下列優點：
+[Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)可讓您輕鬆地[建立，並將 VM 新增至實驗室](https://docs.microsoft.com/en-us/azure/devtest-lab/devtest-lab-add-vm)。 這適用於一次建立一個 VM。 不過，如果環境包含多個 VM，則每個 VM 都必須分別建立。 針對多層式 Web 應用程式或 SharePoint 伺服器陣列的情況，需要有機制以允許在單一步驟中建立多個 VM。 使用 Azure Resource Manager 範本，您現在可以定義 Azure 方案的基礎結構和組態，並在一致的狀態中重複部署多個 VM。 此功能可提供下列優點：
 
 - Azure Resource Manager 範本會直接從您的原始檔控制儲存機制 (GitHub 或 Team Services Git) 載入。
 - 一旦設定後，您的使用者可以建立環境，方法為從 Azure 入口網站選取 Azure Resource Manager 範本，做為它們可以使用其他類型的 [VM 基底](./devtest-lab-comparing-vm-base-image-types.md)進行的動作。
 - Azure PaaS 資源除了 IaaS VM 之外，可以從 Azure Resource Manager 範本的環境中佈建。
 - 除了其他類型基底所建立的個別 VM 之外，可在實驗室中追蹤環境的成本。
 - 使用者具有的環境 VM 原則控制項與單一實驗室 VM 所具有的相同。
+
+> [!NOTE]
+> 在此體驗中尚未支援透過 ARM 範本部署資源類型 Microsoft.DevTestLab/labs (或其巢狀資源類型，例如，Microsoft.DevTestLab/labs/virtualmachines)。 若要部署 VM，請務必使用 Microsoft.Compute/virtualmachines。 可以在 [Azure 快速入門範本資源庫](https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-customdata/azuredeploy.json)中找到更多 ARM 範本範例。
+>
+>
 
 ## <a name="configure-azure-resource-manager-template-repositories"></a>設定 Azure Resource Manager 範本儲存機制
 

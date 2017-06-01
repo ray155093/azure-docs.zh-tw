@@ -5,7 +5,7 @@ services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
 manager: anneta
-editor: cgronlun
+editor: 
 ms.assetid: 2257d2c8-1929-4390-b22c-f96ca8b291bc
 ms.service: logic-apps
 ms.workload: integration
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/26/2016
-ms.author: jonfan
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: e067ea1a800dbcbc1c95ec03c7437ab3c8a610d7
-ms.lasthandoff: 03/10/2017
+ms.author: LADocs; jonfan
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: e3aeaee3a71ae8b024153996431fba203a1cdfce
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -248,6 +249,9 @@ ms.lasthandoff: 03/10/2017
 2.    您也可以在整合帳戶概觀中檢視您的合約。 在整合帳戶刀鋒視窗上，選擇 [概觀]，然後選取 [合約] 圖格。 
 
     ![選擇 [合約] 圖格來檢視所有合約](./media/logic-apps-enterprise-integration-edifact/edifact-4.png)   
+
+## <a name="view-swagger-file"></a>檢視 Swagger 檔案
+若要檢視 EDIFACT 連接器的 Swagger 詳細資料，請參閱 [EDIFACT](/connectors/edifact/)。
 
 ## <a name="learn-more"></a>詳細資訊
 * [深入了解企業整合套件](logic-apps-enterprise-integration-overview.md "了解企業整合套件")  

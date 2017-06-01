@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/06/2017
 ms.author: nisoneji
-translationtype: Human Translation
-ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
-ms.openlocfilehash: cff6ef0c1c49110edc53ec82f88d9875439aab8a
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: c49f283971b33a4e88573e1d67ba159021fbccb8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -55,21 +57,22 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
 
 安裝更新，如下所示：
 
-1. 下載 [update](https://aka.ms/asr-scout-update4) .zip 檔案。 此 ++zip 檔案包含下列檔案：
+1. 下載 [update](https://aka.ms/asr-scout-update5) .zip 檔案。 此 ++zip 檔案包含下列檔案：
 
    * RX_8.0.4.0_GA_Update_4_8725872_16Sep16.tar.gz
    * CX_Windows_8.0.4.0_GA_Update_4_8725865_14Sep16.exe
-   * UA_Windows_8.0.4.0_GA_Update_4_9035261_27Sep16.exe
+   * UA_Windows_8.0.5.0_GA_Update_5_11525802_20Apr17.exe
    * UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz
-   * vCon_Windows_8.0.4.0_GA_Update_4_8921562_16Sep16.exe
+   * vCon_Windows_8.0.5.0_GA_Update_5_11525767_20Apr17.exe
    * 適用於 RHEL5、OL5、OL6、SUSE 10、SUSE 11 的 UA update4 位元：UA_<Linux OS>_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz
 2. 解壓縮 .zip 檔。<br>
 3. **針對 RX 伺服器**：將 **RX_8.0.4.0_GA_Update_4_8725872_16Sep16.tar.gz** 複製到 RX 伺服器並將其解壓縮。 在解壓縮的資料夾中執行 **/Install**。<br>
 4. **針對設定伺服器/處理伺服器**：將 **CX_Windows_8.0.4.0_GA_Update_4_8725865_14Sep16.exe** 複製到設定伺服器和處理伺服器。 連按兩下加以執行。<br>
-5. **針對 Windows 主要目標伺服器**：若要更新整合代理程式，請將 **UA_Windows_8.0.4.0_GA_Update_4_9035261_27Sep16.exe** 複製到主要目標伺服器。 連按兩下加以執行。 請注意，整合代理程式也適用於來源伺服器。 您也應該將其安裝在來源伺服器上，如本清單稍後所述。<br>
-6. **針對 vContinuum 伺服器**：將 **vCon_Windows_8.0.4.0_GA_Update_4_8921562_16Sep16.exe** 複製到 vContinuum 伺服器。  確定您已經關閉 vContinuum 精靈。 連按兩下檔案加以執行。<br>
+5. **針對 Windows 主要目標伺服器**：若要更新整合代理程式，請將 **UA_Windows_8.0.5.0_GA_Update_5_11525802_20Apr17.exe** 複製到主要目標伺服器。 連按兩下加以執行。 請注意，如果來源一直未更新到 Update 4，整合代理程式也適用於來源伺服器。 您也應該將其安裝在來源伺服器上，如本清單稍後所述。<br>
+6. **針對 vContinuum 伺服器**：將 **vCon_Windows_8.0.5.0_GA_Update_5_11525767_20Apr17.exe** 複製到 vContinuum 伺服器。  確定您已經關閉 vContinuum 精靈。 連按兩下檔案加以執行。<br>
 7. **針對 Linux 主要目標伺服器**：若要更新整合代理程式，請將 **UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** 複製到主要目標伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。<br>
-8. **針對 Windows 來源伺服器**：若要更新整合代理程式，請將 **UA_Windows_8.0.4.0_GA_Update_4_9035261_27Sep16.exe** 複製到來源伺服器。 連按兩下加以執行。<br>
+8. **針對 Windows 來源伺服器**︰如果來源已經是 Update 4，則不需要在來源上安裝 Update 5 代理程式。 如果低於 Update 4，請套用 Update 5 代理程式。
+若要更新整合代理程式，請將 **UA_Windows_8.0.5.0_GA_Update_5_11525802_20Apr17.exe** 複製到來源伺服器。 連按兩下加以執行。 <br>
 9. **針對 Linux 來源伺服器**：若要更新整合代理程式，請將對應的 UA 檔案版本複製到 Linux 伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。  範例：針對 RHEL 6.7 64 位元伺服器，請將 **UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** 複製到伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。
 
 ## <a name="step-4-set-up-replication"></a>步驟 4：設定複寫
@@ -83,8 +86,40 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
    * [快速安裝指南](https://aka.ms/asr-scout-quick-install-guide)
 
 ## <a name="updates"></a>更新
+### <a name="azure-site-recovery-scout-801-update-5"></a>Azure Site Recovery Scout 8.0.1 Update 5
+Scout Update 5 是累積更新， 包含 Update 1 到 Update 4 的所有修正及下列新的錯誤修正和增強功能。
+從 ASR Scout Update 4 更新至 Update 5 所新增的修正程式是針對主要目標和 vContinuum 元件。 如果您的所有來源伺服器，主要目標、設定伺服器、處理序伺服器和 RX 已是 ASR Scout Update 4，您只需要在主要目標伺服器上套用 Update 5。 
+
+**新平台支援**
+* SUSE Linux Enterprise Server 11 Service Pack 4 (SP4)
+
+> [!NOTE]
+> SLES 11 SP4 64 位元 **InMage_UA_8.0.1.0_SLES11-SP4-64_GA_13Apr2017_release.tar.gz** 與基底 Scout GA 套件 **InMage_Scout_Standard_8.0.1 GA.zip** 封裝在一起。 請依照[步驟 1](#step-1-create-a-vault) 所述，從入口網站下載 Scout GA 套件。
+>
+
+**錯誤修正和增強功能**
+
+* 增加 Windows 叢集支援的可靠性
+    * 已修正 - 有時候某些 P2V MSCS 叢集磁碟會在復原後變 RAW
+    * 已修正 - P2V MSCS 叢集的復原因為磁碟順序不符而失敗
+    * 已修正 - MSCS 叢集新增磁碟作業因磁碟大小不相符而失敗
+    * 已修正 - 來源 MSCS 叢集與 RDM LUN 對應整備檢查在大小確認步驟失敗
+    * 已修正 - 因為 SCSI 不符的問題，單一節點叢集保護失敗 
+    * 已修正 - 如果有目標叢集磁碟，重新保護 P2V Windows 叢集伺服器會失敗。 
+    
+* 在容錯回復保護期間，如果選取的 MT 不是在和受保護來源機器相同的 ESXi 伺服器上 (在正向保護中)，vContinuum 會在容錯回復復原期間挑出錯誤的 MT，之後的復原作業便會失敗。
+
+> [!NOTE]
+> 
+> * 上述 P2V 叢集修正僅適用於剛以 ASR Scout Update 5 加以保護的實體 MSCS 叢集。 如果要讓叢集修正也能用在已經以較舊更新保護的 P2V MSCS 叢集，您必須遵循 [ASR Scout 版本資訊](https://aka.ms/asr-scout-release-notes) 第 12 節＜升級受保護的搜索 Update5 P2V MSCS 叢集＞所述的升級步驟。
+> 
+> * 重新保護時，只有當在每個叢集節點上使用中的幾個磁碟與最初受保護時相同，重新保護實體 MSCS 叢集才可以重複使用現有的目標磁碟。 如果沒有，可使用 [ASR Scout 版本資訊](https://aka.ms/asr-scout-release-notes)第 12 節中所述的手動步驟，將目標端磁碟移至正確的資料存放區路徑，以便在重新保護時重複使用它們。 如果未遵循升級步驟重新保護 P2V 模式中的 MSCS 叢集，則會在目標 ESXi 伺服器上建立新的磁碟。 您必須手動刪除資料存放區中的舊磁碟。
+> 
+> * 每當來源 SLES11 或 SLES11 與任何 Service Pack 伺服器一起正常重新開機時，皆應手動標記**根**磁碟複寫組以利重新同步處理，因為在 CX UI 中不會標注標。 如果您沒有「標示」重新同步處理的根磁碟，可能會遇到資料完整性 (DI) 問題。
+> 
+
 ### <a name="azure-site-recovery-scout-801-update-4"></a>Azure Site Recovery Scout 8.0.1 Update 4
-Scout Update 4 是累積更新。 它包含 update1 到 update&3; 的所有修正及下列新的錯誤修正和增強功能。
+Scout Update 4 是累積更新。 它包含 update1 到 update 3 的所有修正及下列新的錯誤修正和增強功能。
 
 **新平台支援**
 
@@ -116,7 +151,7 @@ Scout Update 4 是累積更新。 它包含 update1 到 update&3; 的所有修�
 * cxps 傳輸伺服器會因發生超出範圍例外狀況而當機。
 * 現在在 vContinuum 精靈的推送安裝頁面中可以調整伺服器名稱和 IP 資料行的大小。
 * RX API 增強功能
-  * 提供&5; 個最新可用的共同一致性點 (僅限 [保證] 標記)。
+  * 提供 5 個最新可用的共同一致性點 (僅限 [保證] 標記)。
   * 為所有受保護的裝置提供容量和可用空間詳細資料。
   * 提供來源伺服器上的 Scout 驅動程式狀態。
 
@@ -173,7 +208,7 @@ Update 2 中的修正包括：
 ### <a name="azure-site-recovery-scout-801-update-1"></a>Azure Site Recovery Scout 8.0.1 Update 1
 Update 1 包含下列錯誤修正和新功能：
 
-* 每個伺服器執行個體享有&31; 天的免費保護。 這可讓您測試功能或設定概念證明。
+* 每個伺服器執行個體享有 31 天的免費保護。 這可讓您測試功能或設定概念證明。
   * 從使用 Site Recovery Scout 第一次保護伺服器的時間開始計算的前 31 天，伺服器上的所有作業 (包括容錯移轉和容錯回復) 都是免費的。
   * 從第 32 天起，每個受保護的伺服器都會依照標準執行個體費率，向客戶擁有的網站收取 Azure Site Recovery 保護費用。
   * 在 Azure Site Recovery 保存庫的 [儀表板] 頁面上，隨時可取得目前計費的受保護伺服器數目。
@@ -197,9 +232,4 @@ Update 1 包含下列錯誤修正和新功能：
 
 ## <a name="next-steps"></a>後續步驟
 若有任何問題，請造訪 [Azure Recovery Services 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)(英文)。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

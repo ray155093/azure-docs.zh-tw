@@ -1,6 +1,6 @@
 ---
 
-title: "在 Azure Active Directory 預覽版中開始使用授權 | Microsoft Docs"
+title: "在 Azure Active Directory 中開始使用授權 | Microsoft Docs"
 description: "描述 Azure Active Directory 授權、如何運作、如何開始著手，以及最佳作法，包括 Office 365、Microsoft Intune 和 Azure Active Directory Premium 與 Basic 版本"
 services: active-directory
 keywords: "Azure AD 授權"
@@ -14,18 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/27/2017
+ms.date: 05/05/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 3bad24f35cf7867f1e02e8470c602a7f6a9ce8fb
-ms.lasthandoff: 03/09/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 8e9d6900910f45b5f17600fc5608191871c5ab21
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
 
-# <a name="license-yourself-and-your-users-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中進行自身和使用者的授權
+# <a name="license-yourself-and-your-users-in-azure-active-directory"></a>在 Azure Active Directory 中進行自身和使用者的授權
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-licensing-get-started-azure-portal.md)
@@ -59,7 +60,7 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 
 取得訂用帳戶之後，您只需要設定付費功能，但是要使用 Azure AD 的付費功能，就必須將授權分配給適當的人員。 一般而言，應存取 Azure AD 付費功能或者透過 Azure AD 付費功能管理的人員，都必須被指派授權。 授權指派是一種使用者與購買的服務 (例如 Azure AD Premium、Basic 或 Enterprise Mobility Suite) 之間的對應。
 
-管理您的目錄中哪些使用者應該擁有授權很簡單。 只要在 Azure 入口網站中指派授權給群組，或是透過入口網站、PowerShell 或 API 直接將授權指派給適當的人員即可。 將授權指派給群組時，則會對所有群組成員指派授權。 如果群組新增或移除使用者，也會對他們指派或移除適當的授權。 群組指派可以利用您可用的任何群組管理功能，而且與以群組為基礎的應用程式指派一致。 使用這個方法，您可以設定規則讓您的目錄中所有使用者都會自動被指派，確保有適當職稱的每個人都獲得授權，或者甚至委派決策權給組織中的其他管理人員。 
+管理您的目錄中哪些使用者應該擁有授權很簡單。 只要在 Azure 入口網站中指派授權給群組 (這項功能處於公開預覽狀態)，或是透過入口網站、PowerShell 或 API 直接將授權指派給適當的人員即可。 將授權指派給群組時，則會對所有群組成員指派授權。 如果群組新增或移除使用者，也會對他們指派或移除適當的授權。 群組指派可以利用您可用的任何群組管理功能，而且與以群組為基礎的應用程式指派一致。 使用這個方法，您可以設定規則讓您的目錄中所有使用者都會自動被指派，確保有適當職稱的每個人都獲得授權，或者甚至委派決策權給組織中的其他管理人員。 
 
 如需指派授權給群組的詳細討論，包括進階案例和 Office 365 授權案例，請參閱[這篇文章](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-licensing-group-assignment-azure-portal)。
 

@@ -14,59 +14,129 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/11/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 8fcd609da46e88f7db90692c7e67011df64c9b4e
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: 2f33c266c14b62f51745ff67069358c007bc00a2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
 # <a name="create-monitor-and-manage-azure-data-factories-using-azure-data-factory-net-sdk"></a>使用 Azure Data Factory .NET SDK 來建立、監視及管理 Azure Data Factory
 ## <a name="overview"></a>概觀
-您可以使用 Data Factory .NET SDK，以程式設計方式建立、監視及管理 Azure Data Factory 本文包含指導您建立範例 .NET 主控台應用程式的逐步解說，此應用程式將會建立並監視 Data Factory。 請參閱 [Data Factory 類別庫參考](https://msdn.microsoft.com/library/mt415893.aspx)，以取得有關 Data Factory .NET SDK 的詳細資料。
+您可以使用 Data Factory .NET SDK，以程式設計方式建立、監視及管理 Azure Data Factory 本文包含指導您建立範例 .NET 主控台應用程式的逐步解說，此應用程式將會建立並監視 Data Factory。 
+
+> [!NOTE]
+> 這篇文章並未涵蓋所有的 Data Factory .NET API。 如需適用於 Data Factory 之 .NET API 的完整文件，請參閱 [Data Factory .NET API 參考](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1)。 
 
 ## <a name="prerequisites"></a>必要條件
 * Visual Studio 2012、2013 或 2015
 * 下載並安裝 [Azure .NET SDK](http://azure.microsoft.com/downloads/)。
-* 將原生用戶端應用程式新增到 Azure Active Directory。 如需有關新增應用程式的步驟，請參閱 [整合應用程式與 Azure Active Directory](../active-directory/active-directory-integrating-applications.md) 。 記下 [設定] 頁面上的**用戶端識別碼**和**重新導向 URI**。 請參閱[使用 .NET API 的複製活動教學課程](data-factory-copy-activity-tutorial-using-dotnet-api.md)文章以了解詳細步驟。 
-* 取得您的 Azure **訂用帳戶 ID** 和**租用戶識別碼**。 如需相關指示，請參閱 [取得 Azure 訂用帳戶 ID 和租用戶識別碼](#get-azure-subscription-and-tenant-ids) 。
-* 下載並安裝適用於 Azure Data Factory 的 NuGet 封裝 逐步解說中包含相關指示。
+* Azure PowerShell。 按照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 一文中的指示操作，在您的電腦上安裝 Azure PowerShell。 您可以使用 Azure PowerShell 建立 Azure Active Directory 應用程式。
+
+### <a name="create-an-application-in-azure-active-directory"></a>在 Azure Active Directory 中建立應用程式
+建立 Azure Active Directory 應用程式、建立該應用程式的服務主體，然後將其指派給 **Data Factory 參與者** 角色。
+
+1. 啟動 **PowerShell**。
+2. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
+
+    ```PowerShell
+    Login-AzureRmAccount
+    ```
+3. 執行下列命令以檢視此帳戶的所有訂用帳戶。
+
+    ```PowerShell
+    Get-AzureRmSubscription
+    ```
+4. 執行下列命令以選取您要使用的訂用帳戶。 以您的 Azure 訂用帳戶名稱取代 **&lt;NameOfAzureSubscription**&gt;。
+
+    ```PowerShell
+    Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
+    ```
+
+   > [!IMPORTANT]
+   > 請記下此命令輸出中的 **SubscriptionId** 和 **TenantId**。
+
+5. 在 PowerShell 中執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。
+
+    ```PowerShell
+    New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
+    ```
+
+    如果資源群組已存在，您可指定是否要更新 (Y) 或予以保留 (N)。
+
+    如果使用不同的資源群組，您必須以資源群組的名稱取代本教學課程中的 ADFTutorialResourceGroup。
+6. 建立 Azure Active Directory 應用程式。
+
+    ```PowerShell
+    $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFDotNetWalkthroughApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfdotnetwalkthroughapp.org/example" -Password "Pass@word1"
+    ```
+
+    如果您收到下列錯誤，請指定不同的 URL 並再次執行此命令。
+    
+    ```PowerShell
+    Another object with the same value for property identifierUris already exists.
+    ```
+7. 建立 AD 服務主體。
+
+    ```PowerShell
+    New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
+    ```
+8. 對 **Data Factory 參與者** 角色新增服務主體。
+
+    ```PowerShell
+    New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
+    ```
+9. 取得應用程式識別碼。
+
+    ```PowerShell
+    $azureAdApplication    
+    ```
+    記下輸出的應用程式識別碼 (applicationID)。
+
+您應會從這些步驟取得下列四個值︰
+
+* 租用戶識別碼
+* 訂用帳戶識別碼
+* 應用程式識別碼
+* 密碼 (在第一個命令中指定)
 
 ## <a name="walkthrough"></a>逐步介紹
-1. 使用 Visual Studio 2012 或 2013 來建立 C# .NET 主控台應用程式。
-   1. 啟動 **Visual Studio 2012/2013/2015**。
+在逐步解說中，您可以建立具有管線的資料處理站，其中包含複製活動。 複製活動會將資料從 Azure Blob 儲存體中的資料夾，複製到相同 Blob 儲存體中的另一個資料夾。 
+
+複製活動會在 Azure Data Factory 中執行資料移動。 此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。 如需複製活動的詳細資訊，請參閱 [資料移動活動](data-factory-data-movement-activities.md) 文章。
+
+1. 使用 Visual Studio 2012/2013/2015 建立 C# .NET 主控台應用程式。
+   1. 啟動 **Visual Studio** 2012/2013/2015。
    2. 按一下 [檔案]，指向 [新增]，然後按一下 [專案]。
    3. 展開 [範本]，然後選取 [Visual C#]。 在此逐步解說中，您使用的是 C#，但您可以使用任何 .NET 語言。
    4. 從右邊的專案類型清單中選取 [主控台應用程式]  。
-   5. 在 [名稱] 中輸入 **DataFactoryAPITestApp**。
-   6. 在 [位置] 選取 **C:\ADFGetStarted**。
+   5. 在 [名稱] 中輸入 **DataFactoryAPITestApp** 。
+   6. 在 [位置] 中選取 **C:\ADFGetStarted**。
    7. 按一下 [確定]  以建立專案。
 2. 按一下 [**工具**]，指向 [**NuGet 封裝管理員**]，然後按一下 [**封裝管理員主控台**]。
-3. 在 [封裝管理員主控台] 中，逐一執行下列命令。
-
-    ```
-    Install-Package Microsoft.Azure.Management.DataFactories
-    Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213
-    ```
-4. 將下列 **appSetttings** 區段新增 **App.config** 檔案。 **GetAuthorizationHeader** 方法會使用這些組態值。
-
-   > [!IMPORTANT]
-   > 以您自己的值取代 **AdfClientId**、**RedirectUri****SubscriptionId** 和 **ActiveDirectoryTenantId** 的值。
-
-    ```XML
-    <appSettings>
-        <add key="ActiveDirectoryEndpoint" value="https://login.windows.net/" />
-        <add key="ResourceManagerEndpoint" value="https://management.azure.com/" />
-        <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
+3. 在 [Package Manager Console] 中，輸入下列命令：
+   1. 執行以下命令安裝 Data Factory 套件：`Install-Package Microsoft.Azure.Management.DataFactories`
+   2. 執行下列命令安裝 Azure Active Directory 套件 (您在程式碼中使用 Active Directory API)︰`Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
+4. 以下列內容取代專案中 **App.config** 檔案的內容： 
     
-        <!-- Replace the following values with your own -->
-        <add key="AdfClientId" value="Your AAD application ID" />
-        <add key="RedirectUri" value="Your AAD application's redirect URI" />
-        <add key="SubscriptionId" value="your subscription ID" />
-        <add key="ActiveDirectoryTenantId" value="your tenant ID" />
-    </appSettings>
+    ```xml
+    <?xml version="1.0" encoding="utf-8" ?>
+    <configuration>
+        <appSettings>
+            <add key="ActiveDirectoryEndpoint" value="https://login.windows.net/" />
+            <add key="ResourceManagerEndpoint" value="https://management.azure.com/" />
+            <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
+
+            <add key="ApplicationId" value="your application ID" />
+            <add key="Password" value="Password you used while creating the AAD application" />
+            <add key="SubscriptionId" value= "Subscription ID" />
+            <add key="ActiveDirectoryTenantId" value="Tenant ID" />
+        </appSettings>
+    </configuration>
     ```
-5. 將下列 **using** 陳述式加入專案的原始程式檔 (Program.cs) 中。
+5. 在 App.Config 檔案中，以您自己的值更新**&lt;應用程式識別碼&gt;**、**&lt;密碼&gt;**、**&lt;訂用帳戶識別碼&gt;****&lt;租用戶識別碼&gt;**的值。
+6. 將下列 **using** 陳述式新增至專案的 **Program.cs**檔案。
 
     ```csharp
     using System.Configuration;
@@ -86,20 +156,27 @@ ms.lasthandoff: 04/27/2017
 
     ```csharp
     // create data factory management client
-    string resourceGroupName = "resourcegroupname";
-    string dataFactoryName = "APITutorialFactorySP";
-    
+
+    //IMPORTANT: specify the name of Azure resource group here
+    string resourceGroupName = "ADFTutorialResourceGroup";
+
+    //IMPORTANT: the name of the data factory must be globally unique.
+    // Therefore, update this value. For example:APITutorialFactory05122017
+    string dataFactoryName = "APITutorialFactory";
+
     TokenCloudCredentials aadTokenCredentials = new TokenCloudCredentials(
             ConfigurationManager.AppSettings["SubscriptionId"],
-        GetAuthorizationHeader().Result);
-    
+            GetAuthorizationHeader().Result);
+
     Uri resourceManagerUri = new Uri(ConfigurationManager.AppSettings["ResourceManagerEndpoint"]);
-    
+
     DataFactoryManagementClient client = new DataFactoryManagementClient(aadTokenCredentials, resourceManagerUri);
     ```
 
-   > [!NOTE]
-   > 用您的 Azure 資源群組名稱取代 **resourcegroupname** 。 若要建立資源群組，請使用 [New-AzureResourceGroup](/powershell/module/azure/new-azureresourcegroup?view=azuresmps-3.7.0) Cmdlet。
+   > [!IMPORTANT]
+   > 以您的 Azure 資源群組名稱取代 **resourceGroupName** 的值。 若要建立資源群組，請使用 [New-AzureResourceGroup](/powershell/module/azure/new-azureresourcegroup?view=azuresmps-3.7.0) Cmdlet。
+   >
+   > 將 Data Factory 的名稱 (dataFactoryName) 更新成唯一的名稱。 Data Factory 的名稱必須是全域唯一的名稱。 請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md) 主題，以了解 Data Factory 成品的命名規則。
 7. 將下列會建立 **data Factory** 的程式碼新增至 **Main** 方法中。
 
     ```csharp
@@ -117,23 +194,23 @@ ms.lasthandoff: 04/27/2017
         }
     );
     ```
-8. 將下列建立**連結服務**的程式碼加入 **Main** 方法中。
+8. 將下列會建立 **Azure 儲存體**的程式碼新增至 **Main** 方法中。
 
-   > [!NOTE]
-   > 使用您 Azure 儲存體帳戶的**帳戶名稱**和**帳戶金鑰**做為 **ConnectionString**。
+   > [!IMPORTANT]
+   > 以 Azure 儲存體帳戶的名稱和金鑰取代 **storageaccountname** 和 **accountkey**。
 
     ```csharp
-    // create a linked service
-    Console.WriteLine("Creating a linked service");
+    // create a linked service for input data store: Azure Storage
+    Console.WriteLine("Creating Azure Storage linked service");
     client.LinkedServices.CreateOrUpdate(resourceGroupName, dataFactoryName,
         new LinkedServiceCreateOrUpdateParameters()
         {
             LinkedService = new LinkedService()
             {
-                Name = "LinkedService-AzureStorage",
+                Name = "AzureStorageLinkedService",
                 Properties = new LinkedServiceProperties
                 (
-                    new AzureStorageLinkedService("DefaultEndpointsProtocol=https;AccountName=<account name>;AccountKey=<account key>")
+                    new AzureStorageLinkedService("DefaultEndpointsProtocol=https;AccountName=<storageaccountname>;AccountKey=<accountkey>")
                 )
             }
         }
@@ -159,7 +236,7 @@ ms.lasthandoff: 04/27/2017
             Name = Dataset_Source,
             Properties = new DatasetProperties()
             {
-                LinkedServiceName = "LinkedService-AzureStorage",
+                LinkedServiceName = "AzureStorageLinkedService",
                 TypeProperties = new AzureBlobDataset()
                 {
                     FolderPath = "adftutorial/",
@@ -192,7 +269,7 @@ ms.lasthandoff: 04/27/2017
             Properties = new DatasetProperties()
             {
     
-                LinkedServiceName = "LinkedService-AzureStorage",
+                LinkedServiceName = "AzureStorageLinkedService",
                 TypeProperties = new AzureBlobDataset()
                 {
                     FolderPath = "adftutorial/apifactoryoutput/{Slice}",
@@ -279,24 +356,6 @@ ms.lasthandoff: 04/27/2017
         }
     });
     ```
-11. 將 **Main** 方法所使用的下列 Helper 方法新增至 **Program** 類別中。 此方法會顯示一個對話方塊，讓您提供用來登入 Azure 入口網站的**使用者名稱**和**密碼**。
-
-    ```csharp
-    public static async Task<string> GetAuthorizationHeader()
-    {
-        var context = new AuthenticationContext(ConfigurationManager.AppSettings["ActiveDirectoryEndpoint"] + ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
-        AuthenticationResult result = await context.AcquireTokenAsync(
-            resource: ConfigurationManager.AppSettings["WindowsManagementUri"],
-            clientId: ConfigurationManager.AppSettings["AdfClientId"],
-            redirectUri: new Uri(ConfigurationManager.AppSettings["RedirectUri"]),
-            promptBehavior: PromptBehavior.Always);
-
-        if (result != null)
-            return result.AccessToken;
-
-        throw new InvalidOperationException("Failed to acquire token");
-    }
-    ```
 12. 將下列程式碼加入 **Main** 方法中，以取得輸出資料集的資料配量狀態。 預期此範例中只有一個配量。
 
     ```csharp
@@ -364,7 +423,27 @@ ms.lasthandoff: 04/27/2017
     Console.WriteLine("\nPress any key to exit.");
     Console.ReadKey();
     ```
-14. 在 [方案總管] 中展開 **DataFactoryAPITestApp** 專案，以滑鼠右鍵按一下 [參考]，然後按一下 [加入參考]。 選取 `System.Configuration` 組件的核取方塊，然後按一下 [確定]。
+14. 將 **Main** 方法所使用的下列 Helper 方法新增至 **Program** 類別中。 此方法會顯示一個對話方塊，讓您提供用來登入 Azure 入口網站的**使用者名稱**和**密碼**。
+
+    ```csharp
+    public static async Task<string> GetAuthorizationHeader()
+    {
+        AuthenticationContext context = new AuthenticationContext(ConfigurationManager.AppSettings["ActiveDirectoryEndpoint"] + ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
+        ClientCredential credential = new ClientCredential(
+            ConfigurationManager.AppSettings["ApplicationId"],
+            ConfigurationManager.AppSettings["Password"]);
+        AuthenticationResult result = await context.AcquireTokenAsync(
+            resource: ConfigurationManager.AppSettings["WindowsManagementUri"],
+            clientCredential: credential);
+
+        if (result != null)
+            return result.AccessToken;
+
+        throw new InvalidOperationException("Failed to acquire token");
+    }
+    ```
+
+15. 在 [方案總管] 中展開 **DataFactoryAPITestApp** 專案，以滑鼠右鍵按一下 [參考]，然後按一下 [加入參考]。 選取 `System.Configuration` 組件的核取方塊，然後按一下 [確定]。
 15. 建置主控台應用程式。 按一下功能表上的 [建置]，再按一下 [建置方案]。
 16. 確認您 Azure Blob 儲存體之 adftutorial 容器中至少有一個檔案。 如果沒有，請在「記事本」中以下列內容建立 Emp.txt 檔案，然後將它上傳至 adftutorial 容器。
 
@@ -374,97 +453,52 @@ ms.lasthandoff: 04/27/2017
     ```
 17. 按一下功能表上的 [偵錯] -> [開始偵錯]，執行範例。 當您看到 [取得資料配量的執行詳細資料]，請等待數分鐘再按 **ENTER**。
 18. 使用 Azure 入口網站確認 Data Factory： **APITutorialFactory** 是使用下列成品所建立：
-    * 連結服務：**LinkedService_AzureStorage**
+    * 連結服務：**AzureStorageLinkedService**
     * 資料集：**DatasetBlobSource** 和 **DatasetBlobDestination**。
     * 管線： **PipelineBlobSample**
 19. 確認輸出檔案已建立於 **adftutorial** 容器的 **apifactoryoutput** 資料夾中。
 
-## <a name="log-in-without-popup-dialog-box"></a>不使用快顯對話方塊來登入
-逐步解說中的範例程式碼會啟動一個對話方塊，供您輸入 Azure 認證。 如果您需要透過程式設計方式登入，而不使用對話方塊，請參閱[使用 Azure Resource Manager 來驗證服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
-
-> [!IMPORTANT]
-> 將 Web 應用程式新增到 Azure Active Directory，並記下該應用程式的用戶端識別碼和用戶端密碼。
->
->
-
-### <a name="example"></a>範例
-建立 GetAuthorizationHeaderNoPopup 方法。
+## <a name="get-a-list-of-failed-data-slices"></a>取得失敗資料配量的清單 
 
 ```csharp
-public static async Task<string> GetAuthorizationHeaderNoPopup()
+// Parse the resource path
+var ResourceGroupName = "ADFTutorialResourceGroup";
+var DataFactoryName = "DataFactoryAPITestApp";
+
+var parameters = new ActivityWindowsByDataFactoryListParameters(ResourceGroupName, DataFactoryName);
+parameters.WindowState = "Failed";
+var response = dataFactoryManagementClient.ActivityWindows.List(parameters);
+do
 {
-    var authority = new Uri(new Uri("https://login.windows.net"), ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
-    var context = new AuthenticationContext(authority.AbsoluteUri);
-    var credential = new ClientCredential(
-        ConfigurationManager.AppSettings["AdfClientId"],
-    ConfigurationManager.AppSettings["AdfClientSecret"]);
-    
-    AuthenticationResult result = await context.AcquireTokenAsync(
-        ConfigurationManager.AppSettings["WindowsManagementUri"],
-    credential);
+    foreach (var activityWindow in response.ActivityWindowListResponseValue.ActivityWindows)
+    {
+        var row = string.Join(
+            "\t",
+            activityWindow.WindowStart.ToString(),
+            activityWindow.WindowEnd.ToString(),
+            activityWindow.RunStart.ToString(),
+            activityWindow.RunEnd.ToString(),
+            activityWindow.DataFactoryName,
+            activityWindow.PipelineName,
+            activityWindow.ActivityName,
+            string.Join(",", activityWindow.OutputDatasets));
+        Console.WriteLine(row);
+    }
 
-    if (result != null)
-        return result.AccessToken;
-
-    throw new InvalidOperationException("Failed to acquire token");
+    if (response.NextLink != null)
+    {
+        response = dataFactoryManagementClient.ActivityWindows.ListNext(response.NextLink, parameters);
+    }
+    else
+    {
+        response = null;
+    }
 }
+while (response != null);
 ```
 
-在 **Main** 函式中，將 **GetAuthorizationHeader** 呼叫取代為對 **GetAuthorizationHeaderNoPopup** 的呼叫：
+## <a name="next-steps"></a>後續步驟
+請參閱下列範例以建立管線，該管線使用 .NET SDK (從 Azure Blob 儲存體將資料複製到 Azure SQL Database)： 
 
-```csharp
-TokenCloudCredentials aadTokenCredentials =
-    new TokenCloudCredentials(
-    ConfigurationManager.AppSettings["SubscriptionId"],
-    GetAuthorizationHeaderNoPopup().Result);
-```
-
-以下說明如何建立 Active Directory 應用程式和服務主體，然後將其指派給 Data Factory 參與者角色︰
-
-1. 建立 AD 應用程式。
-
-    ```PowerShell
-    $azureAdApplication = New-AzureRmADApplication -DisplayName "MyADAppForADF" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.myadappforadf.org/example" -Password "Pass@word1"
-    ```
-2. 建立 AD 服務主體。
-
-    ```PowerShell
-    New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
-    ```
-3. 對 Data Factory 參與者角色新增服務主體。
-
-    ```PowerShell
-    New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
-    ```
-4. 取得應用程式識別碼。
-
-    ```PowerShell
-    $azureAdApplication
-    ```
-
-記下應用程式識別碼和密碼 (用戶端密碼)，然後在逐步解說中使用它。
-
-## <a name="get-azure-subscription-and-tenant-ids"></a>取得 Azure 訂用帳戶 ID 和租用戶識別碼
-如果您的機器上未安裝最新版的 PowerShell，請依照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 一文中的指示來安裝它。
-
-1. 啟動 Azure PowerShell 並執行下列命令
-2. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
-
-    ```PowerShell
-    Login-AzureRmAccount
-    ```
-
-    如果您只有一個與此帳戶關聯的 Azure 訂用帳戶，您就不需執行下面兩個步驟。
-3. 執行下列命令以檢視此帳戶的所有訂用帳戶。
-
-    ```PowerShell
-    Get-AzureRmSubscription
-    ```
-4. 執行下列命令以選取您要使用的訂用帳戶。 以您的 Azure 訂用帳戶名稱取代 **NameOfAzureSubscription** 。
-
-    ```PowerShell
-    Get-AzureRmSubscription -SubscriptionName NameOfAzureSubscription | Set-AzureRmContext
-    ```PowerShell
-
-Note down the **SubscriptionId** and **TenantId** values.
+- [建立管線以將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 

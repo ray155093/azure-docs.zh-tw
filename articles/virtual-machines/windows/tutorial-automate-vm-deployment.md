@@ -13,20 +13,25 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 04/27/2017
+ms.date: 05/02/2017
 ms.author: iainfou
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 54920f3b6665ce5d74bf8025d44d5e16bd8a54b4
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 014d282daffdbfc03e7f3495f8e59bfda4cdb396
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 ---
 
 # <a name="how-to-customize-a-windows-virtual-machine-in-azure"></a>如何自訂 Azure 中的 Windows 虛擬機器
-若要以快速且一致的方式設定虛擬機器 (VM)，通常需要某種形式的自動化。 自訂 Windows VM 的常見方法是使用 [Windows 的自訂指令碼擴充功能](extensions-customscript.md)。 本教學課程將說明如何使用自訂指令碼擴充功能，來安裝及設定 IIS 以執行基本網站。
+若要以快速且一致的方式設定虛擬機器 (VM)，通常需要某種形式的自動化。 自訂 Windows VM 的常見方法是使用 [Windows 的自訂指令碼擴充功能](extensions-customscript.md)。 在本教學課程中，您將了解如何：
 
-您可以使用最新的 [Azure PowerShell](/powershell/azure/overview) 模組來完成本教學課程中的步驟。
+> [!div class="checklist"]
+> * 使用自訂指令碼擴充功能安裝 IIS
+> * 使用自訂指令碼擴充功能建立 VM
+> * 套用擴充功能之後檢視執行中的 IIS 網站
+
+本教學課程需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 找出版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 
 ## <a name="custom-script-extension-overview"></a>自訂指令碼擴充功能概觀
@@ -38,10 +43,10 @@ ms.lasthandoff: 05/03/2017
 
 
 ## <a name="create-virtual-machine"></a>Create virtual machine
-建立 VM 之前，請先使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 來建立資源群組。 下列範例會在 westus 位置建立名為 myResourceGroupAutomate 的資源群組：
+建立 VM 之前，請先使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 來建立資源群組。 下列範例會在 EastUS 位置建立名為 myResourceGroupAutomate 的資源群組：
 
 ```powershell
-New-AzureRmResourceGroup -ResourceGroupName myResourceGroupAutomate -Location westus
+New-AzureRmResourceGroup -ResourceGroupName myResourceGroupAutomate -Location EastUS
 ```
 
 使用 [Get-credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 來設定 VM 的系統管理員使用者名稱和密碼：
@@ -61,7 +66,7 @@ $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
 # Create a virtual network
 $vnet = New-AzureRmVirtualNetwork `
     -ResourceGroupName myResourceGroupAutomate `
-    -Location westus `
+    -Location EastUS `
     -Name myVnet `
     -AddressPrefix 192.168.0.0/16 `
     -Subnet $subnetConfig
@@ -69,7 +74,7 @@ $vnet = New-AzureRmVirtualNetwork `
 # Create a public IP address and specify a DNS name
 $publicIP = New-AzureRmPublicIpAddress `
     -ResourceGroupName myResourceGroupAutomate `
-    -Location westus `
+    -Location EastUS `
     -AllocationMethod Static `
     -IdleTimeoutInMinutes 4 `
     -Name "myPublicIP"
@@ -101,7 +106,7 @@ $nsgRuleWeb = New-AzureRmNetworkSecurityRuleConfig `
 # Create a network security group
 $nsg = New-AzureRmNetworkSecurityGroup `
     -ResourceGroupName myResourceGroupAutomate `
-    -Location westus `
+    -Location EastUS `
     -Name myNetworkSecurityGroup `
     -SecurityRules $nsgRuleRDP,$nsgRuleWeb
 
@@ -109,7 +114,7 @@ $nsg = New-AzureRmNetworkSecurityGroup `
 $nic = New-AzureRmNetworkInterface `
     -Name myNic `
     -ResourceGroupName myResourceGroupAutomate `
-    -Location westus `
+    -Location EastUS `
     -SubnetId $vnet.Subnets[0].Id `
     -PublicIpAddressId $publicIP.Id `
     -NetworkSecurityGroupId $nsg.Id
@@ -121,7 +126,7 @@ Set-AzureRmVMSourceImage -PublisherName MicrosoftWindowsServer `
     -Offer WindowsServer -Skus 2016-Datacenter -Version latest | `
 Add-AzureRmVMNetworkInterface -Id $nic.Id
 
-New-AzureRmVM -ResourceGroupName myResourceGroupAutomate -Location westus -VM $vmConfig
+New-AzureRmVM -ResourceGroupName myResourceGroupAutomate -Location EastUS -VM $vmConfig
 ```
 
 系統需要花幾分鐘的時間來建立資源和 VM。
@@ -138,7 +143,7 @@ Set-AzureRmVMExtension -ResourceGroupName myResourceGroupAutomate `
     -ExtensionType CustomScriptExtension `
     -TypeHandlerVersion 1.4 `
     -SettingString '{"commandToExecute":"powershell Add-WindowsFeature Web-Server; powershell Add-Content -Path \"C:\\inetpub\\wwwroot\\Default.htm\" -Value $($env:computername)"}' `
-    -Location westus
+    -Location EastUS
 ```
 
 
@@ -158,7 +163,15 @@ Get-AzureRmPublicIPAddress `
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已經學會如何在初次開機時自訂 VM。 前進至下一個教學課程，以了解如何建立自訂的 VM 映像。
+在本教學課程中，您將 VM 上的 IIS 安裝自動化。 您已了解如何︰
 
-[建立自訂的 VM 映像](./tutorial-custom-images.md)
+> [!div class="checklist"]
+> * 使用自訂指令碼擴充功能安裝 IIS
+> * 使用自訂指令碼擴充功能建立 VM
+> * 套用擴充功能之後檢視執行中的 IIS 網站
+
+前進至下一個教學課程，以了解如何建立自訂的 VM 映像。
+
+> [!div class="nextstepaction"]
+> [建立自訂的 VM 映像](./tutorial-custom-images.md)
 

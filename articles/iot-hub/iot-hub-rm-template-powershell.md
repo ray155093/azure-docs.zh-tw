@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/04/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: dc9f9c39a8eb644229887f76b5c441d4211af059
-ms.openlocfilehash: 6f9c36239f8485313066a594eea74bfcd168536e
-ms.lasthandoff: 02/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: d55de6c3f49abf3ac117dcb265dd7f1bcaa05f24
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -45,20 +46,33 @@ ms.lasthandoff: 02/24/2017
 ## <a name="connect-to-your-azure-subscription"></a>連接到 Azure 訂用帳戶
 在 PowerShell 命令提示字元中，輸入下列命令來登入您的 Azure 訂用帳戶：
 
-```
+```powershell
 Login-AzureRmAccount
+```
+
+如果您有多個 Azure 訂用帳戶，則登入 Azure 即會為您授與和您認證相關聯之所有 Azure 訂用帳戶的存取權。 使用下列命令來列出可供您使用的 Azure 訂用帳戶：
+
+```powershell
+Get-AzureRMSubscription
+```
+
+使用下列命令，選取您想要用來執行命令以建立 IoT 中樞的訂用帳戶。 您可以使用來自上一個命令之輸出內的訂用帳戶名稱或識別碼︰
+
+```powershell
+Select-AzureRMSubscription `
+    -SubscriptionName "{your subscription name}"
 ```
 
 您可以使用下列命令來探索可部署 IoT 中樞的位置和目前支援的 API 版本：
 
-```
+```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Devices).ResourceTypes | Where-Object ResourceTypeName -eq IoTHubs).Locations
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Devices).ResourceTypes | Where-Object ResourceTypeName -eq IoTHubs).ApiVersions
 ```
 
 在 IoT 中樞支援的其中一個位置，使用下列命令建立資源群組來包含您的 IoT 中樞。 這個範例會建立一個稱為 **MyIoTRG1**的資源群組：
 
-```
+```powershell
 New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 ```
 
@@ -67,7 +81,7 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 
 1. 使用文字編輯器來建立名為 **template.json** 的 Azure Resource Manager 範本，其中包含下列資源定義來建立新的標準 IoT 中樞。 這個範例會在「美國東部」區域新增「IoT 中樞」、在「事件中樞」相容端點上建立兩個取用者群組 (**cg1** 和 **cg2**)，並使用 **2016-02-03** API 版本。 這個範本也要求您在一個名為 **hubName**的參數中傳入 IoT 中樞名稱。 如需目前支援「IoT 中樞」的位置清單，請參閱 [Azure 狀態][lnk-status]。
    
-    ```
+    ```json
     {
       "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
       "contentVersion": "1.0.0.0",
@@ -119,7 +133,7 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 2. 將 Azure Resource Manager 範本檔案儲存在您的本機電腦上。 這個範例假設您將它儲存在名為 **c:\templates** 的資料夾中。
 3. 執行下列命令來部署新的 IoT 中樞，並傳遞 IoT 中樞的名稱做為參數。 在此範例中，IoT 中樞名稱是 **abcmyiothub** (請注意，此名稱必須是全域唯一的，因此應該包含您的名稱或縮寫)：
    
-    ```
+    ```powershell
     New-AzureRmResourceGroupDeployment -ResourceGroupName MyIoTRG1 -TemplateFile C:\templates\template.json -hubName abcmyiothub
     ```
 4. 輸出會顯示您建立的 IoT 中樞的金鑰。
@@ -143,7 +157,7 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
+* [使用 Azure IoT Edge 來模擬裝置][lnk-iotedge]
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
@@ -157,5 +171,5 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 [lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
 [lnk-sdks]: iot-hub-devguide-sdks.md
 
-[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-iotedge]: iot-hub-linux-iot-edge-simulated-device.md
 

@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Active Directory 預覽版中管理企業應用程式的單一登入 |Microsoft Docs"
+title: "在 Azure Active Directory 中管理企業應用程式的單一登入 | Microsoft Docs"
 description: "了解如何使用 Azure Active Directory 管理企業應用程式的單一登入"
 services: active-directory
 documentationcenter: 
@@ -12,27 +12,27 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/30/2016
+ms.date: 05/04/2017
 ms.author: asmalser
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 2f03079498568f52802b34ce57242a414e648fe3
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 118b77064a96585b0d5b951ca56313776021624e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="preview-managing-single-sign-on-for-enterprise-apps-in-the-new-azure-portal"></a>預覽︰在新的 Azure 入口網站中管理企業應用程式的單一登入
+# <a name="managing-single-sign-on-for-enterprise-apps"></a>管理企業應用程式的單一登入
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-enterprise-apps-manage-sso.md)
 > * [Azure 傳統入口網站](active-directory-sso-integrate-saas-apps.md)
 > 
-> 
 
-這篇文章說明如何使用 [Azure 入口網站](https://portal.azure.com)來管理應用程式的單一登入設定，尤其是透過 [Azure Active Directory (Azure AD) 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)新增的應用程式。 Azure AD 的單一登入管理體驗目前處於公開預覽狀態，本文章說明新功能以及一些僅限於預覽期間的暫時性限制。 [預覽版有何功能？](active-directory-preview-explainer.md)
+這篇文章說明如何使用 [Azure 入口網站](https://portal.azure.com)來管理應用程式的單一登入設定，尤其是透過 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)新增的應用程式。 
 
-## <a name="finding-your-apps-in-the-new-portal"></a>在新的入口網站中尋找您的應用程式
-自 2016 年 9 月起，目錄管理員在 [Azure 傳統入口網站](https://manage.windowsazure.com)中使用 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)為了目錄中單一登入設定的所有應用程式，可以在 Azure 入口網站中檢視和管理。
-
-這些應用程式可在 Azure 入口網站的 [企業應用程式] 區段中找到，您可以在[入口網站](https://portal.azure.com)中的 [更多服務] 清單中找到其連結。 企業應用程式是已部署並由您組織內的使用者所使用的應用程式。
+## <a name="finding-your-apps"></a>尋找您的應用程式
+## <a name="finding-your-apps-in-the-portal"></a>在入口網站中尋找您的應用程式
+目錄管理員使用 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)為目錄中單一登入設定的所有應用程式，可以在 [Azure 入口網站](https://portal.azure.com)中檢視和管理。 這些應用程式可在入口網站的 [更多服務] &gt; [企業應用程式] 區段中找到。 企業應用程式是您組織內部署和使用的應用程式。
 
 ![企業應用程式刀鋒視窗][1]
 
@@ -65,14 +65,10 @@ ms.openlocfilehash: 2f03079498568f52802b34ce57242a414e648fe3
 ### <a name="user-attributes"></a>使用者屬性
 這個部分可供管理員檢視及編輯 SAML 權杖中傳送的屬性，而此權杖是在使用者每次登入時由 Azure AD 簽發給應用程式。
 
-在第一個預覽版本中，唯一支援的可編輯屬性是 **User Identifier** 屬性。 這個屬性的值是 Azure AD 中可唯一識別應用程式中每個使用者的欄位。 例如，如果應用程式為使用電子郵件地址做為使用者名稱和唯一識別碼，則此值會設為 Azure AD 中的 user.mail 欄位。
-
-在後續的預覽版本中將支援其他屬性的編輯。
+唯一支援的可編輯屬性是 **User Identifier** 屬性。 這個屬性的值是 Azure AD 中可唯一識別應用程式中每個使用者的欄位。 例如，如果應用程式為使用電子郵件地址做為使用者名稱和唯一識別碼，則此值會設為 Azure AD 中的 user.mail 欄位。
 
 ### <a name="saml-signing-certificate"></a>SAML 簽署憑證
 這個部分顯示 Azure AD 用來簽署 SAML 權杖 (於每次使用者驗證時簽發給應用程式) 的憑證詳細資料。 可用來檢查目前憑證的內容，包括到期日。
-
-在後續的預覽版本中將支援變換憑證和管理額外憑證選項的功能。 請注意，仍可在 [Azure 傳統入口網站](active-directory-sso-certs.md)執行完整的憑證管理。
 
 ### <a name="application-configuration"></a>應用程式組態
 最後一個部分提供文件和/或設定應用程式本身使用 Azure Active Directory 做為身分識別提供者所需的控制項。
@@ -80,7 +76,7 @@ ms.openlocfilehash: 2f03079498568f52802b34ce57242a414e648fe3
 [設定應用程式]  彈出式功能表提供新的、簡潔、內嵌的應用程式設定指示。 這是新 Azure 入口網站另一個獨有的新功能。
 
 > [!NOTE]
-> 如需內嵌文件的完整範例，請參閱 Salesforce.com 應用程式。 預覽期間將持續加入其他應用程式的文件。
+> 如需內嵌文件的完整範例，請參閱 Salesforce.com 應用程式。 將持續新增其他應用程式的文件。
 > 
 > 
 
@@ -96,14 +92,13 @@ ms.openlocfilehash: 2f03079498568f52802b34ce57242a414e648fe3
 
 ![連結型單一登入][5]
 
+##<a name="feedback"></a>意見反應
+
+我們希望您喜歡使用改進後的 Azure AD 經驗。 請繼續提供意見反應！ 請將您的意見反應和改進想法張貼在我們的[意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal)的**管理員入口網站**區段中。  我們每天都很期待發展酷炫的新功能，並依照您的指導來塑造和定義我們接下來所要發展的項目。
+
 [1]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-blade.PNG
 [2]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-sso-blade.PNG
 [3]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-blade-embedded-docs.PNG
 [4]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-blade-password-sso.PNG
 [5]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-blade-linked-sso.PNG
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

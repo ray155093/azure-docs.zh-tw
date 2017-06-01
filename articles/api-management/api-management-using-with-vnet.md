@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 21cdfbbc457aad1cd3b1a5b20745eee4286a78bb
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: cf2a063acb2a36af2ff71f45159b2e23c9971b32
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -94,8 +94,7 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 * **自訂 DNS 伺服器安裝**：API 管理服務相依於數個 Azure 服務。 當「API 管理」是裝載於具有自訂 DNS 伺服器的 VNET 中時，它必須要解析這些 Azure 服務的主機名稱。 請遵循 [這份](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) 有關自訂 DNS 設定的指引。 請參閱下方的連接埠資料表和參考的其他網路需求。
 
 > [!IMPORTANT]
-> 如果您針對 VNET 使用「自訂 DNS 伺服器」，建議您在將「API 管理」服務部署到該伺服器「之前」，先將該伺服器設定妥當。 否則，我們將必須重新啟動裝載該服務的 CloudService，才能讓它套用新的「DNS 伺服器」設定。
->
+> 如果您針對 VNET 使用「自訂 DNS 伺服器」，建議您在將 API 管理服務部署到該伺服器**之前**，先將該伺服器設定妥當。 否則，每次變更 DNS 伺服器時，您都需要執行[套用網路設定作業](https://docs.microsoft.com/en-us/rest/api/apimanagement/apimanagementservices#ApiManagementServices_ApplyNetworkConfigurationUpdates)來更新 API 管理服務
 
 * **API 管理所需的連接埠**︰使用[網路安全性群組][Network Security Group]可以控制到 API 管理部署於其中的子網路之輸入和輸出流量。 如果這些連接埠中有任何一個無法使用，「API 管理」可能就無法正常運作而可能變成無法存取。 搭配 VNET 使用 API 管理時，封鎖這其中一或多個連接埠是另一個常見的錯誤組態問題。
 
@@ -109,13 +108,14 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 | * / 1433 |輸出 |TCP |與 Azure SQL 的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | * / 11000 - 11999 |輸出 |TCP |與 Azure SQL V12 的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | * / 14000 - 14999 |輸出 |TCP |與 Azure SQL V12 的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
-| * / 9350 - 9354 |輸出 |TCP |與「服務匯流排」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
-| * / 5671 |輸出 |AMQP |「記錄到事件中樞」原則的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
+| * / 5671 |輸出 |AMQP |「記錄到事件中樞」原則和監視代理程式的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | 6381 - 6383 / 6381 - 6383 |輸入和輸出 |UDP |與「Redis 快取」的相依性 |VIRTUAL_NETWORK / VIRTUAL_NETWORK |外部和內部 |-
 | * / 445 |輸出 |TCP |與「適用於 GIT 的 Azure 檔案共用」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | * / * | 輸入 |TCP |Azure 基礎結構負載平衡器 | AZURE_LOAD_BALANCER / VIRTUAL_NETWORK |外部和內部 |
 
 * **SSL 功能**︰若要啟用 SSL 憑證鏈結建立和驗證，API 管理服務需要 ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出網路連線。
+
+* **計量和健康情況監視**︰對於解析為屬於下列網域之 Azure 監視端點的輸出網路連線能力︰global.metrics.nsatc.net、shoebox2.metrics.nsatc.net、prod3.metrics.nsatc.net。
 
 * **快速路由安裝**：常見的客戶組態是定義其專屬預設路由 (0.0.0.0/0)，以強制輸出網際網路流量來替代透過內部部署方式流動。 此流量流程一定會中斷與 Azure API 管理的連線，因為已在內部部署封鎖輸出流量，或者 NAT 至無法再使用各種 Azure 端點的一組無法辨識位址。 解決方法是在子網路上定義包含 Azure API 管理的一 (或多個) 使用者定義路由 ([UDR][UDRs])。 UDR 會定義將使用的子網路特有路由，而非預設路由。
   如果可能，建議使用下列設定：

@@ -13,13 +13,13 @@ ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: php
 ms.topic: article
-ms.date: 05/07/2017
-ms.author: meetb;carlrab;sstein
+ms.date: 05/24/2017
+ms.author: meetb
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 2c0dc1bef0bf2b7b78e8858943ad6e0ede214681
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 693bfdf7bb3d9d72fbd6ac42734ca261af7b492d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -27,10 +27,13 @@ ms.lasthandoff: 05/09/2017
 
 此快速入門示範如何使用 [PHP](http://php.net/manual/en/intro-whatis.php) 來連線至 Azure SQL Database，然後從 Mac OS、Ubuntu Linux 和 Windows 平台使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
+## <a name="prerequisites"></a>必要條件
+
 本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
+- [建立 DB - PowerShell](sql-database-get-started-powershell.md)
 
 ## <a name="install-php-and-database-communications-software"></a>安裝 PHP 與資料庫通訊軟體
 

@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2017
 ms.author: iainfou
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: fbc5cc4a332877451867ca434db40d67ee623a0f
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 61054d9e118a3c90dec3330004625a25102a08cc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -28,10 +28,10 @@ ms.lasthandoff: 05/16/2017
 ## <a name="subscription-eligibility"></a>訂用帳戶資格
 有效的 Visual Studio 訂閱者 (已取得 Visual Studio 訂用帳戶授權的人) 可以使用 Windows 用戶端進行開發和測試。 Windows 用戶端可以用在您自己的硬體及以任何類型的 Azure 訂用帳戶執行的 Azure 虛擬機器。 Windows 用戶端無法部署至或用於 Azure 來從事一般實際執行用途，或由不是有效 Visual Studio 訂閱者的人使用。
 
-為方便您使用，我們在 Azure 資源庫的 [符合資格者的開發/測試優惠](#eligible-offers)內提供特定的 Windows 10 映像。 屬於任一優惠類型的 Visual Studio 訂閱者也可以[適當地準備和建立](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 64 位元的 Windows 7、Windows 8 或 Windows 10 映像，然後[上傳至 Azure](upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 僅限有效的 Visual Studio 訂閱者用於開發/測試用途。
+為方便您使用，我們在 Azure 資源庫的 [符合資格者的開發/測試優惠](#eligible-offers)內提供特定的 Windows 10 映像。 屬於任一優惠類型的 Visual Studio 訂閱者也可以[適當地準備和建立](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 64 位元的 Windows 7、Windows 8 或 Windows 10 映像，然後[上傳至 Azure](upload-generalized-managed.md)。 僅限有效的 Visual Studio 訂閱者用於開發/測試用途。
 
 ## <a name="eligible-offers"></a>符合資格者的優惠
-下表詳細說明可透過 Azure 資源庫部署 Windows 10 的優惠識別碼。 只有在下列優惠中才能看到 Windows 10 映像。 需以其他優惠類型執行 Windows 用戶端的 Visual Studio 訂閱者則需要[適當地準備和建立](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 64 位元的 Windows 7、Windows 8 或 Windows 10 映像，然後[上傳至 Azure](upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+下表詳細說明可透過 Azure 資源庫部署 Windows 10 的優惠識別碼。 只有在下列優惠中才能看到 Windows 10 映像。 需以其他優惠類型執行 Windows 用戶端的 Visual Studio 訂閱者則需要[適當地準備和建立](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 64 位元的 Windows 7、Windows 8 或 Windows 10 映像，然後[上傳至 Azure](upload-generalized-managed.md)。
 
 | 優惠名稱 | 優惠號碼 | 可用的用戶端映像 |
 |:--- |:---:|:---:|

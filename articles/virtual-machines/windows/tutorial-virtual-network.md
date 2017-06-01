@@ -13,30 +13,36 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 04/18/2017
+ms.date: 05/02/2017
 ms.author: davidmu
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: e1b3e9756e149c5cba67f8b5c37e1d153dbf81ab
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 7fd0ace35cfe0286c874e4a75b733053aa945d39
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 ---
 
 # <a name="manage-azure-virtual-networks-and-windows-virtual-machines-with-azure-powershell"></a>使用 Azure PowerShell 來管理 Azure 虛擬網路和 Windows 虛擬機器
 
-在本教學課程中，您將了解如何在虛擬網路 (VNet) 中建立多部虛擬機器 (VM)，並設定這些機器間的網路連線。 完成時，即可從網際網路透過連接埠 80 (適用於 HTTP 連線) 存取「前端」VM。 具有 SQL Server 資料庫的「後端」VM 會被隔離，而只有從前端 VM 透過連接埠 1433 才能存取它。
+Azure 虛擬機器會使用 Azure 網路進行內部和外部的網路通訊。 在本教學課程中，您會在虛擬網路中建立多部虛擬機器 (VM)，並設定這些機器間的網路連線。 您會了解如何：
 
-您可以使用最新的 [Azure PowerShell](/powershell/azure/overview) 模組來完成本教學課程中的步驟。
+> [!div class="checklist"]
+> * 建立虛擬網路
+> * 建立虛擬網路子網路
+> * 使用網路安全性群組來控制網路流量
+> * 檢視作用中的流量規則
+
+本教學課程需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 找出版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 ## <a name="create-vnet"></a>建立 VNet
 
 VNet 是您的網路在雲端中的身分。 VNet 是專屬於您訂用帳戶的 Azure 雲端邏輯隔離。 在 VNet 內，您可以找到子網路、可供連線到這些子網路的規則，以及從 VM 到子網路的連線。
 
-您必須先使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 來建立資源群組，才能建立任何其他 Azure 資源。 下列範例會在 westus 位置建立名為 myRGNetwork 的資源群組：
+您必須先使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 來建立資源群組，才能建立任何其他 Azure 資源。 下列範例會在 EastUS 位置建立名為 myRGNetwork 的資源群組。
 
 ```powershell
-New-AzureRmResourceGroup -ResourceGroupName myRGNetwork -Location westus
+New-AzureRmResourceGroup -ResourceGroupName myRGNetwork -Location EastUS
 ```
 
 子網路是 VNET 的子資源，而且有助於使用 IP 位址首碼來定義 CIDR 區塊內位址空間的區段。 NIC 可以加入子網路和連接到 VM，提供各種工作負載的連線。
@@ -54,7 +60,7 @@ $frontendSubnet = New-AzureRmVirtualNetworkSubnetConfig `
 ```powershell
 $vnet = New-AzureRmVirtualNetwork `
   -ResourceGroupName myRGNetwork `
-  -Location westus `
+  -Location EastUS `
   -Name myVNet `
   -AddressPrefix 10.0.0.0/16 `
   -Subnet $frontendSubnet
@@ -69,7 +75,7 @@ $vnet = New-AzureRmVirtualNetwork `
 ```powershell
 $pip = New-AzureRmPublicIpAddress `
   -ResourceGroupName myRGNetwork `
-  -Location westus `
+  -Location EastUS `
   -AllocationMethod Static `
   -Name myPublicIPAddress
 ```
@@ -80,7 +86,7 @@ $pip = New-AzureRmPublicIpAddress `
 ```powershell
 $frontendNic = New-AzureRmNetworkInterface `
   -ResourceGroupName myRGNetwork `
-  -Location westus `
+  -Location EastUS `
   -Name myFrontendNic `
   -SubnetId $vnet.Subnets[0].Id `
   -PublicIpAddressId $pip.Id
@@ -122,7 +128,7 @@ $frontendVM = Add-AzureRmVMNetworkInterface `
     -Id $frontendNic.Id
 New-AzureRmVM `
     -ResourceGroupName myRGNetwork `
-    -Location westus `
+    -Location EastUS `
     -VM $frontendVM
 ```
 
@@ -184,7 +190,7 @@ $nsgBackendRule = New-AzureRmNetworkSecurityRuleConfig `
 ```powershell
 $nsgBackend = New-AzureRmNetworkSecurityGroup `
   -ResourceGroupName myRGNetwork `
-  -Location westus `
+  -Location EastUS `
   -Name myBackendNSG `
   -SecurityRules $nsgBackendRule
 ```
@@ -213,7 +219,7 @@ $vnet = Get-AzureRmVirtualNetwork `
 ```powershell
 $backendNic = New-AzureRmNetworkInterface `
   -ResourceGroupName myRGNetwork `
-  -Location westus `
+  -Location EastUS `
   -Name myBackendNic `
   -SubnetId $vnet.Subnets[1].Id
 ```
@@ -254,7 +260,7 @@ $backendVM = Add-AzureRmVMNetworkInterface `
   -Id $backendNic.Id
 New-AzureRmVM `
   -ResourceGroupName myRGNetwork `
-  -Location westus `
+  -Location EastUS `
   -VM $backendVM
 ```
 
@@ -262,6 +268,16 @@ New-AzureRmVM `
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何建立和保護虛擬機器相關的 Azure 網路。 接著前進到下一個教學課程，了解使用 Azure 資訊安全中心監視 VM 安全性。
+在本教學課程中，您已建立並保護與虛擬機器相關的 Azure 網路。 
 
-[管理虛擬機器安全性](./tutorial-azure-security.md)
+> [!div class="checklist"]
+> * 建立虛擬網路
+> * 建立虛擬網路子網路
+> * 使用網路安全性群組來控制網路流量
+> * 檢視作用中的流量規則
+
+請前進到下一個教學課程，了解如何使用 Azure 備份監視保護虛擬機器上的資料。 。
+
+> [!div class="nextstepaction"]
+> [備份 Azure 中的 Windows 虛擬機器](./tutorial-backup-vms.md)
+

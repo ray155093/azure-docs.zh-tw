@@ -1,4 +1,5 @@
 ---
+
 title: "開始使用 Azure AD 報告 API | Microsoft Docs"
 description: "如何開始使用 Azure Active Directory 報告 API"
 services: active-directory
@@ -12,11 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/25/2016
+ms.date: 05/04/2017
 ms.author: dhanyahk;markvi
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3a8e9c802c265dacd1b8c3688855ce6ec0d90bb1
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 414e6b0f23616f8f3d059f250335b0e530729741
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -43,10 +46,5 @@ Azure Active Directory 提供各種報告給您。 這些報告的資料對您�
 
 ## <a name="next-steps"></a>後續步驟
 如果您想要查看所有可用的 Azure AD 圖形 API 端點，請瀏覽至 [https://graph.windows.net/tenant-name/reports/$metadata?api-version=beta](https://graph.windows.net/tenant-name/reports/$metadata?api-version=beta)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

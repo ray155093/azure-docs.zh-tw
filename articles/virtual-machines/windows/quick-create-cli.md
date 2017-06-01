@@ -15,11 +15,12 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: nepeters
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: c2a595f07a51223368f00d6a8bf905249a391342
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 48f428b89b298c75200db5553d40dea6f51d41f2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 06/01/2017
 
 ---
 
@@ -108,7 +109,8 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 安裝 IIS 後，現在經由網際網路在您的 VM 上開啟連接埠 80 - 您可以使用所選的網頁瀏覽器來檢視預設 IIS 歡迎使用畫面。 請務必使用您上面記載的公用 IP 位址來瀏覽預設網頁。 
 
 ![IIS 預設網站](./media/quick-create-powershell/default-iis-website.png) 
-## <a name="delete-virtual-machine"></a>刪除虛擬機器
+
+## <a name="clean-up-resources"></a>清除資源
 
 若不再需要，您可以使用 [az group delete](/cli/azure/group#delete) 命令來移除資源群組、VM 和所有相關資源。
 

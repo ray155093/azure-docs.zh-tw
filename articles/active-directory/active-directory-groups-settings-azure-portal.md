@@ -1,5 +1,6 @@
 ---
-title: "在 Azure Active Directory 預覽版中管理群組屬性 | Microsoft Docs"
+
+title: "在 Azure Active Directory 中管理群組屬性 | Microsoft Docs"
 description: "如何在 Azure Active Directory 中編輯群組的屬性和其他組態設定"
 services: active-directory
 documentationcenter: 
@@ -12,18 +13,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
+ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 58768cd59a922483bcb37797a6dcd515d159ef4c
-ms.openlocfilehash: a07348679b589c6e6d438af3f01fbfcc9b149b32
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: ad714d4543f2c1990a2262de456f607c876f738d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="manage-the-settings-for-a-group-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中管理群組的設定
-本文說明如何在 Azure Active Directory (Azure AD) 預覽版中變更群組的設定。 [預覽版有何功能？](active-directory-preview-explainer.md)
+# <a name="manage-the-settings-for-a-group-in-azure-active-directory"></a>在 Azure Active Directory 中管理群組的設定
+本文說明如何在 Azure Active Directory (Azure AD) 中變更群組的設定。
 
 ## <a name="how-do-i-find-and-change-the-settings"></a>如何尋找及變更設定？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。

@@ -1,10 +1,28 @@
 ---
-標題：建置您的第一個資料處理站 (Azure 入口網站) | Microsoft Docs 描述：在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立範例 Azure Data Factory 管線。
-services: data-factory documentationcenter: '' author: spelluru manager: jhubbard editor: monicar
+title: "建置您的第一個 Data Factory (Azure 入口網站) | Microsoft Docs"
+description: "在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立範例 Azure Data Factory 管線。"
+services: data-factory
+documentationcenter: 
+author: spelluru
+manager: jhubbard
+editor: monicar
+ms.assetid: d5b14e9e-e358-45be-943c-5297435d402d
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: hero-article
+ms.date: 04/17/2017
+ms.author: spelluru
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: c54a1ed648022875f489179a3321dedf2d290d7e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
-ms.assetid: d5b14e9e-e358-45be-943c-5297435d402d ms.service: data-factory ms.workload: data-services ms.tgt_pltfrm: na ms.devlang: na ms.topic: hero-article ms.date: 04/17/2017 ms.author: spelluru
 
----3
+---
+
 # <a name="tutorial-build-your-first-azure-data-factory-using-azure-portal"></a>教學課程：使用 Azure 入口網站建置您的第一個 Azure Data Factory
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-build-your-first-pipeline.md)
@@ -15,12 +33,14 @@ ms.assetid: d5b14e9e-e358-45be-943c-5297435d402d ms.service: data-factory ms.wor
 > * [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
 
-在本文中，您會了解如何使用 [Azure 入口網站](https://portal.azure.com/) 來建立您的第一個 Azure Data Factory。 若要使用其他工具/SDK 進行本教學課程，請選取下拉式清單的其中一個選項。 
+在本文中，您會了解如何使用 [Azure 入口網站](https://portal.azure.com/)來建立您的第一個 Azure Data Factory。 若要使用其他工具/SDK 進行本教學課程，請選取下拉式清單的其中一個選項。 
+
+本教學課程中的管線有一個活動︰**HDInsight Hive 活動**。 此活動會在 Azure HDInsight 叢集上執行 Hive 指令碼，以轉換輸入資料來產生輸出資料。 管線已排定每個月在指定的開始與結束時間之間執行一次。 
 
 > [!NOTE]
-> 本教學課程中的資料管線會轉換輸入資料來產生輸出資料。 它不是將資料從來源資料存放區，複製到目的地資料存放區。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+> 本教學課程中的資料管線會轉換輸入資料來產生輸出資料。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 > 
-> 本教學課程只使用一種活動類型︰複製。 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
+> 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
 
 ## <a name="prerequisites"></a>必要條件
 1. 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。
@@ -378,3 +398,4 @@ ms.assetid: d5b14e9e-e358-45be-943c-5297435d402d ms.service: data-factory ms.wor
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
+

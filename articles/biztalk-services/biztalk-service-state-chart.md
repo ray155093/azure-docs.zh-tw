@@ -14,13 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/08/2016
 ms.author: mandia
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 331c03cd0819aa4935f9b486ff38f54d23d6a7fd
 ms.openlocfilehash: e3d5f89b1c8525f791e73667d6f7cd6a999ab971
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
 # <a name="what-you-can-and-cant-do-using-the-biztalk-service-state"></a>使用 BizTalk 服務狀態可執行以及不可執行的作業分別有哪些
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 視 BizTalk 服務的目前狀態而定，有些作業是可以或無法在 BizTalk 服務上執行。
 
 例如，您在 Azure 傳統入口網站中佈建新的 BizTalk 服務。 順利完成時，BizTalk 服務會處於 `active` 狀態。 在作用中狀態下，您可以停止、暫停及刪除 BizTalk 服務。 如果您停止 BizTalk 服務，但停止失敗，則 BizTalk 服務會進入 `StopFailed` 狀態。 在 `StopFailed` 狀態下，您可以重新啟動 BizTalk 服務。 如果您嘗試不允許的作業 (例如繼續執行)，則會發生下列錯誤：
@@ -56,10 +61,5 @@ ms.openlocfilehash: e3d5f89b1c8525f791e73667d6f7cd6a999ab971
 * [BizTalk 服務中說明的節流](http://go.microsoft.com/fwlink/p/?LinkID=302282)<br/>
 * [針對 BizTalk 服務擷取服務匯流排以及存取控制簽發者名稱和簽發者金鑰值](http://go.microsoft.com/fwlink/p/?LinkID=303941)<br/>
 * [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -15,10 +15,10 @@ ms.workload: tbd
 ms.date: 04/26/2017
 ms.author: sethm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: b7bcf6de0c8306492d7f7745cc5c091f9ddb76db
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: b9421e4d899982af5e4caf9d23eebb73188a8db1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -133,7 +133,7 @@ Azure 支援兩種佇列機制：**儲存體佇列**和**服務匯流排佇列**
 
 | 比較準則 | 儲存體佇列 | 服務匯流排佇列 |
 | --- | --- | --- |
-| 佇列大小上限 |**200 TB**<br/><br/>(限制為單一儲存體帳戶容量) |**1 GB 到 80 GB**<br/><br/>(在建立佇列和[啟用分割](service-bus-partitioning.md)時定義 - 請參閱＜其他資訊＞一節) |
+| 佇列大小上限 |**500 TB**<br/><br/>(限制為[單一儲存體帳戶容量](../storage/storage-introduction.md#queue-storage)) |**1 GB 到 80 GB**<br/><br/>(在建立佇列和[啟用分割](service-bus-partitioning.md)時定義 - 請參閱＜其他資訊＞一節) |
 | 訊息大小上限 |**64 KB**<br/><br/>(使用 **Base64** 編碼時則為 48 KB)<br/><br/>Azure 可以結合佇列和 Blob 來支援大型訊息，因此您最多可以將 200GB 的單一項目加入佇列。 |**256 KB** 或 **1 MB**<br/><br/>(包括標頭和主體，標頭大小上限：64 KB)。<br/><br/>取決於[服務層](service-bus-premium-messaging.md)。 |
 | 訊息 TTL 上限 |**7 天** |**`TimeSpan.Max`** |
 | 佇列數目上限 |**無限制** |**10,000**<br/><br/>(每個服務命名空間，可以增加) |

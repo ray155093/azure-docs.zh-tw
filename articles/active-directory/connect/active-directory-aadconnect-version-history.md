@@ -15,10 +15,10 @@ ms.workload: identity
 ms.date: 02/08/2017
 ms.author: billmath
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: 7983ffa4bf7cb63f985d1a8f14d6dd834e679cf5
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 4703cd03db398d8dc59fb5f5c0cf71214c606bc8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -35,6 +35,55 @@ Azure Active Directory (Azure AD) 團隊會定期以新的特性和功能更新 
 從 Azure AD Connect 升級的步驟 | [從舊版升級到最新版本](active-directory-aadconnect-upgrade-previous-version.md) Azure AD Connect 的多種方法。
 所需的權限 | 如需套用更新所需權限的詳細資訊，請參閱[帳戶和權限](./active-directory-aadconnect-accounts-permissions.md#upgrade)。
 下載| [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)。
+
+## <a name="115240"></a>1.1.524.0
+發行日期：2017 年 5 月
+
+> [!IMPORTANT]
+> 這個組建引進了結構描述和同步處理規則變更。 升級之後，Azure AD Connect 同步處理服務將會觸發完整匯入和完整同步處理步驟。 變更的詳細資料如下所述。
+>
+>
+
+**已修正的問題：**
+
+Azure AD Connect 同步處理
+
+* 已修正導致下列情況的問題：即使客戶已使用 Set-ADSyncAutoUpgrade Cmdlet 停用此功能，Azure AD Connect 伺服器仍發生自動升級。 透過此修正，伺服器上的自動升級程序仍會定期檢查升級，但下載的安裝程式會接受自動升級組態。
+* 在 DirSync 就地升級期間，Azure AD Connect 會建立 Azure AD 服務帳戶，以供 Azure AD 連接器用來與 Azure AD 同步處理。 建立帳戶之後，Azure AD Connect 會使用此帳戶向 Azure AD 進行驗證。 有時候，驗證會因為暫時性問題而失敗，這會導致 DirSync 就地升級失敗，並出錯「實行設定 AAD 同步工作時發生錯誤︰AADSTS50034︰若要登入此應用程式，必須將帳戶新增至 xxx.onmicrosoft.com 目錄」錯誤。 為了改善 DirSync 升級的彈性，Azure AD Connect 現在會重試驗證步驟。
+* 組建 443 發生問題，其導致 DirSync 就地升級成功，但未建立目錄同步作業所需的執行設定檔。 修復邏輯已包含在 Azure AD Connect 的此組建中。 當客戶升級到此組建時，Azure AD Connect 會偵測遺漏的執行設定檔並加以建立。
+* 已修正導致下列情況的問題：密碼同步處理程序無法啟動，出現事件識別碼 6900 和「已新增具有相同索引鍵的項目」錯誤。 如果您將 OU 篩選組態更新為包含 AD 組態分割，就會發生此問題。 若要修正此問題，密碼同步處理程序現在只會從 AD 網域分割同步處理密碼變更。 系統會略過非網域分割，例如組態分割。
+* 在快速安裝期間，Azure AD Connect 會建立內部部署 AD DS 帳戶，以供 AD 連接器用來與內部部署 AD 通訊。 先前建立此帳戶時，PASSWD_NOTREQD 旗標設定於 user-Account-Control 屬性上，而隨機密碼會設定於此帳戶上。 現在，Azure AD Connect 會在密碼設定於帳戶之後，明確地移除 PASSWD_NOTREQD 旗標。
+* 已修正導致下列情況的問題：在內部部署 AD 結構描述中找到 mailNickname 屬性，但該屬性並未繫結至 AD 使用者物件類別時，DirSync 升級失敗，並出現「嘗試取得應用程式鎖定的 SQL Server 發生死結」錯誤。
+* 已修正導致下列情況的問題：當系統管理員使用 Azure AD Connect 精靈更新 Azure AD Connect 同步處理組態時，裝置回寫功能自動停用。 這是由對內部部署 AD 中現有裝置回寫組態執行先決條件檢查的精靈所造成，而且檢查失敗。 如果先前已啟用裝置回寫，此修正就會略過檢查。
+* 若要設定 OU 篩選，您可以使用 Azure AD Connect 精靈或 Synchronization Service Manager。 先前，如果您使用 Azure AD Connect 精靈來設定 OU 篩選，則會包含後來建立的新 OU 以便進行目錄同步作業。 如果您不想要包含新的 OU，您必須使用 Synchronization Service Manager 設定 OU 篩選。 現在，您可以使用 Azure AD Connect 精靈達成相同的行為。
+* 已修正導致下列情況的問題：Azure AD Connect 所需的預存程序建立於安裝系統管理員的結構描述之下，而不是建立於 dbo 結構描述之下。
+* 已修正導致下列情況的問題：AAD Connect 伺服器事件記錄中省略 Azure AD 所傳回的 TrackingId 屬性。 如果 Azure AD Connect 收到來自 Azure AD 的重新導向訊息，且 Azure AD Connect 無法連線到所提供的端點，就會發生此問題。 在疑難排解期間，支援工程師可以使用 TrackingId 與服務端記錄相互關聯。
+* 當 Azure AD Connect 從 Azure AD 收到 LargeObject 錯誤時，Azure AD Connect 會產生一個事件 (EventID 6941) 並出現「佈建的物件是太大。請修剪此物件的屬性值數量」訊息。 在此同時，Azure AD Connect 也會產生誤導事件 (EventID 6900) 並出現「Microsoft.Online.Coexistence.ProvisionRetryException︰無法與 Windows Azure Active Directory 服務通訊」訊息。 為了避免混淆，Azure AD Connect 不再於收到 LargeObject 錯誤時產生後面的事件。
+* 已修正導致下列情況的問題：Synchronization Service Manager 在嘗試更新「一般 LDAP 連接器」的組態時變得沒有反應。
+
+**新功能/改進︰**
+
+Azure AD Connect 同步處理
+* 同步處理規則變更 – 已實作下列同步處理規則變更︰
+  * 已將預設同步處理規則集更新為 **userCertificate** 和 **userSMIMECertificate** 屬性有超過 15 個值時不匯出屬性。
+  * AD 屬性 **employeeID** 和 **msExchBypassModerationLink** 現在已包含在預設同步處理規則集中。
+  * 已經從預設同步處理規則集中移除 AD 屬性 **photo**。
+  * 已將 **preferredDataLocation** 新增至 Metaverse 結構描述和 AAD 連接器結構描述。 想要在 Azure AD 中更新任一屬性的客戶若要這樣做，可以實作自訂同步處理規則。 若要深入了解屬性，請參閱 [Azure AD Connect 同步處理︰如何變更預設組態 - 啟用 PreferredDataLocation 的同步處理](active-directory-aadconnectsync-change-the-configuration.md#enable-synchronization-of-preferreddatalocation)文章章節。
+  * 已將 **userType** 新增至 Metaverse 結構描述和 AAD 連接器結構描述。 想要在 Azure AD 中更新任一屬性的客戶若要這樣做，可以實作自訂同步處理規則。
+
+* Azure AD Connect 現在能夠自動使用 ConsistencyGuid 屬性作為內部部署 AD 物件的來源錨點屬性。此外，Azure AD Connect 會使用 objectGuid 屬性值填入 ConsistencyGuid 屬性 (如果它是空的)。 這項功能僅適用於新的部署。 若要深入了解此功能，請參閱 [Azure AD Connect︰設計概念 - 使用 msDS-ConsistencyGuid 作為 sourceAnchor](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor) 文章章節。
+* 已新增疑難排解 Cmdlet Invoke-ADSyncDiagnostics，可協助診斷密碼雜湊同步處理相關問題。
+* Azure AD Connect 現在支援將擁有郵件功能的公用資料夾物件從內部部署 AD 同步處理到 Azure AD。 您可以在 [選用功能] 之下使用 Azure AD Connect 精靈啟用此功能。
+* Azure AD Connect 要求 AD DS 帳戶從內部部署 AD 進行同步處理。 先前，如果您使用快速模式安裝 Azure AD Connect，您可以提供企業管理帳戶的認證。 將它留給 Azure AD Connect 建立所需的 AD DS 帳戶。 不過，如需自訂安裝以及將樹系新增至現有的部署，您必須改為提供 AD DS 帳戶。 現在，您也可以選擇在自訂安裝期間提供企業管理帳戶的認證，讓 Azure AD Connect 建立所需的 AD DS 帳戶。
+* Azure AD Connect 現在支援 SQL AOA。 您必須在安裝 Azure AD Connect 之前啟用 SQL： 在安裝期間，Azure AD Connect 會偵測所提供的 SQL 執行個體是否已啟用 SQL AOA。 如果已啟用 SQL AOA，Azure AD Connect 會進一步指出 SQL AOA 已設定為使用同步複寫或非同步複寫。 設定可用性群組接聽程式時，建議將 RegisterAllProvidersIP 屬性設定為 0。 這是因為 Azure AD Connect 目前使用 SQL Native Client 來連線至 SQL，且 SQL Native Client 不支援使用 MultiSubNetFailover 屬性。
+* 如果您使用 LocalDB 作為 Azure AD Connect 伺服器的資料庫，而且已達到其 10 GB 大小的限制，同步處理服務便無法再啟動。 先前，您需要在 LocalDB 上執行 ShrinkDatabase 作業，以收回足夠的 DB 空間以供同步處理服務啟動。 在那之後，您可以使用 Synchronization Service Manager 來刪除執行歷程記錄，以回收更多的 DB 空間。 現在，您可以使用 Start-ADSyncPurgeRunHistory Cmdlet 來清除 LocalDB 中的執行歷程記錄資料，以回收 DB 空間。 此外，此 Cmdlet 支援可在同步處理服務未執行時使用的離線模式 (藉由指定 -offline 參數)。 注意︰只有在同步處理服務未執行且使用的資料庫是 LocalDB 時，才能使用離線模式。
+* 為了減少所需的儲存體空間，Azure AD Connect 現在會在 LocalDB/SQL 資料庫中儲存同步處理錯誤詳細資料前加以壓縮。 從舊版 Azure AD Connect 升級到此版本時，Azure AD Connect 會對現有的同步處理錯誤詳細資料執行一次性壓縮。
+* 先前，在更新 OU 篩選組態之後，您必須手動執行完整匯入，以確保目錄同步作業正確包含/排除現有的物件。 現在，Azure AD Connect 會在下一個同步處理週期內自動觸發完整匯入。 此外，完整匯入只會套用至受到更新影響的 AD 連接器。 注意︰這項改進只適用於使用 Azure AD Connect 精靈進行的 OU 篩選更新。 不適用於使用 Synchronization Service Manager 進行的 OU 篩選更新。
+* 先前，以群組為基礎的篩選僅支援使用者、群組和連絡人物件。 現在，以群組為基礎的篩選也支援電腦物件。
+* 先前，您可以刪除連接器空間資料，而不需停用 Azure AD Connect 同步排程器。 現在，如果 Synchronization Service Manager 偵測到已啟用排程器，則會阻止刪除連接器空間資料。 此外，還會傳回警告，通知客戶有關刪除連接器空間資料可能會遺失資料。
+* 先前，您必須停用 PowerShell 轉譯，Azure AD Connect 精靈才能正常執行。 此問題已部份解決。 如果您使用 Azure AD Connect 精靈來管理同步處理組態，您可以啟用 PowerShell 轉譯。 如果您使用 Azure AD Connect 精靈來管理 ADFS 組態，您必須停用 PowerShell 轉譯。
+
+
 
 ## <a name="114860"></a>1.1.486.0
 發行日期︰2017 年 4 月

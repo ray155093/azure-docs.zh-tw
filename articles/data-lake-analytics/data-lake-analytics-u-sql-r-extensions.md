@@ -15,10 +15,10 @@ ms.workload: big-data
 ms.date: 05/01/2017
 ms.author: saveenr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: ea837a735404d11b087cd552d1fce64184e88e00
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 3728d81243a1ac9f501bd8d7d538c1f73b954405
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -31,39 +31,69 @@ ms.lasthandoff: 05/02/2017
 * U-SQL 的 R 擴充有內建的歸納器 (Extension.R.Reducer)，會在指派給歸納器的每一個頂點上執行 R 程式碼。 
 * 專用具名資料框架的使用情況會相對應地呼叫 inputFromUSQL 和 outputToUSQL 以在 USQL 和 R 之間傳遞資料。輸入和輸出資料框架識別碼名稱是固定的 (也就是使用者無法變更輸入和輸出資料框架識別碼的這些預先定義名稱)。
 
+## <a name="embedding-r-code-in-the-u-sql-script"></a>將 R 程式碼內嵌在 U-SQL 指令碼中
 
---
+您可以使用 Extension.R.Reducer 的 command 參數，將 R 程式碼內嵌在 U-SQL 指令碼中。 例如，您可以將 R 指令碼宣告為字串變數，再當作參數傳給歸納器。
 
-    REFERENCE ASSEMBLY [ExtPython];
 
-    DECLARE @myScript = @"
-    def get_mentions(tweet):
-        return ';'.join( ( w[1:] for w in tweet.split() if w[0]=='@' ) )
-
-    def usqlml_main(df):
-        del df['time']
-        del df['author']
-        df['mentions'] = df.tweet.apply(get_mentions)
-        del df['tweet']
-        return df
+    REFERENCE ASSEMBLY [ExtR];
+    
+    DECLARE @myRScript = @"
+    inputFromUSQL$Species = as.factor(inputFromUSQL$Species)
+    lm.fit=lm(unclass(Species)~.-Par, data=inputFromUSQL)
+    #do not return readonly columns and make sure that the column names are the same in usql and r scripts,
+    outputToUSQL=data.frame(summary(lm.fit)$coefficients)
+    colnames(outputToUSQL) <- c(""Estimate"", ""StdError"", ""tValue"", ""Pr"")
+    outputToUSQL
     ";
+    
+    @RScriptOutput = REDUCE … USING new Extension.R.Reducer(command:@myRScript, rReturnType:"dataframe");
 
-    @t  = 
-        SELECT * FROM 
-           (VALUES
-               ("D1","T1","A1","@foo Hello World @bar"),
-               ("D2","T2","A2","@baz Hello World @beer")
-           ) AS 
-               D( date, time, author, tweet );
+## <a name="keep-the-r-code-in-a-separate-file-and-reference-it--the-u-sql-script"></a>將 R 程式碼保存在個別檔案中，然後在 U-SQL 指令碼中參考它
 
-    @m  =
-        REDUCE @t ON date
-        PRODUCE date string, mentions string
-        USING new Extension.Python.Reducer(pyScript:@myScript);
+下列範例說明更複雜的使用方式。 在此案例中，R 程式碼會部署成「資源」(也就是 U-SQL 指令碼)。
 
-    OUTPUT @m
-        TO "/tweetmentions.csv"
-        USING Outputters.Csv();
+將此 R 程式碼儲存為個別的檔案。
+
+    load("my_model_LM_Iris.rda")
+    outputToUSQL=data.frame(predict(lm.fit, inputFromUSQL, interval="confidence")) 
+
+透過 DEPLOY RESOURCE 陳述式，使用 U-SQL 指令碼來部署該 R 指令碼。
+
+    REFERENCE ASSEMBLY [ExtR];
+
+    DEPLOY RESOURCE @"/usqlext/samples/R/RinUSQL_PredictUsingLinearModelasDF.R";
+    DEPLOY RESOURCE @"/usqlext/samples/R/my_model_LM_Iris.rda";
+    DECLARE @IrisData string = @"/usqlext/samples/R/iris.csv";
+    DECLARE @OutputFilePredictions string = @"/my/R/Output/LMPredictionsIris.txt";
+    DECLARE @PartitionCount int = 10;
+
+    @InputData =
+        EXTRACT 
+            SepalLength double,
+            SepalWidth double,
+            PetalLength double,
+            PetalWidth double,
+            Species string
+        FROM @IrisData
+        USING Extractors.Csv();
+
+    @ExtendedData =
+        SELECT 
+            Extension.R.RandomNumberGenerator.GetRandomNumber(@PartitionCount) AS Par,
+            SepalLength,
+            SepalWidth,
+            PetalLength,
+            PetalWidth
+        FROM @InputData;
+
+    // Predict Species
+
+    @RScriptOutput = REDUCE @ExtendedData ON Par
+        PRODUCE Par, fit double, lwr double, upr double
+        READONLY Par
+        USING new Extension.R.Reducer(scriptFile:"RinUSQL_PredictUsingLinearModelasDF.R", rReturnType:"dataframe", stringsAsFactors:false);
+        OUTPUT @RScriptOutput TO @OutputFilePredictions USING Outputters.Tsv();
 
 ## <a name="how-r-integrates-with-u-sql"></a>R 如何與 U-SQL 整合
 
@@ -79,8 +109,113 @@ ms.lasthandoff: 05/02/2017
 * 資料行名稱在 U-SQL 和 R 指令碼中皆必須為相同。
 * 唯讀資料行不能是輸出資料框架的一部分。 因為如果唯讀資料行是 UDO 輸出結構描述的一部分，便會自動插入回 U-SQL 資料表。
 
+### <a name="functional-limitations"></a>功能限制：
+* R 引擎無法在相同的程序中具現化兩次。 
+* 目前，在以歸納器 UDO 所產生的分割模型進行預測時，U-SQL 不支援使用合併器 UDO。 使用者可以將分割的模型宣告為資源，然後用在 R 指令碼中 (請參閱範例程式碼 ExtR_PredictUsingLMRawStringReducer.usql)
+
+### <a name="r-versions"></a>R 版本
+僅支援 R 3.2.2。
+
+### <a name="standard-r-modules"></a>標準的 R 模組
+
+    base
+    boot
+    Class
+    Cluster
+    codetools
+    compiler
+    datasets
+    doParallel
+    doRSR
+    foreach
+    foreign
+    Graphics
+    grDevices
+    grid
+    iterators
+    KernSmooth
+    lattice
+    MASS
+    Matrix
+    Methods
+    mgcv
+    nlme
+    Nnet
+    Parallel
+    pkgXMLBuilder
+    RevoIOQ
+    revoIpe
+    RevoMods
+    RevoPemaR
+    RevoRpeConnector
+    RevoRsrConnector
+    RevoScaleR
+    RevoTreeView
+    RevoUtils
+    RevoUtilsMath
+    Rpart
+    RUnit
+    spatial
+    splines
+    Stats
+    stats4
+    survival
+    Tcltk
+    Tools
+    translations
+    utils
+    XML
+
+### <a name="input-and-output-size-limitations"></a>輸入和輸出的大小限制
+指派給每個頂點的記憶體數量皆有上限。 因為輸入和輸出資料框架必須存在於 R 程式碼的記憶體中，輸入和輸出的大小總和不能超過 500 GB。
+
+### <a name="sample-code"></a>範例程式碼
+安裝 U-SQL 進階分析擴充功能之後，您的 Data Lake Store 帳戶中會有更多範例程式碼可用。 其他範例程式碼的路徑是︰<your_account_address>/usqlext/samples/R。 
+
+## <a name="deploying-custom-r-modules-with-u-sql"></a>使用 U-SQL 部署自訂 R 模組
+
+首先，建立自訂 R 模組並壓縮它，然後將已壓縮的 R 自訂模組檔案上傳至您的 ADL 存放區。 在範例中，我們會將 magittr_1.5.zip 上傳至我們所使用之 ADLA 帳戶的預設 ADLA 帳戶根目錄。 將模組上傳至 ADL 存放區之後，將它宣告為使用 DEPLOY RESOURCE 以供您的 U-SQL 指令碼使用，然後呼叫 "install.packages" 來安裝它。
+
+    REFERENCE ASSEMBLY [ExtR];
+    DEPLOY RESOURCE @"/magrittr_1.5.zip";
+
+    DECLARE @IrisData string =  @"/usqlext/samples/R/iris.csv";
+    DECLARE @OutputFileModelSummary string = @"/R/Output/CustomePackages.txt";
+
+    // R script to run
+    DECLARE @myRScript = @"
+    # install the magrittr package,
+    install.packages('magrittr_1.5.zip', repos = NULL),
+    # load the magrittr package,
+    require(magrittr),
+    # demonstrate use of the magrittr package,
+    2 %>% sqrt
+    ";
+
+    @InputData =
+    EXTRACT SepalLength double,
+    SepalWidth double,
+    PetalLength double,
+    PetalWidth double,
+    Species string
+    FROM @IrisData
+    USING Extractors.Csv();
+
+    @ExtendedData =
+    SELECT 0 AS Par,
+    *
+    FROM @InputData;
+
+    @RScriptOutput = REDUCE @ExtendedData ON Par
+    PRODUCE Par, RowId int, ROutput string
+    READONLY Par
+    USING new Extension.R.Reducer(command:@myRScript, rReturnType:"charactermatrix");
+
+    OUTPUT @RScriptOutput TO @OutputFileModelSummary USING Outputters.Tsv();
+
+
 ## <a name="next-steps"></a>後續步驟
 * [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)
 * [使用 Data Lake Tools for Visual Studio 開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
-* [針對 Azure 資料湖分析工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
+* [針對 Azure Data Lake Analytics 工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
 

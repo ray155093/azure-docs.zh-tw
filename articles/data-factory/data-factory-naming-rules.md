@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 2/24/2017
 ms.author: shlo
-translationtype: Human Translation
-ms.sourcegitcommit: dd8a68029449ad013c4df9a46c558efaefd20e96
-ms.openlocfilehash: 18c212867ac6e380d3ee01c590b22f9168f762db
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: f6538666e0124f5d9d0ce3043304612efb526b17
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---

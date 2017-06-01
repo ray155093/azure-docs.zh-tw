@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Active Directory 預覽版中檢視我可以管理的所有企業應用程式 |Microsoft Docs"
+title: "在 Azure Active Directory 中檢視我可以管理的所有企業應用程式 |Microsoft Docs"
 description: "如何在 Azure Active Directory 中查看您具備管理權限的企業應用程式清單"
 services: active-directory
 documentationcenter: 
@@ -12,16 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 05/04/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 33b036537211e3bdeacba7f388aca334404385cb
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 14b335d14d893640d469508d6f34b4e7ec6bee8b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
-# <a name="view-all-the-enterprise-apps-that-i-can-manage-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中檢視我可以管理的所有企業應用程式
-您可以在 Azure Active Directory (Azure AD) 預覽版中，管理您的企業應用程式。 [預覽版有何功能？](active-directory-preview-explainer.md)  這包括檢視您可以管理的應用程式、將使用者或群組指派給應用程式、維護應用程式的屬性 (例如應用程式名稱/標誌)，甚至是停用應用程式，讓任何使用者都無法登入。
+# <a name="view-all-the-enterprise-apps-that-i-can-manage-in-azure-active-directory"></a>在 Azure Active Directory 中檢視我可以管理的所有企業應用程式
+您可以在 Azure Active Directory (Azure AD) 中，管理您的企業應用程式。 這包括檢視您可以管理的應用程式、將使用者或群組指派給應用程式、維護應用程式的屬性 (例如應用程式名稱/標誌)，甚至是停用應用程式，讓任何使用者都無法登入。
 
 ## <a name="how-do-i-view-all-my-apps"></a>如何檢視我的所有應用程式？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
@@ -36,9 +38,4 @@ ms.openlocfilehash: 33b036537211e3bdeacba7f388aca334404385cb
 * [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-azure-portal.md)
 * [停用企業應用程式的使用者登入](active-directory-coreapps-disable-app-azure-portal.md)
 * [變更企業應用程式的名稱或標誌](active-directory-coreapps-change-app-logo-user-azure-portal.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

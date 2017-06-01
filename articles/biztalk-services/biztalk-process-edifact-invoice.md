@@ -14,14 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 05/31/2016
 ms.author: deonhe
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: b7ad7b91c6b836f26b45959ef65a99666a4bf69a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 12/08/2016
 
 
 ---
 # <a name="tutorial-process-edifact-invoices-using-azure-biztalk-services"></a>教學課程：使用 Azure BizTalk 服務處理 EDIFACT 發票
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 您可以使用 BizTalk 服務入口網站設定和部署 X12 與 EDIFACT 協議。 在本教學課程中，我們將說明如何建立 EDIFACT 協議以讓交易夥伴彼此交換發票。 本教學課程描述端對端商務方案，內容涉及兩個交易夥伴，分別是 Northwind 和 Contoso，他們會交換 EDIFACT 訊息。  
 
 ## <a name="sample-based-on-this-tutorial"></a>根據本教學課程所建立的範例

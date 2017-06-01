@@ -12,23 +12,31 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/05/2017
-ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 49ba7e6d5d67b109632b08ce936357804c80da40
-ms.lasthandoff: 04/27/2017
+ms.date: 05/04/2017
+ms.author: rodejo
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 81fdae033afd90b77d3725f8c39b8a6c6bbc3812
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
 # <a name="azure-active-directory-cmdlets-for-configuring-group-settings"></a>設定群組設定的 Azure Active Directory Cmdlet
 
 > [!IMPORTANT]
-> 本內容僅適用於整合群組 (又稱為 Office 365 群組)。 這些 Cmdlet 目前為公開預覽。
+> 本內容僅適用於整合群組 (又稱為 Office 365 群組)。 
 
 Office 365 群組設定是使用 Settings 物件和 SettingsTemplate 物件所設定。 一開始，您將不會在目錄中看到任何 Settings 物件。 這表示已使用預設設定來設定您的目錄。 若要變更預設設定，您必須使用設定範本來建立新的設定物件。 設定範本是由 Microsoft 所定義。 有數個不同的設定範本。 若要設定目錄的群組設定，您將會使用名為 "Group.Unified" 的範本。 若要在單一群組上設定群組設定，請使用名為 "Group.Unified.Guest" 的範本。 此範本是用來管理群組的來賓存取權。 
 
-Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有關此模組的詳細資訊，以及如何在電腦上下載及安裝模組的指示，請參閱 [Azure Active Directory PowerShell 第 2 版](https://docs.microsoft.com/powershell/azuread/)。 請注意，由於這些 Cmdlet 現為公開預覽，因此，您將需要安裝模組的預覽版本，您可以在[這裡](https://www.powershellgallery.com/packages/AzureADPreview/2.0.0.85)找到此版本。
+Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有關此模組的詳細資訊，以及如何在電腦上下載及安裝模組的指示，請參閱 [Azure Active Directory PowerShell 第 2 版](https://docs.microsoft.com/powershell/azuread/)。 您可以從[這裡](https://www.powershellgallery.com/packages/AzureAD/)安裝第 2 版的模組。
+
+## <a name="retrieve-a-specific-settings-value"></a>擷取一個特定設定值
+如果您知道您想要擷取的設定名稱，您可以使用以下 Cmdlet 來擷取目前的設定值。 在此範例中，我們會擷取名為 "UsageGuidelinesUrl" 的設定值。 您可以在本文中深入了解目錄設定及其名稱。
+
+```powershell
+(Get-AzureADDirectorySetting).Values | Where-Object -Property Name -Value UsageGuidelinesUrl -EQ
+```
 
 ## <a name="create-settings-at-the-directory-level"></a>建立目錄層級的設定
 這些步驟會建立目錄層級的設定，其會套用至目錄中的所有整合群組。

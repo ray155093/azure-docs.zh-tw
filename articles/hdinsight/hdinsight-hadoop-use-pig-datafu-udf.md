@@ -13,18 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/08/2017
+ms.date: 05/04/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: ca390e1e93660eb27c08d1fce0574c6e3646a329
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: b9dcb069003c647073c978feb588debb689d560e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
 # <a name="use-datafu-with-pig-on-hdinsight"></a>在 HDInsight 上搭配使用 DataFu 與 Pig
 
-DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。 在這份文件中，您會學習如何在 HDInsight 叢集上使用 DataFu，以及如何搭配 Pig 使用 DataFu 使用者定義函數 (UDF)。
+了解如何搭配 HDInsight 使用 DataFu。 DataFu 是搭配 Hadoop 上的 Pig 使用的開放原始碼程式庫集合。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -33,7 +34,7 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。 在這份文�
 * Azure HDInsight 叢集 (以 Linux 或 Windows 為基礎)
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 * [在 HDInsight 使用 Pig](hdinsight-use-pig.md)
 
@@ -54,25 +55,25 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。 在這份文�
     wget http://central.maven.org/maven2/com/linkedin/datafu/datafu/1.2.0/datafu-1.2.0.jar
     ```
 
-3. 接下來，將檔案上傳至 HDInsight 叢集的預設儲存體。 這會使檔案可供叢集內的所有節點存取，即使刪除並重新建立叢集，檔案也會保留在儲存體中。
+3. 接下來，將檔案上傳至 HDInsight 叢集的預設儲存體。 如果將檔案放在預設儲存體中，則叢集的所有節點都可使用此檔案。
 
     ```
     hdfs dfs -put datafu-1.2.0.jar /example/jars
     ```
 
     > [!NOTE]
-    > 上述範例會將 jar 儲存在 `/example/jars`，因為叢集儲存體上已經有此目錄。 您可以使用 HDInsight 叢集上任何想要的位置。
+    > 前一個命令會將 jar 儲存在 `/example/jars`，因為叢集儲存體上已經有此目錄。 您可以使用 HDInsight 叢集上任何想要的位置。
 
 ## <a name="use-datafu-with-pig"></a>搭配使用 DataFu 與 Pig
 
-本節中的步驟假設您已經熟悉在 HDInsight 上使用 Pig，且只提供 Pig Latin 陳述式，沒有提供如何搭配叢集使用它們的步驟。 如需搭配使用 Pig 與 HDInsight 的詳細資訊，請參閱 [搭配使用 Pig 與 HDInsight](hdinsight-use-pig.md)。
+本節中的步驟假設您已熟悉如何在 HDInsight 上使用 Pig。 如需搭配使用 Pig 與 HDInsight 的詳細資訊，請參閱 [搭配使用 Pig 與 HDInsight](hdinsight-use-pig.md)。
 
 > [!IMPORTANT]
 > 在以 Linux 為基礎的 HDInsight 叢集上透過 Pig 使用 DataFu 時，您必須先註冊 jar 檔案。
 >
-> 如果叢集使用 Azure 儲存體，您必須使用 `wasb://` 路徑。 例如， `register wasb:///example/jars/datafu-1.2.0.jar`。
+> 如果叢集使用 Azure 儲存體，請使用 `wasb://` 路徑。 例如， `register wasb:///example/jars/datafu-1.2.0.jar`。
 >
-> 如果叢集使用 Azure Data Lake Store，您必須使用 `adl://` 路徑。 例如， `register adl://home/example/jars/datafu-1.2.0.jar`。
+> 如果叢集使用 Azure Data Lake Store，請使用 `adl://` 路徑。 例如， `register adl://home/example/jars/datafu-1.2.0.jar`。
 >
 > 以 Windows 為基礎的 HDInsight 叢集已預設註冊 DataFu。
 
@@ -80,17 +81,19 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。 在這份文�
 
     DEFINE SHA datafu.pig.hash.SHA();
 
-這會為 SHA 雜湊函式定義名為 `SHA` 的別名。 您之後可以在 Pig Latin 指令碼中使用此別名來產生輸入資料的雜湊值。 例如，以下指令碼會使用雜湊值取代輸入資料中的名稱：
+此陳述式會為 SHA 雜湊函式定義名為 `SHA` 的別名。 您之後可以在 Pig Latin 指令碼中使用此別名來產生輸入資料的雜湊值。 例如，下列程式碼會使用雜湊值取代輸入資料中的名稱：
 
-    raw = LOAD '/data/raw/' USING PigStorage(',') AS  
-        (name:chararray,
-        int1:int,
-        int2:int,
-        int3:int);
-    mask = FOREACH raw GENERATE SHA(name), int1, int2, int3;
-    DUMP mask;
+```piglatin
+raw = LOAD '/data/raw/' USING PigStorage(',') AS  
+    (name:chararray,
+    int1:int,
+    int2:int,
+    int3:int);
+mask = FOREACH raw GENERATE SHA(name), int1, int2, int3;
+DUMP mask;
+```
 
-如果這個指令碼是與以下輸入資料搭配使用：
+如果此程式碼搭配下列輸入資料一起使用：
 
     Lana Zemljaric,5,9,1
     Qiong Zhong,9,3,6

@@ -3,8 +3,8 @@ title: "針對 Azure Data Lake Analytics 作業使用 U-SQL 視窗函式 | Micro
 description: "了解如何使用 U-SQL 視窗函式。 "
 services: data-lake-analytics
 documentationcenter: 
-author: edmacauley
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: a5e14b32-d5eb-4f4b-9258-e257359f9988
 ms.service: data-lake-analytics
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: big-data`
 ms.date: 12/05/2016
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: 5137ccfd2c809fe17cc7fdf06941ebd797288d81
-ms.openlocfilehash: 7afbd2de08b5702371ef7dc8676fcd8d75d5e7fd
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 55d19a00198f1943a8196d31399c617397b4e5d2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
-# <a name="using-u-sql-window-functions-for-azure-data-lake-analytics-jobs"></a>針對 Azure 資料湖分析工作使用 U-SQL 視窗函式
+# <a name="using-u-sql-window-functions-for-azure-data-lake-analytics-jobs"></a>針對 Azure Data Lake Analytics 工作使用 U-SQL 視窗函式
 視窗函式是在 2003 年的 ISO/ANSI SQL Standard 中導入的。 U-SQL 採用 ANSI SQL Standard 所定義之視窗函式的子集。
 
 視窗函式可用來進行名為 *視窗*之資料列集內的計算。 視窗由 OVER 子句所定義。 視窗函式可高效率地解決一些重要的案例。
-
-本學習指南將使用兩個範例資料集，引導您了解可套用視窗函數的部分範例案例。 如需詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
 
 視窗函式可分類為： 
 
@@ -33,102 +33,59 @@ ms.openlocfilehash: 7afbd2de08b5702371ef7dc8676fcd8d75d5e7fd
 * [排名函式](#ranking-functions)，例如 DENSE_RANK、ROW_NUMBER、NTILE 和 RANK
 * [分析函式](#analytic-functions)，例如累加分配或百分位數，從相同結果集中的前一個資料列存取資料，而不使用自我聯結
 
-**必要條件：**
-
-* 完成下列兩個教學課程：
-  
-  * [開始使用適用於 Visual Studio 的 Azure 資料湖工具](data-lake-analytics-data-lake-tools-get-started.md)。
-  * [開始針對 Azure 資料湖分析工作使用 U-SQL](data-lake-analytics-u-sql-get-started.md)。
-* 依照 [開始使用適用於 Visual Studio 的 Azure 資料湖工具](data-lake-analytics-data-lake-tools-get-started.md)中的指示，建立資料湖分析帳戶。
-* 依照 [開始針對 Azure 資料湖分析工作使用 U-SQL](data-lake-analytics-u-sql-get-started.md)中的指示，建立 Visual Studio U-SQL 專案。
-
 ## <a name="sample-datasets"></a>範例資料集
 本教學課程使用兩個資料集：
 
-* QueryLog 
+### <a name="the-querylog-sample-dataset"></a>QueryLog 範例資料集
   
-    QueryLog 代表人員在搜尋引擎中搜尋的項目清單。 每個查詢記錄檔包含：
+QueryLog 代表人員在搜尋引擎中搜尋的項目清單。 每個查詢記錄檔包含：
   
-    - 查詢 - 使用者所搜尋的項目。
-    - 延遲 - 查詢回到使用者所需的時間，以毫秒為單位。
-    - 行業 - 使用者有興趣的內容種類 (Web 連結、影像、視訊)。
-  
-    將下列指令碼複製並貼到您的 U-SQL 專案，以建構 QueryLog 資料列集：
-  
-    ```
-    @querylog = 
-        SELECT * FROM ( VALUES
-            ("Banana"  , 300, "Image" ),
-            ("Cherry"  , 300, "Image" ),
-            ("Durian"  , 500, "Image" ),
-            ("Apple"   , 100, "Web"   ),
-            ("Fig"     , 200, "Web"   ),
-            ("Papaya"  , 200, "Web"   ),
-            ("Avocado" , 300, "Web"   ),
-            ("Cherry"  , 400, "Web"   ),
-            ("Durian"  , 500, "Web"   ) )
-        AS T(Query,Latency,Vertical);
-    ```
+* Query - 使用者所搜尋的資料
+* Latency - 查詢返回至使用者的時間，以毫秒為單位
+* Vertical - 使用者有興趣的內容種類 (Web 連結、影像、影片)。  
+ 
+```
+@querylog = 
+    SELECT * FROM ( VALUES
+        ("Banana"  , 300, "Image" ),
+        ("Cherry"  , 300, "Image" ),
+        ("Durian"  , 500, "Image" ),
+        ("Apple"   , 100, "Web"   ),
+        ("Fig"     , 200, "Web"   ),
+        ("Papaya"  , 200, "Web"   ),
+        ("Avocado" , 300, "Web"   ),
+        ("Cherry"  , 400, "Web"   ),
+        ("Durian"  , 500, "Web"   ) )
+    AS T(Query,Latency,Vertical);
+```
 
-    在實務上，資料通常儲存在檔案中。 您可使用下列程式碼，存取定位字元分隔檔案中的資料： 
+## <a name="the-employees-sample-dataset"></a>員工範例資料集
   
-    ```
-    @querylog = 
-    EXTRACT 
-        Query    string, 
-        Latency  int, 
-        Vertical string
-    FROM "/Samples/QueryLog.tsv"
-    USING Extractors.Tsv();
-    ```
-* 員工
+員工資料集包含下列欄位：
   
-    員工資料集包含下列欄位：
-  
-        - EmpID - Employee ID.
-        - EmpName  Employee name.
-        - DeptName - Department name. 
-        - DeptID - Deparment ID.
-        - Salary - Employee salary.
-  
-    將下列指令碼複製並貼到您的 U-SQL 專案，以建構「員工」資料列集：
-  
-        @employees = 
-            SELECT * FROM ( VALUES
-                (1, "Noah",   "Engineering", 100, 10000),
-                (2, "Sophia", "Engineering", 100, 20000),
-                (3, "Liam",   "Engineering", 100, 30000),
-                (4, "Emma",   "HR",          200, 10000),
-                (5, "Jacob",  "HR",          200, 10000),
-                (6, "Olivia", "HR",          200, 10000),
-                (7, "Mason",  "Executive",   300, 50000),
-                (8, "Ava",    "Marketing",   400, 15000),
-                (9, "Ethan",  "Marketing",   400, 10000) )
-            AS T(EmpID, EmpName, DeptName, DeptID, Salary);
-  
-    下列陳述式示範如何藉由從資料檔中擷取資料列集加以建立。
-  
-        @employees = 
-        EXTRACT 
-            EmpID    int, 
-            EmpName  string, 
-            DeptName string, 
-            DeptID   int, 
-            Salary   int
-        FROM "/Samples/Employees.tsv"
-        USING Extractors.Tsv();
+* EmpID - 員工識別碼
+* EmpName - 員工名稱
+* DeptName - 部門名稱 
+* DeptID - 部門識別碼
+* Salary - 員工薪資
 
-當您測試教學課程中的範例時，您必須包含資料列集定義。 使用 U-SQL 時，您必須僅定義所使用的資料列集。 有些範例只需要一個資料列集。
-
-新增下列陳述式，將結果資料列集輸出到資料檔：
-
-    OUTPUT @result TO "/wfresult.csv" 
-        USING Outputters.Csv();
-
- 大部分的範例會在結果中使用名為 **@result** 的變數。
+```
+@employees = 
+    SELECT * FROM ( VALUES
+        (1, "Noah",   "Engineering", 100, 10000),
+        (2, "Sophia", "Engineering", 100, 20000),
+        (3, "Liam",   "Engineering", 100, 30000),
+        (4, "Emma",   "HR",          200, 10000),
+        (5, "Jacob",  "HR",          200, 10000),
+        (6, "Olivia", "HR",          200, 10000),
+        (7, "Mason",  "Executive",   300, 50000),
+        (8, "Ava",    "Marketing",   400, 15000),
+        (9, "Ethan",  "Marketing",   400, 10000) )
+    AS T(EmpID, EmpName, DeptName, DeptID, Salary);
+```  
 
 ## <a name="compare-window-functions-to-grouping"></a>比較視窗函式與分組
-「視窗化」與「分組」在概念上相關，但也有所不同。 了解此關聯性將有所幫助。
+「視窗化」與「分組」在概念上相關。 了解此關聯性將有所幫助。
 
 ### <a name="use-aggregation-and-grouping"></a>使用彙總與分組
 下列查詢會使用彙總來計算所有員工的薪資總和：
@@ -138,21 +95,12 @@ ms.openlocfilehash: 7afbd2de08b5702371ef7dc8676fcd8d75d5e7fd
             SUM(Salary) AS TotalSalary
         FROM @employees;
 
-> [!NOTE]
-> 如需測試和檢查輸出的相關指示，請參閱 [開始針對 Azure 資料湖分析工作使用 U-SQL](data-lake-analytics-u-sql-get-started.md)。
-> 
-> 
-
 結果是具有單一資料行的單一資料列。 $165000 是整份資料表中 [薪資] 值的總和。 
 
 | TotalSalary |
 | --- |
 | 165000 |
 
-> [!NOTE]
-> 如果您剛剛才接觸視窗函式，記住輸出中的數字將會有幫助。  
-> 
-> 
 
 下列陳述式使用 GROUP BY 子句來計算每個部門的薪資總計：
 
@@ -316,8 +264,6 @@ SalaryByDept 資料行的總和為 $165000，符合最後一個指令碼中的�
 | 8 |Ava |行銷 |400 |15000 |10000 |
 | 9 |Ethan |行銷 |400 |10000 |10000 |
 
-若要查看每個部門的最高薪資，請以 MAX 取代 MIN 並重新執行查詢。
-
 ## <a name="ranking-functions"></a>排名函式
 排名函式會依照 PARTITION BY 和 OVER 子句的定義，針對每個分割中的每個資料列傳回排名值 (LONG)。 排名的順序由 OVER 子句中的 ORDER BY 所控制。
 
@@ -422,12 +368,15 @@ Web 垂直有六個資料列。  兩個額外的資料列會分配到前兩個�
 NTILE 會使用參數 ("numgroups")。 Numgroups 是一個正整數或長常數運算式，會指定每個分割必須劃分成的群組數目。 
 
 * 如果分割中的資料列數目可由 numgroups 整除，則群組會有相同的大小。 
-* 如果分割中的資料列數目無法由 numgroups 整除，這會使群組出現相差一碼的兩個大小。 在 OVER 子句所指定的順序中，較大的群組會排在較小的群組前面。 
+* 如果分割區中的資料列數目無法被 numgroups 整除，則群組的大小會稍微不同。 在 OVER 子句所指定的順序中，較大的群組會排在較小的群組前面。 
 
 例如：
 
-* 100 個資料列分割成 4 個群組：[ 25, 25, 25, 25 ]
-* 102 個資料列分割成 4 個群組：[ 26, 26, 25, 25 ]
+    100 rows divided into 4 groups: 
+    [ 25, 25, 25, 25 ]
+
+    102 rows divided into 4 groups: 
+    [ 26, 26, 25, 25 ]
 
 ### <a name="top-n-records-per-partition-via-rank-denserank-or-rownumber"></a>每個分割的前 N 筆記錄 (使用 RANK、DENSE_RANK 或 ROW_NUMBER)
 許多使用者只想要選取每個群組的前 n 個資料列，這無法使用傳統 GROUP BY 達成。 
@@ -549,7 +498,12 @@ NTILE 會使用參數 ("numgroups")。 Numgroups 是一個正整數或長常數�
 * PERCENTILE_DISC
 
 ### <a name="cumedist"></a>CUME_DIST
-CUME_DIST 會計算指定的值在值群組中的相對位置。 它會計算延遲小於或等於目前的查詢延遲 (具有相同垂直) 之查詢的百分比。 資料列 R (採用遞增排序) 的 CUME_DIST 是值小於或等於 R 之值的資料列數目，除以分割中評估的資料列數目所得之數。 CUME_DIST 會傳回 0 < x <= 1 範圍內的數值。
+
+CUME_DIST 會計算指定的值在值群組中的相對位置。 它會計算延遲小於或等於目前的查詢延遲 (具有相同垂直) 之查詢的百分比。 
+
+資料列 R (採用遞增排序) 的 CUME_DIST 是值小於或等於 R 之值的資料列數目，除以分割中評估的資料列數目所得之數。 
+
+CUME_DIST 會傳回 0 < x <= 1 範圍內的數值。
 
 **語法：**
 
@@ -581,7 +535,7 @@ CUME_DIST 會計算指定的值在值群組中的相對位置。 它會計算延
 | Papaya |200 |Web |0.5 |
 | Apple |100 |Web |0.166666666666667 |
 
-分割索引鍵為 “Web” 的分割中有六個資料列 (第 4 個資料列和以下)：
+分割區索引鍵為 "Web" 的分割區中有六個資料列。
 
 * 有六個資料列的值等於或小於 500，因此 CUME_DIST 等於 6/6=1
 * 有五個資料列的值等於或小於 400，因此 CUME_DIST 等於 5/6=0.83
@@ -601,7 +555,7 @@ CUME_DIST 會計算指定的值在值群組中的相對位置。 它會計算延
 ### <a name="percentrank"></a>PERCENT_RANK
 PERCENT_RANK 會計算資料列群組內某資料列的相對排名。 PERCENT_RANK 可用來評估某值在資料列集或分割內的相對位置。 PERCENT_RANK 傳回的值範圍會大於 0 且小於或等於 1。 不同於 CUME_DIST，PERCENT_RANK 的第一個資料列一律為 0。
 
-**語法︰**
+** 語法：**
 
     PERCENT_RANK() 
         OVER (
@@ -653,9 +607,13 @@ PERCENT_RANK 函式所傳回的值代表查詢在垂直內的延遲排名 (以�
 
 **numeric_literal** - 要計算的百分位數。 此值必須介於 0.0 到 1.0 的範圍內。
 
-WITHIN GROUP ( ORDER BY <identifier> [ ASC | DESC ]) - 指定用來排序和計算百分位數的數值清單。 僅允許一個資料行識別碼。 運算式必須評估為數值類型。 不允許其他資料類型。 預設排序順序為遞增。
+    WITHIN GROUP (ORDER BY <identifier> [ ASC | DESC ])
 
-OVER ([ PARTITION BY <識別碼,>…[n] ] ) - 根據套用百分位數函式的分割索引鍵，將輸入資料列集分成多個分割。 如需詳細資訊，請參閱本文的「排名」一節。
+指定用來排序和計算百分位數的數值清單。 僅允許單一資料行識別碼。 運算式必須評估為數值類型。 不允許其他資料類型。 預設排序順序為遞增。
+
+    OVER ([ PARTITION BY <identifier,>…[n] ] )
+
+根據套用百分位數函式的分割區索引鍵，將輸入資料列集分成多個分割區。 如需詳細資訊，請參閱本文的「排名」一節。
 附註：資料集中的任何 null 值都會被忽略。
 
 **PERCENTILE_CONT** 會根據資料行值的連續分佈來計算百分位數。 其結果會以內插值取代，且可能不會等於資料行中的任何特定值。 
@@ -696,20 +654,9 @@ OVER ([ PARTITION BY <識別碼,>…[n] ] ) - 根據套用百分位數函式的�
 PERCENTILE_DISC 不會插補值，因此 Web 的中間值是 200 - 也就是在輸入資料列中找到的實際值。
 
 ## <a name="see-also"></a>另請參閱
-* [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
-* [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
-* [使用 Azure PowerShell 開始使用資料湖分析](data-lake-analytics-get-started-powershell.md)
-* [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
-* [使用 Azure 資料湖分析互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
-* [使用 Azure 資料湖分析來分析網站記錄](data-lake-analytics-analyze-weblogs.md)
-* [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
-* [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)
-* [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
-* [使用 Azure 入口網站監視和疑難排解 Azure Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
+* [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
+* [使用 Azure Data Lake Analytics 互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
+* [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
 
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

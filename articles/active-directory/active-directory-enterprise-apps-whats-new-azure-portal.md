@@ -12,28 +12,30 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/08/2016
+ms.date: 05/04/2017
 ms.author: asteen
-translationtype: Human Translation
-ms.sourcegitcommit: d15020779b398dbcd055352dbf38822b1bd02b7c
-ms.openlocfilehash: 0f0cf786f91c75f7a514790dccfbfc1f05b67e56
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 36de09434ae5082e5f92dcc9a82bba88f5b89c85
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
 # <a name="whats-new-in-enterprise-application-management-in-azure-active-directory"></a>Azure Active Directory 中企業應用程式管理的新功能 
 
-新的 Azure 入口網站已增強企業應用程式管理工具，您已在 Azure 傳統入口網站中使用其中一些工具，而有些新特性和功能讓應用程式的管理變得更簡單且有效率。
+Azure Active Directory (Azure AD) 有增強的企業應用程式管理工具，其中有些新特性和功能可讓應用程式的管理變得更簡單且有效率。
 
-以下是 Azure 入口網站中的一些 Azure AD 增強功能：
+以下是 [Azure 入口網站](https://portal.azure.com)中的一些 Azure AD 增強功能。
 
-- 全新和改進的應用程式資源庫經驗，簡化了應用程式建立模型，並支援您在傳統入口網站中使用的所有應用程式類型。 
-- 全新的快速啟動體驗，可讓您透過新應用程式的試驗快速啟動。 
-- 只要按幾下滑鼠就能夠設定自助式原則。 
-- 最後，應用程式 Proxy 的重大改進、單一登入組態，以及創造自己的應用程式體驗，可讓您在新的入口網站中執行比以往更多的作業。 繼續閱讀，以深入了解這項酷炫的新功能！
+- 改進的應用程式資源庫經驗，簡化了應用程式建立模型，並支援您使用的所有應用程式類型。 
+- 全新的快速啟動體驗，可協助您進行應用程式的試驗。 
+- 只要按幾下滑鼠就能設定自助式原則。 
+- 應用程式 Proxy 的改進、單一登入組態，以及創造自己的應用程式體驗，可讓您執行比以往更多的作業。
 
-## <a name="the-new-and-improved-application-gallery"></a>全新和改進的應用程式資源庫
+## <a name="improvements-to-the-azure-active-directory-application-gallery"></a>Azure Active Directory 應用程式資源庫的改進功能
 
-不論應用程式是來自我們大規模的資源庫、您延伸到雲端的自訂應用程式，或您正在開發的全新應用程式，現在使用我們全新流暢的體驗來新增您喜愛的所有應用程式都變得更加容易。  按一下 [企業應用程式] 概觀或 [所有應用程式] 刀鋒視窗上的 [新增] 按鈕，即可開始使用此全新體驗。
+新增您喜愛的應用程式，不論這些應用程式是來自[應用程式資源庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)、您延伸到雲端的自訂應用程式，或您正在開發的全新應用程式。  按一下 [企業應用程式] 概觀或 [所有應用程式] 刀鋒視窗上的 [新增]，即可開始使用此全新體驗。
  
   ![新增應用程式](./media/active-directory-enterprise-apps-whats-new-azure-portal/01.png)
 
@@ -148,17 +150,12 @@ ms.openlocfilehash: 0f0cf786f91c75f7a514790dccfbfc1f05b67e56
 
 ##<a name="feedback"></a>意見反應
 
-我們希望您喜歡使用更新後的預覽經驗。 請繼續提供意見反應！ 請將您的意見反應和改進想法張貼在我們的[意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal)的**管理員入口網站**區段中。  我們每天都很期待發展酷炫的新功能，並依照您的指導來塑造和定義我們接下來所要發展的項目。
+我們希望您喜歡使用改進後的 Azure AD 經驗。 請繼續提供意見反應！ 請將您的意見反應和改進想法張貼在我們的[意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal)的**管理員入口網站**區段中。  我們每天都很期待發展酷炫的新功能，並依照您的指導來塑造和定義我們接下來所要發展的項目。
 
 ## <a name="next-steps"></a>後續步驟
 
 如需詳細資訊，請參閱[使用 Azure Active Directory 管理應用程式](active-directory-enable-sso-scenario.md)。
 
 
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

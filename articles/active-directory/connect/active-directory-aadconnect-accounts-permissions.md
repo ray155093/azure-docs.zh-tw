@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/04/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 4ef0118435020edc3a922c88a5a55400992cbc09
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 366c2c43ec50b0b6c47a25ea9b0e9d7109827429
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -66,7 +67,7 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 | 重設密碼 |啟用密碼回寫的準備工作 |
 
 ## <a name="custom-settings-installation"></a>自訂設定安裝
-使用自訂設定時，必須在安裝之前建立用來連接到 Active Directory 的帳戶。 您可以在 [建立 AD DS 帳戶](#create-the-ad-ds-account)中找到必須授與此帳戶的權限。
+以前在使用自訂設定時，必須先在安裝之前建立用來連線到 Active Directory 的帳戶。 您可以在 [建立 AD DS 帳戶](#create-the-ad-ds-account)中找到必須授與此帳戶的權限。 在 Azure AD Connect 1.1.524.0 版和更新版本中，我們則提供了一個選項，此選項會讓 Azure AD Connect 精靈來為您建立帳戶。
 
 | 精靈頁面 | 收集的認證 | 所需的權限 | 用於 |
 | --- | --- | --- | --- |
@@ -86,9 +87,11 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 
 | 功能 | 權限 |
 | --- | --- |
+| msDS-ConsistencyGuid 功能 |msDS-ConsistencyGuid 屬性 (詳情記載於[設計概念 - 使用 msDS-ConsistencyGuid 來作為 sourceAnchor](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor)) 的寫入權限。 | 
 | 密碼同步處理 |<li>複寫目錄變更</li>  <li>複寫目錄變更 (全部) |
 | Exchange 混合式部署 |[Exchange 混合回寫](active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback)中記載了使用者、群組和連絡人適用的屬性的寫入權限。 |
-| 密碼回寫 |[開始使用密碼管理](../active-directory-passwords-getting-started.md#step-4-set-up-the-appropriate-active-directory-permissions)中記載了使用者適用的屬性的寫入權限。 |
+| Exchange 郵件公用資料夾 |公用資料夾屬性 (詳情記載於 [Exchange 郵件公用資料夾](active-directory-aadconnectsync-attributes-synchronized.md#exchange-mail-public-folder)) 的讀取權限。 | 
+| 密碼回寫 |[開始使用密碼管理](../active-directory-passwords.md)中記載了使用者適用的屬性的寫入權限。 |
 | 裝置回寫 |[裝置回寫](active-directory-aadconnect-feature-device-writeback.md)中所述的使用 PowerShell 指令碼授與權限。 |
 | 群組回寫 |讀取、建立、更新和刪除散發群組所在 OU 中的群組物件。 |
 
@@ -179,11 +182,13 @@ VSA 適用於同步處理引擎和 SQL 位於相同伺服器的情況。 如果�
 
 ![AD 帳戶](./media/active-directory-aadconnect-accounts-permissions/aadsyncserviceaccount.png)
 
-使用帳戶所在伺服器的名稱可以透過使用者名稱的第二個部分來識別。 在圖中，伺服器名稱是 FABRIKAMCON。 如果您有預備伺服器，則每個伺服器會有自己的帳戶。 Azure AD 中有 10 個同步服務帳戶的限制。
+使用帳戶所在伺服器的名稱可以透過使用者名稱的第二個部分來識別。 在圖中，伺服器名稱是 FABRIKAMCON。 如果您有預備伺服器，則每個伺服器會有自己的帳戶。
 
 系統會使用不會過期的長複雜密碼建立服務帳戶， 且該帳戶會獲得特殊角色**目錄同步處理帳戶**，其僅具有執行目錄同步處理工作的權限。 您無法透過 Azure AD Connect 精靈以外的方式授與特殊的內建角色，且 Azure 入口網站會顯示此帳戶具備**使用者**角色。
 
-![AD 帳戶角色](./media/active-directory-aadconnect-accounts-permissions/aadsyncserviceaccountrole.png)
+Azure AD 中有 20 個同步服務帳戶的限制。 若要取得 Azure AD 中現有 Azure AD 服務帳戶的清單，請執行下列 Azure AD PowerShell Cmdlet：`Get-AzureADDirectoryRole | where {$_.DisplayName -eq "Directory Synchronization Accounts"} | Get-AzureADDirectoryRoleMember`
+
+若要移除未使用的 Azure AD 服務帳戶，請執行下列 Azure AD PowerShell Cmdlet：`Remove-AzureADUser -ObjectId <ObjectId-of-the-account-you-wish-to-remove>`
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md)。

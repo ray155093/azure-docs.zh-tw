@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 08/29/2016
+ms.date: 05/08/2017
 ms.author: kyliel
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 2d44a2d9a247ffce8bcf35152170562ac0b86710
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: 7a92105f9d7be88311f2ecd89b22e35f3ad3bbac
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -32,7 +33,7 @@ ms.lasthandoff: 04/27/2017
 本文假設您具有下列項目：
 
 * **Azure 訂用帳戶**-- 如果您沒有，只需要幾分鐘的時間就可以建立帳戶。 如果您有 MSDN 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。 否則，請參閱 [建立免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/)。  
-* **Azure PowerShell 工具**-- 必須已安裝 Azure PowerShell 模組，並設定為使用您的訂用帳戶。 若要下載此模組，請參閱 [Azure 下載](https://azure.microsoft.com/downloads/)。 這裡有說明如何安裝和設定模組的教學課程。 使用 [Azure Downloads](https://azure.microsoft.com/downloads/) Cmdlet 上傳 VHD。
+* **Azure PowerShell 工具**-- 必須已安裝 Azure PowerShell 模組，並設定為使用您的訂用帳戶。 若要下載此模組，請參閱 [Azure 下載](https://azure.microsoft.com/downloads/)。 這裡有一個說明如何安裝和設定此模組的教學課程。 使用 [Azure Downloads](https://azure.microsoft.com/downloads/) Cmdlet 上傳 VHD。
 * **安裝在 .vhd 檔案中的 FreeBSD 作業系統** -- 支援的 FreeBSD 作業系統必須已安裝到虛擬硬碟中。 有多項工具可用來建立 .vhd 檔案。 例如，您可以使用虛擬化解決方案 (例如 Hyper-V) 建立 .vhd 檔案，並安裝作業系統。 如需相關指示，請參閱 [安裝 Hyper-V 和建立虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。
 
 > [!NOTE]
@@ -40,7 +41,7 @@ ms.lasthandoff: 04/27/2017
 >
 >
 
-這項工作包含下列五個步驟。
+這項工作包含下列五個步驟：
 
 ## <a name="step-1-prepare-the-image-for-upload"></a>步驟 1：準備要上傳的映像
 在您已安裝 FreeBSD 作業系統的虛擬機器上，完成下列程序：
@@ -51,12 +52,7 @@ ms.lasthandoff: 04/27/2017
         # service netif restart
 2. 啟用 SSH。
 
-    從光碟安裝之後，預設會啟用 SSH。 如果基於某些原因而未啟用，或者您要直接使用 FreeBSD VHD，請輸入下列命令︰
-
-        # echo 'sshd_enable="YES"' >> /etc/rc.conf
-        # ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
-        # ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
-        # service sshd restart
+    確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。 根據預設，它從 FreeBSD 光碟安裝之後就會啟用。 
 3. 設定序列主控台。
 
         # echo 'console="comconsole vidconsole"' >> /boot/loader.conf
@@ -66,16 +62,16 @@ ms.lasthandoff: 04/27/2017
     在 Azure 中已停用 root 帳戶。 這表示您必須利用未授權的使用者 sudo 從較高權限執行命令。
 
         # pkg install sudo
-   ;
+   
 5. Azure 代理程式的必要條件。
 
         # pkg install python27  
-        # pkg install Py27-setuptools27   
+        # pkg install Py27-setuptools  
         # ln -s /usr/local/bin/python2.7 /usr/bin/python   
         # pkg install git
 6. 安裝 Azure 代理程式。
 
-    最新版的 Azure 代理程式一律可以在 [github](https://github.com/Azure/WALinuxAgent/releases)上找到。 2.0.10 + 版正式支援 FreeBSD 10 和 10.1，2.1.4 版正式支援 FreeBSD 10.2 和更新版本。
+    最新版的 Azure 代理程式一律可以在 [github](https://github.com/Azure/WALinuxAgent/releases)上找到。 2.0.10 + 版正式支援 FreeBSD 10 和 10.1，2.1.4 版 (包括 2.2.x) 正式支援 FreeBSD 10.2 和更新版本。
 
         # git clone https://github.com/Azure/WALinuxAgent.git  
         # cd WALinuxAgent  
@@ -108,8 +104,8 @@ ms.lasthandoff: 04/27/2017
         # waagent -version
         WALinuxAgent-2.1.4 running on freebsd 10.3
         Python: 2.7.11
-        # service –e | grep waagent
-        /etc/rc.d/waagent
+        # ps auxw | grep waagent
+        root   639   0.0  0.5 104620 17520 u0- I    05:17    0:00.20 python /usr/local/sbin/waagent -daemon (python2.7)
         # cat /var/log/waagent.log
 7. 取消佈建系統。
 
@@ -154,7 +150,7 @@ ms.lasthandoff: 04/27/2017
    >
 
 ## <a name="step-3-prepare-the-connection-to-azure"></a>步驟 3：準備 Azure 的連線
-您必須先在電腦與 Azure 訂用帳戶之間建立安全連線，才能上傳 .vhd 檔案。 您可以使用 Azure Active Directory (Azure AD) 方法或憑證方法來達到此目的。
+您必須先在電腦與 Azure 訂用帳戶之間建立安全連線，才能上傳 .vhd 檔案。 您可以使用 Azure Active Directory (Azure AD) 方法或憑證方法來這樣做。
 
 ### <a name="use-the-azure-ad-method-to-upload-a-vhd-file"></a>使用 Azure AD 方法上傳 .vhd 檔案
 1. 開啟 Azure PowerShell 主控台。
@@ -169,7 +165,7 @@ ms.lasthandoff: 04/27/2017
 ### <a name="use-the-certificate-method-to-upload-a-vhd-file"></a>使用憑證方法上傳 .vhd 檔案
 1. 開啟 Azure PowerShell 主控台。
 2. 輸入： `Get-AzurePublishSettingsFile`。
-3. 隨即開啟瀏覽器視窗，並提示您下載 .publishsettings 檔案。 此檔案包含您 Azure 訂用帳戶的資訊和憑證。
+3. 隨即會開啟瀏覽器視窗，並提示您下載 .publishsettings 檔案。 此檔案包含您 Azure 訂用帳戶的資訊和憑證。
 
     ![瀏覽器下載頁面](./media/freebsd-create-upload-vhd/Browser_download_GetPublishSettingsFile.png)
 4. 儲存 .publishsettings 檔案。
@@ -180,7 +176,7 @@ ms.lasthandoff: 04/27/2017
    如需安裝和設定 PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ## <a name="step-4-upload-the-vhd-file"></a>步驟 4：上傳 .vhd 檔案
-在上傳 .vhd 檔案時，可以將 .vhd 檔案放在 Blob 儲存體中的任一處。 以下是您上傳檔案時，將使用的一些詞彙︰
+在上傳 .vhd 檔案時，可以將 .vhd 檔案放在 Blob 儲存體中的任一處。 以下是您上傳檔案時將使用的一些詞彙︰
 
 * **BlobStorageURL** 是您在步驟 2 建立的儲存體帳戶的 URL。
 * **YourImagesFolder** 是您要用來儲存映像之 Blob 儲存體中的容器。

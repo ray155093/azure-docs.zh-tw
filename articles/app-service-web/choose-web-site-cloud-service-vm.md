@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/07/2016
 ms.author: glenga
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 2f5e6d100effee99b1a1576c0e21f1a311f8131b
-ms.lasthandoff: 02/11/2017
-
+ms.custom: mvc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 17289f6401b36ff6e6a201564aa387f42c712699
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="azure-app-service-virtual-machines-service-fabric-and-cloud-services-comparison"></a>Azure App Service、虛擬機器、Service Fabric 及雲端服務的比較
@@ -51,7 +52,7 @@ Azure App Service 是大多數 Web 應用程式的最佳選擇。 部署和管�
 | 整合 MySQL 即服務的支援 |X |X |X | |雲端服務可透過 ClearDB 的供應項目來整合 MySQL 即服務，而不需要在 Azure 入口網站工作流程中進行。 |
 | 支援 ASP.NET、傳統 ASP、Node.js、PHP、Python |X |X |X |X |Service Fabric 支援使用 [ASP.NET 5](../service-fabric/service-fabric-add-a-web-frontend.md) 建立 Web 前端，也可讓您以[來賓可執行檔](../service-fabric/service-fabric-deploy-existing-app.md)的形式部署任何類型的應用程式 (Node.js、Java 等)。 |
 | 向外延展至多個執行個體而不重新部署 |X |X |X |X |「虛擬機器」可向外延展至多個執行個體，但這些機器上執行的服務必須設計成應付這個向外延展情況。 您必須設定負載平衡器來將要求路由傳送到各機器，並建立同質群組，以避免在維護或硬體故障時所有執行個體同時重新啟動。 |
-| 支援 SSL |X |X |X |X |在 App Service Web 應用程式中，只有基本和標準模式才支援自訂網域名稱的 SSL。 如需 Web 應用程式使用 SSL 的相關資訊，請參閱[設定 Azure 網站的 SSL 憑證](web-sites-configure-ssl-certificate.md)。 |
+| 支援 SSL |X |X |X |X |在 App Service Web 應用程式中，只有基本和標準模式才支援自訂網域名稱的 SSL。 如需 Web 應用程式使用 SSL 的相關資訊，請參閱[設定 Azure 網站的 SSL 憑證](app-service-web-tutorial-custom-ssl.md)。 |
 | 整合 Visual Studio |X |X |X |X | |
 | 遠端偵錯 |X |X |X | | |
 | 利用 TFS 來部署程式碼 |X |X |X |X | |

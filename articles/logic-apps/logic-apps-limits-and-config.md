@@ -13,12 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
-ms.author: jehollan
+ms.author: LADocs; jehollan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 2a270ba8ae17077c55c6b1473d4955dfb5f79ca1
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 859f9a1ca9dbe166fd514c8eba868b466dbc4d2c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -84,9 +84,10 @@ ms.lasthandoff: 05/03/2017
 |Name|限制|注意事項|
 |----|----|----|
 |每 5 分鐘的動作執行 |100,000|可以視需要將工作負載分散在多個應用程式|
+|動作並行撥出電話 |~2,500|視需要減少並行要求的數目或降低持續時間|
+|執行階段端點並行撥入電話 |~1,000|視需要減少並行要求的數目或降低持續時間|
 |執行階段端點每 5 分鐘讀取呼叫 |60,000|可以視需要將工作負載分散在多個應用程式|
 |執行階段端點每 5 分鐘叫用呼叫 |45,000|可以視需要將工作負載分散在多個應用程式|
-|封鎖並行呼叫的執行階段端點 |~1,000|視需要減少並行要求的數目或降低持續時間|
 
 如果您預期在正常處理時會超過此限制，或者想要執行可能超過此限制的負載測試一段時間，請[與我們連絡](mailto://logicappsemail@microsoft.com)，讓我們可以協助您的需求。
 
@@ -116,7 +117,8 @@ ms.lasthandoff: 05/03/2017
 |結構描述|8MB|您可以使用 [blob URI](logic-apps-enterprise-integration-schemas.md) 上傳超過 2 MB 的檔案 |
 |對應 (XSLT 檔案)|2MB| |
 |執行階段端點每 5 分鐘讀取呼叫 |60,000|可以視需要將工作負載分散在多個帳戶|
-|執行階段端點每 5 分鐘叫用呼叫 |90,000|可以視需要將工作負載分散在多個帳戶|
+|執行階段端點每 5 分鐘叫用呼叫 |45,000|可以視需要將工作負載分散在多個帳戶|
+|執行階段端點每 5 分鐘追蹤呼叫 |45,000|可以視需要將工作負載分散在多個帳戶|
 |封鎖並行呼叫的執行階段端點 |~1,000|視需要減少並行要求的數目或降低持續時間|
 
 ### <a name="b2b-protocols-as2-x12-edifact-message-size"></a>B2B 通訊協定 (AS2、X12、EDIFACT) 訊息大小

@@ -14,12 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/08/2017
+ms.date: 05/05/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 511d6dd1933f44cd0cb5ba800972a7c112a24c04
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 8789643474ac84d4509cd25206091e49925c9dcd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.lasthandoff: 04/12/2017
 
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視公用程式。 透過 Ambari 提供的功能之一是可以用來執行 Hive 查詢的 Web UI。 這是 [Hive 檢視]，您的 HDInsight 叢集隨附的 Ambari 檢視的一部分。
+了解如何使用 Ambari Hive 檢視執行 Hive 查詢。 Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視公用程式。 透過 Ambari 提供的功能之一是可以用來執行 Hive 查詢的 Web UI。
 
 > [!NOTE]
 > Ambari 有許多本文未討論到的功能。 如需詳細資訊，請參閱 [使用 Ambari Web UI 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)。
@@ -37,7 +38,7 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 * 以 Linux 為基礎的 HDInsight 叢集。 如需建立叢集的相關資訊，請參閱[開始使用以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
 ## <a name="open-the-hive-view"></a>開啟 Hive 檢視
 
@@ -45,27 +46,28 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
 ![快速連結區段](./media/hdinsight-hadoop-use-hive-ambari-view/quicklinks.png)
 
-您也可以在網頁瀏覽器中移至 https://CLUSTERNAME.azurehdinsight.net，來直接瀏覽至 Ambari。 將 **CLUSTERNAME** 取代為 HDInsight 叢集的名稱。 從 [管理員] 連結旁的頁面功能表中選取方塊組合，以列出可用的檢視。 選取 [Hive 檢視]。
+您也可以在網頁瀏覽器中移至 https://CLUSTERNAME.azurehdinsight.net，來直接瀏覽至 Ambari。 將 **CLUSTERNAME** 取代為 HDInsight 叢集的名稱。 若要列出可用的檢視，請從功能表中選取方形集合。 若要開啟檢視，請選取 [Hive 檢視] 項目。
 
-![選取 Ambari 檢視](./media/hdinsight-hadoop-use-hive-ambari-view/selecthiveview.png)。
+![選取 Ambari 檢視](./media/hdinsight-hadoop-use-hive-ambari-view/select-hive-view.png)。
 
 > [!NOTE]
-> 存取 Ambari 時，系統會提示您對網站進行驗證。 輸入您在建立叢集時所使用的 admin (預設為 `admin`)、帳戶名稱和密碼。
+> 存取 Ambari 時，系統會提示您對網站進行驗證。 輸入您在建立叢集時所使用的管理 (預設為 `admin`) 帳戶名稱和密碼。
 
-您應該會看到如下所示的頁面：
+您應該會看到類似下圖的頁面：
 
-![Hive 檢視頁面的影像，包含查詢編輯器區段](./media/hdinsight-hadoop-use-hive-ambari-view/hiveview.png)
+![Hive 檢視頁面的影像，包含查詢編輯器區段](./media/hdinsight-hadoop-use-hive-ambari-view/ambari-hive-view.png)
 
 ## <a name="view-tables"></a>檢視資料表
-在頁面的 [資料庫總管] 區段上，選取 [資料庫] 索引標籤上的 [預設] 項目。 這會顯示預設資料庫中的資料表清單。 對於新的 HDInsight 叢集，應該只有一個資料表存在︰**hivesampletable**。
 
-![已展開預設資料庫的資料庫總管](./media/hdinsight-hadoop-use-hive-ambari-view/databaseexplorer.png)
+在頁面的 [資料庫總管] 區段上，選取 [資料庫] 索引標籤上的 [預設] 項目。 預設資料庫中的資料表清單隨即出現。 HDInsight 包含名為 **hivesampletable** 的資料表。
+
+![已展開預設資料庫的資料庫總管](./media/hdinsight-hadoop-use-hive-ambari-view/database-explorer.png)
 
 透過這份文件中的步驟新增資料表時，您可以使用 [資料庫總管] 右上角的重新整理圖示來重新整理清單。
 
 ## <a name="hivequery"></a>查詢編輯器
 
-從 Hive 檢視使用下列步驟來執行 Hive 查詢。
+若要執行 Hive 查詢，請從 Hive 檢視使用下列步驟。
 
 1. 在頁面的 [查詢編輯器] 區段中，將下列 HiveQL 陳述式貼到工作表中：
 
@@ -79,16 +81,16 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
     這些陳述式會執行下列動作：
 
-   * **DROP TABLE** - 刪除資料表和資料檔 (如果資料表已存在)
+   * `DROP TABLE` - 刪除資料表和資料檔 (如果資料表已存在)。
 
-   * **CREATE EXTERNAL TABLE** - 在 Hive 中建立新的「外部」資料表。
+   * `CREATE EXTERNAL TABLE` - 在 Hive 中建立新的「外部」資料表。
    外部資料表只會將資料表定義儲存在 Hive 中。 資料會留在原來的位置。
 
-   * **ROW FORMAT** - 告訴 Hive 如何格式化資料。 在此情況下，每個記錄中的欄位會以空格隔開。
+   * `ROW FORMAT` - 設定資料格式的方式。 在此情況下，每個記錄中的欄位會以空格隔開。
 
-   * **STORED AS TEXTFILE LOCATION** - 將資料的儲存位置告訴 Hive (example/data 目錄)，且資料儲存為文字。
+   * `STORED AS TEXTFILE LOCATION` - 資料的儲存位置，且資料會儲存為文字。
 
-   * **SELECT** - 選擇其資料欄 t4 包含值 [ERROR] 的所有資料列計數。
+   * `SELECT` - 選取在資料行 t4 中包含 [ERROR] 值的所有資料列。
 
      > [!NOTE]
      > 當您預期會由外部來源來更新基礎資料時，請使用外部資料表。 例如，自動化的資料上傳程序，或透過其他 MapReduce 作業。 捨棄外部資料表並 *不會* 刪除資料，只會刪除資料表定義。
@@ -121,9 +123,9 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
    * **CREATE TABLE IF NOT EXISTS** - 建立資料表 (如果不存在)。 由於未使用  關鍵字，因此會建立內部資料表。 內部資料表儲存在 Hive 資料倉儲中，並完全受到 Hive 所管理。 與外部資料表不同之處在於，捨棄內部資料表也會刪除基礎資料。
 
-   * **STORED AS ORC** - 以最佳化資料列單欄式 (Optimized Row Columnar, ORC) 格式儲存資料。 這是高度最佳化且有效率的 Hive 資料儲存格式。
+   * **STORED AS ORC** - 以最佳化資料列單欄式 (Optimized Row Columnar, ORC) 格式儲存資料。 ORC 是高度最佳化且有效率的 Hive 資料儲存格式。
 
-   * **INSERT OVERWRITE ...SELECT** - 從包含 [ERROR] 的 **log4jLogs** 資料表選取資料列，然後將資料插入 **errorLogs** 資料表。
+   * **INSERT OVERWRITE ...SELECT** - 從包含 `[ERROR]` 的 **log4jLogs** 資料表選取資料列，然後將資料插入 **errorLogs** 資料表。
 
      使用 [查詢] 按鈕執行此查詢。 當查詢傳回零個資料列時，[結果] 索引標籤不會包含任何資訊。 查詢完成後，狀態應該會顯示為 [成功]。
 
@@ -133,7 +135,7 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
 ![Hive 檢視的設定圖示](./media/hdinsight-hadoop-use-hive-ambari-view/hive-view-settings-icon.png)
 
-設定可以用來變更各種 Hive 設定，例如將 Hive 的執行引擎從 Tez (預設) 變更為 MapReduce。
+設定可用來變更各種 Hive 設定。 比方說，將 Hive 的執行引擎從 Tez (預設值) 變更為 MapReduce。
 
 ### <a name="visualization"></a>視覺效果
 
@@ -141,7 +143,7 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
 ![Hive 檢視的視覺效果圖示](./media/hdinsight-hadoop-use-hive-ambari-view/hive-view-visualization-icon.png)
 
-這會開啟視覺效果介面，供您建立查詢所傳回資料的視覺效果。 以下是使用來自 HDInsight 所隨附 `hivesampletable` 之資料的範例視覺效果。
+您可以在視覺效果介面中為查詢所傳回的資料建立視覺效果。 下圖是使用 `hivesampletable` (隨附於 HDInsight) 的資料所建立的範例視覺效果：
 
 ![範例視覺效果](./media/hdinsight-hadoop-use-hive-ambari-view/hive-view-visualization.png)
 
@@ -151,7 +153,7 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
 ![Hive 檢視的視覺解說圖示](./media/hdinsight-hadoop-use-hive-ambari-view/hive-view-visual-explain-icon.png)
 
-這是查詢的 [視覺解說] 檢視，有助於了解複雜查詢的流程。 您可以使用 [查詢編輯器] 中的 [解說] 按鈕來檢視此檢視的對等文字。
+查詢的 [視覺解說] 檢視有助於了解複雜查詢的流程。 您可以使用 [查詢編輯器] 中的 [解說] 按鈕來檢視此檢視的對等文字。
 
 ![視覺解說影像](./media/hdinsight-hadoop-use-hive-ambari-view/visualexplain.png)
 
@@ -161,7 +163,7 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
 ![Hive 檢視的 Tez 圖示](./media/hdinsight-hadoop-use-hive-ambari-view/hive-view-tez-icon.png)
 
-如果有的話，這會顯示 Tez 針對此查詢使用的有向非循環圖 (DAG)。 如果您想要檢視您已執行過之查詢的 DAG，或偵錯 Tez 程序，請改用 [Tez 檢視](hdinsight-debug-ambari-tez-view.md) 。
+如果使用 Tez 來解析查詢，則會顯示有向非循環圖 (DAG)。 如果您想要檢視您已執行過之查詢的 DAG，或偵錯 Tez 程序，請改用 [Tez 檢視](hdinsight-debug-ambari-tez-view.md) 。
 
 ### <a name="notifications"></a>通知
 
@@ -192,15 +194,15 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
 ## <a name="query-history"></a>查詢歷程記錄
 
-[Hive 檢視] 頂端的 [記錄] 按鈕可讓您檢視您先前執行的查詢。 現在使用它並且選取您先前執行的一些查詢。 當您選取查詢時，它會在 [查詢編輯器] 中開啟。
+[Hive 檢視] 頂端的 [記錄] 按鈕可讓您檢視先前執行的查詢。 現在使用它並且選取您先前執行的其中一個查詢。 當您選取查詢時，它會在 [查詢編輯器] 中開啟。
 
 ## <a name="user-defined-functions-udf"></a>使用者定義函數 (UDF)
 
 Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 HiveQL 中實作功能或不易模型化的邏輯。
 
-[Hive 檢視] 頂端的 [UDF] 索引標籤可讓您宣告並儲存一組可以與 [查詢編輯器] 搭配使用的 UDF。
+[Hive 檢視] 頂端的 [UDF] 索引標籤可讓您宣告並儲存一組 UDF。 這些 UDF 可以在 [查詢編輯器] 中使用。
 
-一旦您將 UDF 新增至 [Hive 檢視]，[插入 udf] 按鈕隨即會出現在 [查詢編輯器] 底端。 選取這個項目會顯示在 [Hive 檢視] 中定義的 UDF 的下拉式清單。 選取 UDF 會將 HiveQL 陳述式新增至查詢以啟用 UDF。
+一旦您將 UDF 新增至 [Hive 檢視]，[插入 udf] 按鈕隨即會出現在 [查詢編輯器] 底端。 選取這個項目會顯示 [Hive 檢視] 中定義之 UDF 的下拉式清單。 選取 UDF 會將 HiveQL 陳述式新增至查詢以啟用 UDF。
 
 例如，如果您使用下列屬性定義 UDF：
 
@@ -221,12 +223,13 @@ create temporary function myawesomeudf as 'com.myudfs.Awesome';
 
 您接著可以在查詢中使用 UDF。 例如， `SELECT myawesomeudf(name) FROM people;`。
 
-如需在 HDInsight 上搭配 Hive 使用 UDF 的詳細資訊，請參閱下列文章：
+如需在 HDInsight 上搭配 Hive 使用 UDF 的詳細資訊，請參閱下列文件：
 
 * [在 HDInsight 中搭配 Hive 與 Pig 使用 Python](hdinsight-python.md)
 * [如何將自訂 Hive UDF 新增至 HDInsight (英文)](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/14/how-to-add-custom-hive-udfs-to-hdinsight.aspx)
 
 ## <a id="nextsteps"></a>接續步驟
+
 如需 HDInsight 中 Hive 的一般資訊：
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)

@@ -12,26 +12,33 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/14/2017
+ms.date: 05/17/2017
 ms.author: clemensv;sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: 2b118f285f822d6cba3a2db4130539e62aabd342
-ms.lasthandoff: 04/04/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: c16bcf30ab96f79e59404a41852e4cd227e28b08
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
 # <a name="overview-of-service-bus-dead-letter-queues"></a>服務匯流排寄不出的信件佇列的概觀
+
 服務匯流排佇列和主題訂用帳戶提供次要的子佇列，稱為*無效信件佇列* (DLQ)。 寄不出的信件佇列並不需要明確建立，而且無法刪除或以其他方式在主要實體之外管理。
 
-寄不出的信件佇列的目的是保留無法傳遞至任何收件者的訊息，或只是無法處理的訊息。 隨後可以從 DLQ 移除訊息並加以檢查。 藉由運算子的協助，應用程式可能會更正問題並重新提交訊息、記錄發生錯誤及/或採取更正動作。 
+本文討論 Azure 服務匯流排中的無效信件佇列。 大部分的討論內容是以 GitHub 上的[無效信件佇列範例](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/DeadletterQueue)加以說明。
+ 
+## <a name="the-dead-letter-queue"></a>無效信件佇列
+
+無效信件佇列的目的，是保留無法傳遞至任何收件者的訊息，或是無法加以處理的訊息。 隨後可以從 DLQ 移除訊息並加以檢查。 透過運算子的協助，應用程式可能會更正問題並重新提交訊息、記錄發生錯誤及採取更正動作。 
 
 從 API 和通訊協定的觀點而言，DLQ 非常類似任何其他佇列，不同之處在於訊息只會透過父實體的寄不出的信件動作提交。 此外，存留時間並未遵守，而且您無法從 DLQ 讓訊息寄不出去。 寄不出的信件佇列完全支援鎖定傳遞和交易式作業。
 
 請注意，DLQ 沒有自動清除。 訊息會保留在 DLQ 中，直到您明確地從 DLQ 擷取訊息並在寄不出的信件訊息上呼叫 [Complete()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_CompleteAsync)。
 
 ## <a name="moving-messages-to-the-dlq"></a>將訊息移至 DLQ
-服務匯流排中有幾個活動會導致訊息從傳訊引擎本身內部推送至 DLQ。 應用程式也可以明確地將訊息推送到 DLQ。 
+
+服務匯流排中有幾個活動會導致訊息從傳訊引擎本身內部推送至 DLQ。 應用程式也可以明確地將訊息移至 DLQ。 
 
 由於訊息代理程式會移動訊息，當訊息代理程式在下列訊息上呼叫其內部版本的 [DeadLetter](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeadLetter_System_String_System_String_) 方法時，會新增兩個屬性至訊息︰`DeadLetterReason` 和 `DeadLetterErrorDescription`。
 

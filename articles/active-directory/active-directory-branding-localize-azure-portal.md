@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Active Directory 預覽版中將語言特定公司商標新增到登入頁面 | Microsoft Docs"
+title: "在 Azure Active Directory 中將語言特定公司商標新增到登入頁面 | Microsoft Docs"
 description: "了解如何將語言特定公司商標圖片和文字新增到 Azure 登入頁面"
 services: active-directory
 documentationcenter: 
@@ -12,17 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 05/04/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: fece49df6a35f09ee73bb4b9ec4c33a0529a9f59
-ms.lasthandoff: 12/29/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: e1fe8d855386ceec39edbc985538cdf32d78a13b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
-# <a name="add-language-specific-company-branding-to-your-sign-in-page-in-the-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中將語言特定公司商標新增到登入頁面
-為了避免混淆，許多公司都想對其管理的所有網站和服務套用一致的外觀與風格。 Azure Active Directory 是透過讓您利用公司標誌和自訂色彩配置來自訂登入頁面外觀的方式，提供這項功能。 [預覽版有何功能？](active-directory-preview-explainer.md)  登入頁面是當您登入 Office 365 或其他使用 Azure AD 作為識別提供者的 Web 型應用程式時，所顯示的頁面。 您可以與此頁面互動來輸入您的認證。
+# <a name="add-language-specific-company-branding-to-your-sign-in-page-in-the-azure-active-directory"></a>在 Azure Active Directory 中將語言特定公司商標新增到登入頁面
+為了避免混淆，許多公司都想對其管理的所有網站和服務套用一致的外觀與風格。 Azure Active Directory 是透過讓您利用公司標誌和自訂色彩配置來自訂登入頁面外觀的方式，提供這項功能。 登入頁面是當您登入 Office 365 或其他使用 Azure AD 作為識別提供者的 Web 型應用程式時，所顯示的頁面。 您可以與此頁面互動來輸入您的認證。
 
 ## <a name="customizing-the-sign-in-page-for-another-language"></a>自訂另一個語言的登入頁面
 只有當您已如 [將公司商標新增到登入頁面](active-directory-branding-custom-signon-azure-portal.md)所述建立自訂登入頁面時，您才可以將語言特定元素新增到自訂登入頁面。 您可以使用一組預設的可自訂元素，為每一目錄設定一個登入頁面。 在您已設定一組預設的頁面元素之後，就可以設定不同地區設定的其他版本。 您也可以混合使用並符合各種元素。 例如，您可以：

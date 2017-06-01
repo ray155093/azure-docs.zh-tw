@@ -1,13 +1,13 @@
 ---
 title: "Azure CosmosDB︰每分鐘的要求單位 (RU/m) | Microsoft Docs"
 description: "了解如何利用每分鐘的要求單位降低成本。"
-services: cosmosdb
+services: cosmos-db
 documentationcenter: 
 author: arnomicrosoft
 manager: jhubbard
 editor: 
 ms.assetid: 
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.workload: 
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: acomet
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 878b7335fb5e09bc8704f7211cc6293ad6ea4bea
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: ea63b988a72801ae4c288048021a915b20a34794
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -112,7 +112,7 @@ await client.ReplaceOfferAsync(offerV2);
 
 在本節中，我們提供一些案例的概觀，這些案例適合啟用每分鐘的要求單位。
 
-**開發/測試環境：**適合。 在開發階段，如果您以不同的工作負載測試您的應用程式，RU/m 在這個階段會很有彈性。 [模擬器](../documentdb/documentdb-nosql-local-emulator.md)是適合用來測試 Azure Cosmos DB 的免費工具。 不過，如果您想要從雲端環境開始，RU/m 可針對您的特殊效能需求而發揮很大的彈性。 您會有更多時間進行開發，不必一開始就擔心效能需求。 我們建議從最小的 RU/s 佈建開始，並啟用 RU/m。
+**開發/測試環境：**適合。 在開發階段，如果您以不同的工作負載測試您的應用程式，RU/m 在這個階段會很有彈性。 [模擬器](local-emulator.md)是適合用來測試 Azure Cosmos DB 的免費工具。 不過，如果您想要從雲端環境開始，RU/m 可針對您的特殊效能需求而發揮很大的彈性。 您會有更多時間進行開發，不必一開始就擔心效能需求。 我們建議從最小的 RU/s 佈建開始，並啟用 RU/m。
 
 **無法預測、尖峰、每分鐘細微度的需求︰**適合 – 節省︰25-75%。 我們看到 RU/m 提供明顯的改善，且大部分的實際執行案例都屬於這一類。 如果您的 IoT 工作負載在一分鐘內出現幾次尖峰，且當您在系統同時進行大量插入時執行查詢，則需要更多容量來處理尖峰需求。 建議您套用以下的逐步方法，將您的資源需求最佳化。
 
@@ -175,8 +175,8 @@ var query = client.CreateDocumentQuery<Book>(
 
 在本文中，我們已描述了 Azure Cosmos DB 中的資料分割運作方式、如何建立分割集合，以及如何為您的應用程式挑選適當的資料分割索引鍵。
 
-* 使用 Azure Cosmos DB 執行規模和效能測試。 如需範例，請參閱[使用 Azure Cosmos DB 執行效能和規模測試](../documentdb/documentdb-performance-testing.md)。
-* 使用 [SDK](../documentdb/documentdb-sdk-dotnet.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 開始撰寫程式碼。
-* 了解 Azure Cosmos DB 中[佈建的輸送量](../documentdb/documentdb-request-units.md) 
+* 使用 Azure Cosmos DB 執行規模和效能測試。 如需範例，請參閱[使用 Azure Cosmos DB 執行效能和規模測試](performance-testing.md)。
+* 使用 [SDK](documentdb-sdk-dotnet.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 開始撰寫程式碼。
+* 了解 Azure Cosmos DB 中[佈建的輸送量](request-units.md) 
 
 

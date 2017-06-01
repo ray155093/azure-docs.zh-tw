@@ -15,10 +15,10 @@ ms.workload: NA
 ms.date: 04/28/2017
 ms.author: vturecek
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
-ms.openlocfilehash: 68ca454aebbad30d5ea2511b030f260a6a18b1ca
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: 182c3d02883ceae83c9ba12c0f27085d133ac47a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/01/2017
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -79,7 +79,7 @@ ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建�
     ![為具狀態服務建立介面專案][vs-add-class-library-project]
 
 3. 為了讓介面可供 `ServiceProxy`使用，它必須衍生自 IService 介面。 這個介面會包含在其中一個 Service Fabric NuGet 封裝中。 若要新增封裝，請以滑鼠右鍵按一下新的類別庫專案，然後選擇 [管理 NuGet 封裝] 。
-4. 搜尋 **Microsoft.ServiceFabric.Services** 封裝並加以安裝。
+4. 搜尋 **Microsoft.ServiceFabric.Services.Remoting** 套件並加以安裝。
    
     ![新增服務 NuGet 封裝][vs-services-nuget-package]
 
@@ -163,12 +163,13 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 1. 在 ASP.NET 專案中，新增對含有 `ICounter` 介面之類別庫的參考。
 
-2. 將 Microsoft.ServiceFabric.Services 封裝新增至 ASP.NET 專案，就如同先前對類別庫專案所做的一樣。 這會提供 `ServiceProxy` 類別。
+2. 將 Microsoft.ServiceFabric.Services.Remoting 套件新增至 ASP.NET 專案，就如同先前對類別庫專案所做的一樣。 這會提供 `ServiceProxy` 類別。
 
 4. 在 **Controllers** 資料夾中，開啟 `ValuesController` 類別。 請注意， `Get` 方法目前只會傳回 "value1" 和 "value2" 的硬式編碼字串陣列，這符合我們稍早在瀏覽器中所見的內容。 使用下列程式碼來取代此實作：
    
     ```c#
     using MyStatefulService.Interface;
+    using Microsoft.ServiceFabric.Services.Client;
     using Microsoft.ServiceFabric.Services.Remoting.Client;
    
     ...

@@ -1,4 +1,5 @@
 ---
+
 title: "檢視 Azure 資源存取權指派 | Microsoft Docs"
 description: "檢視及管理 Azure 入口網站中任何使用者或群組的所有角色型存取控制指派"
 services: active-directory
@@ -12,21 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 3/21/2017
+ms.date: 05/04/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 82f084b220ba321945975c8d1a6d22e419acf5e4
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: e3b31a3db4b8f435c29cbc9dbdd09d100e821026
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="view-access-assignments-for-users-and-groups-in-the-azure-portal---public-preview"></a>在 Azure 入口網站 - 公開預覽中檢視存取使用者和群組的工作分派
+# <a name="view-access-assignments-for-users-and-groups-in-the-azure-portal"></a>在 Azure 入口網站中檢視使用者和群組的存取指派
 > [!div class="op_single_selector"]
 > * [使用者或群組管理存取](role-based-access-control-manage-assignments.md)
 > * [資源管理存取](role-based-access-control-configure.md)
 
-您可以使用 Azure Active Directory 預覽版本中的角色型存取控制 (RBAC) 來管理 Azure 資源的存取權。 [預覽版有何功能？](active-directory-preview-explainer.md)
+您可以使用 Azure Active Directory (Azure AD) 中的角色型存取控制 (RBAC) 來管理 Azure 資源的存取權。 
 
 使用 RBAC 指派的存取是精細的，因為有兩種方式可以限制權限︰
 

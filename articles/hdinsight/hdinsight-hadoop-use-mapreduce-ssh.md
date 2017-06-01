@@ -14,12 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/08/2017
+ms.date: 05/03/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: fbf33ea6a6362857bf4bc92055cabd9b099a6d0c
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: d13e6782115bf4f229ed232dc6e3c21ff81c86eb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -27,74 +28,72 @@ ms.lasthandoff: 04/12/2017
 
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-在本文中，您會學習如何使用安全殼層 (SSH) 連線至 HDInsight 叢集上的 Hadoop，然後使用 Hadoop 命令提交 MapReduce 作業。
+了解如何從 HDInsight 的安全殼層 (SSH) 連線提交 MapReduce 作業。
 
 > [!NOTE]
 > 如果您已熟悉使用以 Linux 為基礎的 Hadoop 伺服器，但剛接觸 HDInsight，請參閱 [以 Linux 為基礎的 HDInsight 秘訣](hdinsight-hadoop-linux-information.md)。
 
 ## <a id="prereq"></a>必要條件
 
-若要完成這篇文章中的步驟，您需要下列項目︰
-
 * Linux 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
 
-* SSH 用戶端。 Linux、Unix 和 Mac 作業系統應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
+* SSH 用戶端。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
 
 ## <a id="ssh"></a>使用 SSH 連線
 
-使用 SSH 命令，連線至 HDInsight 叢集的完整網域名稱 (FQDN)。 FQDN 是您提供給叢集的名稱，後接 **.azurehdinsight.net**。 例如，下列命令會連線至名為 **myhdinsight**的叢集：
+使用 SSH 連線到叢集。 例如，下列命令會連線至名為 **myhdinsight** 的叢集：
 
     ssh admin@myhdinsight-ssh.azurehdinsight.net
 
-**如果您提供憑證金鑰進行 SSH 驗證** (在建立 HDInsight 叢集時)，可能需要指定用戶端系統上私密金鑰的位置，例如：
+**如果您使用憑證金鑰進行 SSH 驗證**，您可能需要指定用戶端系統上私密金鑰的位置，例如：
 
     ssh -i ~/mykey.key admin@myhdinsight-ssh.azurehdinsight.net
 
-**如果您提供密碼進行 SSH 驗證** (在建立 HDInsight 叢集時)，則需要在出現提示時提供密碼。
+**如果您使用密碼進行 SSH 驗證**，您需要在接獲提示時提供密碼。
 
 如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 ## <a id="hadoop"></a>使用 Hadoop 命令
 
-1. 連線到 HDInsight 叢集之後，請使用下列 **Hadoop** 命令來啟動 MapReduce 工作：
+1. 連線到 HDInsight 叢集之後，請使用下列命令來啟動 MapReduce 作業：
 
-    ```
+    ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/WordCountOutput
     ```
 
-    這樣會啟動 **wordcount** 類別 (內含於 **hadoop-mapreduce-examples.jar** 檔案中)。 做為輸入，它會使用 **/example/data/gutenberg/davinci.txt** 文件，而且輸出會儲存在 **/example/data/WordCountOutput**。
+    此命令會啟動 `hadoop-mapreduce-examples.jar` 檔案中包含的 `wordcount` 類別。 它會使用 `/example/data/gutenberg/davinci.txt` 文件作為輸入，而輸出會儲存在 `/example/data/WordCountOutput`。
 
     > [!NOTE]
     > 如需關於此 MapReduce 工作和範例資料的詳細資訊，請參閱 [在 HDInsight 上的 Hadoop 中使用 MapReduce](hdinsight-use-mapreduce.md)。
 
-2. 工作會在處理時發出詳細資料，並於工作完成時傳回與下列類似的資訊：
+2. 作業會在處理時發出詳細資料，並於作業完成時傳回類似下列文字的資訊：
 
         File Input Format Counters
         Bytes Read=1395666
         File Output Format Counters
         Bytes Written=337623
 
-3. 工作完成之後，請使用下列命令來列出儲存在 **wasbs://example/data/WordCountOutput** 的輸出檔：
+3. 作業完成時，請使用下列命令來列出輸出檔案︰
 
-    ```
+    ```bash
     hdfs dfs -ls /example/data/WordCountOutput
     ```
 
-    這應該會顯示兩個檔案：**_SUCCESS** 和 **part-r-00000**。 **part-r-00000** 檔案包含這項工作的輸出。
+    此命令會顯示兩個檔案︰`_SUCCESS` 和 `part-r-00000`。 `part-r-00000` 檔案包含此作業的輸出。
 
     > [!NOTE]
     > 某些 MapReduce 工作可能會將結果分成多個 **part-r-#####** 檔案。 若是如此，請使用 ##### 尾碼指出檔案的順序。
 
 4. 若要檢視輸出，請使用下列命令：
 
-    ```
+    ```bash
     hdfs dfs -cat /example/data/WordCountOutput/part-r-00000
     ```
 
-    這會顯示 **wasbs://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單和每個單字的出現次數。 以下是要包含在檔案中之資料的範例：
+    此命令會顯示 **wasbs://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單和每個單字的出現次數。 下列文字此檔案所包含之資料的範例：
 
         wreathed        3
         wreathing       1

@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 02/23/2017
 ms.author: ryanwi
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 8268a0204137a95365a95c323507163c4ec6b33d
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: ae79f305e22095f560f4d97aaa4300b4a8ba20d3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -65,12 +66,12 @@ PS C:\>Connect-ServiceFabricCluster
 Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
 ```
 
-假設您在 Visual Studio 中建置並封裝名為 *MyApplication* 的應用程式。 根據預設，ApplicationManifest.xml 中列出的應用程式類型名稱會是 "MyApplicationType"。  應用程式封裝 (其中包含必要的應用程式資訊清單、服務資訊清單和程式碼/組態/資料封裝) 位於 *C:\Users\username\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug*。 
+假設您在 Visual Studio 2015 中建置並封裝名為 *MyApplication* 的應用程式。 根據預設，ApplicationManifest.xml 中列出的應用程式類型名稱會是 "MyApplicationType"。  應用程式套件 (其中包含必要的應用程式資訊清單、服務資訊清單和程式碼/組態/資料套件) 位於 *C:\Users\\<username\>\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug*。 
 
 下列命令會列出應用程式封裝的內容︰
 
 ```powershell
-PS C:\> $path = 'C:\Users\user\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug'
+PS C:\> $path = 'C:\Users\\<user\>\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug'
 PS C:\> tree /f $path
 Folder PATH listing for volume OSDisk
 Volume serial number is 0459-2393
@@ -130,7 +131,7 @@ C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\
 |2048|1000|00:01:04.3775554|1231|
 |5012|100|00:02:45.2951288|3074|
 
-一旦壓縮封裝後，可以視需要將它上傳到一或多個 Service Fabric 叢集。 部署機制針對壓縮及未壓縮的封裝皆相同。 如果封裝已壓縮，它會以壓縮的形式儲存在叢集映像存放區中，並在應用程式執行之前於節點上解壓縮。
+一旦壓縮封裝後，可以視需要將它上傳到一或多個 Service Fabric 叢集。 已壓縮及未壓縮套件的部署機制皆相同。 如果封裝已壓縮，它會以壓縮的形式儲存在叢集映像存放區中，並在應用程式執行之前於節點上解壓縮。
 
 
 下列範例會將套件上傳至映像存放區中的 "MyApplicationV1" 資料夾︰
@@ -139,7 +140,13 @@ C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\
 PS C:\> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -ApplicationPackagePathInImageStore MyApplicationV1 -ImageStoreConnectionString (Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest)) -TimeoutSec 1800
 ```
 
-如果您未指定 *-ApplicationPackagePathInImageStore* 參數，應用程式封裝會複製到映像存放區中的 "Debug" 資料夾。
+**Get ImageStoreConnectionStringFromClusterManifest** Cmdlet 是 Service Fabric SDK PowerShell 模組的一部分，可用來取得映像存放區連接字串。  若要匯入 SDK 模組，請執行︰
+
+```powershell
+Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
+```
+
+如果您未指定 -ApplicationPackagePathInImageStore 參數，應用程式套件會複製到映像存放區中的 "Debug" 資料夾。
 
 上傳封裝的時間會根據多個因素而有所不同。 這些因素有些是封裝中的檔案數目、封裝大小和檔案大小。 在來源電腦及 Service Fabric 叢集之間的網路速度也會影響上傳時間。 [Copy-servicefabricapplicationpackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) 的預設逾時值為 30 分鐘。
 根據所述的因素，您可能必須增加逾時。 如果要在複製呼叫中壓縮封裝，您需要同時考慮壓縮時間。
@@ -147,7 +154,7 @@ PS C:\> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -Appl
 請參閱[了解映像存放區連接字串](service-fabric-image-store-connection-string.md)，以取得有關映像存放區和映像存放區連接字串的補充資訊。
 
 ## <a name="register-the-application-package"></a>註冊應用程式封裝
-註冊應用程式封裝時，應用程式類型和應用程式資訊清單中宣告的版本可供使用。 系統會讀取在上一個步驟上傳的套件，請確認套件、處理套件內容，然後將處理過的套件複製至內部系統位置。  
+註冊應用程式套件時，應用程式類型和應用程式資訊清單中宣告的版本可供使用。 系統會讀取在上一個步驟上傳的套件，請確認套件、處理套件內容，然後將處理過的套件複製至內部系統位置。  
 
 執行 [Register-servicefabricapplicationtype](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) Cmdlet，將應用程式類型註冊在叢集，使它可供部署使用︰
 
@@ -156,11 +163,11 @@ PS C:\> Register-ServiceFabricApplicationType MyApplicationV1
 Register application type succeeded
 ```
 
-"MyApplicationV1" 是應用程式封裝所在映像存放區中的資料夾。 名稱為 "MyApplicationType" 和版本為 "1.0.0" (兩者都在應用程式資訊清單中) 的應用程式類型，現在已註冊在叢集中。
+"MyApplicationV1" 是應用程式套件所在映像存放區中的資料夾。 名稱為 "MyApplicationType" 和版本為 "1.0.0" (兩者都在應用程式資訊清單中) 的應用程式類型，現在已註冊在叢集中。
 
 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 命令只有在系統成功註冊應用程式封裝之後才會返回。 註冊所需時間取決於應用程式封裝的大小和內容。 **-TimeoutSec** 參數可在必要時用來提供較長的逾時 (預設逾時為 60 秒)。
 
-如果您有大型應用程式封裝或如果您遇到逾時，使用 **-Async** 參數。 當叢集接受暫存器命令時會傳回此命令，並視需要繼續處理。
+如果您有大型應用程式套件或如果您遇到逾時，使用 **-Async** 參數。 當叢集接受暫存器命令時會傳回此命令，並視需要繼續處理。
 [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) 命令會列出所有成功註冊的應用程式類型版本和其註冊狀態。 您可以使用此命令以判斷何時會完成註冊。
 
 ```powershell
@@ -173,7 +180,7 @@ DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 ```
 
 ## <a name="create-the-application"></a>建立應用程式
-您可以使用 [New-ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) Cmdlet，從任何已成功註冊的應用程式類型版本，將應用程式具現化。 每個應用程式名稱的開頭必須為 *fabric:* 配置，並且是每個應用程式執行個體的唯一名稱。 如果已在目標應用程式類型的應用程式資訊清單中定義預設服務，也會一併建立這些服務。
+您可以使用 [New-ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) Cmdlet，從任何已成功註冊的應用程式類型版本，將應用程式具現化。 每個應用程式名稱的開頭必須為 "fabric:" 配置，而且必須是每個應用程式執行個體的唯一名稱。 如果已在目標應用程式類型的應用程式資訊清單中定義預設服務，也會一併建立這些服務。
 
 ```powershell
 PS C:\> New-ServiceFabricApplication fabric:/MyApp MyApplicationType 1.0.0
@@ -209,7 +216,10 @@ HealthState            : Ok
 ```
 
 ## <a name="remove-an-application"></a>移除應用程式
-當不再需要應用程式執行個體時，您可以使用 [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) Cmdlet，依名稱永久移除它。 [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) 也會自動移除屬於應用程式的所有服務，永久地移除所有服務狀態。 此作業無法回復，且應用程式狀態無法復原。
+當不再需要應用程式執行個體時，您可以使用 [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) Cmdlet，依名稱永久移除它。 [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) 也會自動移除屬於應用程式的所有服務，永久地移除所有服務狀態。 
+
+> [!WARNING]
+> 此作業無法回復，且應用程式狀態無法復原。
 
 ```powershell
 PS C:\> Remove-ServiceFabricApplication fabric:/MyApp
@@ -251,10 +261,16 @@ PS C:\>Remove-ServiceFabricApplicationPackage -ApplicationPackagePathInImageStor
 
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="copy-servicefabricapplicationpackage-asks-for-an-imagestoreconnectionstring"></a>Copy-ServiceFabricApplicationPackage 要求 ImageStoreConnectionString
-Service Fabric SDK 環境應已正確設定預設值。 但若有需要，所有命令的 ImageStoreConnectionString都應符合 Service Fabric 叢集正在使用的值。 您可以在使用 [Get-servicefabricclustermanifest](/powershell/module/servicefabric/get-servicefabricclustermanifest?view=azureservicefabricps) 命令所擷取的叢集資訊清單中，找到 ImageStoreConnectionString：
+Service Fabric SDK 環境應已正確設定預設值。 但若有需要，所有命令的 ImageStoreConnectionString都應符合 Service Fabric 叢集正在使用的值。 您可以在使用 [Get-ServiceFabricClusterManifest](/powershell/module/servicefabric/get-servicefabricclustermanifest?view=azureservicefabricps) 和 Get-ImageStoreConnectionStringFromClusterManifest 命令擷取的叢集資訊清單 ImageStoreConnectionString 中找到此值：
 
 ```powershell
-PS C:\> Get-ServiceFabricClusterManifest
+PS C:\> Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest)
+```
+
+**Get ImageStoreConnectionStringFromClusterManifest** Cmdlet 是 Service Fabric SDK PowerShell 模組的一部分，可用來取得映像存放區連接字串。  若要匯入 SDK 模組，請執行︰
+
+```powershell
+Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
 ```
 
 會在叢集資訊清單中找到 ImageStoreConnectionString：
@@ -286,16 +302,33 @@ PS C:\> Get-ServiceFabricClusterManifest
 - 複製到映像存放區之前[壓縮封裝](service-fabric-package-apps.md#compress-a-package)。
 壓縮會減少檔案的大小和數目，而後者則可減少資料傳輸量和 Service Fabric 必須執行的工作。 上傳作業可能會變慢 (尤其是如果您包含壓縮時間)，但註冊和取消註冊應用程式類型會比較快。
 - 使用 `TimeoutSec` 參數指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的較大逾時。
-- 指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的 `Async` 參數。 當叢集接受命令時會傳回此命令，且佈建會繼續非同步。
-基於這個理由，在此情況下不需要指定較高的逾時。
+- 指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的 `Async` 參數。 當叢集接受命令時會傳回此命令，而且會繼續以非同步方式進行應用程式類型的註冊。 基於這個理由，在此情況下不需要指定較高的逾時。 [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) 命令會列出所有成功註冊的應用程式類型版本和其註冊狀態。 您可以使用此命令以判斷何時會完成註冊。
+
+```powershell
+PS C:\> Get-ServiceFabricApplicationType
+
+ApplicationTypeName    : MyApplicationType
+ApplicationTypeVersion : 1.0.0
+Status                 : Available
+DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
+```
 
 ### <a name="deploy-application-package-with-many-files"></a>部署具有很多檔案的應用程式封裝
 問題︰具有很多檔案的應用程式封裝 (以千計的順序) [Register-servicefabricapplicationtype](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的逾時。
 請嘗試︰
 - 複製到映像存放區之前[壓縮封裝](service-fabric-package-apps.md#compress-a-package)。 壓縮會減少檔案的數目。
 - 使用 `TimeoutSec` 參數指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的較大逾時。
-- 指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的 `Async` 參數。 當叢集接受命令時會傳回此命令，且佈建會繼續非同步。
-基於這個理由，在此情況下不需要指定較高的逾時。 
+- 指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的 `Async` 參數。 當叢集接受命令時會傳回此命令，而且會繼續以非同步方式進行應用程式類型的註冊。
+基於這個理由，在此情況下不需要指定較高的逾時。 [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) 命令會列出所有成功註冊的應用程式類型版本和其註冊狀態。 您可以使用此命令以判斷何時會完成註冊。
+
+```powershell
+PS C:\> Get-ServiceFabricApplicationType
+
+ApplicationTypeName    : MyApplicationType
+ApplicationTypeVersion : 1.0.0
+Status                 : Available
+DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
+```
 
 ## <a name="next-steps"></a>後續步驟
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)

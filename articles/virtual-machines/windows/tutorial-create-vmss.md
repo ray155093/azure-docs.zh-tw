@@ -13,20 +13,27 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: 
 ms.topic: article
-ms.date: 05/01/2017
+ms.date: 05/02/2017
 ms.author: iainfou
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: bbd4f044d85f2e22f27edc44b91fd42aef304ed2
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 8a5f6e8bf01c8bc38f3fd327acd0ddc8f9cdd7de
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 ---
 
 # <a name="create-a-virtual-machine-scale-set-and-deploy-a-highly-available-app-on-windows"></a>在 Windows 上建立虛擬機器擴展集及部署高可用性應用程式
-在本教學課程中，您會了解 Azure 中的虛擬機器擴展集如何讓您快速地擴展執行您應用程式的虛擬機器 (VM) 數目。 虛擬機器擴展集可讓您部署和管理一組相同、自動調整的虛擬機器。 您可以手動調整擴展集中的 VM 數目，或定義規則以根據 CPU 使用量、記憶體需求或網路流量自動調整。 若要查看作用中的虛擬機器擴展集，您可建置在多部 Windows VM 上執行的基本 IIS 網站。
+虛擬機器擴展集可讓您部署和管理一組相同、自動調整的虛擬機器。 您可以手動調整擴展集中的 VM 數目，或定義規則以根據 CPU 使用量、記憶體需求或網路流量自動調整。 在本教學課程中，您將會在 Azure 部署虛擬機器擴展集。 您會了解如何：
 
-您可以使用最新的 [Azure PowerShell](/powershell/azureps-cmdlets-docs/) 模組來完成本教學課程中的步驟。
+> [!div class="checklist"]
+> * 使用自訂指令碼擴充功能定義可擴展的 IIS 網站
+> * 建立擴展集的負載平衡器規則
+> * 建立虛擬機器擴展集
+> * 增加或減少擴展集內的執行個體數目
+> * 建立自動調整規則
+
+本教學課程需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 找出版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 
 ## <a name="scale-set-overview"></a>擴展集概觀
@@ -38,10 +45,10 @@ VM 會視需要建立於擴展集中。 您將定義自動調整規則，以控�
 
 
 ## <a name="create-an-app-to-scale"></a>建立要調整的應用程式
-建立擴展集之前，請先使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 來建立資源群組。 下列範例會在 westus 位置建立名為 myResourceGroupAutomate 的資源群組：
+建立擴展集之前，請先使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 來建立資源群組。 下列範例會在 EastUS 位置建立名為 myResourceGroupAutomate 的資源群組：
 
 ```powershell
-New-AzureRmResourceGroup -ResourceGroupName myResourceGroupScaleSet -Location westus
+New-AzureRmResourceGroup -ResourceGroupName myResourceGroupScaleSet -Location EastUS
 ```
 
 在先前的教學課程中，您已了解如何使用自訂指令碼擴充功能來[自動化 VM 組態](tutorial-automate-vm-deployment.md)。 建立擴展集組態，然後套用自訂指令碼擴充功能來安裝及設定 IIS：
@@ -49,7 +56,7 @@ New-AzureRmResourceGroup -ResourceGroupName myResourceGroupScaleSet -Location we
 ```powershell
 # Create a config object
 $vmssConfig = New-AzureRmVmssConfig `
-    -Location WestUS `
+    -Location EastUS `
     -SkuCapacity 2 `
     -SkuName Standard_DS2 `
     -UpgradePolicyMode Automatic
@@ -78,7 +85,7 @@ Azure Load Balancer 是 Layer-4 (TCP、UDP) 負載平衡器，可將連入流量
 # Create a public IP address
 $publicIP = New-AzureRmPublicIpAddress `
   -ResourceGroupName myResourceGroupScaleSet `
-  -Location westus `
+  -Location EastUS `
   -AllocationMethod Static `
   -Name myPublicIP
 
@@ -92,7 +99,7 @@ $backendPool = New-AzureRmLoadBalancerBackendAddressPoolConfig -Name myBackEndPo
 $lb = New-AzureRmLoadBalancer `
   -ResourceGroupName myResourceGroupScaleSet `
   -Name myLoadBalancer `
-  -Location westus `
+  -Location EastUS `
   -FrontendIpConfiguration $frontendIP `
   -BackendAddressPool $backendPool
 
@@ -142,7 +149,7 @@ $subnet = New-AzureRmVirtualNetworkSubnetConfig `
 $vnet = New-AzureRmVirtualNetwork `
   -ResourceGroupName "myResourceGroupScaleSet" `
   -Name "myVnet" `
-  -Location "westus" `
+  -Location "EastUS" `
   -AddressPrefix 10.0.0.0/16 `
   -Subnet $subnet
 $ipConfig = New-AzureRmVmssIpConfig `
@@ -194,7 +201,7 @@ $scaleset = Get-AzureRmVmss `
   -VMScaleSetName myScaleSet
 
 # Loop through the instanaces in your scale set
-for ($i=0; $i -le ($set.Sku.Capacity - 1); $i++) {
+for ($i=0; $i -le ($scaleset.Sku.Capacity - 1); $i++) {
     Get-AzureRmVmssVM -ResourceGroupName myResourceGroupScaleSet `
       -VMScaleSetName myScaleSet `
       -InstanceId $i
@@ -284,6 +291,17 @@ Add-AzureRmAutoscaleSetting `
 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已了解如何建立虛擬機器擴展集。 請前進到下一個教學課程，以深入了解虛擬機器的負載平衡概念。
+在本教學課程中，您已建立虛擬機器擴展集。 您已了解如何︰
 
-[平衡虛擬機器的負載](tutorial-load-balancer.md)
+> [!div class="checklist"]
+> * 使用自訂指令碼擴充功能定義可擴展的 IIS 網站
+> * 建立擴展集的負載平衡器規則
+> * 建立虛擬機器擴展集
+> * 增加或減少擴展集內的執行個體數目
+> * 建立自動調整規則
+
+請前進到下一個教學課程，以深入了解虛擬機器的負載平衡概念。
+
+> [!div class="nextstepaction"]
+> [平衡虛擬機器的負載](tutorial-load-balancer.md)
+

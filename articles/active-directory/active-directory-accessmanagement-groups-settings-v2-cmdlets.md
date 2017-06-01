@@ -13,16 +13,17 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 05/04/2017
 ms.author: curtand;rodejo
-translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 9342ecff33ca60d39c55042238ea563dd1a82da6
-ms.lasthandoff: 04/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: d7be54b508a845d6746fd65887e3339ff371a287
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
-# <a name="azure-active-directory-preview-cmdlets-for-group-management"></a>適用於群組管理的 Azure Active Directory Preview Cmdlet
+# <a name="azure-active-directory-version-2-cmdlets-for-group-management"></a>適用於群組管理的 Azure Active Directory 第 2 版 Cmdlet
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-groups-create-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-accessmanagement-manage-groups.md)
@@ -30,20 +31,20 @@ ms.lasthandoff: 04/28/2017
 >
 >
 
-下列文件將提供範例，說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。  其中也提供有關如何使用 Azure AD PowerShell Preview 模組完成設定的資訊。 首先，您必須 [下載 Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/)。
+下列文件將提供範例，說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。  其中也提供有關如何使用 Azure AD PowerShell 模組完成設定的資訊。 首先，您必須 [下載 Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/)。
 
 ## <a name="installing-the-azure-ad-powershell-module"></a>安裝 Azure AD PowerShell 模組
 若要安裝 AzureAD PowerShell 模組，請使用下列命令︰
 
     PS C:\Windows\system32> install-module azuread
 
-若要確認已安裝 Preview 模組，請使用下列命令︰
+若要確認已安裝此模組，請使用下列命令︰
 
-    PS C:\Windows\system32> get-module azureadpreview
+    PS C:\Windows\system32> get-module azuread
 
-    ModuleType Version    Name                                ExportedCommands
-    ---------- -------    ----                                ----------------
-    Binary     1.1.146.0  azureadpreview                      {Add-AzureADAdministrati...}
+    ModuleType Version      Name                                ExportedCommands
+    ---------- ---------    ----                                ----------------
+    Binary     2.0.0.115    azuread                      {Add-AzureADAdministrati...}
 
 現在您可以開始在模組中使用 Cmdlet。 如需有關 Azure AD 模組中各式 Cmdlet 的完整描述，請參閱[線上參考文件](/powershell/azure/install-adv2?view=azureadps-2.0)。
 

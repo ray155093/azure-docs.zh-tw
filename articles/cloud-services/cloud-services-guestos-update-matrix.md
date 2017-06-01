@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 4/18/2017
+ms.date: 5/17/2017
 ms.author: raiye
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: d471f5826cc05fb52ff4c24184628235477c075d
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 16a773e0c406f257925a9af01155ed157ffaf014
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -29,16 +30,21 @@ ms.lasthandoff: 04/18/2017
 > 
 > 
 
-<!-- -->
 
-> [!TIP]
-> 請訂閱[客體 OS 更新 RSS 摘要][rss]，以接收有關所有客體 OS 變更的最及時性通知。
+> [!NOTE]
+> RSS 摘要最近已過時。 請密切注意即將推出的全新摘要更新！
 > 
 > 
-
+ 
 不確定客體 OS 為何或客體 OS 版次如何工作？ 請閱讀 [本節內容](#how-it-works) 。
 
 ## <a name="news-updates"></a>新聞更新
+###### <a name="may-17-2017"></a>**2017 年 5 月 17 日**
+由於安全性問題，我們將停用下列 2016 年 12 月和 2017 年 1 月的 OS 版本，這些版本中不包含入口網站的[修正]：WA-GUEST-OS-5.4_201612-01、WA-GUEST-OS-4.39_201612-01、WA-GUEST-OS-3.46_201612-01、WA-GUEST-OS-2.59_201701-01
+
+###### <a name="may-12-2017"></a>**2017 年 5 月 12 日**
+5 月的客體 OS 首度發行期間從 5 月 12 日開始，預訂的正式發行日為 6 月 13 日。
+
 ###### <a name="april-18-2017"></a>**2017 年 4 月 18 日**
 4 月的客體 OS 的度發行期間從 4 月 18 日開始，預訂發行日為 5 月 9 日。
 
@@ -72,9 +78,10 @@ ms.lasthandoff: 04/18/2017
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | --- | --- | --- | --- |
+| WA-GUEST-OS-5.6_201704-01 |2017 年 5 月 9 日 |Post 5.8 |TBD | 
 | WA-GUEST-OS-5.5_201703-01 |2017 年 4 月 10 日 |在 5.7 版之後 |TBD | 
-| WA-GUEST-OS-5.4_201612-01 |2017 年 1 月 10 日 |在 5.6 版之後 |TBD | 
-| WA-GUEST-OS-5.3_201611-01 |2016 年 12 月 14 日 |在 5.5 版之後 |TBD |
+|~~WA-GUEST-OS-5.4_201612-01~~ |2017 年 1 月 10 日 |在 5.6 版之後 |TBD | 
+|~~WA-GUEST-OS-5.3_201611-01~~ |2016 年 12 月 14 日 |2017 年 5 月 9 日 |TBD |
 |~~WA-GUEST-OS-5.2_201610-02~~ |2016 年 11 月 1 日 |2017 年 4 月 10 日 |TBD |
 
 ## <a name="family-4-releases"></a>系列 4 版次
@@ -89,9 +96,10 @@ ms.lasthandoff: 04/18/2017
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | --- | --- | --- | --- |
+| WA-GUEST-OS-4.41_201704-01 |2017 年 5 月 9 日 |Post 4.43 |TBD |
 | WA-GUEST-OS-4.40_201703-01 |2017 年 4 月 10 日 |在 4.42 版之後 |TBD |
-| WA-GUEST-OS-4.39_201612-01 |2017 年 1 月 10 日 |在 4.41 版之後 |TBD |
-| WA-GUEST-OS-4.38_201611-01 |2016 年 12 月 14 日 |在 4.40 版之後 |TBD |
+|~~WA-GUEST-OS-4.39_201612-01~~ |2017 年 1 月 10 日 |在 4.41 版之後 |TBD |
+|~~WA-GUEST-OS-4.38_201611-01~~ |2016 年 12 月 14 日 |2017 年 5 月 9 日 |TBD |
 |~~WA-GUEST-OS-4.37_201610-02~~ |2016 年 11 月 16 日 |2017 年 4 月 10 日 |TBD |
 |~~WA-GUEST-OS-4.36_201609-01~~ |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
 |~~WA-GUEST-OS-4.35_201608-01~~ |2016 年 9 月 13 日 |2016 年 12 月 16 日 |TBD |
@@ -115,10 +123,11 @@ ms.lasthandoff: 04/18/2017
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | --- | --- | --- | --- |
+| WA-GUEST-OS-3.48_201704-01 |2017 年 5 月 9 日 |Post 3.50 |TBD |
 | WA-GUEST-OS-3.47_201703-01 |2017 年 4 月 10 日 |在 3.49 版之後 |TBD |
-| WA-GUEST-OS-3.46_201612-01 |2017 年 1 月 10 日 |在 3.48 版之後 |TBD |
-| WA-GUEST-OS-3.45_201611-01 |2016 年 12 月 14 日 |在 3.47 版之後 |TBD |
-| WA-GUEST-OS-3.44_201610-02 |2016 年 11 月 16 日 |2017 年 5 月 1 日 |TBD |
+| ~~WA-GUEST-OS-3.46_201612-01~~ |2017 年 1 月 10 日 |在 3.48 版之後 |TBD |
+| ~~WA-GUEST-OS-3.45_201611-01~~ |2016 年 12 月 14 日 |2017 年 5 月 9 日 |TBD |
+| ~~WA-GUEST-OS-3.44_201610-02~~ |2016 年 11 月 16 日 |2017 年 5 月 1 日 |TBD |
 | ~~WA-GUEST-OS-3.43_201609-01~~ |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
 | ~~WA-GUEST-OS-3.42_201608-01~~ |2016 年 9 月 13 日 |2016 年 12 月 16 日 |TBD |
 | ~~WA-GUEST-OS-3.41_201607-01~~ |2016 年 8 月 8 日 |2016 年 11 月 13 日 |TBD |
@@ -141,9 +150,10 @@ ms.lasthandoff: 04/18/2017
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | --- | --- | --- | --- |
+| WA-GUEST-OS-2.61_201704-01 |2017 年 5 月 9 日 |Post 2.63 |TBD |
 | WA-GUEST-OS-2.60_201703-01 |2017 年 4 月 10 日 |在 2.62 版之後 |TBD |
-| WA-GUEST-OS-2.59_201701-01 |2017 年 1 月 10 日 |在 2.61 版之後 |TBD |
-| WA-GUEST-OS-2.58_201612-01 |2017 年 1 月 10 日 |在 2.60 版之後 |TBD |
+|~~WA-GUEST-OS-2.59_201701-01~~ |2017 年 1 月 10 日 |在 2.61 版之後 |TBD |
+|~~WA-GUEST-OS-2.58_201612-01~~ |2017 年 1 月 10 日 |2017 年 5 月 9 日|TBD |
 |~~WA-GUEST-OS-2.57_201611-01~~ |2016 年 12 月 14 日 |2017 年 4 月 10 日 |TBD |
 |~~WA-GUEST-OS-2.56_201610-02~~ |2016 年 11 月 16 日 |2017 年 2 月 10 日 |TBD |
 |~~WA-GUEST-OS-2.55_201609-01~~ |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
@@ -200,7 +210,7 @@ ms.lasthandoff: 04/18/2017
 ## <a name="guest-os-system-update-process"></a>客體作業系統的系統更新程序
 此頁面包含即將推出的客體作業系統版次的相關資訊。 客戶表示想要知道何時推出版次，因為他們的雲端服務角色如果設為「自動」更新，將重新啟動。 在每月第二個星期二發行 MSRC 更新後，通常至少 5 天才會推出客體作業系統版次。 新版次包含每個客體作業系統系列的相關 MSRC 修補程式。 
 
-Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的一項更新。 影響版次的因素太多，無法在這裡完整列出。 此外，Azure 實際上是在成千上萬個電腦上執行。 這表示不可能指出您的角色重新啟動的確切日期和時間。 我們會在[客體 OS 更新 RSS 摘要][rss]中隨時提供最新資訊，但請將該時間視為大約的時間。 我們知道這對客戶造成困擾，所以正計劃對重新啟動設限或訂定時間。 
+Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的一項更新。 影響版次的因素太多，無法在這裡完整列出。 此外，Azure 實際上是在成千上萬個電腦上執行。 這表示不可能指出您的角色重新啟動的確切日期和時間。 我們知道這對客戶造成困擾，所以正計劃對重新啟動設限或訂定時間。 
 
 新版次的客體作業系統發行時，需要一段時間才會完全傳播到整個 Azure。 當服務更新到新的客體作業系統時，它們會重新啟動，讓更新網域生效。 設為「自動」更新的服務會最先取得一個版次。 更新之後，您在 Azure 傳統入口網站中會看到您的服務列出新的客體作業系統版本。 此期間可能再度發行版次。 某些版本的部署期間可能很長，而且在官方發行日期之後，可能經過許多個星期都還不會進行自動升級重新啟動。 當客體作業系統推出時，您可以從入口網站或組態檔中明確地選擇該版本。 
 
@@ -213,7 +223,6 @@ Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的
 
 [Install .NET on a Cloud Service Role]: https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
 [Azure Guest OS Update Settings]: cloud-services-how-to-configure.md
-[rss]: http://sxp.microsoft.com/feeds/3.0/msdntn/WindowsAzureOSUpdates
 [ssl3 announcement]: http://azure.microsoft.com/blog/2014/12/09/azure-security-ssl-3-0-update/
 [Microsoft Security Advisory 3009008]: https://technet.microsoft.com/library/security/3009008.aspx
 [ssl3-fixit]: http://go.microsoft.com/?linkid=9863266
@@ -230,5 +239,6 @@ Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的
 [patches]: cloud-services-guestos-msrc-releases.md
 [retirepolicy]: cloud-services-guestos-retirement-policy.md
 [fam1retire]: cloud-services-guestos-family1-retirement.md
+[修正]: https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
 
 

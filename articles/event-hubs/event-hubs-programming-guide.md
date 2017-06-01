@@ -1,6 +1,6 @@
 ---
 title: "Azure 事件中樞的程式設計指南 | Microsoft Docs"
-description: "說明使用 Azure.NET SDK 設計 Azure 事件中樞。"
+description: "使用 Azure .NET SDK 撰寫 Azure 事件中樞的程式碼。"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -12,24 +12,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 02/10/2017
+ms.date: 05/17/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: d8a767e9149c6c5eca5b22f094ae924135fa7a2d
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 6d0a1501b97ddb2c819361b00a85ebec12f7b50e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
 # <a name="event-hubs-programming-guide"></a>事件中樞程式設計指南
+
 本文會討論一些使用 Azure 事件中樞和 Azure .NET SDK 來撰寫程式碼的常見案例。 它假設使用者對事件中樞已有初步了解。 如需事件中樞的概念概觀，請參閱 [事件中樞概觀](event-hubs-what-is-event-hubs.md)。
 
 ## <a name="event-publishers"></a>事件發佈者
+
 您可以使用 HTTP POST 或透過 AMQP 1.0 連線，將事件傳送到事件中樞。 使用選擇取決於應用的特定案例。 AMQP 1.0 連線是以服務匯流排中的代理連線形式計量，其較適合經常出現大量訊息且需要低延遲的案例，因為它們可提供持續的傳訊通道。
 
 您可以使用 [NamespaceManager][] 類別來建立及管理事件中樞。 在使用 .NET Managed API 時，用於將資料發佈到事件中樞的主要建構是 [EventHubClient](/dotnet/api/microsoft.servicebus.messaging.eventhubclient) 和 [EventData][] 類別。 [EventHubClient][] 提供將事件傳送到事件中樞時所透過的 AMQP 通訊通道。 [EventData][] 類別代表事件，可用來將訊息發佈到事件中樞。 這個類別包含主體、一些中繼資料，以及有關事件的標頭資訊。 當 [EventData][] 物件通過事件中樞時，系統會為它新增其他屬性。
 
 ## <a name="get-started"></a>開始使用
+
 Microsoft.ServiceBus.dll 組件中會提供支援事件中樞的 .NET 類別。 要參考服務匯流排 API，並設定應用程式以使用所有服務匯流排相依性，最簡單方法是下載 [服務匯流排 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)。 或者，您也可以在 Visual Studio 中使用 [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) 。 若要這樣做，請在 [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) 視窗中發出下列命令：
 
 ```
@@ -152,7 +156,7 @@ while(receive)
 }
 ```
 
-對特定資料分割來說，訊息的接收順序與傳送到事件中樞時的順序相同。 位移是一種字串語彙基元，它能用來識別資料分割中的訊息。
+對特定資料分割來說，訊息的接收順序與傳送到事件中樞時的順序相同。 位移是一種字串權杖，它能用來識別資料分割中的訊息。
 
 請注意，消費者群組內的單一資料分割一律不能擁有超過 5 個已連接的並行讀取器。 當讀取器連接或中斷連線時，其工作階段可能會維持作用中狀態達數分鐘之久，服務才能辨識出它們已經中斷連線。 在這段時間內，讀取器可能會無法重新連接資料分割。 如需撰寫事件中樞之直接接收者的完整範例，請參閱[事件中樞直接接收者](https://code.msdn.microsoft.com/Event-Hub-Direct-Receivers-13fa95c6)範例。
 
