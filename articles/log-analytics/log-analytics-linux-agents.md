@@ -3,7 +3,7 @@ title: "將 Linux 電腦連線到 Azure Log Analytics | Microsoft Docs"
 description: "使用 Log Analytics，您可以收集和處理從 Linux 電腦所產生的資料。"
 services: log-analytics
 documentationcenter: 
-author: bandersmsft
+author: MGoedtel
 manager: carmonm
 editor: 
 ms.assetid: ab5b76d8-9ab5-406e-8768-76fb0632d830
@@ -13,12 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 03/29/2017
-ms.author: banders
+ms.author: magoedte
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: b01b0d3d61168c1eec52f3fd040b829e0c51a878
-ms.lasthandoff: 03/30/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 10da54ebce28dfdcd0f793b1c717e738150b72ae
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -263,7 +264,7 @@ Type=Perf Computer=chorizo*
 Syslog 是與 Windows 事件記錄檔類似的事件記錄通訊協定 (在 OMS 中顯示時，兩者的運作方式類似)。
 
 ### <a name="to-add-a-new-linux-syslog-facility-in-oms"></a>在 OMS 中加入新的 Linux syslog 設備
-1. 在 **[設定]** 頁面的 **[資料]**下方，按一下**[Syslog]** ，然後在加號圖示左邊，輸入您想要新增的 syslog 設備名稱。
+1. 在 **[設定]** 頁面的 **[資料] **下方，按一下** [Syslog]** ，然後在加號圖示左邊，輸入您想要新增的 syslog 設備名稱。
     ![Linux syslog](./media/log-analytics-linux-agents/oms-linuxsyslog01.png)
 2. 如果您不知道設備的完整名稱，可以開始輸入局部名稱，並會出現可用的 syslog 設備清單。 當您找到想要加入的 syslog 設備時，請按一下清單中的名稱，然後按一下加號圖示加入 syslog 設備。
 3. 設備在加入之後會出現在以彩色列反白顯示的清單中。 接下來，選擇您想要收集的嚴重性 (syslog 設備資訊的類別)。
@@ -750,7 +751,7 @@ sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.conf /etc/opt/microsoft/oms
 ### <a name="azure-diagnostics"></a>Azure 診斷
 對於在 Azure 中執行的 Linux 虛擬機器，可能需要額外的步驟，才能允許 Azure Diagnostics 和 Operations Management Suite 的資料收集。 **版本 2.2** 的 Diagnostics Extension for Linux，才能與 OMS Agent for Linux 相容。
 
-如需安裝和設定 Diagnostic Extension for Linux 的詳細資訊，請參閱 [使用 Azure CLI 命令啟用 Linux Diagnostic Extension](../virtual-machines/linux/classic/diagnostic-extension.md#use-the-azure-cli-command-to-enable-the-linux-diagnostic-extension)。
+如需安裝和設定 Diagnostic Extension for Linux 的詳細資訊，請參閱 [使用 Azure CLI 命令啟用 Linux Diagnostic Extension](../virtual-machines/linux/classic/diagnostic-extension-v2.md#use-the-azure-cli-command-to-enable-the-linux-diagnostic-extension)。
 
 **將 Linux Diagnostics Extension 從 2.0 升級到 2.2 Azure CLI ASM：**
 
