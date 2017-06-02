@@ -14,12 +14,12 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: cephalin
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 6563d1520149ae5ced7e2de80686ef1624ebb651
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 3ae3e5d55454a33a35950057667f9648b63bb331
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
-
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="build-an-aspnet-app-in-azure-with-sql-database"></a>在 Azure 中搭配 SQL Database 來建置 ASP.NET 應用程式
@@ -34,7 +34,7 @@ ms.lasthandoff: 05/09/2017
 > * 在 Azure 中建立 SQL Database
 > * 將 ASP.NET 應用程式連線到 SQL Database
 > * 將應用程式部署至 Azure
-> * 更新資料模型並重新部署應用程式
+> * 將資料模型更新並將應用程式重新部署
 > * 將記錄從 Azure 串流到終端機
 > * 在 Azure 入口網站中管理應用程式
 
@@ -111,19 +111,7 @@ ms.lasthandoff: 05/09/2017
 
 ### <a name="create-an-app-service-plan"></a>建立應用程式服務方案
 
-Azure Web 應用程式也需要「App Service 方案」。 
-
-> [!NOTE]
-> App Service 方案代表用來裝載應用程式的實體資源集合。 所有指派給 App Service 方案的應用程式都會共用它所定義的資源，而讓您節省裝載多個應用程式時的成本。 
->
-> App Service 方案可定義：
->
-> - 區域 (北歐、美國東部、東南亞)
-> - 執行個體大小 (小型、中型、大型)
-> - 級別計數 (一、二或三個執行個體等) 
-> - SKU (免費、共用、基本、標準、進階)
->
->
+[!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
 按一下 [App Service 方案] 旁邊的 [新增]。 
 
@@ -445,11 +433,11 @@ az group delete --name myResourceGroup
 > * 在 Azure 中建立 SQL Database
 > * 將 ASP.NET 應用程式連線到 SQL Database
 > * 將應用程式部署至 Azure
-> * 更新資料模型並重新部署應用程式
+> * 將資料模型更新並將應用程式重新部署
 > * 將記錄從 Azure 串流到終端機
 > * 在 Azure 入口網站中管理應用程式
 
-前進至下一個教學課程，以了解如何對它對應自訂 DNS 名稱。
+前進至下一個教學課程，了解如何對它對應自訂 DNS 名稱。
 
 > [!div class="nextstepaction"]
 > [將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)

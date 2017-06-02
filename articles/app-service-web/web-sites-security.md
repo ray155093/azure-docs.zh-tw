@@ -14,10 +14,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: eaf3df69428124127ef3daf134bc948cd0988ec6
-ms.openlocfilehash: c1956e97444077f197ab5d0fd67097ddea0f7244
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 3071bf565b14966de2293205026c4524d7b0f0c5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -56,7 +57,7 @@ Azure 負責保護您的應用程式執行所在的基礎結構和平台，而�
 如果您想要執行專屬的滲透測試，或想要使用另一個掃描器套件或提供者，您必須依照 [Azure 滲透測試核准程序](https://security-forms.azure.com/penetration-testing/terms) 並取得先前核准，才能執行所需的滲透測試。
 
 ## <a name="https"></a> 與客戶的安全通訊
-如果您使用為 App Service 應用程式建立的 **\*.azurewebsites.net** 網域名稱，就可立即使用 HTTPS，因為 SSL 憑證是針對所有 **\*.azurewebsites.net** 網域名稱而提供。 如果您的網站使用[自訂網域名稱](web-sites-custom-domain-name.md)，您可以上傳 SSL 憑證以為自訂網域[啟用 HTTPS](web-sites-configure-ssl-certificate.md)。
+如果您使用為 App Service 應用程式建立的 **\*.azurewebsites.net** 網域名稱，就可立即使用 HTTPS，因為 SSL 憑證是針對所有 **\*.azurewebsites.net** 網域名稱而提供。 如果您的網站使用[自訂網域名稱](app-service-web-tutorial-custom-domain.md)，您可以上傳 SSL 憑證以為自訂網域[啟用 HTTPS](app-service-web-tutorial-custom-ssl.md)。
 
 啟用 [HTTPS](https://en.wikipedia.org/wiki/HTTPS) 有助於防範對於您的應用程式與使用者之間的通訊的 MITM 攻擊。
 

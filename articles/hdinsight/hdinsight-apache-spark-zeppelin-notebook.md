@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: a5494f16e3398be507080dd4fac591144f69d9fc
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: bc1b22b6269dc42add45a63d12c6c733e9d8c6ab
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/24/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -48,12 +48,12 @@ HDInsight Spark 叢集包含可用來執行 Spark 作業的 Zeppelin Notebook。
    > 
 2. 建立新的 Notebook。 按一下標頭窗格中的 [Notebook]，然後按一下 [建立新 Note]。
    
-    ![建立新的 Zeppelin Notebook](./media/hdinsight-apache-spark-zeppelin-notebook/hdispark.createnewnote.png "建立新的 Zeppelin Notebook")
+    ![建立新的 Zeppelin Notebook](./media/hdinsight-apache-spark-zeppelin-notebook/hdinsight-create-zeppelin-notebook.png "建立新的 Zeppelin Notebook")
    
     輸入 Notebook 的名稱，然後按一下 [建立記事]。
 3. 此外，請確定 Notebook 標頭顯示的是已連線狀態。 右上角的綠點即表示此狀態。
    
-    ![Zeppelin Notebook 狀態](./media/hdinsight-apache-spark-zeppelin-notebook/hdispark.newnote.connected.png "Zeppelin Notebook 狀態")
+    ![Zeppelin Notebook 狀態](./media/hdinsight-apache-spark-zeppelin-notebook/hdinsight-zeppelin-connected.png "Zeppelin Notebook 狀態")
 4. 將範例資料載入暫存資料表。 當您在 HDInsight 中建立 Spark 叢集時，系統會將範例資料檔案 **hvac.csv** 複製到相關聯的儲存體帳戶中 (位於 **\HdiSamples\SensorSampleData\hvac**)。
    
     將以下程式碼片段貼入新 Notebook 中預設建立的空白段落。
@@ -82,7 +82,7 @@ HDInsight Spark 叢集包含可用來執行 Spark 作業的 Zeppelin Notebook。
    
     按下 **SHIFT + ENTER**，或是按一下 [播放] 按鈕來讓段落執行程式碼片段。 段落右上角的狀態應該會從「準備就緒」逐一轉變成「擱置」、「執行中」及「已完成」。 輸出會顯示在同一個段落的底部。 螢幕擷取畫面如下所示：
    
-    ![從未經處理資料建立暫存資料表](./media/hdinsight-apache-spark-zeppelin-notebook/hdispark.note.loaddDataintotable.png "從未經處理資料建立暫存資料表")
+    ![從未經處理資料建立暫存資料表](./media/hdinsight-apache-spark-zeppelin-notebook/hdinsight-zeppelin-load-data.png "從未經處理資料建立暫存資料表")
    
     您也可以為每個段落提供標題。 按一下右下角的 [設定] 圖示，然後按一下 [顯示標題]。
 5. 現在，您可以針對 **hvac** 資料表執行 Spark SQL 陳述式。 將以下查詢貼入新段落。 此查詢會擷取建築物識別碼，以及在指定日期當天每棟建築物之目標溫度與實際溫度間的差異。 按下 **SHIFT + ENTER**。
@@ -94,7 +94,7 @@ HDInsight Spark 叢集包含可用來執行 Spark 作業的 Zeppelin Notebook。
    
     以下螢幕擷取畫面顯示輸出。
    
-    ![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-zeppelin-notebook/hdispark.note.sparksqlquery1.png "使用 Notebook 執行 Spark SQL 陳述式")
+    ![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-zeppelin-notebook/hdinsight-zeppelin-spark-query-1.png "使用 Notebook 執行 Spark SQL 陳述式")
    
      按一下顯示選項 (以矩形反白顯示) 以針對相同輸出切換不同的表示法。 按一下 [設定] 以選擇構成輸出中索引鍵和值的項目。 在上方的螢幕擷取畫面中，索引鍵為 **buildingID**，而值為 **temp_diff** 的平均值。
 6. 您也可以在查詢中使用變數來執行 Spark SQL 陳述式。 下一個程式碼片段示範如何利用您想要查詢的可能值，來定義查詢中的變數 **Temp**。 當您第一次執行查詢時，下拉式清單會自動填入您指定的變數值。
@@ -104,7 +104,7 @@ HDInsight Spark 叢集包含可用來執行 Spark 作業的 Zeppelin Notebook。
    
     將此程式碼片段貼到新的段落中，然後按下 **SHIFT + ENTER**。 以下螢幕擷取畫面顯示輸出。
    
-    ![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-zeppelin-notebook/hdispark.note.sparksqlquery2.png "使用 Notebook 執行 Spark SQL 陳述式")
+    ![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-zeppelin-notebook/hdinsight-zeppelin-spark-query-2.png "使用 Notebook 執行 Spark SQL 陳述式")
    
     對於後續的查詢，您可以從下拉式清單選取新的值，然後再次執行查詢。 按一下 [設定] 以選擇構成輸出中索引鍵和值的項目。 上述螢幕擷取畫面使用 **buildingID** 做為索引鍵、平均 **temp_diff** 做為值，而 **targettemp** 做為群組。
 7. 重新啟動 Livy 解譯器以結束應用程式。 若要進行此操作，請在右上角按一下登入的使用者名稱，然後按一下 [解譯器]，以開啟解譯器設定。
@@ -112,7 +112,7 @@ HDInsight Spark 叢集包含可用來執行 Spark 作業的 Zeppelin Notebook。
     ![啟動解譯器](./media/hdinsight-apache-spark-zeppelin-notebook/zeppelin-launch-interpreter.png "Hive 輸出")
 8. 捲動到 Livy 解譯器設定，然後按一下 [重新啟動]。
    
-    ![重新啟動 Livy 解譯器](./media/hdinsight-apache-spark-zeppelin-notebook/hdispark.zeppelin.restart.interpreter.png "重新啟動 Zeppelin 解譯器")
+    ![重新啟動 Livy 解譯器](./media/hdinsight-apache-spark-zeppelin-notebook/hdinsight-zeppelin-restart-interpreter.png "重新啟動 Zeppelin 解譯器")
 
 ## <a name="how-do-i-use-external-packages-with-the-notebook"></a>如何搭配 Notebook 使用外部套件？
 您可以在 HDInsight (Linux) 上的 Apache Spark 叢集中設定 Zeppelin Notebook，以使用不是叢集中現成隨附的由社群所提供的外部套件。 您可以搜尋 [Maven 儲存機制](http://search.maven.org/) 來取得可用套件的完整清單。 您也可以從其他來源取得可用套件清單。 例如，從 [Spark 套件](http://spark-packages.org/)可以取得社群提供套件的完整清單。
@@ -159,7 +159,7 @@ Zeppelin Notebook 會儲存到叢集前端節點。 因此，如果您刪除叢�
     ![啟動解譯器](./media/hdinsight-apache-spark-zeppelin-notebook/zeppelin-launch-interpreter.png "Hive 輸出")
 2. 捲動到 Livy 解譯器設定，然後按一下 [重新啟動]。
    
-    ![重新啟動 Livy 解譯器](./media/hdinsight-apache-spark-zeppelin-notebook/hdispark.zeppelin.restart.interpreter.png "重新啟動 Zeppelin 解譯器")
+    ![重新啟動 Livy 解譯器](./media/hdinsight-apache-spark-zeppelin-notebook/hdinsight-zeppelin-restart-interpreter.png "重新啟動 Zeppelin 解譯器")
 3. 從現有的 Zeppelin Notebook 執行程式碼單元。 這會在 HDInsight 叢集中建立新的 Livy 工作階段。
 
 ## <a name="seealso"></a>另請參閱
@@ -194,7 +194,6 @@ Zeppelin Notebook 會儲存到叢集前端節點。 因此，如果您刪除叢�
 [azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
 [azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/
 [azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-[azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md 
 
 

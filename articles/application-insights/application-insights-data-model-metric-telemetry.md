@@ -13,10 +13,10 @@ ms.topic: article
 ms.date: 04/25/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 1bedede1934141927a770c97b61aeb5218652b3e
+ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
+ms.openlocfilehash: 069457d7ef7855749f64e299e0db579e6bb2b590
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/19/2017
 
 
 ---
@@ -72,7 +72,7 @@ Application Insights 支援數個已知的計量名稱。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 了解如何使用[自訂事件和計量的 Application Insights API](app-insights-api-custom-events-metrics.md#send-metrics)。
+- 了解如何使用[自訂事件和計量的 Application Insights API](app-insights-api-custom-events-metrics.md#trackmetric)。
 - 如需 Application Insights 類型和資料模型，請參閱[資料模型](application-insights-data-model.md)。
 - 查看 Application Insights 支援的[平台](app-insights-platforms.md)。
 

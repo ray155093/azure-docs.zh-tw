@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/03/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: fb2fe0efe00a7ef7fd1c22ca94c76b2d5f4c5510
-ms.openlocfilehash: 9366bce634fd3855080d267c797e2fecb8ab4ce9
-ms.lasthandoff: 02/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 71a839d9c076d33c404a56bf0544666dc86eaa4d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -30,14 +31,6 @@ ms.lasthandoff: 02/11/2017
 * 資料的存取使用者清單。
 * 資料的存取頻率。
 * 帳戶中儲存的資料量。
-
-## <a name="prerequisites"></a>必要條件
-
-* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-
-* **啟用您的 Azure 訂用帳戶** 以使用 Data Lake Analytics 公開預覽版。 請參閱 [指示](data-lake-analytics-get-started-portal.md)。
-
-* **Azure Data Lake Analytics 帳戶**。 遵循 [使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md)的指示。
 
 ## <a name="enable-logging"></a>啟用記錄
 

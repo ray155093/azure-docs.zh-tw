@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 915901ee24d2427ea020db48370790e8ddca6d54
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 858769130eed5c996bca151855bfc09d4832a314
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 ---
 
@@ -26,8 +27,9 @@ ms.lasthandoff: 04/03/2017
 > [!div class="op_single_selector"]
 > - [Azure 入口網站](network-watcher-packet-capture-manage-portal.md)
 > - [PowerShell](network-watcher-packet-capture-manage-powershell.md)
-> - [CLI](network-watcher-packet-capture-manage-cli.md)
-> - [REST API](network-watcher-packet-capture-manage-rest.md)
+> - [CLI 1.0](network-watcher-packet-capture-manage-cli-nodejs.md)
+> - [CLI 2.0](network-watcher-packet-capture-manage-cli.md)
+> - [Azure REST API](network-watcher-packet-capture-manage-rest.md)
 
 網路監看員封包擷取可讓您建立擷取工作階段來追蹤虛擬機器的流入和流出流量。 系統會為擷取工作階段提供篩選器，以確保您只會擷取到您想要的流量。 封包擷取有助於被動和主動地診斷網路異常。 其他用途包括收集網路統計資料、取得有關網路入侵的資訊，以及偵錯用戶端與伺服器間的通訊等等。 藉由能夠從遠端觸發封包擷取，這項功能可以減輕在所需機器上手動執行封包擷取的工作負擔，進而省下寶貴的時間。
 

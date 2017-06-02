@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 95ecd8d4ef3dd7a956206e7c3e07c793db0111f7
-ms.openlocfilehash: 04801ce75a767da2756165f51f49192f89887380
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 644713d365191bf5e51517d0cc565efbc2abc144
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 ---
 
@@ -26,7 +27,8 @@ ms.lasthandoff: 03/31/2017
 > [!div class="op_single_selector"]
 > - [Azure 入口網站](network-watcher-check-next-hop-portal.md)
 > - [PowerShell](network-watcher-check-next-hop-powershell.md)
-> - [CLI](network-watcher-check-next-hop-cli.md)
+> - [CLI 1.0](network-watcher-check-next-hop-cli-nodejs.md)
+> - [CLI 2.0](network-watcher-check-next-hop-cli.md)
 > - [Azure REST API](network-watcher-check-next-hop-rest.md)
 
 下一個躍點是網路監看員的一項功能，可根據指定的虛擬機器取得下一個躍點類型和 IP 位址。 這項功能可用於判斷離開虛擬機器的流量是否會周遊閘道、網際網路或虛擬網路，以抵達其目的地。

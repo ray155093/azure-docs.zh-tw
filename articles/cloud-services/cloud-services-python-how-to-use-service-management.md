@@ -12,21 +12,17 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
-ms.date: 04/05/2017
+ms.date: 05/30/2017
 ms.author: lmazuel
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 90f417768d58c42df9b786b5c50d96970f133548
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: ee96a30d10f882da936f554152fab8a9c6897807
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
 # <a name="how-to-use-service-management-from-python"></a>如何從 Python 使用服務管理
-> [!NOTE]
-> 服務管理 API 會以新的資源管理 API 取代，目前可在 Preview 版本中使用。  請參閱 [Azure 資源管理文件](http://azure-sdk-for-python.readthedocs.org/) 了解從 Python 使用新的資源管理 API 的詳細資訊。
-> 
-> 
-
 本指南說明如何以程式設計方式，從 Python 執行一般服務管理工作。 [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python) 中的 **ServiceManagementService** 類別支援以程式設計方式存取 [Azure 傳統入口網站][management-portal]所提供的大部分服務管理相關功能 (例如**建立、更新及刪除雲端服務、部署、資料管理服務和虛擬機器**)。 建置需要透過程式設計方式存取服務管理的應用程式時，此功能十分實用。
 
 ## <a name="WhatIs"> </a>什麼是服務管理？
@@ -45,8 +41,8 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
 
 > [!NOTE]
 > 目前在 Windows 上執行時，可以使用以 OpenSSL 建立的憑證。  這需要使用 Python 2.7.4 或更新版本。 建議使用者使用 OpenSSL 而非 .pfx，因為未來可能會移除 .pfx 憑證的支援。
-> 
-> 
+>
+>
 
 ### <a name="management-certificates-on-windowsmaclinux-openssl"></a>Windows/Mac/Linux 上的管理憑證 (OpenSSL)
 您可以使用 [OpenSSL](http://www.openssl.org/) 建立管理憑證。  實際上您需要建立兩個憑證，一個用於伺服器 (`.cer` 檔案)，一個用於用戶端 (`.pem` 檔案)。 若要建立 `.pem` 檔案，請執行下列命令：
@@ -432,5 +428,4 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
 
 
 [cloud service]:/services/cloud-services/
-
 

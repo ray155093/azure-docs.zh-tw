@@ -13,17 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/04/2017
 ms.author: asteen
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 40ace51c4ba74039b3a5d5997acdf2da7b98b4a9
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 759631bca9b29134098dba55ef07513d0ee42549
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
 
 # <a name="problem-installing-the-application-access-panel-browser-extension"></a>安裝應用程式存取面板的瀏覽器延伸模組時出現的錯誤
 
-存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。 具有 Azure AD 版本的使用者也可以透過存取面板，使用自助式群組和應用程式管理功能。 存取面板與 Azure 入口網站分開，使用者不需要具備 Azure 訂用帳戶也能使用。
+存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。 具有 Azure AD 版本的使用者也可以透過存取面板使用自助群組和應用程式管理功能。 存取面板與 Azure 入口網站分開，使用者不需要具備 Azure 訂用帳戶也能使用。
 
 若要在存取面板中使用密碼單一登入 (SSO)，必須在使用者的瀏覽器中安裝存取面板延伸模組。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
 
@@ -41,7 +42,7 @@ ms.lasthandoff: 04/17/2017
 
 **注意**：當瀏覽器延伸開始支援 Edge 時，Windows 10 中的 Edge 就能使用密碼型 SSO 延伸模組。
 
-## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板的瀏覽器延伸模組
+## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板瀏覽器延伸模組
 
 若要安裝存取面板的瀏覽器延伸模組，請遵循下列步驟：
 
@@ -75,15 +76,15 @@ ms.lasthandoff: 04/17/2017
 
 -   您必須擁有「編輯設定」權限，才能編輯群組原則物件 (GPO)。 根據預設，下列安全性群組的成員擁有此權限：網域系統管理員、企業系統管理員及群組原則建立者擁有者。 [深入了解](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx)。
 
-如需如何設定群組原則並將它部署到使用者的逐步指示，請遵循[如何使用群組原則部署 Internet Explorer 的存取面板延伸模組](https://docs.microsoft.com/azure/active-directory/active-directory-saas-ie-group-policy)教學課程。
+如需如何設定群組原則並將它部署到使用者的逐步指示，請遵循[如何使用群組原則部署 Internet Explorer 的存取面板延伸模組](active-directory-saas-ie-group-policy.md)教學課程。
 
 ## <a name="troubleshoot-the-access-panel-in-internet-explorer"></a>進行 Internet Explorer 中存取面板的疑難排解
 
-如需存取診斷工具和設定 IE 延伸模組的逐步指示，請遵循[疑難排解 Internet Explorer 的存取面板延伸模組](https://docs.microsoft.com/azure/active-directory/active-directory-saas-ie-Troubleshoot)指南。
+如需存取診斷工具和設定 IE 延伸模組的逐步指示，請遵循[疑難排解 Internet Explorer 的存取面板延伸模組](active-directory-saas-ie-troubleshooting.md)指南。
 
 ## <a name="if-these-troubleshooting-steps-do-not-resolve-the-issue"></a>如果這些疑難排解步驟無法解決問題
 
-請使用下列資訊 (若有的話) 開啟支援票證：
+使用下列資訊 (若有的話) 開啟支援票證︰
 
 -   相互關聯錯誤 ID
 

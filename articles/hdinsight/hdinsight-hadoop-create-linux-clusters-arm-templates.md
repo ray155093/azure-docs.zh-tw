@@ -17,17 +17,17 @@ ms.workload: big-data
 ms.date: 03/14/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 1c095ece98c09290992ffeaca1f7b91a87a78818
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 22846febbb83d0fbc506e6bef03945130e03ca29
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
 # <a name="create-hadoop-clusters-in-hdinsight-by-using-resource-manager-templates"></a>使用 Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-在本文中，您會學習使用 Azure Resource Manager 範本建立 Azure HDInsight 叢集的數種方式。 如需詳細資訊，請參閱 [使用 Azure Resource Manager 範本部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)。 若要了解其他叢集建立工具和功能，請按一下此頁面頂端的索引標籤選取器，或參閱[叢集建立方法](hdinsight-hadoop-provision-linux-clusters.md#cluster-creation-methods)。
+在本文中，您會學習使用 Azure Resource Manager 範本建立 Azure HDInsight 叢集的數種方式。 如需詳細資訊，請參閱 [使用 Azure Resource Manager 範本部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)。 若要了解其他叢集建立工具和功能，請按一下此頁面頂端的索引標籤選取器，或參閱[叢集建立方法](hdinsight-hadoop-provision-linux-clusters.md#cluster-setup-methods)。
 
 ## <a name="prerequisites"></a>必要條件
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]

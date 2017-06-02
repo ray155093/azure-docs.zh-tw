@@ -15,26 +15,16 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 198a325e02aac97d659d74b090414f7d6f074f14
+ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
+ms.openlocfilehash: 08a192a273ff91bcf9e75d1ff023dcc48f9bb6a2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/19/2017
 
 
 ---
 # <a name="get-started-with-device-management-node"></a>開始使用裝置管理 (Node)
-## <a name="introduction"></a>簡介
-IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是裝置對應項和直接方法) 來遠端啟動並監視裝置上的裝置管理動作。 本文提供 IoT 雲端應用程式和裝置如何共同運作，以使用 IoT 中樞初始化並監視遠端裝置重新啟動的指導方針和程式碼。
 
-若要從雲端式的後端 App 遠端啟動並監視您裝置上的裝置管理行動，請使用[裝置對應項][lnk-devtwin]和[直接方法][lnk-c2dmethod]等 Azure IoT 中樞基本類型。 本教學課程會示範後端 App 和裝置如何共同運作，以讓您從 IoT 中樞初始化並監視遠端裝置重新啟動。
-
-您可以使用直接方法從雲端中的後端應用程式起始裝置管理動作 (例如重新啟動、恢復出廠預設值，以及韌體更新)。 該裝置將負責：
-
-* 處理從 IoT 中樞傳送的方法要求。
-* 在裝置上初始化相對應的裝置特定動作。
-* 透過針對 IoT 中樞的報告屬性提供狀態更新。
-
-您可以在雲端中使用後端 App 來執行裝置對應項查詢，以報告裝置管理動作的進度。
+[!INCLUDE [iot-hub-selector-dm-getstarted](../../includes/iot-hub-selector-dm-getstarted.md)]
 
 本教學課程說明如何：
 
@@ -242,22 +232,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
     ```
 3. 您會在主控台中看到直接方法的裝置回應。
 
-## <a name="customize-and-extend-the-device-management-actions"></a>自訂及延伸裝置管理動作
-您的 IoT 解決方案可以透過使用裝置對應項和雲端到裝置方法基元，擴充一組已定義的裝置管理模式或啟用自訂模式。 其他裝置管理動作範例還包括恢復出廠預設值、韌體更新、軟體更新、電源管理、網路和連線管理，以及資料加密。
-
-## <a name="device-maintenance-windows"></a>裝置維護期間
-一般而言，您會設定讓裝置在產生最短中斷和停機時間的時機執行動作。  裝置維護期間是用來定義裝置組態更新時機的常用模式。 您的後端解決方案可以使用所需的裝置對應項 (twin) 屬性，在您的裝置上定義可啟用維護期間的原則並啟用該原則。 當裝置收到維護期間原則時，它可以使用回報的裝置對應項 (twin) 屬性來回報原則的狀態。 接著，後端 App 便可使用裝置對應項 (twin) 查詢來證明是否符合裝置及每個原則的規定。
-
-## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已使用直接方法在裝置上觸發遠端重新開機。 您已使用報告屬性來從裝置回報上次重新開機時間，以及查詢裝置對應項來從雲端探索裝置的上次重新開機時間。
-
-若要繼續開始使用「IoT 中樞」和裝置管理模式 (例如遠端無線韌體更新)，請參閱︰
-
-[教學課程：如何進行韌體更新][lnk-fwupdate]
-
-若要了解如何擴充您的 IoT 解決方案以及在多個裝置上排程方法呼叫，請參閱[排程及廣播作業][lnk-tutorial-jobs]教學課程。
-
-若要繼續開始使用 IoT 中樞，請參閱[開始使用 Azure IoT Edge][lnk-gateway-SDK]。
+[!INCLUDE [iot-hub-dm-followup](../../includes/iot-hub-dm-followup.md)]
 
 <!-- images and links -->
 [img-output]: media/iot-hub-get-started-with-dm/image6.png
@@ -266,12 +241,9 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-[lnk-fwupdate]: iot-hub-node-node-firmware-update.md
 [Azure portal]: https://portal.azure.com/
 [Using resource groups to manage your Azure resources]: ../azure-portal/resource-group-portal.md
 [lnk-dm-github]: https://github.com/Azure/azure-iot-device-management
-[lnk-tutorial-jobs]: iot-hub-node-node-schedule-jobs.md
-[lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 
 [lnk-devtwin]: iot-hub-devguide-device-twins.md
 [lnk-c2dmethod]: iot-hub-devguide-direct-methods.md

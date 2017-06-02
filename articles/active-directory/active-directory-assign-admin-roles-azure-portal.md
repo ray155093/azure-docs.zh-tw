@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/08/2017
-ms.author: femila
+ms.date: 05/23/2017
+ms.author: curtand
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: e8d3eb7e336383eb639e55656b26d881e8c2adb0
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 8e8723c6dc81012a0dddd4e0a28c4d4af6828c6c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/29/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -35,7 +35,7 @@ ms.lasthandoff: 03/29/2017
 
 * **計費管理員**：進行採購、管理訂用帳戶、管理支援票證，以及監控服務健全狀況。
 
-* **規範管理員**：此角色的使用者擁有 Office 365 安全性與法規遵循中心和 Exchange 系統管理中心。 如需詳細資訊，請參閱[關於 Office 365 管理員角色](https://microsoft.sharepoint.com/teams/adiamteam/_layouts/15/WopiFrame.aspx?sourcedoc={dae8d6f3-5990-46a2-b12b-4c0e561bc7cc}&action=view&wdAccPdf=1)。
+* **規範管理員**：此角色的使用者擁有 Office 365 安全性與法規遵循中心和 Exchange 系統管理中心。 如需詳細資訊，請參閱[關於 Office 365 管理員角色](https://support.office.com/en-us/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
 
 * **CRM 服務管理員**︰具備此角色的使用者在有 Microsoft CRM Online 服務時，於該服務內具有全域權限，以及管理支援票證和監控服務健全狀況的能力。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
 
@@ -139,6 +139,20 @@ ms.lasthandoff: 03/29/2017
 
 ## <a name="details-about-the-global-administrator-role"></a>全域管理員角色的詳細資料
 全域管理員可以存取所有系統管理功能。 註冊 Azure 訂用帳戶的人員預設會獲指派目錄的全域管理員角色。 只有全域管理員才能指派其他系統管理員角色。
+
+### <a name="to-add-a-colleague-as-a-global-administrator"></a>將同事新增為全域管理員
+
+1. 使用具備租用戶目錄全域管理員身分的帳戶來登入 [Azure Active Directory 系統管理中心](https://aad.portal.azure.com)。
+
+   ![開啟 Azure AD 系統管理中心](./media/active-directory-assign-admin-roles-azure-portal/active-directory-admin-center.png)
+
+2. 選取 [使用者和群組] &gt; [所有使用者]
+
+3. 尋找您要將其指定為全域管理員的使用者，然後開啟該使用者的刀鋒視窗。
+
+4. 在該使用者的刀鋒視窗上，選取 [目錄角色]。
+ 
+5. 在該目錄角色的刀鋒視窗上，選取 [全域管理員] 角色，然後儲存。
 
 ## <a name="assign-or-remove-administrator-roles"></a>指派或移除系統管理員角色
 若要了解如何將系統管理角色指派給 Azure Active Directory 中的使用者，請參閱[在 Azure Active Directory 預覽版中將使用者指派給系統管理員角色](active-directory-users-assign-role-azure-portal.md)。

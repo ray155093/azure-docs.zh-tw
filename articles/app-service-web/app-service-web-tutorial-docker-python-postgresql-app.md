@@ -14,12 +14,12 @@ ms.devlang: python
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: beverst
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 554843c5f3161a45ff984b000944f546b44dd472
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: ca086f76e50cb27f012bb2e7f05595be5fdcb241
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="build-a-docker-python-and-postgresql-web-app-in-azure"></a>在 Azure 中建置 Docker Python 和 PostgreSQL Web 應用程式
@@ -355,16 +355,7 @@ docker push <registry_name>.azurecr.io/flask-postgresql-sample
 
 使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 App Service 方案。 
 
-> [!NOTE] 
-> App Service 方案代表用來裝載應用程式的實體資源集合。 所有指派給 App Service 方案的所有應用程式都會共用它所定義的資源，而讓您節省裝載多個應用程式時的成本。 
-> 
-> App Service 方案可定義： 
-> 
-> * 區域 (北歐、美國東部、東南亞等。) 
-> * 執行個體大小 (小型、中型、大型) 
-> * 級別計數 (一、二或三個執行個體等) 
-> * SKU (免費、共用、基本、標準、進階) 
-> 
+[!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
 下列範例會使用 S1 定價層，建立名為 `myAppServicePlan` 之以 Linux 為基礎的 App Service 方案：
 

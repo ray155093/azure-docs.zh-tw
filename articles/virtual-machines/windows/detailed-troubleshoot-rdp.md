@@ -3,7 +3,7 @@ title: "在 Azure 中遠端桌面的詳細疑難排解 | Microsoft Docs"
 description: "針對您無法透過遠端桌面連線到 Azure 中 Windows 虛擬機器的錯誤，檢閱詳細的疑難排解步驟"
 services: virtual-machines-windows
 documentationcenter: 
-author: iainfoulds
+author: genlin
 manager: timlt
 editor: 
 tags: top-support-issue,azure-service-management,azure-resource-manager
@@ -14,12 +14,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: support-article
-ms.date: 12/20/2016
-ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 2e84a7f8d0f8d15a808092deab8cc7a9bca1541d
-ms.lasthandoff: 04/27/2017
+ms.date: 05/26/2017
+ms.author: genli
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 3ba81282cd7b58cc118497c14e911fc89815d6d4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -27,9 +28,9 @@ ms.lasthandoff: 04/27/2017
 本文章提供診斷和修正複雜的以 Windows 為基礎的 Azure 虛擬機器的遠端桌面錯誤的詳細疑難排解步驟。
 
 > [!IMPORTANT]
-> 若要消除較常見的「遠端桌面」錯誤，請務必先閱讀 [遠端桌面的基本疑難排解文章](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，再繼續進行。
+> 若要消除較常見的「遠端桌面」錯誤，請務必先閱讀 [遠端桌面的基本疑難排解文章](troubleshoot-rdp-connection.md)，再繼續進行。
 
-您可能會遇到不像 [基本遠端桌面疑難排解指南](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)所涵蓋之任何特定錯誤訊息的「遠端桌面」錯誤訊息。 請依照下列步驟來判斷「遠端桌面」(RDP) 用戶端為何無法連線至 Azure VM 上的 RDP 服務。
+您可能會遇到不像 [基本遠端桌面疑難排解指南](troubleshoot-rdp-connection.md)所涵蓋之任何特定錯誤訊息的「遠端桌面」錯誤訊息。 請依照下列步驟來判斷「遠端桌面」(RDP) 用戶端為何無法連線至 Azure VM 上的 RDP 服務。
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
@@ -81,7 +82,7 @@ ms.lasthandoff: 04/27/2017
 
 ![](./media/detailed-troubleshoot-rdp/tshootrdp_2.png)
 
-如果您沒有直接連線到網際網路的電腦，則在資源群組或雲端服務中建立和測試新的 Azure 虛擬機器。 如需詳細資訊，請參閱 [在 Azure 中建立執行 Windows 的虛擬機器](../virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 測試完成之後，您可以刪除虛擬機器和資源群組或雲端服務。
+如果您沒有直接連線到網際網路的電腦，則在資源群組或雲端服務中建立和測試新的 Azure 虛擬機器。 如需詳細資訊，請參閱 [在 Azure 中建立執行 Windows 的虛擬機器](../virtual-machines-windows-hero-tutorial.md)。 測試完成之後，您可以刪除虛擬機器和資源群組或雲端服務。
 
 如果您可以對直接連線到網際網路的電腦建立遠端桌面連線，請檢查組織內部網路的邊緣裝置之下列項目：
 
@@ -98,10 +99,8 @@ ms.lasthandoff: 04/27/2017
 
 > [!NOTE]
 > 如果是在資源管理員中建立的虛擬機器，請跳到 [來源 4：網路安全性群組](#source-4-network-security-groups)。
-> 
-> 
 
-如果您沒有另一部虛擬機器位於相同的雲端服務或虛擬網路中，請建立一部。 依照 [在 Azure 中建立執行 Windows 的虛擬機器](../virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的步驟操作。 測試完成之後，請刪除測試虛擬機器。
+如果您沒有另一部虛擬機器位於相同的雲端服務或虛擬網路中，請建立一部。 依照 [在 Azure 中建立執行 Windows 的虛擬機器](../virtual-machines-windows-hero-tutorial.md)中的步驟操作。 測試完成之後，請刪除測試虛擬機器。
 
 如果您可以透過「遠端桌面」連線到位於相同雲端服務或虛擬網路中的虛擬機器，請檢查下列設定：
 
@@ -125,7 +124,7 @@ ms.lasthandoff: 04/27/2017
 ## <a name="source-5-windows-based-azure-vm"></a>來源 5：以 Windows 為基礎的 Azure VM
 ![](./media/detailed-troubleshoot-rdp/tshootrdp_5.png)
 
-請依照[本文](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)的指示。 這篇文章會重設虛擬機器上的「遠端桌面」服務：
+請依照[本文](reset-rdp.md)的指示。 這篇文章會重設虛擬機器上的「遠端桌面」服務：
 
 * 啟用「遠端桌面」 Windows 防火牆預設規則 (TCP 連接埠 3389)。
 * 藉由將 HKLM\System\CurrentControlSet\Control\Terminal Server\fDenyTSConnections 登錄值設為 0 ，啟用遠端桌面連線。
@@ -145,10 +144,12 @@ ms.lasthandoff: 04/27/2017
 
 接下來，請填入您的 Azure 訂用帳戶名稱、雲端服務名稱以及虛擬機器名稱 (移除 "<" 和 ">" 字元)，然後再執行這些命令。
 
-    $subscr="<Name of your Azure subscription>"
-    $serviceName="<Name of the cloud service that contains the target virtual machine>"
-    $vmName="<Name of the target virtual machine>"
-    .\InstallWinRMCertAzureVM.ps1 -SubscriptionName $subscr -ServiceName $serviceName -Name $vmName
+```powershell
+$subscr="<Name of your Azure subscription>"
+$serviceName="<Name of the cloud service that contains the target virtual machine>"
+$vmName="<Name of the target virtual machine>"
+.\InstallWinRMCertAzureVM.ps1 -SubscriptionName $subscr -ServiceName $serviceName -Name $vmName
+```
 
 您可以從 **Get-AzureSubscription** 命令顯示畫面中的 *SubscriptionName* 屬性，取得正確的訂用帳戶名稱。 您可以從 **Get-AzureVM** 命令顯示畫面中的 *ServiceName* 欄，取得虛擬機器的雲端服務名稱。
 
@@ -156,37 +157,49 @@ ms.lasthandoff: 04/27/2017
 
 接下來，使用這些命令起始遠端 Azure PowerShell 工作階段。
 
-    $uri = Get-AzureWinRMUri -ServiceName $serviceName -Name $vmName
-    $creds = Get-Credential
-    Enter-PSSession -ConnectionUri $uri -Credential $creds
+```powershell
+$uri = Get-AzureWinRMUri -ServiceName $serviceName -Name $vmName
+$creds = Get-Credential
+Enter-PSSession -ConnectionUri $uri -Credential $creds
+```
 
 輸入有效的系統管理員認證之後，您應該會看到類似下列 Azure PowerShell 提示字元的內容：
 
-    [cloudservice4testing.cloudapp.net]: PS C:\Users\User1\Documents>
+```powershell
+[cloudservice4testing.cloudapp.net]: PS C:\Users\User1\Documents>
+```
 
 此提示的第一個部分是您的雲端服務名稱，其中包含目標 VM，這可以與 "cloudservice4testing.cloudapp.net" 不同。 您現在可以針對此雲端服務發出 Azure PowerShell 命令，以調查所提到的問題並修正組態。
 
 ### <a name="to-manually-correct-the-remote-desktop-services-listening-tcp-port"></a>若要手動更正接聽 TCP 連接埠的遠端桌面服務
 針對遠端 Azure PowerShell 工作階段提示字元，請執行此命令。
 
-    Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber"
+```powershell
+Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber"
+```
 
 PortNumber 屬性會顯示目前的連接埠號碼。 如有需要，請使用此命令，將遠端桌面連接埠號碼變更回預設值 (3389)。
 
-    Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber" -Value 3389
+```powershell
+Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber" -Value 3389
+```
 
 確認已使用此命令將連接埠變更為 3389。
 
-    Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber"
+```powershell
+Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber"
+```
 
 使用此命令結束遠端 Azure PowerShell 工作階段。
 
-    Exit-PSSession
+```powershell
+Exit-PSSession
+```
 
 確認 Azure VM 的遠端桌面端點也正在使用 TCP 連接埠 3398 做為其內部連接埠。 重新啟動 Azure VM，然後再試一次遠端桌面連線。
 
 ## <a name="additional-resources"></a>其他資源
-[如何重設 Windows 虛擬機器的密碼或遠端桌面服務](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[如何重設 Windows 虛擬機器的密碼或遠端桌面服務](reset-rdp.md)
 
 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
 

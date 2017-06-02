@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2016
 ms.author: rachelap
-translationtype: Human Translation
-ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
-ms.openlocfilehash: 50630084a3df9bc1fed27efb41bc557d0e03916f
-ms.lasthandoff: 12/06/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 08a84ace63465e7c058add69a25687fe46c7ea07
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -45,8 +46,8 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 
 除了以上基本組態設定之外，您也許還想要設定以下各項：
 
-* **安全通訊端層 (SSL)** 加密。 若要使用 SSL 搭配自訂網域名稱，您必須取得 SSL 憑證並設定 Web 應用程式來加以使用。 請參閱 [針對 Azure App Service 中的 Web 應用程式啟用 HTTPS](web-sites-configure-ssl-certificate.md)。
-* **自訂網域名稱。**  您的 Web 應用程式會自動取得 azurewebsites.net 下的子網域。 您可以使其與自訂網域名稱 (如 contoso.com) 相關聯。 請參閱 [在 Azure App Service 中設定自訂網域名稱](web-sites-custom-domain-name.md)。
+* **安全通訊端層 (SSL)** 加密。 若要使用 SSL 搭配自訂網域名稱，您必須取得 SSL 憑證並設定 Web 應用程式來加以使用。 請參閱 [針對 Azure App Service 中的 Web 應用程式啟用 HTTPS](app-service-web-tutorial-custom-ssl.md)。
+* **自訂網域名稱。** 您的 Web 應用程式會自動取得 azurewebsites.net 下的子網域。 您可以使其與自訂網域名稱 (如 contoso.com) 相關聯。 請參閱 [在 Azure App Service 中設定自訂網域名稱](app-service-web-tutorial-custom-domain.md)。
 
 語言特有組態：
 

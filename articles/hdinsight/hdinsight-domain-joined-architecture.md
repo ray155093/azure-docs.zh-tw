@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 02/03/2017
 ms.author: saurinsh
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 69378496fb7e4176243d36950e7270809248d2bb
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: d365446b7eafd373b3d1bde2ed0a407f1e917b86
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -78,74 +79,6 @@ Azure AD 的必要條件：
     - 在組織單位內建立服務主體物件和電腦物件的權限
     - 建立反向 DNS Proxy 規則的權限
     - 將電腦加入 Azure AD 網域的權限
-
-**透過 VPN 整合 HDInsight 與內部部署 Active Directory**
-
-此架構類似於 HDInsight 與 Azure IaaS 上執行的 Azure AD 整合。 唯一的差別在於，Azure AD 會在內部部署，而且 HDInsight 與 Azure AD 之間會透過[從 Azure 到內部部署網路的 VPN 連線](../expressroute/expressroute-introduction.md)來進行通訊。
-
-![已加入網域的 HDInsight 叢集拓撲](./media/hdinsight-domain-joined-architecture/hdinsight-domain-joined-architecture_3.png)
-
-> [!NOTE]
-> 在此架構中，您無法搭配使用 Azure Data Lake Store 與 HDInsight 叢集。
-
-Azure AD 的必要條件：
-
-* 您必須建立[組織單位](../active-directory-domain-services/active-directory-ds-admin-guide-create-ou.md)，以在其中放置叢集所用的 HDInsight 叢集 VM 和服務主體。
-* 必須設定 [LDAPS](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md)，才能與 Azure AD 進行通訊。 必須使用真正的憑證 (而非自我簽署憑證) 來設定 LDAPS 的憑證。
-* 必須在網域上建立反向 DNS 區域，以供 HDInsight 子網路的 IP 位址範圍使用 (例如上一張圖中的 10.2.0.0/24)。
-* 需要服務帳戶或使用者帳戶。 使用此帳戶來建立 HDInsight 叢集。 此帳戶必須具備下列權限：
-
-    - 在組織單位內建立服務主體物件和電腦物件的權限
-    - 建立反向 DNS Proxy 規則的權限
-    - 將電腦加入 Azure AD 網域的權限
-
-**HDInsight 與同步處理至 Azure AD 的內部部署 Active Directory 整合**
-
-此架構類似於 HDInsight 與僅限雲端的 Azure AD 整合。 唯一的差別在於，內部部署 Active Directory 會同步處理至 Azure AD。 在雲端中設定網域控制站，讓 HDInsight 可以與 Azure AD 整合。 使用 [Azure Active Directory Domain Services](../active-directory-domain-services/active-directory-ds-overview.md) 即可達成此目的。 Azure AD DS 可在雲端建立網域控制站電腦，並提供 IP 位址。 它會建立兩個網域控制站，以達到高可用性。
-
-目前，Azure AD DS 只存在於傳統虛擬網路。 只能使用 Azure 傳統入口網站來存取。 HDInsight 虛擬網路存在於 Azure 入口網站，必須使用 VNet 對 VNet 對等互連來與傳統虛擬網路對等互連。
-
-> [!NOTE]
-> 傳統虛擬網路與 Azure Resource Manager 虛擬網路之間對等互連時，兩個虛擬網路必須位於相同區域中，而且在相同 Azure 訂用帳戶之下。
-
-![已加入網域的 HDInsight 叢集拓撲](./media/hdinsight-domain-joined-architecture/hdinsight-domain-joined-architecture_2.png)
-
-Azure AD 的必要條件：
-
-* 您必須建立[組織單位](../active-directory-domain-services/active-directory-ds-admin-guide-create-ou.md)，以在其中放置叢集所用的 HDInsight 叢集 VM 和服務主體。
-* 您必須在設定 Azure AD DS 時設定 [LDAPS](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md)。 必須使用真正的憑證 (而非自我簽署憑證) 來設定 LDAPS 的憑證。
-* 必須在網域上建立反向 DNS 區域，以供 HDInsight 子網路的 IP 位址範圍使用 (例如上一張圖中的 10.2.0.0/24)。
-* [密碼雜湊](../active-directory-domain-services/active-directory-ds-getting-started-password-sync.md)必須從 Azure AD 同步處理至 Azure AD DS。
-* 需要服務帳戶或使用者帳戶。 使用此帳戶來建立 HDInsight 叢集。 此帳戶必須具備下列權限：
-
-    - 在組織單位內建立服務主體物件和電腦物件的權限
-    - 建立反向 DNS Proxy 規則的權限
-    - 將電腦加入 Active Directory 網域的權限
-
-**HDInsight 與非預設 Azure AD 整合 (建議僅用於測試和開發)**
-
-此架構類似於 HDInsight 與僅限雲端的 Azure AD 整合。 對大部分公司而言，僅限特定人士才擁有 Azure AD 的系統管理存取權。 因此，當您想要進行概念性驗證，或嘗試建立已加入網域的叢集時，可以在訂用帳戶中建立 Azure AD 執行個體，而不是等待系統管理員設定 Azure AD 的必要條件，這樣會比較有利。 因為這是您建立的 Azure AD 執行個體，所以您有 Azure AD 的完整權限可設定 Azure AD DS。
-
-Azure AD DS 可在雲端建立網域控制站電腦，並提供 IP 位址。 它會建立兩個網域控制站，以達到高可用性。
-
-Azure AD DS 只存在於傳統虛擬網路，因此您需要存取 Azure 傳統入口網站，而且必須建立傳統虛擬網路，才能設定 Azure AD DS。 HDInsight 虛擬網路存在於 Azure 入口網站，必須使用 VNet 對 VNet 對等互連來與傳統虛擬網路對等互連。
-
-> [!NOTE]
-> 傳統虛擬網路與 Azure Resource Manager 虛擬網路之間對等互連時，兩個虛擬網路必須位於相同區域中，而且在相同 Azure 訂用帳戶之下。
-
-![已加入網域的 HDInsight 叢集拓撲](./media/hdinsight-domain-joined-architecture/hdinsight-domain-joined-architecture_2.png)
-
-Azure AD 的必要條件：
-
-* 您必須建立[組織單位](../active-directory-domain-services/active-directory-ds-admin-guide-create-ou.md)，以在其中放置叢集所用的 HDInsight 叢集 VM 和服務主體。
-* 您必須在設定 Azure AD DS 時設定 [LDAPS](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md)。 您可以建立[自我簽署的憑證](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md)以設定 LDAPS。 不過，若要使用自我簽署的憑證，您必須從 <a href="mailto:hdipreview@microsoft.com">hdipreview@microsoft.com</a> 要求例外狀況。
-* 必須在網域上建立反向 DNS 區域，以供 HDInsight 子網路的 IP 位址範圍使用 (例如上一張圖中的 10.2.0.0/24)。
-* [密碼雜湊](../active-directory-domain-services/active-directory-ds-getting-started-password-sync.md)必須從 Azure AD 同步處理至 Azure AD DS。
-* 需要服務帳戶或使用者帳戶。 使用此帳戶來建立 HDInsight 叢集。 此帳戶必須具備下列權限：
-
-    - 在組織單位內建立服務主體物件和電腦物件的權限
-    - 建立反向 DNS Proxy 規則的權限
-    - 將電腦加入 Azure Active Directory 網域的權限
 
 ## <a name="next-steps"></a>後續步驟
 * 若要設定已加入網域的 HDInsight 叢集，請參閱[設定已加入網域的 HDInisight 叢集](hdinsight-domain-joined-configure.md)。

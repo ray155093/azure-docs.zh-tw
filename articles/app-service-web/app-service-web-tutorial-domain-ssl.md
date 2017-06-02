@@ -14,10 +14,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 03/29/2017
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: 78358e97f76454c19d5a377a2dac2bbf08c616ce
-ms.lasthandoff: 04/04/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 535a7dbe24a1badc8539b61d34c09bdeda41ad40
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -54,17 +55,9 @@ az group create --name myResourceGroup --location westeurope
 
 ## <a name="create-an-app-service-plan"></a>建立應用程式服務方案
 
-使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令建立以 Linux 為基礎的 App Service 方案。 
+使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 App Service 方案。 
 
-> [!NOTE] 
-> App Service 方案代表用來裝載應用程式的實體資源集合。 所有指派給 App Service 方案的所有應用程式都會共用它所定義的資源，而讓您節省裝載多個應用程式時的成本。 
-> 
-> App Service 方案可定義： 
-> * 區域 (北歐、美國東部、東南亞) 
-> * 執行個體大小 (小型、中型、大型) 
-> * 級別計數 (一、二或三個執行個體等) 
-> * SKU (免費、共用、基本、標準、進階) 
-> 
+[!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
 下列範例使用**基本**定價層，建立名為 `myAppServicePlan` 的 App Service 方案。
 

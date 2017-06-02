@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
+ms.date: 05/18/2017
 ms.author: adegeo
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 488b16623300d80a53a61badee420de106c418b0
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: c7fb1c796556baf09a34c4bc6ed71964071d5874
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 ---
 
@@ -42,9 +43,6 @@ ms.lasthandoff: 03/25/2017
 * 您可以調整與您雲端服務連結的資源。 如需關於連結資源的詳細資訊，請參閱 [作法：將資源連結到雲端服務](cloud-services-how-to-manage.md#how-to-link-a-resource-to-a-cloud-service)。
 
 * 若要對應用程式啟用高可用性，您應該確定應用程式是以兩個以上的角色執行個體來部署。 如需詳細資訊，請參閱 [服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
-
-> [!WARNING]
-> 自動縮放功能僅適用於傳統的 Azure 儲存體帳戶。 它不適用於 Azure Resource Manager 儲存體帳戶。
 
 ## <a name="schedule-scaling"></a>Schedule scaling
 根據預設，所有角色皆未遵循特定的排程。 因此，任何變更的設定皆可套用到所有時間和全年中的所有天數。 您可以根據意願將手動或自動調整設定為下列其中一個模式︰

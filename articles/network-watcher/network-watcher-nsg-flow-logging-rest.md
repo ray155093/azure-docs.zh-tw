@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: f4e4cad55b8b2b6146e2ff709b3238715270a385
-ms.openlocfilehash: 8841da846c1483dbb011a17f76e4dfcfdfe46ea9
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: c89a2ab4c39978771c940a819493b4e2283d5f9f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -28,7 +29,8 @@ ms.lasthandoff: 03/01/2017
 > [!div class="op_single_selector"]
 > - [Azure 入口網站](network-watcher-nsg-flow-logging-portal.md)
 > - [PowerShell](network-watcher-nsg-flow-logging-powershell.md)
-> - [CLI](network-watcher-nsg-flow-logging-cli.md)
+> - [CLI 1.0](network-watcher-nsg-flow-logging-cli-nodejs.md)
+> - [CLI 2.0](network-watcher-nsg-flow-logging-cli.md)
 > - [REST API](network-watcher-nsg-flow-logging-rest.md)
 
 網路安全性群組流量記錄是網路監看員的一項功能，可讓您檢視透過網路安全性群組傳輸之輸入和輸出 IP 流量的相關資訊。 這些流量記錄是以 json 格式撰寫，會顯示每一規則的輸出和輸入流量、流量套用至的 NIC、有關流量的 5 個 Tuple 資訊 (來源/目的地 IP、來源/目的地連接埠、通訊協定)，以及流量是被允許或拒絕。
@@ -58,6 +60,15 @@ ms.lasthandoff: 03/01/2017
 
 ```PowerShell
 armclient login
+```
+
+## <a name="register-insights-provider"></a>註冊 Insights 提供者
+
+若要讓流量記錄成功運作，必須註冊 **Microsoft.Insights** 提供者。 如果您不確定是否已註冊 **Microsoft.Insights** 提供者，請執行下列程式碼。
+
+```powershell
+$subscriptionId = "00000000-0000-0000-0000-000000000000"
+armclient post "https://management.azure.com//subscriptions/${subscriptionId}/providers/Microsoft.Insights/register?api-version=2016-09-01"
 ```
 
 ## <a name="enable-network-security-group-flow-logs"></a>啟用網路安全性群組流量記錄

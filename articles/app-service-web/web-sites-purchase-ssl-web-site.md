@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/19/2016
 ms.author: apurvajo;aelnably
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: c4e7ee86ad9dc7a51fff9e948757faaf5ca9b9c4
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: fb38555f1f299352f06deae1ca231895163068e5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 ---
 # <a name="buy-and-configure-an-ssl-certificate-for-your-azure-app-service"></a>購買並設定您的 Azure App Service 的 SSL 憑證
@@ -91,7 +92,7 @@ ms.lasthandoff: 04/22/2017
 ## <a name="step-5---assign-certificate-to-app-service-app"></a>步驟 5 - 將憑證指派給 App Service 應用程式
 
 > [!NOTE]
-> 在執行本節中的步驟之前，您必須先建立自訂網域名稱與應用程式的關聯。 如需詳細資訊，請參閱**[設定 Web 應用程式的自訂網域名稱。](web-sites-custom-domain-name.md)**
+> 在執行本節中的步驟之前，您必須先建立自訂網域名稱與應用程式的關聯。 如需詳細資訊，請參閱**[設定 Web 應用程式的自訂網域名稱。](app-service-web-tutorial-custom-domain.md)**
 >
 
 在 **[Azure 入口網站](https://portal.azure.com/)**中，按一下頁面左側的 [App Service] 選項。

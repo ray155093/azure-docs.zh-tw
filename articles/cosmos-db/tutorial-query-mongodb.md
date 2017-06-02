@@ -1,14 +1,14 @@
 ---
 title: "Azure Cosmos DB：如何使用 DocumentDB API 來進行查詢？ | Microsoft Docs"
 description: "了解如何使用適用於 Azure Cosmos DB 的 DocumentDB API 來進行查詢"
-services: cosmosdb
+services: cosmos-db
 documentationcenter: 
 author: mimig1
 manager: jhubbard
 editor: 
 tags: 
 ms.assetid: 
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,17 +16,17 @@ ms.workload:
 ms.date: 05/10/2017
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 696ff01c7ac65215777cfe0ae3412ff91a09135b
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: feffc553a9aa931d96cec71c101674fce08a466b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
 
 # <a name="azure-cosmos-db-how-to-query-with-api-for-mongodb"></a>Azure Cosmos DB：如何使用適用於 MongoDB 的 API 來進行查詢？
 
-Azure Cosmos DB [適用於 MongoDB 的 API](../documentdb/documentdb-protocol-mongodb.md) 支援 [MongoDB 殼層查詢](https://docs.mongodb.com/manual/tutorial/query-documents/)。 
+Azure Cosmos DB [適用於 MongoDB 的 API](mongodb-introduction.md) 支援 [MongoDB 殼層查詢](https://docs.mongodb.com/manual/tutorial/query-documents/)。 
 
 本文涵蓋下列工作： 
 
