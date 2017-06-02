@@ -143,7 +143,7 @@
   - name: Data Factory
     tocHref: /azure/data-factory/
     topicHref: /azure/data-factory/
-  - name: 資料湖分析
+  - name: Data Lake Analytics
     tocHref: /azure/data-lake-analytics/
     topicHref: /azure/data-lake-analytics/
   - name: 資料湖存放區

@@ -130,6 +130,8 @@
     items:
     - name: VM 建立概觀
       href: creation-choices.md
+    - name: 從特製化 VHD 建立 VM
+      href: create-vm-specialized.md
     - name: 使用範本建立 VM
       href: ps-template.md
     - name: '使用 C# 建立 VM'
@@ -215,20 +217,6 @@
       href: expand-data-disks.md
     - name: 使用 D 作為資料磁碟
       href: change-drive-letter.md
-    - name: 使用非受控磁碟建立 VM
-      items:
-      - name: 上傳 VHD
-        href: upload-image.md
-      - name: 建立非受控映像
-        href: capture-image.md
-      - name: 從通用 VHD 建立非受控 VM
-        href: create-vm-generalized.md
-      - name: 複製 VM
-        href: vhd-copy.md
-      - name: 從特製化 VHD 建立 VM
-        href: create-vm-specialized.md
-      - name: 連結非受控資料磁碟
-        href: attach-disk-portal.md
   - name: VM 網路功能
     href: ps-common-network-ref.md
     items:
@@ -341,10 +329,8 @@
       items:
       - name: 從 Amazon Web Services (AWS) 移轉至 Azure
         href: aws-to-azure.md
-    - name: 從通用 VHD 上傳並建立 VM
-      href: upload-generalized-managed.md
-    - name: 從特殊化 VHD 上傳並建立 VM
-      href: upload-specialized.md
+      - name: 從通用 VHD 上傳並建立 VM
+        href: upload-generalized-managed.md
     - name: 從傳統服務移轉至 Azure Resource Manager
       href: migration-classic-resource-manager-overview.md
       items:

@@ -1,5 +1,6 @@
 # 概觀
 ## [什麼是 Azure Analysis Services？](analysis-services-overview.md)
+## [支援的資料來源](analysis-services-datasource.md)
 
 # 快速入門
 ## [建立伺服器 - 入口網站](analysis-services-create-server.md)
@@ -17,7 +18,7 @@
 ### [第 6 課：建立度量](tutorials/aas-lesson-6-create-measures.md)  
 ### [第 7 課：建立關鍵效能指標](tutorials/aas-lesson-7-create-key-performance-indicators.md)  
 ### [第 8 課：建立檢視方塊](tutorials/aas-lesson-8-create-perspectives.md) 
-### [第 9 課：建立檢視階層](tutorials/aas-lesson-9-create-hierarchies.md)  
+### [第 9 課：建立檢視階層](tutorials/aas-lesson-9-create-hierarchies.md) 
 ### [第 10 課：建立資料分割](tutorials/aas-lesson-10-create-partitions.md) 
 ### [第 11 課：建立角色](tutorials/aas-lesson-11-create-roles.md)
 ### [第 12 課：在 Excel 中分析](tutorials/aas-lesson-12-analyze-in-excel.md)
@@ -36,7 +37,6 @@
 ## [取得用戶端程式庫](analysis-services-data-providers.md)
 ## [備份與還原](analysis-services-backup.md)
 ## [高可用性](analysis-services-bcdr.md)
-## [資料來源連線](analysis-services-datasource.md)
 ## [建立 .odc 檔案](analysis-services-odc.md)
 
 # 參考

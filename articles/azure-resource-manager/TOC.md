@@ -64,7 +64,6 @@
 #### [入口網站](resource-group-create-service-principal-portal.md)
 ### [驗證 API 以存取訂閱帳戶](resource-manager-api-authentication.md)
 ### [鎖定資源](resource-group-lock-resources.md)
-### [安全性考量](best-practices-resource-manager-security.md)
 
 ## 設定資源原則
 ### [資源原則是什麼？](resource-manager-policy.md)
