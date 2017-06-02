@@ -15,10 +15,10 @@ ms.devlang: na
 ms.date: 04/04/2017
 ms.author: saeeda
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: 215f9baeda7cd0bcf3fd66893919575647849e7d
+ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
+ms.openlocfilehash: 9de6a57671cf65c4aa5d8695d21e0932175b1183
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/22/2017
 
 ---
 # <a name="azure-active-directory-b2c-ui-customization-in-a-custom-policy"></a>Azure Active Directory B2C︰自訂原則中的 UI 自訂
@@ -30,14 +30,6 @@ ms.lasthandoff: 05/02/2017
 ## <a name="prerequisites"></a>必要條件
 
 在繼續之前，您必須完成[開始使用自訂原則](active-directory-b2c-get-started-custom.md)。  您應該有一個使用本機帳戶來註冊和登入的有效自訂原則。
-
-### <a name="confirming-your-b2c-tenant"></a>確認您的 B2C 租用戶
-
-由於自訂原則仍在私人預覽階段，請確認您的 Azure AD B2C 租用戶支援上傳自訂原則︰
-
-1. 在 [Azure 入口網站](https://portal.azure.com)中，[切換至您的 Azure AD B2C 租用戶環境](active-directory-b2c-navigate-to-b2c-context.md)，然後開啟 Azure AD B2C 刀鋒視窗。
-1. 按一下 [所有原則]。
-1. 請確定 [上傳原則] 可用。  如果此按鈕已停用，請寄電子郵件到 AADB2CPreview@microsoft.com。
 
 ## <a name="the-page-ui-customization-feature"></a>頁面 UI 自訂功能
 

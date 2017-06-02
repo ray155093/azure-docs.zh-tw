@@ -14,14 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 64427583dba57716c23e1a01df820a263c5e7298
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: ef766161f53b92003c266f26af10a37790d8fad8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
 # <a name="use-azure-data-lake-analytics-u-sql-catalog"></a>使用 Azure Data Lake Analytics (U-SQL) 目錄
-U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用它們。 目錄可以讓 Azure 資料湖中的資料具有可能的最高效能。
+U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用它們。 目錄可以讓 Azure Data Lake 中的資料具有可能的最高效能。
 
 每個 Azure 資料湖分析帳戶都有一個與其相關聯的 U-SQL 目錄。 您無法刪除 U-SQL 目錄。 目前無法在資料湖存放區帳戶之間共用 U-SQL 目錄。
 
@@ -38,7 +40,7 @@ U-SQL 資料庫包含：
 每個 Azure 資料湖分析帳戶有與其相關聯的預設 Azure 資料湖存放區帳戶。 這個資料湖存放區帳戶稱為預設資料湖存放區帳戶。 U-SQL 目錄會儲存在 /catalog 資料夾底下的預設資料湖存放區帳戶。 不要刪除 /catalog 資料夾中的任何檔案。
 
 ### <a name="use-azure-portal"></a>使用 Azure 入口網站
-請參閱[使用入口網站管理 Data Lake Analytics](data-lake-analytics-manage-use-portal.md#view-u-sql-catalog)
+請參閱[使用入口網站管理 Data Lake Analytics](data-lake-analytics-manage-use-portal.md#manage-data-lake-analytics-accounts)
 
 ### <a name="use-data-lake-tools-for-visual-studio"></a>使用適用於 Visual Studio 的資料湖工具：
 您可以使用適用於 Visual Studio 的資料湖工具來管理目錄。  如需工具的詳細資訊，請參閱 [使用適用於 Visual Studio 的資料湖工具](data-lake-analytics-data-lake-tools-get-started.md)。
@@ -60,30 +62,24 @@ U-SQL 資料庫包含：
 
 ## <a name="see-also"></a>另請參閱
 * 開始使用
-  
-  * [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
-  * [使用 Azure PowerShell 開始使用資料湖分析](data-lake-analytics-get-started-powershell.md)
-  * [使用 Azure .NET SDK 開始使用資料湖分析](data-lake-analytics-get-started-net-sdk.md)
-  * [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
-  * [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
+
+  * [透過 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
+  * [透過 Azure PowerShell 開始使用 Data Lake Analytics](data-lake-analytics-get-started-powershell.md)
+  * [透過 Azure .NET SDK 開始使用 Data Lake Analytics](data-lake-analytics-get-started-net-sdk.md)
+  * [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
+  * [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
 * U-SQL 和開發
-  
+
   * [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
   * [針對 Azure 資料湖分析工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
   * [針對 Data Lake Analytics 工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
 * 管理
-  
+
   * [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)
-  * [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
+  * [使用 Azure PowerShell 管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-powershell.md)
   * [使用 Azure 入口網站監視和疑難排解 Azure Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 * 端對端教學課程
-  
-  * [使用 Azure 資料湖分析互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
+
+  * [使用 Azure Data Lake Analytics 互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
   * [使用 Azure 資料湖分析來分析網站記錄](data-lake-analytics-analyze-weblogs.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

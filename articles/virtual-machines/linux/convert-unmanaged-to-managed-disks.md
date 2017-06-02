@@ -15,10 +15,11 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 02/09/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 8429ee543d8cf838765ff9e8624390746474ee0d
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 6bab6cbd84c55e668f2caf9b9f94621eec982203
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 ---
 
@@ -36,10 +37,7 @@ ms.lasthandoff: 04/03/2017
 - 使用 [az vm disk attach](/cli/azure/vm/disk#attach)，將複製的 VHD 附加至具有受控磁碟的執行中 VM。
 
 ## <a name="convert-vm-to-azure-managed-disks"></a>將 VM 轉換為 Azure 受控磁碟
-本節說明如何將現有的 Azure VM 從非受控磁碟轉換為受控磁碟。 您可以使用此程序從進階 (SDD) 非受控磁碟轉換為進階受控磁碟，或從標準 (HDD) 非受控磁碟轉換為標準受控磁碟。
-
-> [!IMPORTANT]
-> 執行下列程序之後，預設 vhds 容器中會保留單一區塊 blob。 檔案的名稱是 “VMName.xxxxxxx.status”。 請勿刪除此保留的狀態物件。 未來應可解決此問題。
+本節說明如何將現有的 Azure VM 從非受控磁碟轉換為受控磁碟。 您可以使用此程序從進階 (SSD) 非受控磁碟轉換為進階受控磁碟，或從標準 (HDD) 非受控磁碟轉換為標準受控磁碟。
 
 1. 使用 [az vm deallocate](/cli/azure/vm#deallocate) 解除配置 VM。 下列範例會解除配置 `myResourceGroup` 資源群組中名為 `myVM` 的 VM：
 

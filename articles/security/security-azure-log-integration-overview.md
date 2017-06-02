@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/29/2017
+ms.date: 05/20/2017
 ms.author: TomSh
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 931105183156efc958d4daef50a6858ea36ea3bb
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
+ms.openlocfilehash: 616a29b3f7db817e63a3a3673b845cc86752af77
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/23/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.lasthandoff: 04/13/2017
 
 ## <a name="overview"></a>概觀
 
-Azure 記錄整合是免費的解決方案，可讓您將來自 Azure 資源的未經處理記錄，整合到內部部署安全性資訊及事件管理 (SIEM) 系統內。 
+Azure 記錄整合是免費的解決方案，可讓您將來自 Azure 資源的未經處理記錄，整合到內部部署安全性資訊及事件管理 (SIEM) 系統內。
 
 Azure 記錄整合會從 Windows 事件檢視器頻道、[Azure 活動記錄檔](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)、[Azure 資訊安全中心警示](../security-center/security-center-intro.md)和 Azure 資源的 [Azure 診斷記錄](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)收集 Windows 事件。 這項整合協助您的 SIEM 方案提供內部部署或在雲端中所有資產統一的儀表板，以便您彙總、相互關聯、分析和警示安全性事件。
 
@@ -48,7 +49,7 @@ Azure 記錄整合目前支援整合 Azure 活動記錄、您的 Azure 訂用帳
 
 | 記錄類型  |支援 JSON 的記錄分析 (Splunk、ELK)| ArcSight  | QRadar  |   
 |---|---|---|---|
-|  AAD 稽核記錄 |  yes | 需要建立 FlexConnector JSON 剖析器檔案。 如需詳細資訊，請參閱 ArcSight 文件  |  您必須建立記錄來源擴充。 如需詳細資訊，請參閱 QRadar文件。 |  
+|  AAD 稽核記錄 |  是 | 需要建立 FlexConnector JSON 剖析器檔案。 如需詳細資訊，請參閱 ArcSight 文件  |  您必須建立記錄來源擴充。 如需詳細資訊，請參閱 QRadar文件。 |  
 | 活動記錄檔  | 是  |  下載中心提供 FlexConnector JSON 剖析器檔案以及 Azure 記錄整合下載 |  [QRadar DSM](https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.dsm.doc/c_dsm_guide_microsoft_azure_overview.html) (透過 Syslog 傳送) |  
 | ASC 警示  | 是  |  需要建立 FlexConnector JSON 剖析器檔案。 如需詳細資訊，請參閱 ArcSight 文件。 | [QRadar DSM](https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.dsm.doc/c_dsm_guide_microsoft_azure_overview.html) (透過 Syslog 傳送)   |   
 | 診斷記錄 (資源記錄) | 是 | 需要使用者建立 FlexConnector JSON 剖析器檔案。 如需如何進行的指示，請參閱 ArcSight 文件。 | 您必須建立記錄來源擴充。 如需詳細資訊，請參閱 QRadar 文件 |
@@ -57,7 +58,7 @@ Azure 記錄整合目前支援整合 Azure 活動記錄、您的 Azure 訂用帳
 >[!NOTE]
 雖然 Azure 記錄檔整合是免費的解決方案，記錄檔資訊的儲存體仍會產生 Azure 儲存體成本。
 
-可透過 [Azure 記錄檔整合 MSDN 論壇](https://social.msdn.microsoft.com/Forums/office/home?forum=AzureLogIntegration)取得社群協助。 論壇讓 AzLog 社群能針對如何充分利用 Azure 記錄檔整合，透過分享問題、 解答、 秘訣和技巧支援彼此。 此外，Azure 記錄整合小組會監視這個論壇，並且會盡全力提供協助。 
+可透過 [Azure 記錄檔整合 MSDN 論壇](https://social.msdn.microsoft.com/Forums/office/home?forum=AzureLogIntegration)取得社群協助。 論壇讓 AzLog 社群能針對如何充分利用 Azure 記錄檔整合，透過分享問題、 解答、 秘訣和技巧支援彼此。 此外，Azure 記錄整合小組會監視這個論壇，並且會盡全力提供協助。
 
 您也可以建立[支援要求](../azure-supportability/how-to-create-azure-support-request.md)。 若要這樣做，請選取 [記錄整合] 作為您要求支援的服務。
 

@@ -15,10 +15,11 @@ ms.workload: NA
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: d8acfd6e0206e8e97b7d49e280a7e72e0acadb6d
-ms.openlocfilehash: 9ce5278e66afb81c5cbfe3662c6654d39bbc9a54
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: a5bc3a72eccc48ec26ef5f029d780175d66080c0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="deploy-storsimple-virtual-array---prepare-the-azure-portal"></a>部署 StorSimple Virtual Array - 準備 Azure 入口網站
@@ -74,7 +75,7 @@ ms.lasthandoff: 03/01/2017
 * 主機系統能夠把下列資源專門用來佈建虛擬陣列：
   
   * 至少 4 顆核心。
-  * 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個計畫檔案。
+  * 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個檔案。
   * 一個網路介面。
   * 供系統資料使用的 500 GB 虛擬磁碟。
 

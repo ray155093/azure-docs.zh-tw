@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 98e5764f84f23ec586ebd823634b9024e4689c5c
-ms.lasthandoff: 01/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: c78b69188136d6df7887e92600984c4fa269d355
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -163,9 +164,9 @@ Web 應用程式可能會使用根據 URL 路由傳送的模組，而非處理�
 
 [ASP.NET SignalR]: http://www.asp.net/signalr
 [Azure 入口網站]: https://portal.azure.com/
-[在 Azure App Service 中設定自訂網域名稱]: ./web-sites-custom-domain-name.md
+[在 Azure App Service 中設定自訂網域名稱]: ./app-service-web-tutorial-custom-domain.md
 [將 Azure App Service 中的 Web Apps 部署至預備環境]: ./web-sites-staged-publishing.md
-[針對 Azure App Service 中的 App 啟用 HTTPS]: ./web-sites-configure-ssl-certificate.md
+[針對 Azure App Service 中的 App 啟用 HTTPS]: ./app-service-web-tutorial-custom-ssl.md
 [如何監視 Web 端點狀態]: http://go.microsoft.com/fwLink/?LinkID=279906
 [在 Azure App Service 中監視 Web 應用程式的基本概念]: ./web-sites-monitor.md
 [管線模式]: http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture#Application

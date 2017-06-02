@@ -14,9 +14,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/30/2016
 ms.author: dastrock; vittorib
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 52a4c326c7618b9a31df539c8b0eb0ced44ce609
+ms.custom: aaddev
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: d0602a61b0335ef2bb92e27051c286852bc08d35
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -47,7 +50,7 @@ v2.0 端點可讓您快速地將驗證加入您的桌面應用程式，同時支
 * 將指派給您應用程式的 **應用程式識別碼** 複製起來，您很快會需要用到這些識別碼。
 * 為您的應用程式新增 **行動** 平台。
 
-## <a name="install-configure-msal"></a>安裝和設定 MSAL
+## <a name="install--configure-msal"></a>安裝和設定 MSAL
 您現在有了已向 Microsoft 註冊的應用程式，可以安裝 MSAL 並撰寫與您身分識別相關的程式碼。  為了讓 MSAL 能與 v2.0 端點通訊，您需要提供一些應用程式註冊的相關資訊。
 
 * 首先，使用 Package Manager Console 將 MSAL 新增到 TodoListClient 專案中。
@@ -259,10 +262,5 @@ MSAL 可使用個人和工作帳戶，輕鬆地將通用的身分識別功能納
 
 ## <a name="get-security-updates-for-our-products"></a>取得產品的安全性更新
 我們鼓勵您造訪 [此頁面](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

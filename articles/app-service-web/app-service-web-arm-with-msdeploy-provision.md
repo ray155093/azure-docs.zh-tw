@@ -13,9 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2016
 ms.author: jodehavi
-translationtype: Human Translation
-ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
-ms.openlocfilehash: f836bffd0610224b5cb69f4f6836dbc55e0721a3
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 071be50ff7f72ecd711b2c3036f39b70df01a6ba
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -123,7 +125,7 @@ ms.openlocfilehash: f836bffd0610224b5cb69f4f6836dbc55e0721a3
 
 此 **packageUri** 會取用一個儲存體帳戶 URI，該 URI 指向您的封裝 zip 所將上傳到的儲存體帳戶。 當您部署範本時，Azure 資源管理員會利用 [共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-1.md) 從儲存體帳戶將封裝提取到本機。 此程序就會透過 PowerShell 指令碼而自動化，將封裝上傳，並呼叫 Azure 管理 API，以建立所需的金鑰，並將其傳入範本中做為參數 (_artifactsLocation 和 _artifactsLocationSasToken)。 您將必須針對封裝在儲存體容器下所將上傳到的資料夾和檔案名稱定義參數。
 
-接著，您必須在其他巢狀資源中新增，以設定主機名稱繫結來利用自訂網域。 首先，您必須確定您擁有主機名稱，然後加以設定，使其由 Azure 驗證您具有其所有權 - 請參閱 [在 Azure App Service 中設定自訂網域名稱](web-sites-custom-domain-name.md)。 完成此動作後，您可以在 Microsoft.Web/網站資源區段下新增下列項目：
+接著，您必須在其他巢狀資源中新增，以設定主機名稱繫結來利用自訂網域。 首先，您必須確定您擁有主機名稱，然後加以設定，使其由 Azure 驗證您具有其所有權 - 請參閱 [在 Azure App Service 中設定自訂網域名稱](app-service-web-tutorial-custom-domain.md)。 完成此動作後，您可以在 Microsoft.Web/網站資源區段下新增下列項目：
 
     {
         "apiVersion": "2015-08-01",
@@ -196,10 +198,5 @@ ms.openlocfilehash: f836bffd0610224b5cb69f4f6836dbc55e0721a3
     Set-AzureRmResource -ApiVersion 2014-11-01 -Name nameofwebsite -ResourceGroupName $rgName -ResourceType Microsoft.Web/sites -PropertyObject $props
 
 此時，您的應用程式應已部署，且您應能夠透過 https://www.yourcustomdomain.com 加以瀏覽
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

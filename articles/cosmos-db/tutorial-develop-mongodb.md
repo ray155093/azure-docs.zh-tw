@@ -1,33 +1,33 @@
 ---
-title: "使用適用於 MongoDB 的 Azure Cosmos DB API 來建置 Web 應用程式 | Microsoft Docs"
-description: "使用適用於 MongoDB 的 API 來建立線上資料庫 Web 應用程式的 Azure Cosmos DB 教學課程。"
+title: "使用 Azure Cosmos DB 適用於 MongoDB 的 API 建置 Web 應用程式 | Microsoft Docs"
+description: "使用適用於 MongoDB 的 API 建立線上資料庫 Web 應用程式的 Azure Cosmos DB 教學課程。"
 keywords: "mongodb 範例"
-services: cosmosdb
+services: cosmos-db
 author: AndrewHoh
 manager: jhubbard
 editor: 
 documentationcenter: 
 ms.assetid: 61a2ab3a-2fc3-4d49-a263-ed87c66628f6
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: anhoh
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 7d78ac544c7e001444c5112b20824f75f9723652
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: d92244361cf86ee8b3c8dc2384f3085644b92e60
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 05/31/2017
 
 ---
 # <a name="azure-cosmos-db-connect-to-a-mongodb-app-using-net"></a>Azure Cosmos DB：使用 .NET 來連線到 MongoDB 應用程式
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
 
-本教學課程示範如何使用 Azure 入口網站來建立 Azure Cosmos DB 帳戶，以及如何使用 [MongoDB API](../documentdb/documentdb-protocol-mongodb.md) 來建立資料庫和集合以儲存資料。 
+本教學課程示範如何使用 Azure 入口網站來建立 Azure Cosmos DB 帳戶，以及如何使用 [MongoDB API](mongodb-introduction.md) 來建立資料庫和集合以儲存資料。 
 
 本教學課程涵蓋下列工作：
 
@@ -44,11 +44,11 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 > [!TIP]
 > * 已經有 Azure Cosmos DB 帳戶？ 如果是，請直接跳到[設定您的 Visual Studio 方案](#SetupVS)
 > * 您是否已有 Azure DocumentDB 帳戶？ 如果是，您的帳戶現在會是 Azure Cosmos DB 帳戶，且您可以直接跳到[設定您的 Visual Studio 方案](#SetupVS)。  
-> * 如果您使用「Azure Cosmos DB 模擬器」，請依照 [Azure Cosmos DB 模擬器](../documentdb/documentdb-nosql-local-emulator.md)的步驟來設定模擬器，然後直接跳到[設定您的 Visual Studio 方案](#SetupVS)。 
+> * 如果您使用「Azure Cosmos DB 模擬器」，請依照 [Azure Cosmos DB 模擬器](local-emulator.md)的步驟來設定模擬器，然後直接跳到[設定您的 Visual Studio 方案](#SetupVS)。 
 >
 >
 
-[!INCLUDE [cosmosdb-create-dbaccount-mongodb](../../includes/cosmosdb-create-dbaccount-mongodb.md)]
+[!INCLUDE [cosmos-db-create-dbaccount-mongodb](../../includes/cosmos-db-create-dbaccount-mongodb.md)]
 
 ## <a name="update-your-connection-string"></a>更新您的連接字串
 
@@ -225,6 +225,6 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 您現在可以繼續進行到下一個教學課程，以將 MongoDB 資料匯入到 Azure Cosmos DB。  
 
 > [!div class="nextstepaction"]
-> [將 MongoDB 資料匯入到 Azure Cosmos DB](../documentdb/documentdb-mongodb-migrate.md)
+> [將 MongoDB 資料匯入到 Azure Cosmos DB](mongodb-migrate.md)
 
 

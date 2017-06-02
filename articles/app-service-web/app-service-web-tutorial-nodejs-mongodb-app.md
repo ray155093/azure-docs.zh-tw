@@ -14,12 +14,12 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: cephalin
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 25fec75615d2376f3e566b509536eadd03590c0e
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 2a3d63b3829e750b62658d720522ae1abf89cd86
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="build-a-nodejs-and-mongodb-web-app-in-azure"></a>在 Azure 中建置 Node.js 和 MongoDB Web 應用程式
@@ -221,7 +221,7 @@ db: {
 ```
 
 > [!NOTE] 
-> `ssl=true` 選項很重要，因為 [Cosmos DB 需要 SSL](../documentdb/documentdb-connect-mongodb-account.md#connection-string-requirements)。 
+> `ssl=true` 選項很重要，因為 [Cosmos DB 需要 SSL](../cosmos-db/connect-mongodb-account.md#connection-string-requirements)。 
 >
 >
 
@@ -269,16 +269,7 @@ MEAN.JS version: 0.5.0
 
 使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 App Service 方案。 
 
-> [!NOTE] 
-> App Service 方案代表用來裝載應用程式的實體資源集合。 所有指派給 App Service 方案的所有應用程式都會共用它所定義的資源，而讓您節省裝載多個應用程式時的成本。 
-> 
-> App Service 方案可定義： 
-> 
-> * 區域 (北歐、美國東部、東南亞) 
-> * 執行個體大小 (小型、中型、大型) 
-> * 級別計數 (一、二或三個執行個體等) 
-> * SKU (免費、共用、基本、標準、進階) 
-> 
+[!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
 下列範例會使用**免費**定價層，建立名為 _myAppServicePlan_ 的 App Service 方案：
 

@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: 194b5d79505afbfd0208f63dd182a0e03227ba69
-ms.openlocfilehash: 1915201480f57c5f132e13bb5ce4283fbea975fe
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: b2b19a6f2ea20c414119e9dfbf84fda92dd93402
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -31,7 +33,7 @@ ms.openlocfilehash: 1915201480f57c5f132e13bb5ce4283fbea975fe
 
 * **資料湖分析工作程序基本知識**。 請參閱 [使用 Azure 入口網站開始使用 Azure 資料湖分析](data-lake-analytics-get-started-portal.md)。
 * **資料湖分析帳戶**。 請參閱[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md#create-data-lake-analytics-account)。
-* **將範例資料複製到預設的資料湖存放區帳戶**。  請參閱 [準備來源資料](data-lake-analytics-get-started-portal.md#prepare-source-data)
+* **將範例資料複製到預設的資料湖存放區帳戶**。  請參閱 [準備來源資料](data-lake-analytics-get-started-portal.md)
 
 ## <a name="submit-a-data-lake-analytics-job"></a>提交資料湖分析作業
 現在您將使用一個不正確的來源檔案名稱建立 U-SQL 工作。  
@@ -40,7 +42,7 @@ ms.openlocfilehash: 1915201480f57c5f132e13bb5ce4283fbea975fe
 
 1. 在 Azure 入口網站中，按一下左上角的 [ **Microsoft Azure** ]。
 2. 按一下具有您資料湖分析帳戶名稱的磚。  該建立帳戶時它便已釘選在此處。
-   如果帳戶尚未釘選於此處，請參閱 [從入口網站開啟分析帳戶](data-lake-analytics-manage-use-portal.md#access-adla-account)。
+   如果帳戶尚未釘選於此處，請參閱 [從入口網站開啟分析帳戶](data-lake-analytics-manage-use-portal.md#manage-data-sources)。
 3. 從頂端功能表按一下 [ **新增作業** ]。
 4. 輸入工作名稱與下列 U SQL 指令碼：
 
@@ -101,10 +103,5 @@ ms.openlocfilehash: 1915201480f57c5f132e13bb5ce4283fbea975fe
 * [Azure 資料湖分析概觀](data-lake-analytics-overview.md)
 * [使用 Azure PowerShell 開始使用 Azure 資料湖分析](data-lake-analytics-get-started-powershell.md)
 * [透過 Visual Studio 開始使用 Azure 資料湖分析與 U-SQL](data-lake-analytics-u-sql-get-started.md)
-* [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
+* [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)
 

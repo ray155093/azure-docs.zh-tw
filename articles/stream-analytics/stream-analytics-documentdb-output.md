@@ -16,10 +16,10 @@ ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 01bf4188c40abb424c654a733c6d626f3bd694ba
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: cb85dff7f8bf8a8715aaa9ecd02da59b9108915c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 05/10/2017
 串流分析可利用最佳化的更新插入方法，而此方法只會在因為 Document ID 發生衝突而插入失敗時，才進行更新。 串流分析會將更新作為修補程式執行，以部分更新文件，也就是以漸進方式新增新屬性或取代現有屬性。 請注意，變更 JSON 文件中陣列屬性的值，會造成整個陣列遭到覆寫，也就是不會合併陣列。
 
 ## <a name="data-partitioning-in-cosmos-db"></a>Cosmos DB 中的資料分割
-Cosmos DB [分割集合](../documentdb/documentdb-partition-data.md#single-partition-and-partitioned-collections)是建議的資料分割方法。 
+Cosmos DB [分割集合](../cosmos-db/partition-data.md)是建議的資料分割方法。 
 
 針對單一 Cosmos DB 集合，串流分析仍可讓您根據查詢模式和應用程式的效能需求來分割資料。 每個集合最多可包含 10GB 的資料 (上限)，且目前還無法相應增加 (或溢位) 集合。 如需相應放大，串流分析允許您使用指定的前置詞寫入多個集合 (請參閱下方的使用方式詳細資料)。 串流分析會根據使用者提供的 PartitionKey 欄，使用一致的 [雜湊分割解析程式](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) 策略來分割其輸出記錄。 系統會使用在串流作業開始時具有所指定前置詞的集合數量，作為該作業會同時寫入的輸出分割區計數 (Cosmos DB 集合數 = 輸出分割區數)。 對於延遲索引只進行插入的單一集合，預期會有約每秒 0.4 MB 的寫入輸送量。 使用多個集合可允許您達成更高的輸送量及增加容量。
 

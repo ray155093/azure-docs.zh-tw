@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: ed2fc2b34ff10acc806daec84986f8db58e713c3
-ms.openlocfilehash: 84cd0c3eb2753a209d0aebda405f0b98a487140d
-ms.lasthandoff: 02/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 2c967d759806b47862179ecf9e9a89801134192a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -137,7 +138,7 @@ ms.lasthandoff: 02/17/2017
    
     2. 在 [回覆 URL] 文字方塊中，貼上您在上一個步驟中從 Litmos 應用程式複製的值。
    
-    3. 按 [下一步] 。
+    3. 按一下 [下一步] 。
 9. 在 [設定在 Litmos 單一登入]  頁面上，執行下列步驟：
    
     ![Azure AD 單一登入][2] 
@@ -174,7 +175,7 @@ ms.lasthandoff: 02/17/2017
     | --- | --- |
     | 電子郵件 |user.mail |
     | FirstName |user.givenname |
-    | lastname |user.surname |
+    | 姓氏 |user.surname |
     
     針對上表中的每個資料列，執行下列步驟：
     
@@ -214,7 +215,7 @@ ms.lasthandoff: 02/17/2017
    
     2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    3. 按 [下一步] 。
+    3. 按一下 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟： 
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-litmos-tutorial/create_aaduser_06.png) 
@@ -226,7 +227,7 @@ ms.lasthandoff: 02/17/2017
    3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
    4. 在 [角色] 清單中選取 [使用者]。
-   5. 按 [下一步] 。
+   5. 按一下 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-litmos-tutorial/create_aaduser_07.png) 

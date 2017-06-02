@@ -12,13 +12,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 05/18/2017
 ms.author: magoedte
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 2d6ef39ad4678d331eadd2c0bfd6ff93c99da501
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: db9f2174e9928083957f160be8c268fe21cd4169
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/18/2017
 
 ---
 
@@ -28,7 +28,7 @@ ms.lasthandoff: 04/27/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-- Runbook 會使用 [Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md)。  執行身分帳戶是慣用的驗證方法，因為它會使用憑證驗證，而不是過期或經常變更的密碼。  
+- Runbook 會使用 [Azure 執行身分帳戶](automation-offering-get-started.md#authentication-methods)。  執行身分帳戶是慣用的驗證方法，因為它會使用憑證驗證，而不是過期或經常變更的密碼。  
 
 - 這個方案只能管理與「自動化」帳戶位於相同訂用帳戶中的 VM。  
 

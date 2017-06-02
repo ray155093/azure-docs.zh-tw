@@ -11,13 +11,13 @@ ms.service: mysql-database
 ms.tgt_pltfrm: portal
 ms.devlang: azurecli
 ms.topic: article
-ms.custom: sample
+ms.custom: sample, mvc
 ms.date: 05/10/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 749826e11270f61e1525ad30ea6502327362f7f4
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 53ec86dc9e9f9011b754b798e57d8caa40a0706a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 ---
 # <a name="azure-cli-samples-for-azure-database-for-mysql"></a>「適用於 MySQL 的 Azure 資料庫」的 Azuer CLI 範例 
@@ -26,7 +26,8 @@ ms.lasthandoff: 05/10/2017
 | |  |
 |---|---|
 |**建立伺服器**||
-| [建立伺服器和防火牆規則](./scripts/sample-create-server-and-firewall-rule.md) | 此 Azure CLI 指令碼會建立單一「適用於 MySQL 的 Azure 資料庫」伺服器，並設定伺服器等級防火牆規則。 |
+| [建立伺服器和防火牆規則](./scripts/sample-create-server-and-firewall-rule.md?toc=%2fcli%2fazure%2ftoc.json) | 此 Azure CLI 指令碼會建立單一「適用於 MySQL 的 Azure 資料庫」伺服器，並設定伺服器等級防火牆規則。 |
 |**調整伺服器**||
-| [調整伺服器](./scripts/sample-scale-server.md) | 此 Azure CLI 指令碼會隨著效能需求變化而相應增加或減少單一「適用於 MySQL 的 Azure 資料庫」伺服器。 |
+| [調整伺服器](./scripts/sample-scale-server.md?toc=%2fcli%2fazure%2ftoc.json) | 此 Azure CLI 指令碼會隨著效能需求變化而相應增加或減少單一「適用於 MySQL 的 Azure 資料庫」伺服器。 |
 |||
+

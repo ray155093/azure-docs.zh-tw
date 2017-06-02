@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 8928581d9636f571008f965185eeb61b414a16e7
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: da9e5f015f93090f4efb00f6c3af07ba2f5503bc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -129,13 +130,13 @@ Atlassian Cloud 與 Azure AD 整合提供下列優點：
     >您可以從 [Atlassian Cloud SAML 組態] 畫面取得 [識別碼] 的確切值。
     >
 
- 3. 按一下 [下一步]。
+ 3. 按一下 [下一步] 。
  
 4. 在 [設定在 Atlassian Cloud 單一登入] 頁面上，執行下列步驟：
 
     ![設定單一登入](./media/active-directory-saas-atlassian-cloud-tutorial/tutorial_atlassiancloud_05.png)
  1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
- 2. 按 [下一步] 。
+ 2. 按一下 [下一步] 。
 
 5. 若要取得針對您的應用程式設定的 SSO，請使用系統管理員權限登入 Atlassian 入口網站。
 
@@ -208,7 +209,7 @@ Atlassian Cloud 與 Azure AD 整合提供下列優點：
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-atlassian-cloud-tutorial/create_aaduser_05.png) 
   1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
   2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-  3. 按 [下一步] 。
+  3. 按一下 [下一步] 。
 
 6.  在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
 
@@ -217,7 +218,7 @@ Atlassian Cloud 與 Azure AD 整合提供下列優點：
    2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    4. 在 [角色] 清單中選取 [使用者]。
-   5. 按 [下一步] 。
+   5. 按一下 [下一步] 。
 
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
 
@@ -252,7 +253,7 @@ Atlassian Cloud 與 Azure AD 整合提供下列優點：
  
 4. 按一下 [建立使用者] 按鈕，便會傳送電子郵件邀請給使用者，而使用者在接受邀請之後便可在系統中作業。 
 
-### <a name="assig-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
 在本節中，您會將 Atlassian Cloud 的存取權授與 Britta Simon，讓她能夠使用 Azure SSO。
 

@@ -11,13 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/08/2017
+ms.date: 05/18/2017
 ms.author: jeedes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: d41fb4a9566db2e10b11129ab402f5c303b79344
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 9a36d686ba39b5168860a20e8c4db357888df6a7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -125,7 +125,7 @@ SAML SSO for Confluence by resolution GmbH 與 Azure AD 整合提供下列優點
     在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://<server-base-url>/plugins/servlet/samlsso`
      
     > [!NOTE] 
-    > 這些都不是真正的值。 使用實際的識別碼、回覆 URL 和登入 URL 來更新這些值。 請連絡 [SAML SSO for Confluence by resolution GmbH 用戶端支援小組](mailto:c.eitel@resolution.de)以取得這些值。 
+    > 這些都不是真正的值。 使用實際的識別碼、回覆 URL 和登入 URL 來更新這些值。 請連絡 [SAML SSO for Confluence by resolution GmbH 用戶端支援小組](https://www.resolution.de/go/support)以取得這些值。 
 
 5. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將中繼資料檔案儲存在您的電腦上。
 
@@ -290,7 +290,7 @@ SAML SSO for Confluence by resolution GmbH 與 Azure AD 整合提供下列優點
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
 當您按一下 [存取面板] 中的 [SAML SSO for Confluence by resolution GmbH] 圖格時，您應該會自動登入 SAML SSO for Confluence by resolution GmbH 應用程式。
-如需存取面板的詳細資訊，請參閱[存取面板簡介](https://msdn.microsoft.com/library/dn308586)。 
+如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。 
 
 ## <a name="additional-resources"></a>其他資源
 

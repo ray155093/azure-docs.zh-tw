@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9c5c0b40d796130d93111545c93bedf86c374fd9
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 625eeefe94ec0d068cc9cc68b59c371697c786a8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -101,7 +102,7 @@ ms.lasthandoff: 11/17/2016
 * 自訂的網域可能已建立成功，但刀鋒視窗可能還沒重新整理。 請嘗試重新開啟 [自訂網域及 SSL] 刀鋒視窗。
 * 您可能已經在某個時間點刪除了自訂網域。 請查看稽核記錄，方法是前往您應用程式的主刀鋒視窗，然後按一下 [設定] > [稽核記錄]。 
 * 您正在查看的 [自訂網域及 SSL] 刀鋒視窗，可能屬於不同 Azure 訂用帳戶所建立的應用程式。 請切換到不同訂用帳戶的另一個應用程式，並查看該應用程式的 [自訂網域及 SSL] 刀鋒視窗。  
-    在入口網站中，除了應用程式之外，您無法查看或管理不同的 Azure 訂用帳戶所建立的自訂網域。 不過，如果您在網域的 [管理網域]**** 刀鋒視窗中按一下 [進階管理]****，您會被重新導向到網域提供者的網站，讓您能夠在那裡為不同 Azure 訂用帳戶所建立的應用程式  [手動設定您的自訂網域，就跟設定所有外部自訂網域一樣](web-sites-custom-domain-name.md) 
+    在入口網站中，除了應用程式之外，您無法查看或管理不同的 Azure 訂用帳戶所建立的自訂網域。 不過，如果您在網域的 [管理網域]**** 刀鋒視窗中按一下 [進階管理]****，您會被重新導向到網域提供者的網站，讓您能夠在那裡為不同 Azure 訂用帳戶所建立的應用程式  [手動設定您的自訂網域，就跟設定所有外部自訂網域一樣](app-service-web-tutorial-custom-domain.md) 
   。 
 
 

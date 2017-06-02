@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/30/2017
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: d6d506eef720488969c5b33fe4b94c02752c6b58
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 6adc34f208c6c4363b73f6e42b4a4d6ae2e4483f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.lasthandoff: 04/03/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-此文章假設您已經知道如何[手動將自訂網域對應至 App Service](web-sites-custom-domain-name.md)。
+此文章假設您已經知道如何[手動將自訂網域對應至 App Service](app-service-web-tutorial-custom-domain.md)。
 
 ## <a name="bind-the-domain-name-preemptively"></a>事先繫結網域名稱
 
@@ -43,7 +44,7 @@ ms.lasthandoff: 04/03/2017
 
 請依照下列步驟執行：
 
-1. 首先，依照下列步驟，使用 DNS 登錄建立驗證 TXT 記錄：[建立 DNS 記錄](web-sites-custom-domain-name.md#createdns)。
+1. 首先，依照下列步驟，使用 DNS 登錄建立驗證 TXT 記錄：[建立 DNS 記錄](app-service-web-tutorial-custom-domain.md#create-a)。
 額外的 TXT 記錄會採用從 &lt;*subdomain*>.&lt;*rootdomain*> 對應至 &lt;*appname*>.azurewebsites.net 的慣例。
 請參閱下表中的範例：  
  
@@ -70,16 +71,16 @@ ms.lasthandoff: 04/03/2017
     </tr>
     </table>
 
-2. 然後，依照下列步驟，將自訂網域名稱新增至 Azure 應用程式：[為您的應用程式啟用自訂網域名稱](web-sites-custom-domain-name.md#enable)。
+2. 然後，依照下列步驟，將自訂網域名稱新增至 Azure 應用程式：[為您的應用程式啟用自訂網域名稱](app-service-web-tutorial-custom-domain.md#enable-a)。
 
     您的自訂網域現已在您的 Azure 應用程式中啟用。 您只需向網域註冊機構更新 DNS 記錄即可。
 
-3. 最後，更新網域的 DNS 記錄以指向您的 Azure 應用程式，如下所示：[建立 DNS 記錄](web-sites-custom-domain-name.md#createdns)。 
+3. 最後，更新網域的 DNS 記錄以指向您的 Azure 應用程式，如下所示：[建立 DNS 記錄](app-service-web-tutorial-custom-domain.md#create-a)。 
 
     在 DNS 傳播發生之後，使用者流量應重新導向至 Azure 應用程式。
 
 ## <a name="next-steps"></a>後續步驟
-了解如何[在 Azure 中購買 SSL 憑證](web-sites-purchase-ssl-web-site.md)或[使用來自其他位置的 SSL 憑證](web-sites-configure-ssl-certificate.md)來使用 HTTPS 保護自訂網域名稱。
+了解如何[在 Azure 中購買 SSL 憑證](web-sites-purchase-ssl-web-site.md)或[使用來自其他位置的 SSL 憑證](app-service-web-tutorial-custom-ssl.md)來使用 HTTPS 保護自訂網域名稱。
 
 > [!NOTE]
 > 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
