@@ -47,7 +47,8 @@
 ### [取得 ARP 表格 (傳統)](expressroute-troubleshooting-arp-classic.md)
 
 # 參考
-## [PowerShell](/powershell/module/azurerm.network)
+## [PowerShell](/powershell/module/azurerm.network/?view=azurermps-4.0.0#expressroute)
+## [Azure CLI](/cli/azure/network/express-route)
 ## [REST](https://msdn.microsoft.com/library/azure/mt586720)
 ## [REST (傳統)](https://msdn.microsoft.com/library/azure/dn606310)
 

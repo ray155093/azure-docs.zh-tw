@@ -11,7 +11,7 @@
 ## [最佳做法](sql-data-warehouse-best-practices.md)
 ## [管理](sql-data-warehouse-overview-manage.md)
 ## [取得支援](sql-data-warehouse-get-started-create-support-ticket.md)
-## [疑難排解](sql-data-warehouse-troubleshoot.md)
+
 
 # 作法
 
@@ -114,7 +114,7 @@
 
 ### [概觀](sql-data-warehouse-overview-manage-user-queries.md)
 ### [資料行存放區壓縮](sql-data-warehouse-memory-optimizations-for-columnstore-compression.md)
-### [查詢](sql-data-warehouse-manage-monitor.md)
+### [監視](sql-data-warehouse-manage-monitor.md)
 ### [工作負載](sql-data-warehouse-develop-concurrency.md)
 
 ## 安全性
@@ -126,6 +126,9 @@
 ### [加密](sql-data-warehouse-encryption-tde.md)
 ### [使用 T-SQL 加密](sql-data-warehouse-encryption-tde-tsql.md)
 ### [威脅偵測](sql-data-warehouse-security-threat-detection.md)
+
+## 疑難排解
+### [疑難排解](sql-data-warehouse-troubleshoot.md)
 
 # 參考
 

@@ -2,7 +2,6 @@
 ## [何謂 Data Lake Analytics？](data-lake-analytics-overview.md)
 
 # 開始使用
-## [互動式教學課程：分析網站記錄](data-lake-analytics-use-interactive-tutorials.md)
 ## [Azure 入口網站](data-lake-analytics-get-started-portal.md)
 ## [PowerShell](data-lake-analytics-get-started-powershell.md)
 ## [.NET SDK](data-lake-analytics-get-started-net-sdk.md)
@@ -27,6 +26,8 @@
 
 ## 建立解決方案
 ### [分析網站記錄](data-lake-analytics-analyze-weblogs.md)
+### [互動式教學課程：分析網站記錄](data-lake-analytics-use-interactive-tutorials.md)
+
 
 ## 管理
 ### [Azure 入口網站](data-lake-analytics-manage-use-portal.md)
