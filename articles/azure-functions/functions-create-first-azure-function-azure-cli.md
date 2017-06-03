@@ -9,6 +9,7 @@ ms.assetid: 674a01a7-fd34-4775-8b69-893182742ae0
 ms.date: 05/02/2017
 ms.topic: hero-article
 ms.service: functions
+ms.custom: mvc
 ms.devlang: azure-cli
 manager: erikre
 ms.translationtype: Human Translation
@@ -35,11 +36,13 @@ ms.lasthandoff: 05/18/2017
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+
 ## <a name="log-in-to-azure"></a>登入 Azure
 
 使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。 
 
-```azurecli
+```azurecli-interactive
 az login
 ```
 
@@ -49,7 +52,7 @@ az login
 
 下列範例會建立名為 `myResourceGroup` 的資源群組：
 
-```azurecli
+```azurecli-interactive
 az group create --name myResourceGroup --location westeurope
 ```
 ## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
@@ -58,7 +61,7 @@ az group create --name myResourceGroup --location westeurope
 
 在下列命令中，使用您自己的全域唯一儲存體帳戶名稱來替代您看見 `<storage_name>` 預留位置的地方。 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。
 
-```azurecli
+```azurecli-interactive
 az storage account create --name <storage_name> --location westeurope --resource-group myResourceGroup --sku Standard_LRS
 ```
 
@@ -88,7 +91,7 @@ az storage account create --name <storage_name> --location westeurope --resource
 
 在下列命令中，使用您自己的唯一函式應用程式名稱來替代您看見 `<app_name>` 預留位置的地方，並使用儲存體帳戶名稱來替代 `<storage_name>`。 `<app_name>` 會作為函式應用程式的預設 DNS 網域，所以此名稱在 Azure 的所有應用程式中都必須是唯一的名稱。 
 
-```azurecli
+```azurecli-interactive
 az functionapp create --name <app_name> --storage-account  <storage_name>  --resource-group myResourceGroup --consumption-plan-location westeurope
 ```
 根據預設，所建立的函式應用程式會使用「取用」主控方案，也就是說，您的函式會根據需要來動態新增資源，並且只有在函式執行時才會產生費用。 如需詳細資訊，請參閱[選擇正確的主控方案](functions-scale.md)。 
@@ -119,7 +122,7 @@ az functionapp create --name <app_name> --storage-account  <storage_name>  --res
 
 有多種方式可以在新的函式應用程式中建立函式程式碼。 本主題連結到 GitHub 中的範例存放庫。 和先前一樣，請在下列程式碼中將 `<app_name>` 預留位置改為您所建立之函式應用程式的名稱。 
 
-```azurecli
+```azurecli-interactive
 az functionapp deployment source config --name <app_name> --resource-group myResourceGroup --repo-url https://github.com/Azure-Samples/functions-quickstart --branch master --manual-integration
 ```
 設定部署來源後，Azure CLI 會顯示類似下列範例的資訊 (已移除 Null 值以方便閱讀)︰
@@ -159,7 +162,7 @@ curl http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
 
 此集合中的其他快速入門會以本快速入門為基礎。 如果您打算繼續進行後續的快速入門或教學課程，請勿清除在此快速入門中建立的資源。 如果您不打算繼續，請使用下列命令來刪除本快速入門建立的所有資源：
 
-```azurecli
+```azurecli-interactive
 az group delete --name myResourceGroup
 ```
 在出現提示時輸入 `y`。

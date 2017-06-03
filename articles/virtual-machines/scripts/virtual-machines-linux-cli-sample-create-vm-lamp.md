@@ -46,7 +46,7 @@ ms.lasthandoff: 05/15/2017
 
 執行下列命令來移除資源群組、擴展集和 VM，以及所有相關資源。
 
-```azurecli
+```azurecli-interactive 
 az group delete -n myResourceGroup
 ```
 

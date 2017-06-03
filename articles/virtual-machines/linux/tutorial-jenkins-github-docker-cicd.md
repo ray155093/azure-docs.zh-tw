@@ -70,13 +70,13 @@ runcmd:
 
 建立 VM 之前，請先使用 [az group create](/cli/azure/group#create) 來建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroupJenkins 的資源群組。
 
-```azurecli-interactive
+```azurecli-interactive 
 az group create --name myResourceGroupJenkins --location eastus
 ```
 
 現在，使用 [az vm create](/cli/azure/vm#create) 建立 VM。 使用 `--custom-data` 參數以傳入 cloud-init 組態檔。 如果您將檔案儲存於目前工作目錄之外的位置，請提供 cloud-init-jenkins.txt 的完整路徑。
 
-```azurecli
+```azurecli-interactive 
 az vm create --resource-group myResourceGroupJenkins \
     --name myVM \
     --image UbuntuLTS \
@@ -89,7 +89,7 @@ az vm create --resource-group myResourceGroupJenkins \
 
 為了允許網路流量連線到您的 VM，使用 [az vm open-port](/cli/azure/vm#open-port) 開啟連接埠 8080 (用於 Jenkins 流量) 和連接埠 1337 (用於 Node.js 應用程式，此應用程式用來執行範例應用程式)︰
 
-```azurecli
+```azurecli-interactive 
 az vm open-port --resource-group myResourceGroupJenkins --name myVM --port 8080 --priority 1001
 az vm open-port --resource-group myResourceGroupJenkins --name myVM --port 1337 --priority 1002
 ```
@@ -98,7 +98,7 @@ az vm open-port --resource-group myResourceGroupJenkins --name myVM --port 1337 
 ## <a name="configure-jenkins"></a>設定 Jenkins
 若要存取您的 Jenkins 執行個體，取得您的 VM 的公用 IP 位址︰
 
-```azurecli
+```azurecli-interactive 
 az vm show --resource-group myResourceGroupJenkins --name myVM -d --query [publicIps] --o tsv
 ```
 
@@ -212,7 +212,7 @@ Docker 組建步驟會建立映像，並標記 Jenkins 組建編號，讓您可�
 
 如有需要，再次取得您的 VM 公用 IP 位址：
 
-```azurecli
+```azurecli-interactive 
 az vm show --resource-group myResourceGroupJenkins --name myVM -d --query [publicIps] --o tsv
 ```
 

@@ -14,9 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/02/2017
 ms.author: subramar
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
 ms.openlocfilehash: 9cfdb94d1e030fe9d467389acf8894d79efd17d1
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/29/2017
 
 
@@ -99,7 +100,7 @@ HTTPS 通訊協定提供伺服器驗證，也能用於加密用戶端-伺服器�
 
 以下是您必須為 HTTPS 設定的範例 ApplicationManifest。 您必須提供憑證的指紋。 EndpointRef 是在您設定 HTTPS 通訊協定的 ServiceManifest 中 EndpointResource 的參考。 您可以加入一個以上的 EndpointCertificate。  
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest ApplicationTypeName="Application1Type"
                      ApplicationTypeVersion="1.0.0"

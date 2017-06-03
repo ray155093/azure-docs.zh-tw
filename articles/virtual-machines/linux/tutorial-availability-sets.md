@@ -56,12 +56,12 @@ ms.lasthandoff: 06/01/2017
 
 建立資源群組。
 
-```azurecli-interactive
+```azurecli-interactive 
 az group create --name myResourceGroupAvailability --location eastus
 ```
 
 
-```azurecli
+```azurecli-interactive 
 az vm availability-set create \
     --resource-group myResourceGroupAvailability \
     --name myAvailabilitySet \
@@ -77,7 +77,7 @@ az vm availability-set create \
 
 當您使用 [az vm create](/cli/azure/vm#create) 建立 VM 時，會使用 `--availability-set` 參數來指定可用性設定組，以指定可用性設定組的名稱。
 
-```azurecli
+```azurecli-interactive 
 for i in `seq 1 2`; do
    az vm create \
      --resource-group myResourceGroupAvailability \
@@ -99,7 +99,7 @@ done
 
 您稍後可以將更多 VM 加入至可用性設定組，但是需要知道硬體上有哪些可用的 VM 大小。 針對可用性設定組，使用 [az vm availability-set list-sizes](/cli/azure/availability-set#list-sizes) 來列出硬體叢集上所有可用的大小。
 
-```azurecli
+```azurecli-interactive 
 az vm availability-set list-sizes \
      --resource-group myResourceGroupAvailability \
      --name myAvailabilitySet \

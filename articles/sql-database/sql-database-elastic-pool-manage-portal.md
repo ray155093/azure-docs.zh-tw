@@ -11,14 +11,15 @@ ms.assetid: 3dc9b7a3-4b10-423a-8e44-9174aca5cf3d
 ms.service: sql-database
 ms.custom: multiple databases
 ms.devlang: NA
-ms.date: 04/18/2016
+ms.date: 05/08/2017
 ms.author: ninarn
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
 ms.openlocfilehash: 66f7cc63d311b6b5cd223fe0d8a9bf9f636abef1
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/20/2017
 
 
@@ -30,7 +31,7 @@ ms.lasthandoff: 04/20/2017
 
 彈性集區的建立方式有兩種。 如果您知道您要的集區設定則可從頭開始進行，或從服務的建議著手。 SQL Database 擁有的內建智慧功能會根據您資料庫過去的使用狀況遙測，為您建議更符合成本效益的彈性集區設定。
 
-您可以在伺服器上建立多個集區，但無法將來自不同伺服器的資料庫新增到相同的集區。 
+您可以在伺服器上建立多個集區，但無法將來自不同伺服器的資料庫新增到相同的集區。
 
 > [!NOTE]
 > 彈性集區已在所有 Azure 區域中正式運作 (GA)，但印度西部除外，此區域目前提供預覽版。  我們將儘速在此區域提供彈性集區的 GA。
@@ -158,7 +159,7 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 
     ![按一下 [編輯]。](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
 
-    
+
 
 3. 然後按一下 [確定] 。
 

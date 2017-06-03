@@ -80,7 +80,7 @@ az vm restart --ids $(az resource list --tag "restart-tag" --query "[?type=='Mic
 
 在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
 
-```azurecli
+```azurecli-interactive 
 az group delete -n myResourceGroup --no-wait --yes
 ```
 

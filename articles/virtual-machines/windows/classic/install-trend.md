@@ -15,9 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: iainfou
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: e2ccb78da419b12a9845d720efb5b0229d4f455b
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -35,8 +36,6 @@ ms.lasthandoff: 04/27/2017
 如果您已有 Trend Micro 的內部部署解決方案的目前訂用帳戶，您可以用它來協助保護 Azure 虛擬機器的安全。 如果您還不是 Symantec 客戶，您可以註冊試用訂用帳戶。 如需有關此解決方案的詳細資訊，請參閱 Trend Micro 部落格文章 [適用於 Deep Security 的 Microsoft Azure VM 代理程式延伸模組](http://go.microsoft.com/fwlink/p/?LinkId=403945)。
 
 ## <a name="install-the-deep-security-agent-on-a-new-vm"></a>在新的 VM 上安裝 Deep Security 代理程式
-
-<!-- old portal [Azure classic portal](http://manage.windowsazure.com) -->
 
 當您使用來自 **Marketplace** 的映像建立虛擬機器時，[Azure 入口網站](http://portal.azure.com)可讓您安裝 Trend Micro 安全性擴充功能。 如果您打算建立單一虛擬機器，使用此入口網站可輕易地新增 Trend Micro 的防護。
 
