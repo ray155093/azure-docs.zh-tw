@@ -17,9 +17,10 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 04/10/2017
 ms.author: rickbyh
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
 ms.openlocfilehash: 744ad6cfc15453e1db7a012eebe09ceba226fde9
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/15/2017
 
 
@@ -166,7 +167,7 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
 
 下列範例會使用 Azure CLI 設定伺服器層級防火牆規則： 
 
-```azurecli
+```azurecli-interactive
 az sql server firewall-rule create --resource-group myResourceGroup --server $servername \
     -n AllowYourIp --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.1
 ```

@@ -55,14 +55,14 @@ Azure Load Balancer 是 Layer-4 (TCP、UDP) 負載平衡器，可將連入流量
 ## <a name="create-azure-load-balancer"></a>建立 Azure Load Balancer
 本節將詳細說明如何建立及設定負載平衡器的每個元件。 請先使用 [az group create](/cli/azure/group#create) 建立資源群組，才可建立負載平衡器。 下列範例會在 eastus 位置建立名為 myResourceGroupLoadBalancer 的資源群組：
 
-```azurecli-interactive
+```azurecli-interactive 
 az group create --name myResourceGroupLoadBalancer --location eastus
 ```
 
 ### <a name="create-a-public-ip-address"></a>建立公用 IP 位址
 若要存取網際網路上您的應用程式，您需要負載平衡器的公用 IP 位址。 使用 [az network public-ip create](/cli/azure/public-ip#create) 建立公用 IP 位址。 下列範例會在 myResourceGroupLoadBalancer 資源群組中建立名為 myPublicIP 的公用 IP 位址：
 
-```azurecli
+```azurecli-interactive 
 az network public-ip create \
     --resource-group myResourceGroupLoadBalancer \
     --name myPublicIP
@@ -71,7 +71,7 @@ az network public-ip create \
 ### <a name="create-a-load-balancer"></a>建立負載平衡器
 使用 [az network lb create](/cli/azure/network/lb#create) 建立負載平衡器。 下列範例會建立名為 myLoadBalancer 的負載平衡器並將 myPublicIP 位址指派給前端 IP 組態：
 
-```azurecli
+```azurecli-interactive 
 az network lb create \
     --resource-group myResourceGroupLoadBalancer \
     --name myLoadBalancer \
@@ -87,7 +87,7 @@ az network lb create \
 
 若要建立 TCP 健康狀態探查，請使用 [az network lb probe create](/cli/azure/network/lb/probe#create)。 下列範例會建立名為 myHealthProbe 的健康狀態探查：
 
-```azurecli
+```azurecli-interactive 
 az network lb probe create \
     --resource-group myResourceGroupLoadBalancer \
     --lb-name myLoadBalancer \
@@ -101,7 +101,7 @@ az network lb probe create \
 
 使用 [az network lb rule create](/cli/azure/network/lb/rule#create) 建立負載平衡器規則。 下列範例會建立名為 myLoadBalancerRule 的規則、使用 myHealthProbe 健康狀態探查，以及平衡連接埠 80 上的流量︰
 
-```azurecli
+```azurecli-interactive 
 az network lb rule create \
     --resource-group myResourceGroupLoadBalancer \
     --lb-name myLoadBalancer \
@@ -121,7 +121,7 @@ az network lb rule create \
 ### <a name="create-network-resources"></a>建立網路資源
 使用 [az network vnet create](/cli/azure/vnet#create) 建立虛擬網路。 下列範例會建立名為 myVnet 的虛擬網路和名為 mySubnet 的子網路：
 
-```azurecli
+```azurecli-interactive 
 az network vnet create \
     --resource-group myResourceGroupLoadBalancer \
     --name myVnet \
@@ -130,7 +130,7 @@ az network vnet create \
 
 若要新增網路安全性群組，請使用 [az network nsg create](/cli/azure/network/nsg#create)。 下列範例建立名為 myNetworkSecurityGroup 的網路安全性群組：
 
-```azurecli
+```azurecli-interactive 
 az network nsg create \
     --resource-group myResourceGroupLoadBalancer \
     --name myNetworkSecurityGroup
@@ -138,7 +138,7 @@ az network nsg create \
 
 使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 建立網路安全性群組規則。 下列範例建立名為 myNetworkSecurityGroupRule 的網路安全性群組規則：
 
-```azurecli
+```azurecli-interactive 
 az network nsg rule create \
     --resource-group myResourceGroupLoadBalancer \
     --nsg-name myNetworkSecurityGroup \
@@ -215,7 +215,7 @@ runcmd:
 
 使用 [az vm availability-set create](/cli/azure/vm/availability-set#create) 建立可用性設定組。 下列範例會建立名為 myAvailabilitySet 的可用性設定組：
 
-```azurecli
+```azurecli-interactive 
 az vm availability-set create \
     --resource-group myResourceGroupLoadBalancer \
     --name myAvailabilitySet \
@@ -246,7 +246,7 @@ done
 ## <a name="test-load-balancer"></a>測試負載平衡器
 使用 [az network public-ip show](/cli/azure/network/public-ip#show) 取得負載平衡器的公用 IP 位址。 下列範例會取得稍早建立的 myPublicIP IP 位址︰
 
-```azurecli
+```azurecli-interactive 
 az network public-ip show \
     --resource-group myResourceGroupLoadBalancer \
     --name myPublicIP \
@@ -267,7 +267,7 @@ az network public-ip show \
 ### <a name="remove-a-vm-from-the-load-balancer"></a>從負載平衡器移除 VM
 您可以使用 [az network nic ip-config address-pool remove](/cli/azure/network/nic/ip-config/address-pool#remove) 從後端位址集區移除 VM。 下列範例會從 myLoadBalancer 移除myVM2 的虛擬 NIC：
 
-```azurecli
+```azurecli-interactive 
 az network nic ip-config address-pool remove \
     --resource-group myResourceGroupLoadBalancer \
     --nic-name myNic2 \
@@ -281,7 +281,7 @@ az network nic ip-config address-pool remove \
 ### <a name="add-a-vm-to-the-load-balancer"></a>將 VM 新增至負載平衡器
 在執行 VM 維護之後，或者如果需要擴充容量，您可以使用 [az network nic ip-config address-pool add](/cli/azure/network/nic/ip-config/address-pool#add) 將 VM 新增至後端位址集區。 下列範例會將 myVM2 的虛擬 NIC 新增至 myLoadBalancer：
 
-```azurecli
+```azurecli-interactive 
 az network nic ip-config address-pool add \
     --resource-group myResourceGroupLoadBalancer \
     --nic-name myNic2 \

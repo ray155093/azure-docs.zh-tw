@@ -9,7 +9,7 @@ editor:
 tags: 
 ms.assetid: 
 ms.service: sql-database
-ms.custom: tutorial-secure
+ms.custom: tutorial-secure, mvc
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -112,7 +112,7 @@ Azure 的防火牆會保護 SQL Database。 依預設，伺服器與其內部資
 3. 在查詢視窗中，輸入下列查詢︰
 
     ```sql
-    CREATE USER 'ApplicationUserUser' WITH PASSWORD = 'strong_password';
+    CREATE USER ApplicationUserUse' WITH PASSWORD = 'YourStrongPassword1';
     ```
 
 4. 在工具列上按一下 [執行] 以建立使用者。
@@ -120,8 +120,8 @@ Azure 的防火牆會保護 SQL Database。 依預設，伺服器與其內部資
 5. 依預設，使用者可與資料庫連線，但沒有權限可讀取或寫入資料。 若要將這些權限授與新建立的使用者，請在新的查詢視窗中執行下列兩個命令
 
     ```sql
-    ALTER ROLE db_datareader ADD MEMBER 'ApplicationUserUser';
-    ALTER ROLE db_datawriter ADD MEMBER 'ApplicationUserUser';
+    ALTER ROLE db_datareader ADD MEMBER ApplicationUserUser;
+    ALTER ROLE db_datawriter ADD MEMBER ApplicationUserUser;
     ```
 
 若要在資料庫層級建立這些非系統管理員帳戶來與您資料庫連線，這是最佳的作法，除非您需要執行如建立新使用者的系統管理員工作。 請檢閱 [Azure Active Directory 教學課程](./sql-database-aad-authentication-configure.md)以了解如何使用 Azure Active Directory 進行驗證。
