@@ -18,10 +18,10 @@ ms.date: 05/08/2017
 ms.author: anhowe
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 2ec155129374c03ba7e0ecaa5d2bf29a1d3111aa
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 0604a85192ed632b621113b98cc44172c584ea01
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 ---
 
@@ -78,7 +78,7 @@ az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --
 幾分鐘後，命令完成，您應有作用中的 Kubernetes 叢集。
 
 > [!IMPORTANT]
-> 如果您的帳戶沒有建立 Azure AD 服務主體的權限，命令就會產生類似 `Insufficient privileges to complete the operation.` 的錯誤。如需詳細資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。
+> 如果帳戶沒有用以建立 Azure AD 服務主體的權限，則命令會產生錯誤，此錯誤的內容類似**權限不足，無法完成作業**。 如需詳細資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。
 > 
 
 

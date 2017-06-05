@@ -3,6 +3,7 @@ title: "Azure 雲端服務的 Application Insights | Microsoft Docs"
 description: "使用 Application Insights 有效地監視您的 Web 和背景工作角色"
 services: application-insights
 documentationcenter: 
+keywords: "WAD2AI, Azure 診斷"
 author: CFreemanwa
 manager: carmonm
 editor: alancameronwills
@@ -15,15 +16,15 @@ ms.workload: tbd
 ms.date: 05/05/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: bfae0fcf992c38d7afef6140fdd79d87ab0ecb4f
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: a5e5cc37c4635b78279a5e240603b6a728922eb8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
 # <a name="application-insights-for-azure-cloud-services"></a>Azure 雲端服務的 Application Insights
-[Application Insights][start] 可以監視 [Microsoft Azure 雲端服務應用程式 (英文)](https://azure.microsoft.com/services/cloud-services/) 的可用性、效能、失敗及使用情況。 當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
+您可以透過 [Application Insights][start] 來監視 [Microsoft Azure 雲端服務應用程式](https://azure.microsoft.com/services/cloud-services/)，它會結合 Application Insights SDK 的資料與雲端服務的 [Azure 診斷](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/azure-diagnostics)資料，來讓您了解應用程式的可用性、效能、失敗和使用情形。 當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
 
 ![範例](./media/app-insights-cloudservices/sample.png)
 
@@ -143,7 +144,7 @@ ms.lasthandoff: 05/10/2017
 * 請參閱[疑難排解][qna]。
 
 ## <a name="view-azure-diagnostic-events"></a>檢視 Azure 診斷事件
-哪裡可以找到診斷：
+[Azure 診斷](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/azure-diagnostics)資訊在 Application Insights 中的位置如下：
 
 * 效能計數器顯示為自訂度量。 
 * Windows 事件記錄檔顯示為追蹤和自訂事件。

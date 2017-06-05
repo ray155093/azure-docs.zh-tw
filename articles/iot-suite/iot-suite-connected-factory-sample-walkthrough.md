@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 05/08/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 63b6086b7bab5cb61ed6f4a229afd1ffa44cc31e
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 3011fd608ba83561c319e57c8a7b5a4f3c4c2284
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/18/2017
 
 IoT 套件連線處理站[預先設定的解決方案][lnk-preconfigured-solutions]是端對端企業解決方案的實作︰
 
-* 連線至模擬處理站生產線中執行 OPC UA 的模擬工業裝置，和實際的 OPC UA 伺服器裝置。
+* 連線至模擬處理站生產線中執行 OPC UA 的模擬工業裝置，和實際的 OPC UA 伺服器裝置。 如需 OPC UA 的詳細資訊，請參閱[常見問題集][lnk-faq]。
 * 顯示作業 KPI 和這些裝置與生產線的 OEE。
 * 示範如何將以雲端為基礎的應用程式用來與 OPC UA 伺服器系統進行互動。
 * 可讓您連線到自己的 OPC UA 伺服器裝置。
@@ -132,3 +132,4 @@ TSI 會使用 SearchSpan (Time.From、Time.To) 針對節點資料進行查詢，
 [lnk-OPC-UA-NET-Standard]:https://github.com/OPCFoundation/UA-.NETStandardLibrary
 [lnk-Azure-IoT-Gateway]: https://github.com/azure/iot-edge
 [lnk-permissions]: iot-suite-permissions.md
+[lnk-faq]: iot-suite-faq.md

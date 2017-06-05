@@ -14,23 +14,29 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/14/2017
 ms.author: raynew
-translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 4674985363bc1267449e018ab15a53757a8fd32d
-ms.lasthandoff: 03/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 3d2b3509666633df4f6f6f0c385af3667f4bcf3e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
-# <a name="how-does-azure-site-recovery-work"></a>Azure Site Recovery 如何運作？
 
-本文說明 [Azure Site Recovery](site-recovery-overview.md) 服務的基礎架構以及可讓它運作的元件。
+# <a name="how-does-azure-site-recovery-work-for-on-premises-infrastructure"></a>Azure Site Recovery 如何在內部部署基礎結構中運作？
+
+> [!div class="op_single_selector"]
+> * [複寫 Azure 虛擬機器](site-recovery-azure-to-azure-architecture.md)
+> * [複寫內部部署機器](site-recovery-components.md)
+
+本文說明 [Azure Site Recovery](site-recovery-overview.md) 服務的基礎架構，以及可供它進行複寫工作 (將工作負載從內部部署複寫到 Azure) 的元件。
 
 如有任何意見，請張貼於這篇文章下方或 [Azure 復原服務論壇 (英文)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 中。
 
 
 ## <a name="replicate-to-azure"></a>複寫至 Azure
 
-您可以將下列項目複寫至 Azure：
+您可以將下列內部部署基礎結構複寫至 Azure，並對其提供保護：
 
 - **VMware**︰[支援主機](site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers)上執行的內部部署 VMware VM。 您可以複寫執行[支援的作業系統](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions)的 VMware VM
 - **Hyper-V**︰[支援主機](site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers)上執行的內部部署 Hyper-V VM。
@@ -42,12 +48,11 @@ ms.lasthandoff: 03/15/2017
 
 領域 | 元件 | 詳細資料
 --- | --- | ---
-**Azure** | 在 Azure 中，您需要 Azure 帳戶、Azure 儲存體帳戶和 Azure 網路。 | 儲存體和網路可以是 Resource Manager 帳戶或傳統帳戶。<br/><br/>  所複寫的資料會儲存在儲存體帳戶中，而在從內部部署網站進行容錯移轉時，便會以複寫的資料建立 Azure VM。 Azure VM 在建立後會連線到 Azure 虛擬網路。
 **組態伺服器** | 單一管理伺服器 (VMWare VM) 執行所有內部部署元件 - 組態伺服器、處理序伺服器、主要目標伺服器 | 組態伺服器會協調內部部署與 Azure 之間的通訊，以及管理資料複寫。
  **處理序伺服器**：  | 預設會安裝在組態伺服器上。 | 會做為複寫閘道器。 接收複寫資料，以快取、壓縮和加密進行最佳化，然後將複寫資料傳送至 Azure 儲存體。<br/><br/> 處理序伺服器還會處理用來保護機器的行動服務的推入安裝，並執行 VMWare VM 的自動探索。<br/><br/> 隨著部署規模擴大，您可以新增更多個別的專用處理序伺服器，以處理日益增加的複寫流量。
  **主要目標伺服器** | 預設會安裝在內部部署組態伺服器上。 | 在從 Azure 容錯回復期間，處理複寫資料。<br/><br/> 如果容錯回復的流量很高，您可以部署個別的主要目標伺服器來供容錯回復使用。
-**VMware 伺服器** | VMware VM 裝載在 vSphere ESXi 伺服器上，我們建議使用 vCenter 伺服器來管理主機。 | 您可以將 VMware 伺服器新增至您的復原服務保存庫。<br/><br/> I
-**複寫的機器** | 行動服務將會安裝在您要複寫的每部 VMware VM 上。 您可以手動將它安裝在每部電腦上，或是從處理序伺服器進行推入安裝。
+**VMware 伺服器** | VMware VM 裝載在 vSphere ESXi 伺服器上，我們建議使用 vCenter 伺服器來管理主機。 | 您可以將 VMware 伺服器新增至您的復原服務保存庫。<br/><br/>
+**複寫的機器** | 行動服務將會安裝在您要複寫的每部 VMware VM 上。 您可以手動將它安裝在每部電腦上，或是從處理序伺服器進行推入安裝。| -
 
 **圖 1：VMware 到 Azure 的元件**
 
@@ -76,14 +81,6 @@ ms.lasthandoff: 03/15/2017
 3. 當您執行容錯移轉時，會在 Azure 中建立複本 VM。 您要認可讓容錯移轉開始存取來自複本 Azure VM 的工作負載。
 4. 當主要的內部部署網站恢復可用狀態時，您就可以容錯回復。 您要設定容錯回復基礎結構、開始將機器從次要網站複寫到主要網站，以及從次要網站執行非計劃性容錯移轉。 在認可此容錯移轉後，資料會回到內部部署網站，而您必須再次啟用複寫至 Azure 的功能。 [深入了解](site-recovery-failback-azure-to-vmware.md)
 
-容錯回復有以下幾項需求︰
-
-
-- **Azure 中的暫存處理序伺服器**︰如果您想要在容錯移轉後從 Azure 容錯回復，您必須將 Azure VM 設定為處理序伺服器，以處理來自 Azure 的複寫。 容錯回復完成後，您可以刪除此 VM。
-- **VPN 連線**：如需容錯回復，您需要設定從 Azure 網路到內部部署網站的 VPN 連線 (或 Azure ExpressRoute)。
-- **個別內部部署主要目標伺服器**︰內部部署主要目標伺服器會處理容錯回復。 主要目標伺服器預設會安裝在管理伺服器上，但如果要容錯回復大量資料，您應該就此目的設定個別的內部部署主要目標伺服器。
-- **容錯回復原則**︰若要複寫回到內部部署網站，您需要容錯回復原則。 此原則會在您建立複寫原則時自動建立。
-
 **圖 3：VMware/實體容錯回復**
 
 ![容錯回復](./media/site-recovery-components/enhanced-failback.png)
@@ -96,16 +93,6 @@ ms.lasthandoff: 03/15/2017
 - 您需要內部部署的 VMware 基礎結構以供進行容錯回復。 您無法容錯回復到實體機器。
 
 ## <a name="hyper-v-to-azure"></a>Hyper-V 至 Azure
-
-以下是要將 Hyper-V VM 複寫到 Azure 的所需項目。
-
-**領域** | **元件** | **詳細資料**
---- | --- | ---
-**Azure** | 在 Azure 中，您需要 Microsoft Azure 帳戶、Azure 儲存體帳戶和 Azure 網路。 | 儲存體和網路可以是 Resource Manager 型帳戶或傳統帳戶。<br/><br/> 所複寫的資料會儲存在儲存體帳戶中，而在從內部部署網站進行容錯移轉時，便會以複寫的資料建立 Azure VM。<br/><br/> Azure VM 在建立後會連線到 Azure 虛擬網路。
-**VMM 伺服器** | 位於 VMM 雲端中的 Hyper-V 主機 | 如果 Hyper-V 主機是在 VMM 雲端中進行管理，您是在復原服務保存庫中註冊 VMM 伺服器。<br/><br/> 在 VMM 伺服器上安裝 Site Recovery Provider，以協調與 Azure 的複寫。<br/><br/> 您需要邏輯和 VM 網路設定以設定網路對應。 VM 網路應該連結到與雲端相關聯的邏輯網路。
-**Hyper-V 主機** | 可以部署包含或不包含 VMM 伺服器的 Hyper-V 伺服器。 | 如果沒有 VMM 伺服器，Site Recovery Provider 會安裝在主機上，以透過網際網路協調與 Site Recovery 的複寫。 如果有 VMM 伺服器，會在上面安裝 Provider，而不是在主機上安裝。<br/><br/> 復原服務代理程式安裝在主機上以處理資料複寫。<br/><br/> 來自提供者和代理程式的通訊都是安全且加密的。 Azure 儲存體中的複寫的資料也會加密。
-**Hyper-V VM** | 您必須在 Hyper-V 主機伺服器上擁有一或多個 VM。 | 不需要明確地在 VM 上安裝任何項目
-
 
 ### <a name="replication-process"></a>複寫程序
 
@@ -152,7 +139,6 @@ ms.lasthandoff: 03/15/2017
 
 **領域** | **元件** | **詳細資料**
 --- | --- | ---
-**Azure** | InMage Scout。 | 若要取得 InMage Scout，您必須要有 Azure 訂用帳戶。<br/><br/> 建立復原服務保存庫之後，您可下載 InMage Scout 並安裝最新的更新，以設定部署。
 **處理序伺服器** | 位於主要網站 | 您部署處理序伺服器來處理快取、壓縮和資料最佳化。<br/><br/> 它也會處理您想要保護的機器的整合代理程式推入安裝。
 **組態伺服器** | 位於次要網站 | 組態伺服器會使用管理網站或 vContinuum 主控台來管理、設定和監視您的部署。
 **vContinuum 伺服器** | 選用。 與組態伺服器安裝在相同的位置。 | 它會提供主控台來管理及監視您的受保護的環境。
@@ -180,7 +166,6 @@ ms.lasthandoff: 03/15/2017
 
 **領域** | **元件** | **詳細資料**
 --- | --- | ---
-**Azure** | 您需要 Microsoft Azure 帳戶。 |
 **VMM 伺服器** | 我們建議主要網站與次要網站中各要有一部 VMM 伺服器 | 每部 VMM 伺服器應連線至網際網路。<br/><br/> 每一部伺服器都應該有至少一個 VMM 私人雲端，並設定好 Hyper-V 功能設定檔。<br/><br/> 您會在 VMM 伺服器上安裝 Azure Site Recovery Provider。 此提供者會透過網際網路與 Site Recovery 服務協調進行複寫。 Provider 和 Azure 之間的通訊都是安全且加密的。
 **Hyper-V 伺服器** |  在主要和次要 VMM 雲端中，有一或多部 Hyper-V 主機伺服器。<br/><br/> 伺服器應連線到網際網路。<br/><br/> 在主要和次要 Hyper-V 主機伺服器之間，使用 Kerberos 或憑證驗證透過 LAN 或 VPN 來複寫資料。  
 **Hyper-V VM** | 位於來源 Hyper-V 主機伺服器。 | 來源主機伺服器應該至少有一個您想要複寫的 VM。

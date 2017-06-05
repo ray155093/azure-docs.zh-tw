@@ -14,23 +14,23 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: cephalin;robmcm
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 75e51ca45a899c6b6fa123346aa3c5860fd1600d
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 1249d7ac42bec02227d47500fe3aabb601a36f88
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
-
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="create-your-first-java-web-app-in-azure-in-five-minutes"></a>在 5 分鐘內，將您的第一個 Java Web 應用程式建立在 Azure 中
 
 [!INCLUDE [app-service-web-selector-get-started](../../includes/app-service-web-selector-get-started.md)] 
 
-本快速入門可幫助您在短短幾分鐘內將第一個 Java Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 完成此教學課程之後，您將有個簡單的 Java 型 Web 應用程式在雲端中啟動並執行。
+本快速入門可幫助您在短短幾分鐘內將第一個 Java Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 完成此教學課程之後，您便會擁有在雲端中啟動並執行的簡單 Java 型 Web 應用程式。
 
 ![瀏覽至 Web 應用程式](./media/app-service-web-get-started-java/browse-web-app-1.png)
 
-## <a name="before-you-begin"></a>開始之前
+## <a name="prerequisites"></a>必要條件
 
 本教學課程示範如何使用 Eclipse IDE for Java EE Devlopers 來建置 Java Web 應用程式並將其部署至 Azure。 如果您尚未安裝 Eclipse，請從 http://www.eclipse.org/ 免費下載。
 
@@ -155,7 +155,7 @@ Azure Toolkit 會開始建立新的 App Service，並在進行處理時顯示進
 
 ![將 Web 應用程式部署至 Azure](./media/app-service-web-get-started-java/deploy-web-app-to-azure.png)
 
-恭喜！ 您已成功將 Web 應用程式部署至 Azure！ 您現在可以在 Azure 網站上預覽您的 Web 應用程式︰
+恭喜！ 您已成功將 Web 應用程式部署至 Azure！ 您現在可以在 Azure 網站上檢視您的 Web 應用程式︰
 
 ![瀏覽至 Web 應用程式](./media/app-service-web-get-started-java/browse-web-app-1.png)
 

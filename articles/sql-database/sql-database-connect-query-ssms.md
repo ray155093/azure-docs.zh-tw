@@ -10,28 +10,32 @@ manager: jhubbard
 editor: 
 ms.assetid: 7cd2a114-c13c-4ace-9088-97bd9d68de12
 ms.service: sql-database
-ms.custom: quick start manage
+ms.custom: quick start manage, mvc
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 03/15/2017
+ms.date: 05/26/2017
 ms.author: carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 9ffad92e668b76c9a4e2941b20d075bf52132d16
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 05cbc0c80a4e622f537772c698e2711a7a85c00d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
 # <a name="azure-sql-database-use-sql-server-management-studio-to-connect-and-query-data"></a>Azure SQL Database：使用 SQL Server Management Studio 連接及查詢資料
 
-[SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS) 是一套管理工具，可在使用者介面或以指令碼中建立和管理 SQL Server 資源。 此快速入門示範如何使用 SSMS 來連線至 Azure SQL Database，然後使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 
+[SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS) 是整合式的環境，可用來管理任何 SQL 基礎結構，範圍從 Microsoft Windows 的 SQL Server 到 SQL Database。 此快速入門示範如何使用 SSMS 來連線至 Azure SQL Database，然後使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 
 
-本快速入門可作為在其中一個快速入門中建立之資源的起點︰
+## <a name="prerequisites"></a>必要條件
+
+本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
+- [建立 DB - PowerShell](sql-database-get-started-powershell.md)
 
 開始之前，確定您已安裝最新版的 [SSMS](https://msdn.microsoft.com/library/mt238290.aspx)。 
 
@@ -41,13 +45,13 @@ ms.lasthandoff: 04/20/2017
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
-3. 在您資料庫的 [概觀] 窗格上，檢閱如下圖所示的完整伺服器名稱。 您可以將滑鼠移至伺服器名稱上，以帶出 [按一下以複製] 選項。
+3. 在您資料庫的 [概觀] 頁面上，檢閱如下圖所示的完整伺服器名稱。 您可以將滑鼠移至伺服器名稱上，以帶出 [按一下以複製] 選項。
 
    ![連線資訊](./media/sql-database-connect-query-ssms/connection-information.png) 
 
 4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。 
 
-## <a name="connect-to-your-database-in-the-sql-database-logical-server"></a>在 SQL Database 邏輯伺服器中連線至您的資料庫
+## <a name="connect-to-your-database"></a>連接到您的資料庫
 
 使用 SQL Server Management Studio (SSMS) 建立對 Azure SQL Database 伺服器的連線。 
 
@@ -58,11 +62,14 @@ ms.lasthandoff: 04/20/2017
 1. 開啟 SQL Server Management Studio。
 
 2. 在 [連接到伺服器] 對話方塊中，輸入下列資訊：
-   - **伺服器類型**：指定資料庫引擎
-   - **伺服器名稱**︰輸入您的完整伺服器名稱，例如 **mynewserver20170313.database.windows.net**
-   - **驗證**：指定 SQL Server 驗證
-   - **登入**︰輸入您的伺服器管理帳戶
-   - **密碼**：輸入伺服器管理帳戶的密碼
+
+   | 設定       | 建議的值 | 說明 | 
+   | ------------ | ------------------ | ------------------------------------------------- | 
+   | **伺服器類型** | 資料庫引擎 | 需要此值。 |
+   | **伺服器名稱** | 完整伺服器名稱 | 此名稱應該類似這樣︰**mynewserver20170313.database.windows.net**。 |
+   | **驗證** | SQL Server 驗證 | 在本教學課程中，我們只設定了 SQL 驗證這個驗證類型。 |
+   | **登入** | 伺服器管理帳戶 | 這是您在建立伺服器時所指定的帳戶。 |
+   | **密碼** | 伺服器管理帳戶的密碼 | 這是您在建立伺服器時所指定的密碼。 |
 
    ![連接到伺服器](./media/sql-database-connect-query-ssms/connect.png)  
 

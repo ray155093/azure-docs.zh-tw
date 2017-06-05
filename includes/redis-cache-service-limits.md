@@ -1,6 +1,6 @@
 | 資源 | 限制 |
 | --- | --- |
-| 快取大小 |530 GB (如需詳細資訊，請[與我們連絡](mailto:wapteams@microsoft.com?subject=Redis%20Cache%20quota%20increase) ) |
+| 快取大小 |530 GB |
 | 資料庫 |64 |
 | 最大連線用戶端 |40,000 |
 | Redis 快取複本 (適用於高可用性) |1 |
@@ -10,5 +10,5 @@
 
 如需 Azure Redis 快取組態限制的相關資訊，請參閱[預設 Redis 伺服器組態](../articles/redis-cache/cache-configure.md#default-redis-server-configuration)。
 
-因為 Azure Redis 快取執行個體是由 Microsoft 設定與管理，所以 Azure Redis 快取並未支援所有的 Redis 命令。 如需詳細資訊，請參閱 [Azure Redis 快取中不支援的 Redis 命令]((redis-cache/cache-configure.md#redis-commands-not-supported-in-azure-redis-cache)。
+因為 Azure Redis 快取執行個體是由 Microsoft 設定與管理，所以 Azure Redis 快取並未支援所有的 Redis 命令。 如需詳細資訊，請參閱 [Azure Redis 快取中不支援的 Redis 命令](../articles/redis-cache/cache-configure.md#redis-commands-not-supported-in-azure-redis-cache)。
 

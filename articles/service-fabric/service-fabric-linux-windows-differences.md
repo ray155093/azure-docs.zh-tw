@@ -15,25 +15,28 @@ ms.workload: NA
 ms.date: 03/23/2017
 ms.author: subramar
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: 00c1f10f7df865344233143ce9cdf546e64acca0
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: e2d21b28c482427c60f708171336e6901b50e544
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
 # <a name="differences-between-service-fabric-on-linux-preview-and-windows-generally-available"></a>Linux (預覽) 和 Windows (正式推出) 上 Service Fabric 之間的差異
 
-由於 Linux 上的 Service Fabric 是預覽，有一些 Windows 上支援的功能在 Linux 上尚未支援。 最後，當 Linux 上的 Service Fabric 正式推出時，功能集將位於同位檢查。
+由於 Linux 上的 Service Fabric 是預覽，有一些 Windows 上支援的功能在 Linux 上尚未支援。 最後，當 Linux 上的 Service Fabric 正式推出時，功能集將位於同位檢查。 在即將推出的版本中，兩者間的功能差異會減少。 可用的最新版本之間 (也就是 Windows 上的 5.6 版和 Linux 上的 5.5 版之間) 存在下列差異： 
 
-* Linux 上不支援可靠的集合 (和可靠的具狀態服務)。
-* ReverseProxy 無法在 Linux 上使用。
-* 獨立安裝程式無法在 Linux 上使用。
-* 資訊清單檔案的 XML 結構描述驗證不會在 Linux 上執行。 
-* Linux 上不支援主控台重新導向。 
-* 錯誤分析服務 (FAS) 無法在 Linux 上使用。
-* Azure Active Directory 支援無法在 Linux 上使用。
-* 某些 Powershell 命令的 CLI 命令對等用法無法使用。
+* 可靠的集合 (和可靠的具狀態服務) 
+* ReverseProxy 
+* 獨立安裝程式 
+* 資訊清單檔案的 XML 結構描述驗證 
+* 主控台重新導向 
+* 錯誤分析服務 (FAS)
+* 容器的 Docker Compose 和磁碟區與記錄驅動程式 
+* 容器和服務的資源管理 
+* DNS 服務
+* Azure Active Directory 支援
+* 某些 Powershell 命令的對等 CLI 命令 
 * 僅可針對 Linux 叢集執行 Powershell 命令的子集 (如下一節中展開)。
 
 >[!NOTE]

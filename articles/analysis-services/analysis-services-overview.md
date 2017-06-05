@@ -13,13 +13,13 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 05/16/2017
+ms.date: 05/26/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 89c19e9b64fc4e1fea68c717fd5f5e0e054ac10c
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: cc85ae1c6642e763e57327c151ec68845f7673f7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -55,11 +55,9 @@ Azure Analysis Services 支援 1200 和 1400 預覽相容性層級的表格式�
 ## <a name="data-sources"></a>資料來源
 部署到 Azure 中的伺服器的資料模型支援連接到您組織或雲端中的內部部署資料來源。 結合內部部署和雲端資料來源的資料，可成就混和式商務智慧解決方案。
 
-![資料來源](./media/analysis-services-overview/aas-overview-data-sources.png)
+因為您的伺服器在雲端中，因此能無縫連接到雲端資料來源。 連線至內部部署資料來源時，[內部部署資料閘道](analysis-services-gateway.md)可確保和雲端中的伺服器建立快速且安全的連線。
 
-因為您的伺服器在雲端中，因此能無縫連接到雲端資料來源。 連接到內部部署資料來源時，[內部部署資料閘道](analysis-services-gateway.md)可確保和雲端中的 Analysis Services 伺服器建立快速且安全的連線。
-
-\* 僅限表格式 1400 模型。
+若要深入了解所支援的內部部署資料來源，請參閱 [Azure Analysis Services 中所支援的資料來源](analysis-services-datasource.md)。
 
 
 ## <a name="explore-your-data-from-anywhere"></a>從任何地方瀏覽資料
