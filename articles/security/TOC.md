@@ -10,6 +10,7 @@
 ### [進階威脅偵測](azure-threat-detection.md)
 ### [記錄與稽核](azure-log-audit.md)
 ### [公用雲端中的隔離](azure-isolation.md)
+### [安全性技術功能](azure-security-technical-capabilities.md)
 
 # 開始使用
 ## [開始使用 Azure 資訊安全](azure-security-getting-started.md)
@@ -18,6 +19,7 @@
 
 ## 網路安全性
 ### [網路安全性的最佳做法](azure-security-network-security-best-practices.md)
+###[Azure 網路安全性](azure-network-security.md)
 ### [邊界安全性](../best-practices-network-security.md?toc=%2fazure%2fsecurity%2ftoc.json)
 ### [安全混合式網路架構](../guidance/guidance-iaas-ra-secure-vnet-hybrid.md?toc=%2fazure%2fsecurity%2ftoc.json)
 

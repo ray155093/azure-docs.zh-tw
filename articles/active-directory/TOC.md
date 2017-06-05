@@ -5,6 +5,7 @@
 ## [了解 Azure 身分識別解決方案](understand-azure-identity-solutions.md)
 ## [預覽 Azure 入口網站體驗](active-directory-preview-explainer.md)
 
+
 # 開始使用
 ## [取得 Azure AD 租用戶](active-directory-howto-tenant.md)
 ## [註冊 Azure AD Premium](active-directory-get-started-premium.md)
@@ -14,7 +15,8 @@
 ### [傳統入口網站](active-directory-licensing-what-is.md)
 ## [為您組織中的使用者取得 Azure](sign-up-organization.md)
 ## [常見問題集](active-directory-faq.md)
-## [SaaS 應用程式教學課程](active-directory-saas-tutorial-list.md)
+## [如何取得 Azure Active Directory 支援](active-directory-troubleshooting-support-howto.md)
+## [SaaS 應用程式整合教學課程](active-directory-saas-tutorial-list.md)
 
 # 作法
 ## 規劃和設計

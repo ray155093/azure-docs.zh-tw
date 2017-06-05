@@ -7,6 +7,7 @@
 ## [建立第一個邏輯應用程式](logic-apps-create-a-logic-app.md)
 ## [邏輯應用程式範本](logic-apps-use-logic-app-templates.md)
 ## [從範本建立邏輯應用程式](logic-apps-arm-provision.md)
+## [將 MABS 應用程式移至邏輯應用程式](logic-apps-move-from-mabs.md)
 
 # 作法
 ## 建置
@@ -80,6 +81,7 @@
 ### [價格](https://azure.microsoft.com/pricing/details/logic-apps/)
 ### [使用量計量](logic-apps-pricing.md)
 
+
 # 無伺服器
 ## 概觀
 ### [Azure 中無伺服器](logic-apps-serverless-overview.md)
@@ -128,6 +130,8 @@
 ### [Twitter](../connectors/connectors-create-api-twitter.md)
 ### [X12](logic-apps-enterprise-integration-x12.md)
 ### [XML 驗證](logic-apps-enterprise-integration-xml-validation.md)
+
+## [連接器：完整詳細資料](https://docs.microsoft.com/connectors/)
 ## 結構描述歷程記錄
 ### [GA](logic-apps-schema-2016-04-01.md)
 ### [預覽](logic-apps-schema-2015-08-01.md)

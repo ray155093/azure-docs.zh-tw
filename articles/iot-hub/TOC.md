@@ -12,10 +12,6 @@
 #### [Node.js](iot-hub-node-node-getstarted.md)
 #### [Python](iot-hub-python-getstarted.md)
 
-### 使用模擬閘道
-#### [在 Linux 上模擬](iot-hub-linux-iot-edge-get-started.md)
-#### [在 Windows 上模擬](iot-hub-windows-iot-edge-get-started.md)
-
 ### 使用實體裝置
 #### [Raspberry Pi with Node.js](iot-hub-raspberry-pi-kit-node-get-started.md)
 #### [Raspberry Pi with C](iot-hub-raspberry-pi-kit-c-get-started.md)
@@ -31,6 +27,8 @@
 ##### [將 Intel NUC 設定為閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
 ##### [將閘道連線至 IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
 ##### [使用閘道進行資料轉換](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
+
+### [使用線上裝置模擬器](iot-hub-raspberry-pi-web-simulator-get-started.md)
 
 ## [透過 iothub-explorer 管理雲端裝置傳訊](iot-hub-explorer-cloud-device-messaging.md)
 ## [將 IoT 中樞IoT 中樞儲存至 Azure 資料儲存體](iot-hub-store-data-in-azure-table-storage.md)
@@ -48,15 +46,21 @@
 ### [支援其他通訊協定](iot-hub-protocol-gateway.md)
 ## [開發](iot-hub-how-to.md)
 ### [開發人員指南](iot-hub-devguide.md)
-#### [傳送及接收訊息](iot-hub-devguide-messaging.md)
 #### [裝置對雲端的功能指南](iot-hub-devguide-d2c-guidance.md)
 #### [雲端對裝置的功能指南](iot-hub-devguide-c2d-guidance.md)
+#### [傳送及接收訊息](iot-hub-devguide-messaging.md)
+##### [將裝置到雲端訊息傳送至 IoT 中樞](iot-hub-devguide-messages-d2c.md)
+##### [從內建端點讀取裝置對雲端訊息](iot-hub-devguide-messages-read-builtin.md)
+##### [使用適用於裝置對雲端訊息的自訂端點和路由規則](iot-hub-devguide-messages-read-custom.md)
+##### [從 IoT 中樞傳送雲端到裝置訊息](iot-hub-devguide-messages-c2d.md)
+##### [建立和閱讀 IoT 中樞訊息](iot-hub-devguide-messages-construct.md)
 #### [從裝置上傳檔案](iot-hub-devguide-file-upload.md)
 #### [管理裝置身分識別](iot-hub-devguide-identity-registry.md)
 #### [控制 IoT 中樞的存取權](iot-hub-devguide-security.md)
 #### [了解攣生裝置](iot-hub-devguide-device-twins.md)
 #### [叫用裝置上的直接方法](iot-hub-devguide-direct-methods.md)
 #### [排程多個裝置上的作業](iot-hub-devguide-jobs.md)
+#### [選擇通訊協定](iot-hub-devguide-protocols.md)
 #### [IoT 中樞端點](iot-hub-devguide-endpoints.md)
 #### [查詢語言](iot-hub-devguide-query-language.md)
 #### [配額和節流](iot-hub-devguide-quotas-throttling.md)
@@ -119,18 +123,22 @@
 ### [安全性架構](iot-hub-security-architecture.md)
 ### [保護您的 IoT 部署](iot-hub-security-deployment.md)
 ## IoT Edge
+### 開始使用
+#### [Linux](iot-hub-linux-iot-edge-get-started.md)
+#### [Windows](iot-hub-windows-iot-edge-get-started.md)
 ### 模擬裝置
 #### [Linux](iot-hub-linux-iot-edge-simulated-device.md)
 #### [Windows](iot-hub-windows-iot-edge-simulated-device.md)
 ### [使用真實裝置](iot-hub-iot-edge-physical-device.md)
 
 # 參考
-## [Azure CLI 2.0 Preview](/cli/azure/iot)
+## [Azure CLI 2.0](/cli/azure/iot)
 ## [.NET (服務)](/dotnet/api/microsoft.azure.devices)
 ## [.NET (裝置)](/dotnet/api/microsoft.azure.devices.client)
 ## [Java (服務)](/java/api/com.microsoft.azure.sdk.iot.service)
 ## [Java (裝置)](/java/api/com.microsoft.azure.sdk.iot.device)
-## [Azure IoT SDK](http://azure.github.io/azure-iot-sdks/)
+## [Node.js SDK](http://azure.github.io/azure-iot-sdk-node/)
+## [C 裝置 SDK](https://azure.github.io/azure-iot-sdk-c/index.html)
 ## [Azure IoT Edge](http://azure.github.io/iot-edge/)
 ## [REST (資源提供者)](https://docs.microsoft.com/rest/api/iothub/iothubresource)
 ## [REST (裝置身分識別)](https://docs.microsoft.com/rest/api/iothub/deviceapi)

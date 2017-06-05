@@ -12,7 +12,7 @@
 
 ## 建立範本
 ### [了解擴展集範本](virtual-machine-scale-sets-mvss-start.md)
-### [新增虛擬網路](virtual-machine-scale-sets-mvss-existing-vnet.md)
+### [使用現有的虛擬網路](virtual-machine-scale-sets-mvss-existing-vnet.md)
 ### [使用自訂映像](virtual-machine-scale-sets-mvss-custom-image.md)
 
 ## 部署

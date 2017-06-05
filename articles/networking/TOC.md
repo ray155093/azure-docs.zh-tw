@@ -1,6 +1,7 @@
 # 概觀
 ## [關於 Azure 網路](networking-overview.md)
 ## 架構
+### [虛擬資料中心](networking-virtual-datacenter.md)
 ### [非對稱式路由與多個網路路徑](../expressroute/expressroute-asymmetric-routing.md?toc=%2fazure%2fnetworking%2ftoc.json)
 ### [保護網路設計](../best-practices-network-security.md?toc=%2fazure%2fnetworking%2ftoc.json)
 ### [中樞輪輻拓撲](https://docs.microsoft.com/azure/architecture/reference-architectures/hybrid-networking/hub-spoke)
@@ -44,6 +45,7 @@
 ### [確認 VM 的 IP 流量](../network-watcher/network-watcher-check-ip-flow-verify-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
 ## 範例指令碼
 ### [Azure CLI](cli-samples.md)
+### [PowerShell](powershell-samples.md)
 ## 教學課程
 ### [負載平衡的 VM](../virtual-machines/linux/tutorial-load-balance-nodejs.md?toc=%2fazure%2fnetworking%2ftoc.json)
 ### [將電腦連線到虛擬網路](../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)

@@ -95,10 +95,6 @@
         href: java-create-azure-website-using-java-sdk.md
       - name: 上傳現有應用程式
         href: web-sites-java-add-app.md
-      - name: 遠端偵錯 Eclipse
-        href: app-service-web-debug-java-web-app-in-eclipse.md
-      - name: 遠端偵錯 IntelliJ
-        href: app-service-web-debug-java-web-app-in-intellij.md
     - name: Python
       items:
       - name: Django 應用程式搭配 MySQL
@@ -162,8 +158,6 @@
       items:
       - name: 購買網域
         href: custom-dns-web-site-buydomains-web-app.md
-      - name: 對應第三方網域
-        href: web-sites-custom-domain-name.md
       - name: 使用流量管理員對應網域
         href: web-sites-traffic-manager-custom-domain-name.md
       - name: 對應 GoDaddy 網域
@@ -204,10 +198,6 @@
         href: web-sites-authentication-authorization.md
       - name: 搭配多租用戶資料庫的應用程式
         href: web-sites-dotnet-entity-framework-row-level-security.md
-    - name: 指派自訂的 SSL
-      items:
-      - name: 設定第三方 SSL 憑證
-        href: web-sites-configure-ssl-certificate.md
     - name: 強制使用 HTTPS
       href: web-sites-configure-ssl-certificate.md#enforce-https-on-your-app
     - name: 設定 TLS 相互驗證
@@ -278,6 +268,16 @@
       href: app-service-web-troubleshoot-http-502-http-503.md
     - name: 針對效能問題進行疑難排解
       href: app-service-web-troubleshoot-performance-degradation.md
+    - name: 常見問題集
+      items:
+      - name: 可用性、效能和應用程式常見問題
+        href: app-service-web-availability-performance-application-issues-faq.md
+      - name: 部署常見問題
+        href: app-service-web-deployment-faq.md
+      - name: 開放原始碼技術常見問題
+        href: app-service-web-open-source-technologies-faq.md
+      - name: 設定和管理常見問題
+        href: app-service-web-configuration-and-management-faq.md
   - name: 價格
     href: https://azure.microsoft.com/pricing/details/app-service/
   - name: 配額資訊

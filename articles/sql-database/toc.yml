@@ -13,14 +13,12 @@
     href: sql-database-get-started-cli.md
   - name: 建立 DB - PowerShell
     href: sql-database-get-started-powershell.md
-  - name: 管理
+  - name: 連線和查詢
     items:
     - name: SSMS
       href: sql-database-connect-query-ssms.md
     - name: VS 程式碼
       href: sql-database-connect-query-vscode.md
-  - name: 連線
-    items:
     - name: .NET
       href: sql-database-connect-query-dotnet.md
     - name: PHP
@@ -37,7 +35,7 @@
   items:
   - name: 1 - 建立/設計新的 SQL DB
     href: sql-database-design-first-database.md
-  - name: 2 - 移轉現有的 SQL Server
+  - name: 2 - 移轉 SQL Server DB
     href: sql-database-migrate-your-sql-server-database.md
   - name: 3 - 保護您的 SQL DB
     href: sql-database-security-tutorial.md
@@ -45,26 +43,8 @@
     href: sql-database-performance-tutorial.md
   - name: 5 - 實作多租用戶應用程式
     href: sql-database-multi-tenant-application.md
-  - name: Wingtip SaaS 教學課程
-    items:
-    - name: Wingtip SaaS 簡介
-      href: sql-database-wtp-overview.md
-    - name: 部署 Wingtip SaaS 範例
-      href: sql-database-saas-tutorial.md
-    - name: 佈建/目錄新租用戶
-      href: sql-database-saas-tutorial-provision-and-catalog.md
-    - name: 監視效能
-      href: sql-database-saas-tutorial-performance-monitoring.md
-    - name: 還原單一租用戶
-      href: sql-database-saas-tutorial-restore-single-tenant.md
-    - name: 管理租用結構描述
-      href: sql-database-saas-tutorial-schema-management.md
-    - name: 執行臨機操作分析
-      href: sql-database-saas-tutorial-adhoc-analytics.md
-    - name: 透過 Log Analytics 監視
-      href: sql-database-saas-tutorial-log-analytics.md
-    - name: 管理租用戶分析
-      href: sql-database-saas-tutorial-tenant-analytics.md
+  - name: 6 - 實作異地分散資料庫
+    href: sql-database-implement-geo-distributed-database.md 
 - name: 範例
   items:
   - name: Azure CLI
@@ -145,7 +125,7 @@
       href: sql-database-ssms-mfa-authentication.md
     - name: 稽核
       href: sql-database-auditing.md
-    - name: 稽核和 TDS
+    - name: 資料表稽核與 TDS
       href: sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md
     - name: 威脅偵測
       href: sql-database-threat-detection.md
@@ -175,25 +155,12 @@
       href: sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md
     - name: 應用程式升級
       href: sql-database-manage-application-rolling-upgrade.md
-  - name: 開發
+  - name: 資料庫開發
     items:
     - name: 概觀
       href: sql-database-develop-overview.md
     - name: 連線能力
       href: sql-database-libraries.md
-    - name: 應用程式設計 - SaaS
-      href: sql-database-design-patterns-multi-tenancy-saas-applications.md
-    - name: 安全性 - SaaS
-      href: sql-database-elastic-tools-multi-tenant-row-level-security.md
-    - name: 連接埠 - ADO.NET
-      href: sql-database-develop-direct-route-ports-adonet-v12.md
-    - name: 驗證應用程式
- 
-      href: sql-database-client-id-keys.md
-    - name: 錯誤訊息
-      href: sql-database-develop-error-messages.md
-    - name: Dapper
-      href: sql-database-elastic-scale-working-with-dapper.md
     - name: JSON 資料
       href: sql-database-json-features.md
     - name: 記憶體內
@@ -231,8 +198,6 @@
       href: sql-database-monitoring-with-dmvs.md
     - name: 效能指引
       href: sql-database-performance-guidance.md
-    - name: 批次處理
-      href: sql-database-use-batching-to-improve-performance.md
     - name: 擴充事件
       href: sql-database-xevent-db-diff-from-svr.md
     - name: 相容性層級
@@ -355,6 +320,8 @@
       href: sql-database-xevent-code-event-file.md
     - name: 擴充事件 - 信號緩衝區
       href: sql-database-xevent-code-ring-buffer.md
+    - name: 診斷記錄
+      href: sql-database-metrics-diag-logging.md
   - name: 管理
     items:
     - name: Azure 自動化
@@ -363,6 +330,25 @@
       href: sql-database-ssms-remoteapp.md
     - name: SSMS - MFA
       href: sql-database-ssms-mfa-authentication-configure.md
+  - name: 開發應用程式
+    items:
+    - name: 連接埠 - ADO.NET
+      href: sql-database-develop-direct-route-ports-adonet-v12.md
+    - name: 驗證應用程式
+ 
+      href: sql-database-client-id-keys.md
+    - name: 錯誤訊息
+      href: sql-database-develop-error-messages.md
+    - name: Dapper
+      href: sql-database-elastic-scale-working-with-dapper.md
+    - name: 效能批次處理
+      href: sql-database-use-batching-to-improve-performance.md
+    - name: SaaS 應用程式設計
+      href: sql-database-design-patterns-multi-tenancy-saas-applications.md
+    - name: SaaS 應用程式安全性
+      href: sql-database-elastic-tools-multi-tenant-row-level-security.md
+    - name: SaaS 應用程式教學課程
+      href: sql-database-wtp-overview.md
 - name: 參考
   items:
   - name: PowerShell
@@ -442,5 +428,3 @@
       href: https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools
     - name: 彈性集區自訂儀表板
       href: https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools-custom-dashboard
-
-

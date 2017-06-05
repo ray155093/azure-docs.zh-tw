@@ -7,6 +7,7 @@
 ## [規劃與設計 VPN 閘道](vpn-gateway-plan-design.md)
 ## [關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)
 ## [關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)
+## [關於密碼編譯需求](vpn-gateway-about-compliance-crypto.md)
 ## [關於 BGP 和 VPN 閘道](vpn-gateway-bgp-overview.md)
 ## [關於高可用性連線](vpn-gateway-highlyavailable.md)
 
@@ -32,18 +33,25 @@
 ## 在部署模型間設定 VNet 對 VNet 連線
 ### [Azure 入口網站](vpn-gateway-connect-different-deployment-models-portal.md)
 ### [PowerShell](vpn-gateway-connect-different-deployment-models-powershell.md)
-## [設定站對站和 ExpressRoute 並存連線](../expressroute/expressroute-howto-coexist-resource-manager.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
-## 設定強制通道
-### [PowerShell](vpn-gateway-forced-tunneling-rm.md)
-### [PowerShell (傳統)](vpn-gateway-about-forced-tunneling.md)
+## 設定站對站和 ExpressRoute 並存連線
+### [PowerShell](../expressroute/expressroute-howto-coexist-resource-manager.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
 ## 設定多個站對站連線
 ### [Azure 入口網站](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)
 ### [PowerShell (傳統)](vpn-gateway-multi-site.md)
-## [設定適用於 VPN 閘道的 BGP](vpn-gateway-bgp-resource-manager-ps.md)
-## [設定高可用性的主動-主動連線](vpn-gateway-activeactive-rm-powershell.md)
+## 連線多個原則型 VPN 裝置
+### [PowerShell](vpn-gateway-connect-multiple-policybased-rm-ps.md)
+## 在連線上設定 IPsec/IKE 原則
+### [PowerShell](vpn-gateway-ipsecikepolicy-rm-powershell.md)
+## 設定高可用性的主動-主動連線
+### [PowerShell](vpn-gateway-activeactive-rm-powershell.md)
+## 設定適用於 VPN 閘道的 BGP
+### [PowerShell](vpn-gateway-bgp-resource-manager-ps.md)
+## 設定強制通道
+### [PowerShell](vpn-gateway-forced-tunneling-rm.md)
+### [PowerShell (傳統)](vpn-gateway-about-forced-tunneling.md)
 ## 修改區域網路閘道設定
 ### [PowerShell](vpn-gateway-modify-local-network-gateway.md)
-### [CLI](vpn-gateway-modify-local-network-gateway-cli.md)
+### [Azure CLI](vpn-gateway-modify-local-network-gateway-cli.md)
 ## [確認 VPN 閘道連線](vpn-gateway-verify-connection-resource-manager.md)
 ## [重設 VPN 閘道](vpn-gateway-resetgw-classic.md)
 ## 刪除 VPN 閘道
@@ -55,11 +63,11 @@
 ### [驗證 VNet 的 VPN 輸送量](vpn-gateway-validate-throughput-to-vnet.md)
 
 # 參考
-## [PowerShell](/powershell/module/azurerm.network)
-## [PowerShell (傳統)](/powershell/module/azure/?view=azuresmps-3.7.0)
-## [REST](https://docs.microsoft.com/rest/api/network/virtualnetworkgateways)
+## [PowerShell](/powershell/module/azurerm.network/?view=azurermps-4.0.0#vpn)
+## [PowerShell (傳統)](/powershell/module/azure/?view=azuresmps-3.7.0#networking)
+## [REST](/rest/api/network/virtualnetworkgateways)
 ## [REST (傳統)](https://msdn.microsoft.com/library/jj154113)
-## [Azure CLI](https://docs.microsoft.com/cli/azure/network/vnet-gateway)
+## [Azure CLI](/cli/azure/network/vnet-gateway)
 
 # 相關參考
 ## [虛擬網路](/azure/virtual-network/)

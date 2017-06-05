@@ -17,12 +17,22 @@
 ### [傳統入口網站中的 Windows Server](backup-client-automation-classic.md)
 
 ## Azure 備份伺服器
-### [在 Azure 入口網站中準備 Azure 備份伺服器工作負載](backup-azure-microsoft-azure-backup.md)
-### [在傳統入口網站中準備 Azure 備份伺服器工作負載](backup-azure-microsoft-azure-backup-classic.md)
-### [使用 Azure 備份伺服器備份 VMware 伺服器](backup-azure-backup-server-vmware.md)
-### [使用 Azure 備份伺服器備份 Exchange](backup-azure-exchange-mabs.md)
-### [使用 Azure 備份伺服器備份 SharePoint 陣列](backup-azure-backup-sharepoint-mabs.md)
-### [使用 Azure 備份伺服器備份 SQL](backup-azure-sql-mabs.md)
+### [Azure 備份伺服器保護矩陣](backup-mabs-protection-matrix.md)
+### 安裝或升級
+#### [在 Azure 入口網站中準備 Azure 備份伺服器工作負載](backup-azure-microsoft-azure-backup.md)
+#### [在傳統入口網站中準備 Azure 備份伺服器工作負載](backup-azure-microsoft-azure-backup-classic.md)
+#### [在 Azure 備份伺服器中新儲存體](backup-mabs-add-storage.md)
+#### [將 Azure 備份伺服器升級至 V.2](backup-mabs-upgrade-to-v2.md)
+#### [Azure 備份伺服器自動安裝](backup-mabs-unattended-install.md)
+### 保護工作負載
+#### [使用 Azure 備份伺服器備份 VMware 伺服器](backup-azure-backup-server-vmware.md)
+#### [使用 Azure 備份伺服器備份 Exchange](backup-azure-exchange-mabs.md)
+#### [使用 Azure 備份伺服器備份 SharePoint 陣列](backup-azure-backup-sharepoint-mabs.md)
+#### [使用 Azure 備份伺服器備份 SQL](backup-azure-sql-mabs.md)
+#### [保護系統狀態和裸機復原](backup-mabs-system-state-and-bmr.md)
+### 疑難排解
+#### [針對 Azure 備份伺服器進行疑難排解](backup-azure-mabs-troubleshoot.md)
+
 
 ## Data Protection Manager
 ### [在 Azure 入口網站中準備 DPM 工作負載](backup-azure-dpm-introduction.md)
@@ -33,19 +43,25 @@
 ### [使用 DPM 備份 SharePoint 伺服器陣列](backup-azure-backup-sharepoint.md)
 
 ## Azure VM
-### [準備 Azure 虛擬機器](backup-azure-vms-prepare.md)
-### [準備 Resource Manager 部署的虛擬機器](backup-azure-arm-vms-prepare.md)
-### [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
-### [將 Azure 虛擬機器備份至備份保存庫](backup-azure-vms.md)
-### [將 Azure 虛擬機器備份到復原服務保存庫](backup-azure-arm-vms.md)
-### [備份及還原加密的虛擬機器](backup-azure-vms-encryption.md)
-### [在傳統入口網站中管理及監視 Azure VM 備份](backup-azure-manage-vms-classic.md)
-### [在 Azure 入口網站中管理 Azure VM 備份](backup-azure-manage-vms.md)
-### [在 Azure 入口網站中監視 Azure VM 備份的警示](backup-azure-monitor-vms.md)
-### [從 Azure VM 備份中復原檔案](backup-azure-restore-files-from-vm.md)
-### [還原 Azure 中的虛擬機器](backup-azure-restore-vms.md)
-### [還原 Azure 入口網站中 Resource Manager 部署的 VM](backup-azure-arm-restore-vms.md)
-### [使用 Azure 備份還原已加密 VM 的 Key Vault 金鑰與密碼](backup-azure-restore-key-secret.md)
+### 準備 VM
+#### [準備 Azure 虛擬機器](backup-azure-vms-prepare.md)
+#### [準備 Resource Manager 部署的虛擬機器](backup-azure-arm-vms-prepare.md)
+### 規劃您的環境
+#### [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
+### 備份伺服器和工作負載
+#### [將 Azure 虛擬機器備份至備份保存庫](backup-azure-vms.md)
+#### [將 Azure 虛擬機器備份到復原服務保存庫](backup-azure-arm-vms.md)
+#### [備份加密的虛擬機器](backup-azure-vms-encryption.md)
+### 管理和監視 VM
+#### [在傳統入口網站中管理及監視 Azure VM 備份](backup-azure-manage-vms-classic.md)
+#### [在 Azure 入口網站中管理 Azure VM 備份](backup-azure-manage-vms.md)
+#### [在 Azure 入口網站中監視 Azure VM 備份的警示](backup-azure-monitor-vms.md)
+### 從 VM 還原資料
+#### [從 Azure VM 備份中復原檔案](backup-azure-restore-files-from-vm.md)
+#### [還原 Azure 中的虛擬機器](backup-azure-restore-vms.md)
+#### [還原 Azure 入口網站中 Resource Manager 部署的 VM](backup-azure-arm-restore-vms.md)
+#### [使用 Azure 備份還原已加密 VM 的 Key Vault 金鑰與密碼](backup-azure-restore-key-secret.md)
+#### [還原加密的虛擬機器](backup-azure-vms-encryption.md)
 
 ## Azure SQL Database
 ### [設定長期備份保留期](../sql-database/sql-database-configure-long-term-retention.md?toc=%2fazure%2fbackup%2ftoc.json)
@@ -66,7 +82,6 @@
 ## 疑難排解
 ### [Azure 入口網站中的 Azure VM 備份問題](backup-azure-vms-troubleshoot.md)
 ### [傳統入口網站中的 Azure VM 備份問題](backup-azure-vms-troubleshoot-classic.md)
-### [Azure 備份伺服器](backup-azure-mabs-troubleshoot.md)
 ### [Azure VM 備份失敗︰無法與 VM 代理程式通訊來取得快照集狀態 - 快照集 VM 子工作已逾時](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)
 ### [Azure 備份中的檔案和資料夾備份速度緩慢](backup-azure-troubleshoot-slow-backup-performance-issue.md)
 

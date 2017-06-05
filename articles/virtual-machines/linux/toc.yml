@@ -140,6 +140,14 @@
       href: move-vm.md
     - name: 建立高可用性 VM
       href: create-cli-complete.md
+    - name: Ansible
+      items:
+      - name: 安裝及設定
+        href: ansible-install-configure.md
+      - name: 建立基本 VM
+        href: ansible-create-vm.md
+      - name: 建立完整 VM
+        href: ansible-create-complete-vm.md
     - name: 使用 VM 範本部署應用程式
       items:
       - name: 教學課程概觀
@@ -194,7 +202,7 @@
       href: upload-vhd.md
     - name: 將現有的 VM 擷取至映像
       href: capture-image.md
-    - name: 建立 Azure 認可的映像
+    - name: 建立 Azure 映像
       items:
       - name: Ubuntu
         href: create-upload-ubuntu.md
@@ -206,6 +214,8 @@
         href: create-upload-centos.md
       - name: Oracle Linux
         href: oracle-create-upload-vhd.md
+      - name: OpenBSD
+        href: create-upload-openbsd.md
   - name: 管理 VM 儲存體
     items:
     - name: Azure 受控磁碟
