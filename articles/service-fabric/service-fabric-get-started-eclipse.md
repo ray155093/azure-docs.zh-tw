@@ -15,10 +15,10 @@ ms.workload: NA
 ms.date: 05/03/2016
 ms.author: saysa
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: c50c77b3288bc0a2d9148d04c6fc45aa24882ebb
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 9cc621380a6b22a6b1da617d76c56e4773bb3dde
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -37,7 +37,8 @@ Eclipse 是 Java 開發人員最普遍使用的整合式的開發環境 (IDE) �
 2.  若要安裝 Service Fabric 外掛程式，在 Eclipse Neon 中，前往 [說明] > [安裝新軟體]。
   1.    在 [使用] 文字方塊中，輸入 **http://dl.microsoft.com/eclipse**。
   2.    按一下 [新增] 。
-    ![適用於 Eclipse Neon 的 Service Fabric 外掛程式][sf-eclipse-plugin-install]
+
+         ![適用於 Eclipse Neon 的 Service Fabric 外掛程式][sf-eclipse-plugin-install] 
   3.    選取 Service Fabric 外掛程式，然後按 [下一步]。
   4.    完成安裝步驟，然後接受 Microsoft 軟體授權條款。
 
@@ -149,7 +150,7 @@ Eclipse 是 Java 開發人員最普遍使用的整合式的開發環境 (IDE) �
 
 <!-- Images -->
 
-[sf-eclipse-plugin-install]: ./media/service-fabric-get-started-mac/sf-eclipse-plugin-install.png
+[sf-eclipse-plugin-install]: ./media/service-fabric-get-started-eclipse/service-fabric-eclipse-plugin.png
 
 [create-application/p1]:./media/service-fabric-get-started-eclipse/create-application/p1.png
 [create-application/p2]:./media/service-fabric-get-started-eclipse/create-application/p2.png

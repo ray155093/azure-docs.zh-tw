@@ -14,18 +14,22 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 11/07/2016
 ms.author: mandia
-translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: 12606d312ba95d9ef73e988fa4677a8314f9a579
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 299a6fb23cd0fa725324bbdbdc669ff125a99d1b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
 # <a name="create-biztalk-services-using-the-azure-portal"></a>使用 Azure 入口網站建立 BizTalk 服務
 
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
+
 > [!TIP]
 > 若要登入 Azure 入口網站，您需要 Azure 帳戶和 Azure 訂用帳戶。 如果沒有帳戶，您可在幾分鐘內建立免費試用帳戶。 查看 [Azure 免費試用](http://go.microsoft.com/fwlink/p/?LinkID=239738)。
-> 
-> 
+
 
 ## <a name="create-a-biztalk-service"></a>建立 BizTalk 服務
 視您所選的版本而定，部分 BizTalk 服務設定可能無法使用。
@@ -65,10 +69,8 @@ ms.openlocfilehash: 12606d312ba95d9ef73e988fa4677a8314f9a579
     </td>
     </tr>
     </table>
-   選取下一個箭頭。
-5. 輸入儲存體和資料庫設定：
-   
-    <table border="1">
+選取下一個箭頭。
+5. 輸入儲存體和資料庫設定：  <table border="1">
     <tr>
     <td><strong>監視/封存儲存體帳戶</strong></td>
     <td>選取現有的儲存體帳戶或建立新的儲存體帳戶。 <br/><br/>如果您建立新的儲存體帳戶，請輸入 [儲存體帳戶名稱]<strong></strong>。</td>
@@ -78,21 +80,19 @@ ms.openlocfilehash: 12606d312ba95d9ef73e988fa4677a8314f9a579
     <td>如果您使用現有的 Azure SQL Database，其他 BizTalk 服務將無法使用它。 您需要建立 Azure SQL Database 伺服器時輸入的登入名稱和密碼。<br/><br/><strong>秘訣</strong> 在與 BizTalk 服務相同的區域中，建立追蹤資料庫和監視/封存儲存體帳戶。</td>
     </tr>
     </table>
-   選取下一個箭頭。
-6. 輸入資料庫設定：
-   
-    <table border="1">
+選取下一個箭頭。
+6. 輸入資料庫設定：  <table border="1">
     <tr>
     <td><strong>名稱</strong></td>
     <td>可在前一個畫面中選取 [建立新的 SQL 資料庫執行個體]<strong></strong> 時使用。
     <br/><br/>
-   輸入 BizTalk 服務要使用的 SQL Database 名稱。</td>
+輸入 BizTalk 服務要使用的 SQL Database 名稱。</td>
     </tr>
     <tr>
     <td><strong>伺服器</strong></td>
     <td>可在前一個畫面中選取 [建立新的 SQL 資料庫執行個體]<strong></strong> 時使用。
     <br/><br/>
-   選取現有的 SQL Database 伺服器，或是建立全新的 SQL Database 伺服器。</td>
+選取現有的 SQL Database 伺服器，或是建立全新的 SQL Database 伺服器。</td>
     </tr>
     <tr>
     <td><strong>伺服器登入名稱</strong></td>
@@ -120,7 +120,7 @@ ms.openlocfilehash: 12606d312ba95d9ef73e988fa4677a8314f9a579
 * [新增實際執行備妥憑證](#AddCert)
 * [取得存取控制命名空間](#ACS)
 
-#### <a name="a-nameinstallcertainstall-the-certificate-on-a-local-computer"></a><a name="InstallCert"></a>在本機電腦上安裝憑證
+#### <a name="InstallCert"></a>在本機電腦上安裝憑證
 自我簽署憑證是 BizTalk 服務佈建的一部分，會在您訂閱 BizTalk 服務時建立並相關聯。 您必須下載此憑證，並將它安裝於您部署 BizTalk 服務應用程式、或向 BizTalk 服務端點傳送訊息的電腦上。
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)。
@@ -130,13 +130,13 @@ ms.openlocfilehash: 12606d312ba95d9ef73e988fa4677a8314f9a579
    ![修改 SSL 憑證][QuickGlance]
 5. 按兩下此憑證，然後完成執行精靈，即可安裝憑證。 確定您已在 **受信任的根授權單位** 存放區之中安裝憑證。
 
-#### <a name="a-nameaddcertaadd-a-production-ready-certificate"></a><a name="AddCert"></a>新增實際執行備妥憑證
+#### <a name="AddCert"></a>新增實際執行備妥憑證
 在建立 BizTalk 服務時自動建立的自我簽署憑證僅限用於開發環境。 若為生產案例，使用實際執行備妥憑證取代它。
 
 1. 在 [儀表板] 索引標籤上，選取 [更新 SSL 憑證]。
 2. 瀏覽至包括 BizTalk 服務名稱的私人 SSL 憑證 (*CertificateName*.pfx)，輸入密碼，然後選取核取記號。
 
-#### <a name="a-nameacsaget-the-access-control-namespace"></a><a name="ACS"></a>取得存取控制命名空間
+#### <a name="ACS"></a>取得存取控制命名空間
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)。
 2. 在左導覽窗格中選取 [BIZTALK 服務]  ，然後選取您的 BizTalk 服務。
 3. 在工作列中，選取 [連線資訊]：  
@@ -171,7 +171,7 @@ ms.openlocfilehash: 12606d312ba95d9ef73e988fa4677a8314f9a579
 <td>Azure 訂閱</td>
 <td>訂用帳戶可判定誰能夠登入 Azure 入口網站。 帳戶持有者可在 <a HREF="https://account.windowsazure.com/Subscriptions">Azure 訂用帳戶</a>中建立訂用帳戶。
 <br/><br/>
-Azure 帳戶可擁有多個訂用帳戶，只要使用者取得允許皆可管理這些帳戶。 例如，您的 Azure 帳戶持有者建立一個名稱為 <em>BizTalkServiceSubscription</em> 的訂用帳戶，並給與您公司內的 BizTalk 系統管理員 (例如 ContosoBTSAdmins@live.com)) 存取此訂閱的權限。 在此案例中，BizTalk 系統管理員可以登入 Azure 入口網站，並對訂用帳戶中的所有代管服務 (包括 Azure BizTalk 服務) 具有完整系統管理員權限。 BizTalk 系統管理員不是 Azure 帳戶持有者，因此無權存取任何任何計費資訊。
+Azure 帳戶可擁有多個訂用帳戶，只要使用者取得允許皆可管理這些帳戶。 例如，您的 Azure 帳戶持有者建立一個名稱為 <em>BizTalkServiceSubscription</em> 的訂用帳戶，並給與您公司內的 BizTalk 系統管理員 (例如 ContosoBTSAdmins@live.com) 存取此訂閱的權限。 在此案例中，BizTalk 系統管理員可以登入 Azure 入口網站，並對訂用帳戶中的所有代管服務 (包括 Azure BizTalk 服務) 具有完整系統管理員權限。 BizTalk 系統管理員不是 Azure 帳戶持有者，因此無權存取任何任何計費資訊。
 <br/><br/>
 <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=267577">管理 Azure 入口網站中的訂用帳戶和儲存體帳戶</a>提供更多相關資訊。
 </td>
@@ -272,9 +272,4 @@ Azure 帳戶可擁有多個訂用帳戶，只要使用者取得允許皆可管�
 [QuickGlance]: ./media/biztalk-provision-services/WABS_QuickGlance.png
 [ACSServiceIdentities]: ./media/biztalk-provision-services/WABS_ACSServiceIdentities.png
 [HybridConnectionTab]: ./media/biztalk-provision-services/WABS_HybridConnectionTab.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

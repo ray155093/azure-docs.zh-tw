@@ -14,8 +14,8 @@ ms.devlang: azurecli
 ms.topic: hero-article
 ms.date: 05/10/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 793d948b25a2b6c408359de03433746a9494e1d1
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: fdeed4a1749e2c0115fe68b1b4318e1f0ddecbe5
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/25/2017
 
@@ -172,5 +172,6 @@ az postgres server delete --resource-group myresourcegroup --name mypgserver-201
 ```
 
 ## <a name="next-steps"></a>後續步驟
-- 使用[匯出和匯入](./howto-migrate-using-export-and-import.md)或[傾印和還原](./howto-migrate-using-dump-and-restore.md)來移轉資料庫。
-- 如需此服務的技術概觀，請參閱[什麼是 ？](overview.md)
+> [!div class="nextstepaction"]
+> [使用匯出和匯入來移轉資料庫](./howto-migrate-using-export-and-import.md)
+

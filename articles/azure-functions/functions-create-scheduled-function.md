@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 05/02/2017
 ms.author: glenga
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: 1478a2eedad496d3113fef28920d10859d11b1ce
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: f35f693131bd1f4f47b161afb0a4f38d4f00bbd6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -47,18 +47,20 @@ ms.lasthandoff: 05/12/2017
 
 ## <a name="create-a-timer-triggered-function"></a>建立由計時器觸發的函式
 
-1. 展開函式應用程式，按一下 [函式] 旁的 **+** 按鈕，然後按一下您所要語言的 [TimerTrigger] 範本。 然後，使用表格中指定的設定，並按一下 [建立]：
+1. 展開函式應用程式，按一下 [函式] 旁的 **+** 按鈕，然後按一下您所要語言的 [TimerTrigger] 範本。 然後使用表格中所指定的設定︰
 
-| 設定 | 建議的值 | 說明 |
-|---|---|---|
-| **函式命名** | TimerTriggerCSharp1 | 定義計時器觸發函式的名稱。 |
-| **[排程](http://en.wikipedia.org/wiki/Cron#CRON_expression)** | 0 \*/1 \* \* \* \* | 含有六個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)，它會將函式排程為每分鐘執行一次。 |
+    ![在 Azure 入口網站中建立計時器觸發函式。](./media/functions-create-scheduled-function/functions-create-timer-trigger.png)
 
-系統隨即會以您所選的語言建立函式，並讓它每分鐘執行一次。
+    | 設定 | 建議的值 | 說明 |
+    |---|---|---|
+    | **函式命名** | TimerTriggerCSharp1 | 定義計時器觸發函式的名稱。 |
+    | **[排程](http://en.wikipedia.org/wiki/Cron#CRON_expression)** | 0 \*/1 \* \* \* \* | 含有六個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)，它會將函式排程為每分鐘執行一次。 |
 
-1. 檢視寫入到記錄的追蹤資訊以確認執行情形。
+2. 按一下 [建立] 。 系統隨即會以您所選的語言建立函式，並讓它每分鐘執行一次。
 
-![Azure 入口網站中的函式記錄檢視器。](./media/functions-create-scheduled-function/functions-timer-trigger-view-logs2.png)
+3. 檢視寫入到記錄的追蹤資訊以確認執行情形。
+
+    ![Azure 入口網站中的函式記錄檢視器。](./media/functions-create-scheduled-function/functions-timer-trigger-view-logs2.png)
 
 現在，您可以變更函式的排程，使其降低執行頻率，例如降低為每小時一次。 
 

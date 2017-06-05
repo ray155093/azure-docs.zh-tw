@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 04/24/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 90ed1d5ca50bfb19a9d1c5d258e9588e05893270
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 97da0f4dc5d5528bfb803eefe9037651939a8efd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -84,7 +84,7 @@ Azure IoT 套件[預先設定的解決方案][lnk-preconfigured-solutions]結合
 
 儀表板會顯示下列資訊：
 
-* **處理站清單**面板，可顯示解決方案的狀態、位置和目前生產組態。 當您第一次執行解決方案時，有數個模擬裝置。 生產線模擬是由每條生產線上執行模擬工作及共用資料的三部實際 OPC UA 伺服器所構成。 
+* **處理站清單**面板，可顯示解決方案的狀態、位置和目前生產組態。 當您第一次執行解決方案時，有數個模擬裝置。 生產線模擬是由每條生產線上執行模擬工作及共用資料的三部實際 OPC UA 伺服器所構成。 如需 OPC UA 的詳細資訊，請參閱[常見問題集][lnk-faq]。
 * **地圖**，可顯示連線至解決方案之每個裝置的位置。 解決方案可以使用 Bing 地圖服務 API 在地圖上繪製資訊。 如果您的訂用帳戶已啟用 Bing 地圖服務企業版 API，則會自動使用這項功能。 如未啟用，請參閱[常見問題集][lnk-faq]以了解如何讓地圖變成動態。
 * **警示**面板，可顯示遙測或 OEE/KPI 值超過特定閾值時所產生的警示。
 * **整體設備效率**面板，可顯示整個企業或您所檢視之處理站/生產線/站區的 OEE 值。 此值會從站區檢視彙總至企業層級。 您可以進一步分析 OEE 數字及其組成元素。

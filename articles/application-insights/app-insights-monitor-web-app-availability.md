@@ -11,13 +11,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/26/2017
+ms.date: 05/25/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 0916c10afd526abaaf6c8e1e3aa311af5c7d84cd
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 74cd4dbf74afbf5e7e0e7d0b7aca49b5aa214b83
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -245,6 +245,13 @@ Web 測試外掛程式提供將時間參數化的方法。
 從 [概觀] 刀鋒視窗，開啟 [設定]、[效能測試]。 當建立測試時，您會受邀連接或建立 Visual Studio Team 服務帳戶。
 
 測試完成時，會為您顯示回應時間和成功率。
+
+
+![效能測試](./media/app-insights-monitor-web-app-availability/perf-test.png)
+
+> [!TIP]
+> 若要觀察效能測試的影響，請使用[即時串流](app-insights-live-stream.md)和[分析工具](app-insights-profiler.md)。
+>
 
 ## <a name="automation"></a>自動化
 * [使用 PowerShell 指令碼自動設定可用性測試](app-insights-powershell.md#add-an-availability-test)。

@@ -14,13 +14,18 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 11/07/2016
 ms.author: mandia
-translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: b8d2b49a416883376302c9b3cc5924877b404a95
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 718b57a801a9ba62a0154ae42da2ac0c0741f203
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
 # <a name="biztalk-services-editions-chart"></a>BizTalk 服務：版本圖表
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 Azure BizTalk 服務提供數個版本。 使用本文決定最適合您的案例和商務需求的版本。
 
 ## <a name="compare-the-editions"></a>比較版本
@@ -59,7 +64,7 @@ Azure BizTalk 服務提供數個版本。 使用本文決定最適合您的案�
 
 <tr>
 <td><strong>起始價格</strong></td>
-<td colspan="5"><a HREF="http://go.microsoft.com/fwlink/p/?LinkID=304011"> Azure BizTalk 服務價格</a> <br/><br/> <a HREF="http://azure.microsoft.com/pricing/calculator/?scenario=full">Azure 價格計算機</a></td>
+<td colspan="5"><a HREF="http://go.microsoft.com/fwlink/p/?LinkID=304011">Azure BizTalk 服務價格</a> <br/><br/> <a HREF="http://azure.microsoft.com/pricing/calculator/?scenario=full">Azure 價格計算機</a></td>
 </tr>
 <tr>
 <td><strong>預設最小組態</strong></td>
@@ -251,10 +256,5 @@ BizTalk 配接器服務是由 Azure BizTalk 服務使用。 BizTalk 配接器服
 * [BizTalk 服務：節流](biztalk-throttling-thresholds.md)<br/>
 * [BizTalk 服務：簽發者名稱和簽發者金鑰](biztalk-issuer-name-issuer-key.md)<br/>
 * [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
-
-
-
-
-<!--HONumber=Nov16_HO2-->
 
 

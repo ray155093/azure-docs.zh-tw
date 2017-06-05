@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 04/11/2017
+ms.date: 05/30/2017
 ms.author: sdanie
-translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 1d208f931af4704528309780b45e170627f1753c
-ms.lasthandoff: 03/09/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: db851023c8620bec6583184326029d1a3e99ad88
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -37,7 +38,7 @@ Microsoft Azure Redis 快取有下列階層：
 
 * **基本** - 單一節點。 多種大小，最高為 53 GB。
 * **標準** – 兩個節點 (主要/從屬)。 多種大小，最高為 53 GB。 99.9% SLA。
-* **進階** – 兩個節點的主要/從屬，最多具有 10 個分區。 從 6 GB 到 530 GB 的多種大小 (如需詳細資訊，請與我們連絡)。 所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。 99.9% SLA。
+* **進階** – 兩個節點的主要/從屬，最多具有 10 個分區。 提供多種大小，範圍從 6 GB 到 530 GB。 所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。 99.9% SLA。
 
 每一個階層都有不同的功能和價格。 如需價格的相關資訊，請參閱 [快取價格詳細資料][Cache Pricing Details]。
 
@@ -210,7 +211,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 * Azure Redis 快取也可以與協力廠商服務和工具搭配使用 (例如 Redsmin 和 Redis Desktop Manager)。
   * 如需 Redsmin 的詳細資訊，請參閱 [如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][How to retrieve an Azure Redis connection string and use it with Redsmin]。
   * 使用 [RedisDesktopManager](https://github.com/uglide/RedisDesktopManager)，透過 GUI 存取和檢查 Azure Redis 快取中的資料。
-* 請參閱 [redis][redis] 文件，並閱讀有關 [Redis 資料類型][redis data types]和 [Redis 資料類型的&15; 分鐘簡介][a fifteen minute introduction to Redis data types]。
+* 請參閱 [redis][redis] 文件，並閱讀有關 [Redis 資料類型][redis data types]和 [Redis 資料類型的 15 分鐘簡介][a fifteen minute introduction to Redis data types]。
 
 <!-- INTRA-TOPIC LINKS -->
 [Next Steps]: #next-steps

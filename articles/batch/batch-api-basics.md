@@ -12,14 +12,14 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 05/05/2017
+ms.date: 05/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: f8279eb672e58c7718ffb8e00a89bc1fce31174f
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 84f9677daebe13f54a54802b1b16cc6487a0b845
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -344,18 +344,24 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 ## <a name="pool-network-configuration"></a>集區網路組態
 
-當您在 Azure Batch 中建立計算節點的集區時，您可以使用 API 來指定應在其中建立集區計算節點之 Azure [虛擬網路 (VNet)](../virtual-network/virtual-networks-overview.md) 的識別碼。
+當您在 Azure Batch 中建立計算節點的集區時，您可以指定 Azure [虛擬網路 (VNet)](../virtual-network/virtual-networks-overview.md) 的子網路識別碼，以讓系統知道要在哪裡建立集區的計算節點。
 
 * VNet 必須：
 
    * 與 Azure Batch 帳戶位於相同的 Azure **區域**中。
    * 與 Azure Batch 帳戶在相同的**訂用帳戶**中。
 
-* VNet 應該擁有足夠的可用 **IP 位址**以配合集區的 `targetDedicated` 屬性。 如果子網路沒有足夠的可用 IP 位址，Batch 服務會配置集區中部分的計算節點，並傳回調整大小錯誤。
+* 所支援的 VNet 類型取決於您要如何為 Batch 帳戶配置集區︰
+    - 如果您在建立 Batch 帳戶時將其 **poolAllocationMode** 屬性設定為「BatchService」，則指定的 VNet 必須是傳統 VNet。
+    - 如果您在建立 Batch 帳戶時將其 **poolAllocationMode** 屬性設定為「UserSubscription」，則指定的 VNet 可以是傳統 VNet 或 Azure Resource Manager VNet。 必須使用虛擬機器組態來建立集區才能使用 VNet。 在建立集區時，不支援使用雲端服務組態。
+
+* 如果您在建立 Batch 帳戶時將其 **poolAllocationMode** 屬性設定為「BatchService」，則必須提供相關權限以供 Batch 服務主體用來存取 VNet。 針對指定的 VNet，名為「Microsoft Azure Batch」或「MicrosoftAzureBatch」的 Batch 服務主體必須有[傳統虛擬機器參與者角色型存取控制 (RBAC)](https://azure.microsoft.com/documentation/articles/role-based-access-built-in-roles/#classic-virtual-machine-contributor) 角色。 如果您沒有提供指定的 RBAC 角色，Batch 服務會傳回 400 (不正確的要求)。
+
+* 指定的子網路必須有足夠的可用 **IP 位址**以容納所有目標節點，其數目為集區之 `targetDedicatedNodes` 和 `targetLowPriorityNodes` 屬性的總和。 如果子網路沒有足夠的可用 IP 位址，Batch 服務會配置集區中部分的計算節點，並傳回調整大小錯誤。
 
 * 指定的子網路必須允許來自 Batch 服務的通訊，才能在計算節點上排程工作。 如果對計算節點的通訊遭到與 VNet 相關聯的「網路安全性群組 (NSG)」拒絕，則 Batch 服務會將計算節點的狀態設為 [無法使用]。
 
-* 如果指定之 VNet 有任何相關聯的 NSG，必須啟用輸入通訊。 在 Linux 和 Windows 集區中，必須啟用連接埠 29876 和 29877。 您可以分別針對 Linux 集區上的 SSH 或 Windows 集區上的 RDP，選擇性地啟用 (或選擇性地篩選) 連接埠 22 或 3389。
+* 如果指定的 VNet 有任何相關聯的網路安全性群組 (NSG)，則必須啟用幾個已保留的系統連接埠以供進行輸入通訊。 若為使用虛擬機器組態所建立的集區，請啟用連接埠 29876 和 29877，另外，請針對 Linux 啟用連接埠 22，至於 Windows 則啟用連接埠 3389。 若為使用雲端服務組態所建立的集區，請啟用連接埠 10100、20100 和 30100。 此外，請在連接埠 443 上啟用對 Azure 儲存體的輸出連線。
 
 根據 Batch 帳戶的集區配置模式，會有額外的設定。
 
@@ -415,16 +421,24 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 ### <a name="task-failure-handling"></a>工作失敗處理
 工作失敗可分成下列幾類：
 
-* **排程失敗**
+* **前置處理失敗**
 
-    如果為工作指定的檔案傳輸因故失敗，將會為該工作設定「排程錯誤」。
+    如果工作無法啟動，系統便會對該工作設定前置處理錯誤。  
 
-    排程錯誤的發生原因可能是工作的資源檔案已移動、儲存體帳戶已無法使用，或發生其他使檔案無法成功複製到節點的問題。
+    前置處理錯誤的發生原因可能是工作的資源檔案已移動、儲存體帳戶已無法使用，或發生其他使檔案無法成功複製到節點的問題。
+
+* **檔案上傳失敗**
+
+    如果在上傳為工作指定的檔案時因故失敗，系統會對該工作設定檔案上傳錯誤。
+
+    檔案上傳錯誤的發生原因可能是所提供來存取 Azure 儲存體的 SAS 無效或未提供寫入權限、儲存體帳戶已無法再使用，或發生其他讓系統無法成功從節點複製檔案的問題。    
+
 * **應用程式失敗**
 
     工作的命令列所指定的程序也可能會失敗。 工作所執行的程序傳回非零的結束碼時，此程序會被視為失敗 (請參閱下一節的＜工作結束代碼＞  )。
 
     針對應用程式失敗，您可以將 Batch 設定成自動重試工作直到指定的次數為止。
+
 * **條件約束失敗**
 
     您可以設定條件約束來指定作業或工作的最大執行持續期間「maxWallClockTime」 。 這很適合用於終止無法進行的工作。
@@ -435,6 +449,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 * `stderr`和`stdout`
 
     在執行期間，應用程式可能會產生診斷輸出，以便用來排解疑難問題。 如前面的[檔案和目錄](#files-and-directories)一節所述，Batch 服務會將標準輸出和標準錯誤輸出寫入至計算節點上工作目錄中的 `stdout.txt` 和 `stderr.txt` 檔案。 您可以使用 Azure 入口網站或其中一個 Batch SDK 來下載這些檔案。 例如，您可以使用 Batch .NET 程式庫中的 [ComputeNode.GetNodeFile][net_getfile_node] 和 [CloudTask.GetNodeFile][net_getfile_task]，擷取這些和其他檔案來進行疑難排解。
+
 * **工作結束代碼**
 
     如前文所述，如果工作所執行的程序傳回非零的結束代碼，則 Batch 服務會將此工作標示為失敗。 當工作執行一個程序時，Batch 會使用「程序的傳回代碼」 填入工作的結束代碼屬性。 請務必注意，工作的結束代碼**不會**取決於 Batch 服務。 工作的結束代碼取決於程序本身，或程序執行所在的作業系統。
@@ -445,7 +460,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 也可能是間歇性問題導致工作懸置或花太長時間執行。 您可以設定工作的執行間隔上限。 如果超過最大執行間隔，Batch 服務會中斷工作應用程式。
 
 ### <a name="connecting-to-compute-nodes"></a>連接到計算節點
-您可以從遠端登入計算節點，以執行額外的偵錯和疑難排解。 您可以使用 Azure 入口網站下載 Windows 節點的遠端桌面通訊協定 (RDP) 檔案，並取得 Linux 節點的安全殼層 (SSH) 連線資訊。 您也可以使用 Batch API (例如透過 [Batch .NET][net_rdpfile] 或 [Batch Python](batch-linux-nodes.md#connect-to-linux-nodes)) 進行此項作業。
+您可以從遠端登入計算節點，以執行額外的偵錯和疑難排解。 您可以使用 Azure 入口網站下載 Windows 節點的遠端桌面通訊協定 (RDP) 檔案，並取得 Linux 節點的安全殼層 (SSH) 連線資訊。 您也可以使用 Batch API (例如透過 [Batch .NET][net_rdpfile] 或 [Batch Python](batch-linux-nodes.md#connect-to-linux-nodes-using-ssh)) 進行此項作業。
 
 > [!IMPORTANT]
 > 若要透過 RDP 或 SSH 連接到節點，您必須先在節點上建立使用者。 若要這樣做，您可以使用 Azure 入口網站，透過 Batch REST API [將使用者帳戶新增至節點][rest_create_user]、在 Batch .NET 中呼叫 [ComputeNode.CreateComputeNodeUser][net_create_user] 方法，或在 Batch Python 模組中呼叫 [add_user][py_add_user] 方法。

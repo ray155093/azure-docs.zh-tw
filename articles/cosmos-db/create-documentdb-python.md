@@ -1,14 +1,14 @@
 ---
 title: "Azure CosmosDB︰使用 Python 和 DocumentDB API 建置應用程式 | Microsoft Docs"
 description: "提供 Python 程式碼範例，您可用來連線及查詢 Azure Cosmos DB DocumentDB API"
-services: cosmosdb
+services: cosmos-db
 documentationcenter: 
 author: mimig1
 manager: jhubbard
 editor: 
 ms.assetid: 51c11be2-af6d-425f-a86a-39cbfe61da29
-ms.service: cosmosdb
-ms.custom: quick start connect
+ms.service: cosmos-db
+ms.custom: quick start connect, mvc
 ms.workload: 
 ms.tgt_pltfrm: na
 ms.devlang: python
@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 05/13/2017
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 6e64614c6ca746d91be535b64e520033c9e7d053
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 26694432663feb0f9cd21573e9114007b2357528
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/10/2017
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
 
-本快速入門會示範如何使用 Azure 入口網站建立 Azure Cosmos DB 帳戶、文件資料庫和集合。 您會接著建置和執行以 [DocumentDB Python API](../documentdb/documentdb-sdk-python.md) 為基礎的主控台應用程式。
+本快速入門會示範如何使用 Azure 入口網站建立 Azure Cosmos DB 帳戶、文件資料庫和集合。 您會接著建置和執行以 [DocumentDB Python API](documentdb-sdk-python.md) 為基礎的主控台應用程式。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -40,11 +40,11 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="create-a-database-account"></a>建立資料庫帳戶
 
-[!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
+[!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 ## <a name="add-a-collection"></a>新增集合
 
-[!INCLUDE [cosmosdb-create-collection](../../includes/cosmosdb-create-collection.md)]
+[!INCLUDE [cosmos-db-create-collection](../../includes/cosmos-db-create-collection.md)]
 
 ## <a name="clone-the-sample-application"></a>複製範例應用程式
 
@@ -59,7 +59,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
     ```  
 ## <a name="review-the-code"></a>檢閱程式碼
 
-讓我們快速檢閱應用程式中所發生的事情。 請開啟 DocumentDBRepository.cs 檔案，您會發現這些程式碼行會建立 Azure Cosmos DB 資源。 
+讓我們快速檢閱應用程式中所發生的事情。 請開啟 DocumentDBGetStarted.py 檔案，您會發現這些程式碼行會建立 Azure Cosmos DB 資源。 
 
 
 * 已初始化 DocumentClient。
@@ -149,7 +149,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="review-slas-in-the-azure-portal"></a>在 Azure 入口網站中檢閱 SLA
 
-[!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmosdb-tutorial-review-slas.md)]
+[!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>清除資源
 
@@ -163,7 +163,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 在本快速入門中，您已了解如何建立 Azure Cosmos DB 帳戶、如何使用 [資料總管] 建立集合，以及如何執行應用程式。 您現在可以將其他資料匯入到 Cosmos DB 帳戶。 
 
 > [!div class="nextstepaction"]
-> [將資料匯入 DocumentDB API 的 Azure Cosmos DB](../documentdb/documentdb-import-data.md)
+> [將資料匯入 DocumentDB API 的 Azure Cosmos DB](import-data.md)
 
 
 

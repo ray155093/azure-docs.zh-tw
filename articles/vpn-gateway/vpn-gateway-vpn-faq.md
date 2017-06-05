@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/04/2017
-ms.author: cherylmc
+ms.date: 05/30/2017
+ms.author: cherylmc,yushwang
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: d8f69793e9ed71137adcf4ee1e6ac3e4ccb49456
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 3627b3dfa5067883625b9a714645164ec99c8a51
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -195,6 +195,11 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 ### <a name="can-i-connect-a-virtual-network-with-ipsec-vpns-to-my-expressroute-circuit"></a>是否可以將使用 IPsec VPN 的虛擬網路連接到我的 ExpressRoute 線路？
 
 是，支援此做法。 如需詳細資訊，請參閱 [設定並存的 ExpressRoute 和網站間 VPN 連線](../expressroute/expressroute-howto-coexist-classic.md)。
+
+## <a name="ipsecike-policy"></a>IPsec/IKE 原則
+
+[!INCLUDE [vpn-gateway-ipsecikepolicy-faq-include](../../includes/vpn-gateway-ipsecikepolicy-faq-include.md)]
+
 
 ## <a name="bgp"></a>BGP
 

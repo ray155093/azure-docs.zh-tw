@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/22/2017
-ms.author: pareshmu
+ms.date: 05/24/2017
+ms.author: kaanan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
-ms.openlocfilehash: 28105bb35e4219488cd901ac01065adb8c321f75
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 72f310a489ca458719600d2fba5b9ca630d44e2f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/23/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -43,7 +43,7 @@ ms.lasthandoff: 05/23/2017
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
 | --- | --- | --- |
-| **北美洲** |美國東部、美國西部、美國東部 2、美國西部 2、美國中部、美國中南部、美國中北部、美國中西部、加拿大中部、加拿大東部 |亞特蘭大、芝加哥、達拉斯、丹佛+、拉斯維加斯、洛杉磯、邁阿密、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁、魁北克市、多倫多 |
+| **北美洲** |美國東部、美國西部、美國東部 2、美國西部 2、美國中部、美國中南部、美國中北部、美國中西部、加拿大中部、加拿大東部 |亞特蘭大、芝加哥、達拉斯、丹佛、拉斯維加斯、洛杉磯、邁阿密、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁、魁北克市、多倫多 |
 | **南美洲** |巴西南部 |聖保羅 |
 | **歐洲** |北歐、西歐、英國西部、英國南部 |阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)、巴黎 |
 | **亞洲** |東亞、東南亞 |香港特別行政區、新加坡 |
@@ -83,7 +83,7 @@ ms.lasthandoff: 05/23/2017
 | **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** |支援 |支援 |阿姆斯特丹、都柏林、倫敦、東京 |
 | **Comcast** |支援 |支援 |芝加哥、矽谷、華盛頓特區 |
 | **Console**| 支援 | 支援 |矽谷、多倫多 |
-| **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** |支援 |支援 |丹佛+、洛杉磯、紐約 |
+| **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** |支援 |支援 |丹佛、洛杉磯、紐約 |
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |支援 |阿姆斯特丹、亞特蘭大、芝加哥、達拉斯、香港、倫敦、洛杉磯、墨爾本、紐約、大阪、巴黎、聖保羅、西雅圖、矽谷、新加坡、雪梨、東京、多倫多、華盛頓特區 |
 | **euNetworks** |支援 |支援 |阿姆斯特丹 |
 | **GÉANT** |支援 |支援 |阿姆斯特丹 |
@@ -193,15 +193,16 @@ ms.lasthandoff: 05/23/2017
 | **[Tamares Telecom](http://www.tamarestelecom.com/our-services/#Connectivity)** | Telecity | 倫敦 | 
 | **[ThinkTel](http://www.thinktel.ca/services/agile-ix-data/expressroute/)** | Equinix | 多倫多 | 
 | **[Transtelco](http://www.transtelco.net/tcloud/microsoft)** |Equinix | 達拉斯、洛杉磯 |  
+| **[Webair](https://www.webair.com/microsoft-express-route-partnership/)**| Megaport | 紐約 |
 | **[Windstream](http://www.windstreambusiness.com/solutions/cloud-services/cloud-and-managed-hosting-services)**| Equinix | 芝加哥、矽谷、華盛頓特區 |
 | **[Zertia](http://www.zertia.es/index.php/novedades)**| Level 3 | 馬德里 |
 
 ## <a name="connectivity-through-datacenter-providers"></a>透過資料中心提供者連線
-| **提供者** | **Exchange** | **位置**|
-| --- | --- | --- |
-| **[Cyrus One](https://cyrusone.com/enterprise-data-center-services/connectivity-and-interconnection/)** | Megaport | 達拉斯 |
-| **[Digital Realty](https://www.digitalrealty.com/services/interconnection/service-exchange/)** | Megaport | - |
-| **[EdgeConnex](http://www.edgeconnex.com/services/edge-data-centers-proximity-matters/)** | Megaport | - |
+| **提供者** | **Exchange** |
+| --- | --- |
+| **[Cyrus One](https://cyrusone.com/enterprise-data-center-services/connectivity-and-interconnection/)** | Megaport |
+| **[Digital Realty](https://www.digitalrealty.com/services/interconnection/service-exchange/)** | Megaport |
+| **[EdgeConnex](http://www.edgeconnex.com/services/edge-data-centers-proximity-matters/)** | Megaport |
 
 ## <a name="connectivity-through-national-research-and-education-networks-nren"></a>透過 National Research and Education Networks (NREN) 連線
 
@@ -225,12 +226,12 @@ ms.lasthandoff: 05/23/2017
 | **[Altogee](http://www.altogee.be/expressroute)** | 歐洲 |
 | **[Avanade Inc.](http://www.avanade.com/)** | 亞洲、歐洲、北美洲、南美洲 |
 | **[Bright Skies GmbH](http://bskies.io/expressroute)** | 歐洲
-| **[Dotnet Solutions](http://www.dotnetsolutions.co.uk/)** | 歐洲 |
 | **[Ensyst](http://www.ensyst.com.au)** | 亞洲
 | **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** | 北美洲 |
 | **[The IT Consultancy Group](http://itconsult.com.au/microsoft-expressroute)** | 澳大利亞 |
 | **[MSG Services](https://www.msg-services.de/it-services/managed-services/cloud-outsourcing/)** | 歐洲 (德國) |
 | **[Nelite](http://nelite.com/)** | 歐洲 |
+| **[New Signature](https://www.newsignature.co.uk/)** | 歐洲 |
 | **[OneAs1a](http://www.oneas1a.com/express-connect-any-cloud-ecac)** | 亞洲 |
 | **[Orange Networks](https://orange-networks.com/blog/88-azureexpressroute)** | 歐洲 |
 | **[Perficient](http://www.perficient.com/Partners/Microsoft/Cloud/Azure-ExpressRoute)** | 北美洲 |

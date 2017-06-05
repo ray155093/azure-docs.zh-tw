@@ -10,17 +10,18 @@ manager: jhubbard
 editor: 
 ms.assetid: 676bd799-a571-4bb8-848b-fb1720007866
 ms.service: sql-database
-ms.custom: quick start manage
+ms.custom: quick start manage, mvc
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 04/17/2017
+ms.date: 05/24/2017
 ms.author: carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 45405c7bb9993d1fd529b25b599c3cd7f459843c
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 82c8a34fcccb6d19dc82110a6d95a80d748835f0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -28,10 +29,13 @@ ms.lasthandoff: 04/20/2017
 
 [Visual Studio Code](https://code.visualstudio.com/docs) 是一個圖形化程式碼編輯器，適用於支援擴充功能的 Linux、macOS 和 Windows，包括可供查詢 Microsoft SQL Server、Azure SQL Database 和 SQL 資料倉儲的 [mssql extension](https://aka.ms/mssql-marketplace)。 此快速入門示範如何使用 Visual Studio Code 來連線至 Azure SQL Database，然後使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
-本快速入門可作為在其中一個快速入門中建立之資源的起點︰
+## <a name="prerequisites"></a>必要條件
+
+本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
+- [建立 DB - PowerShell](sql-database-get-started-powershell.md)
 
 開始之前，確定您已安裝最新版的 [Visual Studio Code](https://code.visualstudio.com/Download) 並已載入 [mssql 擴充功能](https://aka.ms/mssql-marketplace)。 如需 mssql 擴充功能的安裝指引，請參閱[安裝 VS Code](https://docs.microsoft.com/sql/linux/sql-server-linux-develop-use-vscode#install-vs-code)和[適用於 Visual Studio Code 的 mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql)。 
 
@@ -96,17 +100,15 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 4. 請依照提示指定新連線設定檔的連線屬性。 指定每個值之後，按 **ENTER** 繼續。 
 
-   下表說明連線設定檔屬性。
-
-   | 設定 | 說明 |
-   |-----|-----|
-   | **伺服器名稱** | 輸入您的完整伺服器名稱，例如 **mynewserver20170313.database.windows.net** |
-   | **資料庫名稱** | 輸入您的資料庫名稱，例如 **mySampleDatabase** |
-   | **驗證** | 選取 SQL 登入 |
-   | **使用者名稱** | 輸入您的伺服器管理帳戶 |
-   | **密碼 (SQL 登入)** | 輸入伺服器管理帳戶的密碼 | 
-   | **儲存密碼？** | 選取 [是] 或 [否] |
-   | **[選用] 輸入這個設定檔的名稱** | 輸入連線設定檔名稱，例如 **mySampleDatabase**。 
+   | 設定       | 建議的值 | 說明 |
+   | ------------ | ------------------ | ------------------------------------------------- | 
+   | **伺服器名稱 | 完整伺服器名稱 | 此名稱應該類似這樣︰**mynewserver20170313.database.windows.net**。 |
+   | **資料庫名稱** | mySampleDatabase | 所要連線的目標資料庫名稱。 |
+   | **驗證** | SQL 登入| 在本教學課程中，我們只設定了 SQL 驗證這個驗證類型。 |
+   | **使用者名稱** | 伺服器管理帳戶 | 這是您在建立伺服器時所指定的帳戶。 |
+   | **密碼 (SQL 登入)** | 伺服器管理帳戶的密碼 | 這是您在建立伺服器時所指定的密碼。 |
+   | **儲存密碼？** | 是或否 | 如果您不希望每次都要輸入密碼，請選取 [是]。 |
+   | **輸入這個設定檔的名稱** | 設定檔名稱，例如 **mySampleDatabase** | 儲存設定檔名稱可讓您在後續登入時加快連線速度。 | 
 
 5. 按 **ESC** 鍵來關閉通知已建立並連接設定檔的資訊訊息。
 

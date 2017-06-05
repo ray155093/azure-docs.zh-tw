@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/05/2017
 ms.author: raynew
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 5348cedf369264defc5bb8417397aae046915ca7
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 77ebe20940bce0e21caa60567e1ccffaba7351b3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -80,4 +81,6 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - [將沒有 VMM 的 Hyper-V VM 移轉至 Azure](site-recovery-hyper-v-site-to-azure.md)
 - [在 Azure 區域之間移轉 Azure VM](site-recovery-migrate-azure-to-azure.md)
 - [將 AWS 執行個體移轉至 Azure](site-recovery-migrate-aws-to-azure.md)
+- [準備已移轉的機器，以便複寫](site-recovery-azure-to-azure-after-migration.md)至其他區域以因應災害復原的需要。
+- [複寫 Azure 虛擬機器](site-recovery-azure-to-azure.md)來開始保護您的工作負載。
 

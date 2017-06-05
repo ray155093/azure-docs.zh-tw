@@ -12,13 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/12/2017
+ms.date: 05/25/2017
 ms.author: joflore
+ms.editor: gahug
+ms.custom: it-pro
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: 6cc1589f2ebad9267334f70926be369b32c8e075
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 5bd17fc68447b8387dfaad33fe2d0055596ec086
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -41,7 +43,7 @@ ms.lasthandoff: 05/12/2017
 
 ## <a name="email-based-rollout"></a>以電子郵件為基礎的啟用
 
-許多客戶發現電子郵件行銷活動 (包含易於使用的指示)，這是讓使用者使用 SSPR 的最簡單方法。 我們建立了三個可以作為範本的簡單電子郵件，以協助您推出。
+許多客戶發現電子郵件行銷活動 (包含易於使用的指示)，這是讓使用者使用 SSPR 的最簡單方法。 [我們建立了三個可以作為範本的簡單電子郵件，以協助您推出。](https://onedrive.live.com/?authkey=%21AD5ZP%2D8RyJ2Cc6M&id=A0B59A91C740AB16%2125063&cid=A0B59A91C740AB16)
 
 * **即將推出**電子郵件範本，可使用於推出前幾週或前幾天，讓使用者知道他們需要執行一些動作。
 * **立即可用**電子郵件範本，可在推出當天驅使使用者註冊並確認其驗證資料，以便他們在需要時使用 SSPR。
@@ -83,5 +85,5 @@ ms.lasthandoff: 05/12/2017
 * [**密碼回寫**](active-directory-passwords-writeback.md) - 密碼回寫如何使用您的內部部署目錄
 * [**報告**](active-directory-passwords-reporting.md) - 探索您的使用者是否、何時、何地存取 SSPR 功能
 * [**技術性深入探討**](active-directory-passwords-how-it-works.md) - 深入探索以了解其運作方式
-* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - -您一直想要詢問之問題的答案
+* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - 您一直想要詢問之問題的答案
 * [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何解決我們看到的 SSPR 常見問題

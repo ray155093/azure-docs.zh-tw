@@ -15,10 +15,10 @@ ms.workload: big-data
 ms.date: 05/06/2017
 ms.author: edmaca
 ms.translationtype: Human Translation
-ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
-ms.openlocfilehash: 02cb05f42e555931dffa0fdec21b19ce0468e1de
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: d44570c7faa3e2468022ef539239c88f0418b2fa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/23/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -49,9 +49,7 @@ Azure Data Lake Analytics 是隨選分析作業服務，可簡化巨量資料分
 ## <a name="see-also"></a>另請參閱
 * 開始使用
   
-  * [透過 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
-  * [透過 Azure PowerShell 開始使用 Data Lake Analytics](data-lake-analytics-get-started-powershell.md)
-  * [透過 Azure .NET SDK 開始使用 Data Lake Analytics](data-lake-analytics-get-started-net-sdk.md)
+  * 透過 [Azure 入口網站](data-lake-analytics-get-started-portal.md) | [Azure PowerShell](data-lake-analytics-get-started-powershell.md) | [Azure .NET SDK](data-lake-analytics-get-started-net-sdk.md)來開始使用 Data Lake Analytics
   * [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
 
 * 管理
