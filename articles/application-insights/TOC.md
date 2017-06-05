@@ -116,7 +116,7 @@
 ### [取樣](app-insights-sampling.md)
 
 ## 管理
-### [管理價格與配額](app-insights-pricing.md)
+### [管理價格與資料量](app-insights-pricing.md)
 ### [使用 SCOM 的 Application Insights 進行應用程式效能監視](app-insights-scom.md)
 
 ## 匯出

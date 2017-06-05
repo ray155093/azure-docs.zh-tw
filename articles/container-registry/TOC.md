@@ -17,6 +17,7 @@
 
 ## [Azure CLI 2.0](/cli/azure/acr)
 ## [REST](/rest/api/containerregistry)
+## [遙測標頭](container-registry-headers.md)
 
 # 相關參考
 

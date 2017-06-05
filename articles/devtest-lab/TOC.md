@@ -2,6 +2,7 @@
 ## [深入了解 Azure DevTest Labs](devtest-lab-overview.md)
 ## [概念](devtest-lab-concepts.md)
 ## 案例
+### [使用適用於開發人員的實驗室](devtest-lab-developer-lab.md)
 ### [使用實驗室進行訓練](devtest-lab-training-lab.md)
 
 # 開始使用

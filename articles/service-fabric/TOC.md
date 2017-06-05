@@ -235,25 +235,27 @@
 
 ### [連線到安全的叢集](service-fabric-connect-to-secure-cluster.md)
 
-## 檢查應用程式與叢集健全狀況
-### [監視 Service Fabric 健全狀況](service-fabric-health-introduction.md)
-### [回報和檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
-### [新增自訂健全狀況報表](service-fabric-report-health.md)
-### [使用系統健全狀況報表進行疑難排解](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
-### [檢視健全狀況報表](service-fabric-view-entities-aggregated-health.md)
-
 ## 監視與診斷
 ### [監視與診斷應用程式](service-fabric-diagnostics-overview.md)
-### 在本機上監視及診斷服務
-#### [Windows](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
-#### [Linux](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)
-### Azure 診斷記錄檔
-#### [Windows](service-fabric-diagnostics-how-to-setup-wad.md)
-#### [Linux](service-fabric-diagnostics-how-to-setup-lad.md)
-### [從服務處理程序中收集記錄](service-fabric-diagnostic-collect-logs-without-an-agent.md)
-### [監視 Windows Server 容器](service-fabric-diagnostics-containers-windowsserver.md)
-### [可設定狀態 Reliable Services 中的診斷](service-fabric-reliable-services-diagnostics.md)
-### [Reliable Actors 中的診斷](service-fabric-reliable-actors-diagnostics.md)
+### 產生事件
+#### [產生基礎結構層級事件](service-fabric-diagnostics-event-generation-infra.md)
+##### [Reliable Services 事件](service-fabric-reliable-services-diagnostics.md)
+##### [Reliable Actors 事件](service-fabric-reliable-actors-diagnostics.md)
+#### [產生應用程式層級事件](service-fabric-diagnostics-event-generation-app.md)
+### 檢查應用程式與叢集健全狀況
+#### [監視 Service Fabric 健全狀況](service-fabric-health-introduction.md)
+#### [回報和檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+#### [新增自訂健全狀況報表](service-fabric-report-health.md)
+#### [使用系統健全狀況報表進行疑難排解](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
+#### [檢視健全狀況報表](service-fabric-view-entities-aggregated-health.md)
+### 彙總事件
+#### [使用 EventFlow 彙總事件](service-fabric-diagnostics-event-aggregation-eventflow.md)
+#### 使用 Azure 診斷彙總事件
+##### [Windows](service-fabric-diagnostics-event-aggregation-wad.md)
+##### [Linux](service-fabric-diagnostics-event-aggregation-lad.md)
+### 分析事件
+#### [使用 Application Insights 分析事件](service-fabric-diagnostics-event-analysis-appinsights.md)
+#### [使用 OMS 分析事件](service-fabric-diagnostics-event-analysis-oms.md)
 ### [針對本機叢集進行疑難排解](service-fabric-troubleshoot-local-cluster-setup.md)
 
 # 參考

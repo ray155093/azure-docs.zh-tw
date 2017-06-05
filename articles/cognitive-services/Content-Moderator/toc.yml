@@ -1,57 +1,56 @@
-- name: "Content Moderator Documentation"
+- name: Content Moderator 文件
   href: ../index.md
-- name: "Overview"
+- name: 概觀
   items: 
-  - name: "Learn about the Content Moderator API"
+  - name: 深入了解 Content Moderator API
     href: overview.md
-- name: "Get started"
+- name: 開始使用
   items: 
-  - name: "Get started with Content Moderator"
+  - name: 開始使用 Content Moderator
     href: quick-start.md
-- name: "How to"
+- name: 作法
   items: 
-  - name: "Review tool user guide"
+  - name: 檢閱工具使用者指南
     items:
-    - name: "Human in the loop"
+    - name: 迴圈中的人員
       href: Review-Tool-User-Guide/human-in-the-loop.md
-    - name: "Create team"
+    - name: 建立團隊
       href: Review-Tool-User-Guide/Sign-up.md
-    - name: "Upload images"
+    - name: 上傳影像
       href: Review-Tool-User-Guide/Upload-Images.md
-    - name: "Image reviews"
+    - name: 影像檢閱
       href: Review-Tool-User-Guide/Review-Moderated-Images.md
-    - name: "Text reviews"
+    - name: 文字檢閱
       href: Review-Tool-User-Guide/Text-Reviews.md
-    - name: "Team and subteams"
+    - name: 團隊和子團隊
       href: Review-Tool-User-Guide/SubTeams.md
-    - name: "Using workflows"
+    - name: 使用工作流程
       href: Review-Tool-User-Guide/Workflows.md
-    - name: "Settings"
+    - name: 設定
       href: Review-Tool-User-Guide/Configure.md
-    - name: "View dashboard"
+    - name: 檢視儀表板
       href: Review-Tool-User-Guide/View-Dashboard.md
-- name: "Reference"
+- name: 參考
   items: 
-  - name: "API Reference Guide"  
+  - name: API 參考指南
+  
     href: api-reference.md
     items:
-  - name: "Review APIs"
+  - name: 檢閱 API
     href: review-api.md
-  - name: "Review Authentication"
-    href: Review-API-Authentication.md
-  - name: "Image moderation"
+  - name: 影像仲裁
     href: image-moderation-api.md
-  - name: "Text moderation"
+  - name: 文字仲裁
     href: text-moderation-api.md
-  - name: "Text moderation - languages"
+  - name: 文字仲裁 - 語言
     href: Text-Moderation-API-Languages.md
-  - name: "Video moderation"
+  - name: 影片仲裁
     href: video-moderation-api.md
-- name: "Resources"
+- name: 資源
   items:  
-  - name: "Windows SDK"
+  - name: Windows SDK
     href: https://github.com/MicrosoftContentModerator/Microsoft.CognitiveServices.ContentModerator-Windows/
-  - name: "Samples"
+  - name: 範例
     href: https://azure.microsoft.com/resources/samples/?service=cognitive-services
-  - name: "FAQ"
+  - name: 常見問題集
     href: FAQs.md

@@ -41,6 +41,7 @@
 ### [上架管理機器](automation-dsc-onboarding.md)
 ### [編譯 DSC 設定](automation-dsc-compile.md)
 ### [使用 Chocolatey 持續進行部署](automation-dsc-cd-chocolatey.md)
+### [將 Azure 自動化 DSC 報告資料轉送到 OMS Log Analytics](automation-dsc-diagnostics.md)
 ## 管理自動化資產
 ### [憑證](automation-certificates.md)
 ### [連線](automation-connections.md)
