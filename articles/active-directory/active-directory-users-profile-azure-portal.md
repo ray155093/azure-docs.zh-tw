@@ -1,5 +1,6 @@
 ---
-title: "在 Azure Active Directory 預覽版中新增或變更使用者的設定檔資訊 | Microsoft Docs"
+
+title: "在 Azure Active Directory 中新增或變更使用者的設定檔資訊 | Microsoft Docs"
 description: "說明如何在 Azure Active Directory 中新增使用者設定檔，包括設定檔圖片"
 services: active-directory
 documentationcenter: 
@@ -12,17 +13,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/24/2017
+ms.date: 05/04/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: 0dc1f1ef73334187fe76302ff3bd5a5446dec768
-ms.openlocfilehash: 21370f9c30ac1dcaa979ab9724155c91bda128f7
-ms.lasthandoff: 02/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: ccc6dfaf1653d5888541d78f5e9e20b183709574
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="add-or-change-profile-information-for-a-user-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中新增或變更使用者的設定檔資訊
-本文說明如何在 Azure Active Directory (Azure AD) 預覽版中，新增使用者設定檔資訊，例如設定檔圖片、電話號碼及電子郵件驗證資訊。 [預覽版有何功能？](active-directory-preview-explainer.md) 如需有關在您組織中新增新使用者的資訊，請參閱[將新的使用者新增到 Azure Active Directory](active-directory-users-create-azure-portal.md)。
+# <a name="add-or-change-profile-information-for-a-user-in-azure-active-directory"></a>在 Azure Active Directory 中新增或變更使用者的設定檔資訊
+本文說明如何在 Azure Active Directory (Azure AD) 中新增使用者設定檔資訊，例如設定檔圖片、電話號碼及電子郵件驗證資訊。 如需有關在您組織中新增新使用者的資訊，請參閱[將新的使用者新增到 Azure Active Directory](active-directory-users-create-azure-portal.md)。
 
 ## <a name="to-change-profile-information"></a>變更設定檔資訊
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
@@ -39,9 +41,9 @@ ms.lasthandoff: 02/27/2017
 6. 新增或變更設定檔資訊。 然後，在命令列上選取 [儲存]。
 
 ## <a name="next-steps"></a>後續步驟
-* [將新的使用者新增到 Azure Active Directory 預覽版](active-directory-users-create-azure-portal.md)
-* [在 Azure Active Directory 預覽版中重設使用者的密碼](active-directory-users-reset-password-azure-portal.md)
-* [在 Azure Active Directory 預覽版中將使用者指派給系統管理員角色](active-directory-users-assign-role-azure-portal.md)
-* [在 Azure Active Directory 預覽版中新增或變更使用者的設定檔資訊](active-directory-users-work-info-azure-portal.md)
-* [在 Azure Active Directory 預覽版中將使用者從目錄中刪除](active-directory-users-delete-user-azure-portal.md)
+* [將新的使用者加入 Azure Active Directory](active-directory-users-create-azure-portal.md)
+* [在 Azure Active Directory 中重設使用者的密碼](active-directory-users-reset-password-azure-portal.md)
+* [在 Azure Active Directory 中將使用者指派給系統管理員角色](active-directory-users-assign-role-azure-portal.md)
+* [在 Azure Active Directory 中新增或變更使用者的設定檔資訊](active-directory-users-work-info-azure-portal.md)
+* [在 Azure Active Directory 中將使用者從目錄中刪除](active-directory-users-delete-user-azure-portal.md)
 
