@@ -39,6 +39,8 @@ ms.lasthandoff: 06/01/2017
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+
 ## <a name="test-local-postgresql-installation-and-create-a-database"></a>測試本機 PostgreSQL 安裝並建立資料庫
 在此步驟中，您要確定您的本機 PostgreSQL 資料庫正在執行。
 
@@ -120,7 +122,7 @@ Flask 範例應用程式會將使用者資料儲存於資料庫中。 如果成�
 
 您即將在終端機視窗中使用 Azure CLI 2.0，來建立在 Azure App Service 中裝載 Python 應用程式所需的資源。  使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。 
 
-```azurecli 
+```azurecli-interactive 
 az login 
 ``` 
    
@@ -130,7 +132,7 @@ az login
 
 下列範例會在美國西部區域中建立一個資源群組：
 
-```azurecli
+```azurecli-interactive
 az group create --name myResourceGroup --location "West US"
 ```
 
@@ -142,7 +144,7 @@ az group create --name myResourceGroup --location "West US"
 
 在下列命令中，在您看見 `<postgresql_name>` 預留位置的地方，替代成您自己的唯一 PostgreSQL 伺服器名稱。 這個唯一名稱會用來作為 PostgreSQL 端點 (`https://<postgresql_name>.postgres.database.azure.com`) 的一部分，所以在 Azure 的所有伺服器中必須是唯一的名稱。 
 
-```azurecli
+```azurecli-interactive
 az postgres server create --resource-group myResourceGroup --name <postgresql_name> --admin-user <my_admin_username>
 ```
 
@@ -178,7 +180,7 @@ az postgres server create --resource-group myResourceGroup --name <postgresql_na
 
 我們現在必須先讓所有 IP 位址可連線至資料庫，才能存取資料庫。 這可透過下列 Azure CLI 命令來完成：
 
-```azurecli
+```azurecli-interactive
 az postgres server firewall-rule create --resource-group myResourceGroup --server-name <postgresql_name> --start-ip-address=0.0.0.0 --end-ip-address=255.255.255.255 --name AllowAllIPs
 ```
 
@@ -288,7 +290,7 @@ INFO  [alembic.runtime.migration] Will assume transactional DDL.
 
 在下列命令中，建立容器登錄，將 `<registry_name>` 取代為您選擇的唯一 Azure Container Registry 名稱。
 
-```azurecli
+```azurecli-interactive
 az acr create --name <registry_name> --resource-group myResourceGroup --location "West US" --sku Basic
 ```
 
@@ -318,7 +320,7 @@ az acr create --name <registry_name> --resource-group myResourceGroup --location
 
 我們必須先啟用管理員模式後，才可以存取認證。
 
-```azurecli
+```azurecli-interactive
 az acr update --name <registry_name> --admin-enabled true
 az acr credential show -n <registry_name>
 ```
@@ -359,7 +361,7 @@ docker push <registry_name>.azurecr.io/flask-postgresql-sample
 
 下列範例會使用 S1 定價層，建立名為 `myAppServicePlan` 之以 Linux 為基礎的 App Service 方案：
 
-```azurecli
+```azurecli-interactive
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku S1 --is-linux
 ```
 
@@ -407,7 +409,7 @@ az appservice plan create --name myAppServicePlan --resource-group myResourceGro
 
 在下列命令中，使用您自己唯一的應用程式名稱來替代 `<app_name>` 預留位置。 這個唯一名稱將用來做為 Web 應用程式預設網域名稱的一部分，因此，這個名稱在 Azure 的所有應用程式中必須是唯一的。 您稍後先將任何自訂 DNS 項目對應至 Web 應用程式，再將它公開給使用者。 
 
-```azurecli
+```azurecli-interactive
 az appservice web create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
@@ -439,7 +441,7 @@ az appservice web create --name <app_name> --resource-group myResourceGroup --pl
 
 以下可讓您指定資料庫連線詳細資料作為應用程式設定。 此外，我們會使用 `PORT` 變數，指定我們想要從我們的 Docker 容器對應連接埠 5000，以接收連接埠 80 的 HTTP 流量。
 
-```azurecli
+```azurecli-interactive
 az appservice web config appsettings update --name <app_name> --resource-group myResourceGroup --settings DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBPASS="supersecretpass" DBNAME="eventregistration" PORT=5000
 ```
 
@@ -455,7 +457,7 @@ az appservice web config container update --resource-group myResourceGroup --nam
 
 每當我們更新 Docker 容器或變更上述設定時，需重新啟動應用程式，以確保將所有設定套用，且從登錄將最新的容器進行提取。
 
-```azurecli
+```azurecli-interactive
 az appservice web restart --resource-group myResourceGroup --name <app_name>
 ```
 

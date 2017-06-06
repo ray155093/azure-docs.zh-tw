@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 2/15/2017
+ms.date: 06/05/2017
 ms.author: pratshar
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 6b1a5b2879a7b98ec4ad3e8ebbc9e95c0740d89f
 ms.openlocfilehash: 3aaa005319b1ce2a10cd913c63b31860d31b797e
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/23/2017
 
 
@@ -27,7 +28,7 @@ ms.lasthandoff: 02/23/2017
 > * [測試容錯移轉 (VMM 至 VMM)](./site-recovery-test-failover-vmm-to-vmm.md)
 
 
-本文提供使用 VMM 管理的內部部署站台做為復原站台，對使用 Site Recovery 保護的虛擬機器與實體伺服器執行測試容錯移轉或 DR (災害復原) 訓練的相關資訊和指示。 
+本文提供使用 VMM 管理的內部部署站台做為復原站台，對使用 Site Recovery 保護的虛擬機器與實體伺服器執行測試容錯移轉或 DR (災害復原) 訓練的相關資訊和指示。
 
 在這篇文章下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
 
@@ -49,7 +50,7 @@ ms.lasthandoff: 02/23/2017
 如果參與測試容錯移轉的虛擬機器會使用 DHCP，則應該在基於測試容錯移轉目的而建立的隔離網路中建立測試 DHCP 伺服器。
 
 ### <a name="prepare-active-directory"></a>準備 Active Directory
-若要執行測試容錯移轉以進行應用程式測試，您需要在測試環境中具有 Active Directory 生產環境的複本。 如需詳細資訊，請參閱 [Active Directory 測試容錯移轉考量](site-recovery-active-directory.md#test-failover-considerations) 一節。 
+若要執行測試容錯移轉以進行應用程式測試，您需要在測試環境中具有 Active Directory 生產環境的複本。 如需詳細資訊，請參閱 [Active Directory 測試容錯移轉考量](site-recovery-active-directory.md#test-failover-considerations) 一節。
 
 ### <a name="prepare-dns"></a>準備 DNS
 準備 DNS 伺服器來進行測試容錯移轉，如下所示：
@@ -76,9 +77,9 @@ ms.lasthandoff: 02/23/2017
 
 1. 選取 [復原方案]  >  *recoveryplan_name*。 按一下 [容錯移轉] **容錯移轉** > **Test 容錯移轉**中張貼意見或問題。
 1. 在 [測試容錯移轉] 刀鋒視窗上，指定虛擬機器在測試容錯移轉後應如何連接到網路。 查看[網路選項](#network-options-in-site-recovery)以了解詳細資訊。
-1. 在 [工作]  索引標籤上追蹤容錯移轉進度。 
+1. 在 [工作]  索引標籤上追蹤容錯移轉進度。
 1. 完成之後，請確認虛擬機器已成功啟動。
-1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事]  中，記錄並儲存關於測試容錯移轉的任何觀察。 這將刪除在測試容錯移轉期間所建立的虛擬機器和網路。 
+1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事]  中，記錄並儲存關於測試容錯移轉的任何觀察。 這將刪除在測試容錯移轉期間所建立的虛擬機器和網路。
 
 
 ## <a name="network-options-in-site-recovery"></a>Site Recovery 中的網路選項
@@ -97,10 +98,10 @@ ms.lasthandoff: 02/23/2017
 >
 
 
-## <a name="test-failover-to-a-production-network-on-recovery-site"></a>在復原站台上測試容錯移轉到實際執行網路 
+## <a name="test-failover-to-a-production-network-on-recovery-site"></a>在復原站台上測試容錯移轉到實際執行網路
 當您進行測試容錯移轉時，建議您選擇與在 [網路對應] 中提供的實際執行復原站台網路不同的網路。 但是，如果您真的想驗證容錯移轉的虛擬機器中的端對端網路連線，請注意下列幾點︰
 
-1. 進行測試容錯移轉時，請確定主要虛擬機器已關機。 如果不這麼做，相同的網路中將有兩部虛擬機器以相同的身分識別執行，因而可能造成不良的後果。 
+1. 進行測試容錯移轉時，請確定主要虛擬機器已關機。 如果不這麼做，相同的網路中將有兩部虛擬機器以相同的身分識別執行，因而可能造成不良的後果。
 1. 當您清除測試容錯移轉虛擬機器時，您對測試容錯移轉虛擬機器所做的任何變更將會遺失。 這些變更不會複寫回主要虛擬機器。
 1. 這種測試會導致實際執行應用程式的停機時間。 進行 DR 訓練時，應要求應用程式的使用者不要使用應用程式。  
 

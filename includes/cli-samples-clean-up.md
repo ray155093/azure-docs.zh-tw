@@ -2,6 +2,6 @@
 
 若要清理您的資源，請執行下列命令：
 
-```azurecli
+```azurecli-interactive
 az group delete --name myResourceGroup
 ```

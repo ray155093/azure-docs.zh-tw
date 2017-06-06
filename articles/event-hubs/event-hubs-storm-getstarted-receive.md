@@ -3,7 +3,7 @@ title: "使用 Apache Storm 從 Azure 事件中樞接收事件 | Microsoft Docs"
 description: "開始使用 Apache Storm 從事件中樞接收事件"
 services: event-hubs
 documentationcenter: 
-author: jtaubensee
+author: sethmanheim
 manager: timlt
 editor: 
 ms.assetid: 
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: java
 ms.devlang: multiple
 ms.topic: article
 ms.date: 05/03/2017
-ms.author: jotaub;sethm
+ms.author: sethm
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
 ms.openlocfilehash: 195f5b7453a2ca576cfdbf39acd1f644c9edad33

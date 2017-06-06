@@ -50,6 +50,8 @@ ms.lasthandoff: 06/01/2017
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+
 ## <a name="prepare-local-mysql"></a>準備本機 MySQL
 
 在此步驟中，您可以在本機 MySQL 伺服器中建立資料庫，供您在本教學課程中使用。
@@ -156,7 +158,7 @@ php artisan serve
 
 您將要在終端機視窗中使用 Azure CLI 2.0，來建立在 Azure App Service 中裝載 PHP 應用程式所需的資源。 使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。 
 
-```azurecli 
+```azurecli-interactive 
 az login 
 ``` 
 
@@ -166,7 +168,7 @@ az login
 
 下列範例會在北歐區域中建立一個資源群組：
 
-```azurecli
+```azurecli-interactive
 az group create --name myResourceGroup --location "North Europe"
 ```
 
@@ -178,7 +180,7 @@ az group create --name myResourceGroup --location "North Europe"
 
 在下列命令中，在您看見 _&lt;mysql_server_name>_ 預留位置的地方，替代成您自己的唯一 MySQL 伺服器名稱。 這個名稱是 MySQL 伺服器主機名稱 `<mysql_server_name>.database.windows.net` 的一部分，因此它必須是全域唯一的。 另外，請將 _&lt;admin_user>_ 和 _&lt;admin_password>_ 替代成您自己的值。
 
-```azurecli
+```azurecli-interactive
 az mysql server create \
     --name <mysql_server_name> \
     --resource-group myResourceGroup \
@@ -206,7 +208,7 @@ az mysql server create \
 
 使用 [az mysql server firewall-rule create](/cli/azure/mysql/server/firewall-rule#create) 命令，建立 MySQL 伺服器的防火牆規則來允許用戶端連線。 
 
-```azurecli
+```azurecli-interactive
 az mysql server firewall-rule create \
     --name allIPs \
     --server <mysql_server_name> \
@@ -332,7 +334,7 @@ git commit -m "keep sensitive data out of git"
 
 下列範例會使用**免費**定價層，建立名為 _myAppServicePlan_ 的 App Service 方案：
 
-```azurecli
+```azurecli-interactive
 az appservice plan create \
     --name myAppServicePlan \
     --resource-group myResourceGroup \
@@ -363,7 +365,7 @@ az appservice plan create \
 
 在下列命令中，將 _&lt;appname>_ 預留位置替代成您自己的唯一應用程式名稱。 這個唯一名稱會用來作為 Web 應用程式預設網域名稱的一部分，因此，這個名稱在 Azure 的所有應用程式中必須是唯一的。 您稍後先將任何自訂 DNS 項目對應至 Web 應用程式，再將它公開給使用者。 
 
-```azurecli
+```azurecli-interactive
 az appservice web create \
     --name <app_name> \
     --resource-group myResourceGroup \
@@ -393,7 +395,7 @@ az appservice web create \
 
 下列命令會將 PHP 版本設定為 _7.0_。
 
-```azurecli
+```azurecli-interactive
 az appservice web config update \
     --name <app_name> \
     --resource-group myResourceGroup \
@@ -408,7 +410,7 @@ az appservice web config update \
 
 下列命令可讓您設定 `DB_HOST`、`DB_DATABASE`、`DB_USERNAME` 和 `DB_PASSWORD` 應用程式設定。 取代 _&lt;appname>_、_&lt;mysql_server_name>_、_&lt;phpapp_user>_ 和 _&lt;phpapp_password>_ 預留位置。
 
-```azurecli
+```azurecli-interactive
 az appservice web config appsettings update \
     --name <app_name> \
     --resource-group myResourceGroup \
@@ -440,7 +442,7 @@ php artisan key:generate --show
 
 使用 [az appservice web config appsettings update](/cli/azure/appservice/web/config/appsettings#update) 命令來設定 App Service Web 應用程式中的應用程式金鑰。 取代 _&lt;appname>_ 和 _&lt;outputofphpartisankey:generate>_ 預留位置。
 
-```azurecli
+```azurecli-interactive
 az appservice web config appsettings update \
     --name <app_name> \
     --resource-group myResourceGroup \
@@ -483,13 +485,13 @@ az resource update \
 
 如果您先前已建立部署使用者名稱和密碼，可以使用下列命令來顯示使用者名稱︰
 
-```azurecli
+```azurecli-interactive
 az appservice web deployment user show
 ```
 
 如果您還沒有部署使用者，請執行 [az appservice web deployment user set](/cli/azure/appservice/web/deployment/user#set) 命令來建立部署認證。 
 
-```azurecli
+```azurecli-interactive
 az appservice web deployment user set \
     --user-name <username> \
     --password <minimum-8-char-capital-lowercase-number>
@@ -507,7 +509,7 @@ az appservice web deployment user set \
 
 使用 [az appservice web source-control config-local-git](/cli/azure/appservice/web/source-control#config-local-git) 命令，來設定 Azure Web 應用程式的本機 Git 存取。 
 
-```azurecli
+```azurecli-interactive
 az appservice web source-control config-local-git \
     --name <app_name> \
     --resource-group myResourceGroup
@@ -718,7 +720,7 @@ git push azure master
 
 若要開始記錄資料流，使用 [az appservice web log tail](/cli/azure/appservice/web/log#tail) 命令。
 
-```azurecli 
+```azurecli-interactive 
 az appservice web log tail \
     --name <app_name> \
     --resource-group myResourceGroup 
@@ -763,7 +765,7 @@ az appservice web log tail \
  
 如果您不需要這些資源來進行其他教學課程 (請參閱[後續步驟](#next))，您可以執行下列命令來將這些資源刪除︰ 
   
-```azurecli 
+```azurecli-interactive
 az group delete --name myResourceGroup 
 ``` 
 

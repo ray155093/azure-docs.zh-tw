@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 2/15/2017
+ms.date: 06/05/2017
 ms.author: pratshar
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
@@ -59,7 +59,7 @@ ms.lasthandoff: 05/02/2017
 
 
 > [!TIP]
-> Site Recovery 會嘗試在名稱相同的子網路中建立測試虛擬機器，並使用虛擬機器的 [計算與網路] 設定中提供的 IP。 如果針對測試容錯移轉提供的 Azure 虛擬網路中沒有名稱相同的子網路，則會在依字母順序的第一個子網路中建立測試虛擬機器。 如果目標 IP 是所選子網路的一部分，則 Site Recovery 會使用目標 IP 嘗試建立測試容錯移轉虛擬機器。 如果目標 IP 不屬於所選子網路的一部分，則會使用所選子網路中的任何可用 IP 建立測試容錯移轉虛擬機器。 
+> Site Recovery 會嘗試在名稱相同的子網路中建立測試虛擬機器，並使用虛擬機器的 [計算與網路] 設定中提供的 IP。 如果針對測試容錯移轉提供的 Azure 虛擬網路中沒有名稱相同的子網路，則會在依字母順序的第一個子網路中建立測試虛擬機器。 如果目標 IP 是所選子網路的一部分，則 Site Recovery 會使用目標 IP 嘗試建立測試容錯移轉虛擬機器。 如果目標 IP 不屬於所選子網路的一部分，則會使用所選子網路中的任何可用 IP 建立測試容錯移轉虛擬機器。
 >
 >
 
