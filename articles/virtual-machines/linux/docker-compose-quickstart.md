@@ -13,36 +13,36 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 02/13/2017
+ms.date: 05/11/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 69c7f3b468e489f53d8ed89b533aeb30c244dd0f
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: ad9759f20135a87356819d5b819eab357b688cdc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
 # <a name="get-started-with-docker-and-compose-to-define-and-run-a-multi-container-application-in-azure"></a>在 Azure 中開始使用 Docker 和 Compose 定義並執行多容器應用程式
 藉由 [Compose](http://github.com/docker/compose)，您將可以使用簡單的文字檔來定義由多個 Docker 容器所組成的應用程式。 接著，您可以透過單一命令來啟動應用程式，此命令會執行所需的一切準備工作，以部署您的已定義環境。 舉例來說，本文將說明如何藉由 Ubuntu VM 上的後端 MariaDB SQL 資料庫來快速設定 WordPress 部落格。 您也可以使用 Compose 來設定更複雜的應用程式。
 
-## <a name="step-1-set-up-a-linux-vm-as-a-docker-host"></a>步驟 1：設定 Linux VM 做為 Docker 主機
-您可以使用 Azure Marketplace 中的各種 Azure 程序和可用映像或 Resource Manager 範本來建立 Linux VM，並將其設定為 Docker 主機。 例如，請參閱[使用 Docker VM 擴充功能來部署您的環境](dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，以使用[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)藉由 Azure Docker VM 擴充功能建立 Ubuntu VM。 
 
-當您使用 Docker VM 擴充功能時，您的 VM 會自動設為 Docker 主機，並已安裝 Compose。 您可以使用下列其中一個 CLI 版本，建立 VM 及使用 Docker VM 擴充功能︰
+## <a name="set-up-a-linux-vm-as-a-docker-host"></a>設定 Linux VM 做為 Docker 主機
+您可以使用 Azure Marketplace 中的各種 Azure 程序和可用映像或 Resource Manager 範本來建立 Linux VM，並將其設定為 Docker 主機。 例如，請參閱[使用 Docker VM 擴充功能來部署您的環境](dockerextension.md)，以使用[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)藉由 Azure Docker VM 擴充功能建立 Ubuntu VM。 
 
-- [Azure CLI 2.0](#azure-cli-20) - 適用於資源管理部署模型的新一代 CLI
-- [Azure CLI 1.0](#azure-cli-10) – 適用於傳統和資源管理部署模型的 CLI
+當您使用 Docker VM 擴充功能時，您的 VM 會自動設為 Docker 主機，並已安裝 Compose。
 
-### <a name="azure-cli-20"></a>Azure CLI 2.0
+
+### <a name="create-docker-host-with-azure-cli-20"></a>使用 Azure CLI 2.0 建立 Docker 主機
 請安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
 
-首先，使用 [az group create](/cli/azure/group#create) 建立 Docker 環境的資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
+首先，使用 [az group create](/cli/azure/group#create) 建立 Docker 環境的資源群組。 下列範例會在 westus 位置建立名為 myResourceGroup 的資源群組：
 
 ```azurecli
 az group create --name myResourceGroup --location westus
 ```
 
-接下來，使用 [az group deployment create](/cli/azure/group/deployment#create) 來部署 VM，其中包含來自 [GitHub 上此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)的 Azure Docker VM 擴充功能。 針對 `newStorageAccountName`、`adminUsername`、`adminPassword` 和 `dnsNameForPublicIP` 提供您自己的值：
+接下來，使用 [az group deployment create](/cli/azure/group/deployment#create) 來部署 VM，其中包含來自 [GitHub 上此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)的 Azure Docker VM 擴充功能。 針對 newStorageAccountName、adminUsername、adminPassword 和 dnsNameForPublicIP 提供您自己的值：
 
 ```azurecli
 az group deployment create --resource-group myResourceGroup \
@@ -53,35 +53,27 @@ az group deployment create --resource-group myResourceGroup \
   --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
 ```
 
-需要幾分鐘的時間才能完成部署。 部署完成後，[移至下一個步驟](#step-2-verify-that-compose-is-installed)以透過 SSH 連接到您的 VM。 
+需要幾分鐘的時間才能完成部署。 部署完成後，[移至下一個步驟](#verify-that-compose-is-installed)以透過 SSH 連接到您的 VM。 
 
-(選擇性) 若要將控制權交回給提示字元，並且讓部署繼續在背景中執行，請將 `--no-wait` 旗標新增至上述命令。 此程序可讓您在部署繼續執行數分鐘時，在 CLI 中執行其他工作。 您可以接著使用 [az vm show](/cli/azure/vm#show)，檢視有關 Docker 主機狀態的詳細資訊。 下列範例會在名為 `myResourceGroup` 的資源群組中檢查名為 `myDockerVM` 的 VM 狀態 (範本的預設名稱 - 請勿變更這個名稱)：
-
-```azurecli
-az vm show --resource-group myResourceGroup --name myDockerVM \
-  --query [provisioningState] --output tsv
-```
-
-當此命令傳回 `Succeeded` 時，即表示部署已完成，您可以在下列步驟中透過 SSH 連線到 VM。
-
-### <a name="azure-cli-10"></a>Azure CLI 1.0
-請安裝最新的 [Azure CLI 1.0](../../cli-install-nodejs.md) 並登入 Azure 帳戶。 確定您是使用 Resource Manager 模式建立 VM (`azure config mode arm`)。
-
-下列範例會在 `West US` 位置中建立名為 `myResourceGroup` 的資源群組，並透過 Azure Docker VM 擴充功能部署 VM。 其中使用[來自 GitHub 的 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)來部署環境︰
+(選擇性) 若要將控制權交回給提示字元，並且讓部署繼續在背景中執行，請將 `--no-wait` 旗標新增至上述命令。 此程序可讓您在部署繼續執行數分鐘時，在 CLI 中執行其他工作。 您可以接著使用 [az vm show](/cli/azure/vm#show)，檢視有關 Docker 主機狀態的詳細資訊。 下列範例會在名為 myResourceGroup 的資源群組中檢查名為 myDockerVM 的 VM 狀態 (範本的預設名稱 - 請勿變更這個名稱)：
 
 ```azurecli
-azure group create --name myResourceGroup --location "West US" \
-  --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
+az vm show \
+    --resource-group myResourceGroup \
+    --name myDockerVM \
+    --query [provisioningState] \
+    --output tsv
 ```
 
-Azure CLI 僅在幾秒鐘後讓您回到提示，但仍會建立並設定您的 Docker 主機。 需要幾分鐘的時間才能完成部署。 您可以使用 `azure vm show` 命令檢視關於 Docker 主機狀態的詳細資訊。 下列範例會在名為 `myResourceGroup` 的資源群組中檢查名為 `myDockerVM` 的 VM 狀態 (範本的預設名稱 - 請勿變更這個名稱)。 輸入您在上一個步驟中建立的資源群組名稱︰
+當此命令傳回 Succeeded 時，即表示部署已完成，您可以在下列步驟中透過 SSH 連線到 VM。
 
-```azurecli
-azure vm show --resource-group myResourceGroup --name myDockerVM
+
+## <a name="verify-that-compose-is-installed"></a>確認已安裝 Compose
+部署完成之後，請使用您在部署期間提供的 DNS 名稱，透過 SSH 連接到新的 Docker 主機。 您可以使用 `az vm show -g myResourceGroup -n myDockerVM -d --query [fqdns] -o tsv` 檢視您 VM 的詳細資料，包括 DNS 名稱。
+
+```bash
+ssh azureuser@mypublicdns.westus.cloudapp.azure.com
 ```
-
-## <a name="step-2-verify-that-compose-is-installed"></a>步驟 2︰確認已安裝 Compose
-部署完成之後，請使用您在部署期間提供的 DNS 名稱，透過 SSH 連接到新的 Docker 主機。 您可以使用 `azure vm show -g myResourceGroup -n myDockerVM` (Azure CLI 1.0) 或 `az vm show -g myResourceGroup -n myDockerVM -d --query [fqdns] -o tsv` (Azure CLI 2.0) 檢視 VM 的詳細資料，包括 DNS 名稱。
 
 若要檢查 Compose 是否已安裝在 VM 上，請執行下列命令：
 
@@ -89,28 +81,28 @@ azure vm show --resource-group myResourceGroup --name myDockerVM
 docker-compose --version
 ```
 
-您會看到類似 `docker-compose 1.6.2, build 4d72027`的輸出。
+您會看見類型「docker-compose 1.6.2, build 4d72027」的輸出結果。
 
 > [!TIP]
 > 如果您使用另一種方法來建立 Docker 主機而需要自行安裝 Compose，請參閱 [Compose 文件](https://github.com/docker/compose/blob/882dc673ce84b0b29cd59b6815cb93f74a6c4134/docs/install.md)。
 
 
-## <a name="step-3-create-a-docker-composeyml-configuration-file"></a>步驟 3：建立 docker-compose.yml 組態檔
+## <a name="create-a-docker-composeyml-configuration-file"></a>建立 docker-compose.yml 組態檔
 接下來，您需建立 `docker-compose.yml` 檔案，這只是一個文字組態檔，用來定義要在 VM 上執行的 Docker 容器。 此檔案會指定要在每個容器上執行的映像 (或可能是來自 Dockerfile 的組建)、必要的環境變數和相依性、連接埠，以及容器之間的連結。 如需有關 yml 檔案語法的詳細資料，請參閱 [Compose file reference (Compose 檔案參考)](http://docs.docker.com/compose/yml/)。
 
-建立 `docker-compose.yml` 檔案，如下所示：
+建立 docker-compose.yml 檔案，如下所示：
 
 ```bash
 touch docker-compose.yml
 ```
 
-使用慣用的文字編輯器將一些資料新增至檔案。 下列範例使用 `vi` 編輯器：
+使用慣用的文字編輯器將一些資料新增至檔案。 下列範例使用 vi 編輯器：
 
 ```bash
 vi docker-compose.yml
 ```
 
-將下列範例貼入文字檔案。 此組態會使用來自 [DockerHub 登錄](https://registry.hub.docker.com/_/wordpress/) 的映像，安裝 WordPress (開放原始碼部落格和內容管理系統) 和連結的後端 MariaDB SQL 資料庫。 輸入您自己的 `MYSQL_ROOT_PASSWORD`，如下所示︰
+將下列範例貼入文字檔案。 此組態會使用來自 [DockerHub 登錄](https://registry.hub.docker.com/_/wordpress/) 的映像，安裝 WordPress (開放原始碼部落格和內容管理系統) 和連結的後端 MariaDB SQL 資料庫。 輸入您自已的 MYSQL_ROOT_PASSWORD，如下所示：
 
 ```sh
 wordpress:
@@ -126,14 +118,14 @@ db:
     MYSQL_ROOT_PASSWORD: <your password>
 ```
 
-## <a name="step-4-start-the-containers-with-compose"></a>步驟 4：以 Compose 啟動容器
-在與您 `docker-compose.yml` 檔案相同的目錄中，執行下列命令 (根據您的環境，您可能需要使用 `sudo` 執行 `docker-compose`。)：
+## <a name="start-the-containers-with-compose"></a>以 Compose 啟動容器
+在與您 docker-compose.yml 檔案相同的目錄中，執行下列命令 (根據您的環境，您可能需要使用 `sudo` 執行 `docker-compose`)：
 
 ```bash
 docker-compose up -d
 ```
 
-這個命令會啟動 `docker-compose.yml`中指定的 Docker 容器。 此步驟需要幾分鐘的時間來完成。 您會看到類似以下範例的輸出：
+這個命令會啟動 docker-compose.yml 中指定的 Docker 容器。 此步驟需要幾分鐘的時間來完成。 您會看到類似以下範例的輸出：
 
 ```bash
 Creating wordpress_db_1...
@@ -148,16 +140,13 @@ Creating wordpress_wordpress_1...
 若要確認容器是否已啟動，請輸入 `docker-compose ps`。 您應該會看到如下的內容：
 
 ```bash
-Name             Command             State              Ports
--------------------------------------------------------------------------
-wordpress_db_1     /docker-           Up                 3306/tcp
-             entrypoint.sh
-             mysqld
-wordpress_wordpr   /entrypoint.sh     Up                 0.0.0.0:80->80
-ess_1              apache2-for ...                       /tcp
+        Name                       Command               State         Ports
+-----------------------------------------------------------------------------------
+azureuser_db_1          docker-entrypoint.sh mysqld      Up      3306/tcp
+azureuser_wordpress_1   docker-entrypoint.sh apach ...   Up      0.0.0.0:80->80/tcp
 ```
 
-您現在可以在 VM 的連接埠 80 上直接連線到 WordPress。 開啟網頁瀏覽器並輸入您 VM 的 DNS 名稱 (例如 `http://myresourcegroup.westus.cloudapp.azure.com`)。 您現在應該會看到 WordPress 起始畫面，您可以在其中完成安裝，然後開始使用此應用程式。
+您現在可以在 VM 的連接埠 80 上直接連線到 WordPress。 開啟網頁瀏覽器並輸入您 VM 的 DNS 名稱 (例如 `http://mypublicdns.westus.cloudapp.azure.com`)。 您現在應該會看到 WordPress 起始畫面，您可以在其中完成安裝，然後開始使用此應用程式。
 
 ![WordPress 起始畫面][wordpress_start]
 
