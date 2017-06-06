@@ -12,11 +12,13 @@ ms.devlang: na
 ms.tgt_pltfrm: na
 ms.topic: article
 ms.workload: storage-backup-recovery
-ms.date: 02/06/2017
+ms.date: 06/05/2017
 ms.author: ruturajd@microsoft.com
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 6e6d0539c35d403c24ddd5e0b5d49f4d6116eead
 ms.openlocfilehash: 86f7e0565fe30af613f06764a494cbb996abcabe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -354,9 +356,4 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 ## <a name="next-steps"></a>後續步驟
 * [深入了解](site-recovery-vmware-to-azure-classic.md) 使用增強部署，將 VMware 虛擬機器和實體伺服器複寫至 Azure。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

@@ -13,7 +13,7 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/03/2017
-ms.author: jotaub;sethm
+ms.author: sethm
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
 ms.openlocfilehash: 41435316adaee5c66de503571184fce8937d38ee
@@ -22,6 +22,7 @@ ms.lasthandoff: 05/04/2017
 
 
 ---
+
 # <a name="event-hubs-net-framework-api-overview"></a>事件中樞 .NET Framework API 概觀
 本文將摘要列出一些主要事件中樞 .NET Framework 用戶端 API。 分為兩種類別：管理和執行階段 API。 執行階段 API 是由傳送和接收訊息所需的所有作業組成。 管理作業可讓您管理事件中樞實體狀態，方法是建立、更新和刪除實體。
 

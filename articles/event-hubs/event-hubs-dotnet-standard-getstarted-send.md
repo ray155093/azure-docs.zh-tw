@@ -3,7 +3,7 @@ title: "使用 .NET Standard 傳送事件至 Azure 事件中樞 | Microsoft Docs
 description: "開始在 .NET Standard 中傳送事件至事件中樞"
 services: event-hubs
 documentationcenter: na
-author: jtaubensee
+author: sethmanheim
 manager: timlt
 editor: 
 ms.assetid: 
@@ -13,11 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2017
-ms.author: jotaub;sethm
-translationtype: Human Translation
+ms.author: sethm
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
 ms.openlocfilehash: 12d4282082b3318bd14535a49e25c8d606d1bd7f
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/26/2017
+
 
 ---
 
