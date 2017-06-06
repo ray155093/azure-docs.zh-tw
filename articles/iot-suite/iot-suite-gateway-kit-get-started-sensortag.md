@@ -139,7 +139,7 @@ sed -i -e 's/\r$//' build.sh
 您現在可以將 IoT Edge 閘道設定為將 SensorTag 裝置中的遙測資料傳送到遠端監視儀表板。 如需如何設定閘道和 IoT Edge 模組的詳細資訊，請參閱 [Azure IoT Edge 概念][lnk-gateway-concepts]。
 
 > [!TIP]
-> 在本教學課程中，您可以使用 Intel NUC 上的標準 `vi` 文字編輯器。 如果您之前未使用過 `vi`，請先完成入門教學課程 (例如 [Unix - The vi Editor Tutorial][ lnk-vi-tutorial]) 以熟悉這個編輯器。 或者，您可以使用 `smart install nano -y` 命令，來安裝更方便使用的 [nano](https://www.nano-editor.org/) 編輯器。
+> 在本教學課程中，您可以使用 Intel NUC 上的標準 `vi` 文字編輯器。 如果您之前未使用過 `vi`，請先完成入門教學課程 (例如 [Unix - The vi Editor Tutorial][lnk-vi-tutorial] ) 以熟悉這個編輯器。 或者，您可以使用 `smart install nano -y` 命令，來安裝更方便使用的 [nano](https://www.nano-editor.org/) 編輯器。
 
 使用下列命令，將 **vi** 編輯器中的範例組態檔開啟︰
 
