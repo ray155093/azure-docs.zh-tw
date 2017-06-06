@@ -28,7 +28,7 @@ ms.lasthandoff: 03/01/2017
 這個新的結構描述和 Azure Logic Apps 的 API 版本包含重要的改良功能，讓邏輯應用程式更可靠且更輕鬆地使用︰
 
 *    **APIApp** 動作類型更新為新的 [**APIConnection**](#api-connections) 動作類型。
-*    **Repeat ** 重新命名為 [**Foreach**](#foreach)。
+*    **Repeat** 重新命名為 [**Foreach**](#foreach) 。
 *    不再需要 [**HTTP 接聽程式** API 應用程式](#http-listener)。
 *    呼叫子工作流程時使用[新的結構描述](#child-workflows)。
 
