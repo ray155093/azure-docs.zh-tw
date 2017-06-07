@@ -178,7 +178,7 @@ FactInternetSales、DimGeography 和 DimSalesTerritory 資料表全都包含常�
   
     請注意，樞紐分析表欄位清單不會顯示 EmployeeSecurity 資料表；這是因為您於先前工作中在用戶端工具中隱藏此資料表。  
   
-5.  在 [欄位] 清單的 [∑ 網際網路銷售] (量值) 中，選取 [InternetTotalSales] 量值。 此量值會輸入於 [值] 欄位中。  
+5.  在 **[欄位]** 清單的 **∑ 網際網路銷售** \(量值) 中，選取 **[InternetTotalSales]** 量值。 此量值會輸入於 [值] 欄位中。  
   
 6.  從 **DimSalesTerritory** 資料表選取 **SalesTerritoryId** 資料行。 此資料行會輸入於 [資料列標籤] 欄位中。  
   

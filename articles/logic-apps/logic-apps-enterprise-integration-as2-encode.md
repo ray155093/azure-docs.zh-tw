@@ -60,7 +60,7 @@ ms.lasthandoff: 05/10/2017
    
     ![整合連線詳細資料](./media/logic-apps-enterprise-integration-as2-encode/as2encodeimage2.png)
 
-6. 建立您的連線之後 (如此範例所示)，提供您合約中設定的 [AS2-From]、[AS2-To] 識別碼詳細資訊，以及 [內文] (這是訊息承載)。
+6. 建立您的連線之後 (如此範例所示)，提供您合約中設定的 **[AS2-From]** 、**[AS2-To]** 識別碼詳細資訊，以及 **[內文]** \(這是訊息承載)。
    
     ![提供必要欄位](./media/logic-apps-enterprise-integration-as2-encode/as2encodeimage3.png)
 

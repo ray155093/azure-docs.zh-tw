@@ -84,7 +84,7 @@ ms.lasthandoff: 05/17/2017
      * 如果您要將作業提交至 Spark 1.6 叢集，請選擇 **JDK 1.8 (語言層級 7) 和 Scala 2.10.x**。
 
         ![選取 Scala 版本](./media/hdinsight-apache-spark-intellij-tool-plugin/show-scala2.11.x-select.png)
-   * 針對 **Spark SDK**，請下載並使用 [GitHub] 的 SDK (http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)。 請注意，spark-assembly-2.0.0-hadoop2.7.0-SNAPSHOT.jar 適用於 Spark 2.0 叢集，spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar 則是適用於 Spark 1.6 叢集。 
+   * 針對 **Spark SDK**，請下載並使用 [GitHub] (http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409) 的 SDK 。 請注意，spark-assembly-2.0.0-hadoop2.7.0-SNAPSHOT.jar 適用於 Spark 2.0 叢集，spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar 則是適用於 Spark 1.6 叢集。 
 
      您可以改用 [Spark Maven 存放庫](http://mvnrepository.com/search?q=spark)，不過請確定您已安裝正確的 Maven 存放庫，才能開發 Spark 應用程式。 例如，假設您使用 Spark 串流，請確定已安裝 Spark 串流組件。 另外，請確定您針對 Spark 1.6 叢集使用標示為 Scala 2.10 的存放庫，以及針對 Spark 2.0 叢集使用標示為 Scala 2.11 的存放庫。
      
@@ -169,7 +169,7 @@ ms.lasthandoff: 05/17/2017
 
 [錯誤]、[驅動程式記錄]、[輸出]、[Livy 記錄] 等方塊會以您所選取的應用程式作為基礎加以填入。
 
-您也可以按一下視窗頂端的個別按鈕，開啟 [Spark 歷程記錄 UI] 和 [YARN UI] (應用程式層級)。
+您也可以按一下視窗頂端的個別按鈕，開啟 [Spark 歷程記錄 UI] 和 [YARN UI] \(應用程式層級)。
 
 ### <a name="access-the-spark-history-server"></a>存取 Spark 歷程記錄伺服器
 1. 在 [Azure Explorer] 中，展開 [HDInsight]、以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [開啟 Spark 歷程記錄 UI]。 出現提示時，輸入叢集的系統管理員認證。 在佈建叢集時，您必須已指定這些項目。
