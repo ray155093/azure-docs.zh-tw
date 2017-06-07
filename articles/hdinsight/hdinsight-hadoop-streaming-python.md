@@ -165,7 +165,7 @@ Python 可以使用 `sys` 模組來讀取 STDIN 並使用 `print` 來列印到 S
 3. 若要確保 mapper.py 和 reducer.py 有正確的行尾結束符號，請使用下列命令︰
 
     ```bash
-    perl -pi -e 's/\r\n/\n/g' mappery.py
+    perl -pi -e 's/\r\n/\n/g' mapper.py
     perl -pi -e 's/\r\n/\n/g' reducer.py
     ```
 

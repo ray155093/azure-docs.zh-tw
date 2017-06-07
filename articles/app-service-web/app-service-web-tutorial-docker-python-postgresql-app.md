@@ -37,9 +37,9 @@ ms.lasthandoff: 06/01/2017
 1. [下載及安裝 Docker Community 版本](https://www.docker.com/community-edition)
 1. [下載並安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
-[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
-
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="test-local-postgresql-installation-and-create-a-database"></a>測試本機 PostgreSQL 安裝並建立資料庫
 在此步驟中，您要確定您的本機 PostgreSQL 資料庫正在執行。

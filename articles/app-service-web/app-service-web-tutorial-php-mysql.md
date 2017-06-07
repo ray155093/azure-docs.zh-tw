@@ -48,9 +48,9 @@ ms.lasthandoff: 06/01/2017
 1. [下載、安裝並啟動 MySQL](https://dev.mysql.com/doc/refman/5.7/en/installing.html) 
 1. [下載並安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
-[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
-
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="prepare-local-mysql"></a>準備本機 MySQL
 

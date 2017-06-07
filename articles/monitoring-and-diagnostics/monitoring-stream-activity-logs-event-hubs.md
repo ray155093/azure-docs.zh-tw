@@ -12,11 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
+ms.date: 6/06/2017
 ms.author: johnkem
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 51a7a274c0cdbec169154bd1100abb4534283cff
 ms.openlocfilehash: ac478dc5c6691ef9f6c4829bd47a81912774d032
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/10/2016
 
 
 ---
@@ -54,7 +56,7 @@ ms.openlocfilehash: ac478dc5c6691ef9f6c4829bd47a81912774d032
 3. 使用 `Set-AzureRmLogProfile` 來建立設定檔：
 
 ```
-Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Locations global,westus,eastus -RetentionInDays 90 -Categories Write,Delete,Action
+Add-AzureRmLogProfile -Name my_log_profile -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Locations global,westus,eastus -RetentionInDays 90 -Categories Write,Delete,Action
 ```
 
 舉例來說，服務匯流排規則識別碼一組字串，格式如下：{service bus resource ID}/authorizationrules/{key name} 
@@ -79,10 +81,5 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 * [將活動記錄檔封存至儲存體帳戶](monitoring-archive-activity-log.md)
 * [閱讀 Azure 活動記錄檔的概觀](monitoring-overview-activity-logs.md)
 * [根據活動記錄檔事件設定警示](insights-auditlog-to-webhook-email.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

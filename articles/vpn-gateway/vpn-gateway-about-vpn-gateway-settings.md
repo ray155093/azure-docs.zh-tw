@@ -46,7 +46,7 @@ VPN 閘道需要 `-GatewayType` *Vpn*。
     
 ## <a name="gwsku"></a>閘道 SKU
 
-[!INCLUDE [vpn-gateway-gwsku-include](../../includes/vpn-gateway-gwsku-original-include.md)]
+[!INCLUDE [vpn-gateway-gwsku-include](../../includes/vpn-gateway-gwsku-legacy-include.md)]
 
 ### <a name="configuring-the-gateway-sku"></a>設定閘道 SKU
 ####<a name="specifying-the-gateway-sku-in-the-azure-portal"></a>在 Azure 入口網站中指定閘道 SKU
