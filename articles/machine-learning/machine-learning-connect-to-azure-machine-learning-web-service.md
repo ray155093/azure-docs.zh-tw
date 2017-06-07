@@ -12,11 +12,15 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 06/02/2017
 ms.author: garye
-translationtype: Human Translation
+ROBOTS: NOINDEX
+redirect_url: /azure/machine-learning/machine-learning-consume-web-services
+redirect_document_id: TRUE
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 52153526fb5b127823316b86fa05c0528151e18f
 ms.openlocfilehash: 2dfcdf2207d1437a917c493075e3245bd58381ac
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/10/2017
 
 
@@ -77,7 +81,7 @@ Azure Machine Learning 有兩種類型的服務：
 4. 按一下某個 Web 服務。
 5. 按一下某個端點。 [API 金鑰] 位於右下角。
 
-## <a name="a-idconnectaconnect-to-a-machine-learning-web-service"></a><a id="connect"></a>連線到機器學習 Web 服務
+## <a id="connect"></a>連線到機器學習 Web 服務
 您可以使用任何支援 HTTP 要求和回應的程式設計語言，連線到機器學習 Web 服務。 您可以從機器學習 Web 服務說明頁面檢視 C#、Python 和 R 的範例。
 
 **機器學習服務 API 說明**當您部署 Web 服務時，會建立機器學習服務 API 說明。 請參閱 [Azure 機器學習逐步解說 - 部署 Web 服務](machine-learning-walkthrough-5-publish-web-service.md)。
