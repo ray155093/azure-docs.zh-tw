@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 
 ms.service: sql-database
-ms.custom: quick start connect, mvc
+ms.custom: develop apps
 ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: java
@@ -73,7 +73,7 @@ sudo apt-get install maven
 
 6. 檢閱完整的 **JDBC** 連接字串。
 
-    ![JDBC 連接字串](./media/sql-database-connect-query-jdbc/jdbc-connection-string.png)    
+    ![JDBC 連接字串](./media/sql-database-connect-query-jdbc/jdbc-connection-string.png)   
 
 ### <a name="create-maven-project"></a>**建立 Maven 專案**
 從終端機，建立新的 Maven 專案。 
@@ -295,7 +295,7 @@ public class App {
                         int count = prep.executeUpdate();
                         System.out.println("Deleted: " + count + " row(s)");
                 }
-        }        
+        }       
         catch (Exception e) {
                 e.printStackTrace();
         }

@@ -1,11 +1,27 @@
 ---
-
-ROBOTS: NOINDEX, NOFOLLOW
+title: "(已過時) 二元分類器 - Azure | Microsoft Docs"
+description: "(已過時) 二元分類器"
+services: machine-learning
+documentationcenter: 
+author: jaymathe
+manager: jhubbard
+editor: cgronlun
+ms.assetid: 8045038a-9dcf-44b9-a6de-7f1f8e791575
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 01/06/2017
+ms.author: jaymathe
+ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 6dfd2beac84b00969b678a12b102328879d3d9bc
-ms.lasthandoff: 05/03/2017
+redirect_document_id: TRUE
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
+ms.openlocfilehash: d1d4f35a7e77a5fac1e8ecb1a82c14cca3406676
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/11/2017
 
 
 ---
@@ -14,7 +30,7 @@ ms.lasthandoff: 05/03/2017
 > [!NOTE]
 > Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
 > 
-> 您可以在 [Cortana Intelligence 資源庫 (英文)](http://gallery.cortanaintelligence.com) 中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
 
 假設您有一個資料集，並想要根據獨立變更來預測二元相依變數。 「羅吉斯迴歸」是適用於此類預測的普遍統計技術。 這裡的相依變數是二元或二分類變數，而 p 是感興趣特性的存在機率。 
 
