@@ -11,14 +11,17 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: deprecated
+ms.topic: article
 ms.date: 01/18/2017
 ms.author: zhangya;bradsev
-ROBOTS: NOINDEX, NOFOLLOW
+ROBOTS: NOINDEX
 redirect_url: machine-learning-data-science-create-features
-translationtype: Human Translation
+redirect_document_id: TRUE
+ms.translationtype: Human Translation
 ms.sourcegitcommit: ba61d00f277af579c87a130336ead9879b82a6de
 ms.openlocfilehash: c6b88355df430e78594fc1283c9df01ad6e27e20
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/13/2016
 
 
 ---
@@ -78,7 +81,7 @@ ms.openlocfilehash: c6b88355df430e78594fc1283c9df01ad6e27e20
 
 ![比較效能結果](./media/machine-learning-feature-selection-and-engineering/result1.png)
 
-### <a name="a-nameexample2a-example-2-creating-features-in-text-mining"></a><a name="example2"></a> 範例 2：在文字採礦中建立特性
+### <a name="example2"></a> 範例 2：在文字採礦中建立特性
 特性工程設計廣泛運用於文字採礦的相關工作，例如文件分類和情感分析。 例如，當您想要將文件分為數個類別時，通常會假設包含在一個文件類別中的文字或片語比較不可能出現在其他文件類別中。 換言之，文字或片語分配的次數能夠描述不同文件類別的特徵。 在文字採礦應用程式，建立文字或片語次數相關特性時需要特性工程設計程序中，因為個別的文字內容通常可作為輸入資料。
 
 為了達成此工作，會套用名為特性雜湊的技術，有效地將任意文字特性變成索引。 此方法不會將每個文字特性 (文字或片語) 關聯至特定索引，而是將雜湊函數套用至特性並直接使用其雜湊值作為索引。
@@ -133,9 +136,4 @@ Azure Machine Learning Studio 針對特性選取提供模組。 如下圖所示�
 [feature-hashing]: https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/
 [filter-based-feature-selection]: https://msdn.microsoft.com/library/azure/918b356b-045c-412b-aa12-94a1d2dad90f/
 [fisher-linear-discriminant-analysis]: https://msdn.microsoft.com/library/azure/dcaab0b2-59ca-4bec-bb66-79fd23540080/
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

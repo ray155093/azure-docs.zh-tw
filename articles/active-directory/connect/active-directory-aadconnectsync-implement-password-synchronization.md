@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/21/2017
+ms.date: 06/07/2017
 ms.author: markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
 ms.openlocfilehash: 0cb1b04bcfab1f1864ae0ce867be02a8bf8c827c
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/12/2017
 
 
@@ -80,12 +81,12 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 
 1. 每隔兩分鐘，AD Connect 伺服器上的密碼同步處理代理程式會透過標準 [MS-DRSR](https://msdn.microsoft.com/library/cc228086.aspx) 複寫通訊協定，從 DC 要求儲存的密碼雜湊 (unicodePwd 屬性)，以同步處理 DC 之間的資料。 服務帳戶必須具有複寫目錄變更和複寫目錄變更所有 AD 權限 (預設在安裝時授與)，以取得密碼雜湊。
 2. 在傳送之前，DC 會使用金鑰 (它是 RPC 工作階段金鑰和 salt 的 [MD5](http://www.rfc-editor.org/rfc/rfc1321.txt) 雜湊)，來加密 MD4 密碼雜湊。 然後它會透過 RPC 將結果傳送至密碼同步處理代理程式。 DC 也會使用 DC 複寫通訊協定將 salt 傳送至同步處理代理程式，讓代理程式可以解密信封。
-3.    在密碼同步處理代理程式將信封加密後，它會使用 [MD5CryptoServiceProvider](https://msdn.microsoft.com/library/System.Security.Cryptography.MD5CryptoServiceProvider.aspx) 和 salt 來產生金鑰，以將接收的資料解密回其原始 MD4 格式。 密碼同步處理代理程式完全無法存取純文字密碼。 密碼同步處理代理程式使用 MD5 純粹是為了與 DC 的複寫通訊協定相容性，並且只會在 DC 和密碼同步處理代理程式之間的內部部署上使用。
-4.    密碼同步處理代理程式將 16 位元組二進位密碼雜湊擴展至 64 位元組的方法是首先將該雜湊轉換為 32 位元組十六進位字串，然後將此字串轉換回具有 UTF-16 編碼的二進位。
-5.    密碼同步處理代理程式會新增 salt，其中包含 10 位元組長度 salt，64 位元組二進位檔，以進一步保護原始雜湊。
-6.    然後密碼同步處理代理程式會結合 MD4 雜湊加上 salt，並且將它輸入 [PBKDF2](https://www.ietf.org/rfc/rfc2898.txt) 函式。 系統會使用 [HMAC-SHA256](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) 索引雜湊演算法的 1000 次反覆運算。 
-7.    密碼同步處理代理程式會產生 32 位元組的雜湊，串連 salt 和 SHA256 反覆運算數 (以供 Azure AD 使用)，然後透過 SSL 將字串從 Azure AD Connect 傳輸至 Azure AD。</br> 
-8.    當使用者嘗試登入 Azure AD 並且輸入其密碼時，密碼會執行相同的 MD4+salt+PBKDF2+HMAC-SHA256 程序。 如果產生的雜湊符合 Azure AD 中儲存的雜湊，使用者輸入的密碼正確並且通過驗證。 
+3.  在密碼同步處理代理程式將信封加密後，它會使用 [MD5CryptoServiceProvider](https://msdn.microsoft.com/library/System.Security.Cryptography.MD5CryptoServiceProvider.aspx) 和 salt 來產生金鑰，以將接收的資料解密回其原始 MD4 格式。 密碼同步處理代理程式完全無法存取純文字密碼。 密碼同步處理代理程式使用 MD5 純粹是為了與 DC 的複寫通訊協定相容性，並且只會在 DC 和密碼同步處理代理程式之間的內部部署上使用。
+4.  密碼同步處理代理程式將 16 位元組二進位密碼雜湊擴展至 64 位元組的方法是首先將該雜湊轉換為 32 位元組十六進位字串，然後將此字串轉換回具有 UTF-16 編碼的二進位。
+5.  密碼同步處理代理程式會新增 salt，其中包含 10 位元組長度 salt，64 位元組二進位檔，以進一步保護原始雜湊。
+6.  然後密碼同步處理代理程式會結合 MD4 雜湊加上 salt，並且將它輸入 [PBKDF2](https://www.ietf.org/rfc/rfc2898.txt) 函式。 系統會使用 [HMAC-SHA256](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) 索引雜湊演算法的 1000 次反覆運算。 
+7.  密碼同步處理代理程式會產生 32 位元組的雜湊，串連 salt 和 SHA256 反覆運算數 (以供 Azure AD 使用)，然後透過 SSL 將字串從 Azure AD Connect 傳輸至 Azure AD。</br> 
+8.  當使用者嘗試登入 Azure AD 並且輸入其密碼時，密碼會執行相同的 MD4+salt+PBKDF2+HMAC-SHA256 程序。 如果產生的雜湊符合 Azure AD 中儲存的雜湊，使用者輸入的密碼正確並且通過驗證。 
 
 >[!Note] 
 >系統不會將原始的 MD4 雜湊傳輸至 Azure AD。 而是會傳輸原始 MD4 雜湊的 SHA256 雜湊。 如此一來，如果取得儲存在 Azure AD 的雜湊，它不能在內部部署傳遞雜湊攻擊中使用。
