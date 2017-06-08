@@ -8,16 +8,17 @@ author: torsteng
 editor: 
 ms.assetid: a4379c15-f213-4026-ab6f-a450ee9d5758
 ms.service: sql-database
-ms.custom: multiple databases
+ms.custom: scale out apps
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2016
 ms.author: torsteng
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 873df52da976597ddfaa8f777b90382bfa7723fc
 ms.openlocfilehash: aa54ec3d982ea4422422bd4e520d2211aad57159
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/24/2017
 
 
