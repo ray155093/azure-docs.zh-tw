@@ -69,7 +69,7 @@ SaaS 應用程式的其中一個絕佳機會是使用儲存在雲端的豐富租
 此指令碼會建立一個作業，以擷取所有租用戶的票證購買資訊。 一旦彙總成單一資料表，您就可以取得有關各租用戶票證購買模式的豐富詳細計量。
 
 1. 開啟 SSMS 並連線到 catalog-&lt;user&gt;.database.windows.net 伺服器
-1. 開啟 ...\\Learning Modules\\Operational Analytics\\Tenant Analytics\\TicketPurchasesfromAllTenants.sql**
+1. 開啟 ...\\Learning Modules\\Operational Analytics\\Tenant Analytics\\TicketPurchasesfromAllTenants.sql
 1. 修改 &lt;User&gt;，使用您在 **sp\_add\_target\_group\_member** 和 **sp\_add\_jobstep** 指令碼上方部署 Wingtip SaaS 應用程式時使用的使用者名稱
 1. 按一下滑鼠右鍵並選取 [連線]，然後連線到 catalog-&lt;User&gt;.database.windows.net 伺服器 (如果您尚未連線)
 1. 確定您已連線到 **jobaccount** 資料庫，然後按 **F5** 以執行指令碼
