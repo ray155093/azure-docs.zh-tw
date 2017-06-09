@@ -34,8 +34,8 @@ Azure Active Directory (Azure AD) v2.0 端點支援各種新型應用程式架�
 ## <a name="the-basics"></a>基本概念
 您必須在 [Microsoft 應用程式註冊入口網站](https://apps.dev.microsoft.com)中註冊每個使用 v2.0 端點的應用程式。 應用程式註冊程序會為您的應用程式收集和指派下列值：
 
-* 可唯一識別應用程式的「應用程式識別碼」****
-* 可用來將回應導回到應用程式的「重新導向 URI」****
+* 可唯一識別應用程式的「應用程式識別碼」
+* 可用來將回應導回到應用程式的「重新導向 URI」
 * 一些其他案例特定值
 
 如需詳細資訊，請了解如何[註冊應用程式](active-directory-v2-app-registration.md)。

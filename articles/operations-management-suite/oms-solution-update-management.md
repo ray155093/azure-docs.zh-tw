@@ -209,7 +209,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 | 屬性 | 說明 |
 | --- | --- |
-| 類型 |更新** |
+| 類型 |更新 |
 | SourceSystem |核准之更新安裝的來源。<br>可能的值包括：<br>- Microsoft Update<br>- Windows Update<br>- SCCM<br>- Linux 伺服器 (擷取自套件管理員) |
 | 已核准 |指定是否已核准安裝更新。<br> 在 Linux 伺服器中，此屬性目前是選擇性的，因為其修補並非由 OMS 負責管理。 |
 | Windows 的分類 |更新的分類。<br>可能的值包括：<br>- 應用程式<br>- 重大更新<br>- 定義更新<br>- 功能套件<br>- 安全性更新<br>- Service Pack<br>- 更新彙總套件<br>- 更新 |

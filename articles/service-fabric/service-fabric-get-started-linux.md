@@ -185,7 +185,7 @@ Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和�
 >
 
 1. 在 Eclipse 中，確定已安裝最新版 Eclipse **Neon** 和最新的 Buildship 版本 (1.0.17 或更新版本)。 您可以選擇 [說明] > [安裝詳細資料]，檢查已安裝的元件版本。 您可以使用[這裡][buildship-update]的指示更新 Buildship。
-2. 若要安裝 Service Fabric 外掛程式，請選擇 [說明] > [安裝新軟體...]****
+2. 若要安裝 Service Fabric 外掛程式，請選擇 [說明] > [安裝新軟體...]
 3. 在 [使用] 文字方塊中，輸入：http://dl.microsoft.com/eclipse
 4. 按一下 [新增]。
 
