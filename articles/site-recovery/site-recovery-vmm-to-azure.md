@@ -11,7 +11,7 @@ ms.service: site-recovery
 ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: hero-=article
+ms.topic: hero-article
 ms.date: 04/05/2017
 ms.author: raynew
 ms.translationtype: Human Translation
@@ -210,7 +210,7 @@ Site Recovery 所使用的 Azure 網路不能在相同訂用帳戶內或跨越�
 
 2. Site Recovery 會檢查您是否有一或多個相容的 Azure 儲存體帳戶和網路。
 
-      ![儲存體](./media/site-recovery-vmm-to-azure/compatible-storage.png)
+    ![儲存體](./media/site-recovery-vmm-to-azure/compatible-storage.png)
 
 3. 如果您尚未建立儲存體帳戶而想要使用 Resource Manager 建立一個帳戶，請按一下 [+儲存體帳戶] 以內嵌方式執行該作業。  在 [建立儲存體帳戶]  刀鋒視窗中，指定帳戶名稱、類型、訂用帳戶和位置。 此帳戶應位於與復原服務保存庫相同的位置。
 
