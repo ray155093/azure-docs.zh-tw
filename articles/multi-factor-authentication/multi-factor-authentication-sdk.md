@@ -42,7 +42,7 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 ### <a name="download-from-the-azure-classic-portal"></a>從 Azure 傳統入口網站下載
 1. 以系統管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 選取左邊的 [Active Directory] 。
-3. 在 [Active Directory] 頁面頂端，選取 [多因素驗證提供者]****
+3. 在 [Active Directory] 頁面頂端，選取 [多因素驗證提供者]
 4. 選取底部的 [管理]。 新的頁面隨即開啟。
 5. 在左下方按一下 [SDK]。
    <center>![下載](./media/multi-factor-authentication-sdk/download.png)</center>

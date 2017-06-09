@@ -127,7 +127,7 @@ Fiddler 是一個免費的 Web 偵錯 Proxy，可用來擷取和修改 HTTP/HTTP
 1.    [下載並安裝 Fiddler](http://www.telerik.com/fiddler)。
 2.    依照 [Fiddler 的說明文件 (英文)](http://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS) 操作，設定 Fiddler 以將 HTTPS 流量解密。
 3.    設定 Fiddler 以使用自訂規則來插入 *Restrict-Access-To-Tenants* 和 *Restrict-Access-Context* 標頭：
-  1. 在「Fiddler Web 偵錯工具」中，選取 [Rules] \(規則) 功能表，然後選取 [Customize Rules] \(自訂規則)**** 以開啟 CustomRules 檔案。
+  1. 在「Fiddler Web 偵錯工具」中，選取 [Rules] \(規則) 功能表，然後選取 [Customize Rules] \(自訂規則) 以開啟 CustomRules 檔案。
   2. 在 *OnBeforeRequest* 函式開頭新增下列幾行。 使用與您租用戶一起註冊的網域來取代 \<tenant domain\>，例如 contoso.onmicrosoft.com。 使用您租用戶的 Azure AD GUID 識別碼來取代 \<directory ID\>。
 
   ```
