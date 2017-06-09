@@ -9,17 +9,18 @@ editor:
 tags: 
 ms.assetid: bbb10ecc-739f-4159-b844-12b4be161231
 ms.service: sql-database
-ms.custom: monitor and tune
+ms.custom: monitor & manage
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/06/2017
 ms.author: genemi
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 36bde9353c60b4f1d03188061b2b0182841d34ae
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fdbe5ff497b7acc9d8521b8ba1a016ae11bc69d2
+ms.openlocfilehash: 3bb6cc477b413a8636433038429e4defec1d2676
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -44,7 +45,7 @@ ms.lasthandoff: 04/15/2017
 * Azure 帳戶和訂用帳戶。 您可以註冊 [免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * 您可以在當中建立資料表的任何資料庫。
   
-  * 您可以選擇性快速[建立 **AdventureWorksLT** 示範資料庫](sql-database-get-started-portal.md)。
+  * 您可以選擇性快速[建立 **AdventureWorksLT** 示範資料庫](sql-database-get-started.md)。
 * SQL Server Management Studio (ssms.exe)，最好是最新的每月更新版本。 
   您可以從下列位置下載最新的 ssms.exe：
   

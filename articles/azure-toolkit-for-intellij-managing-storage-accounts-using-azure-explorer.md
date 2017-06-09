@@ -145,7 +145,7 @@ Azure Explorer 是適用於 IntelliJ 的 Azure 工具組一部分，可為 Java 
 [Microsoft Azure 儲存體簡介]: /azure/storage/storage-introduction
 [關於 Azure 儲存體帳戶]: /azure/storage/storage-create-storage-account
 [Azure 儲存體複寫]: /azure/storage/storage-redundancy
-[Azure 儲存體的延展性與效能目標]: /azure/storage/storage-scalability-targets
+[Azure 儲存體延展性和效能目標]: /azure/storage/storage-scalability-targets
 [命名和參考容器、Blob 及中繼資料]: http://go.microsoft.com/fwlink/?LinkId=255555
 
 [Azure 中的 Windows 儲存體帳戶大小]: /azure/virtual-machines/virtual-machines-windows-sizes

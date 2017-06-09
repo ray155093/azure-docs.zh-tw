@@ -160,7 +160,7 @@ ms.lasthandoff: 05/15/2017
 
 [適用於 Eclipse 的 Azure 工具組]: ./azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
-[Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
+[在 Eclipse 中建立 Azure Hello World Web 應用程式]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [在 IntelliJ 中建立 Azure Hello World Web 應用程式]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
 [安裝 Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
 [安裝 Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
