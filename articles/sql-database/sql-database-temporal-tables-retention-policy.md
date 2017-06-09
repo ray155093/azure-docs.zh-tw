@@ -157,7 +157,7 @@ CREATE NONCLUSTERED INDEX IX_WebHistNCI ON WebsiteUserInfoHistory ([UserName])
 下圖顯示簡單查詢的查詢計劃︰
 
 ````
-SELECT * FROM dbo.WebsiteUserInfo FROM SYSTEM_TIME ALL;
+SELECT * FROM dbo.WebsiteUserInfo FOR SYSTEM_TIME ALL;
 ````
 
 查詢計劃包含額外的篩選，在「叢集索引掃描」運算子中套用到記錄資料表 (反白顯示) 的時段結束資料行 (ValidTo)。 這個範例假設 WebsiteUserInfo 資料表上已設定一個 MONTH 保留期限。

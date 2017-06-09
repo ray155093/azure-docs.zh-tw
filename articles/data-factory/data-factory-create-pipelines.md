@@ -117,7 +117,7 @@ Data Factory 中的複製活動會將資料從來源資料存放區複製到接�
     },
     "policy":
     {
-    }
+    },
     "scheduler":
     {
     }
