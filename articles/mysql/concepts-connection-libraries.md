@@ -2,16 +2,15 @@
 title: "適用於 MySQL 的 Azure 資料庫的連線庫 | Microsoft Docs"
 description: "本文將列出用戶端程式在連接到適用於 MySQL 的 Azure 資料庫時可使用的每個程式庫或驅動程式。"
 services: mysql
-author: wutao
+author: mswutao
 ms.author: wutao
 manager: jhubbard
-editor: jasonh
+editor: jasonwhowell
 ms.assetid: 
 ms.service: mysql-database
 ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: portal
-ms.date: 05/10/2017
+ms.date: 06/08/2017
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
 ms.openlocfilehash: e3f04c20dbd0329149fdd7de56338f5baaedf5ce
