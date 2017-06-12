@@ -56,7 +56,7 @@ ms.lasthandoff: 02/21/2017
 ![關聯組態伺服器](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-1.PNG)
 
 3. 從伺服器清單中選取組態伺服器。
-4. 按一下 [確定] 。 組態伺服器應該會在&1; 至&2; 分鐘內產生關聯。
+4. 按一下 [確定] 。 組態伺服器應該會在 1 至 2 分鐘內產生關聯。
 
 ![關聯組態伺服器](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-2.png)
 
@@ -68,7 +68,7 @@ ms.lasthandoff: 02/21/2017
 ![編輯複寫原則設定](./media/site-recovery-setup-replication-settings-vmware/Edit-Policy.png)
 
 3. 根據需要來變更設定。
-4. 按一下 [儲存] 。 根據多少 VM 使用該複寫原則而定，應該會在&2; 至&5; 分鐘內儲存原則。
+4. 按一下 [儲存] 。 根據多少 VM 使用該複寫原則而定，應該會在 2 至 5 分鐘內儲存原則。
 
 ![儲存複寫原則](./media/site-recovery-setup-replication-settings-vmware/Save-Policy.png)
 
@@ -76,7 +76,7 @@ ms.lasthandoff: 02/21/2017
 1. 選擇要與組態伺服器產生關聯的複寫原則。
 2. 按一下 [中斷關聯]。
 3. 從伺服器清單中選取組態伺服器。
-4. 按一下 [確定] 。 組態伺服器應該會在&1; 至&2; 分鐘內中斷關聯。
+4. 按一下 [確定] 。 組態伺服器應該會在 1 至 2 分鐘內中斷關聯。
 
     > [!NOTE]
     > 如果至少有一個複寫項目使用該原則，您就無法與組態伺服器中斷關聯。 與組態伺服器中斷關聯之前，請確定沒有複寫項目使用該原則。
