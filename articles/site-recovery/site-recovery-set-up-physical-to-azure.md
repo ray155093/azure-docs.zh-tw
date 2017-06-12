@@ -59,7 +59,7 @@ ms.lasthandoff: 02/13/2017
   ![設定來源](./media/site-recovery-set-up-physical-to-azure/plus-config-srv.png)
 2. 在 [加入伺服器] 刀鋒視窗中，檢查 [組態伺服器] 是否出現在 [伺服器類型] 中。
 4. 下載 Site Recovery 統一安裝的安裝檔案。
-5. 下載保存庫註冊金鑰。 執行「整合安裝」時，您需要該註冊金鑰。 該金鑰在產生後會維持&5; 天有效。
+5. 下載保存庫註冊金鑰。 執行「整合安裝」時，您需要該註冊金鑰。 該金鑰在產生後會維持 5 天有效。
 
     ![設定來源](./media/site-recovery-set-up-physical-to-azure/set-source2.png)
 6. 在作為組態伺服器的電腦上，執行「Azure Site Recovery 整合安裝」，以安裝組態伺服器、處理伺服器和主要目標伺服器。
