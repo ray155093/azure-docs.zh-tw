@@ -170,8 +170,8 @@ Resource Manager 會以個別部署的方式來處理每一個連結的範本。
   ],
   "outputs": {
     "result": {
-      "type": "object",
-      "value": "[reference('linkedTemplate').outputs.result]"
+      "type": "string",
+      "value": "[reference('linkedTemplate').outputs.result.value]"
     }
   }
 }
