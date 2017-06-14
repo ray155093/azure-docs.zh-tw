@@ -63,7 +63,7 @@ Visual Studio Team Services 可讓您進行簡單的共同作業與開發，不�
 
 3. 選取 [Web] 範本，然後選擇 [ASP.NET Web 應用程式] 範本。
     1. 為您的應用程式輸入名稱，例如 myWebApp，然後取消選取 [為解決方案建立目錄] 核取方塊。
-    2. 取消選取 [將 Application Insights 新增至專案] (如果有此選項)。 Application Insights 需要您以 Azure Application Insights 授權您的 Web 應用程式。 為了簡化本教學課程中，請略過此程序。
+    2. 取消選取 [將 Application Insights 新增至專案] \(如果有此選項)。 Application Insights 需要您以 Azure Application Insights 授權您的 Web 應用程式。 為了簡化本教學課程中，請略過此程序。
     3. 選取 [確定] 。
 4. 從範本清單中選擇 [MVC]。
     1. 選擇 [變更驗證]，選擇 [不需要驗證]，然後選取 [確定]。
