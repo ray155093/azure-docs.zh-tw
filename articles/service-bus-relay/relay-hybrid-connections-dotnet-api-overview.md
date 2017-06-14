@@ -27,7 +27,7 @@ ms.lasthandoff: 03/27/2017
 本文將摘要列出一些主要 Azure 轉送混合式連線 .NET Standard [用戶端 API](/dotnet/api/microsoft.azure.relay)。
   
 ## <a name="relay-connection-string-builder"></a>轉送連接字串產生器
-[RelayConnectionStringBuilder] [ RelayConnectionStringBuilder] 類別將格式化專用於轉送混合式連線的連接字串。 您可以使用它來驗證連接字串的格式，或從頭開始建置連接字串。 如需範例，請參閱下列程式碼片段。
+[RelayConnectionStringBuilder][RelayConnectionStringBuilder] 類別將格式化專用於轉送混合式連線的連接字串。 您可以使用它來驗證連接字串的格式，或從頭開始建置連接字串。 如需範例，請參閱下列程式碼片段。
 
 ```csharp
 var endpoint = "{Relay namespace}";
