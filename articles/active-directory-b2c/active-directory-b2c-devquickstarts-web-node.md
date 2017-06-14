@@ -3,7 +3,7 @@ title: "將登入功能新增至 Azure B2C 的 Node.js Web 應用程式 | Micros
 description: "如何建置使用 B2C 租用戶登入使用者的 Node.js Web 應用程式。"
 services: active-directory-b2c
 documentationcenter: 
-author: xerners
+author: dstrockis
 manager: mbaldwin
 editor: 
 ms.assetid: db97f84a-1f24-447b-b6d2-0265c6896b27
@@ -14,9 +14,10 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 03/10/2017
 ms.author: xerners
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
 ms.openlocfilehash: a4d9394983539da52105bda6cf06273205f8b0ad
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/18/2017
 
 
@@ -24,7 +25,7 @@ ms.lasthandoff: 04/18/2017
 
 # <a name="azure-ad-b2c-add-sign-in-to-a-nodejs-web-app"></a>Azure AD B2C：將登入功能加入至 Node.js Web 應用程式
 
-**Passport** 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 安裝在任何 Express 或 Resitify Web 應用程式中。 有一套完整的策略支援以使用者名稱和密碼、Facebook、Twitter 等來進行驗證。 
+**Passport** 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 安裝在任何 Express 或 Resitify Web 應用程式中。 有一套完整的策略支援以使用者名稱和密碼、Facebook、Twitter 等來進行驗證。
 
 我們已為 Azure Active Directory (Azure AD) 開發一套策略。 您將會安裝此模組，然後加入 Azure AD `passport-azure-ad` 外掛程式。
 

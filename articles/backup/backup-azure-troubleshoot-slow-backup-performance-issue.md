@@ -12,11 +12,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 06/13/2017
 ms.author: genli
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: ac68ae449a03b6d9e77e6093531a47c905654f16
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -87,9 +89,4 @@ Windows 提供了稱為 [效能監視器](https://technet.microsoft.com/magazine
 
 * **UI 正在顯示資料傳輸的進度**。 資料仍在傳輸中。 網路頻寬或資料大小可能會造成延遲。
 * **UI 未顯示資料傳輸的進度**。 開啟位於 C:\Microsoft Azure Recovery Services Agent\Temp 的記錄檔，並查看記錄檔中的 FileProvider::EndData 項目。 此項目表示資料傳輸完成，且目錄作業正在進行中。 請勿取消備份工作。 請稍微多等待一些時間讓目錄作業完成。 若問題持續發生，請連絡 [Azure 支援](https://portal.azure.com/#create/Microsoft.Support)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
