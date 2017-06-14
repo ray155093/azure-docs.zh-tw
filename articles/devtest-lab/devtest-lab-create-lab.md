@@ -34,7 +34,7 @@ Azure DevTest Labs 中的實驗室是包含一組資源 (例如虛擬機器 (VM)
 下列步驟說明如何使用 Azure 入口網站在 Azure DevTest Labs 中建立實驗室。 
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
-1. 從左側的主要功能表中，選取 [更多服務] (位於清單底部)。
+1. 從左側的主要功能表中，選取 [更多服務] \(位於清單底部)。
 
     ![[更多服務] 功能表選項](./media/devtest-lab-create-lab/more-services-menu-option.png)
 
