@@ -32,6 +32,8 @@ Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。
 
 本快速入門需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
+[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
+
 ## <a name="log-in-to-azure"></a>登入 Azure 
 
 使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
@@ -46,7 +48,7 @@ az login
 
 下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組。
 
-```azurecli
+```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
 ```
 
@@ -56,7 +58,7 @@ az group create --name myResourceGroup --location eastus
 
 下列範例會建立名為 myVM 的 VM。 此範例會以 azureuser 作為系統管理使用者名稱並以 myPassword12 作為密碼。 將這些值更新為適合您環境的值。 建立與虛擬機器的連線時需要使用這些值。
 
-```azurecli
+```azurecli-interactive 
 az vm create `
   --resource-group myResourceGroup `
   --name myVM --image win2016datacenter `
@@ -66,7 +68,7 @@ az vm create `
 
 建立 VM 後，Azure CLI 會顯示類似下列範例的資訊。 記下 `publicIpAaddress`。 此位址用來存取 VM。
 
-```azurecli
+```azurecli-interactive 
 {
   "fqdns": "",
   "id": "/subscriptions/d5b9d4b7-6fc1-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
@@ -83,7 +85,7 @@ az vm create `
 
 依預設只能透過 RDP 連線至 Azure 中部署的 Windows 虛擬機器。 如果此 VM 即將成為 Web 伺服器，您需要從網際網路開啟連接埠 80。 使用 [az vm open-port](/cli/azure/vm#open-port) 命令來開啟所需的連接埠。  
  
- ```azurecli 
+ ```azurecli-interactive  
 az vm open-port --port 80 --resource-group myResourceGroup --name myVM
 ```
 
@@ -114,7 +116,7 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
 若不再需要，您可以使用 [az group delete](/cli/azure/group#delete) 命令來移除資源群組、VM 和所有相關資源。
 
-```azurecli
+```azurecli-interactive 
 az group delete --name myResourceGroup
 ```
 
