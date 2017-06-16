@@ -8,15 +8,16 @@ manager: gauravd
 editor: 
 ms.assetid: 
 ms.service: site-recovery
-ms.workload: backup-recovery
+ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: nisoneji
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
 ms.openlocfilehash: b23624fc7e82af1cb593a1aedd138ae0d6637ae7
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/29/2017
 
 
@@ -35,9 +36,9 @@ ms.lasthandoff: 03/29/2017
 理想的災害復原解決方案應該允許上述複雜應用程式架構的相關復原計劃模型化，並且也能夠新增自訂步驟以處理各層之間的應用程式對應，因此在導致較低 RTO 的災難發生時能提供單鍵擷取方案。
 
 
-本文說明如何使用 [Azure Site Recovery](site-recovery-overview.md)保護 IIS 型 web 應用程式。 本文將介紹最佳作法來將三層 IIS 型 web 應用程式複寫至 Azure、如何進行災害復原訓練，以及如何將應用程式容錯移轉至 Azure。 
+本文說明如何使用 [Azure Site Recovery](site-recovery-overview.md)保護 IIS 型 web 應用程式。 本文將介紹最佳作法來將三層 IIS 型 web 應用程式複寫至 Azure、如何進行災害復原訓練，以及如何將應用程式容錯移轉至 Azure。
 
- 
+
 ## <a name="prerequisites"></a>必要條件
 
 開始之前，請確定您瞭解下列項目︰
@@ -52,11 +53,11 @@ ms.lasthandoff: 03/29/2017
 ## <a name="deployment-patterns"></a>部署模式
 IIS 型 web 應用程式通常會遵循下列其中一個部署模式︰
 
-**部署模式 1 ** 具有應用程式要求路由 (ARR)、IIS 伺服器與 Microsoft SQL Server 的 IIS 型 web 伺服陣列。 
+**部署模式 1 ** 具有應用程式要求路由 (ARR)、IIS 伺服器與 Microsoft SQL Server 的 IIS 型 web 伺服陣列。
 
 ![部署模式](./media/site-recovery-iis/deployment-pattern1.png)
 
-**部署模式 2** 具有應用程式要求路由 (ARR)、IIS 伺服器、應用程式伺服器與 Microsoft SQL Server 的 IIS 型 web 伺服陣列。 
+**部署模式 2** 具有應用程式要求路由 (ARR)、IIS 伺服器、應用程式伺服器與 Microsoft SQL Server 的 IIS 型 web 伺服陣列。
 
 
 ![部署模式](./media/site-recovery-iis/deployment-pattern2.png)
@@ -75,9 +76,9 @@ IIS 型 web 應用程式通常會遵循下列其中一個部署模式︰
 
 ## <a name="replicate-virtual-machines"></a>複寫虛擬機器
 
-請依照[本指引](site-recovery-vmware-to-azure.md)開始將所有 IIS web 伺服陣列虛擬機器複寫至 Azure。 
+請依照[本指引](site-recovery-vmware-to-azure.md)開始將所有 IIS web 伺服陣列虛擬機器複寫至 Azure。
 
-如果您是使用靜態 IP 位址，請在計算和網路設定中指定您希望虛擬機器在 [**目標 IP** ](./site-recovery-replicate-vmware-to-azure.md#view-and-manage-vm-properties)設定中採用的 IP。 
+如果您是使用靜態 IP 位址，請在計算和網路設定中指定您希望虛擬機器在 [**目標 IP** ](./site-recovery-replicate-vmware-to-azure.md#view-and-manage-vm-properties)設定中採用的 IP。
 
 ![目標 IP](./media/site-recovery-active-directory/dns-target-ip.png)
 
@@ -89,7 +90,7 @@ IIS 型 web 應用程式通常會遵循下列其中一個部署模式︰
 ### <a name="adding-virtual-machines-to-failover-groups"></a>將虛擬機器新增至容錯移轉群組
 一般的多層式 IIS web 應用程式將包含資料庫層與 SQL 虛擬機器，web 層由 IIS 伺服器和應用程式層所構成。 根據如下層將所有這些虛擬機器新增至不同的群組。 [深入了解自訂復原方案](site-recovery-runbook-automation.md#customize-the-recovery-plan)。
 
-1. 建立復原計畫。 在群組 1 下新增資料庫層虛擬機器以確保它們都後關閉並先提供。 
+1. 建立復原計畫。 在群組 1 下新增資料庫層虛擬機器以確保它們都後關閉並先提供。
 
 1. 在群組 2 下新增應用程式層虛擬機器，以致於提供資料庫層之後，它們會予以提供。
 
@@ -105,38 +106,38 @@ IIS 型 web 應用程式通常會遵循下列其中一個部署模式︰
 如果已設定動態 DNS 更新的 DNS，則虛擬機器通常會在啟動之後使用新的 IP 更新 DNS。 如果您想要使用虛擬機器的新 IP 新增更新 DNS 的明確步驟，則請新增此[指令碼來更新 DNS 中的 IP](https://aka.ms/asr-dns-update) 做為復原方案群組上的後置動作。  
 
 #### <a name="connection-string-in-an-applications-webconfig"></a>在應用程式 web.config 中的連接字串
-連接字串會指定與網站進行通訊的資料庫。 
+連接字串會指定與網站進行通訊的資料庫。
 
-如果連接字串執行資料庫虛擬機器的名稱，則容錯移轉後無需進一步的步驟，應用程式都能夠自動對 DB 進行通訊。 此外，如果保留資料庫虛擬機器的 IP 位址，則它不需要更新連接字串。 如果連接字串是使用 IP 位址指資料庫虛擬機器，它必須在容錯移轉後更新。 例如 下列連接字串指向 DB，IP 為 127.0.1.2 
+如果連接字串執行資料庫虛擬機器的名稱，則容錯移轉後無需進一步的步驟，應用程式都能夠自動對 DB 進行通訊。 此外，如果保留資料庫虛擬機器的 IP 位址，則它不需要更新連接字串。 如果連接字串是使用 IP 位址指資料庫虛擬機器，它必須在容錯移轉後更新。 例如 下列連接字串指向 DB，IP 為 127.0.1.2
 
-        <?xml version="1.0" encoding="utf-8"?> 
-        <configuration> 
-        <connectionStrings> 
-        <add name="ConnStringDb1" connectionString="Data Source= 127.0.1.2\SqlExpress; Initial Catalog=TestDB1;Integrated Security=False;" /> 
-        </connectionStrings> 
+        <?xml version="1.0" encoding="utf-8"?>
+        <configuration>
+        <connectionStrings>
+        <add name="ConnStringDb1" connectionString="Data Source= 127.0.1.2\SqlExpress; Initial Catalog=TestDB1;Integrated Security=False;" />
+        </connectionStrings>
         </configuration>
 
 您可以更新 web 層中的連接字串，方法為在復原計劃中的群組 3 之後新增 [IIS 連線更新指令碼](https://aka.ms/asr-update-webtier-script-classic)。
 
 #### <a name="site-bindings-for-the-application"></a>應用程式的網站繫結
-每個網站所包含的繫結資訊包括繫結的類型、IIS 伺服器接聽要求之網站的 IP 位址、連接埠號碼和網站的主機名稱。 在容錯移轉期間，如果與這些繫結相關聯的 IP 位址中有變更時，可能需要更新這些繫結。 
+每個網站所包含的繫結資訊包括繫結的類型、IIS 伺服器接聽要求之網站的 IP 位址、連接埠號碼和網站的主機名稱。 在容錯移轉期間，如果與這些繫結相關聯的 IP 位址中有變更時，可能需要更新這些繫結。
 
 > [!NOTE]
-> 
-> 如果您已對網站繫結標記「全部未指派」，如下列範例所示，您將不需要在容錯移轉後更新此繫結。 此外，如果與網站相關聯的 IP 位址在容錯移轉後未變更，則網站繫結不需要更新 (IP 位址保留取決於指派至主要和復原網站的網路架構和子網路，因此對您的組織可能可行或可能不可行。) 
+>
+> 如果您已對網站繫結標記「全部未指派」，如下列範例所示，您將不需要在容錯移轉後更新此繫結。 此外，如果與網站相關聯的 IP 位址在容錯移轉後未變更，則網站繫結不需要更新 (IP 位址保留取決於指派至主要和復原網站的網路架構和子網路，因此對您的組織可能可行或可能不可行。)
 
 ![SSL 繫結](./media/site-recovery-iis/sslbinding.png)
 
-如果您已將 IP 位址與網站相關聯，必須使用新的 IP 位址更新所有網站繫結。 您可以在復原計劃中的群組 3 之後新增 [IIS Web 層更新指令碼](https://aka.ms/asr-web-tier-update-runbook-classic)以變更網站繫結。 
+如果您已將 IP 位址與網站相關聯，必須使用新的 IP 位址更新所有網站繫結。 您可以在復原計劃中的群組 3 之後新增 [IIS Web 層更新指令碼](https://aka.ms/asr-web-tier-update-runbook-classic)以變更網站繫結。
 
 
 #### <a name="update-load-balancer-ip-address"></a>更新負載平衡器 IP 位址
 如果您有應用程式要求路由虛擬機器，請在群組 4 之後新增 [IIS ARR 容錯移轉指令碼](https://aka.ms/asr-iis-arrtier-failover-script-classic)以更新 IP 位址。
 
 #### <a name="the-ssl-cert-binding-for-an-https-connection"></a>Https 連線的 SSL 憑證繫結
-網站可擁有相關聯的 SSL 憑證，以協助確保 web 伺服器與使用者瀏覽器之間的安全通訊。 如果網站具有 https 連線，且相關聯的 https 網站使用 SSL 憑證繫結繫結至 IIS 伺服器的 IP 位址，必須使用容錯移轉後的 IIS 虛擬機器之 IP 為憑證新增新的網站繫結。 
+網站可擁有相關聯的 SSL 憑證，以協助確保 web 伺服器與使用者瀏覽器之間的安全通訊。 如果網站具有 https 連線，且相關聯的 https 網站使用 SSL 憑證繫結繫結至 IIS 伺服器的 IP 位址，必須使用容錯移轉後的 IIS 虛擬機器之 IP 為憑證新增新的網站繫結。
 
-可以發出 SSL 憑證，針對- 
+可以發出 SSL 憑證，針對-
 
 a) 網站的完整網域名稱<br>
 b) 伺服器的名稱<br>
@@ -149,21 +150,21 @@ d) IP 位址 – 如果針對 IIS 伺服器的 IP 發行 SSL 憑證，需要對 
 ## <a name="doing-a-test-failover"></a>執行測試容錯移轉
 請依照[本指引](site-recovery-test-failover-to-azure.md)來執行測試容錯移轉。
 
-1.    請移至 Azure 入口網站，然後選取您的復原服務保存庫。
-1.    按一下為 IIS web 伺服器陣列建立的復原計劃。
-1.    按一下 [測試容錯移轉]。
-1.    選取復原點和 Azure 虛擬網路來開始測試容錯移轉程序。
-1.    次要環境啟動後，您就可以執行您的驗證。
-1.    驗證完成後，您可以選取 [完成驗證]，並會清除測試容錯移轉環境。
+1.  請移至 Azure 入口網站，然後選取您的復原服務保存庫。
+1.  按一下為 IIS web 伺服器陣列建立的復原計劃。
+1.  按一下 [測試容錯移轉]。
+1.  選取復原點和 Azure 虛擬網路來開始測試容錯移轉程序。
+1.  次要環境啟動後，您就可以執行您的驗證。
+1.  驗證完成後，您可以選取 [完成驗證]，並會清除測試容錯移轉環境。
 
 ## <a name="doing-a-failover"></a>執行容錯移轉
 當您在進行容錯移轉時，請依照[本指引](site-recovery-failover.md)。
 
-1.    請移至 Azure 入口網站，然後選取您的復原服務保存庫。
-1.    按一下為 IIS web 伺服器陣列建立的復原計劃。
-1.    按一下 [容錯移轉]。
-1.    選取復原點以啟動容錯移轉程序。
+1.  請移至 Azure 入口網站，然後選取您的復原服務保存庫。
+1.  按一下為 IIS web 伺服器陣列建立的復原計劃。
+1.  按一下 [容錯移轉]。
+1.  選取復原點以啟動容錯移轉程序。
 
 ## <a name="next-steps"></a>後續步驟
-您可以使用站台復原深入了解[複寫其他應用程式](site-recovery-workload.md)。 
+您可以使用站台復原深入了解[複寫其他應用程式](site-recovery-workload.md)。
 

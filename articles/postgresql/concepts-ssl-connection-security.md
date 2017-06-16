@@ -4,13 +4,10 @@ description: "用以設定適用於 PostgreSQL 之 Azure 資料庫及相關聯�
 services: postgresql
 author: JasonMAnderson
 ms.author: janders
-editor: jasonh
+editor: jasonwhowell
 manager: jhubbard
-ms.assetid: 
 ms.service: postgresql-database
-ms.custom: connection security
-ms.tgt_pltfrm: portal
-ms.devlang: na
+ms.custom: 
 ms.topic: article
 ms.date: 05/15/2017
 ms.translationtype: Human Translation

@@ -11,12 +11,13 @@ ms.service: site-recovery
 ms.devlang: powershell
 ms.tgt_pltfrm: na
 ms.topic: article
-ms.workload: required
+ms.workload: storage-backup-recovery
 ms.date: 02/22/2017
 ms.author: ruturajd@microsoft.com
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
 ms.openlocfilehash: 198caeea693fbc48b6e0eb1c9c8ee559e0553261
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/31/2017
 
 
@@ -33,7 +34,7 @@ ms.lasthandoff: 03/31/2017
 
     ![](media/site-recovery-runbook-automation-new/essentials-rp.PNG)
 - - -
-1. 按一下 [自訂] 按鈕來開始新增 Runbook。 
+1. 按一下 [自訂] 按鈕來開始新增 Runbook。
 
     ![](media/site-recovery-runbook-automation-new/customize-rp.PNG)
 
@@ -41,10 +42,10 @@ ms.lasthandoff: 03/31/2017
 1. 在開始群組 1 上按一下滑鼠右鍵，然後選擇新增一個「新增後續動作」。
 2. 選取要在新刀鋒視窗中選擇指令碼。
 3. 將指令碼命名為 'Hello World'。
-4. 選擇「自動化帳戶」名稱。 
+4. 選擇「自動化帳戶」名稱。
     >[!NOTE]
     > 自動化帳戶可以在任何 Azure 地理位置，但必須與 Site Recovery 保存庫在相同的訂用帳戶中。
-    
+
 5. 從 [自動化帳戶] 中選取一個 Runbook。 此 Runbook 是在執行復原方案時，於復原第一個群組後執行的指令碼。
 
     ![](media/site-recovery-runbook-automation-new/update-rp.PNG)
@@ -71,13 +72,13 @@ ms.lasthandoff: 03/31/2017
         "VmMap":{"7a1069c6-c1d6-49c5-8c5d-33bfce8dd183":
 
                 { "SubscriptionId":"7a1111111-c1d6-49c5-8c5d-111ce8dd183",
-                
+
                 "ResourceGroupName":"ContosoRG",
-                
+
                 "CloudServiceName":"pod02hrweb-Chicago-test",
 
                 "RoleName":"Fabrikam-Hrweb-frontend-test",
-                
+
                 "RecoveryPointId":"TimeStamp"}
 
                 }
@@ -165,15 +166,15 @@ ms.lasthandoff: 03/31/2017
     $NSGValue = $RecoveryPlanContext.RecoveryPlanName + "-NSG"
     $NSGRGValue = $RecoveryPlanContext.RecoveryPlanName + "-NSGRG"
 
-    $NSGnameVar = Get-AutomationVariable -Name $NSGValue 
+    $NSGnameVar = Get-AutomationVariable -Name $NSGValue
     $RGnameVar = Get-AutomationVariable -Name $NSGRGValue
 ```
 
 接著，您可以在 Runbook 中使用變數，並將 NSG 套用至容錯移轉的虛擬機器的網路介面。
 
 ```
-     InlineScript { 
-         if (($Using:NSGname -ne $Null) -And ($Using:NSGRGname -ne $Null)) {
+     InlineScript {
+        if (($Using:NSGname -ne $Null) -And ($Using:NSGRGname -ne $Null)) {
             $NSG = Get-AzureRmNetworkSecurityGroup -Name $Using:NSGname -ResourceGroupName $Using:NSGRGname
             Write-output $NSG.Id
             #Apply the NSG to a network interface
@@ -213,17 +214,17 @@ ms.lasthandoff: 03/31/2017
 3. 在 Runbook 中使用此變數，如果在復原方案內容中找到任何給定的 VMGUID，就將 NSG 套用在虛擬機器上。
 
     ```
-        $VMDetailsObj = Get-AutomationVariable -Name $RecoveryPlanContext.RecoveryPlanName 
+        $VMDetailsObj = Get-AutomationVariable -Name $RecoveryPlanContext.RecoveryPlanName
     ```
 
 4. 在 Runbook 中，循環查看復原方案內容的 VM，檢查 VM 是否也存在於 **$VMDetailsObj** 中。 如果存在的話，則存取變數的屬性來套用 NSG。
     ```
         $VMinfo = $RecoveryPlanContext.VmMap | Get-Member | Where-Object MemberType -EQ NoteProperty | select -ExpandProperty Name
         $vmMap = $RecoveryPlanContext.VmMap
-           
+
         foreach($VMID in $VMinfo) {
             Write-output $VMDetailsObj.value.$VMID
-            
+
             if ($VMDetailsObj.value.$VMID -ne $Null) { #If the VM exists in the context, this will not b Null
                 $VM = $vmMap.$VMID
                 # Access the properties of the variable

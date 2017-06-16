@@ -8,7 +8,7 @@ manager: garavd
 editor: 
 ms.assetid: 
 ms.service: site-recovery
-ms.workload: backup-recovery
+ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
@@ -108,8 +108,8 @@ Azure 虛擬機器上的磁碟在容錯移轉之後如下所示︰
 
 **客體作業系統磁碟#** | **磁碟機代號** | **磁碟上的資料類型**
 --- | --- | ---
-DISK0 |    C:\ | 作業系統磁碟
-Disk1 |    E:\ | 暫存儲存體</br /> </br />Azure 會新增此磁碟，並指派第一個可用的磁碟機代號。
+DISK0 | C:\ | 作業系統磁碟
+Disk1 | E:\ | 暫存儲存體</br /> </br />Azure 會新增此磁碟，並指派第一個可用的磁碟機代號。
 Disk2 | D:\ | SQL 系統資料庫和使用者資料庫 1
 Disk3 | G:\ | 使用者資料庫 2
 
@@ -141,13 +141,13 @@ Disk3，這是 SQL tempdb 磁碟 (tempdb 資料夾路徑 F:\MSSQL\Data\)，排�
 3. 執行下列 sqlcmd，將 tempdb 路徑變更為新的路徑。
 
         sqlcmd -A -S SalesDB        **Use your SQL DBname**
-        USE master;        
-        GO        
-        ALTER DATABASE tempdb        
+        USE master;     
+        GO      
+        ALTER DATABASE tempdb       
         MODIFY FILE (NAME = tempdev, FILENAME = 'E:\MSSQL\tempdata\tempdb.mdf');
-        GO        
-        ALTER DATABASE tempdb        
-        MODIFY FILE (NAME = templog, FILENAME = 'E:\MSSQL\tempdata\templog.ldf');        
+        GO      
+        ALTER DATABASE tempdb       
+        MODIFY FILE (NAME = templog, FILENAME = 'E:\MSSQL\tempdata\templog.ldf');       
         GO
 
 
@@ -173,9 +173,9 @@ Disk3，這是 SQL tempdb 磁碟 (tempdb 資料夾路徑 F:\MSSQL\Data\)，排�
 **客體作業系統磁碟#** | **磁碟機代號** | **磁碟上的資料類型**
 --- | --- | ---
 DISK0 | C:\ | 作業系統磁碟
-Disk1 |    E:\ | 暫存儲存體</br /> </br />Azure 會新增此磁碟，並指派第一個可用的磁碟機代號。
-Disk2 |    D:\ | SQL 系統資料庫和使用者資料庫 1
-Disk3 |    G:\ | 使用者資料庫 2
+Disk1 | E:\ | 暫存儲存體</br /> </br />Azure 會新增此磁碟，並指派第一個可用的磁碟機代號。
+Disk2 | D:\ | SQL 系統資料庫和使用者資料庫 1
+Disk3 | G:\ | 使用者資料庫 2
 
 
 #### <a name="vmware-to-azure"></a>VMware 至 Azure
@@ -186,8 +186,8 @@ Disk3 |    G:\ | 使用者資料庫 2
 **客體作業系統磁碟#** | **磁碟機代號** | **磁碟上的資料類型**
 --- | --- | ---
 DISK0 | C:\ | 作業系統磁碟
-Disk1 |    D:\ | SQL 系統資料庫和使用者資料庫 1
-Disk2 |    G:\ | 使用者資料庫 2
+Disk1 | D:\ | SQL 系統資料庫和使用者資料庫 1
+Disk2 | G:\ | 使用者資料庫 2
 
 #### <a name="hyper-v-to-azure"></a>Hyper-V 至 Azure
 容錯回復至原始位置後，容錯回復虛擬機器磁碟組態與 Hyper-V 的原始虛擬機器磁碟組態維持相同。 從 Hyper-V 網站到 Azure 中排除的磁碟，不會出現在容錯回復虛擬機器上。
@@ -196,7 +196,7 @@ Disk2 |    G:\ | 使用者資料庫 2
 
 **磁碟名稱** | **客體作業系統磁碟#** | **磁碟機代號** | **磁碟上的資料類型**
 --- | --- | --- | ---
-DB-Disk0-OS | DISK0 |    C:\ | 作業系統磁碟
+DB-Disk0-OS | DISK0 |   C:\ | 作業系統磁碟
 DB-Disk1 | Disk1 | D:\ | SQL 系統資料庫和使用者資料庫 1
 DB-Disk2 (排除的磁碟) | Disk2 | E:\ | 暫存檔案
 DB-Disk3 (排除的磁碟) | Disk3 | F:\ | SQL tempdb 資料庫 (資料夾路徑 (F:\MSSQL\Data\)

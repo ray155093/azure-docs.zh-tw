@@ -8,7 +8,7 @@ manager: gauravd
 editor: 
 ms.assetid: 9126f5e8-e9ed-4c31-b6b4-bf969c12c184
 ms.service: site-recovery
-ms.workload: backup-recovery
+ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
@@ -101,18 +101,18 @@ Site Recovery 可以與資料表中摘要說明的原生 SQL Server BCDR 技術�
 本文中的指示假設在次要位置中有網域控制站。 [閱讀更多](site-recovery-active-directory.md) 有關使用 Site Recovery 保護 Active Directory。
 
 
-## <a name="integrate-with-sql-server-always-on-for-replication-to-azure"></a>與 SQL Server Always On 整合以複寫至 Azure 
+## <a name="integrate-with-sql-server-always-on-for-replication-to-azure"></a>與 SQL Server Always On 整合以複寫至 Azure
 
 以下是您需要採取的動作：
 
-1. 將指令碼匯入您的 Azure 自動化帳戶。 這包括用於將 [Resource Manager 虛擬機器](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/asr-automation-recovery/scripts/ASR-SQL-FailoverAG.ps1)和[傳統虛擬機器](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/asr-automation-recovery/scripts/ASR-SQL-FailoverAGClassic.ps1)中的 SQL 可用性群組容錯移轉的指令碼。 
+1. 將指令碼匯入您的 Azure 自動化帳戶。 這包括用於將 [Resource Manager 虛擬機器](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/asr-automation-recovery/scripts/ASR-SQL-FailoverAG.ps1)和[傳統虛擬機器](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/asr-automation-recovery/scripts/ASR-SQL-FailoverAGClassic.ps1)中的 SQL 可用性群組容錯移轉的指令碼。
 
     [![部署至 Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c4803408-340e-49e3-9a1f-0ed3f689813d.png)](https://aka.ms/asr-automationrunbooks-deploy)
 
 
 1. 新增 ASR-SQL-FailoverAG 作為復原方案第一個群組的前置動作。
 
-1. 依照指令碼中的指示建立自動化變數，以提供可用性群組的名稱。 
+1. 依照指令碼中的指示建立自動化變數，以提供可用性群組的名稱。
 
 ### <a name="steps-to-do-a-test-failover"></a>測試容錯移轉的步驟
 
@@ -124,13 +124,13 @@ SQL Always On 原本就不支援測試容錯移轉。 因此，我們建議您�
 
     ![從 Azure 備份還原 ](./media/site-recovery-sql/restore-from-backup.png)
 
-1. 在從備份還原的虛擬機器中[強制仲裁](https://docs.microsoft.com/sql/sql-server/failover-clusters/windows/force-a-wsfc-cluster-to-start-without-a-quorum#PowerShellProcedure)。 
+1. 在從備份還原的虛擬機器中[強制仲裁](https://docs.microsoft.com/sql/sql-server/failover-clusters/windows/force-a-wsfc-cluster-to-start-without-a-quorum#PowerShellProcedure)。
 
-1. 將接聽程式的 IP 更新為測試容錯移轉網路中可用的 IP 的。 
- 
+1. 將接聽程式的 IP 更新為測試容錯移轉網路中可用的 IP 的。
+
     ![更新接聽程式 IP](./media/site-recovery-sql/update-listener-ip.png)
 
-1. 使接聽程式上線。 
+1. 使接聽程式上線。
 
     ![使接聽程式上線](./media/site-recovery-sql/bring-listener-online.png)
 
@@ -144,7 +144,7 @@ SQL Always On 原本就不支援測試容錯移轉。 因此，我們建議您�
 
 ### <a name="steps-to-do-a-failover"></a>進行容錯移轉的步驟
 
-一旦您已在復原方案中新增指令碼，並已執行測試容錯移轉驗證過復原計劃執行，便可以進行復原計劃的容錯移轉。 
+一旦您已在復原方案中新增指令碼，並已執行測試容錯移轉驗證過復原計劃執行，便可以進行復原計劃的容錯移轉。
 
 
 ## <a name="integrate-with-sql-server-always-on-for-replication-to-a-secondary-on-premises-site"></a>與 SQL Server Always On 整合以複寫至次要內部部署網站
@@ -155,7 +155,7 @@ SQL Always On 原本就不支援測試容錯移轉。 因此，我們建議您�
 1. 在次要網站上建立虛擬網路。
 1. 在虛擬網路和主要網站之間設定網站間 VPN 連線。
 1. 在復原網站上建立虛擬機器，並在此虛擬機器上安裝 SQL Server。
-1. 將現有的 Always On 可用性群組擴充至新的 SQL Server VM。 將此 SQL Server 執行個體設定為非同步複本。 
+1. 將現有的 Always On 可用性群組擴充至新的 SQL Server VM。 將此 SQL Server 執行個體設定為非同步複本。
 1. 建立可用性群組接聽程式，或更新現有的接聽程式，以包含非同步複本虛擬機器。
 1. 請確定應用程式伺服器陣列是使用接聽程式來設定。 如果是使用資料庫伺服器名稱來設定，請更新為使用接聽程式，如此您就不需要在容錯移轉後重新設定。
 
