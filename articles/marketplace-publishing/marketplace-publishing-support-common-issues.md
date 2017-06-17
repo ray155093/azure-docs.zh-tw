@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/21/2016
+ms.date: 06/16/2017
 ms.author: v-jeana; hascipio; v-dabosl
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: 11b5fb0ed1b3939d8278156fcf2c831befc5f7ff
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -30,8 +32,8 @@ ms.openlocfilehash: 11b5fb0ed1b3939d8278156fcf2c831befc5f7ff
 
 > [!NOTE]
 > 如果客戶或 Azure 轉銷商連絡 Microsoft 要求退款或點數，我們將會套用與我們提供 Azure 服務佈建所使用的相同原則。 如果我們的原則指出退款或點數是應當的，我們會主動核發 (且您授權我們代表您核發) 適當的退款或點數給客戶或 Azure 轉銷商。 如果我們的原則未指出退款或點數是應當的，我們會請客戶或 Azure 轉銷商直接與您連絡。
-> 
-> 
+>
+>
 
   ![1_RequestRefund][1]
 
@@ -39,12 +41,12 @@ ms.openlocfilehash: 11b5fb0ed1b3939d8278156fcf2c831befc5f7ff
 2. 在 [問題類型] 方塊中，選取 [管理客戶]。
 3. 在 [類別] 方塊中，選取 [核准或要求客戶退款]。
 4. 按一下 [提出要求] 。
-   
+
    ![2_RequestRefund][2]
 
 1. 提供連絡資訊。
 2. 在 [發生什麼問題？] 方塊中，輸入以下資訊：
-   
+
    * 受影響客戶的訂用帳戶 ID
    * 客戶名稱
    * 點數應該是多少
@@ -83,8 +85,8 @@ ms.openlocfilehash: 11b5fb0ed1b3939d8278156fcf2c831befc5f7ff
 
 > [!NOTE]
 > 您可以使用電話號碼或電子郵件地址進行驗證。
-> 
-> 
+>
+>
 
 ![protectacct][6]
 
@@ -121,9 +123,4 @@ ms.openlocfilehash: 11b5fb0ed1b3939d8278156fcf2c831befc5f7ff
 [6]: ./media/marketplace-publishing-support-common-issues/protectacct.png
 [7]: ./media/marketplace-publishing-support-common-issues/acctdetails.png
 [8]: ./media/marketplace-publishing-support-common-issues/manageadmins.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

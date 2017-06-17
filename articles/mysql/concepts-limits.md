@@ -5,10 +5,8 @@ services: mysql
 author: jasonh
 ms.author: kamathsun
 manager: jhubbard
-editor: jasonh
-ms.assetid: 
+editor: jasonwhowell
 ms.service: mysql-database
-ms.tgt_pltfrm: portal
 ms.topic: article
 ms.date: 05/10/2017
 ms.translationtype: Human Translation
@@ -47,9 +45,9 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="preview-functional-limitations"></a>預覽功能限制：
 ### <a name="scale-operations"></a>調整作業：
-1.    目前不支援跨服務層動態調整伺服器。 也就是在基本和標準服務層之間切換。
-2.    目前不支援依需求在預先建立的伺服器上動態增加儲存體。
-3.    不支援減少伺服器儲存體大小。
+1.  目前不支援跨服務層動態調整伺服器。 也就是在基本和標準服務層之間切換。
+2.  目前不支援依需求在預先建立的伺服器上動態增加儲存體。
+3.  不支援減少伺服器儲存體大小。
 
 ### <a name="server-version-upgrades"></a>伺服器版本升級：
 - 目前不支援在主要資料庫引擎版本之間進行自動轉換。
@@ -58,8 +56,8 @@ ms.lasthandoff: 05/10/2017
 - 目前不支援跨訂用帳戶和資源群組動態移動預先建立的伺服器。
 
 ### <a name="point-in-time-restore"></a>還原時間點：
-1.    不允許還原到不同服務層和/或計算單位與儲存體大小。
-2.    不支援還原已卸除的伺服器。
+1.  不允許還原到不同服務層和/或計算單位與儲存體大小。
+2.  不支援還原已卸除的伺服器。
 
 ## <a name="next-steps"></a>後續步驟：
 [每個服務層中可用的項目](concepts-service-tiers.md)

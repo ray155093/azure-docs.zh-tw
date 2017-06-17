@@ -13,7 +13,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/22/2017
+ms.date: 06/16/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
@@ -155,7 +155,7 @@ HDInsight Tools 可以用來將 C# 或混合式拓撲提交至 Storm 叢集。 �
 
 Storm 拓撲一旦啟動之後，就會繼續執行直到停止。 若要停止拓撲，請使用下列命令：
 
-    storm stop TOPOLOGYNAME
+    storm kill TOPOLOGYNAME
 
 ### <a name="rebalance"></a>重新平衡
 

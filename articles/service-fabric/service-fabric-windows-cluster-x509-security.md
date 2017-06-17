@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/15/2017
+ms.date: 06/16/2017
 ms.author: ryanwi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 51ed17ab8f036f00b285232500dc9f606f2a7e2f
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -49,7 +50,7 @@ ms.lasthandoff: 04/27/2017
             {
                 "CertificateThumbprint": "[Thumbprint]",
                 "IsAdmin": false
-            }, 
+            },
             {
                 "CertificateThumbprint": "[Thumbprint]",
                 "IsAdmin": true
@@ -58,17 +59,17 @@ ms.lasthandoff: 04/27/2017
         "ClientCertificateCommonNames": [
             {
                 "CertificateCommonName": "[CertificateCommonName]",
-                "CertificateIssuerThumbprint" : "[Thumbprint]",
+                "CertificateIssuerThumbprint": "[Thumbprint]",
                 "IsAdmin": true
             }
-        ]
-        "ReverseProxyCertificate":{
+        ],
+        "ReverseProxyCertificate": {
             "Thumbprint": "[Thumbprint]",
             "ThumbprintSecondary": "[Thumbprint]",
             "X509StoreName": "My"
         }
     }
-}
+},
 ```
 
 此區段描述保護獨立 Windows 叢集所需的憑證。 如果您指定叢集憑證，請將**ClusterCredentialType** 的值設定為 _**X509**_。 如果您指定外部連接的伺服器憑證，請將 **ServerCredentialType** 設定為 _**X509**_。 雖然並非必要，但我們建議具備這兩個憑證以適當保護叢集。 如果您將這些值設定為 X509，則您也必須指定對應憑證或 Service Fabric 將會擲回例外狀況。 在某些情況下，您可能只想要指定 _ClientCertificateThumbprints_ 或 _ReverseProxyCertificate_。 在這些情況下，您需要將 _ClusterCredentialType_ 或 _ServerCredentialType_設定為 _X509_。

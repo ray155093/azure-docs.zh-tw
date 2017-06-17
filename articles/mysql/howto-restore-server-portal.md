@@ -5,12 +5,9 @@ services: mysql
 author: v-chenyh
 ms.author: v-chenyh
 manager: jhubbard
-editor: jasonh
-ms.assetid: 
+editor: jasonwhowell
 ms.service: mysql-database
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: portal
 ms.date: 05/10/2017
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
@@ -40,7 +37,7 @@ ms.lasthandoff: 05/10/2017
 
 2. 找出適用於 MySQL 的 Azure 資料庫伺服器。 在左窗格中，選取 [所有資源]，然後從清單中選取您的伺服器。
 
-3.    在伺服器概觀刀鋒視窗頂端，按一下工具列上的 [還原]。 [還原] 刀鋒視窗隨即開啟。
+3.  在伺服器概觀刀鋒視窗頂端，按一下工具列上的 [還原]。 [還原] 刀鋒視窗隨即開啟。
 ![按一下 [還原] 按鈕](./media/howto-restore-server-portal/click-restore-button.png)
 
 4. 在 [還原] 表單中填入必要資訊︰
