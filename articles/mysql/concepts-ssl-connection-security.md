@@ -4,13 +4,9 @@ description: "用以設定適用於 MySQL 之 Azure 資料庫及相關聯應用�
 services: mysql
 author: JasonMAnderson
 ms.author: janders
-editor: jasonh
+editor: jasonwhowell
 manager: jhubbard
-ms.assetid: 
 ms.service: mysql-database
-ms.custom: quick start create
-ms.tgt_pltfrm: portal
-ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.translationtype: Human Translation
