@@ -5,27 +5,28 @@ services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: yossib
 ms.assetid: 6c8d6fcc-70f4-4da4-9610-c76d66635b8b
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/25/2017
+ms.date: 06/15/2017
 ms.author: kgremban
-ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.reviewer: yossib
+ms.custom: H1Hack27Feb2017,it-pro
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 20afeb3ba290ddf728d2b52c076c7a57fadc77c6
 ms.openlocfilehash: 4014bf0217e25ea9bc8473ef2383279e5eb79b87
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/28/2017
 
 ---
 # <a name="enable-mobile-app-authentication-with-azure-multi-factor-authentication-server"></a>使用 Azure Multi-Factor Authentication Server 來啟用行動應用程式驗證
 
-Microsoft Authenticator 應用程式提供額外的頻外驗證選項。 Azure Multi-Factor Authentication 不會在使用者登入時，撥打自動電話或傳送 SMS 給使用者，而是會將通知推送到使用者智慧型手機或平板電腦上的 Microsoft Authenticator 應用程式。 使用者只需要在應用程式中點選 驗證 \(或輸入 PIN 再點選 [驗證]) 即可完成登入。 
+Microsoft Authenticator 應用程式提供額外的頻外驗證選項。 Azure Multi-Factor Authentication 不會在使用者登入時，撥打自動電話或傳送 SMS 給使用者，而是會將通知推送到使用者智慧型手機或平板電腦上的 Microsoft Authenticator 應用程式。 使用者只需要在應用程式中點選 驗證 \(或輸入 PIN 再點選 [驗證]) 即可完成登入。
 
-當手機收訊不可靠時，建議使用行動應用程式進行兩步驟驗證。 如果您使用此應用程式作為 OATH 權杖產生器，它並不需要任何網路或網際網路連線。 
+當手機收訊不可靠時，建議使用行動應用程式進行兩步驟驗證。 如果您使用此應用程式作為 OATH 權杖產生器，它並不需要任何網路或網際網路連線。
 
 若要將使用者入口網站安裝在 Azure Multi-Factor Authentication Server 以外的伺服器上，必須進行下列步驟：
 
@@ -51,10 +52,10 @@ Microsoft Authenticator 應用程式提供額外的頻外驗證選項。 Azure M
 
 
 ## <a name="install-the-web-service-sdk"></a>安裝 Web 服務 SDK
-如果 Azure Multi-Factor Authentication (MFA) Server 上尚未安裝 Azure Multi-Factor Authentication Web 服務 SDK，請移至該伺服器，然後開啟 Azure MFA Server。 
+如果 Azure Multi-Factor Authentication (MFA) Server 上尚未安裝 Azure Multi-Factor Authentication Web 服務 SDK，請移至該伺服器，然後開啟 Azure MFA Server。
 
 1. 按一下 [Web 服務 SDK] 圖示。
-2. 按一下 [安裝 Web 服務 SDK]，然後依照呈現的指示操作。 
+2. 按一下 [安裝 Web 服務 SDK]，然後依照呈現的指示操作。
 
 Web 服務 SDK 必須受到 SSL 憑證保護。 自我簽署憑證適用於這項用途。 請將此憑證匯入到「使用者入口網站」Web 伺服器上 [本機電腦] 帳戶的 [受信任的根憑證授權單位] 存放區中，這樣它才會在起始 SSL 連接時信任該憑證。
 
@@ -65,7 +66,7 @@ Web 服務 SDK 必須受到 SSL 憑證保護。 自我簽署憑證適用於這�
 
 * 如果您已經在網際網路對向伺服器上安裝「Azure MFA 使用者入口網站」，就可以從「使用者入口網站」的 web.config 檔案將使用者名稱、密碼及 URL 複製到 Web 服務 SDK。
 * 在網際網路對向 Web 伺服器上開啟網頁瀏覽器，並瀏覽至輸入 web.config 檔案中的 Web 服務 SDK URL，如此將有所幫助。 如果瀏覽器可以順利連接 Web 服務，它應該會提示您輸入認證。 輸入使用者名稱和密碼 (與輸入 web.config 檔案中的使用者名稱和密碼完全相同)。 確定未出現任何憑證警告或錯誤。
-* 如果反向 Proxy 或防火牆是在 Mobile App Web 服務 Web 伺服器之前，並且目前執行 SSL 卸載，則您可以編輯 Mobile App Web 服務的 web.config 檔案，以便讓 Mobile App Web 服務能夠使用 http 而不是 https。 從 Mobile App 到防火牆/反向 Proxy 仍然需要 SSL。 將下列索引鍵新增到 \<appSettings\> 區段： 
+* 如果反向 Proxy 或防火牆是在 Mobile App Web 服務 Web 伺服器之前，並且目前執行 SSL 卸載，則您可以編輯 Mobile App Web 服務的 web.config 檔案，以便讓 Mobile App Web 服務能夠使用 http 而不是 https。 從 Mobile App 到防火牆/反向 Proxy 仍然需要 SSL。 將下列索引鍵新增到 \<appSettings\> 區段：
 
         <add key="SSL_REQUIRED" value="false"/>
 
@@ -79,11 +80,11 @@ Web 服務 SDK 必須受到 SSL 憑證保護。 自我簽署憑證適用於這�
 
   在啟用期間，由於使用者必須將 Mobile App Web 服務 URL 輸入行動裝置，因此我們建議使用簡短的虛擬目錄名稱。
 
-4. Azure Multi-Factor AuthenticationMobileAppWebServiceSetup 安裝完成之後，瀏覽至 C:\inetpub\wwwroot\PA (或根據虛擬目錄名稱瀏覽至適當目錄) 並編輯 web.config 檔案。 
+4. Azure Multi-Factor AuthenticationMobileAppWebServiceSetup 安裝完成之後，瀏覽至 C:\inetpub\wwwroot\PA (或根據虛擬目錄名稱瀏覽至適當目錄) 並編輯 web.config 檔案。
 
 5. 找出 WEB_SERVICE_SDK_AUTHENTICATION_USERNAME 和 WEB_SERVICE_SDK_AUTHENTICATION_PASSWORD 機碼。 將值設定為隸屬於 PhoneFactor Admins 安全性群組之服務帳戶的使用者名稱和密碼。 如果您之前已安裝 Azure Multi-Factor Authentication 使用者入口網站，這可能是當做該使用者入口網站之身分識別的帳戶。 請務必將使用者名稱和密碼輸入行尾的引號之間 (value=””/>)。 使用合格的使用者名稱 (例如 domain\username 或 machine\username)。  
 
-6. 找出 pfMobile App Web Service_pfwssdk_PfWsSdk 設定。 將值從 *http://localhost:4898/PfWsSdk.asmx* 變更為在 Azure Multi-Factor Authentication Server 上執行之 Web 服務 SDK 的 URL (例如 https://computer1.domain.local/MultiFactorAuthWebServiceSdk/PfWsSdk.asmx)。 
+6. 找出 pfMobile App Web Service_pfwssdk_PfWsSdk 設定。 將值從 *http://localhost:4898/PfWsSdk.asmx* 變更為在 Azure Multi-Factor Authentication Server 上執行之 Web 服務 SDK 的 URL (例如 https://computer1.domain.local/MultiFactorAuthWebServiceSdk/PfWsSdk.asmx)。
 
   由於此連線使用 SSL，因此您必須依伺服器名稱參考 Web 服務 SDK，而不是依 IP 位址。 SSL 憑證會是針對該伺服器名稱發行的，因此所使用的 URL 必須與憑證上的名稱相符。 該伺服器名稱可能未解析為來自網際網路對向伺服器的 IP 位址。 如果發生這種情況，請在該伺服器上的 hosts 檔案中新增項目，以將 Azure Multi-Factor Authentication Server 的名稱與其 IP 位址對應。 完成變更後，儲存 web.config 檔案。
 
