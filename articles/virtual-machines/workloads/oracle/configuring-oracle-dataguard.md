@@ -23,7 +23,7 @@ ms.lasthandoff: 05/16/2017
 
 ---
 
-# <a name="implement-oracle-data-guard-on-azure-linux-vm"></a>在 Azure Linux VM 上實作 Oracle Data Guard
+# <a name="implement-oracle-data-guard-on-azure-linux-vm"></a>在 Azure Linux VM 上實作 Oracle Data Guard 
 
 Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳述使用 Azure CLI 從 Marketplace 資源庫映像部署 Oracle 12c Database。 在 Oracle 資料庫建立好之後，本文件會逐步說明如何在 Azure VM 上安裝和設定 Data Guard。
 

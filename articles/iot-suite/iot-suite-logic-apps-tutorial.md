@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/09/2017
+ms.date: 06/16/2017
 ms.author: corywink
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
 ms.openlocfilehash: 5e3221395082513f842863615d40f7d3ebf2562e
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/10/2017
 
 
@@ -53,7 +54,7 @@ ms.lasthandoff: 03/10/2017
 6. 選取 [要求]。 這個動作會指定以內送 HTTP 要求加上特定 JSON 格式化承載做為觸發程序。
 7. 將下列程式碼貼到 [要求本文 JSON 結構描述] 中：
    
-    ```
+    ```json
     {
       "$schema": "http://json-schema.org/draft-04/schema#",
       "id": "/",
@@ -109,14 +110,14 @@ ms.lasthandoff: 03/10/2017
 
 1. 使用您的 git 用戶端複製最新版的 [azure-iot-remote-monitoring github 儲存機制][lnk-rmgithub]。 例如：
    
-    ```
+    ```cmd
     git clone https://github.com/Azure/azure-iot-remote-monitoring.git
     ```
 2. 在 Visual Studio 中，從儲存機制的本機複本開啟 **RemoteMonitoring.sln**。
 3. 開啟 **Infrastructure\\Repository** 資料夾中的 **ActionRepository.cs** 檔案。
 4. 使用您從邏輯應用程式記下的**此 URL 的 Http Post** 更新 **actionIds** 字典，如下所示︰
    
-    ```
+    ```csharp
     private Dictionary<string,string> actionIds = new Dictionary<string, string>()
     {
         { "Send Message", "<Http Post to this URL>" },
@@ -132,9 +133,9 @@ ms.lasthandoff: 03/10/2017
 2. 若要在本機部署，請遵循[本機部署][lnk-localdeploy]指示。
 3. 若要部署至雲端並更新現有的雲端部署，請遵循[雲端部署][lnk-clouddeploy]指示。 使用原始部署的名稱做為部署名稱。 例如，如果原始部署為 **demologicapp**，請使用下列命令︰
    
-   ``
+   ```cmd
    build.cmd cloud release demologicapp
-   ``
+   ```
    
    當建置指令碼執行時，請務必使用您佈建解決方案時所使用的相同 Azure 帳戶、訂用帳戶、區域和 Active Directory 執行個體。
 

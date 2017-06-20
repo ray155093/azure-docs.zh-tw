@@ -12,7 +12,7 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/30/2017
+ms.date: 06/20/2017
 ms.author: jingwang
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
@@ -357,7 +357,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **在閘道電腦上︰**
 
-1.    執行 **Ksetup** 公用程式來設定 Kerberos KDC 伺服器和領域。
+1.  執行 **Ksetup** 公用程式來設定 Kerberos KDC 伺服器和領域。
 
     電腦必須設定為工作群組的成員，因為 Kerberos 領域與 Windows 網域不同。 若要進行此操作，您可以設定 Kerberos 領域並新增 KDC 伺服器，如下所示。 視需要以您自己的個別領域取代 *REALM.COM*。
 
@@ -366,7 +366,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
     在執行這 2 個命令後**重新啟動**電腦。
 
-2.    使用 **Ksetup** 命令確認組態。 輸出應該會像這樣：
+2.  使用 **Ksetup** 命令確認組態。 輸出應該會像這樣：
 
             C:> Ksetup
             default realm = REALM.COM (external)
@@ -380,8 +380,8 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 ### <a name="kerberos-mutual-trust"></a>選項 2：啟用 Windows 網域和 Kerberos 領域之間的相互信任
 
 #### <a name="requirement"></a>需求：
-*    閘道電腦必須加入 Windows 網域。
-*    您需要可更新網域控制站設定的權限。
+*   閘道電腦必須加入 Windows 網域。
+*   您需要可更新網域控制站設定的權限。
 
 #### <a name="how-to-configure"></a>如何設定︰
 
@@ -390,7 +390,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **在 KDC 伺服器上︰**
 
-1.    編輯 **krb5.conf** 檔案中的 KDC 組態，讓 KDC 信任參考下列組態範本的 Windows 網域。 根據預設，此組態位於 **/etc/krb5.conf**。
+1.  編輯 **krb5.conf** 檔案中的 KDC 組態，讓 KDC 信任參考下列組態範本的 Windows 網域。 根據預設，此組態位於 **/etc/krb5.conf**。
 
             [logging]
              default = FILE:/var/log/krb5libs.log
@@ -428,24 +428,24 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
   設定之後**重新啟動** KDC 服務。
 
-2.    使用下列命令，在 KDC 伺服器中準備名為 **krbtgt/REALM.COM@AD.COM** 的主體︰
+2.  使用下列命令，在 KDC 伺服器中準備名為 **krbtgt/REALM.COM@AD.COM** 的主體︰
 
             Kadmin> addprinc krbtgt/REALM.COM@AD.COM
 
-3.    在 **hadoop.security.auth_to_local** HDFS 服務組態檔中，新增 `RULE:[1:$1@$0](.*@AD.COM)s/@.*//`。
+3.  在 **hadoop.security.auth_to_local** HDFS 服務組態檔中，新增 `RULE:[1:$1@$0](.*@AD.COM)s/@.*//`。
 
 **在網域控制站上：**
 
-1.    執行下列 **Ksetup** 命令來新增領域項目：
+1.  執行下列 **Ksetup** 命令來新增領域項目：
 
             C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
             C:> ksetup /addhosttorealmmap HDFS-service-FQDN REALM.COM
 
-2.    建立 Windows 網域到 Kerberos 領域的信任關係。 [password] 是主體 **krbtgt/REALM.COM@AD.COM** 的密碼。
+2.  建立 Windows 網域到 Kerberos 領域的信任關係。 [password] 是主體 **krbtgt/REALM.COM@AD.COM** 的密碼。
 
             C:> netdom trust REALM.COM /Domain: AD.COM /add /realm /passwordt:[password]
 
-3.    選取 Kerberos 所使用的加密演算法。
+3.  選取 Kerberos 所使用的加密演算法。
 
     1. 移至 [伺服器管理員] > [群組原則管理] > [網域] > [群組原則物件] > [預設或作用中的網域原則]，然後進行編輯。
 
@@ -459,7 +459,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
                 C:> ksetup /SetEncTypeAttr REALM.COM DES-CBC-CRC DES-CBC-MD5 RC4-HMAC-MD5 AES128-CTS-HMAC-SHA1-96 AES256-CTS-HMAC-SHA1-96
 
-4.    建立網域帳戶與 Kerberos 主體之間的對應，以便在 Windows 網域中使用 Kerberos 主體。
+4.  建立網域帳戶與 Kerberos 主體之間的對應，以便在 Windows 網域中使用 Kerberos 主體。
 
     1. 啟動 [系統管理工具] > [Active Directory 使用者和電腦]。
 
