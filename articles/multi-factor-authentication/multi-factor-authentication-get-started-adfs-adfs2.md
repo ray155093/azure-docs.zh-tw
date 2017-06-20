@@ -5,19 +5,20 @@ services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: yossib
 ms.assetid: 96168849-241a-4499-a224-d829913caa7e
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/24/2017
+ms.date: 06/14/2017
 ms.author: kgremban
-ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.reviewer: yossib
+ms.custom: H1Hack27Feb2017, it-pro
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e4ef137656c12cf6495a00450eed308ac6a8a872
 ms.openlocfilehash: ea0853929cd8670b6458a546e7fb1b3a229c09d7
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/28/2017
 
 ---
@@ -37,9 +38,9 @@ ms.lasthandoff: 02/28/2017
    <center>![設定](./media/multi-factor-authentication-get-started-adfs-adfs2/setup1.png)</center>
 
 4. 若要自動偵測使用者名稱、密碼和網域變數，請在 [自動設定表單架構網站] 對話方塊中輸入登入 URL (例如 https://sso.contoso.com/adfs/ls)，然後按一下 [確定]。
-5. 如果所有使用者都已經或將要匯入到「伺服器」，且必須接受雙步驟驗證，請核取 [需要進行 Azure Multi-Factor Authentication 使用者比對] 方塊。 如果有大量使用者尚未匯入伺服器及/或將免除雙步驟驗證，請勿核取此方塊。 
+5. 如果所有使用者都已經或將要匯入到「伺服器」，且必須接受雙步驟驗證，請核取 [需要進行 Azure Multi-Factor Authentication 使用者比對] 方塊。 如果有大量使用者尚未匯入伺服器及/或將免除雙步驟驗證，請勿核取此方塊。
 6. 如果無法自動偵測頁面變數，請按一下 [自動設定表單架構網站] 對話方塊中的 [手動指定...] 按鈕。
-7. 在 [新增表單架構網站] 對話方塊中，於 [提交 URL] 欄位中輸入 AD FS 登入頁面的 URL (例如 https://sso.contoso.com/adfs/ls)，然後輸入應用程式名稱 (選擇性)。 應用程式名稱會出現在 Azure Multi-Factor Authentication 報表中，而且可能顯示在簡訊或行動應用程式驗證訊息內。 
+7. 在 [新增表單架構網站] 對話方塊中，於 [提交 URL] 欄位中輸入 AD FS 登入頁面的 URL (例如 https://sso.contoso.com/adfs/ls)，然後輸入應用程式名稱 (選擇性)。 應用程式名稱會出現在 Azure Multi-Factor Authentication 報表中，而且可能顯示在簡訊或行動應用程式驗證訊息內。
 8. 將要求格式設定為 **POST 或 GET**。
 9. 輸入使用者名稱變數 (ctl00$ContentPlaceHolder1$UsernameTextBox) 和密碼變數 (ctl00$ContentPlaceHolder1$PasswordTextBox)。 如果表單架構登入頁面顯示網域文字方塊，請輸入網域變數。 若要尋找登入頁面內的輸入方塊名稱，請移至網頁瀏覽器中的登入頁面，在頁面上按一下滑鼠右鍵，並選取 [檢視來源]。
 10. 如果所有使用者都已經或將要匯入到「伺服器」，且必須接受雙步驟驗證，請核取 [需要進行 Azure Multi-Factor Authentication 使用者比對] 方塊。 如果有大量使用者尚未匯入伺服器及/或將免除雙步驟驗證，請勿核取此方塊。
@@ -51,7 +52,7 @@ ms.lasthandoff: 02/28/2017
     - 選取如何驗證主要認證
 
 12. 因為 AD FS Proxy 伺服器不可能加入網域，您可以使用 LDAP 連接到您的網域控制站，以便使用者匯入和預先驗證。 在 [進階表單架構網站] 對話方塊中，按一下 [主要驗證] 索引標籤並選取 [LDAP 繫結] 作為預先驗證的驗證類型。
-13. 完成時，按一下 [確定] 以返回 [新增表單架構網站] 對話方塊。 
+13. 完成時，按一下 [確定] 以返回 [新增表單架構網站] 對話方塊。
 14. 按一下 [確定] 關閉對話方塊。
 15. 偵測到或已輸入 URL 和頁面變數後，網站資料就會顯示在表單架構面板中。
 16. 按一下 [原生模組] 索引標籤，然後選取伺服器、AD FS Proxy 執行所在的網站 (例如 [預設網站]) 或 AD FS Proxy 應用程式 (例如 "adfs" 之下的 "ls")，以在所需的層級啟用 IIS 外掛程式。
@@ -93,14 +94,14 @@ ms.lasthandoff: 02/28/2017
 3. 按一下 [新增] 。
 4. 在 [新增基底 URL] 對話方塊的 [基底 URL] 欄位中，輸入執行 HTTP 驗證之 AD FS 網站的 URL (例如 https://sso.domain.com/adfs/ls/auth/integrated)。 然後，輸入應用程式名稱 (選擇性)。 應用程式名稱會出現在 Azure Multi-Factor Authentication 報表中，而且可能顯示在簡訊或行動應用程式驗證訊息內。
 5. 如有需要，請調整 [閒置逾時] 和 [最大工作階段] 時間。
-6. 如果所有使用者都已經或將要匯入到「伺服器」，且必須接受雙步驟驗證，請核取 [需要進行 Azure Multi-Factor Authentication 使用者比對] 方塊。 如果有大量使用者尚未匯入伺服器及/或將免除雙步驟驗證，請勿核取此方塊。 
+6. 如果所有使用者都已經或將要匯入到「伺服器」，且必須接受雙步驟驗證，請核取 [需要進行 Azure Multi-Factor Authentication 使用者比對] 方塊。 如果有大量使用者尚未匯入伺服器及/或將免除雙步驟驗證，請勿核取此方塊。
 7. 如有需要，請核取 Cookie 快取方塊。
 
    <center>![設定](./media/multi-factor-authentication-get-started-adfs-adfs2/noproxy.png)</center>
 
 8. 按一下 [確定] 。
 9. 按一下 [原生模組] 索引標籤，然後選取伺服器、網站 (例如 [預設網站]) 或 AD FS 應用程式 (例如 "adfs" 之下的 "ls")，以在所需的層級啟用 IIS 外掛程式。
-10. 按一下畫面頂端的 [啟用 IIS 驗證] 方塊。 
+10. 按一下畫面頂端的 [啟用 IIS 驗證] 方塊。
 
 Azure Multi-Factor Authentication 現已保護 AD FS。
 

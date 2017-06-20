@@ -5,7 +5,6 @@ services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: yossib
 ms.assetid: f4ba0fb2-2be9-477e-9bea-04c7340c8bce
 ms.service: multi-factor-authentication
 ms.workload: identity
@@ -14,10 +13,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/26/2017
 ms.author: kgremban
-ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.reviewer: yossib
+ms.custom: H1Hack27Feb2017, it-pro
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 20afeb3ba290ddf728d2b52c076c7a57fadc77c6
 ms.openlocfilehash: e696b95c9db86b062440f0c4fd788bf97223317a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/28/2017
 
 ---
@@ -26,7 +27,7 @@ ms.lasthandoff: 02/28/2017
 
 > [!NOTE]
 > MFA 伺服器在做為 RADIUS 伺服器時，僅支援 PAP (密碼驗證通訊協定) 和 MSCHAPv2 (Microsoft 的 Challenge-Handshake 驗證通訊協定) RADIUS 通訊協定。  當 MFA Server 是作為另一部 RADIUS 伺服器的 RADIUS Proxy，而該伺服器支援 EAP (可延伸的驗證通訊協定) 這類其他通訊協定時，則也可以使用該通訊協定。
-> 
+>
 > 在此組態中，單向 SMS 和 OATH 權杖沒有作用，因為 MFA Server 無法使用替代通訊協定來起始成功的 RADIUS 挑戰回應。
 
 ![Radius 驗證](./media/multi-factor-authentication-get-started-server-rdg/radius.png)
@@ -38,13 +39,13 @@ ms.lasthandoff: 02/28/2017
 2. 選取 [啟用 RADIUS 驗證] 核取方塊。
 3. 如果 Azure MFA RADIUS 服務需要在非標準連接埠上接聽 RADIUS 要求，請在 [用戶端] 索引標籤上變更 [驗證連接埠] 和 [帳戶處理連接埠]。
 4. 按一下 [新增] 。
-5. 輸入將向 Azure Multi-Factor Authentication Server 進行驗證之應用裝置/伺服器的 IP 位址、應用程式名稱 (選擇性)，以及 共用密碼。 
+5. 輸入將向 Azure Multi-Factor Authentication Server 進行驗證之應用裝置/伺服器的 IP 位址、應用程式名稱 (選擇性)，以及 共用密碼。
 
   應用程式名稱會出現在 Azure Multi-Factor Authentication 報告中，而可能顯示在簡訊或行動應用程式驗證訊息內。
 
-  共用密碼在 Azure Multi-Factor Authentication Server 和應用裝置/伺服器上必須相同。 
+  共用密碼在 Azure Multi-Factor Authentication Server 和應用裝置/伺服器上必須相同。
 
-6. 如果所有使用者都已經或將要匯入到伺服器中，且必須接受多重要素驗證，請選取 [需要進行 Multi-Factor Authentication 使用者比對] 方塊。 如果有大量使用者尚未匯入伺服器及/或將免除雙步驟驗證，請勿核取此方塊。 
+6. 如果所有使用者都已經或將要匯入到伺服器中，且必須接受多重要素驗證，請選取 [需要進行 Multi-Factor Authentication 使用者比對] 方塊。 如果有大量使用者尚未匯入伺服器及/或將免除雙步驟驗證，請勿核取此方塊。
 7. 如果您想要使用來自行動驗證應用程式的 OATH 密碼作為頻外電話、簡訊或推播通知的遞補驗證，請核取 [啟用遞補 OATH 權杖] 方塊。
 8. 按一下 [確定] 。
 
@@ -54,20 +55,20 @@ ms.lasthandoff: 02/28/2017
 
 1. 按一下 [目標] 索引標籤。
 2. 如果 Azure MFA Server 是安裝在 Active Directory 環境中已加入網域的伺服器上，請選取 [Windows 網域]。
-3. 如果應該向 LDAP 目錄驗證使用者，請選取 [LDAP 繫結]。 
+3. 如果應該向 LDAP 目錄驗證使用者，請選取 [LDAP 繫結]。
 
   若要使用 LDAP 繫結，請按一下 [目錄整合] 圖示，然後編輯 [設定] 索引標籤上的 LDAP 組態，以便讓伺服器能夠繫結至您的目錄。 如需有關設定 LDAP 的指示，請參閱 [LDAP Proxy 組態指南](multi-factor-authentication-get-started-server-ldap.md)。
 
 4. 如果應該向另一部 RADIUS 伺服器驗證使用者，選取 [RADIUS 伺服器]。
 5. 按一下 [新增] 以設定 Azure MFA Server 要作為其 Proxy 來處理 RADIUS 要求的伺服器。
-6. 在 [新增 RADIUS 伺服器] 對話方塊中，輸入 RADIUS 伺服器的 IP 位址和共用密碼。 
+6. 在 [新增 RADIUS 伺服器] 對話方塊中，輸入 RADIUS 伺服器的 IP 位址和共用密碼。
 
   共用密碼在 Azure Multi-Factor Authentication Server 和 RADIUS 伺服器上必須相同。 如果 RADIUS 伺服器使用不同的通訊埠，請變更 [驗證連接埠] 和 [帳戶處理連接埠]。
 
 7. 按一下 [確定] 。
 8. 在另一部 RADIUS 伺服器中新增 Azure MFA Server 作為 RADIUS 用戶端，如此它才能夠處理從 Azure MFA Server 傳送給它的存取要求。 請使用 Azure Multi-Factor Authentication Server 中設定的相同共用密碼。
 
-您可以重複這些步驟來新增更多 RADIUS 伺服器，然後使用 [上移] 和 [下移] 按鈕來設定 Azure MFA Server 應呼叫它們的順序。 
+您可以重複這些步驟來新增更多 RADIUS 伺服器，然後使用 [上移] 和 [下移] 按鈕來設定 Azure MFA Server 應呼叫它們的順序。
 
 如此便完成 Azure Multi-Factor Authentication Server 組態。 「伺服器」正在設定的連接埠上接聽來自設定的用戶端的 RADIUS 存取要求。   
 
@@ -77,5 +78,4 @@ ms.lasthandoff: 02/28/2017
 * 將您的應用裝置/伺服器設定為透過 RADIUS 向 Azure Multi-Factor Authentication Server (將做為 RADIUS 伺服器) 的 IP 位址驗證。
 * 使用先前設定的相同共用密碼。
 * 將 RADIUS 逾時設定為 30 至 60 秒，以保留足夠的時間來驗證使用者的認證、執行兩步驟驗證、接收其回應，然後回應 RADIUS 存取要求。
-
 
