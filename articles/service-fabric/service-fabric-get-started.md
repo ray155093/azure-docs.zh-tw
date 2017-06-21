@@ -15,10 +15,10 @@ ms.workload: NA
 ms.date: 05/26/2017
 ms.author: ryanwi, mikhegn
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 25243603abd2f30adc11640f00b782c8d827796e
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: 3e2dba1af69820382c67b368da5d6f6325b72c50
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -62,13 +62,6 @@ Service Fabric 工具屬於 Visual Studio 2017 中的 Azure 開發和管理工�
 ### <a name="sdk-installation-only"></a>僅限 SDK 安裝
 如果您只需要 SDK，您可以安裝此套件︰
 * [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
-
-> [!WARNING]
-> 客戶使用這些啟動連結或在 Chrome 瀏覽器中使用這些連結時，在安裝期間回報錯誤。 這些錯誤是 Web Platform Installer 中的已知問題，並已特別處理。  請嘗試下列解決方法：
->- 在 Internet Explorer 或 Edge 瀏覽器中啟動上述連結，或
->- 從 [開始] 功能表啟動 Web Platform Installer、搜尋「Service Fabric」及安裝 SDK
-> 
-> 很抱歉造成您的不便。 
 
 目前的版本如下︰
 * Service Fabric SDK 2.6.210

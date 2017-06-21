@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 05/23/2017
 ms.author: anhoh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: e8369e624f0c39bf4871aaac5da694decf4fbe18
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: fef21c512aa8a6af32cec20e2e44cf4e20ac24ae
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -264,7 +264,7 @@ ms.lasthandoff: 05/31/2017
 
 ## <a id="CreateColl"></a>步驟 6：建立集合
 > [!WARNING]
-> **CreateDocumentCollectionAsync** 會建立具有定價含意的新集合。 如需詳細資訊，請造訪 [定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
+> **CreateDocumentCollectionAsync** 會建立具有定價含意的新集合。 如需詳細資訊，請造訪 [定價頁面](https://azure.microsoft.com/pricing/details/cosmos-db/)。
 > 
 > 
 

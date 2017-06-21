@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 05/24/2017
 ms.author: meetb
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: 5fae11119500fd3be3af3e573d45f6cc5880e037
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 99195b43a1577f978562864bac5fa12cdeb95d63
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/17/2017
 
 ---
 # <a name="azure-sql-database-use-python-to-connect-and-query-data"></a>Azure SQL Database︰使用 Python 來連接及查詢資料
@@ -36,7 +36,7 @@ ms.lasthandoff: 05/26/2017
 
 ## <a name="install-the-python-and-database-communication-libraries"></a>安裝 Python 與資料庫通訊程式庫
 
-本節中的步驟假設您已熟悉使用 Python 進行開發且不熟悉 Azure SQL Database。 如果您不熟悉使用 Python 進行開發，請前往[使用 SQL Server 建置應用程式](https://www.microsoft.com/en-us/sql-server/developer-get-started/)並選取 **Python**，然後選取您的作業系統。
+本節中的步驟假設您已熟悉使用 Python 進行開發且不熟悉 Azure SQL Database。 如果您不熟悉使用 Python 進行開發，請前往[使用 SQL Server 建置應用程式](https://www.microsoft.com/sql-server/developer-get-started/)並選取 **Python**，然後選取您的作業系統。
 
 ### <a name="mac-os"></a>**Mac OS**
 開啟您的終端機，並巡覽至您打算用來建立 Python 指令碼的目錄。 輸入下列命令以安裝 **brew**、**Microsoft ODBC Driver for Mac**和 **pyodbc**。 pyodbc 會使用 Linux 上的 Microsoft ODBC Driver 來連線到 SQL Database。
@@ -88,7 +88,7 @@ pip install pyodbc==3.1.1
    
 ## <a name="select-data"></a>選取資料
 
-使用下列程式碼，以藉由使用 [pyodbc.connect]((https://github.com/mkleehammer/pyodbc/wiki)) 函式與 [SELECT](https://docs.microsoft.com/sql/t-sql/queries/select-transact-sql) Transact-SQL 陳述式來依照類別查詢前 20 項產品。 [cursor.execute](https://mkleehammer.github.io/pyodbc/api-cursor.html) 函式會用來擷取對 SQL Database 查詢的結果集。 此函式會接受查詢並傳回結果集，而您可以使用 [cursor.fetchone()](https://mkleehammer.github.io/pyodbc/api-cursor.html) 反覆查詢結果集。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。
+使用下列程式碼，以藉由使用 [pyodbc.connect](https://github.com/mkleehammer/pyodbc/wiki) 函式與 [SELECT](https://docs.microsoft.com/sql/t-sql/queries/select-transact-sql) Transact-SQL 陳述式來依照類別查詢前 20 項產品。 [cursor.execute](https://github.com/mkleehammer/pyodbc/wiki/Cursor) 函式會用來擷取對 SQL Database 查詢的結果集。 此函式會接受查詢並傳回結果集，而您可以使用 **cursor.fetchone()** 反覆查詢結果集。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。
 
 ```Python
 import pyodbc
@@ -107,7 +107,7 @@ while row:
 ```
 
 ## <a name="insert-data"></a>插入資料
-使用下列程式碼，藉由使用 [cursor.execute](https://mkleehammer.github.io/pyodbc/api-cursor.html) 函式與 [INSERT](https://docs.microsoft.com/sql/t-sql/statements/insert-transact-sql) Transact-SQL 陳述式將新產品插入 SalesLT.Product 資料表中。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。
+使用下列程式碼，藉由使用 [cursor.execute](https://github.com/mkleehammer/pyodbc/wiki/Cursor) 函式與 [INSERT](https://docs.microsoft.com/sql/t-sql/statements/insert-transact-sql) Transact-SQL 陳述式將新產品插入 SalesLT.Product 資料表中。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。
 
 ```Python
 import pyodbc
@@ -124,7 +124,7 @@ cnxn.commit()
 ```
 
 ## <a name="update-data"></a>更新資料
-使用下列程式碼，藉由使用 [cursor.execute](https://mkleehammer.github.io/pyodbc/api-cursor.html) 函式與 [UPDATE](https://docs.microsoft.com/sql/t-sql/queries/update-transact-sql) Transact-SQL 陳述式來更新您先前新增的產品。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。
+使用下列程式碼，藉由使用 [cursor.execute](https://github.com/mkleehammer/pyodbc/wiki/Cursor) 函式與 [UPDATE](https://docs.microsoft.com/sql/t-sql/queries/update-transact-sql) Transact-SQL 陳述式來更新您先前新增的產品。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。
 
 ```Python
 import pyodbc
@@ -143,7 +143,7 @@ cnxn.commit()
 ```
 
 ## <a name="delete-data"></a>刪除資料
-使用下列程式碼，藉由使用 [cursor.execute](https://mkleehammer.github.io/pyodbc/api-cursor.html) 函式與 [DELETE](https://docs.microsoft.com/sql/t-sql/statements/delete-transact-sql) Transact-SQL 陳述式來刪除您先前新增的產品。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。
+使用下列程式碼，藉由使用 [cursor.execute](https://github.com/mkleehammer/pyodbc/wiki/Cursor) 函式與 [DELETE](https://docs.microsoft.com/sql/t-sql/statements/delete-transact-sql) Transact-SQL 陳述式來刪除您先前新增的產品。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。
 
 ```Python
 import pyodbc
@@ -164,6 +164,6 @@ cnxn.commit()
 
 - [設計您的第一個 Azure SQL Database](sql-database-design-first-database.md)
 - [Microsoft Python Drivers for SQL Server](https://docs.microsoft.com/sql/connect/python/python-driver-for-sql-server/)
-- [Python 開發人員中心](/develop/python/)
+- [Python 開發人員中心](https://azure.microsoft.com/develop/python/?v=17.23h)
 
 

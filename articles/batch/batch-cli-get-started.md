@@ -16,10 +16,10 @@ ms.date: 05/11/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 079632f304112e1034abbd7385506292f10e128d
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 19014e65920b16d2efbaa475b7c17b2a4e3a8471
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/15/2017
 
 Azure CLI 2.0 是管理 Azure 資源的 Azure 新命令列體驗。 它可以用於 macOS、Linux 和 Windows。 Azure CLI 2.0 已針對從命令列管理 Azure 資源進行最佳化。 您可以使用 Azure CLI 來管理 Azure Batch 帳戶，以及管理集區、作業和工作等資源。 許多使用 Batch API、Azure 入口網站和 Batch PowerShell Cmdlet 執行的工作，也都可以使用 Azure CLI 來撰寫指令碼。
 
-本文概述如何使用搭配 [Azure CLI 2.0 版](https://docs.microsoft.com/cli/azure/overview) 與 Batch。 如需搭配使用 CLI 與 Azure 的概觀，請參閱[開始使用 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli.md)。
+本文概述如何使用搭配 [Azure CLI 2.0 版](https://docs.microsoft.com/cli/azure/overview) 與 Batch。 如需搭配使用 CLI 與 Azure 的概觀，請參閱[開始使用 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)。
 
 Microsoft 建議使用最新版的 Azure CLI (即 2.0 版)。 如需 2.0 版的詳細資訊，請參閱 [Azure Command Line 2.0 現已正式上市](https://azure.microsoft.com/blog/announcing-general-availability-of-vm-storage-and-network-azure-cli-2-0/)。
 

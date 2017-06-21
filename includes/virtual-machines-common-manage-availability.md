@@ -25,9 +25,9 @@
    ![更新網域和容錯網域組態的概念圖](./media/virtual-machines-common-manage-availability/ud-fd-configuration.png)
 
 ## <a name="use-managed-disks-for-vms-in-an-availability-set"></a>將受控磁碟使用於可用性設定組中的 VM
-如果您目前使用 VM 搭配非受控磁碟，強烈建議您[將可用性設定組中的 VM 轉換為受控磁碟](../articles/virtual-machines/windows/convert-unmanaged-to-managed-disks.md#convert-vms-in-an-availability-set-to-managed-disks-in-a-managed-availability-set)。
+如果您目前使用 VM 搭配非受控磁碟，強烈建議您[將可用性設定組中的 VM 轉換為受控磁碟](../articles/virtual-machines/windows/convert-unmanaged-to-managed-disks.md)。
 
-[受控磁碟](../articles/storage/storage-managed-disks-overview.md)可確保可用性設定組中的 VM 磁碟彼此充分隔離，以避免單一失敗點，為可用性設定組提供更高的可靠性。 它的作法是自動將磁碟放在不同的儲存體叢集中。 如果因為硬體或軟體失敗造成儲存體叢集失敗，則只有磁碟在這些戳記上的 VM 執行個體才會失敗。 
+[受控磁碟](../articles/storage/storage-managed-disks-overview.md)可確保可用性設定組中的 VM 磁碟彼此充分隔離，以避免單一失敗點，為可用性設定組提供更高的可靠性。 它的作法是自動將磁碟放在不同的儲存體叢集中。 如果因為硬體或軟體失敗造成儲存體叢集失敗，則只有磁碟在這些戳記上的 VM 執行個體才會失敗。
 
 ![受控磁碟 FD](./media/virtual-machines-common-manage-availability/md-fd.png)
 
@@ -36,7 +36,7 @@
 
 [!INCLUDE [managed-disks-common-fault-domain-region-list](managed-disks-common-fault-domain-region-list.md)]
 
-如果您打算使用 VM 搭配[非受控磁碟](../articles/storage/storage-about-disks-and-vhds-windows.md#types-of-disks)，請針對 VM 的虛擬硬碟 (VHD) 在其中儲存為[分頁 Blob](https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs#about-page-blobs) 的儲存體帳戶，遵循以下的最佳做法。 
+如果您打算使用 VM 搭配[非受控磁碟](../articles/storage/storage-about-disks-and-vhds-windows.md#types-of-disks)，請針對 VM 的虛擬硬碟 (VHD) 在其中儲存為[分頁 Blob](https://docs.microsoft.com/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs#about-page-blobs) 的儲存體帳戶，遵循以下的最佳做法。
 
 1. **將與 VM 相關聯的所有磁碟 (OS 和資料) 保留於相同的儲存體帳戶中**
 2. 將更多VHD 新增至儲存體帳戶之前，**請檢閱儲存體帳戶中非受控磁碟數目的[限制](../articles/storage/storage-scalability-targets.md)**
@@ -62,4 +62,3 @@
 [將負載平衡器與可用性設定組結合]: #combine-a-load-balancer-with-availability-sets
 [Avoid single instance virtual machines in availability sets]: #avoid-single-instance-virtual-machines-in-availability-sets
 [將受控磁碟使用於可用性設定組中的 VM]: #use-managed-disks-for-vms-in-an-availability-set
-

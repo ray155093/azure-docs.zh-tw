@@ -9,12 +9,12 @@ editor: jasonwhowell
 ms.service: postgresql-database
 ms.custom: mvc
 ms.topic: hero-article
-ms.date: 05/10/2017
+ms.date: 06/19/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: c67ada15c11b81021ff5e6f6e5edc5cb530ece98
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 7bbf70786bff83ad3cfae9cb9b893f41736874b5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/20/2017
 
 ---
 
@@ -59,7 +59,7 @@ ms.lasthandoff: 05/10/2017
 7.  在工具列上，按一下 [通知] 以監視部署程序。
  ![適用於 PostgreSQL 的 Azure 資料庫 - 查看通知](./media/quickstart-create-database-portal/3-notifications.png)
    
-  根據預設，**postgres** 資料庫會建立在您的伺服器底下。 [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) 資料庫是要供使用者、公用程式及協力廠商應用程式使用的預設資料庫。 
+  根據預設，**postgres** 資料庫會建立在您的伺服器底下。 [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) 資料庫是要供使用者、公用程式及第三方應用程式使用的預設資料庫。 
 
 ## <a name="configure-a-server-level-firewall-rule"></a>設定伺服器層級防火牆規則
 
@@ -126,7 +126,7 @@ CREATE DATABASE mypgsqldb;
 
 ## <a name="connect-to-postgresql-database-using-pgadmin"></a>使用 pgAdmin 連線到 PostgreSQL 資料庫
 
-使用 GUI 工具 _pgAdmin_ 連線到 Azure PostgreSQL 伺服器
+若要使用 GUI 工具_pgAdmin_ 連線到 Azure PostgreSQL 伺服器：
 1.  在您的用戶端電腦上啟動 _pgAdmin_ 應用程式。 您可以從 http://www.pgadmin.org/ 安裝 _pgAdmin_。
 2.  從 [Quick Links (快速連結)] 功能表選擇 [Add New Server (新增伺服器)]。
 3.  在 [Create - Server (建立 - 伺服器)] 對話方塊的 [General (一般)] 索引標籤上，輸入伺服器的唯一易記名稱，例如 **Azure PostgreSQL Server 伺服器**。
@@ -169,6 +169,6 @@ CREATE DATABASE mypgsqldb;
 3.  確認您要刪除的伺服器名稱，並且會顯示其底下受到影響的資料庫。 在文字方塊中輸入 **mypgserver-20170401**，然後按一下 [刪除]。
 
 ## <a name="next-steps"></a>後續步驟
-- 使用[匯出和匯入](./howto-migrate-using-export-and-import.md)或[傾印和還原](./howto-migrate-using-dump-and-restore.md)來移轉資料庫。
-- 若要使用 Azure CLI 建立適用於 PostgreSQL 的 Azure 資料庫，請參閱[建立 PostgreSQL 伺服器 - CLI](./quickstart-create-server-database-azure-cli.md)。
-- 如需技術概觀，請參閱[關於適用於 PostgreSQL 的 Azure 資料庫服務](./overview.md)。
+> [!div class="nextstepaction"]
+> [使用匯出和匯入來移轉資料庫](./howto-migrate-using-export-and-import.md)
+
