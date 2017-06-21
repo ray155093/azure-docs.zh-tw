@@ -2,7 +2,7 @@
 title: "Azure Active Directory 應用程式和服務主體物件 | Microsoft Docs"
 description: "Azure Active Directory 中的應用程式物件和服務主體物件之間的關聯性討論"
 documentationcenter: dev-center-name
-author: bryanla
+author: dstrockis
 manager: mbaldwin
 services: active-directory
 editor: 
@@ -13,7 +13,7 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 04/28/2016
-ms.author: bryanla;mbaldwin
+ms.author: dastrock
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b

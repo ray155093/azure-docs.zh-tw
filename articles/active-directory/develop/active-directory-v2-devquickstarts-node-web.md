@@ -3,7 +3,7 @@ title: "Azure Active Directory v2.0 Node.js Web 應用程式登入 | Microsoft D
 description: "了解如何建置可使用個人 Microsoft 帳戶及公司或學校帳戶將使用者登入的 Node.js Web 應用程式。"
 services: active-directory
 documentationcenter: nodejs
-author: brandwe
+author: navyasric
 manager: mbaldwin
 editor: 
 ms.assetid: 1b889e72-f5c3-464a-af57-79abf5e2e147
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: javascript
 ms.topic: article
 ms.date: 05/13/2017
-ms.author: brandwe
+ms.author: nacanuma
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633

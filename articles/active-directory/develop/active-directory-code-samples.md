@@ -3,7 +3,7 @@ title: "Azure Active Directory 程式碼範例 | Microsoft Docs"
 description: "依案例的組織的 Azure Active Directory 程式碼範例的索引。"
 services: active-directory
 documentationcenter: dev-center-name
-author: priyamohanram
+author: msmbaldwin
 manager: mbaldwin
 editor: 
 ms.assetid: a242a5ff-7300-40c2-ba83-fb6035707433
