@@ -7,15 +7,15 @@
 ## [選擇部署位置](multi-factor-authentication-get-started.md)
 ## [雲端 MFA](multi-factor-authentication-get-started-cloud.md)
 ## [MFA 內部部署](multi-factor-authentication-get-started-server.md)
-## [O365 使用者的 MFA](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6)
+## [O365 使用者的 MFA](https://support.office.com/article/Plan-for-multi-factor-authentication-for-Office-365-Deployments-043807b2-21db-4d5c-b430-c8a6dee0e6ba)
 ## [安全性最佳作法](multi-factor-authentication-security-best-practices.md)
 
 # 作法
 ## 部署與使用
-### [建立驗證提供者](multi-factor-authentication-get-started-auth-provider.md)
 ### [配置設定](multi-factor-authentication-whats-next.md)
 ### [MFA 中的報告](multi-factor-authentication-manage-reports.md)
 ### [使用現有的網路原則伺服器](multi-factor-authentication-nps-extension.md)
+### [建立驗證提供者](multi-factor-authentication-get-started-auth-provider.md)
 ### Azure MFA 內部部署
 #### [安裝使用者入口網站](multi-factor-authentication-get-started-portal.md)
 #### [進階 VPN 設定](multi-factor-authentication-advanced-vpn-configurations.md)

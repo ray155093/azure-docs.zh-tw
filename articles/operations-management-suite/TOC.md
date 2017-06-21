@@ -3,8 +3,10 @@
 ## [OMS 架構](operations-management-suite-architecture.md)
 
 # 開始使用
-## 逐步解說
-### [服務對應](operations-management-suite-walkthrough-servicemap.md)
+## [Log Analytics](../log-analytics/log-analytics-get-started.md)
+## [自動化](../automation/automation-offering-get-started.md)
+## [備份](../backup/backup-introduction-to-azure-backup.md)
+## [站台復原](../site-recovery/site-recovery-overview.md)
 
 
 # 作法
@@ -35,13 +37,15 @@
 #### [AD 評估](../log-analytics/log-analytics-ad-assessment.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [AD 複寫狀態](../log-analytics/log-analytics-ad-replication-status.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [警示管理](../log-analytics/log-analytics-solution-alert-management.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
-#### [服務對應](operations-management-suite-service-map.md)
-##### [設定](operations-management-suite-service-map-configure.md)
 #### [使用 Azure 網路分析](../log-analytics/log-analytics-azure-networking-analytics.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [容器](../log-analytics/log-analytics-containers.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [金鑰保存庫分析](../log-analytics/log-analytics-azure-key-vault.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [網路效能監視器](../log-analytics/log-analytics-network-performance-monitor.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [Service Fabric 分析](../log-analytics/log-analytics-service-fabric.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
+#### 服務對應
+##### [逐步介紹](operations-management-suite-walkthrough-servicemap.md)
+##### [使用](operations-management-suite-service-map.md)
+##### [設定](operations-management-suite-service-map-configure.md)
 #### [SQL 評估](../log-analytics/log-analytics-sql-assessment.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [Surface Hub](../log-analytics/log-analytics-surface-hubs.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [升級分析](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics?f=255&MSPPError=-2147217396)
