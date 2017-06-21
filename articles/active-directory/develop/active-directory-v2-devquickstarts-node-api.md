@@ -3,7 +3,7 @@ title: "使用 Node.js 保護 Azure Active Directory v2.0 Web API 安全 | Micro
 description: "了解如何建置 .Node.js Web API 應用程式，以接受來自個人 Microsoft 帳戶及公司或學校帳戶的權杖。"
 services: active-directory
 documentationcenter: nodejs
-author: brandwe
+author: navyasric
 manager: mbaldwin
 editor: 
 ms.assetid: 0b572fc1-2aaf-4cb6-82de-63010fb1941d
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: javascript
 ms.topic: article
 ms.date: 05/13/2017
-ms.author: brandwe
+ms.author: nacanuma
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: de674af369080ad7eb608608685e293f2326c8e6

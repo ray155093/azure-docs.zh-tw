@@ -47,7 +47,7 @@ ms.lasthandoff: 05/31/2017
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
 3. 在您資料庫的 [概觀] 頁面上，檢閱如下圖所示的完整伺服器名稱。 您可以將滑鼠移至伺服器名稱上，以帶出 [按一下以複製] 選項。
 
-   ![連線資訊](./media/sql-database-connect-query-ssms/connection-information.png) 
+   ![連線資訊](./media/sql-database-get-started-portal/server-name.png) 
 
 4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。 
 

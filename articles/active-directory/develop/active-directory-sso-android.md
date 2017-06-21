@@ -3,7 +3,7 @@ title: "如何使用 ADAL 在 Android 上啟用跨應用程式的 SSO | Microsof
 description: "如何使用 ADAL SDK 的功能來啟用跨應用程式的單一登入。 "
 services: active-directory
 documentationcenter: 
-author: brandwe
+author: danieldobalian
 manager: mbaldwin
 editor: 
 ms.assetid: 40710225-05ab-40a3-9aec-8b4e96b6b5e7
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: android
 ms.devlang: java
 ms.topic: article
 ms.date: 04/07/2017
-ms.author: brandwe
+ms.author: dadobali
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49

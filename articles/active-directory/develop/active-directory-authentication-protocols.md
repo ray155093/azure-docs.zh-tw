@@ -2,7 +2,7 @@
 title: "Azure Active Directory 驗證通訊協定 | Microsoft Docs"
 description: "Azure Active Directory (AD) 所支援驗證通訊協定的概觀"
 documentationcenter: dev-center-name
-author: bryanla
+author: priyamohanram
 services: active-directory
 manager: mbaldwin
 editor: 

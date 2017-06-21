@@ -3,7 +3,7 @@ title: "整合應用程式與 Azure Active Directory | Microsoft Docs"
 description: "如何在 Azure Active Directory (Azure AD) 中新增、更新或移除應用程式的詳細資料。"
 services: active-directory
 documentationcenter: 
-author: bryanla
+author: lnalepa
 manager: mbaldwin
 editor: mbaldwin
 ms.assetid: ae637be5-0b71-4b1e-b1fe-b83df3eb4845
@@ -13,7 +13,7 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/08/2017
-ms.author: mbaldwin;bryanla
+ms.author: lenalepa
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68

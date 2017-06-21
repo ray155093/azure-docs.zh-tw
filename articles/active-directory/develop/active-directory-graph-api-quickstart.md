@@ -3,7 +3,7 @@ title: "Azure AD Graph API 快速入門 | Microsoft Aure"
 description: "Azure Active Directory Graph API 會透過 OData REST API 端點，以程式設計方式存取 Azure AD。 應用程式可以使用 Graph API，來執行有關目錄資料和物件的建立、讀取、更新及刪除 (CRUD) 作業。"
 services: active-directory
 documentationcenter: n/a
-author: PatAltimore
+author: viv-liu
 manager: mbaldwin
 editor: 
 tags: 
@@ -14,7 +14,7 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 04/28/2017
-ms.author: patricka
+ms.author: viviali
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f

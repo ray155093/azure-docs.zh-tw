@@ -3,7 +3,7 @@ title: "了解 Azure AD 中的 OAuth 2.0 授權碼流程 | Microsoft Docs"
 description: "本文說明如何使用 HTTP 訊息來使用 Azure Active Directory 和 OAuth 2.0 授權存取租用戶中的 Web 應用程式和 Web API。"
 services: active-directory
 documentationcenter: .net
-author: priyamohanram
+author: dstrockis
 manager: mbaldwin
 editor: 
 ms.assetid: de3412cb-5fde-4eca-903a-4e9c74db68f2
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
-ms.author: priyamo
+ms.author: dastrock
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 06d8cb3ce2fe4419a79a63b76d67cc476d205e08

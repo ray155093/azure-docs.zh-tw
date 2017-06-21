@@ -3,7 +3,7 @@ title: "Azure AD 同盟中繼資料 | Microsoft Docs"
 description: "本文說明 Azure Active Directory 針對接受 Azure Active Directory 權杖之服務所發佈的同盟中繼資料文件。"
 services: active-directory
 documentationcenter: .net
-author: priyamohanram
+author: dstrockis
 manager: mbaldwin
 editor: 
 ms.assetid: c2d5f80b-aa74-452c-955b-d8eb3ed62652
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
-ms.author: priyamo
+ms.author: dastrock
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e

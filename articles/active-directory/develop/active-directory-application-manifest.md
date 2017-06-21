@@ -3,7 +3,7 @@ title: "了解 Azure Active Directory 應用程式資訊清單 | Microsoft Docs"
 description: "詳細說明 Azure Active Directory 應用程式資訊清單；此資訊清單代表應用程式在 Azure AD 租用戶中的身分識別組態，可用來協助進行 OAuth 授權、同意體驗等等。"
 services: active-directory
 documentationcenter: 
-author: bryanla
+author: sureshja
 manager: mbaldwin
 editor: 
 ms.assetid: 4804f3d4-0ff1-4280-b663-f8f10d54d184
@@ -13,7 +13,7 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/08/2017
-ms.author: dkershaw;bryanla
+ms.author: sureshja
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 7d6525f4614c6301f0ddb621b0483da70842a71b

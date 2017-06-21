@@ -3,7 +3,7 @@ title: "了解 Azure AD 中的 OpenID Connect 驗證碼流程 | Microsoft Docs"
 description: "本文章說明如何使用 HTTP 訊息來使用 Azure Active Directory 和 OpenID Connect 授權存取您的租用戶中的 Web 應用程式和 Web API。"
 services: active-directory
 documentationcenter: .net
-author: priyamohanram
+author: dstrockis
 manager: mbaldwin
 editor: 
 ms.assetid: 29142f7e-d862-4076-9a1a-ecae5bcd9d9b
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
-ms.author: priyamo
+ms.author: dastrock
 ms.custom: aaddev
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 3d5ad974c01e0ee3954da4f990da87338b2d1756
