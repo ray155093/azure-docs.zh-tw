@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 05/22/2017
 ms.author: cherylmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
-ms.openlocfilehash: 0b82a0c4e140d2084d7570f8c7eab1f809f15d9d
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: a05c878f876eadc5160ef9765f764595cade76a9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/23/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -28,10 +28,10 @@ ms.lasthandoff: 05/23/2017
 本文說明如何建立虛擬網路之間的VPN 閘道連線。 虛擬網路可位於相同或不同的區域，以及來自相同或不同的訂用帳戶。 本文中的步驟適用於 Resource Manager 部署模型並使用 Azure CLI。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
 
 > [!div class="op_single_selector"]
-> * [Resource Manager - Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
-> * [Resource Manager - PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
-> * [Resource Manager - Azure CLI](vpn-gateway-howto-vnet-vnet-cli.md)
-> * [傳統 - Azure 入口網站](vpn-gateway-howto-vnet-vnet-portal-classic.md)
+> * [Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
+> * [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
+> * [Azure CLI](vpn-gateway-howto-vnet-vnet-cli.md)
+> * [Azure 入口網站 (傳統)](vpn-gateway-howto-vnet-vnet-portal-classic.md)
 > * [連線不同的部署模型 - Azure 入口網站](vpn-gateway-connect-different-deployment-models-portal.md)
 > * [連線不同的部署模型 - PowerShell](vpn-gateway-connect-different-deployment-models-powershell.md)
 >
@@ -146,7 +146,7 @@ ms.lasthandoff: 05/23/2017
 7. 建立 TestVNet1 的虛擬網路閘道。 VNet 對 VNet 組態需要 RouteBased VpnType。 如果您使用 '--no-wait' 參數執行此命令，您不會看到任何意見反應或輸出。 '--no-wait' 參數允許在背景中建立閘道。 它並不表示 VPN 閘道立即完成建立。 視您使用的閘道 SKU 而定，建立閘道通常可能需要 45 分鐘或更久的時間。
 
   ```azurecli
-  az network vnet-gateway create -n VNet1GW -l eastus --public-ip-address VNet1GWIP -g TestRG1 --vnet TestVNet1 --gateway-type Vpn --sku Standard --vpn-type RouteBased --no-wait
+  az network vnet-gateway create -n VNet1GW -l eastus --public-ip-address VNet1GWIP -g TestRG1 --vnet TestVNet1 --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --no-wait
   ```
 
 ### <a name="TestVNet4"></a>步驟 3 - 建立及設定 TestVNet4
@@ -181,7 +181,7 @@ ms.lasthandoff: 05/23/2017
 6. 建立 TestVNet4 虛擬網路閘道。
 
   ```azurecli
-  az network vnet-gateway create -n VNet4GW -l westus --public-ip-address VNet4GWIP -g TestRG4 --vnet TestVNet4 --gateway-type Vpn --sku Standard --vpn-type RouteBased --no-wait
+  az network vnet-gateway create -n VNet4GW -l westus --public-ip-address VNet4GWIP -g TestRG4 --vnet TestVNet4 --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --no-wait
   ```
 
 ### <a name="step-4---create-the-connections"></a>步驟 4 - 建立連線
@@ -318,10 +318,10 @@ ms.lasthandoff: 05/23/2017
 6. 建立 TestVNet5 閘道
 
   ```azurecli
-  az network vnet-gateway create -n VNet5GW -l japaneast --public-ip-address VNet5GWIP -g TestRG5 --vnet TestVNet5 --gateway-type Vpn --sku Standard --vpn-type RouteBased --no-wait
+  az network vnet-gateway create -n VNet5GW -l japaneast --public-ip-address VNet5GWIP -g TestRG5 --vnet TestVNet5 --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --no-wait
   ```
 
-### <a name="step-6---create-the-connections"></a>步驟 6 - 建立連線
+### <a name="step-8---create-the-connections"></a>步驟 8 - 建立連線
 
 我們會將此步驟分成標示為 **[訂用帳戶 1]** 和 **[訂用帳戶 5]** 的兩個 CLI 工作階段，因為閘道位於不同的訂用帳戶。 若要使用 'az account list --all' 來切換訂用帳戶，以列出您的帳戶可用的訂用帳戶，則使用 'az account set --subscription <subscriptionID>' 來切換至您想要使用的訂用帳戶。
 
@@ -371,3 +371,4 @@ ms.lasthandoff: 05/23/2017
 
 * 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器文件](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。
 * 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
+

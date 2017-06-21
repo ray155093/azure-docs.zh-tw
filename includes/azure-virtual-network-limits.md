@@ -43,5 +43,5 @@
 | 每個 VPN 閘道的點對站根憑證 |20 |20 |
 | 每個虛擬網路的次要 IP 組態 |1000 |連絡支援人員 |
 
-如果您需要增加預設值以外的限制，請[連絡支援服務](../articles/azure-supportability/how-to-create-azure-support-request.md)。
+如果您需要增加預設值以外的限制，請[連絡支援服務](../articles/azure-supportability/resource-manager-core-quotas-request.md )。
 

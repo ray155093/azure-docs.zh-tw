@@ -48,6 +48,7 @@
 #### [資料類型](sql-data-warehouse-tables-data-types.md)
 #### [分散式資料表](sql-data-warehouse-tables-distribute.md)
 #### [索引數](sql-data-warehouse-tables-index.md)
+#### [身分識別](sql-data-warehouse-tables-identity.md)
 #### [分割數](sql-data-warehouse-tables-partition.md)
 #### [統計資料](sql-data-warehouse-tables-statistics.md)
 #### [暫存](sql-data-warehouse-tables-temporary.md)

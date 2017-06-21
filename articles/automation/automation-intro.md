@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/10/2016
 ms.author: magoedte;bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 15456a887aab29ac6c4ee74d15b8b8ef8d3047d3
-ms.openlocfilehash: 4e7488f954ce50298aba0da83ae07f7a0de6a73d
-ms.lasthandoff: 01/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: e37e79f3990d920a656330c4f4c5cf7748183441
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -51,7 +52,7 @@ Azure 自動化中的 Runbook 是以 Windows PowerShell 或 Windows PowerShell �
 [Azure Automation DSC](automation-dsc-overview.md) 是針對 PowerShell DSC 的雲端架構解決方案，可提供企業環境所需的服務。  您可以在 Azure 自動化中管理 DSC 資源，並將組態套用至虛擬或實體機器，以便它們從 Azure 雲端中的 DSC 提取伺服器擷取組態。  它也提供報告服務，以通知您重要的事件，例如當節點偏離其指派的組態時以及已套用新的組態時。 
 
 ## <a name="creating-your-own-dsc-configurations-with-azure-automation"></a>使用 Azure 自動化建立自己的 DSC 組態
-[DSC 組態](automation-dsc-overview.md#azure-automation-dsc-terms) 可指定節點的預期狀態。  多個節點可以套用相同的組態，以確保它們全都維持相同的狀態。  您可以在本機電腦上使用任何文字編輯器來建立組態，然後將它匯入至 Azure 自動化加以編譯並套用至節點。
+[DSC 組態](automation-dsc-overview.md) 可指定節點的預期狀態。  多個節點可以套用相同的組態，以確保它們全都維持相同的狀態。  您可以在本機電腦上使用任何文字編輯器來建立組態，然後將它匯入至 Azure 自動化加以編譯並套用至節點。
 
 ## <a name="getting-modules-and-configurations"></a>取得模組和組態
 您可以從 [PowerShell 資源庫](automation-runbook-gallery.md#modules-in-powershell-gallery)取得 [PowerShell 模組](http://www.powershellgallery.com/) (其中包含您可以在 Runbook 中使用的 Cmdlet) 和 DSC 設定。 您可以從 Azure 入口網站啟動這個資源庫，並且將模組直接匯入 Azure 自動化，或者您可以手動下載及匯入。 您無法直接從 Azure 入口網站安裝模組，但是您可以下載及安裝它們，就像任何其他模組一樣。 

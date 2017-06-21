@@ -155,7 +155,7 @@
 #### [重新定型現有的 Web 服務](machine-learning-retrain-existing-resource-manager-based-web-service.md)
 #### [疑難排解](machine-learning-troubleshooting-retraining-models.md)
 ### 使用模型
-#### [概觀](machine-learning-connect-to-azure-machine-learning-web-service.md)
+#### [概觀](machine-learning-consume-web-services.md)
 #### [使用 Excel](machine-learning-consuming-from-excel.md)
 #### [使用 Excel 增益集](machine-learning-excel-add-in-for-web-services.md)
 #### [使用 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)

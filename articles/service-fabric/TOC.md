@@ -200,13 +200,13 @@
 #### [刪除](service-fabric-cluster-delete.md)
 
 ### 獨立叢集
-#### [獨立套件的內容](service-fabric-cluster-standalone-package-contents.md)
 #### [規劃並準備部署](service-fabric-cluster-standalone-deployment-preparation.md)
 #### 建立
 ##### [建立內部部署](service-fabric-cluster-creation-for-windows-server.md)
 ##### [在 Azure 虛擬機器上建立](service-fabric-cluster-creation-with-windows-azure-vms.md)
 ##### [使用憑證保護安全](service-fabric-windows-cluster-x509-security.md)  
 ##### [使用 Windows 安全性保護安全](service-fabric-windows-cluster-windows-security.md)
+##### [獨立套件的內容](service-fabric-cluster-standalone-package-contents.md)
 #### [調整](service-fabric-cluster-windows-server-add-remove-nodes.md)
 #### [設定存取控制](service-fabric-cluster-security-roles.md)
 #### [設定](service-fabric-cluster-manifest.md)
@@ -232,8 +232,6 @@
 #### [平衡叢集](service-fabric-cluster-resource-manager-balancing.md)
 #### [節流](service-fabric-cluster-resource-manager-advanced-throttling.md)
 #### [服務動作](service-fabric-cluster-resource-manager-movement-cost.md)
-
-### [連線到安全的叢集](service-fabric-connect-to-secure-cluster.md)
 
 ## 監視與診斷
 ### [監視與診斷應用程式](service-fabric-diagnostics-overview.md)
@@ -261,8 +259,9 @@
 # 參考
 ## [PowerShell (Azure)](/powershell/module/azurerm.servicefabric/)
 ## [PowerShell](/powershell/azure/overview?view=azureservicefabricps)
-## [Java API](/java/api/)
-## [.NET](/dotnet/api/)
+## [Azure CLI](/cli/azure/sf)
+## [Java API](/java/api/overview/azure/servicefabric)
+## [.NET](/dotnet/api/overview/azure/servicefabric?view=azure-dotnet)
 ## [REST](/rest/api/servicefabric)
 
 # 資源

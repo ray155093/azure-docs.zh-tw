@@ -3,8 +3,8 @@ title: "使用 REST API 開始使用 Data Lake Analytics | Microsoft Docs"
 description: "使用 WebHDFS REST API 在 Data Lake Analytics 上執行作業"
 services: data-lake-analytics
 documentationcenter: 
-author: mumian
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: 5e133d92-baaa-44c9-890c-ab2d85c91122
 ms.service: data-lake-analytics
@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 02/03/2017
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: 2fea3686b1484406d31c5447c7d3d7e2451b827e
-ms.openlocfilehash: 1898b3d6aa1a9ccbc9f4427cf994c02f9fa35abd
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 332d7af2539eea8890745005104ac5b0921c2b7f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -339,17 +341,11 @@ ms.openlocfilehash: 1898b3d6aa1a9ccbc9f4427cf994c02f9fa35abd
     }
 
 ## <a name="see-also"></a>另請參閱
-* 若要了解更複雜的查詢，請參閱 [使用 Azure 資料湖分析來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
-* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-* 若要了解 U-SQL，請參閱 [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
+* 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
+* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
+* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 * 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
-* 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
+* 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 * 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
-* 若要記錄診斷資訊，請參閱 [為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

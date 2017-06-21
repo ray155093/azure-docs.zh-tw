@@ -40,12 +40,7 @@
 #### [PowerShell (傳統)](virtual-network-create-udr-classic-ps.md)
 #### [CLI (傳統)](virtual-network-create-udr-classic-cli.md)
 
-### 虛擬網路對等互連
-#### [入口網站](virtual-networks-create-vnetpeering-arm-portal.md)
-#### [PowerShell](virtual-networks-create-vnetpeering-arm-ps.md)
-#### [範本](virtual-networks-create-vnetpeering-arm-template-click.md)
-
-### [公用 IP 位址](virtual-network-public-ip-address.md)
+### [虛擬網路對等互連](virtual-network-create-peering.md)
 
 ### 虛擬機器
 #### 建立具有靜態公用 IP 位址的 VM
@@ -118,6 +113,7 @@
 #### [新增、變更或移除 IP 位址](virtual-network-network-interface-addresses.md)
 ### 虛擬機器
 #### [將 VM 移至不同的子網路](virtual-networks-move-vm-role-to-subnet.md)
+### [公用 IP 位址](virtual-network-public-ip-address.md)
 
 ## 疑難排解
 ### 網路安全性群組

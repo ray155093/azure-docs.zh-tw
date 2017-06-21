@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 12/25/2016
 ms.author: syamk
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: a685c74ff6c36a5ca8320f3c69fc4b60c0236a6b
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 6623265ea98370db74fd9e2061d1128c44e9cd0e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -567,7 +567,7 @@ ms.lasthandoff: 05/31/2017
 ## <a name="_Toc395637775"></a>接續步驟
 恭喜！ 您剛剛使用 Azure Cosmos DB 建置您的第一個 ASP.NET MVC Web 應用程式，並將它發佈至 Azure 網站。 您可以從 [GitHub][GitHub]下載或複製完整應用程式 (包括不包含在本教學課程中的詳細資料和刪除功能) 的原始程式碼。 所以如果您想要將程式碼加入您的應用程式，請抓取程式碼，並將它加入這個應用程式。
 
-若要將其他功能新增至您的應用程式，請檢閱 [DocumentDB .NET 程式庫](https://msdn.microsoft.com/library/azure/dn948556.aspx)中提供的 API，並歡迎您貢獻到 [GitHub][GitHub] 上的 DocumentDB .NET 程式庫。 
+若要將其他功能新增至您的應用程式，請檢閱 [DocumentDB .NET 程式庫](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)中提供的 API，並歡迎您貢獻到 [GitHub][GitHub] 上的 DocumentDB .NET 程式庫。 
 
 [\*]: https://microsoft.sharepoint.com/teams/DocDB/Shared%20Documents/Documentation/Docs.LatestVersions/PicExportError
 [Visual Studio Express]: http://www.visualstudio.com/products/visual-studio-express-vs.aspx
