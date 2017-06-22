@@ -1,8 +1,6 @@
 --- 
 layout: HubPage
 hide_bc: true
-experimental: true
-experiment_id: 81ba5f65-59fb-4d
 title: "Microsoft Azure 文件"
 description: "了解如何使用 Microsoft Azure 雲端服務建置和管理功能強大的應用程式。 取得文件、程式碼範例、教學課程等資訊。"
 ms.translationtype: Human Translation
