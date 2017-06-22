@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 中建置 Java 和 MySQL Web 應用程式 | Microsoft Docs"
+title: "在 Azure 中建置 Java 和 MySQL Web 應用程式"
 description: "了解如何取得連線至在 Azure Appservice 中運作的 Azure MySQL 資料庫服務之 Java 應用程式。"
 services: app-service\web
 documentationcenter: Java
@@ -12,58 +12,66 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: article
-ms.date: 05/06/2017
+ms.date: 05/22/2017
 ms.author: bbenz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: fab7759154b38b8043a17c933f896d7af9514c85
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: e3a8bc6b11cccf7f6b277e800dbcedcd90e87006
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/03/2017
 
 ---
+
 # <a name="build-a-java-and-mysql-web-app-in-azure"></a>在 Azure 中建置 Java 和 MySQL Web 應用程式
-本教學課程示範如何在 Azure 中建立連線至 MySQL 資料庫的 Java Web 應用程式。 第一個步驟是將應用程式複製到本機電腦，並讓它可使用本機 MySQL 執行個體。
-下一個步驟是設定適用於 Java 應用程式和 MySQL 的 Azure 服務，然後將應用程式部署至 Azure Appservice。
-當您完成時，您會有一份待辦事項清單，說明要在 Azure 上執行並連線至 Azure MySQL 資料庫服務的應用程式。
+
+本教學課程示範如何在 Azure 中建立 Java Web 應用程式，並將它連線到 MySQL 資料庫。 當您完成後，在 [Azure App Service Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 中執行的 [Azure Database for MySQL](https://docs.microsoft.com/azure/mysql/overview) 會有一個儲存資料的 [Spring Boot](https://projects.spring.io/spring-boot/)應用程式。
 
 ![在 Azure Appservice 中執行的 Java 應用程式](./media/app-service-web-tutorial-java-mysql/appservice-web-app.png)
 
-## <a name="before-you-begin"></a>開始之前
+在本教學課程中，您將了解如何：
 
-執行此範例之前，請在本機安裝下列必要條件︰
+> [!div class="checklist"]
+> * 在 Azure 中建立 MySQL 資料庫
+> * 將範例應用程式連線至資料庫
+> * 將應用程式部署至 Azure
+> * 更新和重新部署應用程式
+> * 來自 Azure 的串流診斷記錄
+> * 在 Azure 入口網站中監視應用程式
 
-1. [下載並安裝 git](https://git-scm.com/)
-1. [下載並安裝 Java 7 或更新版本](http://Java.net/downloads.Java)
-1. [下載並安裝 Maven](https://maven.apache.org/download.cgi)
+
+## <a name="prerequisites"></a>必要條件
+
+1. [下載並安裝 Git](https://git-scm.com/)
+1. [下載並安裝 Java 7 JDK 或更高版本](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 1. [下載、安裝並啟動 MySQL](https://dev.mysql.com/doc/refman/5.7/en/installing.html) 
-1. [下載並安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
+1. [安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
+
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="prepare-local-mysql-database"></a>準備本機 MySQL 資料庫
+## <a name="prepare-local-mysql"></a>準備本機 MySQL 
 
-在此步驟中，您可以在本機 MySQL 伺服器中建立資料庫，供您在本教學課程中使用。
+在此步驟中，您可以在本機 MySQL 伺服器中建立資料庫，供您在本機電腦上測試應用程式。
 
 ### <a name="connect-to-mysql-server"></a>連線至 MySQL 伺服器
+
 從命令列連線至您的本機 MySQL 伺服器︰
 
 ```bash
 mysql -u root -p
 ```
 
-如果您的命令執行成功，表示您的 MySQL 伺服器已經在執行中。 如果沒有，請遵循 [MySQL 後續安裝步驟](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html)，確定您已啟動本機 MySQL 伺服器。
-
 如果系統提示您輸入密碼，請輸入 `root` 帳戶的密碼。 如果您不記得根帳戶密碼，請參閱 [MySQL︰如何重設根密碼](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)。
 
+如果您的命令執行成功，表示您的 MySQL 伺服器已經在執行中。 如果沒有，請遵循 [MySQL 後續安裝步驟](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html)，確定您已啟動本機 MySQL 伺服器。
 
-### <a name="create-a-database-and-table"></a>建立資料庫和資料表
+### <a name="create-a-database"></a>建立資料庫 
 
 在 `mysql` 提示中，建立待辦事項的資料庫和資料表。
 
 ```sql
-CREATE DATABASE todoItemDb;
-USE todoItemDb;
-CREATE TABLE ITEMS ( id varchar(255), name varchar(255), category varchar(255), complete bool);
+CREATE DATABASE tododb;
 ```
 
 輸入 `quit` 即可結束您的伺服器連線。
@@ -72,148 +80,134 @@ CREATE TABLE ITEMS ( id varchar(255), name varchar(255), category varchar(255), 
 quit
 ```
 
-## <a name="create-local-java-application"></a>建立本機的 Java 應用程式
-在此步驟中，您要複製 GitHub 存放庫、設定 MySQL 資料庫連線，並在本機執行應用程式。 
+## <a name="create-and-run-the-sample-app"></a>建立和執行範例應用程式 
+
+在此步驟中，您可以複製範例 Spring Boot 應用程式、將它設定為使用本機 MySQL 資料庫，並在您的電腦上執行。 
 
 ### <a name="clone-the-sample"></a>複製範例
 
-從命令提示字元中，瀏覽到工作目錄。  
-
-執行下列命令來複製範例存放庫。 
+從命令提示字元中，瀏覽到工作目錄並複製範例存放庫。 
 
 ```bash
-git clone https://github.com/bbenz/azure-mysql-java-todo-app
+git clone https://github.com/azure-samples/mysql-spring-boot-todo
 ```
 
-接下來，請遵循存放庫讀我檔案中的步驟來設定 lombok.jar。
+### <a name="configure-the-app-to-use-the-mysql-database"></a>將應用程式設定為使用 MySQL 資料庫
 
-
-### <a name="configure-mysql-connection"></a>設定 MySQL 連線
-
-此應用程式會使用 Maven Jetty 外掛程式，在本機執行應用程式，並連線至 MySQL 資料庫。
-若要啟用本機 MySQL 執行個體的存取權，請在 WebContent/WEB-INF/jetty-env.xml 中設定您的本機 MySQL 使用者識別碼和密碼。
-
-使用本機 MySQL 執行個體的使用者識別碼和密碼，來更新使用者和密碼的值︰
+更新 `spring.datasource.password` 以及 *spring-boot-mysql-todo/src/main/resources/application.properties* 中的值，以用來開啟 MySQL 命令提示字元相同的根密碼加以取代：
 
 ```
-<Configure id='wac' class="org.eclipse.jetty.webapp.WebAppContext">
-  <New id="itemdb" class="org.eclipse.jetty.plus.jndi.Resource">
-     <Arg></Arg>
-     <Arg>jdbc/todoItemDb</Arg>
-     <Arg>
-        <New class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
-           <Set name="Url">jdbc:mysql://localhost:3306/itemdb</Set>
-           <Set name="User">root</Set>
-           <Set name="Password"></Set>
-        </New>
-     </Arg>
-    </New>
-</Configure>
-
+spring.datasource.password=mysqlpass
 ```
 
-&gt; [!NOTE]
-&gt; 如需 Jetty 如何使用 `jetty-env.xml` 檔案的相關資訊，請參閱 [Jetty XML 參考](http://www.eclipse.org/jetty/documentation/9.4.x/jetty-env-xml.html)。
-&gt; &gt;
+### <a name="build-and-run-the-sample"></a>建置並執行範例
 
-### <a name="run-the-sample"></a>執行範例
-
-使用 Maven 命令來執行範例︰ 
+使用存放庫中包含的 Maven 包裝函式建置並執行範例：
 
 ```bash
-mvn package jetty:run
+cd spring-boot-mysql-todo
+mvnw package spring-boot:run
 ```
 
-接下來，在瀏覽器中，瀏覽至 `http://localhost:8080`。 在頁面中新增幾項工作。
+開啟瀏覽器至 http://localhost:8080，查看範例如何運作。 在清單中新增工作時，請使用 MySQL 命令提示字元中的下列 SQL 命令，以檢視 MySQL 中儲存的資料。
 
-若要隨時停止應用程式，請在命令提示字元中輸入 `Ctrl`+`C`。 
+```SQL
+use testdb;
+select * from todo_item;
+```
 
-## <a name="create-a-mysql-database-in-azure"></a>在 Azure 中建立 MySQL 資料庫
+按下命令提示字元中的 `Ctrl`+`C` 以停止應用程式。 
 
-在此步驟中，您會在[適用於 MySQL 的 Azure 資料庫 (預覽)](/azure/mysql) 中建立 MySQL 資料庫。 稍後，您要將 Java 應用程式設定為連線至此資料庫。
+## <a name="create-an-azure-mysql-database"></a>建立 Azure MySQL 資料庫
 
-### <a name="log-in-to-azure"></a>登入 Azure
+在此步驟中，您會使用 [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli) 建立 [Azure Database for MySQL](../mysql/quickstart-create-mysql-server-database-using-azure-cli.md) 執行個體。 也會設定範例應用程式，以便稍後可以在教學課程中使用此資料庫。
 
 在終端機視窗中使用 Azure CLI 2.0，來建立在 Azure Appservice 中裝載 Java 應用程式所需的資源。 使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。 
 
-```azurecli 
+```azurecli-interactive 
 az login 
-``` 
+```   
 
 ### <a name="create-a-resource-group"></a>建立資源群組
 
-使用 [az group create](/cli/azure/group#create) 命令來建立[資源群組](../azure-resource-manager/resource-group-overview.md)。 Azure 資源群組是一個邏輯容器，可在其中部署與管理 Azure 資源 (例如 Web 應用程式、資料庫和儲存體帳戶)。 
+使用 [az group create](/cli/azure/group#create) 命令來建立[資源群組](../azure-resource-manager/resource-group-overview.md)。 Azure 資源群組是一個邏輯容器，可在其中部署與管理例如 Web 應用程式、資料庫和儲存體帳戶等相關資源。 
 
 下列範例會在北歐區域中建立一個資源群組：
 
-```azurecli
-az group create --name myResourceGroup  --location "North Europe"
-```
+```azurecli-interactive
+az group create --name myResourceGroup --location "North Europe"
+```    
 
-若要查看可用於 `--location` 的值，請使用 [az appservice list-locations](/cli/azure/appservice#list-locations) 命令。
+若要查看可用於 `--location` 的可能值，請使用 [az appservice list-locations](/cli/azure/appservice#list-locations) 命令。
 
 ### <a name="create-a-mysql-server"></a>建立 MySQL 伺服器
 
-使用 [az mysql server create](/cli/azure/mysql/server#create) 命令，在適用於 MySQL 的 Azure 資料庫 (預覽) 中建立伺服器。
+使用 [az mysql server create](/cli/azure/mysql/server#create) 命令，在適用於 MySQL 的 Azure 資料庫 (預覽) 中建立伺服器。    
+在您看見 `<mysql_server_name>` 預留位置的地方，替代成您自己的唯一 MySQL 伺服器名稱。 這個名稱是 MySQL 伺服器主機名稱 `<mysql_server_name>.mysql.database.azure.com` 的一部分，因此它必須是全域唯一的。 另外，請將 `<admin_user>` 和 `<admin_password>` 替代成您自己的值。
 
-在您看見 `&lt;mysql_server_name&gt;` 預留位置的地方，替代成您自己的唯一 MySQL 伺服器名稱。 這個名稱是 MySQL 伺服器主機名稱 `&lt;mysql_server_name&gt;.database.windows.net` 的一部分，因此它必須是全域唯一的。 另外，請將 `&lt;admin_user&gt;` 和 `&lt;admin_password&gt;` 替代成您自己的值。
-
-```azurecli
-az mysql server create --name &lt;mysql_server_name&gt; --resource-group myResourceGroup --location "North Europe" --user &lt;admin_user&gt; --password &lt;admin_password&gt;
+```azurecli-interactive
+az mysql server create --name <mysql_server_name> \ 
+    --resource-group myResourceGroup \ 
+    --location "North Europe" \
+    --admin-user <admin_user> \ 
+    --admin-password <admin_password>
 ```
 
 建立 MySQL 伺服器後，Azure CLI 會顯示類似下列範例的資訊：
 
 ```json
 {
-  "administratorLogin": "&lt;admin_user&gt;",
+  "administratorLogin": "admin_user",
   "administratorLoginPassword": null,
-  "fullyQualifiedDomainName": "&lt;mysql_server_name&gt;.database.windows.net",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.DBforMySQL/servers/&lt;mysql_server_name&gt;",
+  "fullyQualifiedDomainName": "mysql_server_name.mysql.database.azure.com",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.DBforMySQL/servers/mysql_server_name",
   "location": "northeurope",
-  "name": "&lt;mysql_server_name&gt;",
-  "resourceGroup": "myResourceGroup",
+  "name": "mysql_server_name",
+  "resourceGroup": "mysqlJavaResourceGroup",
   ...
+  < Output has been truncated for readability >
 }
 ```
 
-### <a name="configure-a-server-firewall"></a>設定伺服器防火牆
+### <a name="configure-server-firewall"></a>設定伺服器防火牆
 
 使用 [az mysql server firewall-rule create](/cli/azure/mysql/server/firewall-rule#create) 命令，建立 MySQL 伺服器的防火牆規則來允許用戶端連線。 
 
-```azurecli
-az mysql server firewall-rule create --name allIPs --server &lt;mysql_server_name&gt; --resource-group myResourceGroup --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
+```azurecli-interactive
+az mysql server firewall-rule create \
+    --name allIPs \
+    --server <mysql_server_name>  \ 
+    --resource-group myResourceGroup \ 
+    --start-ip-address 0.0.0.0 \ 
+    --end-ip-address 255.255.255.255
 ```
 
-&gt; [!NOTE]
-&gt; 適用於 MySQL 的 Azure 資料庫 (預覽) 尚未啟用僅來自 Azure 服務的連線。 隨著您將 Azure 中的 IP 位址進行動態指派，目前最好是啟用所有的 IP 位址。 因為服務為預覽中，很快就會啟用更好的方法，來保護您的資料庫安全。
-&gt; &gt;
+> [!NOTE]
+> 適用於 MySQL 的 Azure 資料庫 (預覽) 目前尚未自動啟用來自 Azure 服務的連線。 隨著您將 Azure 中的 IP 位址進行動態指派，目前最好是啟用所有的 IP 位址。 因為服務仍為預覽中，很快就會透過更好的方法，來保護您的資料庫安全。
 
-### <a name="connect-to-the-mysql-server"></a>連線至 MySQL 伺服器
+## <a name="configure-the-azure-mysql-database"></a>設定 Azure MySQL 資料庫
 
-在終端機視窗中，連線至 Azure 中的 MySQL 伺服器。 針對 `&lt;admin_user&gt;` 和 `&lt;mysql_server_name&gt;`，使用您先前指定的值。
+在電腦的終端機視窗中，連線至 Azure 中的 MySQL 伺服器。 針對 `<admin_user>` 和 `<mysql_server_name>`，使用您先前指定的值。
 
 ```bash
-mysql -u &lt;admin_user&gt;@&lt;mysql_server_name&gt; -h &lt;mysql_server_name&gt;.database.windows.net -P 3306 -p
+mysql -u <admin_user>@<mysql_server_name> -h <mysql_server_name>.mysql.database.azure.com -P 3306 -p
 ```
 
-### <a name="create-a-database-and-table-in-the-azure-mysql-service"></a>在 Azure MySQL 服務中建立資料庫和資料表
+### <a name="create-a-database"></a>建立資料庫 
 
 在 `mysql` 提示中，建立待辦事項的資料庫和資料表。
 
 ```sql
-CREATE DATABASE todoItemDb;
-USE todoItemDb;
-CREATE TABLE ITEMS ( id varchar(255), name varchar(255), category varchar(255), complete bool);
+CREATE DATABASE tododb;
 ```
 
 ### <a name="create-a-user-with-permissions"></a>建立具有權限的使用者
 
-建立資料庫使用者，並將 `todoItemDb` 資料庫中所有的權限授權給它。 將 `&lt;Javaapp_user&gt;` 和 `&lt;Javaapp_password&gt;` 預留位置取代您自己的唯一應用程式名稱。
+建立資料庫使用者，並將 `tododb` 資料庫中所有的權限授權給它。 將 `<Javaapp_user>` 和 `<Javaapp_password>` 預留位置取代您自己的唯一應用程式名稱。
 
 ```sql
-CREATE USER '&lt;Javaapp_user&gt;' IDENTIFIED BY '&lt;Javaapp_password&gt;'; 
-GRANT ALL PRIVILEGES ON todoItemDb.* TO '&lt;Javaapp_user&gt;';
+CREATE USER '<Javaapp_user>' IDENTIFIED BY '<Javaapp_password>'; 
+GRANT ALL PRIVILEGES ON tododb.* TO '<Javaapp_user>';
 ```
 
 輸入 `quit` 即可結束您的伺服器連線。
@@ -222,78 +216,20 @@ GRANT ALL PRIVILEGES ON todoItemDb.* TO '&lt;Javaapp_user&gt;';
 quit
 ```
 
-### <a name="configure-the-local-mysql-connection-with-the-new-azure-mysql-service"></a>使用新的 Azure MySQL 服務來設定本機 MySQL 連線
+## <a name="deploy-the-sample-to-azure-app-service"></a>將範例部署到 Azure App Service
 
-在此步驟中，您要將 Java 應用程式連線至您在適用於 MySQL 的 Azure 資料庫 (預覽) 中建立的 MySQL 資料庫。 
+使用 [az appservice plan create](/cli/azure/appservice/plan#create) CLI 命令，建立搭配**免費**定價層的 Azure App Service 方案。 Appservice 方案會定義用來託管應用程式的實體資源。 所有指派給 Appservice 方案的應用程式都會共用這些資源，從而讓您節省託管多個應用程式的成本。 
 
-若要啟用從本機應用程式存取 Azure MySQL 服務，請在 WebContent/WEB-INF/jetty-env.xml 中設定您新的 MySQL 端點、使用者識別碼和密碼︰
-
-```
-<Configure id='wac' class="org.eclipse.jetty.webapp.WebAppContext">
-  <New id="itemdb" class="org.eclipse.jetty.plus.jndi.Resource">
-     <Arg></Arg>
-     <Arg>jdbc/todoItemDb</Arg>
-     <Arg>
-        <New class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
-           <Set name="Url">jdbc:mysql:<paste the endpoint for the Azure MySQL Service>/itemdb</Set>
-           <Set name="User">Azure MySQL userID</Set>
-           <Set name="Password">Azure MySQL Password</Set>
-        </New>
-     </Arg>
-    </New>
-</Configure>
-
+```azurecli-interactive
+az appservice plan create \
+    --name myAppServicePlan \ 
+    --resource-group myResourceGroup \
+    --sku FREE
 ```
 
-儲存您的變更。
+方案準備妥當時，Azure CLI 會顯示類似下列範例的輸出：
 
-## <a name="test-the-application"></a>測試應用程式
-
-使用和之前相同的 Maven 命令，再次於本機執行範例，但這次要連線至 Azure MySQL 服務： 
-
-```bash
-mvn package jetty:run
-```
-
-在瀏覽器中，瀏覽至 `http://localhost:8080`。 如果頁面載入無誤，您的 Java 應用程式就會連線至 Azure 中的 MySQL 資料庫。 
-
-您應該不需要在頁面中新增幾項工作。
-
-若要隨時停止應用程式，請在終端機中輸入 `Ctrl`+`C`。 
-
-### <a name="secure-sensitive-data"></a>保護機密資料
-
-請確定 `WebContent/WEB-INF/jetty-env.xml` 中的機密資料尚未認可至 Git。
-
-若要這樣做，請從存放庫的根目錄開啟 `.gitignore`，並在新的一行中新增 `WebContent/WEB-INF/jetty-env.xml`。 儲存您的變更。
-
-將變更認可至 `.gitignore`。
-
-```bash
-git add .gitignore
-git commit -m "keep sensitive data in WebContent/WEB-INF/jetty-env.xml out of git"
-```
-
-## <a name="deploy-the-java-application-to-azure"></a>將 Java 應用程式部署至 Azure
-接下來，我們要將 Java 應用程式部署至 Azure Appservice。
-
-### <a name="create-an-appservice-plan"></a>建立 Appservice 方案
-
-使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 Appservice 方案。 
-
-&gt; [!NOTE] 
-&gt; Appservice 方案代表用來裝載應用程式的實體資源集合。 所有指派給 Appservice 方案的應用程式都會共用它所定義的資源，從而讓您節省裝載多個應用程式時的成本。 
-&gt; &gt; Appservice 方案定義︰&gt; &gt; * 區域 (北歐、美國東部、東南亞) &gt; * 執行個體大小 (小型、中型、大型) &gt; * 級別計數 (一、二或三個執行個體等) &gt; * SKU (免費、共用、基本、標準、進階) &gt; 
-
-下列範例會使用**免費**定價層，建立名為 `myAppServicePlan` 的 Appservice 方案：
-
-```azurecli
-az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE
-```
-
-建立 Appservice 方案後，Azure CLI 會顯示類似下列範例的資訊：
-
-```json 
+```json
 { 
   "adminSiteName": null,
   "appServicePlanName": "myAppServicePlan",
@@ -304,24 +240,25 @@ az appservice plan create --name myAppServicePlan --resource-group myResourceGro
   "location": "North Europe",
   "maximumNumberOfWorkers": 1,
   "name": "myAppServicePlan",
-  &lt; JSON data removed for brevity. &gt;
-  "targetWorkerSizeId": 0,
-  "type": "Microsoft.Web/serverfarms",
-  "workerTierName": null
+  ...
+  < Output has been truncated for readability >
 } 
 ``` 
 
 ### <a name="create-an-azure-web-app"></a>建立 Azure Web 應用程式
 
-現已建立 Appservice 方案，請在 `myAppServicePlan` Appservice 方案內建立 Azure Web 應用程式。 Web 應用程式會為您提供裝載空間來部署程式碼，以及提供 URL 讓您能夠檢視已部署的應用程式。 使用 [az appservice web create](/cli/azure/appservice/web#create) 命令來建立 Web 應用程式。 
+ 使用 [az webapp create](/cli/azure/appservice/web#create) CLI 命令，在 `myAppServicePlan` App Service 方案中建立 Web 應用程式定義。 Web 應用程式定義會提供一個 URL 以存取您的應用程式，並設定數個選項將您的程式碼部署至 Azure。 
 
-在下列命令中，將 `&lt;app_name&gt;` 預留位置替代成您自己的唯一應用程式名稱。 這個唯一名稱將用來做為 Web 應用程式預設網域名稱的一部分，因此，這個名稱在 Azure 的所有應用程式中必須是唯一的。 您稍後先將任何自訂 DNS 項目對應至 Web 應用程式，再將它公開給使用者。 
-
-```azurecli
-az appservice web create --name &lt;app_name&gt; --resource-group myResourceGroup --plan myAppServicePlan
+```azurecli-interactive
+az webapp create \
+    --name <app_name> \ 
+    --resource-group myResourceGroup \
+    --plan myAppServicePlan
 ```
 
-建立 Web 應用程式後，Azure CLI 會顯示類似下列範例的資訊： 
+使用您自己的唯一應用程式名稱來取代 `<app_name>` 預留位置。 這個唯一名稱會是 Web 應用程式預設網域名稱的一部分，因此，這個名稱在 Azure 的所有應用程式中必須是唯一的。 您可以先將自訂的網域名稱項目對應至 Web 應用程式，再將它公開給使用者。
+
+Web 應用程式定義備妥之後，Azure CLI 會顯示類似下列範例的資訊： 
 
 ```json 
 {
@@ -331,108 +268,226 @@ az appservice web create --name &lt;app_name&gt; --resource-group myResourceGrou
   "cloningInfo": null,
   "containerSize": 0,
   "dailyMemoryTimeQuota": 0,
-  "defaultHostName": "&lt;app_name&gt;.azurewebsites.net",
+  "defaultHostName": "<app_name>.azurewebsites.net",
   "enabled": true,
-  "enabledHostNames": [
-    "&lt;app_name&gt;.azurewebsites.net",
-    "&lt;app_name&gt;.scm.azurewebsites.net"
-  ],
-  "gatewaySiteName": null,
-  "hostNameSslStates": [
-    {
-      "hostType": "Standard",
-      "name": "&lt;app_name&gt;.azurewebsites.net",
-      "sslState": "Disabled",
-      "thumbprint": null,
-      "toUpdate": null,
-      "virtualIp": null
-    }
-    &lt; JSON data removed for brevity. &gt;
+   ...
+  < Output has been truncated for readability >
 }
 ```
 
-### <a name="set-the-java-version-the-java-application-server-type-and-the-application-server-version"></a>設定 Java 版本、Java 應用程式伺服器類型和應用程式伺服器版本
+### <a name="configure-java"></a>設定 Java 
 
-使用 [az appservice web config update](/cli/azure/appservice/web/config#update) 命令來設定 Java 版本、Java App Server (容器) 和容器版本。
+使用 [az appservice web config update](/cli/azure/appservice/web/config#update) 命令來設定您的應用程式需要的 Java 執行階段組態。
 
-下列命令會將 Java 版本設為 8、Java 應用程式伺服器設為 Jetty，以及將 Jetty 版本設為最新的 Jetty 9.3。
+下列命令會將 Web 應用程式設定為在最新的 Java 8 JDK 和 [Apache Tomcat](http://tomcat.apache.org/) 8.0 上執行。
 
-```azurecli
-az appservice web config update --name &lt;app_name&gt; --resource-group myResourceGroup --java-version 1.8 --java-container Jetty --java-container-version 9.3
+```azurecli-interactive
+az webapp config set \ 
+    --name <app_name> \
+    --resource-group myResourceGroup \ 
+    --java-version 1.8 \ 
+    --java-container Tomcat \
+    --java-container-version 8.0
 ```
 
+### <a name="configure-the-app-to-use-the-azure-sql-database"></a>將應用程式設定為使用 Azure SQL 資料庫
 
-### <a name="get-credentials-for-deployment-to-the-web-app-using-ftp"></a>取得使用 FTP 部署至 Web 應用程式的認證 
+請先將 Web 應用程式上的應用程式設定設為使用在 Azure 中建立的 Azure MySQL 資料庫，再執行範例應用程式。 這些屬性會公開至 Web 應用程式作為環境變數，並覆寫已封裝之 Web 應用程式中 application.properties 所設定的值。 
 
-您可以使用各種方式來將應用程式部署至 Azure Appservice，包括 FTP、本機 Git、GitHub、Visual Studio Team Services 和 BitBucket。 此範例中，我們會使用 Maven 來編譯 .WAR 檔案，並使用 FTP 將 .WAR 檔案部署至 Web 應用程式
+使用 CLI 中的 [az webapp config appsettings](https://docs.microsoft.com/cli/azure/appservice/web/config/appsettings) 來設定應用程式設定：
 
-若要判斷哪些認證要在 ftp 命令中傳遞至 Web 應用程式，請使用 [az appservice web deployment list-publishing-profiles](https://docs.microsoft.com/cli/azure/appservice/web/deployment#list-publishing-profiles) 命令，像這樣︰ 
-
-```azurecli
-
-az appservice web deployment list-publishing-profiles --name &lt;app_name&gt; --resource-group myResourceGroup --query "[?publishMethod=='FTP'].{URL:publishUrl, Username:userName,Password:userPWD}" --o table
-
+```azurecli-interactive
+az webapp config appsettings set \
+    --settings SPRING_DATASOURCE_URL="jdbc:mysql://<mysql_server_name>.mysql.database.azure.com:3306/tododb?verifyServerCertificate=true&useSSL=true&requireSSL=false" \
+    --resource-group myResourceGroup \
+    --name <app_name>
 ```
-### <a name="compile-the-local-application-to-deply-to-the-web-app"></a>編譯本機應用程式以部署至 Web 應用程式 
 
-若要準備在 Azure Web 應用程式上執行本機的 Java 應用程式，請將 Java 應用程式中的所有資源重新編譯成就緒可部署的單一 .WAR 檔案。 瀏覽至應用程式 pom.xml 所在的目錄，然後輸入︰
+```azurecli-interactive
+az webapp config appsettings set \
+    --settings SPRING_DATASOURCE_USERNAME=Javaapp_user@mysql_server_name  \
+    --resource-group myResourceGroup \ 
+    --name <app_name>
+```
 
-```bash 
-mvn clean package
-``` 
-在 Maven 套件處理結束時，您會看到 .WAR 檔案的位置。  輸出應該會看起來像這樣：
+```azurecli-interactive
+az webapp config appsettings set \
+    --settings SPRING_DATASOURCE_URL=Javaapp_password \
+    --resource-group myResourceGroup \ 
+    --name <app_name>
+```
+
+### <a name="get-ftp-deployment-credentials"></a>取得 FTP 部署認證 
+您可以使用各種方式來將應用程式部署至 Azure Appservice，包括 FTP、本機 Git、GitHub、Visual Studio Team Services 和 BitBucket。 在此範例中，使用 FTP 將先前在您本機電腦上建置的 .WAR 檔案部署至 Azure App Service。
+
+若要判斷要在 ftp 命令中將哪些認證傳遞至 Web 應用程式，請使用 [az appservice web deployment list-publishing-profiles](https://docs.microsoft.com/cli/azure/appservice/web/deployment#list-publishing-profiles) 命令︰ 
+
+```azurecli-interactive
+az webapp deployment list-publishing-profiles \ 
+    --name <app_name> \ 
+    --resource-group myResourceGroup \
+    --query "[?publishMethod=='FTP'].{URL:publishUrl, Username:userName,Password:userPWD}" \ 
+    --output json
+```
+
+```JSON
+[
+  {
+    "Password": "aBcDeFgHiJkLmNoPqRsTuVwXyZ",
+    "URL": "ftp://waws-prod-blu-069.ftp.azurewebsites.windows.net/site/wwwroot",
+    "Username": "app_name\\$app_name"
+  }
+]
+```
+
+### <a name="upload-the-app-using-ftp"></a>使用 FTP 上傳應用程式
+
+使用您喜愛的 FTP 工具將 .WAR 檔案部署至 */site/wwwroot/webapps* 資料夾；，該資料夾位於先前命令中 `URL` 欄位的伺服器位址上。 移除現有的預設 (ROOT) 應用程式目錄，並以先前在教學課程中建置的 .WAR 檔案取代現有的 ROOT.war。
 
 ```bash
-
-[INFO] Processing war project
-[INFO] Copying webapp resources [local-location\GitHub\mysql-java-todo-app\WebContent]
-[INFO] Webapp assembled in [1519 msecs]
-[INFO] Building war: C:\Users\your\localGitHub\mysql-java-todo-app\target\azure-appservice-mysql-java-sample-0.0.1-SNAPSHOT.war
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-
+ftp waws-prod-blu-069.ftp.azurewebsites.windows.net
+Connected to waws-prod-blu-069.drip.azurewebsites.windows.net.
+220 Microsoft FTP Service
+Name (waws-prod-blu-069.ftp.azurewebsites.windows.net:raisa): app_name\$app_name
+331 Password required
+Password:
+cd /site/wwwroot/webapps
+mdelete -i ROOT/*
+rmdir ROOT/
+put target/TodoDemo-0.0.1-SNAPSHOT.war ROOT.war
 ```
 
-將 .War 檔案的位置記下，並使用您最喜愛的 FTP 方法，將 WAR 檔案部署至 Jetty WebApps 資料夾。  請注意，Jetty WebApps 資料夾位於 Azure Web 應用程式中的 /site/wwwroot/webapps。 
+### <a name="test-the-web-app"></a>測試 Web 應用程式
 
-### <a name="browse-to-the-azure-web-app"></a>瀏覽至 Azure Web 應用程式
-
-瀏覽至 `http://&lt;app_name&gt;.azurewebsites.net/&lt;app_name&gt;` 並將幾項工作新增至清單。 
+瀏覽至 `http://<app_name>.azurewebsites.net/` 並將幾項工作新增至清單。 
 
 ![在 Azure Appservice 中執行的 Java 應用程式](./media/app-service-web-tutorial-java-mysql/appservice-web-app.png)
 
+**恭喜！** 您正在 Azure App Service 中執行資料驅動的 Java 應用程式。
 
-**恭喜！** 您正在 Azure Appservice 中執行資料驅動的 Java 應用程式。
-若要更新應用程式，請重複 Maven 全新套件命令，並透過 FTP 將應用程式重新部署。
+## <a name="update-the-app-and-redeploy"></a>更新應用程式並重新部署
+
+更新應用程式，以在待辦事項清單中包含額外的資料行，用來記錄項目的建立日期。 Spring Boot 會在資料模型變更時為您更新資料庫結構描述，無需更改您現有的資料庫記錄。
+
+1. 在您的本機系統中，開啟 *src/main/java/com/example/fabrikam/TodoItem.java* 並在類別中新增下列匯入項目：   
+
+    ```java
+    import java.text.SimpleDateFormat;
+    import java.util.Calendar;
+    ```
+
+2. 在 *src/main/java/com/example/fabrikam/TodoItem.java* 中新增 `String` 屬性 `timeCreated`，並以建立物件時使用的時間戳記加以起始。 在編輯此檔案時，為新的 `timeCreated` 屬性新增 getter/setter。
+
+    ```java
+    private String name;
+    private boolean complete;
+    private String timeCreated;
+    ...
+
+    public TodoItem(String category, String name) {
+       this.category = category;
+       this.name = name;
+       this.complete = false;
+       this.timeCreated = new SimpleDateFormat("MMMM dd, YYYY").format(Calendar.getInstance().getTime());
+    }
+    ...
+    public void setTimeCreated(String timeCreated) {
+       this.timeCreated = timeCreated;
+    }
+
+    public String getTimeCreated() {
+        return timeCreated;
+    }
+    ```
+
+3. 以 `updateTodo` 方法中的一行更新 *src/main/java/com/example/fabrikam/TodoDemoController.java*，以設定時間戳記：
+
+    ```java
+    item.setComplete(requestItem.isComplete());
+    item.setId(requestItem.getId());
+    item.setTimeCreated(requestItem.getTimeCreated());
+    repository.save(item);
+    ```
+
+4. 在Thymeleaf 範本中加入新欄位的支援。 以適用於時間戳記的新資料表標頭來更新 *src/main/resources/templates/index.html*，並以新欄位來顯示每個資料表資料列中的時間戳記值。
+
+    ```html
+    <th>Name</th>
+    <th>Category</th>
+    <th>Time Created</th>
+    <th>Complete</th>
+    ...
+    <td th:text="${item.category}">item_category</td><input type="hidden" th:field="*{todoList[__${i.index}__].category}"/>
+    <td th:text="${item.timeCreated}">item_time_created</td><input type="hidden" th:field="*{todoList[__${i.index}__].timeCreated}"/>
+    <td><input type="checkbox" th:checked="${item.complete} == true" th:field="*{todoList[__${i.index}__].complete}"/></td>
+    ```
+
+5. 重新建置應用程式：
+
+    ```bash
+    mvnw clean package 
+    ```
+
+6. 一如往常透過 FTP 處理已更新的 .WAR、移除現有的 *site/wwwroot/webapps/ROOT* 目錄和 *ROOT.war*，接著上傳更新的 .WAR 檔案以取代 ROOT.war。 
+
+當您重新整理應用程式時，會看到**建立時間**的資料行。 當您新增工作時，應用程式會自動植入時間戳記。 您現有的工作會維持不變，即使基礎資料模型已變更，仍可搭配使用該應用程式。 
+
+![搭配新資料行的 Java 應用程式更新](./media/app-service-web-tutorial-java-mysql/appservice-updates-java.png)
+      
+## <a name="stream-diagnostic-logs"></a>資料流診斷記錄 
+
+在 Azure App Service 中執行您的 Java 應用程式時，可以將主控台記錄直接傳送至終端機。 這樣一來，您就能取得相同的診斷訊息，以協助您偵錯應用程式錯誤。
+
+請使用 [az webapp log tail](/cli/azure/appservice/web/log#tail) 命令開始記錄資料流。
+
+```azurecli-interactive 
+az webapp log tail \
+    --name <app_name> \
+    --resource-group myResourceGroup 
+``` 
 
 ## <a name="manage-your-azure-web-app"></a>管理您的 Azure Web 應用程式
 
-移至 Azure 入口網站，可查看您所建立的 web 應用程式，方法是登入 [https://portal.azure.com](https://portal.azure.com)。
+請移至 Azure 入口網站，以查看您所建立的 Web 應用程式。
 
-按一下左側功能表中的 [AppService]，然後按一下 Azure Web 應用程式的名稱。
+若要這麼做，請登入 [https://portal.azure.com](https://portal.azure.com)。
 
-您現在應該位於 Web 應用程式的_刀鋒視窗_ (水平開啟的入口網站頁面)。
+按一下左側功能表中的 [App Service]，然後按一下 Azure Web 應用程式的名稱。
 
-根據預設，Web 應用程式的刀鋒視窗會顯示 [概觀] 頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 刀鋒視窗左側的索引標籤會顯示您可開啟的各種設定頁面。
+![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-tutorial-java-mysql/access-portal.png)
 
-在 [應用程式設定] 頁面上， 
+根據預設，Web 應用程式的刀鋒視窗會顯示 [概觀] 頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行像是停止、啟動、重新啟動及刪除等管理工作。 刀鋒視窗左側的索引標籤會顯示您可開啟的各種設定頁面。
 
-![Azure AppService Web 應用程式的應用程式設定](./media/app-service-web-tutorial-java-mysql/appservice-web-app-application-settings.png)
-
-
+![Azure 入口網站中的 App Service 刀鋒視窗](./media/app-service-web-tutorial-java-mysql/web-app-blade.png)
 
 刀鋒視窗中的索引標籤會顯示您可以新增至 Web 應用程式的許多強大功能。 下表提供幾個可能性︰
-
 * 對應自訂 DNS 名稱
 * 繫結自訂 SSL 憑證
 * 設定連續部署
 * 相應增加和相應放大
 * 新增使用者驗證
 
-## <a name="more-resources"></a>其他資源
+## <a name="clean-up-resources"></a>清除資源
 
-- [將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)
-- [將現有的自訂 SSL 憑證繫結至 Azure Web Apps](app-service-web-tutorial-custom-ssl.md)
-- [Web Apps CLI 指令碼](app-service-cli-samples.md)</PRE>
+如果您不需要這些資源來進行其他教學課程 (請參閱[後續步驟](#next))，您可以執行下列命令來將這些資源刪除︰ 
+  
+```azurecli-interactive
+az group delete --name myResourceGroup 
+``` 
 
+<a name="next"></a>
+
+## <a name="next-steps"></a>後續步驟
+
+> [!div class="checklist"]
+> * 在 Azure 中建立 MySQL 資料庫
+> * 將範例 Java 應用程式連線至 MySQL
+> * 將應用程式部署至 Azure
+> * 更新和重新部署應用程式
+> * 來自 Azure 的串流診斷記錄
+> * 在 Azure 入口網站中管理應用程式
+
+前往下一個教學課程，了解如何將自訂的 DNS 名稱對應至該應用程式。
+
+> [!div class="nextstepaction"] 
+> [將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)
