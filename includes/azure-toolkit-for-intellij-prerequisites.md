@@ -1,4 +1,4 @@
-### <a name="prerequisites"></a>必要條件
+## <a name="prerequisites"></a>必要條件
 Azure Toolkit for IntelliJ 需要下列軟體元件：
 
 * IntelliJ IDEA Ultimate Edition，可以從 <https://www.jetbrains.com/idea/download/> 下載。
