@@ -14,6 +14,8 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 04/05/2017
 ms.author: raynew
+ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: hyper-v-site-walkthrough-overview
 ms.translationtype: Human Translation
 ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
 ms.openlocfilehash: 0ef782a7bb7a98da2ec63c91732b3d5ddd959848
@@ -21,6 +23,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 05/17/2017
 
 ---
+
 
 # <a name="replicate-hyper-v-virtual-machines-without-vmm-to-azure-using-azure-site-recovery-with-the-azure-portal"></a>使用 Azure Site Recovery 搭配 Azure 入口網站將 Hyper-V 虛擬機器 (不使用 VMM) 複寫至 Azure
 
@@ -270,7 +273,7 @@ Site Recovery 會提供 Capacity Planner 以協助您為計算、網路及儲存
 
 10. 按一下 [確定] 儲存變更。 您可以稍後再設定其他屬性。
 
-     ![啟用複寫](./media/site-recovery-hyper-v-site-to-azure/enable-replication6-with-exclude-disk.png)
+    ![啟用複寫](./media/site-recovery-hyper-v-site-to-azure/enable-replication6-with-exclude-disk.png)
 
 11. 在 [複寫設定]  >  [進行複寫設定] 中，選取您要套用於受保護 VM 的複寫原則。 然後按一下 [確定] 。 您可以在 [複寫原則] > 原則名稱 > [編輯設定] 中，修改複寫原則。 您套用的變更將用於已在複寫的機器和新的機器。
 
