@@ -1,14 +1,16 @@
-- name: "Custom Decision Service"
+- name: 自訂決策服務
   href: ../index.md
-- name: "Overview"
+- name: 概觀
   href: custom-decision-service-overview.md
-- name: "Get started"
+- name: 開始使用
   items:
-  - name: "Call API from a browser"
+  - name: 註冊您的應用程式
+    href: custom-decision-service-get-started-register.md
+  - name: 從瀏覽器呼叫 API
     href: custom-decision-service-get-started-browser.md
-  - name: "Call API from an app"
+  - name: 從應用程式呼叫 API
     href: custom-decision-service-get-started-app.md
-- name: "Tutorial"
+- name: 教學課程
   href: custom-decision-service-tutorial.md
-- name: "API reference"
+- name: API 參考資料
   href: custom-decision-service-api-reference.md

@@ -1,6 +1,7 @@
 # 概觀
 
 ## [簡介](storage-introduction.md)
+## [選擇 Blob、檔案或資料磁碟](storage-decide-blobs-files-disks.md)
 
 # 開始使用
 
@@ -50,6 +51,7 @@
 ### [在 Linux VM 中新增受控磁碟](../virtual-machines/linux/add-disk.md)
 ### [在 Windows 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/windows/snapshot-copy-managed-disk.md)
 ### [在 Linux 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/linux/snapshot-copy-managed-disk.md)
+### [在 Resource Manager 範本中使用受控磁碟](storage-using-managed-disks-template-deployments.md)
 
 # 作法
 ## [建立儲存體帳戶](storage-create-storage-account.md)
@@ -70,7 +72,8 @@
 ### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=table)
 ## 使用檔案
 ### [概觀](/rest/api/storageservices/File-Service-Concepts)
-### [針對 Azure 檔案進行疑難排解](storage-troubleshoot-file-connection-problems.md)
+### [針對 Azure 檔案進行疑難排解 - Windows](storage-troubleshoot-windows-file-connection-problems.md)
+### [針對 Azure 檔案進行疑難排解 - Linux](storage-troubleshoot-linux-file-connection-problems.md)
 ### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=file)
 ## 使用磁碟
 ### [Windows VM 的磁碟和 VHD](storage-about-disks-and-vhds-windows.md)
@@ -109,6 +112,7 @@
 ## 安全
 ### [安全性指南](storage-security-guide.md)
 ### [待用資料的加密](storage-service-encryption.md)
+### [客戶金鑰的加密靜止](storage-service-encryption-customer-managed-keys.md)
 ### [共用金鑰驗證](https://msdn.microsoft.com/library/dd179428.aspx)
 ### [共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)
 ### [教學課程：使用 Azure 金鑰保存庫加密及解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)
@@ -130,7 +134,8 @@
 ### [災害復原指引](storage-disaster-recovery-guidance.md)
 ## 傳送資料
 ### [將資料移入和移出儲存體](storage-moving-data.md)
-### [AzCopy 命令列公用程式](storage-use-azcopy.md)
+### [AzCopy on Windows](storage-use-azcopy.md)
+### [AzCopy on Linux](storage-use-azcopy-linux.md)
 ### [使用匯入/匯出服務](storage-import-export-service.md)
 ### [使用匯入/匯出工具](storage-import-export-tool-how-to.md)
 #### [設定匯入/匯出工具](storage-import-export-tool-setup.md)

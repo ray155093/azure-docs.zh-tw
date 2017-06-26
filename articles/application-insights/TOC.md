@@ -43,6 +43,7 @@
 ### Azure
 #### [分析工具](app-insights-profiler.md)
 #### [診斷](app-insights-azure-diagnostics.md)
+#### [預覽](app-insights-previews.md)
 
 ### ASP.NET
 #### [收集更多的遙測](app-insights-asp-net-more.md)
@@ -91,8 +92,9 @@
 
 ### 使用量
 #### [概觀](app-insights-usage-overview.md)
-#### [保留](app-insights-usage-retention.md)
 #### [使用者、工作階段、事件](app-insights-usage-segmentation.md)
+#### [保留](app-insights-usage-retention.md)
+#### [活頁簿](app-insights-usage-workbooks.md)
 
 ### Analytics
 
@@ -108,6 +110,7 @@
 ### [建立資源](app-insights-powershell-script-create-resource.md)
 ### [設定警示](app-insights-powershell-alerts.md)
 ### [取得 Azure 診斷](app-insights-powershell-azure-diagnostics.md)
+### [透過 Microsoft Flow 進行自動化](app-insights-automate-with-flow.md)
 
 ## 開發
 

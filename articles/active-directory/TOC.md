@@ -17,11 +17,21 @@
 ## [常見問題集](active-directory-faq.md)
 ## [如何取得 Azure Active Directory 支援](active-directory-troubleshooting-support-howto.md)
 ## [SaaS 應用程式整合教學課程](active-directory-saas-tutorial-list.md)
+## Azure AD 控制項
+### [完成存取權檢閱](active-directory-azure-ad-controls-complete-an-access-review.md)
+### [建立存取權檢閱](active-directory-azure-ad-controls-create-an-access-review.md)
+### [如何執行存取權檢閱](active-directory-azure-ad-controls-perform-an-access-review.md)
+
 
 # 作法
 ## 規劃和設計
 ### [了解 Azure AD 架構](active-directory-architecture.md)
+### [保護電子郵件的原則和組態](secure-email-introduction.md)
+#### [建議的原則](secure-email-recommended-policies.md)
+#### [部署原則和組態](secure-email-deploy-recommended-policies.md)
+#### [EMS 和 Office 365 服務描述](secure-email-ems-office365-service-descriptions.md)
 ### [部署混合式身分識別解決方案](active-directory-hybrid-identity-design-considerations-overview.md)
+### [Azure Active Directory 中的宣告對應](active-directory-claims-mapping.md)
 
 #### 判斷需求
 ##### [身分識別](active-directory-hybrid-identity-design-considerations-business-needs.md)
@@ -43,6 +53,16 @@
 ### 新增使用者
 #### [Azure 入口網站](active-directory-users-create-azure-portal.md)
 #### [傳統入口網站](active-directory-create-users.md)
+### Azure AD 控制項
+#### [透過存取權檢閱進行來賓存取](active-directory-azure-ad-controls-manage-guest-access-with-access-reviews.md)
+#### [透過檢閱管理使用者存取](active-directory-azure-ad-controls-manage-user-access-with-access-reviews.md)
+
+### [使用群組指派授權](active-directory-licensing-whatis-azure-portal.md)
+#### [將授權指派給群組](active-directory-licensing-group-assignment-azure-portal.md)
+#### [識別並解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
+#### [將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
+#### [群組型授權的其他案例](active-directory-licensing-group-advanced.md)
+#### [群組型授權的 PowerShell 範例](active-directory-licensing-ps-examples.md)
 
 ### [從其他目錄中新增使用者 (傳統入口網站)](active-directory-create-users-external.md)
 ### [刪除使用者](active-directory-users-delete-user-azure-portal.md)
@@ -50,6 +70,8 @@
 ### [重設密碼](active-directory-users-reset-password-azure-portal.md)
 ### [管理使用者工作資訊](active-directory-users-work-info-azure-portal.md)
 ### [共用帳戶](active-directory-sharing-accounts.md)
+
+
 
 ## [管理群組和成員](active-directory-manage-groups.md)
 ### 管理群組
@@ -59,6 +81,12 @@
 ### [管理群組成員](active-directory-groups-members-azure-portal.md)
 ### [管理群組擁有者](active-directory-accessmanagement-managing-group-owners.md)
 ### [管理群組成員資格](active-directory-groups-membership-azure-portal.md)
+### [使用群組指派授權](active-directory-licensing-whatis-azure-portal.md)
+#### [將授權指派給群組](active-directory-licensing-group-assignment-azure-portal.md)
+#### [識別並解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
+#### [將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
+#### [群組型授權的其他案例](active-directory-licensing-group-advanced.md)
+#### [群組型授權的 PowerShell 範例](active-directory-licensing-ps-examples.md)
 ### [檢視全部群組](active-directory-groups-view-azure-portal.md)
 ### [啟用專用群組](active-directory-accessmanagement-dedicated-groups.md)
 ### [新增 SaaS 應用程式的群組存取權](active-directory-accessmanagement-group-saasapps.md)
@@ -69,12 +97,6 @@
 ### 建立進階規則
 #### [Azure 入口網站](active-directory-groups-dynamic-membership-azure-portal.md)
 #### [傳統入口網站](active-directory-accessmanagement-groups-with-advanced-rules.md)
-### [群組型授權](active-directory-licensing-whatis-azure-portal.md)
-#### [將授權指派給群組](active-directory-licensing-group-assignment-azure-portal.md)
-#### [識別並解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
-#### [將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
-#### [群組型授權的其他案例](active-directory-licensing-group-advanced.md)
-#### [群組型授權的 PowerShell 範例](active-directory-licensing-ps-examples.md)
 ### [設定自助式群組](active-directory-accessmanagement-self-service-group-management.md)
 ### [疑難排解](active-directory-accessmanagement-troubleshooting.md)
 
@@ -92,13 +114,14 @@
 ### 疑難排解
 #### [缺少稽核資料](active-directory-reporting-troubleshoot-missing-audit-data.md)
 #### [下載中缺少的資料](active-directory-reporting-troubleshoot-missing-data-download.md)
-###    [程式設計存取](active-directory-reporting-api-getting-started-azure-portal.md)
+#### [Azure Active Directory 活動記錄內容套件錯誤](active-directory-reporting-troubleshoot-content-pack.md)
+### [程式設計存取](active-directory-reporting-api-getting-started-azure-portal.md)
 #### [稽核參考](active-directory-reporting-api-audit-reference.md)
 #### [登入參考](active-directory-reporting-api-sign-in-activity-reference.md)
 #### [必要條件](active-directory-reporting-api-prerequisites-azure-portal.md)
 #### [稽核範例](active-directory-reporting-api-audit-samples.md)
 #### [登入範例](active-directory-reporting-api-sign-in-activity-samples.md)
-#### [取得資料](active-directory-reporting-api-with-certificates.md)
+#### [使用憑證](active-directory-reporting-api-with-certificates.md)
 ### [傳統入口網站](active-directory-view-access-usage-reports.md)
 #### [Azure AD 報告](active-directory-reporting-getting-started.md)
 #### [報告指南](active-directory-reporting-guide.md)
@@ -165,6 +188,8 @@
 ### [Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md)
 #### [更新登錄設定](active-directory-cloudappdiscovery-registry-settings-for-proxy-services.md)
 #### [了解安全性和隱私權](active-directory-cloudappdiscovery-security-and-privacy-considerations.md)
+### Azure AD 控制項
+####[管理程式及其控制項](active-directory-azure-ad-controls-manage-programs-and-controls.md)
 
 ### [透過 App Proxy 遠端存取應用程式](active-directory-application-proxy-get-started.md)
 #### 開始使用

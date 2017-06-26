@@ -21,6 +21,9 @@
 ### [變更租用戶識別碼](key-vault-subscription-move-fix.md)
 ### [可用性與備援](key-vault-disaster-recovery-guidance.md)
 ### [保護您的金鑰保存庫](key-vault-secure-your-key-vault.md)
+### [安全性環境概觀](key-vault-ovw-security-worlds.md)
+### [虛刪除概觀](key-vault-ovw-soft-delete.md)
+### [儲存體帳戶金鑰概觀](key-vault-ovw-storage-keys.md)
 
 ## 自動化
 ### [Azure 自動化](automation-manage-key-vault.md)
@@ -43,7 +46,7 @@
 ## [Multi-Factor Authentication](https://azure.microsoft.com/documentation/services/multi-factor-authentication/)
 
 # 資源
-## [關於金鑰和密碼](https://msdn.microsoft.com/en-us/library/azure/dn903623)
+## [關於金鑰、密碼與憑證](https://docs.microsoft.com/rest/api/keyvault/about-keys--secrets-and-certificates)
 ## [程式碼範例](https://www.microsoft.com/download/details.aspx?id=45343)
 ## [價格](https://azure.microsoft.com/pricing/details/key-vault/)
 ## [部落格](http://blogs.technet.com/b/kv/)

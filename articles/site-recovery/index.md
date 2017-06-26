@@ -10,17 +10,18 @@ ms.service: site-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: landing-page
-ms.date: 01/23/2017
+ms.date: 06/05/2017
 ms.author: carolz
-translationtype: Human Translation
-ms.sourcegitcommit: 491bbfe61cf387f18b903caa45529be206876d49
-ms.openlocfilehash: fe253f5d95b0b9351d6ffd382cbba0c490074f15
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 532ff423ff53567b6ce40c0ea7ec09a689cee1e7
+ms.openlocfilehash: ef7a25de4536cfd54331e1bce7d22f351768585c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/06/2017
 
 ---
 # <a name="site-recovery-documentation"></a>Site Recovery 文件
 
-了解如何將 Site Recovery 使用於私人雲端的商務持續性和災害復原策略。 教學課程和其他文件會示範如何規劃、部署及管理將內部部署實體伺服器與虛擬機器複寫至雲端或次要資料中心的協調流程。
+了解如何使用 Site Recovery 提供業務續航力及災害復原策略，以便在停機期間也能讓應用程式持續運作並提供工作負載。 教學課和及其他文章會說明如何規劃、部署及管理複寫、容錯移轉、內部部署機器復原以及 Azure VM。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -42,7 +43,7 @@ ms.lasthandoff: 02/28/2017
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/resources/videos/index/?services=recovery-manager">
+        <a href="https://azure.microsoft.com/en-us/resources/videos/index/?services=site-recovery">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -145,6 +146,4 @@ ms.lasthandoff: 02/28/2017
         </div>
     </li>
 </ul>
-
-
 

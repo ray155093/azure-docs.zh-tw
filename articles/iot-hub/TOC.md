@@ -6,13 +6,15 @@
 # [快速入門](iot-hub-get-started.md)
 
 ## 設定裝置
-### 使用模擬裝置
+### [模擬電腦上的裝置](iot-hub-get-started-simulated.md)
 #### [.NET](iot-hub-csharp-csharp-getstarted.md)
 #### [Java](iot-hub-java-java-getstarted.md)
 #### [Node.js](iot-hub-node-node-getstarted.md)
 #### [Python](iot-hub-python-getstarted.md)
 
-### 使用實體裝置
+### [使用線上模擬器](iot-hub-raspberry-pi-web-simulator-get-started.md)
+
+### [使用實體裝置](iot-hub-get-started-physical.md)
 #### [Raspberry Pi with Node.js](iot-hub-raspberry-pi-kit-node-get-started.md)
 #### [Raspberry Pi with C](iot-hub-raspberry-pi-kit-c-get-started.md)
 
@@ -28,15 +30,14 @@
 ##### [將閘道連線至 IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
 ##### [使用閘道進行資料轉換](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
 
-### [使用線上裝置模擬器](iot-hub-raspberry-pi-web-simulator-get-started.md)
-
-## [透過 iothub-explorer 管理雲端裝置傳訊](iot-hub-explorer-cloud-device-messaging.md)
-## [將 IoT 中樞IoT 中樞儲存至 Azure 資料儲存體](iot-hub-store-data-in-azure-table-storage.md)
-## [Power BI 中的資料視覺效果](iot-hub-live-data-visualization-in-power-bi.md)
-## [Web Apps 的資料視覺效果](iot-hub-live-data-visualization-in-web-apps.md)
-## [使用 Azure Machine Learning 進行天氣預測](iot-hub-weather-forecast-machine-learning.md)
-## [透過 iothub-explorer進行裝置管理](iot-hub-device-management-iothub-explorer.md)
-## [搭配 Logic Apps 進行遠端監視和通知](iot-hub-monitoring-notifications-with-azure-logic-apps.md)
+## 擴充的 IoT 案例
+### [透過 iothub-explorer 管理雲端裝置傳訊](iot-hub-explorer-cloud-device-messaging.md)
+### [將 IoT 中樞IoT 中樞儲存至 Azure 資料儲存體](iot-hub-store-data-in-azure-table-storage.md)
+### [Power BI 中的資料視覺效果](iot-hub-live-data-visualization-in-power-bi.md)
+### [Web Apps 的資料視覺效果](iot-hub-live-data-visualization-in-web-apps.md)
+### [使用 Azure Machine Learning 進行天氣預測](iot-hub-weather-forecast-machine-learning.md)
+### [透過 iothub-explorer進行裝置管理](iot-hub-device-management-iothub-explorer.md)
+### [搭配 Logic Apps 進行遠端監視和通知](iot-hub-monitoring-notifications-with-azure-logic-apps.md)
 
 # 作法
 ## 規劃
@@ -54,13 +55,13 @@
 ##### [使用適用於裝置對雲端訊息的自訂端點和路由規則](iot-hub-devguide-messages-read-custom.md)
 ##### [從 IoT 中樞傳送雲端到裝置訊息](iot-hub-devguide-messages-c2d.md)
 ##### [建立和閱讀 IoT 中樞訊息](iot-hub-devguide-messages-construct.md)
+##### [選擇通訊協定](iot-hub-devguide-protocols.md)
 #### [從裝置上傳檔案](iot-hub-devguide-file-upload.md)
 #### [管理裝置身分識別](iot-hub-devguide-identity-registry.md)
 #### [控制 IoT 中樞的存取權](iot-hub-devguide-security.md)
 #### [了解攣生裝置](iot-hub-devguide-device-twins.md)
 #### [叫用裝置上的直接方法](iot-hub-devguide-direct-methods.md)
 #### [排程多個裝置上的作業](iot-hub-devguide-jobs.md)
-#### [選擇通訊協定](iot-hub-devguide-protocols.md)
 #### [IoT 中樞端點](iot-hub-devguide-endpoints.md)
 #### [查詢語言](iot-hub-devguide-query-language.md)
 #### [配額和節流](iot-hub-devguide-quotas-throttling.md)
@@ -122,7 +123,8 @@
 ### [安全性最佳做法](iot-hub-security-best-practices.md)
 ### [安全性架構](iot-hub-security-architecture.md)
 ### [保護您的 IoT 部署](iot-hub-security-deployment.md)
-## IoT Edge
+## Azure IoT Edge
+### [概觀](iot-hub-iot-edge-overview.md)
 ### 開始使用
 #### [Linux](iot-hub-linux-iot-edge-get-started.md)
 #### [Windows](iot-hub-windows-iot-edge-get-started.md)
@@ -130,9 +132,22 @@
 #### [Linux](iot-hub-linux-iot-edge-simulated-device.md)
 #### [Windows](iot-hub-windows-iot-edge-simulated-device.md)
 ### [使用真實裝置](iot-hub-iot-edge-physical-device.md)
+### 建立模組
+#### [Java](https://github.com/Azure-Samples/iot-edge-samples#how-to-run-java-modules-windows-10ubuntu-linux-14)
+#### [.NET Framework](https://github.com/Azure-Samples/iot-edge-samples#how-to-run-net-modules-windows-10)
+#### [Node.js](https://github.com/Azure-Samples/iot-edge-samples#how-to-run-javascript-modules-windows-10ubuntu-linux-14)
+### 建置
+#### [.NET Framework](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample)
+#### [.NET Core 模組](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_core_module_sample)
+#### [.NET Core 的受管閘道](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_core_managed_gateway)
+#### [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample)
+#### [Node.js](https://github.com/Azure/iot-edge/tree/master/samples/nodejs_simple_sample)
+#### [動態新增模組](https://github.com/Azure/iot-edge/tree/master/samples/dynamically_add_module_sample)
+#### [跨處理序的 proxy 模組](https://github.com/Azure/iot-edge/tree/master/samples/proxy_sample)
+#### [原生模組主機](https://github.com/Azure/iot-edge/tree/master/samples/native_module_host_sample)
 
 # 參考
-## [Azure CLI 2.0](/cli/azure/iot)
+## [Azure CLI](/cli/azure/iot)
 ## [.NET (服務)](/dotnet/api/microsoft.azure.devices)
 ## [.NET (裝置)](/dotnet/api/microsoft.azure.devices.client)
 ## [Java (服務)](/java/api/com.microsoft.azure.sdk.iot.service)
@@ -164,4 +179,4 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/iot-hub/)
 ## [Azure IoT 開發人員中心](https://azure.microsoft.com/develop/iot/)
 ## [Azure IoT 認證裝置目錄](https://catalog.azureiotsuite.com/)
-## [技術案例研究](https://microsoft.github.io/techcasestudies/#technology=IoT)
+## [技術案例研究](https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured)

@@ -6,7 +6,13 @@
 ## [設定開發環境](media-services-set-up-computer.md)
 ###[.NET](media-services-dotnet-how-to-use.md)
 ###[REST](media-services-rest-how-to-use.md)  
-## 以程式設計方式連線
+## [使用 AAD 驗證來存取 API](media-services-use-aad-auth-to-access-ams-api.md)
+###[使用入口網站來管理 AAD 驗證](media-services-portal-get-started-with-aad.md)
+###[使用 .NET 存取 API](media-services-dotnet-get-started-with-aad.md)
+###[使用 REST 存取 API](media-services-rest-connect-with-aad.md)
+###[使用 CLI 來建立及設定 AAD 應用程式](media-services-cli-create-and-configure-aad-app.md)
+###[使用 PowerShell 來建立及設定 AAD 應用程式](media-services-powershell-create-and-configure-aad-app.md)
+## 透過 ACS 金鑰以程式設計方式連線
 ### [.NET](media-services-dotnet-connect-programmatically.md)
 ### [REST](media-services-rest-connect-programmatically.md)
 
@@ -214,7 +220,7 @@
 ## [PowerShell (資源管理員)](/powershell/module/azurerm.media)
 ## [PowerShell (服務管理)](/powershell/module/azure/?view=azuresmps-3.7.0)
 ## [.NET](/dotnet/api/microsoft.windowsazure.mediaservices.client)
-## [REST](/rest/api/media)
+## [REST](/rest/api/media/mediaservice)  
 
 # 資源
 ## [版本資訊](media-services-release-notes.md)

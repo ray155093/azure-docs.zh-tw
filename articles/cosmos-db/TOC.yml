@@ -13,8 +13,6 @@
     items:
     - name: .NET
       href: create-documentdb-dotnet.md
-    - name: .NET Core
-      href: create-documentdb-dotnet-core.md
     - name: Java
       href: create-documentdb-java.md
     - name: Node.js
@@ -188,12 +186,10 @@
           href: documentdb-nodejs-samples.md
         - name: Python 範例
           href: documentdb-python-samples.md
-        - name: SQL 語法
-          href: https://msdn.microsoft.com/library/azure/dn782250.aspx
-        - name: SQL 語法功能提要
-          href: documentdb-sql-query-cheat-sheet.md
       - name: 資源
         items:
+        - name: SQL 語法功能提要
+          href: documentdb-sql-query-cheat-sheet.md
         - name: 堆疊溢位
           href: http://stackoverflow.com/questions/tagged/azure-cosmosdb
         - name: 影片
@@ -302,6 +298,8 @@
       href: /rest/api/documentdb/
     - name: REST 資源提供者
       href: /rest/api/documentdbresourceprovider/
+    - name: SQL
+      href: documentdb-sql-query-reference.md
   - name: 資料表 API
     items:
     - name: .NET

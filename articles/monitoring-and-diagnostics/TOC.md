@@ -30,7 +30,7 @@
 ### [常見模式](monitoring-autoscale-common-scale-patterns.md)
 ### [使用自訂度量進行自動調整](monitoring-autoscale-scale-by-custom-metric.md)
 ### [使用 Resource Manager 範本自動調整 VM 擴展集](insights-advanced-autoscale-virtual-machine-scale-sets.md)
-### [在虛擬機器擴展集中自動調整機器](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
+### [在 VM 擴展集內自動縮放機器](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [設定自動調整規模的 Webhook 與電子郵件通知](insights-autoscale-to-webhook-email.md)
 ## 使用活動記錄
 ### [檢視活動記錄中的事件](../azure-resource-manager/resource-group-audit.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
@@ -39,10 +39,10 @@
 ### [將活動記錄串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 ### [使用 Resource Manager 來稽核作業](../azure-resource-manager/resource-group-audit.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [透過 Resource Manager 建立活動記錄警示](monitoring-create-activity-log-alerts-with-resource-manager-template.md)
-## 服務通知
+## 使用服務通知
 ### [檢視服務通知](monitoring-service-notifications.md)
 ### [在服務通知上設定警示](monitoring-activity-log-alerts-on-service-notifications.md)
-## 動作群組
+## 使用動作群組
 ### [深入了解 webhook 結構描述](monitoring-activity-log-alerts-webhook.md)
 ### [SMS 警示行為](monitoring-sms-alert-behavior.md)
 ### [警示速率限制](monitoring-alerts-rate-limiting.md)
