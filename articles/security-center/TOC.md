@@ -5,11 +5,13 @@
 ## 案例
 ### [事件回應](security-center-incident-response.md)
 ### [使用增強安全性的建議](security-center-using-recommendations.md)
+## [平台移轉](security-center-platform-migration.md)
 
 # 開始使用
 ## [快速入門](security-center-get-started.md)
 ## [規劃與作業](security-center-planning-and-operations-guide.md)
 ## [權限](security-center-permissions.md)
+## [支援的平台](security-center-os-coverage.md)
 ## [合作夥伴整合](security-center-partner-integration.md)
 ## [常見問題集](security-center-faq.md)
 
