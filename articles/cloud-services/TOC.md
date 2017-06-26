@@ -102,7 +102,11 @@
 ### [常見部署問題](cloud-services-troubleshoot-deployment-problems.md)
 ### [角色無法啟動](cloud-services-troubleshoot-roles-that-fail-start.md)
 ### [復原指引](cloud-services-disaster-recovery-guidance.md)
-### [雲端服務常見問題集](cloud-services-faq.md)
+### 雲端服務常見問題集
+#### [應用程式和服務可用性常見問題集](cloud-services-application-and-service-availability-faq.md)
+#### [組能和管理常見問題](cloud-services-configuration-and-management-faq.md)
+#### [連線和網路服務常見問題](cloud-services-connectivity-and-networking-faq.md)
+#### [部署常見問題](cloud-services-deployment-faq.md)
 
 # 參考
 ## [.csdef XMLSchema](https://msdn.microsoft.com/library/azure/ee758711)

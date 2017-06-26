@@ -4,8 +4,6 @@
   items:
   - name: 關於函式
     href: functions-overview.md
-  - name: Functions 執行階段
-    href: functions-runtime-overview.md
   - name: 在 Flow、Logic Apps、Functions 和 WebJobs 之間做選擇
     href: functions-compare-logic-apps-ms-flow-webjobs.md
 - name: 快速入門
@@ -15,8 +13,8 @@
     href: functions-create-first-azure-function.md
   - name: 建立函式 - Azure CLI
     href: functions-create-first-azure-function-azure-cli.md
-#  - name: Create function - Visual Studio
-#    href: functions-create-your-first-function-visual-studio.md
+  - name: 建立函式 - Visual Studio
+    href: functions-create-your-first-function-visual-studio.md
   - name: 觸發程序
     items:
     - name: 計時器
@@ -33,16 +31,16 @@
       href: functions-integrate-storage-queue-output-binding.md
     - name: Cosmos DB
       href: functions-integrate-store-unstructured-data-cosmosdb.md
-- name: 範例
-  items:
-  - name: Azure CLI
-    href: functions-cli-samples.md
 - name: 教學課程
   items:
   - name: 1 - 搭配使用 Functions 與 Logic Apps
     href: functions-twitter-email.md
   - name: 2 - 建立無伺服器 API
     href: functions-create-serverless-api.md
+- name: 範例
+  items:
+  - name: Azure CLI
+    href: functions-cli-samples.md
 - name: 概念
   items:
   - name: 取用和 App Service 方案
@@ -51,36 +49,49 @@
     href: functions-triggers-bindings.md
   - name: 語言
     items:
-    - name: 'C# 函式概念'
+    - name: 'C# 指令碼'
+ 
       href: functions-reference-csharp.md
-    - name: 'F# 函式概念'
+    - name: .NET 類別庫
+      href: functions-dotnet-class-library.md
+    - name: 'F#'
       href: functions-reference-fsharp.md
-    - name: JavaScript 函式概念
+    - name: JavaScript
       href: functions-reference-node.md    
+  - name: 效能考量
+    href: functions-best-practices.md 
+  - name: 函式 Proxy
+    href: functions-proxies.md 
+  - name: Functions 執行階段
+    href: functions-runtime-overview.md
 - name: 使用說明指南
   items:
-  - name: 開發人員指南
-    href: functions-reference.md
-  - name: 測試 Azure Functions
-    href: functions-test-a-function.md
-  - name: 在本機開發及偵錯
-    href: functions-run-local.md
-  - name: 設定函式應用程式設定
+  - name: 開發
+    items: 
+     - name: 開發人員指南
+       href: functions-reference.md
+     - name: 測試函式
+       href: functions-test-a-function.md
+     - name: 在本機開發及偵錯
+       href: functions-run-local.md
+  - name: 部署
+    items:
+    - name: 連續部署
+      href: functions-continuous-deployment.md
+    - name: 自動資源部署
+      href: functions-infrastructure-as-code.md
+    - name: 內部部署函式
+      href: functions-runtime-install.md
+  - name: 設定
     href: functions-how-to-use-azure-function-app-settings.md
-  - name: Azure Functions 的持續部署
-    href: functions-continuous-deployment.md
-  - name: 自動資源部署
-    href: functions-infrastructure-as-code.md
-  - name: 監視 Azure Functions
+  - name: 監視
     href: functions-monitoring.md
-  - name: 安裝 Functions 執行階段
-    href: functions-runtime-install.md
-  - name: 連線到 SQL Database
-    href: functions-scenario-database-table-cleanup.md
-  - name: 建立 OpenAPI 2.0 定義
-    href: functions-api-definition-getting-started.md     
-  - name: Azure Functions 的最佳做法
-    href: functions-best-practices.md     
+  - name: 整合
+    items:   
+    - name: 連線到 SQL Database
+      href: functions-scenario-database-table-cleanup.md
+    - name: 建立 OpenAPI 2.0 定義
+      href: functions-api-definition-getting-started.md         
 - name: 參考
   items:
   - name: 繫結
@@ -117,10 +128,14 @@
   items:
   - name: 價格
     href: https://azure.microsoft.com/pricing/details/functions/
+  - name: 區域可用性
+    href: https://azure.microsoft.com/regions/services/
   - name: MSDN 論壇
     href: https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureFunctions
   - name: 堆疊溢位
     href: http://stackoverflow.com/questions/tagged/azure-functions
+  - name: Twitter
+    href: https://twitter.com/azurefunctions
   - name: Azure Functions GitHub 存放庫
     href: https://github.com/Azure/Azure-Functions/
   - name: 服務更新

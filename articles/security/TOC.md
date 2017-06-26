@@ -11,6 +11,7 @@
 ### [記錄與稽核](azure-log-audit.md)
 ### [公用雲端中的隔離](azure-isolation.md)
 ### [安全性技術功能](azure-security-technical-capabilities.md)
+### [在 Azure 中控管](governance-in-azure.md)
 
 # 開始使用
 ## [開始使用 Azure 資訊安全](azure-security-getting-started.md)

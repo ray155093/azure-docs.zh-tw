@@ -45,10 +45,12 @@
 ### [EDIFACT 企業整合](logic-apps-enterprise-integration-edifact.md)
 ### [EDIFACT 編碼](logic-apps-enterprise-integration-edifact-encode.md)
 ### [EDIFACT 解碼](logic-apps-enterprise-integration-edifact-decode.md)
+### [如何處理具有 UNH2.5 區段的 EDIFACT 文件](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
 ### [X12 企業整合](logic-apps-enterprise-integration-x12.md)
 ### [X12 編碼](logic-apps-enterprise-integration-x12-encode.md)
 ### [X12 解碼](logic-apps-enterprise-integration-x12-decode.md)
 ### [災害復原](logic-apps-enterprise-integration-b2b-business-continuity.md)
+### [錯誤和解決方案](logic-apps-enterprise-integration-b2b-list-errors-solutions.md)
 
 ## 存取內部部署資料
 ### [連線至內部部署資料](logic-apps-gateway-connection.md)
@@ -75,7 +77,6 @@
 ### [使用 Azure Functions 呼叫邏輯應用程式](logic-apps-scenario-function-sb-trigger.md)
 ### [新增錯誤和例外狀況處理](logic-apps-scenario-error-and-exception-handling.md)
 ### [B2B 處理](logic-apps-enterprise-integration-b2b.md)
-### [如何處理具有 UNH2.5 區段的 EDIFACT 文件](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
 
 ## 定價與計費
 ### [價格](https://azure.microsoft.com/pricing/details/logic-apps/)
@@ -116,6 +117,7 @@
 ### [HTTP Webhook](../connectors/connectors-native-webhook.md)
 ### [Informix](../connectors/connectors-create-api-informix.md)
 ### [整合帳戶](logic-apps-enterprise-integration-metadata.md)
+### [MQ](../connectors/connectors-create-api-mq.md)
 ### [Office 365 Outlook](../connectors/connectors-create-api-office365-outlook.md)
 ### [Oracle Database](../connectors/connectors-create-api-oracledatabase.md)
 ### [要求/回應](../connectors/connectors-native-reqres.md)

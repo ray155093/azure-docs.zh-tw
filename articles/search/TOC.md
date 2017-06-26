@@ -78,6 +78,7 @@
 ## [服務 REST (預覽)](search-api-2015-02-28-preview.md)
 ## [價格](https://azure.microsoft.com/pricing/details/search/)
 ## 示範網站
+### [搜尋分析器示範](http://alice.unearth.ai/)
 ### [作業列表應用程式](http://aka.ms/azjobsdemo)
 ### [即時示範應用程式](https://searchsamples.azurewebsites.net/)
 ## 課程工具與教學課程

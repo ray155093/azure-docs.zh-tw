@@ -41,6 +41,7 @@
 ### [入口網站](application-gateway-create-probe-portal.md)
 ### [PowerShell](application-gateway-create-probe-ps.md)
 ### [PowerShell (傳統)](application-gateway-create-probe-classic-ps.md)
+## [Azure 資訊安全中心整合](application-gateway-integration-security-center.md)
 ## [合併負載平衡服務](../traffic-manager/traffic-manager-load-balancing-azure.md?toc=%2fazure%2fapplication-gateway%2ftoc.json)
 ## 疑難排解
 ### [對應用程式閘道中閘道的錯誤進行疑難排解](application-gateway-troubleshooting-502.md)

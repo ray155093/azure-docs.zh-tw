@@ -1,4 +1,5 @@
 # [概觀](active-directory-developers-guide.md)
+## [為何選擇 Azure](https://azure.microsoft.com/develop/identity/signin/)
 ## [驗證基本概念](active-directory-authentication-scenarios.md)
 ## [應用程式類型](active-directory-authentication-scenarios.md#application-types-and-scenarios)
 # 開始使用
@@ -71,6 +72,7 @@
 ### [支援的權杖和宣告類型](active-directory-token-and-claims.md)
 ### [簽署金鑰變換](active-directory-signing-key-rollover.md)
 ### [同盟中繼資料](active-directory-federation-metadata.md)
+### [憑證認證](active-directory-certificate-credentials.md)
 ## [應用程式物件](active-directory-application-objects.md)
 ### [應用程式和 Azure AD](active-directory-how-applications-are-added.md)
 ## [應用程式資訊清單](active-directory-application-manifest.md)
@@ -101,4 +103,5 @@
 #### [OAuth 2.0 用戶端認證授與](active-directory-v2-protocols-oauth-client-creds.md)
 #### [Oauth 2.0 代理者流程](active-directory-v2-protocols-oauth-on-behalf-of.md)
 #### [權杖參考](active-directory-v2-tokens.md)
+#### [憑證認證](active-directory-certificate-credentials.md)
 ### [範圍](active-directory-v2-scopes.md)

@@ -1,6 +1,6 @@
 # 概觀
 ## [什麼是 Resource Manager？](resource-group-overview.md)
-## [支援的服務](resource-manager-supported-services.md)
+## [資源提供者和類型](resource-manager-supported-services.md)
 ## [Resource Manager 與傳統部署](resource-manager-deployment-model.md)
 ## [訂用帳戶治理](resource-manager-subscription-governance.md)
 ## [受管理的應用程式](managed-application-overview.md)
@@ -67,12 +67,13 @@
 
 ## 設定資源原則
 ### [資源原則是什麼？](resource-manager-policy.md)
-### [入口網站原則指派](resource-manager-policy-portal.md)
-### [指令碼原則指派](resource-manager-policy-create-assign.md)
-### [資源標籤原則](resource-manager-policy-tags.md)
-### [儲存體原則](resource-manager-policy-storage.md)
-### [Linux VM 原則](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
-### [Windows VM 原則](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+### [使用入口網站指派原則](resource-manager-policy-portal.md)
+### [使用指令碼指派原則](resource-manager-policy-create-assign.md)
+### 範例
+#### [資源標記](resource-manager-policy-tags.md)
+#### [儲存體](resource-manager-policy-storage.md)
+#### [Linux VM](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+#### [Windows VM](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 
 ## 使用受管理的應用程式
 ### [發佈受管理的應用程式](managed-application-publishing.md)

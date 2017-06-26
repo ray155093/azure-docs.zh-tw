@@ -11,7 +11,7 @@
 ### [建立獨立的自動化帳戶](automation-create-standalone-account.md)
 ### [建立 Azure AD 使用者帳戶](automation-create-aduser-account.md)
 ### [透過 AWS 設定驗證](automation-config-aws-account.md)
-### [透過 PowerShell 建立 Azure 執行身分帳戶](automation-update-account-powershell.md)
+### [建立自動化執行身分帳戶](automation-create-runas-account.md)
 ### [驗證自動化帳戶組態](automation-verify-runas-authentication.md)
 ### [管理角色型存取控制](automation-role-based-access-control.md)
 ### [管理自動化帳戶](automation-manage-account.md)
@@ -56,12 +56,12 @@
 ### [修復 Azure VM 警示](automation-azure-vm-alert-integration.md)
 ### [使用 JSON 標籤來啟動/停止 VM](automation-scenario-start-stop-vm-wjson-tags.md)
 ### [移除資源群組](automation-scenario-remove-resourcegroup.md)
-### [於下班時間開始/停止 VM](automation-solution-vm-management.md)
 ### [搭配 GitHub Enterprise 的原始檔控制整合](automation-scenario-source-control-integration-with-github-ent.md)
 ### [搭配 VSTS 的原始檔控制整合](automation-scenario-source-control-integration-with-VSTS.md)
 ## 解決方案
 ### [變更追蹤](../log-analytics/log-analytics-change-tracking.md)
 ### [更新管理](../operations-management-suite/oms-solution-update-management.md)
+### [於下班時間開始/停止 VM](automation-solution-vm-management.md)
 ## 監視
 ### [將 Azure 自動化作業資料轉送到 Log Analytics](automation-manage-send-joblogs-log-analytics.md)
 ### [從 Log Analytics 取消 Azure 自動化帳戶連結](automation-unlink-from-log-analytics.md)

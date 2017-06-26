@@ -19,13 +19,11 @@
 
 # 作法
 ## 規劃和設計
-### [🔧 使用 Azure 服務的一般整合案例](event-hubs-common-integrations.md)
 ### [專用的事事件中樞](event-hubs-dedicated-overview.md)
 ### [驗證和安全性模型概觀](event-hubs-authentication-and-security-model-overview.md)
 ### [可用性和一致性](event-hubs-availability-and-consistency.md)
+### [自動調整輸送量單位](event-hubs-auto-inflate.md)
 ## 開發
-### [🔧處理錯誤和重試](event-hubs-handling-errors-retry.md)
-### [🔧管理效能和級別](event-hubs-performance-scale.md)
 ### [可用的 API](event-hubs-api-overview.md)
 #### [.NET Standard](event-hubs-dotnet-standard-api-overview.md)
 #### [.NET Framework](event-hubs-dotnet-framework-api-overview.md)

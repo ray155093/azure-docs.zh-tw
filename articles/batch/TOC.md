@@ -22,6 +22,8 @@
 ### [低優先順序 VM](batch-low-pri-vms.md)
 ### [使用 Batch Management .NET 管理 Batch 帳戶](batch-management-dotnet.md)
 ### [持續作業及工作輸出](batch-task-output.md)
+#### [保存 Batch API 的輸出](batch-task-output-files.md)
+#### [保存檔案慣例程式庫輸出](batch-task-output-file-conventions.md)
 ### [在 Batch 中執行 MPI 作業](batch-mpi.md)
 ### [作業相依性](batch-task-dependencies.md)
 ### [執行工作的使用者帳戶](batch-user-accounts.md)

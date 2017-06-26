@@ -4,6 +4,7 @@
 
 # 開始使用
 ## [建立命名空間](relay-create-namespace-portal.md)
+## [建立混合式內部部署/雲端應用程式](service-bus-dotnet-hybrid-app-using-service-bus-relay.md)
 ## 混合式連線
 ### [.NET](relay-hybrid-connections-dotnet-get-started.md)
 ### [Node](relay-hybrid-connections-node-get-started.md)

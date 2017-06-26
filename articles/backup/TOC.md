@@ -48,7 +48,7 @@
 #### [準備 Resource Manager 部署的虛擬機器](backup-azure-arm-vms-prepare.md)
 ### 規劃您的環境
 #### [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
-### 備份伺服器和工作負載
+### 備份 VM
 #### [將 Azure 虛擬機器備份至備份保存庫](backup-azure-vms.md)
 #### [將 Azure 虛擬機器備份到復原服務保存庫](backup-azure-arm-vms.md)
 #### [備份加密的虛擬機器](backup-azure-vms-encryption.md)

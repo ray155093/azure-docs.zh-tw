@@ -5,6 +5,7 @@
 # 開始使用
 ## [在入口網站中建立登錄](container-registry-get-started-portal.md)
 ## [使用 Azure CLI 2.0 建立登錄](container-registry-get-started-azure-cli.md)
+## [使用 Azure PowerShell 建立登錄](container-registry-get-started-powershell.md)
 ## [發送和提取映像](container-registry-get-started-docker-cli.md)
 ## [檢視存放庫](container-registry-repositories.md)
 
