@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/06/2016
 ms.author: cephalin
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
 ms.openlocfilehash: 9993d6f6ef46366d00f5c44812380b3f1e07d9ef
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -57,7 +58,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 啟用 [應用程式診斷] 時，也會選擇 [層級]。 此設定可讓您篩選擷取至**資訊**、**警告**或**錯誤**資訊中的資訊。 將此功能設為 [詳細資訊] 會記錄所有由該應用程式所產生的資訊。
 
 > [!NOTE]
-> 與變更 web.config 檔案的作法不同之處在於啟用應用程式診斷或是變更診斷記錄層級，而不會回收正在執行的應用程式底下的應用程式網域。
+> 與變更 web.config 檔案不同，啟用應用程式診斷或是變更診斷記錄層級並不會回收用來執行應用程式的應用程式網域。
 >
 >
 
@@ -139,7 +140,7 @@ Visual Studio Application Insights 提供篩選與搜尋記錄的工具，以及
 1. 在 Visual Studio 中將 Application Insights SDK 加入至專案。
    * 在 [方案總管] 中，以滑鼠右鍵按一下專案，然後選擇 [加入 Application Insights]。 系統將指導您完成包括建立 Application Insights 資源在內的所有步驟。 [深入了解](../application-insights/app-insights-asp-net.md)
 2. 將追蹤接聽套件新增至專案。
-   * 以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。 選取 `Microsoft.ApplicationInsights.TraceListener` [深入了解](../application-insights/app-insights-asp-net-trace-logs.md)
+   * 以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 套件]。 選取 `Microsoft.ApplicationInsights.TraceListener` [深入了解](../application-insights/app-insights-asp-net-trace-logs.md)
 3. 上傳您的專案並執行，以產生記錄資料。
 4. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您新的 Application Insights 資源，然後開啟 [搜尋]。 您將會看到您的記錄資料，以及要求、使用情況及其他遙測。 有些遙測可能需要數分鐘才能抵達：按一下 [重新整理]。 [深入了解](../application-insights/app-insights-diagnostic-search.md)
 
