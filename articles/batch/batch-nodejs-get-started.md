@@ -12,10 +12,10 @@ ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: shwetams
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: 23e833b9eb926c81fd8c02cd96d43da8cffcaa43
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: c48171d8634a651718a0775183414f463c6a468c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
+ms.lasthandoff: 06/16/2017
 
 ---
 
@@ -281,7 +281,7 @@ Azure Batch 作業是相似工作的邏輯群組。 在我們的案例中，這�
 您可以在 Azure 儲存體帳戶上傳指令碼，並產生 SAS URI 來存取指令碼。 使用 Azure 儲存體 Node.js SDK 也可以自動執行此程序。
 
 > [!Tip]
-> 作業的準備工作只會在需要執行特定工作的 VM 節點上執行。 如果您想要在所有節點上安裝必要條件 (不管其上執行的工作為何)，您可以在新增集區時使用 [startTask](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) 屬性。 您可以使用下列準備工作定義以供參考。
+> 作業的準備工作只會在需要執行特定工作的 VM 節點上執行。 如果您想要在所有節點上安裝必要條件 (不管其上執行的工作為何)，可以在新增集區時使用 [startTask](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) 屬性。 您可以使用下列準備工作定義以供參考。
 >
 >
 

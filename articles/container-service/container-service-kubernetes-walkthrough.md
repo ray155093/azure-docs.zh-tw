@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中快速開始 Kubernetes 叢集 | Microsoft Docs"
-description: "部署並開始使用 Azure Container Service 的 Kubernetes 叢集"
+title: "快速入門 - 適用於 Linux 的 Azure Kubernetes 叢集 | Microsoft Docs"
+description: "快速了解如何在 Azure Container Service 中使用 Azure CLI 建立適用於 Linux 的 Kubernetes 叢集。"
 services: container-service
 documentationcenter: 
 author: anhowe
@@ -14,191 +14,154 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/08/2017
+ms.date: 05/31/2017
 ms.author: anhowe
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 0604a85192ed632b621113b98cc44172c584ea01
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 25043f6bf5e5ab3def8563bd2c096b79706bfec1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 ---
 
-# <a name="get-started-with-a-kubernetes-cluster-in-container-service"></a>在 Container Service 中開始使用 Kubernetes 叢集
+# <a name="deploy-kubernetes-cluster-for-linux-containers"></a>部署適用於 Linux 容器的 Kubernetes 叢集
 
+Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳述使用 Azure CLI 在 [Azure Container Service](container-service-intro.md) 中部署 [Kubernetes](https://kubernetes.io/docs/home/) 叢集。 部署叢集之後，您要使用 Kubernetes`kubectl` 命令列工具與其連線，且要部署第一個 Linux 容器。
 
-本逐步解說會示範如何使用 Azure CLI 2.0 命令在 Azure Container Service 中建立 Kubernetes 叢集。 然後，您可以使用 `kubectl` 命令列工具來開始使用叢集中的容器。
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-下圖顯示容器服務叢集搭配一個 Linux 主要節點及兩個 Linux 代理程式的架構。 主要節點供 Kubernetes REST API 使用。 代理程式節點則是以群組方式存在於 Azure 可用性設定組並執行您的容器。 所有 VM 都位於相同的私人虛擬網路，可完全存取彼此。
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-![azure 上 Kubernetes 叢集的影像](media/container-service-kubernetes-walkthrough/kubernetes.png)
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
 
-如需詳細背景，請參閱 [Azure Container Service 簡介](container-service-intro.md)和 [Kubernetes 文件](https://kubernetes.io/docs/home/)。
+## <a name="log-in-to-azure"></a>登入 Azure 
 
-## <a name="prerequisites"></a>必要條件
-若要使用 Azure CLI 2.0 建立 Azure Container Service 叢集，您必須︰
-* 有一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))
-* 已安裝及設定 [Azure CLI 2.0](/cli/azure/install-az-cli2)
+使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
 
-此外，您需要 (或您可以在叢集部署期間使用 Azure CLI 自動產生)︰
-
-* **SSH RSA 公開金鑰**：如果您想要預先建立安全殼層 (SSH) RSA 金鑰，請參閱 [macOS 和 Linux](../virtual-machines/linux/mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/linux/ssh-from-windows.md) 指引。 
-
-* **服務主體用戶端識別碼和祕密**：如需建立 Azure Active Directory 服務主體的步驟和其他資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。
-
- 本文中的命令範例會自動產生 SSH 金鑰和服務主體。
-
-## <a name="create-your-kubernetes-cluster"></a>建立 Kubernetes 叢集
-
-以下是使用 Azure CLI 2.0 來建立叢集的簡短 Bash 殼層命令。 
-
-### <a name="create-a-resource-group"></a>建立資源群組
-若要建立叢集，您必須先在[可取得](https://azure.microsoft.com/regions/services/) Azure Container Service 的位置建立資源群組。 執行類似下列的命令：
-
-```azurecli
-RESOURCE_GROUP=my-resource-group
-LOCATION=westus
-az group create --name=$RESOURCE_GROUP --location=$LOCATION
+```azurecli-interactive
+az login
 ```
 
-### <a name="create-a-cluster"></a>建立叢集
-使用 `az acs create` 命令搭配 `--orchestrator-type=kubernetes`，在資源群組中建立 Kubernetes 叢集。 如需命令語法，請參閱`az acs create`[說明](/cli/azure/acs#create)。
+## <a name="create-a-resource-group"></a>建立資源群組
 
-這個版本的命令會自動產生 Kubernetes 叢集的 SSH RSA 金鑰和服務主體。
+使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯群組。 
 
+下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組。
 
-
-```azurecli
-DNS_PREFIX=some-unique-value
-CLUSTER_NAME=any-acs-cluster-name
-az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --generate-ssh-keys
+```azurecli-interactive 
+az group create --name myResourceGroup --location eastus
 ```
 
-幾分鐘後，命令完成，您應有作用中的 Kubernetes 叢集。
+## <a name="create-kubernetes-cluster"></a>建立 Kubernetes 叢集
+使用 [az acs create](/cli/azure/acs#create) 命令，在 Azure Container Service 中建立 Kubernetes 叢集。 
 
-> [!IMPORTANT]
-> 如果帳戶沒有用以建立 Azure AD 服務主體的權限，則命令會產生錯誤，此錯誤的內容類似**權限不足，無法完成作業**。 如需詳細資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。
-> 
-
+下列範例會建立名為 myK8sCluster 的叢集，使用一個 Linux 主要節點和兩個 Linux 代理程式節點。 如果它們尚未存在於預設位置中，此範例就會建立 SSH 金鑰。 若要使用一組特定金鑰，請使用 `--ssh-key-value` 選項。 將叢集名稱更新為適合您環境的值。 
 
 
-### <a name="connect-to-the-cluster"></a>連接到叢集
 
-若要從用戶端電腦連線到 Kubernetes 叢集，您要使用 [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl/)，Kubernetes 命令列用戶端。 
-
-如果您尚未安裝 `kubectl`，可以使用 `az acs kubernetes install-cli` 安裝它。 (您也可以從 [Kubernetes 網站](https://kubernetes.io/docs/tasks/kubectl/install/)進行下載。)
-
-```azurecli
-sudo az acs kubernetes install-cli
+```azurecli-interactive 
+az acs create --orchestrator-type=kubernetes \
+    --resource-group myResourceGroup \
+    --name=myK8sCluster \
+    --agent-count=2 \
+    --generate-ssh-keys 
 ```
 
-> [!TIP]
-> 根據預設，此命令會安裝 `kubectl` 二進位檔至 Linux 或 macOS 系統上的 `/usr/local/bin/kubectl`，或 Windows 上的 `C:\Program Files (x86)\kubectl.exe`。 若要指定不同的安裝路徑，請使用 `--install-location` 參數。
->
-> 安裝 `kubectl`之後，請確認其為您系統路徑中的目錄，或將它新增至路徑。 
->
+幾分鐘之後，此命令就會完成，且會顯示您部署的相關資訊。
 
+## <a name="install-kubectl"></a>安裝 kubectl
 
-然後，執行下列命令會將主要 Kubernetes 叢集組態下載到 `~/.kube/config` 檔案中：
+若要從用戶端電腦連線到 Kubernetes 叢集，請使用 [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl/) (Kubernetes 命令列用戶端)。 
 
-```azurecli
-az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUSTER_NAME
+如果您是使用 Azure CloudShell，就已安裝 `kubectl`。 如果您想要在本機進行安裝，可以使用 [az acs kubernetes install-cli](/cli/azure/acs/kubernetes#install-cli) 命令。
+
+下列 Azure CLI 範例會將 `kubectl` 安裝到您的系統。 如果您是在 Mac OS 或 Lunix 上執行 Azure CLI，可能需要搭配 `sudo` 來執行命令。
+
+```azurecli-interactive 
+az acs kubernetes install-cli 
 ```
 
-如需更多安裝和設定 `kubectl` 的選項，請參閱[連線至 Azure Container Service 叢集](container-service-connect.md)。
+## <a name="connect-with-kubectl"></a>使用 kubectl 連線
 
-此時您應該已準備好從您的電腦存取叢集。 請嘗試執行：
+若要將 `kubectl` 設定為連線到 Kubernetes 叢集，請執行 [az acs kubernetes get-credentials](/cli/azure/acs/kubernetes#get-credentials) 命令。 下列範例會下載 Kubernetes 叢集的叢集設定。
 
-```bash
+```azurecli-interactive 
+az acs kubernetes get-credentials --resource-group=myResourceGroup --name=myK8sCluster
+```
+
+若要確認從您電腦至叢集的連線，請嘗試執行：
+
+```azurecli-interactive
 kubectl get nodes
 ```
 
-確認您可以看到叢集中的電腦清單。
+`kubectl` 會列出主要和代理程式節點。
 
-## <a name="create-your-first-kubernetes-service"></a>建立第一個 Kubernetes 服務
+```azurecli-interactive
+NAME                    STATUS                     AGE       VERSION
+k8s-agent-98dc3136-0    Ready                      5m        v1.5.3
+k8s-agent-98dc3136-1    Ready                      5m        v1.5.3
+k8s-master-98dc3136-0   Ready,SchedulingDisabled   5m        v1.5.3
 
-完成此逐步解說之後，您將了解如何︰
-* 部署 Docker 應用程式並對外公開
-* 使用 `kubectl exec` 在容器中執行命令 
-* 存取 Kubernetes 儀表板
-
-### <a name="start-a-container"></a>啟動容器
-您可以執行下列命令來執行容器 (在此案例中為 Nginx Web 伺服器)：
-
-```bash
-kubectl run nginx --image nginx
 ```
 
-這會在其中一個節點上的 Pod 中啟動 Nginx Docker 容器。
 
-查看執行中的容器，請執行：
+## <a name="deploy-an-nginx-container"></a>容器 NGINX 容器
 
-```bash
+您可以在 Kubernetes Pod 內執行 Docker 容器，其中包含一個或多個容器。 
+
+下列命令會在其中一個節點上的 Kubernetes Pod 中啟動 NGINX Docker 容器。 在此情況下，容器會在 [Docker Hub](https://hub.docker.com/_/nginx/) 中執行從映像提取的 NGINX 網頁伺服器。
+
+```azurecli-interactive
+kubectl run nginx --image nginx
+```
+若要查看容器是否正在執行，請執行：
+
+```azurecli-interactive
 kubectl get pods
 ```
 
-### <a name="expose-the-service-to-the-world"></a>對外公開服務
-若要對外公開服務，請建立類型 `LoadBalancer` 的 Kubernetes `Service`：
+## <a name="view-the-nginx-welcome-page"></a>檢視 NGINX 歡迎使用頁面
+若要向全球公開 NGINX 伺服器的公用 IP 位址，請輸入下列命令：
 
-```bash
+```azurecli-interactive
 kubectl expose deployments nginx --port=80 --type=LoadBalancer
 ```
 
-此命令會使 Kubernetes 以公用 IP 位址建立 Azure Load Balancer 規則。 變更需要數分鐘的時間才能傳遍負載平衡器。 如需詳細資訊，請參閱[在 Azure Container Service 中針對 Kubernetes 叢集內的容器進行負載平衡](container-service-kubernetes-load-balancing.md)。
+使用此命令，Kubernetes 會以服務的公用 IP 位址來建立服務和 [Azure Load Balancer 規則](container-service-kubernetes-load-balancing.md)。 
 
-執行下列命令，以監看服務從 `pending` 變更為顯示外部 IP 位址︰
+執行下列命令來查看服務的狀態。
 
-```bash
-watch 'kubectl get svc'
+```azurecli-interactive
+kubectl get svc
 ```
 
-  ![監看從 pending 轉換為外部 IP 位址的影像](media/container-service-kubernetes-walkthrough/kubernetes-nginx3.png)
-
-一旦看到外部 IP 位址後，您就可以在瀏覽器中瀏覽它︰
-
-  ![瀏覽至 Nginx 的影像](media/container-service-kubernetes-walkthrough/kubernetes-nginx4.png)  
-
-
-### <a name="browse-the-kubernetes-ui"></a>瀏覽 Kubernetes UI
-若要查看 Kubernetes Web 介面，您可以使用：
-
-```bash
-kubectl proxy
-```
-此命令會在 localhost 上執行經過驗證的 Proxy，可讓您用來檢視在 [http://localhost:8001/ui](http://localhost:8001/ui) 上執行的 Kubernetes Web UI。 如需詳細資訊，請參閱[搭配 Azure Container Service 使用 Kubernetes Web UI](container-service-kubernetes-ui.md)。
-
-![Kubernetes 儀表板的影像](media/container-service-kubernetes-walkthrough/kubernetes-dashboard.png)
-
-### <a name="remote-sessions-inside-your-containers"></a>容器中的遠端工作階段
-Kubernetes 可讓您在叢集中執行的遠端 Docker 容器中執行命令。
-
-```bash
-# Get the name of your nginx pods
-kubectl get pods
+IP 位址一開始會顯示為 `pending`。 幾分鐘之後，服務的外部 IP 位址會完成設定：
+  
+```azurecli-interactive
+NAME         CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE       
+kubernetes   10.0.0.1       <none>          443/TCP        21h       
+nginx        10.0.111.25    52.179.3.96     80/TCP         22m
 ```
 
-使用您的 pod 名稱，您可以在 pod 上執行遠端命令。 例如：
+若要在外部 IP 位址查看預設的 NGINX 歡迎使用頁面，您可以使用指定的網頁瀏覽器：
 
-```bash
-kubectl exec <pod name> date
+![瀏覽至 Nginx 的影像](media/container-service-kubernetes-walkthrough/kubernetes-nginx4.png)  
+
+
+## <a name="delete-cluster"></a>刪除叢集
+若不再需要叢集，您可以使用 [az group delete](/cli/azure/group#delete) 命令來移除資源群組、容器服務和所有相關資源。
+
+```azurecli-interactive 
+az group delete --name myResourceGroup
 ```
-
-您也可以使用 `-it` 旗標取得完整的互動式工作階段：
-
-```bash
-kubectl exec <pod name> -it bash
-```
-
-![容器內的遠端工作階段](media/container-service-kubernetes-walkthrough/kubernetes-remote.png)
-
 
 
 ## <a name="next-steps"></a>後續步驟
 
-若要使用 Kubernetes 叢集執行更多作業，請參閱下列資源︰
+在本快速入門中，您部署了 Kubernetes 叢集、與 `kubectl` 連線，並使用 NGINX 容器部署了 Pod。 若要深入了解 Azure Container Service，請繼續進行 Kubernetes 叢集教學課程。
 
-* [Kubernetes 訓練營](https://katacoda.com/embed/kubernetes-bootcamp/1/) - 說明如何部署、調整、更新和偵錯容器化應用程式。
-* [Kubernetes 使用者指南](http://kubernetes.io/docs/user-guide/) - 提供在現有 Kubernetes 叢集中執行程式的相關資訊。
-* [Kubernetes 範例](https://github.com/kubernetes/kubernetes/tree/master/examples) - 提供如何使用 Kubernetes 執行實際應用程式的範例。
+> [!div class="nextstepaction"]
+> [管理 ACS Kubernetes 叢集](./container-service-tutorial-kubernetes-prepare-app.md)
 

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/19/2017
 ms.author: charwen,cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: ec9da5c9818f03a85e858800bd38be49d8ed14e6
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: ffa791cf4c4be15645a67fef4e94bf6ebdc42a6a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.lasthandoff: 04/27/2017
 * **不支援基本 SKU 閘道。** 您必須對 [ExpressRoute 閘道](expressroute-about-virtual-network-gateways.md)和 [VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)使用非基本 SKU 閘道。
 * **僅支援路由式 VPN 閘道。** 您必須使用路由式 [VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)。
 * **應該為 VPN 閘道設定靜態路由。** 如果您的區域網路連線到 ExpressRoute 和站對站 VPN，您必須在區域網路中設定靜態路由，才能將站對站 VPN 連線路由傳送到公用網際網路。
-* **必須先設定 ExpressRoute 閘道。** 您必須先建立 ExpressRoute 閘道器，才能新增站對站 VPN 閘道。
+* **必須先設定 ExpressRoute 閘道並加以連結至電路。** 您必須先建立 ExpressRoute 閘道器並加以連結至電路，才能新增站對站 VPN 閘道。
 
 ## <a name="configuration-designs"></a>組態設計
 ### <a name="configure-a-site-to-site-vpn-as-a-failover-path-for-expressroute"></a>設定站對站 VPN 作為 ExpressRoute 的容錯移轉路徑
@@ -87,6 +88,7 @@ ms.lasthandoff: 04/27/2017
   Select-AzureRmSubscription -SubscriptionName 'yoursubscription'
   $location = "Central US"
   $resgrp = New-AzureRmResourceGroup -Name "ErVpnCoex" -Location $location
+  $VNetASN = 65010
   ```
 3. 建立包含閘道子網路的虛擬網路。 如需關於虛擬網路組態的詳細資訊，請參閱 [Azure 虛擬網路組態](../virtual-network/virtual-networks-create-vnet-arm-ps.md)。
    
@@ -136,10 +138,10 @@ ms.lasthandoff: 04/27/2017
   New-AzureRmVirtualNetworkGateway -Name "VPNGateway" -ResourceGroupName $resgrp.ResourceGroupName -Location $location -IpConfigurations $gwConfig -GatewayType "Vpn" -VpnType "RouteBased" -GatewaySku "Standard"
   ```
    
-    Azure VPN 閘道支援 BGP。 您可以在下列命令中指定 -EnableBgp。
+    Azure VPN 閘道支援 BGP 路由通訊協定。 您可以為該虛擬網路指定 ASN (AS 號碼)，方法是在下列命令中新增 -Asn 參數。 未指定該參數，則會預設為 AS 號碼 65515。
 
   ```powershell
-  $azureVpn = New-AzureRmVirtualNetworkGateway -Name "VPNGateway" -ResourceGroupName $resgrp.ResourceGroupName -Location $location -IpConfigurations $gwConfig -GatewayType "Vpn" -VpnType "RouteBased" -GatewaySku "Standard" -EnableBgp $true
+  $azureVpn = New-AzureRmVirtualNetworkGateway -Name "VPNGateway" -ResourceGroupName $resgrp.ResourceGroupName -Location $location -IpConfigurations $gwConfig -GatewayType "Vpn" -VpnType "RouteBased" -GatewaySku "Standard" -Asn $VNetASN
   ```
    
     您可以在 $azureVpn.BgpSettings.BgpPeeringAddress 和 $azureVpn.BgpSettings.Asn 中找到 Azure 用於 VPN 閘道的 BGP 對等互連 IP 和 AS 號碼。 如需詳細資訊，請參閱針對 Azure VPN 閘道[設定 BGP](../vpn-gateway/vpn-gateway-bgp-resource-manager-ps.md)。

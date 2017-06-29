@@ -13,13 +13,13 @@ ms.workload:
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: hero-article
-ms.date: 05/10/2017
+ms.date: 06/19/2017
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: bfdf42ef717c090bffb89e9f276a135c58b1884f
+ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
+ms.openlocfilehash: 0265503689e189a3e2e30c2ae9fff39641647d0c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -29,13 +29,17 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 本快速入門示範如何使用以 Node.js 撰寫的現有 [MongoDB](mongodb-introduction.md) 應用程式，並將它連線到可支援 MongoDB 用戶端連線的 Azure Cosmos DB 資料庫。 換句話說，您的 Node.js 應用程式只知道它使用 MongoDB API 連線到資料庫。 對於資料儲存在 Azure Cosmos DB 中的應用程式而言是透明的。
 
-完成之後，您的 MEAN 應用程式 (MongoDB、Express、AngularJS 及 Node.js) 將會在 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) 上執行。 
+完成之後，您的 MEAN 應用程式 (MongoDB、Express、AngularJS 及 Node.js) 將會在 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 上執行。 
 
 ![在 Azure App Service 中執行的 MEAN.js 應用程式](./media/create-mongodb-nodejs/meanjs-in-azure.png)
 
-## <a name="prerequisites"></a>必要條件 
 
-開始本快速入門之前，請確認您的電腦上[已安裝 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)。 此外，您需要 [Node.js](https://nodejs.org/) 和 [Git](http://www.git-scm.com/downloads)。 您將執行 `az`、`npm` 和 `git` 命令。
+[!INCLUDE [cloud-shell-try-it](../../includes/cloud-shell-try-it.md)]
+
+如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+
+## <a name="prerequisites"></a>必要條件 
+除了 Azure CLI，您還需要在本機安裝 [Node.js](https://nodejs.org/) 和 [Git](http://www.git-scm.com/downloads)，才能執行 `npm` 和 `git` 命令。
 
 您應具備 Node.js 的使用知識。 本快速入門通常不是為了協助您開發 Node.js 應用程式。
 
@@ -61,19 +65,17 @@ npm start
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
-現在在終端機視窗中使用 Azure CLI 2.0，以建立在 Azure App Service 中裝載 Node.js 應用程式所需的資源。  使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。 
+如果您要使用已安裝的 Azure CLI，請使用 [az login](/cli/azure/#login) 命令來登入 Azure 訂用帳戶，並遵循畫面上的指示進行。 如果您是使用 Azure Cloud Shell，可以跳過此步驟。
 
-```azurecli 
+```azurecli
 az login 
 ``` 
    
-### <a name="add-the-azure-cosmos-db-module"></a>新增 Azure Cosmos DB 模組
+## <a name="add-the-azure-cosmos-db-module"></a>新增 Azure Cosmos DB 模組
 
-若要使用 Azure Cosmos DB 命令，請新增 Azure Cosmos DB 模組。 
+如果您是使用已安裝的 Azure CLI，請檢查是否已安裝 `cosmosdb` 元件，方法是執行 `az` 命令。 如果 `cosmosdb` 位於基底命令清單中，請繼續進行下一個命令。 如果您是使用 Azure Cloud Shell，可以跳過此步驟。
 
-```azurecli
-az component update --add cosmosdb
-```
+如果 `cosmosdb` 不在基底命令的清單中，請重新安裝 [Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
@@ -81,7 +83,9 @@ az component update --add cosmosdb
 
 下列範例會在西歐區域中建立一個資源群組。 選擇資源群組的唯一名稱。
 
-```azurecli
+如果您是使用 Azure Cloud Shell，請按一下 [試用]、遵循畫面上的提示登入，然後將命令複製到命令提示字元。
+
+```azurecli-interactive
 az group create --name myResourceGroup --location "West Europe"
 ```
 
@@ -91,7 +95,7 @@ az group create --name myResourceGroup --location "West Europe"
 
 在下列命令中，請在您看見 `<cosmosdb_name>` 預留位置的地方，替代成您自己的唯一 Azure Cosmos DB 帳戶名稱。 這個唯一名稱會用來作為 Azure Cosmos DB 端點 (`https://<cosmosdb_name>.documents.azure.com/`) 的一部分，所以這個名稱在 Azure 中的所有 Azure Cosmos DB 帳戶上必須是唯一的。 
 
-```azurecli
+```azurecli-interactive
 az cosmosdb create --name <cosmosdb_name> --resource-group myResourceGroup --kind MongoDB
 ```
 
@@ -139,7 +143,7 @@ DB/databaseAccounts/<cosmosdb_name>",
 
 若要連線至 Azure Cosmos DB 資料庫，您需要資料庫金鑰。 使用 [az cosmosdb list-keys](/cli/azure/cosmosdb#list-keys) 命令來擷取主要金鑰。
 
-```azurecli
+```azurecli-interactive
 az cosmosdb list-keys --name <cosmosdb_name> --resource-group myResourceGroup
 ```
 

@@ -12,17 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: get-started-article
-ms.date: 03/09/2017
+ms.date: 06/14/2017
 ms.author: sethm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 9fd40892c77630bd4f0b7abf5c3458a6dc200402
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 74a0837b7149236faa45ef2cda0a0aee7c46a31b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/10/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
 # <a name="what-is-azure-relay"></a>什麼是 Azure 轉送？
+
 Azure 轉送服務可執行混合式應用程式，方法是讓您以安全的方式向公用雲端公開位於企業網路內部的服務，而無需開啟防火牆連線或要求對企業網路基礎結構的進行侵入式變更。 轉送支援各種不同的傳輸通訊協定和 Web 服務標準。
 
 轉送服務支援傳統的單向、要求/回應以及對等式流量。 它也支援網際網路範圍內的事件散發，以啟用發佈/訂閱案例和雙向通訊端通訊來提高點對點效率。 
@@ -34,7 +35,7 @@ Azure 轉送服務可執行混合式應用程式，方法是讓您以安全的�
 Azure 轉送有兩項功能︰
 
 1. [混合式連線](#hybrid-connections) - 使用開放式標準 Web 通訊端來啟用多平台案例。
-2. [WCF 轉送](#wcf-relays) - 使用 Windows Communication Foundation (WCF) 來啟用遠端程序呼叫。 WCF 轉送是舊版的轉送服務，許多客戶已將該服務使用於其 WCF 程式設計模型。
+2. [WCF 轉送](#wcf-relays) - 使用 Windows Communication Foundation (WCF) 來啟用遠端程序呼叫。 WCF 轉送是舊版的轉送服務，許多客戶已將該服務用於其 WCF 程式設計模型。
 
 混合式連線和 WCF 轉送都能夠對存在於企業網路內的資產進行安全的連線。 視您的特定需求使用其中一項功能，詳述於下表︰
 
@@ -48,15 +49,19 @@ Azure 轉送有兩項功能︰
 | **多個 RPC 程式設計模型** | |x |
 
 ## <a name="hybrid-connections"></a>混合式連線
+
 [Azure 轉送混合式連線](relay-hybrid-connections-protocol.md)功能是現有轉送功能的安全、開放式通訊協定演化，可以在任何平台上以任何具有基本 WebSocket 功能的語言實作，而基本 WebSocket 功能會明確地將 WebSocket API 納入一般網頁瀏覽器中。 混合式連線是以 HTTP 和 Websocket 為基礎。
 
 ## <a name="wcf-relays"></a>WCF 轉送
+
 WCF 轉送適用於完整的 .NET Framework (NETFX) 和 WCF。 您在內部部署服務與使用一組 WCF「轉送」繫結的轉送服務之間起始連線。 在幕後，轉送繫結會對應至新的傳輸繫結元素，其設計來建立與雲端中服務匯流排整合的 WCF 通道元件。
 
 ## <a name="service-history"></a>服務歷程記錄
-「混合式連線」會取代先前的功能，該功能同樣名為「BizTalk 服務」功能且建置於 Azure 服務匯流排 WCF 轉送。 新的混合式連線功能可補充現有的 WCF 轉送及，而這兩個服務功能在可預見的未來會並存於轉送服務中。 它們共用通用的閘道，但有不同的實作方式。
+
+「混合式連線」會取代先前的功能，該功能同樣名為「BizTalk 服務」功能且建置於 Azure 服務匯流排 WCF 轉送。 新的混合式連線功能可補充現有的 WCF 轉送功能，而這兩個服務功能在可預見的未來會並存於 Azure 轉送服務中。 它們共用通用的閘道，但有不同的實作方式。
 
 ## <a name="next-steps"></a>後續步驟：
+
 * [轉送常見問題集](relay-faq.md)
 * [建立命名空間](relay-create-namespace-portal.md)
 * [開始使用 .NET](relay-hybrid-connections-dotnet-get-started.md)

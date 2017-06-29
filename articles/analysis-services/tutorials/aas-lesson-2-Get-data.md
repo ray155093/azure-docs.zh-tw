@@ -10,16 +10,16 @@ tags:
 ms.assetid: 
 ms.service: analysis-services
 ms.devlang: NA
-ms.topic: article
+ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 05/26/2017
+ms.date: 06/01/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: 492bfd19c2b364089e13f7ae53010cb5ce14123d
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: e77de4b9a74b528fa8a7ce86424fc14628b2cacc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/03/2017
 
 ---
 
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/05/2017
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-在這一課，您將使用 SSDT 中的「取得資料」來連線至 AdventureWorksDW2014 範例資料庫中、選取資料、預覽和篩選，然後匯入到您的模型工作區。  
+在這堂課中，您將使用 SSDT 中的「取得資料」來連線至 AdventureWorksDW2014 範例資料庫中、選取資料、預覽和篩選，然後匯入到您的模型工作區。  
   
 「取得資料」可讓您從各種來源匯入資料︰Azure SQL Database、Oracle、Sybase、OData 摘要、Teradata、檔案等等。 您也可以使用 Power Query M 公式運算式來查詢資料。
   
@@ -61,13 +61,13 @@ ms.lasthandoff: 05/05/2017
   
 6.  在 [導覽器] 中，選取下列資料表的核取方塊︰**DimCustomer**、**DimDate**、**DimGeography**、**DimProduct**、**DimProductCategory**、**DimProductSubcategory** 和 **FactInternetSales**。  
 
-    ![aas 第 2 課選取資料表](../tutorials/media/aas-lesson2-select-tables.png)
+    ![aas-lesson2-select-tables](../tutorials/media/aas-lesson2-select-tables.png)
   
-按一下 [確定] 之後，查詢編輯器會開啟，讓您篩選您要匯入的資料 (在下一節)。
+按一下 [確定] 之後，[查詢編輯器] 隨即開啟。 在下一個區段中，您只要選取想要匯入的資料。
 
   
 ## <a name="filter-the-table-data"></a>篩選資料表資料  
-AdventureWorksDW2014 範例資料庫中的資料表有不需要加入模型中的資料。 可能的話，建議您篩選掉不會使用的資料，以節省模型所使用的記憶體內部空間。 您將會從資料表中篩選掉某些資料行，這樣就不會匯入工作區資料庫中或模型資料庫中 (在部署之後)。 
+AdventureWorksDW2014 範例資料庫中的資料表有不需要加入模型中的資料。 可能的話，建議您篩選掉不必要的資料，以節省模型所使用的記憶體內部空間。 您會從資料表中篩選掉某些資料行，這樣就不會匯入工作區資料庫中或模型資料庫中 (在部署之後)。 
   
 #### <a name="to-filter-the-table-data-before-importing"></a>匯入之前篩選資料表資料  
   
@@ -137,7 +137,7 @@ AdventureWorksDW2014 範例資料庫中的資料表有不需要加入模型中�
       |**ShipDateKey**|   
   
 ## <a name="Import"></a>匯入選取的資料表和資料表資料  
-既然您已預覽並篩選掉不必要的資料，接下來可以匯入您真正想要的其餘資料。 精靈會匯入資料表資料，以及資料表之間的任何關聯性。 模型中會建立新的資料表和資料行，將不會匯入您已篩選掉的資料。  
+既然您已預覽並篩選掉不必要的資料，接下來可以匯入您真正想要的其餘資料。 精靈會匯入資料表資料，以及資料表之間的任何關聯性。 模型中會建立新的資料表和資料行，不會匯入您已篩選掉的資料。  
   
 #### <a name="to-import-the-selected-tables-and-column-data"></a>匯入選取的資料表和資料行資料  
   

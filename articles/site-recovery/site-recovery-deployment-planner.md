@@ -8,17 +8,17 @@ manager: garavd
 editor: 
 ms.assetid: 
 ms.service: site-recovery
-ms.workload: backup-recovery
+ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 2/21/2017
+ms.date: 06/05/2017
 ms.author: nisoneji
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
-ms.openlocfilehash: 5c716069bdff2a23bf81b2d2d0793a8616cf9c83
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 3c72026a7a6c6b348a77560c7f35d76d93c75e17
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -140,7 +140,7 @@ ASRDeploymentPlanner.exe -Operation StartProfiling /?
 | -Operation | StartProfiling |
 | -Server | 要剖析其 VM 之 vCenter Server/vSphere ESXi 主機的完整網域名稱或 IP 位址。|
 | -User | 用於連線至 vCenter Server/vSphere ESXi 主機的使用者名稱。 使用者必須至少具備唯讀存取權限。|
-| -VMListFile |    包含要剖析之 VM 清單的檔案。 此檔案路徑可以是絕對或相對路徑。 此檔案的每一行應包含一個 VM 名稱/IP 位址。 檔案中指定的虛擬機器名稱應該與 vCenter Server/vSphere ESXi 主機上的 VM 名稱相同。<br>例如，VMList.txt 檔案包含下列 VM︰<ul><li>virtual_machine_A</li><li>10.150.29.110</li><li>virtual_machine_B</li><ul> |
+| -VMListFile | 包含要剖析之 VM 清單的檔案。 此檔案路徑可以是絕對或相對路徑。 此檔案的每一行應包含一個 VM 名稱/IP 位址。 檔案中指定的虛擬機器名稱應該與 vCenter Server/vSphere ESXi 主機上的 VM 名稱相同。<br>例如，VMList.txt 檔案包含下列 VM︰<ul><li>virtual_machine_A</li><li>10.150.29.110</li><li>virtual_machine_B</li><ul> |
 | -NoOfDaysToProfile | 要執行剖析的天數。 建議您執行剖析 15 天以上，以確保觀察到指定期間內您環境中的工作負載模式，並用來提供精確的建議。 |
 | -Directory | (選用) 用來儲存剖析期間所產生之剖析資料的通用命名慣例 (UNC) 或本機目錄路徑。 如果未指定目錄名稱，目前路徑下名為 'ProfiledData' 的目錄將會做為預設目錄。 |
 | -Password | (選用) 用來連線至 vCenter Server/vSphere ESXi 主機的密碼。 如果現在未指定密碼，系統將會在命令執行時提示您輸入密碼。|
@@ -205,10 +205,7 @@ ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_Pro
 | -StartDate | (選用) 採用 MM-DD-YYYY:HH:MM 格式 (24 小時制) 的開始日期和時間。 StartDate 必須與 EndDate 一起指定。 若已指定 StartDate，則會針對在 StartDate 與 EndDate 之間收集的剖析資料產生報告。 |
 | -EndDate | (選用) 採用 MM-DD-YYYY:HH:MM 格式 (24 小時制) 的結束日期和時間。 EndDate 必須與 StartDate 一起指定。 若已指定 EndDate，則會針對在 StartDate 與 EndDate 之間收集的剖析資料產生報告。 |
 | -GrowthFactor | (選用) 以百分比表示的成長因子。 預設值為 30%。 |
-| -UseManagedDisks | (選擇性) UseManagedDisks - 是/否。 預設值為 [是]。 根據是否已針對容錯移轉/測試容錯移轉選取受控磁碟，計算可以放到單一儲存體帳戶的虛擬機器數目。 |
-
-計算單一儲存體帳戶放置時，請考慮在受控磁碟而不是非受控磁碟上進行虛擬機器的容錯移轉/測試容錯移轉。 |
-
+| -UseManagedDisks | (選擇性) UseManagedDisks - 是/否。 預設值為 [是]。 計算可以放入單一儲存體帳戶的虛擬機器數目時，請考慮在受控磁碟而不是非受控磁碟上進行虛擬機器的容錯移轉/測試容錯移轉。 |
 
 #### <a name="example-1-generate-a-report-with-default-values-when-the-profiled-data-is-on-the-local-drive"></a>範例 1︰當剖析的資料位於本機磁碟機時，使用預設值來產生報告
 ```
@@ -531,11 +528,11 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 **複寫儲存體目標** | **平均來源磁碟 I/O 大小** |**平均來源磁碟資料變換** | **每日的來源磁碟資料變換總計**
 ---|---|---|---
-標準儲存體 | 8 KB    | 2 MBps | 每個磁碟 168 GB
-進階 P10 磁碟 | 8 KB    | 2 MBps | 每個磁碟 168 GB
-進階 P10 磁碟 | 16 KB | 4 MBps |    每個磁碟 336 GB
+標準儲存體 | 8 KB | 2 MBps | 每個磁碟 168 GB
+進階 P10 磁碟 | 8 KB | 2 MBps | 每個磁碟 168 GB
+進階 P10 磁碟 | 16 KB | 4 MBps | 每個磁碟 336 GB
 進階 P10 磁碟 | 32 KB 或更大 | 8 MBps | 每個磁碟 672 GB
-進階 P20 或 P30 磁碟 | 8 KB    | 5 MBps | 每個磁碟 421 GB
+進階 P20 或 P30 磁碟 | 8 KB  | 5 MBps | 每個磁碟 421 GB
 進階 P20 或 P30 磁碟 | 16 KB 或更大 |10 MBps | 每個磁碟 842 GB
 
 以上是採用 30% I/O 重疊時的平均數字。 Site Recovery 能夠處理更高的輸送量 (以重疊比為基礎)、較大的寫入大小和實際工作負載 I/O 行為。 先前數字採用大約五分鐘的典型積壓。 也就是說，資料上傳之後，便會進行處理並在五分鐘內建立復原點。

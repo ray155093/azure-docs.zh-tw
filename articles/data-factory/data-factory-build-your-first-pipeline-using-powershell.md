@@ -15,10 +15,10 @@ ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 6615fc7f23a8a53ae0b8d855f5b157c3787a1f06
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: d3908e2984889656a70b5295eab19164ad3bfa95
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -48,7 +48,7 @@ ms.lasthandoff: 05/18/2017
 * (選用) 這篇文章並未涵蓋所有的 Data Factory Cmdlet。 如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory Cmdlet 參考](/powershell/module/azurerm.datafactories) 。
 
 ## <a name="create-data-factory"></a>建立 Data Factory
-在此步驟中，您會使用 Azure PowerShell 建立名為 **FirstDataFactoryPSH**的 Azure Data Factory。 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。 讓我們在這個步驟中開始建立 Data Factory。
+在此步驟中，您會使用 Azure PowerShell 建立名為 **FirstDataFactoryPSH**的 Azure Data Factory。 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源將資料複製到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。 讓我們在這個步驟中開始建立 Data Factory。
 
 1. 啟動 Azure PowerShell 並執行下列命令。 將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。 如果您關閉並重新開啟，則需要再次執行這些命令。
    * 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
@@ -57,7 +57,7 @@ ms.lasthandoff: 05/18/2017
     ```    
    * 執行下列命令以檢視此帳戶的所有訂用帳戶。
     ```PowerShell
-    Get-AzureRmSubscription    
+    Get-AzureRmSubscription 
     ```
    * 執行下列命令以選取您要使用的訂用帳戶。 此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
     ```PowerShell
@@ -96,7 +96,7 @@ ms.lasthandoff: 05/18/2017
 建立管線之前，您必須先建立一些 Data Factory 項目。 首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示位於連結的資料存放區中的輸入/輸出資料，然後建立具有使用這些資料集的活動之管線。
 
 ## <a name="create-linked-services"></a>建立連結服務
-在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。 Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。 HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。 識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
+在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。 Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。 HDInsight 連結服務是用來執行此範例中管線活動所指定的 Hive 指令碼。 識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
 
 ### <a name="create-azure-storage-linked-service"></a>建立 Azure 儲存體連結服務
 在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。 您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。

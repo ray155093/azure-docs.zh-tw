@@ -13,13 +13,13 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 04/17/2017
+ms.date: 06/01/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 04b809a6fdd7b993a048a67f66a9851c2a7bf3d2
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 0b15399cade0a9dc21b2274a64172d65f2f4e877
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -29,12 +29,12 @@ ms.lasthandoff: 05/18/2017
 ## <a name="before-you-begin"></a>開始之前
 若要開始，您需要：
 
-* Azure 中的 **Analysis Services 伺服器**。 若要深入了解，請參閱 [Create an Analysis Services in Azure](analysis-services-create-server.md) (在 Azure 中建立 Analysis Services)。
-* SSDT 中的**表格式模型專案**，或 Analysis Services 執行個體上 1200 或更新相容性層級的現有表格式模型。 未曾建立過？ 請嘗試[表格式模型化 (Adventure Works 教學課程)](https://msdn.microsoft.com/library/hh231691.aspx)。
+* Azure 中的 **Analysis Services 伺服器**。 若要深入了解，請參閱[建立 Azure Analysis Services 伺服器](analysis-services-create-server.md)。
+* SSDT 中的**表格式模型專案**，或 1200 或更新相容性層級的現有表格式模型。 未曾建立過？ 請嘗試[表格式模型化 (Adventure Works 教學課程)](https://msdn.microsoft.com/library/hh231691.aspx)。
 * **內部部署閘道** - 如果您組織的網路中有一或多個資料來源為內部部署，您必須安裝[內部部署資料閘道](analysis-services-gateway.md)。 您在雲端中的伺服器必須有閘道，才能連線至您的內部部署資料來源，以處理和重新整理模型中的資料。
 
 > [!TIP]
-> 部署之前，請確定您可以在資料表中處理資料。 在 SSDT 中，按一下 [模型]  >  [程序]  >  **Process All** (全部處理)。 如果處理失敗，部署將失敗。
+> 部署之前，請確定您可以在資料表中處理資料。 在 SSDT 中，按一下 [模型]  >  [程序]  >  **Process All** (全部處理)。 如果處理失敗，您就無法部署成功。
 > 
 > 
 

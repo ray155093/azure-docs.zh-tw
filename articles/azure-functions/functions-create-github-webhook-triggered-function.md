@@ -13,14 +13,14 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 05/02/2017
+ms.date: 05/31/2017
 ms.author: glenga
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: d79ce0e047e71d9f6af7ca55f55bea405c280b1d
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: accd5c55e7adafd5a387bf420660b808335192e6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
-
+ms.lasthandoff: 06/02/2017
 
 ---
 # <a name="create-a-function-triggered-by-a-github-webhook"></a>建立由 GitHub Webhook 所觸發的函式
@@ -31,11 +31,8 @@ ms.lasthandoff: 05/18/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-在執行此範例之前，您必須具備下列項目︰
-
-- 一個 GitHub 帳戶至少要有一個專案。
-
-如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
++ 一個 GitHub 帳戶至少要有一個專案。
++ Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 
@@ -51,9 +48,15 @@ ms.lasthandoff: 05/18/2017
 
 ## <a name="create-a-github-webhook-triggered-function"></a>建立 GitHub webhook 觸發函式
 
-1. 展開函式應用程式，按一下 [函式] 旁的 **+** 按鈕，然後按一下您所要語言的 [GitHubWebHook] 範本。 **為您的函式命名**，然後按一下 [建立]。
+1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這是您函式應用程式中的第一個函式，請選取 [自訂函式]。 這會顯示一組完整的函式範本。
 
-1. 在您的新函式中，按一下 [</> 取得函式 URL]，然後複製並儲存值。 對 [</> 取得 GitHub 祕密] 執行相同的動作。 您可使用這些值在 GitHub 中設定 Webhook。
+    ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-github-webhook-triggered-function/add-first-function.png)
+
+2. 針對所需語言選取 **GitHubWebHook** 的範本。 **為您的函式命名**，然後選取 [建立]。
+
+     ![在 Azure 入口網站中建立 GitHub Webhook 觸發的函式](./media/functions-create-github-webhook-triggered-function/functions-create-github-webhook-trigger.png) 
+
+3. 在您的新函式中，按一下 [</> 取得函式 URL]，然後複製並儲存值。 對 [</> 取得 GitHub 祕密] 執行相同的動作。 您可使用這些值在 GitHub 中設定 Webhook。
 
     ![檢閱函式程式碼](./media/functions-create-github-webhook-triggered-function/functions-copy-function-url-github-secret.png)
 

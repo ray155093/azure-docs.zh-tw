@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 05/03/2017
 ms.author: amsriva
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: 0ba2158a45eb4ec9254ef829894152fe92276920
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 50863b60f2843f033bdb07f4564d937cd6f0b7be
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -124,6 +124,12 @@ Web 應用程式防火牆已預先設定為使用 CRS 3.0，或者您可以選�
 #### <a name="azure-monitor"></a>Azure 監視器
 
 每個應用程式閘道記錄都會與 [Azure 監視器](../monitoring-and-diagnostics/monitoring-overview.md)整合。  這可讓您追蹤包括 WAF 警示和記錄的診斷資訊。  這項功能提供於入口網站的 [診斷] 索引標籤之下的應用程式閘道資源內，或直接透過 Azure 監視器服務提供。 若要深入了解如何啟用應用程式閘道的診斷記錄，請瀏覽[應用程式閘道診斷](application-gateway-diagnostics.md)。
+
+#### <a name="azure-security-center"></a>Azure 資訊安全中心
+
+[Azure 資訊安全中心](../security-center/security-center-intro.md)利用加強對您 Azure 資源的能見度及安全性控制權，來協助您預防、偵測及回應威脅。 應用程式閘道現在會[整合到 Azure 資訊安全中心](application-gateway-integration-security-center.md)。 Azure 資訊安全中心會掃描您的環境，以偵測未受保護的 Web 應用程式。 它現在可以建議應用程式閘道 WAF 保護這些易受攻擊的資源。 您可以直接從 Azure 資訊安全中心建立應用程式閘道 WAF。  這些 WAF 執行個體已與 Azure 資訊安全中心整合，並且會將警示和健康情況資訊傳回 Azure 資訊安全中心進行報告。
+
+![圖 1](./media/application-gateway-web-application-firewall-overview/figure1.png)
 
 #### <a name="logging"></a>記錄
 

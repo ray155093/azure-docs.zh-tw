@@ -15,59 +15,61 @@ ms.workload: big-data
 ms.date: 05/04/2017
 ms.author: edmaca
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
-ms.openlocfilehash: 6985dff332928d704f30e167c3bddb62bcc6cac1
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: faf17bcac66a70fc78bb171e172886fd2dcadca8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
-# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-azure-powershell"></a>教學課程：透過 Azure PowerShell 開始使用 Azure Data Lake Analytics
+# <a name="get-started-with-azure-data-lake-analytics-using-azure-powershell"></a>使用 Azure PowerShell 開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
 了解如何使用 Azure PowerShell 建立 Azure Data Lake Analytics 帳戶，然後提交和執行 U-SQL 作業。 如需有關 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 
 ## <a name="prerequisites"></a>必要條件
+
 開始進行本教學課程之前，您必須具備下列資訊：
 
-* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* **Azure Data Lake Analytics 帳戶**。 請參閱[開始使用 Data Lake Analytics](https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-get-started-portal)。
 * **具有 Azure PowerShell 的工作站**。 請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
+## <a name="log-in-to-azure"></a>登入 Azure
+
+本教學課程假設您已熟悉如何使用 Azure PowerShell。 特別是，您需要了解如何登入 Azure。 如果您需要協助，請參閱[開始使用 Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps)。
+
+若要使用訂用帳戶名稱登入：
+
+```
+Login-AzureRmAccount -SubscriptionName "ContosoSubscription"
+```
+
+除了訂用帳戶名稱之外，您也可以使用訂用帳戶識別碼來登入：
+
+```
+Login-AzureRmAccount -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+```
+
+如果成功，這個命令的輸出看起來會類似下列文字：
+
+```
+Environment           : AzureCloud
+Account               : joe@contoso.com
+TenantId              : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+SubscriptionId        : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+SubscriptionName      : ContosoSubscription
+CurrentStorageAccount :
+```
+
 ## <a name="preparing-for-the-tutorial"></a>準備教學課程
-若要建立 Data Lake Analytics 帳戶，您必須先定義：
 
-* **Azure 資源群組**：Data Lake Analytics 帳戶必須建立在 Azure 資源群組內。
-* **Data Lake Analytics 帳戶名稱**：Data Lake 帳戶名稱只能包含小寫字母和數字。
-* **位置**：其中一個支援 Data Lake Analytics 的 Azure 資料中心。
-* **預設 Data Lake Store 帳戶**：每個 Data Lake Analytics 帳戶都有一個預設的 Data Lake Store 帳戶。 這些帳戶必須位於相同的位置。
-
-本教學課程中的 PowerShell 程式碼片段會使用這些變數來儲存此資訊
+本教學課程中的 PowerShell 程式碼片段會使用這些變數來儲存此資訊：
 
 ```
 $rg = "<ResourceGroupName>"
-$adls = "<DataLakeAccountName>"
+$adls = "<DataLakeStoreAccountName>"
 $adla = "<DataLakeAnalyticsAccountName>"
 $location = "East US 2"
-```
-
-## <a name="create-a-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
-
-如果您還沒有可使用的資源群組，請建立一個。 
-
-```
-New-AzureRmResourceGroup -Name  $rg -Location $location
-```
-
-每個 Data Lake Analytics 帳戶都需要預設 Data Lake Store 帳戶，用於儲存記錄。 您可以重複使用現有的帳戶，或建立新的帳戶。 
-
-```
-New-AdlStore -ResourceGroupName $rg -Name $adls -Location $location
-```
-
-資源群組和 Data Lake Store 帳戶一旦可用，請建立 Data Lake Analytics 帳戶。
-
-```
-New-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla -Location $location -DefaultDataLake $adls
 ```
 
 ## <a name="get-information-about-a-data-lake-analytics-account"></a>取得 Data Lake Analytics 帳戶的相關資訊
@@ -78,9 +80,10 @@ Get-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla
 
 ## <a name="submit-a-u-sql-job"></a>提交 U-SQL 作業
 
-建立含有下列 U-SQL 指令碼的文字檔。
+建立 PowerShell 變數，可保留 U-SQL 指令碼。
 
 ```
+$script = @"
 @a  = 
     SELECT * FROM 
         (VALUES
@@ -91,26 +94,29 @@ Get-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla
 OUTPUT @a
     TO "/data.csv"
     USING Outputters.Csv();
+
+"@
 ```
 
 提交指令碼。
 
 ```
-Submit-AdlJob -AccountName $adla –ScriptPath "d:\test.usql"Submit
+$job = Submit-AdlJob -AccountName $adla –Script $script
 ```
 
-## <a name="monitor-u-sql-jobs"></a>監視 U-SQL 作業
-
-列出帳戶中的所有作業。 輸出包含目前執行中作業和最近完成的作業。
+或者，您可以將指令碼儲存為檔案，並使用下列命令提交：
 
 ```
-Get-AdlJob -Account $adla
+$filename = "d:\test.usql"
+$script | out-File $filename
+$job = Submit-AdlJob -AccountName $adla –ScriptPath $filename
 ```
 
-取得特定作業的狀態。
+
+取得特定作業的狀態。 繼續使用這個 Cmdlet，直到您看到作業完成為止。
 
 ```
-Get-AdlJob -AccountName $adla -JobId $job.JobId
+$job = Get-AdlJob -AccountName $adla -JobId $job.JobId
 ```
 
 您可以使用 Wait-AdlJob Cmdlet，而不需在作業完成前反覆呼叫 Get-AdlAnalyticsJob。
@@ -119,31 +125,10 @@ Get-AdlJob -AccountName $adla -JobId $job.JobId
 Wait-AdlJob -Account $adla -JobId $job.JobId
 ```
 
-在作業完成後，藉由列出資料夾中的檔案，檢查輸出檔案是否是否。
+下載輸出檔案。
 
 ```
-Get-AdlStoreChildItem -Account $adls -Path "/"
-```
-
-檢查檔案是否存在。
-
-```
-Test-AdlStoreItem -Account $adls -Path "/data.csv"
-```
-
-## <a name="uploading-and-downloading-files"></a>上傳和下載檔案
-
-下載 U-SQL 指令碼的輸出。
-
-```
-Export-AdlStoreItem -AccountName $adls -Path "/data.csv"  -Destination "D:\data.csv"
-```
-
-
-將要作為輸入的檔案上傳至 U-SQL 指令碼。
-
-```
-Import-AdlStoreItem -AccountName $adls -Path "D:\data.tsv" -Destination "/data_copy.csv" 
+Export-AdlStoreItem -AccountName $adls -Path "/data.csv" -Destination "C:\data.csv"
 ```
 
 ## <a name="see-also"></a>另請參閱

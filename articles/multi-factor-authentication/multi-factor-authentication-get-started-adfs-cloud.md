@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/09/2017
+ms.date: 05/29/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 60e8bf883a09668100df8fb51572f9ce0856ccb3
-ms.openlocfilehash: 9eb32ac7936ad54d487dc15d3ef320ec279ce0bc
-ms.lasthandoff: 02/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: 6cf4ec4f777ea1f2b852945ab82da2547946f378
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/08/2017
 
 ---
 
@@ -30,11 +31,11 @@ ms.lasthandoff: 02/10/2017
 
 1. 開啟 [AD FS 管理]。
 2. 在左側選取 [信賴憑證者信任]。
-3. 以滑鼠右鍵按一下 [Microsoft Office 365 身分識別平台]，然後選取 [編輯宣告規則...]
+3. 以滑鼠右鍵按一下 [Microsoft Office 365 身分識別平台]，然後選取 [編輯宣告規則]。
 
    ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip1.png)
 
-4. 在 [發佈轉換規則] 上，按一下 [新增規則]
+4. 在 [發佈轉換規則] 上，按一下 [新增規則]。
 
    ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip2.png)
 
@@ -89,8 +90,10 @@ ms.lasthandoff: 02/10/2017
 3. 在目錄底下，選取您要在其中設定信任之 IP 的目錄。
 4. 在您選取的目錄上，按一下 [設定]。
 5. 在 Multi-Factor Authentication 區段中，按一下 [管理服務設定]。
-6. 在 [服務設定] 頁面的 [信任的 IP] 下，選取 [對於來自內部網路之同盟使用者的要求略過多重要素驗證]****。
+6. 在 [服務設定] 頁面的 [信任的 IP] 下，選取 [對於來自內部網路之同盟使用者的要求略過多重要素驗證]。  
+
    ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip6.png)
+   
 7. 按一下 [儲存] 。
 8. 套用更新之後，請按一下 [關閉]。
 

@@ -10,16 +10,16 @@ tags:
 ms.assetid: 
 ms.service: analysis-services
 ms.devlang: NA
-ms.topic: article
+ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 05/26/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: 1691ef4a3de8f17d61aeead05b7d9eaeadc2d58a
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: d78808421dd5acd907aa9e9000bb3b770a42c061
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/03/2017
 
 ---
 # <a name="lesson-7-create-key-performance-indicators"></a>第 7 課：建立關鍵效能指標
@@ -47,7 +47,7 @@ ms.lasthandoff: 05/05/2017
     InternetCurrentQuarterSalesPerformance :=DIVIDE([InternetCurrentQuarterSales]/[InternetPreviousQuarterSalesProportionToQTD],BLANK())  
     ```
 
-    此量值將作為 KPI 的基準量值。  
+    此量值作為 KPI 的基準量值。  
   
 4.  以滑鼠右鍵按一下 [InternetCurrentQuarterSalesPerformance] > [建立 KPI]。   
   
@@ -60,11 +60,11 @@ ms.lasthandoff: 05/05/2017
     ![aas-lesson7-kpi](../tutorials/media/aas-lesson7-kpi.png)
     
     > [!TIP]  
-    > 請注意，可用圖示樣式下方的可展開 [描述] 標籤。 使用此標籤來輸入各種 KPI 元素的描述，使其更容易在用戶端應用程式中識別。  
+    > 請注意，可用圖示樣式下方的可展開 [描述] 標籤。 使用各種 KPI 元素的描述，使其更容易在用戶端應用程式中識別。  
   
 9. 按一下 [確定]  來完成 KPI。  
   
-    在量值方格中，請注意 [InternetCurrentQuarterSalesPerformance] 量值旁邊的圖示。 這個圖示表示此量值作為 KPI 的基準值。  
+    在量值方格中，請注意 [InternetCurrentQuarterSalesPerformance] 量值旁邊的圖示。 這個圖示表示此量值做為 KPI 的基準值。  
   
 #### <a name="to-create-an-internetcurrentquartermarginperformance-kpi"></a>若要建立 InternetCurrentQuarterMarginPerformance KPI  
   

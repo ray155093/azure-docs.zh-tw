@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/21/2017
 ms.author: venkatja
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 92e3e64f235e165a6a1772b6e1724789f3ec3049
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: d7c01e18355b66670c9ab7d964f5cdb7ba72bb8f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 ---
 # <a name="send-events-to-a-time-series-insights-environment-via-event-hub"></a>透過事件中樞將事件傳送至 Time Series Insights 環境
@@ -31,7 +32,7 @@ ms.lasthandoff: 04/26/2017
 2. 確定您已建立專供 Time Series Insights 事件來源使用的取用者群組。
 
   > [!IMPORTANT]
-  > 確定任何其他服務 (例如串流分析作業或其他 Time Series Insights 環境) 均未使用此取用者群組。 如果有其他服務使用此取用者群組，讀取作業會對此環境和其他服務造成負面影響。 如果您使用 “$Default” 作為取用者群組，有可能會導致其他讀取者重複使用。
+  > 確定任何其他服務 (例如串流分析作業或其他 Time Series Insights 環境) 均未使用此取用者群組。 如果有其他服務使用此取用者群組，讀取作業會對此環境和其他服務造成負面影響。 如果您使用 “$Default” 做為取用者群組，有可能會導致其他讀取者重複使用。
 
   ![選取事件中樞取用者群組](media/send-events/consumer-group.png)
 
@@ -44,7 +45,7 @@ ms.lasthandoff: 04/26/2017
 ## <a name="create-time-series-insights-event-source"></a>建立 Time Series Insights 事件來源
 1. 如果您尚未建立事件來源，請遵循[這裡](time-series-insights-add-event-source.md)指定的指示來建立事件來源。
 
-2. 指定「deviceTimestamp」作為時間戳記屬性名稱，這個屬性會作為下列範例中的實際時間戳記。 以 JSON 形式將時間戳記屬性傳送至事件中樞時，該屬性的名稱需區分大小寫，且值的格式應為 __yyyy-MM-ddTHH:mm:ss.FFFFFFFK__。 如果事件中不存在該屬性，則系統會使用事件在排入事件中樞佇列時的時間。
+2. 指定「deviceTimestamp」做為時間戳記屬性名稱，這個屬性會做為下列範例中的實際時間戳記。 以 JSON 形式將時間戳記屬性傳送至事件中樞時，該屬性的名稱需區分大小寫，且值的格式應為 __yyyy-MM-ddTHH:mm:ss.FFFFFFFK__。 如果事件中不存在該屬性，則系統會使用事件在排入事件中樞佇列時的時間。
 
   ![建立事件來源](media/send-events/event-source-1.png)
 
@@ -163,7 +164,6 @@ namespace Microsoft.Rdx.DataGenerator
 |--------|---------------|
 |device1|2016-01-08T01:08:00Z|
 |device2|2016-01-08T01:17:00Z|
-
 ### <a name="sample-3"></a>範例 3
 
 #### <a name="input"></a>輸入
@@ -196,6 +196,8 @@ namespace Microsoft.Rdx.DataGenerator
 ### <a name="sample-4"></a>範例 4
 
 #### <a name="input"></a>輸入
+
+具有巢狀 JSON 陣列的 JSON 物件，此陣列中包含兩個 JSON 物件。 此輸入示範可由複雜 JSON 物件表示的全域屬性。
 
 ```json
 {
@@ -231,7 +233,7 @@ namespace Microsoft.Rdx.DataGenerator
 |location|manufacturerInfo.name|manufacturerInfo.location|events.deviceId|events.deviceTimestamp|events.deviceData.type|events.deviceData.units|events.deviceData.value|
 |---|---|---|---|---|---|---|---|
 |WestUs|manufacturer1|EastUs|device1|2016-01-08T01:08:00Z|pressure|psi|108.09|
-|WestUs|manufacturer1|EastUs|device1|2016-01-08T01:17:00Z|vibration|abs G|217.09|
+|WestUs|manufacturer1|EastUs|device2|2016-01-08T01:17:00Z|vibration|abs G|217.09|
 
 ## <a name="next-steps"></a>後續步驟
 

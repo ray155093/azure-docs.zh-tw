@@ -10,16 +10,16 @@ tags:
 ms.assetid: 
 ms.service: analysis-services
 ms.devlang: NA
-ms.topic: article
+ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 05/26/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: eea5c20f348e462282e22b7dd2f9274c344b68c4
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 491500909b0de0360afae45e172e85999d764fe0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/03/2017
 
 ---
 # <a name="lesson-8-create-perspectives"></a>第 8 課：建立檢視方塊
@@ -28,7 +28,7 @@ ms.lasthandoff: 05/05/2017
 
 在這堂課中，您可以建立「網際網路銷售」檢視方塊。 檢視方塊會定義可檢視的模型子集，以提供聚焦、商務特有或應用程式特有的觀點。 當使用者使用檢視方塊連線至模型時，他們只會看到如該檢視方塊中所定義欄位的那些模型物件 (資料表、資料行、量值、階層及 KPI)。 若要深入了解，請參閱[檢視方塊](https://docs.microsoft.com/sql/analysis-services/tabular-models/perspectives-ssas-tabular)。
   
-您在這堂課中建立的「網際網路銷售」檢視方塊會排除 DimCustomer 資料表物件。 當您建立從檢視中排除某些物件的檢視方塊時，該物件仍然存在於模型中；不過，不會顯示在報告用戶端欄位清單中。 計算結果欄和量值不管是否包含在檢視方塊中，仍然可以從排除的物件資料計算。  
+您在這堂課中建立的「網際網路銷售」檢視方塊會排除 DimCustomer 資料表物件。 當您建立從檢視中排除某些物件的檢視方塊時，該物件仍然存在於模型中。 不過，不會顯示在報告用戶端欄位清單中。 計算結果欄和量值不管是否包含在檢視方塊中，仍然可以從排除的物件資料計算。  
   
 本課程的目的在於說明如何建立檢視方塊，以及熟悉表格式模型撰寫工具。 如果您之後展開此模型以納入其他資料表，您可以建立其他檢視方塊來定義不同的模型觀點，例如，庫存與銷售。  
   
@@ -51,7 +51,7 @@ ms.lasthandoff: 05/05/2017
   
     ![aas-lesson8-perspectives](../tutorials/media/aas-lesson8-perspectives.png)
   
-    在後面的課程中，您將使用 [使用 Excel 分析] 功能來測試此檢視方塊。 Excel PivotTable 欄位清單會包含除了 DimCustomer 資料表以外的每個資料表。  
+    在後面的課程中，您會使用 [使用 Excel 分析] 功能來測試此檢視方塊。 Excel PivotTable 欄位清單會包含除了 DimCustomer 資料表以外的每個資料表。  
 
 ## <a name="whats-next"></a>後續步驟
 [第 9 課：建立階層](../tutorials/aas-lesson-9-create-hierarchies.md)。

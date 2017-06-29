@@ -13,13 +13,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/23/2017
+ms.date: 06/02/2017
 ms.author: garye
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: bb4d64f799027c9af74fd50ab724449bdede7804
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 0a1e23cd52ab5c10791a11d93753b54eb1c1b71a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -47,7 +47,7 @@ Machine Learning Studio 是您利用網頁瀏覽器存取的工作區環境。 M
 
 Machine Learning API 服務可讓您將預測模型 (例如 Machine Learning Studio 內建的預測模型) 部署為可調整、容錯的 Web 服務。 Machine Learning API 服務所建立的 Web 服務是 REST API，此類 API 提供的介面可用於外部應用程式與您的預測性分析模型之間的通訊。
 
-如需詳細資訊，請參閱 [連線到 Machine Learning Web 服務](machine-learning-connect-to-azure-machine-learning-web-service.md)。
+如需詳細資訊，請參閱 [如何取用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 **傳統 Web 服務會在哪裡列出？新型 (Azure Resource Manager 架構) Web 服務會在哪裡列出？**
 
@@ -221,7 +221,7 @@ Machine Learning Studio 目前支援 400 個以上的 CRAN 套件，以下是所
 ### <a name="use"></a>使用
 **何時該以「批次執行服務」的形式執行預測模型？何時該以要求回應服務的形式執行？**
 
-「要求回應服務 (RRS)」是低延遲性的高階 Web 服務，可用來為從實驗環境建立並部署的無狀態模型提供介面。 批次執行服務 (BES) 是可為一批資料記錄進行非同步評分的服務。 BES 的輸入就像 RRS 使用的資料輸入。 主要差異在於，BES 會從各種來源讀取記錄區塊，例如 Azure Blob 儲存體、Azure 表格儲存體、Azure SQL Database、HDInsight (Hive 查詢) 和 HTTP 來源。 如需詳細資訊，請參閱 [如何使用 Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+「要求回應服務 (RRS)」是低延遲性的高階 Web 服務，可用來為從實驗環境建立並部署的無狀態模型提供介面。 批次執行服務 (BES) 是可為一批資料記錄進行非同步評分的服務。 BES 的輸入就像 RRS 使用的資料輸入。 主要差異在於，BES 會從各種來源讀取記錄區塊，例如 Azure Blob 儲存體、Azure 表格儲存體、Azure SQL Database、HDInsight (Hive 查詢) 和 HTTP 來源。 如需詳細資訊，請參閱 [如何取用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 **如何為已部署的 Web 服務更新模型？**
 
@@ -287,7 +287,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 ## <a name="security-and-availability"></a>安全性和可用性
 **根據預設，哪些人可以存取 Web 服務的 HTTP 端點？如何限制對此端點的存取？**
 
-部署 Web 服務之後，我們會建立該服務的預設端點。 該預設端點可使用其 API 金鑰進行呼叫。 您可以從 Azure 傳統入口網站或使用 Web 服務管理 API 以程式設計方式新增更多具有專屬金鑰的端點。 必須要有存取金鑰，才能呼叫 Web 服務。 如需詳細資訊，請參閱 [連線到 Machine Learning Web 服務](machine-learning-connect-to-azure-machine-learning-web-service.md)。
+部署 Web 服務之後，我們會建立該服務的預設端點。 該預設端點可使用其 API 金鑰進行呼叫。 您可以從 Azure 傳統入口網站或使用 Web 服務管理 API 以程式設計方式新增更多具有專屬金鑰的端點。 必須要有存取金鑰，才能呼叫 Web 服務。 如需詳細資訊，請參閱 [如何取用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 **如果找不到我的 Azure 儲存體帳戶，會發生什麼情況？**
 

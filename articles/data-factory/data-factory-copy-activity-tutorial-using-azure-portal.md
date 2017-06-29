@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: f8904f74a011cfea46c05e77596616a2ebb995a0
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: c7815a02bd0eab6b87a1b1b97258c9006a3542e4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -70,7 +70,7 @@ ms.lasthandoff: 05/18/2017
 > [!IMPORTANT]
 > 如果您尚未完成[教學課程的必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)，請先這麼做。   
 
-資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。 讓我們在這個步驟中開始建立 Data Factory。
+資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源將資料複製到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料，以產生輸出資料。 讓我們在這個步驟中開始建立 Data Factory。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)之後，按一下左功能表上的 [新增]，按一下 [資料 + 分析]，然後按一下 [Data Factory]。 
    
@@ -211,7 +211,7 @@ Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連
     | frequency/interval | frequency 會設為 **Hour** 且 interval 會設為 **1**，表示**每小時**都可取得輸入配量。 換句話說，Data Factory 服務會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 它會尋找管線開始和結束時間內 (而非這些時間之前或之後) 的資料。  |
     | external | 如果資料不是由此管線產生，此屬性會設為 **true**。 本教學課程中的輸入資料位於 emp.txt 檔案中，該檔案不是由此管線產生，因此我們會將此屬性設定為 true。 |
 
-    如需這些 JSON 屬性的詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)一文。        
+    如需這些 JSON 屬性的詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)一文。      
 3. 按一下工具列上的 [部署]，以建立並部署 **InputDataset** 資料集。 確認您已在樹狀檢視中看到 **InputDataset** 。
 
 ### <a name="create-output-dataset"></a>建立輸出資料集
@@ -245,7 +245,7 @@ Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連�
         }
       }
     }
-    ```       
+    ```     
 
     下表提供程式碼片段中所使用之 JSON 屬性的描述：
 

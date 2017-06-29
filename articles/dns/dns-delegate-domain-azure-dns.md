@@ -13,10 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 992b08a1e88062923d0775c59b8baf93fee5364b
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 33b3ec24432ff1268860b9a2e9d5098600a8dedc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 ---
 
@@ -300,7 +301,7 @@ az network dns record-set ns add-record --resource-group contosorg --zone-name c
 
 1. 在 Azure 入口網站的 [我的最愛] 窗格中，按一下 [所有資源]。 在 [所有資源] 刀鋒視窗中，按一下 [contosorg] 資源群組。 如果您選取的訂用帳戶已有幾個資源，可以在 [依名稱篩選...] 方塊中輸入 **contosorg**， 輕鬆地存取資源群組。
 1. 在 [contosorg] 刀鋒視窗中，按一下 [刪除] 按鈕。
-1. 入口網站會要求您輸入資源群組的名稱，以確認您想要刪除它。 按一下 [刪除]，輸入 *contosorg* 作為資源群組名稱，然後按一下 [刪除]。 刪除資源群組會刪除資源群組內的所有資源，所以務必確認資源群組的內容，然後再刪除它。 入口網站會刪除資源群組內包含的所有資源，然後刪除資源群組本身。 這個程序需要幾分鐘的時間。
+1. 入口網站會要求您輸入資源群組的名稱，以確認您想要刪除它。 輸入 contosorg 作為資源群組名稱，然後按一下 [刪除]。 刪除資源群組會刪除資源群組內的所有資源，所以務必確認資源群組的內容，然後再刪除它。 入口網站會刪除資源群組內包含的所有資源，然後刪除資源群組本身。 這個程序需要幾分鐘的時間。
 
 ## <a name="next-steps"></a>後續步驟
 

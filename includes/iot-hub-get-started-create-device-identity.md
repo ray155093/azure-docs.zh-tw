@@ -1,6 +1,6 @@
 ## <a name="create-a-device-identity"></a>建立裝置識別
 
-在本節中，您可以使用名為 [iothub-explorer][iot-hub-explorer] 的 Node.js 工具，針對本教學課程建立裝置身分識別。
+在本節中，您可以使用名為 [iothub-explorer][iot-hub-explorer] 的 Node.js 工具，針對本教學課程建立裝置身分識別。 裝置識別碼會區分大小寫。
 
 1. 在命令列環境中執行下列命令：
 

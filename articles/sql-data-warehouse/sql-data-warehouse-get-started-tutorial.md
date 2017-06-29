@@ -16,10 +16,10 @@ ms.custom: quickstart
 ms.date: 01/26/2017
 ms.author: elbutter;barbkess
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 9d3029817cae6570ff8871fbcb068250544595d7
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 75c2e0f119ac5669c3ab5bd528899d6e4b7818c9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/21/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -577,6 +577,9 @@ SQL 資料倉儲支援稱為 CREATE TABLE AS SELECT (CTAS) 的重要陳述式。
 6. 將資料倉儲調回 400 DWU。 請記住，每上調 100 DWU 就會再新增一個計算節點至您的 Azure SQL 資料倉儲。
 
 7. 再次執行查詢！ 您應該會發現顯著差異。 
+
+    > [!NOTE]
+    > 因為查詢傳回大量資料，所以執行 SSMS 之電腦的頻寬可用性可能是效能瓶頸。 這會導致您看不到任何效能改善！
 
 > [!NOTE]
 > SQL 資料倉儲會使用大量平行處理。 因此，對數百萬個資料列掃描或執行分析函式將可體驗到 Azure SQL 資料倉儲的真正威力。

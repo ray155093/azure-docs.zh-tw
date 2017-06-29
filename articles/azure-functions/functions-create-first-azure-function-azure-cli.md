@@ -13,10 +13,10 @@ ms.custom: mvc
 ms.devlang: azure-cli
 manager: erikre
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 3dc0e1b26c95ac6583dd3b1068b36deb54f7ac5a
+ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
+ms.openlocfilehash: 2292b35819c5a98b690041e10f6e6d1a93fa7837
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/20/2017
 
 ---
 
@@ -31,20 +31,14 @@ ms.lasthandoff: 05/18/2017
 在執行此範例之前，您必須具備下列項目︰
 
 + 作用中的 [GitHub](https://github.com) 帳戶。 
-+ [已安裝 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)。 
 + 有效的 Azure 訂用帳戶。
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-## <a name="log-in-to-azure"></a>登入 Azure
+如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。 
-
-```azurecli
-az login
-```
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 

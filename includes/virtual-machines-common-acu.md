@@ -29,5 +29,8 @@
 | [GS1-GS5](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) |180 - 240* |
 | [H](../articles/virtual-machines/windows/sizes-hpc.md) |290 - 300* |
 | [L4s-L32s](../articles/virtual-machines/windows/sizes-storage.md) |180 - 240* |
+| [M](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) | 160-180** |
 
 以 * 標示的 ACU 使用了「Intel® 渦輪」技術來增加 CPU 頻率及提升效能。  提升的程度會依 VM 大小、工作負載及在相同主機上執行的其他工作負載而有所不同。
+
+**超執行緒。 

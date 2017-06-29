@@ -13,14 +13,14 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 05/02/2017
+ms.date: 05/31/2017
 ms.author: glenga
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: c0d1271bc083688bbc72bd2556546c2f738e7345
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: a55f28fad4c70e49e417d2856568791b313ad1eb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
-
+ms.lasthandoff: 06/20/2017
 
 ---
 # <a name="create-a-function-triggered-by-azure-blob-storage"></a>建立 Azure Blob 儲存體所觸發的函式
@@ -31,11 +31,8 @@ ms.lasthandoff: 05/12/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-在執行此範例之前，您必須執行下列項目︰
-
-- 下載並安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
-
-如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
++ 下載並安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
++ Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 
@@ -51,15 +48,21 @@ ms.lasthandoff: 05/12/2017
 
 ## <a name="create-a-blob-storage-triggered-function"></a>建立由 Blob 儲存體所觸發的函式
 
-展開函式應用程式，按一下 [函式] 旁的 **+** 按鈕，然後按一下您所要語言的 [BlobTrigger] 範本。 然後，使用表格中指定的設定，並按一下 [建立]。
+1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這是您函式應用程式中的第一個函式，請選取 [自訂函式]。 這會顯示一組完整的函式範本。
 
-![建立由 Blob 儲存體所觸發的函式。](./media/functions-create-storage-blob-triggered-function/functions-create-blob-storage-trigger-portal.png)
+    ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-storage-blob-triggered-function/add-first-function.png)
 
-| 設定 | 建議的值 | 說明 |
-|---|---|---|
-| **路徑**   | mycontainer/{name}    | 受監視 Blob 儲存體中的位置。 在繫結中，Blob 的檔案名稱會以「名稱」參數的形式來傳遞。  |
-| **儲存體帳戶連線** | AzureWebJobStorage | 您可以使用應用程式函式已在使用的儲存體帳戶連線，或建立新的連線。  |
-| **函式命名** | 函式應用程式中的唯一名稱 | 這個由佇列所觸發之函式的名稱。 |
+2. 為您想要的語言選取 **BlobTrigger** 範本，並使用如表格中指定的設定。
+
+    ![建立由 Blob 儲存體所觸發的函式。](./media/functions-create-storage-blob-triggered-function/functions-create-blob-storage-trigger-portal.png)
+
+    | 設定 | 建議的值 | 說明 |
+    |---|---|---|
+    | **路徑**   | mycontainer/{name}    | 受監視 Blob 儲存體中的位置。 在繫結中，Blob 的檔案名稱會以「名稱」參數的形式來傳遞。  |
+    | **儲存體帳戶連線** | AzureWebJobStorage | 您可以使用應用程式函式已在使用的儲存體帳戶連線，或建立新的連線。  |
+    | **函式命名** | 函式應用程式中的唯一名稱 | 這個由 blob 所觸發之函式的名稱。 |
+
+3. 按一下 [建立] 可建立函式。
 
 接下來，您要連線到 Azure 儲存體帳戶並建立 **mycontainer** 容器。
 
@@ -111,3 +114,4 @@ ms.lasthandoff: 05/12/2017
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 
 如需 Blob 儲存體觸發程序的詳細資訊，請參閱 [Azure Functions Blob 儲存體繫結](functions-bindings-storage-blob.md)。
+

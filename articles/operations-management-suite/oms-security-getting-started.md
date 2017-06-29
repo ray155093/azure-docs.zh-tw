@@ -4,7 +4,7 @@ description: "本文協助您開始使用 Operations Management Suite 安全性�
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
-manager: swadhwa
+manager: mbaldwin
 editor: 
 ms.assetid: 754796ef-a43e-468a-86c9-04a2eda55b5b
 ms.service: operations-management-suite
@@ -13,12 +13,13 @@ ms.topic: get-started-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/19/2017
+ms.date: 06/13/2017
 ms.author: yurid
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: c6944fd4f93d2daa9071bb27f76ea0f772bdb743
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 5753511d26c06f385fd4ff717d8592c321338172
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -138,6 +139,12 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 ### <a name="threat-intelligence"></a>威脅情報
 
 使用 OMS 安全性和稽核中可用的 [威脅情報] 選項，IT 系統管理員可以識別對環境的安全性威脅 (例如，識別特定的電腦是否屬於殭屍網路)。 如果攻擊者偷偷地安裝惡意程式碼，暗中將此電腦連接到命令和控制項，則電腦可能會成為殭屍網路中的節點。 它也可以識別來自地下通訊通道 (例如暗網) 的潛在威脅。 請閱讀[在 Operations Management Suite 安全性和稽核解決方案內監視及回應安全性警示](oms-security-responding-alerts.md)一文，以深入了解威脅情報。
+
+在某些情況下，您可能會發現已從一部受監視的電腦存取潛在惡意 IP：
+
+![威脅情報對應](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig6.png)
+
+會透過 OMS 安全性產生此警示以及其他相同類別中的警示，方法是運用 [Microsoft 威脅情報](https://youtu.be/O4WtxgUrDc8)。 威脅情報資料是由 Microsoft 向主要威脅情報提供者所收集及購買。 這項資料會經常更新，且適用於快速移動威脅。 本質上，在[調查](https://blogs.technet.microsoft.com/msoms/2016/12/08/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/)安全性警示時，應將它與其他安全性資訊的來源進行結合。 
 
 ### <a name="baseline-assessment"></a>基準評估
 

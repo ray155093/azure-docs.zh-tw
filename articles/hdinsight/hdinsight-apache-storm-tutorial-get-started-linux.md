@@ -1,7 +1,7 @@
 ---
-title: "在 Azure HDInsight 上開始使用 Apache Storm | Microsoft Docs"
-description: "在 Linux 架構的 HDInsight 上使用 Apache Storm 和 Storm Starter 範例，開始分析巨量資料。 了解如何使用 Storm 即時處理資料。"
-keywords: "apache storm,apache storm 教學課程,巨量資料分析,storm 入門"
+title: "HDInsight 上 Apache Storm 的 Storm-starter 範例 | Microsoft Docs"
+description: "了解如何使用 Apache Storm 和 HDInsight 上的 storm-starter 範例來執行巨量資料分析及處理資料。"
+keywords: "storm-starter, apache storm 範例"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,15 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: larryfr
-ms.custom: H1Hack27Feb2017,hdinsightactive
+ms.custom: H1Hack27Feb2017,hdinsightactive,hdiseo17may2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 5976051ea06896e4158071cb6839ba415b4622d2
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: 5936a45973eb41d2c5b3a1a47c663e393e628f54
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/09/2017
 
 ---
-#<a name="get-started-with-the-storm-starter-samples-for-big-data-analytics-on-linux-based-hdinsight"></a>在 Linux 型 HDInsight 上使用 Storm Starter 範例開始分析巨量資料
+#<a name="get-started-with-apache-storm-on-hdinsight-using-the-storm-starter-examples"></a>使用 storm-starter 範例在 HDInsight 上開始使用 Apache Storm
+
+了解如何使用 storm-starter 範例，在 HDInsight 中使用 Apache Storm。
 
 Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運算系統。 在 Storm on Azure HDInsight 中，您可以建立雲端式 Storm 叢集，以執行即時的巨量資料分析。
 
@@ -84,7 +86,7 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
     > [!NOTE]
     > 建立叢集可能需要花費 20 分鐘的時間。
 
-## <a name="run-a-storm-starter-sample-on-hdinsight"></a>在 HDInsight 上執行 Storm Starter 範例
+## <a name="run-a-storm-starter-sample-on-hdinsight"></a>在 HDInsight 上執行 storm-starter 範例
 
 1. 使用 SSH 連線到 HDInsight 叢集
 
@@ -106,9 +108,9 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
     > [!NOTE]
     > 將您自己的拓撲提交至叢集時，必須先複製包含叢集的 jar 檔案，再使用 `storm` 命令。 使用 `scp` 命令來複製檔案。 例如， `scp FILENAME.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:FILENAME.jar`
     >
-    > WordCount 範例和其他 Storm 入門範例都已經包含在叢集中，位置是 `/usr/hdp/current/storm-client/contrib/storm-starter/`。
+    > WordCount 範例和其他 storm-starter 範例都已經包含在叢集中，位置是 `/usr/hdp/current/storm-client/contrib/storm-starter/`。
 
-如果您有興趣檢視 Storm 入門範例的來源，您可以在 [https://github.com/apache/storm/tree/1.0.x-branch/examples/storm-starter](https://github.com/apache/storm/tree/1.0.x-branch/examples/storm-starter) 找到程式碼。 這個連結是 Storm 1.0.x，隨附於 HDInsight 3.5。 如需其他 Storm 版本，請使用頁面頂端的 __Branch__ 分支 按鈕來選取其他 Storm 版本。
+如果您有興趣檢視 storm-starter 範例的來源，可以在 [https://github.com/apache/storm/tree/1.0.x-branch/examples/storm-starter](https://github.com/apache/storm/tree/1.0.x-branch/examples/storm-starter) 找到程式碼。 這個連結是 Storm 1.0.x，隨附於 HDInsight 3.5。 如需其他 Storm 版本，請使用頁面頂端的 __Branch__ 分支 按鈕來選取其他 Storm 版本。
 
 ## <a name="monitor-the-topology"></a>監視拓撲
 
@@ -123,7 +125,7 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 
 2. 在 [拓撲摘要] 下，選取 [名稱] 欄中的 [wordcount] 項目。 關於拓撲的詳細資訊隨即顯示。
 
-    ![包含 Storm Starter WordCount 拓樸資訊的 Storm 儀表板。](./media/hdinsight-apache-storm-tutorial-get-started-linux/topology-summary.png)
+    ![包含 storm-starter WordCount 拓樸資訊的 Storm 儀表板。](./media/hdinsight-apache-storm-tutorial-get-started-linux/topology-summary.png)
 
     此頁面提供以下資訊：
 

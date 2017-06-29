@@ -16,10 +16,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 3/10/2017
 ms.author: markgal;giridham;arunak;trinadhk;
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: aabd0481e6dd264e9a5e91c2e4b2b83f01227db1
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 17b0740f11fcfe200191f8695b6d885df41e68e2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -155,10 +156,13 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
 是。 在客體 Windows OS 上安裝 Azure 備份代理程式，並將檔案和資料夾備份至暫存儲存體。 一旦抹除暫存儲存體資料，備份工作就會失敗。 此外，如果暫存儲存體資料已遭刪除，您只能還原至非變動性儲存體。
 
 
-## <a name="azure-backup-server-and-data-protection-manager"></a>Azure 備份伺服器和 Data Protection Manager
+## <a name="azure-backup-server-and-system-center-data-protection-manager"></a>Azure 備份伺服器和 System Center Data Protection Manager
 
 ### <a name="can-i-use-azure-backup-server-to-create-a-bare-metal-recovery-bmr-backup-for-a-physical-server-br"></a>可以使用 Azure 備份伺服器來為實體伺服器建立裸機復原 (BMR) 備份嗎？ <br/>
 是。
+
+### <a name="can-i-register-my-dpm-server-to-multiple-vaults-br"></a>可以將我的 DPM 伺服器註冊至多個保存庫嗎？ <br/>
+否。 DPM 或 MABS 伺服器只能註冊至一個保存庫。
 
 ### <a name="which-version-of-system-center-data-protection-manager-is-supported-br"></a>支援的 System Center Data Protection Manager 版本為何？ <br/>
 我們建議您在 System Center Data Protection Manager (DPM) 的最新更新彙總套件 (UR) 上安裝 [最新](http://aka.ms/azurebackup_agent) 的 Azure 備份代理程式。 截至年 2016 年 8 月，更新彙總套件 11 為最新的更新。

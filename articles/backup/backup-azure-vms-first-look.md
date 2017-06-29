@@ -12,12 +12,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 3/10/2017
+ms.date: 6/14/2017
 ms.author: markgal;
-translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 8883ff1601c521d05068452b1b58cadaee1a941f
-ms.lasthandoff: 03/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 61328e32763faea90074fc6d499e660c4109ab6d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -47,9 +48,11 @@ ms.lasthandoff: 03/14/2017
 備份保存庫是一個實體，儲存隨著時間建立的所有備份和復原點。 備份保存庫也包含備份虛擬機器時將套用的備份原則。
 
 > [!IMPORTANT]
-> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。 仍然支援現有的備份保存庫，並可以[使用 Azure PowerShell 來建立備份保存庫](./backup-client-automation-classic.md#create-a-backup-vault)。 不過，Microsoft 建議您建立所有部署的復原服務保存庫，因為未來的增強功能僅適用於復原服務保存庫。
-
-
+> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。
+> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> **自 2017 年 11 月 1 日起**：
+>- 任何其餘的備份保存庫都會自動升級至復原服務保存庫。
+>- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
+>
 
 ## <a name="discover-and-register-azure-virtual-machines"></a>探索及註冊 Azure 虛擬機器
 向保存庫註冊 VM 前，請執行探索程序以識別任何新的 VM。 這會傳回訂用帳戶中的虛擬機器清單以及其他資訊，例如雲端服務名稱和區域。

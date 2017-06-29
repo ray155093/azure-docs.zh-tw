@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: 194b5d79505afbfd0208f63dd182a0e03227ba69
-ms.openlocfilehash: e6440522ced33a48925cfabc64da055b8700b253
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 769cf9b09eecd204c8b5b944065dad57a6d73231
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -34,8 +36,8 @@ Node.js 的 Azure SDK 可用於管理 Azure Data Lake Analytics 帳戶、作業�
 
 ## <a name="features"></a>特性
 * 帳戶管理：建立、取得、列出、更新及刪除。
-* 作業管理︰提交、取得、列出、取消。
-* 目錄管理︰取得、列出、建立 (密碼)、更新 (密碼)、刪除 (密碼)。
+* 作業管理︰提交、取得、列出及取消。
+* 目錄管理：取得及列出。
 
 ## <a name="how-to-install"></a>如何安裝
 ```bash
@@ -137,10 +139,5 @@ catalogClient.catalog.listDatabases(accountName, function (err, result, request,
 ## <a name="see-also"></a>另請參閱
 * [Microsoft Azure SDK for Node.js](https://github.com/azure/azure-sdk-for-node)
 * [Microsoft Azure SDK for Node.js - Data Lake Store 管理](https://github.com/Azure/azure-sdk-for-node/tree/autorest/lib/services/dataLake.Store)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

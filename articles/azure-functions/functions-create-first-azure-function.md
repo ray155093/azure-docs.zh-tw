@@ -13,13 +13,14 @@ ms.devlang: multiple
 ms.topic: hero-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 05/10/2017
+ms.date: 06/08/2017
 ms.author: glenga
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 0c7ef7004618966ae8c2d32027c460b2b643923e
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: f00ca3b8a35c0c49277457bd42fe8a314520d5a5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -51,7 +52,7 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 1. 展開新的函式應用程式，然後按一下 [Functions] 旁的 **+** 按鈕。
 
-2.  在 [即刻開始使用] 頁面上，按一下 [WebHook + API]，並選擇您的函式語言，然後按一下 [建立此函式]。 
+2.  在 [即刻開始使用] 頁面上，選取 [WebHook + API]，並選擇您的函式語言，然後按一下 [建立此函式]。 
    
     ![Azure 入口網站中的 Functions 快速入門。](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
 
@@ -59,7 +60,7 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 ## <a name="test-the-function"></a>測試函式
 
-1. 在新的函式中，按一下 [</> 取得函式 URL]，然後複製**函式 URL**。 
+1. 在新的函式中，按一下 [</> 取得函式 URL]，選取 [預設 (函式索引鍵)]，然後按一下 [複製]。 
 
     ![從 Azure 入口網站複製函式 URL](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
 

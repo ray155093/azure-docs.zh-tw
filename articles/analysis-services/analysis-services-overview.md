@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 05/26/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: cc85ae1c6642e763e57327c151ec68845f7673f7
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 34726377836d00d484ca01edb098f6c7cbfa9dbf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -31,7 +31,6 @@ Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Service
 觀看此影片以了解 Azure Analysis Services 如何配合 Microsoft 的整體 BI 功能，以及您如何才能受惠於將資料模型置入雲端。
 
 
->
 >[!VIDEO https://channel9.msdn.com/series/Azure-Analysis-Services/Azure-Analysis-Services-overview/player]
 >
 >
@@ -43,7 +42,7 @@ Azure Analysis Services 與您已知的同一個 SQL Server Analysis Services En
 ## <a name="use-the-tools-you-already-know"></a>使用您已知的工具
 ![BI 開發人員工具](./media/analysis-services-overview/aas-overview-dev-tools.png)
 
-建立 Azure Analysis Services 的資料模型時，使用的工具與建立 SQL Server Analysis Services 時的相同。 使用 [SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx) 或使用 [Azure Powershell](/powershell/azureps-cmdlets-docs) 和 [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/mt238290.aspx) 中的 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 範本來製作和部署模型。
+建立 Azure Analysis Services 的資料模型時，使用的工具與建立 SQL Server Analysis Services 時的相同。 使用 [SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx) 來撰寫和開發模型。 使用 [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/mt238290.aspx) 來管理伺服器及建立資料庫模型。 並且，使用 [Powershell](analysis-services-powershell.md) 和 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 範例自動執行工作 
 
 ## <a name="supports-the-latest-features"></a>支援最新的功能
 Azure Analysis Services 支援 1200 和 1400 預覽相容性層級的表格式模型。
@@ -55,9 +54,7 @@ Azure Analysis Services 支援 1200 和 1400 預覽相容性層級的表格式�
 ## <a name="data-sources"></a>資料來源
 部署到 Azure 中的伺服器的資料模型支援連接到您組織或雲端中的內部部署資料來源。 結合內部部署和雲端資料來源的資料，可成就混和式商務智慧解決方案。
 
-因為您的伺服器在雲端中，因此能無縫連接到雲端資料來源。 連線至內部部署資料來源時，[內部部署資料閘道](analysis-services-gateway.md)可確保和雲端中的伺服器建立快速且安全的連線。
-
-若要深入了解所支援的內部部署資料來源，請參閱 [Azure Analysis Services 中所支援的資料來源](analysis-services-datasource.md)。
+因為您的伺服器在雲端中，因此能無縫連接到雲端資料來源。 連線至內部部署資料來源時，[內部部署資料閘道](analysis-services-gateway.md)可確保和雲端中的伺服器建立快速且安全的連線。 若要深入了解所支援的內部部署資料來源，請參閱 [Azure Analysis Services 中所支援的資料來源](analysis-services-datasource.md)。
 
 
 ## <a name="explore-your-data-from-anywhere"></a>從任何地方瀏覽資料
@@ -84,13 +81,17 @@ Azure Analysis Services 受 [Microsoft Online Services 條款](http://www.micros
 若要深入了解「Azure 資訊安全」，請參閱 [Microsoft 信任中心](https://www.microsoft.com/trustcenter/Security/AzureSecurity)。
 
 ## <a name="get-help"></a>取得說明
-設定和管理 Azure Analysis Services 非常容易。 您可以在此找到建立和管理伺服器需要的所有資訊。 建立要部署到您的伺服器的資料模型時，就像是要建立您部署到內部部署伺服器的資料模型一樣。 [MSDN 上的 Analysis Services](https://msdn.microsoft.com/library/bb522607.aspx) 有一個內容廣泛的程式庫，包含概念、程序、教學課程及參考文件。
 
-[Channel 9 上的 Azure Analysis Services](https://channel9.msdn.com/series/Azure-Analysis-Services)一些實用的影片。
+### <a name="documentation"></a>文件
+設定和管理 Azure Analysis Services 非常容易。 您可以在此找到建立和管理伺服器需要的所有資訊。 建立要部署到您的伺服器的資料模型時，就像是要建立您部署到內部部署伺服器的資料模型一樣。 [Analysis Services](https://docs.microsoft.com/sql/analysis-services/analysis-services) 有一個內容廣泛的程式庫，包含概念、程序、教學課程及參考文件。
 
-事情變化得很快。 您隨時可以在 [Azure Analysis Services 部落格](https://go.microsoft.com/fwlink/?linkid=830920)上找到最新資訊。
+### <a name="videos"></a>影片
+觀看 [Channel 9 上有關 Azure Analysis Services](https://channel9.msdn.com/series/Azure-Analysis-Services) 的實用影片。
 
-## <a name="community"></a>社群
+### <a name="blogs"></a>部落格
+事情變化得很快。 您隨時可以在 [Azure Analysis Services 團隊部落格](https://blogs.msdn.microsoft.com/analysisservices/)和 [Azure 部落格](https://azure.microsoft.com/blog/)上找到最新資訊。
+
+### <a name="community"></a>社群
 Analysis Services 有活躍的使用者社群。 在 [Azure Analysis Services 論壇](https://aka.ms/azureanalysisservicesforum)的對話。
 
 ## <a name="feedback"></a>意見反應
@@ -100,5 +101,4 @@ Analysis Services 有活躍的使用者社群。 在 [Azure Analysis Services �
 
 ## <a name="next-steps"></a>後續步驟
 在深入了解後，您現在可以開始使用 Azure Analysis Services。 了解如何在 Azure 中[建立伺服器](analysis-services-create-server.md)，並在其中[部署表格式模型](analysis-services-deploy.md)。
-
 

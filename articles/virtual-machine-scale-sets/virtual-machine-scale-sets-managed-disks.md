@@ -13,12 +13,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 2/21/2017
+ms.date: 6/01/2017
 ms.author: negat
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 4ec20a30f423d4b30e953f873100be90167f987b
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: f9cc157f25e70a8154614b659fb7e59b7fd06ed1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -45,7 +46,7 @@ az vmss create -g dsktest -n dskvmss --image ubuntults --instance-count 10 --dat
 
 ## <a name="api-versions"></a>API 版本
 
-含有受控磁碟之擴展集目前正式運作的 API 版本是 `2016-04-30-preview`。 含有非受控磁碟的擴展集將以其目前進行的方式繼續運作，即使是在支援受控磁碟的新 API 版本中也一樣。 不過，即使是在這些新的 API 版本中，含有非受控磁碟的擴展集還是無法受益於受控磁碟。
+含有受控磁碟的擴展集需要 `2016-04-30-preview` 或更新版本的 Microsoft.Compute APi 版本。 含有非受控磁碟的擴展集將以其目前進行的方式繼續運作，即使是在支援受控磁碟的新 API 版本中也一樣。 不過，即使是在這些新的 API 版本中，含有非受控磁碟的擴展集還是無法受益於受控磁碟。
 
 ## <a name="next-steps"></a>後續步驟
 

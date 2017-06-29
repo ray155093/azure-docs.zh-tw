@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 05/10/2017
 ms.author: kumud
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 3d30024920295298ad2a8a6e22e11ef829934255
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: a5164282264124835692bc72a4ab61891aa7af9d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 06/02/2017
 
 ---
 
@@ -45,7 +45,7 @@ ms.lasthandoff: 05/11/2017
 
 ## <a name="disable-enable-or-delete-a-profile"></a>停用、啟用或刪除設定檔
 
-您可以停用現有的設定檔，流量管理員就不會將使用者要求轉介到設定的端點。 當您停用流量管理員設定檔時，設定檔和設定檔內含的資訊將保持不變，而且可在流量管理員介面中進行編輯。  當您重新啟用設定檔時，就會繼續轉介。 當您在 Azure 傳統入口網站中建立流量管理員設定檔時，它會自動啟用。 如果您決定不再需要某個設定檔，可以將它刪除。
+您可以停用現有的設定檔，流量管理員就不會將使用者要求轉介到設定的端點。 當您停用流量管理員設定檔時，設定檔和設定檔內含的資訊將保持不變，而且可在流量管理員介面中進行編輯。  當您重新啟用設定檔時，就會繼續轉介。 當您在 Azure 入口網站中建立流量管理員設定檔時，它會自動啟用。 如果您決定不再需要某個設定檔，可以將它刪除。
 
 ### <a name="to-disable-a-profile"></a>停用設定檔
 

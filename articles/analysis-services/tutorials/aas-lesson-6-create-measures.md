@@ -10,31 +10,34 @@ tags:
 ms.assetid: 
 ms.service: analysis-services
 ms.devlang: NA
-ms.topic: article
+ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 05/02/2017
+ms.date: 06/01/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: c4977758997c91f0191e0367fb57923f43080b56
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 90833fa9744eac298b0da82cd3d12f27cc237510
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/03/2017
 
 ---
 # <a name="lesson-6-create-measures"></a>第 6 課：建立量值
-在這一課，您將會建立要加入模型中的量值。 類似於您所建立的導出資料行，量值是利用 DAX 公式所建立的計算結果。 不過，與導出資料行不同，量值評估是根據使用者選取的「篩選條件」。例如，在樞紐分析表的 [資料列標籤] 欄位中新增的特定資料行或交叉分析篩選器。 然後會以套用的量值，計算篩選條件中每個資料格的值。 量值是功能強大又靈活的計算，在幾乎所有表格式模型中都會派上用場，可以對數值資料執行動態計算。 若要深入了解，請參閱[量值](https://docs.microsoft.com/sql/analysis-services/tabular-models/measures-ssas-tabular)。
+
+[!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
+
+在這堂課中，您將會建立要加入模型中的量值。 類似於您所建立的計算結果欄，量值是利用 DAX 公式所建立的計算結果。 不過，與計算結果欄不同，量值評估是根據使用者選取的「篩選條件」。 例如，在樞紐分析表的 [資料列標籤] 欄位中新增的特定資料行或交叉分析篩選器。 然後會以套用的量值，計算篩選條件中每個資料格的值。 量值是功能強大又靈活的計算，在幾乎所有表格式模型中都會派上用場，可以對數值資料執行動態計算。 若要深入了解，請參閱[量值](https://docs.microsoft.com/sql/analysis-services/tabular-models/measures-ssas-tabular)。
   
 若要建立量值，您需要使用「量值方格」。 根據預設，每個資料表都有一個空白量值方格；不過，您通常不會為每個資料表建立量值。 在資料檢視中，量值方格中會出現在模型設計師中的資料表下方。 若要隱藏或顯示資料表的量值方格，請按一下 [資料表] 功能表，然後按一下 [顯示量值方格]。  
   
 若要建立量值，您可以按一下量值方格中的空資料格，然後在公式列中輸入 DAX 公式。 當您按 ENTER 完成公式時，量值就會出現在資料格中。 您也可以按一下資料行，然後按一下工具列上的 [自動加總] 按鈕 (**∑**)，利用標準彙總函式建立量值。 使用「自動加總」功能所建立的量值會出現在資料行正下方的量值方格資料格中，但是可以移動。  
   
-在這一課，您將會在公式列中輸入 DAX 公式和使用「自動加總」功能來建立量值。  
+在這堂課中，您會在公式列中輸入 DAX 公式和使用「自動加總」功能來建立量值。  
   
 這堂課的預估完成時間：**30 分鐘**  
   
 ## <a name="prerequisites"></a>必要條件  
-本主題是表格式模型教學課程的一部分，請依序完成。 在這堂課中執行工作之前，您必須已完成上一堂課︰[第 5 課︰建立導出資料行](../tutorials/aas-lesson-5-create-calculated-columns.md)。  
+本主題是表格式模型教學課程的一部分，請依序完成。 在這堂課中執行工作之前，您必須已完成上一堂課︰[第 5 課︰建立計算結果欄](../tutorials/aas-lesson-5-create-calculated-columns.md)。  
   
 ## <a name="create-measures"></a>建立量值  
   
@@ -54,12 +57,12 @@ ms.lasthandoff: 05/05/2017
     
       ![aas 第 6 課新增量值](../tutorials/media/aas-lesson6-newmeasure.png) 
     
-    不同於導出資料行，量值公式可讓您輸入量值名稱，後面接著一個逗號，最後再接著公式運算式。
+    不同於計算結果欄，量值公式可讓您輸入量值名稱，後面接著一個冒號，最後再接著公式運算式。
 
   
 #### <a name="to-create-a-daysincurrentquarter-measure-in-the-dimdate-table"></a>在 DimDate 資料表中建立 DaysInCurrentQuarter 量值  
   
-1.  在模型設計師中繼續使用 **DimDate** 資料表，然後在量值方格中，按一下您剛剛建立之量值下方的空資料格。  
+1.  在模型設計師中繼續使用 **DimDate** 資料表，然後在量值方格中，按一下您建立之量值下方的空資料格。  
   
 2.  在公式列中，輸入下列公式︰  
   
@@ -67,7 +70,7 @@ ms.lasthandoff: 05/05/2017
     DaysInCurrentQuarter:=COUNTROWS( DATESBETWEEN( 'DimDate'[Date], STARTOFQUARTER( LASTDATE('DimDate'[Date])), ENDOFQUARTER('DimDate'[Date])))
     ```
   
-    在一個不完整期間與前一個期間之間建立比率時，此公式必須考慮該期間已流逝的比例，並與前一個期間的相同比例做比較。 在此案例中，[DaysCurrentQuarterToDate]/[DaysInCurrentQuarter] 計算出目前期間已流逝的比例。  
+    在一個不完整期間與前一個期間之間建立比率時， 此公式必須計算該期間已流逝的比例，並與前一個期間的相同比例做比較。 在此案例中，[DaysCurrentQuarterToDate]/[DaysInCurrentQuarter] 計算出目前期間已流逝的比例。  
   
 #### <a name="to-create-an-internetdistinctcountsalesorder-measure-in-the-factinternetsales-table"></a>在 FactInternetSales 資料表中建立 InternetDistinctCountSalesOrder 量值  
   

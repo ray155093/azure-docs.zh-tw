@@ -13,14 +13,14 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 05/02/2017
+ms.date: 05/31/2017
 ms.author: glenga
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
-ms.openlocfilehash: f35f693131bd1f4f47b161afb0a4f38d4f00bbd6
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 4442d0038a0604d3297871907c1d05d8d3916dcf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
-
+ms.lasthandoff: 06/07/2017
 
 ---
 # <a name="create-a-function-in-azure-that-is-triggered-by-a-timer"></a>在 Azure 中建立由計時器觸發的函式
@@ -31,7 +31,9 @@ ms.lasthandoff: 05/25/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
+若要完成本教學課程：
+
++ 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 
@@ -47,7 +49,11 @@ ms.lasthandoff: 05/25/2017
 
 ## <a name="create-a-timer-triggered-function"></a>建立由計時器觸發的函式
 
-1. 展開函式應用程式，按一下 [函式] 旁的 **+** 按鈕，然後按一下您所要語言的 [TimerTrigger] 範本。 然後使用表格中所指定的設定︰
+1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這是您函式應用程式中的第一個函式，請選取 [自訂函式]。 這會顯示一組完整的函式範本。
+
+    ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-scheduled-function/add-first-function.png)
+
+2. 針對所需語言選取 **TimerTrigger** 的範本。 然後使用表格中所指定的設定︰
 
     ![在 Azure 入口網站中建立計時器觸發函式。](./media/functions-create-scheduled-function/functions-create-timer-trigger.png)
 

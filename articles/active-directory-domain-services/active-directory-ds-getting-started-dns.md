@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/06/2017
 ms.author: maheshu
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: abb27292d4b5533fe6f3d66d6921fea8c82f18dd
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: dacd689576dce65bbf1a975409ea7d7f2c3ada90
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -47,7 +48,7 @@ ms.lasthandoff: 04/12/2017
    ![更新虛擬網路的 DNS 伺服器設定](./media/active-directory-domain-services-getting-started/update-dns.png)
 
 > [!NOTE]
-> 在更新虛擬網路的 DNS 伺服器設定之後，可能需要一段時間，網路上的虛擬機器才能取得已更新的 DNS 組態。 如果虛擬機器無法連線到網域，您可以排清虛擬機器上的 DNS 快取 ('ipconfig /flushdns')。 此命令會強制重新整理虛擬機器上的 DNS 設定。
+> 網路中的虛擬機器只會在重新啟動時取得新的 DNS 設定。 如果您希望它們立即取得更新後的 DNS 設定，請透過入口網站、PowerShell 或 CLI 觸發重新啟動。
 >
 >
 

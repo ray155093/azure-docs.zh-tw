@@ -12,33 +12,35 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/08/2017
+ms.date: 06/12/2017
 ms.author: sethm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 306c9c5cb06caa186bc0b7f431a5412dfe810722
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 4eb0e7bcc14722010121c2a5945509d6ed736f4f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/18/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
 # <a name="send-events-to-azure-event-hubs-using-the-net-framework"></a>使用 .NET Framework 將事件傳送至 Azure 事件中樞
 
 ## <a name="introduction"></a>簡介
+
 「事件中樞」是一種服務，可處理來自連接裝置和應用程式的大量事件資料 (遙測)。 收集資料至「事件中樞」之後，可以使用存放裝置叢集來儲存資料，或使用即時分析提供者進行轉換。 此大規模事件收集和處理功能是新型應用程式架構 (包括物聯網 (IoT)) 的重要元件。
 
 本教學課程示範如何使用 [Azure 入口網站](https://portal.azure.com)來建立事件中樞。 它也會示範如何使用在 C# 中使用 .NET Framework 撰寫的主控台應用程式，將事件傳送至事件中樞。 若要使用 .NET Framework 接收事件，請參閱[使用 .NET Framework 接收事件](event-hubs-dotnet-framework-getstarted-receive-eph.md)一文，或按一下左側目錄中適當的接收語言。
 
-若要完成此教學課程，您需要下列項目：
+若要完成本教學課程，您需要下列必要條件：
 
 * [Microsoft Visual Studio 2015 或更高版本](http://visualstudio.com)。 本教學課程中的螢幕擷取畫面使用 Visual Studio 2017。
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/)。
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>建立事件中樞命名空間和事件中樞
 
-第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立「事件中樞」類型的命名空間，然後取得您應用程式與「事件中樞」進行通訊所需的管理認證。 若要建立命名空間和「事件中樞」，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。
+第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立「事件中樞」類型的命名空間，然後取得您應用程式與「事件中樞」進行通訊所需的管理認證。 若要建立命名空間和「事件中樞」，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行本教學課程中的下列步驟。
 
-## <a name="create-a-console-application"></a>建立主控台應用程式
+## <a name="create-a-sender-console-application"></a>建立傳送者主控台應用程式
+
 在本節中，您將撰寫一個 Windows 主控台應用程式，以將事件傳送至事件中心。
 
 1. 在 Visual Studio 中，使用 **主控台應用程式** 專案範本建立新的「Visual C# 桌面應用程式」專案。 將專案命名為 **Sender**。
@@ -52,54 +54,54 @@ ms.lasthandoff: 04/18/2017
     Visual Studio 會下載、安裝並新增 [Azure 服務匯流排程式庫 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)的參考。
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
-    ```csharp
-    using System.Threading;
-    using Microsoft.ServiceBus.Messaging;
-    ```
+  ```csharp
+  using System.Threading;
+  using Microsoft.ServiceBus.Messaging;
+  ```
 5. 將下列欄位新增至 **Program** 類別，並以您在上一節中建立的事件中樞名稱替代預留位置值，以及您先前儲存的命名空間層級連接字串。
    
-    ```csharp
-    static string eventHubName = "{Event Hub name}";
-    static string connectionString = "{send connection string}";
-    ```
+  ```csharp
+  static string eventHubName = "{Event Hub name}";
+  static string connectionString = "{send connection string}";
+  ```
 6. 將下列方法加入至 **Program** 類別：
    
-    ```csharp
-    static void SendingRandomMessages()
-    {
-        var eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, eventHubName);
-        while (true)
-        {
-            try
-            {
-                var message = Guid.NewGuid().ToString();
-                Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, message);
-                eventHubClient.Send(new EventData(Encoding.UTF8.GetBytes(message)));
-            }
-            catch (Exception exception)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("{0} > Exception: {1}", DateTime.Now, exception.Message);
-                Console.ResetColor();
-            }
+  ```csharp
+  static void SendingRandomMessages()
+  {
+      var eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, eventHubName);
+      while (true)
+      {
+          try
+          {
+              var message = Guid.NewGuid().ToString();
+              Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, message);
+              eventHubClient.Send(new EventData(Encoding.UTF8.GetBytes(message)));
+          }
+          catch (Exception exception)
+          {
+              Console.ForegroundColor = ConsoleColor.Red;
+              Console.WriteLine("{0} > Exception: {1}", DateTime.Now, exception.Message);
+              Console.ResetColor();
+          }
    
-            Thread.Sleep(200);
-        }
-    }
-    ```
+          Thread.Sleep(200);
+      }
+  }
+  ```
    
-    這個方法會以 200 毫秒的延遲時間持續將事件傳送至事件中心。
+  這個方法會以 200 毫秒的延遲時間持續將事件傳送至事件中心。
 7. 最後，將下列幾行加入至 **Main** 方法：
    
-    ```csharp
-    Console.WriteLine("Press Ctrl-C to stop the sender process");
-    Console.WriteLine("Press Enter to start now");
-    Console.ReadLine();
-    SendingRandomMessages();
-    ```
+  ```csharp
+  Console.WriteLine("Press Ctrl-C to stop the sender process");
+  Console.WriteLine("Press Enter to start now");
+  Console.ReadLine();
+  SendingRandomMessages();
+  ```
 8. 執行程式，並確定沒有任何錯誤。
   
-恭喜！ 您現在已可以傳送訊息至事件中樞。
+恭喜！ 您現在已將傳送訊息到事件中樞。
 
 ## <a name="next-steps"></a>後續步驟
 您現在已建置一個可建立事件中樞及傳送資料的工作應用程式，接下來可繼續進行下列案例：

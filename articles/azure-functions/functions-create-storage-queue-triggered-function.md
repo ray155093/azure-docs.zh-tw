@@ -13,14 +13,14 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 04/25/2017
+ms.date: 05/31/2017
 ms.author: glenga
+ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 42fabff59577db5feb98e5c03d7a2b6d3d2461c3
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: ba8db575c8731e4f9067a6635e745da12c8667dd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
-
+ms.lasthandoff: 06/02/2017
 
 ---
 # <a name="create-a-function-triggered-by-azure-queue-storage"></a>建立 Azure 佇列儲存體所觸發的函式
@@ -33,7 +33,7 @@ ms.lasthandoff: 05/25/2017
 
 - 下載並安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
 
-- 您需要 Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
+- Azure 訂用帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 
@@ -49,15 +49,21 @@ ms.lasthandoff: 05/25/2017
 
 ## <a name="create-a-queue-triggered-function"></a>建立由佇列觸發的函式
 
-展開函式應用程式，按一下 [函式] 旁的 **+** 按鈕，然後按一下您所要語言的 [QueueTrigger] 範本。 然後，使用表格中指定的設定，並按一下 [建立]。
+1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這是您函式應用程式中的第一個函式，請選取 [自訂函式]。 這會顯示一組完整的函式範本。
 
-![建立由儲存體佇列所觸發的函式。](./media/functions-create-storage-queue-triggered-function/functions-create-queue-storage-trigger-portal.png)
+    ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-storage-queue-triggered-function/add-first-function.png)
 
-| 設定 | 建議的值 | 說明 |
-|---|---|---|
-| **佇列名稱**   | myqueue-items    | 儲存體帳戶中的連線目標佇列名稱。 |
-| **儲存體帳戶連線** | AzureWebJobStorage | 您可以使用應用程式函式已在使用的儲存體帳戶連線，或建立新的連線。  |
-| **函式命名** | 函式應用程式中的唯一名稱 | 這個由佇列所觸發之函式的名稱。 |
+2. 為您想要的語言選取 **QueueTrigger** 範本，並使用如表格中指定的設定。
+
+    ![建立由儲存體佇列所觸發的函式。](./media/functions-create-storage-queue-triggered-function/functions-create-queue-storage-trigger-portal.png)
+    
+    | 設定 | 建議的值 | 說明 |
+    |---|---|---|
+    | **佇列名稱**   | myqueue-items    | 儲存體帳戶中的連線目標佇列名稱。 |
+    | **儲存體帳戶連線** | AzureWebJobStorage | 您可以使用應用程式函式已在使用的儲存體帳戶連線，或建立新的連線。  |
+    | **函式命名** | 函式應用程式中的唯一名稱 | 這個由佇列所觸發之函式的名稱。 |
+
+3. 按一下 [建立] 可建立函式。
 
 接下來，您要連線到 Azure 儲存體帳戶並建立 **myqueue-items** 儲存體佇列。
 

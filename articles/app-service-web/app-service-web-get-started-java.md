@@ -1,6 +1,6 @@
 ---
-title: "在 5 分鐘內將您的第一個 Java Web 應用程式建立在 Azure 中 | Microsoft Docs"
-description: "藉由部署簡單的 Java 應用程式，了解在 App Service 中執行 Web 應用程式有多麼容易。"
+title: "在 Azure 中建立第一個 Java Web 應用程式"
+description: "藉由部署基本 Java 應用程式，了解如何在 App Service 中執行 Web 應用程式。"
 services: app-service\web
 documentationcenter: 
 author: rmcmurray
@@ -12,63 +12,58 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: hero-article
-ms.date: 04/17/2017
+ms.date: 6/7/2017
 ms.author: cephalin;robmcm
 ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: 1249d7ac42bec02227d47500fe3aabb601a36f88
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: a805d92fbe1043b9143140bdbfb8626362aa8bb5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
+ms.lasthandoff: 06/20/2017
 
 ---
-# <a name="create-your-first-java-web-app-in-azure-in-five-minutes"></a>在 5 分鐘內，將您的第一個 Java Web 應用程式建立在 Azure 中
+# <a name="create-your-first-java-web-app-in-azure"></a>在 Azure 中建立第一個 Java Web 應用程式
 
-[!INCLUDE [app-service-web-selector-get-started](../../includes/app-service-web-selector-get-started.md)] 
+[Azure App Service](../app-service/app-service-value-prop-what-is.md) 的 [Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 功能提供可高度擴充、自我修復的 Web 主機服務。 本快速入門示範如何使用 [Eclipse IDE for Java EE Developers](http://www.eclipse.org/) 將 Java Web 應用程式部署到 App Service。
 
-本快速入門可幫助您在短短幾分鐘內將第一個 Java Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 完成此教學課程之後，您便會擁有在雲端中啟動並執行的簡單 Java 型 Web 應用程式。
-
-![瀏覽至 Web 應用程式](./media/app-service-web-get-started-java/browse-web-app-1.png)
+!["Hello Azure!" 範例 web 應用程式](./media/app-service-web-get-started-java/browse-web-app-1.png)
 
 ## <a name="prerequisites"></a>必要條件
 
-本教學課程示範如何使用 Eclipse IDE for Java EE Devlopers 來建置 Java Web 應用程式並將其部署至 Azure。 如果您尚未安裝 Eclipse，請從 http://www.eclipse.org/ 免費下載。
+若要完成本快速入門，請安裝：
 
-為了簡化將 Java Web 應用程式發佈至 Azure 的程序，本教學課程的步驟會使用[適用於 Eclipse 的 Azure 工具組](/azure/azure-toolkit-for-eclipse)。 如需如何安裝此工具組的指示，請參閱[安裝 Azure Toolkit for Eclipse](/azure/azure-toolkit-for-eclipse-installation)。
+* 免費的 [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/)。 本快速入門使用 Eclipse Neon。
+* [適用於 Eclipse 的 Azure 工具組](/azure/azure-toolkit-for-eclipse-installation)。
 
-> [!NOTE]
->
-> 您也可以使用 JetBrains 的 [IntelliJ IDEA](https://www.jetbrains.com/idea/) 來完成本教學課程的步驟。 此開發環境可能會有幾個步驟稍微不同，不過我們也提供了 [Azure Toolkit for IntelliJ](/azure/azure-toolkit-for-intellij) 以供您簡化該 IDE 的發佈程序。
->
-
-您還需要 Azure 訂用帳戶才能完成此教學課程的步驟。 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="create-a-dynamic-web-project-in-eclipse"></a>在 Eclipse 中建立動態 Web 專案
 
-在 Eclipse 中，依序選取 [檔案] 功能表、[新增] 和 [動態 Web 專案]。
+在 Eclipse 中，選取 [檔案] > [新增] > [Dynamic Web Project]。
 
 在 [新增動態 Web 專案] 對話方塊中，將專案命名為 **MyFirstJavaOnAzureWebApp**，然後選取 [完成]。
    
-![[動態 Web 專案] 對話方塊](./media/app-service-web-get-started-java/new-dynamic-web-project-dialog-box.png)
+![新增動態 Web 專案對話方塊](./media/app-service-web-get-started-java/new-dynamic-web-project-dialog-box.png)
 
-> [!NOTE]
->
-> 如果您已安裝本機執行階段環境 (例如，[Apache Tomcat](https://tomcat.apache.org/))，您可以在 [目標執行階段] 欄位指定該環境。
->
+### <a name="add-a-jsp-page"></a>新增 JSP 頁面
 
-建立動態 Web 專案之後，請在 [專案總管] 中展開您的專案，以滑鼠右鍵按一下 [WebContent] 資料夾，按一下 [新增]，然後按一下 [JSP 檔案]，以新增 JSP 頁面。
+如果未顯示 [專案總管]，請將它還原。
 
-![[新增 JSP 檔案] 功能表](./media/app-service-web-get-started-java/new-jsp-file-menu.png)
+![適用於 Eclipse 的 Java EE 工作區](./media/app-service-web-get-started-java/pe.png)
 
-[新增 JSP 檔案] 對話方塊出現時，將檔案命名為 **index.jsp**、繼續以 **MyFirstJavaOnAzureWebApp/WebContent** 作為父資料夾，然後按 [下一步]。
+在 [專案總管] 中，展開 **MyFirstJavaOnAzureWebApp** 專案。
+在 [WebContent] 上按一下滑鼠右鍵，然後選取 [新增] > [JSP 檔案]。
 
-![[新增 JSP 檔案] 對話方塊](./media/app-service-web-get-started-java/new-jsp-file-dialog-box-page-1.png)
+![專案總管中新 JSP 檔案的功能表](./media/app-service-web-get-started-java/new-jsp-file-menu.png)
 
-[新增 JSP 檔案] 對話方塊的第二頁出現時，將檔案命名為 **index.jsp**、繼續以 **MyFirstJavaOnAzureWebApp/WebContent** 作為父資料夾，然後按一下 [完成]。
+在 [新增 JSP 檔案] 對話方塊中：
 
-![[新增 JSP 檔案] 對話方塊](./media/app-service-web-get-started-java/new-jsp-file-dialog-box-page-2.png)
+* 將檔案命名為 **index.jsp**。
+* 選取 [完成]。
 
-當 Eclipse 開啟新的頁面時，請以下列程式碼取代現有的 `<body></body>` 區段︰
+  ![[新增 JSP 檔案] 對話方塊](./media/app-service-web-get-started-java/new-jsp-file-dialog-box-page-1.png)
+
+在 index.jsp 檔案中，以下列標記取代 `<body></body>` 元素：
 
 ```jsp
 <body>
@@ -76,162 +71,133 @@ ms.lasthandoff: 06/01/2017
 </body>
 ```
 
-儲存您對頁面所做的變更。
+儲存變更。
 
-## <a name="publish-your-web-app-to-azure"></a>將您的 Web 應用程式發佈至 Azure
+## <a name="publish-the-web-app-to-azure"></a>將 Web 應用程式發佈至 Azure
 
-若要將 Web 應用程式部署至 Azure，您需要利用 Azure Toolkit for Eclipse 所提供的幾項功能。
+在 [專案總管] 中，以滑鼠右鍵按一下專案名稱，然後選取 [Azure] > [發佈為 Azure Web 應用程式]。
 
-若要讓發佈程序開始，請使用下列其中一個方法︰
+![[發佈為 Azure Web 應用程式] 內容功能表](./media/app-service-web-get-started-java/publish-as-azure-web-app-context-menu.png)
 
-* 在 Eclipse 的 [專案總管] 中，以滑鼠右鍵按一下您的專案，接著按一下 [Azure]，然後按一下 [發佈為 Azure Web 應用程式]。
+在 [Azure 登入] 對話方塊中，保留 [互動式]，然後選取 [登入]。
 
-   ![[發佈為 Azure Web 應用程式] 內容功能表](./media/app-service-web-get-started-java/publish-as-azure-web-app-context-menu.png)
+遵循登入指示進行。
 
-* 在 Eclipse 工具列上按一下 [發佈] 圖示，然後按一下 [發佈為 Azure Web 應用程式]。
+### <a name="deploy-web-app-dialog-box"></a>部署 Web 應用程式對話方塊
 
-   ![[發佈為 Azure Web 應用程式] 下拉式功能表](./media/app-service-web-get-started-java/publish-as-azure-web-app-drop-down-menu.png)
+在您登入 Azure 帳戶後，[部署 Web 應用程式] 對話方塊隨即出現。
 
-如果您尚未登入 Azure 帳戶，系統會提示您登入。 若要這樣做，請使用下列步驟：
+選取 [ **建立**]。
 
-1. 有兩個不同的選項可供您登入 Azure 帳戶；本教學課程選擇 [互動式]。
+![部署 Web 應用程式對話方塊](./media/app-service-web-get-started-java/deploy-web-app-dialog-box.png)
 
-   ![[Azure 登入] 對話方塊](./media/app-service-web-get-started-java/azure-signin-dialog-box.png)
+### <a name="create-app-service-dialog-box"></a>建立 App Service 對話方塊
 
-1. 輸入您的 Azure 認證，然後按一下 [登入]。
+顯示的 [建立 App Service] 對話方塊會包含預設值。 下圖中顯示的數字 **170602185241** 不同於您的對話方塊。
 
-   ![[Azure 登入] 對話方塊](./media/app-service-web-get-started-java/azure-login-dialog-box.png)
+![建立 App Service 對話方塊](./media/app-service-web-get-started-java/cas1.png)
 
-1. 選擇您的 Azure 訂用帳戶，然後按一下 [選取]。
+在 [建立 App Service] 對話方塊中：
 
-   ![[Azure 登入] 對話方塊](./media/app-service-web-get-started-java/select-azure-subscriptions-dialog-box.png)
+* 保留針對 Web 應用程式產生的名稱。 此名稱在整個 Azure 中必須是唯一的。 名稱是 Web 應用程式 URL 位址的一部分。 例如：如果 Web 應用程式名稱是 **MyJavaWebApp**，URL 是 *myjavawebapp.azurewebsites.net*。
+* 保留預設 Web 容器。
+* 選取 Azure 訂用帳戶。
+* 在 [App Service 方案] 索引標籤上：
 
-> [!NOTE]
->
-> 如需有關**互動式**和**自動化**登入的詳細指示，請參閱[Azure Toolkit for Eclipse 的 Azure 登入指示](https://go.microsoft.com/fwlink/?linkid=846174)一文。
->
+  * **新建**：保留預設值，這是 App Service 方案的名稱。
+  * **位置**︰選取 [西歐]，或您附近的區域。
+  * **定價層**：選取免費選項。 如需詳細資訊，請參閱 [App Service 價格](https://azure.microsoft.com/pricing/details/app-service/)。
 
-在您登入 Azure 帳戶後，[部署 Web 應用程式] 對話方塊會隨即出現。 如果您是第一次將 Web 應用程式發佈至 Azure，您應該不會看到其中列出任何應用程式服務。 如果情況是這樣，或您想要建立新的 App Service，則下一個步驟是建立新的 App Service。 若要這樣做，請按一下 [建立]。
+   ![建立 App Service 對話方塊](./media/app-service-web-get-started-java/create-app-service-dialog-box.png)
 
-![[部署 Web 應用程式] 對話方塊](./media/app-service-web-get-started-java/deploy-web-app-dialog-box.png)
+[!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-當 [建立 App Service] 對話方塊出現時，您必須提供的初始資料是︰
+### <a name="resource-group-tab"></a>資源群組索引標籤
 
-* 唯一的 Web 應用程式名稱，此名稱會成為 Web 應用程式的 DNS 位址；例如︰**MyJavaWebApp** 會是 myjavawebapp.azurewebsites.net。
+選取 [資源群組] 索引標籤。 保留針對資源群組產生的預設值。
 
-* Web 應用程式將會使用的 Web 容器；例如︰**Newest Tomcat 8.5**。
+![資源群組索引標籤](./media/app-service-web-get-started-java/create-app-service-resource-group.png)
 
-* 您的 Azure 訂用帳戶。
+[!INCLUDE [resource-group](../../includes/resource-group.md)]
 
-   ![[建立 App Service] 對話方塊](./media/app-service-web-get-started-java/create-app-service-dialog-box.png)
+選取 [ **建立**]。
 
-如果您沒有任何現有的 App Service 方案，或您想要建立新的服務方案，您就需要提供下列資訊︰
+<!--
+### The JDK tab
 
-* 新服務方案的唯一名稱；日後當您使用 Azure Toolkit 發佈 Web 應用程式時，此名稱就會出現，而且當您管理帳戶時，此名稱也會在 [Azure 入口網站](https://portal.azure.com)中列出。
+Select the **JDK** tab. Keep the default, and then select **Create**.
 
-* 您要用來建立服務方案的地理位置。
+![Create App Service plan](./media/app-service-web-get-started-java/create-app-service-specify-jdk.png)
+-->
 
-* 您服務方案的定價層。
+Azure Toolkit 會建立 Web 應用程式並顯示進度對話方塊。
 
-   ![建立 App Service 方案](./media/app-service-web-get-started-java/create-app-service-plan.png)
+![建立 App Service 進度對話方塊](./media/app-service-web-get-started-java/create-app-service-progress-bar.png)
 
-接下來，按一下 [資源群組] 索引標籤。 如果您沒有任何現有的資源群組，或是您想要建立新的資源群組，則必須為新的資源群組提供唯一的名稱；否則，請從下拉式功能表選擇現有的資源群組。
+### <a name="deploy-web-app-dialog-box"></a>部署 Web 應用程式對話方塊
 
-![建立 App Service 方案](./media/app-service-web-get-started-java/create-app-service-resource-group.png)
+在 [部署 Web 應用程式] 對話方塊中，選取 [部署至根目錄]。 如果您有位於 wingtiptoys.azurewebsites.net 的應用程式服務，而您未將它部署至根目錄，則命名為 **MyFirstJavaOnAzureWebApp** 的 Web 應用程式會部署至 wingtiptoys.azurewebsites.net/MyFirstJavaOnAzureWebApp。
 
-最後，按一下 [JDK] 索引標籤。 裡面列出了數個選項可供開發人員指定第三方或自訂的 Java 開發人員套件 (JDK)，但在本教學課程中，您應該選擇 [預設]，然後按一下 [建立]。
+![部署 Web 應用程式對話方塊](./media/app-service-web-get-started-java/deploy-web-app-to-root.png)
 
-![建立 App Service 方案](./media/app-service-web-get-started-java/create-app-service-specify-jdk.png)
+此對話方塊會顯示 Azure、JDK 和 Web 容器選取項目。
 
-Azure Toolkit 會開始建立新的 App Service，並在進行處理時顯示進度對話方塊。
+選取 [部署] 將 Web 應用程式發佈至 Azure。
 
-![建立 App Service 進度列](./media/app-service-web-get-started-java/create-app-service-progress-bar.png)
+當發佈完成時，選取 [Azure 活動記錄] 對話方塊中的 [已發佈] 連結。
 
-新的 App Service 建立好之後，您必須選擇的最後一個選項是，是否要將 Web 應用程式部署至新網站的根目錄。 例如，如果您有位於 wingtiptoys.azurewebsites.net 的 App Service，而您未將它部署至根目錄，則系統會將您名為 **MyFirstJavaOnAzureWebApp** 的 Web 應用程式部署至 wingtiptoys.azurewebsites.net/MyFirstJavaOnAzureWebApp。
+![Azure 活動記錄對話方塊](./media/app-service-web-get-started-java/aal.png)
 
-![將 Web 應用程式部署至根目錄](./media/app-service-web-get-started-java/deploy-web-app-to-root.png)
+恭喜！ 您已成功將 Web 應用程式部署至 Azure。 
 
-完成上述所有步驟後，按一下 [部署] 以將 Web 應用程式發佈至 Azure。
+!["Hello Azure!" 範例 web 應用程式](./media/app-service-web-get-started-java/browse-web-app-1.png)
 
-![將 Web 應用程式部署至 Azure](./media/app-service-web-get-started-java/deploy-web-app-to-azure.png)
+## <a name="update-the-web-app"></a>更新 Web 應用程式
 
-恭喜！ 您已成功將 Web 應用程式部署至 Azure！ 您現在可以在 Azure 網站上檢視您的 Web 應用程式︰
-
-![瀏覽至 Web 應用程式](./media/app-service-web-get-started-java/browse-web-app-1.png)
-
-## <a name="updating-your-web-app"></a>更新 Web 應用程式
-
-成功將 Web 應用程式發佈至 Azure 後，更新 Web 應用程式的程序會變得更簡單，下列步驟會逐步引導您進行發佈 Web 應用程式變更的程序。
-
-首先，變更前面的 JSP 程式碼範例，讓標題變成以當天的日期來取代︰
+將範例 JSP 程式碼變更為不同的訊息。
 
 ```jsp
-<%@ page
-    language="java"
-    contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"
-    import="java.text.SimpleDateFormat"
-    import="java.util.Date" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<% SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd"); %>
-<title><% out.println(date.format(new Date())); %></title>
-</head>
 <body>
-<h1><% out.println("Hello Azure!"); %></h1>
+<h1><% out.println("Hello again Azure!"); %></h1>
 </body>
-</html>
 ```
 
-儲存您所做的變更之後，在 Eclipse 的 [專案總管] 中，以滑鼠右鍵按一下您的專案，接著按一下 [Azure]，然後按一下 [發佈為 Azure Web 應用程式]。
+儲存變更。
 
-![發佈更新後的 Web 應用程式](./media/app-service-web-get-started-java/publish-updated-web-app-context-menu.png)
+在 [專案總管] 中，以滑鼠右鍵按一下專案名稱，然後選取 [Azure] > [發佈為 Azure Web 應用程式]。
 
-當 [部署 Web 應用程式] 對話方塊出現時，裡面便會列出您稍早的 App Service。 若要更新 Web 應用程式，您只需要醒目提示 App Service，然後按一下 [部署] 以發佈您的變更。
-
-![將 Web 應用程式部署至 Azure](./media/app-service-web-get-started-java/deploy-web-app-to-azure.png)
+[部署 Web 應用程式] 對話方塊隨即出現，並顯示您先前建立的應用程式服務。 
 
 > [!NOTE]
+> 每次發佈時都選取 [部署至根目錄]。
 >
-> 如果您要將 Web 應用程式部署至 App Service 的根目錄，則必須在每次發佈變更時重新勾選 [部署到根目錄]。
->
 
-在發佈變更之後，您會發現瀏覽器中的頁面標題已變更為當天的日期。
+選取 Web 應用程式，然後選取 [部署] 來發佈變更。
 
-![瀏覽至 Web 應用程式](./media/app-service-web-get-started-java/browse-web-app-2.png)
+當 [發佈] 連結出現時，請加以選取來瀏覽至 Web 應用程式並查看變更。
 
-## <a name="clean-up-resources"></a>清除資源
+## <a name="manage-the-web-app"></a>管理 Web 應用程式
 
-若要刪除 Web 應用程式，請使用 Azure Toolkit 隨附的 **Azure Explorer**。 如果 Eclipse 中尚未顯示 **Azure Explorer** 檢視，請使用下列步驟來加以顯示︰
+請移至 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>，以查看您所建立的 Web 應用程式。
 
-1. 依序按一下 [視窗]、[顯示檢視] 和 [其他]。
+從左功能表，選取 [資源群組]。
 
-   ![[顯示檢視] 功能表](./media/app-service-web-get-started-java/show-azure-explorer-view-1.png)
+![入口網站瀏覽至資源群組](media/app-service-web-get-started-java/rg.png)
 
-2. 當 [顯示檢視] 對話方塊出現時，選取 [Azure Explorer]，然後按一下 [確定]。
+選取資源群組。 此頁面會顯示您在本快速入門中建立的資源。
 
-   ![[顯示檢視] 對話方塊](./media/app-service-web-get-started-java/show-azure-explorer-view-2.png)
+![資源群組 myResourceGroup](media/app-service-web-get-started-java/rg2.png)
 
-若要從 Azure Explorer 刪除 Web 應用程式，您必須展開 [Web Apps] 節點，然後以滑鼠右鍵按一下 Web 應用程式並選取 [刪除]。
+選取 Web 應用程式 (上圖中的 **webapp 170602193915**)。
 
-![刪除 Web 應用程式](./media/app-service-web-get-started-java/delete-web-app-context-menu.png)
+[概觀] 頁面隨即出現。 此頁面可讓您檢視應用程式的執行方式。 您可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 頁面左側的索引標籤會顯示您可以開啟的各種組態。 
 
-當系統提示您即將刪除 Web 應用程式時，按一下 [確定]。
+![Azure 入口網站中的 App Service 頁面](media/app-service-web-get-started-java/web-app-blade.png)
+
+[!INCLUDE [clean-up-section-portal-web-app](../../includes/clean-up-section-portal-web-app.md)]
 
 ## <a name="next-steps"></a>後續步驟
 
-如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
-
-* [適用於 Eclipse 的 Azure 工具組 (本文)](../azure-toolkit-for-eclipse.md)
-  * [適用於 Eclipse 的 Azure 工具組的新功能](../azure-toolkit-for-eclipse-whats-new.md)
-  * [安裝 Azure Toolkit for Eclipse](../azure-toolkit-for-eclipse-installation.md)
-  * [Azure Toolkit for Eclipse 的登入指示](https://go.microsoft.com/fwlink/?linkid=846174)
-* [Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij.md)
-  * [適用於 IntelliJ 的 Azure 工具組新增功能](../azure-toolkit-for-intellij-whats-new.md)
-  * [安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)
-  * [Azure Toolkit for IntelliJ 的登入指示](https://go.microsoft.com/fwlink/?linkid=846179)
-
-如需有關使用 Azure 搭配 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心](https://azure.microsoft.com/develop/java/)和[適用於 Visual Studio Team Services 的 Java 工具](https://java.visualstudio.com/)。
+> [!div class="nextstepaction"]
+> [對應自訂網域](app-service-web-tutorial-custom-domain.md)
 

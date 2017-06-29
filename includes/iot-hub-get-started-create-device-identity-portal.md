@@ -1,5 +1,5 @@
 ## <a name="create-a-device-identity"></a>建立裝置識別
-在本節中，您會使用 [Azure 入口網站][lnk-azure-portal]在 IoT 中樞的身分識別登錄中建立裝置識別。 裝置無法連線到 IoT 中樞，除非它在身分識別登錄中具有項目。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的＜身分識別登錄＞一節。 入口網站中的 [Device Explorer] 會協助您產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
+在本節中，您會使用 [Azure 入口網站][lnk-azure-portal]在 IoT 中樞的身分識別登錄中建立裝置識別。 裝置無法連線到 IoT 中樞，除非它在身分識別登錄中具有項目。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的＜身分識別登錄＞一節。 入口網站中的 [Device Explorer] 會協助您產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。 裝置識別碼會區分大小寫。
 
 1. 確定您已登入 [Azure 入口網站][lnk-azure-portal]。 
 

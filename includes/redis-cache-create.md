@@ -24,7 +24,7 @@
 * 針對 [訂用帳戶] ，選取您要用於快取的 Azure 訂用帳戶。 如果您的帳戶僅有一個訂用帳戶，則會自動加以選取，而且不會顯示 [訂用帳戶]  下拉式清單。
 * 在 [資源群組] 中，選取或建立快取的資源群組。 如需詳細資訊，請參閱[使用資源群組管理您的 Azure 資源](../articles/azure-resource-manager/resource-group-overview.md)。 
 * 使用 [位置]  來指定管理快取所在的地理位置。 為獲得最佳效能，Microsoft 強烈建議您在與快取用戶端應用程式相同的區域中建立快取。
-* 使用 [價格層]  來選取需要的快取大小和功能。
+* 使用 [價格層] 來選取需要的快取大小和功能。
 * **Redis 叢集** 可讓您建立大於 53 GB 的快取，以及將資料分散於多個 Redis 節點。 如需詳細資訊，請參閱 [如何設定進階 Azure Redis 快取的叢集](../articles/redis-cache/cache-how-to-premium-clustering.md)。
 * **Redis 持續性** 可讓您將您的快取保存至 Azure 儲存體帳戶。 如需設定永續性的相關指示，請參閱 [如何設定進階 Azure Redis Cache 的永續性](../articles/redis-cache/cache-how-to-premium-persistence.md)。
 * **虛擬網路** 藉由將您的快取存取權限制於指定的 Azure 虛擬網路內的用戶端，以提供增強的安全性和隔離。 您可以使用 VNet 的所有功能，例如子網路、存取控制原則和其他功能，進一步限制對 Redis 的存取權。 如需詳細資訊，請參閱 [如何設定進階 Azure Redis 快取的虛擬網路支援](../articles/redis-cache/cache-how-to-premium-vnet.md)。

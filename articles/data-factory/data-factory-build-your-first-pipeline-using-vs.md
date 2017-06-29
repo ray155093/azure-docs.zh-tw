@@ -15,10 +15,10 @@ ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
-ms.openlocfilehash: 9d788bf8e41fe225a4c24a4f5b464e8664f3d677
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 7ea9988b02bc09626a11efb5e95c2349b378256a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/22/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -202,7 +202,7 @@ Azure 儲存體連結服務會提供連線資訊，以將 Azure 儲存體帳戶�
     }
     ```
     此 JSON 程式碼片段會定義名為 **AzureBlobOutput** 的資料集，代表管線中 Hive 活動所產生的輸出資料。 您指定將 Hive 活動所產生的輸出資料放在名為 `adfgetstarted` 的 Blob 容器及名為 `partitioneddata` 的資料夾中。 
-     
+    
     **availability** 區段指定每個月產生一次輸出資料集。 輸出資料集可以驅動管線的排程。 管線會每個月在其開始與結束時間之間執行。 
 
     請參閱 **建立輸入資料集** 一節，了解這些屬性的說明。 您並未在輸出資料集上設定外部屬性，因為資料集是由管線所產生。
@@ -320,7 +320,7 @@ Azure 儲存體連結服務會提供連線資訊，以將 Azure 儲存體帳戶�
 
 - 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
     - 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。
-        ```PowerShell    
+        ```PowerShell   
         Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
         ```
         您可以執行下列命令來確認已註冊 Data Factory 提供者。
@@ -400,7 +400,7 @@ Azure 儲存體連結服務會提供連線資訊，以將 Azure 儲存體帳戶�
 > 配量處理成功時就會刪除輸入檔案。 因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 `adfgetstarted` 容器的 `inputdata` 資料夾。
 
 ### <a name="additional-notes"></a>其他注意事項
-- 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。 如需複製活動支援的所有來源和接收，請參閱 [支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 。 如需 Data Factory 支援的計算服務清單，請參閱 [計算連結服務](data-factory-compute-linked-services.md) 。
+- 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源將資料複製到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。 如需複製活動支援的所有來源和接收，請參閱 [支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 。 如需 Data Factory 支援的計算服務清單，請參閱 [計算連結服務](data-factory-compute-linked-services.md) 。
 - 連結服務會將資料存放區或計算服務連結至 Azure Data Factory。 如需複製活動支援的所有來源和接收，請參閱 [支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 。 如需 Data Factory 支援的計算服務清單以及可在其上執行的[轉換活動](data-factory-data-transformation-activities.md)，請參閱[計算連結服務](data-factory-compute-linked-services.md)。
 - 如需使用於 Azure 儲存體連結服務定義之 JSON 屬性的詳細資料，請參閱[從 Azure Blob 移入/移出資料](data-factory-azure-blob-connector.md#azure-storage-linked-service)。
 - 您可以使用自己的 HDInsight 叢集，不必使用隨選的 HDInsight 叢集。 請參閱 [計算連結服務](data-factory-compute-linked-services.md) 以取得詳細資料。

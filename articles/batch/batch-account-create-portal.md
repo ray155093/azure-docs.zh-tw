@@ -12,14 +12,14 @@ ms.workload: big-compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/27/2017
+ms.date: 06/20/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 8cfe8689494a9f85d1533d259a2744e18407ecef
+ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
+ms.openlocfilehash: 053e2ae7f382bc55a6638ccd612289ab2ba64e52
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -82,7 +82,12 @@ ms.lasthandoff: 05/08/2017
 
     ![訂用帳戶存取控制][subscription_access]
 
-4. 在 [新增權限] 刀鋒視窗中，選取 [參與者] 角色，並搜尋 **MicrosoftAzureBatch** (無空格)。 選取 **MicrosoftAzureBatch**，然後按一下 [儲存]。
+4. 在 [新增權限] 刀鋒視窗中，選取 [參與者] 角色，並搜尋 Batch API。 搜尋這些字串，直到您找到 API 為止：
+    1. **MicrosoftAzureBatch**。
+    2. **Microsoft Azure Batch**。 較新的 Azure AD 租用戶可以使用這個名稱。
+    3. **ddbf3205-c6bd-46ae-8127-60eb93363864** 是 Batch API 的識別碼。 
+
+5. 一旦您找到 Batch API 之後，請選取它，然後按一下 [儲存]。
 
     ![新增 Batch 權限][add_permission]
 

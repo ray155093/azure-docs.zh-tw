@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/10/2017
+ms.date: 06/09/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: d1e1f977c9023f4727d8c444b5e490e8f5ba8d9e
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 07dc5e1520cf60e19a1961ad85d2aea0cc7bd15f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 05/31/2017
 
 ![Azure 表格儲存體 API 和 Azure Cosmos DB](./media/table-introduction/premium-tables.png) 
 
-Azure Cosmos DB 針對需要彈性結構描述之索引鍵-值存放區的應用程式，提供資料表 API。 [Azure 資料表儲存體](../storage/storage-introduction.md) SDK 和 REST API 可用來與 Azure Cosmos DB 搭配運作。 您可以使用 Azure Cosmos DB 來建立具有高輸送量需求的資料表。 Azure Cosmos DB 支援輸送量最佳化資料表 (非正式的名稱為「進階資料表」)，目前是公開預覽版。 
+Azure Cosmos DB 針對需要具彈性結構描述、可預測效能、全球發佈和高輸送量之索引鍵-值存放區的應用程式，提供資料表 API (預覽)。 資料表 API 提供與 Azure 資料表儲存體相同的功能，但運用 Azure Cosmos DB 引擎的優點。 
 
 針對具有高儲存體和較低輸送量需求的資料表，您可以繼續使用 Azure 資料表儲存體。 Azure Cosmos DB 在未來的更新中將導入對儲存體最佳化資料表的支援，而現有和新的 Azure 資料表儲存體帳戶將會升級至 Azure Cosmos DB。
 
@@ -56,3 +56,4 @@ Azure Cosmos DB 針對需要彈性結構描述之索引鍵-值存放區的應用
 * 使用現有的 .NET 資料表 SDK 來開始使用 [Azure Cosmos DB 的資料表 API](create-table-dotnet.md)。
 * 了解[透過 Azure Cosmos DB 全域散發](distribute-data-globally.md)。
 * 了解 [Azure Cosmos DB 中佈建的輸送量](request-units.md)。
+

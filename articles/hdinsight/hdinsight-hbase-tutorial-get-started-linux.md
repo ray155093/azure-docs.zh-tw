@@ -1,7 +1,7 @@
 ---
-title: "在 Azure HDInsight 上開始使用 HBase | Microsoft Docs"
-description: "遵循本 HBase 教學課程，開始在 HDInsight 中搭配 Hadoop 使用 Apache HBase。 使用 Hive 從 HBase Shell 建立資料表並加以查詢。"
-keywords: "apache hbase,hbase,hbase shell,hbase 教學課程,beeline"
+title: "開始使用 HDInsight 上的 HBase 範例 - Azure | Microsoft Docs"
+description: "遵循此 Apache HBase 範例開始在 HDInsight 上使用。 使用 Hive 從 HBase Shell 建立資料表並加以查詢。"
+keywords: "hbasecommand,hbase 範例"
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -9,7 +9,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 4d6a2658-6b19-4268-95ee-822890f5a33a
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -17,21 +17,21 @@ ms.topic: get-started-article
 ms.date: 05/09/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 5f9b421571fa98d9881a9e955b05041de124f922
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 5bac1fcc39d052dd1bd9bf710a45a3494b70cae9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
-# <a name="hbase-tutorial-get-started-using-apache-hbase-in-hdinsight"></a>HBase 教學課程：開始在 HDInsight 中使用 Apache HBase
+# <a name="get-started-with-an-apache-hbase-example-in-hdinsight"></a>開始使用 HDInsight 中的 Apache HBase 範例
 
 了解如何使用 Hive 在 HDInsight 中建立 HBase 叢集、建立 HBase 資料表，以及查詢資料表。 如需一般 HBase 資訊，請參閱 [HDInsight HBase 概觀][hdinsight-hbase-overview]。
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="prerequisites"></a>必要條件
-開始進行本 HBase 教學課程之前，您必須具備下列項目：
+開始嘗試進行本 HBase 範例之前，您必須具備下列項目：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * [安全殼層 (SSH)](hdinsight-hadoop-linux-use-ssh-unix.md)。 
@@ -76,7 +76,7 @@ ms.lasthandoff: 05/10/2017
 
 **使用 HBase Shell**
 
-1. 從 SSH，執行下列命令：
+1. 從 SSH，執行下列 HBase 命令：
    
         hbase shell
 2. 使用兩個資料行系列建立 HBase：

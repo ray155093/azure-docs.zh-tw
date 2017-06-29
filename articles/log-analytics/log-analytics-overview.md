@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/29/2017
+ms.date: 06/12/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: c2e78e0191be6ac7d828402859c04c486e8df594
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 391870380280d6783223849ce383113bf1dd6d31
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.lasthandoff: 04/21/2017
 Log Analytics 是 [Operations Management Suite \(OMS\)](../operations-management-suite/operations-management-suite-overview.md) 中的一項服務，可監視您的雲端和內部部署環境，以維護其可用性和效能。  它會收集您的雲端和內部部署環境中的資源所產生的資料，以及從其他監視工具提供橫跨多個來源的分析。  本文提供 Log Analytics 所提供值的簡短討論、其運作方式的概觀，並連結至更詳細的內容，以便您進一步探究。
 
 ## <a name="is-log-analytics-for-you"></a>您適合使用 Log Analytics 嗎？
-如果您的 Azure 環境目前並未採用任何監視機制，您應該開始使用 [Azure 監視器](../monitoring-and-diagnostics/monitoring-overview.md)，其可收集並分析 Azure 資源的監視資料。  Log Analytics 可以從 Azure 監視器收集資料，使它與其他資料相互關聯並提供其他分析。
+如果您的 Azure 環境目前並未採用任何監視機制，您應該開始使用 [Azure 監視器](../monitoring-and-diagnostics/monitoring-overview.md)，其可收集並分析 Azure 資源的監視資料。  Log Analytics 可以[從 Azure 監視器收集資料](log-analytics-azure-storage.md)，使它與其他資料相互關聯並提供其他分析。
 
 如果您想要監視內部部署環境，或具有使用 Azure 監視器或 System Center Operations Manager 等服務的現有監視機制，則 Log Analytics 可帶來重要價值。  它可以直接從您的代理程式，也可以從其他工具將資料收集到單一存放庫中。  Log Analytics 中的分析工具 (例如記錄搜尋、檢視和解決方案) 可處理所有收集的資料，進而為您提供整個環境的集中式分析。
 

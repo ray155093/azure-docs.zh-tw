@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 05/21/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 597b12b98edb07e453fc3cd5a0884c584a5bfd14
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 3491aa53a55d988876710c0ac19383e642dda27b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -61,7 +61,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 讓我們快速檢閱應用程式中所發生的事情。 請開啟 Program.cs 檔案，您會發現這些程式碼行建立 Azure Cosmos DB 資源。 
 
-* 已初始化 DocumentClient。 在預覽中，我們在 DocumentDB 用戶端上新增了圖形擴充 API。 我們正努力開發與 DocumentDB 用戶端和資源分離的獨立圖形用戶端。
+* 已初始化 DocumentClient。 在預覽中，我們在 Azure Cosmos DB 用戶端上新增了圖形擴充 API。 我們正努力開發與 Azure Cosmos DB 用戶端和資源分離的獨立圖形用戶端。
 
     ```csharp
     using (DocumentClient client = new DocumentClient(

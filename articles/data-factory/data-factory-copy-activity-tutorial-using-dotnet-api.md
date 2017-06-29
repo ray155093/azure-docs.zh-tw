@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 7e0b9b84eb34e17506824fde11ef9f5c5d180ee1
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 59d8b23291adb1e680e70898f5bb82bb699be19d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -106,7 +106,7 @@ ms.lasthandoff: 05/18/2017
 9. 取得應用程式識別碼。
 
     ```PowerShell
-    $azureAdApplication    
+    $azureAdApplication 
     ```
     記下輸出的應用程式識別碼 (applicationID)。
 
@@ -206,7 +206,7 @@ ms.lasthandoff: 05/18/2017
     );
     ```
 
-    資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。 讓我們在這個步驟中開始建立 Data Factory。
+    資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源將資料複製到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料，以產生輸出資料。 讓我們在這個步驟中開始建立 Data Factory。
 8. 將下列會建立 **Azure 儲存體**的程式碼新增至 **Main** 方法中。
 
    > [!IMPORTANT]

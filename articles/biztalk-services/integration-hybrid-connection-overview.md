@@ -14,13 +14,19 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/18/2016
 ms.author: ccompy
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 397a922bf3bf4c39c89f5f69015de4942bda0af9
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 9367d6f57e694c8a438781004ef29a09de77aaa8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
 # <a name="hybrid-connections-overview"></a>混合式連線概觀
+
+> [!IMPORTANT]
+> BizTalk 混合式連線已停用，並以 App Service 混合式連線取代。 如需詳細資訊，包括如何管理您現有的 BizTalk 混合式連線，請參閱 [Azure App Service 混合式連線](../app-service/app-service-hybrid-connections.md)。
+
 簡介混合式連線、列出支援的組態，並列出需要的 TCP 連接埠。
 
 ## <a name="what-is-a-hybrid-connection"></a>什麼是混合式連線
@@ -100,9 +106,4 @@ ms.openlocfilehash: 397a922bf3bf4c39c89f5f69015de4942bda0af9
 [HybridConnectionTab]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionTab.png
 [HCOnPremSetup]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionOnPremSetup.png
 [HCManageConnection]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionManageConn.png
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

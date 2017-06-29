@@ -1,6 +1,6 @@
 ---
 title: "在 Azure App Service 中建置和部署 Java API 應用程式"
-description: "了解如何建立 Java 應用程式封裝並將其部署至 Azure App Service。"
+description: "了解如何建立 Java 應用程式套件並將其部署至 Azure App Service。"
 services: app-service\api
 documentationcenter: java
 author: rmcmurray
@@ -14,10 +14,11 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.date: 04/25/2017
 ms.author: rachelap;robmcm
-translationtype: Human Translation
-ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
-ms.openlocfilehash: 26f2fba953870564292ef3e986a3151373f6babf
-ms.lasthandoff: 01/05/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 26011d72644f8b13a711d847d83175ce384f2053
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -153,7 +154,7 @@ ms.lasthandoff: 01/05/2017
 1. 使用 [Visual Studio Code] 或您偏好的文字編輯器，來開啟 Contact.java 模型檔案 (位於 *src/gen/java/io/swagger/model* 資料夾)。 
    
     ![開啟連絡人模型檔案][open-contact-model-file]
-2. 將下列建構函式新增到 **Contact** 類別。 
+2. 將下列建構函式新增到 **Contact** 類別中。 
    
         public Contact(Integer id, String name, String email) 
         {
@@ -250,13 +251,13 @@ ms.lasthandoff: 01/05/2017
 3. 按一下 [部署認證]  設定功能表項目，並提供您要用來將檔案發佈至 API 應用程式的使用者名稱和密碼。 
    
     ![設定部署認證][deployment-credentials]
-4. 按一下 [部署來源]  設定功能表項目。 抵達之後，按一下 [選擇來源] 按鈕，選取 [本機 Git 儲存機制] 選項，然後按一下 [確定]。 這會建立在 Azure 中執行的 Git 儲存機制，而它與您的 API 應用程式有關聯。 每次您將程式碼交附給 Git 儲存機制的「主要」  分支時，您的程式碼就會發佈到您執行中的 API 應用程式執行個體。 
+4. 按一下 [部署來源]  設定功能表項目。 抵達之後，按一下 [選擇來源] 按鈕，選取 [本機 Git 存放庫] 選項，然後按一下 [確定]。 這會建立在 Azure 中執行的 Git 存放庫，而它與您的 API 應用程式有關聯。 每次您將程式碼交附給 Git 存放庫的「主要」  分支時，您的程式碼就會發佈到您執行中的 API 應用程式執行個體。 
    
-    ![設定新的本機 Git 儲存機制][select-git-repo]
-5. 將新的 Git 儲存機制 URL 複製到剪貼簿中。 請務必保存這個網址，因為它在稍後會很重要。 
+    ![設定新的本機 Git 存放庫][select-git-repo]
+5. 將新的 Git 存放庫 URL 複製到剪貼簿中。 請務必保存這個網址，因為它在稍後會很重要。 
    
-    ![為您的應用程式設定新的 Git 儲存機制][copy-git-repo-url]
-6. Git 會把 WAR 檔案推送至線上儲存機制。 方法是瀏覽至您先前建立的 [deploy]  資料，讓您能輕鬆地把程式碼交付給在您 App Service 中執行的儲存機制。 當您抵達主控台視窗，並瀏覽至 [webapps] 資料夾所在的資料夾之後，請發出下列的 Git 命令來啟動處理程序並開始部署。 
+    ![為您的應用程式設定新的 Git 存放庫][copy-git-repo-url]
+6. Git 會把 WAR 檔案推送至線上存放庫。 方法是瀏覽至您先前建立的 [deploy]  資料，讓您能輕鬆地把程式碼交付給在您 App Service 中執行的存放庫。 當您抵達主控台視窗，並瀏覽至 [webapps] 資料夾所在的資料夾之後，請發出下列的 Git 命令來啟動處理程序並開始部署。 
    
          git init
          git add .
@@ -291,7 +292,7 @@ ms.lasthandoff: 01/05/2017
 [Jax RS]: https://jax-rs-spec.java.net/
 [Maven]: https://maven.apache.org/
 [Microsoft Azure]: https://azure.microsoft.com/
-[線上 Swagger 編輯器]: http://editor.swagger.io/
+[線上 Swagger 編輯器]: http://editor2.swagger.io/
 [Postman]: https://www.getpostman.com/
 [Storage SDK for Java]: ../storage/storage-java-how-to-use-blob-storage.md
 [Swagger]: http://swagger.io/

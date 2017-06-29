@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 070d5754049205ca70ba2e1124f087ffc9d396f3
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 08e62dba35a72a4c814b07c93304247227b1635c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -325,7 +325,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
 ```
 
 ## <a name="create-data-factory"></a>建立資料處理站
-在此步驟中，您會建立名為 **ADFCopyTutorialDF**的 Azure Data Factory。 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源複製資料到目的地資料存放區。 HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。 執行以下命令以建立 Data Factory： 
+在此步驟中，您會建立名為 **ADFCopyTutorialDF**的 Azure Data Factory。 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源複製資料到目的地資料存放區。 HDInsight Hive 活動會執行 Hive 指令碼來轉換輸入資料，以產生輸出資料。 執行以下命令以建立 Data Factory： 
 
 1. 將命令指派給名為 **cmd**的變數。 
    

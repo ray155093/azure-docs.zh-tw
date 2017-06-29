@@ -12,61 +12,36 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/05/2017
+ms.date: 06/16/2017
 ms.author: yurid
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 1b0d278c102497eca978d8cd3fa29cd2527f186c
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 19f71e0d5a8a4642b86ae60a3ab2a4042fa2990e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 
 ---
-# <a name="security-alerts-by-type-in-azure-security-center"></a>Azure 資訊安全中心不同類型的安全性警示
-本文可協助您了解 Azure 資訊安全中心各種可用的安全性警示類型。 如需如何管理警示的詳細資訊，請參閱[管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)。
+# <a name="understanding-security-alerts-in-azure-security-center"></a>了解 Azure 資訊安全中心的安全性警示
+本文可協助您了解 Azure 資訊安全中心各種可用的安全性警示和相關深入資訊的類型。 如需如何管理警示和事件的詳細資訊，請參閱[管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)。
 
 > [!NOTE]
 > 若要設定進階偵測，請升級至 Azure 資訊安全中心標準版。 提供 60 天的免費試用。 若要升級，請選取[安全性原則](security-center-policies.md) 中的 [定價層]。 若要深入了解，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
 >
->
 
 ## <a name="what-type-of-alerts-are-available"></a>可以使用何種類型的警示？
-Azure 資訊安全中心提供了搭配各階段網路狙殺鏈的各種警示。 下圖顯示各種警示，因為這些警示與其中一些階段相關。
-
-![狙殺鏈](./media/security-center-alerts-type/security-center-alerts-type-fig1.png)
-
-**目標及攻擊**
-
-* 輸入 RDP/SSH 攻擊
-* 應用程式和 DDoS 攻擊 (WAF 合作夥伴)
-* 入侵偵測 (NG 防火牆合作夥伴)
-
-**安裝及惡意探索**
-
-* 已知的惡意程式碼簽章 (AM 合作夥伴)
-* 記憶體內部惡意程式碼和惡意探索嘗試
-* 可疑的處理序執行
-* 規避調動以避免探索
-* 橫向移動
-* 內部偵察
-* 可疑的 PowerShell 活動
-
-**後防線**  
-
-* 對已知惡意 IP 的通訊 (資料外漏或命令和控制項)
-* 使用遭入侵的資源來裝載其他攻擊 (輸出連接埠掃描 RDP/SSH 暴力密碼破解攻擊和垃圾郵件)
-
-不同類型的攻擊會與每個階段產生關聯，並以不同的子系統為目標。 為了處理這些階段中的攻擊，資訊安全中心有三種警示︰
+Azure 資訊安全中心會使用不同的[偵測功能](security-center-detection-capabilities.md)，向客戶警示以其環境為目標的潛在攻擊。 這些警示包含觸發警示的項目、鎖定為目標的資源，以及攻擊來源等重要資訊。 警示中包含的資訊會以用來偵測威脅的分析類型作為基礎而有所不同。 事件可能還會包含其他內容相關的資訊，在調查威脅時很有用。  本文提供下列警示類型的相關資訊：
 
 * 虛擬機器行為分析 (VMBA)
 * 網路分析
 * 資源分析
+* 內容相關的資訊
 
 ## <a name="virtual-machine-behavioral-analysis"></a>虛擬機器行為分析
 Azure 資訊安全中心可以使用行為分析，根據虛擬機器事件記錄的分析來識別遭到入侵的資源。 例如：程序建立事件和登入事件。 此外，還與其他訊號相互關聯，以檢查廣泛行銷活動的支援證明。
 
 > [!NOTE]
 > 如需資訊安全中心偵測功能運作方式的詳細資訊，請參閱 [Azure 資訊安全中心的偵測功能](security-center-detection-capabilities.md)。
->
 >
 
 ### <a name="crash-analysis"></a>損毀分析
@@ -258,6 +233,18 @@ SQL 插入式攻擊會將惡意程式碼插入字串，而此字串稍後會傳�
 在伺服器上偵測到來自不熟悉 IP 位址的存取事件 (未在最後一個期間看到) 時，會觸發此警示。
 
 ![異常存取警示](./media/security-center-alerts-type/security-center-alerts-type-fig13-new.png)
+
+## <a name="contextual-information"></a>內容相關的資訊
+在調查期間，分析師需要額外的內容，才能觸達關於威脅的本質，以及如何降低威脅的結論。  例如，偵測到網路異常，但如果不了解網路上或關於鎖定為目標的資源發生了什麼其他情況，就很難以了解後續要採取的動作。 若要提供協助，安全性事件可能包含有助於調查的成品、相關事件和資訊。 其他資訊的可用性會以偵測到的威脅及您環境的設定類型作為基礎而有所不同，且將無法用於所有的安全性事件。
+
+若有其他資訊可供使用，會顯示在警示清單下方的安全性事件中。 這可能包括的資訊如：
+
+- 清除事件記錄
+- 從未知裝置插入的 PNP 裝置
+- 不可採取動作的警示 
+
+![異常存取警示](./media/security-center-alerts-type/security-center-alerts-type-fig20.png) 
+
 
 ## <a name="see-also"></a>另請參閱
 在本文中，您了解到資訊安全中心的各種安全性警示類型。 如要深入了解資訊安全中心，請參閱下列主題：

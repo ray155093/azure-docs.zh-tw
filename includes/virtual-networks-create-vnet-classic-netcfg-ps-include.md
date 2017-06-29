@@ -1,22 +1,28 @@
-## <a name="how-to-create-a-vnet-using-a-network-config-file-from-powershell"></a>如何使用 PowerShell 的網路設定檔建立 VNet
-Azure 會使用 xml 檔案定義訂用帳戶所有可用的 VNet。 您可以下載這個檔案並加以編輯以進行修改，或刪除現有的 VNet，建立新的虛擬網路。 本文件將說明如何下載這個檔案 (下稱網路組態，或 Netcfg 檔案)，以及如何編輯該檔案，以建立新的 VNet。 請參閱 [Azure 虛擬網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100.aspx) ，以了解關於網路組態檔的詳細資訊。
+## <a name="how-to-create-a-virtual-network-using-a-network-config-file-from-powershell"></a>如何使用 PowerShell 的網路組態檔建立虛擬網路
+Azure 會使用 xml 檔案定義訂用帳戶可用的所有虛擬網路。 您可以下載這個檔案，加以編輯以進行修改或刪除現有的虛擬網路，以及建立新的虛擬網路。 在本教學課程中，您將了解如何下載這個檔案 (稱為網路組態或 netcfg 檔案)，以及如何編輯該檔案以建立新的虛擬網路。 若要深入了解網路組態檔，請參閱 [Azure 虛擬網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100.aspx)。
 
-若要利用 PowerShell 使用 Netcfg 檔案建立 VNet，請依照下列步驟執行。
+若要使用 PowerShell 建立具有 netcfg 檔案的虛擬網路，請完成下列步驟︰
 
-1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
-2. 從 Azure PowerShell 主控台中，使用 **Get AzureVnetConfig** Cmdlet，執行下列命令以下載網路組態檔。 
+1. 如果您從未使用過 Azure PowerShell，請完成[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 文章中的步驟，然後登入 Azure 並選取您的訂用帳戶。
+2. 從 Azure PowerShell 主控台中，使用 **Get-AzureVnetConfig** Cmdlet，執行下列命令，將網路組態檔下載至您電腦上的目錄： 
    
-        Get-AzureVNetConfig -ExportToFile c:\NetworkConfig.xml
+   ```powershell
+   Get-AzureVNetConfig -ExportToFile c:\azure\NetworkConfig.xml
+   ```
    
-    預期的輸出：
-   
-        XMLConfiguration                                                                                                     
-        ----------------                                                                                                     
-        <?xml version="1.0" encoding="utf-8"?>...  
-3. 使用任何 XML 或文字編輯器應用程式，開啟您在上述步驟 2 中儲存的檔案，並尋找 **<VirtualNetworkSites>** 項目。 如果您已建立網路，每個網路都將顯示為其自身的 **<VirtualNetworkSite>** 項目。
+   預期的輸出：
+  
+      ```
+      XMLConfiguration                                                                                                     
+      ----------------                                                                                                     
+      <?xml version="1.0" encoding="utf-8"?>...
+      ```
+
+3. 使用任何 XML 或文字編輯器應用程式，開啟您在步驟 2 中儲存的檔案，並尋找 **<VirtualNetworkSites>** 項目。 如果您已建立網路，每個網路都會顯示為其自身的 **<VirtualNetworkSite>** 項目。
 4. 若要建立此案例所述的虛擬網路，請在 **<VirtualNetworkSites>** 元素正下方，新增下列 XML：
-   
-        <VirtualNetworkSite name="TestVNet" Location="Central US">
+
+   ```xml
+        <VirtualNetworkSite name="TestVNet" Location="East US">
           <AddressSpace>
             <AddressPrefix>192.168.0.0/16</AddressPrefix>
           </AddressSpace>
@@ -29,35 +35,39 @@ Azure 會使用 xml 檔案定義訂用帳戶所有可用的 VNet。 您可以下
             </Subnet>
           </Subnets>
         </VirtualNetworkSite>
+   ```
+   
 5. 儲存網路組態檔。
-6. 從 Azure PowerShell 主控台中，使用 **Set-AzureVnetConfig** Cmdlet，執行下列命令以上傳網路組態檔。 請注意命令下的輸出內容，您應該會在 **OperationStatus** 下看到 **Succeeded**。 如果未看到上述輸出結果，請檢查 xml 檔是否有誤。
+6. 從 Azure PowerShell 主控台中，使用 **Set-AzureVnetConfig** Cmdlet，執行下列命令以上傳網路組態檔： 
    
-       Set-AzureVNetConfig -ConfigurationPath c:\NetworkConfig.xml
+   ```powershell
+   Set-AzureVNetConfig -ConfigurationPath c:\azure\NetworkConfig.xml
+   ```
    
-   此為上述命令的預期輸出內容：
+   傳回的輸出︰
    
-       OperationDescription OperationId                          OperationStatus
-       -------------------- -----------                          ---------------
-       Set-AzureVNetConfig  49579cb9-3f49-07c3-ada2-7abd0e28c4e4 Succeeded 
-7. 從 Azure PowerShell 主控台中，使用 **Get-AzureVnetSite** Cmdlet，執行下列命令以確認已成功新增網路。 
+      ```
+      OperationDescription OperationId                          OperationStatus
+      -------------------- -----------                          ---------------
+      Set-AzureVNetConfig  <Id>                                 Succeeded 
+      ```
    
-       Get-AzureVNetSite -VNetName TestVNet
-   
-   此為上述命令的預期輸出內容：
-   
-       AddressSpacePrefixes : {192.168.0.0/16}
-       Location             : Central US
-       AffinityGroup        : 
-       DnsServers           : {}
-       GatewayProfile       : 
-       GatewaySites         : 
-       Id                   : b953f47b-fad9-4075-8cfe-73ff9c98278f
-       InUse                : False
-       Label                : 
-       Name                 : TestVNet
-       State                : Created
-       Subnets              : {FrontEnd, BackEnd}
-       OperationDescription : Get-AzureVNetSite
-       OperationId          : 3f35d533-1f38-09c0-b286-3d07cd0904d8
-       OperationStatus      : Succeeded
+   如果傳回的輸出中 **OperationStatus** 不是 Succeeded，請檢查 xml 檔案中的錯誤並再次完成步驟 6。
 
+7. 從 Azure PowerShell 主控台中，使用 **Get-AzureVnetSite** Cmdlet，執行下列命令以確認已成功新增網路： 
+
+   ```powershell
+   Get-AzureVNetSite -VNetName TestVNet
+   ```
+   
+   傳回 (縮短) 的輸出包含下列文字：
+  
+      ```
+      AddressSpacePrefixes : {192.168.0.0/16}
+      Location             : Central US
+      Name                 : TestVNet
+      State                : Created
+      Subnets              : {FrontEnd, BackEnd}
+      OperationDescription : Get-AzureVNetSite
+      OperationStatus      : Succeeded
+      ```

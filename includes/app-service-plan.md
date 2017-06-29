@@ -1,4 +1,4 @@
-App Service 方案會指定用來裝載應用程式的 Web 伺服器陣列位置、大小和功能。 在裝載多個應用程式時，您可以將 Web 應用程式設定為共用單一 App Service 方案來節省開支。
+[App Service 方案](../articles/app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)會指定用來裝載應用程式的 Web 伺服器陣列位置、大小和功能。 在裝載多個應用程式時，您可以將 Web 應用程式設定為共用單一 App Service 方案來節省開支。
 
 App Service 方案可定義：
 

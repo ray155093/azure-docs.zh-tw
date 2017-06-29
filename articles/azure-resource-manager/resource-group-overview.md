@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/23/2017
+ms.date: 06/09/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 4b7192b22d1583be2b2ab027b040c9a2fce8a293
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: db97edd3c4fbfdbe955c49cc9a58de30c5085305
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -81,39 +82,9 @@ Resource Manager 會針對您透過 Azure PowerShell、Azure CLI、Azure 入口�
 ## <a name="resource-providers"></a>資源提供者
 每個資源提供者都會提供一組資源和作業，以便能運用 Azure 服務。 例如，如果想要儲存金鑰和密碼，您會使用 **Microsoft.KeyVault** 資源提供者。 此資源提供者會提供稱為**保存庫**的資源類型來建立金鑰保存庫。 
 
-在開始部署資源之前，您應該先了解可用的資源提供者。 了解資源提供者和資源的名稱可協助您定義想要部署至 Azure 的資源。
+資源類型名稱的格式：**{resource-provider}/{resource-type}**。 例如，金鑰保存庫類型是 **Microsoft.KeyVault\vaults**。
 
-您可以透過入口網站看到所有的資源提供者。 在您訂用帳戶的刀鋒視窗中，選取**資源提供者**：
-
-![檢視資源提供者](./media/resource-group-overview/view-resource-providers.png)
-
-您可以使用下列 PowerShell Cmdlet 擷取所有資源提供者：
-
-```powershell
-Get-AzureRmResourceProvider -ListAvailable
-```
-
-或者，若是使用 Azure CLI 2.0，您可以使用下列命令擷取所有資源提供者︰
-
-```azurecli
-az provider list
-```
-
-您可以瀏覽傳回的清單，以找到您必須使用的資源提供者。
-
-若要取得資源提供者的詳細資料，請在命令中新增提供者命名空間。 此命令會針對資源提供者傳回支援的資源類型，並針對每個資源類型傳回支援的位置和 API 版本。 下列 PowerShell Cmdlet 可取得 Microsoft.Compute 的詳細資料︰
-
-```powershell
-(Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Compute).ResourceTypes
-```
-
-或者，若是使用 Azure CLI 2.0，請使用下列命令擷取 Microsoft.Compute 所支援的資源類型、位置和 API 版本︰
-
-```azurecli
-az provider show --namespace Microsoft.Compute
-```
-
-如需詳細資訊，請參閱 [Resource Manager 提供者、區域、API 版本和結構描述](resource-manager-supported-services.md)。
+在開始部署資源之前，您應該先了解可用的資源提供者。 了解資源提供者和資源的名稱可協助您定義想要部署至 Azure 的資源。 此外，您需要知道有效的位置，以及每個資源類型的 API 版本。 如需詳細資訊，請參閱[資源提供者和類型](resource-manager-supported-services.md)。
 
 ## <a name="template-deployment"></a>範本部署
 利用 Resource Manager，您可以建立可定義 Azure 方案之基礎結構和組態的範本 (以 JSON 格式)。 透過範本，您可以在整個生命週期中重複部署方案，並確信您的資源會以一致的狀態部署。 當您從入口網站建立方案，方案會自動包含部署範本。 您不必從頭建立您的範本，因為您可以從方案的範本開始，並自訂範本以符合您的特定需求。 匯出資源群組的目前狀態，或檢視特定部署所用的範本，即可擷取現有資源群組的範本。 檢視[匯出的範本](resource-manager-export-template.md)有助於了解範本語法。

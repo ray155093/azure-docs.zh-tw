@@ -1,7 +1,6 @@
 ---
-title: "適用於 Windows 的 Azure Kubernetes 叢集 | Microsoft Docs"
-description: "在 Azure Container Service 中部署並開始使用適用於 Windows 的 Kubernetes 叢集"
-services: container-service
+title: "快速入門 - 適用於 Windows 的 Azure Kubernetes 叢集 | Microsoft Docs"
+description: "快速了解如何在 Azure Container Service 中使用 Azure CLI 建立適用於 Windows 的 Kubernetes 叢集。"
 documentationcenter: 
 author: dlepow
 manager: timlt
@@ -14,218 +13,203 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/04/2017
+ms.date: 05/31/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
-ms.openlocfilehash: 4e730b65a98af05ea00c5f8ebd9914e3367b66a7
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 929a4dec638da9488dd0b43fd123ed0cce77bcf3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
 
-# <a name="get-started-with-kubernetes-and-windows-containers-in-container-service"></a>在 Container Service 中開始使用 Kubernetes 和 Windows 容器
+# <a name="deploy-kubernetes-cluster-for-windows-containers"></a>部署適用於 Windows 容器的 Kubernetes 叢集
 
+Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳述使用 Azure CLI 在 [Azure Container Service](container-service-intro.md) 中部署 [Kubernetes](https://kubernetes.io/docs/home/) 叢集。 部署叢集之後，您要使用 Kubernetes`kubectl` 命令列工具與其連線，且您要部署第一個 Windows 容器。
 
-本文說明如何在包含 Windows 節點的 Azure Container Service 中建立 Kubernetes 叢集。以執行 Windows 容器。 開始使用 `az acs`Azure CLI 2.0 命令以在 Azure Container Service 中建立 Kubernetes 叢集。 然後，使用 Kubernetes `kubectl` 命令列工具以開始使用從 Docker 映像建置的 Windows 容器。 
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
 
 > [!NOTE]
-> 支援 Windows 容器使用 Azure Container Service 中的 Kubernetes 處於預覽階段。 
+> 支援 Windows 容器在 Azure Container Service 上的 Kubernetes 處於預覽階段。 
 >
 
+## <a name="log-in-to-azure"></a>登入 Azure 
 
+使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
 
-下圖顯示 Azure Container Service 中 Kubernetes 叢集的架構，搭配使用一個 Linux 主要節點與兩個 Windows 代理程式節點。 
-
-![azure 上 Kubernetes 叢集的影像](media/container-service-kubernetes-windows-walkthrough/kubernetes-windows.png)
-
-* Linux 主要節點提供 Kubernetes REST API，並可由連接埠 22 上的 SSH 或連接埠 443 上的 `kubectl` 存取。 
-* Windows 代理程式節點則是以群組方式存在於 Azure 可用性設定組並執行您的容器。 Windows 節點可以透過主要節點經由 RDP SSH 通道來存取。 Azure Load Balancer 規則會根據公開的服務而動態地新增至叢集。
-
-
-
-所有 VM 都位於相同的私人虛擬網路，可完全存取彼此。 所有 VM 都會執行 kubelet、Docker 和 Proxy。
-
-如需詳細背景，請參閱 [Azure Container Service 簡介](container-service-intro.md)和 [Kubernetes 文件](https://kubernetes.io/docs/home/)。
-
-## <a name="prerequisites"></a>必要條件
-若要使用 Azure CLI 2.0 建立 Azure Container Service 叢集，您必須︰
-* 有一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))
-* 已安裝及登入 [Azure CLI 2.0](/cli/azure/install-az-cli2)
-
-您的 Kubernetes 叢集還需要下列項目。 您可以事先準備這些項目，或使用 `az acs create` 命令選項在叢集部署期間自動產生。 
-
-* **SSH RSA 公開金鑰**：如果您想要建立安全殼層 (SSH) RSA 金鑰，請參閱 [macOS 和 Linux](../virtual-machines/linux/mac-create-ssh-keys.md) 和 [Windows](../virtual-machines/linux/ssh-from-windows.md) 指引。 
-
-* **服務主體用戶端識別碼和祕密**：如需建立 Azure Active Directory 服務主體的步驟和其他資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。
-
-本文中的命令範例會自動產生 SSH 金鑰和服務主體。
-  
-## <a name="create-your-kubernetes-cluster"></a>建立 Kubernetes 叢集
-
-以下是用來建立叢集的 Azure CLI 2.0 命令。 
-
-### <a name="create-a-resource-group"></a>建立資源群組
-在[可取得](https://azure.microsoft.com/regions/services/) Azure Container Service 的位置建立資源群組。 下列命令會在 westus 位置建立名為 myKubernetesResourceGroup 的資源群組：
-
-```azurecli
-az group create --name=myKubernetesResourceGroup --location=westus
+```azurecli-interactive 
+az login
 ```
 
-### <a name="create-a-kubernetes-cluster-with-windows-agent-nodes"></a>使用 Windows 代理程式節點建立 Kubernetes 叢集
+## <a name="create-a-resource-group"></a>建立資源群組
 
-使用 `az acs create` 命令搭配 `--orchestrator-type=kubernetes` 和 `--windows` 代理程式選項，在資源群組中建立 Kubernetes 叢集。 如需命令語法，請參閱`az acs create`[說明](/cli/azure/acs#create)。
+使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯群組。 
 
-下列命令會建立名為 myKubernetesClusterName 的 Container Service 叢集，其管理節點的 DNS 前置詞為 myPrefix，並具有指定的認證可觸達 Windows 節點。 這個版本的命令會自動產生 Kubernetes 叢集的 SSH RSA 金鑰和服務主體。
+下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組。
+
+```azurecli-interactive 
+az group create --name myResourceGroup --location eastus
+```
+
+## <a name="create-kubernetes-cluster"></a>建立 Kubernetes 叢集
+使用 [az acs create](/cli/azure/acs#create) 命令，在 Azure Container Service 中建立 Kubernetes 叢集。 
+
+下列範例會建立名為 myK8sCluster 的叢集，使用一個 Linux 主要節點和兩個 Windows 代理程式節點。 這個範例會建立連線到 Linux 主機所需的 SSH 金鑰。 此範例會以 azureuser 作為系統管理使用者名稱，並以 myPassword12 作為 Windows 節點上的密碼。 將這些值更新為適合您環境的值。 
 
 
-```azurecli
+
+```azurecli-interactive 
 az acs create --orchestrator-type=kubernetes \
-    --resource-group myKubernetesResourceGroup \
-    --name=myKubernetesClusterName \
-    --dns-prefix=myPrefix \
+    --resource-group myResourceGroup \
+    --name=myK8sCluster \
     --agent-count=2 \
     --generate-ssh-keys \
-    --windows --admin-username myWindowsAdminName \
-    --admin-password myWindowsAdminPassword
+    --windows --admin-username azureuser \
+    --admin-password myPassword12
 ```
 
-幾分鐘後，命令完成，您應有作用中的 Kubernetes 叢集。
+幾分鐘之後，此命令就會完成，且會顯示您部署的相關資訊。
 
-> [!IMPORTANT]
-> 如果您的帳戶沒有建立 Azure AD 服務主體的權限，則命令會產生類似 `Insufficient privileges to complete the operation.` 的錯誤。如需詳細資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。 
-> 
-
-## <a name="connect-to-the-cluster-with-kubectl"></a>使用 kubectl 連線到叢集
+## <a name="install-kubectl"></a>安裝 kubectl
 
 若要從用戶端電腦連線到 Kubernetes 叢集，請使用 [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl/) (Kubernetes 命令列用戶端)。 
 
-如果您未在本機安裝 `kubectl`，可以使用 `az acs kubernetes install-cli` 安裝它。 (您也可以從 [Kubernetes 網站](https://kubernetes.io/docs/tasks/kubectl/install/)進行下載。)
+如果您是使用 Azure CloudShell，就已安裝 `kubectl`。 如果您想要在本機進行安裝，可以使用 [az acs kubernetes install-cli](/cli/azure/acs/kubernetes#install-cli) 命令。
 
-**Linux 或 macOS**
+下列 Azure CLI 範例會將 `kubectl` 安裝到您的系統。 在 Windows 上，以系統管理員身分執行此命令。
 
-```azurecli
-sudo az acs kubernetes install-cli
-```
-
-**Windows**
-```azurecli
+```azurecli-interactive 
 az acs kubernetes install-cli
 ```
 
-> [!TIP]
-> 根據預設，此命令會將 `kubectl` 二進位檔安裝至 Linux 或 macOS 系統上的 `/usr/local/bin/kubectl`，或 Windows 上的 `C:\Program Files (x86)\kubectl.exe`。 若要指定不同的安裝路徑，請使用 `--install-location` 參數。
->
-> 安裝 `kubectl` 之後，請確認其目錄在您的系統路徑中，或將它新增至該路徑。 
 
+## <a name="connect-with-kubectl"></a>使用 kubectl 連線
 
-然後，執行下列命令，將主要 Kubernetes 叢集組態下載到本機 `~/.kube/config` 檔案：
+若要將 `kubectl` 設定為連線到 Kubernetes 叢集，請執行 [az acs kubernetes get-credentials](/cli/azure/acs/kubernetes#get-credentials) 命令。 下列範例會下載 Kubernetes 叢集的叢集設定。
 
-```azurecli
-az acs kubernetes get-credentials --resource-group=myKubernetesResourceGroup --name=myKubernetesClusterName
+```azurecli-interactive 
+az acs kubernetes get-credentials --resource-group=myResourceGroup --name=myK8sCluster
 ```
 
-此時，您已準備好從您的電腦存取叢集。 請嘗試執行：
+若要確認從您電腦至叢集的連線，請嘗試執行：
 
-```bash
+```azurecli-interactive
 kubectl get nodes
 ```
 
-確認您可以看到叢集中的電腦清單。
+`kubectl` 會列出主要和代理程式節點。
 
-![在 Kubernetes 叢集中執行的節點](media/container-service-kubernetes-windows-walkthrough/kubectl-get-nodes.png)
+```azurecli-interactive
+NAME                    STATUS                     AGE       VERSION
+k8s-agent-98dc3136-0    Ready                      5m        v1.5.3
+k8s-agent-98dc3136-1    Ready                      5m        v1.5.3
+k8s-master-98dc3136-0   Ready,SchedulingDisabled   5m        v1.5.3
 
-## <a name="create-your-first-kubernetes-service"></a>建立第一個 Kubernetes 服務
+```
 
-建立叢集並與 `kubectl` 連線之後，嘗試從 Docker 容器啟動 Windows 應用程式並對網際網路公開。 此基本範例使用 JSON 檔案來指定 Microsoft Internet Information Server (IIS) 容器，然後使用 `kubctl apply` 建立加以。 
+## <a name="deploy-a-windows-iis-container"></a>部署 Windows IIS 容器
 
-1. 建立名為 `iis.json` 的本機檔案，並複製下列內容。 此檔案會告訴 Kubernetes 使用來自 [Docker 中樞](https://hub.docker.com/r/microsoft/iis/)的公用映像，在 Windows Server 2016 Server Core 上執行 IIS。 該容器會使用連接埠 80，但一開始只能在叢集網路中存取。
+您可以在 Kubernetes Pod 內執行 Docker 容器，其中包含一個或多個容器。 
 
-  ```JSON
-  {
-    "apiVersion": "v1",
-    "kind": "Pod",
-    "metadata": {
-      "name": "iis",
-      "labels": {
-        "name": "iis"
-      }
-    },
-    "spec": {
-      "containers": [
-        {
-          "name": "iis",
-          "image": "microsoft/iis",
-          "ports": [
-            {
-            "containerPort": 80
-            }
-          ]
-        }
-      ],
-      "nodeSelector": {
-        "beta.kubernetes.io/os": "windows"
-      }
+此基本範例使用 JSON 檔案來指定 Microsoft Internet Information Server (IIS) 容器，然後使用 `kubctl apply` 命令來建立 Pod。 
+
+建立名為 `iis.json` 的本機檔案，並複製下列文字。 此檔案會告訴 Kubernetes 使用來自 [Docker 中樞](https://hub.docker.com/r/nanoserver/iis/)的公用容器映像，在 Windows Server 2016 Nano Server 上執行 IIS。 該容器會使用連接埠 80，但一開始只能在叢集網路中存取。
+
+ ```JSON
+ {
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "iis",
+    "labels": {
+      "name": "iis"
     }
-  }
-  ```
-2. 若要啟動應用程式，請輸入：  
+  },
+  "spec": {
+    "containers": [
+      {
+        "name": "iis",
+        "image": "nanoserver/iis",
+        "ports": [
+          {
+          "containerPort": 80
+          }
+        ]
+      }
+    ],
+    "nodeSelector": {
+     "beta.kubernetes.io/os": "windows"
+     }
+   }
+ }
+ ```
+
+若要啟動 Pod，請輸入：
   
-  ```bash
-  kubectl apply -f iis.json
-  ```  
-3. 若要追蹤容器的部署，請輸入︰  
-  ```bash
-  kubectl get pods
-  ```
-  部署容器時，狀態會是 `ContainerCreating`。 
+```azurecli-interactive
+kubectl apply -f iis.json
+```  
 
-  ![處於 ContainerCreating 狀態的 IIS 容器](media/container-service-kubernetes-windows-walkthrough/iis-pod-creating.png)   
-
-  由於 IIS 映像的大小，容器可能需要幾分鐘的時間才會進入 `Running` 狀態。
-
-  ![處於執行中狀態的 IIS 容器](media/container-service-kubernetes-windows-walkthrough/iis-pod-running.png)
-
-4. 若要將容器公諸於世，請輸入下列命令︰
-
-  ```bash
-  kubectl expose pods iis --port=80 --type=LoadBalancer
-  ```
-
-  使用此命令，Kubernetes 會以公用 IP 位址建立 Azure Load Balancer 規則。 變更需要數分鐘的時間才能傳遍負載平衡器。 如需詳細資訊，請參閱[在 Azure Container Service 中針對 Kubernetes 叢集內的容器進行負載平衡](container-service-kubernetes-load-balancing.md)。
-
-5. 執行下列命令來查看服務的狀態。
-
-  ```bash
-  kubectl get svc
-  ```
-
-  IP 位址一開始會顯示為 `pending`：
-
-  ![擱置的外部 IP 位址](media/container-service-kubernetes-windows-walkthrough/iis-svc-expose.png)
-
-  幾分鐘之後，會設定好 IP 位址：
+若要追蹤部署，請輸入：
   
-  ![適用於 IIS 的外部 IP 位址](media/container-service-kubernetes-windows-walkthrough/iis-svc-expose-public.png)
+```azurecli-interactive
+kubectl get pods
+```
+
+部署 Pod 時，狀態會是 `ContainerCreating`。 可能需要幾分鐘，容器才能進入 `Running` 狀態。
+
+```azurecli-interactive
+NAME     READY        STATUS        RESTARTS    AGE
+iis      1/1          Running       0           32s
+```
+
+## <a name="view-the-iis-welcome-page"></a>檢視 IIS 歡迎使用頁面
+
+若要使用公用 IP 位址將 Pod 向全球公開，請輸入下列命令：
+
+```azurecli-interactive
+kubectl expose pods iis --port=80 --type=LoadBalancer
+```
+
+使用此命令，Kubernetes 會以服務的公用 IP 位址來建立服務和 [Azure Load Balancer 規則](container-service-kubernetes-load-balancing.md)。 
+
+執行下列命令來查看服務的狀態。
+
+```azurecli-interactive
+kubectl get svc
+```
+
+IP 位址一開始會顯示為 `pending`。 幾分鐘之後，`iis` 的外部 IP 位址會完成設定：
+  
+```azurecli-interactive
+NAME         CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE       
+kubernetes   10.0.0.1       <none>          443/TCP        21h       
+iis          10.0.111.25    13.64.158.233   80/TCP         22m
+```
+
+若要在外部 IP 位址查看預設的 IIS 歡迎使用頁面，您可以使用指定的網頁瀏覽器：
+
+![瀏覽至 IIS 的影像](media/container-service-kubernetes-windows-walkthrough/kubernetes-iis.png)  
 
 
-6. 外部 IP 位址可用後，您就可以在瀏覽器中瀏覽它︰
+## <a name="delete-cluster"></a>刪除叢集
+若不再需要叢集，您可以使用 [az group delete](/cli/azure/group#delete) 命令來移除資源群組、容器服務和所有相關資源。
 
-  ![瀏覽至 IIS 的影像](media/container-service-kubernetes-windows-walkthrough/kubernetes-iis.png)  
+```azurecli-interactive 
+az group delete --name myResourceGroup
+```
 
-7. 若要刪除 IIS Pod，請輸入︰
-
-  ```bash
-  kubectl delete pods iis
-  ```
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要使用 Kubernetes UI，請執行 `kubectl proxy` 命令。 然後，瀏覽至 http://localhost:8001/ui。
+在本快速入門中，您部署了 Kubernetes 叢集、與 `kubectl` 連線，並使用 IIS 容器部署了 Pod。 若要深入了解 Azure Container Service，請繼續進行 Kubernetes 教學課程。
 
-* 如需建置自訂 IIS 網站並在 Windows 容器中執行它的步驟，請參閱位於 [Docker 中樞](https://hub.docker.com/r/microsoft/iis/)的指引。
-
-* 若要使用 PuTTy 透過主機的 RDP SSH 通道存取 Windows 節點，請參閱 [ACS 引擎文件](https://github.com/Azure/acs-engine/blob/master/docs/ssh.md#create-port-80-tunnel-to-the-master)。 
+> [!div class="nextstepaction"]
+> [管理 ACS Kubernetes 叢集](./container-service-tutorial-kubernetes-prepare-app.md)
 

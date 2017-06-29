@@ -16,10 +16,10 @@ ms.topic: get-started-article
 ms.date: 05/22/2017
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 08fd1956d3c6499f059b138de22d3b104a9da6c1
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 79156c0b511dafcb43ed91800f01338dbb7ee5f3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -30,15 +30,6 @@ ms.lasthandoff: 05/31/2017
 ![Azure DocumentDB API](./media/documentdb-introduction/cosmosdb-documentdb.png) 
 
 透過 DocumentDB API，Azure Cosmos DB 就可利用無結構描述的 JSON 資料一致低延遲來提供豐富且熟悉的 [SQL 查詢功能](documentdb-sql-query.md) ()。 在本文中，我們概略說明 Azure Cosmos DB 的 DocumentDB API，以及如何使用它來儲存大量的 JSON 資料、在毫秒延遲等級內查詢它們，並輕鬆發展結構描述。 
-
-## <a name="how-can-i-learn-about-the-documentdb-api"></a>如何了解 DocumentDB API？
-若要快速了解 DocumentDB API 與觀看其運作方式，請遵循這三個步驟： 
-
-1. 請觀看兩分鐘的[什麼是 Azure Cosmos DB？](https://azure.microsoft.com/documentation/videos/what-is-azure-documentdb/)影片，當中會介紹使用 Azure Cosmos DB 的優點。
-2. 請觀看三分鐘的[在 Azure 上建立 Azure Cosmos DB](https://azure.microsoft.com/documentation/videos/create-documentdb-on-azure/) 影片，當中會重點說明如何透過 Azure 入口網站開始使用 Azure Cosmos DB。
-3. 請瀏覽 [查詢遊樂場](http://www.documentdb.com/sql/demo)，您可以在其中逐步執行不同的活動，以了解 DocumentDB 中可用的豐富查詢功能。 接著，請前往 [沙箱] 索引標籤，執行您自訂的 SQL 查詢並實驗 DocumentDB。
-
-然後，回到這篇文章，我們將更進一步了解。  
 
 ## <a name="what-capabilities-and-key-features-does-azure-cosmos-db-offer"></a>Azure Cosmos DB 提供哪些功能和主要功能？
 Azure Cosmos DB 可透過 DocumentDB API 提供下列重要功能和優點：
@@ -78,13 +69,13 @@ Azure Cosmos DB 內的所有資源都會加以建立模型，並儲存為 JSON �
 
 ## <a name="develop"></a> 如何使用 DocumentDB API 開發應用程式？
 
-Azure Cosmos DB 公開資源的方式是透過 DocumentDB REST API，此 API 可供任何能發出 HTTP/HTTPS 要求的語言呼叫。 另外，DocumentDB API 還提供了幾種熱門語言的程式設計程式庫。 用戶端程式庫可透過處理諸如位址快取、例外狀況管理、自動重試等詳細資料，來簡化使用 API 的各個層面。 程式庫目前適用於下列語言和平台：  
+Azure Cosmos DB 公開資源的方式是透過 REST API，此 API 可供任何能發出 HTTP/HTTPS 要求的語言呼叫。 另外，DocumentDB API 還提供了幾種熱門語言的程式設計程式庫。 用戶端程式庫可透過處理諸如位址快取、例外狀況管理、自動重試等詳細資料，來簡化使用 API 的各個層面。 程式庫目前適用於下列語言和平台：  
 
 | 下載 | 文件 |
 | --- | --- |
-| [.NET SDK](http://go.microsoft.com/fwlink/?LinkID=402989) |[.NET 程式庫](https://msdn.microsoft.com/library/azure/dn948556.aspx) |
+| [.NET SDK](http://go.microsoft.com/fwlink/?LinkID=402989) |[.NET 程式庫](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) |
 | [Node.js SDK](http://go.microsoft.com/fwlink/?LinkID=402990) |[Node.js 程式庫](http://azure.github.io/azure-documentdb-node/) |
-| [Java SDK](http://go.microsoft.com/fwlink/?LinkID=402380) |[Java 程式庫](http://azure.github.io/azure-documentdb-java/) |
+| [Java SDK](http://go.microsoft.com/fwlink/?LinkID=402380) |[Java 程式庫](/java/api/com.microsoft.azure.documentdb) |
 | [JavaScript SDK](http://go.microsoft.com/fwlink/?LinkID=402991) |[JavaScript 程式庫](http://azure.github.io/azure-documentdb-js/) |
 | n/a |[伺服器端 JavaScript SDK](http://azure.github.io/azure-documentdb-js-server/) |
 | [Python SDK](https://pypi.python.org/pypi/pydocumentdb) |[Python 程式庫](http://azure.github.io/azure-documentdb-python/) |

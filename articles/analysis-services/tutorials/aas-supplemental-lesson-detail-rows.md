@@ -10,16 +10,16 @@ tags:
 ms.assetid: 
 ms.service: analysis-services
 ms.devlang: NA
-ms.topic: article
+ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 05/26/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: 2058e74c1c2e719e879a3808d24790bfe86a9e1b
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: fde5cd9a9efc3a13e731a91962ced5c086a72355
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/03/2017
 
 ---
 # <a name="supplemental-lesson---detail-rows"></a>補充課程 - 詳細資料列
@@ -42,11 +42,11 @@ ms.lasthandoff: 05/05/2017
 
     ![aas-lesson-detail-rows-pivottable](../tutorials/media/aas-lesson-detail-rows-pivottable.png)
 
-3. 在樞紐分析表中，按兩下某個年度和區域名稱的彙總值。 我們在此按兩下澳洲 2014 年的值。 包含許多資料的新工作表隨即開啟，但不是非常實用。
+3. 在樞紐分析表中，按兩下某個年度和區域名稱的彙總值。 我們在此按兩下澳洲 2014 年的值。 包含資料 (但非實用資料) 的新工作表隨即開啟。
 
     ![aas-lesson-detail-rows-pivottable](../tutorials/media/aas-lesson-detail-rows-sheet.png)
   
-我們想要在此查看一個資料表，其中包含構成 InternetTotalSales 量值彙總結果的資料行和資料列。 若要這麼做，我們可以新增詳細資料列運算式作為量值的屬性。
+我們想要在此查看一個資料表，其中包含構成 InternetTotalSales 量值彙總結果的資料行和資料列。 若要這麼做，我們可以新增詳細資料列運算式做為量值的屬性。
 
 ## <a name="add-a-detail-rows-expression"></a>新增詳細資料列運算式
 

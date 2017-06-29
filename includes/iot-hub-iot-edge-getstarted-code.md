@@ -1,6 +1,6 @@
 ## <a name="typical-output"></a>典型輸出
 
-下列範例是 Hello World 範例寫入記錄檔中的輸出。 已針對易讀性將輸出格式化︰
+下列範例顯示 Hello World 範例寫入記錄檔中的輸出。 已針對易讀性將輸出格式化︰
 
 ```json
 [{
@@ -36,7 +36,7 @@
 
 ### <a name="iot-edge-gateway-creation"></a>建立 IoT Edge 閘道
 
-開發人員必須撰寫「閘道程序」 。 此程式會建立內部基礎結構 (訊息代理程式)、載入 IoT Edge 模組，以及設定所有項目才能正確運作。 IoT Edge 提供的 **Gateway\_Create\_From\_JSON** 函式可讓您從 JSON 檔案啟動閘道。 若要使用 **Gateway\_Create\_From\_JSON** 函式，您必須將它傳遞到 JSON 檔案的路徑，以指定要載入的 IoT Edge 模組。
+您必須實作閘道程序。 此程式會建立內部基礎結構 (訊息代理程式)、載入 IoT Edge 模組，以及設定閘道程序。 IoT Edge 提供的 **Gateway\_Create\_From\_JSON** 函式可讓您從 JSON 檔案啟動閘道。 若要使用 **Gateway\_Create\_From\_JSON** 函式，請將它傳遞到 JSON 檔案的路徑，以指定要載入的 IoT Edge 模組。
 
 在 [main.c][lnk-main-c] 檔案中，您可以找到 Hello World 範例中閘道程序的程式碼。 下列程式碼片段顯示精簡版本的閘道程序程式碼，以利閱讀。 此範例會建立閘道，然後先等待使用者按下 **ENTER** 鍵，再終止閘道。
 
@@ -62,9 +62,9 @@ int main(int argc, char** argv)
 JSON 設定檔案包含要載入的 IoT Edge 模組清單以及模組之間的連結。 每個 IoT Edge 模組都必須指定：
 
 * **名稱**：模組的唯一名稱。
-* **載入器**︰知道如何載入所需模組的載入器。 載入器是一個用來載入不同模組類型的擴充點。 我們提供可與以原生 C、Node.js、Java 和 .NET 撰寫的模組搭配使用的載入器。 Hello World 範例只會使用原生 C 載入器，因為此範例中的所有模組都是以 C 撰寫的動態程式庫。如需有關如何使用以不同語言撰寫之 IoT Edge 模組的詳細資訊，請參閱 [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/)、[Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample) 或 [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) 範例。
+* **載入器**︰知道如何載入所需模組的載入器。 載入器是一個用來載入不同模組類型的擴充點。 IoT Edge 提供可與以原生 C、Node.js、Java 和 .NET 撰寫的模組搭配使用的載入器。 Hello World 範例只會使用原生 C 載入器，因為此範例中的所有模組都是以 C 撰寫的動態程式庫。如需有關如何使用以不同語言撰寫之 IoT Edge 模組的詳細資訊，請參閱 [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/)、[Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample) 或 [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) 範例。
     * **名稱**︰用來載入模組的載入器名稱。
-    * **進入點**：包含模組之程式庫的路徑。 在 Linux 上，此程式庫是 .so 檔案，在 Windows 上，此程式庫是 .dll 檔案。 此進入點是要使用的載入器類型特定的。 Node.js 載入器的進入點是 .js 檔案。 Java 載入器的進入點是 classpath 加上類別名稱。 .NET 載入器的進入點是組件名稱加上類別名稱。
+    * **進入點**：包含模組之程式庫的路徑。 在 Linux 上，此程式庫是 .so 檔案，在 Windows 上，此程式庫是 .dll 檔案。 此進入點是要使用的載入器類型特定的。 Node.js 載入器的進入點是 .js 檔案。 Java 載入器的進入點是 classpath 與類別名稱。 .NET 載入器的進入點是組件名稱與類別名稱。
 
 * **args**：模組所需的任何組態資訊。
 
@@ -98,10 +98,10 @@ JSON 設定檔案包含要載入的 IoT Edge 模組清單以及模組之間的�
 
 JSON 檔案也包含會傳遞給訊息代理程式之模組之間的連結。 連結有兩個屬性︰
 
-* **來源**：來自 `modules` 區段的模組名稱，或 "\*"。
+* **來源**：來自 `modules` 區段的模組名稱，或 `\*`。
 * **接收**：來自 `modules` 區段的模組名稱。
 
-每個連結都會定義訊息路由和方向。 來自模組 `source` 的訊息會傳遞給模組 `sink`。 `source` 可能會設定為 "\*"，代表來自任何模組的訊息都是由 `sink` 接收。
+每個連結都會定義訊息路由和方向。 來自**來源**模組的訊息會傳遞給**接收**模組。 您可以將**來源**模組設定為 `\*`，這表示**接收**模組會從任何模組接收訊息。
 
 下列程式碼所示範的 JSON 可用來在 Linux 上設定在 hello\_world 範例所使用之模組間的連結。 `hello_world` 模組所產生的每則訊息都是由 `logger` 模組取用。
 
@@ -180,7 +180,7 @@ static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messag
 
 Logger 模組會接收來自訊息代理程式的訊息，並將它們寫入檔案。 此模組永遠不會發佈任何訊息。 因此，Logger 模組的程式碼永遠不會呼叫 **Broker_Publish** 函式。
 
-[logger.c][lnk-logger-c] 檔案中的 **Logger_Recieve** 函式是訊息代理程式所叫用的回呼，以將訊息傳遞到 Logger 模組。 下列程式碼片段所示範的修改過版本已新增註解並移除一些錯誤處理程式碼，以利閱讀︰
+[logger.c][lnk-logger-c] 檔案中的 **Logger_Receive** 函式是訊息代理程式所叫用的回呼，以將訊息傳遞到 Logger 模組。 下列程式碼片段所示範的修改過版本已新增註解並移除一些錯誤處理程式碼，以利閱讀︰
 
 ```c
 static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -223,14 +223,13 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 
 ## <a name="next-steps"></a>後續步驟
 
-若要了解如何使用 Azure IoT Edge，請參閱下列文章：
+在本文中，您所執行的簡單 IoT Edge 閘道可將訊息寫入記錄檔中。 若要執行可將訊息傳送到 IoT 中樞的範例，請參閱 [IoT Edge – 使用 Linux 透過模擬的裝置傳送裝置對雲端訊息][lnk-gateway-simulated-linux]或 [IoT Edge – 使用 Windows 透過模擬的裝置傳送裝置對雲端訊息][lnk-gateway-simulated-windows]。
 
-* [IoT Edge – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息][lnk-gateway-simulated]。
-* GitHub 上的 [Azure IoT Edge][lnk-iot-edge]。
 
 <!-- Links -->
 [lnk-main-c]: https://github.com/Azure/iot-edge/blob/master/samples/hello_world/src/main.c
 [lnk-helloworld-c]: https://github.com/Azure/iot-edge/blob/master/modules/hello_world/src/hello_world.c
 [lnk-logger-c]: https://github.com/Azure/iot-edge/blob/master/modules/logger/src/logger.c
 [lnk-iot-edge]: https://github.com/Azure/iot-edge/
-[lnk-gateway-simulated]: ../articles/iot-hub/iot-hub-linux-iot-edge-simulated-device.md
+[lnk-gateway-simulated-linux]: ../articles/iot-hub/iot-hub-linux-iot-edge-simulated-device.md
+[lnk-gateway-simulated-windows]: ../articles/iot-hub/iot-hub-windows-iot-edge-simulated-device.md

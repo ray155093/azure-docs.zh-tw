@@ -14,10 +14,10 @@ ms.tgt_pltfrm: na
 ms.date: 04/26/2017
 ms.author: ashmaka
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: a6e9e504f4ccb8fb1e0a151dcfe76339fcc8051a
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: a22b82829df4659681940267e64c98d345453958
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/08/2017
 
 
 ---
@@ -62,4 +62,10 @@ Azure 搜尋服務可讓您輕鬆地對搜尋結果分頁。 透過使用 `top` 
 ## <a name="hit-highlighting"></a>搜尋結果醒目提示
 在 Azure 搜尋服務中，只要使用 `highlight`、`highlightPreTag` 和 `highlightPostTag` 參數就可強調提示搜尋結果中符合搜尋查詢的確切部分。 您可以指定哪些可搜尋欄位應該強調其相符的文字，以及指定要在 Azure 搜尋服務傳回的相符文字開頭和結尾附加的確切字串標記。
 
+## <a name="try-out-query-syntax"></a>嘗試執行查詢語法
 
+若要了解語法差異，最好的方法是提交查詢並檢視結果。
+
++ 在 Azure 入口網站中使用[資料總管](search-explorer.md)。 藉由部署[範例索引](search-get-started-portal.md)，您可以使用入口網站中的工具在幾分鐘內查詢索引。
+
++ 使用 [Fiddler](search-fiddler.md) 或 Chrome Postman，將查詢提交至您已上傳到搜尋服務中的索引。 這兩個工具都支援 REST 呼叫 HTTP 端點。 
