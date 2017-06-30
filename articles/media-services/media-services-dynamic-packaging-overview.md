@@ -12,11 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/25/2017
+ms.date: 06/29/2017
 ms.author: juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: da455a350f61e17425cd308d0fdc8bb5294a0b76
 ms.openlocfilehash: 574921fdecdadaa48c572685f7486d4e7b1d25f4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/27/2017
 
 
 ---
@@ -48,7 +50,7 @@ Microsoft Azure Media Services 可用來針對數種用戶端技術 (例如 iOS�
 2. [使用媒體編碼器標準編碼器產生 H.264 MP4 自動調整位元速率集](media-services-dotnet-encode-with-media-encoder-standard.md)。
 3. [串流處理內容](media-services-deliver-content-overview.md)。
 
-## <a name="a-idunsupportedformatsaformats-that-are-not-supported-by-dynamic-packaging"></a><a id="unsupported_formats"></a>動態封裝不支援的格式
+## <a id="unsupported_formats"></a>動態封裝不支援的格式
 動態封裝不支援下列來源檔案格式。
 
 * Dolby digital mp4 檔案。
@@ -59,10 +61,5 @@ Microsoft Azure Media Services 可用來針對數種用戶端技術 (例如 iOS�
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

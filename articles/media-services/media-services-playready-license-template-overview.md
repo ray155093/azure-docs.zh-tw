@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 06/29/2017
 ms.author: juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
 ms.openlocfilehash: ea0b54a1041c0008071a9b11afc81e1b91f3e409
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/13/2017
 
 
@@ -60,7 +61,7 @@ XML 符合 PlayReady 授權範本 XML 結構描述，該結構描述是在 PlayR
 
 如需使用 .NET 類別來設定 PlayReady 授權範本的端對端範例，請參閱 [使用 PlayReady 動態加密和授權傳遞服務](media-services-protect-with-drm.md)。
 
-## <a name="a-idclassesamedia-services-net-classes-that-are-used-to-configure-license-templates"></a><a id="classes"></a>用來設定授權範本的媒體服務 .NET 類別
+## <a id="classes"></a>用來設定授權範本的媒體服務 .NET 類別
 以下是主要的 .NET 類別，可用於設定媒體服務 PlayReady 授權範本。 這些類別對應至 [PlayReady 授權範本 XML 結構描述](media-services-playready-license-template-overview.md#schema)中定義的類型。
 
 [MediaServicesLicenseTemplateSerializer](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.mediaserviceslicensetemplateserializer.aspx) 類別是用來序列化和還原序列化媒體服務授權範本 XML。
@@ -73,7 +74,7 @@ XML 符合 PlayReady 授權範本 XML 結構描述，該結構描述是在 PlayR
 ### <a name="playreadylicensetemplate"></a>PlayReadyLicenseTemplate
 [PlayReadyLicenseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicensetemplate.aspx) - 類別代表用於建立 PlayReady 授權 (傳回給使用者) 的授權範本。 它包含授權中內容金鑰的資料，和使用內容金鑰時，由 PlayReady DRM 執行階段強制執行的任何權限和限制。
 
-### <a name="a-idplayreadyplayrightaplayreadyplayright"></a><a id="PlayReadyPlayRight"></a>PlayReadyPlayRight
+### <a id="PlayReadyPlayRight"></a>PlayReadyPlayRight
 [PlayReadyPlayRight](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadyplayright.aspx) - 此類別代表 PlayReady 授權的 PlayRight。 它授與使用者能力可以播放內容，該內容受限於授權中設定及 PlayRight 本身 (適用於播放特定原則) 的零或多個限制。 大部分的 PlayRight 原則與輸出限制相關，控制內容可以播放的輸出類型，和使用指定輸出時必須套用的任何限制。 例如，如果 DigitalVideoOnlyContentRestriction 已啟用，則 DRM 執行階段只會允許透過數位輸出 (不允許類比視訊輸出傳遞內容) 顯示視訊。
 
 > [!IMPORTANT]
@@ -83,7 +84,7 @@ XML 符合 PlayReady 授權範本 XML 結構描述，該結構描述是在 PlayR
 
 如需 Silverlight 支援的保護層級的範例，請參閱： [Silverlight 支援輸出保護](http://go.microsoft.com/fwlink/?LinkId=617318)。
 
-## <a name="a-idschemaaplayready-license-template-xml-schema"></a><a id="schema"></a>PlayReady 授權範本 XML 結構描述
+## <a id="schema"></a>PlayReady 授權範本 XML 結構描述
     <?xml version="1.0" encoding="utf-8"?>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />

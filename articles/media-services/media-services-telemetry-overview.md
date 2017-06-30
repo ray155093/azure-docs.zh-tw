@@ -12,11 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 06/29/2017
 ms.author: juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 99c43c63f75e01713600ef5ca46a8d11e8c5c7ce
 ms.openlocfilehash: b6560fdd50c93a7e84f12047ec4401328b601deb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/09/2016
 
 
 ---
@@ -40,7 +42,6 @@ Azure 媒體服務 (AMS) 可讓您存取其服務的遙測/計量資料。 目�
 [啟用搭配 .NET 的遙測](media-services-dotnet-telemetry.md) 
 
 [啟用搭配 REST 的遙測](media-services-rest-telemetry.md)
-
 
 ## <a name="consuming-telemetry-information"></a>取用遙測資訊
 
@@ -67,11 +68,9 @@ Azure 媒體服務 (AMS) 可讓您存取其服務的遙測/計量資料。 目�
 - 擷取某日期範圍內指定服務的所有資料。
 - 擷取服務的最新資料。
 
-
 ### <a name="telemetry-table-storage-output-schema"></a>遙測資料表儲存體輸出結構描述
 
 遙測資料會以彙總方式儲存在一個名為 "TelemetryMetrics20160321" 的資料表中，其中的 "20160321" 是建立資料表的日期。 遙測系統會以 00:00 UTC 為基準，為每一天建立個別的資料表。 此資料表用來儲存週期性值，例如指定時間範圍內的內嵌位元速率、傳送的位元組等。 
-
 
 屬性|值|範例/附註
 ---|---|---
@@ -83,7 +82,6 @@ Timestamp|日期/時間|Azure 資料表中的自動時間戳記 2016-09-09T22:43
 ObservedTime|遙測事件發生時間 (UTC)|2016-09-09T22:42:36.924Z<br/><br/>觀察的時間由傳送遙測資料的實體提供 (例如頻道)。 元件之間可能有時間同步問題，因此這個值是近似值
 ServiceID|{服務識別碼}|f70bd731-691d-41c6-8f2d-671d0bdc9c7e
 實體特定屬性|如事件所定義|StreamName：stream1、Bitrate 10123…<br/><br/>其餘的屬性是針對指定的事件類型定義。 Azure 資料表內容是機碼值組。  (亦即資料表中的不同資料列有不同的屬性集)。
-
 
 ### <a name="entity-specific-schema"></a>實體特定結構描述
 
@@ -112,7 +110,6 @@ BytesSent|傳送的彙總位元組|2987358
 ServerLatency|平均伺服器延遲 (包括儲存體)|129
 E2ELatency|平均端對端延遲|250
 
-
 **直播頻道**
 
 屬性|值|範例/附註
@@ -138,7 +135,6 @@ UnalignedPresentationTime|我們是否收到呈現方式時間未對齊的片段
 UnexpectedBitrate|如果下列條件成立則為 True：音訊/視訊曲目的計算的/實際的位元速率 > 40,000 bps，且 IncomingBitrate == 0 或 IncomingBitrate 和 actualBitrate 相差 50% |True
 Healthy|如果下列條件成立則為 True <br/>overlapCount、 <br/>DiscontinuityCount、 <br/>NonIncreasingCount、 <br/>UnalignedKeyFrames、 <br/>UnalignedPresentationTime 及 <br/>UnexpectedBitrate<br/> 均為 0|True<br/><br/>Healthy 是複合函數，當下列任一條件成立時會傳回 false︰<br/><br/>- OverlapCount > 0<br/>- DiscontinuityCount > 0<br/>- NonincreasingCount > 0<br/>- UnalignedKeyFrames == True<br/>- UnalignedPresentationTime == True<br/>- UnexpectedBitrate == True
 
-
 **即時封存**
 
 屬性|值|範例/附註
@@ -156,7 +152,6 @@ TrackType|曲目類型|音訊/視訊
 CustomAttribute|十六進位字串，用以區別名稱和位元速率相同的不同曲目 (多重攝影機角度)|
 Bitrate|曲目位元速率|785000
 Healthy|如果下列條件成立則為 True：FragmentDiscardedCount == 0 && ArchiveAcquisitionError == False|True (這兩個值不會出現在計量，但它們存在於來源事件中)<br/><br/>Healthy 是複合函數，當下列任一條件成立時會傳回 false︰<br/><br/>- FragmentDiscardedCount > 0<br/>- ArchiveAcquisitionError == True
-
 
 ## <a name="general-qa"></a>一般問答集
 
@@ -226,9 +221,4 @@ Healthy|如果下列條件成立則為 True：FragmentDiscardedCount == 0 && Arc
 ## <a name="provide-feedback"></a>提供意見反應
 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

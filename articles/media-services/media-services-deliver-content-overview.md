@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 06/29/2017
 ms.author: juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
 ms.openlocfilehash: 249b87ecc9e43fa26a74e27f91f807d60b275eeb
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/13/2017
 
 
@@ -115,7 +116,7 @@ http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f
 
 http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest
 
-### <a name="a-idfmp4v20asmooth-streaming-20-manifest-legacy-manifest"></a><a id="fmp4_v20"></a>Smooth Streaming 2.0 資訊清單 (舊版資訊清單)
+### <a id="fmp4_v20"></a>Smooth Streaming 2.0 資訊清單 (舊版資訊清單)
 根據預設，Smooth Streaming 資訊清單格式包含重複的標記 (r-tag)。 不過，有些播放程式不支援 r-tag。 使用這些播放程式的用戶端可以使用停用 r-tag 的格式︰
 
 {串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=fmp4-v20)

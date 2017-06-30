@@ -12,11 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 06/29/2017
 ms.author: cenkd;juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
 ms.openlocfilehash: d0f9899d6b8cc83ea4f2836444b41a9dabe7fea7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/14/2016
 
 
 ---
@@ -92,7 +94,7 @@ ms.openlocfilehash: d0f9899d6b8cc83ea4f2836444b41a9dabe7fea7
 > 
 > 
 
-### <a name="a-idfiltersafilters"></a><a id="filters"></a>篩選器
+### <a id="filters"></a>篩選器
 資產篩選器有兩種： 
 
 * 全域篩選器 (可以套用到 Azure 媒體服務帳戶中所有的資產，擁有帳戶的存留期間) 和 
@@ -100,7 +102,7 @@ ms.openlocfilehash: d0f9899d6b8cc83ea4f2836444b41a9dabe7fea7
 
 全域和本機篩選器類型有完全相同的屬性。 這兩個的主要差異在於案例較適合哪一種篩選器。 全域篩選器通常適用於裝置設定檔 (轉譯篩選)，而本機篩選器可用於修剪特定的資產。
 
-## <a name="a-idscenariosacommon-scenarios"></a><a id="scenarios"></a>常見案例
+## <a id="scenarios"></a>常見案例
 先前提過，將內容傳遞給客戶時 (串流即時事件或點播視訊)，您的目標是在不同的網路條件下將高品質的視訊傳遞到各種裝置。 此外，您可能會有其他對於篩選資產與使用 **動態資訊清單**相關的需求。 以下幾節提供不同篩選案例的簡短概觀。
 
 * 僅指定某些裝置可以處理的音訊和視訊轉譯子集 (而非與該資產相關聯的所有轉譯)。 
@@ -210,9 +212,4 @@ ms.openlocfilehash: d0f9899d6b8cc83ea4f2836444b41a9dabe7fea7
 [language_filter]: ./media/media-services-dynamic-manifest-overview/media-services-language-filter.png
 [dvr_filter]: ./media/media-services-dynamic-manifest-overview/media-services-dvr-filter.png
 [skiing]: ./media/media-services-dynamic-manifest-overview/media-services-skiing.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

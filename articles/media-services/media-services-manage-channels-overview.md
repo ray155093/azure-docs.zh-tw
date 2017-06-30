@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 06/29/2017
 ms.author: juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
 ms.openlocfilehash: e4bb75b0a45dd922479cbd40ad94190c30b4333f
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/13/2017
 
 
@@ -121,7 +122,7 @@ ArchiveWindowLength 也指定用戶端可從目前即時位置往回搜尋的最
 >
 >
 
-### <a name="a-idstatesachannel-states-and-how-they-map-to-the-billing-mode"></a><a id="states"></a>通道狀態和狀態如何對應至計費模式
+### <a id="states"></a>通道狀態和狀態如何對應至計費模式
 通道的目前狀態。 可能的值包括：
 
 * **已停止**。 這是通道建立後的初始狀態 (除非在入口網站中選取自動啟動)。此狀態中不會計費。 在此狀態下，通道屬性可以更新，但是不允許串流。
