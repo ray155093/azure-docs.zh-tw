@@ -41,8 +41,8 @@ ms.lasthandoff: 05/11/2017
       "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
       "contentVersion": "1.0.0.0",
       "parameters": {
-            "storageAccountName": {
-                "type": "String"
+          "storageAccountName": {
+              "type": "String"
           }
       },
       "resources": [{
@@ -54,10 +54,10 @@ ms.lasthandoff: 05/11/2017
               "name": "Standard_LRS"
           },
           "kind": "Storage",
-          "properties": {        
+          "properties": {       
           }
       }],
-      "outputs": {        
+      "outputs": {      
       }
   }
   ```
@@ -102,7 +102,7 @@ ms.lasthandoff: 05/11/2017
               "Parameters": {
                   "storageAccountName": {
                       "value": "[parameters('storageAccountName')]"
-                  }                
+                  }             
               }
           }
       }]
@@ -118,13 +118,13 @@ ms.lasthandoff: 05/11/2017
 接下來，建立您想要用來代表客戶管理資源的使用者群組或應用程式。 此使用者群組或應用程式具有受管理資源群組的權限，如角色所述。 角色可以是任何內建的 RBAC 角色，例如**擁有者**或**參與者**。 也可以將管理資源的權限提供給個別使用者，但您通常要指派此權限才可使用使用者群組。 若要建立新的 Active Directory 使用者群組，請使用：
 
 ```azurecli
-az ad group create –display-name "name" –mail-nickname "nickname"
+az ad group create --display-name "name" --mail-nickname "nickname"
 ```
 
 您也可以使用現有的群組。 您需要新建或現有使用者群組的物件識別碼。 下列範例會示範如何從用來建立群組的顯示名稱取得物件識別碼。
 
 ```azurecli
-az ad group show –group "groupName"
+az ad group show --group "groupName"
 ```
 
 範例：
@@ -210,3 +210,4 @@ az managedapp definition create -n ravtestAppDef4 -l "westcentralus"
 * 如需檔案的範例，請參閱[受管理的應用程式範例](https://github.com/Azure/azure-managedapp-samples/tree/master/samples)。
 * 若要了解取用者體驗，請參閱[使用 Azure 受管理的應用程式](managed-application-consumption.md)。
 * 若要了解如何建立受管理應用程式的 UI 定義檔案，請參閱[開始使用 CreateUiDefinition](managed-application-createuidefinition-overview.md)。
+

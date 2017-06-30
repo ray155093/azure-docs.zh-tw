@@ -1,4 +1,4 @@
---- 
+---
 title: "適用於 Eclipse 的 Azure Service Fabric 外掛程式 | Microsoft Docs"
 description: "開始使用適用於 Eclipse 的 Service Fabric 外掛程式。"
 services: service-fabric
@@ -12,7 +12,7 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 05/03/2016
+ms.date: 06/29/2016
 ms.author: saysa
 ms.translationtype: Human Translation
 ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
@@ -38,7 +38,7 @@ Eclipse 是 Java 開發人員最普遍使用的整合式的開發環境 (IDE) �
   1.    在 [使用] 文字方塊中，輸入 **http://dl.microsoft.com/eclipse**。
   2.    按一下 [新增] 。
 
-         ![適用於 Eclipse Neon 的 Service Fabric 外掛程式][sf-eclipse-plugin-install] 
+         ![適用於 Eclipse Neon 的 Service Fabric 外掛程式][sf-eclipse-plugin-install]
   3.    選取 Service Fabric 外掛程式，然後按 [下一步]。
   4.    完成安裝步驟，然後接受 Microsoft 軟體授權條款。
 
