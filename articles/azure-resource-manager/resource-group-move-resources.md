@@ -23,14 +23,14 @@ ms.lasthandoff: 05/16/2017
 
 ---
 # <a name="move-resources-to-new-resource-group-or-subscription"></a>將資源移動到新的資源群組或訂用帳戶
-本主題說明如何將資源移至新的訂用帳戶或相同訂用帳戶中新的資源群組。 您可以使用入口網站、PowerShell、Azure CLI 或 REST API 來移動資源。 本主題中的移動作業可供您不需要任何 Azure 支援的協助。
+本主題說明如何將資源移至新的訂用帳戶或相同訂用帳戶中新的資源群組。 您可以使用入口網站、PowerShell、Azure CLI 或 REST API 來移動資源。 本主題中的移動作業可供您使用而不需要任何 Azure 支援的協助。
 
 移動資源時，在此作業期間會同時鎖定來源群組和目標群組。 資源群組上的寫入和刪除作業將會封鎖，直到移動完成。 此鎖定表示您無法新增、更新或刪除資源群組中的資源，但不表示資源已遭到凍結。 例如，如果您將 SQL Server 和其資料庫移至新的資源群組，使用該資料庫的應用程式不會發生停機時間。 它仍可對資料庫讀取和寫入。 
 
 您無法變更資源的位置。 移動資源只會將它移動到新的資源群組。 新的資源群組可能會有不同的位置，但那樣不會變更資源的位置。
 
 > [!NOTE]
-> 本文說明如何在現有的 Azure 帳戶訂閱進行資源移動。 如果您真的想要變更 Azure 訂閱 (例如，從隨用隨付升級為預付)，同時繼續使用現有的資源，請參閱 [切換至不同的 Azure 訂用帳戶優惠](../billing/billing-how-to-switch-azure-offer.md)。 
+> 本文說明如何在現有的 Azure 帳戶提供項目內移動資源。 如果您真的想要變更 Azure 帳戶提供項目 (例如，從隨用隨付升級為預付)，同時繼續使用現有的資源，請參閱 [切換至不同的 Azure 訂用帳戶優惠](../billing/billing-how-to-switch-azure-offer.md)。 
 > 
 > 
 
@@ -58,7 +58,7 @@ ms.lasthandoff: 05/16/2017
   如果該圖示不可用，您必須連絡支援人員將資源移動到新的租用戶。
 
 2. 服務必須啟用移動資源的功能。 本主題列出哪些服務可實現移動資源，哪些服務無法實現移動資源。
-3. 必須針對要移動之資源的資源提供者註冊其目的地訂用帳戶。 否則，您會收到錯誤，內容為 **未針對資源類型註冊訂用帳戶**。 將資源移至新的訂用帳戶時，可能會因為該訂用帳戶不曾以指定的資源類型使用過而遇到問題。 若要了解如何檢查註冊狀態及註冊資源提供者，請參閱 [資源提供者和類型](resource-manager-supported-services.md#resource-providers-and-types)。
+3. 必須針對要移動之資源的資源提供者註冊其目的地訂用帳戶。 否則，您會收到錯誤，指出 **未針對資源類型註冊訂用帳戶**。 將資源移至新的訂用帳戶時，可能會因為該訂用帳戶不曾以指定的資源類型使用過而遇到問題。 若要了解如何檢查註冊狀態及註冊資源提供者，請參閱 [資源提供者和類型](resource-manager-supported-services.md#resource-providers-and-types)。
 
 ## <a name="when-to-call-support"></a>呼叫支援的時機
 您可以透過本主題顯示的自助式作業，移動大部分資源。 使用自助式作業︰
@@ -146,7 +146,7 @@ ms.lasthandoff: 05/16/2017
 ## <a name="app-service-limitations"></a>App Service 限制
 使用 App Service 應用程式時，您無法只移動 App Service 方案。 若要移動 App Service 應用程式，您的選項如下：
 
-* 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。 這項需求意謂著您必須移動與 App Service 方案沒有關聯的 App Service 資源。 
+* 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。 這項需求意謂著您甚至必須移動與 App Service 方案沒有關聯的 App Service 資源。  
 * 將應用程式移到不同的資源群組，但在原始資源群組中保留所有 App Service 方案。
 
 App Service 方案不需要與應用程式位於相同的資源群組，應用程式就能正確運作。
