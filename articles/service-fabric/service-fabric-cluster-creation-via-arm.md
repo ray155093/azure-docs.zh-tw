@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 02/22/2017
 ms.author: chackdan
-translationtype: Human Translation
-ms.sourcegitcommit: b80ee30379e9aac207cfe420cae17da57ea123a5
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8d876a0f2168ee9375a3905d5d5a562ab1194cf3
 ms.openlocfilehash: 9159f40fed17e52e6576efa1ea7e8a2dee98728e
-ms.lasthandoff: 03/02/2017
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/04/2017
 
 
 ---
@@ -460,7 +461,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 }
 ```
 
-### <a name="a-configure-arm-aconfigure-resource-manager-template-parameters"></a><a "configure-arm" ></a>設定 Resource Manager 範本參數
+### <a "configure-arm" ></a>設定 Resource Manager 範本參數
 最後，請使用 Key Vault 和 Azure AD PowerShell 命令的輸出值來填入參數檔案︰
 
 ```json
