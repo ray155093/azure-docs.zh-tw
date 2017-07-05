@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/07/2017
+ms.date: 06/23/2017
 ms.author: markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
 ms.openlocfilehash: 2faf328e6622b9a1e3b529d62b61061659041fbd
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/10/2017
 
 
@@ -24,8 +25,8 @@ ms.lasthandoff: 03/10/2017
 
 本主題適用於下列用戶端：
 
--    Windows 10
--    Windows Server 2016
+-   Windows 10
+-   Windows Server 2016
 
 針對其他 Windows 用戶端，請參閱[針對已加入 Azure AD 網域之 Windows 下層用戶端電腦的自動註冊進行疑難排解](active-directory-device-registration-troubleshoot-windows-legacy.md)。
 

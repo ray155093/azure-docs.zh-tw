@@ -4,7 +4,7 @@ description: "說明如何取消 Azure 訂用帳戶，例如免費試用訂用�
 services: 
 documentationcenter: 
 author: genlin
-manager: narmstr
+manager: jlian
 editor: 
 tags: billing
 ms.assetid: 3051d6b0-179f-4e3a-bda4-3fee7135eac5
@@ -15,9 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/29/2017
 ms.author: genli
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
 ms.openlocfilehash: a8751fa70bd500a29a3e86de57de4fb919405136
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/31/2017
 
 

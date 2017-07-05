@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/09/2017
+ms.date: 06/23/2017
 ms.author: markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
 ms.openlocfilehash: 9934902811354ffa4047d70d995a6dd44be0229b
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/10/2017
 
 
@@ -51,19 +52,19 @@ Azure Active Directory 裝置註冊是裝置型條件式存取案例的基礎。
 
 **啟用 Azure Active Directory 裝置註冊服務：**
 
-1.    以系統管理員身分登入 Microsoft Azure 入口網站。
+1.  以系統管理員身分登入 Microsoft Azure 入口網站。
 
-2.    在左窗格中選取 [Active Directory]。
+2.  在左窗格中選取 [Active Directory]。
 
-3.    在 [目錄] 索引標籤中，選取您的目錄。
+3.  在 [目錄] 索引標籤中，選取您的目錄。
 
-4.    按一下 [設定]。
+4.  按一下 [設定]。
 
-5.    捲動到 [裝置]。
+5.  捲動到 [裝置]。
 
-6.    針對 [使用者可以向 Azure AD 註冊其裝置] 選取 [全部]。
+6.  針對 [使用者可以向 Azure AD 註冊其裝置] 選取 [全部]。
 
-7.    選取您要依每位使用者授權的裝置數目上限。
+7.  選取您要依每位使用者授權的裝置數目上限。
 
 Microsoft Intune 註冊或 Office 365 的行動裝置管理要求必須執行裝置註冊。 如果您已設定任一服務，則會選取 [全部] 並停用 [無]。 請確定已正確設定它們，而且它們有適當的授權。
 
@@ -79,19 +80,19 @@ Microsoft Intune 註冊或 Office 365 的行動裝置管理要求必須執行裝
 
 **在 Azure Active Directory 中檢視及管理裝置物件：**
  
-1.    以系統管理員身分登入 Microsoft Azure 入口網站。
+1.  以系統管理員身分登入 Microsoft Azure 入口網站。
 
-2.    在左窗格中選取 [Active Directory] 。
+2.  在左窗格中選取 [Active Directory] 。
 
-3.    選取您的目錄。
+3.  選取您的目錄。
 
-4.    選取 [使用者]。 
+4.  選取 [使用者]。 
 
 5.  按一下您要查看其裝置的使用者。
 
-6.    選取 [裝置]。
+6.  選取 [裝置]。
 
-7.    選取 [註冊的裝置]。
+7.  選取 [註冊的裝置]。
 
 現在您可以檢閱、封鎖或解除封鎖使用者已註冊的裝置。
 已加入內部部署網域且已自動註冊的 Windows 10 裝置不會出現在 [使用者] 索引標籤下。 請使用 Get-MsolDevice PowerShell 命令來尋找您的所有企業裝置。 
