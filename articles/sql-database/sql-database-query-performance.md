@@ -212,7 +212,7 @@ ms.lasthandoff: 01/31/2017
 「查詢效能深入解析」可協助您了解您的查詢工作負載的影響，以及其與資料庫資源取用量的關係。 使用此功能，您將了解排名最前面的取用查詢，並且在發生問題前輕鬆地找出要修正的項目。
 
 ## <a name="next-steps"></a>後續步驟
-如需有關改善 SQL Database 效能的其他建議，請按一下 [查詢效能深入解析] [](sql-database-advisor.md) 刀鋒視窗上的 [ **建議** ]。
+如需有關改善 SQL Database 效能的其他建議，請按一下 [**查詢效能深入解析**] 刀鋒視窗上的 [建議](sql-database-advisor.md)。
 
 ![效能建議程式](./media/sql-database-query-performance/ia.png)
 
