@@ -1,5 +1,4 @@
 ---
-
 title: "Azure Active Directory 入口網站中的登入活動報告 | Microsoft Docs"
 description: "介紹 Azure Active Directory 入口網站中的登入活動報告"
 services: active-directory
@@ -16,10 +15,10 @@ ms.workload: identity
 ms.date: 05/04/2017
 ms.author: markvi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 19cd81c1e6020523d1bea3ec76c957ce22f931ca
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 0e8ae05b5f8644d4dfd0e6205224cabfb0919531
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -37,6 +36,17 @@ Azure Active Directory 中的報告架構包含下列元件：
     - **標幟為有風險的使用者** - 有風險的使用者表示可能被盜用的使用者帳戶。 如需詳細資訊，請參閱＜標幟為有風險的使用者＞。
 
 本主題提供登入活動的概觀。
+
+## <a name="pre-requisite"></a>必要條件
+
+### <a name="who-can-access-the-data"></a>誰可以存取資料？
+* 具有安全性系統管理員或安全性讀取器角色的使用者
+* 全域管理員
+* 任何使用者 (非系統管理員) 都可以存取自己的登入 
+
+### <a name="what-azure-ad-license-do-you-need-to-access-sign-in-activity"></a>您需要哪項 Azure AD 授權才能存取登入活動？
+* 租用戶必須要有相關聯的 Azure AD Premium 授權，才能查看活動報告中的所有登入
+
 
 ## <a name="signs-in-activities"></a>登入活動
 

@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 209f8869e9ed681285865154bdd4d2d7a0f22456
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 7701d46be70901d361f8a045c386bfa4cdaf98b6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -145,6 +146,7 @@ ADFS 可以設定為支援 [多個網域](active-directory-aadconnect-multiple-d
 |版本歷程記錄 | [版本歷程記錄](active-directory-aadconnect-version-history.md)|
 |比較 DirSync、Azure ADSync 和 Azure AD Connect | [目錄整合工具比較](../active-directory-hybrid-identity-design-considerations-tools-comparison.md)|
 |Azure AD 的非 ADFS 相容性清單 | [Azure AD 同盟相容性清單](active-directory-aadconnect-federation-compatibility.md)|
+|設定 SAML 2.0 Idp|[使用 SAML 2.0 識別提供者 (IdP) 來進行單一登入](active-directory-aadconnect-federation-saml-idp.md)|
 |同步處理的屬性 | [同步處理的屬性](active-directory-aadconnectsync-attributes-synchronized.md)|
 |使用 Azure AD Connect Health 進行監控 | [Azure AD Connect Health](../connect-health/active-directory-aadconnect-health.md)|
 |常見問題集 | [Azure AD Connect 常見問題集](active-directory-aadconnect-faq.md)|
