@@ -1,16 +1,20 @@
-- name: 自訂決策服務
+- name: Custom Decision Service
   href: ../index.md
-- name: 概觀
+- name: Overview
   href: custom-decision-service-overview.md
-- name: 開始使用
+- name: Get started
   items:
-  - name: 註冊您的應用程式
+  - name: Register your application
     href: custom-decision-service-get-started-register.md
-  - name: 從瀏覽器呼叫 API
+  - name: Call API from a browser
     href: custom-decision-service-get-started-browser.md
-  - name: 從應用程式呼叫 API
+  - name: Call API from an app
     href: custom-decision-service-get-started-app.md
-- name: 教學課程
+- name: Tutorial
   href: custom-decision-service-tutorial.md
-- name: API 參考資料
+- name: API reference
   href: custom-decision-service-api-reference.md
+- name: Resources
+  items:
+  - name: Azure Roadmap
+    href: https://azure.microsoft.com/roadmap/
