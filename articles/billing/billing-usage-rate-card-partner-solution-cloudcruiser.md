@@ -4,7 +4,7 @@ description: "提供 Microsoft Azure 計費合作夥伴 Cloud Cruiser 將 Azure 
 services: 
 documentationcenter: 
 author: BryanLa
-manager: ruchic
+manager: tonguyen
 editor: 
 tags: billing
 ms.assetid: b65128cf-5d4d-4cbd-b81e-d3dceab44271
@@ -15,9 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 02/03/2017
 ms.author: mobandyo;sirishap;bryanla
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 09c18ca6a967c2930ddd2b16d37f0bc606712ea1
 ms.openlocfilehash: 125b777e0ab05066cf066789b603b8edb15a0936
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -223,9 +225,4 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 Usage API �
 [12]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/3_ImportIntoUsageAPISheet.png "圖 12 - 匯入至 UsageAPI 工作表的 Usage API 資料"
 [13]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/4_NewTagField.png "圖 13 - 建立新的標記資訊欄位"
 [14]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/5_PopulateAccountStructure.png "圖 14 - 將來自查閱的資訊填入帳戶結構中"
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
