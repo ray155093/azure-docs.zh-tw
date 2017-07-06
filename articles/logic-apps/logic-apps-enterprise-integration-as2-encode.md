@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 01/27/2017
 ms.author: LADocs; padmavc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 82d64d159412af6ff2bba1d625af66cdd18a4616
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 7889bf9e4e02143b6bb4c797531afa54f8647ce5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -41,7 +41,7 @@ ms.lasthandoff: 05/10/2017
 
 2. 編碼 AS2 訊息連接器沒有觸發程序，因此您必須新增觸發程序 (例如要求觸發程序) 來啟動邏輯應用程式。 在 Logic Apps 設計工具中，新增觸發程序，然後將動作新增至您的邏輯應用程式。
 
-3.    在搜尋方塊中，輸入 "AS2" 做為篩選條件。 選取 [AS2 - 編碼 AS2 訊息]。
+3.  在搜尋方塊中，輸入 "AS2" 做為篩選條件。 選取 [AS2 - 編碼 AS2 訊息]。
    
     ![搜尋 "AS2"](./media/logic-apps-enterprise-integration-as2-encode/as2decodeimage1.png)
 
@@ -56,7 +56,7 @@ ms.lasthandoff: 05/10/2017
     | 連線名稱 * |為連接器輸入任何名稱。 |
     | 整合帳戶 * |輸入整合帳戶的名稱。 確定您的整合帳戶和邏輯應用程式位於相同的 Azure 位置。 |
 
-5.    當您完成時，連線詳細資料看起來類似此範例。 若要完成連線建立，請選擇 [建立]。
+5.  當您完成時，連線詳細資料看起來類似此範例。 若要完成連線建立，請選擇 [建立]。
    
     ![整合連線詳細資料](./media/logic-apps-enterprise-integration-as2-encode/as2encodeimage2.png)
 

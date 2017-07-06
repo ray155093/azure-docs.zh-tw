@@ -16,10 +16,10 @@ ms.date: 05/13/2017
 ms.author: nacanuma
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: a77337b582f337723b9e4b1befb2c638870a1c4b
+ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
+ms.openlocfilehash: 6d49c742f72440e22830915c90de009d9188db2a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -133,7 +133,7 @@ ms.lasthandoff: 05/10/2017
   ));
   ```
 
-Passport 會針對其所有策略 (Twitter、Facebook 等) 使用類似的模式。 所有策略寫入器均遵守此模式。 將使用權杖和 `done` 做為參數的 `function()` 傳遞給策略。 策略會在它完成所有工作之後傳回。 請儲存使用者並隱藏權杖，這樣一來，您就不必再次要求它。
+Passport 會針對其所有策略 (Twitter、Facebook 等) 使用類似的模式。 所有策略寫入器均遵守此模式。 將使用權杖和 `done` 作為參數的 `function()` 傳遞給策略。 策略會在完成所有工作之後傳回。 請儲存使用者並隱藏權杖，這樣一來，您就不必再次要求它。
 
   > [!IMPORTANT]
   > 上述程式碼會將可通過驗證的所有使用者帶往您的伺服器。 這就是所謂的自動註冊。 在生產伺服器中，您應該會想要讓所有人都必須先完成您選擇的註冊過程，才能進入您的伺服器。 這是您通常會在消費者應用程式中看到的模式。 應用程式可能會允許您使用 Facebook 進行註冊，但之後會要求您輸入其他資訊。 如果您沒有針對本教學課程使用命令列程式，可以從傳回的權杖物件中擷取電子郵件。 然後，您可能會要求使用者輸入其他資訊。 由於這是測試伺服器，您會將使用者直接加入記憶體中的資料庫。
@@ -422,6 +422,6 @@ Passport 會針對其所有策略 (Twitter、Facebook 等) 使用類似的模式
 * [Stack Overflow "azure-active-directory" 標籤 (英文)](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
 ### <a name="get-security-updates-for-our-products"></a>取得產品的安全性更新
-我們建議您註冊，以在發生安全性事件時收到通知。 請在 [Microsoft 技術安全性通知](https://technet.microsoft.com/security/dd252948)頁面上，訂閱資訊安全摘要報告警示。
+我們建議您註冊，即可在發生安全性事件時收到通知。 請在 [Microsoft 技術安全性通知](https://technet.microsoft.com/security/dd252948)頁面上，訂閱資訊安全摘要報告警示。
 
 
