@@ -6,7 +6,7 @@ keywords: "Active directory 密碼管理, 密碼管理, Azure AD 自助式密碼
 documentationcenter: 
 author: MicrosoftGuyJFlo
 manager: femila
-editor: gahug
+ms.reviewer: gahug
 ms.assetid: 
 ms.service: active-directory
 ms.workload: identity
