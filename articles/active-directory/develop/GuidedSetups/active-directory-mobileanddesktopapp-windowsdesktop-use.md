@@ -16,8 +16,8 @@ ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 4c0e6cd7ec4a91040af588a406fbad8b8c1607e9
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: 826ba0a00b26993d4f37f0a8ce587d7bb77e7eb4
 ms.contentlocale: zh-tw
 
 
@@ -27,7 +27,7 @@ ms.contentlocale: zh-tw
 
 本節說明如何使用 MSAL 取得 Microsoft 圖形 API 的權杖。
 
-1.    在 `MainWindow.xaml.cs` 中，將 MSAL 程式庫參考新增到類別：
+1.  在 `MainWindow.xaml.cs` 中，將 MSAL 程式庫參考新增到類別：
 
 ```csharp
 using Microsoft.Identity.Client;
@@ -104,9 +104,9 @@ public partial class MainWindow : Window
 `AcquireTokenSilentAsync` 會處理權杖取得和更新作業，不需要與使用者進行任何互動。 `AcquireTokenAsync` 在第一次執行之後，`AcquireTokenSilentAsync` 就會成為用來取得權杖的常用方法，以在後續呼叫中使用那些權杖存取受保護的資源，並且會以無訊息方式進行呼叫來要求或更新權杖。
 最後，`AcquireTokenSilentAsync` 將會失敗，例如，使用者已經登出，或已經在其他裝置上變更其密碼。 當 MSAL 偵測到可透過要求執行互動式動作來解決問題時，就會發出一個 `MsalUiRequiredException`。 您的應用程式可以透過兩種方式處理此例外狀況：
 
-1.    立即針對 `AcquireTokenAsync` 進行呼叫，這會促使系統提示使用者登入。 此模式通常用於應用程式中沒有離線內容可供使用者使用的線上應用程式。 此引導式設定所產生的範例使用此模式：您可以在第一次執行範例時看到它執行：因為沒有使用者曾經使用過這個應用程式，`PublicClientApp.Users.FirstOrDefault()` 將包含 Null 值，而且會擲回一個 `MsalUiRequiredException` 例外狀況。 然後範例中的程式碼會透過呼叫 `AcquireTokenAsync` 來處理例外狀況，進而提示使用者登入。
+1.  立即針對 `AcquireTokenAsync` 進行呼叫，這會促使系統提示使用者登入。 此模式通常用於應用程式中沒有離線內容可供使用者使用的線上應用程式。 此引導式設定所產生的範例使用此模式：您可以在第一次執行範例時看到它執行：因為沒有使用者曾經使用過這個應用程式，`PublicClientApp.Users.FirstOrDefault()` 將包含 Null 值，而且會擲回一個 `MsalUiRequiredException` 例外狀況。 然後範例中的程式碼會透過呼叫 `AcquireTokenAsync` 來處理例外狀況，進而提示使用者登入。
 
-2.    應用程式也可以提供視覺指示，讓使用者知道需要透過互動方式登入，使用者就能選取正確的登入時機，或應用程式可以在之後重試 `AcquireTokenSilentAsync`。 此方式通常用於使用者可以使用應用程式的其他功能，不需要因此中斷作業的情況，例如，應用程式中有離線內容可供使用者使用。 在此案例中，使用者可以決定他們要登入以存取受保護資源，或重新整理過時資訊的時機，或者您的應用程式可以決定在網路暫時中斷之後恢復連線時重試 `AcquireTokenSilentAsync`。
+2.  應用程式也可以提供視覺指示，讓使用者知道需要透過互動方式登入，使用者就能選取正確的登入時機，或應用程式可以在之後重試 `AcquireTokenSilentAsync`。 此方式通常用於使用者可以使用應用程式的其他功能，不需要因此中斷作業的情況，例如，應用程式中有離線內容可供使用者使用。 在此案例中，使用者可以決定他們要登入以存取受保護資源，或重新整理過時資訊的時機，或者您的應用程式可以決定在網路暫時中斷之後恢復連線時重試 `AcquireTokenSilentAsync`。
 <!--end-collapse-->
 
 ## <a name="call-the-microsoft-graph-api-using-the-token-you-just-obtained"></a>使用您剛剛取得的權杖呼叫 Microsoft 圖形 API

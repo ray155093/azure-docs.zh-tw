@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 01/31/2017
 ms.author: LADocs; padmavc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: d30cbc1cfd095ab9e8321a723335ebab593ee5fe
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 4a41d9eb8b28aed499bb20e17e3c979962c78bcd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -41,14 +41,14 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="create-an-x12-agreement"></a>建立 X12 合約
 
-1.    登入 [Azure 入口網站](http://portal.azure.com "Azure 入口網站")。 從左側功能表中選取 [更多服務]。 
+1.  登入 [Azure 入口網站](http://portal.azure.com "Azure 入口網站")。 從左側功能表中選取 [更多服務]。 
 
     > [!TIP]
     > 如果沒有看到 [更多服務]，您可能必須先展開功能表。 在摺疊功能表的頂端，選取 [顯示功能表]。
 
     ![在左側功能表上選取 [更多服務]](./media/logic-apps-enterprise-integration-x12/account-1.png)
 
-2.    在搜尋方塊中，輸入 [整合] 做為篩選條件。 在結果清單中選取 [整合帳戶]。  
+2.  在搜尋方塊中，輸入 [整合] 做為篩選條件。 在結果清單中選取 [整合帳戶]。  
 
     ![依據 [整合] 篩選，選取 [整合帳戶]](./media/logic-apps-enterprise-integration-x12/account-2.png)
 
@@ -87,7 +87,7 @@ ms.lasthandoff: 05/10/2017
 
 您現在已經設定合約屬性，您可以設定此合約如何識別及處理您透過此合約從夥伴接收的內送訊息。
 
-1.    在 [新增] 之下，選取 [接收設定]。
+1.  在 [新增] 之下，選取 [接收設定]。
 根據您與其交換訊息之夥伴所簽署的合約，設定這些屬性。 如需屬性說明，請參閱本節中的資料表。
 
     [接收設定] 分成下列各區段：識別碼、通知、結構描述、信封、控制編號、驗證和內部設定。
@@ -183,7 +183,7 @@ ms.lasthandoff: 05/10/2017
 
 您可以設定此合約如何識別及處理您透過此合約傳送給夥伴的外寄訊息。
 
-1.    在 [新增] 之下，選取 [傳送設定]。
+1.  在 [新增] 之下，選取 [傳送設定]。
 根據您與其交換訊息之夥伴所簽署的合約，設定這些屬性。 如需屬性說明，請參閱本節中的資料表。
 
     [傳送設定] 分成下列各區段：識別碼、通知、結構描述、信封、字元集和分隔符號、控制編號以及驗證。
@@ -290,11 +290,11 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="find-your-created-agreement"></a>尋找您建立的合約
 
-1.    完成所有合約屬性的設定之後，請在 [新增] 刀鋒視窗中選擇 [確定]，以完成合約建立並回到整合帳戶刀鋒視窗。
+1.  完成所有合約屬性的設定之後，請在 [新增] 刀鋒視窗中選擇 [確定]，以完成合約建立並回到整合帳戶刀鋒視窗。
 
     您新增的合約現在顯示於您的 [合約] 清單中。
 
-2.    您也可以在整合帳戶概觀中檢視您的合約。 在整合帳戶刀鋒視窗上，選擇 [概觀]，然後選取 [合約] 圖格。
+2.  您也可以在整合帳戶概觀中檢視您的合約。 在整合帳戶刀鋒視窗上，選擇 [概觀]，然後選取 [合約] 圖格。
 
     ![選擇 [合約] 圖格來檢視所有合約](./media/logic-apps-enterprise-integration-x12/x12-1-5.png)   
 

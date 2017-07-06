@@ -16,8 +16,8 @@ ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 1530f64a38ac5e8a87f88fb97eb86aa2b67d0b12
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: 12c89a6fcbb6d299b64e6b0ec9d1dba29bb41d16
 ms.contentlocale: zh-tw
 
 
@@ -26,9 +26,9 @@ ms.contentlocale: zh-tw
 ## <a name="create-an-application-express"></a>建立應用程式 (快速)
 現在您需要在「Microsoft 應用程式註冊入口網站」註冊應用程式：
 1. 透過 [Microsoft 應用程式註冊入口網站 (英文)](https://apps.dev.microsoft.com/portal/register-app?appType=mobileAndDesktopApp&appTech=windowsDesktop&step=configure) 註冊您的應用程式
-2.    輸入應用程式的名稱和您的電子郵件
-3.    確定已選取 [Guided Setup (引導式設定)] 選項
-4.    依照指示取得應用程式識別碼並貼到您的程式碼中
+2.  輸入應用程式的名稱和您的電子郵件
+3.  確定已選取 [Guided Setup (引導式設定)] 選項
+4.  依照指示取得應用程式識別碼並貼到您的程式碼中
 
 ### <a name="add-your-application-registration-information-to-your-solution-advanced"></a>將您的應用程式註冊資訊新增到方案 (進階)
 現在您需要在「Microsoft 應用程式註冊入口網站」註冊應用程式：

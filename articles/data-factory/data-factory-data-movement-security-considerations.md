@@ -17,7 +17,7 @@ ms.translationtype: Human Translation
 ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
 ms.openlocfilehash: de9453e6764279c481e569542433d095772f304d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -33,10 +33,10 @@ ms.lasthandoff: 05/10/2017
 Azure Data Factory 本身除了用於雲端資料存放區的已連結服務認證 (會使用憑證加密) 之外，並不會儲存任何資料。 它可讓您建立資料導向工作流程，藉由使用其他區域或內部部署環境中的[計算服務](data-factory-compute-linked-services.md)，協調[所支援資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)之間的資料移動和資料處理。 它也可讓您使用程式設計方式和 UI 機制 [監視和管理工作流程](data-factory-monitor-manage-pipelines.md) 。
 
 使用 Azure Data Factory 進行的資料移動已通過下列各項規範的「認證」：
--    [HIPAA/HITECH](https://www.microsoft.com/en-us/trustcenter/Compliance/HIPAA)  
--    [ISO/IEC 27001](https://www.microsoft.com/en-us/trustcenter/Compliance/ISO-IEC-27001)  
--    [ISO/IEC 27018](https://www.microsoft.com/en-us/trustcenter/Compliance/ISO-IEC-27018) 
--    [CSA STAR](https://www.microsoft.com/en-us/trustcenter/Compliance/CSA-STAR-Certification)
+-   [HIPAA/HITECH](https://www.microsoft.com/en-us/trustcenter/Compliance/HIPAA)  
+-   [ISO/IEC 27001](https://www.microsoft.com/en-us/trustcenter/Compliance/ISO-IEC-27001)  
+-   [ISO/IEC 27018](https://www.microsoft.com/en-us/trustcenter/Compliance/ISO-IEC-27018) 
+-   [CSA STAR](https://www.microsoft.com/en-us/trustcenter/Compliance/CSA-STAR-Certification)
      
 如果您對 Azure 法規遵循以及 Azure 如何保護其專屬基礎結構感興趣，請瀏覽 [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/default.aspx)。 
 
@@ -120,7 +120,7 @@ Salesforce 支援「Shield 平台加密」，可加密所有檔案、附件、�
  
 您也可以使用 [IPSec VPN](../vpn-gateway/vpn-gateway-about-vpn-devices.md) 或 [ExpressRoute](../expressroute/expressroute-introduction.md) 來進一步保護內部部署網路與 Azure 之間的通訊通道。
 
-虛擬網路是您網路在雲端的邏輯呈現方式。 您可以透過設定 IPSec VPN (站台對站台) 或 ExpressRoute (私用對等)，將內部部署網路連接到 Azure 虛擬網路 (VNet)        
+虛擬網路是您網路在雲端的邏輯呈現方式。 您可以透過設定 IPSec VPN (站台對站台) 或 ExpressRoute (私用對等)，將內部部署網路連接到 Azure 虛擬網路 (VNet)     
 
 下表根據混合式資料移動的不同來源和目的地位置組合，摘要說明網路和閘道組態的建議事項。
 
@@ -142,7 +142,7 @@ Salesforce 支援「Shield 平台加密」，可加密所有檔案、附件、�
 
 ### <a name="firewall-configurations-and-whitelisting-ip-address-of-gateway"></a>防火牆組態及將閘道的 IP 位址加入白名單
 
-#### <a name="firewall-requirements-for-on-premiseprivate-network"></a>內部部署/私人網路的防火牆需求    
+#### <a name="firewall-requirements-for-on-premiseprivate-network"></a>內部部署/私人網路的防火牆需求   
 在企業中，「公司防火牆」會在組織的中央路由器上執行。 而「Windows 防火牆」則是在安裝閘道的本機電腦上以精靈的形式執行。 
 
 下表提供「公司防火牆」的「輸出連接埠」和網域需求。
@@ -152,7 +152,7 @@ Salesforce 支援「Shield 平台加密」，可加密所有檔案、附件、�
 | `*.servicebus.windows.net` | 443、80 | 必須提供此資訊，閘道才能連接到 Data Factory 中的資料移動服務 |
 | `*.core.windows.net` | 443 | 當您使用[分段複製](data-factory-copy-activity-performance.md#staged-copy)功能時，可供閘道用來連接到「Azure 儲存體帳戶」。 | 
 | `*.frontend.clouddatahub.net` | 443 | 必須提供此資訊，閘道才能連接到 Azure Data Factory 服務。 | 
-| `*.database.windows.net` | 1433    | (選擇性) 當您的目的地是 Azure SQL Database/「Azure SQL 資料倉儲」時，需要提供此資訊。 若要在不開啟連接埠 1433 的情況下，將資料複製到 Azure SQL Database/「Azure SQL 資料倉儲」，請使用分段複製功能。 | 
+| `*.database.windows.net` | 1433   | (選擇性) 當您的目的地是 Azure SQL Database/「Azure SQL 資料倉儲」時，需要提供此資訊。 若要在不開啟連接埠 1433 的情況下，將資料複製到 Azure SQL Database/「Azure SQL 資料倉儲」，請使用分段複製功能。 | 
 | `*.azuredatalakestore.net` | 443 | (選擇性) 當您的目的地是 Azure Data Lake Store 時，需要提供此資訊。 | 
 
 > [!NOTE] 
