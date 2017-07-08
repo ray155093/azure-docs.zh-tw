@@ -4,7 +4,7 @@ description: "說明如何新增或變更 Azure 共同管理員、服務管理�
 services: 
 documentationcenter: 
 author: genlin
-manager: vikdesai
+manager: jlian
 editor: 
 tags: billing
 ms.assetid: 13a72d76-e043-4212-bcac-a35f4a27ee26
@@ -13,12 +13,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/17/2017
+ms.date: 06/13/2017
 ms.author: genli
-translationtype: Human Translation
-ms.sourcegitcommit: 6d438cde704323a07cc125eb75d08cb64b2432ec
-ms.openlocfilehash: 00b71701c4c114007e2d9a6d23f20b3df5fb2534
-ms.lasthandoff: 02/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 782489e7551fef3daed4de8212821e93f7777535
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -108,7 +109,7 @@ Azure Active Directory 角色型存取控制 (RBAC) 能讓使用者擁有多個�
 ## <a name="limitations-and-restrictions-for-admin-accounts"></a>系統管理員帳戶的限制和約束
 * 每個訂用帳戶都與一個 Azure AD 目錄 (也就是預設目錄) 相關聯。 若要尋找與訂用帳戶相關聯的預設目錄，請前往 [Azure 傳統入口網站](https://manage.windowsazure.com/)，然後選取 [設定] > [訂用帳戶]。 請查看訂用帳戶識別碼來尋找預設目錄。
 * 如果您以 Microsoft 帳戶登入，就只能將其他 Microsoft 帳戶或預設目錄中的使用者新增為共同管理員。
-* 如果您以組織帳戶登入，就可以將組織中的其他組織帳戶新增為共同管理員。 舉例來說，abby@contoso.com 可以將 bob@contoso.com 新增為服務管理員或共同管理員，但無法新增 john@notcontoso.com，除非 john@noncontoso.com 在預設目錄中。 以組織帳戶登入的使用者，可以繼續將 Microsoft 帳戶使用者新增為服務管理員或共同管理員。
+* 如果您以組織帳戶登入，就可以將組織中的其他組織帳戶新增為共同管理員。 舉例來說，abby@contoso.com 可以將 bob@contoso.com 新增為服務管理員或共同管理員，但無法新增 john@notcontoso.com，除非 john@notcontoso.com 在預設目錄中。 以組織帳戶登入的使用者，可以繼續將 Microsoft 帳戶使用者新增為服務管理員或共同管理員。
 * 現在可以使用組織帳戶登入至 Azure，以下是服務管理員和共同管理員帳戶需求的變更：
 
   | 登入方法 | 將 Microsoft 帳戶或預設目錄中的使用者新增為 CA 或 SA？ | 將相同組織中的組織帳戶新增為 CA 或 SA？ | 將不同組織中的組織帳戶新增為 CA 或 SA？ |

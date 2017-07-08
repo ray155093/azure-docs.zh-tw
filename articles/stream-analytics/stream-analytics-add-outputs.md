@@ -16,10 +16,10 @@ ms.workload: data-services
 ms.date: 04/26/2017
 ms.author: jeffstok
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
-ms.openlocfilehash: fde7c0e0b5e2bd0246156bacd81250da106b341a
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: e3878c02f39025eeb5a2c40db9e5a9bb07055a69
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/01/2017
+ms.lasthandoff: 07/04/2017
 
 ---
 
@@ -56,7 +56,7 @@ Azure 串流分析工作可以連線至一或多個輸出，且每個輸出都�
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
-* [開始使用 Azure Stream Analytics](stream-analytics-get-started.md)
+* [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)

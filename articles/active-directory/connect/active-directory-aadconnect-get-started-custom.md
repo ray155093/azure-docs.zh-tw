@@ -18,7 +18,7 @@ ms.translationtype: Human Translation
 ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
 ms.openlocfilehash: f36d5da78818410e028a73a36a502a758400e5a5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -200,8 +200,8 @@ ms.lasthandoff: 05/16/2017
 ### <a name="enabling-single-sign-on-sso"></a>啟用單一登入 (SSO)
 設定單一登入以用於密碼同步處理或傳遞驗證是一道簡單的程序，您只需要對每個要同步至 Azure AD 的樹系完成一次即可。 設定程序包含兩個步驟，如下所示︰
 
-1.    在內部部署 Active Directory 中建立所需的電腦帳戶。
-2.    設定用戶端機器的內部網路區域，以支援單一登入。
+1.  在內部部署 Active Directory 中建立所需的電腦帳戶。
+2.  設定用戶端機器的內部網路區域，以支援單一登入。
 
 #### <a name="create-the-computer-account-in-active-directory"></a>在 Active Directory 中建立電腦帳戶
 對於在 Azure AD Connect 中新增的每個樹系，您必須提供網域系統管理員認證，才能在每個樹系中建立電腦帳戶。 認證只會用來建立帳戶，不會存放或用於其他任何作業。 只需在 Azure AD Connect 精靈的 [啟用單一登入] 頁面上新增認證，如下所示︰
@@ -215,20 +215,20 @@ ms.lasthandoff: 05/16/2017
 若要確保用戶端會自動登入內部網路區域，您必須確定兩個 URL 屬於內部網路區域。 這可確保加入網域的電腦會在連接到公司網路時自動將 Kerberos 票證傳送至 Azure AD。
 在具有群組原則管理工具的電腦上。
 
-1.    開啟 [群組原則管理工具]
-2.    編輯會套用至所有使用者的群組原則。 例如，預設網域原則。
-3.    瀏覽至 **User Configuration\Administrative Templates\Windows Components\Internet Explorer\Internet Control Panel\Security Page**，並根據下圖選取 [指派網站到區域清單]。
-4.    啟用原則，並在對話方塊中輸入下列兩個項目。
+1.  開啟 [群組原則管理工具]
+2.  編輯會套用至所有使用者的群組原則。 例如，預設網域原則。
+3.  瀏覽至 **User Configuration\Administrative Templates\Windows Components\Internet Explorer\Internet Control Panel\Security Page**，並根據下圖選取 [指派網站到區域清單]。
+4.  啟用原則，並在對話方塊中輸入下列兩個項目。
 
-        值: `https://autologon.microsoftazuread-sso.com`  
-        Data 1  
-        值: `https://aadg.windows.net.nsatc.net`  
-        Data 1
+        Value: `https://autologon.microsoftazuread-sso.com`  
+        Data: 1  
+        Value: `https://aadg.windows.net.nsatc.net`  
+        Data: 1
 
-5.    看起來應該會像下面這樣：  
+5.  看起來應該會像下面這樣：  
 ![內部網路區域](./media/active-directory-aadconnect-get-started-custom/sitezone.png)
 
-6.    按兩次 [確定]。
+6.  按兩次 [確定]。
 
 ## <a name="configuring-federation-with-ad-fs"></a>設定與 AD FS 同盟
 只要簡單按幾下，即可使用 Azure AD Connect 設定 AD FS。 進行設定之前必須先具備下列項目。

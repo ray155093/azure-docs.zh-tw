@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/29/2016
 ms.author: aelnably
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d8f76a2857766c481ec6cdec52274b5bd370ccfc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8d574f051a327ba0409e6f25a5886af673d3d5e0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -201,10 +203,5 @@ Microsoft Azure PowerShell 1.0.0 版已加入新的命令，讓使用者能夠�
 * 若要深入了解如何使用 PowerShell 來管理 App Service SSL 憑證，請參閱 [使用 PowerShell 的 SSL 憑證繫結](app-service-web-app-powershell-ssl-binding.md)
 * 若要了解適用於 Azure Web Apps 的 Azure Resource Manager 架構 PowerShell Cmdlet，請參閱 [Web Apps Azure Resource Manager PowerShell Cmdlet 的 Azure Cmdlet 參考](https://msdn.microsoft.com/library/mt619237.aspx)
 * * 若要了解如何使用 CLI 管理 App Service，請參閱[使用適用於 Azure Web 應用程式的 Azure Resource Manager 架構 XPlat CLI。](app-service-web-app-azure-resource-manager-xplat-cli.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

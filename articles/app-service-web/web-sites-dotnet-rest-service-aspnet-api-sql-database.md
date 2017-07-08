@@ -15,10 +15,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/29/2016
 ms.author: riande
-translationtype: Human Translation
-ms.sourcegitcommit: 3f6bb2604d6f20e299ae5583a0ad215f02b9b803
-ms.openlocfilehash: 016d44cb57d5ad76dc0b115be6fbac6835d84396
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 64c18f2cfabbb7af6ffd89b4c2a9095fca1cf799
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -668,8 +669,6 @@ XSRF 攻擊與網路釣魚攻擊不同。 網路釣魚攻擊需要與受害者�
 > 
 
 ## <a name="next-steps"></a>後續步驟
-真實的應用程式會要求驗證和授權，而您需要使用成員資格資料庫來達成目的。 [部署含有 OAuth、成員資格及 SQL Database 的安全 ASP.NET MVC 應用程式](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md) 教學課程是以本教學課程為基礎，其展示如何部署含有成員資格資料庫的 Web 應用程式。
-
 另一個儲存 Azure 應用程式資料的方法是使用 Azure 儲存體，它能以 Blob 和資料表的形式提供非關聯式的資料儲存。 以下連結提供 Web API、ASP.NET MVC 及 Window Azure 的詳細資訊。
 
 * [使用 MVC 的 Entity Framework 入門][EFCodeFirstMVCTutorial]

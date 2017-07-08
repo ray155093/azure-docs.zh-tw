@@ -104,7 +104,7 @@ ms.lasthandoff: 03/15/2017
     ![設定來源](./media/site-recovery-vmm-to-vmm/set-source1.png)
 3. 在 [新增伺服器] 中，檢查 [System Center VMM 伺服器] 是否出現在 [伺服器類型] 中，以及 VMM 伺服器是否符合[必要條件](#prerequisites)。
 4. 下載 Azure Site Recovery Provider 安裝檔案。
-5. 下載註冊金鑰。 您會在執行安裝程式時用到此金鑰。 該金鑰在產生後會維持&5; 天有效。
+5. 下載註冊金鑰。 您會在執行安裝程式時用到此金鑰。 該金鑰在產生後會維持 5 天有效。
 
     ![設定來源](./media/site-recovery-vmm-to-vmm/set-source3.png)
 6. 您會在 VMM 伺服器上安裝 Azure Site Recovery Provider。 您不需要明確地在 Hyper-V 主機伺服器上安裝任何項目。
@@ -332,7 +332,7 @@ ms.lasthandoff: 03/15/2017
 
 | **案例** | **結果** |
 | --- | --- |
-| 在容錯移轉之後，VM-2 的網路屬性沒有變更。 |VM&1; 仍然連線至來源網路。 |
+| 在容錯移轉之後，VM-2 的網路屬性沒有變更。 |VM 1 仍然連線至來源網路。 |
 | 在容錯移轉並中斷連線之後，VM-2 的網路屬性有所變更。 |VM-1 已中斷連線。 |
 | 在容錯移轉並連線至 VMNetwork2-Chicago 之後，VM-2 的網路屬性有所變更。 |如果未對應 VMNetwork2-Chicago，將會中斷 VM-1 連線。 |
 | VMNetwork1-Chicago 的網路對應已變更。 |VM-1 現在會連線到對應至 VMNetwork1-Chicago 的網路。 |

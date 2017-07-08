@@ -14,9 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c507135c4db758e58d8236de4bc76435b8caf32d
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 12484338f5b4d489604d70a657ef0992b6267297
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -64,7 +66,7 @@ ms.openlocfilehash: c507135c4db758e58d8236de4bc76435b8caf32d
    1. 選取適當的裝置。
    2. 在下拉式清單中，針對要選取的備份選擇磁碟區或備份原則。
    3. 指定時間範圍。
-   4. 按一下核取圖示  ![核取圖示](./media/storsimple-restore-from-backup-set/HCS_CheckIcon.png)  以執行此查詢。
+   4. 按一下核取圖示  ![核取圖示](./media/storsimple-restore-from-backup-set/HCS_CheckIcon.png) 以執行此查詢。
       
       與選取的磁碟區或備份原則相關聯的備份應該會出現在備份組清單中。
 3. 展開備份組以檢視相關聯的磁碟區。 您必須先在主機和裝置上將這些磁碟區離線，才能還原它們。 請遵循 [使磁碟區離線](storsimple-manage-volumes.md#take-a-volume-offline)中的步驟進行。
@@ -87,10 +89,5 @@ ms.openlocfilehash: c507135c4db758e58d8236de4bc76435b8caf32d
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [管理 StorSimple 磁碟區](storsimple-manage-volumes.md)。
 * 了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

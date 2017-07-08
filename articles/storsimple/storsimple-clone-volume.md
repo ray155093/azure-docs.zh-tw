@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: edaacfb8e7c179ac6e4831a113656b3cf128f985
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 09b67ca9258a490338d29763710c40ea2da23ce7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -53,7 +54,7 @@ StorSimple Manager 服務 [備份類別目錄]  頁面會顯示在進行手動�
 5. 在 [指定可以使用此磁碟區的主機] 下：
    
    1. 指定該複製的存取控制記錄 (ACR)。 您可以加入新的 ACR，或從現有清單中選擇。
-   2. 按一下核取圖示  ![核取圖示](./media/storsimple-clone-volume/HCS_CheckIcon.png) 完成操作。
+   2. 按一下核取圖示  ![核取圖示](./media/storsimple-clone-volume/HCS_CheckIcon.png)完成操作。
 6. 複製工作隨即起始並在成功建立複製時通知您。 按一下 [檢視工作]，在 [工作] 頁面上監視複製工作。
 7. 複製工作完成後：
    

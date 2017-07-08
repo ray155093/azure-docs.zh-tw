@@ -16,10 +16,10 @@ ms.workload: data-services
 ms.date: 05/01/2017
 ms.author: jeffstok
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: c1e5710da60836039447e68b4507b71f4062f4e6
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 4ad6b8feff4c46b01613e422c090c0d30ee9c7a2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 07/04/2017
 
 
 ---
@@ -45,7 +45,7 @@ Azure 入口網站中的 [資源健康狀態] 刀鋒視窗會顯示 Azure 串流
 
 ## <a name="next-steps"></a>後續步驟
 * [串流分析介紹](stream-analytics-introduction.md)
-* [開始使用串流分析](stream-analytics-get-started.md)
+* [開始使用串流分析](stream-analytics-real-time-fraud-detection.md)
 * [調整串流分析作業](stream-analytics-scale-jobs.md)
 * [串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)

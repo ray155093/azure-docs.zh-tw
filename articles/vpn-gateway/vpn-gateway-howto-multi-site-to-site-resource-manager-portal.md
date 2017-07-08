@@ -4,7 +4,7 @@ description: "將多個 S2S 連線新增至具有現有連線的 VPN 閘道"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: f3e8b165-f20a-42ab-afbb-bf60974bb4b1
@@ -16,18 +16,19 @@ ms.workload: infrastructure-services
 ms.date: 04/20/2017
 ms.author: cherylmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: 9550b0076105b018bd8ede50519ac96bfb773001
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 7ec57789ee76f4ec54e4f7b68ea75c19522f3d7c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
 # <a name="add-a-site-to-site-connection-to-a-vnet-with-an-existing-vpn-gateway-connection"></a>將站台對站台連線新增至使用現有 VPN 閘道連線的 VNet
+
 > [!div class="op_single_selector"]
-> * [Resource Manager - 入口網站](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)
-> * [傳統 - PowerShell](vpn-gateway-multi-site.md)
-> 
+> * [Azure 入口網站](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)
+> * [PowerShell (傳統)](vpn-gateway-multi-site.md)
+>
 > 
 
 這篇文章會引導您使用 Azure 入口網站將站對站 (S2S) 連線新增至具有現有連線的 VPN 閘道。 這種連線通常稱為「多站台」組態。 您可以將 S2S 連線新增到已經有 S2S 連線、點對站連線或 VNet 對 VNet 連線的 VNet。 新增連線有一些限制。 開始設定之前，請先閱讀本文的[開始之前](#before)一節。 

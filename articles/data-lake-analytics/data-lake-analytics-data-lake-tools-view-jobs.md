@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/17/2016
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: ac5a64b759376c06e058ae015b73f1b73b7d1e7b
-ms.openlocfilehash: 8f3c0f7a1b16afdbada39017d28bed49620cc34c
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 2e5dbaf595e3d3cd7dee09431fbb1cb6f2403ef4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -172,18 +174,8 @@ Azure Data Lake Analytics 服務會將提交的作業封存在[查詢存放區](
     它會顯示頂點執行詳細資料。 作業設定檔會封存每個頂點執行記錄檔，例如讀取/寫入的總資料、執行階段、狀態等。透過這個檢視，您可以取得作業如何執行的詳細資料。 如需詳細資訊，請參閱[在適用於 Visual Studio 的 Data Lake 工具中使用頂點執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
-* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-* 若要了解 U-SQL，請參閱 [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
-* 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
 * 若要記錄診斷資訊，請參閱 [為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)
 * 若要了解更複雜的查詢，請參閱 [使用 Azure 資料湖分析來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
 * 若要使用頂點執行檢視，請參閱[在 Data Lake Tools for Visual Studio 中使用頂點執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)
-* 若要了解 Data Lake Tools for Visual Studio Code，請參閱 [Use the Azure Data Lake Tools for Visual Studio Code (使用 Azure Data Lake Tools for Visual Studio Code)](data-lake-analytics-data-lake-tools-for-vscode.md)。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

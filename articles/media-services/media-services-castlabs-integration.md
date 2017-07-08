@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: Mingfeiy;willzhan;Juliako
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 30bd93e54da4b8e7fcb58fcdc1f5c1bb5240fa53
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 25b4da6a555fa2a5e029eadbea45eb6148518e70
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---

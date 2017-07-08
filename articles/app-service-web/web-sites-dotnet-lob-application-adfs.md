@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: web
 ms.date: 08/31/2016
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
-ms.openlocfilehash: 22fe6397120c36e1aa716f4711fbe9e7c72d17e8
-ms.lasthandoff: 04/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 1895094b28d9596eec644078b6f9a877b526b89e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -287,10 +288,13 @@ ms.lasthandoff: 04/11/2017
     }
    
     <mark>[Authorize(Roles="Domain Admins")]</mark>
-    public ActionResult Contact()  {      ViewBag.Message = "您的連絡人頁面。";
+    public ActionResult Contact()
+    {
+        ViewBag.Message = "Your contact page.";
    
         return View();
-    }  </pre>
+    }
+    </pre>
    
     由於我在 AD FS 實驗室環境中將**「測試使用者」**新增至**「測試群組」**，我將在 `About` 上使用測試群組來測試授權。 若為 `Contact`，我將測試**「測試使用者」**不屬於之 **Domain Admins** 的負面案例。
 3. 輸入 `F5` 開始偵錯工具並登入，然後按一下 [關於]。 如果該動作已授權給已驗證的使用者，您現在應可順利檢視 `~/About/Index` 頁面。
@@ -350,7 +354,6 @@ Azure App Service Web Apps 可透過兩種方式支援存取在內部部署資�
 <a name="bkmk_resources"></a>
 
 ## <a name="further-resources"></a>進一步資源
-* [使用 SSL 和 Authorize 屬性保護應用程式](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md#protect-the-application-with-ssl-and-the-authorize-attribute)
 * [在 Azure 應用程式中使用內部部署 Active Directory 進行驗證](web-sites-authentication-authorization.md)
 * [使用 Azure Active Directory 驗證建立企業營運 Azure 應用程式](web-sites-dotnet-lob-application-azure-ad.md)
 * [在 Visual Studio 2013 中搭配使用內部部署組織驗證選項 (ADFS) 與 ASP.NET](http://www.cloudidentity.com/blog/2014/02/12/use-the-on-premises-organizational-authentication-option-adfs-with-asp-net-in-visual-studio-2013/)

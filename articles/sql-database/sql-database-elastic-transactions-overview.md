@@ -16,10 +16,10 @@ ms.workload: sql-database
 ms.date: 05/27/2016
 ms.author: torsteng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: ceb2d7a28cc416186f3faf1dc5228fce161c34c5
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: f7f1ad3f1933b39a0030a784cae40521254037d6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -147,7 +147,7 @@ SQL DB 中的彈性資料庫交易目前有下列限制：
 * 不支援跨 WCF 服務的交易。 例如，您有執行交易的 WCF 服務方法。 納入交易範圍內的呼叫將會失敗，因為 [System.ServiceModel.ProtocolException](https://msdn.microsoft.com/library/system.servicemodel.protocolexception)。
 
 ## <a name="next-steps"></a>後續步驟
-您的 Azure 應用程式還未使用彈性資料庫功能嗎？ 請瀏覽我們的 [文件導引圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)。 如有問題，請透過 [SQL Database 論壇](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)與我們連絡，如需要求增加功能，請將這些功能新增至 [SQL Database 意見反應論壇](https://feedback.azure.com/forums/217321-sql-database/)。
+如有問題，請透過 [SQL Database 論壇](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)與我們連絡，如需要求增加功能，請將這些功能新增至 [SQL Database 意見反應論壇](https://feedback.azure.com/forums/217321-sql-database/)。
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-transactions-overview/distributed-transactions.png

@@ -14,9 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/25/2016
 ms.author: harikm
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c6366d42b91748963ec14c258f92746e5d2fde92
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 031b492df1f186087e7b91102cbb44f552999293
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -65,7 +67,7 @@ MyDriving 的真正用途是讓您開始建立您自己的 IoT 解決方案。 �
 2. 在 HockeyApp 儀表板中，選取並下載 MyDriving。
 3. 從 HockeyApp 授權 Beta 版：
    
-   a. 移至 [設定] > 一般] > [設定檔和裝置管理]。
+   a. 移至 設定 > 一般 > 設定檔和裝置管理。
    
    b.這是另一個 C# 主控台應用程式。 信任 [Bit Stadium GmbH] 憑證。
 
@@ -144,9 +146,4 @@ MyDriving 的真正用途是讓您開始建立您自己的 IoT 解決方案。 �
 [ScanTool OBDLink MX Wi-Fi: OBD Adapter/Diagnostic Scanner (ScanTool OBDLink MX Wi-Fi: OBD 配接器/診斷掃描器)]: http://www.amazon.com/gp/product/B00OCYXTYY/ref=s9_simh_gw_g263_i1_r?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=desktop-2&pf_rd_r=1MWRMKXK4KK9VYMJ44MP
 [HockeyApp portal (HockeyApp 入口網站)]: https://rink.hockeyapp.org
 [在 GitHub 上提出問題]: https://github.com/Azure-Samples/MyDriving/issues
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

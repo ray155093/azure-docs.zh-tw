@@ -16,10 +16,10 @@ ms.workload: data-services
 ms.date: 05/01/2017
 ms.author: jeffstok
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: a294ca5b86be31f009aedbea954ba41467fd8a2e
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 8738b266bd007682459d08698fa13828ff67a1b6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 07/04/2017
 
 
 ---
@@ -93,7 +93,7 @@ ms.lasthandoff: 05/02/2017
 
 ## <a name="next-steps"></a>後續步驟
 * [串流分析介紹](stream-analytics-introduction.md)
-* [開始使用串流分析](stream-analytics-get-started.md)
+* [開始使用串流分析](stream-analytics-real-time-fraud-detection.md)
 * [調整串流分析作業](stream-analytics-scale-jobs.md)
 * [串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)

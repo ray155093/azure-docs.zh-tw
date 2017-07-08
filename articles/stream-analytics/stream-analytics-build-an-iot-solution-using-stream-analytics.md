@@ -16,13 +16,14 @@ ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 637473db37985a4a89ddb19e02eebc377902c942
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 43acd0e8e6b106013fc4491e3785f6efefc51493
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 07/04/2017
 
 
 ---
+
 # <a name="build-an-iot-solution-by-using-stream-analytics"></a>利用串流分析來建置 IoT 解決方案
 ## <a name="introduction"></a>簡介
 在本教學課程中，您將學習如何利用 Azure 串流分析來獲得您資料的即時深入解析。 開發人員可以很容易地結合資料串流，例如點選流、記錄和裝置產生的事件，並且包含歷程記錄或參考資料，以衍生商務深入解析。 Azure 串流分析是由 Microsoft Azure 代管、可完全管理的即時串流計算服務，它提供內建的備援、低延遲及延展性功能，可讓您在幾分鐘之內就立刻上手。

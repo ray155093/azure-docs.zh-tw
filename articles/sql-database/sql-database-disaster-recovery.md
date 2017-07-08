@@ -16,10 +16,10 @@ ms.workload: NA
 ms.date: 04/14/2017
 ms.author: sashan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 8f1f22d1609dc34369a131e79eb2a1c0be9fe552
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: e33f69bf04b32a31aae3c311c41aa44e4da5016a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -95,7 +95,7 @@ Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言�
 如需有關資料庫警示規則的詳細資訊，請參閱[接收警示通知](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](../monitoring-and-diagnostics/insights-service-health.md)。
 
 ### <a name="enable-auditing"></a>啟用稽核
-如果需要稽核才能存取您的資料庫，則您必須在資料庫復原之後啟用稽核。 用戶端應用程式必須在 *.database.secure.windows.net 的模式中使用安全連接字串，才能有良好的稽核指標。 如需詳細資訊，請參閱[資料庫稽核 (英文)](sql-database-auditing.md)。
+如果需要稽核才能存取您的資料庫，則您必須在資料庫復原之後啟用稽核。 如需詳細資訊，請參閱[資料庫稽核 (英文)](sql-database-auditing.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)

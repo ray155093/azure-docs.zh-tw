@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 10/28/2016
 ms.author: alkohli
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 80d58a6ab5f2148b2391d4d63e70371724e5990b
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a61c57cd74a0df8363648dd8df40e433b0e6489d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -157,7 +158,7 @@ StorSimple 磁碟區可以是：
    
    1. 移至 [電腦管理]  ->[磁碟管理]。
    2. 以滑鼠右鍵按一下 [磁碟管理]，並選取 [重新掃描磁碟]。
-   3. 在磁碟清單中，選取您已更新的磁碟區，按一下滑鼠右鍵，然後選取 [延伸磁碟區] 。 [延伸磁碟區精靈] 隨即啟動。 按 [下一步] 。
+   3. 在磁碟清單中，選取您已更新的磁碟區，按一下滑鼠右鍵，然後選取 [延伸磁碟區] 。 [延伸磁碟區精靈] 隨即啟動。 按一下 [下一步] 。
    4. 使用預設值完成精靈。 完成精靈後，磁碟區應該會顯示增加的大小。
       
       > [!NOTE]

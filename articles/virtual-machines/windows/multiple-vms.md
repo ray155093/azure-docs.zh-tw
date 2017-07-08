@@ -15,9 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: guybo
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 51de0e9aa1d29d0b3f3ffc4f126b8ca688be3504
 ms.openlocfilehash: 5e96805f8880a30a5fc8779d8f07addb6d068c09
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -46,10 +48,5 @@ ms.openlocfilehash: 5e96805f8880a30a5fc8779d8f07addb6d068c09
 VM 擴展集擁有網路、儲存體、虛擬機器和擴充功能等供您集中設定的屬性，而不需建立 NIC 和 VM 等多種資源之間的關聯。
 
 如需 VM 擴展集的簡介，請參閱 [虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)的產品頁面。 如需詳細資訊，請參閱 [虛擬機器擴展集](https://azure.microsoft.com/documentation/services/virtual-machine-scale-sets/)的文件。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -12,12 +12,13 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
 ms.devlang: Java
 ms.topic: article
-ms.date: 08/19/2016
+ms.date: 06/27/2016
 ms.author: piyushjo
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fd8ba95ee1fb2703926fb35cdb49e6a503637a7d
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 26ba47b19f3a503693d60d344ad39b9eba74fe99
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -28,11 +29,6 @@ ms.lasthandoff: 11/17/2016
 > 
 
 ## <a name="standard-integration"></a>標準整合
-Reach SDK 需要「Android 支援程式庫 (v4)」。
-
-在 **Eclipse** 中，將程式庫加入到專案的最快方法是 `Right click on your project -> Android Tools -> Add Support Library...`。
-
-如果您未使用 Eclipse，可以先閱讀 [這裡]的指示。
 
 從專案中的 SDK 複製 Reach 資源檔：
 
@@ -107,10 +103,6 @@ Reach SDK 需要「Android 支援程式庫 (v4)」。
           <uses-permission android:name="android.permission.VIBRATE" />
   
   若無此權限，如果您在 Reach 活動管理員中核取了響鈴或震動的選項，Android 會禁止顯示系統通知。
-* 如果使用 **ProGuard** 建置應用程式，且發生與 Android 支援程式庫或 Engagement jar 相關的錯誤，請在 `proguard.cfg` 檔案中加入下列幾行：
-  
-          -dontwarn android.**
-          -keep class android.support.v4.** { *; }
 
 ## <a name="native-push"></a>原生推送
 現在，您會設定 Reach 模組，您需要設定原生推播以便在裝置上接收行銷活動。
@@ -636,7 +628,7 @@ Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析�
 
 如您所見，如果您呼叫 `actionContent(this)` 然後完成活動，則可以安全地呼叫 `exitContent(this)` 而不會有任何影響。
 
-[這裡]:http://developer.android.com/tools/extras/support-library.html#Downloading
+[here]:http://developer.android.com/tools/extras/support-library.html#Downloading
 [Google Cloud Messaging]:http://developer.android.com/guide/google/gcm/index.html
 [Amazon Device Messaging]:https://developer.amazon.com/sdk/adm.html
 
