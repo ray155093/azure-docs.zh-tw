@@ -14,10 +14,11 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a2ab40c9986f8f5194be527257632b0c2f689dcd
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1fea38ed4caacfee0c69d024b1ea6dbdcbccaf1d
+ms.openlocfilehash: b978b65bb3b717362697a41510c5b2b4d057cf1f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -63,7 +64,7 @@ Azure.config.storage_access_key = "<your Azure storage access key>"
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 瀏覽到您要使用的儲存體帳戶。
-3. 在右邊的 [設定] 刀鋒視窗中，按一下 [存取金鑰] 。
+3. 在右邊的 [設定] 刀鋒視窗中，按一下 [存取金鑰]。
 4. [存取金鑰] 刀鋒視窗隨即顯示，您會看到存取金鑰 1 和存取金鑰 2。 您可以使用其中一個存取金鑰。 
 5. 按一下複製圖示以將金鑰複製到剪貼簿。 
 

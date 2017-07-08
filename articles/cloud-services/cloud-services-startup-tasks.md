@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/14/2016
 ms.author: adegeo
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: be5bd67ed977a62b1574d8a48de0cfcfe8876bb4
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7b1b50f71158e62da6b8ceb741a5b8cf9795e3a4
+ms.openlocfilehash: cbe7da8670693a6bbc895ce06f000b6a7d6f0ae1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -99,9 +101,9 @@ EXIT /B 0
 **executionContext** - 指定啟動工作的權限等級。 權限等級可以是 limited (受到限制) 或 elevated (提高權限)：
 
 * **limited**  
-   啟動工作執行時會使用和角色相同的權限。 當 [Runtime] 項目的 **executionContext** 屬性也是 **limited** 時，就會用到使用者權限。
+  啟動工作執行時會使用和角色相同的權限。 當 [Runtime] 項目的 **executionContext** 屬性也是 **limited** 時，就會用到使用者權限。
 * **elevated**  
-   啟動工作執行時會使用系統管理員權限。 這可讓啟動工作安裝程式、變更 IIS 組態、執行登錄變更，以及其他系統管理員層級的工作，且不會提高角色本身的權限等級。  
+  啟動工作執行時會使用系統管理員權限。 這可讓啟動工作安裝程式、變更 IIS 組態、執行登錄變更，以及其他系統管理員層級的工作，且不會提高角色本身的權限等級。  
 
 > [!NOTE]
 > 啟動工作的權限等級不需要與角色本身相同。
@@ -120,9 +122,9 @@ EXIT /B 0
   
     若要確保批次檔結束時的 **errorlevel** 為零，請在批次檔處理序結束時執行命令 `EXIT /B 0`。
 * **background**  
-   以非同步方式執行工作，並與角色的啟動工作平行進行。
+  以非同步方式執行工作，並與角色的啟動工作平行進行。
 * **foreground**  
-   以非同步方式執行工作，並與角色的啟動工作平行進行。 **foreground** 和 **background** 工作之間的主要差異，在於 **foreground** 工作可避免角色在工作結束之前遭到回收或關閉。 **background** 工作則不具備這項限制功能。
+  以非同步方式執行工作，並與角色的啟動工作平行進行。 **foreground** 和 **background** 工作之間的主要差異，在於 **foreground** 工作可避免角色在工作結束之前遭到回收或關閉。 **background** 工作則不具備這項限制功能。
 
 ## <a name="environment-variables"></a>環境變數
 環境變數是將資訊傳遞給啟動工作的方式。 例如，您可以放上這些項目的路徑：含有要安裝之程式的 Blob，或角色要使用的連接埠號碼，或是各項可控制啟動工作功能的設定。
@@ -161,15 +163,10 @@ EXIT /B 0
 
 [Task]: cloud-services-model-and-package.md#csdef
 [Task]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Task
-[ServiceDefinition.csdef
+[Startup]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Startup
 [Runtime]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Runtime
 [Environment]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Environment
 [value]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
 [RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

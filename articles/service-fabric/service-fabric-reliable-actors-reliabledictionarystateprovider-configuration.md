@@ -12,11 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/8/2017
+ms.date: 6/29/2017
 ms.author: sumukhs
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
 ms.openlocfilehash: e787f48f14539dff3035c51e14243c7bd9dcbb73
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -124,10 +126,5 @@ CheckpointThresholdInMB 參數可控制複寫器可用來將狀態資訊儲存�
 MaxRecordSizeInKB 設定會定義複寫器可以寫入記錄檔的記錄大小上限。 在大部分情況下，預設的 1024 KB 記錄大小是最佳作法。 不過，如果服務造成更大的資料項目成為狀態資訊的一部分，則可能需要增加此值。 讓 MaxRecordSizeInKB 小於 1024 的好處不大，因為較小的記錄只會使用較小記錄所需的空間。 預期此值只會在極少數的情況下需要變更。
 
 SharedLogId 和 SharedLogPath 設定永遠會一起使用，以便讓服務使用與節點的預設共用記錄檔不同的共用記錄檔。 如需最佳效率，請儘可能讓所有服務指定相同的共用記錄檔。 共用記錄檔應該放在共用記錄檔專用的磁碟上，以減少磁頭移動爭用情形。 預期這些值只會在極少數的情況下需要變更。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
-ms.openlocfilehash: e917385cb9afc13ba459aed48e5f06cc156efac5
-ms.lasthandoff: 05/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 3dfe8571114d936cc07d887392ec294ec8a67120
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/04/2017
 
 ---
 
@@ -43,11 +44,11 @@ JavaScript 使用者定義的函式支援無狀態且只做為計算用途的純
 ## <a name="add-a-javascript-user-defined-function-in-the-azure-portal"></a>在 Azure 入口網站中新增 JavaScript 使用者定義函式
 若要在現有串流分析作業下建立簡單的 JavaScript 使用者定義函式，請執行下列步驟：
 
-1.    在 Azure 入口網站中，找出您的串流分析作業。
+1.  在 Azure 入口網站中，找出您的串流分析作業。
 2.  在 [作業拓撲] 下，選取您的函式。 空白的函式清單隨即出現。
-3.    若要建立新的使用者定義函式，請選取 [新增]。
-4.    在 [新增函式] 刀鋒視窗中，針對 [函式類型]，選取 [JavaScript]。 預設的函式範本會出現在編輯器中。
-5.    針對 **UDF 別名**，輸入 **hex2Int**，並變更函式實作，如下所示：
+3.  若要建立新的使用者定義函式，請選取 [新增]。
+4.  在 [新增函式] 刀鋒視窗中，針對 [函式類型]，選取 [JavaScript]。 預設的函式範本會出現在編輯器中。
+5.  針對 **UDF 別名**，輸入 **hex2Int**，並變更函式實作，如下所示：
 
     ```
     // Convert Hex value to integer.
@@ -56,13 +57,13 @@ JavaScript 使用者定義的函式支援無狀態且只做為計算用途的純
     }
     ```
 
-6.    選取 [ **儲存**]。 您的函式會出現在函式的清單中。
-7.    選取新的 **hex2Int** 函式，並檢查函式定義。 所有函式必須在函式別名前端新增 **UDF** 前置詞。 在串流分析查詢中呼叫函式時，您需要*包含前置詞*。 在此情況下，您會呼叫 **UDF.hex2Int**。
+6.  選取 [ **儲存**]。 您的函式會出現在函式的清單中。
+7.  選取新的 **hex2Int** 函式，並檢查函式定義。 所有函式必須在函式別名前端新增 **UDF** 前置詞。 在串流分析查詢中呼叫函式時，您需要*包含前置詞*。 在此情況下，您會呼叫 **UDF.hex2Int**。
 
 ## <a name="call-a-javascript-user-defined-function-in-a-query"></a>在查詢中呼叫 JavaScript 使用者定義函式
 
 1. 在查詢編輯器中，於 [作業拓撲] 下，選取 [查詢]。
-2.    編輯您的查詢，然後呼叫使用者定義函式，就像這樣：
+2.  編輯您的查詢，然後呼叫使用者定義函式，就像這樣：
 
     ```
     SELECT
@@ -74,8 +75,8 @@ JavaScript 使用者定義的函式支援無狀態且只做為計算用途的純
         InputStream
     ```
 
-3.    若要上傳範例資料檔案，請以滑鼠右鍵按一下作業輸入。
-4.    若要測試您的查詢，請選取 [測試]。
+3.  若要上傳範例資料檔案，請以滑鼠右鍵按一下作業輸入。
+4.  若要測試您的查詢，請選取 [測試]。
 
 
 ## <a name="supported-javascript-objects"></a>支援的 JavaScript 物件
@@ -144,7 +145,7 @@ FROM
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
-* [開始使用 Azure Stream Analytics](stream-analytics-get-started.md)
+* [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure 串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)

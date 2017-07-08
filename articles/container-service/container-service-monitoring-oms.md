@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure
 ms.date: 11/17/2016
 ms.author: keikhara
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
 ms.openlocfilehash: f10236ab89339234a32abf42c42083e233ab3a52
-ms.lasthandoff: 01/24/2017
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---

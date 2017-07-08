@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0a4e73e9c8a66fca132b1f26913ee8ef5e397269
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 1303815755584e912891d501018b257b96e5f063
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -51,9 +53,4 @@ Azure 安全性資訊網站目前處理下列類別︰
 >
 
 我們希望您的輸入！ 如果有您想要新增的類別，請讓我們知道！ 如果有您想要新增至現有類別的文章，也請讓我們知道！ 您可以使用下面的 [註解] 區段，或寫信給我們： [azsecinfosite@microsoft.com](mailto:azsecinfosite@microsoft.com) ，我們會將您的建議加入我們的計畫中。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

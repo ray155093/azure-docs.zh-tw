@@ -31,7 +31,7 @@ ms.lasthandoff: 01/18/2017
 如果您正在開發 Windows Phone 8.1 應用程式，Azure AD 可讓您簡單又直截了當以 Active Directory 帳戶驗證您的使用者。  它也可讓您的應用程式安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
 
 > [!NOTE]
-> 此程式碼範例會使用 ADAL&2;.0 版。  若要最新技術，您可以改為嘗試 [使用 ADAL&3;.0 版的 Windows Universal 教學課程](active-directory-devquickstarts-windowsstore.md)。  如果您確實要建置適用於 Windows Phone 8.1 的應用程式，則這是正確位置。  ADAL 2.0 版仍受到完整支援，並且是使用 Azure AD 來針對 Windows Phone 8.1 開發應用程式的建議方式。
+> 此程式碼範例會使用 ADAL 2.0 版。  若要最新技術，您可以改為嘗試 [使用 ADAL 3.0 版的 Windows Universal 教學課程](active-directory-devquickstarts-windowsstore.md)。  如果您確實要建置適用於 Windows Phone 8.1 的應用程式，則這是正確位置。  ADAL 2.0 版仍受到完整支援，並且是使用 Azure AD 來針對 Windows Phone 8.1 開發應用程式的建議方式。
 > 
 > 
 

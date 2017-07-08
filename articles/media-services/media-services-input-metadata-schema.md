@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/26/2016
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 21cbbb10065df9ae9c63b775a6526ea9c4f92136
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -32,7 +34,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 > 
 > 
 
-## <a name="a-nameassetfilesa-assetfiles-element-root-element"></a><a name="AssetFiles"></a> Assetfile 元素 (根元素)
+## <a name="AssetFiles"></a> Assetfile 元素 (根元素)
 包含編碼作業的 [AssetFile 元素](media-services-input-metadata-schema.md#AssetFile)集合。  
 
 請參閱本主題結尾的 XML 範例︰[XML 範例](media-services-input-metadata-schema.md#xml)。  
@@ -41,7 +43,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | --- | --- |
 | **AssetFile**<br /><br /> minOccurs="1" maxOccurs="unbounded" |單一子元素。 如需詳細資訊，請參閱 [AssetFile 元素](media-services-input-metadata-schema.md#AssetFile)。 |
 
-## <a name="a-nameassetfilea-assetfile-element"></a><a name="AssetFile"></a> AssetFile 元素
+## <a name="AssetFile"></a> AssetFile 元素
  包含可描述資產檔案的屬性和元素。  
 
  請參閱本主題結尾的 XML 範例︰[XML 範例](media-services-input-metadata-schema.md#xml)。  
@@ -71,7 +73,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | **AudioTracks**<br /><br /> minOccurs="0" | |每個實體資產檔案可以包含零個或多個交錯形成適當容器格式的音訊播放軌。 這個元素包含所有屬於資產檔案一部分的 [AudioTracks 元素](media-services-input-metadata-schema.md#AudioTracks)集合。 |
 | **Metadata**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[MetadataType](media-services-input-metadata-schema.md#MetadataType) |資產檔案的中繼資料 (以索引鍵\值字串表示)。 例如：<br /><br /> **&lt;Metadata key="language" value="eng" /&gt;** |
 
-## <a name="a-nametracktypea-tracktype"></a><a name="TrackType"></a> TrackType
+## <a name="TrackType"></a> TrackType
 請參閱本主題結尾的 XML 範例︰[XML 範例](media-services-input-metadata-schema.md#xml)。  
 
 ### <a name="attributes"></a>屬性
@@ -96,7 +98,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | **Disposition**<br /><br /> minOccurs="0" maxOccurs="1" |[StreamDispositionType](media-services-input-metadata-schema.md#StreamDispositionType) |包含簡報資訊 (例如，特定音訊播放軌是否適用於視障者)。 |
 | **Metadata**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[MetadataType](media-services-input-metadata-schema.md#MetadataType) |可以用來保存各種資訊的泛型索引鍵/值字串。 例如，key=”language” 和 value=”eng”。 |
 
-## <a name="a-nameaudiotracktypea-audiotracktype-inherits-from-tracktype"></a><a name="AudioTrackType"></a> AudioTrackType (繼承自 TrackType)
+## <a name="AudioTrackType"></a> AudioTrackType (繼承自 TrackType)
  **AudioTrackType** 是全域複雜類型，其繼承自 [TrackType](media-services-input-metadata-schema.md#TrackType)。  
 
  此類型代表資產檔案中的特定音訊播放軌。  
@@ -113,7 +115,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | **Bitrate** |**xs:int** |從資產檔案計算出來的平均音訊位元速率 (位元 / 秒)。 只會計算基本串流承載，而封裝負荷不會納入此計數中。 |
 | **BitsPerSample** |**xs:int** |wFormatTag 格式類型的每樣本位元數。 |
 
-## <a name="a-namevideotracktypea-videotracktype-inherits-from-tracktype"></a><a name="VideoTrackType"></a> VideoTrackType (繼承自 TrackType)
+## <a name="VideoTrackType"></a> VideoTrackType (繼承自 TrackType)
 **VideoTrackType** 是全域複雜類型，其繼承自 [TrackType](media-services-input-metadata-schema.md#TrackType)。  
 
 此類型代表資產檔案中的特定視訊播放軌。  
@@ -139,7 +141,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | **MaxGOPBitrate** |**xs:int** |此視訊播放軌的最大 GOP 平均位元速率 (千位元 / 秒)。 |
 | **HasBFrames** |**xs:int** |B 畫面格的視訊播放軌數目。 |
 
-## <a name="a-namemetadatatypea-metadatatype"></a><a name="MetadataType"></a> MetadataType
+## <a name="MetadataType"></a> MetadataType
 **MetadataType** 是全域複雜類型，其以索引鍵/值字串的形式描述資產檔案的中繼資料。 例如，key=”language” 和 value=”eng”。  
 
 請參閱本主題結尾的 XML 範例︰[XML 範例](media-services-input-metadata-schema.md#xml)。  
@@ -150,7 +152,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | **key**<br /><br /> 必要 |**xs:string** |索引鍵/值組中的索引鍵。 |
 | **value**<br /><br /> 必要 |**xs:string** |索引鍵/值組中的值。 |
 
-## <a name="a-nameprogramtypea-programtype"></a><a name="ProgramType"></a> ProgramType
+## <a name="ProgramType"></a> ProgramType
 **ProgramType** 是用來描述節目的全域複雜類型。  
 
 ### <a name="attributes"></a>屬性
@@ -163,7 +165,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | **StartPTS** |**xs: long** |啟動簡報時間戳記。 |
 | **EndPTS** |**xs: long** |結束簡報時間戳記。 |
 
-## <a name="a-namestreamdispositiontypea-streamdispositiontype"></a><a name="StreamDispositionType"></a> StreamDispositionType
+## <a name="StreamDispositionType"></a> StreamDispositionType
 **StreamDispositionType** 是用來描述串流的全域複雜類型。  
 
 請參閱本主題結尾的 XML 範例︰[XML 範例](media-services-input-metadata-schema.md#xml)。  
@@ -183,7 +185,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | **CleanEffects**<br /><br /> 必要 |**xs:int** |將這個屬性設定為 1，表示此播放軌具有清理效果。 |
 | **AttachedPic**<br /><br /> 必要 |**xs:int** |將這個屬性設定為 1，表示此播放軌具有圖片。 |
 
-## <a name="a-nameprogramsa-programs-element"></a><a name="Programs"></a> Programs 元素
+## <a name="Programs"></a> Programs 元素
 保有多個 **Program** 元素的包裝函式元素。  
 
 ### <a name="child-elements"></a>子元素
@@ -191,7 +193,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | --- | --- | --- |
 | **Program**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[ProgramType](media-services-input-metadata-schema.md#ProgramType) |若為 MPEG-TS 格式的資產檔案，包含資產檔案中的節目相關資訊。 |
 
-## <a name="a-namevideotracksa-videotracks-element"></a><a name="VideoTracks"></a> VideoTracks 元素
+## <a name="VideoTracks"></a> VideoTracks 元素
  保有多個 **VideoTrack** 元素的包裝函式元素。  
 
  請參閱本主題結尾的 XML 範例︰[XML 範例](media-services-input-metadata-schema.md#xml)。  
@@ -201,7 +203,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | --- | --- | --- |
 | **VideoTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[VideoTrackType (繼承自 TrackType)](media-services-input-metadata-schema.md#VideoTrackType) |包含資產檔案中的視訊播放軌相關資訊。 |
 
-## <a name="a-nameaudiotracksa-audiotracks-element"></a><a name="AudioTracks"></a> AudioTracks 元素
+## <a name="AudioTracks"></a> AudioTracks 元素
  保有多個 **AudioTrack** 元素的包裝函式元素。  
 
  請參閱本主題結尾的 XML 範例︰[XML 範例](media-services-input-metadata-schema.md#xml)。  
@@ -211,7 +213,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 | --- | --- | --- |
 | **AudioTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[AudioTrackType (繼承自 TrackType)](media-services-input-metadata-schema.md#AudioTrackType) |包含資產檔案中的音訊播放軌相關資訊。 |
 
-## <a name="a-namecodea-schema-code"></a><a name="code"></a> 結構描述程式碼
+## <a name="code"></a> 結構描述程式碼
     <?xml version="1.0" encoding="utf-8"?>  
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" version="1.0"  
                xmlns="http://schemas.microsoft.com/windowsazure/mediaservices/2014/07/mediaencoder/inputmetadata"  
@@ -610,7 +612,7 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
     </xs:schema>  
 
 
-## <a name="a-namexmla-xml-example"></a><a name="xml"></a> XML 範例
+## <a name="xml"></a> XML 範例
 以下是輸入中繼資料檔案的範例。  
 
     <?xml version="1.0" encoding="utf-8"?>  
@@ -645,10 +647,5 @@ ms.openlocfilehash: 2274f8b69e82edb2f3e24f23ac6f89dcd7dfcb17
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

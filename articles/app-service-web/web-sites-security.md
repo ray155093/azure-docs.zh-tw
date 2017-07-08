@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 3071bf565b14966de2293205026c4524d7b0f0c5
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: b70d74441f3d6d9793ae516b3f04e36e786a9a8f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -38,7 +38,7 @@ Azure App Service 中的安全性有兩個層級：
 * 您的 App Service 應用程式和外部資源之間的所有通訊，例如 PowerShell 管理、命令列介面、Azure SDK、REST API 和混合式連線，都會正確加密。
 * 全天候威脅管理會保護 App Service 資源免於惡意程式碼、分散式拒絕服務 (DDoS)、攔截式 (MITM) 和其他威脅。 
 
-如需在 Azure 中的基礎結構與平台安全性的詳細資訊，請參閱 [Azure 信任中心](/support/trust-center/security/)。
+如需在 Azure 中的基礎結構與平台安全性的詳細資訊，請參閱 [Azure 信任中心](https://azure.microsoft.com/support/trust-center/security/)。
 
 #### <a name="application-security"></a>應用程式安全性
 Azure 負責保護您的應用程式執行所在的基礎結構和平台，而保護您的應用程式本身是您的責任。 換句話說，您需要以安全的方式來開發、部署及管理您的應用程式程式碼和內容。 如果沒有這麼做，您的應用程式程式碼或內容仍然可能受到威脅，例如：

@@ -7,9 +7,11 @@ ms.date: 1/18/2017
 ms.topic: article
 ms.service: microsoft-docs
 ms.assetid: ce37c848-ddd9-46ab-978e-6a1445728a3b
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2373cf227cbed4f6657e31088b11dca5223ce5fe
 ms.openlocfilehash: cb6c5b3e86f126d4110d1cd29d8c9891e356e414
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -43,9 +45,4 @@ ms.openlocfilehash: cb6c5b3e86f126d4110d1cd29d8c9891e356e414
 
 - 若要移除一行，請從 SKU 系列下拉式清單中取消核取 SKU，或按一下捨棄 [x] 圖示。
 輸入每個 SKU 系列所需的配額後，請在 [問題步驟] 頁面上按 [下一步] 繼續建立支援要求。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

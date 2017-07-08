@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 03/06/2017
 ms.author: ddove
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: 035fac3cbdc9765fa8d5c80e3d2d9449e1bf5b3a
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 637463399593f4bc9ff5bfcbf67bf93b816efc7f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/21/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -78,7 +78,6 @@ ms.lasthandoff: 04/21/2017
 ## <a name="next-steps"></a>後續步驟
 如需有關彈性資料庫工具的詳細資訊，請參閱下列頁面：
 
-* [彈性資料庫工具文件地圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/) 
 * 程式碼範例： 
   * [適用於 Azure SQL 的彈性 DB 工具 - 開始使用 (英文)](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-a80d8dc6?SRC=VSIDE)
   * [適用於 Azure SQL 的彈性 DB 工具 - Entity Framework 整合 (英文)](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-bae904ba?SRC=VSIDE)

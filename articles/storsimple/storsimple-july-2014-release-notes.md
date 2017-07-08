@@ -14,9 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 04/18/2016
 ms.author: v-sharos
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 387b274a993454814f7238f4cd89a52351a6fc1f
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 303cdffa15fdfe9b83d0612edecafc6943d218f3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -41,10 +43,5 @@ ms.openlocfilehash: 387b274a993454814f7238f4cd89a52351a6fc1f
 | 8 |裝置容錯移轉 |不支援從相同來源裝置將某個磁碟區容器多次容錯移轉至不同的目標裝置。 從單一失效裝置容錯移轉到多個裝置，會讓第一個容錯移轉裝置上的磁碟區容器失去資料擁有權。 進行這類容錯移轉之後，當您在 Azure 傳統入口網站中檢視這些磁碟區容器時，會發現它們的外觀或行為有所不同。 | |是 |否 |
 | 9 |安裝 |在 StorSimple Adapter for SharePoint 安裝其間，您必須提供裝置 IP，以供順利完成安裝。 | |是 |否 |
 | 10 |網路介面 |軟體中會交換網路介面 DATA 2 與 DATA 3。 |如果您需要設定這些介面，請連絡 Microsoft 支援。 |是 |否 |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

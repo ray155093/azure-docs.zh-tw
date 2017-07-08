@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/11/2016
 ms.author: v-sharos
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2b79492914bb52e970343a2e829622122f03642b
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 31ed9dad8ba56a3746873b7b35e678e97743fbfe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -119,7 +120,7 @@ StorSimple Manager 服務是 Azure 傳統入口網站的延伸模組，可讓您
    
    1. 移至 [電腦管理]  ->[磁碟管理]。
    2. 以滑鼠右鍵按一下 [磁碟管理]，並選取 [重新掃描磁碟]。
-   3. 在磁碟清單中，選取您已更新的磁碟區，按一下滑鼠右鍵，然後選取 [延伸磁碟區] 。 [延伸磁碟區精靈] 隨即啟動。 按 [下一步] 。
+   3. 在磁碟清單中，選取您已更新的磁碟區，按一下滑鼠右鍵，然後選取 [延伸磁碟區] 。 [延伸磁碟區精靈] 隨即啟動。 按一下 [下一步] 。
    4. 使用預設值完成精靈。 完成精靈後，磁碟區應該會顯示增加的大小。
 
 ![提供的影片](./media/storsimple-manage-volumes/Video_icon.png) **提供的影片**

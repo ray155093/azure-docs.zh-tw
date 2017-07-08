@@ -13,10 +13,10 @@ ms.topic: article
 ms.date: 04/16/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: bb836357af6d006c18db578164f02fa7bd043b45
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: bf5bd20007c186bfd01b82aa06213ef9e7424a05
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -33,8 +33,8 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="diagnose-data-changes"></a>診斷資料變更
 
-1.    在 [分析] 中執行查詢，並將它轉譯成時間圖表。 
-2.    按一下任何醒目提示的尖峰點 (如果有的話)。
+1.  在 [分析] 中執行查詢，並將它轉譯成時間圖表。 
+2.  按一下任何醒目提示的尖峰點 (如果有的話)。
  
     ![尖峰點](./media/app-insights-analytics-diagnostics/peak.png)
 
@@ -48,11 +48,11 @@ ms.lasthandoff: 05/10/2017
 
     另請注意，具有 True 和 False 篩選條件的兩個圖表元件。 False 元件顯示一個未變更的趨勢。 換句話說，如果我們將「診斷」已識別的問題維度組合排除，遙測結果中便沒有任何變更。 對照之下，該組合內的結果則在醒目提示的調查區域內顯示劇烈的變更。 這表示「診斷」已找到可解釋該變更原因的屬性組合。
 
-4.    如果模式相當複雜，您將需要把滑鼠指標停在 [全部顯示] 上來查看維度。
+4.  如果模式相當複雜，您將需要把滑鼠指標停在 [全部顯示] 上來查看維度。
 
     ![全部顯示](./media/app-insights-analytics-diagnostics/show-all.png)
  
-5.    如果「診斷」找不到任何重要的模式來通知，就會顯示 [沒有結果] 頁面。 此時，您可以變更您的查詢。 例如，您可以將 [分析] 查詢中的時間範圍和量化縮小，以供日後分析及可能獲得較佳的結果。
+5.  如果「診斷」找不到任何重要的模式來通知，就會顯示 [沒有結果] 頁面。 此時，您可以變更您的查詢。 例如，您可以將 [分析] 查詢中的時間範圍和量化縮小，以供日後分析及可能獲得較佳的結果。
 
 在知道您網站的特定頁面於特定瀏覽器上會發生問題之後，您現在可以直接移至問題頁面並調查最近的變更。
 
@@ -62,7 +62,7 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="how-it-works"></a>運作方式
 
-「智慧型診斷」使用以 [DiffPatterns](app-insights-analytics-reference.md#evaluate-diffpatterns) 作業為基礎、不受監督的進階機器學習演算法。 它會尋找可能解釋資料變更原因的候選模式。 它會分析每個候選項目對計量的影響，並顯示與該變更最具相互關聯性的模式。
+「智慧型診斷」使用以 [DiffPatterns](app-insights-analytics-reference.md#evaluate-diffpatterns_v2) 作業為基礎、不受監督的進階機器學習演算法。 它會尋找可能解釋資料變更原因的候選模式。 它會分析每個候選項目對計量的影響，並顯示與該變更最具相互關聯性的模式。
 
 ## <a name="no-diagnostic-points"></a>沒有任何診斷點？
 

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2016
 ms.author: dariagrigoriu
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 6e476e1dc550f246027c015dee75850236baa9a9
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: da848aec495a8248fd4791f350d439e937831d01
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -43,8 +44,10 @@ ms.lasthandoff: 04/27/2017
 1. 啟動命令列工具，例如 **GitBash** (Windows) 或 **Bash** (Unix Shell)。 在 OS X 系統上，您可以透過 **[終端機]** 應用程式來存取命令列。
 2. 瀏覽至部署內容所在的目錄。
 3. 使用下列命令來初始化新的 Git 儲存機制：
-   
-        git init
+
+```bash  
+git init
+```
 
 ## <a name="Step2"></a>步驟 2︰認可內容
 App Service 支援以各種程式設計語言建立的應用程式。 
@@ -54,11 +57,15 @@ App Service 支援以各種程式設計語言建立的應用程式。
    * 使用文字編輯器，在 Git 儲存機制的根目錄建立新檔案 **index.html** 。
    * 在 index.html 檔案中加入並儲存下列文字內容： *Hello Git!*
 2. 從命令列，驗證您位在 Git 儲存機制的根目錄下。 然後使用下列命令將檔案加入儲存機制中：
-   
-        git add -A 
+
+```bash  
+git add -A
+```
 3. 接著，使用下列命令來認可對儲存機制的變更：
-   
-        git commit -m "Hello Azure App Service"
+
+```bash  
+git commit -m "Hello Azure App Service"
+```  
 
 ## <a name="Step3"></a>步驟 3︰啟用 App Service 應用程式儲存機制
 執行下列步驟以啟用 App Service 應用程式的 Git 儲存機制。
@@ -88,10 +95,11 @@ App Service 支援以各種程式設計語言建立的應用程式。
    > 
    > 
 4. 使用剛建立的新 **zure** 遠端將您的內容推送至 App Service。
-   
-        git push azure master
-   
-    系統將會提示您輸入在 Azure 入口網站中重設部署認證時所建立的密碼。 輸入密碼 (請注意，當您輸入密碼時，Gitbash 不會對主控台回應星號)。 
+
+```bash  
+git push azure master
+```
+    You will be prompted for the password you created earlier when you reset your deployment credentials in the Azure Portal. Enter the password (note that Gitbash does not echo asterisks to the console as you type your password). 
 5. 回到 Azure 入口網站中的應用程式。 最近推送的記錄項目應該會顯示在 [部署]  刀鋒視窗中。 
    
     ![](./media/app-service-deploy-local-git/deployment_history.png)
@@ -121,8 +129,9 @@ App Service 支援以各種程式設計語言建立的應用程式。
 
 **解決方式**：指定主要分支，重新執行推送操作。 例如：
 
-    git push azure master
-
+```bash  
+git push azure master
+```
 - - -
 **徵兆**：src refspec [branchname] 沒有任何符合項目。
 
@@ -130,8 +139,9 @@ App Service 支援以各種程式設計語言建立的應用程式。
 
 **解決方式**：指定主要分支，重新執行推送操作。 例如：
 
-    git push azure master
-
+```bash  
+git push azure master
+```
 - - -
 **徵兆**RPC 失敗；結果 = 22，HTTP 代碼 = 502。
 
@@ -139,8 +149,9 @@ App Service 支援以各種程式設計語言建立的應用程式。
 
 **解決方式**︰變更本機電腦上的 Git 組態以加大 postBuffer
 
-    git config --global http.postBuffer 524288000
-
+```bash  
+git config --global http.postBuffer 524288000
+```
 - - -
 **徵兆**：錯誤 - 對遠端儲存機制認可變更，但您的 Web 應用程式未更新。
 

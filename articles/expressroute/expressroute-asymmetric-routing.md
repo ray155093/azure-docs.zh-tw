@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: osamam
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 10166e6b8b9144f0a5dde4f2fc10b492120e85d7
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6adb1dd25c24b18b834dd921c2586ef29d56dc81
+ms.openlocfilehash: 8568c13d2834a0643e15ab1814a35c92123837d1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -71,10 +73,5 @@ ms.openlocfilehash: 10166e6b8b9144f0a5dde4f2fc10b492120e85d7
 
 ## <a name="asymmetric-routing-detection"></a>非對稱式路由偵測
 路徑追蹤是確保網路流量會周遊預期路徑的最佳方式。 如果您預期從內部部署 SMTP 伺服器至 Microsoft 的流量會採用網際網路路徑，則預期的路徑追蹤是從 SMTP 伺服器至 Office 365。 結果會驗證流量確實離開您的網路朝向網際網路，而不是朝向 ExpressRoute。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

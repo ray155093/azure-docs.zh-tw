@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f479602647d67e7048371df76b128e33b27c1014
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 2ab624941fc385f14b62bb5d743927f157955845
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -162,10 +164,5 @@ ms.openlocfilehash: f479602647d67e7048371df76b128e33b27c1014
 * 如果您有興趣全面了解 OData 對應程序和用途，請閱讀 [資料服務 OData 對應](marketplace-publishing-data-service-creation-odata-mapping.md) 一文來檢閱定義、結構和指示。
 * 如果您有興趣學習和了解特定節點及其參數，請閱讀 [資料服務 OData 對應節點](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) 一文，來了解定義和說明、範例，以及使用案例內容。
 * 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀 [資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

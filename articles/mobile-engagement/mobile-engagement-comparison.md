@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4503810769d88ea554885f39902349046981ec88
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 7df2eb9ecebe3313dad9c15171552a084787f6b8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -62,10 +64,5 @@ Azure Mobile Engagement 是針對**數位行銷人員/CMO** 特別提供的服�
 總而言之，Mobile Engagement 的用途不止是用來收集分析 - 它「還不是 Microsoft 的另一項分析產品」。 這與傳送目標性推播通知，以及我們為此目標性通知收集行為分析資料有關，但是重點還是在於向應用程式使用者傳送最有意義的推播通知，以避免通知變成垃圾通知。 
 
 如需詳細資料，請參考這段有關 Mobile Engagement 簡略說明的 [快速上手影片](mobile-engagement-overview.md) 。 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

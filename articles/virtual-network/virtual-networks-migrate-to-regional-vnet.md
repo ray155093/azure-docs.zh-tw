@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: f74379c3e310a7bbcf659ef610727bff19639022
 ms.openlocfilehash: c495af3e818758cc5fe99af9b5f07506a16b59ef
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -70,10 +72,5 @@ ms.openlocfilehash: c495af3e818758cc5fe99af9b5f07506a16b59ef
 目前在同質群組中的 VM 不需要從同質群組中移除。
 
 一旦部署 VM，其會部署至單一的縮放單位。 同質群組可針對新的 VM 部署限制可用的 VM 大小集合，但任何已部署的現有 VM 部署，已在 VM 所部署的位置限制縮放單位中可用的 VM 大小集合。 因此，從同質群組中移除 VM 不會產生任何效果。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 
