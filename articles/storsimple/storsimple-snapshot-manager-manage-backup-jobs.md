@@ -4,7 +4,7 @@ description: "描述如何使用 StorSimple Snapshot Manager MMC 嵌入式管理
 services: storsimple
 documentationcenter: NA
 author: SharS
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: bf4dcff6-c819-4766-b9d9-9922831cb200
 ms.service: storsimple
@@ -12,15 +12,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 04/26/2016
+ms.date: 06/05/2017
 ms.author: v-sharos
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: b31f6d51399dc0533d8cbefcafc3b55762cb6cf1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
 # <a name="use-storsimple-snapshot-manager-to-view-and-manage-backup-jobs"></a>使用 StorSimple Snapshot Manager 來檢視和管理備份作業
+
 ## <a name="overview"></a>概觀
 [範圍] 窗格中的 [作業] 節點會顯示您以互動方式或透過已設定之原則起始的 [已排程]、[過去 24 小時] 和 [執行中] 備份工作。 
 
@@ -38,9 +41,7 @@ ms.openlocfilehash: b31f6d51399dc0533d8cbefcafc3b55762cb6cf1
    * **上次執行** ] – 最新排定之快照的日期和時間
      
      > [!NOTE]
-     > 若為僅一次快照，[下次執行] 和 [上次執行] 將相同。 
-     > 
-     > 
+     > 若為僅一次快照，[下次執行] 和 [上次執行] 將相同。
      
      ![排定的備份工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_scheduled.png) 
 3. 若要在特定工作上執行其他動作，請以滑鼠右鍵按一下 [ **結果** ] 窗格中的作業名稱，然後選取功能表選項。
@@ -63,14 +64,14 @@ ms.openlocfilehash: b31f6d51399dc0533d8cbefcafc3b55762cb6cf1
      ![過去 24 小時內執行的工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_Last_24_hours.png) 
 3. 若要在特定工作上執行其他動作，請以滑鼠右鍵按一下 [ **結果** ] 窗格中的作業名稱，然後選取功能表選項。
    
-    ![刪除工作](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Delete_backup.png) 
+    ![刪除工作](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Delete_backup.png)
 
 ## <a name="view-currently-running-jobs"></a>檢視目前執行中的作業
 請使用下列程序來檢視目前執行中的作業。
 
 #### <a name="to-view-currently-running-jobs"></a>若要檢視目前執行中的工作
 1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
-2. 在 [範圍] 窗格中，展開 [作業] 節點，然後按一下 [執行中]。 視您指定的 [檢視] 選項而定，下列資訊會出現在 [結果] 窗格中： 
+2. 在 [範圍] 窗格中，展開 [作業] 節點，然後按一下 [執行中]。 視您指定的 [檢視] 選項而定，下列資訊會出現在 [結果] 窗格中：
    
    * **名稱** ] – 已排定之快照的名稱。
    * **已啟動** ] – 快照開始的日期和時間。
@@ -87,10 +88,5 @@ ms.openlocfilehash: b31f6d51399dc0533d8cbefcafc3b55762cb6cf1
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
 * 了解如何 [使用 StorSimple Snapshot Manager 管理備份目錄](storsimple-snapshot-manager-manage-backup-catalog.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

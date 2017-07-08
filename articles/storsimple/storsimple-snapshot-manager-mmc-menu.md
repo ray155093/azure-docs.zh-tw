@@ -4,7 +4,7 @@ description: "說明如何在 StorSimple Snapshot Manager 中，使用標準的 
 services: storsimple
 documentationcenter: NA
 author: SharS
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 78ef81af-0d3a-4802-be54-ad192f9ac8a6
 ms.service: storsimple
@@ -12,17 +12,20 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 04/25/2016
+ms.date: 06/05/2017
 ms.author: v-sharos
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: b2be03e12b2deaecb352f8703650cf23cdefdebd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
 # <a name="use-the-mmc-menu-actions-in-storsimple-snapshot-manager"></a>在 StorSimple Snapshot Manager 使用 MMC 功能表動作
+
 ## <a name="overview"></a>概觀
-在 StorSimple Snapshot Manager 中，您會看到下列所有動作列在 [ **動作** ] 窗格的所有動作功能表和變化上。 
+在 StorSimple Snapshot Manager 中，您會看到下列所有動作列在 [ **動作** ] 窗格的所有動作功能表和變化上。
 
 * 檢視
 * 從這裡開啟新視窗 
@@ -99,10 +102,5 @@ ms.openlocfilehash: b2be03e12b2deaecb352f8703650cf23cdefdebd
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [StorSimple Snapshot Manager 使用者介面](storsimple-use-snapshot-manager.md)。
 * 深入了解如何 [使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
