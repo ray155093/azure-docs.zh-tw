@@ -4,7 +4,7 @@ description: "描述如何使用 StorSimple Snapshot Manager MMC 嵌入式管理
 services: storsimple
 documentationcenter: NA
 author: SharS
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 04415d0b-42f0-4737-8afa-257fb2dbe5d0
 ms.service: storsimple
@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 05/12/2016
+ms.date: 06/05/2017
 ms.author: v-sharos
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 9cf39b922e51dd60b5b2c51cb7030436c60232a5
 ms.openlocfilehash: 88fc29b81c9502374a25cb34175ad1ee7c25423f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -93,9 +95,4 @@ ms.openlocfilehash: 88fc29b81c9502374a25cb34175ad1ee7c25423f
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
 * 了解如何 [使用 StorSimple Snapshot Manager 來檢視和管理備份工作](storsimple-snapshot-manager-manage-backup-jobs.md)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
