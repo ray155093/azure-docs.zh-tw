@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/06/2017
-ms.author: edmaca, yanacai
+ms.date: 06/28/2017
+ms.author: saveenr, yanacai
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: b2fd62683f0272da271eebeb6eb3a71388ecb59e
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 401e2d84e5e2eb9f66a16b299fbb93bd1943e04b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 06/20/2017
 
 * **Visual Studio**：支援 Express 以外的所有版本。
     * Visual Studio 2017
-    * Visual Studio 2015 Update 4
+    * Visual Studio 2015
     * Visual Studio 2013
 * **Microsoft Azure SDK for .NET** 2.7.1 版或更新版本。  使用 [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx) 來進行安裝。
 * **Data Lake Analytics** 帳戶。 如需建立帳戶，請參閱[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md)。
@@ -89,10 +89,10 @@ OUTPUT @a
 
     ![U SQL Visual Studio Data Lake Analytics 工作效能圖表](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-performance-graph.png)
 
-   *  **作業摘要**會顯示作業的摘要。   
+   * **作業摘要**會顯示作業的摘要。   
    * **作業詳細資料**會顯示更多作業的相關資訊，包括指令碼、資源和頂點。
-   *  **作業圖形**會以視覺化方式檢視作業的進度。
-   *  **中繼資料作業**會顯示 U-SQL 目錄上所執行的所有動作。
+   * **作業圖形**會以視覺化方式檢視作業的進度。
+   * **中繼資料作業**會顯示 U-SQL 目錄上所執行的所有動作。
    * **資料**會顯示所有的輸入和輸出。
    * **診斷**會提供作業執行和效能最佳化的進階分析。
 

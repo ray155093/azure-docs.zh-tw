@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/07/2017
 ms.author: alkohli
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: d9ba200dba2b1460a9d3c9ba07e2bca54c30b53a
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: ead9fcc5ec582420d731faccb7abba0dc815ed84
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -69,7 +70,7 @@ StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛�
 #### <a name="azure-requirements"></a>Azure 需求
 佈建虛擬裝置之前，您需要在 Azure 環境中做好下列準備：
 
-* 針對虛擬裝置， [在 Azure 中設定虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-portal.md)。 如果使用進階儲存體，您必須在支援進階儲存體的 Azure 區域中建立虛擬網路。 進階儲存體區域是對應到[依地區的 Azure 服務](https://azure.microsoft.com/en-us/regions/services)清單中的*磁碟儲存體*資料列的區域。
+* 針對虛擬裝置， [在 Azure 中設定虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。 如果使用進階儲存體，您必須在支援進階儲存體的 Azure 區域中建立虛擬網路。 進階儲存體區域是對應到[依地區的 Azure 服務](https://azure.microsoft.com/en-us/regions/services)清單中的*磁碟儲存體*資料列的區域。
 * 建議您使用 Azure 提供的預設 DNS 伺服器，而非指定您自己的 DNS 伺服器名稱。 如果您的 DNS 伺服器名稱無效，或者如果 DNS 伺服器無法正確解析 IP 位址，則建立虛擬裝置將會失敗。
 * 點對站及站對站都是選用的，但並非必要。 如有需要，您可以針對更進階的案例設定這些選項。
 * 您可以將 [Azure 虛擬機器](../virtual-machines/virtual-machines-linux-about.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (主機伺服器) 建立在可使用由虛擬裝置公開之磁碟區的虛擬網路中。 這些伺服器必須符合下列需求：                             

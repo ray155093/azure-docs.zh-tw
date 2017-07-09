@@ -15,9 +15,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/07/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
-ms.openlocfilehash: a6bb1c4b3a4972cdab9b99c548ef918a4d1070a0
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 780728950199bac6a317767ef1db4462b3fe6ffd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/04/2017
 
 
 ---
@@ -35,8 +37,7 @@ Azure AD Connect 可進行內部部署 Active Directory 與 Azure Active Directo
 * 無法使用下列功能：
   * Azure AD Connect Health
   * 自動更新
-  * 密碼回寫
-
+ 
 ## <a name="download"></a>下載
 您可以從入口網站中的 [Azure AD Connect] 刀鋒視窗下載 Azure AD Connect。  使用下列指示來尋找 Azure AD Connect 刀鋒視窗。
 
@@ -64,10 +65,5 @@ Azure AD Connect 可進行內部部署 Active Directory 與 Azure Active Directo
 
 ## <a name="advanced-features-and-additional-information"></a>進階功能和其他資訊
 如需自訂設定或進階組態的其他資訊和指引，請從 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)著手。  此頁面會提供其他指引的資訊和連結。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 
