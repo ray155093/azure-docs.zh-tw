@@ -25,16 +25,17 @@
 ### [子 Runbook](automation-child-runbooks.md)
 ### [Runbook 輸出](automation-runbook-output-and-messages.md)
 ### [原始檔控制整合](automation-source-control-integration.md)
-## 自動 Runbook
+## 自動化
 ### [啟動 Runbook](automation-starting-a-runbook.md)
 ### [從 webhook 啟動 Runbook](automation-webhooks.md)
-### [在資料中心中執行 Runbook](automation-hybrid-runbook-worker.md)
+### [在混合式 Runbook 背景工作上啟動 Runbook](automation-hybrid-runbook-worker.md)
 ### [設定 Runbook 輸入參數](automation-runbook-input-parameters.md)
 ### [處理圖形化 runbook 時發生錯誤](automation-runbook-graphical-error-handling.md)
 ### [追蹤 Runbook 作業](automation-runbook-execution.md)
 ### [變更 Runbook 設定](automation-runbook-settings.md)
 ### [管理 Azure 自動化資料](automation-managing-data.md)
 ### [從 Log Analytics 警示呼叫 Azure 自動化 Runbook](automation-invoke-runbook-from-omsla-alert.md)
+### [將 JSON 物件傳送至 Azure 自動化 Runbook](automation-pass-json-string.md)
 ## 部署組態管理 (DSC)
 ### [期望狀態設定 (DSC) 概觀](automation-dsc-overview.md)
 ### [開始使用](automation-dsc-getting-started.md)
@@ -42,7 +43,7 @@
 ### [編譯 DSC 設定](automation-dsc-compile.md)
 ### [使用 Chocolatey 持續進行部署](automation-dsc-cd-chocolatey.md)
 ### [將 Azure 自動化 DSC 報告資料轉送到 OMS Log Analytics](automation-dsc-diagnostics.md)
-## 管理自動化資產
+## 管理資產
 ### [憑證](automation-certificates.md)
 ### [連線](automation-connections.md)
 ### [認證](automation-credentials.md)
@@ -50,7 +51,7 @@
 ### [排程](automation-schedules.md)
 ### [變數](automation-variables.md)
 ### [更新 Azure Powershell 模組](automation-update-azure-modules.md)
-## 自動化案例
+## 案例
 ### [Runbook 資源庫](automation-runbook-gallery.md)
 ### [建立 Amazon Web Service VM](automation-scenario-aws-deployment.md)
 ### [修復 Azure VM 警示](automation-azure-vm-alert-integration.md)
@@ -58,6 +59,7 @@
 ### [移除資源群組](automation-scenario-remove-resourcegroup.md)
 ### [搭配 GitHub Enterprise 的原始檔控制整合](automation-scenario-source-control-integration-with-github-ent.md)
 ### [搭配 VSTS 的原始檔控制整合](automation-scenario-source-control-integration-with-VSTS.md)
+### [從 Log Analytics 警示呼叫 Azure 自動化 Runbook](automation-invoke-runbook-from-omsla-alert.md)
 ## 解決方案
 ### [變更追蹤](../log-analytics/log-analytics-change-tracking.md)
 ### [更新管理](../operations-management-suite/oms-solution-update-management.md)
@@ -78,12 +80,13 @@
 ## [REST](/rest/api/automation)
 ## [REST (傳統)](https://msdn.microsoft.com/library/azure/mt163781)
 # 資源
-## [版本資訊](https://azure.microsoft.com/updates/?product=automation)
-## [價格](https://azure.microsoft.com/pricing/details/automation/)  
+## [自動化簡介影片](https://azure.microsoft.com/documentation/videos/azure-automation-101-with-powershell-and-eamon-o-reilly/)
+## [Azure 自動化訓練](https://mva.microsoft.com/en-US/training-courses/automating-the-cloud-with-azure-automation-8323?l=C6mIpCay_4804984382)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/automation/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureautomation)  
+## [價格](https://azure.microsoft.com/pricing/details/automation/)  
+## [版本資訊](https://azure.microsoft.com/updates/?product=automation)
+## [服務更新](https://azure.microsoft.com/updates/?product=automation)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-automation)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=automation)
-## [服務更新](https://azure.microsoft.com/updates/?product=automation)
-## [Azure 自動化訓練](https://mva.microsoft.com/en-US/training-courses/automating-the-cloud-with-azure-automation-8323?l=C6mIpCay_4804984382)
-## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/automation/)
-## [自動化簡介影片](https://azure.microsoft.com/documentation/videos/azure-automation-101-with-powershell-and-eamon-o-reilly/)

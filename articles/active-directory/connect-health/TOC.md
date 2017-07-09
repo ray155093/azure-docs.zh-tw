@@ -20,5 +20,6 @@
 ## [混合式身分識別設計指南](../active-directory-hybrid-identity-design-considerations-overview.md)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ##[Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 

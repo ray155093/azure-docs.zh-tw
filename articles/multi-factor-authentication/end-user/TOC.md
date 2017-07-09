@@ -14,8 +14,5 @@
 ### [使用您的電話登入](microsoft-authenticator-app-phone-signin-faq.md)
 ### [常見問題集](microsoft-authenticator-app-faq.md)
 
-
-
-<!--HONumber=Feb17_HO3-->
-
-
+# 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

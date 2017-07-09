@@ -70,7 +70,8 @@
 ### [使用入口網站指派原則](resource-manager-policy-portal.md)
 ### [使用指令碼指派原則](resource-manager-policy-create-assign.md)
 ### 範例
-#### [資源標記](resource-manager-policy-tags.md)
+#### [標記](resource-manager-policy-tags.md)
+#### [命名慣例](resource-manager-policy-naming-convention.md)
 #### [儲存體](resource-manager-policy-storage.md)
 #### [Linux VM](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 #### [Windows VM](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
@@ -119,8 +120,9 @@
 ## [REST](/rest/api/resources/)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [服務更新](https://azure.microsoft.com/updates/?product=azure-resource-manager)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-resource-manager)
 ## [節流要求](resource-manager-request-limits.md)
 ## [追蹤非同步作業](resource-manager-async-operations.md)
-## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-resource-manager)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=azure-resource-manager)
-## [服務更新](https://azure.microsoft.com/updates/?product=azure-resource-manager)

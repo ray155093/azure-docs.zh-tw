@@ -62,8 +62,9 @@
 ## [Web Apps](/azure/app-service-web/)
 
 # 資源
-## [服務更新](https://azure.microsoft.com/updates/?product=dns)
-## [價格](https://azure.microsoft.com/pricing/details/dns/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [功能要求](https://feedback.azure.com/forums/217313-networking/category/77466-domain-name-service-dns-traffic-manager)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
 ## [網路部落格](http://azure.microsoft.com/blog/topics/networking)
-## [功能要求](https://feedback.azure.com/forums/217313-networking/category/77466-domain-name-service-dns-traffic-manager)
+## [價格](https://azure.microsoft.com/pricing/details/dns/)
+## [服務更新](https://azure.microsoft.com/updates/?product=dns)

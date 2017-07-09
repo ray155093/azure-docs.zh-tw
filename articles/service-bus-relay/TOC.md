@@ -27,7 +27,8 @@
 ## [連接埠設定](relay-port-settings.md)
 
 # 資源
-## [範例](https://github.com/azure/azure-relay/tree/master/samples)
-## [價格](https://azure.microsoft.com/pricing/details/service-bus/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [部落格](https://blogs.msdn.microsoft.com/servicebus/)
+## [價格](https://azure.microsoft.com/pricing/details/service-bus/)
+## [範例](https://github.com/azure/azure-relay/tree/master/samples)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-servicebusrelay)

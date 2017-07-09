@@ -25,7 +25,8 @@
 ## [容器服務](/azure/container-service/)
 
 # 資源
-## [區域可用性](https://azure.microsoft.com/regions/services/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [價格](https://azure.microsoft.com/pricing/details/container-registry/)
+## [區域可用性](https://azure.microsoft.com/regions/services/)
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=container-registry&updatetype=&platform=)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-container-registry)

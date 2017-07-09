@@ -1,11 +1,14 @@
 # 概觀
 ## [什麼是 Azure Analysis Services？](analysis-services-overview.md)
 ## [支援的資料來源](analysis-services-datasource.md)
+## [驗證和使用者權限](analysis-services-manage-users.md)
 
 # 快速入門
 ## [建立伺服器 - 入口網站](analysis-services-create-server.md)
 ## [部署模型 - SSDT](analysis-services-deploy.md)
 
+# 範例
+## [GitHub 上的 Analysis Services 範例](https://github.com/Microsoft/Analysis-Services)
 
 # 教學課程
 ## 建立和部署模型
@@ -29,9 +32,9 @@
 
 # 作法 
 ## [管理伺服器](analysis-services-manage.md)
-## [管理使用者](analysis-services-manage-users.md)
+## [管理資料庫使用者](analysis-services-database-users.md)
+## [管理伺服器管理員](analysis-services-server-admins.md)
 ## [整合內部部署資料閘道](analysis-services-gateway.md)
-## [連線至伺服器](analysis-services-connect.md)
 ## [與 Excel 連線](analysis-services-connect-excel.md)
 ## [與 Power BI 連線](analysis-services-connect-pbi.md)
 ## [取得用戶端程式庫](analysis-services-data-providers.md)
@@ -44,13 +47,15 @@
 ## [REST](/rest/api/analysisservices)
 ## [DAX](https://msdn.microsoft.com/library/gg413422.aspx)
 ## [Power Query M](https://msdn.microsoft.com/library/mt211003.aspx)
+## [表格式模型指令碼語言 (TMSL)](https://docs.microsoft.com/sql/analysis-services/tabular-model-scripting-language-tmsl-reference)
 
 # 資源
 ## [分析服務團隊部落格](https://blogs.msdn.microsoft.com/analysisservices/)
 ## [Azure Analysis Services 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureAnalysisServices)
-## [意見反應](https://feedback.azure.com/forums/556165-azure-analysis-services)
-## [Stackoverflow](http://stackoverflow.com/questions/tagged/azure-analysis-services)
-## [價格](https://azure.microsoft.com/pricing/details/analysis-services/)
-## [影片](https://azure.microsoft.com/resources/videos/index/?services=analysis-services&sort=newest)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [Azure 狀態](https://azure.microsoft.com/status/)
+## [意見反應](https://feedback.azure.com/forums/556165-azure-analysis-services)
+## [價格](https://azure.microsoft.com/pricing/details/analysis-services/)
+## [Stackoverflow](http://stackoverflow.com/questions/tagged/azure-analysis-services)
+## [影片](https://azure.microsoft.com/resources/videos/index/?services=analysis-services&sort=newest)
 

@@ -139,6 +139,7 @@
 ### [預覽](logic-apps-schema-2015-08-01.md)
 
 # 資源
-## [服務更新](https://azure.microsoft.com/updates/?product=logic-apps)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azurelogicapps)
+## [服務更新](https://azure.microsoft.com/updates/?product=logic-apps)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-logic-apps)

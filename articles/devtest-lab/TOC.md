@@ -64,4 +64,6 @@
 ## [小組部落格](https://blogs.msdn.microsoft.com/devtestlab/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-devtest-labs)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=devtest-lab)
-## [定價](https://azure.microsoft.com/pricing/details/devtest-lab/)
+## [價格](https://azure.microsoft.com/pricing/details/devtest-lab/)
+# 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

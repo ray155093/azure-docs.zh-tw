@@ -68,10 +68,11 @@
 ## [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/dls)
 
 # 資源
-## [服務更新](https://azure.microsoft.com/updates/?product=data-lake-store)
-## [價格](https://azure.microsoft.com/pricing/details/data-lake-store/)
-## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureDataLake)
-## [Stack Overflow 論壇](http://stackoverflow.com/questions/tagged/azure-data-lake)
-## [在 UserVoice 上提供意見反應](https://feedback.azure.com/forums/327234-data-lake)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [Data Lake Store Blog](https://blogs.msdn.microsoft.com/azuredatalake/)
+## [在 UserVoice 上提供意見反應](https://feedback.azure.com/forums/327234-data-lake)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureDataLake)
+## [價格](https://azure.microsoft.com/pricing/details/data-lake-store/)
+## [服務更新](https://azure.microsoft.com/updates/?product=data-lake-store)
+## [Stack Overflow 論壇](http://stackoverflow.com/questions/tagged/azure-data-lake)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=data-lake-store)

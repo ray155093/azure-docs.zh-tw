@@ -51,6 +51,7 @@
 ## [機器學習服務](/azure/machine-learning/)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [常見問題集](iot-suite-faq.md)
 ## [IoT 套件的學習路徑](https://azure.microsoft.com/documentation/learning-paths/iot-suite/)
 

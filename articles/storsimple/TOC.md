@@ -216,14 +216,15 @@
 ## [StorSimple 5000-7000 系列](http://onlinehelp.storsimple.com)
 
 # 資源
-## [價格](https://azure.microsoft.com/pricing/details/storsimple/)
-## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=StorSimple)
-## [影片](https://azure.microsoft.com/documentation/videos/index/?services=storsimple)
-## [服務更新](https://azure.microsoft.com/updates/?product=storsimple)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [行銷部落格](http://blogs.technet.com/b/cis/)
 ## [行銷](https://www.microsoft.com/server-cloud/products/storsimple/explore.aspx)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=StorSimple)
+## [價格](https://azure.microsoft.com/pricing/details/storsimple/)
+## [服務更新](https://azure.microsoft.com/updates/?product=storsimple)
 ## [支援部落格](http://blogs.msdn.com/b/storsimple/)
 ## [協力廠商通知](http://download.microsoft.com/download/2/0/0/2003271D-69D5-4143-85A2-F1D8EA058F52/StorSimple TPNs.zip)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=storsimple)
 
 
 

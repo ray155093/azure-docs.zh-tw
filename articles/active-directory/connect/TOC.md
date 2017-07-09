@@ -105,5 +105,6 @@
 
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ##[Azure AD Connect 常見問題集](active-directory-aadconnect-faq.md)
 ##[DirSync 淘汰](active-directory-aadconnect-dirsync-deprecated.md)

@@ -36,6 +36,7 @@
 ### 深入解析與分析
 #### [AD 評估](../log-analytics/log-analytics-ad-assessment.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [AD 複寫狀態](../log-analytics/log-analytics-ad-replication-status.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
+#### [代理程式健全狀況](oms-solution-agenthealth.md)
 #### [警示管理](../log-analytics/log-analytics-solution-alert-management.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [使用 Azure 網路分析](../log-analytics/log-analytics-azure-networking-analytics.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [容器](../log-analytics/log-analytics-containers.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
@@ -73,3 +74,5 @@
 # 參考
 ## [SDK](operations-management-suite-sdk.md)
 
+# 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
