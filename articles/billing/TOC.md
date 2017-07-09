@@ -40,4 +40,5 @@
 ## [合作夥伴解決方案：Cloudyn](billing-usage-rate-card-partner-solution-cloudyn.md)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [請連絡支援人員](../azure-supportability/how-to-create-azure-support-request.md)

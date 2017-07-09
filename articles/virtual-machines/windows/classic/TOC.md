@@ -99,6 +99,7 @@
 ## [儲存體 REST](/rest/api/storageservices)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [價格](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)
 ## [區域可用性](https://azure.microsoft.com/regions/services/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-machine)

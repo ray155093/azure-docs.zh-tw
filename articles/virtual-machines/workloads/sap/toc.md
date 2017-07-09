@@ -22,10 +22,12 @@
 ### [檔案層級備份](sap-hana-backup-file-level.md)
 ### [儲存體快照備份](sap-hana-backup-storage-snapshots.md)
 ## SAP Netweaver
-### [SAP IDES on Windows/SQL Server SAP CAL 部署指南](sap-cal-ides-erp6-ehp7-sp3-sql.md)
+### [SAP IDES on Windows/SQL Server SAP CAL 部署指南](cal-ides-erp6-erp7-sp3-sql.md)
 ### [概觀和架構](suse-quickstart.md)
 ### [方案和實作](planning-guide.md)
 ### [高可用性](high-availability-guide.md)
 ### [多 SID 組態](high-availability-multi-sid.md)
 ### [部署指南](deployment-guide.md)
 ### [DBMS 部署指南](dbms-guide.md)
+# 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

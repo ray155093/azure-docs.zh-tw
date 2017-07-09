@@ -21,3 +21,4 @@
 
 # 資源
 ## [Azure Advisor 影片](https://azure.microsoft.com/en-us/resources/videos/index/?services=advisor)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

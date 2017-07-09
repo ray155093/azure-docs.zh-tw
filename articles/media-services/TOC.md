@@ -4,17 +4,14 @@
 # 開始使用
 ## [建立和管理帳戶](media-services-portal-create-account.md)
 ## [設定開發環境](media-services-set-up-computer.md)
-###[.NET](media-services-dotnet-how-to-use.md)
-###[REST](media-services-rest-how-to-use.md)  
+### [.NET](media-services-dotnet-how-to-use.md)
+### [REST](media-services-rest-how-to-use.md)  
 ## [使用 AAD 驗證來存取 API](media-services-use-aad-auth-to-access-ams-api.md)
-###[使用入口網站來管理 AAD 驗證](media-services-portal-get-started-with-aad.md)
-###[使用 .NET 存取 API](media-services-dotnet-get-started-with-aad.md)
-###[使用 REST 存取 API](media-services-rest-connect-with-aad.md)
-###[使用 CLI 來建立及設定 AAD 應用程式](media-services-cli-create-and-configure-aad-app.md)
-###[使用 PowerShell 來建立及設定 AAD 應用程式](media-services-powershell-create-and-configure-aad-app.md)
-## 透過 ACS 金鑰以程式設計方式連線
-### [.NET](media-services-dotnet-connect-programmatically.md)
-### [REST](media-services-rest-connect-programmatically.md)
+### [使用入口網站來管理 AAD 驗證](media-services-portal-get-started-with-aad.md)
+### [使用 .NET 存取 API](media-services-dotnet-get-started-with-aad.md)
+### [使用 REST 存取 API](media-services-rest-connect-with-aad.md)
+### [使用 CLI 來建立及設定 AAD 應用程式](media-services-cli-create-and-configure-aad-app.md)
+### [使用 PowerShell 來建立及設定 AAD 應用程式](media-services-powershell-create-and-configure-aad-app.md)
 
 ## 傳遞隨選影片
 ### [入口網站](media-services-portal-vod-get-started.md)
@@ -223,7 +220,8 @@
 ## [REST](/rest/api/media/mediaservice)  
 
 # 資源
-## [版本資訊](media-services-release-notes.md)
-## [價格](https://azure.microsoft.com/pricing/details/media-services/)
 ## [Azure 媒體服務社群](media-services-community.md)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [價格](https://azure.microsoft.com/pricing/details/media-services/)
+## [版本資訊](media-services-release-notes.md)
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=media-services)

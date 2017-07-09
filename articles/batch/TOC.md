@@ -1,5 +1,5 @@
 # 概觀
-## [什麼是 Azure Batch？](batch-technical-overview.md)
+## [什麼是 Azure Batch](batch-technical-overview.md)
 ## [功能概觀](batch-api-basics.md)
 ## [API 和各項工具](batch-apis-tools.md)
 ## [配額和限制](batch-quota-limit.md)
@@ -10,8 +10,8 @@
 ## [Batch Node.js 教學課程](batch-nodejs-get-started.md)
 # 作法
 ## 開發
-### [應用程式封裝](batch-application-packages.md)
-### [自動調整計算節點的規模](batch-automatic-scaling.md)
+### [應用程式套件](batch-application-packages.md)
+### [自動調整計算節點](batch-automatic-scaling.md)
 ### Azure AD 驗證
 #### [包含 Batch 服務的 Azure AD](batch-aad-auth.md)
 #### [包含 Batch 管理的 Azure AD](batch-aad-auth-management.md)
@@ -51,7 +51,7 @@
 ### [集區刪除完成事件](batch-pool-delete-complete-event.md)
 ### [調整集區大小啟動事件](batch-pool-resize-start-event.md)
 ### [調整集區大小完成事件](batch-pool-resize-complete-event.md)
-### [工作開始事件](batch-task-start-event.md)
+### [工作啟動事件](batch-task-start-event.md)
 ### [工作完成事件](batch-task-complete-event.md)
 ### [工作失敗事件](batch-task-fail-event.md)
 ## [Azure Batch 計算節點環境變數](batch-compute-node-environment-variables.md)
@@ -62,14 +62,15 @@
 ## [Azure 雲端中的 Batch 和 HPC 解決方案](batch-hpc-solutions.md)
 
 # 資源
-## [價格](https://azure.microsoft.com/pricing/details/batch/)
-## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-us/home?forum=azurebatch)
-## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-batch)
-## [影片](https://azure.microsoft.com/documentation/videos/index/?services=batch)
-## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=)
-## [C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
-## [Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [大量計算資源](big-compute-resources.md)
 ## [部落格](https://blogs.technet.microsoft.com/windowshpc/)
+## [C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-us/home?forum=azurebatch)
+## [價格](https://azure.microsoft.com/pricing/details/batch/)
+## [Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
+## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-batch)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=batch)
 
 

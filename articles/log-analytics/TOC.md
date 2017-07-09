@@ -56,15 +56,17 @@
 ### [活動 Log Analytics](log-analytics-activity.md)
 ### [AD 評估](log-analytics-ad-assessment.md)
 ### [AD 複寫狀態](log-analytics-ad-replication-status.md)
+### [代理程式健全狀況](../operations-management-suite/oms-solution-agenthealth.md?toc=%2fazure%2flog-analytics%2ftoc.json)
 ### [警示管理](log-analytics-solution-alert-management.md)
+### [Application Insights Connector](log-analytics-app-insights-connector.md)
 ### [Azure SQL 分析](log-analytics-azure-sql.md)
 ### [Azure Web Apps 分析](log-analytics-azure-web-apps-analytics.md)
 ### [容量和效能](log-analytics-capacity.md)
 ### [變更追蹤](log-analytics-change-tracking.md)
 ### [容器](log-analytics-containers.md)
 ### [DNS 分析](log-analytics-dns.md)
-### [OMS 中的 IT 服務管理連接器](log-analytics-itsmc-overview.md)
-#### [OMS 中的 IT 服務管理連線](log-analytics-itsmc-connections.md)
+### [IT 服務管理連接器](log-analytics-itsmc-overview.md)
+#### [IT 服務管理連線](log-analytics-itsmc-connections.md)
 ### [金鑰保存庫](log-analytics-azure-key-vault.md)
 ### Logic Apps B2B 訊息
 #### [Logic Apps B2B 訊息解決方案](../logic-apps/logic-apps-track-b2b-messages-omsportal.md?toc=%2fazure%2flog-analytics%2ftoc.json)
@@ -89,6 +91,7 @@
 ### [PowerShell Cmdlet](log-analytics-powershell-workspace-configuration.md)
 ### [Resource Manager 範本](log-analytics-template-workspace-configuration.md)
 ### [記錄檔搜尋 API](log-analytics-log-search-api.md)
+#### [Python](log-analytics-log-search-api-python.md)
 ### [警示 API](log-analytics-api-alerts.md)
 
 # 參考
@@ -96,6 +99,7 @@
 ## [REST](/rest/api/loganalytics)
 
 # 資源
-## [Windows 分析](https://www.microsoft.com/en-us/WindowsForBusiness/windows-analytics)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [價格](https://azure.microsoft.com/pricing/details/log-analytics/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=log-analytics)
+## [Windows 分析](https://www.microsoft.com/en-us/WindowsForBusiness/windows-analytics)

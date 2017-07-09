@@ -25,11 +25,12 @@
 ## [REST](/rest/api/scheduler)
 
 # 資源
-## [價格](https://azure.microsoft.com/pricing/details/scheduler/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/home?forum=azurescheduler)
+## [價格](https://azure.microsoft.com/pricing/details/scheduler/)
+## [服務更新](https://azure.microsoft.com/updates/?product=scheduler)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-scheduler)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=scheduler)
-## [服務更新](https://azure.microsoft.com/updates/?product=scheduler)
 
 
 

@@ -33,6 +33,7 @@
 ## [Azure Insights CLI 快速入門範例](../monitoring-and-diagnostics/insights-cli-samples.md)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowsazuremanagement) 
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-management-portal)
 

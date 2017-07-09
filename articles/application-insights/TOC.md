@@ -1,6 +1,6 @@
 # 概觀
 ## [什麼是 Application Insights？](app-insights-overview.md)
-## [devOps 週期的效能監視](app-insights-detect-triage-diagnose.md)
+## [DevOps 的效能監視概觀](app-insights-detect-triage-diagnose.md)
 
 # 開始使用
 ## 監視 Azure
@@ -80,7 +80,6 @@
 #### [搜尋](app-insights-diagnostic-search.md)
 #### [計量](app-insights-metrics-explorer.md)
 #### [即時資料流](app-insights-live-stream.md)
-
 #### [應用程式對應](app-insights-app-map.md)
 #### [HockeyApp 資料](app-insights-hockeyapp-bridge-app.md)
 
@@ -93,6 +92,7 @@
 ### 使用量
 #### [概觀](app-insights-usage-overview.md)
 #### [使用者、工作階段、事件](app-insights-usage-segmentation.md)
+#### [漏斗圖](app-insights-understand-usage-patterns.md)
 #### [保留](app-insights-usage-retention.md)
 #### [活頁簿](app-insights-usage-workbooks.md)
 
@@ -111,6 +111,7 @@
 ### [設定警示](app-insights-powershell-alerts.md)
 ### [取得 Azure 診斷](app-insights-powershell-azure-diagnostics.md)
 ### [透過 Microsoft Flow 進行自動化](app-insights-automate-with-flow.md)
+### [透過 Azure Logic App 進行自動化](automate-with-logic-apps.md)
 
 ## 開發
 
@@ -154,6 +155,7 @@
 ## [遙測相互關聯](application-insights-correlation.md)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 
 ## [語言和平台](app-insights-platforms.md)
 

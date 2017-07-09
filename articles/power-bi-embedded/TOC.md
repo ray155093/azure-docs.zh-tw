@@ -33,9 +33,10 @@
 
 
 # 資源
-## [範例應用程式](https://github.com/Azure-Samples/power-bi-embedded-integrate-report-into-web-app/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [JavaScript 內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)
 ## [JavaScript Git 存放庫](https://github.com/Microsoft/PowerBI-JavaScript)
 ## [Power BI C# Git 存放庫](https://github.com/Microsoft/PowerBI-CSharp)
 ## [Power BI 社群](http://community.powerbi.com/t5/Developer/bd-p/Developer)
+## [範例應用程式](https://github.com/Azure-Samples/power-bi-embedded-integrate-report-into-web-app/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/powerbi)

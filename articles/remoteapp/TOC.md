@@ -67,7 +67,8 @@
 ### [針對雲端收藏進行疑難排解](remoteapp-cloudtrouble.md)
 
 # 資源
-## [服務更新](https://azure.microsoft.com/updates/?product=remoteapp)
-## [價格](https://azure.microsoft.com/pricing/details/remoteapp/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureRemoteApp)
+## [價格](https://azure.microsoft.com/pricing/details/remoteapp/)
+## [服務更新](https://azure.microsoft.com/updates/?product=remoteapp)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=remoteapp)

@@ -41,10 +41,11 @@
 ## [Azure DNS](/azure/dns/)
 
 # 資源
-## [價格](https://azure.microsoft.com/pricing/details/traffic-manager/)
-## [SLA](https://azure.microsoft.com/support/legal/sla/traffic-manager/)
-## [服務限制](../azure-subscription-service-limits.md#traffic-manager-limits)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [部落格](https://azure.microsoft.com/blog/topics/networking/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
+## [價格](https://azure.microsoft.com/pricing/details/traffic-manager/)
+## [服務限制](../azure-subscription-service-limits.md#traffic-manager-limits)
 ## [服務更新](https://azure.microsoft.com/updates/?product=traffic-manager)
+## [SLA](https://azure.microsoft.com/support/legal/sla/traffic-manager/)
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=traffic-manager)

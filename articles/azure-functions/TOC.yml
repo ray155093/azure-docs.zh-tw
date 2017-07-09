@@ -74,6 +74,8 @@
        href: functions-test-a-function.md
      - name: 在本機開發及偵錯
        href: functions-run-local.md
+     - name: Visual Studio 開發
+       href: functions-develop-vs.md
   - name: 部署
     items:
     - name: 連續部署
@@ -126,6 +128,8 @@
     href: functions-api-definition.md     
 - name: 資源
   items:
+  - name: Azure 藍圖
+    href: https://azure.microsoft.com/roadmap/
   - name: 價格
     href: https://azure.microsoft.com/pricing/details/functions/
   - name: 區域可用性

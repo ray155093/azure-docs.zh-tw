@@ -33,3 +33,5 @@
 ## [管理發行者設定檔](./cloud-partner-portal-manage-publisher-profile.md)
 ## [管理使用者](./cloud-partner-portal-manage-users.md)
 ## [取得支援](./cloud-partner-portal-support-for-cloud-partner-portal.md)
+# 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

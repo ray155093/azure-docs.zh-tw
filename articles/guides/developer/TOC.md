@@ -111,5 +111,6 @@
 
 # 資源
 ## [Azure 區域](https://azure.microsoft.com/regions/)
-## [影片](https://azure.microsoft.com/resources/videos/home/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [範例](https://azure.microsoft.com/resources/samples/)
+## [影片](https://azure.microsoft.com/resources/videos/home/)

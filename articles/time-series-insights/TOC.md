@@ -5,6 +5,7 @@
 ## [建立一個環境](time-series-insights-get-started.md)
 ## [授與資料存取](time-series-insights-data-access.md)
 ## [建立事件來源](time-series-insights-add-event-source.md)
+## [建立參考資料集](time-series-insights-add-reference-data-set.md)
 ## [傳送事件](time-series-insights-send-events.md)
 
 # 作法
@@ -15,6 +16,7 @@
 ## 開發
 ### [驗證和授權](time-series-insights-authentication-and-authorization.md)
 ### [使用 C# 查詢資料](time-series-insights-query-data-csharp.md)
+### [使用 C# 管理參考資料](time-series-insights-manage-reference-data-csharp.md)
 
 # 參考
 ## [查詢 API](/rest/api/time-series-insights/time-series-insights-reference-queryapi)
@@ -26,4 +28,5 @@
 ## [Azure 串流分析](/azure/stream-analytics/)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [價格](https://azure.microsoft.com/pricing/details/time-series-insights/)

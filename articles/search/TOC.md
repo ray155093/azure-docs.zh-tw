@@ -73,21 +73,22 @@
 ## [REST (管理)](/rest/api/searchmanagement)
 
 # 資源
-## [服務更新](https://azure.microsoft.com/updates/?product=search)
 ## [API 版本](search-api-versions.md)
-## [服務 REST (預覽)](search-api-2015-02-28-preview.md)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [價格](https://azure.microsoft.com/pricing/details/search/)
+## [服務 REST (預覽)](search-api-2015-02-28-preview.md)
+## [服務更新](https://azure.microsoft.com/updates/?product=search)
+## 課程工具與教學課程
 ## 示範網站
-### [搜尋分析器示範](http://alice.unearth.ai/)
+## 合作夥伴與社群
+### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
+### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
+### [論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureSearch)
 ### [作業列表應用程式](http://aka.ms/azjobsdemo)
 ### [即時示範應用程式](https://searchsamples.azurewebsites.net/)
-## 課程工具與教學課程
-### [Virtual academy](https://mva.microsoft.com/training-courses/using-windows-azure-search-10540?l=ADkxnd97_9304984382)
-### [影片和教學課程](search-video-demo-tutorial-list.md)
-### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
-## 合作夥伴與社群
 ### [模型關聯式資料](http://blogs.technet.com/b/onsearch/archive/2015/09/08/modeling-the-adventureworks-inventory-database-for-azure-search.aspx)
 ### [多層級 Facet](http://blogs.technet.com/b/onsearch/archive/2015/09/09/multi-level-taxonomy-facets-in-azure-search.aspx)
-### [論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureSearch)
+### [搜尋分析器示範](http://alice.unearth.ai/)
 ### [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-search)
-### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
+### [影片和教學課程](search-video-demo-tutorial-list.md)
+### [Virtual academy](https://mva.microsoft.com/training-courses/using-windows-azure-search-10540?l=ADkxnd97_9304984382)

@@ -65,8 +65,9 @@
 ## [REST](/rest/api/notificationhubs)
 
 # 資源
-## [價格](https://azure.microsoft.com/pricing/details/notification-hubs/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=notificationhubs)
+## [價格](https://azure.microsoft.com/pricing/details/notification-hubs/)
+## [服務更新](https://azure.microsoft.com/updates/?product=notification-hubs)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-notificationhub)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=notification-hubs)
-## [服務更新](https://azure.microsoft.com/updates/?product=notification-hubs)

@@ -42,6 +42,7 @@
 #### [開始使用 Azure 記錄整合](security-azure-log-integration-get-started.md)
 #### [整合 Azure Active Directory 稽核記錄](security-azure-log-integration-ad.md)
 #### [整合資訊安全中心警示](security-azure-log-integration-security-center.md)
+#### [使用事件中樞，整合 Key Vault 中的記錄](security-azure-log-integration-keyvault-eventhub.md)
 #### [常見問題集](security-azure-log-integration-faq.md)
 
 ## 身分識別管理
@@ -72,9 +73,10 @@
 ## [Operations Management Suite](../operations-management-suite/oms-security-getting-started.md)
 
 # 資源
-## [安全性與法務遵循部落格](http://blogs.msdn.com/b/azuresecurity/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [Azure 安全性 MVP 計畫](azure-security-mvp.md)
 ## [網路安全性諮詢](azure-security-cyber-services.md)
+## [安全性與法務遵循部落格](http://blogs.msdn.com/b/azuresecurity/)
 ## [Virtual Academy 的安全性課程](security-microsoft-virtual-academy.md)
 ## [Channel 9 上的安全性影片](security-channel-nine.md)
 ## [威脅模型化工具](azure-security-threat-modeling-tool.md)

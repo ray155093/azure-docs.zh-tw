@@ -10,7 +10,11 @@
 ### [雲端服務](cdn-cloud-service-with-cdn.md)
 ### [儲存體](cdn-create-a-storage-account-with-cdn.md)
 ### [跨原始資源共用](cdn-cors.md)
-
+## 最佳化內容
+### [最佳化概觀](cdn-optimization-overview.md)
+####[大型檔案最佳化](cdn-large-file-optimization.md)
+####[媒體串流最佳化](cdn-media-streaming-optimization.md)
+ 
 ## 管理
 ### [啟用自訂網域的 HTTPS](cdn-custom-ssl.md)
 ### [以 PowerShell 管理](cdn-manage-powershell.md)
@@ -54,12 +58,13 @@
 
 # 資源
 ##  [規則引擎參考](cdn-rules-engine-reference.md)
-### [規則引擎條件式運算式](cdn-rules-engine-reference-conditional-expressions.md)
-### [規則引擎比對條件](cdn-rules-engine-reference-match-conditions.md)
-### [規則引擎功能](cdn-rules-engine-reference-features.md)
 ## [Azure CDN POP 位置](cdn-pop-locations.md)
-## [服務更新](https://azure.microsoft.com/updates/?product=cdn)
-## [價格](https://azure.microsoft.com/pricing/details/cdn/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurecdn)
+## [價格](https://azure.microsoft.com/pricing/details/cdn/)
+## [服務更新](https://azure.microsoft.com/updates/?product=cdn)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-cdn)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cdn)
+### [規則引擎條件式運算式](cdn-rules-engine-reference-conditional-expressions.md)
+### [規則引擎功能](cdn-rules-engine-reference-features.md)
+### [規則引擎比對條件](cdn-rules-engine-reference-match-conditions.md)

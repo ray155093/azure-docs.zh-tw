@@ -193,6 +193,10 @@
 ### [集合](machine-learning-gallery-collections.md)
 ### [自訂模組](machine-learning-gallery-custom-modules.md)
 
+## Cortana Intelligence Partner Solutions
+### [Cortana Intelligence 發佈指南](cortana-intelligence-appsource-publishing-guide.md)
+### [Cortana Intelligence 解決方案評估工具](cortana-intelligence-appsource-evaluation-tool.md)
+
 ## Cortana Analytics
 ### API
 #### [異常偵測](machine-learning-apps-anomaly-detection-api.md)
@@ -207,6 +211,7 @@
 ##### [設定](cortana-analytics-playbook-vehicle-telemetry-powerbi.md)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 
 ## [Net# 神經網路語言](machine-learning-azure-ml-netsharp-reference-guide.md)
 ## [價格](https://azure.microsoft.com/pricing/details/machine-learning/)

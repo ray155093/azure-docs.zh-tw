@@ -113,9 +113,10 @@
 ### [安全性指南](storage-security-guide.md)
 ### [待用資料的加密](storage-service-encryption.md)
 ### [客戶金鑰的加密靜止](storage-service-encryption-customer-managed-keys.md)
-### [共用金鑰驗證](https://msdn.microsoft.com/library/dd179428.aspx)
+### [共用金鑰驗證](/rest/api/storageservices/Authentication-for-the-Azure-Storage-Services)
 ### [共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)
 ### [教學課程：使用 Azure 金鑰保存庫加密及解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)
+### [需要安全傳輸](storage-require-secure-transfer.md)
 ### 用戶端加密
 #### [.NET](storage-client-side-encryption.md)
 #### [Java](storage-client-side-encryption-java.md)
@@ -201,11 +202,12 @@
 ### [疑難排解教學課程](storage-e2e-troubleshooting-classic-portal.md)
 
 # 資源
-## [價格](https://azure.microsoft.com/pricing/details/storage/blobs/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [Azure 儲存體用戶端工具](storage-explorers.md)
-## [Stack Overflow](http://stackoverflow.com/questions/tagged/windows-azure-storage)
 ## [論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)
+## [價格](https://azure.microsoft.com/pricing/details/storage/blobs/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=storage)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/windows-azure-storage)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=storage)
 
 ## Azure 儲存體總管

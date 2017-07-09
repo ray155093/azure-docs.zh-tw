@@ -105,3 +105,5 @@
 #### [權杖參考](active-directory-v2-tokens.md)
 #### [憑證認證](active-directory-certificate-credentials.md)
 ### [範圍](active-directory-v2-scopes.md)
+# 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

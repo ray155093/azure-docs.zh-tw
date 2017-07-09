@@ -88,10 +88,11 @@
 ## [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
 
 # 資源
-## [定價](https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 ## [Azure AD B2C 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c)
-## [影片](https://azure.microsoft.com/documentation/videos/index/?services=active-directory-b2c)
-## [服務更新](https://azure.microsoft.com/updates/?product=active-directory-b2c)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [常見問題集](active-directory-b2c-faqs.md)
+## [價格](https://azure.microsoft.com/pricing/details/active-directory-b2c/)
+## [服務更新](https://azure.microsoft.com/updates/?product=active-directory-b2c)
 ## [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-ad-b2c)
 ## [支援](active-directory-b2c-support.md)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=active-directory-b2c)

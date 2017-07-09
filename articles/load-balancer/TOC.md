@@ -67,5 +67,6 @@
 ## [DNS](/azure/dns/)
 
 # 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [價格](https://azure.microsoft.com/pricing/details/load-balancer/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=load-balancer)
