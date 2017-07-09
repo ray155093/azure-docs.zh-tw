@@ -15,10 +15,10 @@ ms.workload: na
 ms.date: 04/27/2017
 ms.author: TomSh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: 47e3c9f35cb8d58d77226f7efa2bbe70e0683afe
+ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
+ms.openlocfilehash: f989c2c9369e8c5cd4b4255005bb7b7821079d7c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 06/21/2017
 
 
 ---
@@ -42,21 +42,20 @@ Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以�
 Azure 作業安全性是指使用者可在 Microsoft Azure 中用來保護其資料、應用程式和其他資產的服務、控制及功能。 Azure 作業安全性的基礎架構涵蓋透過 Microsoft 特有之各種功能獲得的知識，包括 Microsoft 安全性開發週期 (SDL)、Microsoft Security Response Center 方案，以及對網路安全性威脅型態的深層認知。
 
 本技術白皮書概述 Microsoft 在 Microsoft Azure 雲端平台內處理 Azure 作業安全性的方法，並涵蓋以下服務：
-1.    [Azure Operations Management Suite](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview)
+1.  [Azure Operations Management Suite](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview)
 
-2.    [Azure 資訊安全中心](https://docs.microsoft.com/azure/security-center/security-center-intro)
+2.  [Azure 資訊安全中心](https://docs.microsoft.com/azure/security-center/security-center-intro)
 
-3.    [Azure 監視器](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview)
+3.  [Azure 監視器](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview)
 
-4.    [Azure 網路監看員](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview)
+4.  [Azure 網路監看員](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview)
 
-5.    [Azure 儲存體分析](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics)
+5.  [Azure 儲存體分析](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics)
 
-6.    [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-whatis)
+6.  [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-whatis)
 
 
 ## <a name="microsoft-operations-management-suite"></a>Microsoft Operations Management Suite
-
 
 Microsoft Operations Management Suite (OMS) 是適用於混合式雲端的 IT 管理解決方案。 透過單獨使用或擴充現有的 System Center 部署，OMS 可為您基礎結構的雲端式管理提供最大的彈性和控制。
 
@@ -86,13 +85,12 @@ OMS 的核心功能是由在 Azure 中執行的一組服務所提供。 每個�
 ![Log Analytics](./media/azure-operational-security/azure-operational-security-fig2.png)
 
 Log Analytics 服務會使用下列方法安全地管理您以雲端為基礎的資料：
--    資料隔離
--    資料保留
--    實體安全性
--    事件管理
--    法規遵循
--    安全性標準認證
-
+-   資料隔離
+-   資料保留
+-   實體安全性
+-   事件管理
+-   法規遵循
+-   安全性標準認證
 
 ### <a name="azure-backup"></a>Azure 備份
 
@@ -139,40 +137,40 @@ Azure 資訊安全中心可協助保護您的 Azure 資源。 它提供您 Azure
 
 - Azure 資訊安全中心會分析來自下列來源的資料，以掌握您的安全性狀態、識別弱點並提供建議防護功能，並偵測作用中的威脅︰
 
--    Azure 服務︰與 Azure 服務的資源提供者通訊，以使用您所部署之 Azure 服務的組態相關資訊。
+-   Azure 服務︰與 Azure 服務的資源提供者通訊，以使用您所部署之 Azure 服務的組態相關資訊。
 
 - 網路流量︰使用從 Microsoft 的基礎結構取樣的網路流量中繼資料，例如來源/目的地 IP/連接埠、封包大小和網路通訊協定。
 
--    合作夥伴解決方案：使用整合式合作夥伴解決方案 (例如防火牆和反惡意程式碼解決方案) 的安全性警示。
+-   合作夥伴解決方案：使用整合式合作夥伴解決方案 (例如防火牆和反惡意程式碼解決方案) 的安全性警示。
 
--    您的虛擬機器：使用組態資訊以及安全性事件的相關資訊，例如來自您虛擬機器的 Windows 事件和稽核記錄檔、IIS 記錄檔、syslog 訊息和損毀傾印檔。
+-   您的虛擬機器：使用組態資訊以及安全性事件的相關資訊，例如來自您虛擬機器的 Windows 事件和稽核記錄檔、IIS 記錄檔、syslog 訊息和損毀傾印檔。
 
 ### <a name="data-protection"></a>資料保護
 
 為了協助客戶防範、偵測和回應威脅，Azure 資訊安全中心會收集和處理安全性的相關資料，包括組態資訊、中繼資料、事件記錄檔、損毀傾印檔等等。 Microsoft 從撰寫程式碼到運作服務均遵守嚴格的規範與安全性指導方針。
 
--    **資料隔離**：資料會以邏輯方式分開保存在服務的每個元件上。 每個組織加上標記的所有資料。 這項標記作業在整個資料生命週期持續發生，它會強制執行服務的每個層級。
+-   **資料隔離**：資料會以邏輯方式分開保存在服務的每個元件上。 每個組織加上標記的所有資料。 這項標記作業在整個資料生命週期持續發生，它會強制執行服務的每個層級。
 
--    **資料存取**︰為了提供安全性建議和調查潛在的安全性威脅，Microsoft 人員可能會存取 Azure 服務所收集或分析的資訊，包含損毀傾印檔案、處理建立事件、VM 磁碟快照集和構件，這些資訊可能會在無意中包含客戶資料或您虛擬機器中的個人資料。 我們會遵守 [Microsoft Online Services Terms 和隱私權聲明 (英文)](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31)，其中陳述 Microsoft 不會使用客戶資料或從中衍生資訊作為任何廣告或類似的商業用途。
+-   **資料存取**︰為了提供安全性建議和調查潛在的安全性威脅，Microsoft 人員可能會存取 Azure 服務所收集或分析的資訊，包含損毀傾印檔案、處理建立事件、VM 磁碟快照集和構件，這些資訊可能會在無意中包含客戶資料或您虛擬機器中的個人資料。 我們會遵守 [Microsoft Online Services Terms 和隱私權聲明 (英文)](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31)，其中陳述 Microsoft 不會使用客戶資料或從中衍生資訊作為任何廣告或類似的商業用途。
 
--    **資料使用**：Microsoft 使用可見於多個租用戶的模式和威脅智慧來加強我們的防護和偵測功能；我們會根據[隱私權聲明](https://www.microsoft.com/privacystatement/OnlineServices/Default.aspx)中所述的隱私權承諾進行。
+-   **資料使用**：Microsoft 使用可見於多個租用戶的模式和威脅智慧來加強我們的防護和偵測功能；我們會根據[隱私權聲明](https://www.microsoft.com/privacystatement/OnlineServices/Default.aspx)中所述的隱私權承諾進行。
 
 ### <a name="data-location"></a>資料位置
 
 Azure 資訊安全中心會收集損毀傾印檔案的暫時複本並加以分析，以取得惡意探索嘗試和成功入侵的證明。 Azure 資訊安全中心會在與工作區相同的地理區域內執行這項分析，並且在分析完成時刪除暫複本。 機器構件會集中儲存在與 VM 相同的區域。
 
--    **儲存體帳戶**︰針對執行虛擬機器的每個區域指定儲存體帳戶。 這可讓您將資料儲存在與從中收集資料的虛擬機器相同的區域中。
+-   **儲存體帳戶**︰針對執行虛擬機器的每個區域指定儲存體帳戶。 這可讓您將資料儲存在與從中收集資料的虛擬機器相同的區域中。
 
--    **Azure 資訊安全中心儲存體**：安全性警示的相關資訊 (包含合作夥伴警示、建議和安全性健康狀態) 會集中儲存 (目前位於美國)。 此資訊可能包括視需要從您的虛擬機器收集的相關組態資訊和安全性事件，以提供給您安全性警示、建議或安全性健康狀態。
+-   **Azure 資訊安全中心儲存體**：安全性警示的相關資訊 (包含合作夥伴警示、建議和安全性健康狀態) 會集中儲存 (目前位於美國)。 此資訊可能包括視需要從您的虛擬機器收集的相關組態資訊和安全性事件，以提供給您安全性警示、建議或安全性健康狀態。
 
 
 ## <a name="azure-monitor"></a>Azure 監視器
 
 [OMS 安全性](https://docs.microsoft.com/azure/operations-management-suite/oms-security-monitoring-resources)和稽核解決方案可讓 IT 人員主動監視所有資源，此舉有助於將安全性事件的影響降至最低。 OMS 安全性和稽核具備可用來監視資源的安全性網域。 安全性網域提供特定選項的快速存取方式，並基於安全性監視目的，更詳盡地涵蓋下列網域：
 
--    惡意程式碼評估
--    更新評估
--    身分識別與存取。
+-   惡意程式碼評估
+-   更新評估
+-   身分識別與存取。
 
 Azure 監視器提供特定資源類型詳細資訊的指標。 它會針對來自 Azure 基礎結構 (活動記錄) 及每個個別的 Azure 資源 (診斷記錄) 的資料，提供視覺效果、查詢、路由、警示、自動調整及自動化功能。
 
@@ -204,15 +202,15 @@ Azure 監視器提供特定資源類型詳細資訊的指標。 它會針對來�
 
 Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與健全狀況。 Azure 遙測資料最重要的類型是由大多數 Azure 資源所發出的度量 (也稱為效能計數器)。 Azure 監視器提供數種方式，來設定及取用這些[計量](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-metrics)以進行監視與疑難排解。 度量是遙測的寶貴來源，可讓您執行下列工作：
 
--    **追蹤資源** (例如 VM、網站或邏輯應用程式) 的效能，方法是在入口網站圖表上繪製其度量，並將該圖表釘選到儀表板。
+-   **追蹤資源** (例如 VM、網站或邏輯應用程式) 的效能，方法是在入口網站圖表上繪製其度量，並將該圖表釘選到儀表板。
 
--    **取得問題的通知**，該問題在度量超出特定的閾值時會影響資源的效能。
+-   **取得問題的通知**，該問題在度量超出特定的閾值時會影響資源的效能。
 
--    **設定自動化動作**，例如自動調整資源，或在計量超出特定閾值時觸發 Runbook。
+-   **設定自動化動作**，例如自動調整資源，或在計量超出特定閾值時觸發 Runbook。
 
--    **執行進階分析**或報告您資源的效能或使用量趨勢。
+-   **執行進階分析**或報告您資源的效能或使用量趨勢。
 
--    **封存**您資源的效能或健全狀況歷程記錄，以用於合規性或稽核用途。
+-   **封存**您資源的效能或健全狀況歷程記錄，以用於合規性或稽核用途。
 
 ### <a name="azure-diagnostics"></a>Azure 診斷
 
@@ -228,16 +226,16 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 
 網路監看員目前具有下列功能︰
 
--    **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview">稽核記錄</a>**：會記錄做為網路組態一部分所執行的作業。 這些記錄可在 Azure 入口網站中檢視，或使用 Power BI 之類的 Microsoft 工具或協力廠商工具來擷取。 稽核記錄可透過入口網站、PowerShell、CLI 和 Rest API 來取得。 如需稽核記錄的詳細資訊，請參閱＜使用 Resource Manager 來稽核作業＞。 針對所有網路資源所進行的作業都會有稽核記錄。
+-   **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview">稽核記錄</a>**：會記錄做為網路組態一部分所執行的作業。 這些記錄可在 Azure 入口網站中檢視，或使用 Power BI 之類的 Microsoft 工具或協力廠商工具來擷取。 稽核記錄可透過入口網站、PowerShell、CLI 和 Rest API 來取得。 如需稽核記錄的詳細資訊，請參閱＜使用 Resource Manager 來稽核作業＞。 針對所有網路資源所進行的作業都會有稽核記錄。
 
 
--    **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-ip-flow-verify-overview">IP 流程驗證</a>**：根據流程資訊 5 個 Tuple 封包參數 (目的地 IP、來源 IP、目的地連接埠、來源連接埠和通訊協定) 檢查是否允許或拒絕封包。 如果封包遭到網路安全性群組拒絕，則會傳回拒絕封包的規則和網路安全性群組。
+-   **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-ip-flow-verify-overview">IP 流程驗證</a>**：根據流程資訊 5 個 Tuple 封包參數 (目的地 IP、來源 IP、目的地連接埠、來源連接埠和通訊協定) 檢查是否允許或拒絕封包。 如果封包遭到網路安全性群組拒絕，則會傳回拒絕封包的規則和網路安全性群組。
 
--    **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-next-hop-overview">下一個躍點</a>** - 決定在 Azure 網路網狀架構中路由傳送之封包的下一個躍點，讓您得以診斷任何設定錯誤的使用者定義路由。
+-   **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-next-hop-overview">下一個躍點</a>** - 決定在 Azure 網路網狀架構中路由傳送之封包的下一個躍點，讓您得以診斷任何設定錯誤的使用者定義路由。
 
--    **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-overview">安全性群組檢視</a>** - 取得套用至 VM 的有效和已套用安全性規則。
+-   **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-overview">安全性群組檢視</a>** - 取得套用至 VM 的有效和已套用安全性規則。
 
--    **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview">NSG 流量記錄</a>** - 網路安全性群組的流量記錄可讓您擷取群組中的安全性規則所允許或拒絕之流量的相關記錄。 流程是由 5個 Tuple 資訊定義的，這些資訊分別是來源 IP、目的地 IP、來源連接埠、目的地連接埠和通訊協定。
+-   **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview">NSG 流量記錄</a>** - 網路安全性群組的流量記錄可讓您擷取群組中的安全性規則所允許或拒絕之流量的相關記錄。 流程是由 5個 Tuple 資訊定義的，這些資訊分別是來源 IP、目的地 IP、來源連接埠、目的地連接埠和通訊協定。
 
 ## <a name="azure-storage-analytics"></a>Azure 儲存體分析
 
@@ -255,8 +253,8 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 
 儲存體分析所執行的下列動作會列入計費：
 
--    建立 Blob 以用於記錄的要求
--    針對度量建立資料表實體的要求。
+-   建立 Blob 以用於記錄的要求
+-   針對度量建立資料表實體的要求。
 
 > [!Note]
 > 如需計費和資料保留原則的詳細資訊，請參閱[儲存體分析和計費](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-and-billing)。
@@ -273,15 +271,15 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 | 成功的要求 | 成功的要求 |
 |失敗的要求，包括逾時、節流、網路、授權和其他錯誤 | 使用共用存取簽章 (SAS) 的要求，包括失敗和成功的要求 |
 | 使用共用存取簽章 (SAS) 的要求，包括失敗和成功的要求 |用戶端與伺服器的逾時錯誤 |
-|     分析資料的要求 |     失敗的 GET 要求，錯誤碼為 304 (未修改) |
+|   分析資料的要求 |    失敗的 GET 要求，錯誤碼為 304 (未修改) |
 | 系統不會記錄儲存體分析本身所提出的要求 (例如，記錄檔的建立或刪除)。 記錄資料的完整清單記錄於[儲存體分析記錄作業和狀態訊息](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages)及[儲存體分析記錄檔格式](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format)主題中。 | 系統不會記錄所有其他失敗的匿名要求。 記錄資料的完整清單記錄於[儲存體分析記錄作業和狀態訊息](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages)及[儲存體分析記錄格式](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format)中。 |
 ## <a name="azure-active-directory"></a>Azure Active Directory
 
 Azure AD 也包含一組完整的身分識別管理功能，包括多重要素驗證、裝置註冊、自助式密碼管理、自助式群組管理、特殊權限的帳戶管理、角色型存取控制、應用程式使用量監視、豐富的稽核，以及安全性監視和警示。
 
--    利用 Azure AD 多重要素驗證和條件式存取，改善應用程式的安全性。
+-   利用 Azure AD 多重要素驗證和條件式存取，改善應用程式的安全性。
 
--    利用安全性報告和監視，監視應用程式使用量並保護您的企業免於受到嚴重的威脅。
+-   利用安全性報告和監視，監視應用程式使用量並保護您的企業免於受到嚴重的威脅。
 
 Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽核報告。 [Azure Active Directory 稽核報告](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-guide)可協助客戶識別其 Azure Active Directory 中發生的特殊權限動作。 特殊權限動作包括提高權限變更 (例如，角色建立或密碼重設)、原則設定變更 (例如密碼原則) 或目錄設定變更 (例如，網域同盟設定變更)。
 
@@ -316,13 +314,13 @@ Azure AD 稽核報告中的事件會保留 180 天。
 
 本文說明
 
--    Operations Management Suite (OMS) 中收集、處理和保護資料的方式。
+-   Operations Management Suite (OMS) 中收集、處理和保護資料的方式。
 
--    快速分析多個資料來源中的事件。 識別安全性風險，並了解威脅和攻擊的範圍和影響，以減輕安全性缺口的損害。
+-   快速分析多個資料來源中的事件。 識別安全性風險，並了解威脅和攻擊的範圍和影響，以減輕安全性缺口的損害。
 
--    藉由將輸出的惡意 IP 流量和惡意威脅類型視覺化，進而識別攻擊模式。 了解您整個環境的安全性情勢，無論平台為何皆可。
+-   藉由將輸出的惡意 IP 流量和惡意威脅類型視覺化，進而識別攻擊模式。 了解您整個環境的安全性情勢，無論平台為何皆可。
 
--    擷取安全性或合規性稽核所需的所有記錄和事件資料。 透過完整、可搜尋且可匯出的記錄與事件資料集，來降低提供安全性稽核所需的時間和資源。
+-   擷取安全性或合規性稽核所需的所有記錄和事件資料。 透過完整、可搜尋且可匯出的記錄與事件資料集，來降低提供安全性稽核所需的時間和資源。
 
 <ul>
 <li>收集安全性相關的事件、稽核及缺口分析，以密切注意您的資產：</li>

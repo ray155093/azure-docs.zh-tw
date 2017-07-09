@@ -13,12 +13,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/15/2017
+ms.date: 06/14/2017
 ms.author: markgal;trinadhk;
-translationtype: Human Translation
-ms.sourcegitcommit: 82b7541ab1434179353247ffc50546812346bda9
-ms.openlocfilehash: b89e7b0538ae428b5057ea1d69b7371a4a261589
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 0d35d01ccd48dcddd18ba13ea0543a68bff97206
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -45,6 +46,11 @@ ms.lasthandoff: 03/02/2017
 > [!NOTE]
 > 備份虛擬機器是本機的程序。 您無法將某一個區域中的虛擬機器備份到另一個區域中的備份保存庫。 因此，您必須在每個 Azure 區域中建立備份保存庫，其中含有將備份的 VM。
 >
+> [!IMPORTANT]
+> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。
+> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> **自 2017 年 11 月 1 日起**：
+>- 任何其餘的備份保存庫都會自動升級至復原服務保存庫。
+>- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
 >
 
 ## <a name="step-1---discover-azure-virtual-machines"></a>步驟 1 - 探索 Azure 虛擬機器

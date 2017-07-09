@@ -13,12 +13,13 @@ ms.devlang: arduino
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/28/2017
+ms.date: 06/15/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 3650f628747f8a9e743711f5c7a175d2a2523565
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 0969e78a69c73c29ecfddcf0de0ebeeeed8acd60
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -57,14 +58,11 @@ ms.lasthandoff: 04/12/2017
 
 您的開發環境還需要下列事項：
 
+* 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，請花幾分鐘的時間建立[免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。
 * 執行 Windows 或 Ubuntu 的 Mac 或 PC。
 * 供 Feather HUZZAH ESP8266 連線到的無線網路。
 * 用來下載組態工具的網際網路連線。
 * [Arduino IDE](https://www.arduino.cc/en/main/software) 1.6.8 版或更新版本。 舊版無法與 AzureIoT 程式庫搭配運作。
-
-
-
-
 
 如果您沒有感應器，下列項目可供選用。 您也可以選擇使用模擬的感應器資料。
 
@@ -72,99 +70,8 @@ ms.lasthandoff: 04/12/2017
 * 麵包板
 * M/M 跳線
 
-## <a name="create-an-iot-hub-and-register-a-device-for-feather-huzzah-esp8266"></a>建立 IoT 中樞並為 Feather HUZZAH ESP8266 註冊裝置
 
-### <a name="to-create-your-iot-hub-in-the-azure-portal-follow-these-steps"></a>若要在 Azure 入口網站中建立 IoT 中樞，請遵循下列步驟：
-
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-1. 按一下 [新增] > [物聯網] > [IoT 中樞]。
-
-   ![建立 IoT 中樞](media/iot-hub-arduino-huzzah-esp8266-get-started/3_iot-hub-creation.png)
-
-1. 在 [IoT 中樞] 窗格中，輸入 IoT 中樞的必要資訊︰
-
-   ![用於建立 IoT 中樞的基本資訊](media/iot-hub-arduino-huzzah-esp8266-get-started/4_iot-hub-provide-basic-info.png)
-
-   * **名稱**：IoT 中樞的名稱。 如果您輸入的名稱有效，則會出現綠色核取記號。
-   * **定價與級別層**：針對本示範選取 F1 免費層。 請參閱[定價與級別層](https://azure.microsoft.com/pricing/details/iot-hub/)。
-   * **資源群組**：建立用以裝載 IoT 中樞的資源群組，或使用現有資源群組。 請參閱[使用資源群組來管理您的 Azure 資源](../azure-resource-manager/resource-group-portal.md)。
-   * **位置**︰選取與您最接近的位置，以在其中建立 IoT 中樞。
-   * **釘選到儀表板**：選取此選項可讓您從儀表板輕鬆地存取 IoT 中樞。
-
-1. 按一下 [建立] 。 可能需要幾分鐘的時間才能建立 IoT 中樞。 您可以在 [通知] 窗格中看到進度。
-
-   ![在 [通知] 窗格中監視 IoT 中樞的建立進度](media/iot-hub-arduino-huzzah-esp8266-get-started/5_iot-hub-monitor-creation-progress-notification-pane.png)
-
-1. IoT 中樞建立好之後，從儀表板對它按一下。 請記下**主機名稱**值以供本文稍後使用，然後按一下 [共用存取原則]。
-
-   ![取得 IoT 中樞的主機名稱](media/iot-hub-arduino-huzzah-esp8266-get-started/6_iot-hub-get-hostname.png)
-
-1. 在 [共用存取原則] 窗格中，按一下 [iothubowner] 原則，然後複製並儲存 IoT 中樞的**連接字串**值。 您稍後會在本文中使用此值。 如需詳細資訊，請參閱[控制 IoT 中樞的存取權](iot-hub-devguide-security.md)。
-
-   ![取得 IoT 中樞連接字串](media/iot-hub-arduino-huzzah-esp8266-get-started/7_iot-hub-get-connection-string.png)
-
-您現在已經建立 IoT 中樞。 確定您儲存**主機名稱**和**連接字串**值。 本文稍後會用到。
-
-
-### <a name="register-a-device-for-feather-huzzah-esp8266-in-your-iot-hub"></a>在 IoT 中樞內為 Feather HUZZAH ESP8266 註冊裝置
-
-每個 IoT 中樞都有身分識別登錄，可儲存允許連線至 IoT 中樞之裝置的相關資訊。 若要讓裝置可以連線到 IoT 中樞，IoT 中樞的身分識別登錄中必須有該裝置的項目。
-
-
-在本節中，您可以使用名為 *iothub-explorer* 的 CLI 工具。 使用此工具，在 IoT 中樞的身分識別登錄中註冊 Feather HUZZAH ESP8266 裝置。
-
-
-
-> [!NOTE]
-> iothub explorer 需要 Node.js 4.x 或更新版本才能正確運作。
-
-若要為 Feather HUZZAH ESP8266 註冊裝置，請遵循下列步驟：
-
-1. [下載](https://nodejs.org/en/download/)並安裝 Node.js 的最新 LTS 版本 (內含 NPM)。
-1. 使用 NPM 安裝 iothub explorer。
-
-   * Windows 7 或更新版本：
-
-     以系統管理員身分開啟命令提示字元。 執行下列命令以安裝 iothub explorer：
-
-     ```bash
-     npm install -g iothub-explorer
-     ```
-
-   * Ubuntu 16.04 或更新版本：
-
-     使用鍵盤快速鍵 Ctrl+Alt+T 開啟終端機，然後執行下列命令：
-
-     ```bash
-     sudo npm install -g iothub-explorer
-     ```
-
-   * MacOS 10.1 或更新版本：
-
-     開啟終端機，然後執行下列命令：
-
-     ```bash
-     npm install -g iothub-explorer
-     ```
-
-3. 執行下列命令來登入 IoT 中樞：
-
-   ```bash
-   iothub-explorer login [your IoT hub connection string]
-   ```
-
-4. 註冊新的裝置。 在下一個範例中，`deviceID` 是 `new-device`。 執行下列命令來取得其連接字串。
-
-   ```bash
-   iothub-explorer create new-device --connection-string
-   ```
-
-記下已註冊裝置的連接字串。 稍後會使用。
-
-
-> [!NOTE]
-> 若要檢視已註冊裝置的連接字串，請執行 `iothub-explorer list` 命令。
-
+[!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
 ## <a name="connect-feather-huzzah-esp8266-with-the-sensor-and-your-computer"></a>連接 Feather HUZZAH ESP8266 與感應器和電腦
 在本節中，您可以將感應器連接至面板。 然後您可以將裝置插入電腦以進一步使用。
@@ -185,8 +92,6 @@ ms.lasthandoff: 04/12/2017
 | GND (針腳 34F)            | GND (針腳 56I)          | 黑色纜線   |
 
 如需詳細資訊，請參閱 [Adafruit DHT22 感應器安裝](https://learn.adafruit.com/dht/connecting-to-a-dhtxx-sensor)和 [Adafruit Feather HUZZAH Esp8266 接腳圖](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-arduino-ide?view=all#pinouts)。
-
-
 
 
 

@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 04/25/2017
 ms.author: jeedes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: 34cc5f5b2947f775c00548e5d8699976caabfd47
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 030a1fc9f36d6fcfa607552d85ce232e36eaa64b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -112,16 +112,16 @@ ms.lasthandoff: 05/04/2017
 
     ![設定單一登入](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_url11.png)
 
-       In the **Reply URL** textbox, type a URL using the following pattern: `https://<sub domain>.mobilexpense.com/SSO/SAML20/SAML/AssertionConsumerService.aspx`
+    在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<sub domain>.mobilexpense.com/SSO/SAML20/SAML/AssertionConsumerService.aspx`
 
 4. 如果您想要以 **SP** 起始模式設定應用程式，請勾選 [顯示進階 URL 設定]：
 
     ![設定單一登入](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_url22.png)
 
-    在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://<sub domain>.mobilexpense.com/<customername>`
-     
-    > [!NOTE] 
-    > 這些都不是真正的值。 使用實際的回覆 URL 與登入 URL 更新這些值。 請連絡 [MobileXpense 客戶支援小組](http://www.mobilexpense.net/contact)以取得這些值。 
+在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://<sub domain>.mobilexpense.com/<customername>`
+
+> [!NOTE] 
+> 這些都不是真正的值。 使用實際的回覆 URL 與登入 URL 更新這些值。 請連絡 [MobileXpense 客戶支援小組](http://www.mobilexpense.net/contact)以取得這些值。 
 
 5. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將中繼資料檔案儲存在您的電腦上。
 

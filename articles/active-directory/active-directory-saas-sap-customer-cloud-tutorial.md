@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/22/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: f454e7e218764e00cc19ca67b0edade213834b75
-ms.openlocfilehash: bec672005b0b1856faeb230f5674013a37add774
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 22665107cdf689042a5b0eee34eaeacc0434fbc4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -80,11 +82,11 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
 
 6. 在搜尋方塊中輸入 **SAP Cloud for Customer**。
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_01.png)
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_01.png)
 
 7. 在結果窗格中，選取 [SAP Cloud for Customer]，然後按一下 [完成] 來新增應用程式。
    
-    ![Active Directory](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_02.png)
+    ![Active Directory](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_02.png)
 
 ## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 SAP Cloud for Customer 設定及測試 Azure AD 單一登入。
@@ -106,15 +108,15 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
 
 1. 在 Azure 傳統入口網站的 [SAP Cloud for Customer] 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_80.png) 
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_80.png) 
 
 2. 在屬性 SAML Token 屬性清單中，選取 nameidentifier 屬性，然後按一下 [編輯] 。
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_84.png) 
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_84.png) 
 
 3. 在 [編輯使用者屬性]  對話方塊上，執行下列步驟：
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_85.png) 
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_85.png) 
 
     a. 從 [屬性值] 清單中，選取 **ExtractMailPrefix()** 函式。
 
@@ -130,23 +132,23 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
 
 2. 在 [要如何讓使用者登入 SAP Cloud for Customer] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_03.png) 
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_03.png) 
 
 3. 在 [設定 App 設定]  對話方塊頁面執行下列步驟：
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_04.png) 
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_04.png) 
    
     a. 在 [登入 URL] 文字方塊中，使用以下模式輸入使用者用來登入 SAP Cloud for Customer 應用程式的 URL：`https://<server name>.crm.ondemand.com`
    
-    b. 按 [下一步] 
+    b. 按一下 [下一步] 
 
 4. 在 [設定在 SAP Cloud for Customer 單一登入]  頁面上，執行下列步驟：
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_05.png)
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_05.png)
    
     a. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
    
-    b. 按 [下一步] 。
+    b. 按一下 [下一步] 。
 
 5. 為了設定 SSO，請執行下列步驟：
    
@@ -156,7 +158,7 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
    
     c. 按一下 [新增識別提供者]，然後選取您從 Azure 傳統入口網站下載的中繼資料 XML 檔案。 藉由匯入中繼資料，系統會自動上傳所需的簽章憑證和加密憑證。
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_54.png)
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_54.png)
    
     d. Azure AD 要求 SAML 要求中必須有「判斷提示取用者服務 URL」元素，因此請選取 [包括判斷提示取用者服務 URL] 核取方塊。
    
@@ -166,11 +168,11 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
    
     g. 按一下 [我的系統] 索引標籤。
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_52.png)
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_52.png)
    
     h. 複製 **SSO URL** 並將它貼到 [Azure AD 登入 URL] 文字方塊。
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_53.png)
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_53.png)
    
     i. 透過選取 [手動選取識別提供者]，指定員工是否可以在以使用者識別碼和密碼登入或 SSO 之間進行手動選擇。
    
@@ -208,29 +210,29 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
 
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapcloudforcustomer-tutorial/create_aaduser_09.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-customer-cloud-tutorial/create_aaduser_09.png) 
 
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 
 3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者] 。
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapcloudforcustomer-tutorial/create_aaduser_03.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-customer-cloud-tutorial/create_aaduser_03.png) 
 
 4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapcloudforcustomer-tutorial/create_aaduser_04.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-customer-cloud-tutorial/create_aaduser_04.png) 
 
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
 
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapcloudforcustomer-tutorial/create_aaduser_05.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-customer-cloud-tutorial/create_aaduser_05.png) 
    
     a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
    
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. 按 [下一步] 。
+    c. 按一下 [下一步] 。
 
-6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapcloudforcustomer-tutorial/create_aaduser_06.png) 
+6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-customer-cloud-tutorial/create_aaduser_06.png) 
    
     a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
@@ -240,15 +242,15 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
    
     d. 在 [角色] 清單中選取 [使用者]。
    
-    e. 按 [下一步] 。
+    e. 按一下 [下一步] 。
 
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapcloudforcustomer-tutorial/create_aaduser_07.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-customer-cloud-tutorial/create_aaduser_07.png) 
 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapcloudforcustomer-tutorial/create_aaduser_08.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-customer-cloud-tutorial/create_aaduser_08.png) 
    
     a. 記下 [新密碼] 的值。
    
@@ -275,7 +277,7 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
 
 2. 在應用程式清單中，選取 [SAP Cloud for Customer] 。
    
-    ![設定單一登入](./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_sapcloudforcustomer_50.png) 
+    ![設定單一登入](./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_sapcloudforcustomer_50.png) 
 
 3. 在頂端的功能表中，按一下 [使用者] 。
    
@@ -298,24 +300,19 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
 
 <!--Image references-->
 
-[1]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_01.png
-[2]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_02.png
-[3]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_03.png
-[4]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_04.png
+[1]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_01.png
+[2]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_02.png
+[3]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_03.png
+[4]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_04.png
 
-[6]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_05.png
-[10]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_06.png
-[11]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_07.png
-[20]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_100.png
+[6]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_05.png
+[10]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_06.png
+[11]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_07.png
+[20]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_100.png
 
-[200]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_200.png
-[201]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_201.png
-[203]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_203.png
-[204]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_204.png
-[205]: ./media/active-directory-saas-sapcloudforcustomer-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
+[200]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_200.png
+[201]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_201.png
+[203]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_203.png
+[204]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_204.png
+[205]: ./media/active-directory-saas-sap-customer-cloud-tutorial/tutorial_general_205.png
 

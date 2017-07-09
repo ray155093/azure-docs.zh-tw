@@ -13,13 +13,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 3/10/2017
+ms.date: 06/14/2017
 ms.author: markgal;trinadhk;
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 52b7360230efd0a63e411339fe32f929a905391d
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 3cd32a85c225d1670887d086c324db1eadd61262
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -45,7 +45,12 @@ ms.lasthandoff: 05/25/2017
 若要從伺服器或用戶端備份檔案與資料夾，您必須在要儲存這些資料的地理區域中建立備份保存庫。
 
 > [!IMPORTANT]
-> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。 我們仍然支援現有的備份保存庫，您也可以[使用 Azure PowerShell 來建立備份保存庫](./backup-client-automation-classic.md#create-a-backup-vault)。 不過，Microsoft 建議您建立所有部署的復原服務保存庫，因為未來的增強功能僅適用於復原服務保存庫。
+> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。
+>
+> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> **自 2017 年 11 月 1 日起**：
+>- 任何其餘的備份保存庫都會自動升級至復原服務保存庫。
+>- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
+>
 
 
 ## <a name="download-the-vault-credential-file"></a>下載保存庫認證檔

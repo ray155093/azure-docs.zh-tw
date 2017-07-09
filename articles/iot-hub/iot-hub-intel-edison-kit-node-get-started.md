@@ -13,13 +13,14 @@ ms.devlang: nodejs
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 4/17/2017
+ms.date: 6/15/2017
 ms.author: xshi
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 231d9f2e4a501f20a47b1cec55c75fba4c2e57c8
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 9e9198f827d0906f65f59322126ef27ba6428d3e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -193,6 +194,7 @@ ms.lasthandoff: 04/20/2017
 3. 然後瀏覽到存放庫資料夾，執行下列命令來安裝所有套件，這可能需要幾分鐘才能完成。
    
    ```bash
+   cd iot-hub-node-intel-edison-client-app
    npm install
    ```
 
@@ -207,9 +209,9 @@ ms.lasthandoff: 04/20/2017
 
    ![組態檔](media/iot-hub-intel-edison-kit-node-get-started/13_configure_file.png)
 
-   此檔案中有兩個巨集可供您設定。 第一個是 `INTERVAL`，這可定義傳送至雲端的兩個訊息之間相隔的時間間隔。 第二個是 `SIMULATED_DATA`，這是是否使用模擬感應器資料的布林值。
+   此檔案中有兩個巨集可供您設定。 第一個是 `INTERVAL`，這可定義傳送至雲端的兩個訊息之間相隔的時間間隔。 第二個是 `simulatedData`，這是是否使用模擬感應器資料的布林值。
 
-   如果**沒有感應器**，請將 `SIMULATED_DATA` 值設定為 `1`，使範例應用程式建立和使用模擬感應器資料。
+   如果**沒有感應器**，請將 `simulatedData` 值設定為 `true`，使範例應用程式建立和使用模擬感應器資料。
 
 1. 按下 [Control-O] > 輸入 > [Control-X] 儲存並結束。
 
@@ -232,3 +234,4 @@ ms.lasthandoff: 04/20/2017
 您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
+

@@ -3,8 +3,8 @@ title: "使用 Data Lake Analytics Java SDK 來開發應用程式 | Microsoft Do
 description: "使用 Azure Data Lake Analytics Java SDK 來開發應用程式"
 services: data-lake-analytics
 documentationcenter: 
-author: edmacauley
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: 07830b36-2fe3-4809-a846-129cf67b6a9e
 ms.service: data-lake-analytics
@@ -14,13 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: 5d73d1203faf485d715354e68ce2ccde32562611
-ms.openlocfilehash: 99e1c8956968264fbea696b85ac084281d75f02a
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 795d9ec0b0cac5d74673404f1d0d851393336df0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
-# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-java-sdk"></a>教學課程：透過 Java SDK 開始使用 Azure Data Lake Analytics
+# <a name="get-started-with-azure-data-lake-analytics-using-java-sdk"></a>透過 Java SDK 開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
 了解如何使用 Azure Data Lake Analytics Java SDK 以建立 Azure Data Lake 帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶和使用作業。 如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Analytics](data-lake-analytics-overview.md)。
@@ -31,7 +33,6 @@ ms.openlocfilehash: 99e1c8956968264fbea696b85ac084281d75f02a
 * Java Development Kit (JDK) 8 (使用 Java 1.8 版)。
 * IntelliJ 或其他合適的 Java 開發環境。 此為選用步驟，但建議執行。 以下指示使用 IntelliJ。
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **啟用您的 Azure 訂用帳戶** 以使用 Data Lake Analytics 公開預覽版。 請參閱 [指示](data-lake-analytics-get-started-portal.md)。
 * 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。 如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱 [使用入口網站建立 Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)。 建立應用程式並產生金鑰後，也可從入口網站取得回覆 URI 和金鑰。
 
 ## <a name="how-do-i-authenticate-using-azure-active-directory"></a>如何使用 Azure Active Directory 驗證？
@@ -345,14 +346,9 @@ ms.openlocfilehash: 99e1c8956968264fbea696b85ac084281d75f02a
 
 ## <a name="see-also"></a>另請參閱
 * 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
-* 若要了解更複雜的查詢，請參閱 [使用 Azure 資料湖分析來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
-* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
+* 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
+* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
 * 若要了解 U-SQL，請參閱[開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
 * 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)。
-* 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
+* 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 

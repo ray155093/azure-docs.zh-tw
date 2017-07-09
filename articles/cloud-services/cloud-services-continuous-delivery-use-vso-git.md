@@ -14,10 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: mlearned
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: da4bb7fcbb45afed5d45f4d48c0b90e44503daf8
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: f4f5f231536bc381d17898ff2c592be821168a65
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -186,7 +187,7 @@ ms.lasthandoff: 04/06/2017
 10. 瀏覽至 [組建]  檢視，找出工作分支剛觸發的組建。
 
 ## <a name="next-steps"></a>後續步驟
-如需深入了解有關使用 Git 搭配 Visual Studio Team Services 的祕訣，請參閱[使用 Visual Studio 在 Git 中開發和共用程式碼](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx)；關於使用未受 Visual Studio Team Services 管理的 Git 儲存機制來發佈至 Azure 的詳細資訊，請參閱[持續部署至 Azure App Service](../app-service-web/app-service-continuous-deployment.md)。 如需 Visual Studio Team Services 的詳細資訊，請參閱 [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861)。
+如需深入了解有關使用 Git 搭配 Visual Studio Team Services 的祕訣，請參閱[使用 Visual Studio 在 Git 中開發和共用程式碼](https://www.visualstudio.com/en-us/docs/git/share-your-code-in-git-vs-2017)；關於使用未受 Visual Studio Team Services 管理的 Git 儲存機制來發佈至 Azure 的詳細資訊，請參閱[持續部署至 Azure App Service](../app-service-web/app-service-continuous-deployment.md)。 如需 Visual Studio Team Services 的詳細資訊，請參閱 [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861)。
 
 [0]: ./media/cloud-services-continuous-delivery-use-vso/tfs0.PNG
 [1]: ./media/cloud-services-continuous-delivery-use-vso-git/CreateTeamProjectInGit.PNG

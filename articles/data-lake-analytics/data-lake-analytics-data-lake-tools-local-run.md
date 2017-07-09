@@ -14,23 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 11/15/2016
 ms.author: yanacai
-translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 7e8aed4f56471bb2946c610ca63b0ec50ee1b57e
-ms.lasthandoff: 03/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 771a96df5cc66bac46e7144785be8cc072b57b31
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
 # <a name="test-and-debug-u-sql-jobs-by-using-local-run-and-the-azure-data-lake-u-sql-sdk"></a>使用本機執行和 Azure Data Lake U-SQL SDK 對 U-SQL 作業進行測試和偵錯
 
 您可以使用 Azure Data Lake Tools for Visual Studio 和 Azure Data Lake U-SQL SDK，和在 Azure Data Lake 服務中一樣地在工作站上執行 U-SQL 作業。 這兩個本機執行功能可節省您對 U-SQL 作業進行測試和偵錯的時間。
-
-必要條件：
-
-- Azure Data Lake Analytics 帳戶。 請參閱[開始使用 Azure Data Lake Analytics ](data-lake-analytics-get-started-portal.md)。
-- 適用於 Visual Studio 的 Azure Data Lake 工具。 請參閱[使用 Data Lake Tools for Visual Studio 開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-- U-SQL 指令碼開發經驗。 請參閱[開始使用 Azure Data Lake Analytics ](data-lake-analytics-get-started-portal.md)。
-
 
 ## <a name="understand-the-data-root-folder-and-the-file-path"></a>了解資料根資料夾和檔案路徑
 
@@ -114,11 +108,6 @@ Data Lake Tools 安裝程式會建立 C:\LocalRunRoot 資料夾，做為預設�
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
-* 若要開始開發 U-SQL 應用程式，請參閱 [使用 Data Lake Tools for Visual Studio 開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
-* 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
-* 若要記錄診斷資訊，請參閱 [為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)。
 * 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
 * 若要檢視作業詳細資料，請參閱[針對 Azure Data Lake Analytics 作業使用作業瀏覽器和作業檢視](data-lake-analytics-data-lake-tools-view-jobs.md)。
 * 若要使用頂點執行檢視，請參閱[在 Data Lake Tools for Visual Studio 中使用頂點執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)。

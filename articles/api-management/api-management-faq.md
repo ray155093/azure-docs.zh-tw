@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: 7d58748c4b0195246fffafe2e5544678b83dfd60
-ms.lasthandoff: 04/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 51459dae8d09d7051ab74c9fe57cc29e38b8b9ab
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/14/2017
 
 ---
 # <a name="azure-api-management-faqs"></a>Azure API 管理常見問題集
@@ -65,7 +66,7 @@ ms.lasthandoff: 04/14/2017
 * 使用 HTTP 基本驗證。 如需詳細資訊，請參閱 [設定 API 設定](api-management-howto-create-apis.md#configure-api-settings)。
 * 依照[如何使用 Azure API 管理中的用戶端憑證驗證保護後端服務](api-management-howto-mutual-certificates.md)所述，使用 SSL 相互驗證。
 * 在您的後端服務上使用 IP 允許清單。 如果您有標準或高階層 API 管理執行個體，閘道的 IP 位址會保持不變。 您可以設定您的允許清單來允許此 IP 位址。 您可以在 Azure 入口網站中的 [儀表板] 上取得API 管理執行個體的 IP 位址。
-* 將您的 API 管理執行個體連接至 Azure 虛擬網路。 
+* 將您的 API 管理執行個體連接至 Azure 虛擬網路。
 
 ### <a name="how-do-i-copy-my-api-management-service-instance-to-a-new-instance"></a>如何將我的 API 管理服務執行個體複製到新的執行個體？
 如果您要將 API 管理執行個體複製到新的執行個體，您有幾個選項可用。 您可以：
@@ -94,6 +95,7 @@ ms.lasthandoff: 04/14/2017
 2. 使用 `Set-AzureRmContext -SubscriptionID <subscriptionGUID>` 將內容設定為具有服務的訂用帳戶。
 3. 使用 `Get-AzureRmApiManagementSsoToken -ResourceGroupName <rgName> -Name <serviceName>` 取得單一登入 URL。
 4. 使用此 URL 來存取系統管理入口網站。
+
 ### <a name="why-is-the-policy-that-i-want-to-add-unavailable-in-the-policy-editor"></a>為什麼「我想要新增」的原則無法用於原則編輯器？
 如果您想要新增的原則在原則編輯器中呈暗灰色，請確定您是在該原則的正確範圍內。 每個原則陳述式都是為您在特定範圍和原則區段中使用所設計。 若要檢閱原則的原則區段和範圍，請參閱 [API 管理原則](https://msdn.microsoft.com/library/azure/dn894080.aspx)中原則的「使用方式」一節。
 
@@ -103,6 +105,7 @@ ms.lasthandoff: 04/14/2017
 * 在 API 管理中，您可以設定 API 來代表不同的版本。 例如，您可能有兩個不同的 API (MyAPIv1 和 MyAPIv2)。 開發人員可以選擇開發人員想要使用的版本。
 * 您也可以使用不包含版本區段的服務 URL (例如 https://my.api) 來設定您的 API。 接著，在每個作業的[重寫 URL](https://msdn.microsoft.com/library/azure/dn894083.aspx#RewriteURL) 範本上設定版本區段。 例如，您的作業可以有名為 /resource 的 [URL 範本](api-management-howto-add-operations.md#url-template)和名為 /v1/Resource 的[重寫 URL](api-management-howto-add-operations.md#rewrite-url-template) 範本。 您可以分別變更每個作業的版本區段值。
 * 如果您想要在 API 的服務 URL 中保留「預設」版本區段，請在選取的作業上設定一個原則，以使用[設定後端服務](https://msdn.microsoft.com/library/azure/dn894083.aspx#SetBackendService)原則來變更後端要求路徑。
+
 ### <a name="how-do-i-set-up-multiple-environments-in-a-single-api"></a>如何在單一 API 中設定多個環境？
 若要在單一 API 中設定多個環境 (例如一個測試環境和一個生產環境)，您有兩個選項。 您可以：
 
@@ -129,7 +132,7 @@ ms.lasthandoff: 04/14/2017
 若要了解如何使用 Active Directory Federation Services (AD FS) 安全性來設定 OAuth 2.0 授權伺服器，請參閱[在 API 管理中使用 ADFS](https://phvbaars.wordpress.com/2016/02/06/using-adfs-in-api-management/)。
 
 ### <a name="what-routing-method-does-api-management-use-in-deployments-to-multiple-geographic-locations"></a>API 管理在部署到多個地理位置時使用何種路由方法？
-API 管理會在部署到多個地理位置時，使用[效能流量路由方法](../traffic-manager/traffic-manager-routing-methods.md#performance-traffic-routing-method)。 連入流量會傳送至最接近的 API 閘道。 如果一個區域離線，則連入流量會自動路由傳送至下一個最接近的閘道。 深入了解[流量管理員路由方法](../traffic-manager/traffic-manager-routing-methods.md)中的路由方法。
+API 管理會在部署到多個地理位置時，使用[效能流量路由方法](../traffic-manager/traffic-manager-routing-methods.md#a-name--priorityapriority-traffic-routing-method)。 連入流量會傳送至最接近的 API 閘道。 如果一個區域離線，則連入流量會自動路由傳送至下一個最接近的閘道。 深入了解[流量管理員路由方法](../traffic-manager/traffic-manager-routing-methods.md)中的路由方法。
 
 ### <a name="can-i-use-an-azure-resource-manager-template-to-create-an-api-management-service-instance"></a>可以使用 Azure Resource Manager 範本建立 API 管理服務執行個體嗎？
 是。 請參閱 [Azure API 管理服務](http://aka.ms/apimtemplate)快速入門範本。

@@ -14,12 +14,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 12/21/2016
+ms.date: 05/30/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 8c5342fd2c35bbda94ec8496e9ca74454d44d17f
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 24f903c6b8b982599904b95f86d648927a3be5ce
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -225,10 +226,7 @@ az vm redeploy --resource-group myResourceGroup --name myVM
 
 * 透過 [Azure 入口網站](https://portal.azure.com)，重設遠端存取。 在 Azure 入口網站上選取您的 VM，然後按一下 [重設遠端...] 按鈕。
 * 重新啟動 VM。 在 [Azure 入口網站](https://portal.azure.com)上選取您的 VM，然後按一下 [重新啟動] 按鈕。
-  
-    -或-
-  
-    在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，選取 [虛擬機器] > [執行個體] > [重新啟動]。
+    
 * 將 VM 重新部署到新的 Azure 節點。 如需如何重新部署 VM 的資訊，請參閱[將虛擬機器重新部署至新的 Azure 節點](../windows/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
   
     此作業完成之後，暫時磁碟機資料將會遺失，且將會更新與虛擬機器相關聯的動態 IP 位址。

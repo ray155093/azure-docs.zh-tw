@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 10/11/2016
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 94a4d2b85c845b135201fd919e8eac64a5e1cb37
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 2bcdff44f6c3169779c3dd018706eea8275825ca
 ms.contentlocale: zh-tw
-ms.lasthandoff: 11/17/2016
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -29,15 +29,6 @@ Windows 提供多種[效能計數器](http://www.codeproject.com/Articles/8590/A
 ![Application Insights 中所報告的效能計數器](./media/app-insights-performance-counters/counters-by-server-instance.png)
 
 (效能計數器不適用於 Azure Web Apps。 但是，您可以[將 Azure 診斷傳送至 Application Insights](app-insights-azure-diagnostics.md))。
-
-## <a name="configure"></a>設定
-如果伺服器電腦上尚未安裝 Application Insights 狀態監視器，則需要安裝它，才能查看效能計數器。
-
-在每個伺服器執行個體上，下載並執行[狀態監視器安裝程式](http://go.microsoft.com/fwlink/?LinkId=506648)。 如果已經安裝，則不需要重新進行安裝。
-
-* *已於開發期間[在應用程式中安裝 Application Insights SDK](app-insights-asp-net.md)。我是否仍然需要狀態監視器？*
-  
-    是，需要有狀態監視器，才能收集 ASP.NET Web 應用程式的效能計數器。 就像您知道的一樣，狀態監視器也可以用來[監視已存留的 Web 應用程式](app-insights-monitor-performance-live-website-now.md)，而不需要在開發期間安裝 SDK。
 
 ## <a name="view-counters"></a>檢視計數器
 [伺服器] 刀鋒視窗會顯示一組預設效能計數器。 

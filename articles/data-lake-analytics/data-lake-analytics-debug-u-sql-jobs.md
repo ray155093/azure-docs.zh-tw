@@ -14,18 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 09/02/2016
 ms.author: yanacai
-translationtype: Human Translation
-ms.sourcegitcommit: a5bb452582f05981a17c2514e0e40db0571bf61d
-ms.openlocfilehash: f9b485bfbfbeb8a95ae1908ef6b1733b9cc6999a
-ms.lasthandoff: 01/05/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
+ms.openlocfilehash: aac455520ab62d69b406a254a54b0f000ea2e5bc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/26/2017
 
 
 ---
 # <a name="debug-user-defined-c-code-for-failed-u-sql-jobs"></a>對 U-SQL 失敗作業的使用者定義 C# 程式碼進行偵錯
-
-了解如何使用 Azure Data Lake Tools for Visual Studio，對具有使用者定義程式碼錯誤的 U-SQL 失敗作業進行偵錯。
-
-## <a name="background"></a>背景
 
 U-SQL 可透過 C# 提供擴充性模型，使用者可以撰寫使用者定義的 C# 程式碼，像是使用者定義的擷取器、歸納器等，來實現更多的擴充性 (深入了解 [U-SQL 使用者定義程式碼](https://docs.microsoft.com/en-us/azure/data-lake-analytics/data-lake-analytics-u-sql-programmability-guide#user-defined-functions---udf))。 不過，每一位開發人員在撰寫程式碼時都難免會出錯，而且因為許多系統僅提供有限的執行階段偵錯資訊 (如記錄檔等)，要在巨量資料系統中進行偵錯並不容易。 
 
@@ -35,15 +32,10 @@ ADL Tools for Visual Studio 提供稱為**頂點失敗偵錯**的功能，透過
 
 > [!VIDEO https://e0d1.wpc.azureedge.net/80E0D1/OfficeMixProdMediaBlobStorage/asset-d3aeab42-6149-4ecc-b044-aa624901ab32/b0fc0373c8f94f1bb8cd39da1310adb8.mp4?sv=2012-02-12&sr=c&si=a91fad76-cfdd-4513-9668-483de39e739c&sig=K%2FR%2FdnIi9S6P%2FBlB3iLAEV5pYu6OJFBDlQy%2FQtZ7E7M%3D&se=2116-07-19T09:27:30Z&rscd=attachment%3B%20filename%3DDebugyourcustomcodeinUSQLADLA.mp4]
 >
->
 
 > [!NOTE]
 > 如果您沒有下列兩個 Windows 升級，Visual Studio 可能會停止回應或當機：[Microsoft Visual C++ 2015 Redistributable Update 2](https://www.microsoft.com/download/details.aspx?id=51682)、[Universal C Runtime for Windows](https://www.microsoft.com/download/details.aspx?id=50410&wa=wsignin1.0)。
 > 
-> 
-
-## <a name="prerequisites"></a>必要條件
-* 已經閱讀 [開始使用](data-lake-analytics-data-lake-tools-get-started.md) 一文。
 
 ## <a name="download-failed-vertex-to-local"></a>將失敗的頂點下載至本機
 
@@ -128,7 +120,6 @@ ADL Tools for Visual Studio 提供稱為**頂點失敗偵錯**的功能，透過
 
 * [U-SQL 可程式性指南](data-lake-analytics-u-sql-programmability-guide.md)
 * [針對 Azure 資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
-* [教學課程：開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
 * [教學課程：使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
 
 

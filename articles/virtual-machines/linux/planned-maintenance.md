@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 03/27/2017
 ms.author: zivr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 28c2fb5a67eca0c5ab2f0299bba7c11375e10558
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: f5e52f4642b85a75f0c9f1892fbf0e565aa8b35b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/03/2017
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -36,4 +36,5 @@ ms.lasthandoff: 04/03/2017
 
 -   需要重新啟動或重新部署至託管虛擬機器的 VM 重新啟動維護。
 
-請注意，本頁面是說明 Microsoft Azure 執行計劃性維護的方式。 如需非計劃性事件 (中斷) 的詳細資訊，請參閱[管理虛擬機器的可用性](../windows/manage-availability.md)。
+請注意，本頁面是說明 Microsoft Azure 執行計劃性維護的方式。 如需非計劃性事件 (中斷) 的詳細資訊，請參閱[管理虛擬機器的可用性](../linux/manage-availability.md)。
+

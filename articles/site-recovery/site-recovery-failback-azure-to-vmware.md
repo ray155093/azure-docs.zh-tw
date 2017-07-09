@@ -11,21 +11,19 @@ ms.service: site-recovery
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.topic: article
-ms.workload: required
+ms.workload: storage-backup-recovery
 ms.date: 03/27/2017
 ms.author: ruturajd
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 3bd182a775377f912914c0c7a63fe41811146e1a
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 795dd0c05daf560e5a271fef5356eb83d72a6112
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
 # <a name="fail-back-vmware-virtual-machines-and-physical-servers-to-the-on-premises-site"></a>將 VMWare 虛擬機器和實體伺服器容錯回復至內部部署網站
-> [!div class="op_single_selector"]
-> * [從 Azure 容錯回復 VMware/實體機器](site-recovery-how-to-failback-azure-to-vmware.md)
-> * [從 Azure 容錯回復 Hyper-V VM](site-recovery-failback-from-azure-to-hyper-v.md)
+
 
 本文說明如何將 Azure 虛擬機器從 Azure 容錯回復到內部部署網站。 當您準備好在使用此[參考](site-recovery-how-to-reprotect.md)重新保護機器後，將 VMware 虛擬機器或 Windows/Linux 實體伺服器容錯回復時，請依照這裡的指示執行。
 
@@ -152,7 +150,7 @@ ms.lasthandoff: 04/27/2017
 #### <a name="install-centos-66"></a>安裝 CentOS 6.6
 
 1. 在管理伺服器 VM 上安裝 CentOS 6.6 最小作業系統。 在 DVD 光碟機中放入 ISO，並將系統開機。 跳過媒體測試。 選取 [美式英文] 做為語言，選取 [基本存放裝置]，確認硬碟上沒有任何重要資料，然後按一下 [是] 以捨棄所有資料。 輸入管理伺服器的主機名稱，然後選取伺服器網路介面卡。  在 [編輯系統] 對話方塊中，選取 [自動連線]，然後新增靜態 IP 位址、網路和 DNS 設定。 指定時區。 若要存取管理伺服器，請輸入 root 密碼。
-2. 當系統要求您指定安裝類型時，請選取 [建立自訂配置] 做為磁碟分割。 按 [下一步] 。 選取 [可用]，然後按一下 [建立]。 使用 [FS 類型：ext4] 來建立 **/**、**/var/crash** 和 **/home** 磁碟分割。 將交換磁碟分割建立為 [FS 類型：swap]。
+2. 當系統要求您指定安裝類型時，請選取 [建立自訂配置] 做為磁碟分割。 按一下 [下一步] 。 選取 [可用]，然後按一下 [建立]。 使用 [FS 類型：ext4] 來建立 **/**、**/var/crash** 和 **/home** 磁碟分割。 將交換磁碟分割建立為 [FS 類型：swap]。
 3. 如果找到現存裝置，將會出現警告訊息。 按一下 [格式化]  以使用磁碟分割設定將該磁碟機格式化。 按一下 [將變更寫入磁碟]  以套用磁碟分割變更。
 4. 選取 [安裝開機載入器]  >  [下一步] 以在根磁碟分割上安裝開機載入器。
 5. 安裝完成時，按一下 [重新開機]。

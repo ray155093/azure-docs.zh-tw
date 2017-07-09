@@ -15,13 +15,14 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: nepeters
-translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 2b25b4f4925962b1e4de681d268e78909a93eccd
-ms.lasthandoff: 04/27/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 77f50a830c38b3a90110845e58ee7cbb28742c10
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 ---
+
 # <a name="virtual-machine-extensions-and-features-for-linux"></a>適用於 Linux 的虛擬機器擴充功能和功能
 
 「Azure 虛擬機器」擴充功能是小型的應用程式，可在「Azure 虛擬機器」上提供部署後設定及自動化工作。 例如，如果「虛擬機器」要求安裝軟體、防毒保護或 Docker 組態，便可使用 VM 擴充功能來完成這些工作。 您可以使用 Azure CLI、PowerShell、Azure Resource Manager 範本及 Azure 入口網站來執行 Azure VM 擴充功能。 擴充功能可以與新的虛擬機器部署搭配，或是在任何現有的系統上執行。
@@ -39,7 +40,7 @@ ms.lasthandoff: 04/27/2017
 
 除了處理序特定擴充功能，自訂指令碼延伸模組適用於 Windows 和 Linux 虛擬機器。 適用於 Linux 的自訂指令碼延伸模組可讓任何 Bash 指令碼在虛擬機器上執行。 自訂指令碼對於設計需要超過原生 Azure 工具可提供之設定的 Azure 部署很有用。 如需詳細資訊，請參閱 [Linux VM 自訂指令碼延伸模組](extensions-customscript.md)。
 
-若要逐步解說其中 VM 擴充功能用於端對端應用程式部署中的範例，請參閱[將應用程式自動部署到 Azure 虛擬機器](../windows/dotnet-core-1-landing.md)。
+若要逐步解說其中 VM 擴充功能用於端對端應用程式部署中的範例，請參閱[將應用程式自動部署到 Azure 虛擬機器](../linux/dotnet-core-1-landing.md)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -130,7 +131,7 @@ VM 擴充功能可以新增至 Azure Resource Manager 範本，並使用範本�
 }
 ```
 
-如需詳細資訊，請參閱[使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本](../windows/extensions-authoring-templates.md)。
+如需詳細資訊，請參閱[使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本](../linux/extensions-authoring-templates.md)。
 
 ## <a name="secure-vm-extension-data"></a>安全的 VM 擴充功能資料
 

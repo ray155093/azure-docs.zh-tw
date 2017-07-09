@@ -8,7 +8,7 @@ manager: jhubbard
 author: jan-eng
 ms.assetid: 
 ms.service: sql-database
-ms.custom: performance, mvc
+ms.custom: mvc,monitor & tune
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 05/07/2017
 ms.author: janeng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 0bdb111257053e4a57510a72ab683bc9c890d2f7
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: f9ae96cdc80c347593f229cb2fce3f2d4d8e7caf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -107,7 +107,7 @@ Database Advisor 會監視系統所實作的每項建議。 如果某項建議�
 
 
 ## <a name="next-steps"></a>後續步驟 
-遺漏索引與查詢最佳化不足是資料庫效能不佳的常見原因。 在本教學課程中，您已學會如何︰在本教學課程中，您已學會如何︰
+遺漏索引與查詢最佳化不足是資料庫效能不佳的常見原因。 在本教學課程中，您已了解：
 > [!div class="checklist"]
 > * 檢閱、套用和還原效能改進建議
 > * 尋找具有高資源使用率的查詢
