@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 03/23/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 8e0516585e2191caaef70bc973f027925df91bf6
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: d04d1240fb353a973953b2a90eadc65705219edb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -167,7 +167,7 @@ Azure Cosmos DB 提供彈性的儲存體及輸送量容器，稱為**集合**。
     <tr>
         <td>minInclusive</td>
         <td>資料分割索引鍵範圍的最小資料分割索引鍵雜湊值。 供內部使用。</td>
-    </tr>        
+    </tr>       
 </table>
 
 您可以使用其中一個支援的 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 來執行此動作。 例如，下列程式碼片段顯示如何在 .NET 中擷取資料分割索引鍵範圍。
@@ -402,5 +402,5 @@ ReadDocumentFeed 支援下列在 Azure Cosmos DB 集合中進行累加式變更�
 
 ## <a name="next-steps"></a>後續步驟
 * 嘗試 [GitHub 上的 Azure Cosmos DB 變更摘要程式碼範例 (英文)](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/ChangeFeed)
-* 使用 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 開始撰寫程式碼
+* 使用 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 或 [REST API](/rest/api/documentdb/) 開始撰寫程式碼
 

@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: b-hoedid
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: a5bd59cd94beaf2181b463929b0af0b9d63cf4ee
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 6e6e12f3d6d95002b223ad0fcb11d72bd920cdaf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -131,7 +131,7 @@ API 應用程式會連線到 Azure Cosmos DB，並依資源類型查詢新的或
         {
             /// <summary>
             ///     Gets the new or modified FHIR documents from Last Run Date 
-            ///        or create date of the collection
+            ///     or create date of the collection
             /// </summary>
             /// <param name="databaseId"></param>
             /// <param name="collectionId"></param>
@@ -156,7 +156,7 @@ API 應用程式會連線到 Azure Cosmos DB，並依資源類型查詢新的或
             {
                 var collectionLink = UriFactory.CreateDocumentCollectionUri(databaseId, collectionId);
     
-                var context = new DocumentDbContext();    
+                var context = new DocumentDbContext();  
     
                 var docs = new List<dynamic>();
     
@@ -232,7 +232,7 @@ API 應用程式會連線到 Azure Cosmos DB，並依資源類型查詢新的或
 - 使用 Azure 服務匯流排佇列來處理 HL7 FHIR 文件的散發。
 
 ## <a name="next-steps"></a>後續步驟
-如需 Azure Cosmos DB 的詳細資訊，請參閱 [Azure Cosmos DB 首頁](https://azure.microsoft.com/services/documentdb/)。 如需 Logic Apps 的詳細資訊，請參閱 [Logic Apps](https://azure.microsoft.com/services/logic-apps/)。
+如需 Azure Cosmos DB 的詳細資訊，請參閱 [Azure Cosmos DB 首頁](https://azure.microsoft.com/services/cosmos-db/)。 如需 Logic Apps 的詳細資訊，請參閱 [Logic Apps](https://azure.microsoft.com/services/logic-apps/)。
 
 
 

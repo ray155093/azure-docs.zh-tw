@@ -15,10 +15,11 @@ ms.topic: article
 ms.date: 08/31/2016
 ms.author: trinadhk;markgal;
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 82b7541ab1434179353247ffc50546812346bda9
-ms.openlocfilehash: d00235d788dbe1674eac219a7c708a8ecd53ccc5
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 4abc72962f5a67851aee9d64d7c8125e72d0ec09
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -34,7 +35,12 @@ ms.lasthandoff: 03/02/2017
 > [!NOTE]
 > Azure 有兩種用來建立和使用資源的部署模型： [Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 如需使用傳統部署模型 VM 的詳細資料，請參閱 [準備環境以備份 Azure 虛擬機器](backup-azure-vms-prepare.md) 。
 >
+> [!IMPORTANT]
+>從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。
 >
+> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> **自 2017 年 11 月 1 日起**：
+>- 任何其餘的備份保存庫都會自動升級至復原服務保存庫。
+>- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
 
 ## <a name="manage-protected-virtual-machines"></a>管理受保護的虛擬機器
 管理受保護的虛擬機器：

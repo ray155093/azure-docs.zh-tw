@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 0ea23f4f59737123f4400dafc7506e121f24ae34
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: 35896cc9891e2439df004cc4eab339219d47b805
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 05/11/2017
     
     此時會顯示 [建立儲存體帳戶]  刀鋒視窗。   
 
-       ![Create Storage Account][create-new-storage-account]  
+    ![建立儲存體帳戶][create-new-storage-account]  
 
 3. 在 [名稱]  欄位中，輸入子網域名稱。 此項目可以包含 3 至 24 個小寫字母與數字。
    
@@ -75,7 +75,7 @@ ms.lasthandoff: 05/11/2017
     - **CDN 端點名稱**︰依照您的選擇輸入端點名稱。
 
     > [!TIP]
-       > 根據預設，建立的 CDN 端點會使用儲存體帳戶的主機名稱作為來源。
+    > 根據預設，建立的 CDN 端點會使用儲存體帳戶的主機名稱作為來源。
 
     ![cdn new endpoint creation][cdn-new-endpoint-creation]
 
@@ -123,3 +123,4 @@ http://<EndpointName*\>.azureedge.net/<**myPublicContainer\>/<**BlobName*\>
 [cdn-enable-navigation]: ./media/cdn-create-a-storage-account-with-cdn/cdn-storage-new-endpoint-creation.png
 [cdn-storage-new-endpoint]: ./media/cdn-create-a-storage-account-with-cdn/cdn-storage-new-endpoint-list.png
 [cdn-storage-cdn-configuration]: ./media/cdn-create-a-storage-account-with-cdn/cdn-storage-endpoint-configuration.png 
+

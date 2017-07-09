@@ -17,10 +17,10 @@ ms.topic: article
 ms.date: 05/22/2017
 ms.author: ankshah
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 9a17d9fe0c252e2327ffbd75fde38d1f97ce3cc9
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: e08c0ba9c1fc0bab72ae8c1158aafaad4f66920e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -50,7 +50,7 @@ ms.lasthandoff: 05/31/2017
 從網際網路上的電腦存取 Azure Cosmos DB 資料庫帳戶時，必須將電腦的用戶端 IP 位址或 IP 位址範圍新增至 Azure Cosmos DB 資料庫帳戶的允許 IP 位址清單。 
 
 ## <a id="configure-ip-policy"></a> 設定 IP 存取控制原則
-您可以在 Azure 入口網站中設定 IP 存取控制原則，也可以透過 [Azure CLI](cli-samples.md)、[Azure Powershell](powershell-samples.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，以程式設計方式更新 `ipRangeFilter` 屬性來設定。 IP 位址/範圍必須以逗號分隔，而且不得包含任何空格。 範例："13.91.6.132,13.91.6.1/24"。 透過這些方法更新資料庫帳戶時，請務必填入所有屬性，以避免重設為預設設定。
+您可以在 Azure 入口網站中設定 IP 存取控制原則，也可以透過 [Azure CLI](cli-samples.md)、[Azure Powershell](powershell-samples.md) 或 [REST API](/rest/api/documentdb/)，以程式設計方式更新 `ipRangeFilter` 屬性來設定。 IP 位址/範圍必須以逗號分隔，而且不得包含任何空格。 範例："13.91.6.132,13.91.6.1/24"。 透過這些方法更新資料庫帳戶時，請務必填入所有屬性，以避免重設為預設設定。
 
 > [!NOTE]
 > 啟用 Azure Cosmos DB 資料庫帳戶的 IP 存取控制原則，即會封鎖所設定之允許 IP 位址範圍清單外部的電腦對您 Azure Cosmos DB 資料庫帳戶的所有存取。 透過這個模型，也會封鎖從入口網站瀏覽資料平面作業，確保存取控制的完整性。

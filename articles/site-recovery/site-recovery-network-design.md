@@ -15,10 +15,10 @@ ms.workload: storage-backup-recovery
 ms.date: 03/27/2017
 ms.author: pratshar
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 6e6d05d7a7595e17d026be6a448b2fa2cca9b816
-ms.openlocfilehash: a62fe406af18c9c7d9b58839bfa0d6e785b614ef
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 2d8d0feb5c391017e02413b009aafe4d5c012976
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/22/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -41,7 +41,7 @@ ASR 讓容錯移轉成真，第一步是將指定的虛擬機器從主要資料�
 
 設計復原網站的網路時，系統管理員有兩種選擇：
 
-* 在復原網站的網路使用不同的 IP 位址範圍。 在此案例中，虛擬機器在容錯移轉之後會收到新的 IP 位址，系統管理員必須進行 DNS 更新。 請在[這裡](site-recovery-test-failover-vmm-to-vmm.md#preparing-infrastructure-for-test-failover)閱讀更多資訊
+* 在復原網站的網路使用不同的 IP 位址範圍。 在此案例中，虛擬機器在容錯移轉之後會收到新的 IP 位址，系統管理員必須進行 DNS 更新。 請在[這裡](site-recovery-test-failover-vmm-to-vmm.md#prepare-the-infrastructure-for-test-failover)閱讀更多資訊
 * 在復原網站的網路使用相同的 IP 位址範圍。 在某些案例中，即使容錯移轉之後，系統管理員偏好保留他們的 IP 位址給主要網站。 在正常案例中，系統管理員必須更新路由以指出 IP 位址的新位置。 但是，有些案例在主要和復原網站之間有部署延伸的 VLAN，保留虛擬機器的 IP 位址會變成一個不錯的選擇。 保留相同 IP 位址可簡化復原程序，因為拿掉了容錯移轉後的所有網路相關步驟。
 
 當系統管理員打算要部署災害復原解決方案時，腦中的其中一個重要問題是，如何在容錯移轉完成後與應用程式連線。 現代應用程式幾乎一律在某種程度上依賴網路，因此實際將某個網站中的服務移至另一個網站，是一種網站挑戰。 在災害復原解決方案中，解決這個問題有兩種主要方法。 第一種方法是要維持固定 IP 位址。 儘管移動服務和主控伺服器開始於不同的實體位置，但是應用程式會將 IP 位址組態連同它們帶至新位置。 第二種方法則是在轉換為復原網站期間完全變更 IP 位址。 每一種方法有數個實作變化，摘要說明如下。

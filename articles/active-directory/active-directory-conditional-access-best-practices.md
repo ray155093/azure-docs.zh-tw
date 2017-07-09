@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 05/11/2017
+ms.date: 06/22/2017
 ms.author: markvi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 8564f75f4e90aa7c3b4f93823b5202354c8bba3a
+ms.sourcegitcommit: 61fd58063063d69e891d294e627ae40cb878d65b
+ms.openlocfilehash: 9cecbfd1fd5db8fffc9fbdfb2d6ca949b6ff385a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 06/22/2017
 
 
 ---
@@ -58,11 +58,6 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 ### <a name="does-conditional-access-work-with-exchange-activesync"></a>條件式存取是否適用於 Exchange ActiveSync？
 
 是，您可以在條件式存取原則中使用 Exchange ActiveSync。
-
-
-### <a name="what-happens-if-i-require-multi-factor-authentication-or-a-compliant-device"></a>如果我要求多重要素驗證或符合規範裝置會發生什麼情況？
-
-目前，會提示使用者使用與裝置無關的多重要素驗證。
 
 
 ## <a name="what-you-should-avoid-doing"></a>您應該避免做的事

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/21/2017
 ms.author: raynew
-translationtype: Human Translation
-ms.sourcegitcommit: 43e0bb0c921be3992321d0a202fce1fa09053f99
-ms.openlocfilehash: 67edd136737e6af372c3c898c34a8bc6681a8c6d
-ms.lasthandoff: 02/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 32bff438c2e56b1c21aa907b6bff6c1d1e879de3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/14/2017
 
 ---
 
@@ -35,6 +36,16 @@ Azure 能在世界各地多個地理位置運作。 Azure 地理位置是包含�
 
 | [地理位置] | 配對的區域 |  |
 |:--- |:--- |:--- |
+| 亞洲 |東亞 |東南亞 |
+| 澳大利亞 |澳洲東部 |澳大利亞東南部 |
+| 巴西 |巴西南部 (1) |美國中南部 |
+| 加拿大 |加拿大中部 |加拿大東部 |
+| 中國 |中國北部 |中國東部|
+| 歐洲 |北歐 |西歐 |
+| 德國 |德國中部 |德國東北部 |
+| 印度 |印度中部 |印度南部 |
+| 日本 |日本東部 |日本西部 |
+| 韓國 |韓國中部 |韓國南部 |
 | 北美洲 |美國中北部 |美國中南部 |
 | 北美洲 |美國東部 |美國西部 |
 | 北美洲 |美國東部 2 |美國中部 |
@@ -49,6 +60,8 @@ Azure 能在世界各地多個地理位置運作。 Azure 地理位置是包含�
 | 印度 |印度中部 |印度南部 |
 | 加拿大 |加拿大中部 |加拿大東部 |
 | 英國 |英國西部 |英國南部 |
+| 韓國 |韓國中部 |韓國南部 |
+| 德國 |德國中部 |德國東北部 |
 
 表 1 - Azure 區域配對對應表
 

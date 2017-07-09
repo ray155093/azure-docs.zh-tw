@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/23/2017
 ms.author: curtand
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: 8e8723c6dc81012a0dddd4e0a28c4d4af6828c6c
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 59954c02741de2fbba22a3e41640573914efdad8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -156,6 +156,17 @@ ms.lasthandoff: 06/01/2017
 
 ## <a name="assign-or-remove-administrator-roles"></a>指派或移除系統管理員角色
 若要了解如何將系統管理角色指派給 Azure Active Directory 中的使用者，請參閱[在 Azure Active Directory 預覽版中將使用者指派給系統管理員角色](active-directory-users-assign-role-azure-portal.md)。
+
+## <a name="deprecated-roles"></a>已被取代的角色
+
+以下是不應使用的角色。 它們已被取代，而且未來將從 Azure AD 中移除。
+
+* AdHoc 授權管理員
+* 傳送電子郵件給經過驗證的使用者建立者
+* 加入裝置
+* 裝置管理員
+* 裝置使用者
+* 加入工作場所裝置
 
 ## <a name="next-steps"></a>後續步驟
 

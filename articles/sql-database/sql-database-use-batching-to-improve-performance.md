@@ -8,17 +8,18 @@ manager: jhubbard
 editor: 
 ms.assetid: 563862ca-c65a-46f6-975d-10df7ff6aa9c
 ms.service: sql-database
-ms.custom: monitor and tune
+ms.custom: develop apps
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 07/12/2016
 ms.author: sstein
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: b62097f945bc5c595c0893d16bb2c1d9bbfd7a07
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: 22cff47444306e599325ba3035d83a0266d69c72
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/22/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.lasthandoff: 04/20/2017
 ## <a name="batching-strategies"></a>批次處理策略
 ### <a name="note-about-timing-results-in-this-topic"></a>有關本主題中計時結果的注意事項
 > [!NOTE]
-> 結果並不是基準，主要是示範 **相對效能**。 計時至少根據 10 個測試回合的平均值。 作業插入至空的資料表。 這些測試是在相當久之前測量的，因此不見得會符合您現在所遇到的輸送量。 批次處理技術的相對優點應該類似。
+> 結果並不是基準，主要是示範 **相對效能**。 計時至少根據 10 個測試回合的平均值。 作業插入至空的資料表。 這些測試是在 V12 以前的版本中測量，不見得符合您在 V12 資料庫中使用新的 [服務層](sql-database-service-tiers.md)時可能遇過的輸送量。 批次處理技術的相對優點應該類似。
 > 
 > 
 
@@ -120,7 +121,7 @@ ms.lasthandoff: 04/20/2017
 
 上述範例示範只要使用兩行程式碼，就能將本機交易新增至任何 ADO.NET 程式碼。 對於執行循序插入、更新和刪除作業的程式碼，交易可以快速改善程式碼的效能。 不過，若要達到最快效能，請考慮進一步變更程式碼來利用用戶端批次處理，例如資料表值參數。
 
-如需 ADO.NET 中的交易的詳細資訊，請參閱 [ADO.NET 中的本機交易](https://msdn.microsoft.com/library/vstudio/2k2hy99x.aspx)。
+如需 ADO.NET 中的交易的詳細資訊，請參閱 [ADO.NET 中的本機交易](https://docs.microsoft.com/dotnet/framework/data/adonet/local-transactions)。
 
 ### <a name="table-valued-parameters"></a>資料表值參數
 資料表值參數支援使用者定義資料表類型做為 Transact-SQL 陳述式、預存程序和函數中的參數。 此用戶端批次處理技術可讓您在資料表值參數內傳送很多列的資料。 若要使用資料表值參數，請先定義資料表類型。 下列 Transact-SQL 陳述式會建立名為 **MyTableType**的資料表類型。
@@ -619,6 +620,6 @@ PurchaseOrderDetail 資料表中的 OrderID 資料行必須參考 PurchaseOrder 
 * 在更多案例下，考慮依大小和時間緩衝來實作批次處理。
 
 ## <a name="next-steps"></a>後續步驟
-這篇文章著重於與批次處理相關的資料庫設計和程式碼撰寫技術，如何改善應用程式的效能和延展性。 但這只是整體策略中的一個因素。 關於其他可改善效能和延展性的方式，請參閱[單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)和[彈性集區的價格和效能考量](sql-database-elastic-pool.md)。
+這篇文章著重於與批次處理相關的資料庫設計和程式碼撰寫技術，如何改善應用程式的效能和延展性。 但這只是整體策略中的一個因素。 關於其他可改善效能和延展性的方式，請參閱[單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)和[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
 

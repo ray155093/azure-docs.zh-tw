@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 1a0f69e6530f1ab3734e1a44e5be056aacb0fff0
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: c420b38fbe8054bc4b701f89ebc417677ca47a27
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/28/2017
 
 ---
 
@@ -32,7 +32,7 @@ Azure 負載平衡器將連入流量的公用 IP 位址和連接埠號碼對應�
 
 下圖顯示在三部虛擬機器中共用，且公用和私人 TCP 通訊埠均為 80 的 Web 流量負載平衡端點。 這三部虛擬機器均位在負載平衡集合中。
 
-![建立負載平衡器範例](./media/load-balancer-internet-overview/IC727496.png))
+![建立負載平衡器範例](./media/load-balancer-internet-overview/IC727496.png)
 
 圖 1 - Web 流量的負載平衡端點
 

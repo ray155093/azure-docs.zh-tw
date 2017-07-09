@@ -16,15 +16,17 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 02/27/2017
 ms.author: chrande; glenga
-ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 2542d8c750fc7e1bcc31a9c0eb1672402facfd58
-ms.openlocfilehash: 146884833e968767c14d7e4f924762a592e427e2
-ms.lasthandoff: 03/01/2017
+ms.custom: 
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: 12a793c4df497f221dbd592ca3d249b8c1f65e04
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/22/2017
 
 
 ---
-# <a name="schedule-code-execution-with-azure-functions"></a>使用 Azure Functions 排程程式碼執行
+# <a name="azure-functions-timer-trigger"></a>Azure Functions 計時器觸發程序
+
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 這篇文章說明如何在 Azure Functions 中設定及撰寫計時器觸發程序。 Azure Functions 具有計時器觸發程序繫結，可讓您根據所定義的排程執行函式程式碼。 
@@ -47,7 +49,7 @@ ms.lasthandoff: 03/01/2017
 }
 ```
 
-`schedule` 的值是包含以下&6; 個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)︰ 
+`schedule` 的值是包含以下 6 個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)︰ 
 
     {second} {minute} {hour} {day} {month} {day-of-week}
 &nbsp;
@@ -60,13 +62,13 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 
 ```json
 "schedule": "0 0 15 * * *",
-```    
+``` 
 
 或者，您可以為名為 `WEBSITE_TIME_ZONE` 的函式應用程式新增新的應用程式設定，並將值設為**美加東部標準時間**。  那麼，下列 CRON 運算式即可用於 EST 上午 10:00： 
 
 ```json
 "schedule": "0 0 10 * * *",
-```    
+``` 
 
 
 <a name="examples"></a>
@@ -74,7 +76,7 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 ## <a name="schedule-examples"></a>排程範例
 以下是您可以用於 `schedule` 屬性的 CRON 運算式的一些範例。 
 
-若要每隔&5; 分鐘觸發一次︰
+若要每隔 5 分鐘觸發一次︰
 
 ```json
 "schedule": "0 */5 * * * *"
@@ -86,7 +88,7 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 "schedule": "0 0 * * * *",
 ```
 
-若要每隔&2; 小時觸發一次：
+若要每隔 2 小時觸發一次：
 
 ```json
 "schedule": "0 0 */2 * * *",
@@ -149,7 +151,7 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON
 
 <a name="triggercsharp"></a>
 
-### <a name="trigger-sample-in-c"></a>C 中的觸發程序範例# #
+### <a name="trigger-sample-in-c"></a>C# 中的觸發程序範例 #
 ```csharp
 public static void Run(TimerInfo myTimer, TraceWriter log)
 {
@@ -163,7 +165,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 
 <a name="triggerfsharp"></a>
 
-### <a name="trigger-sample-in-f"></a>F 中的觸發程序範例# #
+### <a name="trigger-sample-in-f"></a>F# 中的觸發程序範例 #
 ```fsharp
 let Run(myTimer: TimerInfo, log: TraceWriter ) =
     if (myTimer.IsPastDue) then

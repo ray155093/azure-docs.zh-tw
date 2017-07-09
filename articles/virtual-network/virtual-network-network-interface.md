@@ -16,19 +16,19 @@ ms.workload: infrastructure-services
 ms.date: 05/04/2017
 ms.author: jdial
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: f1fb0f6348b579121be64bff4411952026f8528d
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 871d469ada9857af6d6fe70f1dd38385fb18e312
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 06/02/2017
 
 
 ---
 
 # <a name="create-change-or-delete-network-interfaces"></a>建立、變更或刪除網路介面
 
-了解如何建立網路介面 (NIC)、變更其設定和加以刪除。 NIC 可讓 Azure 虛擬機器 (VM) 與網際網路、Azure 以及內部部署資源進行通訊。 在使用 Azure 入口網站建立 VM 時，入口網站會以預設設定為您建立一個 NIC。 您也可改為選擇以自訂設定建立 NIC，並在加以建立時對其新增一或多個 VM。 您也可以變更現有 NIC 的預設 NIC 設定。 本文說明如何以自訂設定建立 NIC、變更現有的 NIC 設定 (例如，網路篩選指派 (網路安全性群組)、子網路指派、DNS 伺服器設定和 IP 轉送)，以及刪除 NIC。 
+了解如何建立網路介面 (NIC)、變更其設定和加以刪除。 NIC 可讓 Azure 虛擬機器 (VM) 與網際網路、Azure 以及內部部署資源進行通訊。 在使用 Azure 入口網站建立 VM 時，入口網站會以預設設定為您建立一個 NIC。 您也可改為選擇以自訂設定建立 NIC，並在加以建立時對其新增一或多個 VM。 您也可以變更現有 NIC 的預設 NIC 設定。 本文說明如何以自訂設定建立 NIC、變更現有的 NIC 設定 (例如，網路篩選指派 (網路安全性群組)、子網路指派、DNS 伺服器設定和 IP 轉送)，以及刪除 NIC。
 
-如果您需要新增、變更或移除 NIC 的 IP 位址，請閱讀[新增、變更或移除 IP 位址](virtual-network-network-interface-addresses.md)一文。 如果您需要在 VM 中新增或移除 NIC，請閱讀[新增或移除 NIC](virtual-network-network-interface-vm.md) 一文。 
+如果您需要新增、變更或移除 NIC 的 IP 位址，請閱讀[新增、變更或移除 IP 位址](virtual-network-network-interface-addresses.md)一文。 如果您需要在 VM 中新增或移除 NIC，請閱讀[新增或移除 NIC](virtual-network-network-interface-vm.md) 一文。
 
 
 ## <a name="before"></a>開始之前
@@ -54,7 +54,7 @@ ms.lasthandoff: 05/12/2017
     |虛擬網路|是|選取 NIC 所要連線的 VNet。 您只能將 NIC 連接到與 NIC 位於相同訂用帳戶和位置的 VNet。 建立 NIC 後，您就無法變更它所連接的 VNet。 用來新增 NIC 的 VM 也必須位於與 NIC 相同的位置和訂用帳戶中。|
     |子網路|是|選取您所選 VNet 內的子網路。 您可以建立 NIC 之後，變更它連線至的子網路。|
     |私人 IP 位址指派|是| 選擇下列任一指派方法︰**動態︰**若選取此選項，Azure 會自動指派您所選子網路位址空間中的可用位址。 當 NIC 所在的 VM 在進入已停止 (已解除配置) 狀態後重新加以啟動時，Azure 可能會對此 NIC 指派不同的位址。 如果 VM 未曾處於已停止 (已解除配置) 狀態而重新啟動，位址會維持不變。 **靜態︰**若選取此選項，您必須手動指派所選子網路位址空間中的可用 IP 位址。 直到您變更靜態位址或刪除 NIC，靜態位址才會變更。 您可以在建立 NIC 之後，變更指派方法。 Azure DHCP 伺服器會將此位址指派給 VM 作業系統內的 NIC。|
-    |網路安全性群組|否| 保持設為 [無]、選取現有的網路安全性群組 (NSG)，或建立 NSG。 NSG 可讓您篩選進出 NIC 的網路流量。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-nsg.md)一文。 若要建立 NSG，請閱讀[建立 NSG](virtual-networks-create-nsg-arm-pportal.md) 一文。 您可以對 NIC 套用零個或一個 NSG。 也可以將零個或一個 NSG 套用至 NIC 所連線到的子網路。 將 NSG 套用至 NIC 及 NIC 所連線的子網路時，有時會發生非預期的結果。 若要針對套用至 NIC 和子網路的 NSG 進行疑難排解，請參閱[針對 NSG 進行疑難排解](virtual-network-nsg-troubleshoot-portal.md#view-effective-security-rules-for-a-network-interface)一文。|
+    |網路安全性群組|否| 保持設為 [無]、選取現有的網路安全性群組 (NSG)，或建立 NSG。 NSG 可讓您篩選進出 NIC 的網路流量。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-nsg.md)一文。 若要建立 NSG，請閱讀[建立 NSG](virtual-networks-create-nsg-arm-pportal.md) 一文。 您可以對 NIC 套用零個或一個 NSG。 也可以將零個或一個 NSG 套用至 NIC 所連線到的子網路。 將 NSG 套用至 NIC 及 NIC 所連線的子網路時，有時會發生非預期的結果。 若要針對套用至 NIC 和子網路的 NSG 進行疑難排解，請參閱[針對 NSG 進行疑難排解](virtual-network-nsg-troubleshoot-portal.md#a-namensgaview-effective-security-rules-for-a-network-security-group-nsg)一文。|
     |訂用帳戶|是|選取其中一個 Azure [訂用帳戶](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#subscription)。 連結 NIC 的 VM 與 VM 所連線的 VNet 必須位於相同的訂用帳戶中。|
     |資源群組|是|選取現有的[資源群組](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-group)，或建立一個群組。 NIC 可以位於與其連結的 VM 或 VM 所連線的 VNet 相同或不同的資源群組中。|
     |位置|是|NIC 所連結的 VM 與所連線的 VNet，均須位於相同的[位置](https://azure.microsoft.com/regions) (也稱為區域)。|
@@ -84,7 +84,7 @@ ms.lasthandoff: 05/12/2017
     - **DNS 伺服器︰**您可以指定由 Azure DHCP 伺服器指派給 NIC 的 DNS 伺服器。 NIC 可以從 NIC 所連線的 VNet 繼承設定，或使用自訂設定來覆寫其所連線之 VNet 的設定。 若要修改所顯示的內容，請完成本文之[變更 DNS 伺服器](#dns)一節中的步驟。
     - **網路安全性群組 (NSG)：**顯示與 NIC 相關聯的 NSG (如果有的話)。 NSG 包含輸入和輸出規則，可篩選 NIC 的網路流量。 如果 NSG 與 NIC 相關聯，則會顯示相關聯 NSG 的名稱。 若要修改所顯示的內容，請完成本文的[建立及解除 NSG 與網路介面的關聯](#associate-nsg)一節中的步驟。
     - **屬性︰**顯示有關 NIC 的重要設定，包括其 MAC 位址 (如果 NIC 未連結至 VM，則位址會空白) 以及其所在的訂用帳戶。
-    - **有效安全性規則︰**如果NIC 已連結至執行中的 VM，而且 NSG 與 NIC、它所連線的子網路或兩者相關聯，則會列出安全性規則。 若要深入了解所顯示的內容，請閱讀[針對網路安全性群組進行疑難排解](virtual-network-nsg-troubleshoot-portal.md#view-effective-security-rules-for-a-network-interface)一文。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-nsg.md)一文。
+    - **有效安全性規則︰**如果NIC 已連結至執行中的 VM，而且 NSG 與 NIC、它所連線的子網路或兩者相關聯，則會列出安全性規則。 若要深入了解所顯示的內容，請閱讀[針對網路安全性群組進行疑難排解](virtual-network-nsg-troubleshoot-portal.md#a-namensgaview-effective-security-rules-for-a-network-security-group-nsg)一文。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-nsg.md)一文。
     - **有效路由︰**如果 NIC 已連結至執行中的 VM，則會列出路由。 路由是下列各項的組合：Azure 預設路由、任何使用者定義的路由 (UDR)，以及連線 NIC 之子網路可能存在的任何 BGP 路由。 若要深入了解所顯示的內容，請閱讀[針對路由進行疑難排解](virtual-network-routes-troubleshoot-portal.md#view-effective-routes-for-a-network-interface)一文。 若要深入了解 Azure 預設值和 UDR，請閱讀[使用者定義的路由](virtual-networks-udr-overview.md)一文。
     - **一般 Azure Resource Manager 設定：**若要深入了解一般 Azure Resource Manager 設定，請閱讀[活動記錄](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#activity-logs)、[存取控制 (IAM)](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#access-control)、[標籤](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#tags)、[鎖定](../azure-resource-manager/resource-group-lock-resources.md?toc=%2fazure%2fvirtual-network%2ftoc.json)和[自動化指令碼](../azure-resource-manager/resource-manager-export-template.md?toc=%2fazure%2fvirtual-network%2ftoc.json#export-the-template-from-resource-group)文章。
 

@@ -12,13 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/02/2017
+ms.date: 06/12/2017
 ms.author: ryanwi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 2bf6bd76b653e30f38595631eff576d8eeb8efda
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: c58de22e29b6403e88bf22bdfe704a25757cdfca
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -33,11 +33,6 @@ Service Fabric 總管是一個 Web 型工具，可檢查和管理 Azure Service 
 
 ## <a name="connect-to-service-fabric-explorer"></a>連線到 Service Fabric 總管
 如果您已依照[準備開發環境](service-fabric-get-started.md)的指示操作，可以瀏覽至 http://localhost:19080/Explorer，啟動您本機叢集上的 [Service Fabric 總管]。
-
-> [!NOTE]
-> 如果您使用 Internet Explorer 搭配 Service Fabric 總管來管理遠端叢集，則需要設定一些 Internet Explorer 設定。 若要確保所有資訊都會正確載入，請移至 [工具]  >  [相容性檢視設定]，然後取消核取 [在相容性檢視下顯示內部網路網站]。
->
->
 
 ## <a name="understand-the-service-fabric-explorer-layout"></a>了解 Service Fabric 總管配置
 您可以使用左邊的樹狀目錄來瀏覽 Service Fabric 總管。 在樹狀目錄的根目錄，叢集儀表板會提供您叢集的概觀，包括應用程式和節點健康情況的摘要。

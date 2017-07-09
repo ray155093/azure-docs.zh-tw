@@ -13,10 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/04/2017
 ms.author: asteen
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 4394a5ddd17e635661cd89b42f76b0558ffa17ab
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 32c6d4ed5470077856d4ab175a5df5188b3690a6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -67,7 +68,7 @@ ms.lasthandoff: 04/17/2017
 
 -   根據已在 Internet Explorer 中啟用的安全性設定而定，如果網站不屬於**信任的區域**，有時我們的指令碼會被中斷而無法針對應用程式執行。
 
-  *  若要解決此問題，指示使用者**新增應用程式的網站**至其 **Internet Explorer 安全性設定**內的**信任的網站**清單。 您可以將使用者引導至[如何將網站新增到信任的網站清單](https://answers.microsoft.com/ie/forum/ie9-windows_7/how-do-i-add-a-site-to-my-trusted-sites-list/98cc77c8-b364-e011-8dfc-68b599b31bf5)一文，以取得詳細指示。
+  *  若要解決此問題，指示使用者**新增應用程式的網站**至其 **Internet Explorer 安全性設定**內的**信任的網站**清單。 您可以將使用者引導至[如何將網站新增到信任的網站清單](https://answers.microsoft.com/en-us/ie/forum/ie9-windows_7/how-do-i-add-a-site-to-my-trusted-sites-list/98cc77c8-b364-e011-8dfc-68b599b31bf5)一文，以取得詳細指示。
 
 -   在很罕見的情況下，Internet Explorer 的安全性驗證有時會造成頁面載入速度比我們指令碼執行的速度還慢。
 
@@ -108,6 +109,6 @@ ms.lasthandoff: 04/17/2017
 -   [Firefox 存取面板延伸模組](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
 ## <a name="next-steps"></a>後續步驟
-[使用應用程式 Proxy 提供應用程式的單一登入](active-directory-application-proxy-sso-using-kcd.md)
+[使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
 
 

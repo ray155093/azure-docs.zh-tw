@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/07/2017
+ms.date: 06/23/2017
 ms.author: markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 91a4e54b3dd2e1f44a6b52c548a243ae98e3ba3f
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -58,17 +59,17 @@ ms.lasthandoff: 04/27/2017
 
 針對已加入內部部署 AD 網域的 Windows 10 與 Windows Server 2016：
 
-1.    以系統管理員身分開啟命令提示字元。
+1.  以系統管理員身分開啟命令提示字元。
 
-2.    輸入 `dsregcmd.exe /debug /leave`
+2.  輸入 `dsregcmd.exe /debug /leave`
 
-3.    登入並登出以觸發可重新註冊裝置的排定工作。 
+3.  登入並登出以觸發可重新註冊裝置的排定工作。 
 
 針對其他已加入內部部署 AD 網域的 Windows 平台：
 
-1.    以系統管理員身分開啟命令提示字元。
-2.    輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /l"`。
-3.    輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /j"`。
+1.  以系統管理員身分開啟命令提示字元。
+2.  輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /l"`。
+3.  輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /j"`。
 
 ---
 
@@ -76,13 +77,13 @@ ms.lasthandoff: 04/27/2017
 
 **答：**
 
--    就 Windows 10 和 Windows Server 2016 而言，如果重複地嘗試將同一個裝置取消加入再重新加入，就可能出現重複的項目。 
+-   就 Windows 10 和 Windows Server 2016 而言，如果重複地嘗試將同一個裝置取消加入再重新加入，就可能出現重複的項目。 
 
--    如果您使用了 [新增工作或學校帳戶]，則每個使用 [新增工作或學校帳戶] 的 Windows 使用者都會以相同的裝置名稱建立一個新的裝置記錄。
+-   如果您使用了 [新增工作或學校帳戶]，則每個使用 [新增工作或學校帳戶] 的 Windows 使用者都會以相同的裝置名稱建立一個新的裝置記錄。
 
--    其他使用自動註冊來加入內部部署 AD 網域的 Windows 平台，將會針對登入裝置的每個網域使用者，以相同的裝置名稱建立一個新的裝置記錄。 
+-   其他使用自動註冊來加入內部部署 AD 網域的 Windows 平台，將會針對登入裝置的每個網域使用者，以相同的裝置名稱建立一個新的裝置記錄。 
 
--    已清除、重新安裝再以相同名稱重新加入的 AADJ 機器將會顯示成具有相同裝置名稱的另一筆記錄。
+-   已清除、重新安裝再以相同名稱重新加入的 AADJ 機器將會顯示成具有相同裝置名稱的另一筆記錄。
 
 ---
 

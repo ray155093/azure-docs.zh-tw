@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 02/24/2017
 ms.author: tarcher
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: de09554a0ae6ef733cc1ed6cdc20dcee014c0680
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 449bffb040dafc8edd0b8b0afd80dbea35cd28ac
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -116,5 +116,5 @@ Azure Resource Manager 範本提供宣告式方法來定義可重複的部署。
 ### <a name="next-steps"></a>後續步驟
 * 一旦建立 VM 之後，您可以選取 VM 刀鋒視窗上的 [連接]  來連接至 VM。
 * 了解如何 [為您的 DevTest Labs VM 建立自訂構件](devtest-lab-artifact-author.md)。
-* 瀏覽 [DevTest Labs Azure Resource Manager 快速入門範本資源庫 (英文)](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)。
+* 瀏覽 [DevTest Labs Azure Resource Manager 快速入門範本資源庫 (英文)](https://github.com/Azure/azure-devtestlab/tree/master/Samples)。
 

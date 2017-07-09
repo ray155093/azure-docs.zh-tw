@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: cephalin
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 6adc34f208c6c4363b73f6e42b4a4d6ae2e4483f
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 5f6537a45bcb092b5ef463e8069b9fc5582c14c2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/26/2017
 
 本文將說明如何在完全不停機的情況下，將作用中的自訂網域移轉至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。
 
-當您將即時網站及其網域名稱移轉至 App Service 時，該網域名稱已對即時流量提供服務，而您不想要在移轉期間的 DNS 解析時發生停機。 在此情況下，您必須先將網域名稱繫結至 Azure 應用程式以進行網域驗證。 
+當您將即時網站及其網域名稱移轉至 App Service 時，該網域名稱已對即時流量提供服務，而您不想要在移轉期間的 DNS 解析時發生停機。 在此情況下，您必須先將網域名稱繫結至 Azure 應用程式以進行網域驗證。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -44,10 +44,10 @@ ms.lasthandoff: 05/26/2017
 
 請依照下列步驟執行：
 
-1. 首先，依照下列步驟，使用 DNS 登錄建立驗證 TXT 記錄：[建立 DNS 記錄](app-service-web-tutorial-custom-domain.md#create-a)。
+1. 首先，依照下列步驟，使用 DNS 登錄建立驗證 TXT 記錄：[建立 DNS 記錄](app-service-web-tutorial-custom-domain.md)。
 額外的 TXT 記錄會採用從 &lt;*subdomain*>.&lt;*rootdomain*> 對應至 &lt;*appname*>.azurewebsites.net 的慣例。
 請參閱下表中的範例：  
- 
+
     <table cellspacing="0" border="1">
     <tr>
     <th>FQDN 範例</th>
@@ -75,7 +75,7 @@ ms.lasthandoff: 05/26/2017
 
     您的自訂網域現已在您的 Azure 應用程式中啟用。 您只需向網域註冊機構更新 DNS 記錄即可。
 
-3. 最後，更新網域的 DNS 記錄以指向您的 Azure 應用程式，如下所示：[建立 DNS 記錄](app-service-web-tutorial-custom-domain.md#create-a)。 
+3. 最後，更新網域的 DNS 記錄以指向您的 Azure 應用程式，如下所示：[建立 DNS 記錄](app-service-web-tutorial-custom-domain.md)。
 
     在 DNS 傳播發生之後，使用者流量應重新導向至 Azure 應用程式。
 
@@ -84,11 +84,10 @@ ms.lasthandoff: 05/26/2017
 
 > [!NOTE]
 > 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
-> 
-> 
+>
+>
 
 [開始使用 Azure DNS](../dns/dns-getstarted-create-dnszone.md)  
 [在自訂網域中建立 Web 應用程式的 DNS 記錄](../dns/dns-web-sites-custom-domain.md)  
 [將網域委派給 Azure DNS](../dns/dns-domain-delegation.md)
-
 

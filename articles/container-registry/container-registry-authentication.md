@@ -17,10 +17,11 @@ ms.workload: na
 ms.date: 03/24/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: ae6af47c82a5c0425f6cd53b8ba1134797505e6c
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1e6f2b9de47d1ce84c4043f5f6e73d462e0c1271
+ms.openlocfilehash: 2372d9d4dc190e7583bcc513042a85e970325e14
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/21/2017
 
 ---
 # <a name="authenticate-with-a-private-docker-container-registry"></a>向私用 Docker 容器登錄進行驗證
@@ -52,7 +53,7 @@ Azure Container Registry 無法進行匿名存取。 您可以使用[Docker 中�
 
 您可以指派多個服務主體到登錄庫，就能為不同的使用者或應用程式定義存取權。 在如下的開發人員或 DevOps 案例中，服務主體也會啟用與登錄庫的「無周邊」連線：
 
-  * 從登錄庫到協調流程系統的容器部署，包括 DC/OS、Docker Swarm 和 Kubernetes。 您也可以將容器登錄庫提取到相關的 Azure 服務 (例如 [Container Service](../container-service/index.md)、[App Service](../app-service/index.md)、[Batch](../batch/index.md) 及 [Service Fabric](../service-fabric/index.md) 等)。
+  * 從登錄庫到協調流程系統的容器部署，包括 DC/OS、Docker Swarm 和 Kubernetes。 您也可以將容器登錄庫提取到相關的 Azure 服務 (例如 [Container Service](../container-service/index.yml)、[App Service](../app-service/index.md)、[Batch](../batch/index.md) 及 [Service Fabric](../service-fabric/index.md) 等)。
 
   * 建立容器映像，並將其推送到登錄庫的連續整合和部署解決方案 (例如 Visual Studio Team Services 或 Jenkins)。
 

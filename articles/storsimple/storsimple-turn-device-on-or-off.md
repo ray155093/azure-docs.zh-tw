@@ -15,26 +15,17 @@ ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 6bfbb0b5eaae3fb3ce45d719ea1d3dec48ed0467
-ms.openlocfilehash: 359aaa1af6765270d9fe0f449007fcb4323b0ad4
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 532ff423ff53567b6ce40c0ea7ec09a689cee1e7
+ms.openlocfilehash: 74196c7d3989cc748a27026c04ea837b29a2785f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/06/2017
 
 
 ---
 # <a name="turn-on-or-turn-off-your-storsimple-8000-series-device"></a>開啟或關閉 StorSimple 8000 系列裝置
 ## <a name="overview"></a>概觀
 正常系統作業並不需要關閉 Microsoft Azure StorSimple 裝置。 不過，您可能需要開啟新的裝置，或有裝置必須關閉。 一般而言，在您需要更換故障的硬體、實際移動單元，或將裝置報廢的情況下才需要關機。 本教學課程將說明在不同案例中開啟和關閉 StorSimple 裝置的必要程序。
-
-下表列出開啟和關閉 StorSimple 裝置的多種案例，並提供適當程序的連結。
-
-| 案例 | 參考主題 |
-|:--- |:--- |
-| 開啟新的裝置 |[開啟新的裝置](#turn-on-a-new-device)<ul><li>[只有主要機箱的新裝置](#new-device-with-primary-enclosure-only)</li><li>[具有 EBOD 機箱的新裝置](#new-device-with-ebod-enclosure)</li></ul> |
-| 在關機後開啟裝置 |[在關機後開啟裝置](#turn-on-a-device-after-shutdown)<ul><li>[只有主要機箱的裝置](#device-with-primary-enclosure-only)</li><li>[具有 EBOD 機箱的裝置](#device-with-ebod-enclosure)</li></ul> |
-| 在電源中斷後開啟裝置 |[在電源中斷後開啟裝置](#turn-on-a-device-after-a-power-loss)<ul><li>[只有主要機箱的裝置](#8100)</li><li>[具有 EBOD 機箱的裝置](#8600)</li></ul> |
-| 在主要機箱和 EBOD 連線中斷後開啟裝置 |[在主要機箱和 EBOD 機箱連線中斷後開啟裝置](#turn-on-a-device-after-the-primary-and-ebod-enclosure-connection-is-lost) |
-| 關閉執行中的裝置 |[關閉執行中的裝置](#turn-off-a-running-device)<ul><li>[只有主要機箱的裝置](#8100a)</li><li>[具有 EBOD 機箱的裝置](#8600a)</li></ul> |
 
 ## <a name="turn-on-a-new-device"></a>開啟新的裝置
 根據裝置型號是 8100 或 8600，初次開啟 StorSimple 裝置的步驟有所不同。 8100 具有單一主要機箱，而 8600 是具有主要機箱與 EBOD 機箱的雙重機箱裝置。 下列各節涵蓋這兩個型號的詳細步驟。
