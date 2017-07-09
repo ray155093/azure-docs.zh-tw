@@ -16,17 +16,16 @@ ms.topic: hero-article
 ms.date: 05/24/2017
 ms.author: andrela
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: 2d1092af00c1bce3e47d980a512a25eff1f0d9b6
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: c5d09cf03c87c8da1d8588be62fea3f0cc3eec4f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 06/22/2017
 
 ---
 
 # <a name="azure-sql-database-use-ruby-to-connect-and-query-data"></a>Azure SQL Database︰使用 Ruby 來連接及查詢資料
 
-此快速入門示範如何使用 [Ruby](https://Ruby.org) 來連線至 Azure SQL Database，然後從 Mac OS 和 Ubuntu Linux 平台使用 Transact-SQL 陳述式查詢、插入、更新和刪除資料庫中的資料。
+此快速入門示範如何使用 [Ruby](https://www.ruby-lang.org) 來連線至 Azure SQL Database，然後從 Mac OS 和 Ubuntu Linux 平台使用 Transact-SQL 陳述式查詢、插入、更新和刪除資料庫中的資料。
 
 ## <a name="prerequisites"></a>必要條件
 

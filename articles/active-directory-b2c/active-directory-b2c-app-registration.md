@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 6/13/2017
 ms.author: parakhj
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: 4649bec5290e09b8a18e3e12719e63bf5e57c0b0
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 3499ff57e650c70679dfa018eec5dbe1a6173a33
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/16/2017
+ms.lasthandoff: 07/04/2017
 
 
 
@@ -52,7 +52,7 @@ ms.lasthandoff: 06/16/2017
 1. 按一下刀鋒視窗頂端的 [新增]  。
 1. 輸入應用程式的 **名稱** ，此名稱將會為取用者說明您的應用程式。 例如，您可以輸入「Contoso B2C app」。
 1. 將 [包括 web 應用程式 / web API] 切換為 [是]。
-1. 針對 [回覆 URL] 輸入[適當](#choosing-a-web-app/api-reply-url)的值，這是 Azure AD B2C 傳回您應用程式要求之任何權杖的所在端點。 例如，輸入 `https://localhost:44316/`。
+1. 針對 [回覆 URL] 輸入[適當](#limitations)的值，這是 Azure AD B2C 傳回您應用程式要求之任何權杖的所在端點。 例如，輸入 `https://localhost:44316/`。
 1. 按一下 [建立]  以註冊您的應用程式。
 1. 按一下您剛才建立的應用程式，並複製稍後要在程式碼中使用的全域唯一 **應用程式用戶端識別碼** 。
 1. 若您的 Web 應用程式也會呼叫 Azure AD B2C 所保護的 Web API，建議您：
@@ -154,3 +154,4 @@ ms.lasthandoff: 06/16/2017
 ## <a name="next-steps"></a>後續步驟
 
 您現已在 Azure AD B2C 註冊應用程式，只需完成其中一個[快速啟動教學課程](active-directory-b2c-overview.md#get-started)，即可開始操作和執行。
+
