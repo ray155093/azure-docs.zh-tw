@@ -4,7 +4,7 @@ description: "描述如何變更 Azure 帳戶的設定檔，以及解答常見�
 services: 
 documentationcenter: 
 author: genlin
-manager: narmstr
+manager: jlian
 editor: 
 tags: billing
 ms.assetid: 9d4ef5d9-11fc-4684-ace6-467f4ce26ba8
