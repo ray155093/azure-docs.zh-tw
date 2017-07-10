@@ -22,7 +22,8 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 05/05/2017
 
 ---
-# <a name="supplemental-lesson---ragged-hierarchies"></a>補充課程 - 不完全階層
+<a id="supplemental-lesson---ragged-hierarchies" class="xliff"></a>
+# 補充課程 - 不完全階層
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
@@ -34,14 +35,17 @@ ms.lasthandoff: 05/05/2017
   
 這堂課的預估完成時間：**20 分鐘**  
   
-## <a name="prerequisites"></a>必要條件  
+<a id="prerequisites" class="xliff"></a>
+## 必要條件  
 此補充課程主題是表格式模型教學課程的一部分。 在此補充課程中執行工作之前，您應已完成所有先前的課程或已完成 Adventure Works 網際網路銷售範例模型專案。 
 
 如果您已建立 AW 網際網路銷售專案作為本教學課程的一部分，您的模型尚未包含任何資料或不完全的階層。 若要完成本補充課程，您必須先藉由新增一些額外的資料表來建立問題、建立關聯性、計算結果欄、量值以及新的組織階層。 該部分大約需要 15 分鐘。 然後，您在短短幾分鐘內就可以解決。  
 
-## <a name="add-tables-and-objects"></a>新增資料表和物件
+<a id="add-tables-and-objects" class="xliff"></a>
+## 新增資料表和物件
   
-### <a name="to-add-new-tables-to-your-model"></a>將新資料表新增至您的模型
+<a id="to-add-new-tables-to-your-model" class="xliff"></a>
+### 將新資料表新增至您的模型
   
 1.  在 [表格式模型總管] 中，依序展開 [資料來源]，然後以滑鼠右鍵按一下您的連線 > [匯入新資料表]。
   
@@ -112,7 +116,8 @@ ms.lasthandoff: 05/05/2017
 
     如您在樞紐分析表中所見，階層會顯示不完全的資料列。 有許多資料列中顯示空白的成員。
 
-## <a name="to-fix-the-ragged-hierarchy-by-setting-the-hide-members-property"></a>藉由設定 [隱藏成員] 屬性來修正不完全的階層
+<a id="to-fix-the-ragged-hierarchy-by-setting-the-hide-members-property" class="xliff"></a>
+## 藉由設定 [隱藏成員] 屬性來修正不完全的階層
 
 1.  在 [表格式模型總管] 中，依序展開 [資料表] > [DimEmployee] > [階層] > [組織]。
 
@@ -126,7 +131,8 @@ ms.lasthandoff: 05/05/2017
 
     現在看起來好多了！
 
-## <a name="see-also"></a>另請參閱   
+<a id="see-also" class="xliff"></a>
+## 另請參閱   
 [第 9 課：建立階層](../tutorials/aas-lesson-9-create-hierarchies.md)  
 [補充課程 - 動態安全性](../tutorials/aas-supplemental-lesson-dynamic-security.md)  
 [補充課程 - 詳細資料列](../tutorials/aas-supplemental-lesson-detail-rows.md)  
