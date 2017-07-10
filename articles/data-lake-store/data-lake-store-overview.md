@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/06/2017
+ms.date: 06/29/2017
 ms.author: nitinme
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: a1d30c77dd29a134017be7deec6bb50991e6a698
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -55,7 +57,7 @@ Azure 資料湖存放區可以原生格式 (原樣) 儲存任何資料，而不�
 
 Azure 資料湖存放區的資料容器基本上是資料夾和檔案。 您可以使用 SDK、Azure 入口網站和 Azure Powershell 來操作儲存的資料。 只要您使用這些介面和適當容器將資料放入存放區中，就可以儲存任何類型的資料。 資料湖存放區不會根據其儲存的資料類型來對資料執行任何特殊處理。
 
-## <a name="a-namedatalakestoresecurityasecuring-data-in-azure-data-lake-store"></a><a name="DataLakeStoreSecurity"></a>在 Azure 資料湖存放區中保護資料
+## <a name="DataLakeStoreSecurity"></a>在 Azure 資料湖存放區中保護資料
 Azure 資料湖存放區會使用 Azure Active Directory 進行驗證，並使用存取控制清單 (ACL) 來管理資料的存取。
 
 | 功能 | 說明 |
@@ -101,10 +103,5 @@ Azure Data Lake Store 與 Hadoop 生態系統中的大多數開放原始碼元�
 * [使用 Apache Sqoop 在相關來源與 Azure Data Lake Store 之間移動資料](https://mix.office.com/watch/1butcdjxmu114)
 * [使用 Azure Data Factory 進行 Azure Data Lake Store 的資料協調](https://mix.office.com/watch/1oa7le7t2u4ka)
 * [保護 Azure Data Lake Store 中的資料](https://mix.office.com/watch/1q2mgzh9nn5lx)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 
