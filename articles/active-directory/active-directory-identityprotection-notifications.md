@@ -23,16 +23,19 @@ ms.lasthandoff: 12/22/2016
 
 
 ---
-# <a name="azure-active-directory-identity-protection-notifications"></a>Azure Active Directory Identity Protection 通知
+<a id="azure-active-directory-identity-protection-notifications" class="xliff"></a>
+# Azure Active Directory Identity Protection 通知
 Azure AD Identity Protection 會傳送兩種自動化通知電子郵件，協助您管理使用者風險和風險事件：
 
 * 使用者遭到入侵的警示電子郵件
 * 每週精選文章電子郵件
 
-## <a name="user-compromised-alert-email"></a>使用者遭到入侵的警示電子郵件
+<a id="user-compromised-alert-email" class="xliff"></a>
+## 使用者遭到入侵的警示電子郵件
 當 Azure AD Identity Protection 發現帳戶遭到入侵時，就會產生使用者遭到入侵的電子郵件警示。 此電子郵件包含 Identity Protection 儀表板中「標示有風險的使用者」報告的連結。 建議您立即調查遭入侵之帳戶的通知。
 
-## <a name="weekly-digest-email"></a>每週精選文章電子郵件
+<a id="weekly-digest-email" class="xliff"></a>
+## 每週精選文章電子郵件
 每週精選文章電子郵件包含新風險事件的摘要。<br>
 其中包括：
 
@@ -61,6 +64,7 @@ Azure AD Identity Protection 會傳送兩種自動化通知電子郵件，協助
    ![使用者風險原則](./media/active-directory-identityprotection-notifications/405.png "User risk policy")
    <br>
 
-## <a name="see-also"></a>另請參閱
+<a id="see-also" class="xliff"></a>
+## 另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
