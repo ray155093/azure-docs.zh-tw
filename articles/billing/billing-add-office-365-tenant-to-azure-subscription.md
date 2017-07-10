@@ -23,22 +23,26 @@ ms.lasthandoff: 02/22/2017
 
 
 ---
-# <a name="associate-an-office-365-tenant-to-an-azure-subscription"></a>將 Office 365 租用戶與 Azure 訂用帳戶產生關聯
+<a id="associate-an-office-365-tenant-to-an-azure-subscription" class="xliff"></a>
+# 將 Office 365 租用戶與 Azure 訂用帳戶產生關聯
 連結個別的 Azure 和 Office 365 訂用帳戶，這樣您就可以從 Azure 訂用帳戶存取 Office 365 租用戶。 若要連結您的訂用帳戶，請使用 Azure 服務系統管理員帳戶登入 Azure，新增一個目錄，然後將 Office 365 組織帳戶新增到 Azure Active Directory 租用戶。
 
 如果您要讓 Azure Active Directory 執行個體中的使用者擁有 Office 365 訂用帳戶，或您有 Office 365 帳戶但沒有 Azure 帳戶，請參閱[使用 Office 365 帳戶註冊 Azure](billing-use-existing-office-365-account-azure-subscription.md)。 
 
-## <a name="before-you-begin"></a>開始之前
+<a id="before-you-begin" class="xliff"></a>
+## 開始之前
 * 您必須有 Azure 訂用帳戶服務的系統管理員認證。 共同管理員無法執行本文中某些步驟。 若要變更服務管理員，請參閱[如何新增或變更 Azure 管理員角色](billing-add-change-azure-subscription-administrator.md#change-service-administrator-for-a-subscription)。
 * 您必須有 Office 365 租用戶的全域系統管理員認證。
 * 服務管理員的電子郵件地址不得位於 Office 365 租用戶中。
 * 服務管理員的電子郵件地址不得符合 Office 365 租用戶的任何全域系統管理員。
 * 如果您使用的電子郵件地址同時為 Microsoft 帳戶和組織帳戶，請暫時將 Azure 訂用帳戶的服務管理員變更成使用另一個 Microsoft 帳戶。 您可以在 [Microsoft 帳戶註冊頁面](https://signup.live.com/)建立新的 Microsoft 帳戶。
 
-## <a name="link-office-365-tenant-to-azure-subscription"></a>將 Office 365 租用戶連結到 Azure 訂用帳戶
+<a id="link-office-365-tenant-to-azure-subscription" class="xliff"></a>
+## 將 Office 365 租用戶連結到 Azure 訂用帳戶
 若要將 Office 365 租用戶與 Azure 訂用帳戶產生關聯，請遵循下列步驟︰
 
-### <a name="step-1-add-office-365-tenant-to-your-azure-subscription"></a>步驟 1：將 Office 365 租用戶加入至 Azure 訂用帳戶
+<a id="step-1-add-office-365-tenant-to-your-azure-subscription" class="xliff"></a>
+### 步驟 1：將 Office 365 租用戶加入至 Azure 訂用帳戶
 
 1. 使用服務管理員認證登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
 
@@ -98,7 +102,8 @@ ms.lasthandoff: 02/22/2017
    
 5. 選取 [完成] ![complete-icon](./media/billing-add-office-365-tenant-to-azure-subscription/s38_complete-icon.png)。
 
-### <a name="step-3-add-your-office-365-organizational-accounts-as-co-administrators-to-the-azure-active-directory-tenant"></a>步驟 3：將您的 Office 365 組織帳戶新增為 Azure Active Directory 租用戶的共同管理員
+<a id="step-3-add-your-office-365-organizational-accounts-as-co-administrators-to-the-azure-active-directory-tenant" class="xliff"></a>
+### 步驟 3：將您的 Office 365 組織帳戶新增為 Azure Active Directory 租用戶的共同管理員
    
 1. 選取 [系統管理員] 索引標籤，然後選取 [新增]。
    
@@ -121,7 +126,8 @@ ms.lasthandoff: 02/22/2017
    
     ![Azure 登入頁面的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s324_azure-sign-in-with-co-admin.png)
 
-## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
+<a id="need-help-contact-support" class="xliff"></a>
+## 需要協助嗎？ 請連絡支援人員。
 如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 
