@@ -12,7 +12,7 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/07/2017
+ms.date: 07/10/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
@@ -22,7 +22,8 @@ ms.lasthandoff: 07/06/2017
 
 
 ---
-# <a name="transform-data-by-running-u-sql-scripts-on-azure-data-lake-analytics"></a>在 Azure Data Lake Analytics 上執行 U-SQL 指令碼來轉換資料 
+<a id="transform-data-by-running-u-sql-scripts-on-azure-data-lake-analytics" class="xliff"></a>
+# 在 Azure Data Lake Analytics 上執行 U-SQL 指令碼來轉換資料 
 > [!div class="op_single_selector" title1="Transformation Activities"]
 > * [Hive 活動](data-factory-hive-activity.md) 
 > * [Pig 活動](data-factory-pig-activity.md)
@@ -43,7 +44,8 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 > 請檢閱 [建置您的第一個管線教學課程](data-factory-build-your-first-pipeline.md) ，以了解建立 Data Factory、連結服務、資料集和管線的詳細步驟。 您可以搭配「Data Factory 編輯器」、Visual Studio 或 Azure PowerShell 使用 JSON 程式碼片段來建立 Data Factory 實體。
 
 
-## <a name="azure-data-lake-analytics-linked-service"></a>Azure Data Lake Analytics 連結服務
+<a id="azure-data-lake-analytics-linked-service" class="xliff"></a>
+## Azure Data Lake Analytics 連結服務
 您需建立 **Azure Data Lake Analytics** 連結服務，來將 Azure Data Lake Analytics 計算服務連結到 Azure Data Factory。 管線中的 Data Lake Analytics U-SQL 活動會參考此連結服務。 
 
 下列範例提供 Azure Data Lake Analytics 連結服務的 JSON 定義。 
@@ -86,7 +88,8 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 
 如果要避免/解決此錯誤，請在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 **sessionId** 和 **authorization** 屬性的值：
 
-### <a name="to-programmatically-generate-sessionid-and-authorization-values"></a>若要以程式設計方式產生 sessionId 與 authorization 的值
+<a id="to-programmatically-generate-sessionid-and-authorization-values" class="xliff"></a>
+### 若要以程式設計方式產生 sessionId 與 authorization 的值
 
 ```csharp
 if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService ||
@@ -115,7 +118,8 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 請針對 WindowsFormsWebAuthenticationDialog 類別，新增對下列項目的參考：Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll。 
 
-## <a name="data-lake-analytics-u-sql-activity"></a>Data Lake Analytics U-SQL 活動
+<a id="data-lake-analytics-u-sql-activity" class="xliff"></a>
+## Data Lake Analytics U-SQL 活動
 下列 JSON 片段會定義具有 Data Lake Analytics U-SQL 活動的管線。 活動定義具有您稍早建立的 Azure Data Lake Analytics 連結服務的參考。   
 
 ```JSON
@@ -185,8 +189,10 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 指令碼定義請參閱 [SearchLogProcessing.txt 指令碼定義](#sample-u-sql-script) 。 
 
-## <a name="sample-input-and-output-datasets"></a>建立輸入和輸出資料集
-### <a name="input-dataset"></a>輸入資料集
+<a id="sample-input-and-output-datasets" class="xliff"></a>
+## 建立輸入和輸出資料集
+<a id="input-dataset" class="xliff"></a>
+### 輸入資料集
 在此範例中，輸入的資料是位於 Azure Data Lake Store (datalake/input 資料夾中的 SearchLog.tsv 檔案)。 
 
 ```JSON
@@ -212,7 +218,8 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 }    
 ```
 
-### <a name="output-dataset"></a>輸出資料集
+<a id="output-dataset" class="xliff"></a>
+### 輸出資料集
 在此範例中，U-SQL 指令碼所產生的輸出資料會儲存在 Azure Data Lake Store (datalake/output 資料夾)。 
 
 ```JSON
@@ -232,7 +239,8 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 }
 ```
 
-### <a name="sample-data-lake-store-linked-service"></a>Data Lake Store 連結服務範例
+<a id="sample-data-lake-store-linked-service" class="xliff"></a>
+### Data Lake Store 連結服務範例
 以下是輸入/輸出資料集所使用的範例 Azure Data Lake Store 連結服務的定義。 
 
 ```JSON
@@ -251,7 +259,8 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 如需 JSON 屬性的描述，請參閱 [將資料移入和移除 Azure Data Lake Store](data-factory-azure-datalake-connector.md) 一文。 
 
-## <a name="sample-u-sql-script"></a>U-SQL 指令碼範例
+<a id="sample-u-sql-script" class="xliff"></a>
+## U-SQL 指令碼範例
 
 ```
 @searchlog =
@@ -284,7 +293,8 @@ ADF 會使用 ‘parameters’ 區段來動態傳遞 U-SQL 指令碼中 **@in** 
 
 您也可以在管線定義中，針對在 Azure Data Lake Analytics 服務上執行的作業，指定其他屬性 (例如 degreeOfParallelism 和 priority)。
 
-## <a name="dynamic-parameters"></a>動態參數
+<a id="dynamic-parameters" class="xliff"></a>
+## 動態參數
 在範例管線定義中，in 和 out 參數都被指派了硬式編碼值。 
 
 ```JSON

@@ -12,7 +12,7 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/24/2017
+ms.date: 07/10/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
 ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
@@ -22,14 +22,16 @@ ms.lasthandoff: 04/27/2017
 
 
 ---
-# <a name="data-factory-scheduling-and-execution"></a>Data Factory 排程和執行
+<a id="data-factory-scheduling-and-execution" class="xliff"></a>
+# Data Factory 排程和執行
 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 本文假設您已了解 Data Factory 應用程式模型的基本概念，包括活動、管線、連結的服務和資料集。 請看下列文章，了解 Azure Data Factory 的基本概念：
 
 * [Data Factory 服務簡介](data-factory-introduction.md)
 * [管線](data-factory-create-pipelines.md)
 * [資料集](data-factory-create-datasets.md) 
 
-## <a name="start-and-end-times-of-pipeline"></a>管線的開始和結束時間
+<a id="start-and-end-times-of-pipeline" class="xliff"></a>
+## 管線的開始和結束時間
 管線僅在其「開始」時間與「結束」時間之間有作用。 在開始時間之前或結束時間之後就不會執行。 如果管線已暫停，不論其開始和結束時間為何，都不會執行。 若要執行管線，則不該將它暫停。 您可以在管線定義中找到這些設定 (start、end、paused)： 
 
 ```json
@@ -41,7 +43,8 @@ ms.lasthandoff: 04/27/2017
 如需有關這些屬性的詳細資訊，請參閱[建立管線](data-factory-create-pipelines.md)一文。 
 
 
-## <a name="specify-schedule-for-an-activity"></a>為活動指定排程
+<a id="specify-schedule-for-an-activity" class="xliff"></a>
+## 為活動指定排程
 執行的不是管線。 在管線的整體內容中，執行的是管線中的活動。 您可以使用活動 JSON 的 **scheduler** 區段，來為活動指定週期性排程。 例如，您可以排定讓活動每小時執行一次，如下：  
 
 ```json
@@ -57,7 +60,8 @@ ms.lasthandoff: 04/27/2017
 
 活動的 **scheduler** 屬性是選擇性的。 如果您指定此屬性，它就必須符合您在活動輸出資料集的定義中指定的頻率。 目前，驅動排程的是輸出資料集。 因此，即使活動不會產生任何輸出，您也必須指定輸出資料集。 
 
-## <a name="specify-schedule-for-a-dataset"></a>為資料集指定排程
+<a id="specify-schedule-for-a-dataset" class="xliff"></a>
+## 為資料集指定排程
 Data Factory 管線中的一個活動可以接受零個或多個輸入「資料集」，並且會產生一個或多個輸出資料集。 針對活動，您可以在資料集定義中使用 **availability** 區段，來指定提供輸入資料或產生輸出資料的頻率。 
 
 **availability** 區段中的 **frequency** 會指定時間單位。 允許的 frequency 值為：Minute、Hour、Day、Week 及 Month。 availability 區段中的 **interval** 屬性會指定 frequency 的倍數。 例如：如果將輸出資料集的 frequency 設定為 Day，並將 interval 是設定為 1，就會每天產生輸出資料。 如果您將 frequency 指定為 minute，建議您將 interval 設定為不小於 15。 
@@ -177,10 +181,12 @@ Data Factory 管線中的一個活動可以接受零個或多個輸入「資料�
 
 在上述範例中，為輸入和輸出資料集指定的排程是相同的 (每小時)。 如果活動的輸入資料集會以不同的頻率提供 (假設是每隔 15 分鐘)，產生此輸出資料集的活動仍然會一小時執行一次，因為驅動活動排程的是輸出資料集。 如需詳細資訊，請參閱[使用不同的頻率模型化資料集](#model-datasets-with-different-frequencies)。
 
-## <a name="dataset-availability-and-policies"></a>資料集可用性和原則
+<a id="dataset-availability-and-policies" class="xliff"></a>
+## 資料集可用性和原則
 您已了解資料集定義之 availability 區段中 frequency 和 interval 屬性的使用方式。 還有一些影響活動的排程和執行的其他屬性。 
 
-### <a name="dataset-availability"></a>資料集可用性 
+<a id="dataset-availability" class="xliff"></a>
+### 資料集可用性 
 下表描述您在 **availability** 區段中可使用的屬性：
 
 | 屬性 | 說明 | 必要 | 預設值 |
@@ -191,7 +197,8 @@ Data Factory 管線中的一個活動可以接受零個或多個輸入「資料�
 | anchorDateTime |定義排程器用來計算資料集配量界限的時間絕對位置。 <br/><br/><b>注意</b>：如果 AnchorDateTime 有比頻率更細微的日期部分，則系統會忽略那些更細微的部分。 <br/><br/>例如，如果 <b>interval</b> 為 <b>hourly</b> (frequency: hour 且 interval: 1) 而且 <b>AnchorDateTime</b> 包含<b>分鐘和秒鐘</b>，則會忽略 AnchorDateTime 的<b>分鐘和秒鐘</b>部分。 |否 |01/01/0001 |
 | Offset |所有資料集配量的開始和結束移位所依據的時間範圍。 <br/><br/><b>注意</b>︰如果同時指定 anchorDateTime 和 offset，結果會是合併的位移。 |否 |NA |
 
-### <a name="offset-example"></a>位移範例
+<a id="offset-example" class="xliff"></a>
+### 位移範例
 根據預設，每日 (`"frequency": "Day", "interval": 1`) 配量的開始時間是 UTC 時間上午 12 點 (午夜)。 如果您希望將開始時間改為 UTC 時間上午 6 點，請依照下列程式碼片段所示設定位移： 
 
 ```json
@@ -202,7 +209,8 @@ Data Factory 管線中的一個活動可以接受零個或多個輸入「資料�
     "offset": "06:00:00"
 }
 ```
-### <a name="anchordatetime-example"></a>anchorDateTime 範例
+<a id="anchordatetime-example" class="xliff"></a>
+### anchorDateTime 範例
 在下列範例中，會每隔 23 小時產生一次資料集。 第一個配量會在 anchorDateTime 所指定的時間開始，這是設定成 `2017-04-19T08:00:00` (UTC 時間)。
 
 ```json
@@ -214,19 +222,21 @@ Data Factory 管線中的一個活動可以接受零個或多個輸入「資料�
 }
 ```
 
-### <a name="offsetstyle-example"></a>位移/樣式範例
+<a id="offsetstyle-example" class="xliff"></a>
+### 位移/樣式範例
 下列資料集是每月資料集，會在每月 3 號的上午 8:00 (`3.08:00:00`) 產生：
 
 ```json
 "availability": {
     "frequency": "Month",
     "interval": 1,
-    "offset": "3.08:00:00",    
+    "offset": "3.08:00:00", 
     "style": "StartOfInterval"
 }
 ```
 
-### <a name="dataset-policy"></a>資料集原則
+<a id="dataset-policy" class="xliff"></a>
+### 資料集原則
 資料集可以具有定義的驗證原則，指定配量執行所產生的資料在供取用之前如何驗證。 在這種情況下，於配量完成執行後，輸出配量狀態就會變更為**等候**，子狀態為**驗證**。 配量通過驗證之後，配量狀態會變更為 **就緒**。 如果已產生資料配量但是未通過驗證，將不會處理相依於此配量的下游配量活動執行。 [監視和管理管線](data-factory-monitor-manage-pipelines.md) 涵蓋 Data Factory 中資料配量的各種狀態。
 
 資料集中的 **policy** 區段定義資料集配量必須符合的準則或條件。 下表說明您可以在 **policy** 區段中使用的屬性：
@@ -236,7 +246,8 @@ Data Factory 管線中的一個活動可以接受零個或多個輸入「資料�
 | minimumSizeMB | 驗證 **Azure Blob** 中的資料是否符合最小的大小需求 (以 MB 為單位)。 |Azure Blob |否 |NA |
 | minimumRows | 驗證 **Azure SQL Database** 或 **Azure 資料表**中的資料是否包含最小的資料列數。 |<ul><li>Azure SQL Database</li><li>Azure 資料表</li></ul> |否 |NA |
 
-#### <a name="examples"></a>範例
+<a id="examples" class="xliff"></a>
+#### 範例
 **minimumSizeMB：**
 
 ```json
@@ -264,7 +275,8 @@ Data Factory 管線中的一個活動可以接受零個或多個輸入「資料�
 
 如需有關這些屬性及範例的詳細資訊，請參閱[建立資料集](data-factory-create-datasets.md)一文。 
 
-## <a name="activity-policies"></a>活動原則
+<a id="activity-policies" class="xliff"></a>
+## 活動原則
 原則會影響活動的執行階段行為，特別是在處理資料表配量的時候。 下表提供詳細資料。
 
 | 屬性 | 允許的值 | 預設值 | 說明 |
@@ -279,12 +291,14 @@ Data Factory 管線中的一個活動可以接受零個或多個輸入「資料�
 
 如需詳細資訊，請參閱[管線](data-factory-create-pipelines.md)一文。 
 
-## <a name="parallel-processing-of-data-slices"></a>資料配量的平行處理
+<a id="parallel-processing-of-data-slices" class="xliff"></a>
+## 資料配量的平行處理
 您可以將管線的開始日期設定為過去的日期。 當您這麼做時，Data Factory 會自動計算 (回補) 過去的所有資料配量，並開始處理它們。 例如：如果您建立一個開始日期為 2017-04-01 的管線，而目前的日期是 2017-04-10。 當輸出資料集的頻率是每天時，Data Factory 會立即開始處理從 2017-04-01 到 2017-04-09 的所有配量，因為開始日期是過去的日期。 從 2017-04-10 起的配量尚未處理，因為 availability 區段中 style 屬性的值預設為 EndOfInterval。 最舊的配量會最先處理，因為 executionPriorityOrder 的預設值為 OldestFirst。 如需 style 屬性的相關描述，請參閱[資料集可用性](#dataset-availability)一節。 如需 executionPriorityOrder 區段的相關描述，請參閱[活動原則](#activity-policies)一節。 
 
 您可以透過設定活動 JSON 之 **policy** 區段中的 **concurrency** 屬性，設定以平行方式處理回補的資料配量。 此屬性可決定不同配量上可以發生的平行活動執行數目。 concurrency 屬性的預設值是 1。 因此，預設會一次處理一個配量。 最大值為 10。 當管線需要處理一組大量的可用資料時，concurrency 的值越大，資料處理的速度就越快。 
 
-## <a name="rerun-a-failed-data-slice"></a>重新執行失敗的資料配量
+<a id="rerun-a-failed-data-slice" class="xliff"></a>
+## 重新執行失敗的資料配量
 處理資料配量時，如果發生錯誤，您可以使用 Azure 入口網站刀鋒視窗或「監視與管理」應用程式來找出配量處理失敗的原因。 如需詳細資訊，請參閱[使用 Azure 入口網站刀鋒視窗監視和管理管線](data-factory-monitor-manage-pipelines.md)或[監視和管理應用程式](data-factory-monitor-manage-app.md)。
 
 請思考一下會顯示兩個活動的下列範例。 Activity1 和 Activity 2。 Activity1 會取用 Dataset1 配量並產生 Dataset2 配量，而此配量會由 Activity2 取用來作為輸入以產生 Final Dataset (最終資料集)。
@@ -299,7 +313,8 @@ Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的�
 
 ![重新執行失敗的配量](./media/data-factory-scheduling-and-execution/rerun-failed-slice.png)
 
-## <a name="multiple-activities-in-a-pipeline"></a>管線中的多個活動
+<a id="multiple-activities-in-a-pipeline" class="xliff"></a>
+## 管線中的多個活動
 您可以在一個管線中包含多個活動。 如果您的管線中有多個活動，而且活動的輸出不是另一個活動的輸入，則當活動的輸入資料配量已備妥時，活動可能會平行執行。
 
 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 活動可以在相同的管線中或在不同的管線中。 只有當第一個活動執行成功完成時，第二個活動才會執行。
@@ -321,10 +336,12 @@ Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的�
 
 如需範例，請參閱附錄中的[循序複製](#copy-sequentially)一節。
 
-## <a name="model-datasets-with-different-frequencies"></a>使用不同的頻率模型化資料集
+<a id="model-datasets-with-different-frequencies" class="xliff"></a>
+## 使用不同的頻率模型化資料集
 在範例中，輸入和輸出資料集和活動排程時段的頻率是相同的。 某些案例需要能夠以不同於一或多個輸入的頻率產生輸出。 Data Factory 支援模型化這些案例。
 
-### <a name="sample-1-produce-a-daily-output-report-for-input-data-that-is-available-every-hour"></a>範例 1：對每小時可用的輸入資料產生每日輸出報告
+<a id="sample-1-produce-a-daily-output-report-for-input-data-that-is-available-every-hour" class="xliff"></a>
+### 範例 1：對每小時可用的輸入資料產生每日輸出報告
 請設想 Azure Blob 儲存體中每小時會有來自感應器的輸入測量資料的案例。 您想要為具有 [Data Factory Hive 活動](data-factory-hive-activity.md)的日子，產生具有統計資料 (例如平均值、最大值及最小值) 的每日彙總報告。
 
 以下是使用 Data Factory 模型化此案例的方式：
@@ -444,7 +461,8 @@ Hive 指令碼會收到適當的「日期時間」  資訊，做為使用 **Wind
 
 每一天的輸出配量取決於輸入資料集之 24 小時每小時的配量。 Data Factory 會自動計算這些相依性，方法是釐清落在與要產生之輸出配量相同時間期間的輸入資料配量。 如果這 24 個輸入配量中有任何一個無法使用，Data Factory 會先等待輸入配量就緒，再開始每日活動執行。
 
-### <a name="sample-2-specify-dependency-with-expressions-and-data-factory-functions"></a>範例 2：使用運算式和 Data Factory 函數指定相依性
+<a id="sample-2-specify-dependency-with-expressions-and-data-factory-functions" class="xliff"></a>
+### 範例 2：使用運算式和 Data Factory 函數指定相依性
 我們來看一下另一種案例。 假設您有處理兩個輸入資料集的 Hive 活動。 其中一個每日有新資料，但是另一個會每週取得新資料。 假設您想要跨兩個輸入進行聯結作業，並且每日產生輸出。
 
 Data Factory 會藉由對齊輸出資料配量的時間期間來自動找出要處理的正確輸入配量的簡單方法不會奏效。
@@ -598,9 +616,11 @@ Hive 活動接受 2 個輸入，並且每日產生輸出配量。 您可以針�
 
 如需 Data Factory 所支援的函數與系統變數清單，請參閱 [Data Factory 函式與系統變數](data-factory-functions-variables.md) 。
 
-## <a name="appendix"></a>附錄
+<a id="appendix" class="xliff"></a>
+## 附錄
 
-### <a name="example-copy-sequentially"></a>範例：循序複製
+<a id="example-copy-sequentially" class="xliff"></a>
+### 範例：循序複製
 您可以利用循序/排序的方式，逐一執行多個複製作業。 例如，您在管線中可能有兩個具有下列輸入資料輸出資料集的複製活動 (CopyActivity1 和 CopyActivity2)：   
 
 CopyActivity1

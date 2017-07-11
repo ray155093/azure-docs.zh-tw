@@ -12,7 +12,7 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 04/17/2017
+ms.date: 07/10/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
 ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
@@ -23,7 +23,8 @@ ms.lasthandoff: 06/14/2017
 
 ---
 
-# <a name="tutorial-build-your-first-azure-data-factory-using-azure-portal"></a>教學課程：使用 Azure 入口網站建置您的第一個 Azure Data Factory
+<a id="tutorial-build-your-first-azure-data-factory-using-azure-portal" class="xliff"></a>
+# 教學課程：使用 Azure 入口網站建置您的第一個 Azure Data Factory
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-build-your-first-pipeline.md)
 > * [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
@@ -42,11 +43,13 @@ ms.lasthandoff: 06/14/2017
 > 
 > 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+## 必要條件
 1. 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。
 2. 本文不提供 Azure Data Factory 服務的概念性概觀。 建議您詳讀 [Azure Data Factory 簡介](data-factory-introduction.md) 一文，了解服務的詳細概觀。  
 
-## <a name="create-data-factory"></a>建立 Data Factory
+<a id="create-data-factory" class="xliff"></a>
+## 建立 Data Factory
 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源將資料複製到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料，以產生輸出資料。 讓我們在這個步驟中開始建立 Data Factory。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
@@ -82,10 +85,12 @@ ms.lasthandoff: 06/14/2017
 
 在 Data Factory 中建立管線之前，您必須先建立一些 Data Factory 項目。 首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示位於連結的資料存放區中的輸入/輸出資料，然後建立具有使用這些資料集的活動之管線。
 
-## <a name="create-linked-services"></a>建立連結服務
+<a id="create-linked-services" class="xliff"></a>
+## 建立連結服務
 在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。 Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。 HDInsight 連結服務是用來執行此範例中管線活動所指定的 Hive 指令碼。 識別案例中使用的[資料存放區](data-factory-data-movement-activities.md)/[計算服務](data-factory-compute-linked-services.md)，並建立連結的服務將這些服務連結到 Data Factory。  
 
-### <a name="create-azure-storage-linked-service"></a>建立 Azure 儲存體連結服務
+<a id="create-azure-storage-linked-service" class="xliff"></a>
+### 建立 Azure 儲存體連結服務
 在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。 在本教學課程中，您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。
 
 1. 在適用於 **GetStartedDF** 的 [DATA FACTORY] 刀鋒視窗中，按一下 [製作和部署]。 您應該會看到 Data Factory 編輯器。
@@ -106,7 +111,8 @@ ms.lasthandoff: 06/14/2017
 
     ![功能表中的儲存體連結服務](./media/data-factory-build-your-first-pipeline-using-editor/StorageLinkedServiceInTree.png)    
 
-### <a name="create-azure-hdinsight-linked-service"></a>建立 Azure HDInsight 連結服務
+<a id="create-azure-hdinsight-linked-service" class="xliff"></a>
+### 建立 Azure HDInsight 連結服務
 在此步驟中，您可將隨選 HDInsight 叢集連結至 Data Factory。 HDInsight 叢集會在執行階段自動建立，並在處理完成之後刪除，且會閒置一段時間。
 
 1. 在 [Data Factory 編輯器] 中，按一下命令列上的 [...更多]，按一下 [新增計算]，然後選取 [HDInsight 隨選叢集]。
@@ -152,10 +158,12 @@ ms.lasthandoff: 06/14/2017
 
     ![含連結服務的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-linked-services.png)
 
-## <a name="create-datasets"></a>建立資料集
+<a id="create-datasets" class="xliff"></a>
+## 建立資料集
 在此步驟中，您會建立資料集來代表 Hive 處理的輸入和輸出資料。 這些資料集是您稍早在本教學課程中建立的 **AzureStorageLinkedService** 。 連結的服務會指向 Azure 儲存體帳戶，而資料集則會指定保留輸入和輸出資料儲存體中的容器、資料夾和檔案名稱。   
 
-### <a name="create-input-dataset"></a>建立輸入資料集
+<a id="create-input-dataset" class="xliff"></a>
+### 建立輸入資料集
 1. 在 [Data Factory 編輯器] 中，按一下命令列上的 [...其他]，按一下 [新增資料集]，然後選取 [Azure Blob 儲存體]。
 
     ![新增資料集](./media/data-factory-build-your-first-pipeline-using-editor/new-data-set.png)
@@ -200,7 +208,8 @@ ms.lasthandoff: 06/14/2017
     如需這些 JSON 屬性的詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)一文。
 3. 按一下命令列的 [部署]  以部署新建立的資料集。 您應該會看到左側樹狀檢視中的資料集。
 
-### <a name="create-output-dataset"></a>建立輸出資料集
+<a id="create-output-dataset" class="xliff"></a>
+### 建立輸出資料集
 現在，您會建立輸出資料集來代表 Azure Blob 儲存體中儲存的輸出資料。
 
 1. 在 [Data Factory 編輯器] 中，按一下命令列上的 [...其他]，按一下 [新增資料集]，然後選取 [Azure Blob 儲存體]。  
@@ -232,7 +241,8 @@ ms.lasthandoff: 06/14/2017
 
     ![含連結服務的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-data-set.png)
 
-## <a name="create-pipeline"></a>建立管線
+<a id="create-pipeline" class="xliff"></a>
+## 建立管線
 在此步驟中，您會建立第一個具有 **HDInsightHive** 活動的管線。 您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每月。 輸出資料集設定及活動排程器必須相符。 目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。 如果活動沒有任何輸入，您可以略過建立輸入資料集。 本節結尾會說明下列 JSON 中使用的屬性。
 
 1. 在 [Data Factory 編輯器] 中，按一下 [省略符號 (…) 其他命令]，然後按一下 [新增管線]。
@@ -315,8 +325,10 @@ ms.lasthandoff: 06/14/2017
     ![管線的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-pipeline.png)
 6. 恭喜，您已經成功建立您的第一個管線！
 
-## <a name="monitor-pipeline"></a>監視管線
-### <a name="monitor-pipeline-using-diagram-view"></a>使用圖表檢視監視管線
+<a id="monitor-pipeline" class="xliff"></a>
+## 監視管線
+<a id="monitor-pipeline-using-diagram-view" class="xliff"></a>
+### 使用圖表檢視監視管線
 1. 按一下 **X** 以關閉 [Data Factory 編輯器] 刀鋒視窗、瀏覽回 [Data Factory] 刀鋒視窗，然後按一下 [圖表]。
 
     ![[圖表] 磚](./media/data-factory-build-your-first-pipeline-using-editor/diagram-tile.png)
@@ -365,7 +377,8 @@ ms.lasthandoff: 06/14/2017
 >
 >
 
-### <a name="monitor-pipeline-using-monitor--manage-app"></a>使用監視及管理應用程式來監視管線
+<a id="monitor-pipeline-using-monitor--manage-app" class="xliff"></a>
+### 使用監視及管理應用程式來監視管線
 您也可以使用「監視及管理應用程式」來監視您的管線。 如需使用此應用程式的詳細資訊，請參閱 [使用監視及管理應用程式來監視和管理 Azure Data Factory 管線](data-factory-monitor-manage-app.md)。
 
 1. 在 Data Factory 首頁上按一下 [監視及管理] 圖格。
@@ -378,7 +391,8 @@ ms.lasthandoff: 06/14/2017
 
     ![活動時段詳細資料](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-details.png)
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+## 摘要
 在本教學課程中，您會在 HDInsight hadoop 叢集上執行 Hive 指令碼，以建立 Azure Data Factory 來處理資料。 您會在使用 Azure 入口網站中使用 Data Factory 編輯器來執行下列步驟︰  
 
 1. 建立 Azure **Data Factory**。
@@ -388,10 +402,12 @@ ms.lasthandoff: 06/14/2017
 3. 建立兩個 **資料集**，以說明管線中 HDInsight Hive 活動的輸入和輸出資料。
 4. 建立具有 **HDInsight Hive** 活動的**管線**。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+## 後續步驟
 在本文中，您已經建立可在隨選 HDInsight 叢集上執行 Hive 指令碼，含有轉換活動 (HDInsight 活動) 的管線。 若要了解如何使用「複製活動」從 Azure Blob 將資料複製到 Azure SQL，請參閱 [教學課程：從 Azure Blob 將資料複製到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
-## <a name="see-also"></a>另請參閱
+<a id="see-also" class="xliff"></a>
+## 另請參閱
 | 主題 | 說明 |
 |:--- |:--- |
 | [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
