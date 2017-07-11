@@ -16,13 +16,16 @@ ms.topic: get-started-article
 ms.date: 02/27/2017
 ms.author: anandy; billmath
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: a6a8300046a0f17061e74b793b254cdca1e1a265
-ms.lasthandoff: 04/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 9119a4523c66415925223b5de10ca0fb4a7147b2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/04/2017
 
 ---
-# <a name="deploying-active-directory-federation-services-in-azure"></a>在 Azure 中部署 Active Directory 同盟服務
+<a id="deploying-active-directory-federation-services-in-azure" class="xliff"></a>
+
+# 在 Azure 中部署 Active Directory 同盟服務
 AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功能。 與 Azure AD 或 O365 同盟可讓使用者使用內部部署認證進行驗證，並存取雲端中的所有資源。 如此一來，就一定要有高可用性的 AD FS 基礎結構，以確保能夠存取內部部署和雲端中的資源。 在 Azure 中部署 AD FS 有助於達成執行最低限度的工作所需要的高可用性。
 在 Azure 中部署 AD FS 有幾項優點，以下列出其中幾點︰
 
@@ -31,7 +34,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * **跨異地備援** – 使用 Azure 異地備援，您可以確保基礎結構在全球各地均具有高可用性
 * **容易管理** – 透過 Azure 入口網站中極簡化的管理選項，基礎結構管理起來既容易又省事 
 
-## <a name="design-principles"></a>設計原則
+<a id="design-principles" class="xliff"></a>
+
+## 設計原則
 ![部署設計](./media/active-directory-aadconnect-azure-adfs/deployment.png)
 
 上圖顯示建議用來在 Azure 中部署 AD FS 基礎結構的基本拓撲。 以下列出拓撲的各個元件背後的原理︰
@@ -44,10 +49,14 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * **儲存體帳戶**︰建議您擁有兩個儲存體帳戶。 只擁有一個儲存體帳戶可能會產生單一失敗點，而且如果儲存體帳戶失效 (雖然不太可能發生)，則會無法使用部署。 兩個儲存體帳戶則有助於讓每條故障路線有一個相關聯的儲存體帳戶。
 * **網路隔離**︰請將 Web 應用程式 Proxy 伺服器部署在不同的 DMZ 網路。 您可以將一個虛擬網路分割成兩個子網路，然後在隔離的子網路部署 Web 應用程式 Proxy 伺服器。 您可以簡單地設定每個子網路的網路安全性群組設定，並只允許兩個子網路之間進行必要的通訊。 下面會提供每種部署案例的其他詳細資料
 
-## <a name="steps-to-deploy-ad-fs-in-azure"></a>在 Azure 中部署 AD FS 的步驟
+<a id="steps-to-deploy-ad-fs-in-azure" class="xliff"></a>
+
+## 在 Azure 中部署 AD FS 的步驟
 本節所述步驟會概述在 Azure 中部署如下所示的 AD FS 基礎結構的指南。
 
-### <a name="1-deploying-the-network"></a>1.部署網路
+<a id="1-deploying-the-network" class="xliff"></a>
+
+### 1.部署網路
 如上所述，您可以在單一虛擬網路中建立兩個子網路，或是建立兩個完全不同的虛擬網路 (VNet)。 本文內容著重於部署單一虛擬網路，再將它分成兩個子網路。 就目前來說，這個方法較為簡單，因為如果是兩個不同的 VNet，就必須要有 VNet 對 VNet 閘道才能進行通訊。
 
 **1.1 建立虛擬網路**
@@ -99,12 +108,16 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 建議您使用 ExpressRoute。 ExpressRoute 可讓您在 Azure 資料中心和內部部署或共置環境中的基礎結構之間建立私人連接。 ExpressRoute 連線不會經過公用網際網路。 相較於透過網際網路的一般連線，其可提供更為可靠、速度更快、延遲更低且安全性更高的網際網路連線。
 雖然建議的是使用 ExpressRoute，您也可以選擇任何最適合貴組織的連線方法。 若要深入了解 ExpressRoute 以及使用 ExpressRoute 的各種連線選項，請閱讀 [ExpressRoute 技術概觀](https://aka.ms/Azure/ExpressRoute)。
 
-### <a name="2-create-storage-accounts"></a>2.建立儲存體帳戶
+<a id="2-create-storage-accounts" class="xliff"></a>
+
+### 2.建立儲存體帳戶
 為了維持高可用性，並避免依賴單一儲存體帳戶，您可以建立兩個儲存體帳戶。 將每個可用性設定組中的機器分成兩個群組，然後為每個群組指派不同的儲存體帳戶。
 
 ![建立儲存體帳戶](./media/active-directory-aadconnect-azure-adfs/storageaccount1.png)
 
-### <a name="3-create-availability-sets"></a>3.建立可用性設定組
+<a id="3-create-availability-sets" class="xliff"></a>
+
+### 3.建立可用性設定組
 針對每個角色 (DC/AD FS 和 WAP) 建立可用性設定組，讓每個可用性設定組至少包含 2 部機器。 這有助於讓每個角色達到更高的可用性。 在建立可用性設定組時，必須要決定下列項目︰
 
 * **容錯網域**︰相同容錯網域中的虛擬機器會共用相同的電源和實體網路交換器。 建議最少準備 2 個容錯網域。 預設值為 3 個，在進行此部署時，您可以讓此設定保持原本的預設值。
@@ -119,7 +132,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 | contosodcset |DC/ADFS |3 |5 |
 | contosowapset |WAP |3 |5 |
 
-### <a name="4-deploy-virtual-machines"></a>4.部署虛擬機器
+<a id="4-deploy-virtual-machines" class="xliff"></a>
+
+### 4.部署虛擬機器
 下一個步驟是部署虛擬機器，在基礎結構中裝載不同角色。 每個可用性設定組中建議至少要有兩部機器。 基本部署需要建立四部虛擬機器。
 
 | 機器 | 角色 | 子網路 | 可用性設定組 | 儲存體帳戶 | IP 位址 |
@@ -135,7 +150,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 ![虛擬機器已部署](./media/active-directory-aadconnect-azure-adfs/virtualmachinesdeployed_noadfs.png)
 
-### <a name="5-configuring-the-domain-controller--ad-fs-servers"></a>5.設定網域控制站/AD FS 伺服器
+<a id="5-configuring-the-domain-controller--ad-fs-servers" class="xliff"></a>
+
+### 5.設定網域控制站/AD FS 伺服器
  為了驗證連入要求，AD FS 必須連絡網域控制站。 為了節省進行驗證時從 Azure 連線到內部部署 DC 的昂貴成本，建議您在 Azure 中部署網域控制站的複本。 為了達到高可用性，建議您建立至少包含 2 個網域控制站的可用性設定組。
 
 | 網域控制站 | 角色 | 儲存體帳戶 |
@@ -146,7 +163,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * 使用 DNS 將兩部伺服器升階為複本網域控制站
 * 使用伺服器管理員安裝 AD FS 角色來設定 AD FS 伺服器。
 
-### <a name="6-deploying-internal-load-balancer-ilb"></a>6.部署內部負載平衡器 (ILB)
+<a id="6-deploying-internal-load-balancer-ilb" class="xliff"></a>
+
+### 6.部署內部負載平衡器 (ILB)
 **6.1.建立 ILB**
 
 若要部署 ILB，請在 Azure 入口網站選取負載平衡器，然後按一下新增 (+)。
@@ -162,7 +181,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * **配置**︰由於此負載平衡器將放置在 AD FS 伺服器前面，目的是用來進行內部網路連線，因此請選取 [內部]
 * **虛擬網路**︰選擇要在其中部署 AD FS 的虛擬網路
 * **子網路**︰在此選擇內部子網路
-* **IP 位址指派**︰動態
+* **IP 位址指派**：靜態
 
 ![內部負載平衡器](./media/active-directory-aadconnect-azure-adfs/ilbdeployment1.png)
 
@@ -207,7 +226,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 移至 DNS 伺服器，為 ILB 建立 CNAME。 CNAME 應適用於 IP 位址指向 ILB 的 IP 位址的同盟服務。 例如，如果 ILB DIP 位址是 10.3.0.8，而所安裝的同盟服務是 fs.contoso.com，則請為指向 10.3.0.8 的 fs.contoso.com 建立 CNAME。
 這可確保所有與 fs.contoso.com 有關的通訊都在 ILB 結束，並且會受到適當路由處理。
 
-### <a name="7-configuring-the-web-application-proxy-server"></a>7.設定 Web 應用程式 Proxy 伺服器
+<a id="7-configuring-the-web-application-proxy-server" class="xliff"></a>
+
+### 7.設定 Web 應用程式 Proxy 伺服器
 **7.1.設定 Web 應用程式 Proxy 伺服器以連線到 AD FS 伺服器**
 
 為了確保 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器，請在 %systemroot%\system32\drivers\etc\hosts 建立 ILB 的記錄。 請注意，辨別名稱 (DN) 應該是同盟服務名稱，例如 fs.contoso.com。 而且 IP 項目應該是 ILB 的 IP 位址 (如範例中的 10.3.0.8) 的項目。
@@ -217,7 +238,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 在確定 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器之後，您可以接著安裝 Web 應用程式 Proxy 伺服器。 Web 應用程式 Proxy 伺服器不可加入網域。 請選取「遠端存取」角色，將 Web 應用程式 Proxy 角色安裝在兩個 Web 應用程式 Proxy 伺服器上。 伺服器管理員會引導您完成 WAP 安裝。
 如需如何部署 WAP 的詳細資訊，請閱讀 [安裝和設定 Web 應用程式 Proxy 伺服器](https://technet.microsoft.com/library/dn383662.aspx)。
 
-### <a name="8--deploying-the-internet-facing-public-load-balancer"></a>8.部署網際網路對向 (公用) 負載平衡器
+<a id="8--deploying-the-internet-facing-public-load-balancer" class="xliff"></a>
+
+### 8.部署網際網路對向 (公用) 負載平衡器
 **8.1.建立網際網路對向 (公用) 負載平衡器**
 
 在 Azure 入口網站中選取 [負載平衡器]，然後按一下 [新增]。 在 [建立負載平衡器] 面板中，輸入下列資訊
@@ -262,7 +285,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 ![設定網際網路對向負載平衡器的平衡規則](./media/active-directory-aadconnect-azure-adfs/elbdeployment7.png)
 
-### <a name="9-securing-the-network"></a>9.保護網路
+<a id="9-securing-the-network" class="xliff"></a>
+
+### 9.保護網路
 **9.1.保護內部子網路**
 
 整體來說，您需要下列規則來有效率地保護內部子網路 (依如下所示順序)
@@ -292,7 +317,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 > 
 > 
 
-### <a name="10-test-the-ad-fs-sign-in"></a>10.測試 AD FS 登入
+<a id="10-test-the-ad-fs-sign-in" class="xliff"></a>
+
+### 10.測試 AD FS 登入
 要測試 AD FS，最簡單的方法是使用 IdpInitiatedSignon.aspx 網頁。 為了能夠執行此作業，必須在 AD FS 屬性上啟用 IdpInitiatedSignOn。 請遵循下列步驟來確認 AD FS 設定
 
 1. 使用 PowerShell 在 AD FS 伺服器上執行以下 Cmdlet，將它設定為啟用。
@@ -306,7 +333,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 ![測試成功](./media/active-directory-aadconnect-azure-adfs/test2.png)
 
-## <a name="template-for-deploying-ad-fs-in-azure"></a>在 Azure 中部署 AD FS 的範本
+<a id="template-for-deploying-ad-fs-in-azure" class="xliff"></a>
+
+## 在 Azure 中部署 AD FS 的範本
 此範本回部署含 6 部電腦的安裝，其中 2 部分別用於網域控制站 (AD FS 和 WAP)。
 
 [Azure 部署範本中的 AD FS](https://github.com/paulomarquesc/adfs-6vms-regular-template-based)
@@ -341,7 +370,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 | AdminUserName |虛擬機器的本機系統管理員名稱 |
 | AdminPassword |虛擬機器的本機系統管理員帳戶密碼 |
 
-## <a name="additional-resources"></a>其他資源
+<a id="additional-resources" class="xliff"></a>
+
+## 其他資源
 * [可用性設定組](https://aka.ms/Azure/Availability) 
 * [Azure 負載平衡器](https://aka.ms/Azure/ILB)
 * [內部負載平衡器](https://aka.ms/Azure/ILB/Internal)
@@ -350,7 +381,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * [Azure 虛擬網路](https://aka.ms/Azure/VNet)
 * [AD FS 和 Web 應用程式 Proxy 連結](http://aka.ms/ADFSLinks) 
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [使用 Azure AD Connect 設定和管理 AD FS](active-directory-aadconnectfed-whatis.md)
 * [使用 Azure 流量管理員在 Azure 中部署高可用性跨地區 AD FS](../active-directory-adfs-in-azure-with-azure-traffic-manager.md)

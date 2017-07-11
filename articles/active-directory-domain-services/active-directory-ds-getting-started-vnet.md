@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Domain Services：建立或選取虛擬網路 | Microsoft Docs"
-description: "開始使用 Azure Active Directory 網域服務"
+description: "使用 Azure 傳統入口網站啟用 Azure Active Directory Domain Services"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -12,20 +12,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/06/2017
+ms.date: 06/28/2017
 ms.author: maheshu
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: cb372232492e8f98ff1543798b92b4b60fc25021
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: 457519b00b65b0157effe2d4aba033a1c99852e8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
-# <a name="create-or-select-a-virtual-network-for-azure-active-directory-domain-services"></a>為 Azure Active Directory Domain Services 建立或選取虛擬網路
-## <a name="before-you-begin"></a>開始之前
+<a id="create-or-select-a-virtual-network-for-azure-active-directory-domain-services" class="xliff"></a>
+
+# 為 Azure Active Directory Domain Services 建立或選取虛擬網路
+<a id="before-you-begin" class="xliff"></a>
+
+## 開始之前
 請參閱 [Azure Active Directory Domain Services 的網路考量](active-directory-ds-networking.md)。
 
-## <a name="task-2-create-an-azure-virtual-network"></a>工作 2：建立 Azure 虛擬網路
+<a id="task-2-create-an-azure-virtual-network" class="xliff"></a>
+
+## 工作 2：建立 Azure 虛擬網路
 下一個組態工作是建立 Azure 虛擬網路與其中的子網路。 您可在虛擬網路內的這個子網路中啟用 Azure Active Directory Domain Services。 如果您現在有慣用的虛擬網路，就可以略過此步驟。
 
 > [!NOTE]
@@ -45,12 +52,12 @@ ms.lasthandoff: 04/12/2017
 
     ![虛擬網路視窗](./media/active-directory-domain-services-getting-started/virtual-networks.png)
 4. 按一下 [網絡服務]，然後選取 [虛擬網路]。
-    
+
     ![虛擬網路 - 快速建立](./media/active-directory-domain-services-getting-started/virtual-network-quickcreate.png)
 5. 若要建立虛擬網路，按一下 [快速建立]。
-    
-6. 指定虛擬網路的**名稱**，並考慮執行下列步驟︰ 
-    * 您可以選擇針對此網路設定 [位址空間] 或 [最大的 VM 計數]。 
+
+6. 指定虛擬網路的**名稱**，並考慮執行下列步驟︰
+    * 您可以選擇針對此網路設定 [位址空間] 或 [最大的 VM 計數]。
     * 您現在可以讓 **DNS 伺服器**設定保留為 [無]。 您可以在啟用 Azure Active Directory Domain Services 之後更新設定。
 7. 在 [位置] 下拉式清單中選取支援的 Azure 區域。  
     如需可使用 Azure Active Directory Domain Services 的 Azure 區域清單，請參閱[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services/)頁面。
@@ -60,12 +67,15 @@ ms.lasthandoff: 04/12/2017
 9. 建立虛擬網路後，請選取虛擬網路的名稱，然後按一下 [設定] 索引標籤。
 
     ![建立子網路](./media/active-directory-domain-services-getting-started/create-vnet-properties.png)
-10. 在 [虛擬網路位址空間] 下，按一下 [新增子網路]，然後將子網路名稱指定為 **AaddsSubnet**。 
+10. 在 [虛擬網路位址空間] 下，按一下 [新增子網路]，然後將子網路名稱指定為 **AaddsSubnet**。
 
     ![為 Azure Active Directory Domain Services 建立子網路](./media/active-directory-domain-services-getting-started/create-vnet-add-subnet.png)
 
 11. 若要建立子網路，按一下 [儲存]。
 
-## <a name="next-steps"></a>後續步驟
-工作 3︰[啟用 Azure Active Directory Domain Services](active-directory-ds-getting-started-enableaadds.md)
+
+<a id="next-step" class="xliff"></a>
+
+## 後續步驟
+[工作 3︰啟用 Azure Active Directory Domain Services](active-directory-ds-getting-started-enableaadds.md)
 

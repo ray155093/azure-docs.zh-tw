@@ -13,46 +13,52 @@ ms.workload: integration
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/25/2017
+ms.date: 06/21/2017
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: 95cf7ebd9528dc5b258c96d3f3d62a9ab850d93d
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 1e2dad92647630c8b9a4e7676eee9288c87daf44
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/28/2017
 
 
 ---
-# <a name="connectors-list"></a>連接器清單
+<a id="connectors-list" class="xliff"></a>
+
+# 連接器清單
 > [!TIP]
 > [A-Z 完整清單](#az) (在本主題中) 會列出您可以在邏輯應用程式中使用的所有可用連接器。 [連接器詳細資料](/connectors/)既會列出 Swagger 中所定義的任何觸發程序和動作，也會列出每個連接器的限制。
 
 連接器是建立邏輯應用程式時不可或缺的部分。 使用這些連接器，您可以真的擴展內部部署和雲端應用程式，對您建立的資料以及已經有的資料執行不同的動作。 連接器可分為下列幾類︰ 
 
-* **標準連接器**︰當您使用邏輯應用程式時自動取得和納入。 例如：服務匯流排、DropBox、GoogleDrive、Power BI、Oracle Database、OneDrive 等等。
+* **標準連接器**︰當您使用邏輯應用程式時自動取得和納入。 例如：服務匯流排、Power BI、Oracle Database、OneDrive 等等。
 
 * **整合帳戶連接器**︰當您購買整合帳戶時取得。 使用這些連接器，您可以轉換和驗證 XML、透過 AS2 / X12 / EDIFACT 處理企業對企業訊息，以及進行一般檔案的編碼和解碼。 如果您使用 BizTalk Server，這些連接器就很適合用於將 BizTalk 工作流程擴展至 Azure。  
 
     BizTalk Server 也有 [Logic Apps 配接器](https://msdn.microsoft.com/library/mt787163.aspx)，其包含從邏輯應用程式接收和傳送至邏輯應用程式。
 
-* **企業連接器**︰包含 MQ 和 SAP。 這些也是額外成本。 
+* **企業連接器**︰包含 MQ 和 SAP。 需要支付額外費用。 
 
 [Logic Apps 價格](https://azure.microsoft.com/pricing/details/logic-apps/)和[計價模式](../logic-apps/logic-apps-pricing.md)會提供有關成本的更多詳細資料。 
 
-## <a name="popular-connectors"></a>熱門的連接器
+<a id="popular-connectors" class="xliff"></a>
+
+## 熱門的連接器
 有數千個應用程式和數百萬次執行作業使用這些連接器，成功處理資料和資訊。 下表列出最熱門以及使用者喜愛的一些連接器：
 
 | |  |  |  |
 | --- | --- | --- | --- |
 | [![API 圖示][AzureBlobStorageicon]<br/>**Azure Blob<br/>儲存體**][AzureBlobStoragedoc] | 如果您想要透過儲存體帳戶自動執行任何工作，您應該看看此連接器。 支援 CRUD (建立、讀取、更新、刪除) 作業。 | [![API 圖示][Azure-Functionsicon]<br/>**Azure Functions**][azure-functionsdoc] | 建立可執行 C# 或 node.js 之自訂程式碼片段的函式，然後在邏輯應用程式中使用這些函式。  |
-| [![API 圖示][Dynamics-365icon]<br/>**Dynamics 365<br/>CRM Online**][Dynamics-365doc] | 這是詢問度最高的連接器之一。 它具有觸發程序和動作，有助於自動執行潛在客戶的工作流程等等。 | [![API 圖示][Event-Hubs-icon]<br/>**事件中樞**][event-hubs-doc] | 在事件中樞上取用和發佈事件。 例如，您可以使用事件中樞從邏輯應用程式取得輸出，然後傳送給即時分析提供者。 |
+| [![API 圖示][Dynamics-365icon]<br/>**Dynamics 365<br/>CRM Online**][Dynamics-365doc] | 詢問度最高的連接器之一。 它具有觸發程序和動作，有助於自動執行潛在客戶的工作流程等等。 | [![API 圖示][Event-Hubs-icon]<br/>**事件中樞**][event-hubs-doc] | 在事件中樞上取用和發佈事件。 例如，您可以使用事件中樞從邏輯應用程式取得輸出，然後將輸出傳送給即時分析提供者。 |
 | [![API 圖示][FTPicon]<br/>**FTP**][FTPdoc] | 如果可從網際網路存取您的 FTP 伺服器，您可以自動執行工作流程，以便使用檔案和資料夾。 <br/><br/>SFTP 也適用於 SFTP 連接器。 | [![API 圖示][HTTPicon]<br/>**HTTP**][httpdoc] | 使用邏輯應用程式透過 HTTP 與任何端點通訊。 |
 | [![API 圖示][Office-365-Outlookicon]<br/>**Office 365<br/>Outlook**][office365-outlookdoc] | 許多觸發程序，以及更多的動作會使用 Office 365 電子郵件與您工作流程內的事件。 <br/><br/>此連接器包含*核准電子郵件*動作，可核准休假要求、費用報告等。 <br/><br/>Office 365 使用者也可使用 Office 365 使用者連接器。| [![API 圖示][HTTP-Requesticon]<br/>**要求 / 回應**][HTTP-Requestdoc] | 此連接器會提供 HTTPS URL。 當邏輯應用程式收到此 URL 的要求時，邏輯應用程式就會啟動。 |
 | [![API 圖示][Salesforceicon]<br/>**Salesforce**][salesforcedoc] | 使用 Salesforce 帳戶輕鬆登入，以取得物件 (例如潛在客戶等等) 的存取權。 |  [![API 圖示][Service-Busicon]<br/>**服務匯流排**][Service-Busdoc] | 邏輯應用程式中最熱門的連接器，其包含的觸發程序和動作可進行非同步傳訊，以及發佈/訂閱佇列、訂用帳戶和主題。 |
 |  [![API 圖示][SharePointicon]<br/>**SharePoint<br/>Online**][SharePointdoc] | 如果您使用 SharePoint 執行任何動作，並且受惠於自動化作業，我們建議看看此連接器。 可以搭配內部部署 SharePoint 和 SharePoint Online 使用 | [![API 圖示][SQL-Servericon]<br/>**SQL Server**][SQL-Serverdoc] | 最常用的連接器之一，它可以連線到內部部署 SQL Server 和 Azure SQL Database。 | 
 | [![API 圖示][Twittericon]<br/>**Twitter**][Twitterdoc] | 使用 Twitter 帳戶輕鬆登入，然後在新推文發佈時啟動工作流程。 接著，將這些推文儲存至 SQL Database 或 SharePoint 清單。 | | | 
 
-## <a name="integration-account-connectors"></a>整合帳戶連接器 
+<a id="integration-account-connectors" class="xliff"></a>
+
+## 整合帳戶連接器 
 
 企業整合套件 (EIP) 包含 BizTalk Server 社群所熟知的連接器。 當您購買[整合帳戶](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md)時，您也會取得下列連接器︰ 
 
@@ -62,13 +68,15 @@ ms.lasthandoff: 05/26/2017
 [![API 圖示][flatfileicon]<br/>**一般檔案</br> 編碼**][flatfiledoc] | [![API 圖示][flatfiledecodeicon]<br/>**一般檔案</br> 解碼**][flatfiledecodedoc] | [![API 圖示][integrationaccounticon]<br/>**整合<br/>帳戶**][integrationaccountdoc] | [![API 圖示][xmltransformicon]<br/>**轉換<br/>XML**][xmltransformdoc] |
 | [![API 圖示][x12icon]<br/>**X12</br> 解碼**][x12decode] | [![API 圖示][x12icon]<br/>**X12</br> 編碼**][x12encode] | [![API 圖示][xmlvalidateicon]<br/>**XML <br/>驗證**][xmlvalidatedoc] | |
 
-## <a name="enterprise-connectors"></a>企業連接器
+<a id="enterprise-connectors" class="xliff"></a>
+
+## 企業連接器
 
 連線至您的邏輯應用程式內的企業應用程式。
 
 |  |  |
 | --- | --- |
-|![API 圖示][MQicon]<br/>**MQ**|[![API 圖示][SAPicon]<br/>**SAP**][sapconnector]|
+|[![API 圖示][MQicon]<br/>**MQ**][mqdoc]|[![API 圖示][SAPicon]<br/>**SAP**][sapconnector]|
 
 
 ## <a name="az"></a>A-Z 完整清單
@@ -82,12 +90,14 @@ ms.lasthandoff: 05/26/2017
 
 | | |
 |---|---|
-|<a name="1"></a>10to8 Appointment Scheduling<br/><br/><a name="a"></a>Act!<br/>appFigures<br/>[AS2][as2doc]<br/>Asana<br/>Azure Active Directory<br/>Azure API 管理<br/>Azure App Service<br/>Azure 自動化<br/>[Azure Blob 儲存體][azureblobstoragedoc]<br/>Azure Data Lake<br/>Azure Cosmos DB<br/>[Azure Functions][azure-functionsdoc]<br/>[Azure Logic Apps][nested-logic-appdoc]<br/>AzureML<br/>Azure 佇列<br/>Azure Resource Manager<br/>[Azure SQL Database][sql-serverdoc]<br/><br/><a name="b"></a>Basecamp 2<br/>Basecamp 3<br/>Benchmark Email<br/>Bing 搜尋<br/>Bitbucket<br/>Bitly<br/>BizTalk Server<br/>Blogger<br/>Box<br/>Buffer<br/><br/><a name="c"></a>Campfire<br/>Capsule CRM<br/>Chatter<br/>Cognito Forms<br/>辨識服務電腦視覺 API<br/>辨識服務臉部 API<br/>辨識服務 LUIS<br/>辨識服務文字分析<br/>Common Data Service<br/>Control-Terminate<br/>[自訂 API / Web 應用程式][api/web-appdoc]<br/><br/><a name="d"></a>Data Operations<br/>[DB2][db2doc]<br/>Disqus<br/>DocuSign<br/>Do Until<br/>Dropbox<br/>[Dynamics 365 CRM Online][Dynamics-365doc]<br/>Dynamics 365 for Financials<br/>Dynamics 365 for Operations<br/>Dynamics NAV<br/><br/><a name="e"></a>Easy Redmine<br/>EDIFACT<br/>[事件中樞][event-hubs-doc]<br/>Eventbrite<br/><br/><a name="f"></a>Facebook<br/>[檔案系統][filesystemdoc]<br/>[一般檔案][flatfiledoc]<br/>FreshBooks<br/>Freshdesk!<br/>[FTP][ftpdoc]<br/><br/><a name="g"></a>GitHub<br/>Gmail<br/>Google 行事曆<br/>Google 聯絡人<br/>Google 雲端硬碟<br/>Google 試算表<br/>Google 工作表<br/>GoToMeeting<br/>GoToTraining<br/>GoToWebinar<br/><br/><a name="h"></a>Harvest<br/>HelloSign<br/>HipChat<br/>[HTTP][httpdoc]<br/>[HTTP + Swagger][http-swaggerdoc]<br/>[HTTP Webhook][webhookdoc]<br/><br/><a name="i"></a>[Informix][informixdoc]<br/>Infusionsoft<br/>Inoreader<br/>Insightly<br/>Instagram<br/>Instapaper<br/>整合帳戶<br/>Intercom | <a name="j"></a>JIRA<br/><br/><a name="l"></a>LeanKit<br/>LiveChat<br/><br/><a name="m"></a>MailChimp<br/>Mandrill<br/>中型<br/>Microsoft Translator<br/>Microsoft Teams<br/>MQ<br/>MSN 天氣<br/>Muhimbi PDF<br/>MySQL<br/><br/><a name="n"></a>Nexmo<br/><br/><a name="o"></a>[Office 365 Outlook][office365-outlookdoc]<br/>Office 365 使用者<br/>Office 365 影片<br/>OneDrive<br/>OneDrive for Business<br/>OneNote (Business)<br/>[Oracle Database][oracle-db-doc]<br/>Outlook Customer<br/>Outlook 工作<br/>Outlook.com<br/><br/><a name="p"></a>PagerDuty<br/>Parserr<br/>Paylocity<br/>Pinterest<br/>Pipedrive<br/>Pivotal Tracker<br/>Planner<br/>PostgreSQL<br/>Power BI<br/>Project Online<br/><br/><a name="r"></a>Redmine<br/>[要求 / 回應][http-requestdoc]<br/>RSS<br/><br/><a name="s"></a>[Salesforce][salesforcedoc]<br/>[SAP 應用程式伺服器][sapconnector]<br/>[SAP 訊息伺服器][sapconnector]<br/>[排程][recurrencedoc]<br/>Scope<br/>SendGrid<br/>[服務匯流排][service-busdoc]<br/>SFTP<br/>[SharePoint Online][sharepointdoc]<br/>[SharePoint Server][sharepointdoc]<br/>Slack<br/>Smartsheet<br/>SMTP<br/>SparkPost<br/>[SQL Server][sql-serverdoc]<br/>等量磁碟區<br/>SurveyMonkey<br/>切換大小寫<br/><br/><a name="t"></a>Teradata<br/>Todoist<br/>Toodledo<br/>[轉換 XML][xmltransformdoc]<br/>Trello<br/>Twilio<br/>[Twitter][twitterdoc]<br/>Typeform<br/><br/><a name="u"></a>UserVoice<br/><br/><a name="v"></a>變數<br/>Vimeo<br/>Visual Studio Team Services<br/><br/><a name="w"></a>WebMerge<br/>WordPress<br/>Wunderlist<br/><br/><a name="x"></a>[X12][x12doc]<br/>[XML 驗證][xmlvalidatedoc]<br/><br/><a name="y"></a>Yammer<br/>YouTube<br/><br/><a name="z"></a>Zendesk |
+|<a name="1"></a>10to8 Appointment Scheduling<br/><br/><a name="a"></a>Act!<br/>Adobe Creative Cloud<br/>appFigures<br/>[AS2][as2doc]<br/>Asana<br/>Azure Active Directory (AD)<br/>Azure API 管理<br/>Azure App Service<br/>Azure 應用程式<br/>Azure 自動化<br/>[Azure Blob 儲存體][azureblobstoragedoc]<br/>Azure Data Lake<br/>Azure DocumentDB (Cosmos DB)<br/>[Azure Functions][azure-functionsdoc]<br/>[Azure Logic Apps][nested-logic-appdoc]<br/>AzureML<br/>Azure 佇列<br/>Azure Resource Manager<br/>[Azure SQL Database][sql-serverdoc]<br/><br/><a name="b"></a>Basecamp 2<br/>Basecamp 3<br/>批次<br/>Benchmark Email<br/>Bing 搜尋<br/>Bitbucket<br/>Bitly<br/>BizTalk Server<br/>Blogger<br/>Box<br/>Buffer<br/><br/><a name="c"></a>Calendly<br/>Campfire<br/>Capsule CRM<br/>Chatter<br/>Cognito Forms<br/>辨識服務電腦視覺 API<br/>辨識服務臉部 API<br/>辨識服務 LUIS<br/>辨識服務文字分析<br/>Common Data Service<br/>內容轉換<br/>Control-Terminate<br/>[自訂 API / Web 應用程式][api/web-appdoc]<br/><br/><a name="d"></a>Data Operations<br/>[DB2][db2doc]<br/>Disqus<br/>DocuSign<br/>Do Until<br/>Dropbox<br/>[Dynamics 365 CRM Online][Dynamics-365doc]<br/>Dynamics 365 for Financials<br/>Dynamics 365 for Operations<br/>Dynamics NAV<br/><br/><a name="e"></a>Easy Redmine<br/>EDIFACT<br/>[事件中樞][event-hubs-doc]<br/>Eventbrite<br/><br/><a name="f"></a>Facebook<br/>[檔案系統][filesystemdoc]<br/>[一般檔案][flatfiledoc]<br/>FreshBooks<br/>Freshdesk!<br/>FreshService<br/>[FTP][ftpdoc]<br/><br/><a name="g"></a>GitHub<br/>Gmail<br/>Google 行事曆<br/>Google 聯絡人<br/>Google 雲端硬碟<br/>Google 試算表<br/>Google 工作表<br/>GoToMeeting<br/>GoToTraining<br/>GoToWebinar<br/><br/><a name="h"></a>Harvest<br/>HelloSign<br/>HipChat<br/>[HTTP][httpdoc]<br/>[HTTP + Swagger][http-swaggerdoc]<br/>[HTTP Webhook][webhookdoc]<br/><br/><a name="i"></a>[Informix][informixdoc]<br/>Infusionsoft<br/>Inoreader<br/>Insightly<br/>Instagram<br/>Instapaper<br/>整合帳戶<br/>Intercom | <a name="j"></a>JotForm<br/>JIRA<br/><br/><a name="l"></a>LeanKit<br/>LiveChat<br/><br/><a name="m"></a>MailChimp<br/>Mandrill<br/>中型<br/>Microsoft Forms<br/>Microsoft Teams<br/>Microsoft Translator<br/>[MQ][mqdoc]<br/>MSN 天氣<br/>Muhimbi PDF<br/>MySQL<br/><br/><a name="n"></a>Nexmo<br/><br/><a name="o"></a>[Office 365 Outlook][office365-outlookdoc]<br/>Office 365 使用者<br/>Office 365 影片<br/>OneDrive<br/>OneDrive for Business<br/>OneNote (Business)<br/>[Oracle Database][oracle-db-doc]<br/>Outlook Customer Manager<br/>Outlook 工作<br/>Outlook.com<br/><br/><a name="p"></a>PagerDuty<br/>Parserr<br/>Paylocity<br/>Pinterest<br/>Pipedrive<br/>Pivotal Tracker<br/>Planner<br/>PostgreSQL<br/>Power BI<br/>Project Online<br/><br/><a name="r"></a>Redmine<br/>[要求 / 回應][http-requestdoc]<br/>RSS<br/><br/><a name="s"></a>[Salesforce][salesforcedoc]<br/>[SAP 應用程式伺服器][sapconnector]<br/>[SAP 訊息伺服器][sapconnector]<br/>[排程][recurrencedoc]<br/>Scope<br/>SendGrid<br/>將訊息傳送至 Batch<br/>[服務匯流排][service-busdoc]<br/>SFTP<br/>[SharePoint Online][sharepointdoc]<br/>[SharePoint Server][sharepointdoc]<br/>Slack<br/>Smartsheet<br/>SMTP<br/>SparkPost<br/>[SQL Server][sql-serverdoc]<br/>等量磁碟區<br/>SurveyMonkey<br/>切換大小寫<br/><br/><a name="t"></a>Teamwork 專案<br/>Teradata<br/>Todoist<br/>Toodledo<br/>[轉換 XML][xmltransformdoc]<br/>Trello<br/>Twilio<br/>[Twitter][twitterdoc]<br/>Typeform<br/><br/><a name="u"></a>UserVoice<br/><br/><a name="v"></a>變數<br/>Vimeo<br/>Visual Studio Team Services<br/><br/><a name="w"></a>WebMerge<br/>WordPress<br/>Wunderlist<br/><br/><a name="x"></a>[X12][x12doc]<br/>[XML 驗證][xmlvalidatedoc]<br/><br/><a name="y"></a>Yammer<br/>YouTube<br/><br/><a name="z"></a>Zendesk |
 
 > [!TIP]
 > 若要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)。 您可以立即建立短期的入門邏輯應用程式。 不需要信用卡；沒有承諾。
 
-## <a name="connectors-as-triggers-and-actions"></a>連接器作為觸發程序和動作
+<a id="connectors-as-triggers-and-actions" class="xliff"></a>
+
+## 連接器做為觸發程序和動作
 
 **觸發程序**可啟動或執行邏輯應用程式的執行個體。 有些連接器會提供觸發程序，以在發生特定事件時通知您的應用程式。 例如，FTP 連接器具有 `OnUpdatedFile` 觸發程序，可在檔案更新時通知邏輯應用程式。 
 
@@ -95,7 +105,7 @@ Logic Apps 包含下列幾種觸發程序：
 
 * 輪詢觸發程序：這些觸發程序會以指定的頻率輪詢您的服務，以檢查是否有新資料。 
 
-    有新資料可用時，邏輯應用程式的新執行個體會以該資料作為輸入而執行。 
+    有新資料可用時，邏輯應用程式的新執行個體會以該資料做為輸入而執行。 
 
 * 推送觸發程序：這些觸發程序會接聽端點上的資料或發生的事件，然後觸發邏輯應用程式的新執行個體。
 
@@ -107,7 +117,9 @@ Logic Apps 包含下列幾種觸發程序：
 > [連接器概觀](connectors-overview.md)提供有關觸發程序和動作的詳細資訊。 
 
 
-## <a name="message-manipulation-actions"></a>訊息操作動作
+<a id="message-manipulation-actions" class="xliff"></a>
+
+## 訊息操作動作
 
 邏輯應用程式包含內建動作，可變更或操作承載資料。 內建的 **Data Operations** 連接器包含下列動作： 
 
@@ -118,21 +130,29 @@ Logic Apps 包含下列幾種觸發程序：
 | **篩選陣列** (查詢) | 將結果集篩選成您感興趣的項目。 例如，使用 `#Azure` 搜尋所有推文，然後「篩選」傳回的推文，只傳回 `Tweeted_by_followers > 50` 的結果。 |
 | **Join** | 由某個分隔符號聯結陣列。 例如，「偵測關鍵片語」作業會傳回關鍵片語的陣列。 您可以用 `,` 或類似符號加以「聯結」。 因此，您會取得 `"Some, Phrase"`，而不是 `["Some", "Phrase"]`。 |
 | **剖析 JSON** | 剖析及存取設計工具中 JSON 物件的值。 例如，如果您的 Azure Function 傳回 JSON 承載，您可加以剖析，以便稍後在其他步驟中存取 JSON 屬性。 此動作也會驗證 JSON 是否符合在執行階段指定的結構描述。 | 
-| **選取** | 選取陣列的某些屬性，以便進一步處理。 如果您從 SQL 執行「列出記錄」，而它傳回 15 個資料行，則只要選取幾個資料行以便進一步處理 (輸出是一個僅包含所選屬性的陣列)。 |
+| **選取** | 選取陣列的某些屬性，以便進一步處理。 如果您從 SQL 執行「列出記錄」，而它傳回 15 個資料行，則只要選取幾個資料行以便進一步處理。 輸出是一個僅包含所選屬性的陣列。 |
 
-## <a name="custom-connectors-and-azure-certification"></a>自訂連接器和 Azure 憑證 
+<a id="custom-connectors-and-azure-certification" class="xliff"></a>
 
-若要呼叫執行自訂程式碼或不可作為連接器的 API，您可以建立以 REST 為基礎的 API Apps 作為自訂連接器，以[擴充 Logic Apps 平台](../logic-apps/logic-apps-create-api-app.md)。 
+## 自訂連接器和 Azure 憑證 
+
+若要呼叫執行自訂程式碼或不可做為連接器的 API，您可以建立以 REST 為基礎的 API Apps 做為自訂連接器，以[擴充 Logic Apps 平台](../logic-apps/logic-apps-create-api-app.md)。 
 
 如果您想要讓您自訂的 API Apps 公開且能夠在 Azure 中使用，請將您的提名提交至 [Microsoft Azure 認證程式](https://azure.microsoft.com/marketplace/programs/certified/logic-apps/)。
 
-## <a name="get-help"></a>取得說明
+<a id="get-help" class="xliff"></a>
+
+## 取得說明
 
 若要提出問題、回答問題以及查看其他 Azure Logic Apps 使用者的做法，請移至 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
 
 若要改善 Azure Logic Apps 和連接器，請在 [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)上票選或提交想法。
 
-## <a name="next-steps"></a>後續步驟
+我們是否遺漏連接器主題，或任何您認為重要的詳細資訊？ 若是如此，請將其新增到我們現有的主題，或撰寫自己的主題來協助我們。 我們的文件是開放原始碼並存放於 GitHub。 從我們的 [GitHub 存放庫](https://github.com/Microsoft/azure-docs)著手。 
+
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * [建立第一個邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 * [建立邏輯應用程式的自訂 API](../logic-apps/logic-apps-create-api-app.md)
 * [監視邏輯應用程式](../logic-apps/logic-apps-monitor-your-logic-apps.md)
@@ -154,6 +174,7 @@ Logic Apps 包含下列幾種觸發程序：
 [nested-logic-appdoc]: ../logic-apps/logic-apps-http-endpoint.md "整合邏輯應用程式與巢狀工作流程"
 [office365-outlookdoc]: ./connectors-create-api-office365-outlook.md "連線至 Office 365 帳戶。傳送和接收電子郵件、管理行事曆和連絡人等等"
 [oracle-db-doc]: ./connectors-create-api-oracledatabase.md "連線至 Oracle 資料庫來新增、插入、刪除資料列等等"
+[mqdoc]: ./connectors-create-api-mq.md "連線到 MQ 內部部署或 Azure，以及傳送及接收訊息"
 [recurrencedoc]:  ./connectors-native-recurrence.md "觸發邏輯應用程式的重複執行動作"
 [salesforcedoc]: ./connectors-create-api-salesforce.md "連線至 Salesforce 帳戶。管理帳戶、潛在客戶、機會等等"
 [sapconnector]: ../logic-apps/logic-apps-using-sap-connector.md "連線至內部部署 SAP 系統"

@@ -12,18 +12,20 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 05/22/2017
+ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 162f4e753524f0d1236575618fc8413466481857
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 5144c27ccbef6cc0e1e8c0b168bbfd86b736331b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
-# <a name="get-started-building-solutions-with-the-batch-client-library-for-net"></a>開始使用適用於.NET 的 Batch 用戶端程式庫來建置解決方案
+<a id="get-started-building-solutions-with-the-batch-client-library-for-net" class="xliff"></a>
+
+# 開始使用適用於.NET 的 Batch 用戶端程式庫來建置解決方案
 
 > [!div class="op_single_selector"]
 > * [.NET](batch-dotnet-get-started.md)
@@ -36,10 +38,14 @@ ms.lasthandoff: 05/26/2017
 
 ![Batch 方案工作流程 (基本)][11]<br/>
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+
+## 必要條件
 本文假設您已具備 C# 和 Visual Studio 的使用知識。 而且假設您可以滿足針對 Azure Batch 和儲存體服務所指定的帳戶建立需求。
 
-### <a name="accounts"></a>帳戶
+<a id="accounts" class="xliff"></a>
+
+### 帳戶
 * **Azure 帳戶**：如果您沒有 Azure 訂用帳戶，請[建立免費的 Azure 帳戶][azure_free_account]。
 * **Batch 帳戶**：擁有 Azure 訂用帳戶後，請 [建立 Azure Batch 帳戶](batch-account-create-portal.md)。
 * **儲存體帳戶**：請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。
@@ -49,18 +55,26 @@ ms.lasthandoff: 05/26/2017
 >
 >
 
-### <a name="visual-studio"></a>Visual Studio
+<a id="visual-studio" class="xliff"></a>
+
+### Visual Studio
 您必須擁有 **Visual Studio 2015 或更新版本**才能建置範例專案。 您可以在 [Visual Studio 產品概觀][visual_studio]中找到免費試用版的 Visual Studio。
 
-### <a name="dotnettutorial-code-sample"></a> 程式碼範例
+<a id="dotnettutorial-code-sample" class="xliff"></a>
+
+###  程式碼範例
 [DotNetTutorial][github_dotnettutorial] 範例是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多程式碼範例之一。 按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。 將 ZIP 檔案的內容解壓縮後，您可以在下列資料夾中找到方案：
 
 `\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial`
 
-### <a name="azure-batch-explorer-optional"></a>Azure Batch 總管 (選用)
+<a id="azure-batch-explorer-optional" class="xliff"></a>
+
+### Azure Batch 總管 (選用)
 [Azure Batch Explorer][github_batchexplorer] 是 GitHub 上 [azure-batch-samples][github_samples] 儲存機制隨附的免費公用程式。 雖然不一定要完成此教學課程，但是在您開發和偵錯 Batch 解決方案時卻很實用。
 
-## <a name="dotnettutorial-sample-project-overview"></a>DotNetTutorial 範例專案概觀
+<a id="dotnettutorial-sample-project-overview" class="xliff"></a>
+
+## DotNetTutorial 範例專案概觀
 DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 方案：**DotNetTutorial** 和 **TaskApplication**。
 
 * **DotNetTutorial** 是與 Batch 和儲存體服務進行互動，以在計算節點 (虛擬機器) 上執行平行工作負載的用戶端應用程式。 DotNetTutorial 會在本機工作站上執行。
@@ -84,7 +98,9 @@ DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 方�
 
 如上所述，並非每個 Batch 方案都會執行這些確切步驟，也有可能包含更多步驟，但 DotNetTutorial  範例應用程式會示範在 Batch 方案中找到的一般程序。
 
-## <a name="build-the-dotnettutorial-sample-project"></a>建置 DotNetTutorial  範例專案
+<a id="build-the-dotnettutorial-sample-project" class="xliff"></a>
+
+## 建置 DotNetTutorial  範例專案
 您必須先在 DotNetTutorial*`Program.cs` 專案的*  檔案中指定 Batch 和儲存體帳戶認證，才可以成功執行範例。 如果您尚未這麼做，請在 `DotNetTutorial.sln` 方案檔案上連按兩下，以在 Visual Studio 中開啟方案。 或者使用 [檔案] > [開啟] > [專案/方案] 功能表，在 Visual Studio 中開啟方案。
 
 開啟 DotNetTutorial 專案中的 `Program.cs`。 然後，如檔案頂端附近所指定新增您的認證：
@@ -125,7 +141,9 @@ private const string StorageAccountKey  = "";
 
 瀏覽至 DotNetTutorial*`Program.cs` 專案的*  檔案中 `MainAsync` 方法的頂端，開始進行步驟 1。 以下每個步驟大致會依 `MainAsync`中的方法呼叫進展而定。
 
-## <a name="step-1-create-storage-containers"></a>步驟 1：建立儲存體容器
+<a id="step-1-create-storage-containers" class="xliff"></a>
+
+## 步驟 1：建立儲存體容器
 ![在 Azure 儲存體中建立容器][1]
 <br/>
 
@@ -193,7 +211,9 @@ private static async Task CreateContainerIfNotExistAsync(
 >
 >
 
-## <a name="step-2-upload-task-application-and-data-files"></a>步驟 2：上傳工作應用程式和資料檔案
+<a id="step-2-upload-task-application-and-data-files" class="xliff"></a>
+
+## 步驟 2：上傳工作應用程式和資料檔案
 ![將工作應用程式和輸入 (資料) 檔案上傳至容器][2]
 <br/>
 
@@ -270,7 +290,9 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
 }
 ```
 
-### <a name="resourcefiles"></a>ResourceFiles
+<a id="resourcefiles" class="xliff"></a>
+
+### ResourceFiles
 [ResourceFile][net_resourcefile] 提供 Batch 中的工作，以及 Azure 儲存體中會在工作執行前下載到計算節點之檔案的 URL。 [ResourceFile.BlobSource][net_resourcefile_blobsource] 屬性會指定 Azure 儲存體中現有檔案的完整 URL。 此 URL 也可能包含可供安全存取檔案的共用存取簽章 (SAS)。 Batch .NET 中的大部分工作類型都包含 ResourceFiles  屬性，包括：
 
 * [CloudTask][net_task]
@@ -280,7 +302,9 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
 
 DotNetTutorial 範例應用程式不會使用 JobPreparationTask 或 JobReleaseTask 工作類型，但您可以在 [在 Azure Batch 計算節點上執行作業準備和完成工作](batch-job-prep-release.md)中深入了解。
 
-### <a name="shared-access-signature-sas"></a>共用存取簽章 (SAS)
+<a id="shared-access-signature-sas" class="xliff"></a>
+
+### 共用存取簽章 (SAS)
 共用存取簽章納入為 URL 的一部分時，便可安全存取 Azure 儲存體中容器和 Blob 的字串。 DotNetTutorial 應用程式會使用 Blob 和容器共用存取簽章 URL，並示範如何從儲存體服務取得這些共用存取簽章字串。
 
 * **Blob 共用存取簽章**：DotNetTutorial 中集區的 StartTask 會在從儲存體下載應用程式二進位檔和輸入資料檔案時，使用 Blob 共用存取簽章 (請參閱下面步驟 3)。 DotNetTutorial 的 `Program.cs` 中的 `UploadFileToContainerAsync` 方法包含可取得各 Blob 共用存取簽章的程式碼。 呼叫 [CloudBlob.GetSharedAccessSignature][net_sas_blob] 即可完成。
@@ -291,13 +315,15 @@ DotNetTutorial 範例應用程式不會使用 JobPreparationTask 或 JobReleaseT
 >
 >
 
-## <a name="step-3-create-batch-pool"></a>步驟 3：建立 Batch 集區
+<a id="step-3-create-batch-pool" class="xliff"></a>
+
+## 步驟 3：建立 Batch 集區
 ![建立 Batch 集區][3]
 <br/>
 
 Batch **集區** 是 Batch 執行作業工作所在的計算節點 (虛擬機器) 集合。
 
-將應用程式和資料檔案上傳至儲存體帳戶之後，DotNetTutorial  會使用 Batch .NET 程式庫開始與 Batch 服務互動。 若要這樣做，會先建立 [BatchClient][net_batchclient]：
+透過 Azure 儲存體 API 將應用程式和資料檔案上傳至儲存體帳戶之後，DotNetTutorial 會透過 Batch .NET 程式庫所提供的 API 開始呼叫 Batch 服務。 程式碼會先建立 [BatchClient][net_batchclient]：
 
 ```csharp
 BatchSharedKeyCredentials cred = new BatchSharedKeyCredentials(
@@ -310,7 +336,7 @@ using (BatchClient batchClient = BatchClient.Open(cred))
     ...
 ```
 
-接著，呼叫 `CreatePoolIfNotExistsAsync`以在 Batch 帳戶中建立計算節點集區。 `CreatePoolIfNotExistsAsync` 會使用 [BatchClient.PoolOperations.CreatePool][net_pool_create] 方法在 Batch 服務中建立集區。
+接著，範例會呼叫 `CreatePoolIfNotExistsAsync` 以在 Batch 帳戶中建立計算節點集區。 `CreatePoolIfNotExistsAsync` 會使用 [BatchClient.PoolOperations.CreatePool][net_pool_create] 方法在 Batch 服務中建立新集區：
 
 ```csharp
 private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, string poolId, IList<ResourceFile> resourceFiles)
@@ -386,7 +412,9 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
 >
 >
 
-## <a name="step-4-create-batch-job"></a>步驟 4：建立 Batch 作業
+<a id="step-4-create-batch-job" class="xliff"></a>
+
+## 步驟 4：建立 Batch 作業
 ![建立 Batch 作業][4]<br/>
 
 Batch **作業** 是與計算節點集區相關聯的工作集合。 作業中的工作會在相關聯集區的計算節點上執行。
@@ -413,7 +441,9 @@ private static async Task CreateJobAsync(
 
 現已建立一個作業，便會加入工作來進行工作。
 
-## <a name="step-5-add-tasks-to-job"></a>步驟 5：將工作加入至作業
+<a id="step-5-add-tasks-to-job" class="xliff"></a>
+
+## 步驟 5：將工作加入至作業
 ![將工作加入至作業][5]<br/>
 *(1) 工作已新增至作業，(2) 工作已排定在節點上執行，以及 (3) 工作會下載要處理的資料檔案*
 
@@ -504,7 +534,9 @@ private static void UploadFileToContainer(string filePath, string containerSas)
 }
 ```
 
-## <a name="step-6-monitor-tasks"></a>步驟 6：監視工作
+<a id="step-6-monitor-tasks" class="xliff"></a>
+
+## 步驟 6：監視工作
 ![監視工作][6]<br/>
 *用戶端應用程式 (1) 會監視工作的完成和成功狀態，以及 (2) 將結果資料上傳至 Azure 儲存體的工作*
 
@@ -600,7 +632,9 @@ private static async Task<bool> MonitorTasks(
 }
 ```
 
-## <a name="step-7-download-task-output"></a>步驟 7：下載工作輸出
+<a id="step-7-download-task-output" class="xliff"></a>
+
+## 步驟 7：下載工作輸出
 ![從儲存體下載工作輸出][7]<br/>
 
 現已完成作業，可以從 Azure 儲存體下載工作的輸出。 在 DotNetTutorial*`Program.cs` 的*  中呼叫 `DownloadBlobsFromContainerAsync` 即可完成此操作：
@@ -638,7 +672,9 @@ private static async Task DownloadBlobsFromContainerAsync(
 >
 >
 
-## <a name="step-8-delete-containers"></a>步驟 8：刪除容器
+<a id="step-8-delete-containers" class="xliff"></a>
+
+## 步驟 8：刪除容器
 因為您需對位於 Azure 儲存體中的資料付費，所以建議您移除您的 Batch 作業不再需要的 Blob。 在 DotNetTutorial 的 `Program.cs` 中，呼叫協助程式方法 `DeleteContainerAsync` 三次即可辦到：
 
 ```csharp
@@ -669,7 +705,9 @@ private static async Task DeleteContainerAsync(
 }
 ```
 
-## <a name="step-9-delete-the-job-and-the-pool"></a>步驟 9：刪除作業和集區
+<a id="step-9-delete-the-job-and-the-pool" class="xliff"></a>
+
+## 步驟 9：刪除作業和集區
 在最後一個步驟中，系統會提示您刪除 DotNetTutorial 應用程式所建立的作業和集區。 雖然您不需支付作業和工作的費用，但您「需」支付計算節點的費用。 因此，我們建議您只在必要時配置節點。 刪除未使用的集區可成為您維護程序的一部分。
 
 BatchClient 的 [JobOperations][net_joboperations] 和 [PoolOperations][net_pooloperations] 兩者都有對應的刪除方法 (在使用者確認刪除時呼叫)：
@@ -697,7 +735,9 @@ if (response != "n" && response != "no")
 >
 >
 
-## <a name="run-the-dotnettutorial-sample"></a>執行 DotNetTutorial  範例
+<a id="run-the-dotnettutorial-sample" class="xliff"></a>
+
+## 執行 DotNetTutorial  範例
 當您執行範例應用程式時，主控台輸出大致如下。 在執行期間，啟動集區的計算節點時，您將在 `Awaiting task completion, timeout in 00:30:00...` 遇到暫停。 在執行期間和之後，使用 [Azure 入口網站][azure_portal]來監視集區、計算節點、作業和工作。 使用 [Azure 入口網站][azure_portal]或 [Azure 儲存體總管][storage_explorers]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
 
 以預設設定執行應用程式時，一般的執行時間 **大約 5 分鐘** 。
@@ -733,7 +773,9 @@ Delete pool? [yes] no: yes
 Sample complete, hit ENTER to exit...
 ```
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 您可隨意變更 DotNetTutorial 和 TaskApplication，以試驗不同的計算案例。 例如，嘗試將執行延遲新增至 TaskApplication (例如使用 [Thread.Sleep][net_thread_sleep])，以模擬長時間執行的工作並在入口網站中監視這些工作。 嘗試新增更多工作，或調整計算節點的數目。 新增邏輯來檢查並允許使用現有的集區加速執行時間 (提示：簽出 [azure-batch-samples][github_samples] 中 [Microsoft.Azure.Batch.Samples.Common][github_samples_common] 專案的 `ArticleHelpers.cs`)。
 
 既然您已熟悉 Batch 方案的基本工作流程，現在可以深入了解 Batch 服務的其他功能。

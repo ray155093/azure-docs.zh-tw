@@ -9,7 +9,7 @@
        
     在本快速入門中，我們會針對 MongoDB API 進行程式設計，因此您會在填寫表單時選擇 [MongoDB]。 但是，如果您有用於社交媒體應用程式的圖形資料、來自目錄應用程式的文件資料，或索引鍵/值 (資料表) 資料，請了解 Azure Cosmos DB 可以提供高度可用、全域分散式的資料庫服務平台來供您所有的任務關鍵性應用程式使用。
 
-    使用螢幕擷取畫面中的資訊作為指南來填寫 [新增帳戶] 刀鋒視窗。 在設定帳戶時請選擇唯一值，不要讓您的值與螢幕擷取畫面完全相同。
+    使用表格中的資訊作為指南來填寫 [新增帳戶] 刀鋒視窗。
  
     ![[新增 Azure Cosmos DB] 刀鋒視窗的螢幕擷取畫面](./media/cosmos-db-create-dbaccount-mongodb/create-nosql-db-databases-json-tutorial-2.png)
    

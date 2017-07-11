@@ -16,14 +16,16 @@ ms.date: 05/10/2017
 ms.author: mimig
 ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 0736a6f9790b70686c4d936f2af80d5e42b89615
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: 49eb2e4f7d57de44a3b7a877dfdd138f4c374436
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/29/2017
 
 ---
 
-# <a name="welcome-to-azure-cosmos-db"></a>歡迎使用 Azure Cosmos DB
+<a id="welcome-to-azure-cosmos-db" class="xliff"></a>
+
+# 歡迎使用 Azure Cosmos DB
 
 Azure Cosmos DB 是 Microsoft 的全球散發多模型資料庫。 透過按鈕點選，Azure Cosmos DB 可讓您有彈性且獨立地跨任意數目的 Azure 地理區域調整輸送量和儲存體。 它利用完整的[服務等級協定](https://aka.ms/acdbsla) (SLA) 提供了輸送量、延遲、可用性和一致性的保證，這是其他資料庫服務無法提供的。
 
@@ -33,11 +35,13 @@ Azure Cosmos DB 包含已最佳化寫入、已管理資源、無結構描述的�
 
 Azure Cosmos DB 於 2010 年末開始開發，可解決 Microsoft 內部大規模應用程式所面對的開發人員難題。 因為建置全域散發的應用程式不只是 Microsoft 特有的問題，所以我們透過 Azure DocumentDB 的形式將該服務提供給外部所有 Azure 開發人員使用。 Azure Cosmos DB 是 DocumentDB 演進中重要的下一步，而我們現在將它提供給您使用。 在這一版的 Azure Cosmos DB 中，DocumentDB 客戶 (與其資料) 會自動無縫轉換為 Azure Cosmos DB 客戶。 此外，他們現在可以存取由 Azure Cosmos DB 所提供的各種新功能。 
 
-## <a name="capability-comparison"></a>功能比較
+<a id="capability-comparison" class="xliff"></a>
+
+## 功能比較
 
 Azure Cosmos DB 會提供關聯式與非關聯式資料庫的最佳功能。
 
-| 功能 | 關聯式資料庫    | 非關聯式 (NoSQL) 資料庫 |     Azure Cosmos DB |
+| 功能 | 關聯式資料庫 | 非關聯式 (NoSQL) 資料庫 |  Azure Cosmos DB |
 | --- | --- | --- | --- |
 | 全球發佈 | x | x | ✓ 周全且立即可用、30 個以上的區域、多路連接 |
 | 水平調整 | x | ✓  | ✓ 獨立調整儲存體和輸送量 | 
@@ -46,7 +50,9 @@ Azure Cosmos DB 會提供關聯式與非關聯式資料庫的最佳功能。
 | 資料模型 + API | 關聯式 + SQL | 多模型 + OSS API | 多模型 + SQL + OSS API (更多即將推出) |
 | SLA | ✓  | x | ✓ 延遲、輸送量、一致性、可用性的完整 SLA |
 
-## <a name="key-capabilities"></a>主要功能
+<a id="key-capabilities" class="xliff"></a>
+
+## 主要功能
 Azure Cosmos DB 是一個全球散發資料庫服務，提供下列功能以協助您建置可調整、全球散發、回應速度快的應用程式：
 
 * [**周全且立即可用的全球散發**](#global-distribution)
@@ -86,7 +92,9 @@ Azure Cosmos DB 是一個全球散發資料庫服務，提供下列功能以協�
 
 <a id="global-distribution"></a>
 
-## <a name="global-distribution"></a>全球發佈
+<a id="global-distribution" class="xliff"></a>
+
+## 全球發佈
 Azure Cosmos DB 容器沿著兩個維度散發： 
 
 1. 在指定區域中，會使用資源分割區來水平分割所有資源 (區域散發)。 
@@ -101,7 +109,9 @@ Cosmos DB 中資源的全球散發是[周全且立即可用的](distribute-data-
 不論資料量或區域數目為何，Cosmos DB 都可以保證每一個新關聯的區域會在一小時內開始處理用戶端要求 (99 個百分位數)。 這會透過平行處理植入和複製所有來源資源分割區的資料至新關聯的區域來完成。 客戶也可以移除現有的區域，或者將先前與其資料庫帳戶相關聯的區域離線。
 
 <a id="data-models"></a>
-## <a name="multi-model-multi-api-support"></a>支援多模型、多 API
+<a id="multi-model-multi-api-support" class="xliff"></a>
+
+## 支援多模型、多 API
  Azure Cosmos DB 原生支援多重資料模型，包括文件、機碼值、圖形和單欄式。 Cosmos DB 資料庫引擎的核心內容模型是以 Atom-記錄-序列 (ARS) 為基礎。 Atom 是由一小組基元類型 (例如字串、布林值和數字) 所組成。 記錄是由這些類型組成的結構。 序列是由 Atom、記錄或序列所組成的陣列。 
  
  資料庫引擎可以有效地將不同的資料模型轉譯並投影到 ARS 型資料模型上。 Cosmos DB 的核心資料模型可由動態輸入的程式設計語言原生存取，並能以原樣公開為 JSON。 
@@ -109,21 +119,27 @@ Cosmos DB 中資源的全球散發是[周全且立即可用的](distribute-data-
  服務也支援用於資料存取及查詢的熱門資料庫 API。 Cosmos DB 的資料庫引擎目前支援 [DocumentDB SQL](documentdb-introduction.md)、[MongoDB](mongodb-introduction.md)、[Azure 資料表](table-introduction.md) (預覽版) 和 [Gremlin](graph-introduction.md) (預覽版)。 您可以繼續使用熱門 OSS API 來建置應用程式，並獲得經過實際測試、完全受管理且全球散發之資料庫服務的所有好處。 
 
 <a id="horizontal-scale"></a>
-## <a name="horizontal-scaling-of-storage-and-throughput"></a>儲存體和輸送量的水平調整
+<a id="horizontal-scaling-of-storage-and-throughput" class="xliff"></a>
+
+## 儲存體和輸送量的水平調整
 Cosmos DB 容器中的所有資料 (例如，文件集合、資料表或圖形) 會由資源分割區以水平方式分割並在背景自動管理。 資源分割區是由[客戶指定的分割區索引鍵](partition-data.md)所分割之資料的一致且高度可用的容器。 它針對它所管理的一組資源提供單一系統映像，且為擴充性和散發的基本單位。 Cosmos DB 的設計可讓您根據跨不同地理區域的應用程式流量模式，有彈性地調整輸送量，以支援依位置和時間波動的工作負載。 服務會在背景自動管理分割區，而不會破壞 Cosmos DB 容器的可用性、一致性、延遲或輸送量。  
  
 ![Azure Cosmos DB 可水平調整](./media/introduction/azure-cosmos-db-partitioning.png) 
 
 您可以有彈性地調整 Azure Cosmos DB 容器的輸送量，方法是使用[每秒要求單位 (RU/秒)](request-units.md) 透過程式設計方式佈建輸送量。 就內部而言，服務會在背景自動管理資源分割區，以提供指定容器上的輸送量。 Cosmos DB 確保輸送量可供與容器相關聯的所有區域使用。 新的輸送量會在設定輸送量值變更的五秒內生效。 
 
-您可以根據每秒和[每分鐘 (RU/分鐘)](request-units-per-minute.md) 的細微度，在 Cosmos DB 容器上佈建輸送量。 根據每分鐘細微度佈建的輸送量，會用來管理發生在每秒細微度的非預期工作負載尖峰。 
+您可以根據每秒和[每分鐘 (RU/m)](request-units-per-minute.md) 的細微度，在 Cosmos DB 容器上佈建輸送量。 根據每分鐘細微度佈建的輸送量，用來管理發生在每秒細微度的非預期工作負載尖峰。 
 
 <a id="low-latency"></a>
-## <a name="low-latency-guarantees-at-the-99th-percentile"></a>低延遲保證 (99 個百分位數)
+<a id="low-latency-guarantees-at-the-99th-percentile" class="xliff"></a>
+
+## 低延遲保證 (99 個百分位數)
 Cosmos DB 的 SLA 保證其客戶的端對端低延遲 (99 個百分位數)。 針對典型的 1 KB 項目，Cosmos DB 保證在相同的 Azure 區域內讀取低於 10 毫秒以及索引化寫入低於 15 毫秒的端對端延遲 (99 個百分位數)。 中間的延遲性就可大幅降低 (低於 5 毫秒)。  透過每個資料庫交易的要求處理上限，Cosmos DB 讓用戶端能清楚地分辨高延遲交易與資料庫無法使用的情況。
 
 <a id="high-availability"></a>
-## <a name="transparent-multi-homing-and-9999-high-availability"></a>透明多路連接和 99.99% 高可用性
+<a id="transparent-multi-homing-and-9999-high-availability" class="xliff"></a>
+
+## 透明多路連接和 99.99% 高可用性
 您可以動態將「優先順序」指派給與您的 Azure Cosmos DB 資料庫帳戶相關聯的區域。 優先順序是用來在不幸發生區域性錯誤時，將要求導向至特定區域。 在不太可能發生的區域性災害中，Cosmos DB 會自動根據優先順序來進行容錯移轉。
 
 若要測試應用程式的端對端可用性，您可以[手動觸發容錯移轉](regional-failover.md) (速率限制是一小時內兩個作業)。 Cosmos DB 保證手動區域性容錯移轉期間資料零遺失。 萬一發生區域性災害，Cosmos DB 保證系統起始自動容錯移轉期間的資料遺失上限。 在區域性容錯移轉之後，您不必重新部署您的應用程式，而且 Azure Cosmos DB 會維持保證的可用性 SLA。 
@@ -131,7 +147,9 @@ Cosmos DB 的 SLA 保證其客戶的端對端低延遲 (99 個百分位數)。 �
 針對這種情況，Cosmos DB 可讓您使用邏輯 (與區域無關) 或實體 (區域特定) 端點來和資源互動。 萬一進行容錯移轉時，前者可確保能在背景自動多路連接應用程式。 後者可微調控制應用程式，將讀取和寫入重新導向到特定區域。 Cosmos DB 保證每個資料庫帳戶 99.99% 可用性 SLA。 可用性保證與下列項目無關：規模調整 (佈建的輸送量和儲存體)、區域數目、與指定資料庫相關聯之區域之間的地理距離。 
 
 <a id="consistency"></a>
-## <a name="multiple-well-defined-consistency-models"></a>多個定義完善的一致性模型
+<a id="multiple-well-defined-consistency-models" class="xliff"></a>
+
+## 多個定義完善的一致性模型
 商業散發資料庫分為兩類：完全不會提供完善且可證明之一致性選擇的資料庫，以及提供兩個極端的可程式性選擇 (強式與最終一致性) 的資料庫。 前者增加了應用程式開發人員其複寫通訊協定細節的負擔，並期望他們在一致性、可用性、延遲和輸送量之間做出困難的取捨。 後者則是將壓力放在選擇兩個極端其中之一。 儘管有超過 50 個一致性模型的研究和建議，散發資料庫社群仍無法商業化超越強式與最終一致性的一致性層級。 
 
 Cosmos DB 讓您在[五個完善定義的一致性模型](consistency-levels.md)，以及一致性頻譜之間選擇 – 強式、限定過期、[工作階段](http://dl.acm.org/citation.cfm?id=383631)、一致前置詞和最終。 
@@ -142,19 +160,21 @@ Cosmos DB 讓您在[五個完善定義的一致性模型](consistency-levels.md)
  
 **一致性層級和保證**
 
-| 一致性層級    | 保證 |
+| 一致性層級 | 保證 |
 | --- | --- |
 | 強式 | 線性化能力 |
-| 限定過期    | 一致前置詞。 讀取落後寫入 (k 前置詞或 t 間隔) |
-| 工作階段    | 一致前置詞。 單純讀取、單純寫入、讀取您的寫入、讀取後接寫入 |
-| 一致前置詞    | 傳回的更新是所有更新的部分前置詞 (沒有間隔) |
-| 最終    | 次序錯誤讀取 |
+| 限定過期 | 一致前置詞。 讀取落後寫入 (k 前置詞或 t 間隔) |
+| 工作階段   | 一致前置詞。 單純讀取、單純寫入、讀取您的寫入、讀取後接寫入 |
+| 一致前置詞 | 傳回的更新是所有更新的部分前置詞 (沒有間隔) |
+| 最終  | 次序錯誤讀取 |
 
 您可以在 Cosmos DB 帳戶上設定預設一致性層級 (並在稍後覆寫特定讀取要求的一致性)。 就內部而言，預設的一致性層級適用於跨區域之分割區集合內的資料。 
 
 
 <a id="sla"></a>
-## <a name="guaranteed-service-level-agreements"></a>保證的服務等級協定
+<a id="guaranteed-service-level-agreements" class="xliff"></a>
+
+## 保證的服務等級協定
 
 Cosmos DB 是針對可用性、輸送量、低延遲與一致性提供 99.99% [SLA 保證](https://aka.ms/acdbsla)的第一個受管理資料庫服務。
 * 可用性：針對每個資料面和控制面作業提供 99.99% 的執行時間可用性 SLA。
@@ -164,16 +184,22 @@ Cosmos DB 是針對可用性、輸送量、低延遲與一致性提供 99.99% [S
 
 
 <a id="schema-free"></a>
-## <a name="schema-free"></a>不需要結構描述
+<a id="schema-free" class="xliff"></a>
+
+## 不需要結構描述
 
 關聯式和 NoSQL 資料庫兩者都會強制您處理結構描述與索引管理、版本控制和移轉 – 這一切在全球散發安裝中都極具挑戰性。 但別擔心 -- Cosmos DB 會處理這個問題！ 透過 Cosmos DB，您不必管理結構描述和索引、處理結構描述版本控制或擔心在移轉結構描述時應用程式停機。 Cosmos DB 的資料庫引擎完全不需要結構描述 – 它會自動建立它所內嵌之資料的索引，而不需要任何結構描述或索引並提供超級快速的查詢。 
 
 <a id="tco"></a>
-## <a name="low-cost-of-ownership"></a>降低擁有權成本
+<a id="low-cost-of-ownership" class="xliff"></a>
+
+## 降低擁有權成本
 
  考量所有的擁有權總成本 (TCO) 時，Azure Cosmos DB 這樣的受管理雲端服務，成本效益可以是其內部部署或虛擬機器上執行之 OSS 對應項目的五到十倍。 而針對大量工作負載， Azure Cosmos DB 更是比 DynamoDB 便宜兩到三倍。 在 [TCO 白皮書 (英文)](https://aka.ms/documentdb-tco-paper) 中深入了解。 
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 透過下列其中一個快速入門開始使用 Azure Cosmos DB：
 
 * [開始使用 Azure Cosmos DB 的 DocumentDB API](create-documentdb-dotnet.md)
