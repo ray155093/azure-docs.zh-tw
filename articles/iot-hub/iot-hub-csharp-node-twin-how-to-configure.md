@@ -14,14 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/30/2017
 ms.author: elioda
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: e42ad1b62d4f953e23624841ddec70b1fac28058
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: ca5ee2733df51faa5025c4d8eb687c81df4a3b4f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="use-desired-properties-to-configure-devices"></a>使用所需屬性來設定裝置
+<a id="use-desired-properties-to-configure-devices" class="xliff"></a>
+
+# 使用所需屬性來設定裝置
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
 在本教學課程結尾，您將會有兩個主控台應用程式：
@@ -46,7 +49,9 @@ ms.lasthandoff: 04/03/2017
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="create-the-simulated-device-app"></a>建立模擬裝置應用程式
+<a id="create-the-simulated-device-app" class="xliff"></a>
+
+## 建立模擬裝置應用程式
 在本節中，您將建立 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 連接到您的中樞、等候所需的組態更新，然後報告模擬組態更新程序上的更新。
 
 1. 建立稱為 **simulatedeviceconfiguration** 的新空白資料夾。 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值。
@@ -157,16 +162,18 @@ ms.lasthandoff: 04/03/2017
    
     您應該會看見訊息 `retrieved device twin`。 保持應用程式執行。
 
-## <a name="create-the-service-app"></a>建立服務應用程式
+<a id="create-the-service-app" class="xliff"></a>
+
+## 建立服務應用程式
 在本節中，您將建立 .NET 主控台應用程式，在與 **myDeviceId** 相關聯的裝置對應項上，以新的遙測組態物件來更新「所需屬性」。 然後，它會查詢儲存在 IoT 中樞的裝置對應項，並顯示裝置的所需和所報告組態之間的差異。
 
 1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **SetDesiredConfigurationAndQuery**。
    
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
 1. 在 [方案總管] 中，以滑鼠右鍵按一下 **SetDesiredConfigurationAndQuery** 專案，然後按一下 [管理 NuGet 套件...]。
-1. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
+1. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並新增對它的參考。
    
-    ![NuGet 封裝管理員視窗][img-servicenuget]
+    ![NuGet 套件管理員視窗][img-servicenuget]
 1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
@@ -195,18 +202,25 @@ ms.lasthandoff: 04/03/2017
             await registryManager.UpdateTwinAsync(twin.DeviceId, JsonConvert.SerializeObject(patch), twin.ETag);
             Console.WriteLine("Updated desired configuration");
    
-            while (true)
+            try
             {
-                var query = registryManager.CreateQuery("SELECT * FROM devices WHERE deviceId = 'myDeviceId'");
-                var results = await query.GetNextAsTwinAsync();
-                foreach (var result in results)
+                while (true)
                 {
-                    Console.WriteLine("Config report for: {0}", result.DeviceId);
-                    Console.WriteLine("Desired telemetryConfig: {0}", JsonConvert.SerializeObject(result.Properties.Desired["telemetryConfig"], Formatting.Indented));
-                    Console.WriteLine("Reported telemetryConfig: {0}", JsonConvert.SerializeObject(result.Properties.Reported["telemetryConfig"], Formatting.Indented));
-                    Console.WriteLine();
+                    var query = registryManager.CreateQuery("SELECT * FROM devices WHERE deviceId = 'myDeviceId'");
+                    var results = await query.GetNextAsTwinAsync();
+                    foreach (var result in results)
+                    {
+                        Console.WriteLine("Config report for: {0}", result.DeviceId);
+                        Console.WriteLine("Desired telemetryConfig: {0}", JsonConvert.SerializeObject(result.Properties.Desired["telemetryConfig"], Formatting.Indented));
+                        Console.WriteLine("Reported telemetryConfig: {0}", JsonConvert.SerializeObject(result.Properties.Reported["telemetryConfig"], Formatting.Indented));
+                        Console.WriteLine();
+                    }
+                    Thread.Sleep(10000);
                 }
-                Thread.Sleep(10000);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
             }
         }
    
@@ -214,13 +228,13 @@ ms.lasthandoff: 04/03/2017
     之後，它每隔 10 秒就會查詢儲存在 IoT 中樞的裝置對應項，並列印所需和所報告的遙測組態。 請參閱 [IoT 中樞查詢語言][lnk-query]，以了解如何產生跨所有裝置的實用報告。
    
    > [!IMPORTANT]
-   > 為了便於說明，此應用程式每 10 秒查詢一次 IoT 中樞。 跨許多裝置時，請使用查詢來產生適合使用者的報告，而非偵測變更。 如果您的解決方案需要裝置事件的即時通知，請使用[裝置到雲端訊息][lnk-d2c]。
+   > 為了便於說明，此應用程式每 10 秒查詢一次 IoT 中樞。 跨許多裝置時，請使用查詢來產生適合使用者的報告，而非偵測變更。 如果您的解決方案需要裝置事件的即時通知，請使用[對應項通知][lnk-twin-notifications]。
    > 
    > 
-1. 最後，將下列幾行加入至 **Main** 方法：
+1. 最後，將下列幾行新增至 **Main** 方法：
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
-        SetDesiredConfigurationAndQuery();
+        SetDesiredConfigurationAndQuery().Wait();
         Console.WriteLine("Press any key to quit.");
         Console.ReadLine();
 1. 在 [方案總管] 中，開啟 [設定起始專案...]，並確定 **SetDesiredConfigurationAndQuery** 專案的 [動作] 是 [啟動]。 建置方案。
@@ -233,7 +247,9 @@ ms.lasthandoff: 04/03/2017
    > 
    > 
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 在本教學課程中，您將會從解決方案後端將所需的組態設為「所需屬性」，還會撰寫裝置應用程式來偵測該變更並模擬多步驟更新程序，以透過報告屬性來回報其狀態。
 
 使用下列資源來了解如何：
@@ -254,7 +270,7 @@ ms.lasthandoff: 04/03/2017
 
 [lnk-devguide-jobs]: iot-hub-devguide-jobs.md
 [lnk-query]: iot-hub-devguide-query-language.md
-[lnk-d2c]: iot-hub-devguide-messaging.md#device-to-cloud-messages
+[lnk-twin-notifications]: iot-hub-devguide-device-twins.md#back-end-operations
 [lnk-methods]: iot-hub-devguide-direct-methods.md
 [lnk-dm-overview]: iot-hub-device-management-overview.md
 [lnk-twin-tutorial]: iot-hub-node-node-twin-getstarted.md
@@ -262,7 +278,6 @@ ms.lasthandoff: 04/03/2017
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/blob/master/doc/node-devbox-setup.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 [lnk-device-management]: iot-hub-node-node-device-management-get-started.md
-[lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-iothub-getstarted]: iot-hub-node-node-getstarted.md
 [lnk-methods-tutorial]: iot-hub-node-node-direct-methods.md
 
