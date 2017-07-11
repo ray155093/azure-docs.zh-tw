@@ -15,21 +15,26 @@ ms.workload: infrastructure-services
 ms.date: 04/30/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 742405395a3da792d0df01d7393a6e7fc7a55842
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: ee3462c13101d18921dc488b08c79e1e4e02ff3a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="creating-a-management-solution-file-in-operations-management-suite-oms-preview"></a>在 Operations Management Suite (OMS) 中建立管理解決方案檔 (預覽)
+<a id="creating-a-management-solution-file-in-operations-management-suite-oms-preview" class="xliff"></a>
+
+# 在 Operations Management Suite (OMS) 中建立管理解決方案檔 (預覽)
 > [!NOTE]
 > 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 以下所述的任何結構描述可能會有所變更。  
 
 Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource Manager 範本](../azure-resource-manager/resource-manager-template-walkthrough.md)。  學習如何撰寫管理解決方案的主要工作，是學習如何[撰寫範本](../azure-resource-manager/resource-group-authoring-templates.md)。  本文提供用於解決方案的範本獨特詳細資料，以及設定一般解決方案資源的方式。
 
 
-## <a name="tools"></a>工具
+<a id="tools" class="xliff"></a>
+
+## 工具
 
 您可以使用任何文字編輯器來處理解決方案檔，但建議您利用 Visual Studio 或 Visual Studio Code 中提供的功能，如下列文章所述。
 
@@ -39,7 +44,9 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
 
 
 
-## <a name="structure"></a>Structure
+<a id="structure" class="xliff"></a>
+
+## Structure
 管理解決方案與 [Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md#template-format)的基本結構相同，如下所示。  下列各節說明最上層元素及其在解決方案中的內容。  
 
     {
@@ -51,7 +58,9 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
        "outputs": {  }
     }
 
-## <a name="parameters"></a>參數
+<a id="parameters" class="xliff"></a>
+
+## 參數
 [Parameters](../azure-resource-manager/resource-group-authoring-templates.md#parameters) 是您在使用者安裝解決方案時向他們要求的值。  所有解決方案都會有標準參數，而您可以視需要針對特定解決方案新增額外的參數。  使用者在安裝解決方案時提供參數值的方式，將取決於特定參數以及解決方案的安裝方式。
 
 當使用者透過 [Azure Marketplace](operations-management-suite-solutions.md#finding-and-installing-management-solutions) 或 [Azure 快速入門範本](operations-management-suite-solutions.md#finding-and-installing-management-solutions)安裝管理解決方案時，系統會提示他們選取 [OMS 工作區和自動化帳戶](operations-management-suite-solutions.md#oms-workspace-and-automation-account)。  這些用來填入每個標準參數的值。  系統不會提示使用者直接提供標準參數的值，但會提示他們提供任何其他參數的值。
@@ -77,7 +86,9 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
 | control |string 參數的其他功能。<br><br>datetime - Datetime 控制項隨即顯示。<br>guid - 會自動產生 Guid 值，但未顯示此參數。 |
 | 說明 |參數的選擇性說明。  顯示於參數旁邊的資訊球形文字說明。 |
 
-### <a name="standard-parameters"></a>標準參數
+<a id="standard-parameters" class="xliff"></a>
+
+### 標準參數
 下表列出所有管理解決方案的標準參數。  系統會為使用者填入這些值，而不會在他們從 Azure Marketplace 或快速入門範本安裝解決方案時提示他們輸入這些值。  如果以其他方法安裝解決方案，使用者必須提供這些值。
 
 > [!NOTE]
@@ -94,8 +105,8 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
 | workspaceName |字串 |Log Analytics 工作區名稱。 |
 | workspaceRegionId |字串 |Log Analytics 工作區的區域。 |
 
-### <a name="sample"></a>範例
-以下是解決方案的範例參數實體。  這包括所有標準參數和相同目錄中的兩個額外參數。
+
+以下是您可以複製並貼到您的方案檔案中的標準參數結構。  
 
     "parameters": {
         "workspaceName": {
@@ -127,29 +138,15 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
             "metadata": {
                 "description": "Pricing tier of both Log Analytics workspace and Azure Automation account"
             }
-        },
-        "jobIdGuid": {
-        "type": "string",
-            "metadata": {
-                "description": "GUID for a runbook job",
-                "control": "guid",
-                "category": "Schedule"
-            }
-        },
-        "startTime": {
-            "type": "string",
-            "metadata": {
-                "description": "Time for starting the runbook.",
-                "control": "datetime",
-                "category": "Schedule"
-            }
         }
     }
 
 
 參考解決方案的其他項目中使用 **parameters('parameter name')** 語法的參數值。  例如，若要存取工作區名稱，您會使用 **parameters('workspaceName')**
 
-## <a name="variables"></a>變數
+<a id="variables" class="xliff"></a>
+
+## 變數
 [變數](../azure-resource-manager/resource-group-authoring-templates.md#variables)是您會在管理解決方案的其餘部分中使用的值。  這些值不會公開給安裝解決方案的使用者。  它們旨在為作者提供單一位置，讓他們可以管理在整個解決方案可能會重複使用的值。 您應該將解決方案特有的值放在變數中，而非將這些值硬式編碼在 **resources** 元素中。  這會讓程式碼更容易閱讀，並可讓您輕鬆地在後續的版本中變更這些值。
 
 下列範例為 **variables** 項目，包含解決方案中所使用的一般參數。
@@ -178,17 +175,25 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
 
 在此情況下，您會以 **variables('variable name').property** 語法透過解決方案參考變數。  例如，若要存取 Solution Name 變數，您會使用 **variables('Solution').Name**。
 
-## <a name="resources"></a>資源
+<a id="resources" class="xliff"></a>
+
+## 資源
 [資源](../azure-resource-manager/resource-group-authoring-templates.md#resources)會定義您的管理解決方案將會安裝並設定的不同資源。  這是範本最大且最複雜的部分。  您可以在[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md#resources)中取得 resource 元素的架構和完整描述。  本文件中的其他文章會詳述您經常定義的其他資源。 
 
 
-### <a name="dependencies"></a>相依項目
+<a id="dependencies" class="xliff"></a>
+
+### 相依項目
 **dependsOn** 元素指定對另一個資源的[相依性](../azure-resource-manager/resource-group-define-dependencies.md)。  安裝解決方案時，直到所有相依性建立後才會建立資源。  例如，解決方案可能會在使用[作業資源](operations-management-suite-solutions-resources-automation.md#automation-jobs)安裝時[啟動 Runbook](operations-management-suite-solutions-resources-automation.md#runbooks)。  作業資源會相依於 Runbook 資源，以確保在建立作業前建立 Runbook。
 
-### <a name="oms-workspace-and-automation-account"></a>OMS 工作區和自動化帳戶
+<a id="oms-workspace-and-automation-account" class="xliff"></a>
+
+### OMS 工作區和自動化帳戶
 管理解決方案需要 [OMS 工作區](../log-analytics/log-analytics-manage-access.md)才可包含檢視，以及需要[自動化帳戶](../automation/automation-security-overview.md#automation-account-overview)才可包含 Runbook 和相關資源。  這些項目必須在建立解決方案中的資源前取得，且不得定義於解決方案本身。  使用者將會在部署解決方案時[指定工作區和帳戶](operations-management-suite-solutions.md#oms-workspace-and-automation-account)，但身為作者，您應該考慮下列幾點。
 
-## <a name="solution-resource"></a>解決方案資源
+<a id="solution-resource" class="xliff"></a>
+
+## 解決方案資源
 每個解決方案需要**資源**項目中定義解決方案本身的資源項目。  這會有一種 **Microsoft.OperationsManagement/solutions** 並有下列結構。 這包括經常用來定義解決方案屬性的[標準參數](#parameters)和[變數](#variables)。
 
 
@@ -222,10 +227,14 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
 
 
 
-### <a name="dependencies"></a>相依項目
+<a id="dependencies" class="xliff"></a>
+
+### 相依項目
 解決方案資源在解決方案中的每隔一個資源上須有[相依性](../azure-resource-manager/resource-group-define-dependencies.md)，因為必須先存在相依性，才能建立解決方案。  您可以在 **dependsOn** 項目中針對每個資源新增一個項目。
 
-### <a name="properties"></a>屬性
+<a id="properties" class="xliff"></a>
+
+### 屬性
 解決方案資源具有下表中的屬性。  這包括由定義解決方案安裝後如何管理資源的解決方案所參考及包含的資源。  解決方案中的每個資源應列在 **referencedResources** 或 **containedResources** 屬性中。
 
 | 屬性 | 說明 |
@@ -236,7 +245,9 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
 
 上述範例適用於具有 Runbook、排程和檢視的解決方案。  **properties** 元素會「參考」排程和 Runbook，因此在移除解決方案時不會移除它們。  會*包含*檢視，因此當移除解決方案時會移除它。
 
-### <a name="plan"></a>規劃
+<a id="plan" class="xliff"></a>
+
+### 規劃
 解決方案資源的**計劃**實體具有下表中的屬性。
 
 | 屬性 | 說明 |
@@ -248,14 +259,18 @@ Operations Management Suite (OMS) 中的管理解決方案會實作為 [Resource
 
 
 
-## <a name="sample"></a>範例
+<a id="sample" class="xliff"></a>
+
+## 範例
 您可以在以下位置檢視具有解決方案資源的解決方案檔範例。
 
 - [自動化資源](operations-management-suite-solutions-resources-automation.md#sample)
 - [搜尋和警示資源](operations-management-suite-solutions-resources-searches-alerts.md#sample)
 
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * 在您的管理解決方案中[新增儲存的搜尋和警示](operations-management-suite-solutions-resources-searches-alerts.md)。
 * 在您的管理解決方案中[新增檢視](operations-management-suite-solutions-resources-views.md)。
 * 在您的管理解決方案中[新增 Runbook 及其他自動化資源](operations-management-suite-solutions-resources-automation.md)。

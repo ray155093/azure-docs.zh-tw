@@ -15,14 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 38121cccc81ef82226e9ea7cbc197e294bb723e3
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: a7abb8fb279e134b7f23df779f1c4548a9feb82d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="use-iothub-explorer-to-send-and-receive-messages-between-your-device-and-iot-hub"></a>使用 iothub-explorer 在裝置與 IoT 中樞之間傳送及接收訊息
+<a id="use-iothub-explorer-to-send-and-receive-messages-between-your-device-and-iot-hub" class="xliff"></a>
+
+# 使用 iothub-explorer 在裝置與 IoT 中樞之間傳送及接收訊息
 
 ![端對端圖表](media/iot-hub-get-started-e2e-diagram/2.png)
 
@@ -30,16 +33,22 @@ ms.lasthandoff: 04/25/2017
 
 [iothub-explorer](https://github.com/azure/iothub-explorer) 有數個命令可讓您更輕鬆管理 IoT 中樞。 本學課程著重於如何使用 iothub-explorer，在裝置與 IoT 中樞之間傳送及接收訊息。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 
 您將了解如何使用 iothub-explorer 來監視裝置到雲端的訊息，以及傳送雲端到裝置的訊息。 裝置到雲端的訊息可能是您的裝置所收集，然後傳送到 IoT 中樞的感應器資料。 雲端到裝置的訊息可能是 IoT 中樞傳送到裝置以使連接到裝置的 LED 閃爍的命令。
 
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 
 - 使用 iothub-explorer 來監視裝置到雲端的訊息。
 - 使用 iothub-explorer 來傳送雲端到裝置的訊息。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 
 - 完成涵蓋下列需求的[設定裝置](iot-hub-raspberry-pi-kit-node-get-started.md)教學課程︰
   - 有效的 Azure 訂用帳戶。
@@ -47,7 +56,9 @@ ms.lasthandoff: 04/25/2017
   - 將訊息傳送到您 Azure IoT 中樞的用戶端應用程式。
 - iothub-explorer。 ([安裝 iothub-explorer](https://github.com/azure/iothub-explorer))
 
-## <a name="monitor-device-to-cloud-messages"></a>監視裝置到雲端的訊息
+<a id="monitor-device-to-cloud-messages" class="xliff"></a>
+
+## 監視裝置到雲端的訊息
 
 若要監視從您的裝置傳送到IoT 中樞的訊息，請遵循下列步驟：
 
@@ -55,13 +66,15 @@ ms.lasthandoff: 04/25/2017
 1. 執行以下命令：
 
    ```bash
-   iothub-explorer monitor-events <device-id> --login <IoTHubConnectionString>
+   iothub-explorer monitor-events <device-id> --login "<IoTHubConnectionString>"
    ```
 
    > [!Note]
-   > 從 IoT 中樞取得 `<device-id>` 和 `<IoTHubConnectionString>`。 確定您已經完成上一個教學課程。
+   > 從 IoT 中樞取得 `<device-id>` 和 `<IoTHubConnectionString>`。 確定您已經完成上一個教學課程。 或者，如果您有 `HostName`、`SharedAccessKeyName` 和 `SharedAccessKey`，您可以嘗試使用 `iothub-explorer monitor-events <device-id> --login "HostName=<my-hub>.azure-devices.net;SharedAccessKeyName=<my-policy>;SharedAccessKey=<my-policy-key>"`。
 
-## <a name="send-cloud-to-device-messages"></a>傳送雲端到裝置訊息
+<a id="send-cloud-to-device-messages" class="xliff"></a>
+
+## 傳送雲端到裝置訊息
 
 若要從您的 IoT 中樞將訊息傳送到裝置，請遵循下列步驟：
 
@@ -69,7 +82,7 @@ ms.lasthandoff: 04/25/2017
 1. 執行下列命令來啟動 IoT 中樞上的工作階段：
 
    ```bash
-   iothub-explorer login <IoTHubConnectionString>
+   iothub-explorer login `<IoTHubConnectionString>`
    ```
 
 1. 執行下列命令來將訊息傳送到您的裝置：
@@ -83,8 +96,11 @@ ms.lasthandoff: 04/25/2017
 > [!Note]
 > 收到訊息之後，裝置不需將個別認可命令傳回您的 IoT 中樞。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 您已了解如何監視裝置到雲端的訊息，以及在 IoT 裝置和 Azure IoT 中樞之間傳送雲端到裝置的訊息。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
+

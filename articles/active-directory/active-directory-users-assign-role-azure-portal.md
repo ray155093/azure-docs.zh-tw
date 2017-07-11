@@ -1,5 +1,6 @@
 ---
-title: "在 Azure Active Directory 預覽版中將使用者指派給系統管理員角色 | Microsoft Docs"
+
+title: "在 Azure Active Directory 中將使用者指派給系統管理員角色 | Microsoft Docs"
 description: "說明如何在 Azure Active Directory 中變更使用者系統管理資訊"
 services: active-directory
 documentationcenter: 
@@ -12,18 +13,25 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 06/27/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: 3b31bd036d9c3ff8036b314b93cbddd94874ff63
-ms.openlocfilehash: 3778964172946fa928e2a908943f50897957eb42
+ms.reviewer: jeffsta
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: ebbadff39c736ec7364999f7644694e8a177073f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="assign-a-user-to-administrator-roles-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中將使用者指派給系統管理員角色
-本文說明如何在 Azure Active Directory (Azure AD) 預覽版中將系統管理角色指派給使用者。 [預覽版有何功能？](active-directory-preview-explainer.md) 如需有關在您組織中新增新使用者的資訊，請參閱[將新的使用者新增到 Azure Active Directory](active-directory-users-create-azure-portal.md)。 新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
+<a id="assign-a-user-to-administrator-roles-in-azure-active-directory" class="xliff"></a>
 
-## <a name="assign-a-role-to-a-user"></a>將角色指派給使用者
+# 在 Azure Active Directory 中將使用者指派給系統管理員角色
+本文說明如何在 Azure Active Directory (Azure AD) 中將系統管理角色指派給使用者。 如需有關在您組織中新增新使用者的資訊，請參閱[將新的使用者新增到 Azure Active Directory](active-directory-users-create-azure-portal.md)。 新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
+
+<a id="assign-a-role-to-a-user" class="xliff"></a>
+
+## 將角色指派給使用者
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
@@ -37,15 +45,12 @@ ms.openlocfilehash: 3778964172946fa928e2a908943f50897957eb42
       ![將使用者指派給角色](./media/active-directory-users-assign-role-azure-portal/create-users-assign-role.png)
 6. 選取 [ **儲存**]。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * [新增使用者](active-directory-users-create-azure-portal.md)
 * [在新 Azure 入口網站中重設使用者的密碼](active-directory-users-reset-password-azure-portal.md)
 * [變更使用者的工作資訊](active-directory-users-work-info-azure-portal.md)
 * [管理使用者設定檔](active-directory-users-profile-azure-portal.md)
 * [在 Azure AD 中刪除使用者](active-directory-users-delete-user-azure-portal.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

@@ -3,7 +3,7 @@ title: "Log Analytics 資料安全性 | Microsoft Docs"
 description: "深入了解 Log Analytics 如何保護您的隱私權和保護您的資料安全。"
 services: log-analytics
 documentationcenter: 
-author: bandersmsft
+author: MGoedtel
 manager: carmonm
 editor: 
 ms.assetid: a33bb05d-b310-4f2c-8f76-f627e600c8e7
@@ -12,16 +12,19 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
-ms.author: banders
-translationtype: Human Translation
-ms.sourcegitcommit: d0f4323c22858300d95af7407cdb14995507ee60
-ms.openlocfilehash: 952697dff7dca2779a6eb5375afa41c0b130aad4
-ms.lasthandoff: 11/23/2016
+ms.date: 05/03/2017
+ms.author: magoedte
+ms.translationtype: Human Translation
+ms.sourcegitcommit: de674af369080ad7eb608608685e293f2326c8e6
+ms.openlocfilehash: fa33a031a9e05f3079f1ed68d2ac0902b3070fa6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---
-# <a name="log-analytics-data-security"></a>Log Analytics 資料安全性
+<a id="log-analytics-data-security" class="xliff"></a>
+
+# Log Analytics 資料安全性
 Microsoft 致力於保護您的隱私權和保護資料安全，同時提供軟體和服務，幫助您管理組織的 IT 基礎結構。 我們了解當您將資料委託給他人管理時，將需要嚴格的安全性。 Microsoft 從撰寫程式碼到運作服務均遵守嚴格的規範與安全性指導方針。
 
 保全和保護資料在 Microsoft 是第一要務。 如有任何問題、建議或關於下列任一項資訊的問題 (包括我們的安全性原則)，請與我們連絡：[Azure 支援選項](http://azure.microsoft.com/support/options/)。
@@ -37,10 +40,14 @@ Log Analytics 服務會使用下列方法安全地管理您以雲端為基礎的
 * 法規遵循
 * 安全性標準認證
 
-## <a name="data-segregation"></a>資料隔離
+<a id="data-segregation" class="xliff"></a>
+
+## 資料隔離
 客戶資料以邏輯方式分開儲存在 OMS 服務的每個元件上。 每個組織加上標記的所有資料。 這項標記作業在整個資料生命週期持續發生，它會強制執行服務的每個層級。 每個客戶都有專用的 Azure Blob 可裝載長期資料
 
-## <a name="data-retention"></a>資料保留
+<a id="data-retention" class="xliff"></a>
+
+## 資料保留
 系統會根據價格方案來儲存及保留已編製索引的記錄檔搜尋資料。 如需詳細資訊，請參閱 [Log Analytics 定價](https://azure.microsoft.com/pricing/details/log-analytics/)。
 
 Microsoft 會在 OMS 工作區關閉 30 天後刪除客戶資料。 Microsoft 也會刪除資料所在的 Azure 儲存體帳戶。 移除客戶資料時，不會終結任何實體磁碟機。
@@ -68,10 +75,14 @@ Microsoft 會在 OMS 工作區關閉 30 天後刪除客戶資料。 Microsoft �
 | 效能 |ObjectName、CounterName、PerfmonInstanceName、PerformanceDataId、PerformanceSourceInternalID、SampleValue、TimeSampled、TimeAdded |
 | 狀況 |StateChangeEventId、StateId、NewHealthState、OldHealthState、Context、TimeGenerated、TimeAdded、StateId2、BaseManagedEntityId、MonitorId、HealthState、LastModified、LastGreenAlertGenerated、DatabaseTimeModified |
 
-## <a name="physical-security"></a>實體安全性
+<a id="physical-security" class="xliff"></a>
+
+## 實體安全性
 OMS 服務中的 Log Analytics 是由 Microsoft 人員操縱，所有活動都有記錄並且可供稽核。 服務完全在 Azure 中執行，並符合 Azure 通用工程準則。 您可以在 [Microsoft Azure 安全性概觀](http://download.microsoft.com/download/6/0/2/6028B1AE-4AEE-46CE-9187-641DA97FC1EE/Windows%20Azure%20Security%20Overview%20v1.01.pdf)的第 18 頁上檢視 Azure 資產之實體安全性的詳細資料。 不再負責管理 OMS 服務的人員，其用來確保區域安全的實體存取權限 (包括傳輸和終止) 將會在一個工作天內變更。 若要了解我們使用的全域實體基礎結構，請參閱 [Microsoft 資料中心](https://www.microsoft.com/en-us/server-cloud/cloud-os/global-datacenters.aspx)。
 
-## <a name="incident-management"></a>事件管理
+<a id="incident-management" class="xliff"></a>
+
+## 事件管理
 OMS 具備所有 Microsoft 服務都會遵守的事件管理程序。 總結來說，我們：
 
 * 使用共同責任模型，在此模型中，一部分的安全性責任歸屬 Microsoft，一部分則歸屬客戶
@@ -95,7 +106,9 @@ OMS 具備所有 Microsoft 服務都會遵守的事件管理程序。 總結來�
 
 如需 Microsoft 如何回應安全性事件的詳細資訊，請參閱[雲端中的 Microsoft Azure 安全性回應](https://gallery.technet.microsoft.com/Azure-Security-Response-in-dd18c678/file/150826/1/Microsoft Azure Security Response in the cloud.pdf)。
 
-## <a name="compliance"></a>法規遵循
+<a id="compliance" class="xliff"></a>
+
+## 法規遵循
 OMS 軟體開發和服務小組的資訊安全性即控管程式可支援其商務需求，並且會遵守 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/)和 [Microsoft 信任中心法規遵循](https://www.microsoft.com/en-us/TrustCenter/Compliance/default.aspx)所述的法規。 上述位置也會描述 OMS 是如何建立安全性需求、識別安全性控制，以及管理和監視風險。 每年我們都會檢閱原則、標準、程序和指導方針。
 
 每個 OMS 開發小組成員都會獲得正式的應用程式安全性訓練。 在內部，我們使用版本控制系統來開發軟體。 每個軟體專案都受到版本控制系統的保護。
@@ -106,10 +119,14 @@ Microsoft 的董事會會收到有關 Microsoft 所有資訊安全程式的年�
 
 OMS 軟體開發和服務小組會積極地與 Microsoft 法律和規範小組及其他產業合作夥伴合作取得各種認證。
 
-## <a name="certifications-and-attestations"></a>認證和證明
+<a id="certifications-and-attestations" class="xliff"></a>
+
+## 認證和證明
 OMS Log Analytics 符合下列需求︰
 
-* [ISO/IEC 27001](http://www.iso.org/iso/home/standards/management-standards/iso27001.htm) 和 [ISO/IEC 27018:2014](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=61498) 相容
+* [ISO/IEC 27001](http://www.iso.org/iso/home/standards/management-standards/iso27001.htm)
+* [ISO/IEC 27018:2014](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=61498)
+* [ISO 22301](https://azure.microsoft.com/en-us/blog/iso22301/)
 * PCI 安全標準委員會的[支付卡產業 (PCI 相容) 資料安全標準 (PCI DSS)](https://www.microsoft.com/en-us/TrustCenter/Compliance/PCI)。
 * [服務組織控制 (SOC) 1 類型 1 和 SOC 2 類型 1](https://www.microsoft.com/en-us/TrustCenter/Compliance/SOC1-and-2) 相容
 * 擁有 HIPAA 商業夥伴合約之公司的 [HIPAA 和 HITECH](https://www.microsoft.com/en-us/TrustCenter/Compliance/HIPAA)
@@ -123,12 +140,16 @@ OMS Log Analytics 符合下列需求︰
 >
 
 
-## <a name="cloud-computing-security-data-flow"></a>雲端運算安全性資料流程
+<a id="cloud-computing-security-data-flow" class="xliff"></a>
+
+## 雲端運算安全性資料流程
 下圖顯示的雲端安全性架構為貴公司的資訊流程，以及當移至 Log Analytics 服務時如何受到保護，最後由您在 OMS 入口網站中看到。 圖表後面詳述每個步驟的詳細資訊。
 
 ![OMS 資料收集與安全性的影像](./media/log-analytics-security/log-analytics-security-diagram.png)
 
-## <a name="1-sign-up-for-log-analytics-and-collect-data"></a>1.註冊使用 Log Analytics 並收集資料
+<a id="1-sign-up-for-log-analytics-and-collect-data" class="xliff"></a>
+
+## 1.註冊使用 Log Analytics 並收集資料
 為了讓您的組織將資料傳送至 Log Analytics，您會設定 Windows 代理程式，在 Azure 虛擬機器上執行的代理程式，或 OMS Agents for Linux。 如果您使用 Operations Manager 代理程式，則可在 Operations 主控台中使用組態精靈設定它們。 使用者 (可能是您、其他個別使用者或一群人) 會建立一或多個 OMS 帳戶 (OMS 工作區)，並且使用下列其中一個帳戶來註冊代理程式：
 
 * [組織識別碼](../active-directory/sign-up-organization.md)
@@ -142,7 +163,9 @@ OMS 工作區是資料收集、彙總、分析以及呈現的位置。 工作區
 
 會收集 Log Analytics 資料的每個類型代理程式。 所收集的資料類型取決於使用的解決方案類型。 若要查看資料集合摘要，請參閱[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)。 此外，大部分方案都會有更詳細的集合資訊。 解決方案是預先定義的檢視、記錄搜尋查詢、資料收集規則，以及處理邏輯的組合。 只有系統管理員可以使用 Log Analytics 來匯入方案。 在匯入解決方案之後，便會移到 Operations Manager 管理伺服器 (如果使用的話)，然後移至您所選擇的代理程式。 之後，代理程式會收集資料。
 
-## <a name="2-send-data-from-agents"></a>2.從代理程式傳送資料
+<a id="2-send-data-from-agents" class="xliff"></a>
+
+## 2.從代理程式傳送資料
 您使用註冊金鑰來註冊所有類型的代理程式，而代理程式與 Log Analytics 服務之間會使用憑證型驗證和 SSL 在連接埠 443 建立安全的連線。 OMS 使用密碼存放區來產生及維護金鑰。 私密金鑰每 90 天會輪替一次，其儲存在 Azure 中，並由遵守嚴格法規與相容性作法的 Azure 作業人員管理。
 
 使用 Operations Manager，您會向 Log Analytics 服務註冊工作區，然後會在 Operations Manager 管理伺服器之間建立安全的 HTTPS 連線。
@@ -153,14 +176,20 @@ OMS 工作區是資料收集、彙總、分析以及呈現的位置。 工作區
 
 如上所述，代理程式中的資料會透過 SSL 傳送到 Microsoft Azure 資料中心。 (選擇性) 您可以使用 ExpressRoute 為資料提供額外的安全性。 ExpressRoute 可供直接從現有 WAN 網路 (例如網路服務提供者所提供的多重通訊協定標籤交換 (MPLS) VPN) 連線至 Azure。 如需詳細資訊，請參閱 [ExpressRoute](https://azure.microsoft.com/services/expressroute/)。
 
-## <a name="3-the-log-analytics-service-receives-and-processes-data"></a>3.Log Analytics 服務接收和處理資料
+<a id="3-the-log-analytics-service-receives-and-processes-data" class="xliff"></a>
+
+## 3.Log Analytics 服務接收和處理資料
 Log Analytics 服務會確保內送資料是來自信任的來源，方法是驗證憑證和與 Azure 驗證的資料完整性。 未處理的原始資料會儲存為 [Microsoft Azure 儲存體](../storage/storage-introduction.md)中的 Blob，且未加密。 不過，每個 Azure 儲存體 Blob 都有唯一一組僅供該使用者存取的金鑰。 所儲存的資料類型取決於匯入和用來收集資料的解決方案類型。 然後，Log Analytics 服務會為 Azure 儲存體 Blob 處理未經處理的資料。
 
-## <a name="4-use-log-analytics-to-access-the-data"></a>4.使用 Log Analytics 來存取資料
+<a id="4-use-log-analytics-to-access-the-data" class="xliff"></a>
+
+## 4.使用 Log Analytics 來存取資料
 您可以在 OMS 入口網站使用組織帳戶或您先前設定的 Microsoft 帳戶來登入 Log Analytics。 OMS 入口網站與 OMS 中的 Log Analytics 之間的所有流量會透過安全的 HTTPS 通道傳送。 在使用 OMS 入口網站時，使用者用戶端 (網頁瀏覽器) 上會產生工作階段識別碼，而且資料會儲存在本機快取，直到工作階段終止。 終止時便會刪除快取。 未包含個人識別資訊的用戶端 Cookie 不會自動移除。 工作階段 Cookie 會標示為 HTTPOnly，並受到保護。 經過預先決定的閒置時間後，OMS 入口網站工作階段就會終止。
 
 使用 OMS 入口網站，您可以將資料匯出至 CSV 檔案，而且您可以使用搜尋 API 存取資料。 CSV 匯出是限制為每此只能匯出 50,000 個資料列，而 API 資料則限制為每次只能搜尋 5,000 個資料列。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * [開始使用 Log Analytics](log-analytics-get-started.md) 以深入了解 Log Analytics，並幾分鐘內就啟動並執行。
 

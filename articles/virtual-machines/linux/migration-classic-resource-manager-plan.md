@@ -15,14 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/01/2017
 ms.author: kasing
-translationtype: Human Translation
-ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
-ms.openlocfilehash: e7499bdd38245dd8d1b7ee4d6384b4b1ca61a5ae
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 5db4e5b18ad385e7eba125a1296a9c5054213446
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 ---
 
-# <a name="planning-for-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>將 IaaS 資源從傳統移轉至 Azure Resource Manager 的規劃
+<a id="planning-for-migration-of-iaas-resources-from-classic-to-azure-resource-manager" class="xliff"></a>
+
+# 將 IaaS 資源從傳統移轉至 Azure Resource Manager 的規劃
 雖然 Azure Resource Manager 提供了許多令人讚嘆的功能，但請務必詳加規劃您的移轉作業，以確保一切順利進行。 詳細規劃可確保您在執行移轉活動期間不會遇到問題。 
 
 > [!NOTE] 
@@ -32,9 +35,13 @@ ms.lasthandoff: 03/31/2017
 
 ![移轉階段](../media/virtual-machines-windows-migration-classic-resource-manager/plan-labtest-migrate-beyond.png)
 
-## <a name="plan"></a>規劃
+<a id="plan" class="xliff"></a>
 
-### <a name="technical-considerations-and-tradeoffs"></a>技術考量和取捨
+## 規劃
+
+<a id="technical-considerations-and-tradeoffs" class="xliff"></a>
+
+### 技術考量和取捨
 
 根據您的技術需求多寡、地理位置和作業實務，您可能要考慮：
 
@@ -50,7 +57,9 @@ ms.lasthandoff: 03/31/2017
 10. 移轉的程式管理或專案管理規劃為何？
 11. Azure Resource Manager 移轉和其他相關技術藍圖的時間表為何？  它們之間的配合是否理想？
 
-### <a name="patterns-of-success"></a>成功的模式
+<a id="patterns-of-success" class="xliff"></a>
+
+### 成功的模式
 
 成功的客戶會進行詳細的規劃，並針對上述問題進行討論、記載和控管。  請務必與贊助者和專案關係人廣泛地溝通移轉規劃。  讓自己具備有關移轉選項的知識；強烈建議您閱讀以下的移轉文件集。
 
@@ -63,14 +72,18 @@ ms.lasthandoff: 03/31/2017
 * [檢閱最常見的移轉錯誤](migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [檢閱有關將 IaaS 資源從傳統移轉至 Azure Resource Manager 的常見問題集](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-### <a name="pitfalls-to-avoid"></a>要避免的陷阱
+<a id="pitfalls-to-avoid" class="xliff"></a>
+
+### 要避免的陷阱
 
 - 規劃失敗。  此移轉的技術步驟已經過證實，且結果是可預測的。
 - 假設在平台支援的移轉 API 會負責處理所有案例。 閱讀[不支援的功能和組態](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unsupported-features-and-configurations)來了解支援的案例。
 - 未針對使用者規劃潛在的應用程式中斷。  規劃足夠的緩衝時間，來警告使用者可能無法使用應用程式的時間。
 
 
-## <a name="lab-test"></a>實驗室測試 
+<a id="lab-test" class="xliff"></a>
+
+## 實驗室測試 
 
 **複寫您的環境並執行測試移轉**
   > [!NOTE]
@@ -84,7 +97,9 @@ ms.lasthandoff: 03/31/2017
 
   使用 AsmMetadataParser 工具可以達到此目的。 [在這裡深入了解此工具](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/AsmToArmMigrationApiToolset)
 
-### <a name="patterns-of-success"></a>成功的模式
+<a id="patterns-of-success" class="xliff"></a>
+
+### 成功的模式
 
 以下是在許多較大型移轉中發現的問題。 這不是詳盡完整的清單，您應該參閱[不支援的功能和組態](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unsupported-features-and-configurations)以取得更多詳細資料。 您可能會或可能不會發生這些技術問題，但如果您確實在嘗試移轉之前解決這些問題，將可確保獲得更順暢的體驗。
 
@@ -95,7 +110,7 @@ ms.lasthandoff: 03/31/2017
 - **ExpressRoute 線路和 VPN**。 目前具有授權連結的 ExpressRoute 閘道，無法在沒有停機時間的情況下進行移轉。 如需因應措施，請參閱[將 ExpressRoute 線路和相關聯的虛擬網路從傳統部署模型移轉至 Resource Manager 部署模型](../../expressroute/expressroute-migration-classic-resource-manager.md)。
 
 - **VM 擴充功能** - 虛擬機器擴充功能可能是移轉執行中 VM 其中一個最大的障礙。 VM 擴充功能的修復可能需要多達 1-2 天，因此請適當地進行規劃。  需要使用中的 Azure 代理程式，才能向 VM 擴充功能回報執行中 VM 的狀態。 如果執行中 VM 的狀態恢復為已損毀，這種情況將會中止移轉。 代理程式本身不需要採用工作順序即可啟用移轉，但如果 VM 上存在擴充功能，則將需要工作代理程式與輸出網際網路連線 (具有 DNS)，移轉才能繼續進行。
-  - 如果在移轉期間遺失對 DNS 伺服器的連線，則在準備移轉之前，必須先從每個 VM 中移除 BGInfo v1.\* 以外的所有 VM 擴充功能，並在 Azure Resource Manager 移轉之後，陸續重新新增回 VM。  **這僅適用於執行中的 VM。**  如果 VM 已停止 (解除配置)，則不需要移除 VM 擴充功能。 **注意：**許多擴充功能 (例如 Azure 診斷和資訊安全中心監視) 在移轉之後將會自行重新安裝，因此移除這些功能不是問題。
+  - 如果在移轉期間，對 DNS 伺服器的連線遺失，則在準備移轉之前，必須先從每個 VM 移除 BGInfo v1.\* 以外的所有 VM 擴充功能，並後續在 Azure Resource Manager 移轉之後，重新新增回 VM。  **這僅適用於執行中的 VM。**  如果 VM 已停止 (解除配置)，則不需要移除 VM 擴充功能。 **注意：**許多擴充功能 (例如 Azure 診斷和資訊安全中心監視) 在移轉之後將會自行重新安裝，因此移除這些功能不是問題。
   - 此外，請確定網路安全性群組不會限制輸出網際網路存取。 某些網路安全性群組組態可能會發生此情況。 需要輸出網際網路存取 (和 DNS)，才能將 VM 擴充功能移轉至 Azure Resource Manager。 
   - BGInfo 擴充功能有兩個版本：v1 和 v2。  如果 VM 是使用傳統入口網站或 PowerShell 建立，VM 上可能會有 v1 擴充功能。 不需要移除此擴充功能，且移轉 API 將會略過它 (不移轉)。 不過，如果傳統 VM 是使用新的 Azure 入口網站建立，在代理程式運作中，且具有輸出網際網路存取 (DNS) 的前提下，可能會有以 JSON 為基礎，且可以移轉至 Azure Resource Manager 的 BGInfo v2 版本。 
   - **修復選項 1**。 如果您知道您的 VM 在不會有輸出網際網路存取、使用中 DNS 服務，和使用中 Azure 代理程式，則請在準備移轉之前解除安裝所有 VM 擴充功能，然後在移轉之後重新安裝 VM 擴充功能。 
@@ -142,22 +157,28 @@ ms.lasthandoff: 03/31/2017
     az storage account show-usage
     ```
 
-- **Azure Resource Manager API 節流限制** - 如果您有一個夠大的環境 (例如 VNET 中 > 400 個 VM)，可能會達到 Azure Resource Manager 中的預設 API 寫入節流限制 (目前為 `1200 writes/hour`)。 開始之前移轉，您應該提出支援票證來為您的訂用帳戶提高此限制。
+- **Azure Resource Manager API 節流限制** - 如果您有一個夠大的環境 (例如， VNET 中 > 400 個 VM)，您在 Azure Resource Manager 中可能會達到寫入時預設的 API 節流限制 (目前為 **1200 次寫入/小時**)。 開始之前移轉，您應該提出支援票證來為您的訂用帳戶提高此限制。
 
-- **佈建逾時 VM 狀態** - 如果任何 VM 的狀態為 `provisioning timed out`，這個問題必須在移轉前解決。 您只能利用停機時間解除佈建/重新佈 VM (刪除、保留磁碟，並重新建立 VM)。 
+- **佈建逾時 VM 狀態** - 如果任何 VM 的狀態為**佈建逾時**，這個問題必須在移轉前解決。 您只能利用停機時間解除佈建/重新佈 VM (刪除、保留磁碟，並重新建立 VM)。 
 
-- **RoleStateUnknown VM 狀態** - 如果因為 `role state unknown` 錯誤訊息使得移轉中止，請使用入口網站檢查 VM，並確定它正在執行中。 此錯誤一般會在幾分鐘之後自行消失 (不需補救)，並且是虛擬機器 `start`、`stop`、`restart` 作業期間經常會看到的暫時性類型。 **建議做法：**幾分鐘後再重試移轉。 
+- **RoleStateUnknown VM 狀態** - 如果因為出現 [角色狀態未知] 錯誤訊息而使得移轉中止，請使用入口網站檢查 VM，並確定它正在執行中。 此錯誤通常會在幾分鐘之後自行消失 (不需補救)，而且是虛擬機器**啟動**、**停止**、**重新啟動**作業期間經常會看到的暫時性類型。 **建議做法：**幾分鐘後再重試移轉。 
 
-- **Fabric 叢集不存在** - 在某些情況下，某些 VM 由於各種奇怪的原因而無法移轉。 其中一種已知的情況為，如果是最近才建立 VM (在過去一個星期內左右)，然後在尚無法因應 Azure Resource Manager 工作負載的 Azure 叢集登陸時會發生此情況。  您會收到錯誤，指出 `fabric cluster does not exist` 而無法移轉 VM。 通常等候幾天就可解決此特定問題，因為叢集很快就會啟用 Azure Resource Manager。 不過，有一個立即的解決方法是對 VM `stop-deallocate`，然後再繼續進行移轉，並且在移轉之後，於 Azure Resource Manager 中啟動 VM 備份。
+- **Fabric 叢集不存在** - 在某些情況下，某些 VM 由於各種奇怪的原因而無法移轉。 其中一種已知的情況為，如果是最近才建立 VM (在過去一個星期內左右)，然後在尚無法因應 Azure Resource Manager 工作負載的 Azure 叢集登陸時會發生此情況。  您會收到 [網狀架構叢集不存在] 錯誤訊息，且無法移轉 VM。 通常等候幾天就可解決此特定問題，因為叢集很快就會啟用 Azure Resource Manager。 不過，有一個立即的解決方法是對 VM `stop-deallocate`，然後再繼續進行移轉，並且在移轉之後，於 Azure Resource Manager 中啟動 VM 備份。
 
-### <a name="pitfalls-to-avoid"></a>要避免的陷阱
+<a id="pitfalls-to-avoid" class="xliff"></a>
+
+### 要避免的陷阱
 
 - 請勿採取捷徑而略過驗證/準備/中止試執行移轉。
 - 在驗證/準備/中止步驟期間，您可能發生的問題，幾乎全都會浮現。
 
-## <a name="migration"></a>移轉
+<a id="migration" class="xliff"></a>
 
-### <a name="technical-considerations-and-tradeoffs"></a>技術考量和取捨
+## 移轉
+
+<a id="technical-considerations-and-tradeoffs" class="xliff"></a>
+
+### 技術考量和取捨
 
 因為您已瀏覽了環境的已知問題，現在您已經準備就緒。
 
@@ -168,17 +189,25 @@ ms.lasthandoff: 03/31/2017
 3. **(選擇性)** 排程維護停機時間，並加上許多緩衝時間，以因應非預期的問題發生。
 4. 萬一發生問題，請連絡並配合您的支援團隊。
 
-### <a name="patterns-of-success"></a>成功的模式
+<a id="patterns-of-success" class="xliff"></a>
+
+### 成功的模式
 
 應該考慮來自以上實驗室測試一節的技術指引，並在實際移轉之前改善狀況。  經過足夠測試後，實際上無需太擔心移轉作業。  對於生產環境而言，有類似受信任的 Microsoft 合作夥伴或 Microsoft Premier 服務等額外支援會有所幫助。
 
-### <a name="pitfalls-to-avoid"></a>要避免的陷阱
+<a id="pitfalls-to-avoid" class="xliff"></a>
+
+### 要避免的陷阱
 
 未經過完整測試可能會造成移轉的問題與延遲。  
 
-## <a name="beyond-migration"></a>移轉之外
+<a id="beyond-migration" class="xliff"></a>
 
-### <a name="technical-considerations-and-tradeoffs"></a>技術考量和取捨
+## 移轉之外
+
+<a id="technical-considerations-and-tradeoffs" class="xliff"></a>
+
+### 技術考量和取捨
 
 既然您已採用 Azure Resource Manager，請善加利用平台。  閱讀 [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md)，找出相關的其他優點。
 
@@ -188,7 +217,9 @@ ms.lasthandoff: 03/31/2017
 - 再次瀏覽 Azure Resource Manager 的技術和商業理由；僅在 Azure Resource Manager 上啟用適用於您的環境的其他可用服務。
 - 利用 PaaS 服務現代化您的環境。
 
-### <a name="patterns-of-success"></a>成功的模式
+<a id="patterns-of-success" class="xliff"></a>
+
+### 成功的模式
 
 現在請明確設定要在 Azure Resource Manager 中啟用的服務。  許多客戶發現下列各個項目對其 Azure 環境深具吸引力：
 
@@ -198,12 +229,16 @@ ms.lasthandoff: 03/31/2017
 - [活動控制](../../azure-resource-manager/resource-group-audit.md)
 - [資源原則](../../azure-resource-manager/resource-manager-policy.md)
 
-### <a name="pitfalls-to-avoid"></a>要避免的陷阱
+<a id="pitfalls-to-avoid" class="xliff"></a>
+
+### 要避免的陷阱
 
 請記住您開始從傳統移轉至 Azure Resource Manager 的原因。  原始的商業理由為何？ 您是否達成商業理由？
 
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 * [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager) 的概觀](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [平台支援的從傳統移轉至 Azure Resource Manager 的技術深入探討](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
