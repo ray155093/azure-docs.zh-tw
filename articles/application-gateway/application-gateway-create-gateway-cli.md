@@ -23,7 +23,8 @@ ms.lasthandoff: 05/02/2017
 
 
 ---
-# <a name="create-an-application-gateway-by-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立應用程式閘道
+<a id="create-an-application-gateway-by-using-the-azure-cli-20" class="xliff"></a>
+# 使用 Azure CLI 2.0 建立應用程式閘道
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-create-gateway-portal.md)
@@ -35,21 +36,24 @@ ms.lasthandoff: 05/02/2017
 
 Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道具有下列應用程式傳遞功能：HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、「安全通訊端層」(SSL) 卸載、自訂健康狀態探查，以及多站台支援。
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+<a id="cli-versions-to-complete-the-task" class="xliff"></a>
+## 用以完成工作的 CLI 版本
 
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 * [Azure CLI 1.0](application-gateway-create-gateway-cli-nodejs.md) - 適用於傳統和資源管理部署模型的 CLI。
 * [Azure CLI 2.0](application-gateway-create-gateway-cli.md) - 適用於資源管理部署模型的新一代 CLI
 
-## <a name="prerequisite-install-the-azure-cli-20"></a>必要條件：安裝 Azure CLI 2.0
+<a id="prerequisite-install-the-azure-cli-20" class="xliff"></a>
+## 必要條件：安裝 Azure CLI 2.0
 
 若要執行本文的步驟，您需要[安裝適用於 Mac、Linux 和 Windows 的 Azure 命令列介面 (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)。
 
 > [!NOTE]
 > 如果您沒有 Azure 帳戶，就需要申請一個。 請 [在此處註冊免費試用](../active-directory/sign-up-organization.md)。
 
-## <a name="scenario"></a>案例
+<a id="scenario" class="xliff"></a>
+## 案例
 
 在此案例中，您將了解如何使用 Azure 入口網站來建立應用程式閘道。
 
@@ -65,11 +69,13 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 > [!NOTE]
 > 其他應用程式閘道組態 (包括自訂健康狀況探查、後端集區位址及其他規則) 會在設定應用程式閘道設定之後才進行設定，而不會在初始部署期間設定。
 
-## <a name="before-you-begin"></a>開始之前
+<a id="before-you-begin" class="xliff"></a>
+## 開始之前
 
 「Azure 應用程式閘道」需要有自己的子網路。 建立虛擬網路時，請確定您保留足夠的位址空間，以便擁有多個子網路。 將應用程式閘道部署到子網路之後，就只能將額外的應用程式閘道新增到該子網路。
 
-## <a name="log-in-to-azure"></a>登入 Azure
+<a id="log-in-to-azure" class="xliff"></a>
+## 登入 Azure
 
 開啟 [Microsoft Azure 命令提示字元] 並登入。 
 
@@ -92,7 +98,8 @@ az login -u "username"
 
 ![已順利登入][3]
 
-## <a name="create-the-resource-group"></a>建立資源群組
+<a id="create-the-resource-group" class="xliff"></a>
+## 建立資源群組
 
 建立應用程式閘道之前，會建立資源群組以包含應用程式閘道。 以下顯示命令。
 
@@ -100,7 +107,8 @@ az login -u "username"
 az resource group create --name myresourcegroup --location "West US"
 ```
 
-## <a name="create-a-virtual-network-and-subnet"></a>建立虛擬網路和子網路
+<a id="create-a-virtual-network-and-subnet" class="xliff"></a>
+## 建立虛擬網路和子網路
 
 建立資源群組後，就會為應用程式閘道建立虛擬網路。  在下列範例中，已為虛擬網路定義 10.0.0.0/16 的位址空間，並為子網路定義 10.0.0.0/28 的位址空間，如前一個案例的附註所示。
 
@@ -114,7 +122,8 @@ az network vnet create \
 --location eastus
 ```
 
-## <a name="create-the-application-gateway"></a>建立應用程式閘道
+<a id="create-the-application-gateway" class="xliff"></a>
+## 建立應用程式閘道
 
 建立虛擬網路和子網路後，便已完成應用程式閘道的先決條件。 此外下列步驟也需要先前匯出的 .pfx 憑證和憑證密碼︰用於後端的 IP 位址是後端伺服器的 IP 位址。 這些值可以是虛擬網路中的私人 IP、公用 IP 或後端伺服器的完整網域名稱。
 
@@ -147,7 +156,8 @@ az network application-gateway create \
 此範例會建立一個具有接聽程式、後端集區、後端 http 設定及規則之預設設定的基本應用程式閘道。 也會設定 SSL 卸載。 佈建成功之後，您可以依據您的部署需求修改這些設定。
 如果在先前步驟中已經以後端集區定義 Web 應用程式，一旦建立之後，負載平衡即開始。
 
-## <a name="delete-all-resources"></a>刪除所有資源
+<a id="delete-all-resources" class="xliff"></a>
+## 刪除所有資源
 
 若要刪除這篇文章中建立的所有資源，請完成下列步驟︰
 
@@ -155,7 +165,8 @@ az network application-gateway create \
 az group delete --name AdatumAppGatewayRG
 ```
  
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+## 後續步驟
 
 參閱 [建立自訂健康狀態探查](application-gateway-create-probe-portal.md)
 
