@@ -21,7 +21,8 @@ ms.lasthandoff: 04/27/2017
 
 
 ---
-# <a name="azure-active-directory-automatic-device-registration-faq"></a>Azure Active Directory 自動裝置註冊常見問題集
+<a id="azure-active-directory-automatic-device-registration-faq" class="xliff"></a>
+# Azure Active Directory 自動裝置註冊常見問題集
 
 **問：我最近註冊了裝置。為什麼在 Azure 入口網站中我的使用者資訊底下看不到該裝置？**
 
