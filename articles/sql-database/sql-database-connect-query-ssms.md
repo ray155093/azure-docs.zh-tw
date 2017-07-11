@@ -18,18 +18,22 @@ ms.topic: hero-article
 ms.date: 05/26/2017
 ms.author: carlrab
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 05cbc0c80a4e622f537772c698e2711a7a85c00d
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 29883e37f1f506f33f44cf02dbf08221274e109d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/28/2017
 
 
 ---
-# <a name="azure-sql-database-use-sql-server-management-studio-to-connect-and-query-data"></a>Azure SQL Database：使用 SQL Server Management Studio 連接及查詢資料
+<a id="azure-sql-database-use-sql-server-management-studio-to-connect-and-query-data" class="xliff"></a>
+
+# Azure SQL Database：使用 SQL Server Management Studio 連接及查詢資料
 
 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS) 是整合式的環境，可用來管理任何 SQL 基礎結構，範圍從 Microsoft Windows 的 SQL Server 到 SQL Database。 此快速入門示範如何使用 SSMS 來連線至 Azure SQL Database，然後使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+
+## 必要條件
 
 本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
@@ -39,7 +43,9 @@ ms.lasthandoff: 05/31/2017
 
 開始之前，確定您已安裝最新版的 [SSMS](https://msdn.microsoft.com/library/mt238290.aspx)。 
 
-## <a name="get-connection-information"></a>取得連線資訊
+<a id="get-connection-information" class="xliff"></a>
+
+## 取得連線資訊
 
 取得連線到 Azure SQL Database 所需的連線資訊。 您在下一個程序中需要完整的伺服器名稱、資料庫名稱和登入資訊。
 
@@ -51,7 +57,9 @@ ms.lasthandoff: 05/31/2017
 
 4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。 
 
-## <a name="connect-to-your-database"></a>連接到您的資料庫
+<a id="connect-to-your-database" class="xliff"></a>
+
+## 連接到您的資料庫
 
 使用 SQL Server Management Studio (SSMS) 建立對 Azure SQL Database 伺服器的連線。 
 
@@ -83,7 +91,9 @@ ms.lasthandoff: 05/31/2017
 
 5. 在 [物件總管] 中，展開 [資料庫]，然後展開 [mySampleDatabase] 以檢視範例資料庫中的物件。
 
-## <a name="query-data"></a>查詢資料
+<a id="query-data" class="xliff"></a>
+
+## 查詢資料
 
 使用下列程式碼，可藉由使用 [SELECT](https://msdn.microsoft.com/library/ms189499.aspx) Transact-SQL 陳述式來依照類別查詢前 20 項產品。
 
@@ -101,7 +111,9 @@ ms.lasthandoff: 05/31/2017
 
     ![query](./media/sql-database-connect-query-ssms/query.png)
 
-## <a name="insert-data"></a>插入資料
+<a id="insert-data" class="xliff"></a>
+
+## 插入資料
 
 使用下列程式碼，藉由使用 [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) Transact-SQL 陳述式將新產品插入 SalesLT.Product 資料表中。
 
@@ -131,7 +143,9 @@ ms.lasthandoff: 05/31/2017
 
     <img src="./media/sql-database-connect-query-ssms/insert.png" alt="insert" style="width: 780px;" />
 
-## <a name="update-data"></a>更新資料
+<a id="update-data" class="xliff"></a>
+
+## 更新資料
 
 使用下列程式碼，藉由使用 [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) Transact-SQL 陳述式更新您先前新增的產品。
 
@@ -147,7 +161,9 @@ ms.lasthandoff: 05/31/2017
 
     <img src="./media/sql-database-connect-query-ssms/update.png" alt="update" style="width: 780px;" />
 
-## <a name="delete-data"></a>刪除資料
+<a id="delete-data" class="xliff"></a>
+
+## 刪除資料
 
 使用下列程式碼，藉由使用 [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) Transact-SQL 陳述式刪除您先前新增的產品。
 
@@ -162,8 +178,11 @@ ms.lasthandoff: 05/31/2017
 
     <img src="./media/sql-database-connect-query-ssms/delete.png" alt="delete" style="width: 780px;" />
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
 
+## 後續步驟
+
+- 關於使用 Transact-SQL 建立及管理伺服器和資料庫，請參閱[深入了解 Azure SQL Database 伺服器和資料庫](sql-database-servers-databases.md)。
 - 如需有關 SSMS 的資訊，請參閱 [使用 SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx)。
 - 若要使用 Visual Studio Code 進行連線和查詢，請參閱[使用 Visual Studio Code 進行連線和查詢](sql-database-connect-query-vscode.md)。
 - 若要使用 .NET 進行連線和查詢，請參閱[使用 .NET 進行連線和查詢](sql-database-connect-query-dotnet.md)。

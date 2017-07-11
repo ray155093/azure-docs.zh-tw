@@ -1,13 +1,21 @@
-### <a name="is-custom-ipsecike-policy-supported-on-all-azure-vpn-gateway-skus"></a>是否所有的 Azure VPN 閘道 SKU 都支援自訂 IPsec/IKE 原則？
-Azure 的**標準**和 **HighPerformance** VPN 閘道可支援自訂 IPsec/IKE 原則。 **基本** SKU。
+<a id="is-custom-ipsecike-policy-supported-on-all-azure-vpn-gateway-skus" class="xliff"></a>
 
-### <a name="how-many-policies-can-i-specify-on-a-connection"></a>可以對連線指定多少個原則？
+### 是否所有的 Azure VPN 閘道 SKU 都支援自訂 IPsec/IKE 原則？
+Azure **VpnGw1、VpnGw2、VpnGw3、標準**和**高效能** VPN 閘道可支援自訂 IPsec/IKE 原則。 **基本** SKU。
+
+<a id="how-many-policies-can-i-specify-on-a-connection" class="xliff"></a>
+
+### 可以對連線指定多少個原則？
 每個給定的連線只能指定***一個***原則組合。
 
-### <a name="can-i-specify-a-partial-policy-on-a-connection-eg-only-ike-algorithms-but-not-ipsec"></a>可以對連線指定部分原則嗎？ (例如，只指定 IKE 演算法，而不指定 IPsec)
+<a id="can-i-specify-a-partial-policy-on-a-connection-eg-only-ike-algorithms-but-not-ipsec" class="xliff"></a>
+
+### 可以對連線指定部分原則嗎？ (例如，只指定 IKE 演算法，而不指定 IPsec)
 不行，您必須同時對 IKE (主要模式) 和 IPsec (快速模式) 指定所有的演算法和參數。 系統不允許只指定一部分原則。
 
-### <a name="what-are-the-algorithms-and-key-strengths-supported-in-the-custom-policy"></a>自訂原則支援什麼演算法和金鑰強度？
+<a id="what-are-the-algorithms-and-key-strengths-supported-in-the-custom-policy" class="xliff"></a>
+
+### 自訂原則支援什麼演算法和金鑰強度？
 可供客戶設定的支援密碼編譯演算法和金鑰強度如下表所示。 每個欄位都必須選取一個選項。
 
 | **IPsec/IKEv2**  | **選項**                                                                 |
@@ -16,16 +24,18 @@ Azure 的**標準**和 **HighPerformance** VPN 閘道可支援自訂 IPsec/IKE �
 | IKEv2 完整性  | SHA384、SHA256、SHA1、MD5                                                   |
 | DH 群組         | ECP384、ECP256、DHGroup24、DHGroup14、DHGroup2048、DHGroup2、DHGroup1、無 |
 | IPsec 加密 | GCMAES256、GCMAES192、GCMAES128、AES256、AES192、AES128、DES3、DES、無    |
-| IPsec 完整性  | GCMASE256、GCMAES192、GCMAES128、SHA256、SHA1、MD5                          |
+| IPsec 完整性  | GCMAES256、GCMAES192、GCMAES128、SHA256、SHA1、MD5                          |
 | PFS 群組        | ECP384、ECP256、PFS24、PFS2048、PFS14、PFS2、PFS1、無                     |
-| QM SA 存留期*  | 秒數 (整數) 和 KB 數 (整數)                                      |
-| 流量選取器 | UsePolicyBasedTrafficSelectors** ($True/$False)                             |
+| QM SA 存留期*  | 秒數 (整數；**最小 300**) 和 KB 數 (整數；**最小 1024**)                                      |
+| 流量選取器 | UsePolicyBasedTrafficSelectors** ($True/$False; default $False)                             |
 |                  |                                                                             |
 
 * (*) Azure VPN 閘道的 IKEv2 主要模式 SA 存留期會固定為 28800 秒
 * (**) 若要了解 "UsePolicyBasedTrafficSelectors"，請參閱下一項常見問題
 
-### <a name="does-everything-need-to-match-between-the-azure-vpn-gateway-policy-and-my-on-premises-vpn-device-configurations"></a>Azure VPN 閘道原則與內部部署 VPN 裝置組態是否需要完全一致？
+<a id="does-everything-need-to-match-between-the-azure-vpn-gateway-policy-and-my-on-premises-vpn-device-configurations" class="xliff"></a>
+
+### Azure VPN 閘道原則與內部部署 VPN 裝置組態是否需要完全一致？
 內部部署 VPN 裝置組態必須符合或包含您在 Azure IPsec/IKE 原則中指定的下列演算法和參數︰
 
 * IKE 加密演算法
@@ -46,23 +56,37 @@ SA 存留期只需要在本機指定，不需要相符。
 
 如需此選項使用方式的詳細資訊，請參閱[連線多個內部部署的原則型 VPN 裝置](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md)。
 
-### <a name="does-the-custom-policy-replace-the-default-ipsecike-policy-sets-for-azure-vpn-gateways"></a>自訂原則是否會取代 Azure VPN 閘道的預設 IPsec/IKE 原則集？
-是，若連線指定了自訂原則，Azure VPN 閘道只會使用該連線的原則，來同時作為 IKE 啟動器和 IKE 回應程式。
+<a id="does-the-custom-policy-replace-the-default-ipsecike-policy-sets-for-azure-vpn-gateways" class="xliff"></a>
 
-### <a name="if-i-remove-a-custom-ipsecike-policy-does-the-connection-become-unprotected"></a>如果移除自訂 IPsec/IKE 原則，連線是否會不受保護？
+### 自訂原則是否會取代 Azure VPN 閘道的預設 IPsec/IKE 原則集？
+是，若連線指定了自訂原則，Azure VPN 閘道只會使用該連線的原則，來同時做為 IKE 啟動器和 IKE 回應程式。
+
+<a id="if-i-remove-a-custom-ipsecike-policy-does-the-connection-become-unprotected" class="xliff"></a>
+
+### 如果移除自訂 IPsec/IKE 原則，連線是否會不受保護？
 否，連線仍會受到 IPsec/IKE 的保護。 移除連線的自訂原則後，Azure VPN 閘道會回復為使用[預設的 IPsec/IKE 提案清單](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md)，並對內部部署 VPN 裝置再次重新啟動 IKE 交握。
 
-### <a name="would-adding-or-updating-an-ipsecike-policy-disrupt-my-vpn-connection"></a>新增或更新 IPsec/IKE 原則是否會中斷 VPN 連線？
+<a id="would-adding-or-updating-an-ipsecike-policy-disrupt-my-vpn-connection" class="xliff"></a>
+
+### 新增或更新 IPsec/IKE 原則是否會中斷 VPN 連線？
 是，這些作業會導致短暫中斷 (幾秒鐘)，因為 Azure VPN 閘道會終止現有連線並重新啟動 IKE 交握，以對新的密碼編譯演算法和參數重新建立 IPsec 通道。 請確定內部部署 VPN 裝置也設定了相同的演算法和金鑰強度，以便盡量減少中斷情形。
 
-### <a name="can-i-use-different-policies-on-different-connections"></a>是否可以對不同連線使用不同原則？
+<a id="can-i-use-different-policies-on-different-connections" class="xliff"></a>
+
+### 是否可以對不同連線使用不同原則？
 是。 自訂原則會按照個別連線來套用。 您可以對不同連線建立和套用不同的 IPsec/IKE 原則。 您也可以選擇對一部分連線套用自訂原則。 其餘連線則會使用 Azure 預設的 IPsec/IKE 原則集。
 
-### <a name="can-i-use-the-custom-policy-on-vnet-to-vnet-connection-as-well"></a>是否也可以對「VNet 對 VNet 連線」使用自訂原則？
+<a id="can-i-use-the-custom-policy-on-vnet-to-vnet-connection-as-well" class="xliff"></a>
+
+### 是否也可以對「VNet 對 VNet 連線」使用自訂原則？
 是，IPsec 跨單位連線或 VNet 對 VNet 連線皆可套用自訂原則。
 
-### <a name="do-i-need-to-specify-the-same-policy-on-both-vnet-to-vnet-connection-resources"></a>VNet 對 VNet 連線的兩個資源是否需要指定相同的原則？
+<a id="do-i-need-to-specify-the-same-policy-on-both-vnet-to-vnet-connection-resources" class="xliff"></a>
+
+### VNet 對 VNet 連線的兩個資源是否需要指定相同的原則？
 是。 VNet 對 VNet 通道在 Azure 中包含兩個連線資源，這兩個資源各自應對一個方向。 您必須確保這兩個連線資源具有相同的原則，否則系統不會建立 VNet 對 VNet 連線。
 
-### <a name="does-custom-ipsecike-policy-work-on-expressroute-connection"></a>自訂 IPsec/IKE 原則是否適用於 ExpressRoute 連線？
+<a id="does-custom-ipsecike-policy-work-on-expressroute-connection" class="xliff"></a>
+
+### 自訂 IPsec/IKE 原則是否適用於 ExpressRoute 連線？
 否。 IPsec/IKE 原則只適用於透過 Azure VPN 閘道的 S2S VPN 連線和 VNet 對 VNet 連線。

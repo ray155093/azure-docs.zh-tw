@@ -12,17 +12,19 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 01/05/2017
+ms.date: 06/29/2017
 ms.author: juliako;anilmur
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 0a84e69f33ae30040c2365e6a5180e17e8df7539
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: 42baa7a6e80468e47dda1e652fc2bbd20e5a4ee6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
-# <a name="azure-media-services-overview-and-common-scenarios"></a>Azure 媒體服務概觀和常見案例
+<a id="azure-media-services-overview-and-common-scenarios" class="xliff"></a>
+
+# Azure 媒體服務概觀和常見案例
 
 Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人員建置可擴充的媒體管理和傳遞應用程式。 媒體服務是以 REST API 為基礎，可讓您安全地上傳、儲存、編碼和封裝視訊或音訊內容，以用於隨選和即時資料流傳遞給各種用戶端 (例如電視、電腦和行動裝置)。
 
@@ -30,7 +32,9 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 您可以選擇即時串流您的內容或隨選傳遞內容。 本主題說明[即時](media-services-overview.md#live_scenarios)傳遞內容或[隨選](media-services-overview.md#vod_scenarios)傳遞內容的常見案例。 本主題也會連結到其他相關主題。
 
-## <a name="sdks-and-tools"></a>SDK 及工具
+<a id="sdks-and-tools" class="xliff"></a>
+
+## SDK 及工具
 
 若要建置媒體服務解決方案，您可以使用：
 
@@ -52,14 +56,17 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 您可以[在此](https://media.windows.net/API/$metadata?api-version=2.15)檢視整個模型。  
 
+<a id="media-services-learning-paths" class="xliff"></a>
 
-## <a name="media-services-learning-paths"></a>媒體服務學習路徑
+## 媒體服務學習路徑
 您可以在此檢視 AMS 學習路徑：
 
 * [AMS 即時資料流工作流程](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-live/)
 * [AMS 隨選資料流工作流程](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-on-demand/)
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+
+## 必要條件
 
 若要開始使用 Azure 媒體服務，您應該具備下列項目：
 
@@ -70,10 +77,12 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
     此外，請了解如何[以程式設計方式連線](media-services-dotnet-connect-programmatically.md)。
 4. 已啟動狀態的標準或進階串流端點。  如需詳細資訊，請參閱[管理串流端點](https://docs.microsoft.com/en-us/azure/media-services/media-services-portal-manage-streaming-endpoints)
 
-## <a name="concepts-and-overview"></a>概念和概觀
+<a id="concepts-and-overview" class="xliff"></a>
+
+## 概念和概觀
 如需 Azure 媒體服務概念，請參閱 [概念](media-services-concepts.md)。
 
-如需介紹 Azure 媒體服務的所有主要元件的操作說明系列，請參閱 [Azure 媒體服務逐步教學課程](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series)。 這一系列有絕佳的概念概觀，並使用 AMSE 工具來示範 AMS 工作。 請注意，AMSE 工具是一種 Windows 工具。 這項工具支援大部分可以使用 [AMS SDK for .NET](https://github.com/Azure/azure-sdk-for-media-services)、[Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java) 或 [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php) 以程式設計方式完成的工作。
+如需介紹 Azure 媒體服務的所有主要元件的操作說明系列，請參閱 [Azure 媒體服務逐步教學課程](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series)。 這一系列有絕佳的概念概觀，並使用 AMSE 工具來示範 AMS 工作。 AMSE 工具是一種 Windows 工具。 這項工具支援大部分可以使用 [AMS SDK for .NET](https://github.com/Azure/azure-sdk-for-media-services)、[Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java) 或 [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php) 以程式設計方式完成的工作。
 
 ## <a id="vod_scenarios"></a>使用 Azure 媒體服務傳遞點播媒體：常見案例和工作
 本節描述常見的案例並提供相關主題的連結。 下圖顯示在傳遞隨選內容中牽涉到的媒體服務平台的主要部分。
@@ -83,7 +92,9 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 >[!NOTE]
 >建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。
 
-### <a name="protect-content-in-storage-and-deliver-streaming-media-in-the-clear-non-encrypted"></a>保護儲存體中的內容並提供不加密的串流媒體
+<a id="protect-content-in-storage-and-deliver-streaming-media-in-the-clear-non-encrypted" class="xliff"></a>
+
+### 保護儲存體中的內容並提供不加密的串流媒體
 1. 將高品質夾層檔上傳到資產。
 
     建議您將儲存體加密選項套用到資產，以便內容在上傳時以及在儲存體中存放時可以得到保護。
@@ -96,7 +107,9 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 4. 藉由建立 OnDemand 定位器的方法來發行資產。
 5. 串流發佈的內容。
 
-### <a name="protect-content-in-storage-deliver-dynamically-encrypted-streaming-media"></a>保護儲存體中的內容、提供動態加密串流處理媒體
+<a id="protect-content-in-storage-deliver-dynamically-encrypted-streaming-media" class="xliff"></a>
+
+### 保護儲存體中的內容、提供動態加密串流處理媒體
 
 1. 將高品質夾層檔上傳到資產。 將儲存體加密選項套用到資產。
 2. 編碼成一組調適性位元速率 MP4 檔案。 將儲存體加密選項套用到輸出資產。
@@ -106,7 +119,9 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 6. 藉由建立 OnDemand 定位器的方法來發行資產。
 7. 串流發佈的內容。
 
-### <a name="use-media-analytics-to-derive-actionable-insights-from-your-videos"></a>使用媒體分析從您的視訊衍生可採取行動的見解
+<a id="use-media-analytics-to-derive-actionable-insights-from-your-videos" class="xliff"></a>
+
+### 使用媒體分析從您的視訊衍生可採取行動的見解
 媒體分析是一組口說與視覺元件，組織或企業可利用它，從其影片檔輕鬆製作能採取行動的見解。 如需詳細資訊，請參閱 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)。
 
 1. 將高品質夾層檔上傳到資產。
@@ -119,7 +134,9 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
    * **視訊摘要** – [使用 Azure 媒體視訊縮圖建立視訊摘要](media-services-video-summarization.md)
 3. 媒體分析的媒體處理器會產生 MP4 檔案或 JSON 檔案。 如果媒體處理器產生了 MP4 檔案，您可以漸進式下載檔案。 如果媒體處理器產生了 JSON 檔案，您可以從 Azure Blob 儲存體下載檔案。
 
-### <a name="deliver-progressive-download"></a>提供漸進式下載
+<a id="deliver-progressive-download" class="xliff"></a>
+
+### 提供漸進式下載
 1. 將高品質夾層檔上傳到資產。
 2. 編碼成單一 MP4 檔案。
 3. 藉由建立 OnDemand 或 SAS 定位器的方法來發行資產。
@@ -133,7 +150,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 * 相機，用來廣播事件。
 * 即時視訊編碼器，它會將相機中的訊號轉換成資料流，然後再傳送至即時資料流服務。
 
-(選擇性) 多個即時同步處理的編碼器。 針對某些需要相當高度可用性與高品質經驗的重要即時事件，建議使用主動對主動備援編碼器搭配時間同步處理，以達成順暢容錯移轉，而不會遺失資料。
+(選擇性) 多個即時同步處理的編碼器。 針對某些需要相當高度可用性與高品質經驗的重要即時事件，建議使用主動對主動備援編碼器搭配時間同步處理，以便順利進行容錯移轉，而不會遺失資料。
 
 * 即時串流服務可讓您執行下列動作：
 * 使用各種即時串流處理通訊協定 (例如 RTMP 或 Smooth Streaming) 擷取即時內容，
@@ -159,29 +176,57 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 * 內部部署即時編碼器會傳送單一位元速率串流至通道，可以使用下列格式之一，以媒體服務執行即時編碼：RTP (MPEG-TS)、RTMP 或 Smooth Streaming (分散的 MP4) 。 通道接著會執行即時編碼，將連入的單一位元速率串流編碼成多位元速率 (自動調整) 視訊串流。 接到要求時，媒體服務會傳遞串流給客戶。
 
-### <a name="working-with-channels-that-receive-multi-bitrate-live-stream-from-on-premises-encoders-pass-through"></a>使用可從內部部署編碼器接收多位元速率即時串流的通道 (即時通行)
+<a id="working-with-channels-that-receive-multi-bitrate-live-stream-from-on-premises-encoders-pass-through" class="xliff"></a>
+
+### 使用可從內部部署編碼器接收多位元速率即時串流的通道 (即時通行)
 下圖顯示 **即時通行** 工作流程中涉及的 AMS 平台主要部分。
 
 ![即時工作流程][live-overview2]
 
 如需詳細資訊，請參閱 [使用通道，從內部部署編碼器接收多位元速率即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 
-### <a name="working-with-channels-that-are-enabled-to-perform-live-encoding-with-azure-media-services"></a>使用啟用的通道來以 Azure 媒體服務執行即時編碼
+<a id="working-with-channels-that-are-enabled-to-perform-live-encoding-with-azure-media-services" class="xliff"></a>
+
+### 使用啟用的通道來以 Azure 媒體服務執行即時編碼
 下圖顯示 AMS 平台的主要部分，與通道可以使用媒體服務執行即時編碼的即時串流工作流程有關。
 
 ![即時工作流程][live-overview1]
 
 如需詳細資訊，請參閱 [使用啟用的通道來以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
 
-## <a name="consuming-content"></a>使用內容
+<a id="supported-media-processors" class="xliff"></a>
+
+## 支援媒體處理器
+
+|名稱|狀態|資料中心
+|---|---|---|
+|Azure 媒體臉部偵測器|預覽|全部|
+|Azure Media Hyperlapse|預覽|全部|
+|Azure Media Indexer|GA|全部|
+|Azure 媒體動作偵測器|預覽|全部|
+|Azure 媒體 OCR|預覽|全部|
+|Azure 媒體Media Redactor|預覽|全部|
+|Azure Media Stabilizer|預覽|全部|
+|Azure 媒體視訊縮圖|預覽|全部|
+|Media Encoder Standard|GA|全部|
+|Media Indexer v2|預覽|所有區域 (中國和美國聯邦政府區域除外)|
+|媒體編碼器高階工作流程|GA|所有區域 (中國除外)|
+
+<a id="consuming-content" class="xliff"></a>
+
+## 使用內容
 Azure 媒體服務提供一些工具，供您用來建立適用於大部分平台的豐富、動態用戶端播放器應用程式，此處所述的平台包括：iOS 裝置、Android 裝置、Windows、Windows Phone、Xbox 和機上盒。 下列主題也會提供 SDK 和 Player Framework 連結，可讓您開發自己的用戶端應用程式，使用來自媒體服務的串流媒體。
 
 [開發視訊播放器應用程式](media-services-develop-video-players.md)
 
-## <a name="enabling-azure-cdn"></a>啟用 Azure CDN
+<a id="enabling-azure-cdn" class="xliff"></a>
+
+## 啟用 Azure CDN
 媒體服務支援與 Azure CDN 整合。 如需如何啟用 Azure CDN 的資訊，請參閱 [如何管理媒體服務帳戶中的串流端點](media-services-portal-manage-streaming-endpoints.md)。
 
-## <a name="scaling-a-media-services-account"></a>調整媒體服務帳戶
+<a id="scaling-a-media-services-account" class="xliff"></a>
+
+## 調整媒體服務帳戶
 
 您可以指定要佈建給帳戶的**串流保留單元**和**編碼保留單元**，藉以調整**媒體服務**。
 
@@ -190,13 +235,19 @@ Azure 媒體服務提供一些工具，供您用來建立適用於大部分平�
 
 [本主題](media-services-portal-scale-streaming-endpoints.md) 會連結相關主題。
 
-## <a name="support"></a>支援
+<a id="support" class="xliff"></a>
+
+## 支援
 [Azure 支援](https://azure.microsoft.com/support/options/) 提供 Azure 的支援選項，包括媒體服務。
 
-## <a name="provide-feedback"></a>提供意見反應
+<a id="provide-feedback" class="xliff"></a>
+
+## 提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="service-level-agreement-sla"></a>服務等級協定 (SLA)
+<a id="service-level-agreement-sla" class="xliff"></a>
+
+## 服務等級協定 (SLA)
 * 對於媒體服務編碼，我們保證 REST API 交易可用性高達 99.9%。
 * 對於串流，我們在購買一個標準或近界串流端點時，針對現有的媒體內容，可保證以 99.9% 的可用性成功服務要求。
 * 對於即時通道，我們保證執行中的通道至少 99.9% 的時間具有外部連線能力。

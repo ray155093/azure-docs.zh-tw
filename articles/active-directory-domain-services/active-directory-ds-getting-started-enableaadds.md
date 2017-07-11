@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Domain Services︰啟用 Azure Active Directory Domain Services | Microsoft Docs"
-description: "開始使用 Azure Active Directory 網域服務"
+description: "使用 Azure 傳統入口網站啟用 Azure Active Directory Domain Services"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -12,18 +12,24 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/06/2017
+ms.date: 06/28/2017
 ms.author: maheshu
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: e5f1fe51d8931985fa55b2d8c0a3fd25bb93f20f
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: ed72325ca9db99405c6173eb882a92f80cd77f47
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
-# <a name="enable-azure-active-directory-domain-services"></a>啟用 Azure Active Directory Domain Services
-## <a name="task-3-enable-azure-active-directory-domain-services"></a>工作 3︰啟用 Azure Active Directory Domain Services
-在此工作中，您執行下列動作來啟用您目錄的 Azure Active Directory Domain Services (Azure AD DS)︰
+<a id="enable-azure-active-directory-domain-services-using-the-azure-classic-portal" class="xliff"></a>
+
+# 使用 Azure 傳統入口網站啟用 Azure Active Directory Domain Services
+
+<a id="task-3-enable-azure-active-directory-domain-services" class="xliff"></a>
+
+## 工作 3︰啟用 Azure Active Directory Domain Services
+在此工作中，您執行下列步驟來啟用您目錄的 Azure Active Directory Domain Services (Azure AD DS)︰
 
 1. 前往 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 在左窗格中選取 [Active Directory] 按鈕。
@@ -70,20 +76,20 @@ ms.lasthandoff: 04/12/2017
    * 在虛擬網路內使用適用於 Azure Active Directory Domain Services 的專用子網路。 請勿選取閘道子網路。 請參閱[網路考量](active-directory-ds-networking.md)。
 
    * 同樣地，使用 Azure Resource Manager 建立的虛擬網路也不會出現在下拉式清單中。 Resource Manager 型虛擬網路目前不為 Azure Active Directory Domain Services 所支援。
-9. 若要啟用 Azure Active Directory Domain Services，請按一下頁面底部工作窗格中的 [儲存]。 
+9. 若要啟用 Azure Active Directory Domain Services，請按一下頁面底部工作窗格中的 [儲存]。
     * 在為您的目錄啟用 Azure Active Directory Domain Services 時，頁面會顯示 [暫止] 狀態。
 
         ![啟用 [網域服務] 視窗](./media/active-directory-domain-services-getting-started/enable-domain-services-pendingstate.png)
 
         > [!NOTE]
-        > Azure Active Directory Domain Services 可針對您的受管理網域提供高可用性。 啟用 Azure Active Directory Domain Services 後請注意，可在虛擬網路上使用網域服務的 IP 位址會逐一顯示。 一旦服務針對您的網域啟用高可用性之後，第二個 IP 位址便會立即顯示在第一個之後。 在針對您的網域設定高可用性並使它成為作用中狀態時，您應該會在 [設定] 索引標籤的 [網域服務] 區段中看到兩個 IP 位址。
+        > Azure Active Directory Domain Services 可針對您的受管理網域提供高可用性。 啟用 Azure Active Directory Domain Services 後，可在虛擬網路上使用網域服務的 IP 位址會逐一顯示。 一旦服務針對您的網域啟用高可用性之後，第二個 IP 位址便會立即顯示在第一個之後。 在針對您的網域設定高可用性並使它成為作用中狀態時，您應該會在 [設定] 索引標籤的 [網域服務] 區段中看到兩個 IP 位址。
         >
         >
     * 大約 20 至 30 分鐘後，會在 [設定] 頁面的 [IP 位址] 欄位中看見可在您虛擬網路上使用「網域服務」的第一個 IP 位址。
 
         ![顯示第一次佈建 IP 的 [網域服務] 視窗](./media/active-directory-domain-services-getting-started/domain-services-enabled-firstdc-available.png)
-    * 若您的網域可支援高可用性，則會在頁面上顯示兩個 IP 位址。 在所選虛擬網路上，從這兩個 IP 位址可使用您的受管理網域。 
-    
+    * 若您的網域可支援高可用性，則會在頁面上顯示兩個 IP 位址。 在所選虛擬網路上，從這兩個 IP 位址可使用您的受管理網域。
+
 10. 記下這兩個 IP 位址，以更新您虛擬網路的 DNS 設定。 如此會讓虛擬網路上的虛擬機器連線到網域，以進行像是加入網域等作業。
 
     ![顯示兩個已佈建 IP 的 [網域服務] 視窗](./media/active-directory-domain-services-getting-started/domain-services-enabled-bothdcs-available.png)
@@ -93,6 +99,8 @@ ms.lasthandoff: 04/12/2017
 >
 >
 
-## <a name="next-steps"></a>後續步驟
-工作 4：[更新 Azure 虛擬網路的 DNS 設定](active-directory-ds-getting-started-dns.md)
+<a id="next-step" class="xliff"></a>
+
+## 後續步驟
+[工作 4：更新 Azure 虛擬網路的 DNS 設定](active-directory-ds-getting-started-update-dns.md)
 

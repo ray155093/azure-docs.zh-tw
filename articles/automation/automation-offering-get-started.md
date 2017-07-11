@@ -15,19 +15,23 @@ ms.topic: get-started-article
 ms.date: 06/16/2017
 ms.author: magoedte
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
-ms.openlocfilehash: 800c4c5928f24a7e879a433d46b096dfbbbaa910
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: eb7d58c71f6d0daf072045797e30208ffe966ee0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
+ms.lasthandoff: 06/30/2017
 
 ---
 
-# <a name="getting-started-with-azure-automation"></a>開始使用 Azure 自動化
+<a id="getting-started-with-azure-automation" class="xliff"></a>
+
+# 開始使用 Azure 自動化
 
 本入門指南會介紹 Azure 自動化的部署相關核心概念。 如果您不熟悉 Azure 中的自動化，或具備使用自動化工作流程軟體 (例如 System Center Orchestrator) 的經驗，本指南可協助您了解如何準備及登入自動化。  之後，您就準備好開始開發 Runbook，以支援您的程序自動化需求。 
 
 
-## <a name="automation-architecture-overview"></a>自動化架構概觀
+<a id="automation-architecture-overview" class="xliff"></a>
+
+## 自動化架構概觀
 
 ![Azure 自動化概觀](media/automation-offering-get-started/automation-infradiagram-networkcomms.png)
 
@@ -43,9 +47,13 @@ Azure 自動化是一個軟體即服務 (SaaS) 應用程式，主要提供可調
 
 儲存在 Azure 自動化中的 DSC 組態可以直接套用到 Azure 虛擬機器。 其他實體和虛擬機器可以從 Azure 自動化 DSC 提取伺服器中要求組態。  若要管理內部部署實體或虛擬 Windows 和 Linux 系統的組態，您不需要部署任何基礎結構，即可支援自動化 DSC 提取伺服器，而自動化 DSC 只會管理各系統的輸出網際網路存取，並透過 TCP 通訊埠 443 與 OMS 服務進行通訊。   
 
-## <a name="requirements"></a>需求
+<a id="prerequisites" class="xliff"></a>
 
-### <a name="automation-dsc"></a>自動化 DSC
+## 必要條件
+
+<a id="automation-dsc" class="xliff"></a>
+
+### 自動化 DSC
 Azure 自動化 DSC 可以用來管理各種機器：
 
 * 執行 Windows 或 Linux 的 Azure 虛擬機器 (傳統)
@@ -56,7 +64,9 @@ Azure 自動化 DSC 可以用來管理各種機器：
 
 必須安裝 WMF 5 的最新版本，Windows 適用的 PowerShell DSC 代理程式才能與 Azure 自動化通訊。 必須安裝 [Linux 適用之 PowerShell DSC 代理程式](https://www.microsoft.com/en-us/download/details.aspx?id=49150)的最新版本，Linux 才能與 Azure 自動化通訊。
 
-### <a name="hybrid-runbook-worker"></a>Hybrid Runbook Worker  
+<a id="hybrid-runbook-worker" class="xliff"></a>
+
+### Hybrid Runbook Worker  
 指定電腦來執行混合 Runbook 作業時，這台電腦必須具備下列條件︰
 
 * Windows Server 2012 或更新版本
@@ -64,10 +74,24 @@ Azure 自動化 DSC 可以用來管理各種機器：
 * 至少雙核心
 * 至少 4 GB 的 RAM
 
-## <a name="authentication-planning"></a>驗證規劃
+<a id="permissions-required-to-create-automation-account" class="xliff"></a>
+
+### 建立自動化帳戶所需的權限
+若要建立或更新自動化帳戶，您必須具有下列特定權限，才能完成本主題。   
+ 
+* 若要建立自動化帳戶，您的 AD 使用者帳戶必須新增至具備與 Microsoft.Automation 資源的參與者角色同等權限的角色 (如[Azure 自動化中的角色型存取控制](automation-role-based-access-control.md#contributor-role-permissions)一文所述)。  
+* 如果應用程式註冊設定為 [是]，Azure AD 租用戶中的非系統管理使用者可以[註冊 AD 應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions)。  如果應用程式註冊設定為 [否]，則執行此動作的使用者必須是 Azure AD 中的全域管理員。 
+
+若您在新增至訂用帳戶的全域管理員/共同管理員角色之前，並非訂用帳戶 Active Directory 執行個體的成員，系統會將您以來賓身分新增至 Active Directory。 在此情況下，您會在 [新增自動化帳戶] 刀鋒視窗中看到 「您沒有權限建立...」的警告。 新增至全域管理員/共同管理員角色的使用者可以先從訂用帳戶的 Active Directory 執行個體中移除並重新新增，使其成為 Active Directory 中的完整使用者。 若要確認這種情況，請從 Azure 入口網站的 [Azure Active Directory] 窗格，選取 [使用者和群組]、選取 [所有使用者]，然後在選取特定使用者之後，選取 [設定檔]。 使用者設定檔之下 [使用者類型] 屬性的值不得等於 [來賓]。
+
+<a id="authentication-planning" class="xliff"></a>
+
+## 驗證規劃
 Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者的資源自動執行工作。  為了讓 Runbook 執行其必要動作，其必須有權能以訂用帳戶內的最少必要權限，安全地存取資源。  
 
-### <a name="what-is-an-automation-account"></a>什麼是自動化帳戶 
+<a id="what-is-an-automation-account" class="xliff"></a>
+
+### 什麼是自動化帳戶 
 在 Azure 自動化中使用 Azure Cmdlet 針對資源執行的所有自動化工作，均使用 Azure Active Directory 組織身分識別的認證型驗證向 Azure 進行驗證。  自動化帳戶與您用來登入入口網站以設定和使用 Azure 資源的帳戶不同。  帳戶隨附的自動化資源如下所示：
 
 * **憑證** - 包含用來從 Runbook 或 DSC 設定進行驗證的憑證，或予以新增。
@@ -90,7 +114,9 @@ Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者�
 
 Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者帳戶和執行身分帳戶授與允許的動作，並驗證該服務主體。  若要取得有助於開發自動化權限管理模型的進一步資訊，請閱讀 [Azure 自動化中的角色型存取控制](automation-role-based-access-control.md)一文。  
 
-#### <a name="authentication-methods"></a>驗證方法
+<a id="authentication-methods" class="xliff"></a>
+
+#### 驗證方法
 下表摘要說明 Azure 自動化支援的每個環境所適用的不同驗證方法。
 
 | 方法 | 環境 
@@ -102,7 +128,9 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 
 [如何\驗證和安全性] 區段之下有一些支援文章，提供如何針對這些環境設定驗證的概觀和實作步驟 (使用您專用於該環境的現有或新的帳戶)。  對於 Azure 執行身分和傳統執行身分帳戶，[更新自動化執行身分帳戶](automation-create-runas-account.md)主題說明如何從入口網站或使用 PowerShell 透過執行身分帳戶更新現有的自動化帳戶 (如果原先並未以執行身分或傳統執行身分帳戶設定現有的自動化帳戶)。 如果您想要使用企業憑證授權單位 (CA) 所核發的憑證，建立執行身分和傳統執行身分帳戶，請檢閱本文以了解如何使用此組態來建立帳戶。     
  
-## <a name="network-planning"></a>網路規劃
+<a id="network-planning" class="xliff"></a>
+
+## 網路規劃
 若要讓混合式 Runbook 背景工作連線至 Microsoft Operations Management Suite (OMS) 並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  此外，這是 [Microsoft Monitoring Agent 連線至 OMS 所需的連接埠和 URL](../log-analytics/log-analytics-windows-agents.md#network)。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
 
 以下資訊列出要讓 Hybrid Runbook Worker 與自動化進行通訊所需的連接埠和 URL。
@@ -133,7 +161,9 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 > 這個檔案包含 Microsoft Azure 資料中心使用的 IP 位址範圍 (包括計算、SQL 和儲存體範圍)。 每週會公佈已更新的檔案，以反映目前已部署的範圍及任何即將進行的 IP 範圍變更。 出現在檔案中的新範圍將至少有一週的時間不會在資料中心中使用。 請每週下載新的 xml 檔案，並在您的站台上執行必要的變更，以正確識別在 Azure 中執行的服務。 Express Route 使用者可能注意到，此檔案在每個月的第一週用來更新 Azure 空間的 BGP 公告。 
 > 
 
-## <a name="creating-an-automation-account"></a>建立自動化帳戶
+<a id="creating-an-automation-account" class="xliff"></a>
+
+## 建立自動化帳戶
 
 在 Azure 入口網站中建立自動化帳戶的方法有很多種：  下表介紹每種部署經驗和其間的差異。  
 
@@ -145,15 +175,10 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 
 本主題藉由將 [自動化與控制] 供應項目上架，逐步引導您建立自動化帳戶和 OMS 工作區。  若要建立用於測試的獨立自動化帳戶或預覽此服務，請檢閱[建立獨立自動化帳戶](automation-create-standalone-account.md)一文。  
 
-### <a name="create-automation-account-integrated-with-oms"></a>建立與 OMS 整合的自動化帳戶
-將自動化上架的建議方法是從 Marketplace 選取 [自動化與控制] 供應項目。  這會建立自動化帳戶及建立與 OMS 工作區的整合，包括用來安裝供應項目隨附之管理解決方案的選項。  
+<a id="create-automation-account-integrated-with-oms" class="xliff"></a>
 
->[!NOTE]
->若要建立自動化帳戶，您必須是服務管理員角色的成員，或是獲得訂用帳戶存取權的訂用帳戶共同管理員。 您必須已新增成為該訂用帳戶之預設 Active Directory 執行個體的使用者。 此帳戶不需要獲派特殊權限角色。
->
->若您在新增至訂用帳戶的共同管理員角色之前，並非訂用帳戶 Active Directory 執行個體的成員，系統會將您以來賓身分新增至 Active Directory。 在此情況下，您會在 [新增自動化帳戶] 刀鋒視窗中看到 「您沒有權限建立...」的警告。
->
->新增至共同管理員角色的使用者可以先從訂用帳戶的 Active Directory 執行個體中移除並重新新增，使其成為 Active Directory 中的完整使用者。 若要確認這種情況，請從 Azure 入口網站的 [Azure Active Directory] 窗格，選取 [使用者和群組]、選取 [所有使用者]，然後在選取特定使用者之後選取 [設定檔]。 使用者設定檔之下 [使用者類型] 屬性的值不得等於 [來賓]。
+### 建立與 OMS 整合的自動化帳戶
+將自動化上架的建議方法是從 Marketplace 選取 [自動化與控制] 供應項目。  這會建立自動化帳戶及建立與 OMS 工作區的整合，包括用來安裝供應項目隨附之管理解決方案的選項。  
 
 1. 以訂用帳戶管理員角色成員和訂用帳戶共同管理員的帳戶登入 Azure 入口網站。
 
@@ -186,7 +211,9 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 
 在供應項目上架後，您可以開始建立 Runbook、使用您啟用的管理解決方案，部署[混合式 Runbook 背景工作](automation-hybrid-runbook-worker.md)角色，或開始使用 [Log Analytics](https://docs.microsoft.com/azure/log-analytics)，以收集您的雲端或內部部署環境中的資源所產生的資料。   
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * 您可藉由檢閱[測試 Azure 自動化執行身分帳戶驗證](automation-verify-runas-authentication.md)，確認新的自動化帳戶可以驗證 Azure 資源。
 * 若要開始使用建立 Runbook，請在開始撰寫之前，先檢閱[自動化 Runbook 類型](automation-runbook-types.md)支援和相關考量。
 

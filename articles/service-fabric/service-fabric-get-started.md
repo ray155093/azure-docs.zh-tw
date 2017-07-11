@@ -12,17 +12,19 @@ ms.devlang: dotNet
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 05/26/2017
+ms.date: 06/20/2017
 ms.author: ryanwi, mikhegn
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
-ms.openlocfilehash: 3e2dba1af69820382c67b368da5d6f6325b72c50
+ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
+ms.openlocfilehash: 926dfe3de0715f855e6d5b57f10c2366cda8583b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
+ms.lasthandoff: 06/21/2017
 
 
 ---
-# <a name="prepare-your-development-environment"></a>準備您的開發環境
+<a id="prepare-your-development-environment" class="xliff"></a>
+
+# 準備您的開發環境
 > [!div class="op_single_selector"]
 > * [Windows](service-fabric-get-started.md) 
 > * [Linux](service-fabric-get-started-linux.md)
@@ -32,8 +34,12 @@ ms.lasthandoff: 06/09/2017
 
  若要在您的開發機器上建置並執行 [Azure Service Fabric 應用程式][1]，請安裝執行階段、SDK 和工具。 您也必須執行 SDK 中包含的 Windows PowerShell 指令碼。
 
-## <a name="prerequisites"></a>必要條件
-### <a name="supported-operating-system-versions"></a>支援的作業系統版本
+<a id="prerequisites" class="xliff"></a>
+
+## 必要條件
+<a id="supported-operating-system-versions" class="xliff"></a>
+
+### 支援的作業系統版本
 下列為支援開發的作業系統版本：
 
 * Windows 7
@@ -47,44 +53,56 @@ ms.lasthandoff: 06/09/2017
 > 
 > 
 
-## <a name="install-the-sdk-and-tools"></a>安裝 SDK 和工具
-### <a name="to-use-visual-studio-2017"></a>若要使用 Visual Studio 2017
+<a id="install-the-sdk-and-tools" class="xliff"></a>
+
+## 安裝 SDK 和工具
+<a id="to-use-visual-studio-2017" class="xliff"></a>
+
+### 若要使用 Visual Studio 2017
 Service Fabric 工具屬於 Visual Studio 2017 中的 Azure 開發和管理工作負載。 啟用此工作負載作為 Visual Studio 安裝的一部分。
 此外，您必須使用 Web Platform Installer 來安裝 Microsoft Azure Service Fabric SDK。
 
 * [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
 
-### <a name="to-use-visual-studio-2015-requires-visual-studio-2015-update-2-or-later"></a>若要使用 Visual Studio 2015 (需要 Visual Studio 2015 Update 2 或更新版本)
+<a id="to-use-visual-studio-2015-requires-visual-studio-2015-update-2-or-later" class="xliff"></a>
+
+### 若要使用 Visual Studio 2015 (需要 Visual Studio 2015 Update 2 或更新版本)
 在 Visual Studio 2015 中，使用 Web Platform Installer，Service Fabric 工具會與 SDK 一起安裝︰
 
 * [安裝 Microsoft Azure Service Fabric SDK 和工具][full-bundle-vs2015]
 
-### <a name="sdk-installation-only"></a>僅限 SDK 安裝
+<a id="sdk-installation-only" class="xliff"></a>
+
+### 僅限 SDK 安裝
 如果您只需要 SDK，您可以安裝此套件︰
 * [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
 
 目前的版本如下︰
-* Service Fabric SDK 2.6.210
-* Service Fabric 執行階段 5.6.210
+* Service Fabric SDK 2.6.220
+* Service Fabric 執行階段 5.6.220
 * Visual Studio 2015 工具 1.6.50508.2
 * Visual Studio 2017 Update 2
 
 目前的預覽版本如下︰
-* Service Fabric SDK 255.255.2709.255
-* Service Fabric 執行階段 255.255.5709.255
+* Service Fabric SDK 255.255.2718.255
+* Service Fabric 執行階段 255.255.5718.255
 * Visual Studio 2015 工具 1.6.50509.5
 * Visual Studio 2017 Update 3 預覽 1
 
 如需支援版本的清單，請參閱[Service Fabric 支援](service-fabric-support.md)
 
-## <a name="enable-powershell-script-execution"></a>啟用 PowerShell 指令碼執行
+<a id="enable-powershell-script-execution" class="xliff"></a>
+
+## 啟用 PowerShell 指令碼執行
 Service Fabric 會使用 Windows PowerShell 指令碼，以便建立本機開發叢集，以及從 Visual Studio 部署應用程式。 根據預設，Windows 會封鎖這些指令碼的執行。 若要啟用其，您必須修改 PowerShell 執行原則。 以系統管理員身分開啟 PowerShell 並輸入下列命令：
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 ```
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 現在您的開發環境已完成設定，您可以開始建置和執行應用程式。
 
 * [在 Visual Studio 中建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)

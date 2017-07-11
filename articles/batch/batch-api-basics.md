@@ -12,18 +12,20 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 05/22/2017
+ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 84f9677daebe13f54a54802b1b16cc6487a0b845
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 0120a63ed398cf3e0e91cd4329c4024ba2fbfdca
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
-# <a name="develop-large-scale-parallel-compute-solutions-with-batch"></a>使用 Batch 開發大規模的平行運算解決方案
+<a id="develop-large-scale-parallel-compute-solutions-with-batch" class="xliff"></a>
+
+# 使用 Batch 開發大規模的平行運算解決方案
 
 在 Azure Batch 服務的核心元件概觀中，我們會討論 Batch 開發人員可用來建置大規模平行計算解決方案的主要服務功能和資源。
 
@@ -34,7 +36,9 @@ ms.lasthandoff: 05/26/2017
 >
 >
 
-## <a name="batch-service-workflow"></a>Batch 服務工作流程
+<a id="batch-service-workflow" class="xliff"></a>
+
+## Batch 服務工作流程
 下列高階工作流程是幾乎所有使用 Batch 服務處理平行工作負載的應用程式和服務典型︰
 
 1. 將您要處理的**資料檔**上傳至 [Azure 儲存體][azure_storage]帳戶。 Batch 包含可供存取 Azure Blob 儲存體的內建支援，而在執行工作時，您的工作可以將這些檔案下載至 [計算節點](#compute-node) 。
@@ -51,7 +55,9 @@ ms.lasthandoff: 05/26/2017
 >
 >
 
-## <a name="batch-service-resources"></a>Batch 服務資源
+<a id="batch-service-resources" class="xliff"></a>
+
+## Batch 服務資源
 使用 Batch 服務的所有解決方案需要下列某些資源：帳戶、計算節點、集區、作業和工作。 其他資源 (如作業排程和應用程式套件) 都很實用，但為選用功能。
 
 * [帳戶](#account)
@@ -69,19 +75,43 @@ ms.lasthandoff: 05/26/2017
   * [作業相依性](#task-dependencies)
 * [應用程式封裝](#application-packages)
 
-## <a name="account"></a>帳戶
+<a id="account" class="xliff"></a>
+
+## 帳戶
 批次帳戶是批次服務內唯一識別的實體。 所有處理都與 Batch 帳戶相關聯。
 
 您可以使用 [Azure 入口網站](batch-account-create-portal.md)或以程式設計的方式建立 Azure Batch 帳戶，例如使用 [Batch管理 .NET 程式庫](batch-management-dotnet.md)。 建立帳戶時，您可以將 Azure 儲存體帳戶產生關聯。
 
-Batch 支援兩個帳戶設定，根據集區配置模式屬性。 這兩種組態可讓您存取與 Batch [集區](#pool)相關的不同功能 (請參閱本文稍後章節)。
+Batch 支援兩個帳戶設定，當您要建立 Batch 帳戶時，需選取適當的設定。 兩個帳戶設定之間的差異，在於帳戶的 Batch [集區](#pool)如何配置。 您可以在 Azure Batch 管理的訂用帳戶中配置計算節點的集區，或是可以將它們配置在您自己的訂用帳戶中。 帳戶的集區配置模式屬性會決定所使用的是什麼設定。 
+
+如需決定要使用的帳戶設定，請考慮最適合您案例的是哪一個：
+
+* **Batch 服務**：Batch 服務是預設的帳戶設定。 針對使用此設定所建立的帳戶，Batch 集區會在幕後配置於 Azure 受控訂用帳戶。 請記住關於 Batch 服務帳戶設定的這些關鍵點：
+
+    - Batch 服務帳戶設定支援雲端服務和虛擬機器集區。
+    - Batch 服務帳戶設定支援使用共用索引鍵驗證或 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 
+    - 在 Batch 服務帳戶設定中，您可以使用集區中專用或低優先順序的計算節點。
+    - 如果您打算從自訂 VM 映像建立 Azure 虛擬機器集區，或如果打算使用虛擬網路，請勿使用 Batch 服務帳戶設定。 改為透過使用者訂用帳戶的帳戶設定來建立您的帳戶。
+    - 使用 Batch 服務訂用帳戶的帳戶設定在帳戶中佈建之虛擬機器集區，必須從 [Azure 虛擬機器 Marketplace][vm_marketplace] 映像加以建立。
+
+* **使用者訂用帳戶**：Batch 集區會透過使用者訂用帳戶的帳戶設定，在帳戶所建立的 Azure 訂用帳戶中進行配置。 請記住關於使用者訂用帳戶之帳戶設定的這些關鍵點：
+     
+    - 使用者訂用帳戶的帳戶設定僅支援虛擬機器集區。 並不支援雲端服務集區。
+    - 若要從自訂 VM 映像建立虛擬機器集區，或使用虛擬網路搭配虛擬機器集區，您必須使用使用者訂用帳戶設定。  
+    - 您必須使用 [Azure Active Directory 驗證](batch-aad-auth.md)來驗證對 Batch 服務的要求。 
+    - 使用者訂用帳戶的帳戶設定會要求您設定 Batch 帳戶的 Azure Key Vault。 
+    - 您只能在透過使用者訂用帳戶的帳戶設定所建立的帳戶中，使用集區中的專用計算節點。 不支援低優先順序的節點。
+    - 您可從 [Azure 虛擬機器 Marketplace][vm_marketplace] 映像，或從您提供的自訂映像，建立透過使用者訂用帳戶設定中佈建的虛擬機器集區。
+
+> [!IMPORTANT]
+> Batch 目前僅支援一般用途的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。 您的 Batch 工作 (包括標準工作、啟動工作、作業準備工作和作業發行工作) 必須指定位於一般用途的儲存體帳戶中的資源檔。
+>
+>
 
 
-* **Batch 服務**：這是預設選項，在 Azure 管理的訂用帳戶中，系統會在幕後配置 Batch 集區 VM。 如果您需要雲端服務集區，您就必須使用此帳戶組態，但如果您需要透過自訂 VM 映像所建立的虛擬機器集區或使用虛擬網路的虛擬機器集區，就不能使用此組態。 您可以使用共用金鑰驗證或 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 您可以在 Batch 服務帳戶組態中使用集區中專用或低優先順序的計算節點。
+<a id="compute-node" class="xliff"></a>
 
-* **使用者訂用帳戶**：如果您需要透過自訂 VM 映像所建立的虛擬機器集區或使用虛擬網路的虛擬機器集區，您就必須使用此帳戶組態。 您只能使用 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API，雲端服務集區不支援此功能。 Batch 計算 VM 會直接配置在您的 Azure 訂用帳戶中。 這個模式會要求您設定 Batch 帳戶的 Azure Key Vault。 您只可以在使用者訂用帳戶組態中使用集區中的專用計算節點。 
-
-## <a name="compute-node"></a>計算節點
+## 計算節點
 計算節點是 Azure 虛擬機器 (VM) 或雲端服務 VM，專門用來處理您應用程式的部分工作負載。 節點大小決定配置給節點的 CPU 核心數目、記憶體容量，以及本機檔案系統大小。 您可以使用 Azure 雲端服務或虛擬機器 Marketplace 的映像來建立 Windows 或 Linux 節點集區。 如需這些選項的詳細資訊，請參閱下列 [集區](#pool) 。
 
 節點可以執行節點作業系統環境所支援的任何可執行檔或指令碼。 這包括適用於 Windows 的 \*.exe、\*.cmd、\*.bat 和 PowerShell 指令碼，以及適用於 Linux 的二進位檔、Shell 和 Python 指令碼。
@@ -92,93 +122,163 @@ Batch 中的所有計算節點也包括︰
 * **防火牆** 設定。
 * [遠端存取](#connecting-to-compute-nodes) Windows (遠端桌面通訊協定 (RDP)) 和 Linux (安全殼層 (SSH)) 節點。
 
-## <a name="pool"></a>集區
+<a id="pool" class="xliff"></a>
+
+## 集區
 集區是應用程式執行所在的一群節點。 集區可以由您手動建立，或當您指定要完成的工作時，由 Batch 服務自動建立。 您可以建立和管理符合應用程式資源需求的集區。 集區只能由建立它的 Batch 帳戶使用。 批次帳戶可以有多個集區。
 
 Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可提供大規模的配置、應用程式安裝、資料散發、健全狀況監視，以及在集區內彈性調整計算節點數目 ([調整規模](#scaling-compute-resources))。
 
 系統會指派唯一的名稱及 IP 位址給新增至集區的每個節點。 當節點從集區中移除時，就會失去對作業系統或檔案所做的任何變更，且其名稱及 IP 位址都會釋出供未來使用。 當節點離開集區時，其存留期就結束。
 
-當您建立集區時，可以指定下列屬性。 根據 Batch [帳戶](#account)的集區配置模式，部分設定會有所不同。
+當您建立集區時，可以指定下列屬性。 根據 Batch [帳戶](#account)的集區配置模式，部分設定會有所不同：
 
-* 計算節點**作業系統**和**版本**
+- 計算節點作業系統和版本
+- 計算節點類型和目標節點數目
+- 計算節點的大小
+- 調整原則
+- 工作排程原則
+- 計算節點的通訊狀態
+- 計算節點的啟動工作
+- 應用程式封裝
+- 網路組態
 
-    > [!NOTE]
-    > 在 Batch 服務集區配置模式中，針對集區中的節點選取作業系統時，您有兩個選項︰[虛擬機器組態] 和 [雲端服務組態]。 在使用者訂用帳戶模式中，您只可以使用虛擬機器組態。
-    >
-
-    **虛擬機器組態**可從 [Azure 虛擬機器 Marketplace][vm_marketplace] 提供適用於計算節點的 Linux 和 Windows 映像，而在使用者訂用帳戶配置模式中，則提供使用自訂 VM 映像的選項。
-
-    建立包含虛擬機器組態節點的集區時，您不僅需指定節點的大小，也必須在節點上安裝**虛擬機器映像參考**和 Batch **節點代理程式 SKU**。 如需指定這些集區屬性的詳細資訊，請參閱 [在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
-
-    **雲端服務組態**「只」提供 Windows 計算節點。 雲端服務組態集區可用的作業系統列於 [Azure 客體 OS 版次與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md)。 建立包含雲端服務節點的集區時，您只需指定節點大小及其「作業系統系列」 。 建立 Windows 計算節點集區時，最常使用的是雲端服務。
-
-  * 「OS 系列」  也會決定哪些版本的.NET 會與作業系統一起安裝。
-  * 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] \(如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
-  * 如同背景工作角色，建議為 [OS 版本]指定 `*`，以便自動升級節點，而且不需為了因應新發行的版本而執行工作。 選取特定 OS 版本的主要使用案例是為了確保應用程式相容性，以允許在更新版本之前執行回溯相容性測試。 通過驗證之後，即可更新集區的 [OS 版本] 並安裝新的 OS 映像，如此會中斷任何執行中的工作並重新排入佇列。
-
-* **計算節點類型**和**目標節點數目**
-
-    當您建立集區時，您可以指定您想要的計算節點類型及每個類型的目標數目。 計算節點有兩個類型︰
-
-    - **低優先順序的計算節點。** 低優先順序的節點會利用 Azure 中剩餘的容量來執行 Batch 工作負載。 低優先順序的節點比專用節點更符合成本效益，並可啟用需要大量計算能力的工作負載。 如需詳細資訊，請參閱[使用低優先順序的 VM 搭配 Batch](batch-low-pri-vms.md)。
-
-        Azure 多餘的容量不足時，可能會佔用低優先順序的計算節點。 如果節點在執行工作時遭到佔用，工作會重新排入佇列並於計算節點再次可用時再次執行。 低優先順序的節點很適合用於作業完成時間有彈性且工作分散於許多節點的工作負載。
-
-        低優先順序的計算節點僅可用於以 [Batch 服務] 集區配置模式建立的 Batch 帳戶。
-
-    - **專用計算節點。** 專用計算節點會保留給您的工作負載使用。 它們比低優先順序的節點昂貴，但保證永遠不會遭到佔用。    
-
-    您可以在相同的集區中同時擁有低優先順序和專用的計算節點。 每種節點類型 &mdash; 低優先順序和專用&mdash; 有它自己的目標設定，您可以對其指定所需的節點數目。 
-        
-    計算節點數目稱為「目標」，因為在某些情況下，您的集區可能無法達到所需的節點數目。 例如，如果集區先達到 Batch 帳戶的[核心配額](batch-quota-limit.md)，它就可能無法達成目標。 或者，如果您已將可限制節點數目上限的自動調整公式套用至集區，集區可能無法達成目標。
-
-    如需低優先順序和專用計算節點的價格資訊，請參閱 [Batch 價格](https://azure.microsoft.com/pricing/details/batch/)。
-
-* **節點的大小**
-
-    **雲端服務組態** 計算節點大小會列於 [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。 Batch 支援 `ExtraSmall`、`STANDARD_A1_V2` 和 `STANDARD_A2_V2` 以外的所有雲端服務大小。
-
-    [虛擬機器組態] 計算節點大小列於 [Azure 中的虛擬機器大小](../virtual-machines/linux/sizes.md) (Linux) 和 [Azure 中的虛擬機器大小](../virtual-machines/windows/sizes.md) (Windows)。 除了 `STANDARD_A0` 和進階儲存體的大小 (`STANDARD_GS`、`STANDARD_DS` 和 `STANDARD_DSV2` 系列) 以外，Batch 支援所有的 Azure VM 大小。
-
-    選取計算節點大小時，請考量將於節點上執行之應用程式的特性和需求。 應用程式是否為多執行緒以及需要使用多少記憶體之類的層面，有助於決定最適合且具成本效益的節點大小。 在選取節點大小時，通常會假設每次在節點上執行一項工作。 不過，在作業執行期間可能會有多項工作 (因而有多個應用程式執行個體) 在計算節點上[以平行方式執行](batch-parallel-node-tasks.md)。 在此情況下，通常會選擇較大的節點大小，以因應增加的平行工作執行需求。 如需詳細資訊，請參閱[工作排程原則](#task-scheduling-policy)。
-
-    集區中所有節點的大小相同。 如果您打算執行具有不同系統需求和/或負載層級的應用程式，建議使用不同的集區。
-
-* **調整原則**
-
-    針對動態工作負載，您可以撰寫並將[自動調整公式](#scaling-compute-resources)套用至集區。 Batch 服務將會定期評估您的公式，並根據可以指定的各種集區、作業、和工作參數，調整集區中的節點數目。
-
-* **工作排程原則**
-
-    [每個節點的工作數上限](batch-parallel-node-tasks.md) 組態選項會決定可在集區內的每個計算節點上平行執行的工作數目上限。
-
-    預設組態會指定在節點上一次執行一項工作，但在某些情況下，在一個節點上同時執行兩項以上工作較為有利。 請參閱[並行節點工作](batch-parallel-node-tasks.md)一文中的[範例案例](batch-parallel-node-tasks.md#example-scenario)，以了解如何從每個節點的多項工作受惠。
-
-    您也可以指定「填滿類型」  ，以決定 Batch 是要將工作平均分散到集區中的所有節點，還是將最大數目的工作分配給一個節點後，再將工作指派給另一個節點。
-* **通訊狀態** 
-
-    大部分情況下，工作會獨立運作，並不需要彼此通訊。 不過，有一些工作必須進行通訊的應用程式，例如 [MPI 案例](batch-mpi.md)。
-
-    您可以設定集區來允許**節點間通訊**，以便集區內的節點可以在執行階段進行通訊。 啟用節點間通訊時，[雲端服務組態] 集區中的節點可以在超過 1100 個連接埠上彼此通訊，而且 [虛擬機器組態] 集區並不會限制任何連接埠的流量。
-
-    請注意，啟用節點間通訊也會影響叢集內的節點位置，而且由於部署限制，可能會限制集區中的節點數目上限。 如果您的應用程式不需要節點之間的通訊，Batch 服務可以將許多不同叢集和資料中心的大量節點配置給集區，以發揮更強大的平行處理能力。
-* **啟動工作** 
-
-    選用的「啟動工作」  將在每個節點加入集區以及每次重新啟動節點或重新安裝其映像時，於該節點上執行。 啟動工作特別適合用於準備計算節點，以便執行工作，例如在計算節點上安裝工作要執行的應用程式。
-* **應用程式封裝**
-
-    您可以指定要部署至集區中計算節點的 [應用程式封裝](#application-packages) 。 應用程式封裝會提供您的工作執行之應用程式的簡化部署和版本控制。 您針對集區指定的應用程式封裝會安裝於加入該集區的每個節點，以及在節點重新啟動或重新安裝映像時安裝。 Linux 計算節點上目前不支援應用程式套件。
-* **網路組態**
-
-    您可以指定應在其中建立集區計算節點之 Azure [虛擬網路 (VNet)](../virtual-network/virtual-networks-overview.md) 的識別碼。 如需詳細資訊，請參閱[集區網路組態](#pool-network-configuration)區段。
+這些設定每一個都會在下列各節詳細說明。
 
 > [!IMPORTANT]
-> 所有的 Batch 帳戶都具有預設**配額**，以限制 Batch 帳戶中的**核心** (因而限制計算節點) 數目。 您可在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中發現預設配額以及如何[增加配額](batch-quota-limit.md#increase-a-quota) (例如 Batch 帳戶中的核心數目上限) 的說明。 如果您發現自問「為什麼我的集區不會觸達 X 個以上的節點？ 」，此核心配額可能是原因。
+> 透過 Batch 服務設定建立的 Batch 帳戶都具有預設配額，以限制 Batch 帳戶中的核心數目。 對應到計算節點數目的核心數目。 在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中，您可以找到預設配額及如何[增加配額](batch-quota-limit.md#increase-a-quota)的說明。 如果您的集區未達其目標節點數目，可能是因為核心配額的原因。
 >
->
+>透過使用者訂用帳戶設定建立的 Batch 帳戶不會觀察 Batch 服務配額。 相反地，它們會在核心配額中共用指定的訂用帳戶。 如需詳細資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束](../azure-subscription-service-limits.md)中的 [虛擬機器限制](../azure-subscription-service-limits.md#virtual-machines-limits)。
 
-## <a name="job"></a>作業
+<a id="compute-node-operating-system-and-version" class="xliff"></a>
+
+### 計算節點作業系統和版本
+
+當您建立 Batch 集區時，可以指定 Azure 虛擬機器設定，以及您想要在集區中的每個計算節點上執行之作業系統類型。 Batch 中可用的兩個設定類型為：
+
+- **虛擬機器設定**，會指定集區是由 Azure 虛擬機器所組成。 這些 VM 可能會從 Linux 或 Windows 映像加以建立。 
+
+    以虛擬機器設定作為基礎建立集區時，您不僅需要指定節點的大小和用來建立這些節點的映像來源，也必須在節點上安裝**虛擬機器映像參考**和 Batch **節點代理程式 SKU**。 如需指定這些集區屬性的詳細資訊，請參閱 [在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
+
+- **雲端服務設定**，會指定集區是由 Azure 雲端服務節點所組成。 雲端服務組態「只」提供 Windows 計算節點。
+
+    雲端服務組態集區可用的作業系統列於 [Azure 客體 OS 版次與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md)。 建立包含雲端服務節點的集區時，您需要指定節點大小及其「作業系統系列」。 雲端服務部署至 Azure 的速度比執行 Windows 的虛擬機器還快。 如果您需要 Windows 計算節點的集區，可能會發現雲端服務提供了部署時間方面的效能優勢。
+
+    * 「OS 系列」  也會決定哪些版本的.NET 會與作業系統一起安裝。
+    * 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] \(如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
+    * 如同背景工作角色，建議為 [OS 版本]指定 `*`，以便自動升級節點，而且不需為了因應新發行的版本而執行工作。 選取特定 OS 版本的主要使用案例是為了確保應用程式相容性，以允許在更新版本之前執行回溯相容性測試。 通過驗證之後，即可更新集區的 [OS 版本] 並安裝新的 OS 映像，如此會中斷任何執行中的工作並重新排入佇列。
+
+如需有關在建立 Batch 帳戶時設定集區配置模式的資訊，請參閱[帳戶](#account)一節。
+
+<a id="custom-images-for-virtual-machine-pools" class="xliff"></a>
+
+#### 適用於虛擬機器集區的自訂映像
+
+若要使用您虛擬機器集區的自訂映像，請利用使用者訂用帳戶的帳戶設定來建立您的 Batch 帳戶。 使用此設定時，Batch 集區會配置到帳戶所在的訂用帳戶。 如需有關在建立 Batch 帳戶時設定集區配置模式的資訊，請參閱[帳戶](#account)一節。
+
+若要使用自訂映像來建立虛擬機器設定集區，您需要一或多個標準 Azure 儲存體帳戶來儲存自訂的 VHD 映像。 自訂映像會儲存為 blob。 建立集區時若要參考自訂映像，請針對 [virtualMachineConfiguration](https://docs.microsoft.com/rest/api/batchservice/add-a-pool-to-an-account#bk_vmconf) 屬性的 [osDisk](https://docs.microsoft.com/rest/api/batchservice/add-a-pool-to-an-account#bk_osdisk) 屬性，指定自訂映像 VHD blob 的 URI。
+
+請確定您的儲存體帳戶符合下列準則：   
+
+- 包含自訂映像 VHD blob 的儲存體帳戶必須與 Batch 帳戶 (使用者訂用帳戶) 位於相同的訂用帳戶。
+- 指定的儲存體帳戶必須與 Batch 帳戶位於相同區域中。
+- 目前僅支援標準儲存體帳戶。 未來將會支援 Azure 高階儲存體。
+- 您可以指定一個具有多個自訂 VHD blob 的儲存體帳戶，或是多個儲存體帳戶，每個皆具有單一的 blob。 建議您使用多個儲存體帳戶，以取得更佳的效能。
+- 一個唯一自訂映像 VHD blob 最多可支援 40 個 Linux VM 執行個體，或 20 個 Windows VM 執行個體。 您必須建立 VHD blob 的複本，才能建立具有多個 VM 的集區。 例如，具有 200 個 Windows VM 的集區，需要針對 **osDisk** 屬性指定 10 個唯一的 VHD blob。
+
+當您建立一個集區時，必須選取適當的 **nodeAgentSkuId**，視您 VHD 的基礎映像 OS 而定。 您可以取得對應至其 OS 映像參考的可用節點代理程式 SKU 識別碼，方法是呼叫[列出受支援節點代理程式 SKU 的清單](https://docs.microsoft.com/rest/api/batchservice/list-supported-node-agent-skus)作業。
+
+若要使用 Azure 入口網站從自訂映像建立集區：
+
+1. 在 Azure 入口網站中瀏覽至您的 Batch 帳戶。
+2. 在 [設定] 刀鋒視窗上，選取 [集區] 功能表項目。
+3. 在 [集區] 刀鋒視窗上，選取 [新增] 命令；隨即顯示 [新增集區] 刀鋒視窗。
+4. 從 [映像類型] 下拉式清單選取 [自訂映像 (Linux/Windows)]。 入口網站會顯示 [自訂映像] 選擇器。 從相同的容器中選擇一或多個 VHD，然後按一下 [選取] 按鈕。 
+    未來將會新增從不同的儲存體帳戶和不同的容器支援多個 VHD。
+5. 針對您自訂的 VHD 選取正確的 **發行者/優惠/SKU**選取所需的**快取**模式，然後填入集區的所有其他參數。
+6. 若要檢查集區是否以自訂映像作為基礎，請參閱 [集區] 刀鋒視窗的資源摘要區段中的 **Operating System** 屬性。 這個屬性的值應該是**自訂 VM 映像**。
+7. 與集區相關聯的所有自訂 VHD 都會顯示在集區的 [屬性] 刀鋒視窗中。
+
+<a id="compute-node-type-and-target-number-of-nodes" class="xliff"></a>
+
+### 計算節點類型和目標節點數目
+
+當您建立集區時，您可以指定您想要的計算節點類型及每個類型的目標數目。 計算節點有兩個類型︰
+
+- **專用計算節點。** 專用計算節點會保留給您的工作負載使用。 它們比低優先順序的節點昂貴，但保證永遠不會遭到佔用。
+
+- **低優先順序的計算節點。** 低優先順序的節點會利用 Azure 中剩餘的容量來執行 Batch 工作負載。 低優先順序的節點每小時比專用節點更便宜，並可啟用需要大量計算能力的工作負載。 如需詳細資訊，請參閱[使用低優先順序的 VM 搭配 Batch](batch-low-pri-vms.md)。
+
+    Azure 多餘的容量不足時，可能會佔用低優先順序的計算節點。 如果節點在執行工作時遭到佔用，工作會重新排入佇列並於計算節點再次可用時再次執行。 低優先順序的節點很適合用於作業完成時間有彈性且工作分散於許多節點的工作負載。 在決定使用適合您案例的低優先順序節點之前，請確定會盡可能降低因優先佔用而遺失的工作數，且可輕鬆重新建立。
+
+    低優先順序的計算節點僅可用於以 [Batch 服務] 集區配置模式建立的 Batch 帳戶。
+
+您可以在相同的集區中同時擁有低優先順序和專用的計算節點。 每種節點類型 &mdash; 低優先順序和專用&mdash; 有它自己的目標設定，您可以對其指定所需的節點數目。 
+    
+計算節點數目稱為「目標」，因為在某些情況下，您的集區可能無法達到所需的節點數目。 例如，如果集區先達到 Batch 帳戶的[核心配額](batch-quota-limit.md)，它就可能無法達成目標。 或者，如果您已將可限制節點數目上限的自動調整公式套用至集區，集區可能無法達成目標。
+
+如需低優先順序和專用計算節點的價格資訊，請參閱 [Batch 價格](https://azure.microsoft.com/pricing/details/batch/)。
+
+<a id="size-of-the-compute-nodes" class="xliff"></a>
+
+### 計算節點的大小
+
+**雲端服務組態** 計算節點大小會列於 [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。 Batch 支援 `ExtraSmall`、`STANDARD_A1_V2` 和 `STANDARD_A2_V2` 以外的所有雲端服務大小。
+
+[虛擬機器組態] 計算節點大小列於 [Azure 中的虛擬機器大小](../virtual-machines/linux/sizes.md) (Linux) 和 [Azure 中的虛擬機器大小](../virtual-machines/windows/sizes.md) (Windows)。 除了 `STANDARD_A0` 和進階儲存體的大小 (`STANDARD_GS`、`STANDARD_DS` 和 `STANDARD_DSV2` 系列) 以外，Batch 支援所有的 Azure VM 大小。
+
+選取計算節點大小時，請考量將於節點上執行之應用程式的特性和需求。 應用程式是否為多執行緒以及需要使用多少記憶體之類的層面，有助於決定最適合且具成本效益的節點大小。 在選取節點大小時，通常會假設每次在節點上執行一項工作。 不過，在作業執行期間可能會有多項工作 (因而有多個應用程式執行個體) 在計算節點上[以平行方式執行](batch-parallel-node-tasks.md)。 在此情況下，通常會選擇較大的節點大小，以因應增加的平行工作執行需求。 如需詳細資訊，請參閱[工作排程原則](#task-scheduling-policy)。
+
+集區中所有節點的大小相同。 如果您打算執行具有不同系統需求和/或負載層級的應用程式，建議使用不同的集區。
+
+<a id="scaling-policy" class="xliff"></a>
+
+### 調整原則
+
+針對動態工作負載，您可以撰寫並將[自動調整公式](#scaling-compute-resources)套用至集區。 Batch 服務將會定期評估您的公式，並根據可以指定的各種集區、作業、和工作參數，調整集區中的節點數目。
+
+<a id="task-scheduling-policy" class="xliff"></a>
+
+### 工作排程原則
+
+[每個節點的工作數上限](batch-parallel-node-tasks.md) 組態選項會決定可在集區內的每個計算節點上平行執行的工作數目上限。
+
+預設組態會指定在節點上一次執行一項工作，但在某些情況下，在一個節點上同時執行兩項以上工作較為有利。 請參閱[並行節點工作](batch-parallel-node-tasks.md)一文中的[範例案例](batch-parallel-node-tasks.md#example-scenario)，以了解如何從每個節點的多項工作受惠。
+
+您也可以指定「填滿類型」  ，以決定 Batch 是要將工作平均分散到集區中的所有節點，還是將最大數目的工作分配給一個節點後，再將工作指派給另一個節點。
+
+<a id="communication-status-for-compute-nodes" class="xliff"></a>
+
+### 計算節點的通訊狀態
+
+大部分情況下，工作會獨立運作，並不需要彼此通訊。 不過，有一些工作必須進行通訊的應用程式，例如 [MPI 案例](batch-mpi.md)。
+
+您可以設定集區來允許**節點間通訊**，以便集區內的節點可以在執行階段進行通訊。 啟用節點間通訊時，[雲端服務組態] 集區中的節點可以在超過 1100 個連接埠上彼此通訊，而且 [虛擬機器組態] 集區並不會限制任何連接埠的流量。
+
+請注意，啟用節點間通訊也會影響叢集內的節點位置，而且由於部署限制，可能會限制集區中的節點數目上限。 如果您的應用程式不需要節點之間的通訊，Batch 服務可以將許多不同叢集和資料中心的大量節點配置給集區，以發揮更強大的平行處理能力。
+
+<a id="start-tasks-for-compute-nodes" class="xliff"></a>
+
+### 計算節點的啟動工作
+
+選用的「啟動工作」  將在每個節點加入集區以及每次重新啟動節點或重新安裝其映像時，於該節點上執行。 啟動工作特別適合用於準備計算節點，以便執行工作，例如在計算節點上安裝工作要執行的應用程式。
+
+<a id="application-packages" class="xliff"></a>
+
+### 應用程式封裝
+
+您可以指定要部署至集區中計算節點的 [應用程式封裝](#application-packages) 。 應用程式封裝會提供您的工作執行之應用程式的簡化部署和版本控制。 您針對集區指定的應用程式封裝會安裝於加入該集區的每個節點，以及在節點重新啟動或重新安裝映像時安裝。 Linux 計算節點上目前不支援應用程式套件。
+
+<a id="network-configuration" class="xliff"></a>
+
+### 網路組態
+
+您可以指定 Azure [虛擬網路 (VNet)](../virtual-network/virtual-networks-overview.md) 的子網路，可在其中建立集區的計算節點。 如需詳細資訊，請參閱[集區網路組態](#pool-network-configuration)區段。
+
+
+<a id="job" class="xliff"></a>
+
+## 作業
 作業是工作的集合。 作業可管理其工作在集區中的計算節點上執行計算的方式。
 
 * 作業會指定工作執行所在的**集區**。 您可以為每個作業建立新的集區，或將集區使用於許多工作。 您可以針對與作業排程相關聯的每項作業建立集區，或針對與作業排程相關聯的所有作業建立集區。
@@ -193,17 +293,23 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
     請注意，Batch 服務會將「沒有」  工作的作業視為其所有工作都已完成。 因此，這個選項最常搭配 [作業管理員工作](#job-manager-task)使用。 如果您想要使用自動作業終止，而不透過作業管理員，您一開始就應該將新作業的 **onAllTasksComplete** 屬性設定為 noaction，而只在您完成將工作新增至作業之後，將它設定為 terminatejob。
 
-### <a name="job-priority"></a>作業優先順序
+<a id="job-priority" class="xliff"></a>
+
+### 作業優先順序
 您可以指派優先順序給在 Batch 中建立的作業。 Batch 服務會使用作業的優先順序值，以決定帳戶內的作業排程順序 (這不會與 [排程的作業](#scheduled-jobs)混淆)。 優先順序值可以介於 -1000 到 1000，-1000 表示最低優先順序，1000 表示最高優先順序。 若要更新作業的屬性，呼叫[更新作業的屬性][rest_update_job]作業 (Batch REST) 或藉由修改 [CloudJob.Priority][net_cloudjob_priority] 屬性 (Batch .NET)。
 
 在相同的帳戶內，較高優先順序的作業具有比低優先順序作業更高的排程優先順序。 一個帳戶中具有較高優先順序值的作業，其排程優先順序並不高於不同帳戶中較低優先順序值的另一項作業。
 
 不同集區的作業排程是獨立的。 在不同的集區之間，即使作業的優先順序較高，如果其相關聯的集區缺少閒置的節點，並不保證此作業會優先排程。 在相同的集區上，相同優先順序等級的作業有相同的排程機會。
 
-### <a name="scheduled-jobs"></a>Scheduled jobs
+<a id="scheduled-jobs" class="xliff"></a>
+
+### Scheduled jobs
 [作業排程][rest_job_schedules]可讓您在 Batch 服務內建立週期性作業。 作業排程會指定何時要執行作業，並且包含要執行之作業的規格。 您可以指定排程的持續時間 (排程的有效時間和生效時間)，以及在排程期間建立作業的頻率。
 
-## <a name="task"></a>工作
+<a id="task" class="xliff"></a>
+
+## 工作
 工作是與作業相關聯的計算單位。 工作是在節點上執行。 工作會指派給節點以便執行，或排入佇列直到節點變成可用為止。 簡言之，工作會在計算節點上執行一或多個程式或指令碼，以執行您需要完成的工作。
 
 建立工作時，您可以指定︰
@@ -230,7 +336,9 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 * [多重執行個體工作 (MPI)](#multi-instance-tasks)
 * [作業相依性](#task-dependencies)
 
-### <a name="start-task"></a>啟動工作
+<a id="start-task" class="xliff"></a>
+
+### 啟動工作
 藉由建立 **啟動工作** 與集區的關聯，您可以準備其節點的作業環境。 例如，您可以執行下列動作：安裝您的工作執行的應用程式或啟動背景程序。 啟動工作會在節點每次啟動時執行，且只要留在集區中就會持續執行，包括在節點第一次新增至集區時，以及重新啟動或重新安裝映像時。
 
 啟動工作的主要優點，是其中可包含設定計算節點和安裝工作執行所需的應用程式時必須用到的所有資訊。 因此，增加集區中的節點數目如同指定新目標節點計數一樣簡單。 啟動工作會為 Batch 服務提供設定新節點並讓它們準備好接受工作所需的資訊。
@@ -239,18 +347,25 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
 但啟動工作也可以包含在計算節點上執行的所有工作將會使用的參考資料。 例如，啟動工作的命令列可執行 `robocopy` 作業，將應用程式檔案 (已指定為資源檔案並下載至節點) 從啟動工作的[工作目錄](#files-and-directories)複製到[共用資料夾](#files-and-directories)，然後執行 MSI 或 `setup.exe`。
 
-> [!IMPORTANT]
-> Batch 目前「僅」支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。 您的 Batch 工作 (包括標準工作、啟動工作、作業準備工作和作業發行工作) 必須指定「只」  位於 **一般用途** 的儲存體帳戶中的資源檔。
->
->
-
 通常 Batch 服務最好能夠等待開始工作完成，然後再考慮將工作指派給節點，但您可以設定此行為。
 
 如果計算節點上的啟動工作失敗，則會更新節點的狀態以反映失敗，且不會指派任何工作給該節點。 如果從儲存體複製啟動工作的資源檔案時發生問題，或由其命令列執行的程序傳回非零的結束程式碼，啟動工作可能會失敗。
 
-如果您新增或更新「現有」  集區的啟動工作，您必須重新啟動其計算節點，啟動工作才會套用至節點。
+如果您新增或更新現有集區的啟動工作，您必須重新啟動其計算節點，啟動工作才會套用至節點。
 
-### <a name="job-manager-task"></a>作業管理員工作
+>[!NOTE]
+> 啟動工作的總大小必須小於或等於 32768 個字元，包括資源檔案和環境變數。 若要確保啟動工作符合此需求，您可以使用兩種方法的其中一個：
+>
+> 1. 您可以使用應用程式套件，將應用程式或資料分散於 Batch 集區中的每個節點。 如需應用程式套件的詳細資訊，請參閱[使用 Azure Batch 應用程式套件部署應用程式](batch-application-packages.md)。
+> 2. 您可以手動建立已壓縮的封存檔，其中包含您的應用程式檔案。 將已壓縮的封存檔以 blob 形式上傳至 Azure 儲存體。 指定已壓縮的封存檔作為您啟動工作的資源檔。 執行啟動工作的命令列之前，請從命令列將封存檔解壓縮。 
+>
+>    若要將封存檔解壓縮，您可以使用您選擇的封存工具。 您必須包含用來將封存檔解壓縮為啟動工作之資源檔的工具。
+>
+>
+
+<a id="job-manager-task" class="xliff"></a>
+
+### 作業管理員工作
 您通常會使用 **作業管理員工作** 來控制和/或監視作業執行，例如，建立和提交作業的工作、決定其他要執行的工作，以及判斷工作何時完成。 但作業管理員的工作並不限定於這些活動。 它是功能完備的工作，可執行作業所需的任何動作。 比方說，作業管理員工作可以下載指定為參數的檔案、分析該檔案的內容，並根據這些內容提交其他工作。
 
 作業管理員工作會在所有其他工作之前啟動。 它可提供下列功能：
@@ -262,7 +377,9 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 * 需要重新啟動時，作業管理員工作有最高的優先順序。 如果找不到閒置的節點，Batch 服務可能會終止集區中正在執行的其中另一個工作，以便挪出空間供作業管理員工作執行。
 * 一個作業中的作業管理員工作的優先順序不會高於其他作業的工作。 不同作業之間，只注重作業層級優先順序。
 
-### <a name="job-preparation-and-release-tasks"></a>作業準備和作業釋放工作
+<a id="job-preparation-and-release-tasks" class="xliff"></a>
+
+### 作業準備和作業釋放工作
 Batch 會提供作業前執行設定的作業準備工作。 作業釋放工作則用於作業後維護或清理。
 
 * **作業準備工作**：在執行任何其他作業工作之前，會在排定要執行工作的所有計算節點上執行作業準備工作。 舉例來說，您可以使用作業準備工作可以複製所有工作所共用、但對作業是唯一的資料。
@@ -272,12 +389,16 @@ Batch 會提供作業前執行設定的作業準備工作。 作業釋放工作�
 
 如需關於作業準備和釋放工作的詳細資訊，請參閱 [在 Azure Batch 計算節點上執行準備和完成的工作](batch-job-prep-release.md)。
 
-### <a name="multi-instance-task"></a>多重執行個體工作
+<a id="multi-instance-task" class="xliff"></a>
+
+### 多重執行個體工作
 [多重執行個體工作](batch-mpi.md) 是設定為同時在多個計算節點上執行的工作。 利用多重執行個體工作，您可以啟用高效能計算案例，例如需要一組配置在一起以處理單一工作負載 (像是訊息傳遞介面 (MPI)) 的計算節點。
 
 如需在 Batch 中使用 Batch .NET 程式庫執行 MPI 作業的詳細討論，請參閱 [在 Azure Batch 中使用多個執行個體的工作執行訊息傳遞介面 (MPI) 應用程式](batch-mpi.md)。
 
-### <a name="task-dependencies"></a>作業相依性
+<a id="task-dependencies" class="xliff"></a>
+
+### 作業相依性
 [工作相依性](batch-task-dependencies.md)正如其名，可讓您在執行某個工作之前，指定該工作相依於其他工作。 此功能提供下列情況的支援：「下游」工作取用「上游」工作的輸出，或當上游工作執行下游工作所需的某種初始化時。 若要使用這項功能，您必須先在 Batch 作業上啟用工作相依性。 然後，針對每個相依於另一個工作 (或其他許多工作) 的工作，指定該工作相依的工作。
 
 利用工作相依性，您可以設定如下所示的案例︰
@@ -288,7 +409,9 @@ Batch 會提供作業前執行設定的作業準備工作。 作業釋放工作�
 
 如需此功能的其他詳細資訊，請查看 [Azure Batch 中的工作相依性](batch-task-dependencies.md)和 [azure-batch-samples][github_samples] GitHub 存放庫中的 [TaskDependencies][github_sample_taskdeps] 程式碼範例。
 
-## <a name="environment-settings-for-tasks"></a>工作的環境設定
+<a id="environment-settings-for-tasks" class="xliff"></a>
+
+## 工作的環境設定
 Batch 服務所執行的每個工作都可以存取在計算節點上設定的環境變數。 這包括 Batch 服務所定義 ([服務定義的][msdn_env_vars]) 的環境變數，以及您可以為工作定義的自訂環境變數。 工作所執行的應用程式和指令碼，可以在執行期間存取這些環境變數。
 
 您可以填入這些實體的「環境設定」  屬性，以在工作或作業層級設定自訂環境變數。 例如，請參閱[將工作新增至作業][rest_add_task]作業 (Batch REST API) 或 Batch .NET 中的 [CloudTask.EnvironmentSettings][net_cloudtask_env] 和 [CloudJob.CommonEnvironmentSettings][net_job_env] 屬性。
@@ -297,7 +420,9 @@ Batch 服務所執行的每個工作都可以存取在計算節點上設定的�
 
 您可以在[計算節點環境變數][msdn_env_vars]中找到所有服務定義的環境變數完整清單。
 
-## <a name="files-and-directories"></a>檔案和目錄
+<a id="files-and-directories" class="xliff"></a>
+
+## 檔案和目錄
 每個工作會在其「工作目錄」  下建立零個或多個檔案和目錄。 此工作目錄可用來儲存工作所執行的程式、工作所處理的資料，以及工作所執行之處理的輸出。 工作使用者擁有工作的所有檔案和目錄。
 
 Batch 服務會在節點上公開檔案系統的一部分作為「根目錄」 。 工作可藉由參考 `AZ_BATCH_NODE_ROOT_DIR` 環境變數來存取根目錄。 如需有關如何使用環境變數的詳細資訊，請參閱 [工作的環境設定](#environment-settings-for-tasks)。
@@ -319,7 +444,9 @@ Batch 服務會在節點上公開檔案系統的一部分作為「根目錄」 �
 >
 >
 
-## <a name="application-packages"></a>應用程式封裝
+<a id="application-packages" class="xliff"></a>
+
+## 應用程式封裝
 [應用程式套件](batch-application-packages.md) 功能可為集區中的計算節點提供簡單的應用程式管理和部署能力。 您可以輕鬆上傳及管理您的工作所執行的多個應用程式版本，包括其二進位檔和支援檔案。 接著，您可以將一或多個這種類型的應用程式自動部署到集區中的計算節點。
 
 您可以在集區和工作層級指定應用程式封裝。 當您指定集區應用程式封裝時，應用程式會部署到集區中的每個節點。 當您指定工作應用程式套件時，應用程式只會在執行工作的命令列之前，部署至排定要執行作業的至少一個工作的節點。
@@ -333,7 +460,9 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 >
 >
 
-## <a name="pool-and-compute-node-lifetime"></a>集區和計算節點存留期
+<a id="pool-and-compute-node-lifetime" class="xliff"></a>
+
+## 集區和計算節點存留期
 在設計 Azure Batch 解決方案時，必須制定關於如何及何時建立集區，以及這些集區中的計算節點可用性要保持多久的設計決策。
 
 在極端情況下，您可以針對您所提交的每項作業建立集區，並在其工作執行完成時立即移除此集區。 這樣只有在必要時才會配置節點，而且節點會在變成閒置時立即關閉，因此可達到最高使用率。 雖然這表示作業必須等候節點進行配置，但請務必注意，工作會在節點個別可用、配置且啟動工作完成時立即排程執行。 Batch「不會」等到集區中的所有節點都可用，才將工作指派到節點。 這可確保所有可用節點的最大使用率。
@@ -342,7 +471,9 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 有一個通常用來處理可變但持續負載的組合方法。 您可以設定有多個作業提交至該處，但根據作業負載向上或向下調整節點數目的集區 (請參閱下一節 [調整計算資源](#scaling-compute-resources) )。 您可以根據目前的負載被動完成，或在負載可預測時主動完成。
 
-## <a name="pool-network-configuration"></a>集區網路組態
+<a id="pool-network-configuration" class="xliff"></a>
+
+## 集區網路組態
 
 當您在 Azure Batch 中建立計算節點的集區時，您可以指定 Azure [虛擬網路 (VNet)](../virtual-network/virtual-networks-overview.md) 的子網路識別碼，以讓系統知道要在哪裡建立集區的計算節點。
 
@@ -363,9 +494,25 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 * 如果指定的 VNet 有任何相關聯的網路安全性群組 (NSG)，則必須啟用幾個已保留的系統連接埠以供進行輸入通訊。 若為使用虛擬機器組態所建立的集區，請啟用連接埠 29876 和 29877，另外，請針對 Linux 啟用連接埠 22，至於 Windows 則啟用連接埠 3389。 若為使用雲端服務組態所建立的集區，請啟用連接埠 10100、20100 和 30100。 此外，請在連接埠 443 上啟用對 Azure 儲存體的輸出連線。
 
+    下表說明您必須針對使用虛擬機器組態建立的集區啟用的輸入連接埠：
+
+    |    目的地連接埠    |    來源 IP 位址      |    Batch 會新增 NSG 嗎？    |    VM 是否需要有才可使用？    |    使用者的動作   |
+    |---------------------------|---------------------------|----------------------------|-------------------------------------|-----------------------|
+    |    <ul><li>若為使用虛擬機器組態建立的集區：29876、29877</li><li>若為使用雲端服務組態建立的集區：10100、20100、30100。</li></ul>         |    僅限 Batch 服務角色 IP 位址 |    是。 Batch 會在 VM 連結的網路介面 (NIC) 層級新增 NSG。 這些 NSG 只允許來自 Batch 服務角色 IP 位址的流量。 即使您對整個 Web 開啟這些連接埠，流量將會在 NIC 遭到封鎖。 |    是  |  您不需要指定 NSG，因為 Batch 只允許 Batch IP 位址。 <br /><br /> 不過，如果您指定 NSG，請確定這些連接埠已對輸入流量開啟。 <br /><br /> 如果您指定 * 作為您 NSG 中的來源 IP，Batch 仍會在 VM 連結的 NIC 層級新增 NSG。 |
+    |    3389、22               |    使用者電腦 (用於偵錯目的)，以便您從遠端存取 VM。    |    否                                    |    否                     |    如果您想要允許遠端存取 (RDP/SSH) VM，請新增 NSG。   |                 
+
+    下表說明您需要啟用才能允許存取 Azure 儲存體的輸出連接埠：
+
+    |    輸出連接埠    |    目的地    |    Batch 會新增 NSG 嗎？    |    VM 是否需要有才可使用？    |    使用者的動作    |
+    |------------------------|-------------------|----------------------------|-------------------------------------|------------------------|
+    |    443    |    Azure 儲存體    |    否    |    是    |    如果您新增任何 NSG，請確定已對輸出流量開啟此連接埠。    |
+
+
 根據 Batch 帳戶的集區配置模式，會有額外的設定。
 
-### <a name="vnets-for-pools-provisioned-in-the-batch-service"></a>在 Batch 服務中佈建的集區 VNet
+<a id="vnets-for-pools-provisioned-in-the-batch-service" class="xliff"></a>
+
+### 在 Batch 服務中佈建的集區 VNet
 
 在 Batch 服務配置模式中，只有 [雲端服務組態] 集區可以指派 VNet。 此外，指定的 VNet 必須為**傳統** VNet。 不支援使用 Azure Resource Manager 部署模型建立的 VNet。
 
@@ -380,13 +527,17 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 
 
-### <a name="vnets-for-pools-provisioned-in-a-user-subscription"></a>在使用者訂用帳戶中佈建的集區 VNet
+<a id="vnets-for-pools-provisioned-in-a-user-subscription" class="xliff"></a>
+
+### 在使用者訂用帳戶中佈建的集區 VNet
 
 在使用者訂用帳戶配置模式中，只有**虛擬機器組態**集區受支援且可指派 VNet。 此外，指定的 VNet 必須為 **Resource Manager** 型的 VNet。 不支援使用傳統部署模型建立的 VNet。
 
 
 
-## <a name="scaling-compute-resources"></a>調整計算資源
+<a id="scaling-compute-resources" class="xliff"></a>
+
+## 調整計算資源
 透過 [自動調整](batch-automatic-scaling.md)功能，您可以讓 Batch 服務根據計算案例的目前工作負載和資源使用狀況，動態調整集區中的計算節點數目。 這樣一來，您只會使用所需資源並可釋放不需要的資源，因而能夠降低應用程式的整體執行成本。
 
 撰寫 [自動調整公式](batch-automatic-scaling.md#automatic-scaling-formulas) 並將該公式與集區建立關聯，以啟用自動調整。 Batch 服務使用此公式來決定集區中下一個調整間隔 (您可以設定的間隔) 的目標節點數目。 您可以在建立集區時指定集區的自動調整設定，或稍後在集區上啟用調整。 您也可以更新已啟用調整的集區上的調整設定。
@@ -408,17 +559,23 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 >
 >
 
-## <a name="security-with-certificates"></a>憑證的安全性
+<a id="security-with-certificates" class="xliff"></a>
+
+## 憑證的安全性
 在加密或解密工作的敏感資訊 (例如 [Azure 儲存體帳戶的金鑰][azure_storage]) 時，您通常需要使用憑證。 若要支援此功能，您可以在節點上安裝憑證。 加密的機密資料會透過命令列參數或內嵌在其中一個工作資源中而傳遞至工作，已安裝的憑證可用來解密這些資料。
 
 您可以使用[新增憑證][rest_add_cert]作業 (Batch REST) 或 [CertificateOperations.CreateCertificate][net_create_cert] 方法 (Batch .NET)，將憑證新增至 Batch 帳戶。 然後，您可以將憑證與新的或現有的集區產生關聯。 當憑證與集區相關聯時，Batch 服務會在集區中的每個節點上安裝憑證。 當節點啟動時，在啟動任何工作之前 (包括開始工作和作業管理員工作)，Batch 服務會安裝適當的憑證。
 
 如果您將憑證加入至「現有」  集區，您必須重新啟動其計算節點，憑證才會套用至節點。
 
-## <a name="error-handling"></a>錯誤處理
+<a id="error-handling" class="xliff"></a>
+
+## 錯誤處理
 有時候您可能需要處理 Batch 解決方案中的工作和應用程式失敗。
 
-### <a name="task-failure-handling"></a>工作失敗處理
+<a id="task-failure-handling" class="xliff"></a>
+
+### 工作失敗處理
 工作失敗可分成下列幾類：
 
 * **前置處理失敗**
@@ -445,7 +602,9 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
     超過時間量上限時，則會將工作標示為「已完成」，但結束代碼會設為 `0xC000013A`，[schedulingError] 欄位會標示為 `{ category:"ServerError", code="TaskEnded"}`。
 
-### <a name="debugging-application-failures"></a>應用程式失敗偵錯
+<a id="debugging-application-failures" class="xliff"></a>
+
+### 應用程式失敗偵錯
 * `stderr`和`stdout`
 
     在執行期間，應用程式可能會產生診斷輸出，以便用來排解疑難問題。 如前面的[檔案和目錄](#files-and-directories)一節所述，Batch 服務會將標準輸出和標準錯誤輸出寫入至計算節點上工作目錄中的 `stdout.txt` 和 `stderr.txt` 檔案。 您可以使用 Azure 入口網站或其中一個 Batch SDK 來下載這些檔案。 例如，您可以使用 Batch .NET 程式庫中的 [ComputeNode.GetNodeFile][net_getfile_node] 和 [CloudTask.GetNodeFile][net_getfile_task]，擷取這些和其他檔案來進行疑難排解。
@@ -454,12 +613,16 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
     如前文所述，如果工作所執行的程序傳回非零的結束代碼，則 Batch 服務會將此工作標示為失敗。 當工作執行一個程序時，Batch 會使用「程序的傳回代碼」 填入工作的結束代碼屬性。 請務必注意，工作的結束代碼**不會**取決於 Batch 服務。 工作的結束代碼取決於程序本身，或程序執行所在的作業系統。
 
-### <a name="accounting-for-task-failures-or-interruptions"></a>處理工作失敗或中斷
+<a id="accounting-for-task-failures-or-interruptions" class="xliff"></a>
+
+### 處理工作失敗或中斷
 工作可能偶爾會失敗或中斷。 工作應用程式本身可能失敗、執行工作的節點可能重新開機，或節點在調整大小作業期間可能因為集區的取消配置原則設為不需等待工作完成便立即移除節點而從集區中移除。 在所有的情況下，此工作均可由 Batch 自動重新排入佇列，並且在另一個節點上執行。
 
 也可能是間歇性問題導致工作懸置或花太長時間執行。 您可以設定工作的執行間隔上限。 如果超過最大執行間隔，Batch 服務會中斷工作應用程式。
 
-### <a name="connecting-to-compute-nodes"></a>連接到計算節點
+<a id="connecting-to-compute-nodes" class="xliff"></a>
+
+### 連接到計算節點
 您可以從遠端登入計算節點，以執行額外的偵錯和疑難排解。 您可以使用 Azure 入口網站下載 Windows 節點的遠端桌面通訊協定 (RDP) 檔案，並取得 Linux 節點的安全殼層 (SSH) 連線資訊。 您也可以使用 Batch API (例如透過 [Batch .NET][net_rdpfile] 或 [Batch Python](batch-linux-nodes.md#connect-to-linux-nodes-using-ssh)) 進行此項作業。
 
 > [!IMPORTANT]
@@ -467,7 +630,9 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 >
 >
 
-### <a name="troubleshooting-problematic-compute-nodes"></a>疑難排解有問題的計算節點
+<a id="troubleshooting-problematic-compute-nodes" class="xliff"></a>
+
+### 疑難排解有問題的計算節點
 在部分工作失敗的情況下，Batch 用戶端應用程式或服務可以檢查失敗工作的中繼資料來找出行為異常的節點。 集區中的每個節點都有唯一的 ID，而執行工作的節點會包含在工作中繼資料中。 在找出問題節點之後，您即可對其採取數個行動︰
 
 * **重新啟動節點** ([REST][rest_reboot] | [.NET][net_reboot])
@@ -488,7 +653,9 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 >
 >
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * 了解可用來建置 Batch 解決方案的 [Batch API 和工具](batch-apis-tools.md)。
 * 在 [開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)中逐步了解範例 Batch 應用程式。 另外還有 [Python 版本](batch-python-tutorial.md) 的教學課程，該教學課程會在 Linux 計算節點上執行工作負載。
 * 下載並建置 [Batch 總管][github_batchexplorer]範例專案，以便您在開發 Batch 解決方案時使用。 使用 Batch 總管可執行下列和其他作業：

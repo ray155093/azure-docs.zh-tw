@@ -16,23 +16,27 @@ ms.workload: na
 ms.date: 05/31/2017
 ms.author: rasquill
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
-ms.openlocfilehash: 20619fd21f376afee95facb688e35534f5979b90
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: dc3ae52b1ec6717c7e19a160e3e7ea5d211f1f5f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/03/2017
+ms.lasthandoff: 06/28/2017
 
 
 
 ---
 
-# <a name="use-draft-with-azure-container-service-and-azure-container-registry-to-build-and-deploy-an-application-to-kubernetes"></a>使用 Draft 搭配 Azure Container Service 與 Azure Container Registry，可將應用程式建置及部署至 Kubernetes
+<a id="use-draft-with-azure-container-service-and-azure-container-registry-to-build-and-deploy-an-application-to-kubernetes" class="xliff"></a>
+
+# 使用 Draft 搭配 Azure Container Service 與 Azure Container Registry，可將應用程式建置及部署至 Kubernetes
 
 [Draft](https://aka.ms/draft) 是新的開放原始碼工具，可讓您輕鬆地開發以容器作為基礎的應用程式，並將其部署至 Kubernetes 叢集，而無需深入了解 Docker 和 Kubernetes，或甚至進行安裝。 使用諸如 Draft 等工具可讓您和小組專注於使用 Kubernetes 來建置應用程式，無須投入過多注意力在基礎結構。
 
 您可以使用 Draft 搭配任何 Docker 映像登錄與任何 Kubernetes 叢集，包括本機。 本教學課程會示範如何使用 ACS 搭配 Kubernetes、ACR 和 Azure DNS，使用 Draft 來建立即時的 CI/CD 開發人員管線。
 
 
-## <a name="create-an-azure-container-registry"></a>建立 Azure Container Registry
+<a id="create-an-azure-container-registry" class="xliff"></a>
+
+## 建立 Azure Container Registry
 您可以輕鬆地[建立新的 Azure Container Registry](../container-registry/container-registry-get-started-azure-cli.md)，步驟如下所示：
 
 1. 建立 Azure 資源群組可在 ACS 中管理您的 ACR 登錄和 Kubernetes 叢集。
@@ -46,7 +50,9 @@ ms.lasthandoff: 06/03/2017
       ```
 
 
-## <a name="create-an-azure-container-service-with-kubernetes"></a>使用 Kubernetes 建立 Azure Container Service
+<a id="create-an-azure-container-service-with-kubernetes" class="xliff"></a>
+
+## 使用 Kubernetes 建立 Azure Container Service
 
 現在您準備好使用 [az acs create](/cli/azure/acs#create)，利用 Kubernetes 作為 `--orchestrator-type` 值來建立 ACS 叢集。
 ```azurecli
@@ -104,15 +110,17 @@ waiting for AAD role to propagate.done
 
 現在，您有一個叢集，可以使用 [az acs kubernetes get-credentials](/cli/azure/acs/kubernetes#get-credentials) 命令將認證匯入。 現在您有叢集的本機組態檔，這是 Helm 和 Draft 完成其工作所需要的項目。
 
-## <a name="install-and-configure-draft"></a>安裝及設定草稿
+<a id="install-and-configure-draft" class="xliff"></a>
+
+## 安裝及設定草稿
 Draft 的安裝指示位於 [Draft 存放庫](https://github.com/Azure/draft/blob/master/docs/install.md)。 它們相對而言較為簡單，但需要一些設定，因為它取決於 [Helm](https://aka.ms/helm) 來建立 Helm，並加以部署到 Kubernetes 叢集中。
 
 1. [下載並安裝 Helm](https://aka.ms/helm#install)。
 2. 使用 Helm 來搜尋及安裝 `stable/traefik`，並輸入控制器以啟用您組建的輸入要求。
     ```bash
     $ helm search traefik
-    NAME              VERSION    DESCRIPTION
-    stable/traefik    1.2.1-a    A Traefik based Kubernetes ingress controller w...
+    NAME            VERSION DESCRIPTION
+    stable/traefik  1.3.0   A Traefik based Kubernetes ingress controller w...
 
     $ helm install stable/traefik --name ingress
     ```
@@ -127,7 +135,9 @@ Draft 的安裝指示位於 [Draft 存放庫](https://github.com/Azure/draft/blo
 
     在此案例中，部署網域的外部 IP 是 `13.64.108.240`。 現在您可以將網域對應至該 IP。
 
-## <a name="wire-up-deployment-domain"></a>接通部署網域
+<a id="wire-up-deployment-domain" class="xliff"></a>
+
+## 接通部署網域
 
 Draft 會針對其所建立的每個 Helm 圖表，以及您在使用每個應用程式建立一個版本。 每個版本都會取得一個已產生的名稱，以在您所控制的根_部署網域_上作為_子網域_草稿。 (在此範例中，我們使用 `squillace.io` 作為部署網域。)若要啟用此子網域行為，您必須針對部署網域，在 DNS 項目中建立 `'*'` 的 A 記錄，以便每個產生的子網域會路由傳送至 Kubernetes 叢集的輸入控制器。
 
@@ -194,29 +204,40 @@ Draft 會針對其所建立的每個 Helm 圖表，以及您在使用每個應�
     ```
 
 5. 設定 Draft 以使用您的登錄，並針對它所建立的每個 Helm 圖表建立子網域。 若要設定 Draft，您需要：
-  - 您的 Azure Container Registry 名稱 (在此範例中為 `draftacs`)
-  - 您的登錄機碼或密碼，從 `az acr credential show -n $acrname --output tsv --query "passwords[0].value"`。
-  - 您已設定為對應至 Kubernetes 輸入外部 IP 位址的根部署網域 (這裡為 `13.64.108.240`)
+  - 您的 Azure Container Registry 名稱 (在此範例中為 `draft`)
+  - 您的登錄機碼或密碼，從 `az acr credential show -n <registry name> --output tsv --query "passwords[0].value"`。
+  - 您已設定為對應至 Kubernetes 輸入外部 IP 位址的根部署網域 (這裡為 `squillace.io`)
 
-  您可以使用這些值來建立設定 JSON 字串的 base-64 編碼值，`{"username":"<user>","password":"<secret>","email":"email@example.com"}`。 其中一種將值進行編碼的方式如下所示 (但請將此範例的值取代為您自己的值)。
-      ```bash
-      acrname="draftacs"
-      password=$(az acr credential show -n $acrname --output tsv --query "passwords[0].value")
-      authtoken=$(echo \{\"username\":\"$acrname\",\"password\":\"$password\",\"email\":\"rasquill@microsoft.com\"\} | base64)
-      ```
+  呼叫 `draft init`，而設定程序會提示您輸入上述的值。 第一次執行此程序時，它看起來如下所示。
+    ```
+    draft init
+    Creating pack ruby...
+    Creating pack node...
+    Creating pack gradle...
+    Creating pack maven...
+    Creating pack php...
+    Creating pack python...
+    Creating pack dotnetcore...
+    Creating pack golang...
+    $DRAFT_HOME has been configured at /Users/ralphsquillace/.draft.
 
-  您可以確認 JSON 字串是否正確，方法為輸入 `echo $authtoken | base64 -D` 來顯示未編碼的結果。
-  現在使用這個命令及 `-set` 選項的設定引數，將 Draft 初始化：
-      ```bash
-      draft init --set registry.url=$acrname.azurecr.io,registry.org=$acrname,registry.authtoken=$authtoken,basedomain=squillace.io
-      ```
-      > [!NOTE]
-      > 很容易就會忘記，您所控制並設定為指向輸入外部 IP 的 `basedomain` 值是基底部署網域。
+    In order to install Draft, we need a bit more information...
+
+    1. Enter your Docker registry URL (e.g. docker.io, quay.io, myregistry.azurecr.io): draft.azurecr.io
+    2. Enter your username: draft
+    3. Enter your password:
+    4. Enter your org where Draft will push images [draft]: draft
+    5. Enter your top-level domain for ingress (e.g. draft.example.com): squillace.io
+    Draft has been installed into your Kubernetes Cluster.
+    Happy Sailing!
+    ```
 
 您現在已準備好要部署應用程式。
 
 
-## <a name="build-and-deploy-an-application"></a>建置和部署應用程式
+<a id="build-and-deploy-an-application" class="xliff"></a>
+
+## 建置和部署應用程式
 
 在 Draft 存放庫中，有[六個簡單的範例應用程式](https://github.com/Azure/draft/tree/master/examples)。 複製存放庫，讓我們使用 [Python 範例](https://github.com/Azure/draft/tree/master/examples/python)。 變更為範例/Python 目錄，並輸入 `draft create` 可建置應用程式。 它看起來會如下範例所示。
 ```bash
@@ -254,7 +275,9 @@ Watching local files for changes...
 
 無論圖表的名稱為何，您可以現在 `curl http://gangly-bronco.squillace.io` 接收回覆，`Hello World!`。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 您有了 ACS Kubernetes 叢集之後，可以使用 [Azure Container Registry](../container-registry/container-registry-intro.md) 進行調查，建立更多這種案例與不同的部署。 例如，您可以建立 draft._basedomain.toplevel_ 網域 DNS 記錄集，可針對特定 ACS 部署，控制項目移出更深入的子網域。
 
