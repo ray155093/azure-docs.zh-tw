@@ -12,7 +12,7 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/11/2017
+ms.date: 07/10/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
 ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
@@ -22,19 +22,23 @@ ms.lasthandoff: 05/12/2017
 
 
 ---
-# <a name="create-monitor-and-manage-azure-data-factories-using-azure-data-factory-net-sdk"></a>使用 Azure Data Factory .NET SDK 來建立、監視及管理 Azure Data Factory
-## <a name="overview"></a>概觀
+<a id="create-monitor-and-manage-azure-data-factories-using-azure-data-factory-net-sdk" class="xliff"></a>
+# 使用 Azure Data Factory .NET SDK 來建立、監視及管理 Azure Data Factory
+<a id="overview" class="xliff"></a>
+## 概觀
 您可以使用 Data Factory .NET SDK，以程式設計方式建立、監視及管理 Azure Data Factory 本文包含指導您建立範例 .NET 主控台應用程式的逐步解說，此應用程式將會建立並監視 Data Factory。 
 
 > [!NOTE]
 > 這篇文章並未涵蓋所有的 Data Factory .NET API。 如需適用於 Data Factory 之 .NET API 的完整文件，請參閱 [Data Factory .NET API 參考](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1)。 
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+## 必要條件
 * Visual Studio 2012、2013 或 2015
 * 下載並安裝 [Azure .NET SDK](http://azure.microsoft.com/downloads/)。
 * Azure PowerShell。 按照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 一文中的指示操作，在您的電腦上安裝 Azure PowerShell。 您可以使用 Azure PowerShell 建立 Azure Active Directory 應用程式。
 
-### <a name="create-an-application-in-azure-active-directory"></a>在 Azure Active Directory 中建立應用程式
+<a id="create-an-application-in-azure-active-directory" class="xliff"></a>
+### 在 Azure Active Directory 中建立應用程式
 建立 Azure Active Directory 應用程式、建立該應用程式的服務主體，然後將其指派給 **Data Factory 參與者** 角色。
 
 1. 啟動 **PowerShell**。
@@ -90,7 +94,7 @@ ms.lasthandoff: 05/12/2017
 9. 取得應用程式識別碼。
 
     ```PowerShell
-    $azureAdApplication    
+    $azureAdApplication 
     ```
     記下輸出的應用程式識別碼 (applicationID)。
 
@@ -101,7 +105,8 @@ ms.lasthandoff: 05/12/2017
 * 應用程式識別碼
 * 密碼 (在第一個命令中指定)
 
-## <a name="walkthrough"></a>逐步介紹
+<a id="walkthrough" class="xliff"></a>
+## 逐步介紹
 在逐步解說中，您可以建立具有管線的資料處理站，其中包含複製活動。 複製活動會將資料從 Azure Blob 儲存體中的資料夾，複製到相同 Blob 儲存體中的另一個資料夾。 
 
 複製活動會在 Azure Data Factory 中執行資料移動。 此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。 如需複製活動的詳細資訊，請參閱 [資料移動活動](data-factory-data-movement-activities.md) 文章。
@@ -458,7 +463,8 @@ ms.lasthandoff: 05/12/2017
     * 管線： **PipelineBlobSample**
 19. 確認輸出檔案已建立於 **adftutorial** 容器的 **apifactoryoutput** 資料夾中。
 
-## <a name="get-a-list-of-failed-data-slices"></a>取得失敗資料配量的清單 
+<a id="get-a-list-of-failed-data-slices" class="xliff"></a>
+## 取得失敗資料配量的清單 
 
 ```csharp
 // Parse the resource path
@@ -497,7 +503,8 @@ do
 while (response != null);
 ```
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+## 後續步驟
 請參閱下列範例以建立管線，該管線使用 .NET SDK (從 Azure Blob 儲存體將資料複製到 Azure SQL Database)： 
 
 - [建立管線以將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-activity-tutorial-using-dotnet-api.md)

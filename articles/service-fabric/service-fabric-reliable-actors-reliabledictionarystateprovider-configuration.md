@@ -22,7 +22,8 @@ ms.lasthandoff: 01/24/2017
 
 
 ---
-# <a name="configuring-reliable-actors--reliabledictionaryactorstateprovider"></a>設定 Reliable Actors - ReliableDictionaryActorStateProvider
+<a id="configuring-reliable-actors--reliabledictionaryactorstateprovider" class="xliff"></a>
+# 設定 Reliable Actors - ReliableDictionaryActorStateProvider
 您可以在指定之動作項目的 Config 資料夾下，變更 Visual Studio 封裝根中所產生的 settings.xml，來修改 ReliableDictionaryActorStateProvider 的預設組態。
 
 Azure Service Fabric 執行階段會在建立基礎執行階段元件時，在 settings.xml 檔案中尋找預先定義的區段名稱，並使用組態值。
@@ -34,12 +35,14 @@ Azure Service Fabric 執行階段會在建立基礎執行階段元件時，在 s
 
 也有一些全域設定會影響 ReliableDictionaryActorStateProvider 的組態。
 
-## <a name="global-configuration"></a>全域組態
+<a id="global-configuration" class="xliff"></a>
+## 全域組態
 在 KtlLogger 區段下，叢集的叢集資訊清單中所指定的全域組態。 它可設定共用記錄檔位置和大小，加上記錄器所使用的全域記憶體限制。 請注意，叢集資訊清單中的變更會影響使用 ReliableDictionaryActorStateProvider 的所有服務，以及可靠的可設定狀態服務。
 
 叢集資訊清單是單一 XML 檔案，可保留套用至叢集中所有節點和服務態的設定與組態。 此檔案通常稱為 ClusterManifest.xml。 您可以查看叢集的叢集資訊清單使用 Get-ServiceFabricClusterManifest powershell 命令。
 
-### <a name="configuration-names"></a>組態名稱
+<a id="configuration-names" class="xliff"></a>
+### 組態名稱
 | 名稱 | 單位 | 預設值 | 備註 |
 | --- | --- | --- | --- |
 | WriteBufferMemoryPoolMinimumInKB |KB |8388608 |以核心模式配置給記錄器寫入緩衝區記憶體集區的最小 KB 數。 此記憶體集區用於在寫入至磁碟之前快取狀態資訊。 |
@@ -48,7 +51,8 @@ Azure Service Fabric 執行階段會在建立基礎執行階段元件時，在 s
 | SharedLogPath |完整路徑名稱 |"" |指定完整路徑，其中共用記錄檔用於叢集中所有節點上的所有 Reliable Services (不會在其服務特定組態中指定 SharedLogPath)。 不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。 |
 | SharedLogSizeInMB |MB |8192 |指定以靜態方式配置給共用記錄檔的磁碟空間 MB 數。 此值必須是 2048 或更大。 |
 
-### <a name="sample-cluster-manifest-section"></a>範例叢集資訊清單一節
+<a id="sample-cluster-manifest-section" class="xliff"></a>
+### 範例叢集資訊清單一節
 ```xml
    <Section Name="KtlLogger">
      <Parameter Name="WriteBufferMemoryPoolMinimumInKB" Value="8192" />
@@ -59,28 +63,34 @@ Azure Service Fabric 執行階段會在建立基礎執行階段元件時，在 s
    </Section>
 ```
 
-### <a name="remarks"></a>備註
+<a id="remarks" class="xliff"></a>
+### 備註
 記錄器有配置自未分頁核心記憶體的記憶體全域集區，可供節點上的所有 Reliable Services 使用，在寫入至與 Reliable Service 複本相關聯的專用記錄檔之前快取狀態資料。 集區大小由 WriteBufferMemoryPoolMinimumInKB 和 WriteBufferMemoryPoolMaximumInKB 設定控制。 WriteBufferMemoryPoolMinimumInKB 指定此記憶體集區的初始大小，以及記憶體集區可能會縮小的大小下限。 WriteBufferMemoryPoolMaximumInKB 是記憶體集區可能會成長的大小上限。 每個開啟的 Reliable Service 複本都可能會增加記憶體集區的大小，增加幅度從系統決定的數量到 WriteBufferMemoryPoolMaximumInKB。 如果記憶體集區的記憶體需求大於可用的記憶體，會延遲記憶體要求，直到記憶體可供使用。 因此，如果寫入緩衝區記憶體集區對特定組態而言太小，則效能可能會受到影響。
 
 SharedLogId 和 SharedLogPath 設定永遠會一起使用，以便為叢集中的所有節點定義 GUID 和預設共用記錄檔的位置。 預設共用記錄檔可用於不在特定服務 settings.xml 中指定設定的所有 Reliable Services。 為了達到最佳效能，共用記錄檔應該放在共用記錄檔專用的磁碟上，以減少爭用情形。
 
 SharedLogSizeInMB 會指定要預先配置給所有節點上之預設共用記錄檔的磁碟空間數量。  若要指定SharedLogSizeInMB，不需要指定 SharedLogId 和 SharedLogPath。
 
-## <a name="replicator-security-configuration"></a>複寫器安全性組態
+<a id="replicator-security-configuration" class="xliff"></a>
+## 複寫器安全性組態
 複寫器安全性組態用來保護在複寫期間使用的通訊通道。 這表示服務將無法看到彼此的複寫流量，並且也會確保高度可用資料的安全。
 依預設，空白的安全性組態區段會妨礙複寫安全性。
 
-### <a name="section-name"></a>區段名稱
+<a id="section-name" class="xliff"></a>
+### 區段名稱
 &lt;ActorName&gt;ServiceReplicatorSecurityConfig
 
-## <a name="replicator-configuration"></a>複寫器組態
+<a id="replicator-configuration" class="xliff"></a>
+## 複寫器組態
 複寫器組態用來設定負責將狀態複寫和保存至本機，讓動作項目狀態提供者變得高度可靠的複寫器。
 預設組態由 Visual Studio 範本所產生，且應該已經足夠。 本節說明可用於微調複寫器的其他組態。
 
-### <a name="section-name"></a>區段名稱
+<a id="section-name" class="xliff"></a>
+### 區段名稱
 &lt;ActorName&gt;ServiceReplicatorConfig
 
-### <a name="configuration-names"></a>組態名稱
+<a id="configuration-names" class="xliff"></a>
+### 組態名稱
 | 名稱 | 單位 | 預設值 | 備註 |
 | --- | --- | --- | --- |
 | BatchAcknowledgementInterval |秒 |0.015 |次要複寫器收到作業後，將通知傳回給主要複寫器前所等待的時間間隔。 任何要在此間隔內傳送給作業處理的其他通知，會集中以一個回應傳送。 |
@@ -94,7 +104,8 @@ SharedLogSizeInMB 會指定要預先配置給所有節點上之預設共用記�
 | SharedLogId |GUID |"" |指定用於識別此複本共用記錄檔的唯一 GUID。 服務通常不應使用此設定。 不過，如果有指定 SharedLogId，則也必須指定 SharedLogPath。 |
 | SharedLogPath |完整路徑名稱 |"" |指定建立此複本共用記錄檔的完整路徑。 服務通常不應使用此設定。 不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。 |
 
-## <a name="sample-configuration-file"></a>範例組態檔
+<a id="sample-configuration-file" class="xliff"></a>
+## 範例組態檔
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -115,7 +126,8 @@ SharedLogSizeInMB 會指定要預先配置給所有節點上之預設共用記�
 </Settings>
 ```
 
-## <a name="remarks"></a>備註
+<a id="remarks" class="xliff"></a>
+## 備註
 BatchAcknowledgementInterval 參數會控制複寫延遲性。 值為 '0' 時延遲可能性最低，但代價是降低輸送量 (隨著必須傳送與處理的通知訊息增加，每個訊息包含的通知會變少)。
 BatchAcknowledgementInterval 的值越大，整體複寫輸送量越高，代價是作業延遲變高。 這會直接轉換成交易認可的延遲。
 
