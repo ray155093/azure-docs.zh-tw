@@ -22,8 +22,12 @@ ms.lasthandoff: 02/11/2017
 
 
 ---
-# <a name="understand-your-azure-marketplace-payout-reports"></a>了解您的 Azure Marketplace 支出報告
-## <a name="access-and-view-your-payout-reports"></a>存取及檢視您的支出報告
+<a id="understand-your-azure-marketplace-payout-reports" class="xliff"></a>
+
+# 了解您的 Azure Marketplace 支出報告
+<a id="access-and-view-your-payout-reports" class="xliff"></a>
+
+## 存取及檢視您的支出報告
 雖然我們轉換到開發人員中心，一些支出報告可能可以在開發人員中心的 https://dev.windows.com/en-us 中取得，而其他報告可能仍然會在發佈入口網站 https://publish.windowsazure.com 中找到。
 
 對於與現代化支出相關聯的任何 Marketplace 供應項目，支出報告可以在 [開發人員中心]  中取得；目前包括
@@ -38,7 +42,9 @@ ms.lasthandoff: 02/11/2017
 
 在每季結束後 45 天即可取得報告，而報告會在任何退款之後進行計算。
 
-### <a name="access-payout-reports-in-dev-center"></a>存取開發人員中心的支出報告
+<a id="access-payout-reports-in-dev-center" class="xliff"></a>
+
+### 存取開發人員中心的支出報告
 1. 瀏覽至開發人員中心：https://dev.windows.com/en-us。
 2. 按一下 [儀表板] 。
 
@@ -47,7 +53,9 @@ ms.lasthandoff: 02/11/2017
 
     ![DashboardPayoutSummary][2]
 
-## <a name="view-your-payout-reports-in-dev-center"></a>檢視開發人員中心的支出報告
+<a id="view-your-payout-reports-in-dev-center" class="xliff"></a>
+
+## 檢視開發人員中心的支出報告
 每季支出報告會記錄當季發生的所有交易。
 
 * 保留的數量表示在近期付款週期外產生的任何付款 (例如，此金額會移到下個月的近期付款)。  這個金額通常是 $0 (除非客戶已提前付款)。
@@ -60,7 +68,9 @@ ms.lasthandoff: 02/11/2017
 
     ![PayoutSummaryPaymentStatementsFilterControl][4]
 
-## <a name="view-your-payout-reports-in-publishing-portal"></a>檢視發佈入口網站的支出報告
+<a id="view-your-payout-reports-in-publishing-portal" class="xliff"></a>
+
+## 檢視發佈入口網站的支出報告
 每季支出報告會記錄當季發生的所有交易。
 
 1. 瀏覽至發佈入口網站 https://publish.windowsazure.com。
@@ -69,7 +79,9 @@ ms.lasthandoff: 02/11/2017
 
     ![accessingpayoutreport][5]
 
-### <a name="read-your-payout-reports"></a>讀取您的支出報告
+<a id="read-your-payout-reports" class="xliff"></a>
+
+### 讀取您的支出報告
 每季支出報告會記錄當季發生的所有交易。
 
 * 如果您要尋找與特定一季相關的分類帳目，請從下拉式清單中選取該季的支出報告。 例如，如果您對 2015 年 4 月到 6 月的分類帳目有興趣，請從下拉式清單中選取該日期範圍。
@@ -78,7 +90,9 @@ ms.lasthandoff: 02/11/2017
 * [財務摘要面板] 會依類別顯示餘額、貸方和借方。
 * [分類帳目] 會顯示個別的交易。
 
-## <a name="definitions"></a>定義
+<a id="definitions" class="xliff"></a>
+
+## 定義
 **財務摘要面板：**
 
 ![financialdefinitions][7]
@@ -87,7 +101,9 @@ ms.lasthandoff: 02/11/2017
 
 ![ledgerdefinitions][8]
 
-## <a name="payout-questions"></a>支出問題
+<a id="payout-questions" class="xliff"></a>
+
+## 支出問題
 如果您對您的支出有任何問題，請連絡我們的支援團隊。
 
 ![payoutquestions][9]
@@ -97,7 +113,9 @@ ms.lasthandoff: 02/11/2017
 3. 選取 [支出相關查詢] 。
 4. 按一下 [提出要求] 。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 若是其他支援查詢，請至 <https://portal.azure.com> 記錄問題。
 
 [1]: ./media/marketplace-publishing-report-payout/LandingPage-DashboardHighlight.png
