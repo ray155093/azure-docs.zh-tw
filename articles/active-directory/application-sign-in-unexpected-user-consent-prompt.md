@@ -11,23 +11,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: f32de2a8868d853e7720cffa23df6b3c59ab4a49
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="unexpected-consent-prompt-when-signing-in-to-an-application"></a>登入應用程式時看到非預期的同意提示
+<a id="unexpected-consent-prompt-when-signing-in-to-an-application" class="xliff"></a>
+
+# 登入應用程式時看到非預期的同意提示
 
 許多與 Azure Active Directory 整合的應用程式需要各種資源的權限，才能執行。 當這些資源也與 Azure Active Directory 整合時，會使用 Azure AD 同意架構來要求存取這些資源的權限。 
 
 這會導致當第一次使用應用程式會一直顯示同意提示，但這通常只應顯示一次。 
 
-## <a name="scenarios-in-which-users-see-consent-prompts"></a>使用者會看到同意提示的案例
+<a id="scenarios-in-which-users-see-consent-prompts" class="xliff"></a>
+
+## 使用者會看到同意提示的案例
 
 還有其他提示預期會在各種案例中發生：
 
@@ -43,7 +47,9 @@ ms.lasthandoff: 04/17/2017
 
 * 開發人員已設定應用程式在每次使用時都需要同意提示 (注意：這不是最佳做法)。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 -   [Azure Active Directory 中的應用程式、權限及同意 (v1.0 端點)](https://docs.microsoft.com/azure/active-directory/active-directory-apps-permissions-consent)
 

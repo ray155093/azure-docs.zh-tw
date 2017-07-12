@@ -11,21 +11,25 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: 5b133afd82afecbfab250c2760404a4173086fa5
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="no-working-connector-group-found-for-an-application-proxy-application"></a>針對應用程式 Proxy 應用程式找不到作用中的連接器群組
+<a id="no-working-connector-group-found-for-an-application-proxy-application" class="xliff"></a>
+
+# 針對應用程式 Proxy 應用程式找不到作用中的連接器群組
 
 本文協助您解決針對與 Azure Active Directory 整合的應用程式 Proxy 應用程式無法偵測到連接器時所需面對的常見問題。
 
-## <a name="overview-of-steps"></a>步驟概觀
+<a id="overview-of-steps" class="xliff"></a>
+
+## 步驟概觀
 如果您應用程式的連接器群組中沒有作用中的連接器，有幾種方法可以解決此問題：
 
 -   如果群組中沒有連接器，您可以：
@@ -48,7 +52,9 @@ ms.lasthandoff: 04/17/2017
 
    ![Azure 入口網站中的連接器群組管理](./media/application-proxy-connectivity-no-working-connector/app-proxy.png)
 
-## <a name="download-a-new-connector"></a>下載新的連接器
+<a id="download-a-new-connector" class="xliff"></a>
+
+## 下載新的連接器
 
 若要下載新的連接器，請使用頁面頂端的 [下載連接器] 按鈕。
 
@@ -56,17 +62,23 @@ ms.lasthandoff: 04/17/2017
 
    ![從 Azure 入口網站下載連接器](./media/application-proxy-connectivity-no-working-connector/download-connector.png)
    
-## <a name="move-an-active-connector"></a>移動作用中的連接器
+<a id="move-an-active-connector" class="xliff"></a>
+
+## 移動作用中的連接器
 
 如果您有應該屬於群組的作用中連接器，而且能直接看到目標後端應用程式，您可以將連接器移入指派的群組。 若要這麼做，請按一下連接器。 在 [連接器群組] 欄位中，使用下拉式清單選取正確的群組，然後按一下 [儲存]。
 
-## <a name="resolve-an-inactive-connector"></a>解決非作用中的連接器
+<a id="resolve-an-inactive-connector" class="xliff"></a>
+
+## 解決非作用中的連接器
 
 如果在群組中唯一的連接器為非作用中，它們所在的電腦很可能未解除所有必要連接埠的封鎖。
 
 請參閱《連接埠疑難排解》文件，以取得調查此問題的詳細資料。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)
 
 

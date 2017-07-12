@@ -11,23 +11,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
 ms.openlocfilehash: 4d8c241344485e50a1afde3cd67adf3d0a7c041f
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/11/2017
-
 
 ---
 
-# <a name="problem-using-self-service-application-access"></a>使用自助應用程式存取時遇到問題
+<a id="problem-using-self-service-application-access" class="xliff"></a>
+
+# 使用自助應用程式存取時遇到問題
 
 自助應用程式存取是讓使用者自行探索應用程式的絕佳方式，還可讓商務群組核准對那些應用程式的存取。 您可以讓商務群組直接從其存取面板，管理指派給「密碼單一登入應用程式」使用者的認證。
 
 對於您想要允許使用者自行探索和要求存取的任何應用程式，您必須啟用**自助應用程式存取**，使用者才能從存取面板自行探索應用程式。
 
-## <a name="general-issues-to-check-first"></a>首先檢查的一般問題
+<a id="general-issues-to-check-first" class="xliff"></a>
+
+## 首先檢查的一般問題
 
 -   請確定已正確設定自助應用程式存取。 請參閱＜如何設定自助應用程式存取＞。
 
@@ -37,7 +41,9 @@ ms.lasthandoff: 04/11/2017
 
 -   如果最近才剛設定自助應用程式存取，請在幾分鐘之後嘗試登入並再次登出使用者的存取面板，查明自助存取變更是否出現。
 
-## <a name="how-to-configure-self-service-application-access"></a>如何設定自助應用程式存取
+<a id="how-to-configure-self-service-application-access" class="xliff"></a>
+
+## 如何設定自助應用程式存取
 
 若要啟用對應用程式的自助存取，請依照下列步驟執行：
 
@@ -80,7 +86,9 @@ ms.lasthandoff: 04/11/2017
 
 這些核准只支援單一核准工作流程，這表示若您指定多個核准者，任何核准者都可以核准應用程式存取。
 
-## <a name="if-these-troubleshooting-steps-do-not-resolve-the-issue"></a>如果這些疑難排解步驟無法解決問題 
+<a id="if-these-troubleshooting-steps-do-not-resolve-the-issue" class="xliff"></a>
+
+## 如果這些疑難排解步驟無法解決問題 
 
 使用下列資訊 (若有的話) 開啟支援票證︰
 
@@ -96,6 +104,8 @@ ms.lasthandoff: 04/11/2017
 
 -   Fiddler 追蹤
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [設定 Azure Active Directory 進行自助服務群組管理](active-directory-accessmanagement-self-service-group-management.md)
 

@@ -11,20 +11,24 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: b1f16079ad13c4e45f93a7e5e3d29568738e03cf
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="find-out-when-a-specific-user-will-be-able-to-access-an-application"></a>查明特定使用者何時將能存取應用程式
+<a id="find-out-when-a-specific-user-will-be-able-to-access-an-application" class="xliff"></a>
+
+# 查明特定使用者何時將能存取應用程式
 透過應用程式使用自動使用者佈建時，Azure AD 會根據像是[使用者和群組指派](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)等事項，在定期排定的時間間隔內 (通常是每隔 10 分鐘)，自動佈建並更新應用程式中的使用者帳戶。
 
-## <a name="how-long-does-it-take"></a>需要多久的時間？
+<a id="how-long-does-it-take" class="xliff"></a>
+
+## 需要多久的時間？
 
 針對要佈建的特定使用者所花費的時間，主要是根據初始的「完整」同步處理是否已經發生而定。
 
@@ -32,7 +36,9 @@ ms.lasthandoff: 04/17/2017
 
 初始同步處理之後的後續同步處理會更快 (例如，在 10 分鐘內)，因為佈建服務會儲存浮水印，代表兩個系統在初始同步處理之後的狀態，所以會改善後續同步處理的效能。
 
-## <a name="how-to-check-the-status-of-a-user"></a>如何檢查使用者的狀態
+<a id="how-to-check-the-status-of-a-user" class="xliff"></a>
+
+## 如何檢查使用者的狀態
 
 若要查看所選使用者的佈建狀態，請參閱 Azure AD 中的稽核記錄。
 
@@ -47,6 +53,8 @@ ms.lasthandoff: 04/17/2017
 * 比較系統之間的使用者物件
 * 根據比較，在目標系統中新增、更新或停用使用者帳戶
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)
 

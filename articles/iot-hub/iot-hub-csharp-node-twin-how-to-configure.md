@@ -20,7 +20,6 @@ ms.openlocfilehash: ca5ee2733df51faa5025c4d8eb687c81df4a3b4f
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/09/2017
 
-
 ---
 <a id="use-desired-properties-to-configure-devices" class="xliff"></a>
 
@@ -49,6 +48,7 @@ ms.lasthandoff: 05/09/2017
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
+<a id="#create-the-simulated-device-app"></a>
 <a id="create-the-simulated-device-app" class="xliff"></a>
 
 ## 建立模擬裝置應用程式
@@ -283,5 +283,5 @@ ms.lasthandoff: 05/09/2017
 
 [lnk-guid]: https://en.wikipedia.org/wiki/Globally_unique_identifier
 
-[lnk-how-to-configure-createapp]: iot-hub-node-node-twin-how-to-configure.md#create-the-simulated-device-app
+[lnk-how-to-configure-createapp]: iot-hub-csharp-node-twin-how-to-configure.md#create-the-simulated-device-app
 

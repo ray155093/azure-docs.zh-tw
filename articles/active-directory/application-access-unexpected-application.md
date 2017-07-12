@@ -11,21 +11,25 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: d244905089605bb8608085d3e0132590c927ef6f
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
-
 
 ---
 
-# <a name="unexpected-application-in-my-applications-list"></a>我的應用程式清單中有未預期的應用程式
+<a id="unexpected-application-in-my-applications-list" class="xliff"></a>
+
+# 我的應用程式清單中有未預期的應用程式
 
 本文協助您了解應用程式如何出現在 [企業應用程式] 下的 [所有應用程式] 清單中。 
 
-## <a name="how-to-see-all-applications-in-your-tenant"></a>如何查看租用戶中的所有應用程式
+<a id="how-to-see-all-applications-in-your-tenant" class="xliff"></a>
+
+## 如何查看租用戶中的所有應用程式
 
 若要查看租用戶中的所有應用程式，您需要使用 [篩選] 控制項，以顯示 [所有應用程式] 清單下的 [所有應用程式]。 若要這樣做，請遵循下面的步驟：
 
@@ -43,7 +47,9 @@ ms.lasthandoff: 04/27/2017
 
 7.  在 [篩選] 刀鋒視窗上，將 [顯示] 選項設為 [所有應用程式]。
 
-## <a name="why-does-a-specific-application-appear-in-my-all-applications-list"></a>特定應用程式為何出現在我的所有應用程式清單中？
+<a id="why-does-a-specific-application-appear-in-my-all-applications-list" class="xliff"></a>
+
+## 特定應用程式為何出現在我的所有應用程式清單中？
 
 篩選為 [所有應用程式] 時，[所有應用程式清單] 會顯示租用戶中的每個服務主體物件。 服務主體物件可能以各種方式出現在此清單中︰
 
@@ -77,15 +83,21 @@ ms.lasthandoff: 04/27/2017
 
 若要取得如何將應用程式新增至目錄的詳細資訊，請參閱[如何及為何將應用程式新增至 Azure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-how-applications-are-added)。
 
-## <a name="i-want-to-remove-a-specific-users-or-groups-assignment-to-an-application"></a>我想要移除特定使用者或群組的應用程式指派
+<a id="i-want-to-remove-a-specific-users-or-groups-assignment-to-an-application" class="xliff"></a>
+
+## 我想要移除特定使用者或群組的應用程式指派
 
 若要移除使用者或群組的應用程式指派，請依照[在 Azure Active Directory 中從企業應用程式移除使用者或群組指派](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal)文件列出的步驟執行。
 
-## <a name="i-want-to-disable-all-access-to-an-application-for-every-user"></a>我想要讓每個使用者都無法存取應用程式
+<a id="i-want-to-disable-all-access-to-an-application-for-every-user" class="xliff"></a>
+
+## 我想要讓每個使用者都無法存取應用程式
 
 若要讓所有使用者都無法登入應用程式，請依照[在 Azure Active Directory 中停用使用者登入企業應用程式](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal)文件列出的步驟執行。
 
-## <a name="i-want-to-delete-an-application-entirely"></a>我想要完全刪除應用程式
+<a id="i-want-to-delete-an-application-entirely" class="xliff"></a>
+
+## 我想要完全刪除應用程式
 
 若要**刪除應用程式**，請遵循下列指示：
 
@@ -105,7 +117,9 @@ ms.lasthandoff: 04/27/2017
 
 7.  應用程式載入後，從頂端應用程式的 [概觀] 刀鋒視窗按一下 [刪除] 圖示。
 
-## <a name="i-want-to-disable-all-future-user-consent-operations-to-any-application"></a>我想要停用任何應用程式的所有未來使用者同意作業
+<a id="i-want-to-disable-all-future-user-consent-operations-to-any-application" class="xliff"></a>
+
+## 我想要停用任何應用程式的所有未來使用者同意作業
 
 停用整個目錄的使用者同意會阻止使用者同意任何應用程式。 系統管理員仍然可以代表使用者行使同意。 若要進一步了解應用程式同意，以及為什麼您想要或不不想這樣做，請參閱[了解使用者和系統管理員同意](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent)。
 
@@ -123,6 +137,8 @@ ms.lasthandoff: 04/27/2017
 
 6.  將 [使用者可以允許應用程式存取其資料] 切換開關設為 [否]，並按一下 [儲存] 按鈕，以停用所有未來的使用者同意作業。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [使用 Azure Active Directory 管理應用程式](active-directory-enable-sso-scenario.md)
 

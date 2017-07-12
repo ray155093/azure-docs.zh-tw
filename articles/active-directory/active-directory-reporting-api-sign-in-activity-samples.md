@@ -20,9 +20,10 @@ ms.openlocfilehash: e6b1137c8ca33774ef9852b9441b541cf7723ebd
 ms.contentlocale: zh-tw
 ms.lasthandoff: 12/29/2016
 
-
 ---
-# <a name="azure-active-directory-sign-in-activity-report-api-samples"></a>Azure Active Directory 登入活動報告 API 範例
+<a id="azure-active-directory-sign-in-activity-report-api-samples" class="xliff"></a>
+
+# Azure Active Directory 登入活動報告 API 範例
 本主題是 Azure Active Directory 報告 API 相關主題集合的一部分。  
 Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登入活動資料。  
 本主題的範疇是為您提供 **登入活動 API**的範例程式碼。
@@ -34,14 +35,18 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 
 如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+
+## 必要條件
 您必須先完成 [存取 Azure AD 報告 API 的必要條件](active-directory-reporting-api-prerequisites.md)，才能使用本主題中的範例。  
 
-## <a name="powershell-script"></a>PowerShell 指令碼
+<a id="powershell-script" class="xliff"></a>
+
+## PowerShell 指令碼
     # This script will require the Web Application and permissions setup in Azure Active Directory
     $ClientID       = "<clientId>"             # Should be a ~35 character string insert your info here
     $ClientSecret   = "<clientSecret>"         # Should be a ~44 character string insert your info here
-    $loginURL       = "https://login.windows.net/"
+    $loginURL       = "https://login.microsoftonline.com/"
     $tenantdomain   = "<tenantDomain>"
     $ daterange            # For example, contoso.onmicrosoft.com
 
@@ -80,12 +85,16 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 
 
 
-## <a name="executing-the-script"></a>執行指令碼
+<a id="executing-the-script" class="xliff"></a>
+
+## 執行指令碼
 完成指令碼編輯後，加以執行並確認從稽核記錄報告傳回預期的資料。
 
 指令碼會以 JSON 格式傳回登入報告的輸出。 它也會建立具有相同輸出的 `SigninActivities.json` 檔案。 您可透過修改指令碼以從其他報告傳回資料來進行實驗，以及取消註解您不需要的輸出格式。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * 您要自訂本主題中的範例嗎？ 請查看 [Azure Active Directory 登入活動 API 參考](active-directory-reporting-api-sign-in-activity-reference.md)。 
 * 如果您想要查看使用 Azure Active Directory 報告 API 的完整概觀，請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
 * 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  

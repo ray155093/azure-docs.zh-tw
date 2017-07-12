@@ -11,17 +11,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
 ms.openlocfilehash: 68db9635e274d76127021ff95d38570b980048f3
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/11/2017
-
 
 ---
 
-# <a name="how-to-configure-a-new-multi-tenant-application"></a>如何設定新的多租用戶應用程式
+<a id="how-to-configure-a-new-multi-tenant-application" class="xliff"></a>
+
+# 如何設定新的多租用戶應用程式
 
 下列清單包含可深入了解多租用戶應用程式的建議主題：
 
@@ -30,6 +32,8 @@ ms.lasthandoff: 04/11/2017
 - 取得有關 [Azure AD 同意架構如何用於實作同意](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework)的逐步概觀，這是多租用戶應用程式的必要條件
 - 深入了解[如何從頭到尾設定多租用戶應用程式以及撰寫程式碼](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview)，包括如何註冊、使用「通用」端點、實作「使用者」與「系統管理員」同意、如何實作更多進階多租用戶案例
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [AzureAD StackOverflow](http://stackoverflow.com/questions/tagged/azure-active-directory)
 

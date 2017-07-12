@@ -19,7 +19,9 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 06/23/2017
 
 ---
-#<a name="service-fabric-documentation"></a>Service Fabric 文件
+<a id="service-fabric-documentation" class="xliff"></a>
+
+#Service Fabric 文件
 
 如何使用 Service Fabric 來封裝、部署及管理可調整和可信賴的微服務。 教學課程、API 參考和程式碼範例會示範如何使用此中介軟體平台來建置和管理雲端等級應用程式。
 

@@ -15,18 +15,23 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
 ms.date: 02/02/2017
-ms.author: rasquill
+ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: 7a989ffd72dd3636419dfb91f696f0e38f9271c2
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
 
 ---
-# <a name="add-a-disk-to-a-linux-vm"></a>在 Linux VM 中新增磁碟
+<a id="add-a-disk-to-a-linux-vm" class="xliff"></a>
+
+# 在 Linux VM 中新增磁碟
 本文說明如何將持續性磁碟連接到您的 VM，以便您保留資料 - 即使您的 VM 會由於維護或調整大小而重新佈建。 
 
-## <a name="quick-commands"></a>快速命令
+<a id="quick-commands" class="xliff"></a>
+
+## 快速命令
 下列範例會將 `50`GB 磁碟附加至名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
 
 若要使用受控磁碟：
@@ -43,12 +48,16 @@ az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM
   --new --size-gb 50
 ```
 
-## <a name="attach-a-managed-disk"></a>附加受控磁碟
+<a id="attach-a-managed-disk" class="xliff"></a>
+
+## 附加受控磁碟
 
 使用受控磁碟，可讓您專注於您的 VM 及其磁碟，而不需擔心 Azure 儲存體帳戶。 您可以使用相同的 Azure 資源群組，快速建立受控磁碟並將它附加至 VM，也可以建立任意數目的磁碟，然後予以附加。
 
 
-### <a name="attach-a-new-disk-to-a-vm"></a>將新磁碟附加至 VM
+<a id="attach-a-new-disk-to-a-vm" class="xliff"></a>
+
+### 將新磁碟附加至 VM
 
 如果您的 VM 上只需要新磁碟，您可以使用 `az vm disk attach` 命令。
 
@@ -57,7 +66,9 @@ az vm disk attach -g myResourceGroup --vm-name myVM --disk myDataDisk \
   --new --size-gb 50
 ```
 
-### <a name="attach-an-existing-disk"></a>連接現有磁碟 
+<a id="attach-an-existing-disk" class="xliff"></a>
+
+### 連接現有磁碟 
 
 在許多情況下，您可以附加已建立的磁碟。 您要先找出磁碟識別碼，接著將該識別碼傳遞至 `az vm disk attach` 命令。 下列範例會使用以 `az disk create -g myResourceGroup -n myDataDisk --size-gb 50` 建立的磁碟。
 
@@ -95,7 +106,9 @@ az vm disk attach -g myResourceGroup --vm-name myVM --disk $diskId
 ```
 
 
-## <a name="attach-an-unmanaged-disk"></a>附加非受控磁碟
+<a id="attach-an-unmanaged-disk" class="xliff"></a>
+
+## 附加非受控磁碟
 
 如果您不介意在與您的 VM 相同的儲存體帳戶中建立磁碟，附加新磁碟便很快速。 輸入 `azure vm disk attach-new` ，就能為 VM 建立並連接新的 GB 磁碟。 如果您未明確識別儲存體帳戶，則您所建立的任何磁碟都會放在作業系統磁碟所在的相同儲存體帳戶中。 下列範例會將 `50`GB 磁碟附加至名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
 
@@ -104,7 +117,9 @@ az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM
   --new --size-gb 50
 ```
 
-## <a name="connect-to-the-linux-vm-to-mount-the-new-disk"></a>連接到 Linux VM 以掛接新磁碟
+<a id="connect-to-the-linux-vm-to-mount-the-new-disk" class="xliff"></a>
+
+## 連接到 Linux VM 以掛接新磁碟
 > [!NOTE]
 > 本主題會利用使用者名稱和密碼連線到 VM。 若要使用公開和私密金鑰組來與您的 VM 通訊，請參閱 [如何搭配使用 SSH 與 Azure 上的 Linux](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
 > 
@@ -310,7 +325,9 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail 
 > 
 > **Nofail** 選項可確保即使檔案系統已損毀或磁碟在開機時並不存在，仍然會啟動 VM。 若不使用此選項，您可能會遇到[因為 FSTAB 錯誤所以無法 SSH 到 Linux VM](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting/) 中所述的行為
 
-### <a name="trimunmap-support-for-linux-in-azure"></a>Azure 中 Linux 的 TRIM/UNMAP 支援
+<a id="trimunmap-support-for-linux-in-azure" class="xliff"></a>
+
+### Azure 中 Linux 的 TRIM/UNMAP 支援
 有些 Linux 核心會支援 TRIM/UNMAP 作業以捨棄磁碟上未使用的區塊。 這主要是在標準儲存體中相當實用，可用來通知 Azure 已刪除的頁面已不再有效而可予以捨棄。 如果您建立大型檔案，然後再將它們刪除，這便可節省成本。
 
 有兩種方式可在 Linux VM 中啟用 TRIM 支援。 像往常一樣，請參閱您的散發套件以了解建議的方法︰
@@ -336,10 +353,14 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail 
     sudo fstrim /datadrive
     ```
 
-## <a name="troubleshooting"></a>疑難排解
+<a id="troubleshooting" class="xliff"></a>
+
+## 疑難排解
 [!INCLUDE [virtual-machines-linux-lunzero](../../../includes/virtual-machines-linux-lunzero.md)]
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * 請記住，如果將新磁碟重新開機，除非您將該資訊寫入 [/etc/fstab](http://en.wikipedia.org/wiki/Fstab) 檔案，否則該磁碟無法供 VM 使用。
 * 若要確保您的 Linux VM 已正確設定，請檢閱 [最佳化您的 Linux 機器效能](optimization.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 建議。
 * 新增其他磁碟以擴充儲存體容量，並 [設定 RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 以提升效能。

@@ -15,14 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/30/2017
 ms.author: jdial
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: d365f7137527d60eb509b4f431295de2218ea706
 ms.openlocfilehash: 5ff91cccb711d61ed120e4a4e820d6a5dfc5e4a6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/31/2017
 
 
 ---
 
-# <a name="create-a-virtual-network-classic-with-a-netcfg-file-using-the-azure-classic-portal"></a>使用 Azure 傳統入口網站以 netcfg 檔案建立虛擬網路 (傳統)
+<a id="create-a-virtual-network-classic-with-a-netcfg-file-using-the-azure-classic-portal" class="xliff"></a>
+
+# 使用 Azure 傳統入口網站以 netcfg 檔案建立虛擬網路 (傳統)
 [!INCLUDE [virtual-networks-create-vnet-selectors-classic-include](../../includes/virtual-networks-create-vnet-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
@@ -33,7 +37,9 @@ ms.openlocfilehash: 5ff91cccb711d61ed120e4a4e820d6a5dfc5e4a6
 
 [!INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 
-## <a name="how-to-create-a-vnet-with-a-network-config-file-in-the-microsoft-azure-classic-portal"></a>如何在 Microsoft Azure 傳統入口網站中使用網路組態檔來建立 VNet
+<a id="how-to-create-a-vnet-with-a-network-config-file-in-the-microsoft-azure-classic-portal" class="xliff"></a>
+
+## 如何在 Microsoft Azure 傳統入口網站中使用網路組態檔來建立 VNet
 Azure 會使用 xml 檔案定義訂用帳戶所有可用的 VNet。 您可以下載這個檔案並加以編輯，以透過傳統部署模型建立 VNet，或是修改或刪除現有的 VNet。 本文說明如何下載此檔案 (稱為網路組態檔或 netcfg 檔案)、將 VNet 新增至此檔案，以及上傳此檔案來建立 VNet。 若要深入了解網路組態檔，請檢閱 [Azure 虛擬網路組態結構描述 (英文)](https://msdn.microsoft.com/library/azure/jj157100.aspx)。
 
 若要透過 Azure 傳統入口網站使用 netcfg 檔案來建立 VNet，請完成下列步驟：
@@ -84,9 +90,4 @@ Azure 會使用 xml 檔案定義訂用帳戶所有可用的 VNet。 您可以下
 10. 若要建立 VNet，請按一下上圖中方塊右下角的打勾記號。 幾秒鐘後，VNet 就會顯示在可用的 VNet 清單中，如下圖所示：
 
     ![新的虛擬網路](./media/virtual-networks-create-vnet-classic-portal/vnet-create-portal-netcfg-figure6.png)
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

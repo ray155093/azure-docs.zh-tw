@@ -11,7 +11,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
@@ -19,14 +19,17 @@ ms.openlocfilehash: 32c6d4ed5470077856d4ab175a5df5188b3690a6
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/13/2017
 
-
 ---
 
-# <a name="problem-configuring-password-single-sign-on-for-an-azure-ad-gallery-application"></a>為 Azure AD 資源庫應用程式設定密碼單一登入時遇到的問題
+<a id="problem-configuring-password-single-sign-on-for-an-azure-ad-gallery-application" class="xliff"></a>
+
+# 為 Azure AD 資源庫應用程式設定密碼單一登入時遇到的問題
 
 本文可協助您了解使用者在搭配 Azure AD 資源庫應用程式設定**密碼單一登入**時所面臨的常見問題。
 
-## <a name="credentials-are-filled-in-but-the-extension-does-not-submit-them"></a>認證會填入，但延伸模組不會提交它們
+<a id="credentials-are-filled-in-but-the-extension-does-not-submit-them" class="xliff"></a>
+
+## 認證會填入，但延伸模組不會提交它們
 
 如果應用程式廠商目前已變更他們的登入頁面來新增欄位、變更我們用來偵測使用者名稱和密碼欄位的基礎識別碼，或修改其應用程式的登入體驗運作方式，通常會發生此問題。 幸運的是，在許多情況下，Microsoft 可以與應用程式廠商合作，快速解決這些問題。
 
@@ -34,7 +37,9 @@ ms.lasthandoff: 06/13/2017
 
 此外，**如果您與此應用程式的廠商聯繫，****請將我們的連絡方式傳送給他們**，讓我們能夠與他們合作，將其應用程式與 Azure Active Directory 進行原生整合。 您可以將廠商引導到[在 Azure Active Directory 應用程式庫中列出您的應用程式](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)，讓他們可以立即開始。
 
-## <a name="credentials-are-filled-in-and-submitted-but-the-page-indicates-the-credentials-are-incorrect"></a>認證會填入並提交，但頁面指出認證不正確
+<a id="credentials-are-filled-in-and-submitted-but-the-page-indicates-the-credentials-are-incorrect" class="xliff"></a>
+
+## 認證會填入並提交，但頁面指出認證不正確
 
 若要解決此問題，請先檢查下列各項：
 
@@ -62,7 +67,9 @@ ms.lasthandoff: 06/13/2017
 
 此外，**如果您與此應用程式的廠商聯繫，****請將我們的連絡方式傳送給他們**，讓我們能夠與他們合作，將其應用程式與 Azure Active Directory 進行原生整合。 您可以將廠商引導到[在 Azure Active Directory 應用程式庫中列出您的應用程式](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)，讓他們可以立即開始。
 
-## <a name="the-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer"></a>延伸模組可在 Chrome 和 Firefox 中運作，但無法在 Internet Explorer 中運作
+<a id="the-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer" class="xliff"></a>
+
+## 延伸模組可在 Chrome 和 Firefox 中運作，但無法在 Internet Explorer 中運作
 
 這個問題有兩個主要原因：
 
@@ -76,7 +83,9 @@ ms.lasthandoff: 06/13/2017
 
 此外，**如果您與此應用程式的廠商聯繫，****請將我們的連絡方式傳送給他們**，讓我們能夠與他們合作，將其應用程式與 Azure Active Directory 進行原生整合。 您可以將廠商引導到[在 Azure Active Directory 應用程式庫中列出您的應用程式](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)，讓他們可以立即開始。
 
-## <a name="check-if-the-applications-login-page-has-changed-recently-or-requires-an-additional-field"></a>檢查應用程式的登入頁面最近是否已變更或需要額外的欄位
+<a id="check-if-the-applications-login-page-has-changed-recently-or-requires-an-additional-field" class="xliff"></a>
+
+## 檢查應用程式的登入頁面最近是否已變更或需要額外的欄位
 
 如果應用程式的登入頁面已大幅變更，有時這會導致我們的整合中斷。 當應用程式廠商將登入欄位、Captcha 或多重要素驗證新增至他們的體驗時，即為一例。 幸運的是，在許多情況下，Microsoft 可以與應用程式廠商合作，快速解決這些問題。
 
@@ -84,7 +93,9 @@ ms.lasthandoff: 06/13/2017
 
 此外，**如果您與此應用程式的廠商聯繫，****請將我們的連絡方式傳送給他們**，讓我們能夠與他們合作，將其應用程式與 Azure Active Directory 進行原生整合。 您可以將廠商引導到[在 Azure Active Directory 應用程式庫中列出您的應用程式](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)，讓他們可以立即開始。
 
-## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板的瀏覽器延伸模組
+<a id="how-to-install-the-access-panel-browser-extension" class="xliff"></a>
+
+## 如何安裝存取面板的瀏覽器延伸模組
 
 若要安裝存取面板的瀏覽器延伸模組，請遵循下列步驟：
 
@@ -108,7 +119,9 @@ ms.lasthandoff: 06/13/2017
 
 -   [Firefox 存取面板延伸模組](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
 
 

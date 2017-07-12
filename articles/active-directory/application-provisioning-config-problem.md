@@ -11,23 +11,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: e15784a662b1691774eb3d9cc8b3fbe66ac67385
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="problem-configuring-user-provisioning-to-an-azure-ad-gallery-application"></a>設定 Azure AD 資源庫應用程式的使用者佈建時遇到的問題
+<a id="problem-configuring-user-provisioning-to-an-azure-ad-gallery-application" class="xliff"></a>
+
+# 設定 Azure AD 資源庫應用程式的使用者佈建時遇到的問題
 
 設定應用程式的[自動使用者佈建](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning) (如果支援)，需要遵循特定指示來準備應用程式以進行自動佈建。 接著，可以使用 Azure 入口網站來設定佈建服務，將使用者帳戶同步處理至應用程式。
 
 您一開始總是應先尋找為應用程式設定佈建專用的設定教學課程。 然後，遵循這些步驟來設定應用程式和 Azure AD 以建立佈建連接。 您可以在[如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list)中找到應用程式教學課程清單。
 
-## <a name="how-to-see-if-provisioning-is-working"></a>如何查看佈建是否正常運作 
+<a id="how-to-see-if-provisioning-is-working" class="xliff"></a>
+
+## 如何查看佈建是否正常運作 
 
 一旦設定服務之後，就能從下列兩個位置繪製出大多數對服務作業的深入見解：
 
@@ -35,7 +39,9 @@ ms.lasthandoff: 04/17/2017
 
 -   **佈建狀態 -** 您可以在 [Azure Active Directory]&gt;[企業應用程式]&gt;[\[應用程式名稱\]]&gt;[佈建] 區段中，於螢幕底部的服務設定下方，看見指定應用程式的最後一個佈建執行摘要。 本節將摘要說明目前會在這兩個系統之間同步處理多少個使用者 (和/或群組)，以及是否發生任何錯誤。 錯誤詳細資料位於稽核記錄中。 請注意，在 Azure AD 和應用程式之間完成一次完整的初始同步處理之前，不會填入佈建資料。
 
-## <a name="general-problem-areas-with-provisioning-to-consider"></a>關於佈建要考慮的一般問題領域
+<a id="general-problem-areas-with-provisioning-to-consider" class="xliff"></a>
+
+## 關於佈建要考慮的一般問題領域
 
 如果您已知道要從何處著手，則以下是您可以向下切入的一般問題領域清單。
 
@@ -43,7 +49,9 @@ ms.lasthandoff: 04/17/2017
 * [無法儲存設定，因為應用程式認證無法運作](#can’t-save-configuration-due-to-app-credentials-not-working)
 * [稽核記錄表示「已略過」且未佈建使用者，即使已指派它們](#audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned)
 
-## <a name="provisioning-service-does-not-appear-to-start"></a>佈建服務似乎未啟動
+<a id="provisioning-service-does-not-appear-to-start" class="xliff"></a>
+
+## 佈建服務似乎未啟動
 
 如果您在 Azure 入口網站的 [Azure Active Directory]&gt;[企業應用程式]&gt;[\[應用程式名稱\]]&gt;[佈建] 區段中，將 [佈建狀態] 設為 [啟用]。 不過，在後續重新載入之後，該頁面上並未顯示任何其他狀態詳細資料。 很可能是服務正在執行，但尚未完成初始同步處理。 請檢查上述的**稽核記錄**，以判斷服務正在執行哪些作業，以及是否發生任何錯誤。
 
@@ -52,11 +60,15 @@ ms.lasthandoff: 04/17/2017
 >
 >
 
-## <a name="cant-save-configuration-due-to-app-credentials-not-working"></a>無法儲存設定，因為應用程式認證無法運作
+<a id="cant-save-configuration-due-to-app-credentials-not-working" class="xliff"></a>
+
+## 無法儲存設定，因為應用程式認證無法運作
 
 為了讓佈建能夠運作，Azure AD 需要有效的認證，讓它能夠連接到該應用程式所提供的使用者管理 API。 如果這些認證無效，或您不了解它們，請檢閱設定此應用程式的教學課程，如先前所述。
 
-## <a name="audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned"></a>稽核記錄表示「已略過」且未佈建使用者，即使已指派它們
+<a id="audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned" class="xliff"></a>
+
+## 稽核記錄表示「已略過」且未佈建使用者，即使已指派它們
 
 當使用者在稽核記錄中顯示為「已略過」時，請務必讀取記錄訊息中延伸的詳細資料來判斷原因。 下面是常見原因和解決方式：
 
@@ -68,6 +80,8 @@ ms.lasthandoff: 04/17/2017
 
    * **群組的屬性對應：**除了成員，還有群組名稱和群組詳細資訊的佈建 (如果某些應用程式有支援)。 您可以對 [佈建] 索引標籤中顯示的群組物件啟用或停用 [對應]，以啟用或停用此功能。 如果已啟用佈建群組，請務必檢閱屬性對應，以確保「比對識別碼」使用適當的欄位。 這可以是顯示名稱或電子郵件別名，因為如果 Azure AD 中某個群組的比對屬性空白或未填入，則不會佈建群組和其成員。
 
-#<a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+#後續步驟
 [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)
 
