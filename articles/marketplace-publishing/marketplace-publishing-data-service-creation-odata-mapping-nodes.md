@@ -14,14 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-translationtype: Human Translation
-ms.sourcegitcommit: f8b0917b6eb0295641360c4e0a80e81100809f6e
-ms.openlocfilehash: e3ce01d20f6b47c6fe68fdbfe31679cc2c92f2e7
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8ff76ea21ba684ae2a2afcb74d66b4912d7be053
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
-# <a name="understanding-the-nodes-schema-for-mapping-an-existing-web-service-to-odata-through-csdl"></a>了解透過 CSDL 將現有的 Web 服務對應至 OData 的節點結構描述
+<a id="understanding-the-nodes-schema-for-mapping-an-existing-web-service-to-odata-through-csdl" class="xliff"></a>
+
+# 了解透過 CSDL 將現有的 Web 服務對應至 OData 的節點結構描述
 > [!IMPORTANT]
 > 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。 如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
 >
@@ -29,7 +32,9 @@ ms.lasthandoff: 11/17/2016
 
 本文件將協助釐清將 OData 通訊協定對應至 CSDL 的節點結構。 請務必注意，節點結構是格式正確的 XML。 因此，設計 OData 對應時，根、父和子結構描述皆適用。
 
-## <a name="ignored-elements"></a>忽略的元素
+<a id="ignored-elements" class="xliff"></a>
+
+## 忽略的元素
 以下是 Azure Marketplace 後端將不會在匯入 Web 服務的中繼資料期間使用的高階 CSDL 元素 (XML 節點)。 它們可以存在，但會被忽略。
 
 | 元素 | Scope |
@@ -46,15 +51,16 @@ ms.lasthandoff: 11/17/2016
 
 以下詳細說明各種 CSDL XML 節點的變更 (新增和忽略的元素)。
 
-## <a name="functionimport-node"></a>FunctionImport 節點
+<a id="functionimport-node" class="xliff"></a>
+
+## FunctionImport 節點
 FunctionImport 節點代表一個將服務公開給使用者的 URL (進入點) 此節點允許描述 URL 的定址方式、使用者可用的參數，以及如何提供這些參數。
 
 這個節點的詳細資料可在 [這裡][MSDNFunctionImportLink](https://msdn.microsoft.com/library/cc716710.aspx) 找到
 
 以下是 FunctionImport 節點所公開的其他屬性 (或屬性的新增項目)：
 
-**d:BaseUri** -
-公開至 Marketplace 之 REST 資源的 URI 範本。 Marketplace 使用範本，針對 REST Web 服務建構查詢。 URI 範本包含 {parameterName} 格式中參數的預留位置，其中 parameterName 是參數的名稱。 例如 apiVersion={apiVersion}.
+**d:BaseUri** - 公開至 Marketplace 之 REST 資源的 URI 範本。 Marketplace 使用範本，針對 REST Web 服務建構查詢。 URI 範本包含 {parameterName} 格式中參數的預留位置，其中 parameterName 是參數的名稱。 例如 apiVersion={apiVersion}.
 允許參數以 URI 參數出現，或做為 URI 路徑的一部分。 如果出現在路徑中，它們永遠都是必要參數 (不能標示為可為 Null)。 *範例：* `d:BaseUri="http://api.MyWeb.com/Site/{url}/v1/visits?start={start}&amp;end={end}&amp;ApiKey=3fadcaa&amp;Format=XML"`
 
 **Name** - 已匯入函式的名稱。  不能與 CSDL 中其他定義的名稱相同。  例如 Name="GetModelUsageFile"
@@ -149,7 +155,9 @@ FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
 
 **d:ErrorMessage** - OData 的選用擴充屬性
 
-## <a name="parameter-node"></a>參數節點
+<a id="parameter-node" class="xliff"></a>
+
+## 參數節點
 此節點代表一個公開為 URI 範本 / 要求本文 (已在 FunctionImport 節點中指定) 一部分的參數。
 
 有關「參數元素」節點的有用詳細文件頁面位於[這裡](http://msdn.microsoft.com/library/ee473431.aspx) (請使用 [其他版本] 下拉式清單，以視需要選取不同版本來檢視文件)。 *範例：* `<Parameter Name="Query" Nullable="false" Mode="In" Type="String" d:Description="Query" d:SampleValues="Rudy Duck" d:EncodeParameterValue="true" MaxLength="255" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Identity"/>`
@@ -172,7 +180,9 @@ FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
 | **d:Nullable** *(選用)* |允許定義參數是否可為 null。 預設值為：true。 不過，公開為 URI 範本中路徑一部分的參數不可為 null。 當這些參數的屬性設為 false 時，使用者輸入會被覆寫。 **範例：** `<Parameter Name="BikeType" Type="String" Mode="In" Nullable="false"/>` |
 | **d:SampleValue** *(選用)* |要在 UI 中顯示為用戶端之附註的範例值。  例如，可以使用管線分隔清單來新增數個值，即 |
 
-## <a name="entitytype-node"></a>EntityType 節點
+<a id="entitytype-node" class="xliff"></a>
+
+## EntityType 節點
 這個節點代表從 Marketplace 傳回給使用者的其中一個類型。 它也包含從內容提供者服務所傳回之輸出到傳回給使用者之值的對應。
 
 這個節點的詳細資料位於[這裡](http://msdn.microsoft.com/library/bb399206.aspx) (請使用 [其他版本] 下拉式清單，以視需要選取不同版本來檢視文件)。
@@ -196,11 +206,12 @@ XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重�
 
 **Key** - Marketplace 會忽略此屬性。 REST 型 Web 服務通常不會公開主要金鑰。
 
-## <a name="property-node"></a>屬性節點
+<a id="property-node" class="xliff"></a>
+
+## 屬性節點
 這個節點包含記錄的屬性。
 
-這個節點的詳細資料位於 [http://msdn.microsoft.com/library/bb399546.aspx](http://msdn.microsoft.com/library/bb399546.aspx) (請使用 [其他版本]**** 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。*範例：*
-        `<EntityType Name="MetaDataEntityType" d:Map="/MyXMLPath">
+這個節點的詳細資料位於 [http://msdn.microsoft.com/library/bb399546.aspx](http://msdn.microsoft.com/library/bb399546.aspx) (請使用 [其他版本]**** 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。*範例：* `<EntityType Name="MetaDataEntityType" d:Map="/MyXMLPath">
         <Property Name="Name"     Type="String" Nullable="true" d:Map="./Service/Name" d:IsPrimaryKey="true" DefaultValue=”Joe Doh” MaxLength="25" FixedLength="true" />
         ...
         </EntityType>`
@@ -253,7 +264,9 @@ XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重�
 
 **d:DatabaseDataType** -這是資料庫中資料行的資料類型，亦即 SQL 資料類型。 請參閱 DataService CSDL 範例
 
-## <a name="supported-parametersproperty-types"></a>支援的參數/屬性類型
+<a id="supported-parametersproperty-types" class="xliff"></a>
+
+## 支援的參數/屬性類型
 以下是支援的參數和屬性類型。 (區分大小寫)
 
 | 基本類型 | 說明 |
@@ -271,7 +284,9 @@ XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重�
 | Int64 |代表帶正負號的 64 位元整數值 |
 | String |代表固定或可變長度的字元資料 |
 
-## <a name="see-also"></a>另請參閱
+<a id="see-also" class="xliff"></a>
+
+## 另請參閱
 * 如果您有興趣全面了解 OData 對應程序和用途，請閱讀 [資料服務 OData 對應](marketplace-publishing-data-service-creation-odata-mapping.md) 一文來檢閱定義、結構和指示。
 * 如果您有興趣檢閱範例，請閱讀 [資料服務 OData 對應範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md) 一文，來查看範例程式碼，並了解程式碼語法與內容。
 * 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀 [資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。

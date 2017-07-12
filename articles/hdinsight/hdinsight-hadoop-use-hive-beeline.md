@@ -15,17 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/05/2017
+ms.date: 06/26/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: e75bc8b74f965a0d4509b6967f1cdc7fa32eec56
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 93ea31b4469f21e92337a768668ae6d93bbc6ba6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
-# <a name="use-the-beeline-client-with-apache-hive"></a>使用 Beeline 用戶端搭配 Apache Hive
+<a id="use-the-beeline-client-with-apache-hive" class="xliff"></a>
+
+# 使用 Beeline 用戶端搭配 Apache Hive
 
 了解如何使用 [Beeline](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline–NewCommandLineShell) 在 HDInsight 上執行 Hive 查詢。
 
@@ -33,7 +35,7 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
 
 | 您執行 Beeline 的來源 | 參數 |
 | --- | --- | --- |
-| 對前端或邊緣節點的 SSH 連線 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin` |
+| 對前端或邊緣節點的 SSH 連線 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http'` |
 | 叢集外部 | `-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2' -n admin -p password` |
 
 > [!NOTE]
@@ -56,22 +58,20 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
 
 ## <a id="beeline"></a>使用 BeeLine
 
-1. 啟動 Beeline 時，您必須為 HDInsight 叢集上的 HiveServer2 提供連接字串。 您也必須提供叢集登入的帳戶名稱 (通常是 `admin`)。 如果您從叢集外部執行命令，您也必須提供叢集登入密碼。 使用下表來尋找要使用的連接字串格式和參數︰
+1. 啟動 Beeline 時，您必須為 HDInsight 叢集上的 HiveServer2 提供連接字串。 若要從叢集外部執行命令，您也必須提供叢集登入帳戶名稱 (預設為 `admin`) 和密碼。 使用下表來尋找要使用的連接字串格式和參數︰
 
     | 您執行 Beeline 的來源 | 參數 |
     | --- | --- | --- |
-    | 對前端或邊緣節點的 SSH 連線 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin` |
+    | 對前端或邊緣節點的 SSH 連線 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http'` |
     | 叢集外部 | `-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2' -n admin -p password` |
 
     例如，下列命令可用來啟動從連往叢集的 SSH 工作階段啟動 Beeline：
 
     ```bash
-    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin
+    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http'
     ```
 
-    此命令會啟動 Beeline 用戶端，然後連線至叢集前端節點上的 HiveServer2。 `-n` 參數用來提供叢集登入帳戶。 預設登入是 `admin`。 如果您在叢集建立期間使用不同的名稱，請使用該名稱，而不是 `admin`。
-
-    命令完成之後，您會看見 `jdbc:hive2://headnodehost:10001/>` 提示字元。
+    此命令會啟動 Beeline 用戶端，然後連線至叢集前端節點上的 HiveServer2。 命令完成之後，您會看見 `jdbc:hive2://headnodehost:10001/>` 提示字元。
 
 2. Beeline 命令以 `!` 字元開頭，例如 `!help` 顯示說明。 不過，一些命令可以省略 `!`。 例如，`help` 也能運作。
 
@@ -193,10 +193,10 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
 
 3. 若要儲存檔案，請使用 **Ctrl**+**_X**，然後輸入 **Y**，最後按 **Enter**。
 
-4. 使用下列命令，以使用 Beeline 來執行檔案。 以稍早取得的前端節點名稱取代 **HOSTNAME**，並以系統管理員帳戶的密碼取代 **PASSWORD**：
+4. 使用下列命令，以使用 Beeline 來執行檔案：
 
     ```bash
-    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin -i query.hql
+    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -i query.hql
     ```
 
     > [!NOTE]
@@ -232,6 +232,15 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
 將連接字串中的 `clustername` 取代為您的 HDInsight 叢集的名稱。
 
 將 `admin` 取代為叢集登入的名稱，以及將 `password` 取代為您的叢集登入的密碼。
+
+## <a id="sparksql"></a>使用 Beeline 搭配 Spark
+
+Spark 提供自己的 HiveServer2 實作，這通常是指 Spark Thrift 伺服器。 此服務會使用 Spark SQL 來解析查詢而不是 Hive，並可能提供更佳的效能 (視您的查詢而定)。
+
+若要連線到 HDInsight 叢集上 Spark 的 Spark Thrift 伺服器，請使用連接埠 `10002` 而不是 `10001`。 例如， `beeline -u 'jdbc:hive2://headnodehost:10002/;transportMode=http'`。
+
+> [!IMPORTANT]
+> 無法透過網際網路直接存取 Spark Thrift 伺服器。 您只能從 SSH 工作階段或在與 HDInsight 叢集相同的 Azure 虛擬網路內連線到它。
 
 ## <a id="summary"></a><a id="nextsteps"></a>後續步驟
 
