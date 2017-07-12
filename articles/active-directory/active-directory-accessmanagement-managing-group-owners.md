@@ -14,17 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/22/2016
 ms.author: curtand
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
 ms.openlocfilehash: 8c4920107b5d05716021bcef80d3c52c25f6eade
+ms.contentlocale: zh-tw
 ms.lasthandoff: 12/29/2016
 
 
 ---
-# <a name="managing-owners-for-a-group"></a>管理群組的擁有者
+<a id="managing-owners-for-a-group" class="xliff"></a>
+
+# 管理群組的擁有者
 一旦資源擁有者將資源的存取權指派給 Azure AD 群組後，群組擁有者就會管理群組的成員資格。 資源擁有者實際上是委派權限給群組的擁有者，以指派使用者存取資源。
 
-## <a name="assigning-group-ownership"></a>指派群組擁有權
+<a id="assigning-group-ownership" class="xliff"></a>
+
+## 指派群組擁有權
 **將擁有者新增至群組**
 
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，選取 [Active Directory]，然後開啟您組織的目錄。
@@ -39,7 +44,9 @@ ms.lasthandoff: 12/29/2016
 3. 選取 [擁有者]  索引標籤。
 4. 選取您要從這個群組中移除的擁有者，然後選取 [移除] 。
 
-## <a name="additional-information"></a>其他資訊
+<a id="additional-information" class="xliff"></a>
+
+## 其他資訊
 這些文章提供有關 Azure Active Directory 的其他資訊。
 
 * [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
