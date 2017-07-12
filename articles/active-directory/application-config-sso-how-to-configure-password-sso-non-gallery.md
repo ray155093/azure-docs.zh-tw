@@ -11,17 +11,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
 ms.openlocfilehash: 03200aeb1b6ca6f01a78c95e9014f5290c114e6a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/11/2017
-
 
 ---
 
-# <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>如何為不在資源庫內的應用程式設定密碼單一登入
+<a id="how-to-configure-password-single-sign-on-for-a-non-gallery-application" class="xliff"></a>
+
+# 如何為不在資源庫內的應用程式設定密碼單一登入
 
 除了 Azure AD 應用程式庫中找到的選項，當您想要的應用程式未在此處列出時，您也可以選擇新增**不在資源庫內的應用程式**。 使用這項功能，您可以新增任何已存在於組織中的應用程式，或您可能從尚不屬於 [Azure AD 應用程式庫](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#get-started-with-the-azure-ad-application-gallery)的供應商取得的任何第三方應用程式。
 
@@ -53,7 +55,9 @@ ms.lasthandoff: 04/11/2017
 
 以下說明如何針對您使用**新增不在資源庫內的應用程式**經驗所新增的任何應用程式，啟用[以密碼為基礎的單一登入](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work)。
 
-## <a name="overview-of-steps-required"></a>所需步驟的概觀
+<a id="overview-of-steps-required" class="xliff"></a>
+
+## 所需步驟的概觀
 
 若要設定 Azure AD 資源庫中的應用程式，您必須：
 
@@ -67,7 +71,9 @@ ms.lasthandoff: 04/11/2017
 
     -   [將應用程式直接指派至群組](#assign-an-application-to-a-group-directly)
 
-## <a name="add-a-non-gallery-application"></a>新增不在資源庫內的應用程式
+<a id="add-a-non-gallery-application" class="xliff"></a>
+
+## 新增不在資源庫內的應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -87,7 +93,9 @@ ms.lasthandoff: 04/11/2017
 
 稍待片刻，您便能看見應用程式的設定刀鋒視窗。
 
-## <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
+<a id="configure-the-application-for-password-single-sign-on" class="xliff"></a>
+
+## 設定應用程式使用密碼單一登入
 
 若要為應用程式設定單一登入，請依照下列步驟執行：
 
@@ -115,7 +123,9 @@ ms.lasthandoff: 04/11/2017
 
 11. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-## <a name="assign-a-user-to-an-application-directly"></a>將使用者直接指派至應用程式
+<a id="assign-a-user-to-an-application-directly" class="xliff"></a>
+
+## 將使用者直接指派至應用程式
 
 若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行︰
 
@@ -151,7 +161,9 @@ ms.lasthandoff: 04/11/2017
 
 15. 按一下 [指派] 按鈕，將應用程式指派至選取的使用者。
 
-## <a name="assign-an-application-to-a-group-directly"></a>將應用程式直接指派至群組
+<a id="assign-an-application-to-a-group-directly" class="xliff"></a>
+
+## 將應用程式直接指派至群組
 
 若要直接將一或多個群組指派至應用程式，請依照下列步驟執行︰
 
@@ -189,6 +201,8 @@ ms.lasthandoff: 04/11/2017
 
 稍待片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [使用應用程式 Proxy 提供應用程式的單一登入](active-directory-application-proxy-sso-using-kcd.md)
 

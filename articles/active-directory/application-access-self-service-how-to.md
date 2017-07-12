@@ -11,17 +11,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
 ms.openlocfilehash: af0ec17d319f0a2911e1b50a5ed45dd59dafa752
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/11/2017
-
 
 ---
 
-# <a name="how-to-configure-self-service-application-assignment"></a>如何設定自助應用程式指派
+<a id="how-to-configure-self-service-application-assignment" class="xliff"></a>
+
+# 如何設定自助應用程式指派
 
 您必須針對想要允許使用者進行自助探索並要求存取權的所有應用程式啟用「自助應用程式存取」，使用者才能從其存取面板進行應用程式自助探索。
 
@@ -41,7 +43,9 @@ ms.lasthandoff: 04/11/2017
 
 -   您可以自動將已為其指派自助服務的使用者直接指派到應用程式角色。
 
-## <a name="enable-self-service-application-access-to-allow-users-to-find-their-own-applications"></a>啟用自助應用程式存取以允許使用者尋找其應用程式
+<a id="enable-self-service-application-access-to-allow-users-to-find-their-own-applications" class="xliff"></a>
+
+## 啟用自助應用程式存取以允許使用者尋找其應用程式
 
 自助應用程式存取這個絕佳方式可以讓使用者進行應用程式自助探索，而且可以讓商務群組核准那些應用程式的存取權。 您可以允許商務群組直接從其存取面板針對「密碼單一登入應用程式」管理指派給哪些使用者的認證。
 
@@ -86,6 +90,8 @@ ms.lasthandoff: 04/11/2017
 
 這些核准只支援單一核准工作流程，這表示若您指定多個核准者，任何核准者都可以核准應用程式存取。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [設定 Azure Active Directory 進行自助群組管理](active-directory-accessmanagement-self-service-group-management.md)
 

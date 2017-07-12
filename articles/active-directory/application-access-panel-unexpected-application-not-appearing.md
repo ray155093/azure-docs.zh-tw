@@ -11,17 +11,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: 605e68dd86e5188f8a872745164ac879c40a1278
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="an-assigned-application-is-not-appearing-on-the-access-panel"></a>指派的應用程式未出現在存取面板上
+<a id="an-assigned-application-is-not-appearing-on-the-access-panel" class="xliff"></a>
+
+# 指派的應用程式未出現在存取面板上
 
 存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。 在 Azure AD 入口網站中可代表使用者設定這些應用程式。 應用程式必須經過正確的設定並指派給使用者或使用者所屬的群組，才能在存取面板中顯示該應用程式。
 
@@ -35,13 +37,17 @@ ms.lasthandoff: 04/17/2017
 
 -   含現有 SSO 解決方案的應用程式
 
-## <a name="general-issues-to-check-first"></a>首先檢查一般問題
+<a id="general-issues-to-check-first" class="xliff"></a>
+
+## 首先檢查一般問題
 
 -   如果才剛將應用程式新增至使用者，請在幾分鐘之後嘗試登入並再次登出使用者的存取面板，以查明是否已新增該應用程式。
 
 -   如果才剛從使用者或使用者所屬群組移除授權，則根據群組的大小和複雜度而定，可能要經過一段很長的時間，變更才會生效。 登入存取面板之前，請多等一些時間。
 
-## <a name="problems-related-to-application-configuration"></a>應用程式設定的相關問題
+<a id="problems-related-to-application-configuration" class="xliff"></a>
+
+## 應用程式設定的相關問題
 
 應用程式未出現在使用者的存取面板上可能是因為並未正確設定。 以下提供一些方式，可讓您用來針對應用程式設定的相關問題進行疑難排解：
 
@@ -53,7 +59,9 @@ ms.lasthandoff: 04/17/2017
 
 -   [如何為不在資源庫內的應用程式設定密碼單一登入應用程式](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
 
-### <a name="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定同盟單一登入
+<a id="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application" class="xliff"></a>
+
+### 如何為 Azure AD 資源庫應用程式設定同盟單一登入
 
 Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式都提供逐步教學課程。 您可以存取[如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/)，以取得詳細的逐步指引。
 
@@ -69,7 +77,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 -   [在應用程式中設定 Azure AD 中繼資料值 (登入 URL、簽發者、登出 URL 與憑證)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
-#### <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
+<a id="add-an-application-from-the-azure-ad-gallery" class="xliff"></a>
+
+#### 從 Azure AD 資源庫新增應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -93,7 +103,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-#### <a name="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫為應用程式設定單一登入
+<a id="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery" class="xliff"></a>
+
+#### 從 Azure AD 資源庫為應用程式設定單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -139,7 +151,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 15. 將使用者指派給應用程式。
 
-#### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>選取使用者識別碼並新增要傳送到應用程式的使用者屬性
+<a id="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application" class="xliff"></a>
+
+#### 選取使用者識別碼並新增要傳送到應用程式的使用者屬性
 
 若要選取使用者識別碼或新增使用者屬性，請依照下列步驟執行：
 
@@ -174,7 +188,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
    2. 按一下 [儲存]。 您會在資料表中看到新屬性。
 
-#### <a name="download-the-azure-ad-metadata-or-certificate"></a>下載 Azure AD 中繼資料或憑證
+<a id="download-the-azure-ad-metadata-or-certificate" class="xliff"></a>
+
+#### 下載 Azure AD 中繼資料或憑證
 
 若要從 Azure AD 下載應用程式中繼資料或憑證，請依照下列步驟執行：
 
@@ -198,7 +214,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
     Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XML 檔案。
 
-### <a name="how-to-configure-federated-single-sign-on-for-a-non-gallery-application"></a>如何為不在資源庫內的應用程式設定同盟單一登入
+<a id="how-to-configure-federated-single-sign-on-for-a-non-gallery-application" class="xliff"></a>
+
+### 如何為不在資源庫內的應用程式設定同盟單一登入
 
 若要設定不在資源庫內的應用程式，您必須有 Azure AD Premium，且應用程式必須支援 SAML 2.0。 如需有關 Azure AD 版本的詳細資訊，請參閱 [Azure AD 定價](https://azure.microsoft.com/pricing/details/active-directory/)。
 
@@ -210,7 +228,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 -   [在應用程式中設定 Azure AD 中繼資料值 (登入 URL、簽發者、登出 URL 與憑證)](#configuring-single-sign-on)
 
-#### <a name="configure-the-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a>在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)
+<a id="configure-the-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url" class="xliff"></a>
+
+#### 在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)
 
 若要為不在 Azure AD 資源庫中的應用程式設定單一登入，請依照下列步驟執行：
 
@@ -252,7 +272,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 14. 按一下 [設定 &lt;應用程式名稱&gt;]，以存取如何在應用程式中設定單一登入的文件。 此外，您有應用程式所需的 Azure AD URL 與憑證。
 
-#### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>選取使用者識別碼並新增要傳送到應用程式的使用者屬性
+<a id="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application" class="xliff"></a>
+
+#### 選取使用者識別碼並新增要傳送到應用程式的使用者屬性
 
 若要選取使用者識別碼或新增使用者屬性，請依照下列步驟執行：
 
@@ -287,7 +309,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
    2. 按一下 [儲存]。 您會在資料表中看到新屬性。
 
-#### <a name="download-the-azure-ad-metadata-or-certificate"></a>下載 Azure AD 中繼資料或憑證
+<a id="download-the-azure-ad-metadata-or-certificate" class="xliff"></a>
+
+#### 下載 Azure AD 中繼資料或憑證
 
 若要從 Azure AD 下載應用程式中繼資料或憑證，請依照下列步驟執行：
 
@@ -311,7 +335,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XML 檔案。
 
-### <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定密碼單一登入
+<a id="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application" class="xliff"></a>
+
+### 如何為 Azure AD 資源庫應用程式設定密碼單一登入
 
 若要設定 Azure AD 資源庫中的應用程式，您必須：
 
@@ -319,7 +345,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 -   [設定應用程式使用密碼單一登入](#configure-the-application-for-password-single-sign-on)
 
-#### <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
+<a id="add-an-application-from-the-azure-ad-gallery" class="xliff"></a>
+
+#### 從 Azure AD 資源庫新增應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -343,7 +371,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-#### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
+<a id="configure-the-application-for-password-single-sign-on" class="xliff"></a>
+
+#### 設定應用程式使用密碼單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -369,7 +399,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 10. 此外，您也可以代表使用者提供認證，做法是選取使用者資料列、按一下 [更新認證]，然後代表使用者輸入使用者名稱與密碼。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-### <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>如何為不在資源庫內的應用程式設定密碼單一登入
+<a id="how-to-configure-password-single-sign-on-for-a-non-gallery-application" class="xliff"></a>
+
+### 如何為不在資源庫內的應用程式設定密碼單一登入
 
 若要設定 Azure AD 資源庫中的應用程式，您必須：
 
@@ -377,7 +409,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 -   [設定應用程式使用密碼單一登入](#configure-the-application-for-password-single-sign-on)
 
-#### <a name="add-a-non-gallery-application"></a>新增不在資源庫內的應用程式
+<a id="add-a-non-gallery-application" class="xliff"></a>
+
+#### 新增不在資源庫內的應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -397,7 +431,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-#### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
+<a id="configure-the-application-for-password-single-sign-on" class="xliff"></a>
+
+#### 設定應用程式使用密碼單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -425,7 +461,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 11. 此外，您也可以代表使用者提供認證，做法是選取使用者資料列、按一下 [更新認證]，然後代表使用者輸入使用者名稱與密碼。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-## <a name="problems-related-to-assigning-applications-to-users"></a>將應用程式指派給使用者的相關問題
+<a id="problems-related-to-assigning-applications-to-users" class="xliff"></a>
+
+## 將應用程式指派給使用者的相關問題
 
 使用者可能因為未將他們指派給應用程式，而無法在其存取面板上看見該應用程式。 以下是一些檢查方法：
 
@@ -437,7 +475,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 -   如何[將授權指派給 Azure AD 中的使用者](#how-to-assign-a-user-a-license)
 
-### <a name="check-if-a-user-is-assigned-to-the-application"></a>檢查是否已將使用者指派給應用程式
+<a id="check-if-a-user-is-assigned-to-the-application" class="xliff"></a>
+
+### 檢查是否已將使用者指派給應用程式
 
 若要檢查是否已將使用者指派給應用程式，請依照下列步驟執行：
 
@@ -459,7 +499,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
    * 如果沒有，請依照＜如何將使用者直接指派給應用程式＞中的步驟來執行這項操作。
 
-### <a name="how-to-assign-a-user-to-an-application-directly"></a>如何將使用者直接指派給應用程式
+<a id="how-to-assign-a-user-to-an-application-directly" class="xliff"></a>
+
+### 如何將使用者直接指派給應用程式
 
 若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行：
 
@@ -497,7 +539,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 稍後片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。
 
-### <a name="check-if-a-user-is-under-a-license-related-to-the-application"></a>檢查使用者是否已獲應用程式相關的授權
+<a id="check-if-a-user-is-under-a-license-related-to-the-application" class="xliff"></a>
+
+### 檢查使用者是否已獲應用程式相關的授權
 
 若要檢查指派給使用者的授權，請依照下列步驟執行：
 
@@ -517,7 +561,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
   * 如果已為使用者指派 Office 授權，這會讓第一方 Office 應用程式出現在使用者的存取面板上。
 
-### <a name="how-to-assign-a-user-a-license"></a>如何為使用者指派授權 
+<a id="how-to-assign-a-user-a-license" class="xliff"></a>
+
+### 如何為使用者指派授權 
 
 若要為使用者指派授權，請依照下列步驟執行：
 
@@ -543,7 +589,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 11. 按一下 [指派] 按鈕，將這些授權指派給這位使用者。
 
-## <a name="problems-related-to-assigning-applications-to-groups"></a>將應用程式指派給群組的相關問題
+<a id="problems-related-to-assigning-applications-to-groups" class="xliff"></a>
+
+## 將應用程式指派給群組的相關問題
 
 使用者可能因為屬於已被指派應用程式的群組，所以能在存取面板上看見該應用程式。 以下是一些檢查方法：
 
@@ -555,7 +603,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 -   [如何將授權指派給群組](#how-to-assign-a-license-to-a-group)
 
-### <a name="check-a-users-group-memberships"></a>檢查使用者的群組成員資格
+<a id="check-a-users-group-memberships" class="xliff"></a>
+
+### 檢查使用者的群組成員資格
 
 若要檢查群組的成員資格，請依照下列步驟執行：
 
@@ -577,7 +627,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
   * 如果您想要從群組移除使用者，請**按一下群組的資料列**，然後選取 [刪除]。
 
-### <a name="how-to-assign-an-application-to-a-group-directly"></a>如何將應用程式直接指派給群組
+<a id="how-to-assign-an-application-to-a-group-directly" class="xliff"></a>
+
+### 如何將應用程式直接指派給群組
 
 若要將一或多個群組直接指派給應用程式，請依照下列步驟執行：
 
@@ -615,7 +667,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 稍後片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。
 
-### <a name="check-if-a-user-is-part-of-group-assigned-to-a-license"></a>檢查使用者是否屬於指派給授權的群組
+<a id="check-if-a-user-is-part-of-group-assigned-to-a-license" class="xliff"></a>
+
+### 檢查使用者是否屬於指派給授權的群組
 
 1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**身分登入。
 
@@ -637,7 +691,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
    * 如果已將群組指派給 Office 授權，這可能會讓某些第一方 Office 應用程式出現在使用者的存取面板上。
 
-### <a name="how-to-assign-a-license-to-a-group"></a>如何將授權指派給群組
+<a id="how-to-assign-a-license-to-a-group" class="xliff"></a>
+
+### 如何將授權指派給群組
 
 若要將授權指派給群組，請依照下列步驟執行：
 
@@ -668,7 +724,9 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 >
 >
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [將新的使用者加入 Azure Active Directory](active-directory-users-create-azure-portal.md)
 
 

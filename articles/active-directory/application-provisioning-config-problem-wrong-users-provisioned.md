@@ -11,23 +11,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
 ms.openlocfilehash: 5ccb9e920ce8e1c95b9ce0ffc8626f2dcf3783d8
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/11/2017
-
 
 ---
 
-# <a name="wrong-set-of-users-are-being-provisioned-to-an-azure-ad-gallery-application"></a>一組錯誤的使用者佈建至 Azure AD 資源庫應用程式
+<a id="wrong-set-of-users-are-being-provisioned-to-an-azure-ad-gallery-application" class="xliff"></a>
+
+# 一組錯誤的使用者佈建至 Azure AD 資源庫應用程式
 
 哪些使用者會佈建至應用程式，主要取決於哪些使用者和群組已**指派**至應用程式。
 
 請利用下列資源，了解如何檢查 Azure Active Directory 內有哪些使用者和群組已指派至應用程式。
 
-## <a name="assign-a-user-directly-as-an-administrator"></a>以系統管理員身分直接指派使用者
+<a id="assign-a-user-directly-as-an-administrator" class="xliff"></a>
+
+## 以系統管理員身分直接指派使用者
 
 若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行︰
 
@@ -65,7 +69,9 @@ ms.lasthandoff: 04/11/2017
 
 如果已經為應用程式設定並執行佈建，新的使用者應該大約 10 分鐘就會佈建至應用程式。 如需詳細資訊，請檢查**稽核記錄**。
 
-## <a name="assign-a-group-directly-to-an-application-as-an-administrator"></a>以系統管理員身分將群組直接指派至應用程式
+<a id="assign-a-group-directly-to-an-application-as-an-administrator" class="xliff"></a>
+
+## 以系統管理員身分將群組直接指派至應用程式
 
 若要直接將一或多個群組指派至應用程式，請依照下列步驟執行︰
 
@@ -110,6 +116,8 @@ ms.lasthandoff: 04/11/2017
 
 如果已啟用佈建群組，請務必檢閱屬性對應，以確保「比對識別碼」使用適當的欄位。 這可以是顯示名稱或電子郵件別名，因為如果 Azure AD 中某個群組的相符屬性空白或未填入，則不會佈建群組和其成員。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)
 

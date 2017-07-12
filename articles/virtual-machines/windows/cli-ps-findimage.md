@@ -3,7 +3,7 @@ title: "瀏覽並選取 Windows VM 映像 | Microsoft Docs"
 description: "了解如何在使用資源管理員部署模型建立 Windows 虛擬機器時，判斷映像的發行者、訂閱詳情及 SKU。"
 services: virtual-machines-windows
 documentationcenter: 
-author: squillace
+author: dlepow
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -14,18 +14,22 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 08/23/2016
-ms.author: rasquill
-translationtype: Human Translation
+ms.author: danlep
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 28bb214570fcca94c5ceb6071c4851b81ec00c8d
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
-
 ---
-# <a name="navigate-and-select-windows-virtual-machine-images-in-azure-with-powershell"></a>使用 PowerShell 在 Azure 中瀏覽並選取 Windows 虛擬機器映像
+<a id="navigate-and-select-windows-virtual-machine-images-in-azure-with-powershell" class="xliff"></a>
+
+# 使用 PowerShell 在 Azure 中瀏覽並選取 Windows 虛擬機器映像
 本主題說明如何針對您可能在其中進行部署的每個位置，尋找 VM 映像發行者、提供項目、SKU 及版本。 例如，一些常用的 Windows VM 映像包括︰
 
-## <a name="table-of-commonly-used-windows-images"></a>常用 Windows 映像表
+<a id="table-of-commonly-used-windows-images" class="xliff"></a>
+
+## 常用 Windows 映像表
 | PublisherName | 提供項目 | SKU |
 |:--- |:--- |:--- |:--- |
 | MicrosoftDynamicsNAV |DynamicsNAV |2015 |
@@ -39,7 +43,9 @@ ms.lasthandoff: 04/27/2017
 | MicrosoftWindowsServerEssentials |WindowsServerEssentials |WindowsServerEssentials |
 | MicrosoftWindowsServerHPCPack |WindowsServerHPCPack |2012R2 |
 
-## <a name="find-azure-images-with-powershell"></a>使用 PowerShell 來尋找 Azure 映像
+<a id="find-azure-images-with-powershell" class="xliff"></a>
+
+## 使用 PowerShell 來尋找 Azure 映像
 > [!NOTE]
 > 安裝及設定 [最新的 Azure PowerShell](/powershell/azure/overview)。 如果您使用 1.0 以下的 Azure PowerShell 模組，您仍可以使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。 
 > 
@@ -132,6 +138,8 @@ Windows-Server-Technical-Preview
 
 從這個清單中，複製選擇的 SKU 名稱，您就可以取得 `Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本的所有資訊。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 現在，您可以精確地選擇想要使用的映像。 若要使用您剛找到的映像資訊來快速建立虛擬機器，或使用範本搭配該映像資訊，請參閱[使用 Resource Manager 和 PowerShell 建立 Windows VM](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 

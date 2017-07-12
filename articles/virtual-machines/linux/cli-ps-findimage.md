@@ -3,7 +3,7 @@ title: "使用 Azure CLI 選取 Linux VM 映像 | Microsoft Docs"
 description: "了解如何在使用資源管理員部署模型建立 Linux 虛擬機器時，判斷映像的發行者、訂閱詳情及 SKU。"
 services: virtual-machines-linux
 documentationcenter: 
-author: squillace
+author: dlepow
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -14,20 +14,24 @@ ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 02/15/2017
-ms.author: rasquill
+ms.author: danlep
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: 1c4e8b5168d15c480d2aea41ddf7570d310e1252
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
 
-
 ---
-# <a name="how-to-find-linux-vm-images-with-the-azure-cli"></a>如何使用 Azure CLI 尋找 Linux VM 映像
+<a id="how-to-find-linux-vm-images-with-the-azure-cli" class="xliff"></a>
+
+# 如何使用 Azure CLI 尋找 Linux VM 映像
 本主題說明如何針對您可能在其中進行部署的每個位置，尋找發行者、提供項目、SKU 及版本。 
 
 
-## <a name="use-azure-cli-20"></a>使用 Azure CLI 2.0
+<a id="use-azure-cli-20" class="xliff"></a>
+
+## 使用 Azure CLI 2.0
 
 當您[安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2) 之後，請使用 `az vm image list` 命令來查看已快取的常用 VM 映像清單。 例如，以下的 `az vm image list -o table` 命令範例會顯示：
 
@@ -47,13 +51,17 @@ Debian         credativ                8                   credativ:Debian:8:lat
 CoreOS         CoreOS                  Stable              CoreOS:CoreOS:Stable:latest                                     CoreOS               latest
 ```
 
-### <a name="finding-all-current-images"></a>尋找所有目前的映像
+<a id="finding-all-current-images" class="xliff"></a>
+
+### 尋找所有目前的映像
 
 若要取得目前的所有映像清單，請使用 `az vm image list` 命令搭配 `--all` 選項。 與 Azure CLI 1.0 命令不同，`az vm image list --all` 命令預設會傳回 **westus** 中所有的映像 (除非您指定特定的 `--location` 引數)，因此 `--all` 命令需要一些時間才能完成。 如果您打算以互動方式進行調查，請使用 `az vm image list --all > allImages.json`，這會傳回 Azure 上所有目前可用的映像清單，並將它儲存成檔案以供在本機使用。 
 
 如果您心中已經有一或多個映像，您可以指定數個選項之一來僅限搜尋特定的位置、方案、發行者或 SKU。 如果未指定位置，則會傳回適用於 **westus** 的值。
 
-### <a name="find-specific-images"></a>尋找特定映像
+<a id="find-specific-images" class="xliff"></a>
+
+### 尋找特定映像
 
 請使用 `az vm image list` 搭配篩選來尋找特定資訊。 例如，以下顯示 **Debian** 的可用「方案」(請記住，如果沒有 `--all` 參數，則只會搜尋通用映像的本機快取)：
 
@@ -94,7 +102,9 @@ az vm image show -l westeurope -f debian -p credativ --skus 8 --version 8.0.2017
 }
 ```
 
-## <a name="use-azure-cli-10"></a>使用 Azure CLI 1.0 
+<a id="use-azure-cli-10" class="xliff"></a>
+
+## 使用 Azure CLI 1.0 
 
 > [!NOTE]
 > 本文說明如何使用支援 Azure Resource Manager 部署模型的 Azure CLI 1.0 或 Azure PowerShell 安裝，來瀏覽並選取虛擬機器映像。 請變更為 Resource Manager 模式，這是一個必要條件。 搭配 Azure CLI 時，請輸入 `azure config mode arm` 來進入該模式。 
@@ -217,6 +227,8 @@ data:    canonical  ubuntuserver  16.04.0-LTS  Linux  16.04.201608150  westus   
 info:    vm image list command OK
 ```
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 現在，您可以精確地選擇想要使用的映像。 若要使用您剛找到的 URN 資訊來快速建立虛擬機器，或使用範本搭配該 URN 資訊，請參閱[使用 Azure CLI 建立 Linux VM](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 

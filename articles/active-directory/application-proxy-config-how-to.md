@@ -11,21 +11,25 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: 9abec188a5677942fd9eb9192c4067d2851a1969
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="how-to-configure-an-application-proxy-application"></a>如何設定應用程式 Proxy 應用程式
+<a id="how-to-configure-an-application-proxy-application" class="xliff"></a>
+
+# 如何設定應用程式 Proxy 應用程式
 
 本文協助您了解如何在 Azure AD 內設定應用程式 Proxy 應用程式，以向雲端公開您的內部部署應用程式。
 
-## <a name="recommended-documents"></a>建議的文件 
+<a id="recommended-documents" class="xliff"></a>
+
+## 建議的文件 
 
 若要深入了解應用程式 Proxy 應用程式透過管理入口網站的初始設定與建立，請遵循[使用 Azure AD 應用程式 Proxy 發佈應用程式](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal)。
 
@@ -33,7 +37,9 @@ ms.lasthandoff: 04/17/2017
 
 如需上傳憑證和使用自訂網域的詳細資訊，請參閱[使用 Azure AD 應用程式 Proxy 中的自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)。
 
-## <a name="create-the-applicationsetting-the-urls"></a>建立應用程式/設定 URL
+<a id="create-the-applicationsetting-the-urls" class="xliff"></a>
+
+## 建立應用程式/設定 URL
 
 如果您依照[使用 Azure AD 應用程式 Proxy 發佈應用程式](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal)文件中的步驟，並在建立應用程式時發生錯誤，請查看錯誤詳細資料，以取得修正應用程式的資訊及建議。 大部分的錯誤訊息都包含建議的修正。 若要避免常見的錯誤，請確認：
 
@@ -51,13 +57,17 @@ ms.lasthandoff: 04/17/2017
 
    ![通知提示](./media/application-proxy-config-how-to/error-message.png)
 
-## <a name="configure-connectorsconnector-groups"></a>設定連接器/連接器群組
+<a id="configure-connectorsconnector-groups" class="xliff"></a>
+
+## 設定連接器/連接器群組
 
 如果您因為連接器和連接器群組的警告而無法設定應用程式，請參閱啟用應用程式 Proxy 的指示，以取得下載連接器的詳細資料。 如果您想要深入了解連接器，請參閱[連接器文件](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors)。
 
 如果您的連接器處於非作用中狀態，這表示它們無法連線到服務。 這通常是因為沒有開啟所有必要的連接埠。 若要查看必要連接埠的清單，請參閱《啟用應用程式 Proxy》文件的＜必要條件＞一節。
 
-## <a name="upload-certificates-for-custom-domains"></a>上傳自訂網域的憑證
+<a id="upload-certificates-for-custom-domains" class="xliff"></a>
+
+## 上傳自訂網域的憑證
 
 自訂網域可讓您指定外部 URL 的網域。 若要使用自訂網域，您需要上傳該網域的憑證。 如需使用自訂網域和憑證的詳細資訊，請參閱[使用 Azure AD 應用程式 Proxy 中的自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)。 
 
@@ -73,6 +83,8 @@ ms.lasthandoff: 04/17/2017
 
    ![通知提示](./media/application-proxy-config-how-to/error-message2.png)
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [使用 Azure AD 應用程式 Proxy 發佈應用程式](application-proxy-publish-azure-portal.md)
 

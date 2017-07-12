@@ -11,17 +11,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
 ms.openlocfilehash: 972ed736e63089a69726de5d26236b930b390a10
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/11/2017
-
 
 ---
 
-# <a name="how-to-assign-users-and-groups-to-an-application"></a>如何將使用者和群組指派至應用程式
+<a id="how-to-assign-users-and-groups-to-an-application" class="xliff"></a>
+
+# 如何將使用者和群組指派至應用程式
 
 您必須先**將使用者指派至應用程式**以授與存取權，使用者才能對特定應用程式執行以下任何動作︰
 
@@ -33,7 +35,9 @@ ms.lasthandoff: 04/11/2017
 
 -   看到應用程式出現在其 [Office 365 應用程式啟動程式](https://support.office.com/article/Meet-the-Office-365-app-launcher-79f12104-6fed-442f-96a0-eb089a3f476a)上。
 
-## <a name="methods-to-assign-applications-with-azure-active-directory"></a>使用 Azure Active Directory 指派應用程式的方法 
+<a id="methods-to-assign-applications-with-azure-active-directory" class="xliff"></a>
+
+## 使用 Azure Active Directory 指派應用程式的方法 
 
 使用 Azure Active Directory 指派應用程式有 3 種方法：
 
@@ -43,7 +47,9 @@ ms.lasthandoff: 04/11/2017
 
 -   [啟用自助應用程式存取以允許使用者尋找自己的應用程式](#enable-self-service-application-access-to-allow-users-to-find-their-own-applications)
 
-## <a name="assign-a-user-directly-as-an-administrator"></a>以系統管理員身分直接指派使用者
+<a id="assign-a-user-directly-as-an-administrator" class="xliff"></a>
+
+## 以系統管理員身分直接指派使用者
 
 若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行︰
 
@@ -81,7 +87,9 @@ ms.lasthandoff: 04/11/2017
 
 稍待片刻，您已選取的使用者就能夠使用解決方案描述一節所述的方法，啟動這些應用程式。
 
-## <a name="assign-a-group-directly-to-an-application-as-an-administrator"></a>以系統管理員身分將群組直接指派至應用程式
+<a id="assign-a-group-directly-to-an-application-as-an-administrator" class="xliff"></a>
+
+## 以系統管理員身分將群組直接指派至應用程式
 
 若要直接將一或多個群組指派至應用程式，請依照下列步驟執行︰
 
@@ -119,7 +127,9 @@ ms.lasthandoff: 04/11/2017
 
 稍待片刻，您已選取之群組內的使用者就能夠使用解決方案描述一節所述的方法，啟動這些應用程式。 如果這些都是動態群組，對於這些指派的群組內的使用者，這些指派可能會出現一些額外的處理延遲。
 
-## <a name="enable-self-service-application-access-to-allow-users-to-find-their-own-applications"></a>啟用自助應用程式存取以允許使用者尋找自己的應用程式
+<a id="enable-self-service-application-access-to-allow-users-to-find-their-own-applications" class="xliff"></a>
+
+## 啟用自助應用程式存取以允許使用者尋找自己的應用程式
 
 自助應用程式存取是讓使用者自行探索應用程式的絕佳方式，還可讓商務群組核准對那些應用程式的存取。 您可以讓商務群組直接從其存取面板，管理指派給「密碼單一登入應用程式」使用者的認證。
 
@@ -164,6 +174,8 @@ ms.lasthandoff: 04/11/2017
 
 這些核准只支援單一核准工作流程，這表示若您指定多個核准者，任何核准者都可以核准應用程式存取。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [使用應用程式 Proxy 提供應用程式的單一登入](active-directory-application-proxy-sso-using-kcd.md)
 

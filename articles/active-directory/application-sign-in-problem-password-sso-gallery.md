@@ -10,23 +10,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: 65bfb0a759a624c98a19f3c2c9c72aa5a6780df7
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="problems-signing-in-to-an-azure-ad-gallery-application-configured-for-federated-single-sign-on"></a>登入針對同盟單一登入設定之 Azure AD 資源庫應用程式的問題
+<a id="problems-signing-in-to-an-azure-ad-gallery-application-configured-for-federated-single-sign-on" class="xliff"></a>
+
+# 登入針對同盟單一登入設定之 Azure AD 資源庫應用程式的問題
 
 存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。 具有 Azure AD 版本的使用者也可以透過存取面板使用自助群組和應用程式管理功能。 存取面板與 Azure 入口網站分開，使用者不需要具備 Azure 訂用帳戶也能使用。
 
 若要在存取面板中使用密碼單一登入 (SSO)，必須在使用者的瀏覽器中安裝存取面板延伸模組。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
 
-## <a name="meeting-browser-requirements-for-the-access-panel"></a>符合存取面板的瀏覽器需求
+<a id="meeting-browser-requirements-for-the-access-panel" class="xliff"></a>
+
+## 符合存取面板的瀏覽器需求
 
 存取面板需要支援 JavaScript 且已啟用 CSS 的瀏覽器。 若要在存取面板中使用密碼單一登入 (SSO)，必須在使用者的瀏覽器中安裝存取面板延伸模組。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
 
@@ -43,7 +47,9 @@ ms.lasthandoff: 04/17/2017
 >
 >
 
-## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板瀏覽器延伸模組
+<a id="how-to-install-the-access-panel-browser-extension" class="xliff"></a>
+
+## 如何安裝存取面板瀏覽器延伸模組
 
 若要安裝存取面板瀏覽器延伸模組，請依照下列步驟執行：
 
@@ -67,7 +73,9 @@ ms.lasthandoff: 04/17/2017
 
 -   [Firefox 存取面板延伸模組](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
-## <a name="setting-up-a-group-policy-for-internet-explorer"></a>設定適用於 Internet Explorer 的群組原則
+<a id="setting-up-a-group-policy-for-internet-explorer" class="xliff"></a>
+
+## 設定適用於 Internet Explorer 的群組原則
 
 您可以設定一個群組原則，以允許您在使用者電腦上遠端安裝適用於 Internet Explorer 的存取面板延伸模組。
 
@@ -79,11 +87,15 @@ ms.lasthandoff: 04/17/2017
 
 如需如何設定群組原則並將它部署到使用者的逐步指示，請遵循[如何使用群組原則部署 Internet Explorer 的存取面板延伸模組](https://docs.microsoft.com/azure/active-directory/active-directory-saas-ie-group-policy)教學課程。
 
-## <a name="troubleshoot-the-access-panel-in-internet-explorer"></a>進行 Internet Explorer 中存取面板的疑難排解
+<a id="troubleshoot-the-access-panel-in-internet-explorer" class="xliff"></a>
+
+## 進行 Internet Explorer 中存取面板的疑難排解
 
 如需存取診斷工具和設定 IE 延伸模組的逐步指示，請遵循[疑難排解 Internet Explorer 的存取面板延伸模組](https://docs.microsoft.com/azure/active-directory/active-directory-saas-ie-Troubleshoot)指南。
 
-## <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定密碼單一登入
+<a id="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application" class="xliff"></a>
+
+## 如何為 Azure AD 資源庫應用程式設定密碼單一登入
 
 若要從 Azure AD 資源庫設定應用程式，您必須：
 
@@ -93,7 +105,9 @@ ms.lasthandoff: 04/17/2017
 
 -   [將使用者指派至應用程式](#assign-users-to-the-application)
 
-### <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
+<a id="add-an-application-from-the-azure-ad-gallery" class="xliff"></a>
+
+### 從 Azure AD 資源庫新增應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -117,7 +131,9 @@ ms.lasthandoff: 04/17/2017
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
+<a id="configure-the-application-for-password-single-sign-on" class="xliff"></a>
+
+### 設定應用程式使用密碼單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -143,7 +159,9 @@ ms.lasthandoff: 04/17/2017
 
 10. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-### <a name="assign-users-to-the-application"></a>將使用者指派至應用程式
+<a id="assign-users-to-the-application" class="xliff"></a>
+
+### 將使用者指派至應用程式
 
 若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行：
 
@@ -181,7 +199,9 @@ ms.lasthandoff: 04/17/2017
 
 稍待片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。
 
-## <a name="if-these-troubleshoot-steps-dont-resolve-the-issue"></a>如果這些疑難排解步驟無法解決問題 
+<a id="if-these-troubleshoot-steps-dont-resolve-the-issue" class="xliff"></a>
+
+## 如果這些疑難排解步驟無法解決問題 
 使用下列資訊 (若有的話) 開啟支援票證︰
 
 -   相互關聯錯誤 ID
@@ -196,6 +216,8 @@ ms.lasthandoff: 04/17/2017
 
 -   Fiddler 追蹤
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
 

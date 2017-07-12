@@ -11,17 +11,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: b89569b818b0e2c79934a842fdc428011674c000
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="problems-signing-in-to-an-application-from-the-access-panel"></a>從存取面板登入應用程式的問題
+<a id="problems-signing-in-to-an-application-from-the-access-panel" class="xliff"></a>
+
+# 從存取面板登入應用程式的問題
 
 存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。 
 
@@ -37,7 +39,9 @@ ms.lasthandoff: 04/17/2017
 
 -   含現有 SSO 解決方案的應用程式
 
-## <a name="general-issues-to-check-first"></a>首先檢查的一般問題
+<a id="general-issues-to-check-first" class="xliff"></a>
+
+## 首先檢查的一般問題
 
 -   請確定您使用的**瀏覽器**符合存取面板的最低需求。
 
@@ -59,7 +63,9 @@ ms.lasthandoff: 04/17/2017
 
 -   也要確定嘗試清除瀏覽器的 Cookie，然後嘗試再次登入。
 
-## <a name="meeting-browser-requirements-for-the-access-panel"></a>符合存取面板的瀏覽器需求
+<a id="meeting-browser-requirements-for-the-access-panel" class="xliff"></a>
+
+## 符合存取面板的瀏覽器需求
 
 存取面板需要支援 JavaScript 且已啟用 CSS 的瀏覽器。 若要在存取面板中使用密碼單一登入 (SSO)，必須在使用者的瀏覽器中安裝存取面板延伸模組。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
 
@@ -73,7 +79,9 @@ ms.lasthandoff: 04/17/2017
 
 **注意**：當瀏覽器延伸開始支援 Edge 時，Windows 10 中的 Edge 就能使用密碼型 SSO 延伸模組。
 
-## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板瀏覽器延伸模組
+<a id="how-to-install-the-access-panel-browser-extension" class="xliff"></a>
+
+## 如何安裝存取面板瀏覽器延伸模組
 
 若要安裝存取面板瀏覽器延伸模組，請依照下列步驟執行：
 
@@ -97,7 +105,9 @@ ms.lasthandoff: 04/17/2017
 
 -   [Firefox 存取面板延伸模組](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
-## <a name="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定同盟單一登入
+<a id="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application" class="xliff"></a>
+
+## 如何為 Azure AD 資源庫應用程式設定同盟單一登入
 
 Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式都有逐步教學課程。 您可以存取[如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/)，以取得詳細的逐步指引。
 
@@ -115,7 +125,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 -   [將使用者指派至應用程式](#assign-users-to-the-application)
 
-### <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
+<a id="add-an-application-from-the-azure-ad-gallery" class="xliff"></a>
+
+### 從 Azure AD 資源庫新增應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -139,7 +151,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-### <a name="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫為應用程式設定單一登入
+<a id="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery" class="xliff"></a>
+
+### 從 Azure AD 資源庫為應用程式設定單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -185,7 +199,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 15. 將使用者指派至應用程式。
 
-### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>選取使用者識別碼並新增要傳送到應用程式的使用者屬性
+<a id="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application" class="xliff"></a>
+
+### 選取使用者識別碼並新增要傳送到應用程式的使用者屬性
 
 若要選取使用者識別碼或新增使用者屬性，請依照下列步驟執行：
 
@@ -220,7 +236,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
    2. 按一下 [儲存]。 您會在資料表中看到新屬性。
 
-### <a name="download-the-azure-ad-metadata-or-certificate"></a>下載 Azure AD 中繼資料或憑證
+<a id="download-the-azure-ad-metadata-or-certificate" class="xliff"></a>
+
+### 下載 Azure AD 中繼資料或憑證
 
 若要從 Azure AD 下載應用程式中繼資料或憑證，請依照下列步驟執行：
 
@@ -244,7 +262,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
     Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XML 檔案。
 
-## <a name="how-to-configure-federated-single-sign-on-for-a-non-gallery-application"></a>如何為非資源庫應用程式設定同盟單一登入
+<a id="how-to-configure-federated-single-sign-on-for-a-non-gallery-application" class="xliff"></a>
+
+## 如何為非資源庫應用程式設定同盟單一登入
 
 若要設定非資源庫應用程式，您必須有 Azure AD Premium，且應用程式必須支援 SAML 2.0。 如需有關 Azure AD 版本的詳細資訊，請造訪 [Azure Active Directory 定價](https://azure.microsoft.com/pricing/details/active-directory/)。
 
@@ -256,7 +276,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 -   [設定應用程式中的 Azure AD 中繼資料值 (登入 URL、簽發者、登出 URL 與憑證)](#configuring-single-sign-on)
 
-### <a name="configure-the-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a>在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)
+<a id="configure-the-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url" class="xliff"></a>
+
+### 在 Azure AD 中設定應用程式的中繼資料值 (登入 URL、識別碼、回覆 URL)
 
 若要為不在 Azure AD 資源庫中的應用程式設定單一登入，請依照下列步驟執行：
 
@@ -298,7 +320,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 14. 按一下 [設定 &lt;應用程式名稱&gt;]，可存取如何設定應用程式使用單一登入的文件。 此外，您有應用程式所需的 Azure AD URL 與憑證。
 
-### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>選取使用者識別碼並新增要傳送到應用程式的使用者屬性
+<a id="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application" class="xliff"></a>
+
+### 選取使用者識別碼並新增要傳送到應用程式的使用者屬性
 
 若要選取使用者識別碼或新增使用者屬性，請依照下列步驟執行：
 
@@ -333,7 +357,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
    2. 按一下 [儲存] 。 您會在資料表中看到新屬性。
 
-### <a name="download-the-azure-ad-metadata-or-certificate"></a>下載 Azure AD 中繼資料或憑證
+<a id="download-the-azure-ad-metadata-or-certificate" class="xliff"></a>
+
+### 下載 Azure AD 中繼資料或憑證
 
 若要從 Azure AD 下載應用程式中繼資料或憑證，請依照下列步驟執行：
 
@@ -357,7 +383,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
     Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XML 檔案。
 
-## <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定密碼單一登入
+<a id="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application" class="xliff"></a>
+
+## 如何為 Azure AD 資源庫應用程式設定密碼單一登入
 
 若要從 Azure AD 資源庫設定應用程式，您必須：
 
@@ -365,7 +393,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 -   [設定應用程式使用密碼單一登入](#configure-the-application)
 
-### <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
+<a id="add-an-application-from-the-azure-ad-gallery" class="xliff"></a>
+
+### 從 Azure AD 資源庫新增應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -389,7 +419,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
+<a id="configure-the-application-for-password-single-sign-on" class="xliff"></a>
+
+### 設定應用程式使用密碼單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -415,7 +447,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 10. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-## <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>如何為不在資源庫內的應用程式設定密碼單一登入
+<a id="how-to-configure-password-single-sign-on-for-a-non-gallery-application" class="xliff"></a>
+
+## 如何為不在資源庫內的應用程式設定密碼單一登入
 
 若要從 Azure AD 資源庫設定應用程式，您必須：
 
@@ -423,7 +457,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 -   [設定應用程式使用密碼單一登入](#configure-the-application-for-password-single-sign-on)
 
-### <a name="add-a-non-gallery-application"></a>新增不在資源庫內的應用程式
+<a id="add-a-non-gallery-application" class="xliff"></a>
+
+### 新增不在資源庫內的應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -443,7 +479,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
+<a id="configure-the-application-for-password-single-sign-on" class="xliff"></a>
+
+### 設定應用程式使用密碼單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -471,7 +509,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 11. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-## <a name="how-to-assign-a-user-to-an-application-directly"></a>如何將使用者直接指派至應用程式
+<a id="how-to-assign-a-user-to-an-application-directly" class="xliff"></a>
+
+## 如何將使用者直接指派至應用程式
 
 若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行︰
 
@@ -509,7 +549,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 稍待片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。
 
-## <a name="if-these-troubleshooting-steps-do-not-the-resolve-the-issue"></a>如果這些疑難排解步驟無法解決問題
+<a id="if-these-troubleshooting-steps-do-not-the-resolve-the-issue" class="xliff"></a>
+
+## 如果這些疑難排解步驟無法解決問題
 
 使用下列資訊 (若有的話) 開啟支援票證︰
 
@@ -525,7 +567,9 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
 -   Fiddler 追蹤
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
 
 
