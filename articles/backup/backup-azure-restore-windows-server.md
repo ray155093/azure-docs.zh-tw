@@ -22,7 +22,9 @@ ms.lasthandoff: 02/02/2017
 
 
 ---
-# <a name="restore-files-to-a-windows-server-or-windows-client-machine-using-resource-manager-deployment-model"></a>使用 Resource Manager 部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
+<a id="restore-files-to-a-windows-server-or-windows-client-machine-using-resource-manager-deployment-model" class="xliff"></a>
+
+# 使用 Resource Manager 部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](backup-azure-restore-windows-server.md)
 > * [傳統入口網站](backup-azure-restore-windows-server-classic.md)
@@ -44,14 +46,16 @@ ms.lasthandoff: 02/02/2017
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
-## <a name="recover-data-to-the-same-machine"></a>將資料還原到相同電腦
+<a id="recover-data-to-the-same-machine" class="xliff"></a>
+
+## 將資料還原到相同電腦
 如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
 
 1. 開啟 **Microsoft Azure 備份** 嵌入式管理單元。
 2. 按一下 [復原資料]  初始化工作流程。
 
     ![復原資料](./media/backup-azure-restore-windows-server/recover.png)
-3. 選取 [這台伺服器 (yourmachinename)]** 選項，在同一部電腦上還原備份的檔案。
+3. 選取 [這台伺服器 (yourmachinename)] 選項，在同一部電腦上還原備份的檔案。
 
     ![相同電腦](./media/backup-azure-restore-windows-server/samemachine.png)
 4. 選擇 [瀏覽檔案] 或 [搜尋檔案]。
@@ -76,7 +80,9 @@ ms.lasthandoff: 02/02/2017
    * 強烈建議您針對正在復原檔案上的 ACL 保留預設還原選項。
 8. 提供這些輸入之後，按一下 [下一步]。 就會開始執行將檔案還原到這部電腦的復原工作流程。
 
-## <a name="use-instant-restore-to-recover-data-to-the-same-machine"></a>使用「立即還原」將資料還原至同一台電腦
+<a id="use-instant-restore-to-recover-data-to-the-same-machine" class="xliff"></a>
+
+## 使用「立即還原」將資料還原至同一台電腦
 
 如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
 
@@ -123,7 +129,9 @@ ms.lasthandoff: 02/02/2017
     > 如果您並未按一下 [卸載]，復原磁碟區會保持掛接六個小時 (從掛接後開始計算)。 當磁碟區處於掛接狀態時，不會執行任何備份作業。 當掛接磁碟區時，任何排定要執行的備份作業會在復原磁碟區卸載之後才執行。
     >
 
-## <a name="recover-to-an-alternate-machine"></a>還原至其他電腦
+<a id="recover-to-an-alternate-machine" class="xliff"></a>
+
+## 還原至其他電腦
 
 若您遺失整個伺服器，您仍然可從 Azure 備份將資料還原到其他電腦。 下列步驟說明工作流程。  
 
@@ -165,7 +173,9 @@ ms.lasthandoff: 02/02/2017
 11. 一旦提供輸入，則按一下 [復原] ，將會觸發還原備份檔案到所提供目的地的程序。
 
 
-## <a name="use-instant-restore-to-restore-data-to-an-alternate-machine"></a>使用「立即還原」將資料還原至其他電腦
+<a id="use-instant-restore-to-restore-data-to-an-alternate-machine" class="xliff"></a>
+
+## 使用「立即還原」將資料還原至其他電腦
 若您遺失整個伺服器，您仍然可從 Azure 備份將資料還原到其他電腦。 下列步驟說明工作流程。
 
 
@@ -228,6 +238,8 @@ ms.lasthandoff: 02/02/2017
     > 如果您並未按一下 [卸載]，復原磁碟區會保持掛接六個小時 (從掛接後開始計算)。 當磁碟區處於掛接狀態時，不會執行任何備份作業。 當掛接磁碟區時，任何排定要執行的備份作業會在復原磁碟區卸載之後才執行。
     >
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * 現在您已復原檔案和資料夾，接下來您可以 [管理您的備份](backup-azure-manage-windows-server.md)。
 
