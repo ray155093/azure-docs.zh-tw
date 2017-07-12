@@ -1,6 +1,6 @@
 ---
-title: "從 Azure SQL Database 來回移動資料 | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory 從 Azure SQL 資料庫來回移動資料。"
+title: "從 Azure SQL Database 來回複製資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 從 Azure SQL 資料庫來回複製資料。"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -12,20 +12,24 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/04/2017
+ms.date: 06/04/2017
 ms.author: jingwang
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: 4bc3ab14d7b2960a0732743edc31e12eb320b5ad
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: a64d13fa7dc5f50c259b98774be80b603dce400a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
-# <a name="move-data-to-and-from-azure-sql-database-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure SQL Database 來回移動資料
+<a id="copy-data-to-and-from-azure-sql-database-using-azure-data-factory" class="xliff"></a>
+
+# 使用 Azure Data Factory 從 Azure SQL Database 來回複製資料
 本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出 Azure SQL Database。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。  
 
-## <a name="supported-scenarios"></a>支援的案例
+<a id="supported-scenarios" class="xliff"></a>
+
+## 支援的案例
 您可以**從 Azure SQL Database**將資料複製到下列資料存放區：
 
 [!INCLUDE [data-factory-supported-sinks](../../includes/data-factory-supported-sinks.md)]
@@ -34,10 +38,14 @@ ms.lasthandoff: 05/05/2017
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
-## <a name="supported-authentication-type"></a>支援的驗證類型
+<a id="supported-authentication-type" class="xliff"></a>
+
+## 支援的驗證類型
 Azure SQL Database 連接器支援基本驗證。
 
-## <a name="getting-started"></a>開始使用
+<a id="getting-started" class="xliff"></a>
+
+## 開始使用
 您可以藉由使用不同的工具/API，建立內含複製活動的管線，以將資料移進/移出 Azure SQL Database。
 
 建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
@@ -46,7 +54,7 @@ Azure SQL Database 連接器支援基本驗證。
 
 不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
 
-1. 建立 **Data Factory**。 一個資料處理站可包含一或多個管線。 
+1. 建立 **Data Factory**。 資料處理站可包含一或多個管線。 
 2. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。 例如，如果您將資料從 Azure blob 儲存體複製到 Azure SQL 資料庫，您會建立兩個連結服務，將 Azure 儲存體帳戶和 Azure SQL 資料庫連結至資料處理站。 有關 Azure SQL Database 專屬的連結服務屬性，請參閱[連結服務屬性](#linked-service-properties)一節。 
 3. 建立**資料集**，代表複製作業的輸入和輸出資料。 在上一個步驟所述的範例中，您會建立資料集來指定 blob 容器和包含輸入資料的資料夾。 您還會建立另一個資料集來指定 Azure SQL Database 中的 SQL 資料表，以保存從 Blob 儲存體複製的資料。 有關 Azure Data Lake Store 專屬的資料集屬性，請參閱[資料集屬性](#dataset-properties)一節。
 4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在稍早所述的範例中，您使用 BlobSource 作為來源，以及使用 SqlSink 作為複製活動的接收器。 同樣地，如果您是從 Azure SQL Database 複製到 Azure Blob 儲存體，則需要在複製活動中使用 SqlSource 和 BlobSink。 有關 Azure SQL Database 專屬的複製活動屬性，請參閱[複製活動屬性](#copy-activity-properties)一節。 如需有關如何使用資料存放區作為來源或接收器的詳細資訊，請在上一節按一下適用於您的資料存放區的連結。
@@ -55,7 +63,9 @@ Azure SQL Database 連接器支援基本驗證。
 
 下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Azure SQL Database 特定的 Data Factory 實體： 
 
-## <a name="linked-service-properties"></a>連結服務屬性
+<a id="linked-service-properties" class="xliff"></a>
+
+## 連結服務屬性
 Azure SQL 已連結服務可將 Azure SQL Database 連結到您的 Data Factory。 下表提供 Azure SQL 連結服務專屬 JSON 元素的描述。
 
 | 屬性 | 說明 | 必要 |
@@ -66,7 +76,9 @@ Azure SQL 已連結服務可將 Azure SQL Database 連結到您的 Data Factory�
 > [!IMPORTANT]
 > 設定 [Azure SQL Database 防火牆](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure)和資料庫伺服器，以[允許 Azure 服務存取伺服器](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure)。 此外，如果您要從 Azure 外部 (包括從具有 Fata Factory 閘道器的內部部署資料來源) 將資料複製到 Azure SQL Database，請為傳送資料到 Azure SQL Database 的機器設定適當的 IP 位址範圍。
 
-## <a name="dataset-properties"></a>資料集屬性
+<a id="dataset-properties" class="xliff"></a>
+
+## 資料集屬性
 若要指定資料集以代表 Azure SQL Database 中的輸入或輸出資料，您需將資料集的類型屬性設定成：**AzureSqlTable**。 請將資料集的 **linkedServiceName** 屬性設定成 Azure SQL 已連結服務的名稱。  
 
 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
@@ -77,7 +89,9 @@ Azure SQL 已連結服務可將 Azure SQL Database 連結到您的 Data Factory�
 | --- | --- | --- |
 | tableName |Azure SQL Database 執行個體中連結服務所參考的資料表或檢視的名稱。 |是 |
 
-## <a name="copy-activity-properties"></a>複製活動屬性
+<a id="copy-activity-properties" class="xliff"></a>
+
+## 複製活動屬性
 如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
 > [!NOTE]
@@ -87,7 +101,9 @@ Azure SQL 已連結服務可將 Azure SQL Database 連結到您的 Data Factory�
 
 如果您要將資料從 Azure SQL Database 移出，請將複製活動中的來源類型設定為 **SqlSource**。 同樣的，如果您要將資料移進 Azure SQL Database，請將複製活動中的接收器類型設定為 **SqlSink**。 本節提供 SqlSource 和 SqlSink 支援的屬性清單。
 
-### <a name="sqlsource"></a>SqlSource
+<a id="sqlsource" class="xliff"></a>
+
+### SqlSource
 在複製活動中，如果來源的類型為 **SqlSource**，則 **typeProperties** 區段有下列可用屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
@@ -105,7 +121,9 @@ Azure SQL 已連結服務可將 Azure SQL Database 連結到您的 Data Factory�
 >
 >
 
-### <a name="sqlsource-example"></a>SqlSource 範例
+<a id="sqlsource-example" class="xliff"></a>
+
+### SqlSource 範例
 
 ```JSON
 "source": {
@@ -137,20 +155,24 @@ END
 GO
 ```
 
-### <a name="sqlsink"></a>管線
+<a id="sqlsink" class="xliff"></a>
+
+### 管線
 **SqlSink** 支援下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
 | writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
 | writeBatchSize |當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 |整數 (資料列數目) |否 (預設值：10000) |
-| sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy)一節。 |查詢陳述式。 |否 |
-| sliceIdentifierColumnName |指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy)一節。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
+| sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 如需詳細資訊，請參閱[可重複複製](#repeatable-copy)。 |查詢陳述式。 |否 |
+| sliceIdentifierColumnName |指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。 如需詳細資訊，請參閱[可重複複製](#repeatable-copy)。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
 | sqlWriterStoredProcedureName |將資料更新插入 (更新/插入) 目標資料表中的預存程序名稱。 |預存程序的名稱。 |否 |
 | storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
 | sqlWriterTableType |指定要在預存程序中使用的資料表類型名稱。 複製活動可讓正在移動的資料可用於此資料表類型的暫存資料表。 然後，預存程序程式碼可以合併正在複製的資料與現有的資料。 |資料表類型名稱。 |否 |
 
-#### <a name="sqlsink-example"></a>SqlSink 範例
+<a id="sqlsink-example" class="xliff"></a>
+
+#### SqlSink 範例
 
 ```JSON
 "sink": {
@@ -167,10 +189,14 @@ GO
 }
 ```
 
-## <a name="json-examples-for-copying-data-to-and-from-sql-database"></a>往返 SQL Database 複製資料的 JSON 範例
+<a id="json-examples-for-copying-data-to-and-from-sql-database" class="xliff"></a>
+
+## 往返 SQL Database 複製資料的 JSON 範例
 以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure SQL Database 和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。
 
-### <a name="example-copy-data-from-azure-sql-database-to-azure-blob"></a>範例：將資料從 Azure SQL Database 複製到 Azure Blob
+<a id="example-copy-data-from-azure-sql-database-to-azure-blob" class="xliff"></a>
+
+### 範例：將資料從 Azure SQL Database 複製到 Azure Blob
 相同內容會定義下列 Data Factory 實體：
 
 1. [AzureSqlDatabase](#linked-service-properties)類型的連結服務。
@@ -362,7 +388,9 @@ GO
 
 如需 SqlSource 和 BlobSink 所支援屬性的清單，請參閱 [SQL 來源](#sqlsource)小節和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties)。
 
-### <a name="example-copy-data-from-azure-blob-to-azure-sql-database"></a>範例：將資料從 Azure Blob 複製到 Azure SQL Database
+<a id="example-copy-data-from-azure-blob-to-azure-sql-database" class="xliff"></a>
+
+### 範例：將資料從 Azure Blob 複製到 Azure SQL Database
 此範例會定義下列 Data Factory 實體：  
 
 1. [AzureSqlDatabase](#linked-service-properties)類型的連結服務。
@@ -548,7 +576,9 @@ GO
 ```
 如需 SqlSink 和 BlobSource 所支援屬性的清單，請參閱 [SQL 接收器](#sqlsink)小節和 [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties)。
 
-## <a name="identity-columns-in-the-target-database"></a>目標資料庫中的身分識別資料行
+<a id="identity-columns-in-the-target-database" class="xliff"></a>
+
+## 目標資料庫中的身分識別資料行
 本節提供的範例將示範，如何把資料從沒有身分識別資料行的來源資料表，複製到具有身分識別資料行的目的地資料表。
 
 **來源資料表：**
@@ -619,24 +649,20 @@ create table dbo.TargetTbl
 
 請注意，您的來源資料表與目標資料表的結構描述不同 (目標資料表有一個具有身分識別的額外資料行)。 在此案例中，您必須在目標資料集定義中指定 **structure** 屬性，這不包含身分識別資料行。
 
-## <a name="map-source-to-sink-columns"></a>將來源對應到接收資料行
-若要了解如何將來源資料集內的資料行對應至接收資料集內的資料行，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
+<a id="invoke-stored-procedure-from-sql-sink" class="xliff"></a>
 
-## <a name="repeatable-copy"></a>可重複複製
-將資料複製到 SQL Server 資料庫時，複製活動預設會將資料附加至接收資料表。 若要改為執行 UPSERT，請參閱[對 SqlSink 進行可重複的寫入](data-factory-repeatable-copy.md#repeatable-write-to-sqlsink)一文。 
-
-從關聯式資料存放區複製資料時，請將可重複性謹記在心，以避免產生非預期的結果。 在 Azure Data Factory 中，您可以手動重新執行配量。 您也可以為資料集設定重試原則，使得在發生失敗時，重新執行配量。 以上述任一方式重新執行配量時，您必須確保不論將配量執行多少次，都會讀取相同的資料。 請參閱[從關聯式來源進行可重複的讀取](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)。
-
-## <a name="invoke-stored-procedure-from-sql-sink"></a>從 SQL 接收器叫用預存程序
+## 從 SQL 接收器叫用預存程序
 如需在管線的複製活動中從 SQL 接收器叫用預存程序的範例，請參閱[在複製活動中叫用 SQL 接收器的預存程序](data-factory-invoke-stored-procedure-from-copy-activity.md)一文。 
 
-## <a name="sql-database-to-net-type-mapping"></a>SQL Database 與 .NET 類型的對應
+<a id="type-mapping-for-azure-sql-database" class="xliff"></a>
+
+## Azure SQL Database 的類型對應
 如同 [資料移動活動](data-factory-data-movement-activities.md) 一文所述，複製活動會使用下列 2 個步驟的方法，執行自動類型轉換，將來源類型轉換成接收類型：
 
 1. 從原生來源類型轉換成 .NET 類型
 2. 從 .NET 類型轉換成原生接收類型
 
-將資料移進和移出 Azure SQL 時，會使用下列從 SQL 類型到 .NET 類型的對應，以及反向的對應。 此對應與 ADO.NET 的 SQL Server 資料類型對應相同。
+將資料移進和移出 Azure SQL Database 時，會使用下列從 SQL 類型到 .NET 類型的對應，以及反向的對應。 此對應與 ADO.NET 的 SQL Server 資料類型對應相同。
 
 | SQL Server Database Engine 類型 | .NET Framework 類型 |
 | --- | --- |
@@ -673,6 +699,20 @@ create table dbo.TargetTbl
 | varchar |String、Char[] |
 | xml |xml |
 
-## <a name="performance-and-tuning"></a>效能和微調
+<a id="map-source-to-sink-columns" class="xliff"></a>
+
+## 將來源對應到接收資料行
+若要了解如何將來源資料集內的資料行對應至接收資料集內的資料行，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
+
+<a id="repeatable-copy" class="xliff"></a>
+
+## 可重複複製
+將資料複製到 SQL Server 資料庫時，複製活動預設會將資料附加至接收資料表。 若要改為執行 UPSERT，請參閱[對 SqlSink 進行可重複的寫入](data-factory-repeatable-copy.md#repeatable-write-to-sqlsink)一文。 
+
+從關聯式資料存放區複製資料時，請將可重複性謹記在心，以避免產生非預期的結果。 在 Azure Data Factory 中，您可以手動重新執行配量。 您也可以為資料集設定重試原則，使得在發生失敗時，重新執行配量。 以上述任一方式重新執行配量時，您必須確保不論將配量執行多少次，都會讀取相同的資料。 請參閱[從關聯式來源進行可重複的讀取](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)。
+
+<a id="performance-and-tuning" class="xliff"></a>
+
+## 效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 

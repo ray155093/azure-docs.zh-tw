@@ -13,27 +13,32 @@ ms.devlang: node
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 4/14/2017
+ms.date: 5/27/2017
 ms.author: xshi
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 6f09d2244d0a1f6dbd7cff164c6d9e35379ee131
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: d82480c013f3d5f13fdbf49ff89f19cf71c1a50f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
 
-# <a name="connect-raspberry-pi-to-azure-iot-hub-nodejs"></a>將 Raspberry Pi 連接至 Azure IoT Hub (Node.js)
+<a id="connect-raspberry-pi-to-azure-iot-hub-nodejs" class="xliff"></a>
+
+# 將 Raspberry Pi 連接至 Azure IoT Hub (Node.js)
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
 在本教學課程中，您會開始了解執行 Raspbian 的 Raspberry Pi 在使用方面的基本知識。 接著會了解如何使用 [Azure IoT 中樞](iot-hub-what-is-iot-hub.md)讓您的裝置順暢地與雲端連線。 如需 Windows 10 IoT 核心範例，請移至 [Windows 開發人員中心](http://www.windowsondevices.com/)。
 
-還沒有套件嗎？ 在[這裡](https://azure.microsoft.com/develop/iot/starter-kits)購買新的套件。
+還沒有套件嗎？ 試用 [Raspberry Pi Web 模擬器](iot-hub-raspberry-pi-web-simulator-get-started.md)。 或在[這裡](https://azure.microsoft.com/develop/iot/starter-kits)購買新的套件。
 
 
-## <a name="what-you-do"></a>您要做什麼
+<a id="what-you-do" class="xliff"></a>
+
+## 您要做什麼
 
 * 設定 Raspberry Pi。
 * 建立 IoT 中樞。
@@ -42,14 +47,18 @@ ms.lasthandoff: 04/18/2017
 
 將 Raspberry Pi 連接至您建立的 IoT 中樞。 然後，在 Pi 上執行範例應用程式，以收集 BME280 感應器中的溫度和溼度資料。 最後，將感應器資料傳送至 IoT 中樞。
 
-## <a name="what-you-learn"></a>您學到什麼
+<a id="what-you-learn" class="xliff"></a>
+
+## 您學到什麼
 
 * 如何建立 Azure IoT 中樞，並取得新的裝置連接字串。
 * 如何連接 Pi 與 BME280 感應器。
 * 如何在 Pi 上執行範例應用程式來收集感應器資料。
 * 如何將感應器資料傳送至 IoT 中樞。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 
 ![您需要什麼](media/iot-hub-raspberry-pi-kit-node-get-started/0_starter_kit.jpg)
 
@@ -75,9 +84,13 @@ ms.lasthandoff: 04/18/2017
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
-## <a name="setup-raspberry-pi"></a>設定 Raspberry Pi
+<a id="setup-raspberry-pi" class="xliff"></a>
 
-### <a name="install-the-raspbian-operating-system-for-pi"></a>安裝 Pi 的 Raspbian 作業系統
+## 設定 Raspberry Pi
+
+<a id="install-the-raspbian-operating-system-for-pi" class="xliff"></a>
+
+### 安裝 Pi 的 Raspbian 作業系統
 
 準備好用來安裝 Raspbian 映像的 microSD 記憶卡。
 
@@ -92,26 +105,31 @@ ms.lasthandoff: 04/18/2017
    1. 安裝完成時，請將 microSD 記憶卡從電腦移除。 您可以放心地直接移除 microSD 記憶卡，因為 Etcher 會在完成時自動退出或卸載 microSD 記憶卡。
    1. 將 microSD 記憶卡插入 Pi。
 
-### <a name="enable-ssh-and-i2c"></a>啟用 SSH 和 I2C
+<a id="enable-ssh-and-i2c" class="xliff"></a>
+
+### 啟用 SSH 和 I2C
 
 1. 將 Pi 連接至監視器、鍵盤和滑鼠，並啟動 Pi，然後使用使用者名稱 `pi` 和密碼 `raspberry` 登入 Raspbian。
 1. 按一下 Raspberry 圖示 > [偏好設定] > [Raspberry Pi 組態]。
 
    ![[Raspbian 偏好設定] 功能表](media/iot-hub-raspberry-pi-kit-node-get-started/1_raspbian-preferences-menu.png)
 
-1. 在 [介面]索引標籤上，將 [I2C] 和 [SSH] 設定為 [啟用]，然後按一下 [確定]。
+1. 在 [介面]索引標籤上，將 [I2C] 和 [SSH] 設定為 [啟用]，然後按一下 [確定]。 如果您沒有實體感應器，而且想要使用模擬的感應器資料，這便是選擇性步驟。
 
    ![在 Raspberry Pi 上啟用 I2C 和 SSH](media/iot-hub-raspberry-pi-kit-node-get-started/2_enable-i2c-ssh-on-raspberry-pi.png)
 
 > [!NOTE] 
-若要啟用 I2C 和 SPI，您可以在 [raspberrypi.org](https://www.raspberrypi.org/documentation/remote-access/ssh/) 和[Adafruit.com](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2) 找到更多參考文件。
+若要啟用 I2C 和 SPI，您可以在 [raspberrypi.org](https://www.raspberrypi.org/documentation/remote-access/ssh/) 和[Adafruit.com](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) 找到更多參考文件。
 
-### <a name="connect-the-sensor-to-pi"></a>將感應器連接至 Pi
+<a id="connect-the-sensor-to-pi" class="xliff"></a>
+
+### 將感應器連接至 Pi
 
 使用麵包板和跳線將 LED 和 BME280 連接至 Pi，如下所示。 如果沒有感應器，請略過本節。
 
 ![Raspberry Pi 和感應器連接](media/iot-hub-raspberry-pi-kit-node-get-started/3_raspberry-pi-sensor-connection.png)
 
+BME280 感應器可以收集溫度和溼度資料。 而如果裝置與雲端之間有通訊，LED 將會閃爍。 
 
 針對感應器針腳，請使用下列接線方式：
 
@@ -130,18 +148,46 @@ ms.lasthandoff: 04/18/2017
 
 ![連接的 Pi 和 BME280](media/iot-hub-raspberry-pi-kit-node-get-started/4_connected-pi.jpg)
 
-透過 micro USB 纜線和電源供應器來開啟 Pi。 使用乙太網路纜線將 Pi 連接到有線網路，或遵循來自 Raspberry Pi Foundation 的[指示](https://www.raspberrypi.org/learning/software-guide/wifi/)，將 Pi 連接到無線網路。
+<a id="connect-pi-to-the-network" class="xliff"></a>
+
+### 將 Pi 連線到網路
+
+透過 micro USB 纜線和電源供應器來開啟 Pi。 使用乙太網路纜線將 Pi 連接到有線網路，或遵循來自 Raspberry Pi Foundation 的[指示](https://www.raspberrypi.org/learning/software-guide/wifi/)，將 Pi 連接到無線網路。 在 Pi 成功連線到網路之後，您需要記下 [Pi 的 IP 位址](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/finding-your-pis-ip-address)。
 
 ![已連接到有線網路](media/iot-hub-raspberry-pi-kit-node-get-started/5_power-on-pi.jpg)
 
+> [!NOTE]
+> 請確定 Pi 是連接到與您電腦相同的網路。 例如，如果您的電腦連線到無線網路，而 Pi 連線到有線網路，您可能不會在 devdisco 輸出中看到 IP 位址。
 
-## <a name="run-a-sample-application-on-pi"></a>在 Pi 上執行範例應用程式
+<a id="run-a-sample-application-on-pi" class="xliff"></a>
 
-### <a name="clone-sample-application-and-install-the-prerequisite-packages"></a>複製範例應用程式並安裝必要條件套件
+## 在 Pi 上執行範例應用程式
+
+<a id="clone-sample-application-and-install-the-prerequisite-packages" class="xliff"></a>
+
+### 複製範例應用程式並安裝必要條件套件
 
 1. 使用下列其中一個 SSH 用戶端，從主機電腦連接到 Raspberry Pi。
-    - [PuTTY](http://www.putty.org/) 適用於 Windows。
-    - Ubuntu 或 macOS 上內建的 SSH 用戶端。
+    - [PuTTY](http://www.putty.org/) 適用於 Windows。 您需要 Pi 的 IP 位址才能透過 SSH 連接它。
+    - Ubuntu 或 macOS 上內建的 SSH 用戶端。 您可能需要執行 `ssh pi@<ip address of pi>`，才能透過 SSH 來連接 Pi。
+
+   > [!NOTE] 
+   預設使用者名稱為 `pi`，密碼為 `raspberry`。
+
+1. 將 Node.js 和 NPM 安裝到 Pi。
+   
+   首先，您應該使用下列命令檢查 Node.js 版本。 
+   
+   ```bash
+   node -v
+   ```
+
+   如果版本低於 4.x 或 Pi 上沒有 Node.js，請執行下列命令以安裝或更新 Node.js。
+
+   ```bash
+   curl -sL http://deb.nodesource.com/setup_4.x | sudo -E bash
+   sudo apt-get -y install nodejs
+   ```
 
 1. 執行下列命令，複製範例應用程式：
 
@@ -152,13 +198,15 @@ ms.lasthandoff: 04/18/2017
 1. 執行下列命令安裝所有封裝。 其中包含 Azure IoT 裝置 SDK、BME280 感應器程式庫和接線 Pi 程式庫。
 
    ```bash
-   cd iot-hub-node-raspberry-pi-clientapp
-   npm install
+   cd iot-hub-node-raspberrypi-client-app
+   sudo npm install
    ```
    > [!NOTE] 
    端視網路連線而定，可能需要幾分鐘才能完成此安裝程序。
 
-### <a name="configure-the-sample-application"></a>設定範例應用程式
+<a id="configure-the-sample-application" class="xliff"></a>
+
+### 設定範例應用程式
 
 1. 執行下列命令以開啟組態檔：
 
@@ -174,7 +222,9 @@ ms.lasthandoff: 04/18/2017
 
 1. 按下 [Control-O] > 輸入 > [Control-X] 儲存並結束。
 
-### <a name="run-the-sample-application"></a>執行範例應用程式
+<a id="run-the-sample-application" class="xliff"></a>
+
+### 執行範例應用程式
 
 1. 執行下列命令，執行範例應用程式：
 
@@ -190,7 +240,9 @@ ms.lasthandoff: 04/18/2017
 
 ![輸出 - 從 Raspberry Pi 傳送至 IoT 中樞的感應器資料](media/iot-hub-raspberry-pi-kit-node-get-started/8_run-output.png)
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。
 

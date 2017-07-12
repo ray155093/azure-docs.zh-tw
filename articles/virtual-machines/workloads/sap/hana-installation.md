@@ -15,18 +15,24 @@ ms.date: 12/01/2016
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 89356670737ed7b9adc5df51466ce71eb73b3cd4
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: e66d1e245d74c11e8bf36e307009910126551b0b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
-# <a name="how-to-install-and-configure-sap-hana-large-instances-on-azure"></a>如何安裝和設定 Azure 上的 SAP HANA (大型執行個體)
+<a id="how-to-install-and-configure-sap-hana-large-instances-on-azure" class="xliff"></a>
+
+# 如何安裝和設定 Azure 上的 SAP HANA (大型執行個體)
 
 安裝 SAP HANA 是由您負責，而您可以在遞交新的 SAP HANA on Azure (大型執行個體) 伺服器之後，並在 Azure VNet 與「HANA 大型執行個體」單位之間已建立連線之後，啟動活動。 請注意，依據 SAP 原則，執行 SAP HANA 安裝的人員必須是已驗證而能執行 SAP HANA 安裝的人員 (也就是已通過「SAP 技術認證協會」(Certified SAP Technology Associate) 之「SAP HANA 安裝認證測驗」的人員)，或是 SAP 認證的系統整合者 (SI)。
 
-## <a name="first-steps-after-receiving-the-hana-large-instance-units"></a>收到 HANA 大型執行個體單位之後的前幾個步驟
+再次檢查，尤其是在打算安裝 HANA 2.0、[SAP 支援附註 #2235581 - SAP HANA：支援的作業系統](https://launchpad.support.sap.com/#/notes/2235581/E)時，才能確保 OS 受您決定安裝的 SAP HANA 版本支援。 您將了解 HANA 2.0 支援的作業系統比 HANA 1.0 支援的作業系統更受限制。 
+
+<a id="first-steps-after-receiving-the-hana-large-instance-units" class="xliff"></a>
+
+## 收到 HANA 大型執行個體單位之後的前幾個步驟
 
 在收到「HANA 大型執行個體」並建立對執行個體的存取和連線之後，**第一步**是向您的 OS 提供者註冊執行個體的 OS。 這包括在「HANA 大型執行個體」單位可連線的 Azure VM 中，於已部署之 SUSE SMT 的執行個體註冊 SUSE Linux OS。 或是必須向您必須連接的 Red Hat Subscription Manager 註冊 RedHat OS。 另請參閱這份[文件](https://docs.microsoft.com/azure/virtual-machines/linux/sap-hana-overview-architecture?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中的備註。 此步驟也是持續修補 OS 所需的步驟。 這是一項屬於客戶職責的工作。 有關 SUSE，請在[這裡](https://www.suse.com/documentation/sles-12/book_smt/data/smt_installation.html)尋找安裝和設定 SMT 的文件。
 
@@ -56,7 +62,9 @@ ms.lasthandoff: 05/10/2017
 
 **第五步**是檢查 etc/hosts。 在移交刀鋒伺服器時，會針對不同的用途為它們指派不同的 IP 位址 (請參閱下一節)。 請檢查 etc/hosts。 如果將單位新增到現有的租用戶，請勿期望系統會使用先前交付之系統的 IP 位址來正確維護新部署之系統的 etc/hosts。 因此，必須倚賴身為客戶的您來檢查設定是否正確，如此新部署的執行個體才能進行互動並解析您租用戶中先前所部署單位的名稱。 
 
-## <a name="networking"></a>網路
+<a id="networking" class="xliff"></a>
+
+## 網路
 我們假設您已依照設計 Azure VNet 並將這些 VNet 連接到「HANA 大型執行個體」的建議操作，如下列文件所述：
 
 - [Azure 上 SAP HANA (大型執行個體) 的概觀和架構](https://docs.microsoft.com/azure/virtual-machines/workloads/sap/hana-overview-architecture)
@@ -77,7 +85,9 @@ ms.lasthandoff: 05/10/2017
 
 
 
-## <a name="storage"></a>儲存體
+<a id="storage" class="xliff"></a>
+
+## 儲存體
 
 SAP HANA on Azure (大型執行個體) 的儲存體配置是由 SAP HANA on Azure Service Management 透過 SAP 建議的最佳做法進行設定，請參閱 [SAP HANA 儲存體需求](http://go.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html)技術白皮書。 隨著您閱讀這份文件及了解「HANA 大型執行個體」，您將發現這些單位隨附相當大的 HANA/data 磁碟區，並且還有一個 HANA/log/backup 磁碟區。 我們之所以將 HANA/data 的大小設定成如此大，是因為我們為身為客戶的您提供的儲存體快照就是使用這麼大的磁碟區。 這意謂著您執行的儲存體快照越多，就需要越多供這些快照使用的空間。 HANA/log/backup 磁碟區不是用來放置資料庫備份的磁碟區，而是可用來存放 HANA 交易記錄的備份磁碟區。 在未來的儲存體快照自助服務版本中，我們將會以提高快照建立頻率作為此特定磁碟區的目標，並且如果您想要加入「HANA 大型執行個體」基礎結構所提供的災害復原功能，還可將複寫到災害復原站台的頻率也提高。請參閱 [Azure 上 SAP Hana (大型執行個體) 的高可用性和災害復原](hana-overview-high-availability-disaster-recovery.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中的詳細資料 
 
@@ -101,31 +111,55 @@ SAP HANA on Azure (大型執行個體) 的儲存體配置是由 SAP HANA on Azur
 在 SAP HANA 2.0，hdbparam 架構已被取代。 因此，必須使用 SQL 命令來設定參數。 如需詳細資料，請參閱 [SAP 附註 #2399079：在 HANA 2 中已刪除 hdbparam (英文)](https://launchpad.support.sap.com/#/notes/2399079)。
 
 
-## <a name="operating-system"></a>作業系統
+<a id="operating-system" class="xliff"></a>
+
+## 作業系統
+
+根據 [SAP 支援附註 #1999997 - 常見問題集：SAP HANA 記憶體](https://launchpad.support.sap.com/#/notes/1999997/E)，已傳遞 OS 映像的交換空間會設為 2 GB。 您必須以客戶身分設定所需的任何不同設定。
 
 [SUSE Linux Enterprise Server 12 SP1 for SAP 應用程式](https://www.suse.com/products/sles-for-sap/hana)是針對 SAP HANA on Azure (大型執行個體) 安裝的 Linux 的分佈。 這個特定的分佈提供&quot;現成&quot; SAP 特有功能，(包括預先設定的參數，有效地在 SLES 上執行 SAP)。
 
 請參閱 SUSE 網站上的[資源程式庫/技術白皮書](https://www.suse.com/products/sles-for-sap/resource-library#white-papers)和 SAP Community Network (SCN) 上的 [SAP on SUSE](https://wiki.scn.sap.com/wiki/display/ATopics/SAP+on+SUSE)，以取得與在 SLES 上部署 SAP HANA 相關的有用資源 (包括高可用性的設定、SAP 作業特定的安全性強化等等)。
 
-額外和有用的 SLES 相關連結︰
+額外和有用的 SAP on SUSE 相關連結︰
 
 - [SUSE Linux 網站上的 SAP HANA](https://wiki.scn.sap.com/wiki/display/ATopics/SAP+on+SUSE)
-- [SAP 的最佳做法：加入佇列複寫 – SAP NetWeaver on SUSE Linux Enterprise 12](https://www.suse.com/docrepcontent/container.jsp?containerId=9113)
-- [ClamSAP – SLES Virus Protection for SAP](http://scn.sap.com/community/linux/blog/2014/04/14/clamsap--suse-linux-enterprise-server-integrates-virus-protection-for-sap) (包括 SLES 12 for SAP 應用程式)
+- [SAP 的最佳做法：加入佇列複寫 – SAP NetWeaver on SUSE Linux Enterprise 12](https://www.suse.com/docrepcontent/container.jsp?containerId=9113)。
+- [ClamSAP – SLES Virus Protection for SAP](http://scn.sap.com/community/linux/blog/2014/04/14/clamsap--suse-linux-enterprise-server-integrates-virus-protection-for-sap) (包括 SLES 12 for SAP 應用程式)。
 
-SAP 支援附註適用於實作 SLES 12 SP1 上的 SAP HANA︰
+SAP 支援附註適用於在 SLES 12 上實作 SAP HANA︰
 
-- [SAP 支援附註 #1944799 – SLES 作業系統安裝的 SAP HANA 指南](http://go.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html)
-- [SAP 支援附註 #2205917 – 針對 SLES 12 for SAP 應用程式的 SAP HANA DB 建議作業系統設定](https://launchpad.support.sap.com/#/notes/2205917/E)
-- [SAP 支援附註 #1984787 – SUSE Linux Enterprise Server 12：安裝注意事項](https://launchpad.support.sap.com/#/notes/1984787)
-- [SAP 支援附註 #171356 – 在 Linux 上的 SAP 軟體︰一般資訊](https://launchpad.support.sap.com/#/notes/1984787)
-- [SAP 支援附註 #1391070 – Linux UUID 解決方案](https://launchpad.support.sap.com/#/notes/1391070)
+- [SAP 支援附註 #1944799 – SLES 作業系統安裝的 SAP HANA 指南](http://go.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html)。
+- [SAP 支援附註 #2205917 – 針對 SLES 12 for SAP 應用程式的 SAP HANA DB 建議作業系統設定](https://launchpad.support.sap.com/#/notes/2205917/E)。
+- [SAP 支援附註 #1984787 – SUSE Linux Enterprise Server 12：安裝注意事項](https://launchpad.support.sap.com/#/notes/1984787)。
+- [SAP 支援附註 #171356 – 在 Linux 上的 SAP 軟體︰一般資訊](https://launchpad.support.sap.com/#/notes/1984787)。
+- [SAP 支援附註 #1391070 – Linux UUID 解決方案](https://launchpad.support.sap.com/#/notes/1391070)。
 
-## <a name="time-synchronization"></a>時間同步處理
+[Red Hat Enterprise Linux for SAP HANA](https://www.redhat.com/en/resources/red-hat-enterprise-linux-sap-hana) 是可供在 HANA Large Instances 上執行 SAP HANA 的另一個供應項目。 版本 RHEL 6.7 和 7.2 均可使用。 
+
+額外和有用的 SAP on Red Hat 相關連結︰
+- [Red Hat Linux 網站上的 SAP HANA](https://wiki.scn.sap.com/wiki/display/ATopics/SAP+on+Red+Hat)。
+
+SAP 支援附註適用於實作 SAP HANA on Red Hat︰
+
+- [SAP 支援附註 #2009879 - 適用於 Red Hat Enterprise Linux (RHEL) 作業系統的 SAP HANA 指南](https://launchpad.support.sap.com/#/notes/2009879/E)。
+- [SAP 支援附註 #2292690 - SAP HANA DB：適用於 RHEL 7 的建議作業系統設定](https://launchpad.support.sap.com/#/notes/2292690)。
+- [SAP 支援附註 #2247020 - SAP HANA DB：適用於 RHEL 6.7 的建議作業系統設定](https://launchpad.support.sap.com/#/notes/2247020)。
+- [SAP 支援附註 #1391070 – Linux UUID 解決方案](https://launchpad.support.sap.com/#/notes/1391070)。
+- [SAP 支援附註 #2228351 - Linux：RHEL 6 或 SLES 11 上的 SAP HANA Database SPS 11 修訂版 110 (或更新版本)](https://launchpad.support.sap.com/#/notes/2228351)。
+- [SAP 支援附註 #2397039 - 常見問題集：SAP on RHEL](https://launchpad.support.sap.com/#/notes/2397039)。
+- [SAP 支援附註 #1496410 - Red Hat Enterprise Linux 6.x：安裝和升級](https://launchpad.support.sap.com/#/notes/1496410)。
+- [SAP 支援附註 #2002167 - Red Hat Enterprise Linux 7.x：安裝和升級](https://launchpad.support.sap.com/#/notes/2002167)。
+
+<a id="time-synchronization" class="xliff"></a>
+
+## 時間同步處理
 
 SAP 對於組成 SAP 系統的各種元件的時間差異非常敏感。 具有錯誤標題 ZDATE\_LARGE\_TIME\_DIFF 的 SAP ABAP 簡短傾印可能會非常熟悉，如果您已使用 SAP (基本) 很長一段時間，因為這些簡短傾印會在不同伺服器或 VM 的系統時間離開太遠時顯示。
 
 針對 SAP HANA on Azure (大型執行個體)，在 Azure 中完成的時間同步處理不適用於大型執行個體戳記中的計算單位。 這並不適用於在 Azure 中原生執行 SAP 應用程式 (在 VM 上)，因為 Azure 可確保正確同步處理系統時間。 如此一來，必須設定不同時間伺服器，可供 Azure VM 上執行的 SAP 應用程式伺服器與 HANA 大型執行個體上執行的 SAP HANA 資料庫執行個體使用。 大型執行個體戳記中的儲存體基礎結構與 NTP 伺服器進行時間同步處理。
+
+
 
 
 
