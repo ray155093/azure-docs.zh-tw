@@ -1,4 +1,6 @@
-### <a name="create-a-tcp-endpoint-for-the-virtual-machine"></a>為虛擬機器建立 TCP 端點
+<a id="create-a-tcp-endpoint-for-the-virtual-machine" class="xliff"></a>
+
+### 為虛擬機器建立 TCP 端點
 若要從網際網路存取 SQL Server，虛擬機器必須具有端點才能接聽傳入 TCP 通訊。 此 Azure 組態步驟能將傳入 TCP 連接埠流量導向虛擬機器可存取的 TCP 連接埠。
 
 > [!NOTE]
