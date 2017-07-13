@@ -1,15 +1,31 @@
 ---
-
-ROBOTS: NOINDEX, NOFOLLOW
+title: "(已過時) 預測：自動迴歸整合式移動平均 (ARIMA) - Azure | Microsoft Docs"
+description: "(已過時) 預測 - 自動迴歸整合式移動平均 (ARIMA)"
+services: machine-learning
+documentationcenter: 
+author: yijichen
+manager: jhubbard
+editor: cgronlun
+ms.assetid: 1e0d525f-8a9e-4b42-87e0-c9423f059f8c
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 01/06/2017
+ms.author: yijichen
+ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: be75a60762674ab347ab7adaddfb17c4208a2b9e
-ms.lasthandoff: 05/03/2017
-
+redirect_document_id: true
+ms.translationtype: HT
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: 6be76618c8ce5917f8fdfdea851c3ca65f9fddd4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
-# <a name="deprecated-forecasting---autoregressive-integrated-moving-average-arima"></a>(已過時) 預測 - 自動迴歸整合式移動平均 (ARIMA)
+# (已過時) 預測 - 自動迴歸整合式移動平均 (ARIMA)
+<a id="deprecated-forecasting---autoregressive-integrated-moving-average-arima" class="xliff"></a>
 
 > [!NOTE]
 > Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
@@ -25,7 +41,8 @@ ms.lasthandoff: 05/03/2017
 > 
 > 
 
-## <a name="consumption-of-web-service"></a>使用 Web 服務
+## 使用 Web 服務
+<a id="consumption-of-web-service" class="xliff"></a>
 這項服務會接受 4 個引數，並計算 ARIMA 預測。
 輸入引數包括：
 
@@ -49,7 +66,8 @@ ms.lasthandoff: 05/03/2017
 
 以自動化方式取用服務的方法有很多種 ([這裡](http://microsoftazuremachinelearning.azurewebsites.net/ArimaForecasting.aspx)提供一個範例應用程式)。
 
-### <a name="starting-c-code-for-web-service-consumption"></a>啟動 Web 服務使用的 C# 程式碼：
+### 啟動 Web 服務使用的 C# 程式碼：
+<a id="starting-c-code-for-web-service-consumption" class="xliff"></a>
     public class Input
     {
         public string frequency;
@@ -79,21 +97,25 @@ ms.lasthandoff: 05/03/2017
           var scoreResult = result.ReadAsStringAsync().Result;
       }
 
-## <a name="creation-of-web-service"></a>建立 Web 服務
+## 建立 Web 服務
+<a id="creation-of-web-service" class="xliff"></a>
 > 這項 Web 服務是使用 Azure Machine Learning 所建立。 如需免費試用版，以及有關建立實驗和[發佈 Web 服務](machine-learning-publish-a-machine-learning-web-service.md)的簡介影片，請參閱 [azure.com/ml](http://azure.com/ml)。 以下是建立 Web 服務之實驗的螢幕擷取畫面，以及實驗內每個模組的範例程式碼。
 > 
 > 
 
 Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定義的資料結構描述上傳範例輸入資料。 連結至資料結構描述的[執行 R 指令碼][execute-r-script]模組會使用 R 的 ‘auto.arima’ 和 ‘forecast’ 函式，以產生 ARIMA 預測模型。 
 
-### <a name="experiment-flow"></a>實驗流程：
+### 實驗流程：
+<a id="experiment-flow" class="xliff"></a>
 ![建立工作區][2]
 
-#### <a name="module-1"></a>模組 1：
+#### 模組 1：
+<a id="module-1" class="xliff"></a>
     # Add in the CSV file with the data in the format shown below 
 ![建立工作區][3]    
 
-#### <a name="module-2"></a>模組 2：
+#### 模組 2：
+<a id="module-2" class="xliff"></a>
     # data input
     data <- maml.mapInputPort(1) # class: data.frame
     library(forecast)
@@ -121,10 +143,12 @@ Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定�
     maml.mapOutputPort("data.forecast");
 
 
-## <a name="limitations"></a>限制
+## 限制
+<a id="limitations" class="xliff"></a>
 這是一個非常簡單的 ARIMA 預測範例。 從上面的範例程式碼可以看出，未實作錯誤攔截，且這項服務假設所有變數都是連續/正值，而頻率應該是大於 1 的整數。 日期和值向量的長度則應該相同。 日期變數應遵守 ‘mm/dd/yyyy’ 格式。
 
-## <a name="faq"></a>常見問題集
+## 常見問題集
+<a id="faq" class="xliff"></a>
 如需取用 Web 服務或發佈至 Marketplace 的常見問題集，請參閱 [這裡](machine-learning-marketplace-faq.md)。
 
 [1]: ./media/machine-learning-r-csharp-arima/arima-img1.png

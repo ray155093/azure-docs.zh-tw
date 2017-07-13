@@ -21,9 +21,8 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 07/12/2017
 
 ---
-<a id="getting-started-with-azure-multi-factor-authentication-and-active-directory-federation-services" class="xliff"></a>
-
 # 開始使用 Azure Multi-Factor Authentication Server 和 Active Directory Federation Services
+<a id="getting-started-with-azure-multi-factor-authentication-and-active-directory-federation-services" class="xliff"></a>
 <center>![雲端](./media/multi-factor-authentication-get-started-adfs/adfs.png)</center>
 
 如果組織已使用 AD FS 讓內部部署 Active Directory 與 Azure Active Directory 同盟，就會有兩個使用 Azure Multi-Factor Authentication 的選項。
@@ -45,9 +44,8 @@ ms.lasthandoff: 07/12/2017
 * 您會失去應用程式密碼的內部部署驗證記錄功能。
 * 帳戶停用/刪除最長可能需要三個小時才能完成目錄同步處理，導致雲端身分識別中的應用程式密碼停用/刪除延遲。
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 如需使用 AD FS 設定 Azure Multi-Factor Authentication 或 Azure Multi-Factor Authentication Server 的相關資訊，請參閱下列各文章：
 
 * [使用 Azure Multi-Factor Authentication 和 AD FS 保護雲端資源](multi-factor-authentication-get-started-adfs-cloud.md)
