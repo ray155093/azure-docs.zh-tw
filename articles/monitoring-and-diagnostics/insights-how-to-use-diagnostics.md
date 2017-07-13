@@ -12,21 +12,26 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2015
+ms.date: 06/06/2017
 ms.author: robb
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c30ffa9e392bb6411312b0789ae6e8218f770bc1
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: b82bb1ab419831e803689edb2a2a7fe256dde5a2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
-# <a name="enable-monitoring-and-diagnostics"></a>啟用監視和診斷
-在 [Azure 入口網站](https://portal.azure.com)中，您可以為您的資源設定內容豐富且經常產生的監視與診斷資料。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn931932.aspx) 或 [.NET SDK](https://www.nuget.org/packages/Microsoft.Azure.Insights/) 設定，並以程式設計方式設定診斷。
+<a id="enable-monitoring-and-diagnostics" class="xliff"></a>
+
+# 啟用監視和診斷
+在 [Azure 入口網站](https://portal.azure.com)中，您可以為您的資源設定內容豐富且經常產生的監視與診斷資料。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn931932.aspx) 或 [.NET SDK](http://www.nuget.org/packages/Microsoft.Azure.Management.Monitor) 設定，並以程式設計方式設定診斷。
 
 在 Azure 中的診斷、監視和計量資料會被儲存到您所選擇的儲存體帳戶。 這可讓您使用任何工具來讀取資料，從儲存體總管到 Power BI 再到協力廠商工具。
 
-## <a name="when-you-create-a-resource"></a>建立資源的時機
+<a id="when-you-create-a-resource" class="xliff"></a>
+
+## 建立資源的時機
 當您在 [Azure 入口網站](https://portal.azure.com)中首次建立服務時，大部分的服務可讓您啟用診斷功能。
 
 1. 移至 [ **新增** ] 並選擇您感興趣的資源。
@@ -35,7 +40,9 @@ ms.lasthandoff: 11/17/2016
 3. 選取 [診斷]，然後按一下 [開啟]。 您將必須選擇您要儲存診斷的儲存體帳戶。 將診斷傳送至儲存體帳戶時，您將需要支付儲存和交易的一般數據傳輸費用。
 4. 按一下 [ **確定** ]，並建立資源。
 
-## <a name="change-settings-for-an-existing-resource"></a>變更現有資源的設定
+<a id="change-settings-for-an-existing-resource" class="xliff"></a>
+
+## 變更現有資源的設定
 如果您已經建立資源，而且您想要變更診斷設定 (例如，變更資料收集的層級)，您可以直接在 Azure 入口網站中執行此作業。
 
 1. 移至資源，然後按一下 [ **設定** ] 命令。
@@ -44,7 +51,9 @@ ms.lasthandoff: 11/17/2016
     ![儲存體診斷](./media/insights-how-to-use-diagnostics/Insights_StorageDiagnostics.png)
 4. 選擇設定之後，請按一下 [ **儲存** ] 命令。 如果您是第一次啟用此選項，則顯示監視資料可能需要一點時間。
 
-### <a name="categories-of-data-collection-for-virtual-machines"></a>虛擬機器的資料收集類別
+<a id="categories-of-data-collection-for-virtual-machines" class="xliff"></a>
+
+### 虛擬機器的資料收集類別
 在虛擬機器中，所有的計量與記錄都將以一分鐘的間隔來記錄，以便您隨時保有最新的機器相關資訊。
 
 * **基本計量** ：有關您的虛擬機器的健康情況計量，例如處理器與記憶體
@@ -59,7 +68,9 @@ ms.lasthandoff: 11/17/2016
 
 請注意，目前不支援特定的 Linux 散發套件，而且虛擬機器上必須安裝客體代理程式。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * [接收警示通知](insights-receive-alert-notifications.md) 。
 * [監視服務計量](insights-how-to-customize-monitoring.md) 以確保您的服務可用且可回應。
 * [自動調整執行個體計數](insights-how-to-scale.md) 以確保您的服務可根據需求進行調整。

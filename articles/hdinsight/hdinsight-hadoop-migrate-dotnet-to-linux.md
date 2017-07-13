@@ -14,7 +14,7 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/12/2017
+ms.date: 07/12/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
@@ -22,13 +22,16 @@ ms.openlocfilehash: 538b0064fef8d54c5cac9d4dd43f70ebf1772819
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/02/2017
 
-
 ---
-# <a name="migrate-net-solutions-for-windows-based-hdinsight-to-linux-based-hdinsight"></a>將以 Windows 為基礎的 HDInsight 適用的 .NET 方案移轉至以 Linux 為基礎的 HDInsight
+<a id="migrate-net-solutions-for-windows-based-hdinsight-to-linux-based-hdinsight" class="xliff"></a>
+
+# 將以 Windows 為基礎的 HDInsight 適用的 .NET 方案移轉至以 Linux 為基礎的 HDInsight
 
 以 Linux 為基礎的 HDInsight 叢集使用 [Mono (https://mono-project.com)](https://mono-project.com) 來執行 .NET 應用程式。 Mono 可讓您搭配以 Linux 為基礎的 HDInsight 使用 .NET 元件 (例如 MapReduce 應用程式)。 在本文件中，了解如何移轉為以 Windows 為基礎的 HDInsight 建立的 .NET 方案，以在以 Linux 為基礎的 HDInsight 上搭配 Mono 使用。
 
-## <a name="mono-compatibility-with-net"></a>Mono 與 .NET 的相容性
+<a id="mono-compatibility-with-net" class="xliff"></a>
+
+## Mono 與 .NET 的相容性
 
 4.2.1 版的 Mono 隨附於 3.5 版的 HDInsight。 如需 HDInsight 包含之 Mono 版本的詳細資訊，請參閱 [HDInsight 元件版本](hdinsight-component-versioning.md)。 若要安裝特定版本的 Mono，請參閱[安裝或更新 Mono](hdinsight-hadoop-install-mono.md) 文件。
 
@@ -37,7 +40,9 @@ ms.lasthandoff: 05/02/2017
 > [!IMPORTANT]
 > SCP.NET 架構與 Mono 相容。 如需搭配 Mono 使用 SCP.NET 的詳細資訊，請參閱[使用 Visual Studio 開發適用於 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)。
 
-## <a name="automated-portability-analysis"></a>自動化的可攜性分析
+<a id="automated-portability-analysis" class="xliff"></a>
+
+## 自動化的可攜性分析
 
 [.NET Portability Analyzer](https://marketplace.visualstudio.com/items?itemName=ConnieYau.NETPortabilityAnalyzer) 可用來產生一份您的應用程式和 Mono 之間的不相容性報告。 使用下列步驟設定分析器，以檢查您的應用程式是否具備 Mono 可攜性︰
 
@@ -58,15 +63,21 @@ ms.lasthandoff: 05/02/2017
 > [!IMPORTANT]
 > 分析器無法找出您方案的每個問題。 例如，檔案路徑 `c:\temp\file.txt` 會視為有效，因為 Mono 可在 Windows 上執行，因此該路徑在該內容中有效。 不過，此路徑在 Linux 平台上無效。
 
-## <a name="manual-portability-analysis"></a>手動的可攜性分析
+<a id="manual-portability-analysis" class="xliff"></a>
+
+## 手動的可攜性分析
 
 使用[應用程式可攜性 (英文) (http://www.mono-project.com/docs/getting-started/application-portability/)](http://www.mono-project.com/docs/getting-started/application-portability/) 文件中的資訊，執行程式碼的手動稽核。
 
-## <a name="modify-and-build"></a>修改和建置
+<a id="modify-and-build" class="xliff"></a>
+
+## 修改和建置
 
 您可以繼續使用 Visual Studio 建置適用於 HDInsight 的 .NET 方案。 不過，您必須確定專案已設定為使用 .NET Framework 4.5。
 
-## <a name="deploy-and-test"></a>部署和測試
+<a id="deploy-and-test" class="xliff"></a>
+
+## 部署和測試
 
 使用 .NET Portability Analyzer 或手動分析的建議修改您的方案後，您必須使用 HDInsight 進行測試。 在以 Linux 為基礎的 HDInsight 叢集上測試方案，可能會揭露需要更正的細微問題。 建議您在測試時啟用應用程式中的其他記錄。
 
@@ -75,7 +86,9 @@ ms.lasthandoff: 05/02/2017
 * [分析 HDInsight 記錄檔](hdinsight-debug-jobs.md)
 * [存取以 Linux 為基礎之 HDInsight 上的 YARN 應用程式記錄](hdinsight-hadoop-access-yarn-app-logs-linux.md)
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 * [在 HDInsight 上搭配 MapReduce 使用 C#](hdinsight-hadoop-dotnet-csharp-mapreduce-streaming.md)
 

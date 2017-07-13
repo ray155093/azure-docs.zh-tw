@@ -10,17 +10,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/10/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
 ms.openlocfilehash: f3f3616805f9bdf94fdd6cb467313244608f2d84
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/17/2017
-
 
 ---
 
-# <a name="troubleshoot-azure-active-directory-application-management"></a>針對 Azure Active Directory 應用程式管理問題進行疑難排解
+<a id="troubleshoot-azure-active-directory-application-management" class="xliff"></a>
+
+# 針對 Azure Active Directory 應用程式管理問題進行疑難排解
 下列連結會將您帶到一個內容對應表，此對應表可幫助您解決在 Azure Active Directory 中管理「企業應用程式」時，最常面臨的一些問題。
 
 * [應用程式設定的問題](active-directory-application-config-content-map.md)

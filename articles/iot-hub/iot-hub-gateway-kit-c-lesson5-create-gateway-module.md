@@ -4,7 +4,7 @@ description: "建立模組，並將它新增至範例應用程式以自訂模組
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: 
 ROBOTS: NOINDEX
@@ -23,28 +23,37 @@ ms.openlocfilehash: 5e28422158684c3aaf0ac3fdf5b19c80fbccfb02
 ms.contentlocale: zh-tw
 ms.lasthandoff: 07/06/2017
 
-
 ---
-# <a name="lesson-5-create-your-first-azure-iot-gateway-module"></a>第 5 課：建立您的第一個 Azure IoT 閘道器模組
+<a id="lesson-5-create-your-first-azure-iot-gateway-module" class="xliff"></a>
+
+# 第 5 課：建立您的第一個 Azure IoT 閘道器模組
 雖然 Azure IoT Edge 可讓您建置以 Java、.NET 或 Node.js 撰寫的模組，但本教學課程會逐步引導您完成以 C 建置模組的步驟。
 
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 
 - 在 Intel NUC 上編譯和執行 hello_world 範例應用程式。
 - 建立模組，並在 Intel NUC 上編譯。
 - 將新的模組新增至 hello_world 範例應用程式，然後在 Intel NUC 上執行範例。 新的模組會印出 "hello_world" 訊息加上時間戳記。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 
 - 如何在 Intel NUC 上編譯和執行範例應用程式。
 - 如何建立模組。
 - 如何將模組新增至範例應用程式。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 
 已安裝在主機電腦上的 Azure IoT Edge。
 
-## <a name="folder-structure"></a>資料夾結構
+<a id="folder-structure" class="xliff"></a>
+
+## 資料夾結構
 
 您在第 1 課複製的範例程式碼的第 5 課子資料夾中，有一個 `module` 資料夾和 `sample` 資料夾。
 
@@ -53,7 +62,9 @@ ms.lasthandoff: 07/06/2017
 - `module/my_module` 資料夾包含用來建置模組的原始程式碼和指令碼。
 - `sample` 資料夾包含用來建置範例應用程式的原始程式碼和指令碼。
 
-## <a name="compile-and-run-the-helloworld-sample-app-on-intel-nuc"></a>在 Intel NUC 上編譯和執行 hello_world 範例應用程式
+<a id="compile-and-run-the-helloworld-sample-app-on-intel-nuc" class="xliff"></a>
+
+## 在 Intel NUC 上編譯和執行 hello_world 範例應用程式
 
 `hello_world` 範例會根據 `hello_world.json` 檔案建立閘道，此檔案中指定應用程式相關聯的兩個預先定義模組。 閘道器每隔 5 秒會將 "hello world" 訊息記錄至檔案。 本節中，您以預設模組編譯和執行 `hello_world` 應用程式。
 
@@ -100,7 +111,9 @@ ms.lasthandoff: 07/06/2017
 
    ![run_sample](media/iot-hub-gateway-kit-lessons/lesson5/run_sample.png)
 
-## <a name="create-a-new-module-and-compile-it-on-intel-nuc"></a>建立新的模組，並在 Intel NUC 上編譯
+<a id="create-a-new-module-and-compile-it-on-intel-nuc" class="xliff"></a>
+
+## 建立新的模組，並在 Intel NUC 上編譯
 
 下列步驟逐步引導您建立新的模組，並在 Intel NUC 上進行編譯。 此模組收到訊息時會印出這些訊息加上時間戳記。 本節中，您將建立您的第一個自訂閘道器模組。
 
@@ -208,7 +221,9 @@ ms.lasthandoff: 07/06/2017
 
    此命令會將原始程式碼轉送至 Intel NUC，並執行 `build.sh` 來編譯模組。
 
-## <a name="add-the-module-to-the-helloworld-sample-app-and-run-the-app-on-intel-nuc"></a>將模組新增至 hello_world 範例應用程式，然後在 Intel NUC 上執行應用程式
+<a id="add-the-module-to-the-helloworld-sample-app-and-run-the-app-on-intel-nuc" class="xliff"></a>
+
+## 將模組新增至 hello_world 範例應用程式，然後在 Intel NUC 上執行應用程式
 
 若要執行這項工作，請按照下列步驟進行：
 
@@ -275,7 +290,9 @@ ms.lasthandoff: 07/06/2017
 
 恭喜！ 您現在可以看到這個新模組的行為，只是印出 "hello world" 訊息加上時間戳記，與原始 "hello_world" 模組的結果不同。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 您已建立新的模組，將它新增至 hello_world 範例，並在您的閘道器以新的模組執行範例應用程式。 如果您想要深入了解 Azure IoT 閘道器模組，您可以在這裡找到更多模組範例︰[https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules)。
 

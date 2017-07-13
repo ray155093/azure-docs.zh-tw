@@ -4,7 +4,7 @@ description: "設定 Raspberry Pi 3 首次使用與安裝 Raspbian 作業系統�
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "安裝 raspbian, raspbian 下載, 如何安裝 raspbian, raspbian 安裝程式, raspberry pi 安裝 raspbian, raspberry pi 安裝 os, raspberry pi sd 記憶卡安裝, raspberry pi 連線, 連線至 raspberry pi, raspberry pi 連線能力"
 ROBOTS: NOINDEX
@@ -17,18 +17,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 5b80d471c78973f8c2f6b1ad4e1240c66f0505ef
 ms.openlocfilehash: 3e34b8202794bc969bf41765ce519d083037ab46
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/21/2017
 
-
 ---
-# <a name="configure-your-device"></a>設定裝置
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="configure-your-device" class="xliff"></a>
+
+# 設定裝置
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 設定 Pi 以便進行首次使用，並安裝 Raspbian 作業系統。 Raspbian 是最適合用於 Raspberry Pi 硬體的免費作業系統。 如果您有任何問題，請在[疑難排解頁面](iot-hub-raspberry-pi-kit-c-troubleshooting.md)尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 在本文中，您將了解：
 
 * 如何在 Pi 上安裝 Raspbian。
@@ -36,7 +42,9 @@ ms.lasthandoff: 02/21/2017
 * 如何使用乙太網路纜線或無線網路將 Pi 連接到網路。
 * 如何將 LED 新增到麵包板並將它連接到 Pi。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 若要完成此作業，您需要 Raspberry Pi 3 入門套件中的下列零件：
 
 * Raspberry Pi 3 電路板
@@ -57,7 +65,9 @@ ms.lasthandoff: 02/21/2017
 * 一部執行 Windows、Mac 或 Linux 的電腦。 該電腦是用來將 Raspbian 安裝到 microSD 記憶卡上。
 * 網際網路連線，以下載必要的工具和軟體。
 
-## <a name="install-raspbian-on-the-microsd-card"></a>在 MicroSD 記憶卡上安裝 Raspbian
+<a id="install-raspbian-on-the-microsd-card" class="xliff"></a>
+
+## 在 MicroSD 記憶卡上安裝 Raspbian
 準備好用來安裝 Raspbian 映像的 microSD 記憶卡。
 
 1. 下載 Raspbian。
@@ -75,7 +85,9 @@ ms.lasthandoff: 02/21/2017
 
 ![插入 SD 記憶卡](media/iot-hub-raspberry-pi-lessons/lesson1/insert_sdcard.jpg)
 
-## <a name="turn-on-pi"></a>開啟 Pi
+<a id="turn-on-pi" class="xliff"></a>
+
+## 開啟 Pi
 透過 micro USB 纜線和電源供應器來開啟 Pi。
 
 ![開啟](media/iot-hub-raspberry-pi-lessons/lesson1/micro_usb_power_on.jpg)
@@ -83,21 +95,31 @@ ms.lasthandoff: 02/21/2017
 > [!NOTE]
 > 請務必使用套件中具有至少 2A 電流強度的電源供應器，來確保 Raspberry 具有足夠的電力以正常運作。
 
-## <a name="enable-ssh"></a>啟用 SSH
+<a id="enable-ssh" class="xliff"></a>
+
+## 啟用 SSH
 截至 2016 年 11 月版本，Raspbian 預設已停用 SSH 伺服器。 您必須手動進行啟用。 您可以參考[官方指示 (英文)](https://www.raspberrypi.org/documentation/remote-access/ssh/)，或者連接監視器並移至 [喜好設定] -> [Raspberry Pi 組態] 來啟用 SSH。
 
-## <a name="connect-raspberry-pi-3-to-the-network"></a>將 Raspberry Pi 3 連接到網路
+<a id="connect-raspberry-pi-3-to-the-network" class="xliff"></a>
+
+## 將 Raspberry Pi 3 連接到網路
 您可以將 Pi 連接到有線網路或無線網路。 請確定 Pi 是連接到與您電腦相同的網路。 例如，您可以將 Pi 連接到已和電腦連線的交換器。
 
-### <a name="connect-to-a-wired-network"></a>連接到有線網路
+<a id="connect-to-a-wired-network" class="xliff"></a>
+
+### 連接到有線網路
 使用乙太網路纜線將 Pi 連接到有線網路。 Pi 上的兩顆 LED 將會在連線建立時開啟。
 
 ![使用乙太網路纜線連接](media/iot-hub-raspberry-pi-lessons/lesson1/connect_ethernet.jpg)
 
-### <a name="connect-to-a-wireless-network"></a>連接到無線網路
+<a id="connect-to-a-wireless-network" class="xliff"></a>
+
+### 連接到無線網路
 請遵循來自 Raspberry Pi Foundation 的[指示](https://www.raspberrypi.org/learning/software-guide/wifi/)，將 Pi 連接到無線網路。 這些指示需要您先將 Pi 連接到監視器和鍵盤。
 
-## <a name="connect-the-led-to-pi"></a>將 LED 連接到 Pi
+<a id="connect-the-led-to-pi" class="xliff"></a>
+
+## 將 LED 連接到 Pi
 若要完成此工作，請使用[麵包板](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard)、接頭電線、LED 及電阻。 將它們連接到 Pi 的 [general-purpose input/output](https://www.raspberrypi.org/documentation/usage/gpio/) (GPIO) 連接埠。
 
 ![麵包板、LED 及電阻](media/iot-hub-raspberry-pi-lessons/lesson1/breadboard_led_resistor.jpg)
@@ -112,12 +134,16 @@ ms.lasthandoff: 02/21/2017
 
 恭喜！ 您已經成功設定 Pi。
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 在本文中，您已了解如何透過安裝 Raspbian、將 Pi 連接到網路，以及將 LED 連接到 Pi 來設定 Pi。 請注意，LED 目前尚未亮起。 下一個工作是安裝必要的工具和軟體，以準備在 Pi 上執行範例應用程式。
 
 ![硬體已準備完畢](media/iot-hub-raspberry-pi-lessons/lesson1/hardware_ready.jpg)
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [取得工具](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
 
 

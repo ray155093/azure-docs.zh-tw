@@ -4,7 +4,7 @@ description: "將範例應用程式部署至 Intel Edison 裝置，並執行該�
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "iot 雲端服務, arduino 傳送資料到雲端"
 ROBOTS: NOINDEX
@@ -17,24 +17,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: adf5b10721a28432e6b37ef73c6a7e7ec9f93cdd
 ms.openlocfilehash: ddc40f2e3467cb406a7336924f9577d52061c42e
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/25/2017
 
-
 ---
-# <a name="run-a-sample-application-to-send-device-to-cloud-messages"></a>執行範例應用程式以傳送裝置到雲端訊息
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="run-a-sample-application-to-send-device-to-cloud-messages" class="xliff"></a>
+
+# 執行範例應用程式以傳送裝置到雲端訊息
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 本文將說明如何將範例應用程式部署至 Intel Edison，並執行該應用程式以傳送訊息至 IoT 中樞。 如果您有任何問題，請在[疑難排解頁面][troubleshooting]尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 您將了解如何使用 gulp 工具將範例 C 應用程式部署在 Edison 上並執行。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 * 開始這項工作之前，您必須先成功完成[建立 Azure 函式應用程式與儲存體帳戶以處理與儲存 IoT 中樞訊息][process-and-store-iot-hub-messages]。
 
-## <a name="get-your-iot-hub-and-device-connection-strings"></a>取得 IoT 中樞與裝置連接字串
+<a id="get-your-iot-hub-and-device-connection-strings" class="xliff"></a>
+
+## 取得 IoT 中樞與裝置連接字串
 裝置連接字串用於將 Edison 連線至 IoT 中樞。 IoT 中樞連接字串用於將 IoT 中樞連線至在 IoT 中樞內代表 Edison 的裝置識別。
 
 * 執行下列 Azure CLI 命令，列出您的資源群組中的所有 IoT 中樞：
@@ -61,7 +71,9 @@ az iot device show-connection-string --hub-name {my hub name} --device-id myinte
 
 如果您未變更值，請使用 `myinteledison` 作為 `{device id}` 的值。
 
-## <a name="configure-the-device-connection"></a>設定裝置連線
+<a id="configure-the-device-connection" class="xliff"></a>
+
+## 設定裝置連線
 1. 執行下列命令初始化組態檔：
 
    ```bash
@@ -89,22 +101,30 @@ az iot device show-connection-string --hub-name {my hub name} --device-id myinte
    > [!NOTE]
    > 您在本文中不需要 `azure_storage_connection_string`。 請讓它保持原狀。
 
-## <a name="deploy-and-run-the-sample-application"></a>部署和執行範例應用程式
+<a id="deploy-and-run-the-sample-application" class="xliff"></a>
+
+## 部署和執行範例應用程式
 執行下列命令，在 Edison 上部署和執行範例應用程式：
 
 ```bash
 gulp deploy && gulp run
 ```
 
-## <a name="verify-that-the-sample-application-works"></a>確認範例應用程式可運作
+<a id="verify-that-the-sample-application-works" class="xliff"></a>
+
+## 確認範例應用程式可運作
 您應該會看到與 Edison 連接的 LED 每兩秒閃爍一次。 每次 LED 閃爍時，範例應用程式就會將訊息傳送至 IoT 中樞，並驗證該訊息已成功傳送至 IoT 中樞。 此外，IoT 中樞所收到的每則訊息都會列印在主控台視窗中。 在傳送 20 則訊息後，範例應用程式會自動終止。
 
 ![具有所傳送和接收之訊息的範例應用程式][sample-application-with-sent-and-received-messages]
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 您已在 Edison 上部署新的閃爍範例應用程式，並執行該應用程式以將裝置到雲端訊息傳送至 IoT 中樞。 現在，您可以在訊息寫入儲存體帳戶時加以監視。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [讀取保存在 Azure 儲存體中的訊息][read-messages-persisted-in-azure-storage]
 <!-- Images and links -->
 

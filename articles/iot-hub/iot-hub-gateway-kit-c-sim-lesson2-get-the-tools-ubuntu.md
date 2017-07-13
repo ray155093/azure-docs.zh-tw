@@ -4,7 +4,7 @@ description: "在執行 Ubuntu 的主機電腦上安裝工具和軟體、建立 
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "iot 開發, iot 軟體, iot 雲端服務, 物聯網軟體, azure cli, 在 ubuntu 上安裝 git, gulp 執行, 安裝 node js ubuntu"
 ROBOTS: NOINDEX
@@ -17,26 +17,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: f09ad1624f8a7ce4e1b13217d085cfc172d870ca
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/25/2017
 
-
 ---
-# <a name="get-the-tools-ubuntu-1604"></a>取得工具 (Ubuntu 16.04)
+<a id="get-the-tools-ubuntu-1604" class="xliff"></a>
+
+# 取得工具 (Ubuntu 16.04)
 > [!div class="op_single_selector"]
 > * [Windows 7 或更新版本](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-win32.md)
 > * [Ubuntu 16.04](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-ubuntu.md)
 > * [macOS 10.10](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-mac.md)
 
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 
 - 安裝 Git、Node.js、Gulp、Python。
 - 安裝 Azure 命令列介面 (Azure CLI)。 
 
 如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-sim-troubleshooting.md)尋求解決方案。
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 
 在這一課，您將了解：
 
@@ -52,12 +58,16 @@ ms.lasthandoff: 01/25/2017
   - Azure CLI 提供適用於 Azure 的多平台命令列體驗。 您可直接從命令列工作以佈建和管理資源。
 - 如何使用 Azure CLI 建立 IoT 中樞。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 
 - 可下載工具和軟體的網際網路連線。
 - 一部執行 Ubuntu 16.04 或以上版本的電腦。
 
-## <a name="install-git-and-nodejs"></a>安裝 Git 和 Node.js
+<a id="install-git-and-nodejs" class="xliff"></a>
+
+## 安裝 Git 和 Node.js
 
 若要安裝 Git 和 Node.js，遵循下列步驟：
 
@@ -71,7 +81,9 @@ ms.lasthandoff: 01/25/2017
    sudo apt-get install git
    ```
 
-## <a name="install-nodejs-development-tools"></a>安裝 Node.js 開發工具
+<a id="install-nodejs-development-tools" class="xliff"></a>
+
+## 安裝 Node.js 開發工具
 
 您使用 [gulp.js](http://gulpjs.com/) 來自動化部署和執行指令碼。
 
@@ -86,7 +98,9 @@ sudo npm install -g gulp
 > [!Note]
 > 需有節點、NPM、Gulp 才能執行 Node.js 開發的自動化指令碼。
 
-## <a name="install-the-azure-cli"></a>安裝 Azure CLI
+<a id="install-the-azure-cli" class="xliff"></a>
+
+## 安裝 Azure CLI
 
 若要安裝 Azure CLI，請遵循下列步驟：
 
@@ -112,16 +126,22 @@ sudo npm install -g gulp
 如果已成功安裝，您應該會看見下列輸出。
 ![確認 Azure CLI 安裝](media/iot-hub-gateway-kit-lessons/lesson2/az_iot_help_ubuntu.png)
 
-### <a name="install-visual-studio-code"></a>安裝 Visual Studio Code
+<a id="install-visual-studio-code" class="xliff"></a>
+
+### 安裝 Visual Studio Code
 
 您在本教學課程稍後章節會使用 Visual Studio Code 來編輯設定檔。
 
 [下載](https://code.visualstudio.com/docs/setup/linux)並安裝 Visual Studio Code。
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 
 您已在主機電腦上安裝所有必要的工具和軟體。 下一步是使用 Azure CLI 建立 IoT 中樞，並且在 IoT 中樞登錄您的裝置。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [建立 IoT 中樞並登錄您的裝置](iot-hub-gateway-kit-c-sim-lesson2-register-device.md)
 

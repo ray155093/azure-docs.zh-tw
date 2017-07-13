@@ -14,14 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 209d1cbe4f1ad08a98caf0a8d16f5b0ee45468ca
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 008952b4fee6bffe1e20259dc86fd6d5122777ec
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
-# <a name="how-a-machine-learning-model-progresses-from-an-experiment-to-an-operationalized-web-service"></a>Machine Learning 模型如何從實驗進展為實際運作的 Web 服務
+<a id="how-a-machine-learning-model-progresses-from-an-experiment-to-an-operationalized-web-service" class="xliff"></a>
+
+# Machine Learning 模型如何從實驗進展為實際運作的 Web 服務
 Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行、測試及反覆運算代表預測性分析模型的***實驗***。 有各種可用的模組可以︰
 
 * 將資料輸入到實驗
@@ -42,17 +45,23 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 
 雖然 Azure Machine Learning Studio 的設計是為了協助您開發及部署 *預測性分析模型*，但可以使用 Studio 來開發未包含預測性分析模型的實驗。 比方說，實驗可能只是輸入資料、操作資料，然後輸出結果。 如同預測性分析實驗，您可以將這個非預測實驗部署為 Web 服務，但此程序更簡單，因為實驗不會對機器學習模型進行定型或計分。 雖然通常不會這樣使用 Studio，我們還是將它納入討論，以便提供 Studio 運作方式的完整說明。
 
-## <a name="developing-and-deploying-a-predictive-web-service"></a>開發及部署預測性 Web 服務
+<a id="developing-and-deploying-a-predictive-web-service" class="xliff"></a>
+
+## 開發及部署預測性 Web 服務
 以下是使用 Machine Learning Studio 進行開發及部署時一般解決方案所遵循的階段：
 
 ![部署流程](media/machine-learning-model-progression-experiment-to-web-service/model-stages-from-experiment-to-web-service.png)
 
 *圖 1 - 一般預測性分析模型的階段*
 
-### <a name="the-training-experiment"></a>訓練實驗
+<a id="the-training-experiment" class="xliff"></a>
+
+### 訓練實驗
 ***訓練實驗***Machine Learning Studio 中開發 Web 服務的初始階段。 訓練實驗的目的是要提供您開發、測試、逐一查看和最終定型機器學習模型的位置。 尋求最佳的解決方案時，您甚至可以同時定型多個模型，但是一旦完成實驗，您將選取單一定型的模型，並從實驗消除其餘部分。 如需開發預測性分析實驗的範例，請參閱 [在 Azure Machine Learning 中為信用風險評估開發預測性分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)。
 
-### <a name="the-predictive-experiment"></a>預測性實驗
+<a id="the-predictive-experiment" class="xliff"></a>
+
+### 預測性實驗
 當您在訓練實驗中產生定型模型之後，請在 Machine Learning Studio 中按一下 [設定 Web 服務]，並選取 [預測性 Web 服務]將訓練實驗轉換為***預測實驗***。 預測實驗的目的是要使用您的定型模型對新資料進行計分，以最終目標成為實際運作的 Azure Web 服務。
 
 會透過下列步驟為您完成這項轉換：
@@ -70,10 +79,14 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 > 
 > 
 
-### <a name="the-web-service"></a>Web 服務
-一旦您認為您的預測實驗已經就緒，您就可以根據 Azure Resource Manager，將服務部署為傳統 Web 服務或新式 Web 服務。 若要將您的模型部署為*傳統 Machine Learning Web 服務*來運作，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]]。 若要部署為*新式 Machine Learning Web 服務*，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [新式]]。 使用者現在可以使用 Web 服務 REST API 將資料傳送至您的模型中並收回結果。 如需詳細資訊，請參閱[如何使用已從機器學習服務實驗部署的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+<a id="the-web-service" class="xliff"></a>
 
-## <a name="the-non-typical-case-creating-a-non-predictive-web-service"></a>非一般的情況：建立非預測性 Web 服務
+### Web 服務
+一旦您認為您的預測實驗已經就緒，您就可以根據 Azure Resource Manager，將服務部署為傳統 Web 服務或新式 Web 服務。 若要將您的模型部署為*傳統 Machine Learning Web 服務*來運作，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]]。 若要部署為*新式 Machine Learning Web 服務*，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [新式]]。 使用者現在可以使用 Web 服務 REST API 將資料傳送至您的模型中並收回結果。 如需詳細資訊，請參閱 [如何取用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+
+<a id="the-non-typical-case-creating-a-non-predictive-web-service" class="xliff"></a>
+
+## 非一般的情況：建立非預測性 Web 服務
 如果實驗不會訓練預測性分析模型，則您不需要同時建立訓練實驗和評分實驗 - 只有一個實驗，而您可以將它部署為 Web 服務。 Machine Learning Studio 可分析您所使用的模組，以偵測您的實驗是否包含預測性模型。
 
 逐一查看實驗並滿足於該實驗之後：
@@ -84,7 +97,9 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 
 現在已部署您的 Web 服務，而且您可以如同預測性 Web 服務一般存取及管理它。
 
-## <a name="updating-your-web-service"></a>更新您的 Web 服務
+<a id="updating-your-web-service" class="xliff"></a>
+
+## 更新您的 Web 服務
 現在您已將實驗部署為 Web 服務，如果需要更新它，該怎麼做？
 
 視您需要更新的項目而定：
@@ -108,7 +123,9 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 
 如果您想要對原始預測性實驗進行變更，例如選取不同的機器學習演算法、嘗試不同的定型方法等，則您必須遵循上述用於重新定型模型的第二個程序：開啟訓練實驗、按一下 [另存新檔]  來製作副本，然後開始開發模型的新路徑、建立預測性實驗和部署 Web 服務。 這會建立與原始無關的新 Web 服務 - 您可以決定要繼續執行哪一個或兩者。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 如需開發和實驗程序的詳細資訊，請參閱下列文章︰
 
 * 轉換實驗 - [如何準備您的模型以在 Azure Machine Learning Studio 中部署](machine-learning-convert-training-experiment-to-scoring-experiment.md)

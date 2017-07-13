@@ -4,7 +4,7 @@ description:
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "azure iot 中樞, 物聯網雲端, azure iot 中樞建立裝置, ti sensortag, ti ble"
 ROBOTS: NOINDEX
@@ -17,17 +17,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: a895f18b4cefc01f12613e701c71bd471bb369c3
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/25/2017
-
 
 ---
 
-# <a name="create-your-azure-iot-hub-and-register-your-device"></a>建立 IoT 中樞並登錄您的裝置
+<a id="create-your-azure-iot-hub-and-register-your-device" class="xliff"></a>
 
-## <a name="what-you-will-do"></a>將執行的作業
+# 建立 IoT 中樞並登錄您的裝置
+
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 
 - 建立資源群組
 - 建立您的第一個 IoT 中樞
@@ -37,19 +41,25 @@ ms.lasthandoff: 01/25/2017
 
 如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-troubleshooting.md)尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 
 在這一課，您將了解：
 
 - 如何使用 Azure CLI 建立 IoT 中樞。
 - 如何在 IoT 中樞登錄裝置。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 
 - 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以建立[免費的 Azure 試用帳戶](http://azure.microsoft.com/pricing/free-trial/)。
 - 您應該已經安裝 Azure CLI。
 
-## <a name="create-an-iot-hub"></a>建立 IoT 中樞
+<a id="create-an-iot-hub" class="xliff"></a>
+
+## 建立 IoT 中樞
 
 若要建立 IoT 中樞，遵循下列步驟：
 
@@ -94,7 +104,9 @@ ms.lasthandoff: 01/25/2017
 > [!NOTE]
 > 您 IoT 中樞的名稱必須是全域唯一的。 您的 Azure 訂用帳戶只能建立一個 F1 版本的 Azure IoT 中樞。
 
-## <a name="register-your-device-in-your-iot-hub"></a>在 IoT 中樞登錄您的裝置
+<a id="register-your-device-in-your-iot-hub" class="xliff"></a>
+
+## 在 IoT 中樞登錄您的裝置
 
 每一個向/從 IoT 中樞傳送/接收訊息的裝置，都必須以唯一識別碼登錄。
 執行下列命令在 Azure IoT 中樞中登錄您的裝置：
@@ -103,9 +115,13 @@ ms.lasthandoff: 01/25/2017
 az iot device create --device-id mydevice --hub-name {my hub name} --resource-group iot-gateway
 ```
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 
 您已建立 IoT 中樞，並在 IoT 中樞中登錄您的邏輯裝置及裝置身分識別。 您可以開始了解如何設定及執行閘道器範例應用程式，將資料從您的實體裝置傳送至您位於雲端的 IoT 中樞。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [設定和執行 BLE 範例應用程式](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md)

@@ -12,24 +12,31 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 07/12/2017
 ms.author: billmath
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
 ms.openlocfilehash: a17bf35abb54eded78d112ac4b25ddebaf5fb5e8
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/05/2017
 
 ---
-# <a name="generic-sql-connector-step-by-step"></a>一般 SQL 連接器的逐步解說
+<a id="generic-sql-connector-step-by-step" class="xliff"></a>
+
+# 一般 SQL 連接器的逐步解說
 本主題是一份逐步解說指南。 它會建立簡單的範例 HR 資料庫，並用於匯入某些使用者和他們的群組成員資格。
 
-## <a name="prepare-the-sample-database"></a>準備範例資料庫
+<a id="prepare-the-sample-database" class="xliff"></a>
+
+## 準備範例資料庫
 在執行 SQL Server 的伺服器上，執行可在[附錄 A](#appendix-a) 中找到的 SQL 指令碼。這會建立名為 GSQLDEMO 的範例資料庫。 適用於所建立資料庫的物件模型如下圖所示︰  
 ![物件模型](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/objectmodel.png)
 
 您也可以建立想要用來連接到資料庫的使用者。 在本逐步解說中，使用者將稱為 FABRIKAM\SQLUser 且位於網域中。
 
-## <a name="create-the-odbc-connection-file"></a>建立 ODBC 連接檔案
+<a id="create-the-odbc-connection-file" class="xliff"></a>
+
+## 建立 ODBC 連接檔案
 一般 SQL 連接器會使用 ODBC 連接到遠端伺服器。 首先我們需要建立含有 ODBC 連接資訊的檔案。
 
 1. 在伺服器上啟動 ODBC 管理公用程式︰  
@@ -59,7 +66,9 @@ ms.openlocfilehash: a17bf35abb54eded78d112ac4b25ddebaf5fb5e8
 
 我們現在已經擁有所需的檔案，就能開始建立連接器。
 
-## <a name="create-the-generic-sql-connector"></a>建立一般 SQL 連接器
+<a id="create-the-generic-sql-connector" class="xliff"></a>
+
+## 建立一般 SQL 連接器
 1. 在 Synchronization Service Manager UI 中，選取 [連接器] 和 [建立]。 選取 [一般 SQL (Microsoft)]  並為它提供描述性名稱。  
    ![Connector1](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector1.png)
 2. 尋找您在上一節中建立的 DSN 檔案，然後將它上傳到伺服器。 提供認證以連接到資料庫。  
@@ -80,7 +89,9 @@ ms.openlocfilehash: a17bf35abb54eded78d112ac4b25ddebaf5fb5e8
    ![Connector9](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector9.png)
 10. 在 [選取物件類型] 和 [選取屬性] 中，選取物件類型和所有屬性。 在 [設定錨點] 頁面上，按一下 [完成]。
 
-## <a name="create-run-profiles"></a>建立執行設定檔
+<a id="create-run-profiles" class="xliff"></a>
+
+## 建立執行設定檔
 1. 在 Synchronization Service Manager UI 中，選取 [連接器] 和 [設定執行設定檔]。 按一下 [新增設定檔]。 我們會從**完整匯入**開始。  
    ![Runprofile1](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile1.png)
 2. 選取類型 [完整匯入 (僅限階段)] 。  
@@ -96,14 +107,18 @@ ms.openlocfilehash: a17bf35abb54eded78d112ac4b25ddebaf5fb5e8
 6. 選用︰如果您想要，您可以設定其他的執行設定檔。 在這個逐步解說中，只會使用完整匯入。
 7. 按一下 [確定]  以完成變更執行設定檔。
 
-## <a name="add-some-test-data-and-test-the-import"></a>新增一些測試資料並測試匯入
+<a id="add-some-test-data-and-test-the-import" class="xliff"></a>
+
+## 新增一些測試資料並測試匯入
 在範例資料庫中填入部分測試資料。 當您準備好時，選取 [執行] 和 [完整匯入]。
 
 以下是具有兩個電話號碼的使用者以及含有一些成員的群組。  
 ![cs1](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/cs1.png)  
 ![cs2](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/cs2.png)  
 
-## <a name="appendix-a"></a>附錄 A
+<a id="appendix-a" class="xliff"></a>
+
+## 附錄 A
 **建立範例資料庫的 SQL 指令碼**
 
 ```SQL
@@ -202,9 +217,4 @@ GO
 ALTER TABLE [dbo].[USERPHONE] CHECK CONSTRAINT [FK_USERPHONE_USER]
 GO
 ```
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

@@ -13,26 +13,23 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/062/2016
+ms.date: 03/06/2016
 ms.author: carlrab
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: c9376b95e4686f804d34f648e15cfcc0f2847718
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: db90fad2fe397f0c8466db6bdc1bd8c8d1cf8f15
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/22/2017
 
 
 ---
-# <a name="configure-active-geo-replication-for-azure-sql-database-in-the-azure-portal-and-initiate-failover"></a>在 Azure 入口網站中為 Azure SQL Database 設定主動式異地複寫，並起始容錯移轉
+<a id="configure-active-geo-replication-for-azure-sql-database-in-the-azure-portal-and-initiate-failover" class="xliff"></a>
+
+# 在 Azure 入口網站中為 Azure SQL Database 設定主動式異地複寫，並起始容錯移轉
 
 本文說明如何在 [Azure 入口網站](http://portal.azure.com)中為 SQL Database 設定主動式異地複寫，並起始容錯移轉。
 
 若要使用 Azure 入口網站起始容錯移轉，請參閱 [使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-portal.md)。
-
-> [!NOTE]
-> 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。 在 2017 年 4 月，不可讀取的次要類型已淘汰，而現有的不可讀取資料庫已自動升級為可讀取的次要資料庫。
-> 
-> 
 
 若要使用 Azure 入口網站來設定作用中異地複寫，您需要下列資源：
 
@@ -41,7 +38,9 @@ ms.lasthandoff: 05/18/2017
 > [!Note]
 主動式異地複寫必須是在相同訂用帳戶內的資料庫之間進行。
 
-## <a name="add-a-secondary-database"></a>新增次要資料庫
+<a id="add-a-secondary-database" class="xliff"></a>
+
+## 新增次要資料庫
 下列步驟會在異地複寫合作關係中建立新的次要資料庫。  
 
 若要新增次要資料庫，您必須是訂用帳戶擁有者或共同擁有者。
@@ -69,7 +68,9 @@ ms.lasthandoff: 05/18/2017
    
     ![植入完成](./media/sql-database-geo-replication-portal/seeding-complete.png)
 
-## <a name="initiate-a-failover"></a>起始容錯移轉
+<a id="initiate-a-failover" class="xliff"></a>
+
+## 起始容錯移轉
 
 次要資料庫可被切換成為主要資料庫。  
 
@@ -89,7 +90,9 @@ ms.lasthandoff: 05/18/2017
 > 
 > 
 
-## <a name="remove-secondary-database"></a>移除次要資料庫
+<a id="remove-secondary-database" class="xliff"></a>
+
+## 移除次要資料庫
 此作業會永久終止對次要資料庫的複寫，並將次要資料庫的角色變更為一般讀寫資料庫。 如果與次要資料庫的連線中斷，命令將會成功，但次要資料庫必須等到連線恢復後才會變成讀寫資料庫。  
 
 1. 在 [Azure 入口網站](http://portal.azure.com) 中，瀏覽至「異地複寫」合作關係中的主要資料庫。
@@ -100,7 +103,9 @@ ms.lasthandoff: 05/18/2017
     ![移除次要](./media/sql-database-geo-replication-portal/remove-secondary.png)
 5. 隨即開啟確認視窗。 按一下 [是] 以從異地複寫合作關係中移除資料庫。 (將它設定為讀寫資料庫不屬於任何複寫的一部分。)
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 * 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)。
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)。
 

@@ -17,26 +17,32 @@ ms.workload: database
 ms.date: 06/02/2017
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 24ce695bdc48e1fc196415dcee8c3dab269e1e91
+ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
+ms.openlocfilehash: 96083d66cc1a2ef179f9313c1b3ed04162c1c048
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
+ms.lasthandoff: 06/20/2017
 
 ---
 
-# <a name="create-a-failover-policy-for-high-availability-using-the-azure-cli"></a>使用 Azure CLI 建立高可用性的容錯移轉原則
+<a id="create-a-failover-policy-for-high-availability-using-the-azure-cli" class="xliff"></a>
+
+# 使用 Azure CLI 建立高可用性的容錯移轉原則
 
 此範例 CLI 指令碼會建立 Azure Cosmos DB 帳戶，然後將它設定為高可用性。
 
-[!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
-
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-## <a name="sample-script"></a>範例指令碼
+如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+
+<a id="sample-script" class="xliff"></a>
+
+## 範例指令碼
 
 [!code-azurecli-interactive[主要](../../../cli_scripts/cosmosdb/high-availability-cosmosdb-configure-failover/high-availability-cosmosdb-configure-failover.sh?highlight=23-27 "建立 Azure Cosmos DB 容錯移轉原則")]
 
-## <a name="clean-up-deployment"></a>清除部署
+<a id="clean-up-deployment" class="xliff"></a>
+
+## 清除部署
 
 在執行過指令碼範例之後，您可以使用下列命令來移除資源群組和所有與其相關聯的資源。
 
@@ -44,7 +50,9 @@ ms.lasthandoff: 05/15/2017
 az group delete --name myResourceGroup
 ```
 
-## <a name="script-explanation"></a>指令碼說明
+<a id="script-explanation" class="xliff"></a>
+
+## 指令碼說明
 
 此指令碼會使用下列命令。 下表中的每個命令都會連結至命令特定的文件。
 
@@ -55,7 +63,9 @@ az group delete --name myResourceGroup
 | [az cosmosdb update](/cli/azure/cosmosdb#update) | 更新 Azure Cosmos DB 帳戶。 |
 | [az group delete](/cli/azure/resource#delete) | 刪除資源群組，包括所有的巢狀資源。 |
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 

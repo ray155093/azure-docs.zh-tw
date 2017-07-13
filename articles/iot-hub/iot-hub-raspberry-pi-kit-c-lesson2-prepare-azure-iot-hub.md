@@ -4,7 +4,7 @@ description: "使用 Azure CLI 建立資源群組、建立 Azure IoT 中樞，�
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "raspberry pi 雲端, pi 雲端連線"
 ROBOTS: NOINDEX
@@ -17,31 +17,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
 ms.openlocfilehash: d7bc143b509e84d50f3ce0164d31ae51a26f75d4
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/24/2017
 
-
 ---
-# <a name="create-your-iot-hub-and-register-raspberry-pi-3"></a>建立 IoT 中樞並登錄 Raspberry Pi 3
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="create-your-iot-hub-and-register-raspberry-pi-3" class="xliff"></a>
+
+# 建立 IoT 中樞並登錄 Raspberry Pi 3
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 * 建立資源群組。
 * 在資源群組中建立 Azure IoT 中樞。
 * 使用 Azure 命令列介面 (Azure CLI)，將 Raspberry Pi 3 新增至 Azure IoT 中樞。
 
 當您使用 Azure CLI 將 Pi 新增至 IoT 中樞時，服務將會為 Pi 產生金鑰，以向服務進行驗證。 如果您有任何問題，請在[疑難排解頁面](iot-hub-raspberry-pi-kit-c-troubleshooting.md)尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 在本文中，您將了解：
 * 如何使用 Azure CLI 建立 IoT 中樞。
 * 如何在 IoT 中樞為 Pi 建立裝置身分識別。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 * 一個 Azure 帳戶
 * 一部已安裝 Azure CLI 的 Mac 或 Windows 電腦
 
-## <a name="create-your-iot-hub"></a>建立 IoT 中樞
+<a id="create-your-iot-hub" class="xliff"></a>
+
+## 建立 IoT 中樞
 Azure IoT 中樞可以協助您連接、監視並管理數以百萬計的 IoT 資產。 若要建立 IoT 中樞，請遵循下列步驟：
 
 1. 執行下列命令來登入您的 Azure 帳戶：
@@ -84,7 +94,9 @@ Azure IoT 中樞可以協助您連接、監視並管理數以百萬計的 IoT �
 > [!NOTE]
 > 您 IoT 中樞的名稱必須是全域唯一的。 您的 Azure 訂用帳戶只能建立一個 F1 版本的 Azure IoT 中樞。
 
-## <a name="register-pi-in-your-iot-hub"></a>在 IoT 中樞中登錄 Pi
+<a id="register-pi-in-your-iot-hub" class="xliff"></a>
+
+## 在 IoT 中樞中登錄 Pi
 每一個向/從 IoT 中樞傳送/接收訊息的裝置，都必須以唯一識別碼登錄。
 
 執行下列命令在中樞登錄 Pi：
@@ -93,10 +105,14 @@ Azure IoT 中樞可以協助您連接、監視並管理數以百萬計的 IoT �
 az iot device create --device-id myraspberrypi --hub {my hub name} --resource-group iot-sample
 ```
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 您已建立 IoT 中樞，並在 IoT 中樞中搭配裝置識別登錄 Pi。 您已準備好了解如何從 Pi 傳送訊息至 IoT 中樞。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [建立 Azure 函式應用程式和 Azure 儲存體帳戶以處理並儲存 IoT 中樞訊息](iot-hub-raspberry-pi-kit-c-lesson3-deploy-resource-manager-template.md)
 
 

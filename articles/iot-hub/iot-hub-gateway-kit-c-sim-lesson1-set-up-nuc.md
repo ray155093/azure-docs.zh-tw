@@ -4,7 +4,7 @@ description: "將 Intel NUC 設定為在感應器和 Azure IoT 中樞之間做�
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: yjianfeng
+manager: timlt
 tags: 
 keywords: "iot 閘道, intel nuc, nuc 電腦, DE3815TYKE"
 ROBOTS: NOINDEX
@@ -23,18 +23,23 @@ ms.openlocfilehash: b87974be9570f7d03fe84ae0a1d1fa7e346ff189
 ms.contentlocale: zh-tw
 ms.lasthandoff: 07/06/2017
 
-
 ---
-# <a name="set-up-intel-nuc-as-an-iot-gateway"></a>將 Intel NUC 設定為 IoT 閘道器
+<a id="set-up-intel-nuc-as-an-iot-gateway" class="xliff"></a>
 
-## <a name="what-you-will-do"></a>將執行的作業
+# 將 Intel NUC 設定為 IoT 閘道器
+
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 
 - 將 Intel NUC 設定為 IoT 閘道器。
 - 在 Intel NUC 上安裝 Azure IoT Edge 套件。
 - 在 Intel NUC 上執行 "hello_world" 範例應用程式以確認閘道器的功能。
 如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-sim-troubleshooting.md)尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 
 在這一課，您將了解：
 
@@ -42,7 +47,9 @@ ms.lasthandoff: 07/06/2017
 - 如何使用智慧型套件管理員 (Smart Package Manager) 安裝及更新 Intel NUC 上的所需套件。
 - 如何執行 "hello_world" 範例應用程式以確認閘道器的功能。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 
 - 預先安裝的 Intel NUC 套件 DE3815TYKE 與 Intel IoT 閘道器軟體套件 (Wind River Linux *7.0.0.13)。
 - 乙太網路連接線。
@@ -52,7 +59,9 @@ ms.lasthandoff: 07/06/2017
 
 ![閘道器套件](media/iot-hub-gateway-kit-lessons/lesson1/kit_without_sensortag.png)
 
-## <a name="connect-intel-nuc-with-the-peripherals"></a>連接 Intel NUC 與週邊設備
+<a id="connect-intel-nuc-with-the-peripherals" class="xliff"></a>
+
+## 連接 Intel NUC 與週邊設備
 
 下圖是 Intel NUC 與各種週邊設備連接的範例︰
 
@@ -63,7 +72,9 @@ ms.lasthandoff: 07/06/2017
 
 ![連接到週邊設備的 Intel NUC](media/iot-hub-gateway-kit-lessons/lesson1/nuc.png)
 
-## <a name="connect-to-the-intel-nuc-system-from-host-computer-via-secure-shell-ssh"></a>從主機電腦透過安全殼層 (SSH) 連線至 Intel NUC 系統
+<a id="connect-to-the-intel-nuc-system-from-host-computer-via-secure-shell-ssh" class="xliff"></a>
+
+## 從主機電腦透過安全殼層 (SSH) 連線至 Intel NUC 系統
 
 此時您需要鍵盤和螢幕來取得 NUC 裝置的 IP 位址。 如果您已經知道 IP 位址，可以跳至本節的步驟 3。
 
@@ -87,7 +98,9 @@ ms.lasthandoff: 07/06/2017
    從主機電腦操作 Intel NUC 會更有效率且更有生產力。 您需要 IP 位址、使用者名稱和密碼才能透 SSH 用戶端連線至 NUC。 以下是在 macOS 上 SSH 用戶端的範例。
    ![在 macOS 上執行的 SSH 用戶端](media/iot-hub-gateway-kit-lessons/lesson1/ssh.png)
 
-## <a name="install-the-azure-iot-edge-package"></a>安裝 Azure IoT Edge 套件
+<a id="install-the-azure-iot-edge-package" class="xliff"></a>
+
+## 安裝 Azure IoT Edge 套件
 
 Azure IoT Edge 套件包含預先編譯的 SDK 二進位檔及其相依性。 這些二進位檔是 Azure IoT Edge、Azure IoT SDK 和對應的工具。 套件也會包含 "hello_world" 範例應用程式，可用來確認閘道功能。 IoT Edge 是閘道的核心部分。 若要安裝套件，請遵循下列步驟：
 
@@ -116,7 +129,9 @@ Azure IoT Edge 套件包含預先編譯的 SDK 二進位檔及其相依性。 �
 
    安裝套件後，Intel NUC 應該可以當做閘道運作。
 
-## <a name="run-the-azure-iot-edge-helloworld-sample-application"></a>執行 Azure IoT Edge "hello_world" 範例應用程式
+<a id="run-the-azure-iot-edge-helloworld-sample-application" class="xliff"></a>
+
+## 執行 Azure IoT Edge "hello_world" 範例應用程式
 
 移至 `azureiotgatewaysdk/samples`，執行 "hello_world" 範例應用程式。 此範例應用程式會從 `hello_world.json` 檔案建立閘道，並使用 Azure IoT Edge 架構中的基礎元件，每隔 5 秒將 hello world 訊息記錄到檔案中。
 
@@ -133,10 +148,14 @@ cd /usr/share/azureiotgatewaysdk/samples/hello_world/
 
 如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-troubleshooting.md)尋求解決方案。
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 
 恭喜！ 您已完成將 Intel NUC 設定為閘道器。 現在您可以開始進行下一課，設定主機電腦、建立 Azure IoT 中樞，並登錄您的 Azure IoT 中樞邏輯裝置。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [準備好您的主機電腦和 Azure IoT 中樞](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-win32.md)
 

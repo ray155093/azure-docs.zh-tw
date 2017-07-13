@@ -1,33 +1,42 @@
-<properties
-   pageTitle="Azure 搜尋服務的同義字 (預覽) | Microsoft Docs"
-   description="Azure Search REST API 中公開的同義字 (預覽) 功能預備文件。"
-   services="search"
-   documentationCenter=""
-   authors="mhko"
-   manager="pablocas"
-   editor=""/>
+---
+pageTitle: Synonyms in Azure Search (preview) | Microsoft Docs
+description: "Azure Search REST API 中公開的同義字 (預覽) 功能預備文件。"
+services: search
+documentationCenter: 
+authors: mhko
+manager: pablocas
+editor: 
+ms.service: search
+ms.devlang: rest-api
+ms.workload: search
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.date: 07/07/2016
+ms.author: nateko
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 739a0ad77c68ea74ec25bc80c7539ac8b3f18201
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
-<tags
-   ms.service="search"
-   ms.devlang="rest-api"
-   ms.workload="search"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.date="07/07/2016"
-   ms.author="nateko"/>
+---
+<a id="synonyms-in-azure-search-preview" class="xliff"></a>
 
-
-# <a name="synonyms-in-azure-search-preview"></a>Azure 搜尋服務的同義字 (預覽)
+# Azure 搜尋服務的同義字 (預覽)
 
 搜尋引擎中與對等詞彙相關聯的同義字，讓使用者不必實際提供詞彙，就能以隱含方式擴充查詢範圍。 例如，給定詞彙「狗」與關聯的同義字「犬科動物」和「小狗」，任何包含「狗」、「犬科動物」和「小狗」的文件都會包含在查詢範圍內。
 
 在 Azure 搜尋服務中，同義字擴充在查詢同時就已完成。 您可以在不中斷現有作業的情況下，新增同義字地圖至服務中。 您無需重建索引，就可以將 synonymMaps 屬性新增至欄位定義。 如需詳細資訊，請參閱[更新索引](https://docs.microsoft.com/rest/api/searchservice/update-index)。
 
-## <a name="feature-availability"></a>功能可用性
+<a id="feature-availability" class="xliff"></a>
+
+## 功能可用性
 
 同義字功能目前僅提供預覽，因此只在最新的預覽 API 版本 (api-version=2016-09-01-Preview) 中提供支援。 目前 Azure 入口網站並不支援此功能。 因為需在要求中指定才能取得 API 版本，因此可以在同一個應用程式中結合就可以結合正式推出 (GA) 與預覽 API 功能。 然而，預覽 API 不受 SLA 約束，且功能可能會變更，因此不建議在生產應用程式中使用。
 
-## <a name="how-to-use-synonyms-in-azure-search"></a>如何在 Azure 搜尋服務中使用同義字
+<a id="how-to-use-synonyms-in-azure-search" class="xliff"></a>
+
+## 如何在 Azure 搜尋服務中使用同義字
 
 Azure 搜尋服務是根據您定義並上傳至服務的同義字地圖，提供同義字支援。 這些地圖由獨立資源構成 (例如索引或資料資源)，且可以在您搜尋服務索引中的任何可搜尋欄位使用。
 
@@ -35,13 +44,17 @@ Azure 搜尋服務是根據您定義並上傳至服務的同義字地圖，提�
 
 將同義字整合至您的搜尋應用程式需要兩個步驟：
 
-1.    透過下列的 API 將同義字地圖新增至您的搜尋服務。  
+1.  透過下列的 API 將同義字地圖新增至您的搜尋服務。  
 
-2.    在索引定義中設定要使用同義字地圖的可搜尋欄位。
+2.  在索引定義中設定要使用同義字地圖的可搜尋欄位。
 
-### <a name="synonymmaps-resource-apis"></a>SynonymMaps 資源 API
+<a id="synonymmaps-resource-apis" class="xliff"></a>
 
-#### <a name="add-or-update-a-synonym-map-under-your-service-using-post-or-put"></a>使用 POST 或 PUT 在您的服務中新增或更新同義字地圖。
+### SynonymMaps 資源 API
+
+<a id="add-or-update-a-synonym-map-under-your-service-using-post-or-put" class="xliff"></a>
+
+#### 使用 POST 或 PUT 在您的服務中新增或更新同義字地圖。
 
 同義地圖會透過 POST 或 PUT 上傳至服務。 每個規則都必須以新行字元 ('\n') 分隔。 在免費服務中，每個同義字地圖最多可以定義 5,000 條規則，而其他所有 SKU 最多可以定義 10,000 條規則。 每條規則最多可以有 20 個擴充詞彙。
 
@@ -72,7 +85,9 @@ Azure 搜尋服務是根據您定義並上傳至服務的同義字地圖，提�
           Washington, Wash., WA => WA\n"
     }
 
-##### <a name="apache-solr-synonym-format"></a>Apache Solr 同義字格式
+<a id="apache-solr-synonym-format" class="xliff"></a>
+
+##### Apache Solr 同義字格式
 
 Solr 格式支援對等且明確的對應同義字。 對應規則需遵守 Apache Solr 的開放來源同義字篩選條件規格，規則如[關鍵字篩選條件](https://cwiki.apache.org/confluence/display/solr/Filter+Descriptions#FilterDescriptions-SynonymFilter)文件所述。 以下是對等同義字的樣本規則。
 ```
@@ -86,22 +101,30 @@ Solr 格式支援對等且明確的對應同義字。 對應規則需遵守 Apac
               Washington, Wash., WA => WA
 ```
 
-#### <a name="list-synonym-maps-under-your-service"></a>您服務中的同義字地圖清單。
+<a id="list-synonym-maps-under-your-service" class="xliff"></a>
+
+#### 您服務中的同義字地圖清單。
 
     GET https://[servicename].search.windows.net/synonymmaps?api-version=2016-09-01-Preview
     api-key: [admin key]
 
-#### <a name="get-a-synonym-map-under-your-service"></a>在您的服務中取得同義字地圖。
+<a id="get-a-synonym-map-under-your-service" class="xliff"></a>
+
+#### 在您的服務中取得同義字地圖。
 
     GET https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
     api-key: [admin key]
 
-#### <a name="delete-a-synonyms-map-under-your-service"></a>刪除您服務中的同義字地圖。
+<a id="delete-a-synonyms-map-under-your-service" class="xliff"></a>
+
+#### 刪除您服務中的同義字地圖。
 
     DELETE https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
     api-key: [admin key]
 
-### <a name="configure-a-searchable-field-to-use-the-synonym-map-in-the-index-definition"></a>在索引定義中設定要使用同義字地圖的可搜尋欄位。
+<a id="configure-a-searchable-field-to-use-the-synonym-map-in-the-index-definition" class="xliff"></a>
+
+### 在索引定義中設定要使用同義字地圖的可搜尋欄位。
 
 您可以使用新的欄位屬性 **synonymMaps**，來指定要在可搜尋欄位中使用的同義字地圖。 同義字地圖屬於服務層級的資源，且服務中的任何索引欄位均可參考。
 
@@ -142,7 +165,9 @@ Solr 格式支援對等且明確的對應同義字。 對應規則需遵守 Apac
 > [!NOTE]
 > 在此預覽中，每一個欄位僅能有一個同義字地圖。 如果您想要使用多個同義字地圖，請透過 [UserVoice](https://feedback.azure.com/forums/263029-azure-search) 讓我們知道。
 
-## <a name="impact-of-synonyms-on-other-search-features"></a>同義字對其他搜尋功能的影響
+<a id="impact-of-synonyms-on-other-search-features" class="xliff"></a>
+
+## 同義字對其他搜尋功能的影響
 
 同義字功能會在 OR 運算子中，使用同義字改寫原始的查詢。 基於這個原因，點閱數醒目提示與評分檔案，會將原始詞彙與同義字視為對等。
 
@@ -150,7 +175,9 @@ Solr 格式支援對等且明確的對應同義字。 對應規則需遵守 Apac
 
 同義字擴充不適用於萬用字元搜尋詞彙；也不會擴充前置詞、模糊與 Regex 詞彙。
 
-## <a name="tips-for-building-a-synonym-map"></a>建置同義字地圖的秘訣
+<a id="tips-for-building-a-synonym-map" class="xliff"></a>
+
+## 建置同義字地圖的秘訣
 
 - 簡潔、 設計良好的同義字地圖比詳盡的可能比對結果清單來得有效率。 過於龐大或複雜的字典需要花較長的時間剖析，且如果擴充至太多的同義字，會影響到查詢延遲。 與其猜測可能使用的詞彙，您可以透過[搜尋流量分析報告](search-traffic-analytics.md)取得實際使用的詞彙。
 
@@ -158,7 +185,9 @@ Solr 格式支援對等且明確的對應同義字。 對應規則需遵守 Apac
 
 - 您可以為您的搜尋應用程式建立多個同義字地圖 (例如，如果您的應用程式支援多語言的客戶群，您可以建立不同語言的同義字地圖)。 目前，一個欄位只能使用一個同義字地圖。 您可以隨時更新欄位的 synonymMaps 屬性。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 - 如果您在開發 (非生產) 環境中有現有的索引，可以使用小型的字典進行試驗，看看增加同義字能如何改變搜尋體驗，包含對於評分檔案、點閱數醒目提示以及搜尋建議的影響。
 

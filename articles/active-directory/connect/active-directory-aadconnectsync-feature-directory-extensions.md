@@ -12,15 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/08/2017
+ms.date: 07/12/2017
 ms.author: billmath
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2f5c5e9af193c843765f63640d46c25f3a6d10c3
 ms.openlocfilehash: 3641f9309cc38f6575ce36d3450448cdae1601a9
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/02/2017
 
 ---
-# <a name="azure-ad-connect-sync-directory-extensions"></a>Azure AD Connect 同步處理：目錄擴充
+<a id="azure-ad-connect-sync-directory-extensions" class="xliff"></a>
+
+# Azure AD Connect 同步處理：目錄擴充
 目錄擴充可讓您從內部部署 Active Directory 利用自己的屬性擴充 Azure AD 中的架構。 此功能可讓您建置 LOB 應用程式來取用您在內部部署中持續進行管理的屬性。 透過 [Azure AD Graph 目錄擴充](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)或 [Microsoft Graph](https://graph.microsoft.io/) 即可取用這些屬性。 若要查看可用的屬性，可分別使用 [Azure AD Graph 總管](https://graphexplorer.cloudapp.net)和 [Microsoft Graph 總管](https://graphexplorer2.azurewebsites.net/)。
 
 目前沒有任何 Office 365 工作負載取用這些屬性。
@@ -45,13 +48,10 @@ Azure AD 中的物件最多可有 100 個目錄擴充屬性。 長度上限是 2
 
 屬性的前面會加上 extension\_{AppClientId}\_。 Azure AD 租用戶中的所有屬性會有相同的 AppClientId 值。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

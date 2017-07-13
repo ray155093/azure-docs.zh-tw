@@ -17,14 +17,16 @@ ms.workload: data-management
 ms.date: 05/10/2017
 ms.author: rickbyh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: a8c7e1859fa630fbfcebd39d0304a6e7657ac43b
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: 89ffa95a5889e4ebdf26f4b001edce3c5ce81ce2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/08/2017
 
 
 ---
-# <a name="use-azure-active-directory-authentication-for-authentication-with-sql-database-or-sql-data-warehouse"></a>利用 SQL Database 和 SQL 資料倉儲使用 Azure Active Directory 驗證來驗證
+<a id="use-azure-active-directory-authentication-for-authentication-with-sql-database-or-sql-data-warehouse" class="xliff"></a>
+
+# 利用 SQL Database 和 SQL 資料倉儲使用 Azure Active Directory 驗證來驗證
 Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身分識別連接到 Microsoft Azure SQL Database 和 [SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md) 的機制。 您可以使用 Azure AD 驗證，在單一中央位置集中管理資料庫使用者和其他 Microsoft 服務的身分識別。 中央識別碼管理提供單一位置以管理資料庫使用者並簡化權限管理。 包括以下優點：
 
 * 它提供 SQL Server 驗證的替代方案。
@@ -53,7 +55,9 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 > 若要了解如何建立和填入 Azure AD，然後使用 Azure SQL Database 和 SQL 資料倉儲設定 Azure AD，請參閱[使用 Azure SQL Database 設定 Azure AD](sql-database-aad-authentication-configure.md)。
 >
 
-## <a name="trust-architecture"></a>信認架構
+<a id="trust-architecture" class="xliff"></a>
+
+## 信認架構
 下列高階圖表摘要說明搭配使用 Azure AD 驗證與 Azure SQL Database 的解決方案架構。 相同的概念適用於 SQL 資料倉儲。 若要支援 Azure AD 原生使用者密碼，只會考慮雲端部分和 Azure AD/Azure SQL Database。 若要支援同盟驗證 (或 Windows 認證的使用者/密碼)，需要與 ADFS 區塊進行通訊。 箭頭表示通訊路徑。
 
 ![aad 驗證圖表][1]
@@ -62,17 +66,23 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 
 ![訂用帳戶關聯性][2]
 
-## <a name="administrator-structure"></a>系統管理員結構
+<a id="administrator-structure" class="xliff"></a>
+
+## 系統管理員結構
 使用 Azure AD 驗證時，SQL Database 伺服器會有兩個系統管理員帳戶：原始的 SQL Server 系統管理員和 Azure AD 系統管理員。 相同的概念適用於 SQL 資料倉儲。 只有以 Azure AD 帳戶為基礎的系統管理員可以在使用者資料庫中建立第一個 Azure AD 自主資料庫使用者。 Azure AD 系統管理員登入可以是 Azure AD 使用者或 Azure AD 群組。 當系統管理員是群組帳戶時，它可以供任何群組成員使用，啟用 SQL Server 執行個體的多個 Azure AD 系統管理員。 以系統管理員的身分使用群組帳戶，可讓您集中新增和移除 Azure AD 中的群組成員，而不需要變更 SQL Database 中的使用者或權限，藉以增強管理性。 一律只能設定一個 Azure AD 系統管理員 (使用者或群組)。
 
 ![系統管理員結構][3]
 
-## <a name="permissions"></a>權限
+<a id="permissions" class="xliff"></a>
+
+## 權限
 若要建立新的使用者，您必須具有資料庫中的 `ALTER ANY USER` 權限。 任何資料庫使用者皆可授與 `ALTER ANY USER` 權限。 `ALTER ANY USER` 權限的擁有者還包括伺服器系統管理員帳戶、具備資料庫之 `CONTROL ON DATABASE` 或 `ALTER ON DATABASE` 權限的資料庫使用者，以及 `db_owner` 資料庫角色的成員。
 
 若要在 Azure SQL Database 或 SQL 資料倉儲中建立自主資料庫使用者，您必須使用 Azure AD 身分識別連線到資料庫。 若要建立第一個自主資料庫使用者，您必須使用 Azure AD 系統管理員 (資料庫的擁有者) 連接到資料庫。 如以下步驟 4 和 5 所示。 只有針對 Azure SQL Database 或 SQL 資料倉儲伺服器建立 Azure AD 系統管理員後，才可能進行任何 Azure AD 驗證。 如果已從伺服器移除 Azure Active Directory 系統管理員，則先前在 SQL Server 內建立的現有 Azure Active Directory 使用者便無法再使用其 Azure Active Directory 認證連線到資料庫。
 
-## <a name="azure-ad-features-and-limitations"></a>Azure AD 功能和限制
+<a id="azure-ad-features-and-limitations" class="xliff"></a>
+
+## Azure AD 功能和限制
 下列 Azure AD 的成員可在 Azure SQL 伺服器或 SQL 資料倉儲中佈建：
 
 * 原生成員：在受管理網域或客戶網域的 Azure AD 中建立的成員。 如需詳細資訊，請參閱 [將您自己的網域名稱新增至 Azure AD](../active-directory/active-directory-add-domain.md)。
@@ -82,7 +92,9 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 
 不支援 Microsoft 帳戶 (例如 outlook.com、hotmail.com、live.com) 或其他來賓帳戶 (例如 gmail.com、yahoo.com)。 如果您可以使用帳戶和密碼登入 [https://login.live.com](https://login.live.com) ，則您就能使用 Azure SQL Database 或 Azure SQL 資料倉儲的 Azure AD 驗證不支援的 Microsoft 帳戶。
 
-## <a name="connecting-using-azure-ad-identities"></a>使用 Azure AD 身分識別連接
+<a id="connecting-using-azure-ad-identities" class="xliff"></a>
+
+## 使用 Azure AD 身分識別連接
 
 Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別連接至資料庫：
 
@@ -90,7 +102,9 @@ Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別�
 * 使用 Azure AD 主體名稱和密碼
 * 使用應用程式權杖驗證
 
-### <a name="additional-considerations"></a>其他考量
+<a id="additional-considerations" class="xliff"></a>
+
+### 其他考量
 
 * 若要增強管理性，建議您以系統管理員身分佈建專用的 Azure AD 群組。   
 * 一個 Azure SQL 伺服器或 Azure SQL 資料倉儲一律只能設定一個 Azure AD 系統管理員 (使用者或群組)。   
@@ -104,15 +118,15 @@ Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別�
 * PolyBase 無法使用 Azure AD 驗證進行驗證。   
 * Azure 入口網站的 [匯入資料庫] 和 [匯出資料庫] 刀鋒視窗支援 SQL Database 的 AD 驗證。 PowerShell 命令也支援使用 Azure AD 驗證的匯入和匯出。   
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 - 若要了解如何建立和填入 Azure AD，然後使用 Azure SQL Database 設定 Azure AD，請參閱[使用 Azure SQL Database 設定 Azure AD](sql-database-aad-authentication-configure.md)。
 - 如需 SQL Database 中存取權和控制權的概觀，請參閱 [SQL Database 的存取權和控制權](sql-database-control-access.md)。
 - 如需 SQL Database 中登入、使用者和資料庫角色的概觀，請參閱[登入、使用者和資料庫角色](sql-database-manage-logins.md)。
 - 如需資料庫主體的詳細資訊，請參閱[主體](https://msdn.microsoft.com/library/ms181127.aspx)。
 - 如需資料庫角色的詳細資訊，請參閱[資料庫角色](https://msdn.microsoft.com/library/ms189121.aspx)。
 - 如需 SQL Database 中防火牆規則的詳細資訊，請參閱 [SQL Database 防火牆規則](sql-database-firewall-configure.md)。
-- 如需使用 SQL Server 驗證的教學課程，請參閱 [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)。
-- 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [Azure AD 驗證和授權](sql-database-control-access-aad-authentication-get-started.md)。
 
 <!--Image references-->
 

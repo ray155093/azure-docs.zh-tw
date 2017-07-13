@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/24/2017
+ms.date: 07/12/2017
 ms.author: markvi
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
@@ -20,15 +20,18 @@ ms.openlocfilehash: 899a45d59099dec147c96e4cd175536e859e88f8
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/04/2017
 
-
 ---
-# <a name="azure-active-directory-faq"></a>Azure Active Directory 常見問題集
+<a id="azure-active-directory-faq" class="xliff"></a>
+
+# Azure Active Directory 常見問題集
 Azure Active Directory (Azure AD) 是全方位的身分識別即服務 (IDaaS) 解決方案，其涉及範圍橫跨身分識別、存取管理和安全性的所有層面。
 
 如需詳細資訊，請參閱[什麼是 Azure Active Directory？](active-directory-whatis.md)。
 
 
-## <a name="access-azure-and-azure-active-directory"></a>存取 Azure 和 Azure Active Directory
+<a id="access-azure-and-azure-active-directory" class="xliff"></a>
+
+## 存取 Azure 和 Azure Active Directory
 **問︰當我嘗試在 Azure 傳統入口網站中存取 Azure AD，為何會收到「找不到訂用帳戶」(https://manage.windowsazure.com)？**
 
 **答：**若要存取 Azure 傳統入口網站，每位使用者都必須擁有 Azure 訂用帳戶的權限。 如果您有付費的 Office 365 或 Azure AD 訂用帳戶，請移至 [http://aka.ms/accessAAD](http://aka.ms/accessAAD) 以進行一次性啟用步驟。 否則，您必須啟用免費 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)或付費的訂用帳戶。
@@ -69,7 +72,9 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 
 - - -
 
-## <a name="get-started-with-hybrid-azure-ad"></a>開始使用混合式 Azure AD
+<a id="get-started-with-hybrid-azure-ad" class="xliff"></a>
+
+## 開始使用混合式 Azure AD
 
 
 **問︰當我新增為共同作業人員時如何離開租用戶？**
@@ -106,7 +111,9 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 如需詳細資訊，請參閱[在雲端中監視內部部署身分識別基礎結構和同步處理服務](active-directory-aadconnect-health.md)。  
 
 - - -
-## <a name="password-management"></a>密碼管理
+<a id="password-management" class="xliff"></a>
+
+## 密碼管理
 **問︰是否可以使用 Azure AD 密碼回寫，但不使用密碼同步處理？(在此案例中，可以搭配使用 Azure AD 自助式密碼重設 (SSPR) 和密碼回寫，而不在雲端儲存密碼嗎？)**
 
 **答：**想要啟用回寫功能，並不需要將 Active Directory 密碼同步處理至 Azure AD。 在同盟環境中，Azure AD 單一登入 (SSO) 會依靠內部部署目錄來驗證使用者。 在這種情況下，並不需要在 Azure AD 中追蹤內部部署密碼。
@@ -139,7 +146,9 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 
 
 - - -
-## <a name="security"></a>安全性
+<a id="security" class="xliff"></a>
+
+## 安全性
 **問︰帳戶會在特定次數的嘗試失敗之後鎖定，或者是否使用更複雜的策略？**</br>
 我們使用更複雜的策略來鎖定帳戶。  此策略是以要求的 IP 和所輸入的密碼為基礎。 鎖定持續期間也會根據它是攻擊的可能性而加長。  
 
@@ -149,7 +158,9 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 **問︰來自可疑來源 (殭屍網路、Tor 端點) 的登入要求是否會在 B2C 租用戶中遭到封鎖，或者需要基本或進階版本租用戶？**</br>
 我們沒有適用於所有 B2C 租用戶的閘道，可篩選要求並提供殭屍網路的一些防護功能。
 
-## <a name="application-access"></a>應用程式存取
+<a id="application-access" class="xliff"></a>
+
+## 應用程式存取
 **問︰哪裡可以找到與 Azure AD 預先整合的應用程式及其功能的清單？**
 
 **答：** Azure AD 擁有來自 Microsoft、應用程式服務提供者或協力廠商超過 2600 個預先整合的應用程式。 所有預先整合的應用程式皆支援單一登入 (SSO)。 SSO 可讓您使用組織認證來存取應用程式。 有些應用程式也支援自動化佈建和取消佈建。
