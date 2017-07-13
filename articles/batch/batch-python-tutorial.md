@@ -16,14 +16,15 @@ ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: bdb36e6397951d2d3298dbfe9e80a0b678ecfdaf
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: 8de3df11a59178b782d50b7662aa5d8cab11a260
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
-# <a name="get-started-with-the-batch-sdk-for-python"></a>開始使用適用於 Python 的 Batch SDK
+# 開始使用適用於 Python 的 Batch SDK
+<a id="get-started-with-the-batch-sdk-for-python" class="xliff"></a>
 
 > [!div class="op_single_selector"]
 > * [.NET](batch-dotnet-get-started.md)
@@ -36,24 +37,29 @@ ms.lasthandoff: 05/02/2017
 
 ![Batch 方案工作流程 (基本)][11]<br/>
 
-## <a name="prerequisites"></a>必要條件
+## 必要條件
+<a id="prerequisites" class="xliff"></a>
 本文假設您已具備 Python 的使用知識並熟悉 Linux。 而且假設您可以滿足針對 Azure Batch 和儲存體服務所指定的帳戶建立需求。
 
-### <a name="accounts"></a>帳戶
+### 帳戶
+<a id="accounts" class="xliff"></a>
 * **Azure 帳戶**：如果您沒有 Azure 訂用帳戶，請[建立免費的 Azure 帳戶][azure_free_account]。
 * **Batch 帳戶**：擁有 Azure 訂用帳戶後，請 [建立 Azure Batch 帳戶](batch-account-create-portal.md)。
 * **儲存體帳戶**：請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。
 
-### <a name="code-sample"></a>程式碼範例
+### 程式碼範例
+<a id="code-sample" class="xliff"></a>
 Python 教學課程[程式碼範例][github_article_samples]是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多 Batch 程式碼範例之一。 按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。 解壓縮 ZIP 檔案的內容後，在 `article_samples` 目錄中可找到本教學課程的兩個指令碼︰
 
 `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_client.py`<br/>
 `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_task.py`
 
-### <a name="python-environment"></a>Python 環境
+### Python 環境
+<a id="python-environment" class="xliff"></a>
 若要在本機工作站上執行 python_tutorial_client.py 範例指令碼，您需要與版本 **2.7** 或 **3.3+** 相容的 **Python 解譯器**。 此指令碼已在 Linux 和 Windows 上測試。
 
-### <a name="cryptography-dependencies"></a>密碼編譯相依項目
+### 密碼編譯相依項目
+<a id="cryptography-dependencies" class="xliff"></a>
 您必須為[密碼編譯][crypto]程式庫安裝 `azure-batch` 和 `azure-storage` Python 套件所需的相依項目。 針對您的平台執行下列其中一個適用作業，或參閱[密碼編譯安裝][crypto_install]詳細資料以取得詳細資訊︰
 
 * Ubuntu
@@ -61,7 +67,7 @@ Python 教學課程[程式碼範例][github_article_samples]是在 GitHub 上 [a
     `apt-get update && apt-get install -y build-essential libssl-dev libffi-dev libpython-dev python-dev`
 * CentOS
 
-    `yum update && yum install -y gcc openssl-dev libffi-devel python-devel`
+    `yum update && yum install -y gcc openssl-devel libffi-devel python-devel`
 * SLES/OpenSUSE
 
     `zypper ref && zypper -n in libopenssl-dev libffi48-devel python-devel`
@@ -74,7 +80,8 @@ Python 教學課程[程式碼範例][github_article_samples]是在 GitHub 上 [a
 >
 >
 
-### <a name="azure-packages"></a>Azure 套件
+### Azure 套件
+<a id="azure-packages" class="xliff"></a>
 接下來，請安裝 **Azure Batch** 和 **Azure 儲存體** Python 套件。 使用此處找到的 **pip** 和 *requirements.txt* 即可安裝這兩個套件：
 
 `/azure-batch-samples/Python/Batch/requirements.txt`
@@ -93,7 +100,8 @@ Python 教學課程[程式碼範例][github_article_samples]是在 GitHub 上 [a
 >
 >
 
-## <a name="batch-python-tutorial-code-sample"></a>Batch Python 教學課程程式碼範例
+## Batch Python 教學課程程式碼範例
+<a id="batch-python-tutorial-code-sample" class="xliff"></a>
 Batch Python 教學課程程式碼範例是由兩個 Python 指令碼和幾個資料檔案所組成。
 
 * **python_tutorial_client.py**：與 Batch 和儲存體服務進行互動，以在計算節點 (虛擬機器) 上執行平行工作負載的用戶端應用程式。 python_tutorial_client.py 指令碼會在本機工作站上執行。
@@ -118,7 +126,8 @@ Batch Python 教學課程程式碼範例是由兩個 Python 指令碼和幾個�
 
 如上所述，並非每個 Batch 方案都會執行這些確切步驟，並且可能包含更多步驟，但此範例會示範在 Batch 方案中找到的一般程序。
 
-## <a name="prepare-client-script"></a>準備用戶端指令碼
+## 準備用戶端指令碼
+<a id="prepare-client-script" class="xliff"></a>
 執行範例之前，將您的 Batch 和儲存體帳戶認證新增至 python_tutorial_client.py。 如果您尚未這麼做，請在您喜愛的編輯器中開啟此檔案，並使用您的認證更新下列程式碼行。
 
 ```python
@@ -149,7 +158,8 @@ STORAGE_ACCOUNT_KEY = ""
 if __name__ == '__main__':
 ```
 
-## <a name="step-1-create-storage-containers"></a>步驟 1：建立儲存體容器
+## 步驟 1：建立儲存體容器
+<a id="step-1-create-storage-containers" class="xliff"></a>
 ![在 Azure 儲存體中建立容器][1]
 <br/>
 
@@ -187,7 +197,8 @@ blob_client.create_container(OUTPUT_CONTAINER_NAME, fail_on_exist=False)
 >
 >
 
-## <a name="step-2-upload-task-script-and-data-files"></a>步驟 2：上傳工作指令碼和資料檔案
+## 步驟 2：上傳工作指令碼和資料檔案
+<a id="step-2-upload-task-script-and-data-files" class="xliff"></a>
 ![將工作應用程式和輸入 (資料) 檔案上傳至容器][2]
 <br/>
 
@@ -260,7 +271,8 @@ def upload_file_to_container(block_blob_client, container_name, path):
                                     blob_source=sas_url)
 ```
 
-### <a name="resourcefiles"></a>ResourceFiles
+### ResourceFiles
+<a id="resourcefiles" class="xliff"></a>
 [ResourceFile][py_resource_file] 提供 Batch 中的工作，以及 Azure 儲存體中會在工作執行前下載到計算節點之檔案的 URL。 [ResourceFile][py_resource_file].**blob_source** 屬性會指定 Azure 儲存體中現有檔案的完整 URL。 此 URL 也可能包含可供安全存取檔案的共用存取簽章 (SAS)。 Batch 中的大部分工作類型都包含 ResourceFiles  屬性，包括：
 
 * [CloudTask][py_task]
@@ -270,7 +282,8 @@ def upload_file_to_container(block_blob_client, container_name, path):
 
 此範例不會使用 JobPreparationTask 或 JobReleaseTask 工作類型，但您可以在 [在 Azure Batch 計算節點上執行作業準備和完成工作](batch-job-prep-release.md)中深入了解。
 
-### <a name="shared-access-signature-sas"></a>共用存取簽章 (SAS)
+### 共用存取簽章 (SAS)
+<a id="shared-access-signature-sas" class="xliff"></a>
 共用存取簽章是可供安全存取 Azure 儲存體中容器和 Blob 的字串。 python_tutorial_client.py 指令碼會使用 Blob 和容器共用存取簽章，並示範如何從儲存體服務取得這些共用存取簽章字串。
 
 * **Blob 共用存取簽章**：集區的 StartTask 會在從儲存體下載工作指令碼和輸入資料檔案時，使用 Blob 共用存取簽章 (請參閱下面 [步驟 3](#step-3-create-batch-pool) )。 python_tutorial_client.py 中的 `upload_file_to_container` 函式包含可取得各 Blob 共用存取簽章的程式碼。 在儲存體模組中呼叫 [BlockBlobService.make_blob_url][py_make_blob_url] 即可完成。
@@ -281,7 +294,8 @@ def upload_file_to_container(block_blob_client, container_name, path):
 >
 >
 
-## <a name="step-3-create-batch-pool"></a>步驟 3：建立 Batch 集區
+## 步驟 3：建立 Batch 集區
+<a id="step-3-create-batch-pool" class="xliff"></a>
 ![建立 Batch 集區][3]
 <br/>
 
@@ -386,7 +400,8 @@ def create_pool(batch_service_client, pool_id,
 >
 >
 
-## <a name="step-4-create-batch-job"></a>步驟 4：建立 Batch 作業
+## 步驟 4：建立 Batch 作業
+<a id="step-4-create-batch-job" class="xliff"></a>
 ![建立 Batch 作業][4]<br/>
 
 Batch **作業** 是與計算節點集區相關聯的工作集合。 作業中的工作會在相關聯集區的計算節點上執行。
@@ -420,7 +435,8 @@ def create_job(batch_service_client, job_id, pool_id):
 
 現已建立一個作業，便會加入工作來進行工作。
 
-## <a name="step-5-add-tasks-to-job"></a>步驟 5：將工作加入至作業
+## 步驟 5：將工作加入至作業
+<a id="step-5-add-tasks-to-job" class="xliff"></a>
 ![將工作加入至作業][5]<br/>
 *(1) 工作已新增至作業，(2) 工作已排定在節點上執行，以及 (3) 工作會下載要處理的資料檔案*
 
@@ -493,7 +509,8 @@ blob_client = azureblob.BlockBlobService(account_name=args.storageaccount,
                                          sas_token=args.sastoken)
 ```
 
-## <a name="step-6-monitor-tasks"></a>步驟 6：監視工作
+## 步驟 6：監視工作
+<a id="step-6-monitor-tasks" class="xliff"></a>
 ![監視工作][6]<br/>
 *指令碼 (1) 會監視工作的完成狀態，以及 (2) 將結果資料上傳至 Azure 儲存體的工作*
 
@@ -536,7 +553,8 @@ def wait_for_tasks_to_complete(batch_service_client, job_id, timeout):
                        "timeout period of " + str(timeout))
 ```
 
-## <a name="step-7-download-task-output"></a>步驟 7：下載工作輸出
+## 步驟 7：下載工作輸出
+<a id="step-7-download-task-output" class="xliff"></a>
 ![從儲存體下載工作輸出][7]<br/>
 
 現已完成作業，可以從 Azure 儲存體下載工作的輸出。 在 python_tutorial_client.py 中呼叫 `download_blobs_from_container` 即可完成此操作：
@@ -578,7 +596,8 @@ def download_blobs_from_container(block_blob_client,
 >
 >
 
-## <a name="step-8-delete-containers"></a>步驟 8：刪除容器
+## 步驟 8：刪除容器
+<a id="step-8-delete-containers" class="xliff"></a>
 因為您需對位於 Azure 儲存體中的資料付費，所以建議您移除您的 Batch 作業不再需要的所有 Blob。 在 python_tutorial_client.py 中，做法是對 [BlockBlobService.delete_container][py_delete_container] 進行三次呼叫：
 
 ```python
@@ -589,7 +608,8 @@ blob_client.delete_container(input_container_name)
 blob_client.delete_container(output_container_name)
 ```
 
-## <a name="step-9-delete-the-job-and-the-pool"></a>步驟 9：刪除作業和集區
+## 步驟 9：刪除作業和集區
+<a id="step-9-delete-the-job-and-the-pool" class="xliff"></a>
 在最後一個步驟中，系統會提示您刪除 python_tutorial_client.py 指令碼所建立的作業和集區。 雖然您不需支付作業和工作的費用，但您「需」  支付計算節點的費用。 因此，我們建議您只在必要時配置節點。 刪除未使用的集區可成為您維護程序的一部分。
 
 BatchServiceClient 的 [JobOperations][py_job] 和 [PoolOperations][py_pool] 兩者都有對應的刪除方法 (在您確認刪除時呼叫)：
@@ -608,7 +628,8 @@ if query_yes_no('Delete pool?') == 'yes':
 >
 >
 
-## <a name="run-the-sample-script"></a>執行範例指令碼
+## 執行範例指令碼
+<a id="run-the-sample-script" class="xliff"></a>
 當您執行教學課程[程式碼範例][github_article_samples]中的 python_tutorial_client.py 指令碼時，主控台輸出大致如下。 在 `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` 會暫停執行，然而會建立、啟動集區的計算節點，以及執行集區的啟動工作中的命令。 在執行期間和之後，使用 [Azure 入口網站][azure_portal]來監視集區、計算節點、作業和工作。 使用 [Azure 入口網站][azure_portal]或 [Microsoft Azure 儲存體總管][storage_explorer]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
 
 > [!TIP]
@@ -646,7 +667,8 @@ Delete pool? [Y/n]
 Press ENTER to exit...
 ```
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 您可隨意變更 python_tutorial_client.py 和 python_tutorial_task.py，以試驗不同的計算案例。 例如，嘗試將執行延遲新增至 python_tutorial_task.py，以模擬長時間執行的工作並在入口網站中監視這些工作。 嘗試新增更多工作，或調整計算節點的數目。 新增邏輯來檢查並允許使用現有的集區，以加速執行時間。
 
 既然您已熟悉 Batch 方案的基本工作流程，現在可以深入了解 Batch 服務的其他功能。

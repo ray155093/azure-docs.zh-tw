@@ -12,17 +12,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/11/2017
+ms.date: 07/10/2017
 ms.author: spelluru
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: c7815a02bd0eab6b87a1b1b97258c9006a3542e4
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 8072a863fab0b304ccbbba639aa56b403e8f37c7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
-# <a name="tutorial-use-azure-portal-to-create-a-data-factory-pipeline-to-copy-data"></a>本教學課程︰使用 Azure 入口網站建立 Data Factory 管線來複製資料 
+# 本教學課程︰使用 Azure 入口網站建立 Data Factory 管線來複製資料
+<a id="tutorial-use-azure-portal-to-create-a-data-factory-pipeline-to-copy-data" class="xliff"></a> 
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -44,10 +45,12 @@ ms.lasthandoff: 06/14/2017
 > [!NOTE] 
 > 本教學課程中的資料管線會將資料從來源資料存放區，複製到目的地資料存放區。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
 
-## <a name="prerequisites"></a>必要條件
+## 必要條件
+<a id="prerequisites" class="xliff"></a>
 請先完成[教學課程必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)一文中所列的必要條件，再執行本教學課程。
 
-## <a name="steps"></a>步驟
+## 步驟
+<a id="steps" class="xliff"></a>
 以下是您會在本教學課程中執行的步驟：
 
 1. 建立 Azure **Data Factory**。 在此步驟中，您會建立名為 ADFTutorialDataFactory 的資料處理站。 
@@ -66,7 +69,8 @@ ms.lasthandoff: 06/14/2017
     複製活動會將資料從 Azure Blob 儲存體中的 Blob 複製到 Azure SQL Database 中的資料表。 您可以在管線中使用複製活動，將資料從任何支援的來源複製到任何支援的目的地。 如需支援的資料存放區清單，請參閱[資料移動活動](data-factory-data-movement-activities.md#supported-data-stores-and-formats)一文。 
 5. 監視管線。 在此步驟中，您會使用 Azure 入口網站來**監視**輸入和輸出資料集的配量。 
 
-## <a name="create-data-factory"></a>建立 Data Factory
+## 建立 Data Factory
+<a id="create-data-factory" class="xliff"></a>
 > [!IMPORTANT]
 > 如果您尚未完成[教學課程的必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)，請先這麼做。   
 
@@ -110,7 +114,8 @@ ms.lasthandoff: 06/14/2017
    
    ![Data Factory 首頁](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-data-factory-home-page.png)
 
-## <a name="create-linked-services"></a>建立連結服務
+## 建立連結服務
+<a id="create-linked-services" class="xliff"></a>
 您在資料處理站中建立的連結服務會將您的資料存放區和計算服務連結到資料處理站。 在本教學課程中，您不會使用任何計算服務，例如 Azure HDInsight 或 Azure Data Lake Analytics。 您可以使用兩種類型的資料存放區：Azure 儲存體 (來源) 和 Azure SQL Database (目的地)。 
 
 因此，您可以建立名為 AzureStorageLinkedService 和 AzureSqlLinkedService 的兩個連結服務︰類型為 AzureStorage 和 AzureSqlDatabase。  
@@ -119,7 +124,8 @@ AzureStorageLinkedService 會將 Azure 儲存體帳戶連結至資料處理站�
 
 AzureSqlLinkedService 會將 Azure SQL Database 連結至資料處理站。 從 Blob 儲存體複製的資料會儲存在此資料庫中。 您在此資料庫中建立了 emp 資料表，作為[必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)的一部分。  
 
-### <a name="create-azure-storage-linked-service"></a>建立 Azure 儲存體連結服務
+### 建立 Azure 儲存體連結服務
+<a id="create-azure-storage-linked-service" class="xliff"></a>
 在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的資料處理站。 在此區段中指定您 Azure 儲存體帳戶的名稱和金鑰。  
 
 1. 在 [Data Factory] 刀鋒視窗中，按一下 [製作和部署] 圖格。
@@ -140,7 +146,8 @@ AzureSqlLinkedService 會將 Azure SQL Database 連結至資料處理站。 從 
 
     如需連結服務定義中 JSON 屬性的詳細資訊，請參閱 [Azure Blob 儲存體連接器](data-factory-azure-blob-connector.md#linked-service-properties)一文。
 
-### <a name="create-a-linked-service-for-the-azure-sql-database"></a>建立 Azure SQL Database 的連結服務
+### 建立 Azure SQL Database 的連結服務
+<a id="create-a-linked-service-for-the-azure-sql-database" class="xliff"></a>
 在此步驟中，您會將您的 Azure SQL Database 連結到您的 Data Factory。 在此區段中指定 Azure SQL 伺服器名稱、資料庫名稱、使用者名稱和使用者密碼。 
 
 1. 在 [Data Factory 編輯器] 中，按一下工具列上的 [新增資料存放區] 按鈕，然後從下拉式功能表中選取 [Azure SQL Database]。 在右窗格中，您應該會看到用來建立 Azure SQL 連結服務的 JSON 範本。
@@ -150,14 +157,16 @@ AzureSqlLinkedService 會將 Azure SQL Database 連結至資料處理站。 從 
 
     如需這些 JSON 屬性的詳細資訊，請參閱 [Azure SQL Database 連接器](data-factory-azure-sql-connector.md#linked-service-properties)。
 
-## <a name="create-datasets"></a>建立資料集
+## 建立資料集
+<a id="create-datasets" class="xliff"></a>
 在上一個步驟中，您已建立可將 Azure 儲存體帳戶和 Azure SQL Database 連結至資料處理站的連結服務。 在此步驟中，您會定義名為 InputDataset 和 OutputDataset 的兩個資料集，它們分別代表 AzureStorageLinkedService 和 AzureSqlLinkedService 所參照資料存放區中儲存的輸入和輸出資料。
 
 Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連線到 Azure 儲存體帳戶的連接字串。 而且，輸入 Blob 資料集 (InputDataset) 會指定包含輸入資料的容器和資料夾。  
 
 同樣第，Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連線到 Azure SQL Database 的連接字串。 而且，輸出 SQL 資料表資料集 (OututDataset) 會指定資料庫中作為 Blob 儲存體資料複製目的地的資料表。 
 
-### <a name="create-input-dataset"></a>建立輸入資料集
+### 建立輸入資料集
+<a id="create-input-dataset" class="xliff"></a>
 在此步驟中，您將在 AzureStorageLinkedService 連結服務所代表的 Azure 儲存體中，建立名為 InputDataset 的資料集，該資料集會指向 Blob 容器 (adftutorial) 根資料夾中的 Blob 檔案 (emp.txt)。 如果您未指定 (或跳過) fileName 的值，則輸入資料夾中所有 Blob 資料都會複製到目的地。 在本教學課程中，您可指定 fileName 的值。 
 
 1. 在 Data Factory 的 [編輯器] 中，依序按一下下拉式功能表中的 **[...更多]**、[新增資料集] 和 [Azure Blob 儲存體]。 
@@ -214,7 +223,8 @@ Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連
     如需這些 JSON 屬性的詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)一文。      
 3. 按一下工具列上的 [部署]，以建立並部署 **InputDataset** 資料集。 確認您已在樹狀檢視中看到 **InputDataset** 。
 
-### <a name="create-output-dataset"></a>建立輸出資料集
+### 建立輸出資料集
+<a id="create-output-dataset" class="xliff"></a>
 Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連線到 Azure SQL Database 的連接字串。 您在此步驟中建立的輸出 SQL 資料表資料集 (OututDataset) 會指定資料庫中作為 Blob 儲存體資料複製目的地的資料表。
 
 1. 在 Data Factory 的 [編輯器] 中，依序按一下下拉式功能表中的 **[...更多]**、[新增資料集] 和 [Azure SQL]。 
@@ -261,7 +271,8 @@ Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連�
     如需這些 JSON 屬性的詳細資訊，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#dataset-properties)一文。
 3. 按一下工具列上的 [部署]，以建立並部署 **OutputDataset** 資料集。 確認您已在 **Datasets** 之下的樹狀檢視中看到 **OutputDataset**。 
 
-## <a name="create-pipeline"></a>建立管線
+## 建立管線
+<a id="create-pipeline" class="xliff"></a>
 在此步驟中您會建立管線，其中含有使用 **InputDataset** 作為輸入和使用 **OutputDataset** 作為輸出的**複製活動**。
 
 目前，驅動排程的是輸出資料集。 在本教學課程中，輸出資料集設定成一小時產生一次配量。 管線具有相隔一天 (也就是 24 小時) 的開始時間和結束時間。 因此，管線會產生輸出資料集的 24 個配量。 
@@ -328,10 +339,12 @@ Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連�
 **恭喜！** 您已成功建立 Azure Data Factory，其中有管線可將資料從 Azure Blob 儲存體複製到 Azure SQL Database。 
 
 
-## <a name="monitor-pipeline"></a>監視管線
+## 監視管線
+<a id="monitor-pipeline" class="xliff"></a>
 在此步驟中，您會使用 Azure 入口網站來監視 Azure Data Factory 的運作情形。    
 
-### <a name="monitor-pipeline-using-monitor--manage-app"></a>使用監視及管理應用程式來監視管線
+### 使用監視及管理應用程式來監視管線
+<a id="monitor-pipeline-using-monitor--manage-app" class="xliff"></a>
 下列步驟顯示如何使用「監視及管理」應用程式來監視資料處理站中的管線︰ 
 
 1. 在 Data Factory 首頁上按一下 [監視及管理] 圖格。
@@ -359,7 +372,8 @@ Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連�
 
 如需使用此應用程式的詳細資訊，請參閱 [使用監視及管理應用程式來監視和管理 Azure Data Factory 管線](data-factory-monitor-manage-app.md)。
 
-### <a name="monitor-pipeline-using-diagram-view"></a>使用圖表檢視監視管線
+### 使用圖表檢視監視管線
+<a id="monitor-pipeline-using-diagram-view" class="xliff"></a>
 您也可以使用 [圖表] 檢視來監視資料管線。  
 
 1. 在 [Data Factory] 刀鋒視窗中，按一下 [圖表]。
@@ -398,7 +412,8 @@ Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連�
     ![SQL 查詢結果](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-sql-query-results.png)
 
 
-## <a name="summary"></a>摘要
+## 摘要
+<a id="summary" class="xliff"></a>
 在本教學課程中，您已建立要將資料從 Azure Blob 複製到 Azure SQL 資料庫的 Azure Data Factory。 您已使用 Azure 入口網站建立 Data Factory、連結服務、資料集和管線。 以下是您在本教學課程中執行的高階步驟：  
 
 1. 建立 Azure **Data Factory**。
@@ -408,7 +423,8 @@ Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連�
 3. 建立可描述管線輸入資料和輸出資料的 **資料集** 。
 4. 建立具有**複製活動**的**管線**，以 **BlobSource** 做為來源並以 **SqlSink** 做為接收器。  
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 在本教學課程中，您可使用 Azure Blob 儲存體作為來源資料存放區以及使用 Azure SQL Database 作為複製作業的目的地資料存放區。 下表提供複製活動所支援作為來源或目的地的資料存放區清單： 
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
