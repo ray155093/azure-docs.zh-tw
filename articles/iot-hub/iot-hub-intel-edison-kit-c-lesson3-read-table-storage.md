@@ -4,7 +4,7 @@ description: "當裝置到雲端訊息寫入您的 Azure 表格儲存體時對�
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "在雲端的資料, 雲端資料收集, iot 雲端服務, iot 資料"
 ROBOTS: NOINDEX
@@ -17,24 +17,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 475b25f02715a60493e79ecd2170854019dfc4ac
 ms.openlocfilehash: 1be4de1fef11da43c2940fdd890027d0e9728515
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/25/2017
 
-
 ---
-# <a name="read-messages-persisted-in-azure-storage"></a>讀取保存在 Azure 儲存體中的訊息
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="read-messages-persisted-in-azure-storage" class="xliff"></a>
+
+# 讀取保存在 Azure 儲存體中的訊息
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 當從 Intel Edison 傳送至 IoT 中樞的裝置到雲端訊息寫入您的 Azure 表格儲存體時，對其進行監視。 如果您有任何問題，請在[疑難排解頁面][troubleshooting]尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 在本文中，您將了解如何使用 gulp 讀取訊息工作來讀取保留在您的 Azure 表格儲存體中的訊息。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 開始此程序之前，您必須已成功完成[在 Intel Edison 中執行 Azure 閃爍範例應用程式][run-the-azure-blink-sample-application-on-intel-edison]。
 
-## <a name="read-new-messages-from-your-storage-account"></a>從您的儲存體帳戶讀取新訊息
+<a id="read-new-messages-from-your-storage-account" class="xliff"></a>
+
+## 從您的儲存體帳戶讀取新訊息
 在上一篇文章中，您在 Edison 上執行範例應用程式。 範例應用程式會將訊息傳送至 Azure IoT 中樞。 傳送至 IoT 中樞的訊息會透過 Azure 函式應用程式儲存至您的 Azure 表格儲存體。 您需要 Azure 儲存體連接字串，來讀取您的 Azure 表格儲存體中的訊息。
 
 若要讀取 Azure 表格儲存體中儲存的訊息，請遵循下列步驟︰
@@ -68,10 +78,14 @@ ms.lasthandoff: 01/25/2017
 
    ![gulp run --read-storage][gulp run]
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 您已成功將 Edison 連接至雲端中的 IoT 中樞，並且使用閃爍範例應用程式以傳送裝置到雲端訊息。 您也會使用 Azure 函式應用程式，將內送 IoT 中樞訊息儲存至 Azure 表格儲存體。 現在，您可以從 IoT 中樞將雲端到裝置訊息傳送至 Edison。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [執行範例應用程式以接收雲端到裝置訊息][receive-cloud-to-device-messages]
 <!-- Images and links -->
 

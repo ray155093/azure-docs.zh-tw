@@ -15,14 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
 ms.openlocfilehash: 5eff828095cd58732c78d4af43b5ff5420dfe8fd
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/24/2017
 
 ---
 
-# <a name="get-started-creating-an-internet-facing-load-balancer-with-ipv6-using-powershell-for-resource-manager"></a>開始使用 PowerShell 在 Resource Manager 中建立配置有 IPv6 的網際網路面向負載平衡器
+<a id="get-started-creating-an-internet-facing-load-balancer-with-ipv6-using-powershell-for-resource-manager" class="xliff"></a>
+
+# 開始使用 PowerShell 在 Resource Manager 中建立配置有 IPv6 的網際網路面向負載平衡器
 
 > [!div class="op_single_selector"]
 > * [PowerShell](load-balancer-ipv6-internet-ps.md)
@@ -31,7 +34,9 @@ ms.lasthandoff: 01/24/2017
 
 Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡器可藉由在負載平衡器集合中，將連入流量分散於雲端服務或虛擬機器中狀況良好的服務執行個體之間，來提供高可用性。 Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
 
-## <a name="example-deployment-scenario"></a>範例部署案例
+<a id="example-deployment-scenario" class="xliff"></a>
+
+## 範例部署案例
 
 下圖說明本文中部署的負載平衡解決方案。
 
@@ -45,7 +50,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
 * 兩部虛擬機器 (VM)
 * 虛擬網路介面，用於每個已指派 IPv4 和 IPv6 位址的 VM
 
-## <a name="deploying-the-solution-using-the-azure-powershell"></a>使用 Azure PowerShell 部署解決方案
+<a id="deploying-the-solution-using-the-azure-powershell" class="xliff"></a>
+
+## 使用 Azure PowerShell 部署解決方案
 
 下列步驟說明如何搭配 PowerShell 使用 Azure Resource Manager，來建立網際網路對向負載平衡器。 使用 Azure Resource Manager 時，會個別建立並設定每項資源，然後放在一起來建立一項資源。
 
@@ -59,7 +66,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
 
 如需詳細資料，請參閱 [Azure Resource Manager 的負載平衡器支援](load-balancer-arm.md)。
 
-## <a name="set-up-powershell-to-use-resource-manager"></a>設定 PowerShell 以使用 Resource Manager
+<a id="set-up-powershell-to-use-resource-manager" class="xliff"></a>
+
+## 設定 PowerShell 以使用 Resource Manager
 
 請確定您擁有適用於 PowerShell 的 Azure Resource Manager 模組最新生產版本。
 
@@ -89,7 +98,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     New-AzureRmResourceGroup -Name NRP-RG -location "West US"
     ```
 
-## <a name="create-a-virtual-network-and-a-public-ip-address-for-the-front-end-ip-pool"></a>建立前端 IP 集區的虛擬網路和公用 IP 位址
+<a id="create-a-virtual-network-and-a-public-ip-address-for-the-front-end-ip-pool" class="xliff"></a>
+
+## 建立前端 IP 集區的虛擬網路和公用 IP 位址
 
 1. 建立具有子網路的虛擬網路。
 
@@ -108,7 +119,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     > [!IMPORTANT]
     > 負載平衡器會使用公用 IP 的網域標籤做為其 FQDN 的前置詞。 在此範例中，FQDN 是 *lbnrpipv4.westus.cloudapp.azure.com* 和*lbnrpipv6.westus.cloudapp.azure.com*。
 
-## <a name="create-a-front-end-ip-configurations-and-a-back-end-address-pool"></a>建立前端 IP 組態和後端位址集區
+<a id="create-a-front-end-ip-configurations-and-a-back-end-address-pool" class="xliff"></a>
+
+## 建立前端 IP 組態和後端位址集區
 
 1. 建立會使用您所建立之公用 IP 位址的前端位址組態。
 
@@ -124,7 +137,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     $backendpoolipv6 = New-AzureRmLoadBalancerBackendAddressPoolConfig -Name "BackendPoolIPv6"
     ```
 
-## <a name="create-lb-rules-nat-rules-a-probe-and-a-load-balancer"></a>建立 LB 規則、NAT 規則、探查及負載平衡器
+<a id="create-lb-rules-nat-rules-a-probe-and-a-load-balancer" class="xliff"></a>
+
+## 建立 LB 規則、NAT 規則、探查及負載平衡器
 
 此範例會建立下列項目：
 
@@ -172,12 +187,14 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     $NRPLB = New-AzureRmLoadBalancer -ResourceGroupName NRP-RG -Name 'myNrpIPv6LB' -Location 'West US' -FrontendIpConfiguration $FEIPConfigv4,$FEIPConfigv6 -InboundNatRule $inboundNATRule1v6,$inboundNATRule1v4 -BackendAddressPool $backendpoolipv4,$backendpoolipv6 -Probe $healthProbe,$RDPprobe -LoadBalancingRule $lbrule1v4,$lbrule1v6,$RDPrule
     ```
 
-## <a name="create-nics-for-the-back-end-vms"></a>建立後端 VM 的 NIC
+<a id="create-nics-for-the-back-end-vms" class="xliff"></a>
+
+## 建立後端 VM 的 NIC
 
 1. 取得需要在其中建立 NIC 的虛擬網路和虛擬網路子網路。
 
     ```powershell
-    $vnet = Get-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG
+    $vnet = Get-AzureRmVirtualNetwork -Name VNet -ResourceGroupName NRP-RG
     $backendSubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name LB-Subnet-BE -VirtualNetwork $vnet
     ```
 
@@ -193,7 +210,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     $nic2 = New-AzureRmNetworkInterface -Name 'myNrpIPv6Nic1' -IpConfiguration $nic2IPv4,$nic2IPv6 -ResourceGroupName NRP-RG -Location 'West US'
     ```
 
-## <a name="create-virtual-machines-and-assign-the-newly-created-nics"></a>建立虛擬機器並指派新建立的 NIC
+<a id="create-virtual-machines-and-assign-the-newly-created-nics" class="xliff"></a>
+
+## 建立虛擬機器並指派新建立的 NIC
 
 如需有關建立 VM 的詳細資訊，請參閱 [使用 Resource Manager 和 Azure PowerShell 建立及預先設定 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)
 
@@ -228,7 +247,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
     New-AzureRmVM -ResourceGroupName NRP-RG -Location 'West US' -VM $vm2
     ```
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 [開始設定內部負載平衡器](load-balancer-get-started-ilb-arm-ps.md)
 

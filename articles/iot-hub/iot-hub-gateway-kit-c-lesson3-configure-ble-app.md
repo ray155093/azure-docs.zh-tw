@@ -4,7 +4,7 @@ description: "執行 BLE 範例應用程式，從 SensorTag 和您的 IoT 中樞
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "ble 應用程式, 感應器監視應用程式, 感應器資料收集, 來自感應器的資料, 送至雲端的感應器資料"
 ROBOTS: NOINDEX
@@ -17,16 +17,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: a9f689c0b231af3cdf9257e2179bf86ff7bc9a31
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/25/2017
 
-
 ---
-# <a name="configure-and-run-a-ble-sample-application"></a>設定和執行 BLE 範例應用程式
+<a id="configure-and-run-a-ble-sample-application" class="xliff"></a>
 
-## <a name="what-you-will-do"></a>將執行的作業
+# 設定和執行 BLE 範例應用程式
+
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 
 - 複製範例存放庫。 
 - 設定 SensorTag 與 Intel NUC 之間的連線。 
@@ -34,19 +38,25 @@ ms.lasthandoff: 01/25/2017
 
 如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-troubleshooting.md)尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 
 在本文中，您將了解：
 
 - 如何設定和執行 BLE 範例應用程式。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 
 您必須已成功完成
 
 - [建立 IoT 中樞並登錄裝置](iot-hub-gateway-kit-c-lesson2-register-device.md)
 
-## <a name="clone-the-sample-repository-to-the-host-computer"></a>將範例存放庫複製至主機電腦
+<a id="clone-the-sample-repository-to-the-host-computer" class="xliff"></a>
+
+## 將範例存放庫複製至主機電腦
 
 若要複製範例存放庫，在主機電腦上遵循下列步驟︰
 
@@ -58,7 +68,9 @@ ms.lasthandoff: 01/25/2017
    cd iot-hub-c-intel-nuc-gateway-getting-started
    ```
 
-## <a name="set-up-the-connectivity-between-sensortag-and-intel-nuc"></a>設定 SensorTag 與 Intel NUC 之間的連線
+<a id="set-up-the-connectivity-between-sensortag-and-intel-nuc" class="xliff"></a>
+
+## 設定 SensorTag 與 Intel NUC 之間的連線
 
 若要設定連線，在主機電腦上遵循下列步驟︰
 
@@ -106,7 +118,9 @@ ms.lasthandoff: 01/25/2017
 
    將 `{mac address}` 取代為您在先前步驟取得的 MAC 位址。
 
-## <a name="get-the-connection-string-of-sensortag"></a>取得 SensorTag 的連接字串
+<a id="get-the-connection-string-of-sensortag" class="xliff"></a>
+
+## 取得 SensorTag 的連接字串
 
 若要取得 SensorTag 的 Azure IoT 中樞連接字串，在主機電腦上執行下列命令︰
 
@@ -116,7 +130,9 @@ az iot device show-connection-string --hub-name {IoT hub name} --device-id mydev
 
 `{IoT hub name}` 是您所使用的 IoT 中樞名稱。 如果您在第 2 課沒有變更值，使用 iot-gateway 作為 `{resource group name}` 的值，使用 mydevice 作為 `{device id}` 的值。
 
-## <a name="configure-the-ble-sample-application"></a>設定 BLE 範例應用程式
+<a id="configure-the-ble-sample-application" class="xliff"></a>
+
+## 設定 BLE 範例應用程式
 
 若要設定及執行 BLE 範例應用程式，在主機電腦上遵循下列步驟︰
 
@@ -148,7 +164,9 @@ az iot device show-connection-string --hub-name {IoT hub name} --device-id mydev
       gulp run
       ```
 
-## <a name="verify-that-the-ble-sample-application-works"></a>確認 BLE 範例應用程式可運作
+<a id="verify-that-the-ble-sample-application-works" class="xliff"></a>
+
+## 確認 BLE 範例應用程式可運作
 
 您現在應該會看到如下的輸出：
 
@@ -156,9 +174,13 @@ az iot device show-connection-string --hub-name {IoT hub name} --device-id mydev
 
 範例應用程式會收集溫度資料，並傳送至您的 IoT 中樞。 範例應用程式會在傳送 40 則訊息後自動終止。
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 
 您已成功設定 SensorTag 和 Intel NUC 之間的連線，並且執行 BLE 範例應用程式從 SensorTag 收集資料並將資料傳送至您的 IoT 中樞。 您可以開始了解如何確認 IoT 中樞是否已收到資料。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [讀取來自 IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md)

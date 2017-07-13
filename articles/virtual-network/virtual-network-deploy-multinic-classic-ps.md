@@ -16,14 +16,16 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
 ms.openlocfilehash: 6e2bb0e228aa28c79969cba07352061abbb47951
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/22/2017
 
-
 ---
-# <a name="create-a-vm-classic-with-multiple-nics-using-powershell"></a>使用 PowerShell 建立具有多個 NIC 的 VM (傳統)
+<a id="create-a-vm-classic-with-multiple-nics-using-powershell" class="xliff"></a>
+
+# 使用 PowerShell 建立具有多個 NIC 的 VM (傳統)
 
 [!INCLUDE [virtual-network-deploy-multinic-classic-selectors-include.md](../../includes/virtual-network-deploy-multinic-classic-selectors-include.md)]
 
@@ -36,20 +38,26 @@ ms.lasthandoff: 03/22/2017
 
 在下列步驟中，WEB 伺服器使用名為 *IaaSStory* 的資源群組，而 DB 伺服器使用名為 *IaaSStory-BackEnd* 的資源群組。
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+
+## 必要條件
 
 您需要建立 *IaaSStory* 資源群組，其中含有此案例的所有必要資源，才能建立 DB 伺服器。 若要建立這些資源，請完成下列步驟。 依照[建立虛擬網路](virtual-networks-create-vnet-classic-netcfg-ps.md)文章中的步驟建立虛擬網路。
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="create-the-back-end-vms"></a>建立後端 VM
+<a id="create-the-back-end-vms" class="xliff"></a>
+
+## 建立後端 VM
 後端 VM 有賴於建立下列資源：
 
 * **後端子網路**。 資料庫伺服器會是另外的子網路的一部分，以隔離流量。 下面的指令碼需要這個子網路位在名為 *WTestVnet*的 vnet 中。
 * **資料磁碟的儲存體帳戶**。 為取得更佳的效能，資料庫伺服器上的資料磁碟會使用需要進階儲存體帳戶的固態硬碟 (SSD) 技術。 請確定 Azure 的部署位置，以支援進階儲存體。
 * **可用性設定組**。 所有的資料庫伺服器都會加入單一的可用性設定組，確保在維護期間至少有一部 VM 啟動並執行。
 
-### <a name="step-1---start-your-script"></a>步驟 1：啟動指令碼
+<a id="step-1---start-your-script" class="xliff"></a>
+
+### 步驟 1：啟動指令碼
 [這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/classic/virtual-network-deploy-multinic-classic-ps.ps1)可以下載所使用之完整的 PowerShell 指令碼。 請遵循下列步驟來變更指令碼來讓指令碼在環境中運作。
 
 1. 根據上述 [必要條件](#Prerequisites)中已部署的現有資源群組來變更下列變數的值。
@@ -74,7 +82,9 @@ ms.lasthandoff: 03/22/2017
     $numberOfVMs           = 2
     ```
 
-### <a name="step-2---create-necessary-resources-for-your-vms"></a>步驟 2：為 VM 建立必要的資源
+<a id="step-2---create-necessary-resources-for-your-vms" class="xliff"></a>
+
+### 步驟 2：為 VM 建立必要的資源
 您需要為所有 VM 的資料磁碟建立新的雲端服務和儲存體帳戶。 您也需要指定影像及 VM 的本機系統管理員帳戶。 若要建立這些資源，請完成下列步驟：
 
 1. 建立新的雲端服務。
@@ -112,7 +122,9 @@ ms.lasthandoff: 03/22/2017
     $cred = Get-Credential -Message "Enter username and password for local admin account"
     ```
 
-### <a name="step-3---create-vms"></a>步驟 3：建立 VM
+<a id="step-3---create-vms" class="xliff"></a>
+
+### 步驟 3：建立 VM
 您需要使用迴圈建立所需數量的 VM，並在迴圈中建立必要的 NIC 和 VM。 若要建立 NIC 和 VM，請執行下列步驟。
 
 1. 啟動 `for` 迴圈，根據 `$numberOfVMs` 變數值，視需要的次數重複命令來建立一部 VM 和兩個 NIC。
@@ -136,14 +148,14 @@ ms.lasthandoff: 03/22/2017
     ```powershell
     Add-AzureProvisioningConfig -VM $vmConfig -Windows `
         -AdminUsername $cred.UserName `
-        -Password $cred.Password
+        -Password $cred.GetNetworkCredential().Password
     ```
 
 4. 設定預設 NIC，並指派它一個靜態 IP 位址。
 
     ```powershell
-    Set-AzureSubnet            -SubnetNames $backendSubnetName -VM $vmConfig
-    Set-AzureStaticVNetIP     -IPAddress ($ipAddressPrefix+$suffixNumber+3) -VM $vmConfig
+    Set-AzureSubnet         -SubnetNames $backendSubnetName -VM $vmConfig
+    Set-AzureStaticVNetIP   -IPAddress ($ipAddressPrefix+$suffixNumber+3) -VM $vmConfig
     ```
 
 5. 為每部 VM 加入第二個 NIC。
@@ -181,7 +193,9 @@ ms.lasthandoff: 03/22/2017
     }
     ```
 
-### <a name="step-4---run-the-script"></a>步驟 4：執行指令碼
+<a id="step-4---run-the-script" class="xliff"></a>
+
+### 步驟 4：執行指令碼
 既然您已根據需求下載並變更指令碼，請執行指令碼來建立有多個 NIC 的後端資料庫 VM。
 
 1. 儲存您的指令碼，然後從 **PowerShell** 命令提示字元或 **PowerShell ISE** 執行它。 您會看到初始的輸出，如下所示。

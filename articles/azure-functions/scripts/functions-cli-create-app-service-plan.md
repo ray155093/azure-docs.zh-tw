@@ -17,23 +17,27 @@ ms.date: 04/11/2017
 ms.author: cfowler
 ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 8c98e392c1c735458184bb782ed9c42f468f33de
+ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
+ms.openlocfilehash: 40c3fa6fa6c07d59e4bf55531e116ba50aa92b91
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
+ms.lasthandoff: 06/20/2017
 
 ---
-# <a name="create-a-function-app-in-an-app-service-plan"></a>在 App Service 方案中建立函式應用程式
+<a id="create-a-function-app-in-an-app-service-plan" class="xliff"></a>
+
+# 在 App Service 方案中建立函式應用程式
 
 此範例指令碼會建立 Azure 函式應用程式，這是您的函式容器。 系統會使用專用的 App Service 方案建立函數應用程式，這表示您的伺服器資源會永遠啟用。
 
-[!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
+[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
+如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-## <a name="sample-script"></a>範例指令碼
+<a id="sample-script" class="xliff"></a>
+
+## 範例指令碼
 
 此指令碼會使用專用的 [App Service 方案](../functions-scale.md#app-service-plan)建立 Azure 函數應用程式。
 
@@ -41,7 +45,9 @@ ms.lasthandoff: 05/15/2017
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
-## <a name="script-explanation"></a>指令碼說明
+<a id="script-explanation" class="xliff"></a>
+
+## 指令碼說明
 
 下表中的每個命令都會連結至命令特定的文件。 此指令碼會使用下列命令：
 
@@ -52,7 +58,9 @@ ms.lasthandoff: 05/15/2017
 | [az appservice plan create](https://docs.microsoft.com/cli/azure/appserviceplan#create) | 建立 App Service 方案。 |
 | [az functionapp create](https://docs.microsoft.com/cli/azure/functionapp#delete) | 建立 Azure 函式應用程式。 |
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 

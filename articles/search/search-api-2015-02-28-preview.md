@@ -15,14 +15,16 @@ ms.workload: search
 ms.date: 05/01/2017
 ms.author: brjohnst
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: ea3fc801074bb6d7e7c32574bc94702c79a61185
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: e6ad5c964bfa8421be2706cb4015980e01a271b7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
-# <a name="azure-search-service-rest-api-version-2015-02-28-preview"></a>Azure 搜尋服務 REST API：版本 2015-02-28-Preview
+<a id="azure-search-service-rest-api-version-2015-02-28-preview" class="xliff"></a>
+
+# Azure 搜尋服務 REST API：版本 2015-02-28-Preview
 本文是 `api-version=2015-02-28-Preview`的參考文件。 這個預覽版本可藉由提供下列實驗性功能，來擴充公開上市版本 [api-version=2015-02-28](https://msdn.microsoft.com/library/dn798935.aspx)：
 
 * [查詢文件](#SearchDocs) API 中的 `moreLikeThis` 查詢參數。 它會尋找與另一個特定文件相關的其他文件。
@@ -34,7 +36,9 @@ ms.lasthandoff: 05/10/2017
 
 Azure 搜尋服務可以在多個版本中使用。 如需詳細資訊，請參閱 [搜尋服務版本設定](http://msdn.microsoft.com/library/azure/dn864560.aspx) 。
 
-## <a name="apis-in-this-document"></a>本文件中的 API
+<a id="apis-in-this-document" class="xliff"></a>
+
+## 本文件中的 API
 Azure 搜尋服務 API 對 API 作業支援兩種 URL 語法：簡單和 OData (如需詳細資訊，請參閱 [OData 支援 (Azure 搜尋 API)](http://msdn.microsoft.com/library/azure/dn798932.aspx) )。 下列清單顯示簡單語法。
 
 [建立索引](#CreateIndex)
@@ -90,7 +94,9 @@ Azure 搜尋服務 API 對 API 作業支援兩種 URL 語法：簡單和 OData (
 - - -
 <a name="IndexOps"></a>
 
-## <a name="index-operations"></a>索引操作
+<a id="index-operations" class="xliff"></a>
+
+## 索引操作
 您可以針對指定的索引資源，透過簡單的 HTTP 要求 (POST、GET、PUT、DELETE)，在 Azure 搜尋服務中建立與管理索引。 若要建立索引，您必須先 POST 一份 JSON 文件來說明索引結構描述。 結構描述可定義索引欄位、其資料類型，以及使用它們的方式 (例如，在全文檢索搜尋、篩選器、排序或面向設定)。 它也會定義評分設定檔、建議工具，以及可用來設定索引行為的其他屬性。
 
 下列範例所說明的結構描述可用來搜尋其 [說明] 欄位是以兩種語言所定義的旅館資訊。 請注意，屬性如何控制欄位的使用方式。 例如，`hotelId` 是用來做為文件索引鍵 (`"key": true`)，並會從全文檢索搜尋中加以排除 (`"searchable": false`)。
@@ -126,7 +132,9 @@ Azure 搜尋服務 API 對 API 作業支援兩種 URL 語法：簡單和 OData (
 
 <a name="CreateIndex"></a>
 
-## <a name="create-index"></a>建立索引
+<a id="create-index" class="xliff"></a>
+
+## 建立索引
 索引是在 Azure 搜尋服務中組織和搜尋文件的主要工具，類似在資料庫中資料表組織記錄的方式。 每個索引都有一個文件集合，所有文件均符合索引結構描述 (欄位名稱、資料類型及屬性)，但是索引也會指定其他建構 (建議工具、評分設定檔及 CORS 選項) 來定義其他搜尋行為。
 
 您可以使用簡單的 HTTP POST 或 PUT 要求，在 Azure 搜尋服務中建立新的索引。 要求的本文是 JSON 結構描述，可指定索引和設定資訊。
@@ -259,7 +267,7 @@ Azure 搜尋服務 API 對 API 作業支援兩種 URL 語法：簡單和 OData (
 
 `name` - 設定欄位名稱。
 
-`type` - 設定欄位的資料類型。 如需支援的類型清單，請參閱 [支援的資料類型](#DataTypes) 。
+`type` - 設定欄位的資料類型。
 
 `searchable` - 將欄位標記為 full-text search-able。 這表示它將在索引設定期間執行像是斷字的分析。 如果您為 `searchable` 欄位設定像是「sunny day」的值，則系統會在內部將它分割為「sunny」和「day」這兩個個別的語彙基元。 這樣就能針對這些字詞進行全文檢索搜尋。 類型 `Edm.String` 或 `Collection(Edm.String)` 的欄位會預設為 `searchable`。 其他類型的欄位不能是 `searchable`。
 
@@ -681,7 +689,9 @@ Azure 搜尋支援多種語言。 每一種語言都需要非標準的文字分�
 
 <a name="Suggesters"></a>
 
-## <a name="suggesters"></a>建議工具
+<a id="suggesters" class="xliff"></a>
+
+## 建議工具
 Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，提供一份潛在的搜尋詞彙，以回應搜尋方塊中輸入的部分字串輸入。 當您使用商業 Web 搜尋引擎時，您可能已經注意到查詢建議：在 Bing 中輸入 ".NET" 會產生 ".NET 4.5"、".NET Framework 3.5" 等等的詞彙清單。 使用搜尋服務 REST API 時，在自訂的 Azure 搜尋應用程式中實作建議有下列需求：
 
 * 透過在您的索引中新增 **建議工具** 建構、提供要叫用自動完成功能的名稱、搜尋模式和欄位清單來啟用建議。 例如，如果您指定 "cityName" 做為來源欄位，輸入部分搜尋字串 "Sea" 會產生 "Seattle"、"Seaside" 和 "Seatac" (三個全部是真實的城市名稱) 做為查詢建議提供給使用者。
@@ -727,7 +737,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 <a name="UpdateIndex"></a>
 
-## <a name="update-index"></a>更新索引
+<a id="update-index" class="xliff"></a>
+
+## 更新索引
 您可以在 Azure 搜尋服務中，使用 HTTP PUT 要求來更新現有的索引。 更新可包括將新欄位新增至現有結構描述、修改 CORS 選項，以及修改評分設定檔。 如需詳細資訊，請參閱 [新增評分設定檔](https://msdn.microsoft.com/library/azure/dn798928.aspx) 。 您可以在要求 URI 上指定要更新的索引名稱：
 
     PUT https://[search service url]/indexes/[index name]?api-version=[api-version]
@@ -849,7 +861,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 <a name="ListIndexes"></a>
 
-## <a name="list-indexes"></a>列出索引
+<a id="list-indexes" class="xliff"></a>
+
+## 列出索引
 **列出索引** 操作可傳回目前在 Azure 搜尋服務中的索引清單。
 
     GET https://[service name].search.windows.net/indexes?api-version=[api-version]
@@ -914,7 +928,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 <a name="GetIndex"></a>
 
-## <a name="get-index"></a>取得索引
+<a id="get-index" class="xliff"></a>
+
+## 取得索引
 **取得索引** 操作可取得 Azure 搜尋服務的索引定義。
 
     GET https://[service name].search.windows.net/indexes/[index name]?api-version=[api-version]
@@ -948,7 +964,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 <a name="DeleteIndex"></a>
 
-## <a name="delete-index"></a>删除索引
+<a id="delete-index" class="xliff"></a>
+
+## 删除索引
 **刪除索引** 操作可移除 Azure 搜尋服務中的索引和相關聯的文件。 您可以透過 Azure 入口網站的服務儀表板或 API 取得索引名稱。 如需詳細資訊，請參閱 [列出索引](#ListIndexes) 。
 
     DELETE https://[service name].search.windows.net/indexes/[index name]?api-version=[api-version]
@@ -980,7 +998,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 <a name="GetIndexStats"></a>
 
-## <a name="get-index-statistics"></a>取得索引統計資料
+<a id="get-index-statistics" class="xliff"></a>
+
+## 取得索引統計資料
 **取得索引統計資料** 操作會從 Azure 搜尋服務傳回目前索引的文件計數，以及儲存體使用量。
 
     GET https://[service name].search.windows.net/indexes/[index name]/stats?api-version=[api-version]
@@ -1024,7 +1044,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 <a name="TestAnalyzer"></a>
 
-## <a name="test-analyzer"></a>測試分析器
+<a id="test-analyzer" class="xliff"></a>
+
+## 測試分析器
 「分析 API」  會顯示分析器如何將文字分解成語彙基元。
 
     POST https://[service name].search.windows.net/indexes/[index name]/analyze?api-version=[api-version]
@@ -1118,7 +1140,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 - - -
 <a name="DocOps"></a>
 
-## <a name="document-operations"></a>文件操作
+<a id="document-operations" class="xliff"></a>
+
+## 文件操作
 在 Azure 搜尋中，索引是儲存在雲端並使用您上傳到服務的 JSON 文件來填入。 您上傳的所有文件會包含您搜尋資料的主體。 文件會包含欄位，其中一些欄位會在它們上傳時語彙基元化為搜尋字詞。 Azure 搜尋服務 API 中的 `/docs` URL 區段表示索引中的文件集合。 在集合中執行的所有操作 (例如，上傳、合併、刪除或查詢文件) 都會在單一索引的內容中執行，因此，這些操作的 URL 一律會以 `/indexes/[index name]/docs` 為開頭來做為指定的索引名稱。
 
 應用程式的程式碼必須產生 JSON 文件，才能上傳至 Azure 搜尋服務，或者，如果資料來源是 Azure SQL Database 或 Azure Cosmos DB，則可使用[索引子 (英文)](https://msdn.microsoft.com/library/dn946891.aspx) 來載入文件。 通常，索引是從您提供的單一資料集填入。
@@ -1131,7 +1155,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 <a name="AddOrUpdateDocuments"></a>
 
-## <a name="add-update-or-delete-documents"></a>新增、更新或刪除文件
+<a id="add-update-or-delete-documents" class="xliff"></a>
+
+## 新增、更新或刪除文件
 您可以使用 HTTP POST，從指定的索引上傳、合併、合併或上傳，或者刪除文件。 如果是大量更新，建議使用批次來處理文件 (每個批次最多 1000 份文件，或者每個批次大約 16 MB)。
 
     POST https://[service name].search.windows.net/indexes/[index name]/docs/index?api-version=[api-version]
@@ -1342,7 +1368,9 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 - - -
 <a name="SearchDocs"></a>
 
-## <a name="search-documents"></a>搜尋文件
+<a id="search-documents" class="xliff"></a>
+
+## 搜尋文件
 **搜尋** 操作是當成 GET 或 POST 要求來發出，並指定參數，在選取相符文件時提供準則。
 
     GET https://[service name].search.windows.net/indexes/[index name]/docs?[query parameters]
@@ -1461,7 +1489,7 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 > 
 > 
 
-`$filter=[string]` (選用) - 使用標準 OData 語法的結構化搜尋運算式。 如需 Azure 搜尋服務支援的 OData 運算式文法子集詳細資訊，請參閱 [OData 運算式語法](#ODataExpressionSyntax) 。
+`$filter=[string]` (選用) - 使用標準 OData 語法的結構化搜尋運算式。
 
 > [!NOTE]
 > 使用 POST 呼叫**搜尋**時，此參數的名稱會是 `filter` 而不是 `$filter`。
@@ -1702,7 +1730,9 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 <a name="LookupAPI"></a>
 
-## <a name="lookup-document"></a>查閱文件
+<a id="lookup-document" class="xliff"></a>
+
+## 查閱文件
 **查閱文件** 操作會從 Azure 搜尋服務抓取文件。 當使用者按一下特定的搜尋結果，而您想要查閱有關該文件的特定詳細資料時，這非常實用。
 
     GET https://[service name].search.windows.net/indexes/[index name]/docs/[key]?[query parameters]
@@ -1760,7 +1790,9 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 <a name="CountDocs"></a>
 
-## <a name="count-documents"></a>文件計數
+<a id="count-documents" class="xliff"></a>
+
+## 文件計數
 **文件計數** 操作可在搜尋索引中抓取文件數目的計數。 `$count` 語法是 OData 通訊協定的一部分。
 
     GET https://[service name].search.windows.net/indexes/[index name]/docs/$count?api-version=[api-version]
@@ -1796,7 +1828,9 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 <a name="Suggestions"></a>
 
-## <a name="suggestions"></a>建議
+<a id="suggestions" class="xliff"></a>
+
+## 建議
 **建議** 操作會根據部分搜尋輸入抓取建議。 通常用於搜尋方塊中，可以在使用者輸入搜尋字詞時提供自動提示的建議。
 
 建議要求的目標是建議目標文件，因此，如果有多份候選文件符合同一個搜尋輸入，就會重複顯示建議的文字。 您可以使用 `$select` 來抓取其他文件欄位 (包括文件索引鍵)，如此一來，您就能針對每個建議告知來源文件。

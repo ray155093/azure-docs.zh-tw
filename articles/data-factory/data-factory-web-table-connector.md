@@ -12,16 +12,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 07/11/2017
 ms.author: jingwang
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
 ms.openlocfilehash: 08298608c2dfbe8b7226ae13bb0fe0f9cd5cec65
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/29/2017
 
-
 ---
-# <a name="move-data-from-a-web-table-source-using-azure-data-factory"></a>使用 Azure Data Factory 來移動 Web 資料表的資料
+<a id="move-data-from-a-web-table-source-using-azure-data-factory" class="xliff"></a>
+
+# 使用 Azure Data Factory 來移動 Web 資料表的資料
 本文概述如何使用 Azure Data Factory 中的「複製活動」，將資料從網頁中的資料表移到支援的接收資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援作為來源/接收的資料存放區清單。
 
 Data factory 目前只支援把 Web 資料表的資料移動到其他資料存放區，但不支援把其他資料存放區的資料移動到 Web 資料表。
@@ -29,7 +31,9 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 > [!IMPORTANT]
 > 此 Web 連接器目前只支援從 HTML 網頁擷取資料表內容。 若要從 HTTP/s 端點擷取資料，請改用 [HTTP 連接器](data-factory-http-connector.md)。
 
-## <a name="getting-started"></a>開始使用
+<a id="getting-started" class="xliff"></a>
+
+## 開始使用
 您可以藉由使用不同的工具/API，建立內含複製活動的管線，以從內部部署的 Cassandra 資料存放區移動資料。 
 
 - 建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。 
@@ -45,7 +49,9 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 
 下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Web 資料表特定的 Data Factory 實體：
 
-## <a name="linked-service-properties"></a>連結服務屬性
+<a id="linked-service-properties" class="xliff"></a>
+
+## 連結服務屬性
 下表提供 Web 連結服務專屬 JSON 元素的說明。
 
 | 屬性 | 說明 | 必要 |
@@ -54,7 +60,9 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 | Url |Web 來源的 URL |是 |
 | authenticationType |匿名。 |是 |
 
-### <a name="using-anonymous-authentication"></a>使用匿名驗證
+<a id="using-anonymous-authentication" class="xliff"></a>
+
+### 使用匿名驗證
 
 ```json
 {
@@ -71,7 +79,9 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 }
 ```
 
-## <a name="dataset-properties"></a>資料集屬性
+<a id="dataset-properties" class="xliff"></a>
+
+## 資料集屬性
 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
 
 每個資料集類型的 **typeProperties** 區段都不同，可提供資料存放區中的資料位置資訊。 **WebTable** 類型資料集的 typeProperties 區段有下列屬性
@@ -103,7 +113,9 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 }
 ```
 
-## <a name="copy-activity-properties"></a>複製活動屬性
+<a id="copy-activity-properties" class="xliff"></a>
+
+## 複製活動屬性
 如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
 而活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
@@ -111,7 +123,9 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 當複製活動中的來源類型為 **WebSource**，目前並未支援任何其他屬性。
 
 
-## <a name="json-example-copy-data-from-web-table-to-azure-blob"></a>JSON 範例：將資料從 Web 資料表複製到 Azure Blob
+<a id="json-example-copy-data-from-web-table-to-azure-blob" class="xliff"></a>
+
+## JSON 範例：將資料從 Web 資料表複製到 Azure Blob
 下列範例顯示︰
 
 1. [Web](#linked-service-properties)類型的連結服務。
@@ -260,7 +274,9 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 }
 ```
 
-## <a name="get-index-of-a-table-in-an-html-page"></a>取得 HTML 網頁中資料表的索引
+<a id="get-index-of-a-table-in-an-html-page" class="xliff"></a>
+
+## 取得 HTML 網頁中資料表的索引
 1. 啟動 **Excel 2016**，然後切換到 [資料] 索引標籤。  
 2. 按一下工具列上的 [開新查詢]、指向 [從其他來源]，然後按一下 [從 Web]。
 
@@ -288,6 +304,8 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 > [!NOTE]
 > 若要將來自來源資料集的資料行與來自接收資料集的資料行對應，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
 
-## <a name="performance-and-tuning"></a>效能和微調
+<a id="performance-and-tuning" class="xliff"></a>
+
+## 效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 

@@ -16,14 +16,16 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: b0d57fcef9eda57309d27f214edd184a38a44481
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 253315f3012853f5261e057571c0ddfbd849dd85
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
-# <a name="use-microsoft-cognitive-toolkit-deep-learning-model-with-azure-hdinsight-spark-cluster"></a>使用 Microsoft 辨識工具組深入了解模型與 Azure HDInsight Spark 叢集
+<a id="use-microsoft-cognitive-toolkit-deep-learning-model-with-azure-hdinsight-spark-cluster" class="xliff"></a>
+
+# 使用 Microsoft 辨識工具組深入了解模型與 Azure HDInsight Spark 叢集
 
 在本文中，您會執行下列步驟。
 
@@ -31,13 +33,17 @@ ms.lasthandoff: 05/08/2017
 
 2. 將 Jupyter Notebook 上傳至 Spark 叢集，以了解如何使用 [Spark Python API (PySpark)](https://spark.apache.org/docs/0.9.0/python-programming-guide.html)，將定型的 Microsoft 辨識工具組深入學習模型套用至 Azure Blob 儲存體帳戶中的檔案
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+
+## 必要條件
 
 * **Azure 訂用帳戶**。 開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。 請參閱[立即建立免費的 Azure 帳戶](https://azure.microsoft.com/free)。
 
 * **Azure HDInsight Spark 叢集**。 針對本文，建立 Spark 2.0 叢集。 如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
-## <a name="how-does-this-solution-flow"></a>此解決方案的流程為何？
+<a id="how-does-this-solution-flow" class="xliff"></a>
+
+## 此解決方案的流程為何？
 
 此解決方案可分為本文章與您上傳作為本教學課程一部分的 Jupyter Notebook。 在本文中，您必須完成下列步驟：
 
@@ -57,13 +63,17 @@ Jupyter Notebook 中涵蓋下列剩餘步驟。
    - 評估模型的精確度
 
 
-## <a name="install-microsoft-cognitive-toolkit"></a>安裝 Microsoft 辨識工具組
+<a id="install-microsoft-cognitive-toolkit" class="xliff"></a>
+
+## 安裝 Microsoft 辨識工具組
 
 您可以使用指令碼動作在 Spark 叢集上安裝 Microsoft 辨識工具組。 指令碼動作會使用自訂指令碼在叢集上安裝不是預設可用的元件。 您可以透過 Azure 入口網站使用自訂指令碼，使用 HDInsight .NET SDK 或 Azure PowerShell 都可以。 您也可以使用指令碼，在叢集建立期間安裝工具組，或在叢集已啟動並執行之後加以安裝。 
 
 在本文中，我們在建立叢集之後，使用入口網站來安裝工具組。 如需執行自訂指令碼的其他方式，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-### <a name="using-the-azure-portal"></a>使用 Azure 入口網站
+<a id="using-the-azure-portal" class="xliff"></a>
+
+### 使用 Azure 入口網站
 
 如需有關如何使用 Azure 入口網站來執行指令碼動作的指示，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-during-cluster-creation)。 確定您提供下列輸入來安裝 Microsoft 辨識工具組。
 
@@ -75,7 +85,9 @@ Jupyter Notebook 中涵蓋下列剩餘步驟。
 
 * 按一下 [建立] 。
 
-## <a name="upload-the-jupyter-notebook-to-azure-hdinsight-spark-cluster"></a>將 Jupyter Notebook 上傳至 Azure HDInsight Spark 叢集
+<a id="upload-the-jupyter-notebook-to-azure-hdinsight-spark-cluster" class="xliff"></a>
+
+## 將 Jupyter Notebook 上傳至 Azure HDInsight Spark 叢集
 
 若要使用 Microsoft 辨識工具組搭配 Azure HDInsight Spark 叢集，您必須將 Jupyter Notebook **CNTK_model_scoring_on_Spark_walkthrough.ipynb** 載入至 Azure HDInsight Spark 叢集。 這個 Notebook 可在 GitHub 上取得，網址是：[https://github.com/Azure-Samples/hdinsight-pyspark-cntk-integration](https://github.com/Azure-Samples/hdinsight-pyspark-cntk-integration)。
 
@@ -93,10 +105,14 @@ Jupyter Notebook 中涵蓋下列剩餘步驟。
 
 5. 將 Notebook 上傳之後，按一下 Notebook 名稱，然後遵循 Notebook 本身有關如何載入資料集的指示，並執行教學課程中。
 
-## <a name="see-also"></a>另請參閱
+<a id="see-also" class="xliff"></a>
+
+## 另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
-### <a name="scenarios"></a>案例
+<a id="scenarios" class="xliff"></a>
+
+### 案例
 * [Spark 和 BI：在 HDInsight 中搭配使用 Spark 和 BI 工具執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark 和機器學習服務：使用 HDInsight 中的 Spark，利用 HVAC 資料來分析建築物溫度](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
 * [Spark 和機器學習服務：使用 HDInsight 中的 Spark 來預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
@@ -104,19 +120,25 @@ Jupyter Notebook 中涵蓋下列剩餘步驟。
 * [使用 HDInsight 中的 Spark 進行網站記錄分析](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 * [HDInsight 中使用 Spark 的 Application Insight 遙測資料分析](hdinsight-spark-analyze-application-insight-logs.md)
 
-### <a name="create-and-run-applications"></a>建立及執行應用程式
+<a id="create-and-run-applications" class="xliff"></a>
+
+### 建立及執行應用程式
 * [使用 Scala 建立獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
 * [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
 
-### <a name="tools-and-extensions"></a>工具和擴充功能
+<a id="tools-and-extensions" class="xliff"></a>
+
+### 工具和擴充功能
 * [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
 * [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
-* [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
+* [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-zeppelin-notebook.md)
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
 * [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
-### <a name="manage-resources"></a>管理資源
+<a id="manage-resources" class="xliff"></a>
+
+### 管理資源
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 

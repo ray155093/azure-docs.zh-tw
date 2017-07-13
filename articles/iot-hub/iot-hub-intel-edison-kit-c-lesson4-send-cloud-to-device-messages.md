@@ -4,7 +4,7 @@ description: "範例應用程式會在 Edison 上執行，並監視來自 IoT �
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "arduino 從 web 控制 led, arduino 透過 web 控制 led"
 ROBOTS: NOINDEX
@@ -17,31 +17,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 475b25f02715a60493e79ecd2170854019dfc4ac
 ms.openlocfilehash: b4d76eeb1bc0b406800c89c4952900350d8eafa8
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/25/2017
 
-
 ---
-# <a name="run-a-sample-application-to-receive-cloud-to-device-messages"></a>執行範例應用程式以接收雲端到裝置訊息
+<a id="run-a-sample-application-to-receive-cloud-to-device-messages" class="xliff"></a>
+
+# 執行範例應用程式以接收雲端到裝置訊息
 在本文中，您將在 Intel Edison 上部署範例應用程式。 範例應用程式會監視來自 IoT 中樞的傳入訊息。 您也會在電腦上執行 Gulp 工作，以從 IoT 中樞將訊息傳送到 Edison。 當範例應用程式收到訊息時，便會使 LED 閃爍。 如果您有任何問題，請在[疑難排解頁面][troubleshooting]尋求解決方案。
 
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 * 將範例應用程式連接到 IoT 中樞。
 * 部署並執行範例應用程式。
 * 從 IoT 中樞將訊息傳送到 Edison 來使 LED 閃爍。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 在本文中，您將了解：
 * 如何監視來自 IoT 中樞的傳入訊息。
 * 如何從 IoT 中樞將「雲端到裝置」訊息傳送到 Edison。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 * Intel Edison，進行設定以供使用。 若要了解如何設定 Edison，請參閱[設定裝置][configure-your-device]。
 * 在您的 Azure 訂用帳戶中建立的 IoT 中樞。 若要了解如何建立 IoT 中樞，請參閱[建立您的 Azure IoT 中樞][create-your-azure-iot-hub]。
 
-## <a name="connect-the-sample-application-to-your-iot-hub"></a>將範例應用程式連接到 IoT 中樞
+<a id="connect-the-sample-application-to-your-iot-hub" class="xliff"></a>
+
+## 將範例應用程式連接到 IoT 中樞
 1. 請確定您已位於存放庫資料夾 `iot-hub-c-edison-getting-started`。 執行下列命令來在 Visual Studio Code 中開啟範例應用程式︰
 
    ```bash
@@ -70,7 +80,9 @@ ms.lasthandoff: 01/25/2017
    > [!NOTE]
    > 也請執行 **gulp install-tools** (如果您未在第 1 課這麼做)。
 
-## <a name="deploy-and-run-the-sample-application"></a>部署和執行範例應用程式
+<a id="deploy-and-run-the-sample-application" class="xliff"></a>
+
+## 部署和執行範例應用程式
 執行下列命令，在 Edison 上部署和執行範例應用程式：
 
 ```bash
@@ -85,10 +97,14 @@ gulp 命令會將範例應用程式部署到 Edison。 然後，它會在 Edison
 
 ![具有 gulp 命令和閃爍訊息的範例應用程式][gulp-command-and-blink-messages]
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 您已成功從 IoT 中樞將訊息傳送到 Edison 來使 LED 閃爍。 下一個工作是「選讀：變更 LED 的開與關行為」。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [變更 LED 的開與關行為][change-the-on-and-off-behavior-of-the-led]
 
 <!-- Images and links -->

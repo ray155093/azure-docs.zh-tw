@@ -4,7 +4,7 @@ description: "在主機電腦上執行範例程式碼，以讀取來自 IoT 中�
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "在雲端的資料, 雲端資料收集, iot 雲端服務, iot 資料"
 ROBOTS: NOINDEX
@@ -17,31 +17,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: 08ccd35c6e6a8e77f0fd4637f14a1f27730560d6
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/25/2017
-
 
 ---
 
-# <a name="read-messages-from-your-iot-hub"></a>讀取來自 IoT 中樞的傳入訊息
+<a id="read-messages-from-your-iot-hub" class="xliff"></a>
 
-## <a name="what-you-will-do"></a>將執行的作業
+# 讀取來自 IoT 中樞的傳入訊息
+
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 
 - 在主機電腦上執行範例程式碼，以讀取來自 IoT 中樞的傳入訊息。
 
 如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-sim-troubleshooting.md)尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 
 如何使用 gulp 工具讀取來自 IoT 中樞的傳入訊息。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 
 - [設定及執行模擬裝置雲端上傳範例應用程式](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md)中的模擬裝置。
 
-## <a name="get-your-iot-hub-and-device-connection-strings"></a>取得 IoT 中樞與裝置連接字串
+<a id="get-your-iot-hub-and-device-connection-strings" class="xliff"></a>
+
+## 取得 IoT 中樞與裝置連接字串
 
 您的模擬裝置會使用此裝置連接字串連接到您的 IoT 中樞。 IoT 中樞連接字串是用來連接到 IoT 中樞中的身分識別登錄，以便管理可連接到 IoT 中樞的裝置。
 
@@ -60,7 +70,9 @@ ms.lasthandoff: 01/25/2017
 
    `{my hub name}` 是您在第 2 課中指定的名稱。
 
-## <a name="configure-the-device-connection-for-the-sample-code"></a>設定範例應用程式的裝置連線
+<a id="configure-the-device-connection-for-the-sample-code" class="xliff"></a>
+
+## 設定範例應用程式的裝置連線
 
 執行下列步驟，更新 `config-azure.json` 中 IoT 中樞與裝置連線的組態︰
 
@@ -79,7 +91,9 @@ ms.lasthandoff: 01/25/2017
 
    將 `[IoT hub connection string]` 取代為 IoT 中樞連接字串。
 
-## <a name="read-messages-from-your-iot-hub"></a>讀取來自 IoT 中樞的傳入訊息
+<a id="read-messages-from-your-iot-hub" class="xliff"></a>
+
+## 讀取來自 IoT 中樞的傳入訊息
 
 執行模擬裝置範例應用程式，並使用下列命令讀取 IoT 中樞訊息︰
 
@@ -93,11 +107,15 @@ gulp run --iot-hub
 
 ![模擬的範例應用程式及傳送和接收的訊息](media/iot-hub-gateway-kit-lessons/lesson3/gulp_run_read_hub_simudev.png)
 
-## <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+## 摘要
 
 您已成功執行範例應用程式，以模擬裝置將資料傳送至您的 IoT 中樞。 您也已經讀取傳送至 IoT 中樞的訊息。
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 [建立 Azure 函數應用程式與 Azure 儲存體帳戶](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md)
 
 

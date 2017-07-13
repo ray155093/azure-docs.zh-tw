@@ -4,7 +4,7 @@ description: "自訂訊息以變更 LED 的開啟與關閉行為。"
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "使用 arduino 控制 led"
 ROBOTS: NOINDEX
@@ -17,24 +17,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
 ms.openlocfilehash: 3585dfbac8816140c0a62931920aff1a6bf7d540
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/24/2017
 
-
 ---
-# <a name="change-the-on-and-off-behavior-of-the-led"></a>變更 LED 的開與關行為
-## <a name="what-you-will-do"></a>將執行的作業
+<a id="change-the-on-and-off-behavior-of-the-led" class="xliff"></a>
+
+# 變更 LED 的開與關行為
+<a id="what-you-will-do" class="xliff"></a>
+
+## 將執行的作業
 自訂訊息以變更 LED 的開與關行為。 如果您有任何問題，請在 Adafruit Feather M0 WiFi Arduino 面版的[疑難排解頁面](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md)尋求解決方案。
 
-## <a name="what-you-will-learn"></a>學習目標
+<a id="what-you-will-learn" class="xliff"></a>
+
+## 學習目標
 使用其他 Arduino 函式以變更 LED 的開與關行為。
 
-## <a name="what-you-need"></a>您需要什麼
+<a id="what-you-need" class="xliff"></a>
+
+## 您需要什麼
 您必須已成功完成[在 Arduino 面板上執行範例應用程式以接收雲端到裝置訊息][receive-cloud-to-device-messages]。
 
-## <a name="add-functions-to-mainc-and-gulpfilejs"></a>在 main.c 和 gulpfile.js 中新增函式
+<a id="add-functions-to-mainc-and-gulpfilejs" class="xliff"></a>
+
+## 在 main.c 和 gulpfile.js 中新增函式
 1. 執行下列命令，以在 Visual Studio Code 中開啟範例應用程式︰
 
    ```bash
@@ -92,7 +102,9 @@ ms.lasthandoff: 01/24/2017
    ```
 6. 儲存所有變更。
 
-### <a name="deploy-and-run-the-sample-application"></a>部署和執行範例應用程式
+<a id="deploy-and-run-the-sample-application" class="xliff"></a>
+
+### 部署和執行範例應用程式
 執行下列命令，以在 Arduino 面板上部署和執行範例應用程式：
 
 ```bash
@@ -110,7 +122,9 @@ gulp run --listen
 
 恭喜！ 您已成功自訂從 IoT 中樞傳送至 Arduino 面板的訊息。
 
-### <a name="summary"></a>摘要
+<a id="summary" class="xliff"></a>
+
+### 摘要
 此選讀小節示範如何自訂訊息，讓範例應用程式可以使用不同的方式控制 LED 的開與關行為。
 
 <!-- Images and links -->

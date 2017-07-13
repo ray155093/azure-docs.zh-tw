@@ -7,21 +7,23 @@ documentationcenter: na
 author: luywang
 manager: kavithag
 ms.assetid: 
-ms.service: <service per approved list>
+ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/06/2017
 ms.author: luywang
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
 ms.openlocfilehash: 522fd46e8c0ccc64eb97ee6622e9886bb51f1e24
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/15/2017
 
-
 ---
-# <a name="migrating-to-premium-storage-using-azure-site-recovery"></a>使用 Azure Site Recovery 移轉到進階儲存體
+<a id="migrating-to-premium-storage-using-azure-site-recovery" class="xliff"></a>
+
+# 使用 Azure Site Recovery 移轉到進階儲存體
 
 針對執行時需要大量 I/O 之工作負載的虛擬機器 (VM)，[Azure 進階儲存體](storage-premium-storage.md)可提供高效能、低延遲的磁碟支援。 本指南的目的，是要協助使用者使用 [Azure Site Recovery](../site-recovery/site-recovery-overview.md) 將其 VM 磁碟從標準儲存體帳戶移轉到進階儲存體帳戶。
 
@@ -31,7 +33,9 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 ![][1]
 
-## <a name="azure-site-recovery-components"></a>Azure Site Recovery 元件
+<a id="azure-site-recovery-components" class="xliff"></a>
+
+## Azure Site Recovery 元件
 
 以下是與此移轉案例相關的 Site Recovery 元件。
 
@@ -50,7 +54,9 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 如需適用於其他案例的其他元件，請參閱[案例架構](../site-recovery/site-recovery-vmware-to-azure.md)。
 
-## <a name="azure-essentials"></a>Azure 基本元件
+<a id="azure-essentials" class="xliff"></a>
+
+## Azure 基本元件
 
 以下是適用於此移轉案例的 Azure 需求。
 
@@ -59,12 +65,16 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 * 在容錯移轉時建立 VM 時，VM 將連接的 Azure 虛擬網路 (VNet)。 Azure VNet 必須位於與 Site Recovery 執行所在相同的區域中
 * 用來儲存複寫記錄的 Azure 標準儲存體帳戶。 這可以是和所要移轉之 VM 磁碟相同的儲存體帳戶
 
-## <a name="prerequisites"></a>必要條件
+<a id="prerequisites" class="xliff"></a>
+
+## 必要條件
 
 * 了解上一節的相關移轉案例元件
 * 了解 [Site Recovery 中的容錯移轉](../site-recovery/site-recovery-failover.md)中的容錯移轉，以規劃停機時間
 
-## <a name="setup-and-migration-steps"></a>設定和移轉步驟
+<a id="setup-and-migration-steps" class="xliff"></a>
+
+## 設定和移轉步驟
 
 您可以使用 Site Recovery 在區域間或相同區域內移轉 Azure IaaS VM。 下列指示專用於[將 VMware VM 或實體伺服器複寫至 Azure](../site-recovery/site-recovery-vmware-to-azure.md) 一文中的移轉案例。 除了這篇文章中的指示外，請遵循連結以取得詳細步驟。
 
@@ -148,7 +158,9 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 9. **執行容錯移轉**。 在測試容錯移轉完成之後，請執行容錯移轉，將磁碟移轉到進階儲存體，並複寫 VM 執行個體。 請依照[執行容錯移轉](../site-recovery/site-recovery-failover.md#run-a-failover)中的詳細步驟來執行。 請務必選取 [關閉 VM 並同步處理最新資料]，來指定 Site Recovery 應嘗試關閉受保護的 VM 並同步處理資料，以便為最新的資料版本進行容錯移轉。 如果您未選取此選項或嘗試失敗，容錯移轉將會來自 VM 的最新可用復原點。 Site Recovery 會建立類型與可支援進階儲存體之 VM 相同或類似的 VM 執行個體。 您可以前往 [Windows 虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/windows/)或 [Linux 虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/linux/)來查看各種 VM 執行個體的效能和價格。
 
-## <a name="post-migration-steps"></a>移轉後步驟
+<a id="post-migration-steps" class="xliff"></a>
+
+## 移轉後步驟
 
 1. **在情況允許時將複寫的 VM 設定至可用性設定組**。 Site Recovery 不支援移轉 VM 以及可用性設定組。 根據複寫 VM 的部署，執行下列其中一項︰
   * 使用傳統部署模型所建立的 VM︰在 Azure 入口網站中將 VM 新增至可用性設定組。 如需詳細步驟，請移至[將現有虛擬機器加入至可用性設定組](../virtual-machines/windows/classic/configure-availability.md#a-idaddmachine-aoption-2-add-an-existing-virtual-machine-to-an-availability-set)。
@@ -158,12 +170,16 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 3. **清除 Azure Site Recovery 基礎結構**。 如果不再需要 Site Recovery，您可以藉由刪除複寫的項目、組態伺服器、復原原則和 Azure Site Recovery 保存庫來清理其基礎結構。
 
-## <a name="troubleshooting"></a>疑難排解
+<a id="troubleshooting" class="xliff"></a>
+
+## 疑難排解
 
 * [監視和疑難排解虛擬機器與實體伺服器的保護](../site-recovery/site-recovery-monitoring-and-troubleshooting.md)
 * [Microsoft Azure Site Recovery 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=hypervrecovmgr)
 
-## <a name="next-steps"></a>後續步驟
+<a id="next-steps" class="xliff"></a>
+
+## 後續步驟
 
 如需移轉虛擬機器的特定案例，請參閱下列資源：
 
