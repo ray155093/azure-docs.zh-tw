@@ -1,8 +1,7 @@
 <!--author=alkohli last changed: 01/12/17-->
 
-<a id="to-complete-the-minimum-storsimple-device-setup" class="xliff"></a>
-
 #### 完成最小的 StorSimple 裝置安裝
+<a id="to-complete-the-minimum-storsimple-device-setup" class="xliff"></a>
 
 1. 從 [裝置] 刀鋒視窗的表格式裝置清單中，選取並按一下您的裝置。 裝置處於 [就緒可進行設定] 狀態。 [設定裝置] 刀鋒視窗隨即開啟。
 

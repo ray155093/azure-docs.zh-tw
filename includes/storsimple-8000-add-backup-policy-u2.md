@@ -1,8 +1,7 @@
 <!--author=alkohli last changed: 02/10/17-->
 
-<a id="to-add-a-storsimple-backup-policy" class="xliff"></a>
-
 #### 若要新增 StorSimple 備份原則
+<a id="to-add-a-storsimple-backup-policy" class="xliff"></a>
 
 1. 請移至 StorSimple 裝置，並按一下 [備份原則]。
 

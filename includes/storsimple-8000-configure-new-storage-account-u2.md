@@ -1,9 +1,8 @@
 <!--author=alkohli last changed: 01/20/17-->
 
 
-<a id="to-add-a-storage-account-credential-in-the-same-azure-subscription-as-the-storsimple-device-manager-service" class="xliff"></a>
-
 #### 若要在與 StorSimple 裝置管理員服務相同的 Azure 訂用帳戶中新增儲存體帳戶認證
+<a id="to-add-a-storage-account-credential-in-the-same-azure-subscription-as-the-storsimple-device-manager-service" class="xliff"></a>
 
 1. 移至您的 StorSimple 裝置管理員服務。 在 [設定] 區段中，按一下 [儲存體帳戶認證]。
 

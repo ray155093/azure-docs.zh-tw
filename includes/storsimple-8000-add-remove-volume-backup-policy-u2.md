@@ -1,9 +1,8 @@
 <!--author=alkohli last changed: 01/02/17-->
 
 
-<a id="to-add-or-remove-a-volume" class="xliff"></a>
-
 #### 若要新增或移除磁碟區
+<a id="to-add-or-remove-a-volume" class="xliff"></a>
 
 1. 請移至 StorSimple 裝置，並按一下 [備份原則]。
 

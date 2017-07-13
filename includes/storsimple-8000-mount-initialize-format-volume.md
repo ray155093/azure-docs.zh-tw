@@ -1,8 +1,7 @@
 <!--author=SharS last changed: 9/17/15-->
 
-<a id="to-mount-initialize-and-format-a-volume" class="xliff"></a>
-
 #### 掛接、初始化及格式化磁碟區
+<a id="to-mount-initialize-and-format-a-volume" class="xliff"></a>
 1. 啟動 Microsoft iSCSI 啟動器。
 2. 在 [iSCSI 啟動器屬性] 視窗的 [探索] 索引標籤上，按一下 [探索入口網站]。
 3. 在 [探索目標入口網站] 對話方塊中，提供已啟用 iSCSI 網路介面的 IP 位址，然後按一下 [確定]。 
