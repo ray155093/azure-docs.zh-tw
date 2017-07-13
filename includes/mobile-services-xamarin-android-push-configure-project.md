@@ -28,14 +28,15 @@
     這樣做可讓您從推播處理常式服務處理程序存取行動服務用戶端執行個體。
 4. 在建立 **MobileServiceClient** 之後，將下列程式碼加入至 **OnCreate** 方法：
    
-     // 設定 TodoActivity 的目前執行個體。
-     instance = this;
+       // Set the current instance of TodoActivity.
+       instance = this;
    
-     // 確定 GCM 用戶端已正確設定。
-     GcmClient.CheckDevice(this); GcmClient.CheckManifest(this);
+       // Make sure the GCM client is set up correctly.
+       GcmClient.CheckDevice(this);
+       GcmClient.CheckManifest(this);
    
-     // 註冊應用程式以取得推送通知。
-     GcmClient.Register(this, ToDoBroadcastReceiver.senderIDs);
+       // Register the app for push notifications.
+       GcmClient.Register(this, ToDoBroadcastReceiver.senderIDs);
 
 您的 **ToDoActivity** 現在可供新增推送通知。
 

@@ -1,10 +1,13 @@
 > [!div class="op_single_selector"]
 > * [Node.js](../articles/iot-hub/iot-hub-node-node-twin-how-to-configure.md)
-> * [C#](../articles/iot-hub/iot-hub-csharp-node-twin-how-to-configure.md)
+> * [C#/Node.js](../articles/iot-hub/iot-hub-csharp-node-twin-how-to-configure.md)
+> * [C#](../articles/iot-hub/iot-hub-csharp-csharp-twin-how-to-configure.md)
 > 
 > 
 
-## <a name="introduction"></a>簡介
+## 簡介
+<a id="introduction" class="xliff"></a>
+
 在[開始使用 IoT 中樞裝置對應項][lnk-twin-tutorial]中，您會學到如何使用「標籤」從解決方案後端設定裝置中繼資料，使用「報告屬性」從裝置應用程式報告裝置條件，以及使用類似 SQL 的語言查詢此資訊。
 
 在本教學課程中，您將學習如何使用裝置對應項的「所需屬性」搭配「報告屬性」，遠端設定裝置應用程式。 更具體來說，本教學課程示範裝置對應項的報告和所需屬性如何啟用裝置應用程式的多步驟組態，並提供所有裝置的這項作業狀態的解決方案後端可見性。 您可以在[使用 IoT 中樞的裝置管理概觀][lnk-dm-overview]中，找到關於裝置組態所扮演角色的詳細資訊。
