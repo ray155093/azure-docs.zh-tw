@@ -13,16 +13,17 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 07/13/2017
 ms.author: billmath
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
 ms.openlocfilehash: f18e11ac7482b78925d1885ceb20696146603ad2
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/28/2017
 
-
 ---
-# <a name="azure-ad-connect-sync-running-the-installation-wizard-a-second-time"></a>Azure AD Connect 同步處理︰第二次執行安裝精靈
+# Azure AD Connect 同步處理︰第二次執行安裝精靈
+<a id="azure-ad-connect-sync-running-the-installation-wizard-a-second-time" class="xliff"></a>
 第一次執行 Azure AD Connect 安裝精靈時，它會逐步引導您設定安裝。 如果您再次執行安裝精靈，它則會提供維護選項。
 
 您可以在 [開始] 功能表中找到名為 **Azure AD Connect**的安裝精靈。
@@ -42,14 +43,16 @@ ms.lasthandoff: 03/28/2017
 >
 >
 
-## <a name="view-current-configuration"></a>檢視目前的組態
+## 檢視目前的組態
+<a id="view-current-configuration" class="xliff"></a>
 此選項可讓您快速檢視目前設定的選項。
 
 ![含有所有選項和其狀態之清單的頁面](./media/active-directory-aadconnectsync-installation-wizard/viewconfig.png)
 
 按 [上一步]  返回。 如果您選取 [結束] ，您會關閉安裝精靈。
 
-## <a name="customize-synchronization-options"></a>自訂同步處理選項
+## 自訂同步處理選項
+<a id="customize-synchronization-options" class="xliff"></a>
 此選項可用來變更同步處理組態。 您會在自訂組態安裝路徑中看到選項子集。 即使您一開始是使用快速安裝也會看到此選項。
 
 * [新增其他目錄](active-directory-aadconnect-get-started-custom.md#connect-your-directories)。 若要移除目錄，請參閱 [刪除連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md#delete)。
@@ -63,14 +66,16 @@ ms.lasthandoff: 03/28/2017
 * 變更不同樹系之物件的聯結方法。
 * 啟用群組式篩選。
 
-## <a name="refresh-directory-schema"></a>重新整理目錄結構描述
+## 重新整理目錄結構描述
+<a id="refresh-directory-schema" class="xliff"></a>
 如果您已變更其中一個內部部署 AD DS 樹系中的結構描述，則會使用這個選項。 例如，您可能已安裝 Exchange，或升級至 Windows Server 2012 結構描述 (含裝置物件)。 在此情況下，您必須指示 Azure AD Connect，讓其從 AD DS 再次讀取結構描述並更新其快取。 此動作也會重新產生同步處理規則。 舉例來說，如果您新增 Exchange 結構描述，組態中就會新增 Exchange 的同步處理規則。
 
 當您選取此選項時，便會列出組態中的所有目錄。 您可以保留預設設定，並重新整理所有樹系或取消選取其中某些樹系。
 
 ![含有環境中所有目錄清單的頁面](./media/active-directory-aadconnectsync-installation-wizard/refreshschema.png)
 
-## <a name="configure-staging-mode"></a>設定預備模式
+## 設定預備模式
+<a id="configure-staging-mode" class="xliff"></a>
 此選項可讓您啟用及停用伺服器上的預備模式。 預備模式和其使用方式的詳細資訊可在 [作業](active-directory-aadconnectsync-operations.md#staging-mode)中找到。
 
 此選項會顯示預備模式目前是已啟用還是已停用︰  
@@ -79,12 +84,14 @@ ms.lasthandoff: 03/28/2017
 若要變更狀態，請選取此選項，並選取或取消選取核取方塊。  
 ![也會顯示預備模式目前狀態的選項](./media/active-directory-aadconnectsync-installation-wizard/stagingmodeenable.png)
 
-## <a name="change-user-sign-in"></a>變更使用者登入
+## 變更使用者登入
+<a id="change-user-sign-in" class="xliff"></a>
 此選項可讓您從密碼同步處理變更為同盟，反之亦然。 您無法變更為 [不設定] 。
 
 如需此選項的詳細資訊，請參閱 [使用者登入](active-directory-aadconnect-user-signin.md#changing-the-user-sign-in-method)。
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 * 如需 Azure AD Connect 同步處理所用的組態模型的詳細資訊，請參閱 [了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
 
 **概觀主題**

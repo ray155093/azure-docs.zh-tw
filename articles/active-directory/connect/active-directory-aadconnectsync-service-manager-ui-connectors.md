@@ -1,5 +1,5 @@
 ---
-title: "Azure AD Synchronization Service Manager UI 中的連接器 | Microsoft Docs&quot;"
+title: "Azure AD Synchronization Service Manager UI 中的連接器 | Microsoft Docs'"
 description: "了解 Azure AD Connect 的 Synchronization Service Manager 中的 [連接器] 索引標籤。"
 services: active-directory
 documentationcenter: 
@@ -12,22 +12,25 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/03/2017
+ms.date: 07/13/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: 6d893efd775ff6b55524ba3a621d8248adbdd432
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
 
 ---
-# <a name="using-connectors-with-the-azure-ad-connect-sync-service-manager"></a>使用連接器搭配 Auzre AD Connect Sync Service Manager
+# 使用連接器搭配 Auzre AD Connect Sync Service Manager
+<a id="using-connectors-with-the-azure-ad-connect-sync-service-manager" class="xliff"></a>
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/connectors.png)
 
 [連接器] 索引標籤可用來管理同步處理引擎連接的所有系統。
 
-## <a name="connector-actions"></a>連接器動作
+## 連接器動作
+<a id="connector-actions" class="xliff"></a>
 | 動作 | 註解 |
 | --- | --- |
 | 建立 |請勿使用。 若要連接到其他的 AD 樹系，請使用安裝精靈。 |
@@ -42,7 +45,8 @@ ms.lasthandoff: 04/03/2017
 | 重新整理結構描述 |重新整理快取的結構描述。 最好是改為在安裝精靈中使用此選項，因為其也會更新同步處理規則。 |
 | [搜尋連接器空間](#search-connector-space) |用來尋找物件，以及 [在整個系統中追隨物件及其資料](#follow-an-object-and-its-data-through-the-system)。 |
 
-### <a name="delete"></a>刪除
+### 刪除
+<a id="delete" class="xliff"></a>
 刪除動作適用於兩個不同的用途。  
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/connectordelete.png)
 
@@ -52,12 +56,14 @@ ms.lasthandoff: 04/03/2017
 
 這兩個選項會同步處理所有物件，並更新 metaverse 物件。 此動作是長時間執行的作業。
 
-### <a name="configure-run-profiles"></a>更新執行設定檔
+### 更新執行設定檔
+<a id="configure-run-profiles" class="xliff"></a>
 此選項可讓您查看連接器所設定的執行設定檔。
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/configurerunprofiles.png)
 
-### <a name="search-connector-space"></a>搜尋連接器空間
+### 搜尋連接器空間
+<a id="search-connector-space" class="xliff"></a>
 尋找物件和疑難排解資料問題時，搜尋連接器空間動作非常有用。
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearch.png)
@@ -68,7 +74,8 @@ ms.lasthandoff: 04/03/2017
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchsubtree.png)  
 您可以從此格線選取物件、選取「屬性」，然後[跟隨物件](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)，從來源連接器空間、通過 Metaverse，再到目標連接器空間。
 
-### <a name="changing-the-ad-ds-account-password"></a>變更 AD DS 帳戶密碼
+### 變更 AD DS 帳戶密碼
+<a id="changing-the-ad-ds-account-password" class="xliff"></a>
 如果您變更帳戶密碼，同步處理服務就再也無法匯入/匯出內部部署 AD 的變更。   這時您會看到下列情形：
 
 - AD 連接器的匯入/匯出步驟失敗，並出現「no-start-credentials」錯誤。
@@ -90,7 +97,8 @@ ms.lasthandoff: 04/03/2017
 
 
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
