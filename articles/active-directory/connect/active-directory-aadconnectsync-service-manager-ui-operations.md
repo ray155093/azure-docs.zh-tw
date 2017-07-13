@@ -12,22 +12,25 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/02/2017
+ms.date: 07/13/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
 ms.openlocfilehash: 7f50ce0d4842bde809664c392ebee5425a70e6f0
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/08/2017
 
 ---
-# <a name="using-the-sync-service-manager-operations-tab"></a>使用 Sync Service Manager 作業索引標籤
+# 使用 Sync Service Manager 作業索引標籤
+<a id="using-the-sync-service-manager-operations-tab" class="xliff"></a>
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/operations.png)
 
 [作業] 索引標籤顯示最新作業的結果。 此索引標籤主要是用來了解及疑難排解問題。
 
-## <a name="understand-the-information-visible-in-the-operations-tab"></a>了解 [作業] 索引標籤中顯示的資訊
+## 了解 [作業] 索引標籤中顯示的資訊
+<a id="understand-the-information-visible-in-the-operations-tab" class="xliff"></a>
 上半部會依時間順序顯示所有執行。 根據預設，作業記錄會保留最後&7; 天的相關資訊，但是您可以利用 [排程器](active-directory-aadconnectsync-feature-scheduler.md)來變更此設定。 若您想要尋找任何未顯示成功狀態的執行。 您可以按一下標頭來變更排序。
 
 [狀態]  欄位是最重要的資訊，並顯示最嚴重的執行問題。 以下快速摘要依照優先順序來調查的最常見狀態 (其中 * 表示數個可能的錯誤字串)。
@@ -44,7 +47,8 @@ ms.lasthandoff: 03/08/2017
 
 如需詳細資訊，請參閱[針對未同步的物件進行疑難排解](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。

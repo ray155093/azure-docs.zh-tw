@@ -13,21 +13,23 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/03/2017
+ms.date: 07/13/2017
 ms.author: billmath
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: 9778db69e94e9f1d033cc8c16fdb9554df3eddcc
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
 
-
 ---
-# <a name="azure-ad-connect-sync-enable-ad-recycle-bin"></a>Azure AD Connect 同步處理︰啟用 AD 資源回收筒
+# Azure AD Connect 同步處理︰啟用 AD 資源回收筒
+<a id="azure-ad-connect-sync-enable-ad-recycle-bin" class="xliff"></a>
 建議您為會同步處理至 Azure AD 的內部部署 Active Directory 啟用 AD 資源回收筒功能。 
 
 如果您不小心刪除內部部署 AD 使用者物件，並使用此功能還原該物件，Azure AD 會還原對應的 Azure AD 使用者物件。  如需 AD 資源回收筒功能的相關資訊，請參閱[還原已刪除之 Active Directory 物件的案例概觀](https://technet.microsoft.com/library/dd379542.aspx)一文。
 
-## <a name="benefits-of-enabling-the-ad-recycle-bin"></a>啟用 AD 資源回收筒的好處
+## 啟用 AD 資源回收筒的好處
+<a id="benefits-of-enabling-the-ad-recycle-bin" class="xliff"></a>
 這項功能可協助還原 Azure AD 使用者物件，方法是執行下列動作︰
 
 * 如果您不小心刪除內部部署 AD 使用者物件，系統會在下一個同步處理循環刪除對應的 Azure AD 使用者物件。 根據預設，Azure AD 會讓已刪除的 Azure AD 使用者物件保持 30 天的虛刪除狀態。
@@ -41,9 +43,11 @@ ms.lasthandoff: 04/03/2017
 
 
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 **概觀主題**
 
 * [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+

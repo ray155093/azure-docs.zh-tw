@@ -12,18 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/07/2017
+ms.date: 07/13/2017
 ms.author: billmath
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 9541cd195e8afa6e692a5a0214b0d614e429c33b
 ms.openlocfilehash: 234f06a858987b03ec2ed0bbe0899423d8f0bcdd
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/20/2016
 
 ---
-# <a name="azure-ad-connect-automatic-upgrade"></a>Azure AD Connect：自動升級
+# Azure AD Connect：自動升級
+<a id="azure-ad-connect-automatic-upgrade" class="xliff"></a>
 此功能是隨組建 1.1.105.0 (於 2016 年 2 月發行) 一起導入。
 
-## <a name="overview"></a>Overview
+## Overview
+<a id="overview" class="xliff"></a>
 使用「自動升級」  功能是可確保您 Azure AD Connect 安裝永遠維持在最新狀態的最簡單方式。 此功能預設為啟用，以供進行快速安裝及 DirSync 升級。 新版本發行時，您的安裝會自動升級。
 
 預設會針對下列情況啟用自動升級：
@@ -47,7 +50,8 @@ ms.openlocfilehash: 234f06a858987b03ec2ed0bbe0899423d8f0bcdd
 
 如果伺服器上正在執行 **Synchronization Service Manager** UI，則會暫止升級，直到 UI 關閉為止。
 
-## <a name="troubleshooting"></a>疑難排解
+## 疑難排解
+<a id="troubleshooting" class="xliff"></a>
 如果您的 Connect 安裝未如預期般自動升級，請遵循下列步驟來找出可能的錯誤。
 
 首先，不建議您在新版本發行的第一天就自動升級。 由於升級前有刻意設計的隨機性，因此不用擔心您的安裝沒有立即升級。
@@ -97,11 +101,7 @@ ms.openlocfilehash: 234f06a858987b03ec2ed0bbe0899423d8f0bcdd
 | UpgradeNotSupportedStagingModeEnabled |伺服器設定為 [預備模式](active-directory-aadconnectsync-operations.md#staging-mode)。 |
 | UpgradeNotSupportedUserWritebackEnabled |您已啟用 [使用者回寫](active-directory-aadconnect-feature-preview.md#user-writeback) 功能。 |
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 
