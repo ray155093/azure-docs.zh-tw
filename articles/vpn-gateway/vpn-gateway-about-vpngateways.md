@@ -23,17 +23,15 @@ ms.lasthandoff: 06/22/2017
 
 
 ---
-<a id="about-vpn-gateway" class="xliff"></a>
-
 # 關於 VPN 閘道
+<a id="about-vpn-gateway" class="xliff"></a>
 
 VPN 閘道是一種虛擬網路閘道，可透過內部部署位置的公用連線傳送加密的流量。 您也可以使用 VPN 閘道，透過 Microsoft 網路來傳送 Azure 虛擬網路之間的已加密流量。 若要在 Azure 虛擬網路和您的內部部署網站之間傳送加密的網路流量，您就必須為虛擬網路建立 VPN 閘道。
 
 每個虛擬網路只可以有一個 VPN 閘道，不過，您可以對相同的 VPN 閘道建立多個連線。 例如，多站台連線設定。 當您對相同的 VPN 閘道建立多個連線時，所有 VPN 通道 (包括點對站 VPN) 都會共用此閘道可用的頻寬。
 
-<a id="what-is-a-virtual-network-gateway" class="xliff"></a>
-
 ### 什麼是虛擬網路閘道？
+<a id="what-is-a-virtual-network-gateway" class="xliff"></a>
 
 虛擬網路閘道是由部署到特定子網路 (稱為 GatewaySubnet) 的兩部或多部虛擬機器所組成。 當您建立虛擬網路閘道時，會建立位於 GatewaySubnet 中的 VM。 虛擬網路閘道 VM 會設定為包含閘道特有的路由表和閘道服務。 您無法直接設定屬於虛擬網路閘道的 VM，您不該將額外的資源部署至 GatewaySubnet。
 
@@ -43,27 +41,23 @@ VPN 閘道是一種虛擬網路閘道，可透過內部部署位置的公用連�
 
 [!INCLUDE [vpn-gateway-gwsku-include](../../includes/vpn-gateway-gwsku-include.md)]
 
-<a id="configuring-a-vpn-gateway" class="xliff"></a>
-
 ## 設定 VPN 閘道
+<a id="configuring-a-vpn-gateway" class="xliff"></a>
 
 VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源可以分別進行設定，雖然在某些情況下必須以特定順序來設定。
 
-<a id="settings" class="xliff"></a>
-
 ### 設定
+<a id="settings" class="xliff"></a>
 
 您為每個資源選擇的設定，對於建立成功連線而言極為重要。 如需 VPN 閘道個別資源和設定的資訊，請參閱 [關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。 您可以尋找資訊來協助您了解閘道類型、VPN 類型、連線類型、閘道子網路、區域網路閘道，以及您可能可量的各種其他資源設定。
 
-<a id="deployment-tools" class="xliff"></a>
-
 ### 部署工具
+<a id="deployment-tools" class="xliff"></a>
 
 您可以使用設定工具 (例如 Azure 入口網站) 開始建立及設定資源。 您可以稍後再決定切換到另一個工具 (如 PowerShell) 來設定其他資源，或是在適用的時機修改現有資源。 您目前無法在 Azure 入口網站中進行每一項資源和資源設定。 文章中各連線拓撲的指示會指定何時需要特定組態工具。 
 
-<a id="deployment-model" class="xliff"></a>
-
 ### 部署模型
+<a id="deployment-model" class="xliff"></a>
 
 當您設定 VPN 閘道時，您採用的步驟取決於用來建立虛擬網路的部署模型。 例如，如果您使用傳統部署模型建立 VNet，您會使用傳統部署模型的指導方針和指示來建立和進行 VPN 閘道設定。 如需部署模型的詳細資訊，請參閱 [了解 Resource Manager 和傳統部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。
 
@@ -77,9 +71,8 @@ VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源
 
 使用圖形和描述來協助選取符合您需求的連線拓撲。 這些圖表顯示主要基準拓撲，但您也可以使用這些圖表做為指導方針來建置更複雜的組態。
 
-<a id="site-to-site-and-multi-site-ipsecike-vpn-tunnel" class="xliff"></a>
-
 ## 站台對站台以及多站台 (IPsec/IKE VPN 通道)
+<a id="site-to-site-and-multi-site-ipsecike-vpn-tunnel" class="xliff"></a>
 
 ### <a name="S2S"></a>站對站
 
@@ -93,9 +86,8 @@ VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源
 
 ![Azure VPN 閘道多網站連接範例](./media/vpn-gateway-about-vpngateways/vpngateway-multisite-connection-diagram.png)
 
-<a id="deployment-models-and-methods-for-site-to-site-and-multi-site" class="xliff"></a>
-
 ### 站對站和多網站的部署模型和方法
+<a id="deployment-models-and-methods-for-site-to-site-and-multi-site" class="xliff"></a>
 
 [!INCLUDE [vpn-gateway-table-site-to-site](../../includes/vpn-gateway-table-site-to-site-include.md)]
 
@@ -105,9 +97,8 @@ VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源
 
 ![Azure VPN 閘道點對站連接範例](./media/vpn-gateway-about-vpngateways/vpngateway-point-to-site-connection-diagram.png)
 
-<a id="deployment-models-and-methods-for-point-to-site" class="xliff"></a>
-
 ### 點對站的部署模型和方法
+<a id="deployment-models-and-methods-for-point-to-site" class="xliff"></a>
 
 [!INCLUDE [vpn-gateway-table-point-to-site](../../includes/vpn-gateway-table-point-to-site-include.md)]
 
@@ -123,21 +114,18 @@ VPN 閘道連線需仰賴多個具有特定設定的資源。 大部分的資源
 
 ![Azure VPN 閘道 VNet 對 VNet 連接範例](./media/vpn-gateway-about-vpngateways/vpngateway-vnet-to-vnet-connection-diagram.png)
 
-<a id="connections-between-deployment-models" class="xliff"></a>
-
 ### 部署模型之間的連線
+<a id="connections-between-deployment-models" class="xliff"></a>
 
 Azure 目前有兩種部署模型：傳統和 Resource Manager。 如果您已使用 Azure 一段時間，則可能具有傳統 VNet 上執行的 Azure VM 和執行個體角色。 較新的 VM 和角色執行個體可能會在 Resource Manager 中建立的 VNet 中執行。 您可以建立 Vnet 間的連線，讓其中一個 VNet 中的資源直接與另一個 VNet 中的資源通訊。
 
-<a id="vnet-peering" class="xliff"></a>
-
 ### VNet 對等互連
+<a id="vnet-peering" class="xliff"></a>
 
 只要您的虛擬網路符合特定需求，您就能夠使用 VNet 對等互連來建立連線。 VNet 對等互連不會使用虛擬網路閘道。 如需詳細資訊，請參閱 [VNet 對等互連](../virtual-network/virtual-network-peering-overview.md)。
 
-<a id="deployment-models-and-methods-for-vnet-to-vnet" class="xliff"></a>
-
 ### VNet 對 VNet 的部署模型和方法
+<a id="deployment-models-and-methods-for-vnet-to-vnet" class="xliff"></a>
 
 [!INCLUDE [vpn-gateway-table-vnet-to-vnet](../../includes/vpn-gateway-table-vnet-to-vnet-include.md)]
 
@@ -157,29 +145,25 @@ ExpressRoute 是從 WAN (不透過公用網際網路) 至 Microsoft 服務 (包�
 
 ![ExpressRoute 和 VPN 閘道並存連接範例](./media/vpn-gateway-about-vpngateways/expressroute-vpngateway-coexisting-connections-diagram.png)
 
-<a id="deployment-models-and-methods-for-s2s-and-expressroute" class="xliff"></a>
-
 ### S2S 和 ExpressRoute 的部署模型和方法
+<a id="deployment-models-and-methods-for-s2s-and-expressroute" class="xliff"></a>
 
 [!INCLUDE [vpn-gateway-table-coexist](../../includes/vpn-gateway-table-coexist-include.md)]
 
-<a id="pricing" class="xliff"></a>
-
 ## 價格
+<a id="pricing" class="xliff"></a>
 
 [!INCLUDE [vpn-gateway-about-pricing-include](../../includes/vpn-gateway-about-pricing-include.md)]
 
 如需 VPN 閘道之閘道 SKU 的詳細資訊，請參閱[閘道 SKU](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。
 
-<a id="faq" class="xliff"></a>
-
 ## 常見問題集
+<a id="faq" class="xliff"></a>
 
 如需 VPN 閘道的常見問題集，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)。
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 
 - 規劃您的 VPN 閘道設定。 請參閱 [VPN 閘道的規劃與設計](vpn-gateway-plan-design.md)。
 - 如需詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)。

@@ -23,9 +23,8 @@ ms.lasthandoff: 06/28/2017
 
 
 ---
-<a id="connectors-list" class="xliff"></a>
-
 # 連接器清單
+<a id="connectors-list" class="xliff"></a>
 > [!TIP]
 > [A-Z 完整清單](#az) (在本主題中) 會列出您可以在邏輯應用程式中使用的所有可用連接器。 [連接器詳細資料](/connectors/)既會列出 Swagger 中所定義的任何觸發程序和動作，也會列出每個連接器的限制。
 
@@ -41,9 +40,8 @@ ms.lasthandoff: 06/28/2017
 
 [Logic Apps 價格](https://azure.microsoft.com/pricing/details/logic-apps/)和[計價模式](../logic-apps/logic-apps-pricing.md)會提供有關成本的更多詳細資料。 
 
-<a id="popular-connectors" class="xliff"></a>
-
 ## 熱門的連接器
+<a id="popular-connectors" class="xliff"></a>
 有數千個應用程式和數百萬次執行作業使用這些連接器，成功處理資料和資訊。 下表列出最熱門以及使用者喜愛的一些連接器：
 
 | |  |  |  |
@@ -56,9 +54,8 @@ ms.lasthandoff: 06/28/2017
 |  [![API 圖示][SharePointicon]<br/>**SharePoint<br/>Online**][SharePointdoc] | 如果您使用 SharePoint 執行任何動作，並且受惠於自動化作業，我們建議看看此連接器。 可以搭配內部部署 SharePoint 和 SharePoint Online 使用 | [![API 圖示][SQL-Servericon]<br/>**SQL Server**][SQL-Serverdoc] | 最常用的連接器之一，它可以連線到內部部署 SQL Server 和 Azure SQL Database。 | 
 | [![API 圖示][Twittericon]<br/>**Twitter**][Twitterdoc] | 使用 Twitter 帳戶輕鬆登入，然後在新推文發佈時啟動工作流程。 接著，將這些推文儲存至 SQL Database 或 SharePoint 清單。 | | | 
 
-<a id="integration-account-connectors" class="xliff"></a>
-
-## 整合帳戶連接器 
+## 整合帳戶連接器
+<a id="integration-account-connectors" class="xliff"></a> 
 
 企業整合套件 (EIP) 包含 BizTalk Server 社群所熟知的連接器。 當您購買[整合帳戶](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md)時，您也會取得下列連接器︰ 
 
@@ -68,9 +65,8 @@ ms.lasthandoff: 06/28/2017
 [![API 圖示][flatfileicon]<br/>**一般檔案</br> 編碼**][flatfiledoc] | [![API 圖示][flatfiledecodeicon]<br/>**一般檔案</br> 解碼**][flatfiledecodedoc] | [![API 圖示][integrationaccounticon]<br/>**整合<br/>帳戶**][integrationaccountdoc] | [![API 圖示][xmltransformicon]<br/>**轉換<br/>XML**][xmltransformdoc] |
 | [![API 圖示][x12icon]<br/>**X12</br> 解碼**][x12decode] | [![API 圖示][x12icon]<br/>**X12</br> 編碼**][x12encode] | [![API 圖示][xmlvalidateicon]<br/>**XML <br/>驗證**][xmlvalidatedoc] | |
 
-<a id="enterprise-connectors" class="xliff"></a>
-
 ## 企業連接器
+<a id="enterprise-connectors" class="xliff"></a>
 
 連線至您的邏輯應用程式內的企業應用程式。
 
@@ -95,9 +91,8 @@ ms.lasthandoff: 06/28/2017
 > [!TIP]
 > 若要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)。 您可以立即建立短期的入門邏輯應用程式。 不需要信用卡；沒有承諾。
 
-<a id="connectors-as-triggers-and-actions" class="xliff"></a>
-
 ## 連接器做為觸發程序和動作
+<a id="connectors-as-triggers-and-actions" class="xliff"></a>
 
 **觸發程序**可啟動或執行邏輯應用程式的執行個體。 有些連接器會提供觸發程序，以在發生特定事件時通知您的應用程式。 例如，FTP 連接器具有 `OnUpdatedFile` 觸發程序，可在檔案更新時通知邏輯應用程式。 
 
@@ -117,9 +112,8 @@ Logic Apps 包含下列幾種觸發程序：
 > [連接器概觀](connectors-overview.md)提供有關觸發程序和動作的詳細資訊。 
 
 
-<a id="message-manipulation-actions" class="xliff"></a>
-
 ## 訊息操作動作
+<a id="message-manipulation-actions" class="xliff"></a>
 
 邏輯應用程式包含內建動作，可變更或操作承載資料。 內建的 **Data Operations** 連接器包含下列動作： 
 
@@ -132,17 +126,15 @@ Logic Apps 包含下列幾種觸發程序：
 | **剖析 JSON** | 剖析及存取設計工具中 JSON 物件的值。 例如，如果您的 Azure Function 傳回 JSON 承載，您可加以剖析，以便稍後在其他步驟中存取 JSON 屬性。 此動作也會驗證 JSON 是否符合在執行階段指定的結構描述。 | 
 | **選取** | 選取陣列的某些屬性，以便進一步處理。 如果您從 SQL 執行「列出記錄」，而它傳回 15 個資料行，則只要選取幾個資料行以便進一步處理。 輸出是一個僅包含所選屬性的陣列。 |
 
-<a id="custom-connectors-and-azure-certification" class="xliff"></a>
-
-## 自訂連接器和 Azure 憑證 
+## 自訂連接器和 Azure 憑證
+<a id="custom-connectors-and-azure-certification" class="xliff"></a> 
 
 若要呼叫執行自訂程式碼或不可做為連接器的 API，您可以建立以 REST 為基礎的 API Apps 做為自訂連接器，以[擴充 Logic Apps 平台](../logic-apps/logic-apps-create-api-app.md)。 
 
 如果您想要讓您自訂的 API Apps 公開且能夠在 Azure 中使用，請將您的提名提交至 [Microsoft Azure 認證程式](https://azure.microsoft.com/marketplace/programs/certified/logic-apps/)。
 
-<a id="get-help" class="xliff"></a>
-
 ## 取得說明
+<a id="get-help" class="xliff"></a>
 
 若要提出問題、回答問題以及查看其他 Azure Logic Apps 使用者的做法，請移至 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
 
@@ -150,9 +142,8 @@ Logic Apps 包含下列幾種觸發程序：
 
 我們是否遺漏連接器主題，或任何您認為重要的詳細資訊？ 若是如此，請將其新增到我們現有的主題，或撰寫自己的主題來協助我們。 我們的文件是開放原始碼並存放於 GitHub。 從我們的 [GitHub 存放庫](https://github.com/Microsoft/azure-docs)著手。 
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 * [建立第一個邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 * [建立邏輯應用程式的自訂 API](../logic-apps/logic-apps-create-api-app.md)
 * [監視邏輯應用程式](../logic-apps/logic-apps-monitor-your-logic-apps.md)

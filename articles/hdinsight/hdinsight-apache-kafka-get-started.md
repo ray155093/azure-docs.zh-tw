@@ -22,9 +22,8 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 07/04/2017
 
 ---
-<a id="start-with-apache-kafka-preview-on-hdinsight" class="xliff"></a>
-
 # 開始在 HDInsight 上使用 Apache Kafka (預覽)
+<a id="start-with-apache-kafka-preview-on-hdinsight" class="xliff"></a>
 
 了解如何在 Azure HDInsight 上建立和使用 [Apache Kafka](https://kafka.apache.org) 叢集。 Kafka 是 HDInsight 提供的開放原始碼分散式串流平台。 它通常作為訊息代理程式，因為它提供了類似於發佈-訂閱訊息佇列的功能。
 
@@ -33,17 +32,15 @@ ms.lasthandoff: 07/04/2017
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-<a id="prerequisites" class="xliff"></a>
-
 ## 必要條件
+<a id="prerequisites" class="xliff"></a>
 
 * [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 或同等功能版本，例如 OpenJDK。
 
 * [Apache Maven](http://maven.apache.org/) 
 
-<a id="create-a-kafka-cluster" class="xliff"></a>
-
 ## 建立 Kafka 叢集
+<a id="create-a-kafka-cluster" class="xliff"></a>
 
 請使用下列步驟建立 Kafka on HDInsight：
 
@@ -101,9 +98,8 @@ ms.lasthandoff: 07/04/2017
     > [!NOTE]
     > 建立叢集可能需要花費 20 分鐘的時間。
 
-<a id="connect-to-the-cluster" class="xliff"></a>
-
 ## 連接到叢集
+<a id="connect-to-the-cluster" class="xliff"></a>
 
 從您的用戶端，使用 SSH 連線到叢集：
 
@@ -151,9 +147,8 @@ ms.lasthandoff: 07/04/2017
     >
     > 您應在使用 Zookeeper 和訊息代理程式主機資訊不久前擷取該資訊，以確保您具備有效的資訊。
 
-<a id="create-a-topic" class="xliff"></a>
-
 ## 建立主題
+<a id="create-a-topic" class="xliff"></a>
 
 Kafka 會將資料串流儲存在名為 *topics* 的類別中。 在連往叢集前端節點的 SSH 連線中，使用 Kafka 所提供的指令碼來建立主題︰
 
@@ -169,9 +164,8 @@ Kafka 會將資料串流儲存在名為 *topics* 的類別中。 在連往叢集
 
 此命令的輸出會列出 Kafka 主題，其中包含 **test** 主題。
 
-<a id="produce-and-consume-records" class="xliff"></a>
-
 ## 產生和取用記錄
+<a id="produce-and-consume-records" class="xliff"></a>
 
 Kafka 會在主題中儲存「記錄」。 記錄是由「產生者」產生，並由「取用者」取用。 產生者會從 Kafka「訊息代理程式」擷取記錄。 HDInsight 叢集中的每個背景工作節點都是 Kafka 訊息代理程式。
 
@@ -195,9 +189,8 @@ Kafka 會在主題中儲存「記錄」。 記錄是由「產生者」產生，�
 
 3. 使用 __Ctrl + C__ 來停止取用者。
 
-<a id="producer-and-consumer-api" class="xliff"></a>
-
 ## 產生者和取用者 API
+<a id="producer-and-consumer-api" class="xliff"></a>
 
 您也可以利用 [Kafka API](http://kafka.apache.org/documentation#api)，以程式設計方式產生和取用記錄。 使用下列步驟進行下載，並建置 Java 型生產者和取用者︰
 
@@ -246,9 +239,8 @@ Kafka 會在主題中儲存「記錄」。 記錄是由「產生者」產生，�
 
 6. 使用 __Ctrl + C__ 來結束取用者。
 
-<a id="multiple-consumers" class="xliff"></a>
-
 ### 多個取用者
+<a id="multiple-consumers" class="xliff"></a>
 
 Kafka 的重要概念是取用者會在讀取記錄時使用取用者群組 (依群組識別碼定義)。 多個取用者使用相同群組會導致從主題讀取負載平衡。 群組中的每個取用者都會收到一部分的記錄。 若要查看此程序的運作情況，請使用下列步驟︰
 
@@ -270,9 +262,8 @@ Kafka 的重要概念是取用者會在讀取記錄時使用取用者群組 (依
 
 Kafka 中儲存的記錄會依照其在資料分割內接收的順序儲存。 若要達到依序傳遞「資料分割內」的記錄，請建立取用者群組，其中的取用者執行個體數目與資料分割數目相符。 若要達到依序傳遞「主題內」的記錄，請建立只有一個取用者執行個體的取用者群組。
 
-<a id="streaming-api" class="xliff"></a>
-
 ## 串流 API
+<a id="streaming-api" class="xliff"></a>
 
 串流 API 已新增至 0.10.0 版中的 Kafka；舊版依賴 Apache Spark 或 Storm 進行串流處理。
 
@@ -347,21 +338,18 @@ Kafka 中儲存的記錄會依照其在資料分割內接收的順序儲存。 �
 
 7. 使用 __Ctrl + C__ 結束取用者，然後使用 `fg` 命令將串流背景工作帶回前景。 使用 __Ctrl + C__ 將它結束。
 
-<a id="delete-the-cluster" class="xliff"></a>
-
 ## 刪除叢集
+<a id="delete-the-cluster" class="xliff"></a>
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-<a id="troubleshoot" class="xliff"></a>
-
 ## 疑難排解
+<a id="troubleshoot" class="xliff"></a>
 
 如果您在建立 HDInsight 叢集時遇到問題，請參閱[存取控制需求](hdinsight-administer-use-portal-linux.md#create-clusters)。
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 
 在本文件中，您已學會使用 Apache Kafka on HDInsight 的基本概念。 使用下列各項來深入了解 Kafka 的使用方式︰
 

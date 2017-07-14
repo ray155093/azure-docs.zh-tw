@@ -22,15 +22,13 @@ ms.lasthandoff: 06/29/2017
 
 
 ---
-<a id="what-is-site-recovery" class="xliff"></a>
-
 # 什麼是 Site Recovery？
+<a id="what-is-site-recovery" class="xliff"></a>
 
 歡迎使用 Azure Site Recovery 服務！ 本文提供此服務的快速概觀。
 
-<a id="business-continuity-and-disaster-recovery-bdcr-with-azure-recovery-services" class="xliff"></a>
-
 ## Azure 復原服務提供的業務持續性和災害復原 (BCDR)
+<a id="business-continuity-and-disaster-recovery-bdcr-with-azure-recovery-services" class="xliff"></a>
 
 作為一個組織，您必須了解如何維持資料安全，以及發生計劃性和非計劃性中斷時，如何讓應用程式/工作負載持續執行。
 
@@ -45,9 +43,8 @@ Site Recovery 可以管理複寫：
 - 將內部部署虛擬機器和實體伺服器複寫至 Azure 或次要網站。
 
 
-<a id="what-does-site-recovery-provide" class="xliff"></a>
-
 ## Site Recovery 可以提供什麼功能？
+<a id="what-does-site-recovery-provide" class="xliff"></a>
 
 **功能** | **詳細資料**
 --- | ---
@@ -66,9 +63,8 @@ Site Recovery 可以管理複寫：
 **管理網路設定** | Site Recovery 與 Azure 整合，提供簡單的應用程式網路管理，包括保留 IP 位址、設定負載平衡器和整合 Azure 流量管理員以進行有效率的網路轉換。
 
 
-<a id="what-can-i-replicate" class="xliff"></a>
-
 ## 我可以複寫哪些項目？
+<a id="what-can-i-replicate" class="xliff"></a>
 
 **支援** | **詳細資料**
 --- | ---
@@ -79,17 +75,15 @@ Site Recovery 可以管理複寫：
 **可以複寫哪些工作負載？** | 您可以複寫在支援的複寫機器上執行的所有工作負載。 此外，Site Recovery 小組已經針對[應用程式數目](site-recovery-workload.md#workload-summary)執行應用程式專屬測試。
 
 
-<a id="azure-portal-considerations" class="xliff"></a>
-
 ## Azure 入口網站的考量
+<a id="azure-portal-considerations" class="xliff"></a>
 
 * Site Recovery 可以部署在 [Azure 入口網站](https://portal.azure.com)中。
 * 在 Azure 傳統入口網站中，您可以使用傳統服務管理模型來管理 Site Recovery。
 - 傳統的入口網站只能用來維護現有的 Site Recovery 部署。 您無法在傳統入口網站中建立新的保存庫。
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 * 深入了解[工作負載支援](site-recovery-workload.md)
 * 開始使用[區域間的 Azure VM 複寫](site-recovery-azure-to-azure.md)、[VMware 複寫至 Azure](vmware-walkthrough-overview.md)，或 [Hyper-V 複寫至 Azure](hyper-v-site-walkthrough-overview.md)。
 
