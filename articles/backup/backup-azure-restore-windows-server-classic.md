@@ -22,7 +22,8 @@ ms.lasthandoff: 02/02/2017
 
 
 ---
-# <a name="restore-files-to-a-windows-server-or-windows-client-machine-using-the-classic-deployment-model"></a>使用傳統部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
+# 使用傳統部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
+<a id="restore-files-to-a-windows-server-or-windows-client-machine-using-the-classic-deployment-model" class="xliff"></a>
 > [!div class="op_single_selector"]
 > * [傳統入口網站](backup-azure-restore-windows-server-classic.md)
 > * [Azure 入口網站](backup-azure-restore-windows-server.md)
@@ -43,7 +44,8 @@ ms.lasthandoff: 02/02/2017
 「立即還原」可用於 Azure 入口網站中的復原服務保存庫以及傳統入口網站中的備份保存庫。 如果您想要使用「立即還原」，請下載 MARS 更新，並依照提及「立即還原」部分中的程序進行操作。
 
 
-## <a name="use-instant-restore-to-recover-data-to-the-same-machine"></a>使用「立即還原」將資料還原至同一台電腦
+## 使用「立即還原」將資料還原至同一台電腦
+<a id="use-instant-restore-to-recover-data-to-the-same-machine" class="xliff"></a>
 
 如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
 
@@ -91,7 +93,8 @@ ms.lasthandoff: 02/02/2017
     >
 
 
-## <a name="recover-data-to-the-same-machine"></a>將資料還原到相同電腦
+## 將資料還原到相同電腦
+<a id="recover-data-to-the-same-machine" class="xliff"></a>
 如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
 
 1. 開啟 **Microsoft Azure 備份** 嵌入式管理單元。
@@ -123,7 +126,8 @@ ms.lasthandoff: 02/02/2017
    * 強烈建議您針對正在復原檔案上的 ACL 保留預設還原選項。
 8. 提供這些輸入之後，按一下 [下一步] 。 就會開始執行將檔案還原到這部電腦的復原工作流程。
 
-## <a name="recover-to-an-alternate-machine"></a>還原至其他電腦
+## 還原至其他電腦
+<a id="recover-to-an-alternate-machine" class="xliff"></a>
 若您遺失整個伺服器，您仍然可從 Azure 備份將資料還原到其他電腦。 下列步驟說明工作流程。  
 
 這些步驟中所使用的術語包含：
@@ -163,7 +167,8 @@ ms.lasthandoff: 02/02/2017
     ![加密](./media/backup-azure-restore-windows-server-classic/encryption.png)
 11. 一旦提供輸入，則按一下 [復原] ，將會觸發還原備份檔案到所提供目的地的程序。
 
-## <a name="use-instant-restore-to-restore-data-to-an-alternate-machine"></a>使用「立即還原」將資料還原至其他電腦
+## 使用「立即還原」將資料還原至其他電腦
+<a id="use-instant-restore-to-restore-data-to-an-alternate-machine" class="xliff"></a>
 若您遺失整個伺服器，您仍然可從 Azure 備份將資料還原到其他電腦。 下列步驟說明工作流程。
 
 這些步驟中所使用的術語包含：
@@ -226,11 +231,13 @@ ms.lasthandoff: 02/02/2017
     >
 
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 * [Azure 備份常見問題集](backup-azure-backup-faq.md)
 * 造訪 [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)(英文)。
 
-## <a name="learn-more"></a>詳細資訊
+## 詳細資訊
+<a id="learn-more" class="xliff"></a>
 * [Azure 備份概觀](http://go.microsoft.com/fwlink/p/?LinkId=222425)
 * [備份 Azure 虛擬機器](backup-azure-vms-introduction.md)
 * [備份 Microsoft 工作負載](backup-azure-dpm-introduction.md)
