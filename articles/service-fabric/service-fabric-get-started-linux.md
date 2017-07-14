@@ -22,9 +22,8 @@ ms.lasthandoff: 07/01/2017
 
 
 ---
-<a id="prepare-your-development-environment-on-linux" class="xliff"></a>
-
 # 在 Linux 上準備您的開發環境
+<a id="prepare-your-development-environment-on-linux" class="xliff"></a>
 > [!div class="op_single_selector"]
 > * [Windows](service-fabric-get-started.md)
 > * [Linux](service-fabric-get-started-linux.md)
@@ -34,20 +33,17 @@ ms.lasthandoff: 07/01/2017
 
  若要在 Linux 開發機器上部署和執行 [Azure Service Fabric 應用程式](service-fabric-application-model.md) ，請安裝執行階段和通用 SDK。 您也可以安裝 Java 和 .NET Core 的選擇性 SDK。
 
+## 必要條件
 <a id="prerequisites" class="xliff"></a>
 
-## 必要條件
-
-<a id="supported-operating-system-versions" class="xliff"></a>
-
 ### 支援的作業系統版本
+<a id="supported-operating-system-versions" class="xliff"></a>
 下列為支援開發的作業系統版本：
 
 * Ubuntu 16.04 (`Xenial Xerus`)
 
-<a id="update-your-apt-sources" class="xliff"></a>
-
 ## 更新 apt 來源
+<a id="update-your-apt-sources" class="xliff"></a>
 若要透過 apt-get 安裝 SDK 和相關聯的執行階段套件，您必須先更新 apt 來源。
 
 1. 開啟終端機。
@@ -88,9 +84,8 @@ ms.lasthandoff: 07/01/2017
     sudo apt-get update
     ```
 
-<a id="install-and-set-up-the-sdk-for-containers-and-guest-executables" class="xliff"></a>
-
 ## 安裝並設定容器和來賓可執行檔的 SDK
+<a id="install-and-set-up-the-sdk-for-containers-and-guest-executables" class="xliff"></a>
 
 更新來源後，您可以安裝 SDK。
 
@@ -131,9 +126,8 @@ ms.lasthandoff: 07/01/2017
 > 您可以將這些命令新增至 ~/.bashrc 檔案，讓您不必在每一次登入時設定環境變數。
 >
 
-<a id="setup-the-xplat-service-fabric-cli" class="xliff"></a>
-
 ## 設定 XPlat Service Fabric CLI
+<a id="setup-the-xplat-service-fabric-cli" class="xliff"></a>
 [XPlat CLI][azure-xplat-cli-github] 包含可供與 Service Fabric 實體 (包括叢集和應用程式) 進行互動的命令。 它是以 Node.js 為基礎，所以先[確認您已安裝 Node][install-node]，再繼續執行下列指示：
 
 1. 將 github 存放庫複製到您的開發電腦。
@@ -163,17 +157,15 @@ ms.lasthandoff: 07/01/2017
     source ~/azure.completion.sh
     ```
 
-<a id="setup-azure-cli-20" class="xliff"></a>
-
 ### 設定 Azure CLI 2.0
+<a id="setup-azure-cli-20" class="xliff"></a>
 
 作為 XPlat CLI 的替代項目，Azure CLI 中目前已包含一個 Service Fabric 命令模組。
 
 如需安裝 Azure CLI 2.0 和使用 Service Fabric 命令的詳細資訊，請參閱[使用者入門文件](service-fabric-azure-cli-2-0.md)。
 
-<a id="set-up-a-local-cluster" class="xliff"></a>
-
 ## 設定本機叢集
+<a id="set-up-a-local-cluster" class="xliff"></a>
 如果一切都已順利安裝，您應該能夠啟動本機叢集。
 
 1. 執行叢集安裝指令碼。
@@ -193,9 +185,8 @@ ms.lasthandoff: 07/01/2017
 > Linux 不支援獨立叢集 - 預覽中僅支援單機和 Azure Linux 多電腦叢集。
 >
 
-<a id="install-the-java-sdk-optional-if-you-wish-to-use-the-java-programming-models" class="xliff"></a>
-
 ## 安裝 Java SDK (選擇性，如果您想要使用 Java 程式設計模型)
+<a id="install-the-java-sdk-optional-if-you-wish-to-use-the-java-programming-models" class="xliff"></a>
 Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和範本。
 
 1. 安裝 Java SDK 套件。
@@ -210,9 +201,8 @@ Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和�
     sudo /opt/microsoft/sdk/servicefabric/java/sdkjavasetup.sh
     ```
 
-<a id="install-the-eclipse-neon-plugin-optional" class="xliff"></a>
-
 ## 安裝 Eclipse Neon 外掛程式 (選擇性)
+<a id="install-the-eclipse-neon-plugin-optional" class="xliff"></a>
 
 您可以從**適用於 Java 開發人員的 Eclipse 整合式開發環境 (IDE)** 安裝適用於 Service Fabric 的 Eclipse 外掛程式。 除了 Service Fabric Java 應用程式之外，您可以使用 Eclipse 來建立 Service Fabric 來賓可執行檔應用程式和容器應用程式。
 
@@ -235,9 +225,8 @@ Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和�
 如需詳細資訊，請參閱 [Service Fabric 開始使用 Eclipse](service-fabric-get-started-eclipse.md)。
 
 
-<a id="install-the-net-core-sdk-optional-if-you-wish-to-use-the-net-core-programming-models" class="xliff"></a>
-
 ## 安裝 .NET Core SDK (選擇性，如果您想要使用 .NET Core 程式設計模型)
+<a id="install-the-net-core-sdk-optional-if-you-wish-to-use-the-net-core-programming-models" class="xliff"></a>
 .NET Core SDK 提供了使用 .NET Core 建置 Service Fabric 服務所需的程式庫和範本。
 
 1. 安裝 .NET Core SDK 套件。
@@ -252,9 +241,8 @@ Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和�
    sudo /opt/microsoft/sdk/servicefabric/csharp/sdkcsharpsetup.sh
    ```
 
-<a id="updating-the-sdk-and-runtime" class="xliff"></a>
-
 ## 更新 SDK 和執行階段
+<a id="updating-the-sdk-and-runtime" class="xliff"></a>
 
 若要更新為最新版的 SDK 和執行階段，請執行下列命令 (取消選取您不想要的 SDK)︰
 
@@ -267,9 +255,8 @@ sudo apt-get install servicefabric servicefabricsdkcommon servicefabricsdkcsharp
 > [!NOTE]
 > 更新套件可能會導致本機開發叢集停止。 請依照本頁上的指示，在升級之後重新啟動本機叢集。
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 * [使用 Yeoman 在 Linux 上建立和部署第一個 Service Fabric Java 應用程式](service-fabric-create-your-first-linux-application-with-java.md)
 * [在 Linux 上使用適用於 Eclipse 的 Service Fabric 外掛程式建立和部署第一個 Service Fabric Java 應用程式](service-fabric-get-started-eclipse.md)
 * [在 Linux 上建立第一個 CSharp 應用程式](service-fabric-create-your-first-linux-application-with-csharp.md)
@@ -277,9 +264,8 @@ sudo apt-get install servicefabric servicefabricsdkcommon servicefabricsdkcsharp
 * [使用 XPlat CLI 管理 Service Fabric 應用程式](service-fabric-azure-cli.md)
 * [Service Fabric Windows/Linux 的差異](service-fabric-linux-windows-differences.md)
 
-<a id="related-articles" class="xliff"></a>
-
 ## 相關文章
+<a id="related-articles" class="xliff"></a>
 
 * [開始使用 Service Fabric 和 Azure CLI 2.0](service-fabric-azure-cli-2-0.md)
 * [開始使用 Service Fabric XPlat CLI](service-fabric-azure-cli.md)

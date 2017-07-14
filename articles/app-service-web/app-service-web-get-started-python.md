@@ -22,18 +22,16 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 06/28/2017
 
 ---
-<a id="create-a-python-web-app-in-azure" class="xliff"></a>
-
 # 在 Azure 中建立 Python Web 應用程式
+<a id="create-a-python-web-app-in-azure" class="xliff"></a>
 
 [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 提供可高度擴充、自我修復的 Web 主機服務。  本快速入門逐步解說如何開發 Python 應用程式及部署至 Azure Web Apps。 您可使用 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)建立 Web 應用程式，而且使用 Git 將範例 Python 程式碼部署至 Web 應用程式。
 
 ![在 Azure 中執行的範例應用程式](media/app-service-web-get-started-python/hello-world-in-browser.png)
 
 您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。 安裝先決條件後，大約需要 5 分鐘才能完成這些步驟。
-<a id="prerequisites" class="xliff"></a>
-
 ## 必要條件
+<a id="prerequisites" class="xliff"></a>
 
 若要完成本教學課程：
 
@@ -46,9 +44,8 @@ ms.lasthandoff: 06/28/2017
 
 如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-<a id="download-the-sample" class="xliff"></a>
-
 ## 下載範例
+<a id="download-the-sample" class="xliff"></a>
 
 在終端機視窗中執行下列命令，將範例應用程式存放庫複製到本機電腦。
 
@@ -64,9 +61,8 @@ git clone https://github.com/Azure-Samples/python-docs-hello-world
 cd Python-docs-hello-world
 ```
 
-<a id="run-the-app-locally" class="xliff"></a>
-
 ## 在本機執行應用程式
+<a id="run-the-app-locally" class="xliff"></a>
 
 開啟終端機視窗並使用 `Python` 命令來啟動內建 Python Web 伺服器，以在本機執行應用程式。
 
@@ -96,9 +92,8 @@ python main.py
 
 您已在 Azure 中建立空的新 Web 應用程式。
 
-<a id="configure-to-use-python" class="xliff"></a>
-
 ## 設定成使用 Python
+<a id="configure-to-use-python" class="xliff"></a>
 
 使用 [az webapp config set](/cli/azure/webapp/config#set) 命令將 Web 應用程式設定為使用 Python 版本 `3.4`。
 
@@ -155,9 +150,8 @@ To https://<app_name>.scm.azurewebsites.net/<app_name>.git
  * [new branch]      master -> master
 ```
 
-<a id="browse-to-the-app" class="xliff"></a>
-
 ## 瀏覽至應用程式
+<a id="browse-to-the-app" class="xliff"></a>
 
 使用 web 瀏覽器瀏覽至已部署的應用程式。
 
@@ -171,9 +165,8 @@ Python 範例程式碼正在 Azure App Service Web 應用程式中執行。
 
 **恭喜！** 您已將第一個 Python 應用程式部署至 App Service。
 
-<a id="update-and-redeploy-the-code" class="xliff"></a>
-
 ## 更新和重新部署程式碼
+<a id="update-and-redeploy-the-code" class="xliff"></a>
 
 使用本機文字編輯器，在 Python 應用程式中開啟 `main.py` 檔案，並且對 `return` 陳述式旁邊的文字進行小幅變更：
 
@@ -192,9 +185,8 @@ git push azure master
 
 ![在 Azure 中執行的已更新範例應用程式](media/app-service-web-get-started-python/hello-azure-in-browser.png)
 
-<a id="manage-your-new-azure-web-app" class="xliff"></a>
-
 ## 管理新的 Azure Web 應用程式
+<a id="manage-your-new-azure-web-app" class="xliff"></a>
 
 請移至 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>，以管理您所建立的 Web 應用程式。
 
@@ -210,9 +202,8 @@ git push azure master
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 
 > [!div class="nextstepaction"]
 > [Python with PostgreSQL](app-service-web-tutorial-docker-python-postgresql-app.md)

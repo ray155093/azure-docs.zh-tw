@@ -22,18 +22,16 @@ ms.lasthandoff: 06/24/2017
 
 
 ---
-<a id="partner-integration-in-azure-security-center" class="xliff"></a>
-
 # Azure 資訊安全中心中的合作夥伴整合
+<a id="partner-integration-in-azure-security-center" class="xliff"></a>
 此文件說明 Azure 資訊安全中心如何與合作夥伴整合，以提高整體安全性並在 Azure 中提供整合體驗，同時充分利用 Azure Marketplace 進行合作夥伴認證和計費。
 
 >[!NOTE] 
 >從 2017 年 6 月初開始，資訊安全中心會使用 Microsoft Monitoring Agent 來收集和儲存資料。 若要深入了解，請參閱 [Azure 資訊安全中心平台移轉](security-center-platform-migration.md)。 本文中的資訊說明轉換至 Microsoft Monitoring Agent 後的資訊安全中心功能。
 >
 
-<a id="why-deploy-partners-solutions-from-security-center" class="xliff"></a>
-
 ## 為什麼要從資訊安全中心部署合作夥伴的解決方案？
+<a id="why-deploy-partners-solutions-from-security-center" class="xliff"></a>
 
 運用資訊安全中心中的合作夥伴整合有四個主要原因：
 
@@ -43,9 +41,8 @@ ms.lasthandoff: 06/24/2017
 - **匯出至 SIEM**：客戶現在可以使用 Microsoft Azure Log Integration (預覽)，以 CEF 格式將所有資訊安全中心與合作夥伴的警示匯出至內部部署 SIEM 系統中
 
 
-<a id="what-partners-are-integrated-with-security-center" class="xliff"></a>
-
 ## 哪些合作夥伴會與資訊安全中心整合？
+<a id="what-partners-are-integrated-with-security-center" class="xliff"></a>
 資訊安全中心目前與下列解決方案整合︰
 
 - Endpoint Protection ([Trend Micro](https://help.deepsecurity.trendmicro.com/azure-marketplace-getting-started-with-deep-security.html)、Symantec、[Microsoft Antimalware for Azure](https://docs.microsoft.com/azure/security/azure-security-antimalware)) 
@@ -55,9 +52,8 @@ ms.lasthandoff: 06/24/2017
 
 資訊安全中心會隨時間擴展這些現有類別內合作夥伴的數目，並加入新的類別。 
 
-<a id="how-to-deploy-a-partner-solution" class="xliff"></a>
-
 ## 如何部署合作夥伴解決方案？
+<a id="how-to-deploy-a-partner-solution" class="xliff"></a>
 
 根據您的 Azure 環境組態和您定義的安全性原則，資訊安全中心可能會建議部署協力廠商解決方案。 此建議將引導您完成選取和安裝協力廠商解決方案的程序。 目前的整體部署體驗可能會根據解決方案類型和合作夥伴而有所不同。 如需詳細資訊，請參閱底下的連結：
 
@@ -66,9 +62,8 @@ ms.lasthandoff: 06/24/2017
 - [安裝端點保護](security-center-install-endpoint-protection.md)
 - [未安裝弱點評估](security-center-vulnerability-assessment-recommendations.md)
 
-<a id="how-to-manage-partner-solutions" class="xliff"></a>
-
 ## 如何管理合作夥伴解決方案？
+<a id="how-to-manage-partner-solutions" class="xliff"></a>
 
 部署合作夥伴解決方案後，您可以檢視解決方案的健康狀態相關資訊，並從主要資訊安全中心儀表板的 [協力廠商解決方案] 圖格執行基本管理工作。 如需管理資訊安全中心中合作夥伴解決方案的相關資訊，請閱讀[透過 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md)。
 
@@ -78,9 +73,8 @@ ms.lasthandoff: 06/24/2017
 > Symantec Endpoint Protection 支援僅限於探索，但無法使用任何健康情況警示。
 >
 
-<a id="see-also" class="xliff"></a>
-
 ## 另請參閱
+<a id="see-also" class="xliff"></a>
 在此文件中，您已了解如何在 Azure 資訊安全中心中整合合作夥伴解決方案。 若要深入了解資訊安全中心，請參閱下列主題：
 
 * [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)

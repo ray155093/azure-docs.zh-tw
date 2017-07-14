@@ -23,9 +23,8 @@ ms.lasthandoff: 06/30/2017
 
 ---
 
-<a id="create-your-first-jenkins-master-on-a-linux-ubuntu-vm-on-azure" class="xliff"></a>
-
 # 在 Azure 上建立第一個 Linux (Ubuntu) VM 上的 Jenkins Master
+<a id="create-your-first-jenkins-master-on-a-linux-ubuntu-vm-on-azure" class="xliff"></a>
 
 本快速入門示範如何在 Linux (Ubuntu 14.04 LTS) VM 上安裝最新的穩定 Jenkins 版本，以及設定為使用 Azure 的工具和外掛程式。 這些工具包括：
 <ul>
@@ -46,9 +45,8 @@ ms.lasthandoff: 06/30/2017
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-<a id="create-the-vm-in-azure-by-deploying-the-solution-template-for-jenkins" class="xliff"></a>
-
 ## 在 Azure 中建立 VM，方法是部署 Jenkins 的解決方案範本
+<a id="create-the-vm-in-azure-by-deploying-the-solution-template-for-jenkins" class="xliff"></a>
 
 Azure 快速入門範本可讓您快速且可靠地在 Azure 上部署複雜的技術。  Azure Resource Manager 可讓您使用[宣告式範本](https://azure.microsoft.com/en-us/resources/templates/?term=jenkins)佈建應用程式。 在單一的範本中，您可以部署多個服務及其相依性。 您可以使用相同的範本，在應用程式生命週期的每個階段重複部署應用程式。
 
@@ -85,17 +83,15 @@ Azure 快速入門範本可讓您快速且可靠地在 Azure 上部署複雜的�
 
 接下來，選取 [購買] 可佈建所有資源。
 
-<a id="setup-ssh-port-forwarding" class="xliff"></a>
-
 ## 設定 SSH 連接埠轉送
+<a id="setup-ssh-port-forwarding" class="xliff"></a>
 
 根據預設，Jenkins 執行個體是使用 http 通訊協定，並且接聽通訊埠 8080。 使用者不應該透過不安全的通訊協定進行驗證。
     
 設定連接埠轉送可在本機電腦上檢視 Jenkins UI。
 
-<a id="if-you-are-using-windows" class="xliff"></a>
-
 ### 如果您是使用 Windows：
+<a id="if-you-are-using-windows" class="xliff"></a>
 
 如果您是使用密碼來保護 Jenkins，請安裝 PuTTY 並執行此命令：
 ```
@@ -110,9 +106,8 @@ putty.exe -ssh -L 8080:localhost:8080 <username>@<Domain name label>.<location>.
 putty -i <private key file including path> -L 8080:localhost:8080 <username>@<Domain name label>.<location>.cloudapp.azure.com
 ```
 
-<a id="if-you-are-using-linux-or-mac" class="xliff"></a>
-
 ### 如果您是使用 Linux 或 Mac：
+<a id="if-you-are-using-linux-or-mac" class="xliff"></a>
 
 如果您是使用密碼來保護 Jenkins Master，請執行此命令：
 ```
@@ -125,9 +120,8 @@ ssh -L 8080:localhost:8080 <username>@<Domain name label>.<location>.cloudapp.az
 ssh -i <private key file including path> -L 8080:localhost:8080 <username>@<Domain name label>.<location>.cloudapp.azure.com
 ```
 
-<a id="connect-to-jenkins" class="xliff"></a>
-
 ## 連線到 Jenkins
+<a id="connect-to-jenkins" class="xliff"></a>
 啟動您的通道後，在本機電腦上瀏覽至 http://localhost:8080/。
 
 第一次使用時，請使用初始管理密碼將 Jenkins 儀表板解除鎖定。
@@ -146,9 +140,8 @@ Jenkins 執行個體現在可供使用！ 您可以存取唯讀檢視，方法�
 
 ![Jenkins 已就緒！](./media/install-jenkins-solution-template/jenkins-welcome.png)
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 
 在本教學課程中，您：
 

@@ -22,9 +22,8 @@ ms.lasthandoff: 06/28/2017
 
 
 ---
-<a id="azure-security-center-platform-migration" class="xliff"></a>
-
 # Azure 資訊安全中心平台移轉
+<a id="azure-security-center-platform-migration" class="xliff"></a>
 
 從 2017 年 6 月初開始，Azure 資訊安全中心對安全性資料的收集和儲存方式推出重要變更。  這些變更揭開一些新功能，例如能夠輕鬆搜尋安全性資料，且更密切與其他 Azure 管理和監視服務配合。
 
@@ -32,17 +31,15 @@ ms.lasthandoff: 06/28/2017
 > 平台移轉應該不會影響您的生產資源，您這端不需要採取任何動作。
 
 
-<a id="whats-happening-during-this-platform-migration" class="xliff"></a>
-
 ## 在此平台移轉期間發生什麼事？
+<a id="whats-happening-during-this-platform-migration" class="xliff"></a>
 
 資訊安全中心先前使用 Azure Monitoring Agent 從您的 VM 收集安全性資料。 這包括用來識別弱點之安全性設定，以及用來偵測威脅之安全性事件的相關資訊。 此資料會儲存於 Azure 中您的儲存體帳戶。
 
 此後，資訊安全中心會使用 Microsoft Monitoring Agent (這是 Operations Management Suite 和 Log Analytics 服務所用的相同代理程式)。 從這個代理程式收集的資料會儲存在與您的 Azure 訂用帳戶相關聯的現有 Log Analytics [工作區](../log-analytics/log-analytics-manage-access.md)或新的工作區中 (將 VM 的地理位置納入考量)。
 
-<a id="agent" class="xliff"></a>
-
 ## 代理程式
+<a id="agent" class="xliff"></a>
 
 在轉換過程中，Microsoft Monitoring Agent (適用於 [Windows](../log-analytics/log-analytics-windows-agents.md) 或 [Linux](../log-analytics/log-analytics-linux-agents.md)) 會安裝在目前從中收集資料的所有 Azure VM 上。  如果 VM 已經安裝 Microsoft Monitoring Agent，則資訊安全中心會利用目前安裝的代理程式。
 
@@ -56,9 +53,8 @@ ms.lasthandoff: 06/28/2017
 > [!NOTE] 
 > 因為其他 Azure 管理和監視服務可能會使用 Microsoft Monitoring Agent，所以當您在資訊安全中心關閉資料收集時，並不會自動解除安裝代理程式。 不過，您可以視需要手動解除安裝代理程式。
 
-<a id="workspace" class="xliff"></a>
-
 ## 工作區
+<a id="workspace" class="xliff"></a>
 
 如先前所述，從 Microsoft Monitoring Agent (代表資訊安全中心) 收集的資料會儲存在與您的 Azure 訂用帳戶相關聯的現有 Log Analytics 工作區或新的工作區中 (將 VM 的地理位置納入考量)。
 
@@ -72,16 +68,14 @@ ms.lasthandoff: 06/28/2017
 > [!NOTE]
 > 資訊安全中心先前收集的資料會保留在儲存體帳戶中。 完成移轉之後，您可以刪除這些儲存體帳戶。
 
-<a id="oms-security-solution" class="xliff"></a>
-
-### OMS 安全性解決方案 
+### OMS 安全性解決方案
+<a id="oms-security-solution" class="xliff"></a> 
 
 對於未安裝 OMS 安全性解決方案的現有客戶，Microsoft 會安裝在其工作區上，但是僅以 Azure VM 為目標。 請勿解除安裝此解決方案，因為如果從 OMS 管理主控台進行此動作，就沒有任何自動補救方式。
 
 
-<a id="other-updates" class="xliff"></a>
-
 ## 其他更新
+<a id="other-updates" class="xliff"></a>
 
 為了搭配平台移轉，我們推出一些額外的次要更新：
 

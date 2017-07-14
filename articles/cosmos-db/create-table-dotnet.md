@@ -23,37 +23,32 @@ ms.lasthandoff: 06/23/2017
 
 
 ---
-<a id="azure-cosmos-db-build-a-net-application-using-the-table-api" class="xliff"></a>
-
 # Azure Cosmos DB：使用資料表 API 來建置 .NET 應用程式
+<a id="azure-cosmos-db-build-a-net-application-using-the-table-api" class="xliff"></a>
 
 Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
 
 本快速入門會示範如何建立 Azure Cosmos DB 帳戶，並使用 Azure 入口網站在該帳戶內建立資料表。 接著，您要撰寫程式碼，將實體插入、更新和刪除，然後從 NuGet 使用新的 [Windows Azure 儲存體進階資料表](https://aka.ms/premiumtablenuget) (預覽版) 套件來執行一些查詢。 此文件庫具有與公用 [Windows Azure 儲存體 SDK](https://www.nuget.org/packages/WindowsAzure.Storage) 相同的類別和方法簽章，但它也可以使用[資料表 API](table-introduction.md) (預覽版) 來連線到 Azure Cosmos DB 帳戶。 
 
-<a id="prerequisites" class="xliff"></a>
-
 ## 必要條件
+<a id="prerequisites" class="xliff"></a>
 
 如果尚未安裝 Visual Studio 2017，您可以下載並使用**免費的** [Visual Studio 2017 Community 版本](https://www.visualstudio.com/downloads/)。 務必在 Visual Studio 設定期間啟用 **Azure 開發**。
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-<a id="create-a-database-account" class="xliff"></a>
-
 ## 建立資料庫帳戶
+<a id="create-a-database-account" class="xliff"></a>
 
 [!INCLUDE [cosmos-db-create-dbaccount-table](../../includes/cosmos-db-create-dbaccount-table.md)]
 
-<a id="add-a-table" class="xliff"></a>
-
 ## 新增資料表
+<a id="add-a-table" class="xliff"></a>
 
 [!INCLUDE [cosmos-db-create-table](../../includes/cosmos-db-create-table.md)]
 
-<a id="add-sample-data" class="xliff"></a>
-
 ## 新增範例資料
+<a id="add-sample-data" class="xliff"></a>
 
 您現在可以使用資料總管 (預覽) 將資料新增至您的新資料表。
 
@@ -66,9 +61,8 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
   
     您現在可以在資料表中新增更多實體、編輯實體，或在資料總管中查詢資料。 資料總管也可供您調整輸送量，以及對資料表新增預存程序、使用者定義函式和觸發程序。
 
-<a id="clone-the-sample-application" class="xliff"></a>
-
 ## 複製範例應用程式
+<a id="clone-the-sample-application" class="xliff"></a>
 
 現在，我們將從 Github 複製「資料表」應用程式、設定連接字串，然後執行它。 您會看到，以程式設計方式來處理資料有多麼的容易。 
 
@@ -82,9 +76,8 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 3. 然後在 Visual Studio 中開啟方案檔案。 
 
-<a id="review-the-code" class="xliff"></a>
-
 ## 檢閱程式碼
+<a id="review-the-code" class="xliff"></a>
 
 讓我們快速檢閱應用程式中所發生的事情。 請開啟 Program.cs 檔案，您會發現這些程式碼行建立 Azure Cosmos DB 資源。 
 
@@ -115,9 +108,8 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
                 };
     ```
 
-<a id="update-your-connection-string" class="xliff"></a>
-
 ## 更新您的連接字串
+<a id="update-your-connection-string" class="xliff"></a>
 
 我們現在會更新連接字串資訊，讓您的應用程式可與 Azure Cosmos DB 通訊。 
 
@@ -136,9 +128,8 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 您現已更新應用程式，使其具有與 Azure Cosmos DB 通訊所需的所有資訊。 
 
-<a id="run-the-web-app" class="xliff"></a>
-
 ## 執行 Web 應用程式
+<a id="run-the-web-app" class="xliff"></a>
 
 1. 在 Visual Studio 中，於 [方案總管] 中的 [PremiumTableGetStarted] 專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 套件]。 
 
@@ -160,24 +151,21 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
     ![在資料總管中新增實體](./media/create-table-dotnet/azure-cosmosdb-table-quickstart-data-explorer.png)
 
-<a id="review-slas-in-the-azure-portal" class="xliff"></a>
-
 ## 在 Azure 入口網站中檢閱 SLA
+<a id="review-slas-in-the-azure-portal" class="xliff"></a>
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
-<a id="clean-up-resources" class="xliff"></a>
-
 ## 清除資源
+<a id="clean-up-resources" class="xliff"></a>
 
 如果您將不繼續使用此應用程式，請使用下列步驟，在 Azure 入口網站中刪除本快速入門所建立的所有資源： 
 
 1. 從 Azure 入口網站的左側功能表中，按一下 [資源群組]，然後按一下您所建立資源的名稱。 
 2. 在資源群組頁面上，按一下 [刪除]，在文字方塊中輸入要刪除之資源的名稱，然後按一下 [刪除]。
 
-<a id="next-steps" class="xliff"></a>
-
 ## 後續步驟
+<a id="next-steps" class="xliff"></a>
 
 在本快速入門中，您已了解如何建立 Azure Cosmos DB 帳戶、如何使用資料總管來建立資料表，以及如何執行應用程式。  現在，您可以使用資料表 API 來查詢您的資料。  
 
