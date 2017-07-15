@@ -13,16 +13,18 @@ ms.devlang: na
 ms.topic: 
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/29/2017
+ms.date: 05/11/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 57063b17dd122509cefd1d215cfa2a9234b103bc
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: ac797f879ef306a7d423969ecfadca3a423b4cd5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
-# <a name="delete-a-virtual-network-gateway-using-powershell-classic"></a>使用 PowerShell (傳統) 刪除虛擬網路閘道
+# 使用 PowerShell (傳統) 刪除虛擬網路閘道
+<a id="delete-a-virtual-network-gateway-using-powershell-classic" class="xliff"></a>
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-delete-vnet-gateway-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-delete-vnet-gateway-powershell.md)
@@ -30,154 +32,179 @@ ms.lasthandoff: 04/27/2017
 >
 >
 
-您可以使用 PowerShell 刪除傳統部署模型中的 VPN 閘道。 在刪除虛擬網路閘道之後，請修改網路設定檔，以移除您不再使用的項目。
+本文章會協助您使用 PowerShell 刪除傳統部署模型中的 VPN 閘道。 在刪除虛擬網路閘道之後，請修改網路設定檔，以移除您不再使用的項目。
 
-##<a name="step-1-connect-to-azure"></a>步驟 1：連線到 Azure
+##步驟 1：連線到 Azure
+<a id="step-1-connect-to-azure" class="xliff"></a>
 
-### <a name="1-install-the-latest-powershell-cmdlets"></a>1.安裝最新的 PowerShell Cmdlet。
+### 1.安裝最新的 PowerShell Cmdlet。
+<a id="1-install-the-latest-powershell-cmdlets" class="xliff"></a>
 
 下載並安裝最新版的 Azure 服務管理 (SM) PowerShell Cmdlet。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
-### <a name="2-connect-to-your-azure-account"></a>2.連線至您的 Azure 帳戶。 
+### 2.連線至您的 Azure 帳戶。
+<a id="2-connect-to-your-azure-account" class="xliff"></a> 
 
 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
 
-    Login-AzureRmAccount
+```powershell
+Add-AzureAccount
+```
 
-檢查帳戶的訂用帳戶。
-
-    Get-AzureRmSubscription
-
-如果您有多個訂用帳戶，請選取您要使用的訂用帳戶。
-
-    Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
-
-接下來，使用下列 Cmdlet，將您的 Azure 訂用帳戶新增到 PowerShell，以供傳統部署模型使用。
-
-    Add-AzureAccount
-
-## <a name="step-2-export-and-view-the-network-configuration-file"></a>步驟 2：匯出並檢視網路組態檔
+## 步驟 2：匯出並檢視網路組態檔
+<a id="step-2-export-and-view-the-network-configuration-file" class="xliff"></a>
 
 在您的電腦上建立目錄，然後將網路組態檔匯出到該目錄。 您可以使用此檔案來檢視目前的組態資訊，也可以修改網路組態。
 
 在此範例中，會將網路組態檔匯出到 C:\AzureNet。
 
-     Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
+```powershell
+Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
+```
 
-使用文字編輯器開啟檔案，並檢視傳統 VNet 的名稱。 當您在 Azure 入口網站中建立 VNet 時，不會在入口網站中顯示 Azure 所使用的完整名稱。 例如，在 Azure 入口網站中名稱顯示為 'ClassicVNet1' 的 VNet，在網路組態檔中的名稱可能更長。 名稱可能如下︰'Group ClassicRG1 ClassicVNet1'。 虛擬網路名稱會列為 **VirtualNetworkSite name =**。 執行 PowerShell Cmdlet 時，請使用網路組態檔中的名稱。
+使用文字編輯器開啟檔案，並檢視傳統 VNet 的名稱。 當您在 Azure 入口網站中建立 VNet 時，不會在入口網站中顯示 Azure 所使用的完整名稱。 例如，在 Azure 入口網站中名稱顯示為 'ClassicVNet1' 的 VNet，在網路組態檔中的名稱可能更長。 名稱可能如下︰'Group ClassicRG1 ClassicVNet1'。 虛擬網路名稱會列為 'VirtualNetworkSite name ='。 執行 PowerShell Cmdlet 時，請使用網路組態檔中的名稱。
 
-## <a name="step-3-delete-the-virtual-network-gateway"></a>步驟 3：刪除虛擬網路閘道
+## 步驟 3：刪除虛擬網路閘道
+<a id="step-3-delete-the-virtual-network-gateway" class="xliff"></a>
 
 當您刪除虛擬網路閘道時，不會中斷連接所有透過閘道的 VNet 連接。 如果您的 P2S 用戶端連接到 VNet，則會將它們中斷連接而不發出警告。
 
 這個範例會刪除虛擬網路閘道。 請務必使用網路組態檔中的虛擬網路完整名稱。
 
-    Remove-AzureVNetGateway -VNetName "Group ClassicRG1 ClassicVNet1"
+```powershell
+Remove-AzureVNetGateway -VNetName "Group ClassicRG1 ClassicVNet1"
+```
 
 如果成功，傳回便會顯示：
 
-    Status : Successful
+```
+Status : Successful
+```
 
-## <a name="step-4-modify-the-network-configuration-file"></a>步驟 4：修改網路組態檔
+## 步驟 4：修改網路組態檔
+<a id="step-4-modify-the-network-configuration-file" class="xliff"></a>
 
 當您刪除虛擬網路閘道時，Cmdlet 不會修改網路設定檔。 您需要修改檔案，以移除不再使用的項目。 下列各節可協助修改您所下載的網路組態檔。
 
-###<a name="local-network-site-references"></a>區域網路網站參考
+### 區域網路網站參考
+<a id="local-network-site-references" class="xliff"></a>
 
 若要移除網站參考資訊，請對 **ConnectionsToLocalNetwork/LocalNetworkSiteRef** 進行組態變更。 移除區域網站參考會觸發 Azure 刪除通道。 根據您所建立的組態而定，您可能並未列出 **LocalNetworkSiteRef**。
 
-    <Gateway>
-       <ConnectionsToLocalNetwork>
-         <LocalNetworkSiteRef name="D1BFC9CB_Site2">
-           <Connection type="IPsec" />
-         </LocalNetworkSiteRef>
-       </ConnectionsToLocalNetwork>
-    </Gateway>
+```
+<Gateway>
+   <ConnectionsToLocalNetwork>
+     <LocalNetworkSiteRef name="D1BFC9CB_Site2">
+       <Connection type="IPsec" />
+     </LocalNetworkSiteRef>
+   </ConnectionsToLocalNetwork>
+ </Gateway>
+```
 
 範例：
 
-    <Gateway>
-       <ConnectionsToLocalNetwork>
-       </ConnectionsToLocalNetwork>
-     </Gateway>
+```
+<Gateway>
+   <ConnectionsToLocalNetwork>
+   </ConnectionsToLocalNetwork>
+ </Gateway>
+```
 
-###<a name="local-network-sites"></a>區域網路網站
+###區域網路網站
+<a id="local-network-sites" class="xliff"></a>
 
 移除所有您不再使用的區域網站。 根據您所建立的組態而定，您可能並未列出 **LocalNetworkSite**。
 
-    <LocalNetworkSites>
-      <LocalNetworkSite name="Site1">
-        <AddressSpace>
-          <AddressPrefix>192.168.0.0/16</AddressPrefix>
-        </AddressSpace>
-        <VPNGatewayAddress>5.4.3.2</VPNGatewayAddress>
-      </LocalNetworkSite>
-      <LocalNetworkSite name="Site3">
-        <AddressSpace>
-          <AddressPrefix>192.168.0.0/16</AddressPrefix>
-        </AddressSpace>
-        <VPNGatewayAddress>57.179.18.164</VPNGatewayAddress>
-      </LocalNetworkSite>
-    </LocalNetworkSites>
+```
+<LocalNetworkSites>
+  <LocalNetworkSite name="Site1">
+    <AddressSpace>
+      <AddressPrefix>192.168.0.0/16</AddressPrefix>
+    </AddressSpace>
+    <VPNGatewayAddress>5.4.3.2</VPNGatewayAddress>
+  </LocalNetworkSite>
+  <LocalNetworkSite name="Site3">
+    <AddressSpace>
+      <AddressPrefix>192.168.0.0/16</AddressPrefix>
+    </AddressSpace>
+    <VPNGatewayAddress>57.179.18.164</VPNGatewayAddress>
+  </LocalNetworkSite>
+ </LocalNetworkSites>
+```
 
 在此範例中，我們只會移除 Site3。
 
-    <LocalNetworkSites>
-        <LocalNetworkSite name="Site1">
-        <AddressSpace>
-          <AddressPrefix>192.168.0.0/16</AddressPrefix>
-        </AddressSpace>
-        <VPNGatewayAddress>5.4.3.2</VPNGatewayAddress>
-      </LocalNetworkSite>
-    </LocalNetworkSites>
+```
+<LocalNetworkSites>
+  <LocalNetworkSite name="Site1">
+    <AddressSpace>
+      <AddressPrefix>192.168.0.0/16</AddressPrefix>
+    </AddressSpace>
+    <VPNGatewayAddress>5.4.3.2</VPNGatewayAddress>
+  </LocalNetworkSite>
+ </LocalNetworkSites>
+```
 
-### <a name="client-addresspool"></a>用戶端 AddressPool
+### 用戶端 AddressPool
+<a id="client-addresspool" class="xliff"></a>
 
 如果您擁有連至 VNet 的 P2S 連線，您便會具備 **VPNClientAddressPool**。 移除對應至您已刪除之虛擬網路閘道的用戶端位址集區。
 
-    <Gateway>
-       <VPNClientAddressPool>
-         <AddressPrefix>10.1.0.0/24</AddressPrefix>
-       </VPNClientAddressPool>
-       <ConnectionsToLocalNetwork />
-    </Gateway>
+```
+<Gateway>
+    <VPNClientAddressPool>
+      <AddressPrefix>10.1.0.0/24</AddressPrefix>
+    </VPNClientAddressPool>
+  <ConnectionsToLocalNetwork />
+ </Gateway>
+```
 
 範例：
 
-     <Gateway>
-       <ConnectionsToLocalNetwork />
-     </Gateway>
+```
+<Gateway>
+  <ConnectionsToLocalNetwork />
+ </Gateway>
+```
 
-### <a name="gatewaysubnet"></a>GatewaySubnet
+### GatewaySubnet
+<a id="gatewaysubnet" class="xliff"></a>
 
 刪除對應至 VNet 的 **GatewaySubnet**。
 
-    <Subnets>
-       <Subnet name="FrontEnd">
-         <AddressPrefix>10.11.0.0/24</AddressPrefix>
-       </Subnet>
-       <Subnet name="GatewaySubnet">
-         <AddressPrefix>10.11.1.0/29</AddressPrefix>
-       </Subnet>
-     </Subnets>
+```
+<Subnets>
+   <Subnet name="FrontEnd">
+     <AddressPrefix>10.11.0.0/24</AddressPrefix>
+   </Subnet>
+   <Subnet name="GatewaySubnet">
+     <AddressPrefix>10.11.1.0/29</AddressPrefix>
+   </Subnet>
+ </Subnets>
+```
 
 範例：
 
-    <Subnets>
-       <Subnet name="FrontEnd">
-         <AddressPrefix>10.11.0.0/24</AddressPrefix>
-       </Subnet>
-     </Subnets>
+```
+<Subnets>
+   <Subnet name="FrontEnd">
+     <AddressPrefix>10.11.0.0/24</AddressPrefix>
+   </Subnet>
+ </Subnets>
+```
 
-## <a name="step-5-upload-the-network-configuration-file"></a>步驟 5：上傳網路組態檔
+## 步驟 5：上傳網路組態檔
+<a id="step-5-upload-the-network-configuration-file" class="xliff"></a>
 
 儲存您的變更並將網路組態檔上傳至 Azure。 確定您會視需要變更環境的檔案路徑。
 
-     Set-AzureVNetConfig -ConfigurationPath C:\AzureNet\NetworkConfig.xml
+```powershell
+Set-AzureVNetConfig -ConfigurationPath C:\AzureNet\NetworkConfig.xml
+```
 
 如果成功，傳回就會顯示類似此範例的內容：
 
-     OperationDescription        OperationId                      OperationStatus                                                
-     --------------------        -----------                      ---------------                                                
-     Set-AzureVNetConfig        e0ee6e66-9167-cfa7-a746-7casb9    Succeeded
-
+```
+OperationDescription        OperationId                      OperationStatus                                                
+--------------------        -----------                      ---------------                                           
+Set-AzureVNetConfig         e0ee6e66-9167-cfa7-a746-7casb9   Succeeded

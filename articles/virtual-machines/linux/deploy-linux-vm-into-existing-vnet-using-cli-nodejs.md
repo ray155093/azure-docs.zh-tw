@@ -1,9 +1,9 @@
 ---
-title: "將 Linux VM 部署至現有網路 - Azure CLI | Microsoft Docs"
-description: "使用 CLI 將 Linux VM 部署至現有虛擬網路。"
+title: "使用 Azure CLI 1.0 將 Linux VM 部署到現有網路 | Microsoft Docs"
+description: "如何使用 Azure CLI 1.0 將 Linux VM 部署到現有的虛擬網路"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: vlivech
+author: iainfoulds
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -13,158 +13,171 @@ ms.workload: infrastructure
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 12/05/2016
-ms.author: v-livech
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: d3f8f35ee3a5b294e77f3bad50edd3d1db221c9c
-ms.lasthandoff: 04/03/2017
+ms.date: 05/11/2017
+ms.author: iainfou
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 767a3f7cadba6b1e71e5a8f5995a9db090e419dd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
 
-# <a name="deploy-a-linux-vm-into-an-existing-azure-virtual-network-using-the-cli"></a>使用 CLI 將 Linux VM 部署至現有 Azure 虛擬網路
+# 如何使用 Azure CLI 1.0 將 Linux 虛擬機器部署至現有的 Azure 虛擬網路
+<a id="how-to-deploy-a-linux-virtual-machine-into-an-existing-azure-virtual-network-with-the-azure-cli-10" class="xliff"></a>
 
-此文章說明如何使用 CLI 旗標將 VM 部署至現有的虛擬網路 (VNet)。  這些需求包括：
+此文章說明如何使用 Azure CLI 1.0 將虛擬機器 (VM) 部署至現有虛擬網路 (VNet)。 這些需求包括：
 
 - [一個 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
-- [SSH 公開金鑰和私密金鑰檔案](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [SSH 公開金鑰和私密金鑰檔案](mac-create-ssh-keys.md)
 
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+## 用以完成工作的 CLI 版本
+<a id="cli-versions-to-complete-the-task" class="xliff"></a>
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0](deploy-linux-vm-into-existing-vnet-using-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](deploy-linux-vm-into-existing-vnet-using-cli.md) - 適用於資源管理部署模型的新一代 CLI
 
 
-## <a name="quick-commands"></a>快速命令
+## 快速命令
+<a id="quick-commands" class="xliff"></a>
 
-如果您需要快速完成工作，下列章節詳細說明需要的命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](deploy-linux-vm-into-existing-vnet-using-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#detailed-walkthrough)。
+如果您需要快速完成工作，接下來這一節將詳細說明所需的命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](deploy-linux-vm-into-existing-vnet-using-cli.md#detailed-walkthrough)。
 
 必要條件︰資源群組、VNet、具有 SSH 輸入的 NSG、子網路。 將任何範例換成您自己的設定。
 
-### <a name="deploy-the-vm-into-the-virtual-network-infrastructure"></a>將 VM 部署至虛擬網路基礎結構
+### 將 VM 部署至虛擬網路基礎結構
+<a id="deploy-the-vm-into-the-virtual-network-infrastructure" class="xliff"></a>
 
 ```azurecli
 azure vm create myVM \
--g myResourceGroup \
--l westus \
--y linux \
--Q Debian \
--o myStorageAcct \
--u myAdminUser \
--M ~/.ssh/id_rsa.pub \
--n myVM \
--F myVNet \
--j mySubnet \
--N myVNic
+    -g myResourceGroup \
+    -l eastus \
+    -y linux \
+    -Q Debian \
+    -o mystorageaccount \
+    -u myAdminUser \
+    -M ~/.ssh/id_rsa.pub \
+    -n myVM \
+    -F myVNet \
+    -j mySubnet \
+    -N myVNic
 ```
 
-## <a name="detailed-walkthrough"></a>詳細的逐步解說
+## 詳細的逐步解說
+<a id="detailed-walkthrough" class="xliff"></a>
 
-像 VNet 和 NSG 之類的 Azure 資產，最好當做很少部署的靜態且長久的資源。  VNet 部署之後可供新的部署重複使用，完全不會對基礎結構造成負面影響。  將 VNet 想成是傳統硬體網路交換器。 您不需要隨著每個部署設定新的硬體交換器。  有了正確設定的 VNet，我們就可以一次又一次地將新的伺服器部署至該 VNet，整個 VNet 生命週期內所需的變動極少 (如果有的話)。
+像 VNet 和網路安全性群組之類的 Azure 資產應為鮮少部署的靜態且長久資源。 VNet 部署之後可供新的部署重複使用，完全不會對基礎結構造成負面影響。 將 VNet 想成是傳統硬體網路交換器。 您不需要隨著每個部署設定新的硬體交換器。 有了正確設定的 VNet，您就可以一次又一次地將新的伺服器部署至該 VNet，整個 VNet 生命週期內所需的變動極少 (如果有的話)。
 
-## <a name="create-the-resource-group"></a>建立資源群組
+## 建立資源群組
+<a id="create-the-resource-group" class="xliff"></a>
 
-首先，我們將建立資源群組來組織我們在本逐步解說中建立的所有項目。  如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+首先，建立資源群組來組織我們在本逐步解說中建立的所有項目。 如需有關資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md)
 
 ```azurecli
-azure group create myResourceGroup \
---location westus
+azure group create myResourceGroup --location eastus
 ```
 
-## <a name="create-the-vnet"></a>建立 VNet
+## 建立 VNet
+<a id="create-the-vnet" class="xliff"></a>
 
-第一個步驟是建立可放入 VM 的 VNet。  在本逐步解說中，VNet 包含的一個子網路。  如需 Azure VNet 的詳細資訊，請參閱[使用 Azure CLI 建立虛擬網路](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+第一個步驟是建立可放入 VM 的 VNet。 在本逐步解說中，VNet 包含的一個子網路。 如需 Azure VNet 的詳細資訊，請參閱[使用 Azure CLI 建立虛擬網路](../../virtual-network/virtual-networks-create-vnet-arm-cli.md)
 
 ```azurecli
 azure network vnet create myVNet \
---resource-group myResourceGroup \
---address-prefixes 10.10.0.0/24 \
---location westus
+    --resource-group myResourceGroup \
+    --address-prefixes 10.10.0.0/24 \
+    --location eastus
 ```
 
-## <a name="create-the-nsg"></a>建立 NSG
+## 建立網路安全性群組
+<a id="create-the-network-security-group" class="xliff"></a>
 
-子網路是建置在現有網路安全性群組的背後，所以我們在子網路之前建置 NSG。  Azure NSG 相當於網路層的防火牆。  如需 Azure NSG 的詳細資訊，請參閱[如何在 Azure CLI 中建立 NSG](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+子網路是建置在現有網路安全性群組的背後，所以會在子網路之前先建置網路安全性群組。 Azure 網路安全性群組相當於網路層的防火牆。 如需 Azure 網路安全性群組的詳細資訊，請參閱[如何使用 Azure CLI 建立網路安全性群組](../../virtual-network/virtual-networks-create-nsg-arm-cli.md)
 
 ```azurecli
-azure network nsg create myNSG \
---resource-group myResourceGroup \
---location westus
+azure network nsg create myNetworkSecurityGroup \
+    --resource-group myResourceGroup \
+    --location eastus
 ```
 
-## <a name="add-an-inbound-ssh-allow-rule"></a>新增輸入 SSH 允許規則
+## 新增輸入 SSH 允許規則
+<a id="add-an-inbound-ssh-allow-rule" class="xliff"></a>
 
-由於需要從網際網路存取 Linux VM，因此需要有規則來允許輸入連接埠 22 流量通過網路流向 Linux VM 的連接埠 22。
+由於需要從網際網路存取 VM，因此需要有規則來允許輸入連接埠 22 流量通過網路流向 VM 的連接埠 22。
 
 ```azurecli
 azure network nsg rule create inboundSSH \
---resource-group myResourceGroup \
---nsg-name myNSG \
---access Allow \
---protocol Tcp \
---direction Inbound \
---priority 100 \
---source-address-prefix Internet \
---source-port-range 22 \
---destination-address-prefix 10.10.0.0/24 \
---destination-port-range 22
+    --resource-group myResourceGroup \
+    --nsg-name myNSG \
+    --access Allow \
+    --protocol Tcp \
+    --direction Inbound \
+    --priority 100 \
+    --source-address-prefix Internet \
+    --source-port-range 22 \
+    --destination-address-prefix 10.10.0.0/24 \
+    --destination-port-range 22
 ```
 
-## <a name="add-a-subnet-to-the-vnet"></a>將子網路新增至 VNet
+## 將子網路新增至 VNet
+<a id="add-a-subnet-to-the-vnet" class="xliff"></a>
 
-VNet 內的 VM 必須位於子網路。  每一個 VNet 可以有多個子網路。  建立子網路，並將子網路和 NSG 產生關聯，以便將防火牆新增至子網路。
+VNet 內的 VM 必須位於子網路。 每一個 VNet 可以有多個子網路。 建立子網路並與網路安全性群組產生關聯。
 
 ```azurecli
 azure network vnet subnet create mySubNet \
---resource-group myResourceGroup \
---vnet-name myVNet \
---address-prefix 10.10.0.0/26 \
---network-security-group-name myNSG
+    --resource-group myResourceGroup \
+    --vnet-name myVNet \
+    --address-prefix 10.10.0.0/26 \
+    --network-security-group-name myNetworkSecurityGroup
 ```
 
-子網路現在已新增至 VNet 內，而且與 NSG 及與 NSG 規則相關聯。
+子網路現在已新增至 VNet 內，並與網路安全性群組及規則產生關聯。
 
 
-## <a name="add-a-vnic-to-the-subnet"></a>將 VNic 新增至子網路
+## 將 VNic 新增至子網路
+<a id="add-a-vnic-to-the-subnet" class="xliff"></a>
 
-虛擬網路卡 (VNics) 很重要，因為您可以將它們連接至不同的 VM 以重複使用，這樣可讓 VNic 保持為靜態資源，而 VM 可以是暫時的。  建立 VNic，並將它與先前步驟中建立的子網路產生關聯。
+虛擬網路卡 (VNic) 很重要，因為您可以將它們連接至不同的 VM 以重複使用它們。 此方法既可讓 VM 為暫時性，又可將 VNic 保持為靜態資源。 建立 VNic，並將它與先前步驟中建立的子網路產生關聯。
 
 ```azurecli
 azure network nic create myVNic \
--g myResourceGroup \
--l westus \
--m myVNet \
--k mySubNet
+    --resource-group myResourceGroup \
+    --location eastus \
+    ---subnet-vnet-name myVNet \
+    --subnet-name mySubNet
 ```
 
-## <a name="deploy-the-vm-into-the-vnet-and-nsg"></a>將 VM 部署至 VNet 和 NSG
+## 將 VM 部署至 VNet 和 NSG
+<a id="deploy-the-vm-into-the-vnet-and-nsg" class="xliff"></a>
 
-我們現在有 VNet、該 VNet 內的子網路，還有 NSG 做為防火牆來封鎖所有輸入流量 (除了用於 SSH 的連接埠 22)，以保護我們的子網路。  現在可以將 VM 部署在這個現有的網路基礎結構內。
+現在您透過封鎖 SSH 的連接埠 22 以外所有的輸入流量，讓 VNet、該 VNet 內的子網路，以及網路安全性群組來保護子網路。 現在可以將 VM 部署在這個現有的網路基礎結構內。
 
-您可以使用 Azure CLI 和 `azure vm create` 命令，將 Linux VM 部署至現有的 Azure 資源群組、VNet、子網路和 VNic。  如需使用 CLI 來部署完整 VM 的詳細資訊，請參閱[使用 Azure CLI 建立完整的 Linux 環境](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+您可以使用 Azure CLI 和 `azure vm create` 命令，將 Linux VM 部署至現有的 Azure 資源群組、VNet、子網路和 VNic。 如需使用 CLI 來部署完整 VM 的詳細資訊，請參閱[使用 Azure CLI 建立完整的 Linux 環境](create-cli-complete.md)
 
 ```azurecli
 azure vm create myVM \
---resource-group myResourceGroup \
---location westus \
---os-type linux \
---image-urn Debian \
---storage-account-name mystorageaccount \
---admin-username myAdminUser \
---ssh-publickey-file ~/.ssh/id_rsa.pub \
---vnet-name myVNet \
---vnet-subnet-name mySubnet \
---nic-name myVNic
+    --resource-group myResourceGroup \
+    --location eastus \
+    --os-type linux \
+    --image-urn Debian \
+    --storage-account-name mystorageaccount \
+    --admin-username myAdminUser \
+    --ssh-publickey-file ~/.ssh/id_rsa.pub \
+    --vnet-name myVNet \
+    --vnet-subnet-name mySubnet \
+    --nic-name myVNic
 ```
 
-我們使用 CLI 旗標來呼叫現有的資源，以指示 Azure 將 VM 部署在現有的網路內。  重申一次，VNet 和子網路部署之後，就可以在 Azure 區域內保持為靜態或永久性資源。  
+您可以使用 CLI 旗標來呼叫現有的資源，以指示 Azure 將 VM 部署在現有的網路內。 VNet 和子網路部署之後，就可以在 Azure 區域內保持為靜態或永久性資源。  
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 
-* [使用 Azure Resource Manager 範本和 Azure CLI 部署和管理虛擬機器](../windows/cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [直接使用 Azure CLI 命令，建立自訂的 Linux VM 環境](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [使用範本在 Azure 上建立 Linux VM](create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [使用 Azure Resource Manager 範本和 Azure CLI 部署和管理虛擬機器](../windows/cli-deploy-templates.md)
+* [直接使用 Azure CLI 命令，建立自訂的 Linux VM 環境](create-cli-complete.md)
+* [使用範本在 Azure 上建立 Linux VM](create-ssh-secured-vm-from-template.md)
 

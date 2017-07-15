@@ -14,43 +14,50 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 07/22/2016
 ms.author: mlearned
-translationtype: Human Translation
-ms.sourcegitcommit: 9b2d456d8dba33af224ea147f5f8ec49ba7397f9
-ms.openlocfilehash: 202134cd03bf776c1d646ae24c09a79e14fdc5d3
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: fcd58736d8915a61683a416fb9bf3892ba7b7bd8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
-# <a name="debugging-apps-in-a-local-docker-container"></a>偵錯本機 Docker 容器中的應用程式
-## <a name="overview"></a>Overview
+# 偵錯本機 Docker 容器中的應用程式
+<a id="debugging-apps-in-a-local-docker-container" class="xliff"></a>
+## 概觀
+<a id="overview" class="xliff"></a>
 Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器中本機開發和驗證您的應用程式。
 您不需要每次變更程式碼之後都重新啟動容器。
-本文章將說明如何使用「編輯及重新整理」功能在本機 Docker 容器中啟動 ASP.NET Core Web 應用程式、進行任何必要的變更，然後重新整理瀏覽器來查看這些變更。
-它也會示範如何設定中斷點來進行偵錯。
+本文章說明如何使用「編輯及重新整理」功能在本機 Docker 容器中啟動 ASP.NET Core Web 應用程式、進行任何必要的變更，然後重新整理瀏覽器來查看這些變更。
+本文章也會示範如何設定中斷點來進行偵錯。
 
 > [!NOTE]
 > 未來版本將支援 Windows 容器
 >
 >
 
-## <a name="prerequisites"></a>必要條件
+## 必要條件
+<a id="prerequisites" class="xliff"></a>
 您的電腦必須安裝下列工具。
 
-* [Visual Studio 2015 Update 2](https://go.microsoft.com/fwlink/?LinkId=691978)
-* 安裝 [Visual Studio 2015 Update 3](https://go.microsoft.com/fwlink/?LinkId=691129)
+* [最新版本的 Visual Studio](https://www.visualstudio.com/downloads/)
 * [Microsoft ASP.NET 核心 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)
 
 若要在本機執行 Docker 容器，您需要本機 Docker 用戶端。
-您可以使用需要停用 Hyper-V 的已發行 [Docker 工具箱](https://www.docker.com/products/overview#/docker_toolbox)，或是使用利用 Hyper-V 並需要 Windows 10 的 [Docker for Windows Beta](https://beta.docker.com)。
+您可以使用需要停用 Hyper-V 的 [Docker 工具箱](https://www.docker.com/products/docker-toolbox)，或是使用利用 Hyper-V 並需要 Windows 10 的 [Docker for Windows](https://www.docker.com/get-docker)。
 
 如果使用 Docker 工具箱，您將需要 [設定 Docker 用戶端](vs-azure-tools-docker-setup.md)
 
-## <a name="1-create-a-web-app"></a>1.建立 Web 應用程式
+## 1.建立 Web 應用程式
+<a id="1-create-a-web-app" class="xliff"></a>
 [!INCLUDE [create-aspnet5-app](../includes/create-aspnet5-app.md)]
 
-## <a name="2-add-docker-support"></a>2.新增 Docker 支援
+## 2.新增 Docker 支援
+<a id="2-add-docker-support" class="xliff"></a>
 [!INCLUDE [Add docker support](../includes/vs-azure-tools-docker-add-docker-support.md)]
 
-## <a name="3-edit-your-code-and-refresh"></a>3.編輯您的程式碼並重新整理
+## 3.編輯您的程式碼並重新整理
+<a id="3-edit-your-code-and-refresh" class="xliff"></a>
 若要快速反覆查看變更，您可以啟動容器內的應用程式，並繼續進行變更，而檢視變更的方式與使用 IIS Express 相同。
 
 1. 將 [方案組態] 設定為 `Debug`，然後按 **&lt;CTRL + F5>** 來建置 Docker 映像，然後在本機執行此映像。
@@ -72,7 +79,8 @@ Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器�
    ```
 6. 您的變更已經套用！
 
-## <a name="4-debug-with-breakpoints"></a>4.使用中斷點進行偵錯
+## 4.使用中斷點進行偵錯
+<a id="4-debug-with-breakpoints" class="xliff"></a>
 通常，需要運用 Visual Studio 的偵錯功能進一步檢查變更。
 
 1. 返回 Visual Studio，然後開啟 `Controllers\HomeController.cs`
@@ -89,13 +97,16 @@ Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器�
 
    ![][2]
 
-## <a name="summary"></a>摘要
+## 摘要
+<a id="summary" class="xliff"></a>
 運用 [Visual Studio 2015 Tools for Docker](https://aka.ms/DockerToolsForVS)，您將可獲得在本機運作的生產力，以及在 Docker 容器內開發的生產環境真實性。
 
-## <a name="troubleshooting"></a>疑難排解
+## 疑難排解
+<a id="troubleshooting" class="xliff"></a>
 [疑難排解 Visual Studio Docker 開發](vs-azure-tools-docker-troubleshooting-docker-errors.md)
 
-## <a name="more-about-docker-with-visual-studio-windows-and-azure"></a>進一步了解 Docker 與 Visual Studio、Windows 和 Azure
+## 進一步了解 Docker 與 Visual Studio、Windows 和 Azure
+<a id="more-about-docker-with-visual-studio-windows-and-azure" class="xliff"></a>
 * [Docker Tools for Visual Studio](http://aka.ms/dockertoolsforvs) - 在容器中開發 .NET Core 程式碼
 * [Docker Tools for Visual Studio Team Services](http://aka.ms/dockertoolsforvsts) - 建置和部署 Docker 容器
 * [Docker Tools for Visual Studio Code](http://aka.ms/dockertoolsforvscode) - 用於編輯 Docker 檔案的語言服務，將推出更多其他 e2e 案例
@@ -103,21 +114,19 @@ Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器�
 * [Azure Container Service](https://azure.microsoft.com/services/container-service/) - [Azure Container Service 內容](http://aka.ms/AzureContainerService)
 * 如需更多使用 Docker 的範例，請參閱 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 連線[示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的[使用 Docker](https://github.com/Microsoft/HealthClinic.biz/wiki/Working-with-Docker)。 如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure 開發人員工具快速入門](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
 
-## <a name="various-docker-tools"></a>各種 Docker 工具
+## 各種 Docker 工具
+<a id="various-docker-tools" class="xliff"></a>
 [一些不錯的 Docker 工具 (Steve Lasker 的部落格)](https://blogs.msdn.microsoft.com/stevelasker/2016/03/25/some-great-docker-tools/)
 
-## <a name="good-articles"></a>不錯的文章
+## 不錯的文章
+<a id="good-articles" class="xliff"></a>
 [NGINX 的微服務簡介](https://www.nginx.com/blog/introduction-to-microservices/)
 
-## <a name="presentations"></a>簡報
+## 簡報
+<a id="presentations" class="xliff"></a>
 * [Steve Lasker：VS Live Las Vegas 2016 - Docker e2e](https://github.com/SteveLasker/Presentations/blob/master/VSLive2016/Vegas/)
 * [ASP.NET Core @ build 2016 簡介 - 示範](https://channel9.msdn.com/Events/Build/2016/B810)
 * [開發容器中的 .NET 應用程式 (Channel 9)](https://blogs.msdn.microsoft.com/stevelasker/2016/02/19/developing-asp-net-apps-in-docker-containers/)
 
 [2]: ./media/vs-azure-tools-docker-edit-and-refresh/breakpoint.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
