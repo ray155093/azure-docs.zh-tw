@@ -16,23 +16,28 @@ ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 16d04d0f470dde3917f5a12f527ecceb493b2a57
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 89001404fa7255efc656b98983502d1f1d84fd73
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
-# <a name="using-the-azure-custom-script-extension-with-linux-virtual-machines"></a>搭配 Linux 虛擬機器使用 Azure 自訂指令碼擴充功能
+# 搭配 Linux 虛擬機器使用 Azure 自訂指令碼擴充功能
+<a id="using-the-azure-custom-script-extension-with-linux-virtual-machines" class="xliff"></a>
 「自訂指令碼擴充功能」會在 Azure 虛擬機器上下載並執行指令碼。 此擴充功能適用於部署後組態、軟體安裝或其他任何組態/管理工作。 您可以從 Azure 儲存體或其他可存取的網際網路位置下載指令碼，或是將指令碼提供給擴充功能執行階段。 「自訂指令碼擴充功能」會與 Azure Resource Manager 範本整合，您也可以使用 Azure CLI、PowerShell、Azure 入口網站或「Azure 虛擬機器 REST API」來執行它。
 
 本文件詳細說明如何從 Azure CLI 和 Azure Resource Manager 範本使用「自訂指令碼擴充功能」，同時也詳細說明 Linux 系統上的疑難排解步驟。
 
-## <a name="extension-configuration"></a>擴充功能組態
+## 擴充功能組態
+<a id="extension-configuration" class="xliff"></a>
 「自訂指令碼擴充功能」組態會指定指令碼位置和要執行命令等項目。 此組態可以儲存在組態檔中、在命令列中指定，或在 Azure Resource Manager 範本中指定。 機密資料可以儲存在受保護的組態中，此組態會經過加密，並且只會在虛擬機器內解密。 當執行命令包含機密資料 (例如密碼) 時，受保護的組態會相當有用。
 
-### <a name="public-configuration"></a>公用組態
+### 公用組態
+<a id="public-configuration" class="xliff"></a>
 結構描述：
+
+**注意** - 屬性名稱會區分大小寫。 使用如下所示的名稱以避免發生部署問題。
 
 * **commandToExecute**：(必要，字串) 要執行的進入點指令碼。
 * **fileUris**：(選擇性，字串陣列) 所要下載檔案的 URL。
@@ -45,8 +50,11 @@ ms.lasthandoff: 04/27/2017
 }
 ```
 
-### <a name="protected-configuration"></a>受保護的組態
+### 受保護的組態
+<a id="protected-configuration" class="xliff"></a>
 結構描述：
+
+**注意** - 屬性名稱會區分大小寫。 使用如下所示的名稱以避免發生部署問題。
 
 * **commandToExecute**：(選擇性，字串) 要執行的進入點指令碼。 如果您的命令包含機密資料 (例如密碼)，請改用此欄位。
 * **storageAccountName**：(選擇性，字串) 儲存體帳戶的名稱。 如果您指定儲存體證明資料，則所有 fileUri 都必須是 Azure Blob 的 URL。
@@ -60,7 +68,8 @@ ms.lasthandoff: 04/27/2017
 }
 ```
 
-## <a name="azure-cli"></a>Azure CLI
+## Azure CLI
+<a id="azure-cli" class="xliff"></a>
 使用 Azure CLI 來執行「自訂指令碼擴充功能」時，請建立一或多個至少包含檔案 URI 和指令碼執行命令的組態檔。
 
 ```azurecli
@@ -78,7 +87,8 @@ az vm extension set '
   --settings '{"fileUris": ["https://raw.githubusercontent.com/neilpeterson/test-extension/master/test.sh"],"commandToExecute": "./test.sh"}'
 ```
 
-### <a name="azure-cli-examples"></a>Azure CLI 範例
+### Azure CLI 範例
+<a id="azure-cli-examples" class="xliff"></a>
 
 **範例 1** - 含指令檔的公用組態。
 
@@ -133,10 +143,12 @@ Azure CLI 命令：
 az vm extension set --resource-group myResourceGroup --vm-name myVM --name customScript --publisher Microsoft.Azure.Extensions --settings ./script-config.json --protected-settings
 ```
 
-## <a name="resource-manager-template"></a>Resource Manager 範本
+## Resource Manager 範本
+<a id="resource-manager-template" class="xliff"></a>
 您可以透過使用 Resource Manager 範本，在「虛擬機器」部署階段執行「Azure 自訂指令碼擴充功能」。 若要這麼做，請將格式正確的 JSON 新增到部署範本中。
 
-### <a name="resource-manager-examples"></a>Resource Manager 範例
+### Resource Manager 範例
+<a id="resource-manager-examples" class="xliff"></a>
 **範例 1** - 公用組態。
 
 ```json
@@ -199,7 +211,8 @@ az vm extension set --resource-group myResourceGroup --vm-name myVM --name custo
 
 如需完整的範例，請參閱「.Net 核心音樂市集示範」- [音樂市集示範](https://github.com/neilpeterson/nepeters-azure-templates/tree/master/dotnet-core-music-linux-vm-sql-db)。
 
-## <a name="troubleshooting"></a>疑難排解
+## 疑難排解
+<a id="troubleshooting" class="xliff"></a>
 當「自訂指令碼擴充功能」執行時，會建立指令碼，或將指令碼下載到類似下列範例的目錄。 命令輸出也會儲存到這個目錄的 `stdout` 和 `stderr` 檔案中。
 
 ```bash
@@ -230,7 +243,8 @@ data:    Microsoft.OSTCExtensions    Microsoft.Insights.VMDiagnosticsSettings  2
 info:    vm extension get command OK
 ```
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 如需有關其他「VM 指令碼擴充功能」的資訊，請參閱 [適用於 Linux 的 Azure 指令碼擴充功能概觀](extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 

@@ -13,14 +13,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/20/2016
 ms.author: jonatul
-translationtype: Human Translation
-ms.sourcegitcommit: 36fa9cd757b27347c08f80657bab8a06789a3c2f
-ms.openlocfilehash: 3074bf378f809a9857c7ea72521961368a14772c
-ms.lasthandoff: 02/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 307b327e4c04a0461e39930114eb193791cbda9a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 ---
 
-# <a name="manage-dns-records-in-azure-dns-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 管理 Azure DNS 中的 DNS 記錄
+# 使用 Azure CLI 1.0 管理 Azure DNS 中的 DNS 記錄
+<a id="manage-dns-records-in-azure-dns-using-the-azure-cli-10" class="xliff"></a>
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](dns-operations-recordsets-portal.md)
@@ -30,7 +32,8 @@ ms.lasthandoff: 02/27/2017
 
 本文適用於 Windows、Mac 和 Linux，將會說明如何使用跨平台 Azure 命令列介面 (CLI) 管理 DNS 區域的 DNS 記錄。 您也可以使用 [Azure PowerShell](dns-operations-recordsets.md) 或 [Azure 入口網站](dns-operations-recordsets-portal.md)來管理 DNS 記錄。
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+## 用以完成工作的 CLI 版本
+<a id="cli-versions-to-complete-the-task" class="xliff"></a>
 
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
@@ -39,7 +42,8 @@ ms.lasthandoff: 02/27/2017
 
 此文章中的範例假設您已[安裝 Azure CLI 1.0、登入，並建立 DNS 區域](dns-operations-dnszones-cli-nodejs.md)。
 
-## <a name="introduction"></a>簡介
+## 簡介
+<a id="introduction" class="xliff"></a>
 
 在 Azure DNS 中建立 DNS 記錄前，您需要先了解 Azure DNS 如何將 DNS 記錄組織成 DNS 記錄集。
 
@@ -47,7 +51,8 @@ ms.lasthandoff: 02/27/2017
 
 如需在 Azure DNS 的 DNS 記錄的詳細資訊，請參閱 [DNS 區域與記錄](dns-zones-records.md)。
 
-## <a name="create-a-dns-record"></a>建立 DNS 記錄
+## 建立 DNS 記錄
+<a id="create-a-dns-record" class="xliff"></a>
 
 若要建立 DNS 記錄，請使用 `azure network dns record-set add-record` 命令。 如需協助，請參閱 `azure network dns record-set add-record -h`。
 
@@ -57,7 +62,7 @@ ms.lasthandoff: 02/27/2017
 
 如果建立新的記錄集，則會使用預設存留時間 (TTL) 3600。 如需如何使用不同 TTL 的指示，請參閱[建立 DNS 記錄集](#create-a-dns-record-set)。
 
-下列範例會在 MyResourceGroup 資源群組的 contoso.com 區域中建立稱為 www 的 A 記錄。 A 記錄的 IP 位址是&1;.2.3.4。
+下列範例會在 MyResourceGroup 資源群組的 contoso.com 區域中建立稱為 www 的 A 記錄。 A 記錄的 IP 位址是 1.2.3.4。
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com www A -a 1.2.3.4
@@ -69,7 +74,8 @@ azure network dns record-set add-record MyResourceGroup contoso.com www A -a 1.2
 azure network dns record-set add-record MyResourceGroup contoso.com "@" A -a 1.2.3.4
 ```
 
-## <a name="create-a-dns-record-set"></a>建立 DNS 記錄集
+## 建立 DNS 記錄集
+<a id="create-a-dns-record-set" class="xliff"></a>
 
 在上述範例中，DNS 記錄不是新增至現有記錄集，就是記錄集是以*隱含方式*建立。 您也可以先*明確地*建立記錄集，再於其中新增記錄。 Azure DNS 支援「空白」記錄集，其可做為預留位置，以在建立 DNS 記錄之前保留 DNS 名稱。 空白記錄集可在 Azure DNS 控制面板中看到，但不會出現在 Azure DNS 名稱伺服器上。
 
@@ -91,7 +97,8 @@ azure network dns record-set create MyResourceGroup contoso.com www A --metadata
 
 建立好空白記錄集之後，可依[建立 DNS 記錄](#create-a-dns-record)所述使用 `azure network dns record-set add-record` 新增記錄。
 
-## <a name="create-records-of-other-types"></a>建立其他類型的記錄
+## 建立其他類型的記錄
+<a id="create-records-of-other-types" class="xliff"></a>
 
 參閱如何建立 'A' 記錄的詳細資訊後，下列範例會示範如何建立 Azure DNS 所支援其他記錄類型的記錄。
 
@@ -101,13 +108,15 @@ azure network dns record-set create MyResourceGroup contoso.com www A --metadata
 
 我們沒有提供 SOA 記錄集的建立範例，因為已與每一個 DNS 區域完成 SOA 建立與刪除，且無法個別建立或刪除 SOA。 然而，[可以對 SOA 進行修改，如稍後範例所示](#to-modify-an-SOA-record)。
 
-### <a name="create-an-aaaa-record"></a>建立 AAAA 記錄
+### 建立 AAAA 記錄
+<a id="create-an-aaaa-record" class="xliff"></a>
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup contoso.com test-aaaa AAAA --ipv6-address 2607:f8b0:4009:1803::1005
 ```
 
-### <a name="create-a-cname-record"></a>建立 CNAME 記錄
+### 建立 CNAME 記錄
+<a id="create-a-cname-record" class="xliff"></a>
 
 > [!NOTE]
 > DNS 標準在區域頂點不允許 CNAME 記錄 (`-Name "@"`)，也不允許包含一個記錄以上的記錄集。
@@ -118,7 +127,8 @@ azure network dns record-set add-record MyResourceGroup contoso.com test-aaaa AA
 azure network dns record-set add-record  MyResourceGroup contoso.com  test-cname CNAME --cname www.contoso.com
 ```
 
-### <a name="create-an-mx-record"></a>建立 MX 記錄
+### 建立 MX 記錄
+<a id="create-an-mx-record" class="xliff"></a>
 
 此範例會使用記錄集名稱 "@"，在區域頂點 (在此案例中，"contoso.com") 建立 MX 記錄。
 
@@ -126,13 +136,15 @@ azure network dns record-set add-record  MyResourceGroup contoso.com  test-cname
 azure network dns record-set add-record MyResourceGroup contoso.com  "@" MX --exchange mail.contoso.com --preference 5
 ```
 
-### <a name="create-an-ns-record"></a>建立 NS 記錄
+### 建立 NS 記錄
+<a id="create-an-ns-record" class="xliff"></a>
 
 ```azurecli
 azure network dns record-set add-record MyResourceGroup  contoso.com  test-ns NS --nsdname ns1.contoso.com
 ```
 
-### <a name="create-a-ptr-record"></a>建立 PTR 記錄
+### 建立 PTR 記錄
+<a id="create-a-ptr-record" class="xliff"></a>
 
 在此情況下，'my-arpa-zone.com' 代表表示您 IP 範圍的 ARPA 區域。 此區域中的每個 PTR 記錄集都與此 IP 範圍內的一個 IP 位址相對應。  記錄名稱 '10' 是此記錄所代表的這個 IP 範圍內 IP 位址的最後一個八位元。
 
@@ -140,7 +152,8 @@ azure network dns record-set add-record MyResourceGroup  contoso.com  test-ns NS
 azure network dns record-set add-record MyResourceGroup my-arpa-zone.com "10" PTR --ptrdname "myservice.contoso.com"
 ```
 
-### <a name="create-an-srv-record"></a>建立 SRV 記錄
+### 建立 SRV 記錄
+<a id="create-an-srv-record" class="xliff"></a>
 
 建立 [SRV 記錄集](dns-zones-records.md#srv-records)時，指定記錄集名稱中的 *\_服務* 和 *\_通訊協定*。 在區域頂點建立一筆 SRV 記錄集時，不需要在記錄集名稱中包含 "@"。
 
@@ -148,7 +161,8 @@ azure network dns record-set add-record MyResourceGroup my-arpa-zone.com "10" PT
 azure network dns record-set add-record MyResourceGroup contoso.com  "_sip._tls" SRV --priority 10 --weight 5 --port 8080 --target "sip.contoso.com"
 ```
 
-### <a name="create-a-txt-record"></a>建立 TXT 記錄
+### 建立 TXT 記錄
+<a id="create-a-txt-record" class="xliff"></a>
 
 下列範例示範如何建立 TXT 記錄。 如需 TXT 記錄中，所支援字串長度上限的相關資訊，請參閱 [TXT 記錄](dns-zones-records.md#txt-records)。
 
@@ -156,7 +170,8 @@ azure network dns record-set add-record MyResourceGroup contoso.com  "_sip._tls"
 azure network dns record-set add-record MyResourceGroup contoso.com test-txt TXT --text "This is a TXT record"
 ```
 
-## <a name="get-a-record-set"></a>取得記錄集
+## 取得記錄集
+<a id="get-a-record-set" class="xliff"></a>
 
 若要擷取現有的記錄集，使用 `azure network dns record-set show`。 如需協助，請參閱 `azure network dns record-set show -h`。
 
@@ -168,7 +183,8 @@ azure network dns record-set add-record MyResourceGroup contoso.com test-txt TXT
 azure network dns record-set show MyResourceGroup contoso.com www A
 ```
 
-## <a name="list-record-sets"></a>列出記錄集
+## 列出記錄集
+<a id="list-record-sets" class="xliff"></a>
 
 您可以使用 `azure network dns record-set list` 命令來列出 DNS 區域中的所有記錄。 如需協助，請參閱 `azure network dns record-set list -h`。
 
@@ -184,13 +200,15 @@ azure network dns record-set list MyResourceGroup contoso.com
 azure network dns record-set list MyResourceGroup contoso.com --type A
 ```
 
-## <a name="add-a-record-to-an-existing-record-set"></a>將記錄新增至現有的記錄集
+## 將記錄新增至現有的記錄集
+<a id="add-a-record-to-an-existing-record-set" class="xliff"></a>
 
 您可以使用 `azure network dns record-set add-record` 在新的記錄集內建立記錄，或用它將記錄新增至現有記錄集。
 
 如需詳細資訊，請參閱上面的[建立 DNS 記錄](#create-a-dns-record)和[建立其他類型的記錄](#create-records-of-other-types)。
 
-## <a name="remove-a-record-from-an-existing-record-set"></a>從現有的記錄集移除記錄。
+## 從現有的記錄集移除記錄。
+<a id="remove-a-record-from-an-existing-record-set" class="xliff"></a>
 
 若要從現有記錄集內移除 DNS 記錄，請使用 `azure network dns record-set delete-record`。 如需協助，請參閱 `azure network dns record-set delete-record -h`。
 
@@ -206,11 +224,13 @@ azure network dns record-set list MyResourceGroup contoso.com --type A
 azure network dns record-set delete-record MyResourceGroup contoso.com www A -a 1.2.3.4 --quiet
 ```
 
-## <a name="modify-an-existing-record-set"></a>修改現有記錄集
+## 修改現有記錄集
+<a id="modify-an-existing-record-set" class="xliff"></a>
 
 每個記錄集都包含[存留時間 (TTL)](dns-zones-records.md#time-to-live)、[中繼資料](dns-zones-records.md#tags-and-metadata)和 DNS 記錄。 下列各節說明如何修改每個屬性。
 
-### <a name="to-modify-an-a-aaaa-mx-ns-ptr-srv-or-txt-record"></a>修改 A、AAAA、MX、NS、PTR、SRV 或 TXT 記錄
+### 修改 A、AAAA、MX、NS、PTR、SRV 或 TXT 記錄
+<a id="to-modify-an-a-aaaa-mx-ns-ptr-srv-or-txt-record" class="xliff"></a>
 
 若要修改類型為 A、AAAA、MX、NS、PTR、SRV 或 TXT 的現有記錄，您應該先新增記錄，再刪除現有記錄。 如需如何刪除和新增記錄的詳細指示，請參閱本文稍早的章節。
 
@@ -221,9 +241,8 @@ azure network dns record-set add-record MyResourceGroup contoso.com www A -a 5.6
 azure network dns record-set delete-record MyResourceGroup contoso.com www A -a 1.2.3.4
 ```
 
-您無法在區域頂點 (`-Name "@"` (包含引號)) 在自動建立的 NS 記錄集中新增、移除或修改記錄。 針對此記錄集，修改記錄集 TTL 與中繼資料是唯一允許的變更。
-
-### <a name="to-modify-a-cname-record"></a>修改 CNAME 記錄
+### 修改 CNAME 記錄
+<a id="to-modify-a-cname-record" class="xliff"></a>
 
 若要修改 CNAME 記錄，請使用 `azure network dns record-set add-record` 來新增記錄值。 不同於其他記錄類型，CNAME 記錄集只能包含單一記錄。 因此，當您新增記錄時，現有記錄就會遭到「取代」，並不需要另外刪除。  系統會提示您接受這項取代。
 
@@ -233,7 +252,8 @@ azure network dns record-set delete-record MyResourceGroup contoso.com www A -a 
 azure network dns record-set add-record MyResourceGroup contoso.com www CNAME --cname www.fabrikam.net
 ``` 
 
-### <a name="to-modify-an-soa-record"></a>修改 SOA 記錄
+### 修改 SOA 記錄
+<a id="to-modify-an-soa-record" class="xliff"></a>
 
 使用 `azure network dns record-set set-soa-record` 修改指定 DNS 區域的 SOA。 如需協助，請參閱 `azure network dns record-set set-soa-record -h`。
 
@@ -243,7 +263,24 @@ azure network dns record-set add-record MyResourceGroup contoso.com www CNAME --
 azure network dns record-set set-soa-record rg1 contoso.com --email admin.contoso.com
 ```
 
-### <a name="to-modify-the-ttl-of-an-existing-record-set"></a>修改現有記錄集的 TTL
+
+### 在區域頂點修改 NS 記錄
+<a id="to-modify-ns-records-at-the-zone-apex" class="xliff"></a>
+
+系統會自動使用每個 DNS 區域在區域頂點建立 NS 記錄集。 此記錄集包含指派給區域的 Azure DNS 名稱伺服器的名稱。
+
+您可以將其他名稱伺服器新增至此 NS 記錄集，以支援使用多個 DNS 提供者的共同裝載網域。 您也可以修改此記錄集的 TTL 和中繼資料。 不過，您無法移除或修改預先填入的 Azure DNS 名稱伺服器。
+
+請注意，這只適用於區域頂點的 NS 記錄集。 區域中的其他 NS 記錄集 (如用於委派子區域) 可以修改，沒有任何限制。
+
+下列範例顯示如何將其他的名稱伺服器新增至在區域頂點的 NS 記錄集：
+
+```azurecli
+azure network dns record-set add-record MyResourceGroup contoso.com "@" --nsdname ns1.myotherdnsprovider.com 
+```
+
+### 修改現有記錄集的 TTL
+<a id="to-modify-the-ttl-of-an-existing-record-set" class="xliff"></a>
 
 若要修改現有記錄集的 TTL，請使用 `azure network dns record-set set`。 如需協助，請參閱 `azure network dns record-set set -h`。
 
@@ -253,7 +290,8 @@ azure network dns record-set set-soa-record rg1 contoso.com --email admin.contos
 azure network dns record-set set MyResourceGroup contoso.com www A --ttl 60
 ```
 
-### <a name="to-modify-the-metadata-of-an-existing-record-set"></a>修改現有記錄集的中繼資料
+### 修改現有記錄集的中繼資料
+<a id="to-modify-the-metadata-of-an-existing-record-set" class="xliff"></a>
 
 [記錄集中繼資料](dns-zones-records.md#tags-and-metadata)可用來將應用程式特定資料與每一個資料集產生關聯 (以索引鍵值組的形式)。 若要修改現有記錄集的中繼資料，請使用 `azure network dns record-set set`。 如需協助，請參閱 `azure network dns record-set set -h`。
 
@@ -263,7 +301,8 @@ azure network dns record-set set MyResourceGroup contoso.com www A --ttl 60
 azure network dns record-set set MyResourceGroup contoso.com www A --metadata "dept=finance;environment=production"
 ```
 
-## <a name="delete-a-record-set"></a>刪除記錄集
+## 刪除記錄集
+<a id="delete-a-record-set" class="xliff"></a>
 
 您可以使用 `azure network dns record-set delete` 命令來刪除記錄集。 如需協助，請參閱 `azure network dns record-set delete -h`。 刪除記錄集時，也會刪除記錄集內的所有記錄。
 
@@ -278,7 +317,8 @@ azure network dns record-set delete MyResourceGroup contoso.com www A
 
 系統會提示您確認刪除作業。 若要抑制此提示，請使用 `--quiet` 參數 (簡短形式 `-q`)。
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 
 深入了解[ Azure DNS 中的區域和記錄](dns-zones-records.md)。
 <br>
