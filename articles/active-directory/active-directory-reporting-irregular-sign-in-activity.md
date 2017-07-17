@@ -12,21 +12,20 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/04/2016
-ms.author: saah;kenhoff
-translationtype: Human Translation
+ms.date: 07/15/2017
+ms.author: markvi
+ms.custom: oldportal
+ms.reviewer: dhanyahk
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 565321b6f3ad5988f383a701cb9d8bd5c9937795
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/29/2016
 
 ---
-# <a name="irregular-sign-in-activity"></a>異常的登入活動
+# 異常的登入活動
+<a id="irregular-sign-in-activity" class="xliff"></a>
 異常登入是指機器學習服務演算法已經根據結合異常登入位置和裝置的「不可能的行進」條件識別的登入活動。 這可能表示駭客已經使用此帳戶成功登入。
 如果我們在 30 天或更少的天數內遇到 10 個或更多異常的登入事件，我們會傳送電子郵件通知給全域管理員。 請務必將 aad-alerts-noreply@mail.windowsazure.com 納入安全寄件者清單中。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 
