@@ -3,7 +3,7 @@ title: "檢視存取和使用情況報告 | Microsoft Docs"
 description: "說明如何檢視存取和使用情況報告來深入了解貴組織之目錄完整性和安全性。"
 services: active-directory
 documentationcenter: 
-author: dhanyahk
+author: MarkusVi
 manager: femila
 editor: 
 ms.assetid: a074bc4e-cf3f-4ad1-8cc6-4199d2e09ce4
@@ -12,17 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/16/2017
+ms.date: 07/15/2017
 ms.author: dhanyahk;markvi
+ms.custom: oldportal
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 8b3835d354512645cd47ffa4541d6155c80e77ee
 ms.contentlocale: zh-tw
 ms.lasthandoff: 11/17/2016
 
-
 ---
-# <a name="view-your-access-and-usage-reports"></a>檢視存取和使用情況報告
+# 檢視存取和使用情況報告
+<a id="view-your-access-and-usage-reports" class="xliff"></a>
 *這份文件是 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)的一部分。*
 
 您可以使用 Azure Active Directory 的存取和使用情況報告來了解貴組織的目錄完整性和安全性。 利用此資訊，目錄管理員更能夠判斷可能發生安全性風險的位置，以便適當地規劃來減輕這些風險。
@@ -41,7 +42,8 @@ ms.lasthandoff: 11/17/2016
 > 
 > 
 
-## <a name="reports"></a>報告
+## 報告
+<a id="reports" class="xliff"></a>
 | 報告 | 說明 |
 | --- | --- |
 | **異常活動報告** | |
@@ -69,7 +71,8 @@ ms.lasthandoff: 11/17/2016
 | RMS 裝置使用量 |列出存取受 RMS 保護的檔案所使用的裝置 |
 | 啟用 RMS 的應用程式使用量 |提供啟用 RMS 之應用程式的使用量 |
 
-## <a name="report-editions"></a>報告版本
+## 報告版本
+<a id="report-editions" class="xliff"></a>
 | 報告 | 免費 | 基本 | 高級 |
 | --- | --- | --- | --- |
 | **異常活動報告** | | | |
@@ -97,7 +100,8 @@ ms.lasthandoff: 11/17/2016
 | RMS 裝置使用量 | | |僅 RMS |
 | 啟用 RMS 的應用程式使用量 | | |僅 RMS |
 
-## <a name="anomalous-activity-reports"></a>異常活動報告
+## 異常活動報告
+<a id="anomalous-activity-reports" class="xliff"></a>
 <p>異常登入活動報告會將 Office365、Azure 管理入口網站、Azure AD 存取面板、Sharepoint Online、Dynamics CRM Online 和其他 Microsoft Online Services 的可疑登入活動加上旗標。</p>
 
 <p>所有這些報告 (「多次失敗後的登入次數」報告除外) 也會將上述服務的可疑「同盟」<i></i>登入加上旗標，無論同盟提供者是誰。 </p>
@@ -120,37 +124,44 @@ ms.lasthandoff: 11/17/2016
 
 <li>認證外洩的使用者</li></ul>
 
-## <a name="activity-logs"></a>活動記錄檔
-### <a name="audit-report"></a>稽核報告
+## 活動記錄檔
+<a id="activity-logs" class="xliff"></a>
+### 稽核報告
+<a id="audit-report" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 顯示過去 24 小時、過去 7 天或過去 30 天內的所有稽核事件記錄。 <br /> 如需詳細資訊，請參閱 [Azure Active Directory 稽核報告事件](active-directory-reporting-audit-events.md) |目錄 > 報告索引標籤 |
 
 ![稽核報告](./media/active-directory-view-access-usage-reports/auditReport.PNG)
 
-### <a name="password-reset-activity"></a>密碼重設活動
+### 密碼重設活動
+<a id="password-reset-activity" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 顯示您的組織中發生的所有密碼重設嘗試 |目錄 > 報告索引標籤 |
 
 ![密碼重設活動](./media/active-directory-view-access-usage-reports/passwordResetActivity.PNG)
 
-### <a name="password-reset-registration-activity"></a>密碼重設註冊活動
+### 密碼重設註冊活動
+<a id="password-reset-registration-activity" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 顯示您的組織中發生的所有密碼重設登錄 |目錄 > 報告索引標籤 |
 
 ![密碼重設註冊活動](./media/active-directory-view-access-usage-reports/passwordResetRegistrationActivity.PNG)
 
-### <a name="self-service-groups-activity"></a>自助服務群組活動
+### 自助服務群組活動
+<a id="self-service-groups-activity" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 顯示您的目錄中自助式管理群組的所有活動。 |目錄 > 使用者 > <i>使用者</i> > 裝置索引標籤 |
 
 ![自助服務群組活動](./media/active-directory-view-access-usage-reports/selfServiceGroupsActivity.PNG)
 
-## <a name="integrated-applications-reports"></a>整合式應用程式報告
-### <a name="application-usage-summary"></a>應用程式使用情況：摘要
+## 整合式應用程式報告
+<a id="integrated-applications-reports" class="xliff"></a>
+### 應用程式使用情況：摘要
+<a id="application-usage-summary" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 使用這份報告可以查看您的目錄中所有 SaaS 應用程式的使用情況。 這份報告是以使用者在 [存取面板] 中點選應用程式的次數為基礎。 |目錄 > 報告索引標籤 |
@@ -161,36 +172,44 @@ ms.lasthandoff: 11/17/2016
 
 ![應用程式使用情況摘要](./media/active-directory-view-access-usage-reports/applicationUsage.PNG)
 
-### <a name="application-usage-detailed"></a>應用程式使用情況：詳細
+### 應用程式使用情況：詳細
+<a id="application-usage-detailed" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 使用這份報告可以查看特定 SaaS 應用程式目前的使用量。 這份報告是以使用者在 [存取面板] 中點選應用程式的次數為基礎。 |目錄 > 報告索引標籤 |
 
-### <a name="application-dashboard"></a>應用程式儀表板
+### 應用程式儀表板
+<a id="application-dashboard" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 此報告指出在一段選取的時間間隔內，您組織中的使用者對應用程式進行的累計登入。 儀表板頁面上的圖表可協助您識別該應用程式的所有使用趨勢。 |目錄 > 應用程式 > 儀表板索引標籤 |
 
-## <a name="error-reports"></a>錯誤報告
-### <a name="account-provisioning-errors"></a>帳戶佈建錯誤
+## 錯誤報告
+<a id="error-reports" class="xliff"></a>
+### 帳戶佈建錯誤
+<a id="account-provisioning-errors" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 使用這份報告來監控將帳戶從 SaaS 應用程式同步處理至 Azure Active Directory 期間發生的錯誤。 |目錄 > 報告索引標籤 |
 
 ![帳戶佈建錯誤](./media/active-directory-view-access-usage-reports/accountProvisioningErrors.PNG)
 
-## <a name="user-specific-reports"></a>特定使用者報告
-### <a name="devices"></a>裝置
+## 特定使用者報告
+<a id="user-specific-reports" class="xliff"></a>
+### 裝置
+<a id="devices" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 使用此報告可查看特定使用者用來存取 Azure Active Directory 的 IP 位址和裝置地理位置。 |目錄 > 使用者 > <i>使用者</i> > 裝置索引標籤 |
 
-### <a name="activity"></a>活動
+### 活動
+<a id="activity" class="xliff"></a>
 | 說明 | 報告位置 |
 |:--- |:--- |
 | 顯示使用者的登入活動。 此報告包含登入的應用程式、使用的裝置、IP 位址和位置等資訊。 我們不會收集以 Microsoft 帳戶登入的使用者歷程記錄。 |目錄 > 使用者 > <i>使用者</i> > 活動索引標籤 |
 
-#### <a name="sign-in-events-included-in-the-user-activity-report"></a>使用者活動中包含的登入事件報告
+#### 使用者活動中包含的登入事件報告
+<a id="sign-in-events-included-in-the-user-activity-report" class="xliff"></a>
 只有某些類型的登入事件會出現在「使用者活動」報告中。
 
 | 事件類型 | 已包含？ |
@@ -209,14 +228,16 @@ ms.lasthandoff: 11/17/2016
 > 
 > 
 
-## <a name="things-to-consider-if-you-suspect-security-breach"></a>您懷疑有安全性缺口時的考慮事項
+## 您懷疑有安全性缺口時的考慮事項
+<a id="things-to-consider-if-you-suspect-security-breach" class="xliff"></a>
 如果您懷疑使用者帳戶可能遭到入侵，或有任何可能導致雲端中您的目錄資料出現安全性缺口的可疑使用者活動，您可能要考慮下列其中一或多個動作：
 
 * 連絡使用者來確認活動
 * 重設使用者的密碼
 * [啟用多因素驗證](../multi-factor-authentication/multi-factor-authentication-get-started.md) 以提供額外的安全性
 
-## <a name="view-or-download-a-report"></a>檢視或下載報告
+## 檢視或下載報告
+<a id="view-or-download-a-report" class="xliff"></a>
 1. 在 Azure 傳統入口網站中，依序按一下 [Active Directory]、您組織目錄的名稱，然後按一下 [報告]。
 2. 在 [報告] 頁面上，按一下您要檢視和/或下載的報告。
    
@@ -235,13 +256,16 @@ ms.lasthandoff: 11/17/2016
    * 最多 75,000 個事件會包含在下載的檔案中。
    * 如需更多資料，請參閱 [Azure AD 報告 API](active-directory-reporting-api-getting-started.md)。
 
-## <a name="ignore-an-event"></a>忽略事件
+## 忽略事件
+<a id="ignore-an-event" class="xliff"></a>
 如果正在檢視任何異常報告，您可能會注意到您可以忽略顯示在相關報告中的各種事件。 若要忽略事件，只要將報告中的事件反白，然後按一下 [ **忽略**] 即可。 [ **忽略** ] 按鈕將會永久移除報告中反白顯示的事件，而且只能由獲得授權的全域管理員使用。
 
-## <a name="automatic-email-notifications"></a>自動電子郵件通知
+## 自動電子郵件通知
+<a id="automatic-email-notifications" class="xliff"></a>
 如需有關 Azure AD 的報告通知詳細資訊，請參閱 [Azure Active Directory 報告通知](active-directory-reporting-notifications.md)。
 
-## <a name="whats-next"></a>後續步驟
+## 後續步驟
+<a id="whats-next" class="xliff"></a>
 * [開始使用 Azure Active Directory Premium](active-directory-get-started-premium.md)
 * [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
 

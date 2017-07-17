@@ -11,17 +11,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/05/2017
+ms.date: 07/15/2017
 ms.author: markvi
+ms.reviewer: dhanyahk
 ms.translationtype: Human Translation
 ms.sourcegitcommit: e6dcd3f6f9c7c8765409c3b0d50e4b3843bab5c6
 ms.openlocfilehash: e39ee63d190308b87ebeb43adeb8b3e5db86df57
 ms.contentlocale: zh-tw
 ms.lasthandoff: 02/22/2017
 
-
 ---
-# <a name="azure-active-directory-reporting-faq"></a>Azure Active Directory 報告常見問題集
+# Azure Active Directory 報告常見問題集
+<a id="azure-active-directory-reporting-faq" class="xliff"></a>
 
 本文會回答有關 Azure Active Directory 報告的常見問題 (FAQ)。  
 如需更多詳細資料，請參閱 [Azure Active Directory 報告](active-directory-reporting-azure-portal.md)。 

@@ -3,8 +3,8 @@ title: "從多個地理區域登入"
 description: "這份報告指出使用者有兩次登入似乎來自不同的地區，且使用者不可能在登入間的時間內在這兩個區域之間移動。"
 services: active-directory
 documentationcenter: 
-author: SSalahAhmed
-manager: gchander
+author: MarkusVi
+manager: femila
 editor: 
 ms.assetid: 79259c8a-2388-4747-b41e-c07434ea9a02
 ms.service: active-directory
@@ -14,13 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 1de57f64692ade442f9ef8d1e3b587ffee35d7cf
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 ---
-# <a name="sign-ins-from-multiple-geographies"></a>從多個地理區域登入
+# 從多個地理區域登入
+<a id="sign-ins-from-multiple-geographies" class="xliff"></a>
 這份報告包含使用者的成功登入，而其中有兩次登入似乎來自不同的區域，且使用者不可能在登入間的時間內在這兩個區域之間移動。 可能的原因包括：
 
 * 使用者與其他使用者共用其密碼
@@ -32,10 +34,5 @@ ms.openlocfilehash: 1de57f64692ade442f9ef8d1e3b587ffee35d7cf
 這份報表的結果會顯示成功登入事件，以及登入間的時間、登入疑似源自哪些區域，以及這些區域間估計的移動時間。 顯示的移動時間只是估計值，而且可能不同於位置之間的實際移動時間。
 
 ![從多個地理區域登入](./media/active-directory-reporting-sign-ins-from-multiple-geographies/signInsFromMultipleGeographies.PNG)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -1,5 +1,4 @@
 ---
-
 title: "Azure Active Directory 入口網站中有風險的登入報告 | Microsoft Docs"
 description: "了解 Azure Active Directory 入口網站中有風險的登入報告"
 services: active-directory
@@ -11,17 +10,18 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 05/04/2017
+ms.date: 07/15/2017
 ms.author: markvi
+ms.reviewer: dhanyahk
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
 ms.openlocfilehash: e21b7733bc0f6b8625fbdcec3529ad603ce306c1
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/09/2017
 
-
 ---
-# <a name="risky-sign-ins-report-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中有風險的登入報告
+# Azure Active Directory 入口網站中有風險的登入報告
+<a id="risky-sign-ins-report-in-the-azure-active-directory-portal" class="xliff"></a>
 
 利用 Azure Active Directory (Azure AD) 中的安全性報告，您可以深入了解環境中使用者帳戶被盜用的可能性。 
 
@@ -38,7 +38,8 @@ Azure AD 會偵測使用者帳戶相關的可疑動作。 針對每個偵測到�
 ![有風險的登入](./media/active-directory-reporting-security-risky-sign-ins/10.png)
 
 
-## <a name="azure-active-directory-free-and-basic-edition"></a>Azure Active Directory 免費和基本版本
+## Azure Active Directory 免費和基本版本
+<a id="azure-active-directory-free-and-basic-edition" class="xliff"></a>
 
 Azure Active Directory 免費和基本版本會為您的使用者提供已偵測到的有風險登入清單。 風險事件報告會提供：
 
@@ -63,7 +64,8 @@ Azure Active Directory 免費和基本版本會為您的使用者提供已偵測
 
 如需詳細資訊，請參閱[手動關閉風險事件](active-directory-identityprotection.md#closing-risk-events-manually)。
 
-## <a name="azure-active-directory-premium-editions"></a>Azure Active Directory Premium Edition
+## Azure Active Directory Premium Edition
+<a id="azure-active-directory-premium-editions" class="xliff"></a>
 
 Azure Active Directory Premium Edition 中有風險的登入報告可為您提供：
 
@@ -112,7 +114,8 @@ Azure Active Directory Premium Edition 中有風險的登入報告可為您提�
 
 
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 
 - 如需 Azure Active Directory Identity Protection 的詳細資訊，請參閱 [Azure Active Directory Identity Protection](active-directory-identityprotection.md)。
 

@@ -13,7 +13,7 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/01/2017
+ms.date: 07/17/2017
 ms.author: davidmu
 ms.custom: mvc
 ms.translationtype: Human Translation
@@ -23,7 +23,9 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 06/01/2017
 
 ---
-# <a name="overview-of-windows-virtual-machines-in-azure"></a>Azure 中的 Windows 虛擬機器概觀
+# Azure 中的 Windows 虛擬機器概觀
+<a id="overview-of-windows-virtual-machines-in-azure" class="xliff"></a>
+
 Azure 虛擬機器 (VM) 是由 Azure 所提供的[隨選且可調整的數種運算資源](../../app-service-web/choose-web-site-cloud-service-vm.md)類型之一。 一般而言，當您對於運算環境所需的控制權比其他選擇可提供的還要多時，則您會選擇 VM。 本文提供您在建立 VM 之前應該的事項、建立方式及管理方式的相關資訊。
 
 Azure VM 讓您能夠有彈性地進行虛擬化，而不需購買並維護執行它的實體硬體。 不過，您仍然需要執行工作來維護 VM，例如設定、修補和安裝在 VM 上執行的軟體。
@@ -36,7 +38,8 @@ Azure 虛擬機器可用於許多用途。 部分範例如下：
 
 您的應用程式所使用的 VM 數目可以相應增加及相應放大為符合您需求的任何內容。
 
-## <a name="what-do-i-need-to-think-about-before-creating-a-vm"></a>我在建立 VM 之前需要先考慮什麼？
+## 我在建立 VM 之前需要先考慮什麼？
+<a id="what-do-i-need-to-think-about-before-creating-a-vm" class="xliff"></a>
 當您在 Azure 中建置應用程式基礎結構時，總是會有許多[設計考量](infrastructure-virtual-machine-guidelines.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 在您開始之前，仔細考量 VM 的這些層面很重要︰
 
 * 應用程式資源的名稱
@@ -47,12 +50,14 @@ Azure 虛擬機器可用於許多用途。 部分範例如下：
 * VM 啟動後的設定
 * VM 需要的相關資源
 
-### <a name="naming"></a>命名
+### 命名
+<a id="naming" class="xliff"></a>
 虛擬機器指派一個[名稱](infrastructure-naming-guidelines.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)給它，而它設定一個電腦名稱作為作業系統的一部分。 VM 的名稱最多可為 15 個字元。
 
 如果您使用 Azure 來建立作業系統磁碟，則電腦名稱和虛擬機器名稱為相同。 如果您[上傳並使用您自己的映像](upload-generalized-managed.md) (該映像包含先前所設定的作業系統)，並用它來建立虛擬機器，則名稱可能會不同。 我們建議您，當您上傳自己的映像檔時，將作業系統中的電腦名稱設為與虛擬機器的名稱相同。
 
-### <a name="locations"></a>位置
+### 位置
+<a id="locations" class="xliff"></a>
 Azure 中所建立的所有資源分散在世界各地的多個[地理區域](https://azure.microsoft.com/regions/)。 通常，當您建立 VM 時，區域稱為**位置**。 針對 VM，位置會指定虛擬硬碟所儲存的位置。
 
 下表顯示一些您可以取得可用位置清單的方式。
@@ -63,15 +68,18 @@ Azure 中所建立的所有資源分散在世界各地的多個[地理區域](ht
 | Azure PowerShell |使用 [Get-AzureRmLocation](/powershell/module/azurerm.resources/get-azurermlocation) 命令。 |
 | REST API |使用[列出位置](https://docs.microsoft.com/rest/api/resources/subscriptions#Subscriptions_ListLocations)作業。 |
 
-### <a name="vm-size"></a>VM 大小
+### VM 大小
+<a id="vm-size" class="xliff"></a>
 您使用的 VM [大小](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)是由所您要執行的工作負載所決定。 您所選的大小會決定例如處理電源、記憶體和儲存體容量等因素。 Azure 提供了各種不同的大小，以支援許多類型的用法。
 
 Azure 可依據 VM 的大小和作業系統，以[每小時](https://azure.microsoft.com/pricing/details/virtual-machines/windows/)價格方式收費。 針對不足一小時的部分，Azure 只會收取已使用分鐘數的費用。 儲存體是個別定價與收費。
 
-### <a name="vm-limits"></a>VM 限制
+### VM 限制
+<a id="vm-limits" class="xliff"></a>
 您的訂用帳戶都有預設[配額限制](../../azure-subscription-service-limits.md)，而此限制會在您要部署多個 VM 以供專案使用時造成影響。 每一訂用帳戶目前的限制是每一區域 20 個 VM。 只要提出支援票證來要求增加，即可提高配額限制。
 
-### <a name="operating-system-disks-and-images"></a>作業系統磁碟和映像
+### 作業系統磁碟和映像
+<a id="operating-system-disks-and-images" class="xliff"></a>
 虛擬機器是使用[虛擬硬碟 (VHD)](../../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來儲存其作業系統 (OS) 和資料。 VHD 也能夠使用於您可以選擇用來安裝 OS 的映像。 
 
 Azure 提供許多 [Marketplace 映像](https://azure.microsoft.com/marketplace/virtual-machines/)來與不同版本和類型的 Windows Server 作業系統搭配使用。 Marketplace 映像是依映像發行者、優惠、SKU 和版本 (版本通常會指定為最新版本) 來識別。 
@@ -86,7 +94,8 @@ Azure 提供許多 [Marketplace 映像](https://azure.microsoft.com/marketplace/
 
 您可以選擇[上傳並使用您自己的映像](upload-generalized-managed.md#upload-the-vhd-to-your-storage-account)，當您這麼做時，不會使用發行者名稱、優惠和 SKU。
 
-### <a name="extensions"></a>擴充功能
+### 擴充功能
+<a id="extensions" class="xliff"></a>
 VM [擴充](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)會透過 post 部署設定及自動化工作為您的 VM 提供其他功能。
 
 可以使用擴充功能來完成這些常見工作︰
@@ -95,7 +104,8 @@ VM [擴充](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ft
 * **部署和管理組態** – [PowerShell 期望狀態組態 (DSC) 延伸模組](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)可協助您設定 VM 上的 DSC 來管理組態和環境。
 * **收集診斷資料** – [Azure 診斷擴充功能](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)可協助您設定 VM 來收集診斷資料，用來監視您應用程式的健全狀況。
 
-### <a name="related-resources"></a>相關資源
+### 相關資源
+<a id="related-resources" class="xliff"></a>
 此資料表中的資源可供 VM 使用，且建立 VM 時必須存在或建立。
 
 | 資源 | 必要 | 說明 |
@@ -107,7 +117,8 @@ VM [擴充](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ft
 | [網路介面](../../virtual-network/virtual-network-network-interface.md) |是 |VM 需要網路介面以在網路中進行通訊。 |
 | [資料磁碟](attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |否 |VM 可以包含資料磁碟來擴充儲存體功能。 |
 
-## <a name="how-do-i-create-my-first-vm"></a>如何建立第一個 VM？
+## 如何建立第一個 VM？
+<a id="how-do-i-create-my-first-vm" class="xliff"></a>
 有幾個選擇可供您建立 VM。 您所做的選擇取決於您所在的環境。 
 
 下表提供協助您開始建立 VM 的資訊。
@@ -122,10 +133,12 @@ VM [擴充](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ft
 
 您希望它絕對不會發生，但偶爾會發生錯誤。 如果您發生這種情況，請查看[疑難排解在 Azure 中建立 Windows 虛擬機器時發生的 Resource Manager 部署問題](troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的資訊。
 
-## <a name="how-do-i-manage-the-vm-that-i-created"></a>如何管理我所建立的 VM？
+## 如何管理我所建立的 VM？
+<a id="how-do-i-manage-the-vm-that-i-created" class="xliff"></a>
 可以使用以瀏覽器為基礎的入口網站、支援指令碼處理的命令列工具，或直接透過 API 管理 VM。 您可能會執行的一些一般管理工作為取得 VM 的相關資訊、登入 VM、管理可用性，以及進行備份。
 
-### <a name="get-information-about-a-vm"></a>取得 VM 的相關資訊
+### 取得 VM 的相關資訊
+<a id="get-information-about-a-vm" class="xliff"></a>
 下表顯示您可以取得 VM 相關資訊的一些方式。
 
 | 方法 | 說明 |
@@ -135,18 +148,22 @@ VM [擴充](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ft
 | REST API |使用[取得 VM 資訊](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-get)作業來取得 VM 的相關資訊。 |
 | 用戶端 SDK |如需使用 C# 來管理 VM 的相關資訊，請參閱[使用 Azure Resource Manager 和 C# 來管理 Azure 虛擬機器](csharp-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 |
 
-### <a name="log-on-to-the-vm"></a>登入 VM
+### 登入 VM
+<a id="log-on-to-the-vm" class="xliff"></a>
 您使用 Azure 入口網站中的 [連線] 按鈕[啟動遠端桌面 (RDP) 工作階段](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 嘗試使用遠端連線時，有時可能會出錯。 如果您發生這種情況，請參閱[疑難排解遠端桌面連線至執行 Windows 的 Azure 虛擬機器](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的說明資訊。
 
-### <a name="manage-availability"></a>管理可用性
+### 管理可用性
+<a id="manage-availability" class="xliff"></a>
 請務必了解如何[確保應用程式的高可用性](manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 此組態需要建立多個 VM 以確保至少有一個 VM 正在執行。
 
 為了讓您的部署符合 99.95 的 VM 服務等級協定資格，您必須部署兩個或更多在[可用性設定組](infrastructure-availability-sets-guidelines.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)內執行工作負載的 VM。 此組態可確保您的 VM 會分散多個容錯網域，且部署至具有不同維護期間的主機。 完整 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) 說明保證的 Azure 整體可用性。
 
-### <a name="back-up-the-vm"></a>備份 VM
+### 備份 VM
+<a id="back-up-the-vm" class="xliff"></a>
 [復原服務保存庫](../../backup/backup-introduction-to-azure-backup.md)可用來保護 Azure 備份和 Azure Site Recovery 服務中的資料和資產。 您可以使用復原服務保存庫，[使用 PowerShell 部署和管理 Resource Manager 部署之 VM 的備份](../../backup/backup-azure-vms-automation.md)。 
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 * 如果您的目的是要使用 Linux VM，請查看 [Azure 與 Linux](../linux/overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 * 在[範例 Azure 基礎結構逐步解說](infrastructure-example.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中深入了解設定基礎結構的指導方針。
 * 請確定您遵循[在 Azure 上執行 Windows VM 的最佳作法](guidance-compute-single-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。

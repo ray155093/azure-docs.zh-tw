@@ -3,7 +3,7 @@ title: "存取 Azure AD 報告 API 的必要條件。 | Microsoft Docs"
 description: "了解存取 Azure AD 報告 API 的必要條件"
 services: active-directory
 documentationcenter: 
-author: dhanyahk
+author: MarkusVi
 manager: femila
 editor: 
 ms.assetid: ada19f69-665c-452a-8452-701029bf4252
@@ -14,15 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2017
 ms.author: dhanyahk;markvi
+ms.custom: oldportal
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: b0f23cc578fb946247d492b9dee92cf7a9daafa1
 ms.contentlocale: zh-tw
 ms.lasthandoff: 12/29/2016
 
-
 ---
-# <a name="prerequisites-to-access-the-azure-ad-reporting-api"></a>存取 Azure AD 報告 API 的必要條件
+# 存取 Azure AD 報告 API 的必要條件
+<a id="prerequisites-to-access-the-azure-ad-reporting-api" class="xliff"></a>
 [Azure AD 報告 API](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-reports-and-events-preview) 透過一組以 REST 為基礎的 API 為您提供資料的程式設計方式存取。 您可以從各種程式設計語言和工具呼叫這些 API。
 
 報告 API 會使用 [OAuth](https://msdn.microsoft.com/library/azure/dn645545.aspx) 授權存取 Web API。 
@@ -35,7 +36,8 @@ ms.lasthandoff: 12/29/2016
 
 如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
 
-## <a name="create-an-azure-ad-application"></a>建立 Azure AD 應用程式
+## 建立 Azure AD 應用程式
+<a id="create-an-azure-ad-application" class="xliff"></a>
 若要設定您的目錄以存取 Azure AD 報告 API，您必須以 Azure 訂用帳戶管理員帳戶登入 Azure 傳統入口網站，而且該帳戶同時也是 Azure AD 租用戶全域管理員目錄角色的成員。
 
 > [!IMPORTANT]
@@ -75,7 +77,8 @@ ms.lasthandoff: 12/29/2016
    
     c. 按一下 [完成]。
 
-## <a name="grant-your-application-permission-to-use-the-api"></a>授與您的應用程式使用 API 的權限
+## 授與您的應用程式使用 API 的權限
+<a id="grant-your-application-permission-to-use-the-api" class="xliff"></a>
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/01.png) 
@@ -96,7 +99,8 @@ ms.lasthandoff: 12/29/2016
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/10.png)
 
-## <a name="gather-configuration-settings-from-your-directory"></a>從您的目錄蒐集組態設定
+## 從您的目錄蒐集組態設定
+<a id="gather-configuration-settings-from-your-directory" class="xliff"></a>
 本節說明如何從您的目錄取得下列設定︰
 
 * 網域名稱
@@ -105,7 +109,8 @@ ms.lasthandoff: 12/29/2016
 
 您在設定報告 API 的呼叫時需要這些值。 
 
-### <a name="get-your-domain-name"></a>取得您的網域名稱
+### 取得您的網域名稱
+<a id="get-your-domain-name" class="xliff"></a>
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/01.png) 
@@ -117,7 +122,8 @@ ms.lasthandoff: 12/29/2016
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/12.png) 
 
-### <a name="get-the-applications-client-id"></a>取得應用程式的用戶端識別碼
+### 取得應用程式的用戶端識別碼
+<a id="get-the-applications-client-id" class="xliff"></a>
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/01.png) 
@@ -135,7 +141,8 @@ ms.lasthandoff: 12/29/2016
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/13.png)
 
-### <a name="get-the-applications-client-secret"></a>取得應用程式的用戶端密碼
+### 取得應用程式的用戶端密碼
+<a id="get-the-applications-client-secret" class="xliff"></a>
 若要取得應用程式的用戶端密碼，您需要建立新的金鑰並在儲存新金鑰時儲存其值，因為稍後不可能再擷取此值。
 
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
@@ -163,7 +170,8 @@ ms.lasthandoff: 12/29/2016
    
     c. 複製金鑰值。
 
-## <a name="next-steps"></a>後續步驟
+## 後續步驟
+<a id="next-steps" class="xliff"></a>
 * 您要以程式設計方式從 Azure AD 報告 API 存取資料嗎？ 請查看 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
 * 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  
 
