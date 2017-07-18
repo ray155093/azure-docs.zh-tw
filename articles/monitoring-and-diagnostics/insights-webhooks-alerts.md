@@ -1,7 +1,7 @@
 ---
 title: "針對 Azure 度量警示設定 Webhook | Microsoft Docs"
 description: "重設 Azure 警示的路徑到其他非 Azure 系統。"
-author: kamathashwin
+author: johnkemnetz
 manager: carmonm
 editor: 
 services: monitoring-and-diagnostics
@@ -13,12 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/03/2017
-ms.author: ashwink
-translationtype: Human Translation
+ms.author: johnkem
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: 7282de704a1053e2052a189990fb2b30b2adad6f
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
-
 
 ---
 # <a name="configure-a-webhook-on-an-azure-metric-alert"></a>針對 Azure 度量警示設定 Webhook

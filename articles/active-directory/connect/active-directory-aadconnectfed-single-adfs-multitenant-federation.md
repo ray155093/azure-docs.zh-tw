@@ -13,7 +13,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/09/2017
+ms.date: 07/17/2017
 ms.author: anandy; billmath
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
@@ -23,8 +23,7 @@ ms.lasthandoff: 04/10/2017
 
 ---
 
-#將多個 Azure AD 執行個體和單一 AD FS 執行個體建立同盟
-<a id="federate-multiple-instances-of-azure-ad-with-single-instance-of-ad-fs" class="xliff"></a>
+#<a name="federate-multiple-instances-of-azure-ad-with-single-instance-of-ad-fs"></a>將多個 Azure AD 執行個體和單一 AD FS 執行個體建立同盟
 
 如果樹系之間有雙向信任，單一高可用 AD FS 伺服器陣列就可以聯合多個樹系。 這些樹系可能會也可能不會對應到相同的 Azure Active Directory。 本文提供有關如何在單一 AD FS 部署和同步至不同 Azure AD 的多個樹系之間建立同盟的指示。
 
@@ -36,18 +35,15 @@ ms.lasthandoff: 04/10/2017
 > [!NOTE]
 > Azure AD Connect 無法用來設定此案例中的同盟關係，因為 Azure AD Connect 可以在單一 Azure AD 中設定網域的同盟關係。
 
-##將 AD FS 和多個 Azure AD 建立同盟的步驟
-<a id="steps-for-federating-ad-fs-with-multiple-azure-ad" class="xliff"></a>
+##<a name="steps-for-federating-ad-fs-with-multiple-azure-ad"></a>將 AD FS 和多個 Azure AD 建立同盟的步驟
 
 請將 Azure Active Directory contoso.onmicrosoft.com 中的網域 contoso.com 已經與 contoso.com 內部部署 Active Directory 環境中安裝的 AD FS 內部部署建立同盟這點列入考慮。 Fabrikam.com 是 fabrikam.onmicrosoft.com Azure Active Directory 中的網域。
 
-##步驟 1︰建立雙向信任
-<a id="step-1-establish-a-two-way-trust" class="xliff"></a>
+##<a name="step-1-establish-a-two-way-trust"></a>步驟 1︰建立雙向信任
  
 若要 contoso.com 中的 AD FS 能夠驗證 fabrikam.com 中的使用者，需要 contoso.com 和 fabrikam.com 之間的雙向信任。 請依照本[文章](https://technet.microsoft.com/library/cc816590.aspx)的指導方針建立雙向信任。
  
-##步驟 2︰修改 contoso.com 同盟設定
-<a id="step-2-modify-contosocom-federation-settings" class="xliff"></a> 
+##<a name="step-2-modify-contosocom-federation-settings"></a>步驟 2︰修改 contoso.com 同盟設定 
  
 與 AD FS 建立同盟的單一網域的預設簽發者為 "http://ADFSServiceFQDN/adfs/services/trust"，例如 “http://fs.contoso.com/adfs/services/trust”。 Azure Active Directory 要求每個同盟網域都需要擁有唯一簽發者。 由於相同的 AD FS 會建立兩個網域的同盟，因此必須修改簽發者值，所以該值對於 AD FS 與 Azure Active Directory 同盟的每個網域而言是唯一的值。 
  
@@ -57,8 +53,7 @@ ms.lasthandoff: 04/10/2017
  
 在網域同盟設定中的簽發者會變更為 "http://contoso.com/adfs/services/trust"，並會針對 Azure AD 信賴憑證者信任新增發行宣告規則，以根據 UPN 尾碼發出正確的 issuerId 值。
  
-##步驟 3︰建立 fabrikam.com 與 AD FS 的同盟
-<a id="step-3-federate-fabrikamcom-with-ad-fs" class="xliff"></a>
+##<a name="step-3-federate-fabrikamcom-with-ad-fs"></a>步驟 3︰建立 fabrikam.com 與 AD FS 的同盟
  
 在 Azure AD powershell 工作階段中執行下列步驟︰連線至包含網域 fabrikam.com 的 Azure Active Directory
 
@@ -69,7 +64,6 @@ ms.lasthandoff: 04/10/2017
  
 上述作業會建立網域 fabrikam.com 與相同 AD FS 的同盟。 您可以使用兩個網域的 Get-msoldomainfederationsettings 確認網域設定。
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 [使用 Azure Active Directory 與 Active Directory 連線](active-directory-aadconnect.md)
 

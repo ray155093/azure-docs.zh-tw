@@ -2,7 +2,7 @@
 title: "Azure 監視器合作夥伴整合 | Microsoft Docs"
 description: "了解 Azure Monitor 的監視合作夥伴以及如何存取與合作夥伴進行整合的文件。"
 author: johnkemnetz
-manager: rboucher
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -19,7 +19,6 @@ ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
 ms.openlocfilehash: 5914e8be1cf2671da7af1d190811e0e809039135
 ms.contentlocale: zh-tw
 ms.lasthandoff: 07/06/2017
-
 
 ---
 # <a name="azure-monitor-partner-integrations"></a>Azure 監視器合作夥伴整合

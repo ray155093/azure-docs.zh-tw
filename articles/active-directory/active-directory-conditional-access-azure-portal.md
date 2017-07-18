@@ -15,6 +15,7 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/11/2017
 ms.author: markvi
+ms.reviewer: calebb
 ms.translationtype: Human Translation
 ms.sourcegitcommit: d4b38f1f90301c971cb6000f46d831047acb220e
 ms.openlocfilehash: 5a1ce66e02943caedd52976c5dcb3cf75c23bd49
@@ -22,8 +23,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 07/17/2017
 
 ---
-# Azure Active Directory 中的條件式存取
-<a id="conditional-access-in-azure-active-directory" class="xliff"></a>
+# <a name="conditional-access-in-azure-active-directory"></a>Azure Active Directory 中的條件式存取
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-conditional-access-azure-portal.md)
@@ -60,15 +60,13 @@ ms.lasthandoff: 07/17/2017
 ![控制](./media/active-directory-conditional-access-azure-portal/12.png)
 
 
-## 控制
-<a id="controls" class="xliff"></a>
+## <a name="controls"></a>控制
 
 在條件式存取原則中，控制項定義滿足條件陳述式時所應發生的狀況。  
 利用控制項，您可以封鎖存取，或允許有額外需求的存取。
 當您設定可允許存取的原則時，您必須選取至少一個需求。   
 
-### 授與控制
-<a id="grant-controls" class="xliff"></a>
+### <a name="grant-controls"></a>授與控制
 目前的 Azure Active Directory 實作可讓您設定下列授與控制權需求︰
 
 ![控制](./media/active-directory-conditional-access-azure-portal/05.png)
@@ -83,19 +81,16 @@ ms.lasthandoff: 07/17/2017
 
 ![控制](./media/active-directory-conditional-access-azure-portal/06.png)
 
-### 工作階段控制項
-<a id="session-controls" class="xliff"></a>
+### <a name="session-controls"></a>工作階段控制項
 工作階段控制項可讓您限制雲端應用程式內的體驗。 工作階段控制項是由雲端應用程式強制執行，並依賴 Azure AD 對應用程式提供有關工作階段的其他資訊。
 
 ![控制](./media/active-directory-conditional-access-azure-portal/session-control-pic.png)
 
-#### 使用應用程式強制執行限制
-<a id="use-app-enforced-restrictions" class="xliff"></a>
+#### <a name="use-app-enforced-restrictions"></a>使用應用程式強制執行限制
 您可以使用這個控制項，要求 Azure AD 將裝置資訊傳遞至雲端應用程式。 這有助於雲端應用程式了解使用者是否來自符合規範的裝置或加入網域的裝置。 此控制項目前僅支援使用 SharePoint 作為雲端應用程式。 視裝置狀態而定，SharePoint 會使用裝置資訊來提供使用者有限或完整的經驗。
 若要深入了解如何要求 SharePoint 的有限存取，請移至[這裡](https://aka.ms/spolimitedaccessdocs)。
 
-## 條件陳述式
-<a id="condition-statement" class="xliff"></a>
+## <a name="condition-statement"></a>條件陳述式
 
 上一節介紹了以控制項形式封鎖或限制資源存取的支援選項。 在條件式存取原則中，您可以定義必須符合才能以條件陳述式的形式套用您的控制項的準則。  
 
@@ -122,8 +117,7 @@ ms.lasthandoff: 07/17/2017
     ![條件](./media/active-directory-conditional-access-azure-portal/21.png)
 
 
-## 條件
-<a id="conditions" class="xliff"></a>
+## <a name="conditions"></a>條件
 
 在目前的 Azure Active Directory 實作中，您可以定義下列領域的條件︰
 
@@ -149,19 +143,16 @@ ms.lasthandoff: 07/17/2017
     ![條件](./media/active-directory-conditional-access-azure-portal/04.png)
 
 
-## 常見案例
-<a id="common-scenarios" class="xliff"></a>
+## <a name="common-scenarios"></a>常見案例
 
-### 應用程式需要 Multi-Factor Authentication
-<a id="requiring-multi-factor-authentication-for-apps" class="xliff"></a>
+### <a name="requiring-multi-factor-authentication-for-apps"></a>應用程式需要 Multi-Factor Authentication
 
 許多環境中的應用程式需要比其他應用程式更高層級的保護。
 例如，有權存取敏感性資料的應用程式。
 如果您想要對這些應用程式新增另一層的保護，您可以設定當使用者存取這些應用程式時需要 Multi-Factor Authentication 的條件式存取原則。
 
 
-### 從不受信任的網路存取時需要 Multi-Factor Authentication
-<a id="requiring-multi-factor-authentication-for-access-from-networks-that-are-not-trusted" class="xliff"></a>
+### <a name="requiring-multi-factor-authentication-for-access-from-networks-that-are-not-trusted"></a>從不受信任的網路存取時需要 Multi-Factor Authentication
 
 此案例類似於前一個案例，因為這會新增 Multi-Factor Authentication 的需求。
 不過，主要差異在於這項需求的條件。  
@@ -169,15 +160,13 @@ ms.lasthandoff: 07/17/2017
 換句話說，如果使用者從您不信任的網路存取應用程式，您可能需要 Multi-Factor Authentication。
 
 
-### 只有受信任的裝置可以存取 Office 365 服務
-<a id="only-trusted-devices-can-access-office-365-services" class="xliff"></a>
+### <a name="only-trusted-devices-can-access-office-365-services"></a>只有受信任的裝置可以存取 Office 365 服務
 
 如果您在自己的環境中使用 Intune，您可以在 Azure 主控台中立即開始使用條件式存取原則介面。
 
 許多 Intune 客戶都使用條件式存取來確保只有受信任的裝置可以存取 Office 365 服務。 這表示行動裝置已向 Intune 進行註冊並符合合規性原則需求，而且 Windows 電腦已加入內部部署網域。 您不需要為每項 Office 365 服務設定相同的原則，是一項重大改進。  當您建立新原則時，請設定雲端應用程式包含您想要使用條件式存取保護的每個 O365 應用程式。
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 
 如果您想要知道如何設定條件式存取原則，請參閱[開始使用 Azure Active Directory 中的條件式存取](active-directory-conditional-access-azure-portal-get-started.md)。
 

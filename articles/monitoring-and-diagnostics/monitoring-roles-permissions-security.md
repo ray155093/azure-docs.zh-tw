@@ -2,7 +2,7 @@
 title: "開始使用 Azure 監視器的角色、權限和安全性 | Microsoft Docs"
 description: "了解如何使用 Azure 監視器的內建角色和權限來限制存取監視資源。"
 author: johnkemnetz
-manager: rboucher
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: johnkem
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 26e12a27693fe94ae88b70328ed5dd0d9d5b4c10
+ms.contentlocale: zh-tw
 ms.lasthandoff: 11/17/2016
-
 
 ---
 # <a name="get-started-with-roles-permissions-and-security-with-azure-monitor"></a>開始使用 Azure 監視器的角色、權限和安全性

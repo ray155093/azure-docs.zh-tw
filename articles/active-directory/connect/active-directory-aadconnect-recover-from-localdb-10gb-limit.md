@@ -3,7 +3,7 @@ title: "Azure AD Connect：如何從 LocalDB 10 GB 的限制問題復原 | Micro
 description: "本主題說明當遇到 LocalDB 10 GB 限制的問題時，如何復原 Azure AD Connect 同步處理服務。"
 services: active-directory
 documentationcenter: 
-author: billmath
+author: cychua
 manager: femila
 editor: 
 ms.assetid: 41d081af-ed89-4e17-be34-14f7e80ae358
@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/23/2017
-ms.author: cychua
-translationtype: Human Translation
+ms.date: 07/17/2017
+ms.author: billmath
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
 ms.openlocfilehash: 533d3db2a9b49f3077b7cdb699cac797c7a931b3
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/24/2017
-
 
 ---
 # <a name="azure-ad-connect-how-to-recover-from-localdb-10-gb-limit"></a>Azure AD Connect：如何從 LocalDB 10-GB 的限制復原
@@ -79,13 +79,13 @@ Azure AD Connect 需要 SQL Server 資料庫來儲存身分識別資料。 您�
 ### <a name="delete-run-history-data"></a>刪除執行記錄資料
 根據預設，Azure AD Connect 最多會保留七天的執行歷程記錄資料。 在此步驟中，我們會刪除歷程記錄資料來收回 DB 空間，讓 Azure AD Connect 同步處理服務可以再次啟動同步處理。
 
-1.    前往 [開始] → [同步處理服務] 來啟動**同步處理服務管理員**。
+1.  前往 [開始] → [同步處理服務] 來啟動**同步處理服務管理員**。
 
-2.    移至 [作業] 索引標籤。
+2.  移至 [作業] 索引標籤。
 
-3.    選取 [動作] 下方的 [清除執行]...
+3.  選取 [動作] 下方的 [清除執行]...
 
-4.    您可以選擇 [清除所有執行] 或 [清除之前的執行...]**<date>** 選項。 建議您一開始先清除執行超過兩天的歷程記錄資料。 如果您遇到 DB 大小的問題，則選擇 [清除所有執行] 選項。
+4.  您可以選擇 [清除所有執行] 或 [清除之前的執行...]**<date>** 選項。 建議您一開始先清除執行超過兩天的歷程記錄資料。 如果您遇到 DB 大小的問題，則選擇 [清除所有執行] 選項。
 
 ### <a name="shorten-retention-period-for-run-history-data"></a>縮短執行歷程記錄資料的保留期間
 此步驟是要降低在多個同步處理循環之後遇到 10 GB 限制問題的可能性。

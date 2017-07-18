@@ -2,7 +2,7 @@
 title: "封存 Azure 活動記錄檔 | Microsoft Docs"
 description: "了解如何封存 Azure 活動記錄檔以在儲存體帳戶中長期保存。"
 author: johnkemnetz
-manager: rboucher
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/09/2016
 ms.author: johnkem
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaa162df8a6cd60cb174242e6a353439f2da58b4
 ms.openlocfilehash: eb3a0ad811a4286df1bac963904bd9154c0ccfa3
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/10/2016
 
 ---
 # <a name="archive-the-azure-activity-log"></a>封存 Azure 活動記錄檔
@@ -167,10 +168,5 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 * [下載 blob 以供分析](../storage/storage-dotnet-how-to-use-blobs.md#download-blobs)
 * [將活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 * [深入了解活動記錄檔](monitoring-overview-activity-logs.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

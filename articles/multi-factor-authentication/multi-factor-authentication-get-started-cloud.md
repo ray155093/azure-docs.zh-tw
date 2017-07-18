@@ -20,7 +20,6 @@ ms.openlocfilehash: 554931e96e073ec2f2f68df2297e1ee21f5eda87
 ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
-
 ---
 # <a name="getting-started-with-azure-multi-factor-authentication-in-the-cloud"></a>開始在雲端中使用 Azure Multi-Factor Authentication
 本文將帶領您逐步了解如何在雲端中開始使用 Azure Multi-Factor Authentication。
@@ -78,24 +77,28 @@ ms.lasthandoff: 04/27/2017
 
 使用 PowerShell 是大量啟用使用者的選項。 目前在 Azure 入口網站中沒有大量啟用功能，您必須個別選取每個使用者。 如果您有許多使用者，這是相當繁重的工作。 藉由使用下列程式碼建立 PowerShell 指令碼，您可以循環使用者清單並且啟用他們。
 
-        $st = New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
-        $st.RelyingParty = "*"
-        $st.State = “Enabled”
-        $sta = @($st)
-        Set-MsolUser -UserPrincipalName bsimon@contoso.com -StrongAuthenticationRequirements $sta
+```PowerShell
+
+$st = New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
+$st.RelyingParty = "*"
+$st.State = "Enabled"
+$sta = @($st)
+Set-MsolUser -UserPrincipalName "bsimon@contoso.com" -StrongAuthenticationRequirements $sta
+```
 
 下列是一個範例：
 
-    $users = "bsimon@contoso.com","jsmith@contoso.com","ljacobson@contoso.com"
-    foreach ($user in $users)
-    {
-        $st = New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
-        $st.RelyingParty = "*"
-        $st.State = “Enabled”
-        $sta = @($st)
-        Set-MsolUser -UserPrincipalName $user -StrongAuthenticationRequirements $sta
-    }
-
+```Powershell
+$users = @("bsimon@contoso.com", "jsmith@contoso.com", "ljacobson@contoso.com")
+foreach ($user in $users)
+{
+   $st = New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
+   $st.RelyingParty = "*"
+   $st.State = "Enabled"
+   $sta = @($st)
+   Set-MsolUser -UserPrincipalName $user -StrongAuthenticationRequirements $sta
+}
+```
 
 如需詳細資訊，請參閱 [Azure Multi-Factor Authentication 中的使用者狀態](multi-factor-authentication-get-started-user-states.md)
 

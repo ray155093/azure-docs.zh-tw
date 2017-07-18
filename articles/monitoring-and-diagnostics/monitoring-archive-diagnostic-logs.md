@@ -2,7 +2,7 @@
 title: "封存 Azure 診斷記錄 | Microsoft Docs"
 description: "了解如何封存 Azure 診斷記錄以在儲存體帳戶中長期保存。"
 author: johnkemnetz
-manager: rboucher
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/26/2016
 ms.author: johnkem
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 3e82377c36da1563931bc0301daa4534e6f82377
 ms.openlocfilehash: e3413236445f3f6034a228dc93624d3fdc9b87ad
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/10/2016
 
 ---
 # <a name="archive-azure-diagnostic-logs"></a>封存 Azure 診斷記錄
@@ -133,10 +134,5 @@ azure insights diagnostic set --resourceId /subscriptions/s1id1234-5679-0123-456
 * [下載 blob 以供分析](../storage/storage-dotnet-how-to-use-blobs.md#download-blobs)
 * [將診斷記錄串流至事件中樞](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 * [深入了解診斷記錄](monitoring-overview-of-diagnostic-logs.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

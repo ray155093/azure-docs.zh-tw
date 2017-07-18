@@ -1,8 +1,8 @@
 ---
 title: "針對 Azure 活動記錄警示呼叫 Webhook | Microsoft Docs"
 description: "將活動記錄事件路由至其他服務以進行自訂動作。 例如傳送簡訊、記錄 Bug、或透過聊天/傳訊服務來通知團隊。"
-author: kamathashwin
-manager: carmonm
+author: johnkemnetz
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -13,12 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
-ms.author: ashwink
-translationtype: Human Translation
+ms.author: johnkem
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 8c9c9dea1248205aa6303e11e1166d5d38786c1b
 ms.openlocfilehash: 4ee65a10616fff81044c181fce8708a596e9e6de
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/31/2017
-
 
 ---
 # <a name="call-a-webhook-on-azure-activity-log-alerts"></a>針對 Azure 活動記錄警示呼叫 Webhook

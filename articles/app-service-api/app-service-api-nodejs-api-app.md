@@ -20,18 +20,13 @@ ms.openlocfilehash: 8a5d0c60e101f4038dff6f76c8f23dbb2b44661c
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/28/2017
 
-
 ---
-<a id="build-a-nodejs-restful-api-and-deploy-it-to-an-api-app-in-azure" class="xliff"></a>
-
-# 建置 Node.js RESTful API 並將它部署至 Azure 中的 API 應用程式
+# <a name="build-a-nodejs-restful-api-and-deploy-it-to-an-api-app-in-azure"></a>建置 Node.js RESTful API 並將它部署至 Azure 中的 API 應用程式
 [!INCLUDE [app-service-api-get-started-selector](../../includes/app-service-api-get-started-selector.md)]
 
 本快速入門示範如何在 Azure 上使用 [Swagger](http://swagger.io/) 定義並將其部署為 [API 應用程式](app-service-api-apps-why-best-platform.md)，以建立 [Express](http://expressjs.com/) 架構 Node.js REST API。 您可使用命令列工具建立應用程式、使用 [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) 設定資源，以及使用 Git 部署應用程式。  當您完成後，您必須在 Azure 上執行工作範例 REST API。
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 * [Git](https://git-scm.com/)
 * [ 安裝 Node.js 和 NPM](https://nodejs.org/)
@@ -42,9 +37,7 @@ ms.lasthandoff: 06/28/2017
 
 如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-<a id="prepare-your-environment" class="xliff"></a>
-
-## 準備您的環境
+## <a name="prepare-your-environment"></a>準備您的環境
 
 1. 在終端機視窗中執行下列命令，將範例複製到本機電腦。
 
@@ -65,9 +58,7 @@ ms.lasthandoff: 06/28/2017
     npm install -g generator-swaggerize
     ```
 
-<a id="generate-nodejs-code" class="xliff"></a>
-
-## 產生 Node.js 程式碼 
+## <a name="generate-nodejs-code"></a>產生 Node.js 程式碼 
 
 在教學課程的這一節當中，會建立 API 開發工作流程的模型，以供您在其中先建立 Swagger 中繼資料，再以此建立 (自動產生) API 伺服器程式碼的結構。 
 
@@ -89,9 +80,7 @@ ms.lasthandoff: 06/28/2017
    ? Your email: frank@fabrikam.net
    ```
    
-<a id="customize-the-project-code" class="xliff"></a>
-
-## 自訂專案程式碼
+## <a name="customize-the-project-code"></a>自訂專案程式碼
 
 1. 將 lib 資料夾複製到 `yo swaggerize` 所建立的 ContactList 資料夾，然後將目錄變更為 ContactList。
 
@@ -149,6 +138,9 @@ ms.lasthandoff: 06/28/2017
     var swaggerize = require('swaggerize-express');
     var swaggerUi = require('swaggerize-ui'); 
     var path = require('path');
+    var fs = require("fs");
+    
+    fs.existsSync = fs.existsSync || require('path').existsSync;
 
     var app = express();
 
@@ -173,9 +165,7 @@ ms.lasthandoff: 06/28/2017
 
     此程式碼會進行一些小變更，讓它能與 Azure App Service 搭配運作，並為您的 API 公開互動式 Web 介面。
 
-<a id="test-the-api-locally" class="xliff"></a>
-
-### 在本機測試 API
+### <a name="test-the-api-locally"></a>在本機測試 API
 
 1. 啟動 Node.js 應用程式
     ```bash
@@ -239,9 +229,7 @@ ms.lasthandoff: 06/28/2017
 5. [!INCLUDE [Create API app](../../includes/app-service-api-create-api-app.md)] 
 
 
-<a id="deploy-the-api-with-git" class="xliff"></a>
-
-## 使用 Git 部署 API
+## <a name="deploy-the-api-with-git"></a>使用 Git 部署 API
 
 將認可從本機 Git 存放庫推送至 Azure App Service，以將您的程式碼部署到 API 應用程式。
 
@@ -268,9 +256,7 @@ ms.lasthandoff: 06/28/2017
 
 5. [!INCLUDE [Push to Azure](../../includes/app-service-api-git-push-to-azure.md)]  
  
-<a id="test-the-api--in-azure" class="xliff"></a>
-
-## 在 Azure 中測試 API
+## <a name="test-the-api--in-azure"></a>在 Azure 中測試 API
 
 1. 將瀏覽器開啟至 http://app_name.azurewebsites.net/contacts。 您會看到傳回的 JSON 與您稍早在本教學課程中於本機所做的要求相同。
 
@@ -298,9 +284,7 @@ ms.lasthandoff: 06/28/2017
 
     現在只要將認可推送至 Azure Git 存放庫，即可將範例 API 的更新部署至 Azure。
 
-<a id="clean-up" class="xliff"></a>
-
-## 清除
+## <a name="clean-up"></a>清除
 
 若要移除在本快速入門中建立的資源，請執行下列 Azure CLI 命令︰
 
@@ -308,9 +292,7 @@ ms.lasthandoff: 06/28/2017
 az group delete --name myResourceGroup
 ```
 
-<a id="next-step" class="xliff"></a>
-
-## 後續步驟 
+## <a name="next-step"></a>後續步驟 
 > [!div class="nextstepaction"]
 > [使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)
 

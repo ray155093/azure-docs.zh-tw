@@ -2,7 +2,7 @@
 title: "Azure 監視器度量 - 每個資源類型所支援的度量 | Microsoft Docs"
 description: "AAzure 監視器每一個資源類型的可用度量清單。"
 author: johnkemnetz
-manager: rboucher
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -19,7 +19,6 @@ ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
 ms.openlocfilehash: b034251438c65dd13d9ca0bb116699532e3960ef
 ms.contentlocale: zh-tw
 ms.lasthandoff: 07/06/2017
-
 
 ---
 # <a name="supported-metrics-with-azure-monitor"></a>支援 Azure 監視器的度量
