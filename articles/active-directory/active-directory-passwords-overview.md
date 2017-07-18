@@ -1,5 +1,4 @@
 ---
-
 title: "Azure AD 自助式密碼重設概觀 | Microsoft Docs"
 description: "Azure AD 中的自助式密碼重設可為您的組織做些什麼？"
 services: active-directory
@@ -13,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/19/2017
+ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
 ms.translationtype: Human Translation
@@ -21,7 +20,6 @@ ms.sourcegitcommit: 300958a69fc854cb8db02120a383a4cbbfcacd7b
 ms.openlocfilehash: 9f72a4900f20282827ff939aa41bc4f306e547a3
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/20/2017
-
 
 ---
 # <a name="azure-ad-self-service-password-reset-for-the-it-professional"></a>適用於 IT 專業人員的 Azure AD 自助式密碼重設
