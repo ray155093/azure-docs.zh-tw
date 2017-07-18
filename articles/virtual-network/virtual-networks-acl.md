@@ -1,11 +1,12 @@
 ---
-title: "什麼是網路存取控制清單 (ACL)？"
-description: "了解 ACL"
+title: "什麼是 Azure 網路存取控制清單？"
+description: "了解 Azure 中的存取控制清單"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
-editor: tysonn
+manager: timlt
+editor: 
+tags: azure-service-management
 ms.assetid: 83d66c84-8f6b-4388-8767-cd2de3e72d76
 ms.service: virtual-network
 ms.devlang: na
@@ -14,31 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 66ddcea180395b830cdb5310446e1dbc02e7d784
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 9a0c85367968c9b38104012d75b1f3975be82cc1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
-# <a name="what-is-an-endpoint-access-control-list-acls"></a>什麼是端點存取控制清單 (ACL)？
-端點存取控制清單 (ACL) 是適用於您 Azure 部署的安全性增強功能。 ACL 提供針對虛擬機器端點選擇性允許或拒絕流量的功能。 此封包篩選功能提供了一層額外的安全性。 您可以僅針對端點指定網路 ACL。 您無法針對虛擬網路或是包含在虛擬網路中的特定子網路指定 ACL。
+# <a name="what-is-an-endpoint-access-control-list"></a>什麼是端點存取控制清單？
 
 > [!IMPORTANT]
-> 建議在網路安全性群組 (NSG) 可用時，用其取代 ACL 的使用。 若要深入了解 NSG，請參閱＜ [什麼是網路安全性群組？](virtual-networks-nsg.md)＞。
-> 
-> 
+> Azure 有兩種不同的[部署模型](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json)來建立和使用資源：Resource Manager 和傳統。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署都使用 Resource Manager 部署模型。 
 
-您可以使用 PowerShell 或管理入口網站設定 ACL。 若要使用 PowerShell 設定網路 ACL，請參閱＜ [使用 PowerShell 管理端點的存取控制清單 (ACL)](virtual-networks-acl-powershell.md)＞。 若要使用管理入口網站來設定網路 ACL，請參閱[如何設定虛擬機器的端點](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+端點存取控制清單 (ACL) 是可供您的 Azure 部署使用的安全性增強功能。 ACL 提供針對虛擬機器端點選擇性允許或拒絕流量的功能。 此封包篩選功能提供了一層額外的安全性。 您可以僅針對端點指定網路 ACL。 您無法針對虛擬網路或是包含在虛擬網路中的特定子網路指定 ACL。 建議您儘可能使用網路安全性群組 (NSG) 來取代 ACL。 若要深入了解 NSG，請參閱[網路安全性群組概觀](virtual-networks-nsg.md)
+
+您可以使用 PowerShell 或 Azure 入口網站來設定 ACL。 若要使用 PowerShell 來設定網路 ACL，請參閱[使用 PowerShell 來管理端點的存取控制清單](virtual-networks-acl-powershell.md)。 若要使用 Azure 入口網站來設定網路 ACL，請參閱[如何設定虛擬機器的端點](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 您可以使用網路 ACL 執行下列作業：
 
 * 根據遠端子網路與虛擬機器輸入端點的 IPv4 位址範圍，選擇性允許或拒絕傳入流量。
 * 將 IP 位址加入黑名單
 * 為每個虛擬機器端點建立多個規則
-* 為每個虛擬機器端點指定最多 50 個 ACL 規則
 * 使用規則順序以確保正確的規則集套用於指定的虛擬機器端點 (從最低到最高)
 * 為特定遠端子網路 IPv4 位址指定 ACL。
+
+如需了解 ACL 限制，請參閱 [Azure 限制](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#networking-limits)一文。
 
 ## <a name="how-acls-work"></a>ACL 的運作方式
 ACL 是包含規則清單的物件。 當您建立 ACL 並將它套用到虛擬機器端點時，封包篩選會在您 VM 的主機節點上進行。 這表示來自遠端 IP 位址的流量會透過符合 ACL 規則的主機節點進行篩選，而非在您的 VM 上。 這可讓您的 VM 在封包篩選時免於耗費珍貴的 CPU 週期。
@@ -85,11 +87,11 @@ ACL 是包含規則清單的物件。 當您建立 ACL 並將它套用到虛擬�
 | 200 |175.0.0.0/8 |80 |允許 |
 
 ## <a name="network-acls-and-load-balanced-sets"></a>網路 ACL 和負載平衡集合
-網路 ACL 可以在負載平衡集合 (LB 集合) 端點上進行指定。 如果針對 LB 集合指定 ACL，則網路 ACL 會套用至該 LB 集合中的所有虛擬機器。 例如，如果以「連接埠 80」建立 LB 集合，而此 LB 集合包含 3 個 VM，則在其中一個 VM 的端點「連接埠 80」上所建立的網路 ACL 會自動套用至其他 VM。
+您可以在負載平衡集端點上指定網路 ACL。 如果已為負載平衡集指定 ACL，系統就會將網路 ACL 套用至該負載平衡集內的所有虛擬機器。 例如，如果建立一個使用「連接埠 80」的負載平衡集，而該負載平衡集包含 3 個 VM，則在其中一個 VM 的端點「連接埠 80」上建立的網路 ACL 會自動套用至其他 VM。
 
 ![網路 ACL 和負載平衡集合](./media/virtual-networks-acl/IC674733.png)
 
 ## <a name="next-steps"></a>後續步驟
-[如何使用 PowerShell 管理存取控制清單 (ACL) 端點](virtual-networks-acl-powershell.md)
+[使用 PowerShell 來管理端點的存取控制清單](virtual-networks-acl-powershell.md)
 
 

@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/21/2016
+ms.date: 07/05/2017
 ms.author: nini
-translationtype: Human Translation
-ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
-ms.openlocfilehash: ac94bca1657efbe0ce94db953933f026217d1c8a
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 6f864581fe1d1771371d6805407cb881fedb4187
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -29,14 +30,16 @@ ms.lasthandoff: 02/28/2017
 >
 >
 
+![Service Fabric 符號](./media/log-analytics-service-fabric/service-fabric-assessment-symbol.png)
+
 這篇文章說明如何在 Log Analytics 中使用 Service Fabric 解決方案，協助識別整個 Service Fabric 叢集的問題並且進行疑難排解。
 
 Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，方法是從 Azure WAD 資料表收集此資料。 然後 Log Analytics 會讀取 Service Fabric 架構事件，包括**可靠的服務事件**、**動作項目事件**、**操作事件**和**自訂 ETW 事件**。 使用解決方案儀表板，就能夠檢視 Service Fabric 環境中值得注意的問題和相關事件。
 
-若要開始使用解決方案，您必須連接到 Log Analytics 工作區的 Service Fabric 叢集。 以下是三個要考量的案例：
+若要開始使用解決方案，您必須將 Service Fabric 叢集連接到 Log Analytics 工作區。 以下是三個要考量的案例：
 
 1. 如果您尚未部署 Service Fabric 叢集，使用***部署連接至 Log Analytics 工作區的 Service Fabric 叢集***中的步驟，以部署新的叢集，並將它設定為 Log Analytics 的報告。
-2. 如果您需要從您的主機收集效能計數器，以在您的 Service Fabric 叢集上使用其他 OMS 解決方案 (例如安全性)，請依照***部署連接至已安裝 VM 擴充的 OMS 工作區的 Service Fabric 叢集***中的步驟。
+2. 如果需要從主機收集效能計數器，以在 Service Fabric 叢集上使用其他 OMS 解決方案 (例如安全性)，請遵循***針對已安裝 VM 擴充的 Log Analytics 工作區，部署連接至工作區的 Service Fabric 叢集***中的步驟。
 3. 如果您已部署您的 Service Fabric 叢集，並且想要將它連接到 Log Analytics，請依照***將現有的儲存體帳戶新增至 Log Analytics*** 中的步驟。
 
 ## <a name="deploy-a-service-fabric-cluster-connected-to-a-log-analytics-workspace"></a>部署連接至 Log Analytics 工作區的 Service Fabric 叢集。
@@ -48,7 +51,9 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 
 [![部署至 Azure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fservice-fabric-oms%2F%2Fazuredeploy.json)
 
-一旦您選取上方的部署按鈕，您會到達 Azure 入口網站，具有供您編輯的參數。 如果您輸入新的 Log Analytics 工作區名稱，請務必建立新的資源群組︰![Service Fabric](./media/log-analytics-service-fabric/2.png)
+一旦選取上方的部署按鈕，Azure 入口網站便會開啟，並顯示可供編輯的參數。 如果您輸入新的 Log Analytics 工作區名稱，請務必建立新的資源群組︰
+
+![Service Fabric](./media/log-analytics-service-fabric/2.png)
 
 ![Service Fabric](./media/log-analytics-service-fabric/3.png)
 
@@ -56,13 +61,13 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 
 ![Service Fabric](./media/log-analytics-service-fabric/4.png)
 
-## <a name="deploy-a-service-fabric-cluster-connected-to-an-oms-workspace-with-vm-extension-installed"></a>部署連接至已安裝 VM 擴充的 OMS 工作區的 Service Fabric 叢集。
+## <a name="deploy-a-service-fabric-cluster-connected-to-a-log-analytics-workspace-with-vm-extension-installed"></a>針對已安裝 VM 擴充的 Log Analytics 工作區，部署連接至工作區的 Service Fabric 叢集。
 此範本會執行以下動作：
 
 1. 部署已連接至 Log Analytics 工作區的 Azure Service Fabric 叢集。 您可以建立新的工作區，或是使用現有的工作區。
 2. 將診斷儲存體帳戶新增至 Log Analytics 工作區。
 3. 在 Log Analytics 工作區中啟用 Service Fabric 解決方案。
-4. 在 Service Fabric 叢集中的每個 VM 擴展集安裝 MMA 代理程式擴充。 安裝 MMA 代理程式之後，您就可以檢視節點的效能度量。
+4. 在 Service Fabric 叢集中，於每個虛擬機器擴展集中安裝 MMA 代理程式擴充。 安裝 MMA 代理程式之後，您就可以檢視節點的效能度量。
 
 [![部署至 Azure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fservice-fabric-vmss-oms%2F%2Fazuredeploy.json)
 
@@ -115,7 +120,7 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 [![部署至 Azure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Foms-existing-storage-account%2Fazuredeploy.json)
 
 > [!NOTE]
-> 在選取資源群組時，如果您正在使用現有的 Log Analytics 工作區，則選取 [使用現有]，並搜尋包含 OMS 工作區的資源群組。 否則建立一個新的。
+> 在選取資源群組時，如果您正在使用現有的 Log Analytics 工作區，請選取 [使用現有]，並搜尋包含 Log Analytics 工作區的資源群組。 否則建立一個新的。
 > ![Service Fabric](./media/log-analytics-service-fabric/8.png)
 >
 >
@@ -124,7 +129,7 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 ![Service Fabric](./media/log-analytics-service-fabric/9.png)
 
 ## <a name="view-service-fabric-events"></a>檢視 Service Fabric 事件
-一旦完成部署，並在您的工作區中啟用 Service Fabric 解決方案，請在 Log Analytics 入口網站選取 **Service Fabric** 圖格，以啟動 Service Fabric 儀表板。 此儀表板包含下表中的資料行。 每個資料行依計數列出前十個事件，這幾個事件符合該資料行中指定時間範圍的準則。 您可以按一下每個資料行右下角的 [查看全部] ，或按一下資料行標頭，以執行記錄搜尋來提供完整清單。
+一旦完成部署，並在您的工作區中啟用 Service Fabric 解決方案，請在 Log Analytics 入口網站選取 **Service Fabric** 圖格，以啟動 Service Fabric 儀表板。 此儀表板包含下表中的資料行。 每個資料行依計數列出前 10 個事件，這幾個事件符合該資料行中指定時間範圍的準則。 您可以按一下每個資料行右下角的 [查看全部] ，或按一下資料行標頭，以執行記錄搜尋來提供完整清單。
 
 | **Service Fabric 事件** | **description** |
 | --- | --- |
@@ -140,12 +145,12 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 
 下表顯示 Service Fabric 的資料收集方法及如何收集資料的其他詳細資料。
 
-| 平台 | 直接代理程式 | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
+| 平台 | 直接代理程式 | Operations Manager 代理程式 | Azure 儲存體 | 是否需要 Operations Manager？ | 透過管理群組傳送的 Operations Manager 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |![否](./media/log-analytics-malware/oms-bullet-red.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |![是](./media/log-analytics-malware/oms-bullet-green.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |10 分鐘 |
 
 > [!NOTE]
-> 您可以按一下儀表板頂端的 [根據最近 7 天的資料]，變更 Service Fabric 解決方案中這些事件的範圍。 您也可以顯示過去 7 天、1 天或 6 個小時內產生的事件。 或者，也可以選取 [自訂]，以指定自訂日期範圍。
+> 您可以按一下儀表板頂端的 [根據最近 7 天的資料]，變更 Service Fabric 解決方案中這些事件的範圍。 您也可以顯示過去七天、一天或六個小時內產生的事件。 或者，也可以選取 [自訂]，以指定自訂日期範圍。
 >
 >
 

@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 2/23/2017
 ms.author: markgal;trinadhk;
-translationtype: Human Translation
-ms.sourcegitcommit: b188affca609dd5ff3aa0d2cba3ec81c1c91888f
-ms.openlocfilehash: 3528294d944fd71fc98a30e2736e1245e50c3be6
-ms.lasthandoff: 02/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: aa6b75ef1786021b56a59ad1bea2d45eb74ad25f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -179,6 +180,15 @@ ms.lasthandoff: 02/24/2017
   >
 
 現已安裝代理程式，且已向保存庫註冊您的電腦。 您已準備好可以設定及排程備份。
+
+## <a name="network-and-connectivity-requirements"></a>網路和連線性需求
+
+如果您的電腦/Proxy 具有受限的網際網路存取，請確保將電腦/Proxy 上的防火牆設定，設定為允許下列 URL： <br>
+    1. www.msftncsi.com
+    2. *.Microsoft.com
+    3. *.WindowsAzure.com
+    4. *.microsoftonline.com
+    5. *.windows.ne
 
 
 ## <a name="create-the-backup-policy"></a>建立備份原則

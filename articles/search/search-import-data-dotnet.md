@@ -1,5 +1,5 @@
 ---
-title: "使用 .NET SDK 在 Azure 搜尋服務中上傳資料 | Microsoft Docs"
+title: "上傳資料 (.NET - Azure 搜尋服務) | Microsoft Docs"
 description: "了解如何使用 .NET SDK 將資料上傳至 Azure 搜尋服務中的索引。"
 services: search
 documentationcenter: 
@@ -15,10 +15,11 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 01/13/2017
 ms.author: brjohnst
-translationtype: Human Translation
-ms.sourcegitcommit: 1f06a7197cc1a6dcf7a39c91183a4317bef126bb
-ms.openlocfilehash: 3c8f30583ebcb5b4e4182bd2770079882c088c50
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 7676262b7bca47444aee7b10a131c01e6b697e7b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="upload-data-to-azure-search-using-the-net-sdk"></a>使用 .NET SDK 將資料上傳到 Azure 搜尋服務
@@ -236,10 +237,5 @@ public partial class Hotel
 
 ## <a name="next-steps"></a>後續步驟
 在填入 Azure 搜尋服務索引後，您就可以開始發出查詢來搜尋文件。 如需詳細資料，請參閱 [查詢 Azure 搜尋服務索引](search-query-overview.md) 。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

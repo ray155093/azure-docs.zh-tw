@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/05/2017
+ms.date: 06/06/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 06fe033be4df07d8c691733016bc7c44dd49f51c
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: e0c44f6aabb56dfc97188bafa5e54ce2a0183e11
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -37,20 +38,16 @@ ms.lasthandoff: 04/06/2017
 * 您想要建立的方案需要什麼類型的 VPN 閘道?
 * 您應該使用哪一種閘道 SKU？
 
+
+### <a name="planning-table"></a>規劃表
 下表可以協助您為您的解決方案決定最佳的連線選項。
 
 [!INCLUDE [vpn-gateway-cross-premises](../../includes/vpn-gateway-cross-premises-include.md)]
 
-### <a name="gwrequire"></a>依據 VPN 類型和 SKU 的閘道需求
-[!INCLUDE [vpn-gateway-gwsku](../../includes/vpn-gateway-gwsku-include.md)]
 
-如需關於閘道器 SKU 的資訊，請參閱 [VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。
-
-#### <a name="aggregate-throughput-by-sku-and-vpn-type"></a>依 SKU 和 VPN 類型彙總輸送量
+### <a name="gateway-skus"></a>閘道 SKU
 [!INCLUDE [vpn-gateway-table-gwtype-aggtput](../../includes/vpn-gateway-table-gwtype-aggtput-include.md)]
 
-#### <a name="supported-configurations-by-sku-and-vpn-type"></a>依 SKU 和 VPN 類型列出的支援組態
-[!INCLUDE [vpn-gateway-table-requirements](../../includes/vpn-gateway-table-requirements-include.md)]
 
 ### <a name="wf"></a>工作流程
 下列清單列出常見的雲端連線工作流程：
@@ -66,7 +63,7 @@ ms.lasthandoff: 04/06/2017
 先來看看 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md) 一文中的圖表。 本文包含基本圖表、每種拓撲的部署模型 (Resource Manager 或傳統)，並說明您可以使用哪種部署工具來部署組態。   
 
 ### <a name="designbasics"></a>設計基本概念
-下列各節將討論 VPN 閘道的基本概念。 另外，也請考量 [網路服務限制](../azure-subscription-service-limits.md#networking-limits)。
+下列各節將討論 VPN 閘道的基本概念。 另外，也請考量[網路服務限制](../azure-subscription-service-limits.md#networking-limits)。
 
 #### <a name="subnets"></a>關於子網路
 當您建立連線時，必須考量您的子網路範圍。 子網路位址範圍不能重疊。 當一個虛擬網路或內部部署位置包含的位址空間與其他位置重複時，就會發生子網路重疊的情況。 這表示您需要請本機內部部署網路的網路工程師為您切割出一個範圍，以供您用於 Azure IP 位址空間/子網路。 您需要本機內部部署網路並未使用的位址空間。 

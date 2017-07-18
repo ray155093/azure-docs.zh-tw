@@ -13,14 +13,14 @@ ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 05/26/2017
+ms.date: 06/26/2017
 ms.author: cjiang
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 8cf37f85236154183590dc07808222125b459acd
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 7453a6525b053e73fd8c935d578ffa9604d6e021
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/31/2017
+ms.lasthandoff: 07/04/2017
 
 
 ---
@@ -28,6 +28,11 @@ ms.lasthandoff: 03/31/2017
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
 
 [!INCLUDE [support-disclaimer](../../../includes/support-disclaimer.md)]
+
+## <a name="top-issues"></a>常見問題
+[!INCLUDE [support-disclaimer](../../../includes/virtual-machines-windows-troubleshoot-deploy-vm-top.md)]
+
+如需了解其他 VM 部署問題，請參閱[針對 Azure 中的 Windows 虛擬機器部署問題進行疑難排解](troubleshoot-deploy-vm.md)。
 
 ## <a name="collect-activity-logs"></a>收集活動記錄
 若要開始進行排解疑難，請收集活動記錄，以識別與問題相關的錯誤。 下列連結提供此程序該遵循的更多詳細資訊。

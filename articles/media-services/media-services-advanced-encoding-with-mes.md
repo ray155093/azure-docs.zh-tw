@@ -12,12 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 06/29/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: 01448fcff64e99429e2ee7df916b110c869307fb
-ms.openlocfilehash: 7776ac35f1a8a30c959286a9e31beb666f5fc799
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: 25a13ad3738286795f45bbdec681614356bd3db8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -27,6 +28,10 @@ ms.lasthandoff: 03/02/2017
 ## <a name="overview"></a>概觀
 
 本主題說明如何自訂媒體編碼器標準預設。 [透過使用自訂預設的媒體編碼器標準進行編碼](media-services-custom-mes-presets-with-dotnet.md)主題說明如何使用 .NET 來建立編碼工作，以及執行此工作的作業。 一旦您自訂預設之後，請將自訂預設提供給編碼工作。 
+
+>[!NOTE]
+>如果使用 XML 預設值，請務必維持元素的順序，如下列 XML 範例所示 (例如，KeyFrameInterval 應在 SceneChangeDetection 之前)。
+>
 
 在本主題中，將示範執行下列編碼工作的自訂預設。
 
@@ -909,15 +914,16 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
 請參閱 [以 Media Encoder Standard 裁剪影片](media-services-crop-video.md) 主題。
 
 ## <a id="no_video"></a>在輸入不含視訊時插入視訊播放軌
+
 依照預設，如果您傳送僅包含音訊訊不含視訊的輸入到編碼器，輸出資產將包含僅含音訊資料的檔案。 某些播放器，包括 Azure 媒體播放器 (請參閱 [這篇文章](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/8082468-audio-only-scenarios))，可能無法處理這類串流。 您可以在該案例中使用此設定來強制編碼器將單色視訊播放軌新增至輸出。
 
 > [!NOTE]
 > 強制編碼器插入輸出視訊播放軌，將會增加輸出資產的大小，並提升編碼工作所產生的成本。 您應該執行測試，以確認所導致的成本提升對您的每月費用沒有太大的影響。
 >
->
 
 ### <a name="inserting-video-at-only-the-lowest-bitrate"></a>於最低位元速率插入視訊
-假設您正在使用多重位元速率編碼預設值 (例如 [「H264 Multiple 多重位元速率 720p」](media-services-mes-preset-h264-multiple-bitrate-720p.md) ) 來將整個輸入目錄針對串流進行編碼，這將會包含各種視訊檔案和純音訊檔案。 在這個案例中，當輸入沒有視訊時，您可能需要強制編碼器於最低位元速率插入單色視訊播放軌，而非於所有輸出位元速率插入視訊。 若要達成此目的，您必須指定 "InsertBlackIfNoVideoBottomLayerOnly" 旗標。
+
+假設您正在使用多重位元速率編碼預設值 (例如 [「H264 Multiple 多重位元速率 720p」](media-services-mes-preset-h264-multiple-bitrate-720p.md) ) 來將整個輸入目錄針對串流進行編碼，這將會包含各種視訊檔案和純音訊檔案。 在這個案例中，當輸入沒有視訊時，您可能需要強制編碼器於最低位元速率插入單色視訊播放軌，而非於所有輸出位元速率插入視訊。 為達成此目的，您必須使用 **InsertBlackIfNoVideoBottomLayerOnly** 旗標。
 
 您可以使用[此](media-services-mes-presets-overview.md)節記載的任何 MES 預設值，並執行以下修改：
 
@@ -932,9 +938,30 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
     }
 
 #### <a name="xml-preset"></a>XML 預設值
-    <KeyFrameInterval>00:00:02</KeyFrameInterval>
-    <StretchMode>AutoSize</StretchMode>
-    <Condition>InsertBlackIfNoVideoBottomLayerOnly</Condition>
+
+使用 XML 時，請使用 Condition="InsertBlackIfNoVideoBottomLayerOnly" 做為 **H264Video** 元素的屬性，並使用 Condition="InsertSilenceIfNoAudio" 做為 **AACAudio** 的屬性。
+    
+    . . .
+    <Encoding>  
+    <H264Video Condition="InsertBlackIfNoVideoBottomLayerOnly">  
+      <KeyFrameInterval>00:00:02</KeyFrameInterval>
+      <SceneChangeDetection>true</SceneChangeDetection>  
+      <StretchMode>AutoSize</StretchMode>
+      <H264Layers>  
+    <H264Layer>  
+      . . .
+    </H264Layer>  
+      </H264Layers>  
+      <Chapters />  
+    </H264Video>  
+    <AACAudio Condition="InsertSilenceIfNoAudio">  
+      <Profile>AACLC</Profile>  
+      <Channels>2</Channels>  
+      <SamplingRate>48000</SamplingRate>  
+      <Bitrate>128</Bitrate>  
+    </AACAudio>  
+    </Encoding>  
+    . . .
 
 ### <a name="inserting-video-at-all-output-bitrates"></a>以所有輸出位元速率插入視訊
 假設您正在使用多重位元速率編碼預設值 (例如 [「H264 Multiple 多重位元速率 720p」](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) ) 來將整個輸入目錄針對串流進行編碼，這將會包含各種視訊檔案和純音訊檔案。 在這個案例中，當輸入沒有視訊時，您可能需要強制編碼器於所有輸出位元速率插入單色視訊播放軌。 這能確保您所有的輸出資產與視訊播放軌和音訊播放軌之間的同質性。 若要達成此目的，您必須指定 "InsertBlackIfNoVideo" 旗標。
@@ -952,9 +979,30 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
     }
 
 #### <a name="xml-preset"></a>XML 預設值
-    <KeyFrameInterval>00:00:02</KeyFrameInterval>
-    <StretchMode>AutoSize</StretchMode>
-    <Condition>InsertBlackIfNoVideo</Condition>
+
+使用 XML 時，請使用 Condition="InsertBlackIfNoVideo" 做為 **H264Video** 元素的屬性，並使用 Condition="InsertSilenceIfNoAudio" 做為 **AACAudio** 的屬性。
+
+    . . .
+    <Encoding>  
+    <H264Video Condition="InsertBlackIfNoVideo">  
+      <KeyFrameInterval>00:00:02</KeyFrameInterval>
+      <SceneChangeDetection>true</SceneChangeDetection>  
+      <StretchMode>AutoSize</StretchMode>
+      <H264Layers>  
+    <H264Layer>  
+      . . .
+    </H264Layer>  
+      </H264Layers>  
+      <Chapters />  
+    </H264Video>  
+    <AACAudio Condition="InsertSilenceIfNoAudio">  
+      <Profile>AACLC</Profile>  
+      <Channels>2</Channels>  
+      <SamplingRate>48000</SamplingRate>  
+      <Bitrate>128</Bitrate>  
+    </AACAudio>  
+    </Encoding>  
+    . . .  
 
 ## <a id="rotate_video"></a>旋轉視訊
 [媒體編碼器標準](media-services-dotnet-encode-with-media-encoder-standard.md)支援 0/90/180/270 度的旋轉角度。 預設行為是「自動」，此時它會嘗試偵測內送之視訊檔案的旋轉中繼資料並加以補償。 將以下 **Sources** 元素包含至[此](media-services-mes-presets-overview.md)節所定義的其中一個預設項目：

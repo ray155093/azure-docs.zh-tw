@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: 0786e54c288f30b0039c1d0b88f5c5b5965eecef
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: 46a036c5f1646197522874b1302b95947e90cdd8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 06/29/2017
 
 
 ---
@@ -210,8 +210,15 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論伺服器在雲端�
 
 ## <a name="providing-certificate-data-to-resource-manager-templates"></a>提供 Resource Manager 範本的憑證資料
 
-使用 SSL 搭配範本時，必須以 base64 字串形式提供憑證，而不是上傳憑證。 若要將 .pfx 或 .cer 轉換成 base64 字串，請執行下列 PowerShell 命令。 這個程式碼片段會將憑證轉換為可供範本使用的 base64 字串。 預期的輸出是可以儲存在變數並貼在範本中的字串。
+使用 SSL 搭配範本時，必須以 base64 字串形式提供憑證，而不是上傳憑證。 若要將 .pfx 或 .cer 轉換為 Base64 字串，請使用下列其中一個命令。 下列命令會將憑證轉換為可以提供給範本的 Base64 字串。 預期的輸出是可以儲存在變數並貼在範本中的字串。
 
+### <a name="macos"></a>macOS
+```bash
+cert=$( base64 <certificate path and name>.pfx )
+echo $cert
+```
+
+### <a name="windows"></a>Windows
 ```powershell
 [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("<certificate path and name>.pfx"))
 ```

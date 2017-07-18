@@ -5,17 +5,16 @@ services: postgresql
 author: kamathsun
 ms.author: sukamat
 manager: jhubbard
-editor: jasonh
-ms.assetid: 
+editor: jasonwhowell
+ms.custom: mvc
 ms.service: postgresql-database
-ms.tgt_pltfrm: portal
 ms.topic: overview
-ms.date: 05/10/2017
+ms.date: 07/05/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 8aae9994f8fc6bb8e4e5368a1495dd257be0417f
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: 30ab79ed40381aaa7a8cf88193fac8d59ecbbced
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 ---
 # <a name="what-is-azure-database-for-postgresql"></a>什麼是 Azure Database for PostgreSQL？
@@ -42,16 +41,17 @@ Azure Database for PostgreSQL 是 Microsoft 雲端中以開放原始碼 [Postgre
 Azure Database for PostgreSQL 目前提供兩個服務層︰基本和標準。 每個服務層提供[不同層級的效能、IOPS 保證和功能](concepts-service-tiers.md)，以支援輕量到重量級的資料庫工作負載。 您可以在小型伺服器中建置第一個應用程式，一個月只需少許花費。接著可隨時以手動或程式設計方式在服務層內[變更效能等級](scripts/sample-scale-server-up-or-down.md)，以符合您的解決方案需求。 當您這麼做的時候，您的應用程式或客戶皆無須停機。 動態延展性可讓您的資料庫以透明的方式回應快速變化的資源需求，並且讓您只需支付您所需的資源費用。
 
 ## <a name="monitoring-and-alerting"></a>監視和警示
-
 如何決定何時應增加或減少？ 您使用內建的效能監視和警示功能，加上以計算單位為基礎的效能分級。 使用這些工具，您可以根據目前或計畫中的效能需求快速評估相應增加或減少計算單位的影響。 如需詳細資訊，請參閱 [Azure Database for PostgreSQL 選項和效能：了解每個服務層中可用的項目](./concepts-service-tiers.md)。
 
 ## <a name="keep-your-app-and-business-running"></a>讓您的應用程式和業務持續運作
-
 Azure 領先業界的 99.99% 可用性 (不是預覽狀態) 服務等級協定 (SLA) (由 Microsoft 管理之資料中心的全球網路提供支援)，可協助讓您的應用程式 24 小時全年無休地運作。 使用每一 Azure Database for PostgreSQL 伺服器，您可以利用內建的安全性、容錯功能，以及可能需要另外設計、購買、建置和管理的資料保護功能。 使用 Azure Database for PostgreSQL 時，每個服務層都會提供一組完整的業務持續性功能和選項，讓您能夠用來啟動和執行，並持續維持該狀態。 您可以使用[時間點還原](howto-restore-server-portal.md)將資料庫回復成先前的狀態，最久可至 35 天前。 此外，如果裝載資料庫的資料中心發生中斷情形，您可以從最新備份的異地備援複本還原資料庫。
 
 ## <a name="secure-your-data"></a>保護您的資料
-
 Azure 資料庫服務一向重視資料安全性，Azure Database for PostgreSQL 以限制存取、保護靜止和移動中資料及協助監視活動等功能承襲了這項傳統。 如需 Azure 平台安全性的相關資訊，請造訪 [Azure 信任中心 (英文)](https://www.microsoft.com/TrustCenter/Security/default.aspx)。
+
+適用於 PostgreSQL 的 Azure 資料庫服務針對靜止資料使用儲存體加密。 所有資料 (包括備份) 都已在磁碟上加密。 該服務使用包含在 Azure 儲存體加密中的 AES 256 位元加密，且金鑰是由系統進行管理。 儲存體加密會一律啟用，且無法停用。
+
+根據預設，適用於 PostgreSQL 的 Azure 資料庫服務已設為針對跨網路的動態資料需要 [SSL 連線安全性](./concepts-ssl-connection-security.md)。 在您的資料庫伺服器和用戶端應用程式之間強制使用 SSL 連線，可將伺服器與應用程式之間的資料流加密，有助於抵禦「中間人」攻擊。  (選擇性) 如果您的用戶端應用程式不支援 SSL 連線能力，您可以停用需要 SSL 才能連接到您資料庫服務的功能。
 
 ## <a name="next-steps"></a>後續步驟
 - 如需成本比較和計算機，請參閱[定價頁面](https://azure.microsoft.com/pricing/details/postgresql/)。

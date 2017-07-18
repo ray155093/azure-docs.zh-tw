@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 2548f779767635865daf790d301d86feff573a29
-ms.openlocfilehash: cb0b5489ccfabb0e2a4ee412162a18930073b309
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: a38b237d5bfc0450c1ca79b53a5784dbb9bf8602
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/24/2017
+ms.lasthandoff: 07/11/2017
 
 
 
@@ -33,7 +33,7 @@ ms.lasthandoff: 01/24/2017
 > 
 > 
 
-本教學課程會示範如何使用 [Redgate 的資料平台 Studio](http://www.red-gate.com/products/azure-development/data-platform-studio/) (DP) 將資料從內部部署 SQL Server 移至 Azure SQL 資料倉儲。 資料平台 Studio 會套用最適當的相容性修正檔與最佳化，因此它是開始使用 SQL 資料倉儲最快的方式。
+本教學課程會示範如何使用 [Redgate 的資料平台 Studio](http://www.red-gate.com/products/azure-development/data-platform-studio/) (DPS) 將資料從內部部署 SQL Server 移至 Azure SQL 資料倉儲。 資料平台 Studio 會套用最適當的相容性修正檔與最佳化，因此它是開始使用 SQL 資料倉儲最快的方式。
 
 > [!NOTE]
 > [Redgate](http://www.red-gate.com) 是長期的 Microsoft 合作夥伴，提供各種 SQL Server 工具。 在資料平台 Studio 中的這項功能已免費提供商業和非商業使用。
@@ -67,7 +67,7 @@ ms.lasthandoff: 01/24/2017
 ![][1]
 
 ## <a name="step-3-install-the-data-platform-studio-gateway"></a>步驟 3︰安裝資料平台 Studio 閘道器
-若要連接到您的內部部署 SQL Server 資料庫，您需要安裝 DPS 閘道器。 閘道器是用戶端代理程式，可提供您內部部署環境的存取權、擷取資料，並將它上傳至儲存體帳戶。 您的資料永遠不會通過 Redgate 的伺服器。 若要安裝閘道器：
+若要連線到您的內部部署 SQL Server 資料庫，您需要安裝 DPS 閘道器。 閘道器是用戶端代理程式，可提供您內部部署環境的存取權、擷取資料，並將它上傳至儲存體帳戶。 您的資料永遠不會通過 Redgate 的伺服器。 若要安裝閘道器：
 
 1. 按一下 [建立閘道器] 連結
 2. 使用所提供的安裝程式下載並安裝閘道器

@@ -17,11 +17,11 @@ ms.workload: na
 ms.date: 03/24/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1e6f2b9de47d1ce84c4043f5f6e73d462e0c1271
-ms.openlocfilehash: bc0c8ccad64166582dcb3f7162280a8772abc6b3
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: f9dff5384838521c309a2d2a5ebb5376c90159fb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/21/2017
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="introduction-to-private-docker-container-registries"></a>私人 Docker 容器登錄的簡介
@@ -52,6 +52,8 @@ Azure 容器登錄是可管理的 [Docker Registry](https://docs.docker.com/regi
 * **登錄庫** - 在您的 Azure 訂用帳戶中建立一或多個容器登錄庫。 每個登錄後有一個在相同位置中的標準 Azure [儲存體帳戶](../storage/storage-introduction.md)。 在與您的部署相同的 Azure 位置建立登錄，以利用容器映像接近網路的本機儲存體。 完整的登錄名稱具有 `myregistry.azurecr.io` 形式。
 
   使用 Azure Active Directory 支持的[服務主體](../active-directory/active-directory-application-objects.md)或提供的管理員帳戶，[控制](container-registry-authentication.md)對容器登錄庫的存取。 執行標準 `docker login` 命令驗證登錄庫。
+
+* **受管理登錄** - 為三個 SKU 中的登錄提供額外功能的層級 - 基本、標準和進階。 這些 SKU 中的映像會儲存在 Azure Container Registries 服務所管理的儲存體帳戶中，因此提高可靠性，並啟用新功能。 新功能包括 Webhook 整合、與 Azure Active Directory 的存放庫驗證，以及刪除功能支援。 使用者可以選擇選取受管理的登錄，或是建立在建立登錄時由其專屬儲存體帳戶所支援的登錄。
 
 * **儲存機制** - 登錄庫會包含一個或多個儲存機制，儲存機制是容器映像的群組。 Azure 容器登錄庫支援多層級的儲存機制命名空間。 這項功能可讓您將與特定應用程式相關的映像集合為群組，或將特定開發或作業團隊的應用程式集合為群組。 例如：
 

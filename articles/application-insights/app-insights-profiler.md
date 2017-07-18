@@ -13,10 +13,10 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 6a3c4273042a7684307d56341de1065ad45eb617
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: ad9174c47e1af8d5dba080ec82f2a56fbbf78782
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/29/2017
 
 
 ---
@@ -26,8 +26,7 @@ Application Insights 的這項功能在應用程式服務為 GA，在 Compute �
 
 使用 [Azure Application Insights](app-insights-overview.md) 的分析工具來了解即時 Web 應用程式中的每個方法各使用了多少時間。 此工具會顯示應用程式所提供之即時要求的詳細設定檔，並醒目提示使用最多時間的「最忙碌路徑」。 它會自動選取具有不同回應時間的範例。 分析工具會使用各種技術來盡量減少系統負荷。
 
-分析工具目前適用於在 Azure App Services (至少必須是基本定價層) 上執行的 ASP.NET Web 應用程式  (如果您使用 ASP.NET Core，則目標架構必須是 `.NetCoreApp`)。
-
+分析工具目前適用於在 Azure App Services (至少必須是基本定價層) 上執行的 ASP.NET Web 應用程式  
 
 <a id="installation"></a>
 ## <a name="enable-the-profiler"></a>啟用分析工具
@@ -196,18 +195,21 @@ CPU 正忙於執行指令。
 
 ## <a name="manual-installation"></a>手動安裝
 
-當您設定分析工具時，系統會對 Web 應用程式的設定進行下列更新。 如果您的環境需要，您可以手動方式自行將它們執行，例如，如果應用程式使用內部負載平衡器在私人網路中執行︰
+當您設定分析工具時，系統會對 Web 應用程式的設定進行下列更新。 如果您的環境需要，您能以手動方式自行執行它們，例如，如果應用程式在 Azure App Service Environment (ASE) 中執行︰
 
-1. 在 [Web 應用程式控制] 刀鋒視窗中，開啟 [設定]。
+1. 在 Web 應用程式控制刀鋒視窗中，開啟 [設定]。
 2. 將 [.Net Framework 版本] 設定為 [v4.6]。
-3. 將 [永遠開啟] 設定為 [開啟]。
-4. 新增應用程式設定「__APPINSIGHTS_INSTRUMENTATIONKEY__，並將其值設定為 SDK 所使用的同一個檢測金鑰。
-5. 在 [擴充功能] 中，新增 "Application Insights"。 安裝過程需要幾分鐘。
+3. 將 [一律開啟] 設定為 [開啟]。
+4. 新增應用程式設定 "__APPINSIGHTS_INSTRUMENTATIONKEY__"，並將其值設定為 SDK 所使用的同一個檢測金鑰。
+5. 開啟 [進階工具]。
+6. 按一下 [執行] 以開啟 Kudu 網站。
+7. 在 Kudu 網站中，選取 [網站擴充功能]。
+8. 從資源庫安裝 "__Application Insights__"。
+9. 重新啟動 Web 應用程式。
 
 ## <a id="aspnetcore"></a>ASP.NET Core 支援
 
-目標為 AI SDK 2.0 或更高版本的 ASP.NET Core 1.1.2 應用程式可使用分析工具。 
-
+ASP.NET Core 應用程式需要安裝 Microsoft.ApplicationInsights.AspNetCore Nuget 套件 2.1.0-beta6 或更新版本才能搭配分析工具使用。 在 2017/6/27 之後，我們將不再支援較低版本。
 
 ## <a name="next-steps"></a>後續步驟
 

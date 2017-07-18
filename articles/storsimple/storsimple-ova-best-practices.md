@@ -12,12 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 05/01/2017
+ms.date: 06/08/2017
 ms.author: alkohli
-translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 6d5563d06d9097134715f8885521c85e987a3acd
-ms.lasthandoff: 05/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: 56e8f5cf3886c740853a40781c42b3e36144134b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -163,7 +164,7 @@ StorSimple Virtual Array 可與單一儲存體帳戶相關聯。 此儲存體帳
 * 針對災害復原使用案例，可允許的共用/磁碟區數目為 16 個，而且可平行處理的共用/磁碟區數目上限也是 16 個，因此共用/磁碟區數目並不會影響到 RPO 和 RTO。
 
 #### <a name="volumeshare-type"></a>磁碟區/共用類型
-根據使用方式，StorSimple 可支援兩種磁碟區/共用類型︰固定在本機和分層。 固定在本機的磁碟區/共用會密集佈建，而分層式磁碟區/共用則會精簡佈建。 
+根據使用方式，StorSimple 可支援兩種磁碟區/共用類型︰固定在本機和分層。 固定在本機的磁碟區/共用會密集佈建，而分層式磁碟區/共用則會精簡佈建。 建立固定在本機的磁碟區/共用之後，即無法將其轉換成階層式磁碟區/共用，亦不能「反向操作」。
 
 在設定 StorSimple 磁碟區/共用時，建議您實作下列最佳作法︰
 

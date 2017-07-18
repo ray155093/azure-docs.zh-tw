@@ -3,181 +3,203 @@ title: "開始使用 Azure SQL 資料同步 (預覽) | Microsoft Docs"
 description: "本教學課程可協助您開始使用 Azure SQL 資料同步 (預覽)。"
 services: sql-database
 documentationcenter: 
-author: dearandyxu
+author: douglaslms
 manager: jhubbard
 editor: 
 ms.assetid: a295a768-7ff2-4a86-a253-0090281c8efa
 ms.service: sql-database
-ms.custom: sync data
-ms.workload: data-management
+ms.custom: load & move data
+ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/11/2016
-ms.author: jhubbard
-translationtype: Human Translation
-ms.sourcegitcommit: c8e285fc6fb82ab5c929236ac9cb5dc858924e57
-ms.openlocfilehash: 6535260a1650a2d3cc665eeb9d3ea33ae2de2650
-ms.lasthandoff: 01/25/2017
+ms.date: 06/08/2017
+ms.author: douglasl
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: af4d41f8fa04902c766cd85d7e90f61dff8133e7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
 # <a name="getting-started-with-azure-sql-data-sync-preview"></a>開始使用 Azure SQL 資料同步 (預覽)
-在本教學課程中，您將了解使用 Azure 傳統入口網站的 Azure SQL 資料同步基本概念。
+在本教學課程中，您將了解如何使用包含 Azure SQL Database 和 SQL Server 執行個體的混合式同步群組設定 Azure SQL 資料同步。 新的同步處理群組會依照您設定的排程完整設定和同步。
 
-本教學課程假設學員只有最少的 SQL Server 和 Azure SQL Database 使用經驗。 在本教學課程中，您將建立已完全設定的混合 (SQL Server 和 SQL Database 案例) 同步群組，並依照您設定的排程進行同步。
+本教學課程假設您先前至少有一些使用 SQL Database 和 SQL Server 的經驗。 
+
+如需 SQL 資料同步處理的概觀，請參閱[同步資料](sql-database-sync-data.md)。
 
 > [!NOTE]
-> Azure SQL 資料同步的完整技術文件集 (先前位於 MSDN 上) 現已透過 .pdf 檔案格式提供使用。 在 [這裡](http://download.microsoft.com/download/4/E/3/4E394315-A4CB-4C59-9696-B25215A19CEF/SQL_Data_Sync_Preview.pdf)下載。
->
->
+> Azure SQL 資料同步的完整技術文件集 (先前位於 MSDN 上) 現已透過 .pdf 檔案格式提供使用。 在 [這裡](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true)下載。
 
-## <a name="step-1-connect-to-the-azure-sql-database"></a>步驟 1：連接到 Azure SQL Database
-1. 登入 [傳統入口網站](http://manage.windowsazure.com)。
-2. 按一下左窗格中的 [SQL DATABASES]  。
-3. 按一下頁面底部的 [同步]  。 當您按一下 [同步] 時，會出現一份顯示可新增項目的清單 - [新增同步群組] 和 [新增同步代理程式]。
-4. 若要啟動 [新增 SQL 資料同步代理程式] 精靈，按一下 [新增同步代理程式] 。
-5. 如果之前尚未新增代理程式，請 **按一下在此下載**。
+## <a name="step-1---create-sync-group"></a>步驟 1 - 建立同步群組
 
-    ![Image1](./media/sql-database-get-started-sql-data-sync/SQLDatabaseScreen-Figure1.PNG)
+### <a name="locate-the-data-sync-settings"></a>尋找資料同步設定
 
-## <a name="step-2-add-a-client-agent"></a>步驟 2：新增用戶端代理程式
-只有在您要將內部部署 SQL Server 資料庫納入同步群組時，才需要執行這個步驟。
-如果同步群組只有 SQL Database 執行個體，請跳到步驟 4。
+1.  在瀏覽器中導覽至 Azure 入口網站。
 
-<a id="InstallRequiredSoftware"></a>
+2.  在入口網站中，從您的儀表板或從工具列上的 SQL Database 圖示找出 SQL 資料庫。
 
-### <a name="step-2a-install-the-required-software"></a>步驟 2a：安裝必要的軟體
-請務必在您安裝用戶端代理程式的電腦上安裝下列項目。
+    ![Azure SQL 資料庫清單](media/sql-database-get-started-sql-data-sync/datasync-preview-sqldbs.png)
 
-* **.NET Framework 4.0**
+3.  在 [SQL 資料庫] 刀鋒視窗中，選取您想要作為資料同步的中樞資料庫使用的現有 SQL 資料庫。 [SQL 資料庫] 刀鋒視窗隨即開啟。
 
-  您可以從 [這裡](http://go.microsoft.com/fwlink/?linkid=205836)安裝 .NET Framework 4.0。
-* **Microsoft SQL Server 2008 R2 SP1 系統 CLR 類型 (x86)**
+4.  在所選取資料庫的 [SQL 資料庫] 刀鋒視窗上，選取 [同步至其他資料庫]。 [資料同步] 刀鋒視窗隨即開啟。
 
-  從[這裡](http://www.microsoft.com/download/en/details.aspx?id=26728)安裝 Microsoft SQL Server 2008 R2 SP1 系統 CLR 類型 (x86)。
-* **Microsoft SQL Server 2008 R2 SP1 共用管理物件 (x86)**
+    ![[同步至其他資料庫] 選項](media/sql-database-get-started-sql-data-sync/datasync-preview-newsyncgroup.png)
 
-  從 [這裡](http://www.microsoft.com/download/en/details.aspx?id=26728)
+### <a name="create-a-new-sync-group"></a>建立新的同步群組
 
-<a id="InstallClient"></a>
+1.  在 [資料同步] 刀鋒視窗中，選取 [新的同步群組]。 [新的同步群組] 刀鋒視窗隨即開啟，反白顯示步驟 1 [建立同步群組]。 還會開啟 [建立資料同步群組] 刀鋒視窗。
 
-### <a name="step-2b-install-a-new-client-agent"></a>步驟 2b：安裝新的用戶端代理程式
-遵循＜ [安裝用戶端代理程式 (SQL 資料同步)](http://download.microsoft.com/download/4/E/3/4E394315-A4CB-4C59-9696-B25215A19CEF/SQL_Data_Sync_Preview.pdf) ＞中的指示，以安裝代理程式。
+2.  在 [建立資料同步群組] 刀鋒視窗中，請執行下列步驟：
 
-<a id="RegisterSSDb"></a>
+    1.  在 [同步群組名稱] 欄位中，輸入新同步群組的名稱。
 
-### <a name="step-2c-finish-the-new-sql-data-sync-agent-wizard"></a>步驟 2c：完成新增 SQL 資料同步代理程式精靈
-1. 返回 [新增 SQL 資料同步代理程式] 精靈。
-2. 給予代理程式有意義的名稱。
-3. 從下拉式清單中選取 [區域]  \(資料中心) 以裝載此代理程式。
-4. 從下拉式清單中選取 [訂閱]  以裝載此代理程式。
-5. 按一下向右箭頭。
+    2.  在 [同步中繼資料的資料庫] 區段中，選擇要建立新的資料庫 (建議) 或使用現有的資料庫。
 
-## <a name="step-3-register-a-sql-server-database-with-the-client-agent"></a>步驟 3：向用戶端代理程式註冊 SQL Server 資料庫
-安裝用戶端代理程式之後，註冊您要納入代理程式之同步群組中的每個內部部署 SQL Server 資料庫。
-若要向代理程式註冊資料庫，請遵循 [向用戶端代理程式註冊 SQL Server 資料庫](http://download.microsoft.com/download/4/E/3/4E394315-A4CB-4C59-9696-B25215A19CEF/SQL_Data_Sync_Preview.pdf)中的指示。
+        > [!NOTE]
+        > Microsoft 建議您建立新的空白資料庫作為同步中繼資料的資料庫。 資料同步會在此資料庫中建立資料表，並頻繁執行工作負載。 這個資料庫會作為同步中繼資料的資料庫，自動和選取區域中所有同步群組共用。 您必須先卸除同步中繼資料的資料庫之後，才能變更它、它的名稱或其服務等級。
 
-## <a name="step-4-create-a-sync-group"></a>步驟 4：建立同步群組
-<a id="StartNewSGWizard"></a>
+        如果您選擇 [新資料庫]，請選取 [建立新的資料庫]。 [SQL Database] 刀鋒視窗隨即開啟。 在 [SQL Database] 刀鋒視窗中，命名並設定新的資料庫。 然後選取 [確定]。
 
-### <a name="step-4a-start-the-new-sync-group-wizard"></a>步驟 4a：啟動新增同步群組精靈
-1. 返回 [傳統入口網站](http://manage.windowsazure.com)。
-2. 按一下 [SQL DATABASE] 。
-3. 按一下頁面底部的 [加入同步]  ，然後選取下拉式清單中的 [新增同步群組]。
+        如果您選擇 [現有的資料庫]，請從清單中選取資料庫。
 
-   ![Image2](./media/sql-database-get-started-sql-data-sync/NewSyncGroup-Figure2.png)
+    3.  在 [自動同步] 區段中，先選取 [開啟] 或 [關閉]。
 
-<a id=""></a>
+        如果您選擇 [開啟]，請在 [同步處理頻率] 區段中輸入數字，然後選取 [秒]、[分鐘]、[小時] 或 [天]。
 
-### <a name="step-4b-enter-the-basic-settings"></a>步驟 4b：輸入基本設定
-1. 為同步群組輸入有意義的名稱。
-2. 從下拉式清單中選取 [區域]  \(資料中心) 以裝載此同步群組。
-3. 按一下向右箭頭。
+        ![指定同步處理頻率](media/sql-database-get-started-sql-data-sync/datasync-preview-syncfreq.png)
 
-    ![Image3](./media/sql-database-get-started-sql-data-sync/NewSyncGroupName-Figure3.PNG)
+    4.  在 [衝突解決] 區段中，選取 [中樞獲勝] 或 [成員獲勝]。
 
-<a id="DefineHubDB"></a>
+        ![指定解決衝突的方式](media/sql-database-get-started-sql-data-sync/datasync-preview-conflictres.png)
 
-### <a name="step-4c-define-the-sync-hub"></a>步驟 4c：定義同步中樞
-1. 從下拉式清單中選取要作為同步群組中心的 SQL Database 執行個體。
-2. 輸入此 SQL Database 執行個體的認證 - [中樞使用者名稱] 和 [中樞密碼]。
-3. 等待 SQL 資料同步確認使用者名稱和密碼。 確認認證後，您會看到密碼的右邊出現綠色核取記號。
-4. 從下拉式清單中選取 [衝突解決]  原則。
+    5.  選取 [確定] 並等候新的同步群組建立和部署完成。
 
-   **中樞獲勝** - 任何寫入中心資料庫的變更都會寫入參考資料庫，並覆寫相同參考資料庫記錄的變更。 在功能上，這表示寫入中心的第一項變更會傳播至其他資料庫。
+## <a name="step-2---add-sync-members"></a>步驟 2 - 新增同步成員
 
- **Client Wins** - 寫入中心的變更會被參考資料庫中的變更所覆寫。 在功能上，這表示寫入中心的最後一項變更會是保留並傳播至其他資料庫的變更。
+在建立和部署新的同步群組之後，會反白顯示 [新的同步群組] 刀鋒視窗中的步驟 2 [新增同步成員]。
 
-1. 按一下向右箭頭。
+在 [中樞資料庫] 區段中，輸入中樞資料庫所在 SQL Database 伺服器的現有認證。 請不要在此區段輸入「新」的認證。
 
-   ![Image4](./media/sql-database-get-started-sql-data-sync/NewSyncGroupHub-Figure4.PNG)
+![中樞資料庫已新增至同步群組](media/sql-database-get-started-sql-data-sync/datasync-preview-hubadded.png)
 
-<a id="AddRefDB"></a>
+## <a name="add-an-azure-sql-database"></a>新增 Azure SQL Database
 
-### <a name="step-4d-add-a-reference-database"></a>步驟 4d：新增參考資料庫
-對您要新增至同步群組的其他各個資料庫，重複執行此步驟。
+在 [成員資料庫] 區段中，選取 [新增 Azure 資料庫]，可選擇性地將 Azure SQL Database 新增至同步群組。 [設定 Azure 資料庫] 刀鋒視窗隨即開啟。
 
-1. 從下拉式清單中選取要新增的資料庫。
+在 [設定 Azure 資料庫] 刀鋒視窗中，請執行下列步驟：
 
-    下拉式清單中的資料庫包括已向代理程式和 SQL Database 執行個體註冊的 SQL Server 資料庫。
-2. 輸入此資料庫的認證 - [使用者名稱] 和 [密碼]。
-3. 從下拉式清單中選取此資料庫的 [同步處理方向]  。
+1.  在 [同步成員名稱] 欄位中，提供新同步成員的名稱。 這個名稱與資料庫本身的名稱不同。
 
-   **雙向** - 參考資料庫中的變更會寫入中心資料庫中，而對中心資料庫所做的變更會寫入參考資料庫中。
+2.  在 [訂用帳戶] 欄位中，選取相關聯的 Azure 訂用帳戶以便計費。
 
-   **Sync from the Hub** - 資料庫收到來自中心的更新。 但不會將變更傳送至中心。
+3.  在 [Azure SQL Server] 欄位中，選取現有的 SQL 資料庫伺服器。
 
-   **Sync to the Hub** - 資料庫將更新傳送到中心。 但中心的變更不會寫入此資料庫中。
-4. 若要完成同步群組的建立，請按一下精靈右下方的核取記號。 等待 SQL 資料同步確認認證。 綠色核取記號表示已確認認證。
-5. 再按一次核取記號。 您即可返回 SQL Database 下的 [同步]  頁面。 此同步群組現在會與您的其他同步群組和代理程式列在一起。
+4.  在 [Azure SQL Database] 欄位中，選取現有的 SQL 資料庫。
 
-   ![Image5](./media/sql-database-get-started-sql-data-sync/NewSyncGroupReference-Figure5.PNG)
+5.  在 [同步方向] 欄位中，選取 [雙向同步]、[至中樞] 或 [來自中樞]。
 
-## <a name="step-5-define-the-data-to-sync"></a>步驟 5：定義要同步的資料
-Azure SQL 資料同步可讓您選取要同步的資料表和資料欄。 如果您也想篩選資料欄，僅只同步具有特定值 (例如，年齡 >=65) 的資料列，請使用 Azure 的 SQL 資料同步入口網站以及「選取要同步的資料表、資料欄和資料列」的文件，以定義要同步的資料。
+    ![新增 SQL Database 同步處理成員](media/sql-database-get-started-sql-data-sync/datasync-preview-memberadding.png)
 
-1. 返回 [傳統入口網站](http://manage.windowsazure.com)。
-2. 按一下 [SQL DATABASE] 。
-3. 按一下 [同步]  索引標籤。
-4. 按一下此同步群組的名稱。
-5. 按一下 [SYNC RULES]  索引標籤。
-6. 選取您要提供同步群組結構描述的資料庫。
-7. 按一下向右箭頭。
-8. 按一下 [重新整理結構描述] 。
-9. 對於資料庫中的每個資料表，選取要納入同步處理的資料欄。
-   * 無法選取具有不支援資料類型的資料欄。
-   * 如果未選取資料表中的任何資料欄，則此資料表不會納入同步群組中。
-   * 若要選取/取消選取所有資料表，請按一下畫面底部的 [選取]。
-10. 按一下 [儲存] ，然後等待同步群組完成佈建。
-11. 若要返回 [資料同步] 登陸頁面，請按一下畫面左上方的向後鍵 (在同步群組名稱之上)。
+6.  在 [使用者名稱] 和 [密碼] 欄位中，輸入成員資料庫所在 SQL Database 伺服器的現有認證。 請不要在此區段輸入「新」的認證。
 
-    ![Image6](./media/sql-database-get-started-sql-data-sync/NewSyncGroupSyncRules-Figure6.PNG)
+7.  選取 [確定] 並等候新的同步成員建立和部署完成。
 
-## <a name="step-6-configure-your-sync-group"></a>步驟 6：設定同步群組
-按一下 [資料同步] 登陸頁面底部的 [同步]，一律可以同步處理同步群組。
-若要依排程進行同步處理，請設定該同步群組。
+    ![已新增 SQL Database 同步處理成員](media/sql-database-get-started-sql-data-sync/datasync-preview-memberadded.png)
 
-1. 返回 [傳統入口網站](http://manage.windowsazure.com)。
-2. 按一下 [SQL DATABASE] 。
-3. 按一下 [同步]  索引標籤。
-4. 按一下此同步群組的名稱。
-5. 按一下 [設定]  索引標籤。
-6. **自動同步**
-   * 若要將同步群組設定成依設定頻率進行同步處理，請按一下 [開啟] 。 按一下 [同步]，仍可依照需求進行同步處理。
-   * 按一下 [關閉]  ，將同步群組設定成僅在您按一下 [同步] 時進行同步處理。
-7. **同步頻率**
-   * 如果 [AUTOMATIC SYNC] 為 [開啟] 狀態，請設定同步頻率。 頻率必須介於 5 分鐘與 1 個月之間。
-8. 按一下 [儲存] 。
+## <a name="add-an-on-premises-sql-server-database"></a>新增內部部署 SQL Server 資料庫
 
-![Image7](./media/sql-database-get-started-sql-data-sync/NewSyncGroupConfigure-Figure7.PNG)
+在 [成員資料庫] 區段中，選取 [新增內部部署資料庫]，可選擇性地將內部部署 SQL Server 新增至同步群組。 [設定內部部署] 刀鋒視窗隨即開啟。
 
-恭喜！ 您已建立一個同時包含 SQL Database 執行個體與 SQL Server 資料庫的同步群組。
+在 [設定內部部署] 刀鋒視窗中，請執行下列步驟：
+
+1.  選取 [選擇同步代理程式閘道]。 [選取同步代理程式] 刀鋒視窗隨即開啟。
+
+    ![選擇同步代理程式閘道](media/sql-database-get-started-sql-data-sync/datasync-preview-choosegateway.png)
+
+2.  在 [選擇同步代理程式閘道] 刀鋒視窗中，選擇要使用現有的代理程式，或建立新的代理程式。
+
+    如果您選擇 [現有代理程式]，請從清單中選取現有的代理程式。
+
+    在 [建立新的代理程式] 刀鋒視窗中，請執行下列步驟：
+
+    1.  從提供的連結下載用戶端同步代理程式軟體，並安裝在 SQL Server 所在的電腦上。
+ 
+        > [!IMPORTANT]
+        > 您必須在防火牆開啟輸出 TCP 連接埠 1433，以讓用戶端代理程式和伺服器通訊。
+
+
+    2.  輸入代理程式的名稱。
+
+    3.  選取 [建立並產生金鑰]。
+
+    4.  將代理程式金鑰複製到剪貼簿。
+        
+        ![建立新同步代理程式](media/sql-database-get-started-sql-data-sync/datasync-preview-selectsyncagent.png)
+
+    5.  選取 [確定] 以關閉 [選取同步代理程式] 刀鋒視窗。
+
+    6.  在 SQL Server 電腦上，找出並執行用戶端同步代理程式應用程式。
+
+        ![資料同步用戶端代理程式應用程式](media/sql-database-get-started-sql-data-sync/datasync-preview-clientagent.png)
+
+    7.  在同步處理代理程式應用程式中，選取 [提交代理程式金鑰]。 [同步中繼資料的資料庫組態] 對話方塊隨即開啟。
+
+    8.  在 [同步中繼資料的資料庫組態] 對話方塊中，貼上從 Azure 入口網站複製的代理程式金鑰。 還要提供輸入中繼資料資料庫所在 Azure SQL Database 伺服器的現有認證。 (如果您已建立新的中繼資料資料庫，此資料庫會位在和中樞資料庫相同的伺服器)。選取 [確定] 並等待完成組態。
+
+        ![輸入代理程式金鑰和伺服器認證](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-enterkey.png)
+
+        >   [!NOTE] 
+        >   如果在此時收到防火牆錯誤，您必須在 Azure 上建立防火牆規則，以允許來自 SQL Server 電腦的傳入流量。 您可以在入口網站手動建立規則，但在 SQL Server Management Studio (SSMS) 中建立可能會更容易。 在 SSMS 中，嘗試連線到 Azure 上的中樞資料庫。 請將其名稱輸入為 \<hub_database_name\>.database.windows.net。 依照對話方塊中的步驟進行來設定 Azure 防火牆規則。 然後返回用戶端同步代理程式應用程式。
+
+    9.  在用戶端同步代理程式應用程式中，按一下 [註冊]，以向代理程式註冊 SQL Server 資料庫。 [SQL Server 組態] 對話方塊隨即開啟。
+
+        ![新增和設定 SQL Server 資料庫](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-adddb.png)
+
+    10. 在 [SQL Server 組態] 對話方塊方塊中，選擇要使用 SQL Server 驗證或 Windows 驗證來連線。 如果您選擇 SQL Server 驗證，請輸入現有的認證。 提供 SQL Server 名稱和您要同步之資料庫的名稱。 選取 [測試連接] 來測試您的設定。 然後選取 [儲存]。 已註冊的資料庫會出現在清單中。
+
+        ![現在已註冊 SQL Server 資料庫](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-dbadded.png)
+
+    11. 您現在可以關閉用戶端同步代理程式應用程式。
+
+    12. 在入口網站的 [設定內部部署] 刀鋒視窗上，選取 [選取資料庫] 。 [選取資料庫] 刀鋒視窗隨即開啟。
+
+    13. 在 [選取資料庫] 刀鋒視窗上的 [同步成員名稱] 欄位中，提供新同步成員的名稱。 這個名稱與資料庫本身的名稱不同。 從清單中選取資料庫。 在 [同步方向] 欄位中，選取 [雙向同步]、[至中樞] 或 [來自中樞]。
+
+        ![選取內部部署資料庫](media/sql-database-get-started-sql-data-sync/datasync-preview-selectdb.png)
+
+    14. 選取 [確定] 以關閉 [選取資料庫] 刀鋒視窗。 然後選取 [確定] 以關閉 [設定內部部署] 刀鋒視窗，並等候新的同步成員建立和部署完成。 最後，按一下 [確定] 以關閉 [選取同步成員] 刀鋒視窗。
+
+        ![內部部署資料庫已新增至同步群組](media/sql-database-get-started-sql-data-sync/datasync-preview-onpremadded.png)
+
+3.  若要連接到 [SQL 資料同步] 和本機代理程式，請將您的使用者名稱新增至 `DataSync_Executor` 角色。 資料同步會在 SQL Server 執行個體上建立此角色。
+
+## <a name="step-3---configure-sync-group"></a>步驟 3 - 設定同步群組
+
+在建立和部署新的同步群組成員之後，會反白顯示 [新的同步群組] 刀鋒視窗中的步驟 3 [設定同步群組]。
+
+1.  在 [資料表] 刀鋒視窗上，從同步群組成員清單中選取資料庫，然後選取 [重新整理結構描述]。
+
+2.  從可用資料表清單中，選取您想要同步的資料表。
+
+    ![選取要同步的資料表](media/sql-database-get-started-sql-data-sync/datasync-preview-tables.png)
+
+3.  預設會選取資料表中的所有資料行。 如果您不想同步所有資料行，請取消選取您不想要同步的資料行核取方塊。 請務必保留選取的主索引鍵資料行。
+
+    ![選取要同步的欄位](media/sql-database-get-started-sql-data-sync/datasync-preview-tables2.png)
+
+4.  最後，選取 [儲存]。
 
 ## <a name="next-steps"></a>後續步驟
-如需 SQL Database 與 SQL 資料同步的其他資訊，請參閱：
+恭喜！ 您已建立一個同時包含 SQL Database 執行個體與 SQL Server 資料庫的同步群組。
 
-* [下載完整的 SQL 資料同步技術文件](http://download.microsoft.com/download/4/E/3/4E394315-A4CB-4C59-9696-B25215A19CEF/SQL_Data_Sync_Preview.pdf)
-* [SQL Database 概觀](sql-database-technical-overview.md)
-* [資料庫生命週期管理](https://msdn.microsoft.com/library/jj907294.aspx)
+如需 SQL Database 和 SQL 資料同步的詳細資訊，請參閱：
+
+-   [下載完整的 SQL 資料同步技術文件](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true)
+-   [下載 SQL 資料同步 REST API 文件](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_REST_API.pdf?raw=true)
+-   [SQL Database 概觀](sql-database-technical-overview.md)
+-   [資料庫生命週期管理](https://msdn.microsoft.com/library/jj907294.aspx)
 

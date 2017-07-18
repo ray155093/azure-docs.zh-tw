@@ -1,7 +1,5 @@
 
-<a id="about-vhds" class="xliff"></a>
-
-## 關於 VHD
+## <a name="about-vhds"></a>關於 VHD
 
 Azure 中使用的 VHD 是以分頁 Blob 儲存在 Azure 標準或進階儲存體帳戶中的 .vhd 檔案。 如需分頁 Blob 的詳細資訊，請參閱 [了解區塊 Blob 和分頁 Blob](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs/)。 如需進階儲存體的詳細資訊，請參閱[高效能的進階儲存體和 Azure VM](../articles/storage/storage-premium-storage.md)。
 
@@ -17,35 +15,28 @@ Azure 中所有您想要做為來源以建立磁碟或映像的 .vhd 檔案，�
 > 如果您刪除儲存體中的來源 .vhd 檔案從或刪除您的儲存體帳戶，Microsoft 便無法為您復原該資料。
 > 
 
-<a id="types-of-disks" class="xliff"></a>
+## <a name="types-of-disks"></a>磁碟類型 
 
-## 磁碟類型 
+Azure 磁碟設計成確保可用性達 99.999%。 Azure 磁碟一直提供企業級持久性，其年度失敗率為零，領先業界。
 
-在建立磁碟時，您有兩個可供選擇的儲存體效能層級，分別是標準儲存體和進階儲存體。 此外，磁碟也有兩種類型，即非受控和受控，這兩種類型可以位於任一個效能層級。  
+在建立磁碟時，您有兩個可供選擇的儲存體效能層級，分別是標準儲存體和進階儲存體。 此外，磁碟也有兩種類型，即非受控和受控，這兩種類型可以位於任一個效能層級。
 
-<a id="standard-storage" class="xliff"></a>
 
-### 標準儲存體 
+### <a name="standard-storage"></a>標準儲存體 
 
 標準儲存體是以 HDD 為後盾，既可提供符合成本效益的儲存體，又可保有效能。 標準儲存體可複寫到一個資料中心的本機位置，或是利用主要和次要資料中心提供異地備援。 如需儲存體複寫的詳細資訊，請參閱 [Azure 儲存體複寫](../articles/storage/storage-redundancy.md)。 
 
 如需搭配使用標準儲存體與 VM 磁碟的詳細資訊，請參閱[標準儲存體和磁碟](../articles/storage/storage-standard-storage.md)。
 
-<a id="premium-storage" class="xliff"></a>
-
-### 進階儲存體 
+### <a name="premium-storage"></a>進階儲存體 
 
 進階儲存體是以 SSD 為後盾，可針對執行時需要大量 I/O 之工作負載的 VM 提供高效能、低延遲的磁碟支援。 進階儲存體可搭配 DS、DSv2、GS、Ls 或 FS 系列的 Azure VM 使用。 如需詳細資訊，請參閱[進階儲存體](../articles/storage/storage-premium-storage.md)。
 
-<a id="unmanaged-disks" class="xliff"></a>
-
-### 非受控磁碟
+### <a name="unmanaged-disks"></a>非受控磁碟
 
 非受控磁碟是 VM 已在使用的傳統磁碟類型。 利用這些磁碟，您可以建立自己的儲存體帳戶，並在建立磁碟時指定該儲存體帳戶。 您必須確保相同儲存體帳戶中未放入過多磁碟，否則您可能會超出儲存體帳戶的[延展性目標](../articles/storage/storage-scalability-targets.md) (例如，20,000 IOPS)，而導致 VM 遭到節流。 使用非受控磁碟時，您必須了解如何充分運用一或多個儲存體帳戶，以獲得最佳的 VM 效能。
 
-<a id="managed-disks" class="xliff"></a>
-
-### 受控磁碟 
+### <a name="managed-disks"></a>受控磁碟 
 
 受控磁碟可在背景中為您處理儲存體帳戶的建立/管理作業，確保您不需要擔心儲存體帳戶的延展性限制。 您只需指定磁碟大小和效能層級 (標準/進階)，Azure 就會為您建立和管理磁碟。 即便是新增磁碟或相應增加和減少 VM，您都不必擔心所使用的儲存體。 
 
@@ -53,9 +44,7 @@ Azure 中所有您想要做為來源以建立磁碟或映像的 .vhd 檔案，�
 
 建議您對新 VM 使用 Azure 受控磁碟，並將先前建立的未受控磁碟轉換成受控磁碟，以充分利用受控磁碟中提供的許多功能。
 
-<a id="disk-comparison" class="xliff"></a>
-
-### 磁碟比較
+### <a name="disk-comparison"></a>磁碟比較
 
 下表會比較進階儲存體和標準儲存體的非受控磁碟和受控磁碟，以協助您決定要使用何者。
 

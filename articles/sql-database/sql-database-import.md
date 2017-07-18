@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: cf9a9631-56aa-4985-a565-1cacc297871d
 ms.service: sql-database
-ms.custom: move data
+ms.custom: load & move data
 ms.devlang: NA
 ms.date: 04/07/2017
 ms.author: carlrab
@@ -16,23 +16,16 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 42ac754ba24ba3e8f96d4fb6f3abb97169056c8e
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 4ddbeb78208d8e32fe5e505f396fbfec4e5d6c0a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/28/2017
 
 
 ---
 # <a name="import-a-bacpac-file-to-a-new-azure-sql-database"></a>將 BACPAC 檔案匯入到新的 Azure SQL Database
 
-本文討論將 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案匯入到新的 Azure SQL Database。 本文章將討論以下方法的使用：
-- [Azure 入口網站](https://portal.azure.com)
-- [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) 命令列公用程式
-- [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-azurermsqldatabaseimport) Cmdlet
-
-## <a name="overview"></a>概觀
-
-當您需要從封存匯入資料庫或從另一個平台進行移轉時，您可以從 BACPAC 檔案匯入資料庫結構描述和資料。 BACPAC 檔案是一種副檔名為 BACPAC 的 ZIP 檔案，其包含來自 SQL Server Database 的中繼資料和資料。 BACPAC 檔案可以從 Azure Blob 儲存體 (僅限標準儲存體) 匯入，或從內部部署位置中的本機儲存體匯入。 若要使匯入速度最大化，我們建議您指定較高的服務層和效能等級 (例如 P6)，然後在匯入成功後，適當地向下調整。 此外，匯入之後的資料庫相容性等級會以來源資料庫的相容性等級為基礎。 
+當您需要從封存匯入資料庫或從另一個平台進行移轉時，您可以從 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案匯入資料庫結構描述和資料。 BACPAC 檔案是一種副檔名為 BACPAC 的 ZIP 檔案，其包含來自 SQL Server Database 的中繼資料和資料。 BACPAC 檔案可以從 Azure Blob 儲存體 (僅限標準儲存體) 匯入，或從內部部署位置中的本機儲存體匯入。 若要使匯入速度最大化，我們建議您指定較高的服務層和效能等級 (例如 P6)，然後在匯入成功後，適當地向下調整。 此外，匯入之後的資料庫相容性等級會以來源資料庫的相容性等級為基礎。 
 
 > [!IMPORTANT] 
 > 您將資料庫移轉至 Azure SQL Database 後，可選擇於目前的相容性等級 (針對 AdventureWorks2008R2 資料庫為等級 100) 或更高等級運作資料庫。 如需於特定相容性層級操作資料庫的含意與選項詳細資訊，請參閱 [ALTER DATABASE 相容性層級 (ALTER DATABASE Compatibility Level)](https://docs.microsoft.com/sql/t-sql/statements/alter-database-transact-sql-compatibility-level)。 如需相容性層級其他相關資料庫等級設定的資訊，另請參閱 [ALTER DATABASE 範圍組態 (ALTER DATABASE SCOPED CONFIGURATION)](https://docs.microsoft.com/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql)。   >
@@ -41,33 +34,32 @@ ms.lasthandoff: 04/27/2017
 > 若要將 BACPAC 匯入到新的資料庫，您必須先建立 Azure SQL Database 邏輯伺服器。 如需如何使用 SQLPackage 將 SQL Server Database 移轉到 Azure SQL Database 的教學課程，請參閱[移轉 SQL Server 資料庫](sql-database-migrate-your-sql-server-database.md)
 >
 
-## <a name="azure-portal"></a>Azure 入口網站
+## <a name="import-from-a-bacpac-file-using-azure-portal"></a>使用 Azure 入口網站從 BACPAC 檔案匯入
 
 本文提供的指示將說明如何使用 [Azure 入口網站](https://portal.azure.com)，從 BACPAC 檔案 (儲存於 Azure Blob 儲存體中) 建立 Azure SQL Database。 使用 Azure 入口網站匯入的方式只支援從 Azure Blob 儲存體匯入 BACPAC 檔案。
 
-若要使用 Azure 入口網站匯入資料庫，請開啟資料庫頁面，然後按一下工具列上的 [匯入]。 指定儲存體帳戶和容器，然後選取您要匯入的 *.bacpac 檔案。 選取新資料庫的大小 (通常與來源相同)，並提供目的地 SQL Server 認證。  
+若要使用 Azure 入口網站匯入資料庫，請開啟資料庫頁面，然後按一下工具列上的 [匯入]。 指定儲存體帳戶和容器，然後選取您要匯入的 BACPAC 檔案。 選取新資料庫的大小 (通常與來源相同)，並提供目的地 SQL Server 認證。  
 
    ![資料庫匯入](./media/sql-database-import/import.png)
 
 若要監視匯入作業的進度，請開啟包含匯入資料庫的邏輯伺服器頁面。 向下捲動至**作業**，然後按一下 [匯入/匯出歷程記錄] 。
 
-### <a name="monitor-the-progress-of-the-import-operation"></a>監視匯入作業的進度
-1. 按一下 [SQL Server] 。
-2. 按一下您要還原的目的地伺服器。
-3. 在 [SQL Server] 刀鋒視窗的 [作業] 區域中，按一下 [匯入/匯出記錄] ：
+### <a name="monitor-the-progress-of-an-import-operation"></a>監視匯入作業的進度
+
+若要監視匯入作業的進度，請將邏輯伺服器的頁面開啟為要匯入的資料庫。 向下捲動至**作業**，然後按一下 [匯入/匯出歷程記錄] 。
    
-   ![匯入](./media/sql-database-import/import.png)
+   ![匯入](./media/sql-database-import/import-history.png)
    ![匯入狀態](./media/sql-database-import/import-status.png)
 
-4. 確認伺服器上的資料庫為線上狀態，請按一下 [SQL 資料庫]，並確認新的資料庫為 [線上]。
+確認伺服器上的資料庫為線上狀態，請按一下 [SQL 資料庫]，並確認新的資料庫為 [線上]。
 
-## <a name="sqlpackage"></a>SQLPackage
+## <a name="import-from-a-bacpac-file-using-sqlpackage"></a>使用 SQLPackage 從 BACPAC 檔案匯入
 
 若要使用 [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) 命令列公用程式匯入 SQL Database，請參閱[匯入參數和屬性](https://msdn.microsoft.com/library/hh550080.aspx#Import Parameters and Properties)。 SQLPackage 公用程式隨附於最新版的 [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 和 [SQL Server Data Tools for Visual Studio](https://msdn.microsoft.com/library/mt204009.aspx)，或者您也可以直接從 Microsoft 下載中心下載最新版的 [SqlPackage](https://www.microsoft.com/download/details.aspx?id=53876)。
 
 針對大部分生產環境中的延展性和效能，我們建議您使用 SQLPackage 公用程式。 如需 SQL Server 客戶諮詢小組部落格中有關使用 BACPAC 檔案進行移轉的主題，請參閱[使用 BACPAC 檔案從 SQL Server 移轉至 Azure SQL Database](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/)。
 
-請參閱下列 SQLPackage 命令，以取得如何將 **AdventureWorks2008R2** 資料庫從本機儲存體匯入到 Azure SQL Database 邏輯伺服器 (在此範例中稱為 **mynewserver20170403**) 的範例指令碼。 此指令碼會示範如何建立名為 **myMigratedDatabase** 的新資料庫，並搭配 **Premium (進階)**服務層和 **P6** 服務目標。 將這些值變更為適合您環境的值。
+請參閱下列 SQLPackage 命令，以取得如何將 **AdventureWorks2008R2** 資料庫從本機儲存體匯入到 Azure SQL Database 邏輯伺服器 (在此範例中稱為 **mynewserver20170403**) 的指令碼範例。 此指令碼會示範如何建立名為 **myMigratedDatabase** 的新資料庫，並搭配 **Premium (進階)**服務層和 **P6** 服務目標。 將這些值變更為適合您環境的值。
 
 ```cmd
 SqlPackage.exe /a:import /tcs:"Data Source=mynewserver20170403.database.windows.net;Initial Catalog=myMigratedDatabase;User Id=ServerAdmin;Password=<change_to_your_password>" /sf:AdventureWorks2008R2.bacpac /p:DatabaseEdition=Premium /p:DatabaseServiceObjective=P6
@@ -85,7 +77,7 @@ SqlPackage.exe /a:import /tcs:"Data Source=mynewserver20170403.database.windows.
 SqlPackage.exe /a:Import /sf:testExport.bacpac /tdn:NewDacFX /tsn:apptestserver.database.windows.net /ua:True /tid:"apptest.onmicrosoft.com"
 ```
 
-## <a name="powershell"></a>PowerShell
+## <a name="import-from-a-bacpac-file-using-powershell"></a>使用 PowerShell 從 BACPAC 檔案匯入
 
 使用 [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-azurermsqldatabaseimport) Cmdlet 來提交匯入資料庫要求至 Azure SQL Database 服務。 視資料庫大小而定，匯入作業可能需要一些時間才能完成。
 
@@ -118,6 +110,9 @@ while ($importStatus.Status -eq "InProgress")
 [Console]::WriteLine("")
 $importStatus
 ```
+
+> [!TIP]
+如需其他指令碼範例，請參閱[從 BACPAC 檔案匯入資料庫](scripts/sql-database-import-from-bacpac-powershell.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * 若要了解如何連接並查詢匯入的 SQL Database，請參閱[使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)。

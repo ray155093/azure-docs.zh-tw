@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/08/2016
 ms.author: jdial
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: fef61e6155471a0459957ea0c510698cfa787fdc
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: f40ceb542a0ee51e17ee539db4dbc91c11e056f2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/29/2017
 
 
 ---
@@ -31,8 +32,10 @@ ms.lasthandoff: 03/18/2017
 在回答底下的規劃問題之前，請先考慮下列各項：
 
 * 您在 Azure 中建立的所有項目都是由一或多個資源所組成。 虛擬機器 (VM) 是資源、VM 所用的網路介面卡 (NIC) 是資源、NIC 所用的公用 IP 位址是資源、NIC 所連接的 VNet 是資源。
-* 您可在 [Azure 區域](https://azure.microsoft.com/regions/#services) 和訂用帳戶中建立資源。 而資源只能連接到存在於相同區域和訂用帳戶中的 VNet。
-* 您也可以使用 Azure [VPN 閘道](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)讓 Vnet 彼此連接。 您也可以用這種方式連接各區域和訂用帳戶的 Vnet。
+* 您可在 [Azure 區域](https://azure.microsoft.com/regions/#services) 和訂用帳戶中建立資源。 而系統只能裝資源連線到與資源所在相同區域和訂用帳戶中的虛擬網路。
+* 您可以使用以下方式，彼此連線至虛擬網路：
+    * **[虛擬網路對等互連](virtual-network-peering-overview.md)**：虛擬網路必須存在於同一個 Azure 區域中。 對等互連虛擬網路中資源間的頻寬會相同，就像資源已連線至相同的虛擬網路一樣。
+    * **Azure [VPN 閘道](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)**：虛擬網路可以位於相同或不同的 Azure 區域。 透過 VPN 閘道連線之虛擬網路中的資源間的頻寬，受限於 VPN 閘道的頻寬。
 * 您可以使用 Azure 中提供的其中一個[連線選項](../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site-ipsecike-vpn-tunnel)，將 VNet 連接到內部部署網路。
 * 不同的資源可以聚集在[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)中，以便更容易以單位形式管理資源。 資源群組可以包含來自多個區域的資源，只要資源屬於相同的訂用帳戶即可。
 
@@ -174,7 +177,7 @@ VNET 包含下列屬性：
     是。 因為連接到內部部署資料中心的使用者必須能夠透過加密的通道來存取每個應用程式。
 4. 您的解決方案需要多少部 IaaS VM？
 
-    200 部 IaaS VM。 App1、App2 和 App3 各需要 5 部 Web 伺服器每個、2 部應用程式伺服器，以及 2 部資料庫伺服器。 總計每個應用程式有 9 部 IaaS VM，或 36 部 IaaS VM。 App5 和 App6 各需要 5 部 Web 伺服器和 2 部資料庫伺服器。 總計每個應用程式有 7 部 IaaS VM，或 14 部 IaaS VM。 因此，每個 Azure 區域中的所有應用程式需要 50 部 IaaS VM。 因為我們需要使用 4 個區域，所以會有 200 部 IaaS VM。
+    200 部 IaaS VM。 App1、App2、App3 和 App4 各需要 5 部 Web 伺服器、2 部應用程式伺服器，以及 2 部資料庫伺服器。 總計每個應用程式有 9 部 IaaS VM，或 36 部 IaaS VM。 App5 和 App6 各需要 5 部 Web 伺服器和 2 部資料庫伺服器。 總計每個應用程式有 7 部 IaaS VM，或 14 部 IaaS VM。 因此，每個 Azure 區域中的所有應用程式需要 50 部 IaaS VM。 因為我們需要使用 4 個區域，所以會有 200 部 IaaS VM。
 
     您也必須在每個 VNet 或您的內部部署資料中心提供 DNS 伺服器，以解析 Azure IaaS VM 和內部部署網路之間的名稱。
 5. 您是否需要根據 VM 群組隔離流量 (也就是前端 Web 伺服器和後端資料庫伺服器)？

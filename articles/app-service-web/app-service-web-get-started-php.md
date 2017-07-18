@@ -15,11 +15,11 @@ ms.topic: hero-article
 ms.date: 05/04/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
-ms.openlocfilehash: 3c7bbb1342d381b2940a9e1ceb56d905fbc33a74
+ms.translationtype: HT
+ms.sourcegitcommit: d941879aee6042b38b7f5569cd4e31cb78b4ad33
+ms.openlocfilehash: 9a53216e326e63bd4fe36c0e5d5d5e85b2098d8c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/10/2017
 
 ---
 # <a name="create-a-php-web-app-in-azure"></a>在 Azure 中建立 PHP Web 應用程式
@@ -69,7 +69,7 @@ php -S localhost:8080
 
 開啟網頁瀏覽器，然後瀏覽至範例應用程式 (位於 http://localhost:8080)。
 
-您會看到來自範例應用程式的 **Hello World** 訊息顯示在網頁中。
+您會看到來自範例應用程式的 **Hello World!** 訊息顯示在網頁中。
 
 ![在本機執行的範例應用程式](media/app-service-web-get-started-php/localhost-hello-world-in-browser.png)
 

@@ -9,24 +9,24 @@ manager: jhubbard
 editor: 
 ms.assetid: 
 ms.service: sql-database
-ms.custom: tutorial
+ms.custom: scale out apps
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: tutorial
+ms.topic: article
 ms.date: 05/10/2017
 ms.author: billgib;sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 8567061a98ec5a0619a8e10cb44501dd88d8166c
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 547851972f13ec69a8f65d01290874ad7d07f192
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
-# <a name="restore-a-single-tenant-database"></a>還原單一租用戶資料庫
+# <a name="restore-a-wingtip-saas-tenants-sql-database"></a>還原 Wingtip SaaS 租用戶 SQL 資料庫
 
-Wingtip Tickets SaaS 應用程式是使用每一租用戶一個資料庫的模型來建置的，其中每個租用戶都有自己的資料庫。 此模型的其中一個優點是很容易以隔離方式還原單一租用戶的資料，而不會影響到其他租用戶。
+Wingtip SaaS 應用程式是使用每一租用戶一個資料庫的模型來建置的，其中每個租用戶都有自己的資料庫。 此模型的其中一個優點是很容易以隔離方式還原單一租用戶的資料，而不會影響到其他租用戶。
 
 在本教學課程中，您將了解兩個資料復原模式：
 
@@ -44,7 +44,7 @@ Wingtip Tickets SaaS 應用程式是使用每一租用戶一個資料庫的模�
 
 若要完成本教學課程，請確定已完成下列必要條件：
 
-* 已部署 WTP 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 WTP SaaS 應用程式](sql-database-saas-tutorial.md)
+* 已部署 Wingtip SaaS 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
 * 已安裝 Azure PowerShell。 如需詳細資料，請參閱[開始使用 Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps)
 
 ## <a name="introduction-to-the-saas-tenant-restore-pattern"></a>SaaS 租用戶還原模式簡介
@@ -57,11 +57,11 @@ Wingtip Tickets SaaS 應用程式是使用每一租用戶一個資料庫的模�
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 [用於下載 Wingtip SaaS 指令碼的步驟](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts)。
 
 ## <a name="simulate-a-tenant-accidentally-deleting-data"></a>模擬租用戶不小心刪除資料的情況
 
-為了示範這些復原情況，我們需要「不小心」刪除其中一個租用戶資料庫中的一些資料。 您可以刪除任何記錄，而下一個步驟則是設定示範，讓它不會因為違反參考完整性而遭到封鎖！ 它也會新增一些您可以稍後在＜WTP 分析教學課程＞中使用的票證購買資料。
+為了示範這些復原情況，我們需要「不小心」刪除其中一個租用戶資料庫中的一些資料。 您可以刪除任何記錄，而下一個步驟則是設定示範，讓它不會因為違反參考完整性而遭到封鎖！ 它也會新增一些您可以稍後在＜Wingtip SaaS 分析教學課程＞中使用的票證購買資料。
 
 請執行票證產生器指令碼並建立額外的資料。 票證產生器會刻意不為每個租用戶的最後一個事件購買票證。
 
@@ -148,6 +148,7 @@ Wingtip Tickets SaaS 應用程式是使用每一租用戶一個資料庫的模�
 
 ## <a name="additional-resources"></a>其他資源
 
-* [建置在初始 Wingtip 票證平台 (WTP) 應用程式部署上的其他教學課程](sql-database-wtp-overview.md#sql-database-wtp-saas-tutorials)
+* 其他[以 Wingtip SaaS 應用程式為基礎的教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [使用 Azure SQL Database 的商務持續性概觀](sql-database-business-continuity.md)
 * [了解 SQL Database 備份](sql-database-automated-backups.md)
+

@@ -11,21 +11,21 @@ ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.workload: backup-recovery
-ms.date: 06/05/2017
+ms.workload: storage-backup-recovery
+ms.date: 06/29/2017
 ms.author: anoopkv
 ms.translationtype: Human Translation
-ms.sourcegitcommit: eccc927550aef4c9cd71ffad64d2eddedb74326e
-ms.openlocfilehash: 18627223bdb4f0986f07f17233ce7daf29cb7dd9
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: fd331d805c0c6ddcfb492db2902a8e53b23dcab3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/13/2017
+ms.lasthandoff: 06/30/2017
 
 ---
 
 # <a name="set-up-the-source-environment-vmware-to-azure"></a>設定來源環境 (從 VMware 到 Azure)
 > [!div class="op_single_selector"]
-> * [VMware 虛擬機器](./site-recovery-set-up-vmware-to-azure.md)
-> * [實體伺服器](./site-recovery-set-up-physical-to-azure.md)
+> * [VMware 至 Azure](./site-recovery-set-up-vmware-to-azure.md)
+> * [實體至 Azure](./site-recovery-set-up-physical-to-azure.md)
 
 此文章說明如何設定您的內部部署環境，以開始將在 VMware 上執行的虛擬機器複寫到 Azure。
 

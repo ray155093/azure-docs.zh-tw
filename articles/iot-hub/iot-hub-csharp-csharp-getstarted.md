@@ -1,6 +1,6 @@
 ---
 title: "開始使用 Azure IoT 中樞 (.NET) | Microsoft Docs"
-description: "如何使用適用於 .NET 的 Azure IoT SDK 將裝置到雲端訊息從裝置傳送至 Azure IoT 中樞。 您可以建立模擬裝置應用程式來傳送訊息、建立服務應用程式以在身分識別登錄中註冊裝置，以及建立服務應用程式以從 IoT 中樞讀取裝置到雲端訊息。"
+description: "了解如何使用適用於 .NET 的 IoT SDK 將裝置到雲端訊息傳送至 Azure IoT 中樞。 建立模擬裝置和服務應用程式來註冊您的裝置、傳送訊息，並從 IoT 中樞讀取訊息。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -15,17 +15,14 @@ ms.workload: na
 ms.date: 05/08/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 31ecec607c78da2253fcf16b3638cc716ba3ab89
-ms.openlocfilehash: 477f618c09c8cf572a16d142f63c9b3553050b20
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 103d64ea73c309f387ff90d181f472ad246d3026
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/23/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
-<a id="connect-your-simulated-device-to-your-iot-hub-using-net" class="xliff"></a>
-
-# 使用 .NET 將您的模擬裝置連線至 IoT 中樞
+# <a name="connect-your-simulated-device-to-your-iot-hub-using-net"></a>使用 .NET 將您的模擬裝置連線至 IoT 中樞
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
 在本教學課程結尾處，您會有三個 .NET 主控台應用程式：
@@ -58,9 +55,7 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
 [!INCLUDE [iot-hub-get-started-create-device-identity-csharp](../../includes/iot-hub-get-started-create-device-identity-csharp.md)]
 
 <a id="D2C_csharp"></a>
-<a id="receive-device-to-cloud-messages" class="xliff"></a>
-
-## 接收裝置到雲端的訊息
+## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
 在本節中，您會建立 .NET 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與 [Azure 事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 若要了解如何大規模處理裝置到雲端訊息，請參閱[處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。 如需有關如何處理來自「事件中樞」之訊息的詳細資訊，請參閱[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程。 (本教學課程適用於 IoT 中樞的事件中樞相容端點)。
 
 > [!NOTE]
@@ -130,9 +125,7 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
     Task.WaitAll(tasks.ToArray());
    ```
 
-<a id="create-a-simulated-device-app" class="xliff"></a>
-
-## 建立模擬裝置應用程式
+## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您會撰寫 .NET 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
 1. 在 Visual Studio 中，使用 [主控台應用程式 (.NET Framework)] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的解決方案。 確定 .NET Framework 為 4.5.1 或更新版本。 將專案命名為 **SimulatedDevice**。
@@ -207,9 +200,7 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
 > 
 > 
 
-<a id="run-the-apps" class="xliff"></a>
-
-## 執行應用程式
+## <a name="run-the-apps"></a>執行應用程式
 您現在可以開始執行應用程式。
 
 1. 在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下您的方案，然後按一下 [設定啟始專案]。 選取 [多個啟始專案]，然後同時針對 **ReadDeviceToCloudMessages** 和 **SimulatedDevice** 專案選取 **Start** 作為動作。
@@ -222,9 +213,7 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
    
     ![Azure 入口網站的使用量圖格][43]
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 在此教學課程中，您在 Azure 入口網站中設定了 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。 您會將此裝置身分識別用於啟用模擬裝置應用程式，以將裝置到雲端訊息傳送至 IoT 中樞。 您也會建立一個應用程式來顯示 IoT 中樞所接收的訊息。 
 
 若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰

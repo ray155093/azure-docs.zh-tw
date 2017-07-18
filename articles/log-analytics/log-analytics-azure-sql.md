@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 07/05/2017
 ms.author: banders
-translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 0184e95ca56e4bc4ffbe860da2b7a5cae9b5a043
-ms.lasthandoff: 03/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: f5f9aa186480926df1110928983566e05f79efb8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -25,15 +26,17 @@ ms.lasthandoff: 03/11/2017
 
 # <a name="monitor-azure-sql-database-using-azure-sql-analytics-preview-in-log-analytics"></a>使用 Azure SQL Database (預覽) 監視 Log Analytics 中的 Azure SQL Database
 
-Azure Log Analytics 中的 Azure SQL 監視解決方案會收集並以視覺化方式檢視重要的 SQL Azure 效能計量。 藉由使用您以解決方案收集的計量，您可以建立自訂的監視規則和警示。 而且，您可以跨多個 Azure 訂用帳戶和彈性集區監視 Azure SQL Database 和彈性集區計量，並將其視覺化。 解決方案也可協助您找出應用程式堆疊中每個層級的問題。  它會使用 [Azure 診斷計量](log-analytics-azure-storage.md)與 Log Analytics 檢視來呈現單一 Log Analytics 工作區中所有 Azure SQL Database 和彈性集區的相關資料。
+![Azure SQL 分析符號](./media/log-analytics-azure-sql/azure-sql-symbol.png)
+
+Azure Log Analytics 中的 Azure SQL 分析解決方案會收集並以視覺化方式檢視重要的 SQL Azure 效能計量。 藉由使用您以解決方案收集的計量，您可以建立自訂的監視規則和警示。 而且，您可以跨多個 Azure 訂用帳戶和彈性集區監視 Azure SQL Database 和彈性集區計量，並將其視覺化。 解決方案也可協助您找出應用程式堆疊中每個層級的問題。  它會使用 [Azure 診斷計量](log-analytics-azure-storage.md)與 Log Analytics 檢視來呈現單一 Log Analytics 工作區中所有 Azure SQL Database 和彈性集區的相關資料。
 
 目前，此預覽解決方案針對每個工作區支援高達 150,000 個 Azure SQL Database 和 5,000 個 SQL 彈性集區。
 
-Azure SQL 監視解決方案，如同其他可用的 Log Analytics，可協助您監視並接收您 Azure 資源健全狀況的相關通知，在此情況下為 Azure SQL Database。 Microsoft Azure SQL Database 是可調整的關聯式資料庫服務，可對 Azure 雲端中執行的應用程式提供熟悉的 SQL Server 類似功能。 Log Analytics 可協助您收集、相互關聯，並以視覺化方式檢視結構化和非結構化資料。
+Azure SQL 分析解決方案，如同其他可用的 Log Analytics，可協助您監視並接收您 Azure 資源健康情況的相關通知，在此情況下為 Azure SQL Database。 Microsoft Azure SQL Database 是可調整的關聯式資料庫服務，可對 Azure 雲端中執行的應用程式提供熟悉的 SQL Server 類似功能。 Log Analytics 可協助您收集、相互關聯，並以視覺化方式檢視結構化和非結構化資料。
 
 ## <a name="connected-sources"></a>連接的來源
 
-Azure SQL 監視解決方案不使用代理程式連線至 Log Analytics 服務。
+Azure SQL 分析解決方案不使用代理程式連線至 Log Analytics 服務。
 
 下表描述此方案支援的連接來源。
 
@@ -47,13 +50,13 @@ Azure SQL 監視解決方案不使用代理程式連線至 Log Analytics 服務�
 
 ## <a name="prerequisites"></a>必要條件
 
-1. Azure 訂用帳戶。 如果您沒有帳戶，您可以[免費](https://azure.microsoft.com/free/)建立一個。
-2. Log Analytics 工作區。 您可以使用現有的帳戶，或者您可以在開始使用此解決方案之前[建立一個新的](log-analytics-get-started.md)。
-3. 針對您的 Azure SQL Database 和彈性集區啟用 Azure 診斷，並[將其設定為傳送資料至 Log Analytics](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell/)。
+- Azure 訂用帳戶。 如果您沒有帳戶，您可以[免費](https://azure.microsoft.com/free/)建立一個。
+- Log Analytics 工作區。 您可以使用現有的帳戶，或者您可以在開始使用此解決方案之前[建立一個新的](log-analytics-get-started.md)。
+- 針對您的 Azure SQL Database 和彈性集區啟用 Azure 診斷，並[將其設定為傳送資料至 Log Analytics](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell/)。
 
 ## <a name="configuration"></a>組態
 
-執行下列步驟將 Azure SQL 監視解決方案新增至您的工作區。
+執行下列步驟將 Azure SQL 分析解決方案新增至您的工作區。
 
 1. 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureSQLAnalyticsOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將 Azure SQL Analytics 解決方案新增至您的工作區。
 2. 在 Azure 入口網站中，按一下 [新增] \(+ 符號)，然後在資源的清單中，選取 [監視 + 管理]。  
@@ -87,33 +90,16 @@ PS C:\> .\Enable-AzureRMDiagnostics.ps1 -WSID $WSID
 
 ![Azure SQL 分析圖格](./media/log-analytics-azure-sql/azure-sql-sol-tile.png)
 
-### <a name="viewing-azure-sql-monitoring-data"></a>檢視 Azure SQL 監視資料
+### <a name="viewing-azure-sql-analytics-data"></a>檢視 Azure SQL 分析資料
 
-按一下 [Azure SQL 監視] 圖格以開啟 Azure SQL 分析儀表板。 此儀表板包含下表中的資料行。 每個資料行最多會列出十個符合該資料行中指定範圍和時間範圍之準則的項目。 您可以按一下資料行底部的 [查看全部]，或按一下資料行標頭，以執行記錄檔搜尋來傳回所有記錄。
+按一下 [Azure SQL 分析] 圖格以開啟 Azure SQL 分析儀表板。 此儀表板包含下面定義的刀鋒視窗。 每個刀鋒視窗最多可列出 15 個資源 (訂用帳戶、伺服器、彈性集區及資料庫)。 按一下任何資源，以開啟該特定資源的儀表板。 彈性集區或資料庫包含的圖表具有所選資源的計量。 按一下圖表，以開啟 [記錄搜尋] 對話方塊。
 
-請閱讀[服務層的 SQL Database 選項和效能](../sql-database/sql-database-service-tiers.md)。
-
-
-
-![Azure SQL 分析儀表板](./media/log-analytics-azure-sql/azure-sql-dash-01.png)
-
-
-
-![Azure SQL 分析儀表板](./media/log-analytics-azure-sql/azure-sql-dash-02.png)
-
-| 欄 | 說明 |
-| --- | --- |
-| **Azure SQL Database 分析** | &nbsp; |
-| DTU 使用量 &gt; 90% 的前 N 個資料庫 | 此面板會顯示具有指定時間 DTU 使用量超過 90% 的 Azure SQL 資料庫數目。 最上層的圖格會顯示您要在 Log Analytics 內監視的所有資料庫之相同指定時間內，已耗用超過 90% 已配置總 DTU 可用性的資料庫數目。  按一下資料庫名稱，以執行會顯示比較相較於工作區所監視之其他所有 DTU 使用量的資料庫 DTU 使用量之折線圖的記錄搜尋。 |
-| CPU 使用量 &gt; 90% 的前 N 個資料庫 | 此面板會顯示具有指定時間 CPU 使用量超過 90% 的 Azure SQL 資料庫數目。 最上層的圖格會顯示您要在 Log Analytics 內監視的所有資料庫之相同指定時間內，已耗用超過 90% 已配置總 CPU 可用性的資料庫數目。  按一下資料庫名稱，以執行會顯示比較相較於工作區所監視之其他所有 CPU 使用量的資料庫 CPU 使用量之折線圖的記錄搜尋。 |
-| 儲存體耗用量 &gt; 90% 的前 N 個資料庫 | 此面板會顯示指定時間已耗用大於其儲存空間配置 90% 的 Azure SQL 資料庫數目。 最上層的圖格會顯示您要在 Log Analytics 內監視的所有資料庫之相同指定時間內，已違反閾值 90% 的資料庫數目。  按一下資料庫名稱，以執行會顯示比較相較於工作區所監視之其他所有儲存體耗用量的資料庫儲存體耗用量之折線圖的記錄搜尋。 |
-| **Azure SQL 彈性集區** | &nbsp; |
-| DTU &gt; 90% 的前 N 個彈性集區 | 此面板會顯示指定時間已耗用大於其總 DTU 配置 90% 的 Azure SQL 彈性集區數目。 最上層的圖格會顯示您要在 Log Analytics 內監視的所有 Azure SQL 彈性集區之相同指定時間內，已違反閾值 90% 的彈性集區數目。  按一下彈性集區名稱，以執行會顯示比較相較於工作區所監視之其他所有儲存體耗用量的彈性集區儲存體耗用量之折線圖的記錄搜尋。 |
-| CPU &gt; 90% 的前 N 個彈性集區 | 此面板會顯示具有指定時間期間 CPU 使用量超過 90% 的 Azure SQL 彈性集區數目。 最上層的圖格會顯示您要在 Log Analytics 內監視的所有 Azure SQL 彈性集區之相同指定時間內，已違反閾值 90% 的彈性集區數目。  按一下彈性集區名稱，以執行會顯示比較相較於工作區所監視之其他所有儲存體耗用量的彈性集區 CPU 使用率之折線圖的記錄搜尋。 |
-| 儲存體耗用量 &gt; 90% 的前 N 個彈性集區 | 此面板會顯示指定時間已耗用大於其儲存體配置 90% 的 Azure SQL 彈性集區數目。 最上層的圖格會顯示您要在 Log Analytics 內監視的所有彈性集區之相同指定時間內，已違反閾值 90% 的彈性集區數目。  按一下彈性集區名稱，以執行會顯示比較相較於工作區所監視之其他所有儲存體耗用量的彈性集區儲存體耗用量之折線圖的記錄搜尋。 |
-| **Azure SQL 活動記錄檔** | &nbsp; |
-| SQL Azure 活動稽核 | 此面板會顯示與指定時間之 Azure SQL 相關的 Azure 活動記錄數目。 按一下項目以執行會顯示項目相關之其他詳細資料的記錄搜尋。 |
-
+| 刀鋒視窗 | 說明 |
+|---|---|
+| 訂用帳戶 | 具有已連線伺服器、集區及資料庫數目的訂用帳戶清單。 |
+| 伺服器 | 具有已連線集區和資料庫數目的伺服器清單。 |
+| 彈性集區 | 具有觀察期間內最大 GB 和 eDTU 的已連線彈性集區清單。 |
+|資料庫 | 具有觀察期間內最大 GB 和 DTU 的已連線資料庫清單。|
 
 
 ### <a name="analyze-data-and-create-alerts"></a>分析資料並建立警示
@@ -136,7 +122,7 @@ PS C:\> .\Enable-AzureRMDiagnostics.ps1 -WSID $WSID
 6. 在 [新增警示規則] 頁面上，設定您要的適當屬性和特定臨界值，然後按一下 [儲存]。  
 ![新增警示規則](./media/log-analytics-azure-sql/create-alert02.png)
 
-### <a name="act-on-azure-sql-monitoring-data"></a>在 Azure SQL 監視資料上行動
+### <a name="act-on-azure-sql-analytics-data"></a>對 Azure SQL 分析資料採取行動
 
 做為範例，您可以執行的其中一個最有用查詢，是跨所有 Azure 訂用帳戶比較所有 Azure SQL 彈性集區的 DTU 使用量。 資料庫輸送量單位 (DTU) 提供說明 Basic、Standard 和 Premium 資料庫與集區的效能層級相對容量。 DTU 是根據 CPU、記憶體、讀與寫的混合測量。 當 DTU 增加時，會增加效能層級所提供的強大功能。 例如，具有 5 個 DTU 的效能層級比具有 1 個 DTU 的效能層級有五倍的能力。 最大 DTU 配額適用於每個伺服器和彈性集區。
 

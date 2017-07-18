@@ -12,17 +12,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 04/07/2016
+ms.date: 07/02/2017
 ms.author: mfussell;mikhegn
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 16000dcb751bd96fba247c6209e85c581833681d
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: a1db3dda674ffe43587333d88f3816549af3019c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
 # <a name="deploy-a-guest-executable-to-service-fabric"></a>將來賓可執行檔部署至 Service Fabric
-您可以在 Azure Service Fabric 中執行任何類型的應用程式，例如 Node.js、Java 或原生應用程式。 Service Fabric 將這些類型的應用程式稱為來賓可執行檔。
+您可以在 Azure Service Fabric 中將任何類型的程式碼 (例如 Node.js、Java 或 C++) 當作服務來執行。 Service Fabric 將這些類型的服務稱為客體可執行檔。
+
 Service Fabric 將來賓可執行檔視為無狀態服務。 因此會根據可用性和其他度量將它們放在叢集的節點上。 本文說明如何使用 Visual Studio 或命令列公用程式，封裝來賓執行檔並部署至 Service Fabric 叢集。
 
 本文中涵蓋將來賓可執行檔封裝並部署至 Service Fabric 的步驟。  
@@ -34,16 +36,17 @@ Service Fabric 將來賓可執行檔視為無狀態服務。 因此會根據可�
 * 健康狀況監視。 Service Fabric 健全狀況監控會偵測應用程式是否正在執行，如果發生失敗情況，則會提供診斷資訊。   
 * 應用程式生命週期管理。 除了提供無需停機的升級，如果升級期間回報健全狀況不良事件，Service Fabric 也支援回復到舊版。    
 * 密度。 您可以在叢集中執行多個應用程式，每個應用程式不必在自己的硬體上執行。
+* 可探索性：藉由使用 REST，您可以呼叫 Service Fabric 命名服務來尋找叢集中的其他服務。 
 
 ## <a name="samples"></a>範例
 * [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
-* [兩個來賓可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
+* [兩個客體可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務進行通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
 ## <a name="overview-of-application-and-service-manifest-files"></a>應用程式和服務資訊清單檔案的概觀
 在部署來賓執行檔的過程中，最好先了解 Service Fabric 封裝和部署模型，如[應用程式模型](service-fabric-application-model.md)中所述。 Service Fabric 封裝模型依賴兩個 XML 檔案：應用程式和服務資訊清單。 ApplicationManifest.xml 和 ServiceManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 一起安裝在 C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd。
 
 * **應用程式資訊清單**：應用程式資訊清單用來描述應用程式。 其中列出組成該應用程式的服務，以及用來定義應如何部署一或多個服務的其他參數，例如執行個體數目。
-  
+
   在 Service Fabric 中，應用程式是部署和升級的單位。 應用程式可以當作單一單位來升級，而得以掌控可能的失敗和可能需要的回復。 Service Fabric 可保證升級程序一定成功，萬一升級失敗，也不會讓應用程式處於不明或不穩定的狀態。
 * **服務資訊清單**：服務資訊清單描述服務的元件。 它包含資料，例如服務的名稱和類型、其程式碼、組態。 服務資訊清單還包含一些在服務部署後可用來設定服務的額外參數。
 
@@ -70,24 +73,23 @@ ApplicationPackageRoot 包含可定義應用程式的 ApplicationManifest.xml �
 
 > [!NOTE]
 > 如果不需要 `config` 和 `data` 目錄，則不必建立。
-> 
-> 
+>
+>
 
 ## <a name="package-an-existing-executable"></a>封裝現有的執行檔
 在封裝來賓執行檔時，您可以選擇使用 Visual Studio 專案範本，或是[手動建立應用程式套件](#manually)。 使用 Visual Studio 時，就可讓 [新增專案範本] 為您建立應用程式套件的結構和資訊清單檔案。
 
 > [!TIP]
-> 將現有 Windows 可執行檔封裝成服務最簡單方式是使用 Visual Studio。
-> 
-> 
+> 將現有 Windows 可執行檔封裝成服務的最簡單方式，就是使用 Visual Studio，而在 Linux 上則是使用 Yeoman
+>
 
-## <a name="use-visual-studio-to-package-an-existing-executable"></a>使用 Visual Studio 封裝現有的執行檔
+## <a name="use-visual-studio-to-package-and-deploy-an-existing-executable"></a>使用 Visual Studio 來封裝及部署現有的可執行檔
 Visual Studio 會提供 Service Fabric 服務範本，協助您將來賓可執行檔部署至 Service Fabric 叢集。
 
 1. 選擇 [檔案]  >  [新增專案]，然後建立 Service Fabric 應用程式。
 2. 選擇 [來賓執行檔] 做為服務範本。
 3. 按一下 [瀏覽] 以選取內含執行檔的資料夾，並填入其餘參數以建立服務。
-   * 「Code Package Behavior」。 可設定為將資料夾的所有內容複製到 Visual Studio 專案，這在執行檔沒有變更時很有用。 如果您預期會變更可執行檔，並想要以動態方式取得新組建，則可以選擇改為連結到資料夾。 請注意，在 Visual Studio 中建立應用程式專案時，您可以使用連結的資料夾。 這會從專案內連結到來源位置，讓您可以在來源目的地更新來賓執行檔。 在組建時使這些更新會成為應用程式套件的一部分。
+   * 「Code Package Behavior」。 可設定為將資料夾的所有內容複製到 Visual Studio 專案，這在執行檔沒有變更時很有用。 如果您預期會變更可執行檔，並想要以動態方式取得新組建，則可以選擇改為連結到資料夾。 在 Visual Studio 中建立應用程式專案時，您可以使用連結的資料夾。 這會從專案內連結到來源位置，讓您可以在來源目的地更新來賓執行檔。 在組建時使這些更新會成為應用程式套件的一部分。
    * 「Program」指定應執行以便啟動服務的執行檔。
    * 「Arguments」指定應傳遞至執行檔的引數。 這可以是具有引數的參數清單。
    * 「WorkingFolder」指定即將啟動之程序的工作目錄。 您可以指定三個值：
@@ -98,6 +100,16 @@ Visual Studio 會提供 Service Fabric 服務範本，協助您將來賓可執�
 5. 如果服務需要用來進行通訊的端點，您現在可以將 protocol、port 和 type 新增至 ServiceManifest.xml 檔案。 例如：`<Endpoint Name="NodeAppTypeEndpoint" Protocol="http" Port="3000" UriScheme="http" PathSuffix="myapp/" Type="Input" />`。
 6. 您現在可以藉由在 Visual Studio 中偵錯方案，對本機叢集執行封裝和發佈動作。 準備好時，即可將應用程式發佈至遠端叢集，或將方案簽入到原始檔控制。
 7. 請移至本文結尾，以了解如何檢視 Service Fabric Explorer 中執行的來賓執行檔服務。
+
+## <a name="use-yoeman-to-package-and-deploy-an-existing-executable-on-linux"></a>使用 Yoeman 在 Linux 上封裝及部署現有的可執行檔
+
+在 Linux 上建立及部署來賓可執行檔的程序與部署 csharp 或 java 應用程式的程序相同。
+
+1. 在終端機中，輸入 `yo azuresfguest`。
+2. 為您的應用程式命名。
+3. 為您的服務命名並提供詳細資料，包括可執行檔的路徑，以及叫用它時所必須使用的參數。
+
+Yeoman 會建立應用程式套件，其中包含適當的應用程式和資訊清單檔案，以及安裝和解除安裝指令碼。
 
 <a id="manually"></a>
 
@@ -123,8 +135,8 @@ Service Fabric 會進行應用程式根目錄內容的 `xcopy`，所以除了建
 
 > [!NOTE]
 > 請確定您包含應用程式需要的所有檔案和相依項目。 Service Fabric 會將應用程式套件的內容，複製到即將部署應用程式服務的叢集中的所有節點上。 該套件應包含應用程式需要執行的所有程式碼。 請勿假設已經安裝相依項目。
-> 
-> 
+>
+>
 
 ### <a name="edit-the-service-manifest-file"></a>編輯服務資訊清單檔
 下一步就是編輯服務資訊清單檔以包含下列資訊：
@@ -268,8 +280,8 @@ WorkingFolder 適合用來設定正確的工作目錄，以便應用程式或初
 
 > [!WARNING]
 > 切勿在實際部署的應用程式中使用主控台重新導向原則，因為這可能會影響應用程式容錯移轉。 僅將此原則用於本機開發及偵錯。  
-> 
-> 
+>
+>
 
 ```xml
 <EntryPoint>
@@ -331,26 +343,15 @@ Service Fabric 服務可以各種「組態」部署。 例如，它可部署為�
 
 ![在磁碟上的位置](./media/service-fabric-deploy-existing-app/locationondisk2.png)
 
-如果您使用 [伺服器總管] 瀏覽至目錄，您可以找到工作目錄和服務的記錄檔資料夾，如下所示。
+如果您使用「伺服器總管」來瀏覽至目錄，您可以找到工作目錄和服務的記錄檔資料夾，如以下螢幕擷取畫面所示： 
 
 ![記錄檔的位置](./media/service-fabric-deploy-existing-app/loglocation.png)
-
-## <a name="creating-a-guest-executable-using-yeoman-for-service-fabric-on-linux"></a>在 Linux 上使用適用於 Service Fabric 的 Yeoman 建立來賓可執行檔
-
-在 Linux 上建立及部署來賓可執行檔的程序與部署 csharp 或 java 應用程式的程序相同。 
-
-1. 在終端機中，輸入 `yo azuresfguest`。
-2. 為您的應用程式命名。
-3. 選擇第一個服務的類型並加以命名。 針對來賓可執行檔選擇 **來賓二進位檔** (以及針對容器選擇 **來賓容器** )，並提供詳細資料，包括可執行檔的路徑及其必須叫用的參數。
-
-Yeoman 會建立應用程式套件，其中包含適當的應用程式和資訊清單檔案，以及安裝和解除安裝指令碼。
 
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已經學會如何封裝來賓可執行檔並部署至 Service Fabric。 請參閱下列文章以了解相關資訊和工作。
 
 * [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)，包括封裝工具預先發行版本的連結
-* [兩個來賓可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
+* [兩個客體可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務進行通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 * [部署多個來賓可執行檔](service-fabric-deploy-multiple-apps.md)
 * [使用 Visual Studio 建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)
-
 

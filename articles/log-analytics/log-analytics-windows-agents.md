@@ -12,14 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/12/2017
+ms.date: 07/03/2017
 ms.author: magoedte
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: d95ab33460d5d86b1d2f6d7f0d4e7a9040568c29
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 48a0eaeb10d406d551c9e5870edde06809bd7544
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 07/04/2017
 
 
 ---
@@ -65,7 +65,7 @@ Windows 代理程式若要連線到 OMS 服務並向其註冊，就必須能夠�
 下表說明通訊所需資源。
 
 >[!NOTE]
->下列某些資源所提到的 Operational Insights 是 OMS 的上一個版本。 不過，列出的資源將會在未來變更。
+>下列某些資源所提到的 Operational Insights 是 Log Analytics 先前的名稱。
 
 | 代理程式資源 | 連接埠 | 略過 HTTPS 檢查 |
 |---|---|---|
@@ -114,10 +114,10 @@ Windows 代理程式若要連線到 OMS 服務並向其註冊，就必須能夠�
 
 您可以使用下列程序，輕鬆地確認代理程式是否能夠與 OMS 通訊︰
 
-1.    在具有 Windows 代理程式的電腦上，開啟 [控制台]。
-2.    開啟 [Microsoft Monitoring Agent]。
-3.    按一下 [Azure Log Analytics (OMS)] 索引標籤。
-4.    在 [狀態] 欄中，您應該會看到代理程式已成功連線到 Operations Management Suite 服務。
+1.  在具有 Windows 代理程式的電腦上，開啟 [控制台]。
+2.  開啟 [Microsoft Monitoring Agent]。
+3.  按一下 [Azure Log Analytics (OMS)] 索引標籤。
+4.  在 [狀態] 欄中，您應該會看到代理程式已成功連線到 Operations Management Suite 服務。
 
 ![代理程式已連線](./media/log-analytics-windows-agents/mma-connected.png)
 
@@ -167,6 +167,12 @@ Windows 代理程式若要連線到 OMS 服務並向其註冊，就必須能夠�
 |OPINSIGHTS_WORKSPACE_ID                | 要新增之工作區的工作區識別碼 (guid)                    |
 |OPINSIGHTS_WORKSPACE_KEY               | 用來向工作區進行初始驗證的工作區金鑰 |
 |OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE  | 指定工作區所在的雲端環境 <br> 0 = Azure 商業雲端 (預設值) <br> 1 = Azure Government |
+|OPINSIGHTS_PROXY_URL               | 要使用的 Proxy URI |
+|OPINSIGHTS_PROXY_USERNAME               | 要存取已驗證 Proxy 的使用者名稱 |
+|OPINSIGHTS_PROXY_PASSWORD               | 要存取已驗證 Proxy 的密碼 |
+
+>[!NOTE]
+為了避免達到 IExpress 的命令列長度限制，請安裝沒有設定工作區的代理程式，然後使用指令碼來設定工作區組態。
 
 >[!NOTE]
 如果您在使用 `OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE` 參數時收到 `Command line option syntax error.`，您可以使用下列因應措施︰
@@ -174,9 +180,10 @@ Windows 代理程式若要連線到 OMS 服務並向其註冊，就必須能夠�
 MMASetup-AMD64.exe /C /T:.\MMAExtract
 cd .\MMAExtract
 setup.exe /qn ADD_OPINSIGHTS_WORKSPACE=1 OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE=1 OPINSIGHTS_WORKSPACE_ID=<your workspace id> OPINSIGHTS_WORKSPACE_KEY=<your workspace key> AcceptEndUserLicenseAgreement=1
+```
 
-## Add a workspace using a script
-Add a workspace using the Log Analytics agent scripting API with the following example:
+## <a name="add-a-workspace-using-a-script"></a>使用指令碼來新增工作區
+您可以參考下列範例，使用 Log Analytics 代理程式指令碼 API 來新增工作區：
 
 ```PowerShell
 $mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
@@ -206,10 +213,10 @@ $mma.ReloadConfiguration()
 此程序和指令碼範例不會升級現有的代理程式。
 
 1. 從 [http://www.powershellgallery.com/packages/xPSDesiredStateConfiguration](http://www.powershellgallery.com/packages/xPSDesiredStateConfiguration) 將 xPSDesiredStateConfiguration DSC 模組匯入 Azure 自動化。  
-2.    建立 Azure 自動化的 *OPSINSIGHTS_WS_ID* 和 *OPSINSIGHTS_WS_KEY* 變數資產。 將 *OPSINSIGHTS_WS_ID* 設定為您的 OMS Log Analytics 工作區識別碼，將 *OPSINSIGHTS_WS_KEY* 設定為工作區的主索引鍵。
-3.    使用下列指令碼並將其儲存為 MMAgent.ps1
-4.    修改並使用下列範例來使用 Azure 自動化中的 DSC 安裝代理程式。 使用 Azure 自動化介面或 Cmdlet 將 MMAgent.ps1 匯入 Azure 自動化。
-5.    指派節點至設定。 在 15 分鐘內，節點會檢查其設定，然後系統會將 MMA 推送至節點。
+2.  建立 Azure 自動化的 *OPSINSIGHTS_WS_ID* 和 *OPSINSIGHTS_WS_KEY* 變數資產。 將 *OPSINSIGHTS_WS_ID* 設定為您的 OMS Log Analytics 工作區識別碼，將 *OPSINSIGHTS_WS_KEY* 設定為工作區的主索引鍵。
+3.  使用下列指令碼並將其儲存為 MMAgent.ps1
+4.  修改並使用下列範例來使用 Azure 自動化中的 DSC 安裝代理程式。 使用 Azure 自動化介面或 Cmdlet 將 MMAgent.ps1 匯入 Azure 自動化。
+5.  指派節點至設定。 在 15 分鐘內，節點會檢查其設定，然後系統會將 MMA 推送至節點。
 
 ```PowerShell
 Configuration MMAgent
@@ -298,17 +305,17 @@ foreach ($Application in $InstalledApplications)
 如果您在 IT 基礎結構中使用 Operations Manager，您也可以使用 MMA 代理程式做為 Operations Manager 代理程式。
 
 ### <a name="to-configure-mma-agents-to-report-to-an-operations-manager-management-group"></a>將 MMA 代理程式設定為向 Operations Manager 管理群組報告
-1.    在已安裝代理程式的電腦上，開啟 [控制台] 。  
-2.    開啟 **Microsoft Monitoring Agent**，然後按一下 [Operations Manager] 索引標籤。  
+1.  在已安裝代理程式的電腦上，開啟 [控制台] 。  
+2.  開啟 **Microsoft Monitoring Agent**，然後按一下 [Operations Manager] 索引標籤。  
     ![Microsoft 監視代理程式 Operations Manager 索引標籤](./media/log-analytics-windows-agents/om-mg01.png)
-3.    如果 Operations Manager 伺服器已與 Active Directory 整合，請按一下 [自動更新來自 AD DS 的管理群組指派] 。
-4.    按一下 [新增] 以開啟 [新增管理群組] 對話方塊。  
+3.  如果 Operations Manager 伺服器已與 Active Directory 整合，請按一下 [自動更新來自 AD DS 的管理群組指派] 。
+4.  按一下 [新增] 以開啟 [新增管理群組] 對話方塊。  
     ![Microsoft 監視代理程式新增管理群組](./media/log-analytics-windows-agents/oms-mma-om02.png)
-5.    在[管理群組名稱]  方塊中，輸入管理群組的名稱。
-6.    在 [主要管理伺服器]  方塊中，輸入主要管理伺服器的電腦名稱。
-7.    在 [管理伺服器連接埠]  方塊中，輸入 TCP 連接埠號碼。
-8.    在 [代理程式動作帳戶] 頁面下，選擇本機系統帳戶或本機網域帳戶。
-9.    按一下 [確定] 關閉 [新增管理群組] 對話方塊，然後按一下 [確定] 關閉 [Microsoft 監視代理程式內容] 對話方塊。
+5.  在[管理群組名稱]  方塊中，輸入管理群組的名稱。
+6.  在 [主要管理伺服器]  方塊中，輸入主要管理伺服器的電腦名稱。
+7.  在 [管理伺服器連接埠]  方塊中，輸入 TCP 連接埠號碼。
+8.  在 [代理程式動作帳戶] 頁面下，選擇本機系統帳戶或本機網域帳戶。
+9.  按一下 [確定] 關閉 [新增管理群組] 對話方塊，然後按一下 [確定] 關閉 [Microsoft 監視代理程式內容] 對話方塊。
 
 
 ## <a name="next-steps"></a>後續步驟

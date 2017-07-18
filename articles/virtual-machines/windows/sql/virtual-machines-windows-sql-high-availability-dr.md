@@ -13,17 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 03/17/2017
+ms.date: 06/27/2017
 ms.author: mikeray
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 65e3564111b1f291bead685ae0c831951460c827
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 27d05c1681f7d7b3090fc7abd4a6b15d1c030e2c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
 # <a name="high-availability-and-disaster-recovery-for-sql-server-in-azure-virtual-machines"></a>Azure 虛擬機器中的 SQL Server 高可用性和災害復原
-## <a name="overview"></a>概觀
+
 內含 SQL Server 的 Microsoft Azure 虛擬機器 (VM) 可協助降低高可用性和嚴重損壞修復 (HADR) 資料庫解決方案的成本。 Azure 虛擬機器中支援大部分的 SQL Server HADR 解決方案 (僅限 Azure 以及混合式解決方案兩種)。 在僅限 Azure 解決方案中，整個 HADR 系統會在 Azure 中執行。 在混合式組態中，解決方案的一部分會在 Azure 中執行，而其他部分會在組織中的內部部署執行。 Azure 環境的彈性可讓您將解決方案部分或完全移動至 Azure，以滿足 SQL Server 資料庫系統的預算與 HADR 需求。
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
@@ -46,28 +47,28 @@ ms.lasthandoff: 03/31/2017
 
 ## <a name="azure-only-high-availability-solutions"></a>僅限 Azure：高可用性解決方案
 
-您可以在含有 Always On 可用性群組的資料庫層級，或者在含有 Always On 容錯移轉叢集執行個體的執行個體層級，具備適用於 SQL Server 的高可用性解決方案。 您也可以藉由在 SQL Server 容錯移轉叢集執行個體上建立 Always On 可用性群組，在這兩個層級上建立備援。 
+您可以在含有 Always On 可用性群組 (稱為可用性群組) 的資料庫層級，具備適用於 SQL Server 的高可用性解決方案。 您也可以在含有 Always On 容錯移轉叢集執行個體 (容錯移轉叢集執行個體) 的執行個體層級，建立高可用性解決方案。 如需額外的備援，您可以藉由在容錯移轉叢集執行個體上建立可用性群組，在這兩個層級上建立備援。 
 
 | Technology | 範例架構 |
 | --- | --- |
-| **Always On 可用性群組** |在相同區域的 Azure VM 中執行的可用性複本提供高可用性。 由於 Windows 容錯移轉叢集需要使用 Active Directory 網域，因此您需要設定網域控制站 VM。<br/> ![Always On 可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_ha_always_on.gif)<br/>如需詳細資訊，請參閱[在 Azure 中設定 AlwaysOn 可用性群組 (GUI)](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)。 |
-| **Always On 容錯移轉叢集執行個體** |有 3 種不同的方式可以建立需要使用共用儲存體的「容錯移轉叢集執行個體」(FCI)。<br/><br/>1.在 Azure VM 中執行的雙節點容錯移轉叢集，搭配以 [Windows Server 2016 儲存空間直接存取 \(S2D\) ](virtual-machines-windows-portal-sql-create-failover-cluster.md) 連接的儲存體，形成以軟體為基礎的虛擬 SAN。<br/><br/>2.在 Azure VM 中執行的雙節點容錯移轉叢集，搭配由協力廠商叢集解決方案支援的儲存體。 如需使用 SIOS DataKeeper 的特定範例，請參閱[使用容錯移轉叢集和協力廠商軟體 SIOS Datakeeper 之檔案共用的高可用性 (英文)](https://azure.microsoft.com/blog/high-availability-for-a-file-share-using-wsfc-ilb-and-3rd-party-software-sios-datakeeper/)。<br/><br/>3.在 Azure VM 中執行的雙節點容錯移轉叢集，搭配透過 ExpressRoute 的遠端 iSCSI 目標共用區塊儲存體。 例如，NetApp 私用儲存體 (NPS) 會透過 ExpressRoute 使用 Equinix 將 iSCSI 目標公開至 Azure VM。<br/><br/>對於協力廠商共用儲存體和資料複寫解決方案，針對有關存取容錯移轉資料的任何問題您應該連絡廠商。<br/><br/>請注意，在 [Azure 檔案儲存體](https://azure.microsoft.com/services/storage/files/)最上層使用 FCI 尚未支援，因為這個解決方案不使用進階儲存體。 我們正在努力，很快就會推出這項支援。 |
+| **可用性群組** |在相同區域的 Azure VM 中執行的可用性複本提供高可用性。 由於 Windows 容錯移轉叢集需要使用 Active Directory 網域，因此您需要設定網域控制站 VM。<br/> ![可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_ha_always_on.gif)<br/>如需詳細資訊，請參閱[在 Azure (GUI) 中設定可用性群組](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)。 |
+| **容錯移轉叢集執行個體** |有 3 種不同的方式可以建立需要使用共用儲存體的「容錯移轉叢集執行個體」(FCI)。<br/><br/>1.在 Azure VM 中執行的雙節點容錯移轉叢集，搭配以 [Windows Server 2016 儲存空間直接存取 \(S2D\) ](virtual-machines-windows-portal-sql-create-failover-cluster.md) 連接的儲存體，形成以軟體為基礎的虛擬 SAN。<br/><br/>2.在 Azure VM 中執行的雙節點容錯移轉叢集，搭配由協力廠商叢集解決方案支援的儲存體。 如需使用 SIOS DataKeeper 的特定範例，請參閱[使用容錯移轉叢集和協力廠商軟體 SIOS DataKeeper 之檔案共用的高可用性](https://azure.microsoft.com/blog/high-availability-for-a-file-share-using-wsfc-ilb-and-3rd-party-software-sios-datakeeper/) \(英文\)。<br/><br/>3.在 Azure VM 中執行的雙節點容錯移轉叢集，搭配透過 ExpressRoute 的遠端 iSCSI 目標共用區塊儲存體。 例如，NetApp 私用儲存體 (NPS) 會透過 ExpressRoute 使用 Equinix 將 iSCSI 目標公開至 Azure VM。<br/><br/>對於協力廠商共用儲存體和資料複寫解決方案，針對有關存取容錯移轉資料的任何問題您應該連絡廠商。<br/><br/>請注意，在 [Azure 檔案儲存體](https://azure.microsoft.com/services/storage/files/)最上層使用 FCI 尚未支援，因為這個解決方案不使用進階儲存體。 我們正在努力，很快就會推出這項支援。 |
 
 ## <a name="azure-only-disaster-recovery-solutions"></a>僅限 Azure：災害復原解決方案
-您可以使用 Always On 可用性群組和資料庫鏡像，為 Azure 中的 SQL Server 資料庫提供災害復原解決方案，或者使用儲存體 Blob 進行備份和還原。
+您可以使用可用性群組或資料庫鏡像，為 Azure 中的 SQL Server 資料庫提供災害復原解決方案，或者使用儲存體 Blob 進行備份和還原。
 
 | Technology | 範例架構 |
 | --- | --- |
-| **Always On 可用性群組** |為了進行嚴重損壞修復，可用性複本會在 Azure VM 的多個資料中心執行。 這種跨區域解決方案可防止網站完全中斷。 <br/> ![Always On 可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_alwayson.png)<br/>在區域內，所有複本都應位於相同的雲端服務與 VNet 中。 由於每個區域會有不同的 VNet，因此這些解決方案會需要 VNet 對 VNet 連線。 如需詳細資訊，請參閱[使用 Azure 入口網站設定 VNet 對 VNet 連接](../../../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)。 如需詳細指示，請參閱[在不同區域中的 Azure 虛擬機器上設定 SQL Server Always On 可用性群組](virtual-machines-windows-portal-sql-availability-group-dr.md)。|
+| **可用性群組** |為了進行嚴重損壞修復，可用性複本會在 Azure VM 的多個資料中心執行。 這種跨區域解決方案可防止網站完全中斷。 <br/> ![可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_alwayson.png)<br/>在區域內，所有複本都應位於相同的雲端服務與 VNet 中。 由於每個區域會有不同的 VNet，因此這些解決方案會需要 VNet 對 VNet 連線。 如需詳細資訊，請參閱[使用 Azure 入口網站設定 VNet 對 VNet 連接](../../../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)。 如需詳細指示，請參閱[在不同區域中的 Azure 虛擬機器上設定 SQL Server 可用性群組](virtual-machines-windows-portal-sql-availability-group-dr.md)。|
 | **資料庫鏡像** |為了進行嚴重損壞修復，主體、鏡像和伺服器會在不同的資料中心內執行。 由於 Active Directory 網域無法跨多個資料中心，因此您必須使用伺服器憑證進行部署。<br/>![資料庫鏡像](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_dbmirroring.gif) |
 | **備份及還原與 Azure Blob 儲存體服務** |生產資料庫直接備份到不同資料中心的 blob 儲存體以進行災害復原。<br/>![備份與還原](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_backup_restore.gif)<br/>如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的備份與還原](virtual-machines-windows-sql-backup-recovery.md)。 |
 
 ## <a name="hybrid-it-disaster-recovery-solutions"></a>混合式 IT：災害復原解決方案
-您可以使用 Always On 可用性群組、資料庫鏡像及記錄傳送，為混合式 IT 環境中的 SQL Server 資料庫提供災害復原解決方案，以及使用 Azure Blob 儲存體進行備份和還原。
+您可以使用可用性群組、資料庫鏡像及記錄傳送，為混合式 IT 環境中的 SQL Server 資料庫提供災害復原解決方案，以及使用 Azure Blob 儲存體進行備份和還原。
 
 | Technology | 範例架構 |
 | --- | --- |
-| **Always On 可用性群組** |為了進行跨網站的嚴重損壞修復，部分可用性複本會在 Azure VM 中執行，而其他複本會在內部部署執行。 生產網站可以是內部部署或是在 Azure 資料中心。<br/>![Always On 可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_alwayson.gif)<br/>由於所有可用性複本都必須位於相同的容錯移轉叢集中，因此該叢集必須同時跨這兩個網路 (多重子網路的容錯移轉叢集)。 此組態需要 Azure 與內部部署網路之間的 VPN 連線。<br/><br/>若要成功對資料庫進行災害復原，您也應該在災害復原網站安裝複本網域控制站。<br/><br/>很可能要在 SSMS 中使用「新增複本精靈」以將 Azure 複本新增至現有 Always On 可用性群組。 如需詳細資訊，請參閱教學課程：將您的 Always On 可用性群組延伸至 Azure。 |
+| **可用性群組** |為了進行跨網站的嚴重損壞修復，部分可用性複本會在 Azure VM 中執行，而其他複本會在內部部署執行。 生產網站可以是內部部署或是在 Azure 資料中心。<br/>![可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_alwayson.gif)<br/>由於所有可用性複本都必須位於相同的容錯移轉叢集中，因此該叢集必須同時跨這兩個網路 (多重子網路的容錯移轉叢集)。 此組態需要 Azure 與內部部署網路之間的 VPN 連線。<br/><br/>若要成功對資料庫進行災害復原，您也應該在災害復原網站安裝複本網域控制站。<br/><br/>很可能要在 SSMS 中使用「新增複本精靈」以將 Azure 複本新增至現有 Always On 可用性群組。 如需詳細資訊，請參閱教學課程：將您的 Always On 可用性群組延伸至 Azure。 |
 | **資料庫鏡像** |為了使用伺服器憑證進行跨網站嚴重損壞修復，一個合作夥伴會在 Azure VM 中執行，而其他合作夥伴會在內部部署中執行。 合作夥伴不需要位於相同的 Active Directory 網域，且不需要 VPN 連線。<br/>![資料庫鏡像](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_dbmirroring.gif)<br/>另一個資料庫鏡像案例，則是為了進行跨網站災害復原復，讓一個合作夥伴在 Azure VM 中執行，並讓其他合作夥伴在相同 Active Directory 網域的內部部署中執行。 需要 [Azure 虛擬網路與內部部署之間的 VPN 連線](../../../vpn-gateway/vpn-gateway-site-to-site-create.md)。<br/><br/>若要成功對資料庫進行災害復原，您也應該在災害復原網站安裝複本網域控制站。 |
 | **記錄傳送** |為了進行跨網站嚴重損壞修復，一個合作夥伴會在 Azure VM 中執行，而其他合作夥伴會在內部部署中執行。 記錄傳送依賴 Windows 檔案共用，因此需要 Azure 虛擬網路和內部部署網路之間的 VPN 連線。<br/>![記錄傳送](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_log_shipping.gif)<br/>若要成功對資料庫進行災害復原，您也應該在災害復原網站安裝複本網域控制站。 |
 | **備份及還原與 Azure Blob 儲存體服務** |內部部署生產資料庫直接備份到 Azure blob 儲存體以進行災害復原。<br/>![備份與還原](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_backup_restore.gif)<br/>如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的備份與還原](virtual-machines-windows-sql-backup-recovery.md)。 |
@@ -79,7 +80,7 @@ ms.lasthandoff: 03/31/2017
 Azure 中的可用性設定組可讓您將高可用性節點分別放入容錯網域 (FD) 和更新網域 (UD)。 若要將 Azure VM 放入相同的可用性設定組中，您必須將其部署至相同的雲端服務中。 只有相同雲端服務內的節點可以參與相同的可用性設定組。 如需詳細資訊，請參閱 [管理虛擬機器的可用性](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ### <a name="failover-cluster-behavior-in-azure-networking"></a>Azure 網路中的容錯移轉叢集行為
-由於您將重複的 IP 位址指派為叢集網路名稱 (例如，將相同的 IP 位址指派為其中一個叢集節點)，因此 Azure 中不符合 RFC 規範的 DHCP 服務可能會導致特定容錯移轉叢集組態的建立作業失敗。 這是您實作 Always On 可用性群組 (取決於 Windows 容錯移轉叢集功能) 時會發生的問題。
+由於您將重複的 IP 位址指派為叢集網路名稱 (例如，將相同的 IP 位址指派為其中一個叢集節點)，因此 Azure 中不符合 RFC 規範的 DHCP 服務可能會導致特定容錯移轉叢集組態的建立作業失敗。 這是您實作可用性群組 (取決於 Windows 容錯移轉叢集功能) 時會發生的問題。
 
 當雙節點叢集建立且上線時，請考慮以下案例：
 
@@ -90,9 +91,9 @@ Azure 中的可用性設定組可讓您將高可用性節點分別放入容錯�
 5. 當 NODE2 嘗試與 NODE1 建立連線時，於 NODE1 導向的封包不會離開 NODE2，因為它將 NODE1 的 IP 位址解析至其本身。 NODE2 無法與 NODE1 建立連線，因此會失去仲裁並關閉叢集。
 6. 在此同時，NODE1 可以傳送封包至 NODE2，但是 NODE2 無法回覆。 NODE1 會失去仲裁並關閉叢集。
 
-若要避免這種情況，可以將未使用的靜態 IP 位址 (例如，連結本機的 IP 位址為 169.254.1.1) 指派至叢集網路名稱，使叢集網路名稱上線。 若要簡化此程序，請參閱 [在 Azure 中為 Always On 可用性群組設定 Windows 容錯移轉叢集](http://social.technet.microsoft.com/wiki/contents/articles/14776.configuring-windows-failover-cluster-in-windows-azure-for-alwayson-availability-groups.aspx)。
+若要避免這種情況，可以將未使用的靜態 IP 位址 (例如，連結本機的 IP 位址為 169.254.1.1) 指派至叢集網路名稱，使叢集網路名稱上線。 若要簡化此程序，請參閱[在 Azure 中為可用性群組設定 Windows 容錯移轉叢集](http://social.technet.microsoft.com/wiki/contents/articles/14776.configuring-windows-failover-cluster-in-windows-azure-for-alwayson-availability-groups.aspx) \(英文\)。
 
-如需詳細資訊，請參閱[在 Azure 中設定 AlwaysOn 可用性群組 (GUI)](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)。
+如需詳細資訊，請參閱[在 Azure (GUI) 中設定可用性群組](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)。
 
 ### <a name="availability-group-listener-support"></a>可用性群組接聽程式支援
 可用性群組接聽程式支援執行 Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2 和 Windows Server 2016 的 Azure VM。 透過使用在為可用性群組節點的 Azure VM 上啟用的負載平衡端點，即可提供支援。 您必須遵循特殊組態步驟，以便接聽程式在 Azure 中執行的用戶端應用程式，以及在內部部署中執行的用戶端應用程式運作。
@@ -101,10 +102,10 @@ Azure 中的可用性設定組可讓您將高可用性節點分別放入容錯�
 
 如果可用性群組跨越多個 Azure 子網路 (例如跨越多個 Azure 區域的部署)，用戶端連接字串就必須包含 "**MultisubnetFailover = True**"。 這會導致對於不同子網路中的複本進行平行連接嘗試。 如需有關設定接聽程式的指示，請參閱
 
-* [設定 Azure 中 Always On 可用性群組的 ILB 接聽程式](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md)。
-* [設定 Azure 中 Always On 可用性群組的外部接聽程式](../classic/ps-sql-ext-listener.md)。
+* [設定 Azure 中可用性群組的 ILB 接聽程式](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md)。
+* [設定 Azure 中可用性群組的外部接聽程式](../classic/ps-sql-ext-listener.md)。
 
-您仍可以透過直接連接至服務執行個體，分別連接至各個可用性複本。 此外，由於 Always On 可用性群組能與資料庫鏡像用戶端回溯相容，因此只要將可用性複本設定成類似資料庫鏡像，即可連接至該複本 (例如資料庫鏡像合作夥伴)：
+您仍可以透過直接連接至服務執行個體，分別連接至各個可用性複本。 此外，由於可用性群組能與資料庫鏡像用戶端回溯相容，因此只要將可用性複本設定成類似資料庫鏡像，即可連接至這類複本 (例如資料庫鏡像合作夥伴)：
 
 * 一個主要複本與一個次要複本
 * 次要複本被設定為不可讀取 ([可讀取次要] 選項設為 [否])
@@ -136,6 +137,6 @@ Azure 磁碟中的異地複寫不支援將相同資料庫的資料檔與記錄�
 
 ### <a name="other-resources"></a>其他資源
 * [在 Azure 中安裝新的 Active Directory 樹系](../../../active-directory/active-directory-new-forest-virtual-machine.md)
-* [在 Azure VM 中建立 Always On 可用性群組的容錯轉叢集 (英文)](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a)
+* [在 Azure VM 中建立可用性群組的容錯移轉叢集](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a) \(英文\)
 
 

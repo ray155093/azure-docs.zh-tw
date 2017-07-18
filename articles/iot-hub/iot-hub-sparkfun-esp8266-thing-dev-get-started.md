@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/15/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: be140e86047cae304bfb5c32c5cdd9135413df82
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 0b7ce531c73d991897f1c35932e795a97dd33162
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -53,6 +54,7 @@ ms.lasthandoff: 04/12/2017
 
 您的開發環境還需要下列項目︰
 
+* 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，請花幾分鐘的時間建立[免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。
 * 執行 Windows 或 Ubuntu 的 Mac 或 PC。
 * Sparkfun ESP8266 Thing Dev 要連接的無線網路。
 * 用來下載組態工具的網際網路連線。
@@ -64,79 +66,7 @@ ms.lasthandoff: 04/12/2017
 * 麵包板。
 * M/M 跳線。
 
-## <a name="create-an-iot-hub-and-register-a-device-for-sparkfun-esp8266-thing-dev"></a>建立 IoT 中樞並註冊 Sparkfun ESP8266 Thing Dev 適用的裝置
-
-### <a name="create-your-azure-iot-hub-in-the-azure-portal"></a>在 Azure 入口網站中建立 Azure IoT 中樞
-
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-1. 按一下 [新增] > [物聯網] > [IoT 中樞]。
-
-   ![建立 IoT 中樞](media/iot-hub-sparkfun-thing-dev-get-started/3_iot-hub-creation.png)
-
-1. 在 [IoT 中樞] 窗格中，輸入 IoT 中樞的必要資訊︰
-
-   ![用於建立 IoT 中樞的基本資訊](media/iot-hub-sparkfun-thing-dev-get-started/4_iot-hub-provide-basic-info.png)
-
-   * **名稱**：IoT 中樞的名稱。 如果您輸入的名稱有效，則會出現綠色核取記號。
-   * **定價與級別層**︰選取 F1 免費層就足夠本示範使用。 請參閱[定價與級別層](https://azure.microsoft.com/pricing/details/iot-hub/)。
-   * **資源群組**：建立用以裝載 IoT 中樞的資源群組，或使用現有資源群組。 請參閱[使用資源群組來管理您的 Azure 資源](../azure-resource-manager/resource-group-portal.md)。
-   * **位置**︰選取與您最接近的位置，以在其中建立 IoT 中樞。
-   * **釘選儀表板**︰核取此選項可讓您從儀表板輕鬆地存取 IoT 中樞。
-1. 按一下 [建立] 。 可能需要幾分鐘的時間才能建立 IoT 中樞。 您可以在 [通知] 窗格中看到進度。
-
-   ![在 [通知] 窗格中監視 IoT 中樞的建立進度](media/iot-hub-sparkfun-thing-dev-get-started/5_iot-hub-monitor-creation-progress-notification-pane.png)
-
-1. IoT 中樞建立好之後，從儀表板對它按一下。 請記下**主機名稱**以供稍後使用，然後按一下 [共用存取原則]。
-
-   ![取得 IoT 中樞的主機名稱](media/iot-hub-sparkfun-thing-dev-get-started/6_iot-hub-get-hostname.png)
-
-1. 在 [共用存取原則] 窗格中，按一下 [iothubowner] 原則，然後複製並記下 IoT 中樞的**連接字串**以供稍候使用。 如需詳細資訊，請參閱[控制 IoT 中樞的存取權](iot-hub-devguide-security.md)。
-
-   ![取得 IoT 中樞連接字串](media/iot-hub-sparkfun-thing-dev-get-started/7_iot-hub-get-connection-string.png)
-
-您現在已經建立 IoT 中樞。 您記下的主機名稱和連接字串會在稍後用到。
-
-### <a name="register-a-device-for-sparkfun-esp8266-thing-dev-in-your-iot-hub"></a>在 IoT 中樞註冊 Sparkfun ESP8266 Thing Dev 適用的裝置
-
-每個 IoT 中樞都有身分識別登錄，可儲存允許連線至 IoT 中樞之裝置的相關資訊。 若要讓裝置可以連線到 IoT 中樞，IoT 中樞的身分識別登錄中必須先有該裝置的項目。
-
-在本節中，您將使用 CLI 工具 iothub explorer，在 IoT 中樞的身分識別登錄中註冊 ESP8266 Thing Dev 適用的裝置。
-
-> [!NOTE]
-> iothub explorer 需要 Node.js 4.x 或更新版本才能正確運作。
-
-若要註冊 ESP8266 Thing Dev 適用的裝置，請遵循下列步驟：
-
-1. [下載](https://nodejs.org/en/download/)並安裝 Node.js 的最新 LTS 版本 (內含 NPM)。
-1. 使用 NPM 安裝 iothub explorer。
-
-   * Windows 7 或更新版本：以系統管理員身分啟動命令提示字元。 執行下列命令以安裝 iothub explorer：
-
-     ```bash
-     npm install -g iothub-explorer
-     ```
-   * Ubuntu 16.04 或更新版本：使用鍵盤快速鍵 Ctrl + Alt + T 開啟終端機，然後執行下列命令︰
-
-     ```bash
-     sudo npm install -g iothub-explorer
-     ```
-   * macOS 10.1 或更新版本：開啟終端機，然後執行下列命令︰
-
-     ```bash
-     npm install -g iothub-explorer
-     ```
-1. 執行下列命令來登入 IoT 中樞：
-
-   ```bash
-   iothub-explorer login [your iot hub connection string]
-   ```
-1. 註冊新裝置 (其中 `deviceID` 是 `new-device`)，然後執行下列命令來取得其連接字串。
-
-   ```bash
-   iothub-explorer create new-device --connection-string
-   ```
-
-請記下所註冊裝置的連接字串，以供稍後使用。
+[!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
 ## <a name="connect-esp8266-thing-dev-with-the-sensor-and-your-computer"></a>連接 ESP8266 Thing Dev 與感應器和電腦
 
@@ -232,7 +162,7 @@ ms.lasthandoff: 04/12/2017
 
    ![已安裝 esp8266 套件](media/iot-hub-sparkfun-thing-dev-get-started/12_arduino-ide-esp8266-installed.png)
 
-1. 按一下 [工具] > [電路板] > [Adafruit HUZZAH ESP8266]。
+1. 按一下 [工具] > [面板] > [Sparkfun ESP8266 Thing Dev]。
 
 ### <a name="install-necessary-libraries"></a>安裝必要的程式庫
 

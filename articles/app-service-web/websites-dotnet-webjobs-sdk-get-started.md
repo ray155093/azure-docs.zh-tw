@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/28/2016
+ms.date: 6/14/2017
 ms.author: glenga
-translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: 31fa57771aaa2d4d6e4e0d387e045fb28e378887
-ms.lasthandoff: 04/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 31fd4523794d71b5fbf6d55ba97f3b744b8d5d38
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -37,15 +38,13 @@ ms.lasthandoff: 04/10/2017
 ## <a id="prerequisites"></a>必要條件
 本教學課程假設您知道如何在 Visual Studio 中使用 [ASP.NET MVC 5](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started) 專案。
 
-本教學課程是針對 Visual Studio 2013 所撰寫。 如果您尚未有 Visual Studio，則在安裝 Azure SDK for .NET 時，將自動為您安裝它。
-
-本教學課程可以搭配 Visual Studio 2015 使用，但在本機執行應用程式之前，您必須將 Web.config 和 App.config 檔案中 SQL Server LocalDB 連接字串的 `Data Source` 部分，從 `Data Source=(localdb)\v11.0` 變更為 `Data Source=(LocalDb)\MSSQLLocalDB`。
+本教學課程一開始是針對 Visual Studio 2013 所撰寫，但可以與更新版本的 Visual Studio 搭配使用。 如果您要使用 Visual Studio 2015 或 2017，請注意，在本機執行應用程式之前，您必須將 Web.config 和 App.config 檔案中 SQL Server LocalDB 連接字串的 `Data Source` 部分，從 `Data Source=(localdb)\v11.0` 變更為 `Data Source=(LocalDb)\MSSQLLocalDB`。
 
 > [!NOTE]
-> <a name="note"></a>您必須有 Azure 帳戶，才能完成本教學課程：
+> <a name="note"></a>您必須具備 Azure 帳戶，才能完成此教學課程：
 >
-> * 您可以 [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)- 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。 除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
-> * 您可以 [啟用 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)- 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
+> * 您可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)：您將取得可試用付費 Azure 服務的額度，即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。 除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
+> * 您可以[啟用 Visual Studio 訂閱者的每月 Azure 額度](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)：您的訂用帳戶每個月都會提供額度，供您用在付費 Azure 服務。
 >
 > 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 >
@@ -54,7 +53,7 @@ ms.lasthandoff: 04/10/2017
 ## <a id="learn"></a>您將學到什麼
 本教學課程說明如何執行下列工作：
 
-* 安裝 Azure SDK 好讓電腦適合用於進行 Azure 開發。
+* 安裝 Azure SDK 好讓電腦適合用於進行 Azure 開發 (僅適用於 Visual Studio 2013 和 2015 使用者)。
 * 建立會在您部署相關的 Web 專案時，自動部署成為 Azure WebJob 的主控台應用程式專案。
 * 在開發電腦上本機測試 WebJobs SDK 後端。
 * 將具有 WebJob 後端的應用程式發佈至 App Service 中的 Web 應用程式。
@@ -72,24 +71,27 @@ ms.lasthandoff: 04/10/2017
 
 ![Contoso Ads architecture](./media/websites-dotnet-webjobs-sdk-get-started/apparchitecture.png)
 
-[!INCLUDE [install-sdk](../../includes/install-sdk-2015-2013.md)]
-
+[!INCLUDE [install-sdk](../../includes/install-sdk-2017-2015-2013.md)]  
 本教學課程的指示適用於 Azure SDK for.NET 2.7.1 或更新版本。
 
 ## <a id="storage"></a>建立 Azure 儲存體帳戶
 Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源。 WebJobs SDK 也會使用該帳戶來儲存儀表板的記錄資料。
 
-在真實世界應用程式中，您通常會為應用程式資料與記錄資料建立不同的帳戶，並為測試資料與生產資料建立不同的帳戶。 針對本教學課程，您將只會使用一個帳戶。
+在實際應用程式中，您通常會為應用程式資料與記錄資料建立不同的帳戶，並為測試資料與生產資料建立不同的帳戶。 在本教學課程中，您只會使用一個帳戶。
 
 1. 在 Visual Studio 中開啟 [伺服器總管]  視窗。
-2. 以滑鼠右鍵按一下 **Azure** 節點，然後按一下 [連線到 Microsoft Azure]。
+2. 以滑鼠右鍵按一下 **Azure** 節點，然後按一下 [連線至 Microsoft Azure 訂用帳戶...]。
+   
    ![連接到 Azure](./media/websites-dotnet-webjobs-sdk-get-started/connaz.png)
+
 3. 使用您的 Azure 認證登入。
 4. 以滑鼠右鍵按一下 Azure 節點下的 [儲存體]，然後按一下 [建立儲存體帳戶]。
-   ![](./media/websites-dotnet-webjobs-sdk-get-started/createstor.png)
+   
+   ![建立儲存體帳戶](./media/websites-dotnet-webjobs-sdk-get-started/createstor.png)
+   
 5. 在 [建立儲存體帳戶]  對話方塊中，輸入儲存體帳戶的名稱。
 
-    這個名稱必須是唯一的 (其他 Azure 儲存體帳戶不可以有相同的名稱)。 如果您輸入的名稱已在使用中，您可以變更此名稱。
+    這個名稱必須是唯一的 (其他 Azure 儲存體帳戶不可以有相同的名稱)。 如果您輸入的名稱已在使用中，則可以變更此名稱。
 
     存取儲存體帳戶的 URL 會是 *{name}*.core.windows.net。
 6. 將 [區域或同質群組]  下拉式清單設為離您最近的區域。
@@ -120,18 +122,19 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
     儲存體連接字串是具有儲存體帳戶名稱和存取金鑰預留位置的範例。 您將會使用具有您儲存體帳戶名稱和金鑰的連接字串來進行取代。  
 
-    <pre class="prettyprint">&lt;connectionStrings&gt;
-      &lt;add name="ContosoAdsContext" connectionString="Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;" providerName="System.Data.SqlClient" /&gt;
-      &lt;add name="AzureWebJobsStorage" connectionString="DefaultEndpointsProtocol=https;AccountName=<mark>[accountname]</mark>;AccountKey=<mark>[accesskey]</mark>"/&gt;
-    &lt;/connectionStrings&gt;</pre>
-
+    ```
+    <connectionStrings>
+        <add name="ContosoAdsContext" connectionString="Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;" providerName="System.Data.SqlClient" />
+        <add name="AzureWebJobsStorage" connectionString="DefaultEndpointsProtocol=https;AccountName=[accountname];AccountKey=[accesskey]"/>
+    </connectionStrings>
+    ```
     儲存體連接字串的名稱是 AzureWebJobsStorage，因為這是 WebJobs SDK 預設使用的名稱。 這裡會使用相同的名稱，因此在 Azure 環境中您只需要設定一個連接字串值。
 2. 在 [伺服器總管] 中，在 [儲存體] 節點下方的儲存體帳戶上按一下滑鼠右鍵，然後按一下 [屬性]。
 
     ![按一下 [儲存體帳戶] 屬性](./media/websites-dotnet-webjobs-sdk-get-started/storppty.png)
 3. 在 [屬性] 視窗中，按一下 [儲存體帳戶金鑰]，然後按一下省略符號。
 
-    ![New storage account](./media/websites-dotnet-webjobs-sdk-get-started/newstorage.png)
+    ![儲存體帳戶金鑰](./media/websites-dotnet-webjobs-sdk-get-started/stor-account-keys.png)
 4. 複製 [連接字串] 。
 
     ![[儲存體帳戶金鑰] 對話方塊](./media/websites-dotnet-webjobs-sdk-get-started/cpak.png)
@@ -140,16 +143,19 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
     此檔案有兩個儲存體連接字串，一個供應用程式使用，另一個供記錄使用。 您可以對應用程式資料和記錄使用不同的儲存體帳戶，以及您可以 [對資料使用多個儲存體帳戶](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs)。 在本教學課程中，您將使用單一儲存體帳戶。 連接字串具有儲存體帳戶金鑰的預留位置。
 
-      <pre class="prettyprint">&lt;configuration&gt;
-    &lt;connectionStrings&gt;
-        &lt;add name="AzureWebJobsDashboard" connectionString="DefaultEndpointsProtocol=https;AccountName=<mark>[accountname]</mark>;AccountKey=<mark>[accesskey]</mark>"/&gt;
-        &lt;add name="AzureWebJobsStorage" connectionString="DefaultEndpointsProtocol=https;AccountName=<mark>[accountname]</mark>;AccountKey=<mark>[accesskey]</mark>"/&gt;
-        &lt;add name="ContosoAdsContext" connectionString="Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;"/&gt;
-    &lt;/connectionStrings&gt;
-        &lt;startup&gt;
-            &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" /&gt;
-    &lt;/startup&gt;
-   &lt;/configuration&gt;</pre>
+    ```
+    <configuration>
+        <connectionStrings>
+            <add name="AzureWebJobsDashboard" connectionString="DefaultEndpointsProtocol=https;AccountName=[accountname];AccountKey=[accesskey]"/>
+            <add name="AzureWebJobsStorage" connectionString="DefaultEndpointsProtocol=https;AccountName=[accountname];AccountKey=[accesskey]"/>
+            <add name="ContosoAdsContext" connectionString="Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;"/>
+    </connectionStrings>
+        <startup>
+            <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+    </startup>
+    </configuration>
+
+    ```
 
     依預設，WebJobs SDK 會尋找名為 AzureWebJobsStorage 和 AzureWebJobsDashboard 的連接字串。 另一種方式是，您可以[任意儲存您要的連接字串，並將它明確傳遞至 `JobHost` 物件](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#config)。
 7. 使用您先前複製的連接字串來取代這兩個儲存體連接字串。
@@ -167,7 +173,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
     ![Console application window showing that the backend is running](./media/websites-dotnet-webjobs-sdk-get-started/backendrunning.png)
 3. 在您的瀏覽器中按一下 [建立廣告]。
-4. 輸入部分測試資料，選取要上傳的影像，然後按一下 [建立] 。
+4. 輸入部分測試資料，並選取要上傳的影像，然後按一下 [建立]。
 
     ![Create page](./media/websites-dotnet-webjobs-sdk-get-started/create.png)
 
@@ -194,82 +200,23 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 在建立一些廣告並在雲端中執行後，您將檢視 WebJobs SDK 儀表板，以查看儀表板所提供的豐富監視功能。
 
 ### <a name="deploy-to-web-apps"></a>部署至 Web Apps
+
 1. 關閉瀏覽器和主控台應用程式視窗。
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 ContosoAdsWeb 專案，然後按一下 [發佈]。
-3. 在 [發佈 Web] 精靈的 [設定檔] 步驟中，按一下 [Microsoft Azure Web 應用程式]。
+2. 完成[發佈至含有 SQL Database 的 Azure](https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase#publish-to-azure-with-sql-database) 一節中的步驟。
+3. 在您完成部署步驟之後，請繼續進行本文中的其餘工作。
 
-    ![選取 Azure 網站發佈目標](./media/websites-dotnet-webjobs-sdk-get-started/pubweb.png)
-4. 如果您仍未登入 Azure，請登入。
-5. 按一下 [新增] 。
-
-    對話方塊看起來可能會稍有不同，視您已安裝的 Azure SDK for.NET 版本而定。
-
-    ![Click New](./media/websites-dotnet-webjobs-sdk-get-started/clicknew.png)
-6. 在 [在 Microsoft Azure 上建立 Web 應用程式] 對話方塊的 [Web 應用程式名稱] 方塊中，輸入唯一的名稱。
-
-    完整 URL 將包含您在此處輸入的內容，並加上 .azurewebsites.net (如 [Web 應用程式名稱]  文字方塊旁邊所示)。 例如，如果 Web 應用程式名稱是 ContosoAds，則 URL 會是 ContosoAds.azurewebsites.net。
-7. 在 [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)下拉式清單中，選擇 [建立新的 App Service 方案]。 輸入 App Service 方案名稱 (例如 ContosoAdsPlan)。
-8. 在[資源群組](../azure-resource-manager/resource-group-overview.md)下拉式清單中，選擇 [建立新的資源群組]。
-9. 輸入資源群組名稱 (例如 ContosoAdsGroup)。
-10. 從 [區域]  下拉式清單中，選擇您為儲存體帳戶選擇的相同區域。
-
-    這個設定會指定 Web 應用程式將執行所在的 Azure 資料中心。 將 Web 應用程式和儲存體帳戶維持在相同資料中心內，可將延遲和資料輸出費用降到最低。
-11. 在 [資料庫伺服器] 下拉式清單中，選擇 [建立新伺服器]。
-12. 輸入資料庫伺服器的名稱 (例如 contosoadsserver + 數字) 或您的名稱，使伺服器名稱成為唯一的名稱。
-
-    伺服器名稱必須是唯一的。 它可以包含小寫字母、數字和連字號。 不能包含結尾連字號。
-
-    或者，如果您的訂用帳戶已有伺服器，您可以從下拉式清單選取該伺服器。
-13. 輸入系統管理員的 [資料庫使用者名稱] 和 [資料庫密碼]。
-
-    如果選取 [New SQL Database server]  ，則不要在此處輸入現有的名稱和密碼，而是輸入新的名稱和密碼；您現在定義的名稱和密碼將供未來存取資料庫時使用。 如果選取先前建立的伺服器，系統會提示您提供先前建立之管理使用者帳戶的密碼。
-14. 按一下 [建立] 。
-
-    ![在 Microsoft Azure 對話方塊上建立 Web 應用程式](./media/websites-dotnet-webjobs-sdk-get-started/newdb.png)
-
-    Visual Studio 便會建立方案、Web 專案、Azure 中的 Web 應用程式，以及 Azure SQL Database 執行個體。
-15. 在 [發佈 Web] 精靈的 [連線] 步驟中，按 [下一步]。
-
-    ![Connection step](./media/websites-dotnet-webjobs-sdk-get-started/connstep.png)
-16. 在 [設定] 步驟中，清除 [在執行階段使用此連接字串] 核取方塊，然後按 [下一步]。
-
-    ![Settings step](./media/websites-dotnet-webjobs-sdk-get-started/settingsstep.png)
-
-    您無需使用發行對話方塊來設定 SQL 連接字串，因為您稍後將在 Azure 環境中設定該值。
-
-    您可以忽略此頁面上的警告。
-
-    * 通常，您在 Azure 中執行時所用的儲存體帳戶會不同於您在本機執行時所用的儲存體帳戶，但在本教學課程中，您將在這兩個環境中使用相同的儲存體帳戶。 因此您無需轉換 AzureWebJobsStorage 連接字串。 即使您想在雲端中使用不同的儲存體帳戶，因為應用程式在 Azure 中執行時會使用 Azure 環境設定，所以您無需轉換連接字串。 您稍後會在教學課程中看到此狀況。
-    * 在本教學課程中，您不打算變更 ContosoAdsContext 資料庫所用的資料模型，因此無需使用 Entity Framework Code First Migrations 來進行部署。 Code First 會在應用程式首次嘗試存取 SQL 資料時，自動建立新的資料庫。
-
-    在本教學課程中，您可以使用 [File Publish Options]  下的選項預設值。
-17. 在 [預覽] 步驟中，按一下 [開始預覽]。
-
-    ![Click Start Preview](./media/websites-dotnet-webjobs-sdk-get-started/previewstep.png)
-
-    您可以忽略有關未發行任何資料庫的警告。 Entity Framework Code First 會建立資料庫；因此無需發佈資料庫。
-
-    預覽視窗會顯示將複製 WebJob 專案的二進位和組態檔至 Web 應用程式的 app_data\jobs\continuous 資料夾中。
-
-    ![WebJobs files in preview window](./media/websites-dotnet-webjobs-sdk-get-started/previewwjfiles.png)
-18. 按一下 [發行] 。
-
-    Visual Studio 會部署應用程式，並在瀏覽器中開啟首頁 URL。
-
-    您將無法使用該 Web 應用程式，直到您在下一節中設定 Azure 環境中的連接字串為止。 您將會看到一個錯誤頁面或首頁，視您稍早所選擇的 Web 應用程式和資料庫建立選項而定。
-
-### <a name="configure-the-web-app-to-use-your-azure-sql-database-and-storage-account"></a>設定 Web 應用程式來使用您的 Azure SQL Database 和儲存體帳戶。
+### <a name="configure-the-web-app-to-use-your-azure-sql-database-and-storage-account"></a>設定 Web 應用程式來使用您的 Azure SQL Database 和儲存體帳戶
 [避免將敏感資訊 (例如連接字串) 放在儲存於原始程式碼儲存機制的檔案](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control#secrets)(英文) 會是安全性最佳作法。 Azure 提供實作上述最佳做法的方式：您可以在 Azure 環境中設定連接字串和其他設定值，當應用程式在 Azure 中執行時，ASP.NET 組態 API 便會自動挑選這些值。 您可以使用 [伺服器總管] 、Azure 入口網站、Windows PowerShell，或跨平台的命令列介面，在 Azure 中設定這些值。 如需詳細資訊，請參閱 [應用程式字串與連接字串的運作方式](https://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/)。
 
-在本節中，您會使用 [伺服器總管]  在 Azure 中設定連接字串值。
+在本節中，您會使用 [伺服器總管] 在 Azure 中設定連接字串值。
 
 1. 在 [伺服器總管] 中，於 [Azure] > [App Service] > {您的資源群組} 下的 Web 應用程式上按一下滑鼠右鍵，然後按一下 [檢視設定]。
 
     隨即會在 [設定] 索引標籤中開啟 [Azure Web 應用程式] 視窗。
-2. 將 DefaultConnection 連接字串的名稱變更為 ContosoAdsContext。
+2. 將 DefaultConnection 連接字串的名稱變更為您在[發佈至含有 SQL Database 的 Azure](https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase#publish-to-azure-with-sql-database) 文章中設定 SQL Database 時所選擇的名稱。
 
     Azure 便會在您建立 Web 應用程式和相關資料庫時自動建立此連接字串，因此它已包含正確的連接字串值。 您只是單純將名稱變更為程式碼要尋找的名稱。
-3. 新增兩個新的連接字串，將他們命名為 AzureWebJobsStorage 和 AzureWebJobsDashboard。 將類型設為 [自訂]，並將連接字串值設為您稍早在 Web.config 和 App.config 檔案中所用的相同值。 (請確定您包含整個連接字串，而不只是存取金鑰而已，並且不要包含引號。)
+3. 新增兩個新的連接字串，將他們命名為 AzureWebJobsStorage 和 AzureWebJobsDashboard。 將資料庫類型設定為 [自訂]，並將連接字串值設定為您稍早在 *Web.config* 和 *App.config* 檔案中所用的相同值 (請確定您包含整個連接字串，而不只是存取金鑰而已，並且不要包含引號)。
 
     WebJobs SDK 會使用這些連接字串，一個供應用程式資料使用，一個供記錄使用。 如稍早所看到的，供應用程式資料使用的連接字串也會提供給 Web 前端程式碼使用。
 4. 按一下 [儲存] 。
@@ -282,19 +229,18 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 7. 重新整理網址列中具有 Web 應用程式 URL 的瀏覽器視窗。
 
     首頁便會隨即出現。
-8. 建立廣告，就像您在本機執行應用程式時所做的一樣。
+8. 建立廣告，就像您在[本機執行應用程式](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started#a-idrunarun-the-application-locally)時所做的一樣。
 
    一開始，顯示的索引頁面沒有縮圖。
 9. 在幾秒後重新整理頁面，縮圖便會隨即出現。
 
-   如果未出現縮圖，您可能必須等候一分鐘左右，讓 WebJob 重新啟動。 如果在一段時間後當您重新整理頁面時仍未看到縮圖，WebJob 可能未自動啟動。 如果是這樣，請前往[傳統入口網站](https://manage.windowsazure.com)頁面中您 Web 應用程式的 [WebJobs] 索引標籤，然後按一下 [啟動]。
+   如果未出現縮圖，您可能必須等候一分鐘左右，讓 WebJob 重新啟動。 在一段時間後，如果您重新整理頁面時仍未看到縮圖，則 WebJob 可能未自動啟動。 在該情況下，請移至 [Azure 入口網站](https://portal.azure.com/)中的 [應用程式服務] 刀鋒視窗，並找到您的 Web 應用程式，然後按一下 [啟動]。
 
 ### <a name="view-the-webjobs-sdk-dashboard"></a>檢視 WebJobs SDK 儀表板
-1. 在 [傳統入口網站](https://manage.windowsazure.com)中，選取您的 Web 應用程式。
-2. 按一下 [WebJobs]  索引標籤。
-3. 在您的 WebJob 中，按一下記錄欄中的 URL。
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取 [應用程式服務] 刀鋒視窗，並找到您的 Web 應用程式，然後選取 [WebJob]。
+3. 選取 [記錄] 索引標籤。
 
-    ![WebJobs 索引標籤](./media/websites-dotnet-webjobs-sdk-get-started/wjtab.png)
+    ![記錄索引標籤](./media/websites-dotnet-webjobs-sdk-get-started/log-tab.png)
 
     新的瀏覽器索引標籤即會開啟到 WebJobs SDK 儀表板。 儀表板會顯示 WebJob 正在執行中，並顯示在 WebJobs SDK 所觸發之程式碼中的函數清單。
 4. 按一下其中一個函式，以查看其執行的詳細資料
@@ -306,15 +252,24 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
     此頁面上的 [轉送函數]  按鈕會造成 WebJobs SDK 架構再次呼叫此函數，這可提供您一個機會來變更首先傳送至函數的資料。
 
 > [!NOTE]
-> 當您完成測試時，請刪除 Web 應用程式和 SQL Database 執行個體。 Web 應用程式是免費提供的，但 SQL Database 執行個體和儲存體帳戶則會累算費用 (由於是小規模，因此將收取基本費用)。 另外，如果您持續執行 Web 應用程式，那麼，找到您 URL 的任何人都可以建立和檢視廣告。 請在傳統入口網站中，前往您 Web 應用程式的 [儀表板] 索引標籤，然後按一下頁面底部的 [刪除] 按鈕。 您可以接著勾選核取方塊，以同時刪除 SQL Database 執行個體。 如果您只想暫時避免他人存取 Web 應用程式，請改為按一下 [停止]  。 在此情況下，將會繼續累算 SQL Database 和儲存體帳戶的費用。 當您不再需要 SQL 資料庫和儲存體帳戶時，可以遵循類似程序來加以刪除。
+> 當您完成測試時，請考慮刪除 Web 應用程式、儲存體帳戶和您的 SQL Database 執行個體。 Web 應用程式是免費提供的，但 SQL 儲存體帳戶和資料庫執行個體則會累算費用 (儘管是小規模，還是會收取基本費用)。 另外，如果您持續執行 Web 應用程式，那麼，找到您 URL 的任何人都可以建立和檢視廣告。 
 >
 >
+
+### <a name="delete-your-web-app"></a>刪除 Web 應用程式
+在入口網站中，移至 [應用程式服務] 刀鋒視窗，並找到和選取您的 Web 應用程式，然後按一下 [刪除]。 如果您只想暫時避免他人存取 Web 應用程式，請改為按一下 [停止]  。 在此情況下，將會繼續累算 SQL Database 和儲存體帳戶的費用。
+
+### <a name="delete-your-storage-account"></a>刪除儲存體帳戶
+若要刪除儲存體帳戶，請參閱[刪除儲存體帳戶](https://docs.microsoft.com/azure/storage/storage-create-storage-account#delete-a-storage-account)。 
+
+### <a name="delete-your-database"></a>刪除資料庫
+若要刪除您的 SQL Database，請參閱 [Azure SQL Database REST API](https://docs.microsoft.com/rest/api/sql/) 文件。
 
 ## <a id="create"></a>從頭開始建立應用程式
 您將在本節執行下列工作：
 
 * 使用 Web 專案建立 Visual Studio 方案。
-* 在前端與後端共用的資料存取層中加入類別庫專案。
+* 在前端與後端之間共用的資料存取層中，新增類別庫專案。
 * 在啟用 WebJobs 部署的後端中新增主控台應用程式專案。
 * 新增 NuGet 封裝。
 * 設定專案參考。
@@ -322,26 +277,23 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 * 針對使用 Azure Blob 和佇列及 WebJobs SDK 該部分的程式碼進行審查。
 
 ### <a name="create-a-visual-studio-solution-with-a-web-project-and-class-library-project"></a>使用 Web 專案和類別庫專案建立 Visual Studio 方案
-1. 在 Visual Studio 中，從 [檔案] 功能表中選擇 [新增]  >  [專案]。
-2. 在 [新增專案] 對話方塊中，依序選擇 [Visual C#]  >  [Web]  >  [ASP.NET Web 應用程式]。
+1. 在 Visual Studio 中，選擇 [檔案] > [新增] > [專案]。
+2. 在 [新增專案] 對話方塊中，依序選擇 [Visual C#] > [Web] > [ASP.NET Web 應用程式 (.NET Framework)]。
 3. 將專案命名為 ContosoAdsWeb，將方案命名為 ContosoAdsWebJobsSDK (如果您要將方案放入與所下載方案相同的資料夾中，則請變更方案名稱)，然後按一下 [確定] 。
 
     ![New Project](./media/websites-dotnet-webjobs-sdk-get-started/newproject.png)
-4. 在 [新增 ASP.NET 專案] 對話方塊中，選擇 MVC 範本，並清除在 [Microsoft Azure] 底下的 [雲端中的主機] 核取方塊。
-
-    選取 [託管於雲端]  ，可讓 Visual Studio 自動建立新的 Azure Web 應用程式與 SQL Database。 由於您稍早已建立這些項目，您現在無需在建立專案時執行此作業。 如果您要建立一個新的，請勾選此核取方塊。 您接下來可以使用稍早部署應用程式的相同方法，來設定新的 Web 應用程式和 SQL Database。
-5. 按一下 [變更驗證] 。
+4. 在 [新增 ASP.NET Web 應用程式] 對話方塊中，選擇 MVC 範本，然後選取 [變更驗證]。
 
     ![變更驗證](./media/websites-dotnet-webjobs-sdk-get-started/chgauth.png)
-6. 在 [變更驗證] 對話方塊中，選擇 [不需要驗證]，然後按一下 [確定]。
+5. 在 [變更驗證] 對話方塊中，選擇 [不需要驗證]，然後按一下 [確定]。
 
     ![不需要驗證](./media/websites-dotnet-webjobs-sdk-get-started/noauth.png)
-7. 在 [新增 ASP.NET 專案] 對話方塊中，按一下 [確定]。
+6. 在 [新增 ASP.NET Web 應用程式] 對話方塊中，按一下 [確定]。
 
     Visual Studio 便會建立方案和 Web 專案。
-8. 在 [方案總管] 中，以滑鼠右鍵按一下方案 (不是專案)，並依序選擇 [新增]  >  [新專案]。
-9. 在 [新增專案] 對話方塊中，依序選擇 [Visual C#]  >  [Windows Desktop]  >  [類別庫] 範本。  
-10. 將專案命名為 *ContosoAdsCommon*，然後按一下 [確定]。
+7. 在 [方案總管] 中，以滑鼠右鍵按一下方案 (不是專案)，並依序選擇 [新增]  >  [新專案]。
+8. 在 [新增專案] 對話方塊中，選擇 [Visual C#] > [Windows 傳統桌面] > [類別庫 (.NET Framework)] 範本。  
+9. 將專案命名為 *ContosoAdsCommon*，然後按一下 [確定]。
 
     此專案將包含由前端與後端使用的 Entity Framework 內容和資料模型。 作為替代方式，您可以在 Web 專案中定義 EF 相關的類別，並從 WebJob 專案參考該專案。 但之後您的 WebJob 專案會有不需要的 Web 組件參考。
 
@@ -377,14 +329,15 @@ WebJob 專案的新專案範本會自動安裝 WebJobs SDK NuGet 封裝 [Microso
 ### <a name="set-project-references"></a>設定專案參考
 Web 和 WebJob 專案都將使用 SQL Database，因此兩者都會需要 ContosoAdsCommon 專案的參考。
 
-1. 在 ContosoAdsWeb 專案中，設定 ContosoAdsCommon 專案的參考。 (以滑鼠右鍵按一下 ContosoAdsWeb 專案，然後依序按一下 [新增]  > **K**的簡單多層次 ASP.NET MVC 5 應用程式撰寫程式碼。 在 [參考管理員] 對話方塊中，依序選取 [方案]  >  [專案]  >  [ContosoAdsCommon]，然後按一下 [確定]。)
-2. 在 ContosoAdsWebJob 專案中，設定 ContosAdsCommon 專案的參考。
-
+1. 在 ContosoAdsWeb 專案中，設定 ContosoAdsCommon 專案的參考。 (以滑鼠右鍵按一下 ContosoAdsWeb 專案，然後依序按一下 [新增]  > **K**的簡單多層次 ASP.NET MVC 5 應用程式撰寫程式碼。 
+2. 在 [參考管理員] 對話方塊中，選取 [專案] > [方案] > [ContosoAdsCommon]，然後按一下 [確定]。)
+   
     WebJob 專案需要參考，才能使用映像及存取連接字串。
-3. 在 ContosoAdsWebJob 專案中，設定 `System.Drawing` 和 `System.Configuration` 的參考。
+
+4. 在 ContosoAdsWebJob 專案中，設定 `System.Drawing` 和 `System.Configuration` 的參考。
 
 ### <a name="add-code-and-configuration-files"></a>新增程式碼和組態檔
-本教學檔案未說明如何[使用 Scaffolding 建立 MVC 控制器和檢視](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)、如何[編寫能與 SQL Server 資料庫搭配使用的 Entity Framework 程式碼](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc)或 [ASP.NET 4.5 中非同步程式設計的基本概念](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices#async)。 因此剩下要進行的作業就是，從所下載的方案複製程式碼和組態檔到新方案。 在執行該作業後，下一節將示範和說明程式碼的重要部分。
+本教學檔案未說明如何[使用 Scaffolding 建立 MVC 控制器和檢視](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)、如何[編寫能與 SQL Server 資料庫搭配使用的 Entity Framework 程式碼](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc)或 [ASP.NET 4.5 中非同步程式設計的基本概念](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices#async)。 因此剩下要進行的作業就是，從所下載的方案將程式碼和設定檔複製到新方案。 在執行該作業後，下一節將示範和說明程式碼的重要部分。
 
 若要加入檔案到專案或資料夾，請以滑鼠右鍵按一下專案或資料夾，然後按一下 [加入]  > 的簡單多層次 ASP.NET MVC 5 應用程式撰寫程式碼。 選取您需要的檔案，然後按一下 [加入] 。 如果詢問您是否要取代現有的檔案，請按一下 [是] 。
 
@@ -392,7 +345,7 @@ Web 和 WebJob 專案都將使用 SQL Database，因此兩者都會需要 Contos
 
    * *Ad.cs*
    * *ContosoAdscontext.cs*
-   * BlobInformation.cs<br/><br/>
+   * BlobInformation.cs
 2. 在 ContosoAdsWeb 專案中，從所下載的專案加入下列檔案。
 
    * *Web.config*
@@ -400,7 +353,7 @@ Web 和 WebJob 專案都將使用 SQL Database，因此兩者都會需要 Contos
    * 在 Controllers 資料夾中，新增檔案︰AdController.cs
    * 在 Views\Shared 資料夾中：_Layout.cshtml 檔案
    * 在 Views\Home 資料夾中：Index.cshtml
-   * 在 Views\Ad 資料夾中 (請先建立此資料夾)：五個 .cshtml 檔案<br/><br/>
+   * 在 Views\Ad 資料夾中 (請先建立此資料夾)：五個 .cshtml 檔案
 3. 在 ContosoAdsWebJob 專案中，從所下載的專案加入下列檔案。
 
    * App.config (將檔案類型篩選變更為 [全部檔案])
@@ -509,7 +462,7 @@ ContosoAdsContext 類別可指定廣告類別用於 DbSet 集合，Entity Framew
         var storageAccount = CloudStorageAccount.Parse
             (ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());
 
-之後會取得 *images* Blob 容器的參考、建立容器 (如果尚不存在)，並設定新容器的存取權限。 依預設，新的容器只允許具有儲存體帳戶認證的用戶端存取 Blob。 Web 應用程式需要 Blob 處於公用狀態，才能使用指向影像 Blob 的 URL 來顯示影像。
+之後會取得 images Blob 容器的參考、建立容器 (如果尚不存在)，並設定新容器的存取權限。 依預設，新的容器只允許具有儲存體帳戶認證的用戶端存取 Blob。 Web 應用程式需要 Blob 處於公用狀態，才能使用指向影像 Blob 的 URL 來顯示影像。
 
         var blobClient = storageAccount.CreateCloudBlobClient();
         var imagesBlobContainer = blobClient.GetContainerReference("images");
@@ -589,7 +542,7 @@ Views\Home\Index.cshtml 檔案在首頁上顯示類別連結。 連結會將查�
         var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(blobInfo));
         await thumbnailRequestQueue.AddMessageAsync(queueMessage);
 
-HttpPost `Edit` 方法的程式碼也是類似的，例外情況是如果使用者選取一個新影像檔案，則必須將此廣告的任何現有 Blob 刪除。
+HttpPost `Edit` 方法的程式碼也是類似的，不同的是如果使用者選取一個新影像檔案，則必須刪除此廣告的任何現有 Blob。
 
         if (imageFile != null && imageFile.ContentLength != 0)
         {

@@ -1,6 +1,6 @@
 ---
 title: "開始使用 Azure IoT 中樞 (Java) | Microsoft Docs"
-description: "如何使用適用於 Java 的 Azure IoT SDK 將裝置到雲端訊息從裝置傳送至 Azure IoT 中樞。 您可以建立模擬裝置應用程式來傳送訊息、建立服務應用程式以在身分識別登錄中註冊裝置，以及建立服務應用程式以從 IoT 中樞讀取裝置到雲端訊息。"
+description: "了解如何使用適用於 Java 的 IoT SDK 將裝置到雲端訊息傳送至 Azure IoT 中樞。 建立模擬裝置和服務應用程式來註冊您的裝置、傳送訊息，並從 IoT 中樞讀取訊息。"
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -15,17 +15,14 @@ ms.workload: na
 ms.date: 06/29/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
-ms.openlocfilehash: 7b44762ffea876d628886192376b6275bbc0b83b
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 7d95ba163712c8a3610839029fe3453bd5c308a8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/04/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
-<a id="connect-your-simulated-device-to-your-iot-hub-using-java" class="xliff"></a>
-
-# 使用 Java 將您的模擬裝置連線至 IoT 中樞
+# <a name="connect-your-simulated-device-to-your-iot-hub-using-java"></a>使用 Java 將您的模擬裝置連線至 IoT 中樞
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
 在本教學課程結尾處，您會有三個 Java 主控台應用程式：
@@ -51,9 +48,7 @@ ms.lasthandoff: 07/04/2017
 
 您現在已經建立 IoT 中樞。 您擁有完成本教學課程所需的 IoT 中樞主機名稱、IoT 中樞連接字串、IoT 中樞主要金鑰、事件中樞相容名稱和事件中樞相容端點。
 
-<a id="create-a-device-identity" class="xliff"></a>
-
-## 建立裝置識別
+## <a name="create-a-device-identity"></a>建立裝置識別
 在本節中，您會建立 Java 主控台應用程式，它會在 IoT 中樞的身分識別登錄中建立裝置識別。 裝置無法連線到 IoT 中樞，除非它在身分識別登錄中具有項目。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的＜身分識別登錄＞一節。 執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
 
 1. 建立稱為 iot-java-get-started 的空資料夾。 在 iot-java-get-started 資料夾的命令提示字元下，使用下列命令建立名為 **create-device-identity** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
@@ -168,9 +163,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
 > [!NOTE]
 > IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對 IoT 中樞的安全存取。 它會儲存裝置識別碼和金鑰來作為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。 如果您的應用程式需要儲存其他裝置特定中繼資料，它應該使用應用程式特定存放區。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
 
-<a id="receive-device-to-cloud-messages" class="xliff"></a>
-
-## 接收裝置到雲端的訊息
+## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
 
 在本節中，您會建立 Java 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點，讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 [處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端訊息。 [開始使用事件中樞][lnk-eventhubs-tutorial]教學課程提供進一步的資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
 
@@ -309,9 +302,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     mvn clean package -DskipTests
     ```
 
-<a id="create-a-simulated-device-app" class="xliff"></a>
-
-## 建立模擬裝置應用程式
+## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 
 在本節中，您會撰寫 Java 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
@@ -472,9 +463,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
 > [!NOTE]
 > 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
 
-<a id="run-the-apps" class="xliff"></a>
-
-## 執行應用程式
+## <a name="run-the-apps"></a>執行應用程式
 
 您現在可以開始執行應用程式。
 
@@ -498,9 +487,7 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
 
     ![顯示傳送到 IoT 中樞之訊息數目的 Azure 入口網站使用量圖格][43]
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 在此教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。 您會將此裝置身分識別用於啟用模擬裝置應用程式，以將裝置到雲端訊息傳送至 IoT 中樞。 您也會建立一個應用程式來顯示 IoT 中樞所接收的訊息。
 

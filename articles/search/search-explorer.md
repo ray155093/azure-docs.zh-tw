@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 入口網站查詢 Azure 搜尋服務索引 | Microsoft Docs"
+title: "查詢索引 (入口網站 - Azure 搜尋服務) | Microsoft Docs"
 description: "在 Azure 入口網站的搜尋總管中發出搜尋查詢。"
 services: search
 manager: jhubbard
@@ -11,15 +11,16 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
-ms.date: 08/29/2016
+ms.date: 07/10/2017
 ms.author: ashmaka
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a23372112e17703a3399e1bdc9eaf73b85a1f80d
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: dd68d8ed073bf7b8666ddef35a2f1f84df690b4b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
-# <a name="query-your-azure-search-index-using-the-azure-portal"></a>使用 Azure 入口網站查詢 Azure 搜尋服務索引
+# <a name="query-an-azure-search-index-using-search-explorer-in-the-azure-portal"></a>在 Azure 入口網站中使用搜尋總管查詢 Azure 搜尋服務索引
 > [!div class="op_single_selector"]
 > * [概觀](search-query-overview.md)
 > * [入口網站](search-explorer.md)
@@ -28,34 +29,43 @@ ms.openlocfilehash: a23372112e17703a3399e1bdc9eaf73b85a1f80d
 > 
 > 
 
-本指南將示範如何在 Azure 入口網站中查詢 Azure 搜尋服務索引。
+本文說明如何在 Azure 入口網站中使用**搜尋總管**查詢 Azure 搜尋服務索引。 您可以使用搜尋總管，在您的服務中對於任何現有的索引送出簡單或完整的 Lucene 查詢字串。
 
-在開始閱讀本逐步解說前，請先[建立好 Azure 搜尋服務索引](search-what-is-an-index.md)，並[在索引中填入資料](search-what-is-data-import.md)。
+## <a name="open-the-service-dashboard"></a>開啟服務儀表板
+1. 按一下 [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)左側導向列中的 [所有資源]。
+2. 選取您的 Azure 搜尋服務。
 
-## <a name="i-go-to-your-azure-search-blade"></a>I. 前往 Azure 搜尋服務刀鋒視窗
-1. 按一下 [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)
-2. 選取您的 Azure 搜尋服務
+## <a name="select-an-index"></a>選取索引
 
-## <a name="ii-select-the-index-you-would-like-to-search"></a>II. 選取您想要搜尋的索引
-1. 選取您想要從 [索引] 圖格搜尋的索引。
+選取您想要從 [索引] 圖格搜尋的索引。
 
-![](./media/search-explorer/pick-index.png)
+   ![](./media/search-explorer/pick-index.png)
 
-## <a name="iii-click-on-the-search-explorer-tile"></a>III. 按一下 [搜尋總管] 圖格
-![](./media/search-explorer/search-explorer-tile.png)
+## <a name="open-search-explorer"></a>開啟搜尋總管
 
-## <a name="iii-start-searching"></a>III. 開始搜尋
-1. 若要搜尋 Azure 搜尋服務索引，請先在 [查詢字串] 欄位輸入文字，然後按 [搜尋]。
+按一下 [搜尋總管] 圖格以滑動開啟搜尋列和結果窗格。
+
+   ![](./media/search-explorer/search-explorer-tile.png)
+
+## <a name="start-searching"></a>開始搜尋
+
+使用 [搜尋總管] 時可以指定任何 [查詢參數](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)以編寫查詢。
+
+1. 在 [查詢字串] 中輸入查詢，然後按 [搜尋]。 
+
+   查詢字串會自動剖析為適當的要求 URL，以便對 Azure 搜尋服務 REST API 提交 HTTP 要求。   
    
-   * 使用 [搜尋總管] 時可以指定任何 [查詢參數](https://msdn.microsoft.com/library/dn798927.aspx)
-2. 在 [結果]區段中，查詢結果會以原始 JSON 呈現，當您對 Azure 搜尋服務 REST API 發出搜尋要求時，即會在 HTTP 回應本文中收到。
-3. 查詢字串會自動剖析為適當的要求 URL，以便對 Azure 搜尋服務 REST API 提交 HTTP 要求
+   您可以使用任何有效的簡單或完整 Lucene 查詢語法來建立要求。 `*` 字元就相當於不依特定順序傳回所有文件的空白或未指定搜尋。
 
-![](./media/search-explorer/search-bar.png)
+2. 在 [結果] 中，查詢結果會以未經處理的 JSON 呈現，與在以程式設計方式發出要求時，傳回 HTTP 回應主體的承載相同。
 
+   ![](./media/search-explorer/search-bar.png)
 
+## <a name="next-steps"></a>後續步驟
 
+下列資源提供其他的查詢語法資訊和範例。
 
-<!--HONumber=Nov16_HO2-->
-
-
+ + [簡單查詢語法](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search) 
+ + [Lucene 查詢語法](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search) 
+ + [Lucene 查詢語法範例](https://docs.microsoft.com/azure/search/search-query-lucene-examples) 
+ + [OData 篩選條件運算式語法](https://docs.microsoft.com/rest/api/searchservice/odata-expression-syntax-for-azure-search) 

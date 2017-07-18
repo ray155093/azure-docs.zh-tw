@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/01/2017
+ms.date: 06/30/2017
 ms.author: steveesp
-translationtype: Human Translation
-ms.sourcegitcommit: 50be31e179bf52e009596fbc68339dfb5a1aa1e4
-ms.openlocfilehash: d53b1cae9845be32bd053ef196203ea83df06b10
-ms.lasthandoff: 02/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 1340048d5d518caff3397f671d0c75caaab4b5ac
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -35,7 +36,7 @@ Azure 虛擬機器 (VM) 有預設網路設定，可進一步針對網路輸送�
     ```powershell
     Name                    : Ethernet
     InterfaceDescription    : Microsoft Hyper-V Network Adapter
-    Enabled                 : False
+    Enabled              : False
     ```
 2. 輸入下列命令以啟用 RSS：
 
@@ -48,7 +49,7 @@ Azure 虛擬機器 (VM) 有預設網路設定，可進一步針對網路輸送�
     ```powershell
     Name                    :Ethernet
     InterfaceDescription    : Microsoft Hyper-V Network Adapter
-    Enabled                 : True
+    Enabled              : True
     ```
 
 ## <a name="linux-vm"></a>Linux VM
@@ -57,7 +58,7 @@ Azure 虛擬機器 (VM) 有預設網路設定，可進一步針對網路輸送�
 
 ### <a name="ubuntu"></a>Ubuntu
 
-若要獲得最佳化，請先更新至截至 2017 年 1 月推出的最新支援版本，也就是：
+若要獲得最佳化，請先更新至截至 2017 年 6 月推出的最新支援版本，也就是：
 ```json
 "Publisher": "Canonical",
 "Offer": "UbuntuServer",
@@ -80,7 +81,7 @@ apt-get -y upgrade
 
 ### <a name="centos"></a>CentOS
 
-若要獲得最佳化，請先更新至截至 2017 年 1 月推出的最新支援版本，也就是：
+若要進行最佳化，請先更新至截至 2017 年 5 月推出的最新支援版本，也就是：
 ```json
 "Publisher": "OpenLogic",
 "Offer": "CentOS",
@@ -88,7 +89,7 @@ apt-get -y upgrade
 "Version": "latest"
 ```
 更新完成之後，請安裝最新的 Linux Integration Services (LIS)。
-輸送量最佳化選項從 LIS 4.1.3 版開始提供。 輸入下列命令以安裝 LIS：
+輸送量最佳化選項從 LIS 4.2 版開始提供。 輸入下列命令以安裝 LIS：
 
 ```bash
 sudo yum update
@@ -99,20 +100,27 @@ sudo yum install microsoft-hyper-v
 ### <a name="red-hat"></a>Red Hat
 
 若要獲得最佳化，請先更新至截至 2017 年 1 月推出的最新支援版本，也就是：
-
-"Publisher": "RedHat" "Offer": "RHEL" "Sku": "7.3" "Version": "7.3.20161104"
-
+```json
+"Publisher": "RedHat"
+"Offer": "RHEL"
+"Sku": "7.3"
+"Version": "7.3.2017062722"
+```
 更新完成之後，請安裝最新的 Linux Integration Services (LIS)。
-輸送量最佳化選項從 LIS 4.1.3 版開始提供。 輸入下列命令以下載並安裝 LIS：
+輸送量最佳化選項從 LIS 4.2 版開始提供。 輸入下列命令以下載並安裝 LIS：
 
 ```bash
-mkdir lis4.1.3
-cd lis4.1.3
-wget https://download.microsoft.com/download/7/6/B/76BE7A6E-E39F-436C-9353-F4B44EF966E9/lis-rpms-4.1.3.tar.gz
-tar xvzf lis-rpms-4.1.3.tar.gz
+mkdir lis4.2.1
+cd lis4.2.1
+wget https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.1-1.tar.gz
+tar xvzf lis-rpms-4.2.1-1.tar.gz
 cd LISISO
-install.sh #or upgrade.sh if previous LIS was previously installed
+install.sh #or upgrade.sh if prior LIS was previously installed
 ```
- 
-若要深入了解 Linux Integration Services Version 4.1 for Hyper-V，請檢視[下載頁面](https://www.microsoft.com/download/details.aspx?id=51612)。
+
+若要深入了解 Linux Integration Services for Hyper-V 4.2 版，請檢視[下載頁面](https://www.microsoft.com/download/details.aspx?id=55106)。
+
+## <a name="next-steps"></a>後續步驟
+* 現在，已最佳化 VM，請針對您的案例查看[測試 Azure VM 的頻寬/輸送量](virtual-network-bandwidth-testing.md)的結果。
+* 深入了解 [Azure 虛擬網路常見問題集 (FAQ)](virtual-networks-faq.md)
 

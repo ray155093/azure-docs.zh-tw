@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 5/9/2017
 ms.author: johnkem
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 18a45dd16e51e477758c3ba08f936a2e831dddb3
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 5914e8be1cf2671da7af1d190811e0e809039135
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -67,10 +67,7 @@ Datadog 是全球領先的雲端規模應用程式監視服務，將伺服器、
 [請移至文件。][datadog-doc]
 
 ## <a name="dynatrace"></a>Dynatrace
-Dynatrace OneAgent 透過所依據的 Azure 擴充機制與 Azure VM 和應用程式服務進行整合。
-如此一來，我們便可以收集有關主機、網路和服務的效能度量。
-除了只顯示度量之外，我們還會針對環境進行端對端視覺化，顯示從用戶端至資料庫層級的交易。
-以 AI 為基礎的問題相互關連與完全整合式根本原因分析，包括程式碼和資料庫的方法層級深入見解，讓疑難排解和效能最佳化工作更輕鬆。
+Dynatrace OneAgent 透過所依據的 Azure 擴充機制與 Azure VM 和應用程式服務進行整合。 如此一來，Dynatrace OneAgent 便可以收集有關主機、網路和服務的效能計量。 除了只顯示計量之外，Dynatrace 還會針對環境進行端對端視覺化，顯示從用戶端至資料庫層級的交易。 以 AI 為基礎的問題相互關連與完全整合式根本原因分析，包括程式碼和資料庫的方法層級深入見解，讓疑難排解和效能最佳化工作更輕鬆。
 
 [請移至文件。][dynatrace-doc]
 
@@ -148,7 +145,7 @@ Sumo Logic 是安全、雲端原生的電腦資料分析服務，能橫跨整個
 [cloudmonix-doc]: http://cloudmonix.com/features/azure-management/ "CloudMonix 簡介。"
 [cloudyn-doc]: https://www.cloudyn.com/azure-monitoring "Cloudyn 簡介。"
 [datadog-doc]: http://docs.datadoghq.com/integrations/azure/ "Datadog 文件。"
-[dynatrace-doc]: https://blog.ruxit.com/ruxit-monitoring-azure-web-apps/ "Dynatrace 文件。"
+[dynatrace-doc]: https://help.dynatrace.com/infrastructure-monitoring/paas/how-do-i-monitor-microsoft-azure-web-apps/ "Dynatrace 文件。"
 [newrelic-doc]: https://newrelic.com/azure "NewRelic 文件。"
 [opsgenie-doc]: https://www.opsgenie.com/docs/integrations/azure-integration "OpsGenie 文件。"
 [pagerduty-doc]: https://www.pagerduty.com/docs/guides/azure-integration-guide/ "PagerDuty 文件。"

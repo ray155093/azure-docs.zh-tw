@@ -1,12 +1,15 @@
 ### <a name="create-a-console-application"></a>建立主控台應用程式
-* 啟動 Visual Studio，並建立新的主控台應用程式。
+
+首先，啟動 Visual Studio，並建立新的**主控台應用程式 (.NET Framework)** 專案。
 
 ### <a name="add-the-relay-nuget-package"></a>新增轉送 NuGet 封裝
-1. 以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。
+
+1. 以滑鼠右鍵按一下新建立的專案，然後按一下 [管理 NuGet 套件]。
 2. 按一下 [瀏覽] 索引標籤，然後搜尋 "Microsoft Azure 轉送"，並選取 [Microsoft Azure 轉送] 項目。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
 
 ### <a name="write-some-code-to-receive-messages"></a>撰寫一些程式碼來接收訊息
-1. 將 Program.cs 檔案頂端的 `using` 陳述式替換為下列陳述式：
+
+1. 將 Program.cs 檔案頂端的現有 `using` 陳述式取代為下列 `using` 陳述式：
    
     ```csharp
     using System;
@@ -15,7 +18,7 @@
     using System.Threading.Tasks;
     using Microsoft.Azure.Relay;
     ```
-2. 將常數新增至 `Program` 類別以取得混合式連接的連接詳細資料。 將方括號中的預留位置以建立混合式連接時所取得的正確值取代。 務必使用完整命名空間名稱︰
+2. 將常數新增至 `Program` 類別以取得混合式連線詳細資料。 將方括號中的預留位置取代為在建立混合式連線時所取得的值。 務必使用完整命名空間名稱︰
    
     ```csharp
     private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
@@ -23,7 +26,7 @@
     private const string KeyName = "{SASKeyName}";
     private const string Key = "{SASKey}";
     ```
-3. 將名為 `ProcessMessagesOnConnection` 的下列新方法新增至 `Program` 類別：
+3. 將下列名為 `ProcessMessagesOnConnection` 的方法新增至 `Program` 類別：
    
     ```csharp
     // Method is used to initiate connection
@@ -74,7 +77,7 @@
         await relayConnection.CloseAsync(cts.Token);
     }
     ```
-4. 將另一個名為 `RunAsync` 的新方法新增至 `Program` 類別，如下所示：
+4. 將另一個名為 `RunAsync` 的方法新增至 `Program` 類別，如下所示：
    
     ```csharp
     private static async Task RunAsync()
@@ -119,13 +122,13 @@
         await listener.CloseAsync(cts.Token);
     }
     ```
-5. 將下列程式碼行新增至 `Program` 類別中的 `Main` 方法。
+5. 將下列程式碼行新增至 `Program` 類別中的 `Main` 方法：
    
     ```csharp
     RunAsync().GetAwaiter().GetResult();
     ```
    
-    Program.cs 看起來應該會像下面這樣：
+    完整的 Program.cs 檔案看起來應該會像下面這樣：
    
     ```csharp
     namespace Server

@@ -1,18 +1,18 @@
 # <a name="regions-and-availability-for-virtual-machines-in-azure"></a>Azure 中虛擬機器的區域和可用性
-請務必了解虛擬機器 (VM) 在 Azure 中的運作方式和位置，以及可充分發揮效能、可用性和備援功能的選項。 Azure 在世界各地多個資料中心運作。 這些資料中心會依據地理區域分組，提供您彈性來選擇要建置應用程式的位置。 本文提供 Azure 可用性和備援功能的概觀。
+Azure 在世界各地多個資料中心運作。 這些資料中心會依據地理區域分組，提供您彈性來選擇要建置應用程式的位置。 請務必了解虛擬機器 (VM) 在 Azure 中的運作方式和位置，以及可充分發揮效能、可用性和備援功能的選項。 本文提供 Azure 可用性和備援功能的概觀。
 
 ## <a name="what-are-azure-regions"></a>什麼是 Azure 區域？
-Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」或「東南亞」) 中建立資源 (例如 VM)。 目前全世界有 30 個 Azure 區域。 您可以檢閱 [地區及其位置的清單](https://azure.microsoft.com/regions/)。 為了提供備援和可用性，每個區域內都有多個資料中心。 此方法可為您在建置應用程式時提供彈性，以建立距離使用者最近的 VM，並滿足任何法務、法規遵循或稅務方面的目的。
+您可以在定義的地理區域 (例如「美國西部」、「北歐」或「東南亞」) 中建立 Azure 資源。 您可以檢閱 [地區及其位置的清單](https://azure.microsoft.com/regions/)。 為了提供備援和可用性，每個區域內都有多個資料中心。 此方法可在您設計應用程式時提供彈性，以建立距離使用者最近的 VM，並滿足任何法務、合規性或稅務方面的目的。
 
 ## <a name="special-azure-regions"></a>特殊 Azure 區域
-有一些適用於法規遵循或法務目的的特殊 Azure 區域，您在建置應用程式時可能會想要使用這些區域。 這些特殊區域包括：
+基於合規性或法務目的，Azure 有一些特殊區域，您在建置應用程式時可能會想要使用這些區域。 這些特殊區域包括：
 
 * **美國維吉尼亞州政府**和**美國愛荷華州政府**
   * 由經篩選的美國人士所操作、適用於美國政府機構及其合作夥伴的實體與邏輯網路隔離 Azure 執行個體。 包含其他法規遵循認證，例如 [FedRAMP](https://www.microsoft.com/en-us/TrustCenter/Compliance/FedRAMP) 和 [DISA](https://www.microsoft.com/en-us/TrustCenter/Compliance/DISA)。 深入了解 [Azure Government](https://azure.microsoft.com/features/gov/)。
 * **中國東部**和**中國北部**
   * 這些區域是透過 Microsoft 與 21Vianet 之間的唯一合作關係提供，其中 Microsoft 不會直接維護資料中心。 深入了解 [位於中國的 Microsoft Azure](http://www.windowsazure.cn/)。
 * **德國中部**和**德國東北部**
-  * 這些區域目前透過資料信任者模型提供，其中客戶資料會留在德國受到 T-Systems 控管，這是 Deutsche Telekom 旗下的公司，扮演德國資料信任者的角色。
+  * 這些區域透過資料信任者模型提供，其中客戶資料會留在德國受到 T-Systems 控管，這是 Deutsche Telekom 旗下的公司，扮演德國資料信任者的角色。
 
 ## <a name="region-pairs"></a>區域配對
 每個 Azure 區域都會與相同地理位置 (例如美國、歐洲或亞洲) 內的另一個區域配對。 此方法允許複寫整個地理位置的資源 (例如 VM 儲存體)，而應能降低發生同時影響兩個區域之自然災害、社會動亂、電力中斷或實體網路中斷的可能性。 區域配對的其他優點包括：
@@ -65,33 +65,31 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 價格會依據您選取的儲存體類型和可用性而有所不同。
 
 **Azure 受控磁碟**
-* 進階受控磁碟是由固態硬碟 (SSD) 來支援，標準受控磁碟則是由一般轉動式磁碟來支援。 進階和標準受控磁碟的收費是依據磁碟的佈建容量。
+* 進階受控磁碟是由固態硬碟 (SSD) 所支援，標準受控磁碟則是由一般轉動式磁碟所支援。 進階和標準受控磁碟的收費是依據磁碟的佈建容量。
 
 **非受控磁碟**
-* 進階儲存體是由「固態硬碟」(SSD) 支援，收費方式是依據磁碟的容量。
+* 進階儲存體是由固態硬碟 (SSD) 所支援，收費方式是依據磁碟的容量。
 * 標準儲存體是由一般轉動式磁碟支援，收費方式是依據使用的容量和所需的儲存體可用性。
   * 針對 RA-GRS，會有一個額外的「異地複寫資料傳輸」費用，此費用是將該資料複寫到另一個 Azure 區域中時的頻寬費用。
 
 如需有關不同儲存體類型和可用性選項的定價資訊，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/) 。
 
-## <a name="azure-images"></a>Azure 映像
-在 Azure 中，會從映像建立 VM。 映象通常來自 [Azure Marketplace](https://azure.microsoft.com/marketplace/)，合作夥伴可以在 Azure Marketplace 提供預先設定的完整作業系統或應用程式映像。
-
-當您從 Azure Marketplace 中的映像建立 VM 時，您實際上是在使用範本。 Azure Resource Manager 範本是宣告式「JavaScript 物件標記法」(JSON) 檔案，可用來建立包含 VM、儲存體、虛擬網路功能等的複雜應用程式環境。您可以進一步了解如何使用 [Azure Resource Manager 範本](../articles/azure-resource-manager/resource-group-overview.md)，包括如何[建置您自己的範本](../articles/resource-group-authoring-templates.md)。
-
-您也可以使用 [Azure CLI](../articles/virtual-machines/linux/upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure PowerShell](../articles/virtual-machines/windows/upload-generalized-managed.md) 來建立自己的自訂映像並上傳它們，以快速建立符合您特定建置需求的自訂 VM。
-
 ## <a name="availability-sets"></a>可用性設定組
-可用性設定組是 VM 的邏輯群組，可讓 Azure 了解您應用程式的建置方式，以提供備援和可用性。 建議您在可用性設定組內建立兩個或更多個 VM，以提供具高可用性的應用程式，以及符合 [99.95% Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 當單一 VM 是使用 [Azure 進階儲存體](../articles/storage/storage-premium-storage.md)時，非計劃性的維護事件適用 Azure SLA。 可用性設定組是由可防止硬體故障及允許安全地套用更新的兩個額外群組所組成 - 容錯網域 (FD) 和更新網域 (UD)。
+可用性設定組是 VM 的邏輯群組，可讓 Azure 了解您應用程式的建置方式，以提供備援和可用性。 建議您在可用性設定組內建立兩個或多個 VM，以提供具高可用性的應用程式，以及符合 [99.95% Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 當單一 VM 是使用 [Azure 進階儲存體](../articles/storage/storage-premium-storage.md)時，非計劃性的維護事件適用 Azure SLA。 
+
+可用性設定組是由可防止硬體故障及允許安全地套用更新的兩個額外群組所組成 - 容錯網域 (FD) 和更新網域 (UD)。
 
 ![更新網域和容錯網域組態的概念圖](./media/virtual-machines-common-regions-and-availability/ud-fd-configuration.png)
 
-您可以深入了解如何管理 [Linux VM](../articles/virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Windows VM](../articles/virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+您可以深入了解如何管理 [Linux VM](../articles/virtual-machines/linux/manage-availability.md) 或 [Windows VM](../articles/virtual-machines/linux/manage-availability.md)。
 
 ### <a name="fault-domains"></a>容錯網域
 容錯網域是共用通用電源和網路交換器的基礎硬體邏輯群組，類似於內部部署資料中心內的機架。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些容錯網域。 此方法可限制潛在實體硬體錯誤、網路中斷或電源中斷的影響。
 
-#### <a name="managed-disk-fault-domains-and-availability-sets"></a>受控磁碟的容錯網域和可用性設定組
+### <a name="update-domains"></a>更新網域
+更新網域是可以同時進行維護或重新啟動的基礎硬體邏輯群組。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些更新網域。 此方法可確保當 Azure 平台進行定期維護時，您的應用程式至少有一個執行個體一直保持執行中。 重新啟動的更新網域順序可能不會在規劃的維護事件期間循序進行，而只會一次重新啟動一個更新網域。
+
+### <a name="managed-disk-fault-domains"></a>受控磁碟容錯網域
 若 VM 使用 [Azure 受控磁碟](../articles/storage/storage-faq-for-disks.md)，VM 會在使用受管理的可用性設定組時配合使用受控磁碟容錯網域。 此一配合行為可確保連接到 VM 的所有受控磁碟都位於相同的受控磁碟容錯網域。 在受管理的可用性設定組中只能建立使用受控磁碟的 VM。 受控磁碟容錯網域數目會依區域而異，每個區域會有兩個或三個受控磁碟容錯網域。
 
 ![受控磁碟 FD](./media/virtual-machines-common-manage-availability/md-fd.png)
@@ -100,9 +98,6 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 > 受控可用性設定組的容錯網域數目會依區域而異，每個區域會有兩個或三個。 下表顯示每個區域擁有的數目：
 
 [!INCLUDE [managed-disks-common-fault-domain-region-list](managed-disks-common-fault-domain-region-list.md)]
-
-### <a name="update-domains"></a>更新網域
-更新網域是可以同時進行維護或重新啟動的基礎硬體邏輯群組。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些更新網域。 此方法可確保當 Azure 平台進行定期維護時，您的應用程式至少有一個執行個體一直保持執行中。 重新啟動的更新網域順序可能不會在規劃的維護事件期間循序進行，而只會一次重新啟動一個更新網域。
 
 ## <a name="next-steps"></a>後續步驟
 您現在可以開始使用這些可用性和備援功能來建置 Azure 環境。 如需最佳作法資訊，請參閱 [Azure 可用性最佳作法](../articles/best-practices-availability-checklist.md)。

@@ -1,5 +1,5 @@
 ---
-title: "在入口網站中建立第一個 Azure 搜尋服務索引 | Microsoft Docs"
+title: "教學課程：在入口網站中建立第一個 Azure 搜尋服務索引 | Microsoft Docs"
 description: "在 Azure 入口網站中，使用預先定義的範例資料來產生索引。 探索全文檢索搜尋、篩選器、面向、模糊搜尋、地理搜尋功能等等。"
 services: search
 documentationcenter: 
@@ -13,17 +13,16 @@ ms.devlang: na
 ms.workload: search
 ms.topic: hero-article
 ms.tgt_pltfrm: na
-ms.date: 05/01/2017
+ms.date: 06/26/2017
 ms.author: heidist
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: e03d0ff92b0ad6d34314c55d98972997769d09f0
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: c49989058fdd98d623c5517060f725e5f7e436d8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
-# <a name="build-and-query-your-first-azure-search-index-in-the-portal"></a>在入口網站中建立及查詢第一個 Azure 搜尋服務索引
+# <a name="tutorial-create-your-first-azure-search-index-in-the-portal"></a>教學課程：在入口網站中建立第一個 Azure 搜尋服務索引
 
 在 Azure 入口網站中，從預先定義的範例資料集著手，使用 [匯入資料] 精靈快速產生索引。 使用**搜尋總管**探索全文檢索搜尋、篩選器、面向、模糊搜尋和地理搜尋功能。  
 

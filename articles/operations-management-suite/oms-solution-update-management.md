@@ -12,26 +12,24 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 06/21/2017
+ms.date: 07/09/2017
 ms.author: magoedte
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 61fd58063063d69e891d294e627ae40cb878d65b
-ms.openlocfilehash: b4d5ab66db64a50d1b87edd4bf445e49004e67b4
+ms.translationtype: HT
+ms.sourcegitcommit: d941879aee6042b38b7f5569cd4e31cb78b4ad33
+ms.openlocfilehash: 8f83f5d13cb61709653f255c756dc78453073626
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/22/2017
+ms.lasthandoff: 07/10/2017
 
 
 ---
-# OMS 中的更新管理方案
-<a id="update-management-solution-in-oms" class="xliff"></a>
+# <a name="update-management-solution-in-oms"></a>OMS 中的更新管理方案
 
 ![更新管理符號](./media/oms-solution-update-management/update-management-symbol.png)
 
-OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。  您可以快速評估所有代理程式電腦上可用更新的狀態，並起始為伺服器安裝必要更新的程序。
+OMS 中的「更新管理」解決方案可讓您管理 Azure 中所部署 Windows 和 Linux 電腦的作業系統安全性更新、內部部署環境或其他雲端提供者。  您可以快速評估所有代理程式電腦上可用更新的狀態，並管理為伺服器安裝必要更新的程序。
 
 
-## 解決方案概觀
-<a id="solution-overview" class="xliff"></a>
+## <a name="solution-overview"></a>解決方案概觀
 OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 * 適用於 Windows 或 Linux 的 OMS 代理程式
@@ -39,14 +37,12 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 * 自動化 Hybrid Runbook Worker
 * 適用於 Windows 電腦的 Microsoft Update 或 Windows Server Update Services
 
-下列圖表顯示行為和資料流程的概念性檢視，說明解決方案如何評估更新並將及套用至工作區中所有連線的 Windows Server 和 Linux 電腦。    
+下列圖表顯示行為和資料流程的概念性檢視，說明解決方案如何評估安全性更新並將及套用至工作區中所有連線的 Windows Server 和 Linux 電腦。    
 
-#### Windows Server
-<a id="windows-server" class="xliff"></a>
+#### <a name="windows-server"></a>Windows Server
 ![Windows Server 更新管理程序流程](media/oms-solution-update-management/update-mgmt-windows-updateworkflow.png)
 
-#### Linux
-<a id="linux" class="xliff"></a>
+#### <a name="linux"></a>Linux
 ![Linux 更新管理程序流程](media/oms-solution-update-management/update-mgmt-linux-updateworkflow.png)
 
 在電腦執行更新合規性掃描之後，OMS 代理程式會將大量資訊轉送至 OMS。 在 Windows 電腦上，合規性掃描預設會每 12 小時執行一次。  除了掃描排程，如果在更新安裝之前與更新安裝之後重新啟動 Microsoft Monitoring Agent (MMA)，則會在 15 分鐘內起始更新合規性掃描。  在 Linux 電腦上，合規性掃描預設會每 3 小時執行一次，而如果重新啟動 MMA 代理程式，則會在 15 分鐘內起始相容性掃描。  
@@ -57,8 +53,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 在更新部署中指定的日期和時間，目標電腦會以平行方式執行部署。  系統會先執行掃描，以確認安裝仍然需要並加以安裝。  請務必注意，對於 WSUS 用戶端電腦而言，如果未在 WSUS 中核准更新，則更新部署會失敗。  套用更新的結果會轉送給 OMS 在儀表板中進行處理及彙總，或藉以搜尋事件。     
 
-## 必要條件
-<a id="prerequisites" class="xliff"></a>
+## <a name="prerequisites"></a>必要條件
 * 此解決方案支援針對 Windows Server 2008 和更新版本執行更新評估，以及針對 Windows Server 2008 R2 SP1 和更新版本執行更新部署。  不支援「伺服器核心」和「Nano 伺服器」安裝選項。
 
     > [!NOTE]
@@ -85,12 +80,10 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 如需有關如何安裝適用於 Linux 的 OMS 代理程式及下載最新版本的詳細資訊，請參閱[適用於 Linux 的 Operations Management Suite 代理程式](https://github.com/microsoft/oms-agent-for-linux)。  如需有關如何安裝適用於 Windows 的 OMS 代理程式，請檢閱[適用於 Windows 的 Operations Management Suite 代理程式](../log-analytics/log-analytics-windows-agents.md)。  
 
-## 方案元件
-<a id="solution-components" class="xliff"></a>
+## <a name="solution-components"></a>方案元件
 此解決方案包含下列已新增到自動化帳戶的資源，以及直接連線的代理程式或 Operations Manager 連線的管理群組。
 
-### 管理組件
-<a id="management-packs" class="xliff"></a>
+### <a name="management-packs"></a>管理組件
 如果 System Center Operations Manager 管理群組已連線到 OMS 工作區，則下列管理組件會安裝在 Operations Manager 中。  新增此解決方案之後，這些管理組件也會安裝在直接連線的 Windows 電腦上。 這些管理組件不需要進行任何設定或管理。
 
 * Microsoft System Center Advisor 更新評估智慧套件 (Microsoft.IntelligencePacks.UpdateAssessment)
@@ -99,14 +92,12 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 如需有關方案管理組件如何更新的詳細資訊，請參閱 [將 Operations Manager 連接到 Log Analytics](../log-analytics/log-analytics-om-agents.md)。
 
-### 混合式背景工作群組
-<a id="hybrid-worker-groups" class="xliff"></a>
+### <a name="hybrid-worker-groups"></a>混合式背景工作群組
 啟用此解決方案之後，則任何連線到 OMS 工作區的 Windows 電腦都會自動設定為 Hybrid Runbook Worker，以支援此解決方案所包含的 Runbook。  對於此解決方案管理的每部 Windows 電腦，它會遵循 Hostname FQDN_GUID 命名慣例並且列在自動化帳戶的 [Hybrid Runbook Worker 群組] 刀鋒視窗之下。  您不能讓這些群組以您帳戶中的 Runbook 為目標，否則它們會失敗。 這些群組只為了支援管理解決方案。   
 
 然而，您可以將 Windows 電腦新增到自動化帳戶中的 Hybrid Runbook Worker 群組來支援自動化 Runbook，只要解決方案和 Hybrid Runbook Worker 群組成員資格兩者所用的帳戶相同即可。  此功能已新增至 Hybrid Runbook Worker 7.2.12024.0 版。  
 
-## 組態
-<a id="configuration" class="xliff"></a>
+## <a name="configuration"></a>組態
 請執行下列步驟，將更新管理解決方案新增至 OMS 工作區並確認代理程式正在報告中。 不需要另外進行設定，便會自動新增已經連線至您的工作區的 Windows 代理程式。
 
 您可以使用下列方法來部署解決方案︰
@@ -116,8 +107,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 如果您已經在相同的資源群組與區域中將自動化帳戶和 OMS 工作區連結在一起，則選取 [自動化與控制] 會驗證您的組態，而且只會安裝此解決方案並在這兩項服務中進行設定。  從 Azure Marketplace 選取 [更新管理] 解決方案會發生相同的行為。  如果您未在訂用帳戶中部署任一項服務，請遵循 [建立新解決方案] 刀鋒視窗中的步驟，並確認您想要安裝其他預先選取的建議解決方案。  您可以選擇性地使用從方案庫[新增 OMS 方案](../log-analytics/log-analytics-add-solutions.md)所述的步驟，將 [更新管理] 解決方案新增至 OMS 工作區。  
 
-### 確認 OMS 代理程式和 Operations Manager 管理群組已連線至 OMS
-<a id="confirm-oms-agents-and-operations-manager-management-group-connected-to-oms" class="xliff"></a>
+### <a name="confirm-oms-agents-and-operations-manager-management-group-connected-to-oms"></a>確認 OMS 代理程式和 Operations Manager 管理群組已連線至 OMS
 
 若要確認直接連線且適用於 Linux 和 Windows 的 OMS 代理程式正與 OMS 通訊，您可以在幾分鐘之後執行下列記錄搜尋︰
 
@@ -142,10 +132,8 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 若要確認 Operations Manager 管理群組正在與 OMS 通訊，請參閱[驗證 Operations Manager 與 OMS 的整合](../log-analytics/log-analytics-om-agents.md#validate-operations-manager-integration-with-oms)。
 
-## 資料收集
-<a id="data-collection" class="xliff"></a>
-### 支援的代理程式
-<a id="supported-agents" class="xliff"></a>
+## <a name="data-collection"></a>資料收集
+### <a name="supported-agents"></a>支援的代理程式
 下表描述此方案支援的連接來源。
 
 | 連接的來源 | 支援 | 說明 |
@@ -155,28 +143,24 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 | Operations Manager 管理群組 |是 |方案會從所連線之管理群組中的代理程式收集系統更新的相關資訊。<br>Operations Manager 代理程式不需要直接連線到 Log Analytics。 資料會從管理群組轉送至 OMS 存放庫。 |
 | Azure 儲存體帳戶 |否 |Azure 儲存體未包含系統更新的相關資訊。 |
 
-### 收集頻率
-<a id="collection-frequency" class="xliff"></a>
+### <a name="collection-frequency"></a>收集頻率
 對於每部受管理的 Windows 電腦，每天會掃描兩次。 系統會每隔 15 分鐘呼叫一次 Windows API 來查詢上次更新時間，以判斷狀態是否變更，若是如此，則會起始合規性掃描。  對於每部受管理的 Linux 電腦，每 3 個小時會掃描一次。
 
 儀表板可能需要 30 分鐘以至 6 小時的時間，顯示來自受管理電腦的已更新資料。   
 
-## 使用解決方案
-<a id="using-the-solution" class="xliff"></a>
+## <a name="using-the-solution"></a>使用解決方案
 當您在 OMS 工作區新增更新管理方案時，OMS 儀表板中便會新增 [更新管理] 圖格。 此圖格會顯示計數並以圖形表示環境中的電腦數目及其更新合規性。<br><br>
 ![更新管理摘要圖格](media/oms-solution-update-management/update-management-summary-tile.png)  
 
 
-## 檢視更新評估
-<a id="viewing-update-assessments" class="xliff"></a>
+## <a name="viewing-update-assessments"></a>檢視更新評估
 按一下 [更新管理] 圖格以開啟 [更新管理] 儀表板。<br><br> ![更新管理摘要儀表板](./media/oms-solution-update-management/update-management-dashboard.png)<br>
 
 此儀表板會提供依照作業系統類型和更新類別分類之更新狀態的詳細明細 - 嚴重、安全性或其他 (例如定義更新)。 選取 [更新部署] 圖格後，系統會將您重新導向至 [更新部署] 頁面，您可以在其中檢視排程、目前正在執行的部署、已完成的部署，或排程新的部署。  
 
 您可藉由按一下特定圖格來執行可傳回所有記錄的記錄搜尋，或執行特定類別和預先定義之準則的查詢，從 [一般更新查詢] 資料行下可用的清單中選取其中一項。    
 
-## 安裝更新
-<a id="installing-updates" class="xliff"></a>
+## <a name="installing-updates"></a>安裝更新
 工作區中的所有 Linux 和 Windows 電腦皆進行過更新評估後，您可以建立「更新部署」來安裝必要的更新。  更新部署會排定為一或多部電腦安裝必要的更新。  除了應包含在部署範圍中的電腦或電腦群組外，您還要指定部署的日期和時間。  若要深入瞭解電腦群組，請參閱 [Log Analytics 中的電腦群組](../log-analytics/log-analytics-computer-groups.md)。  當您將電腦群組納入更新部署時，只會在建立排程時評估一次群組成員資格。  系統不會反映群組的後續變更。  若要解決這個問題，請刪除排定的更新部署並予以重建。
 
 > [!NOTE]
@@ -184,8 +168,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 針對從 Azure Marketplace 所提供之隨選 Red Hat Enterprise Linux (RHEL) 映像建立的虛擬機器，系統會將其註冊以存取部署在 Azure 中的 [Red Hat Update Infrastructure (RHUI)](../virtual-machines/virtual-machines-linux-update-infrastructure-redhat.md)。  針對任何其他 Linux 發行版本，則必須從發行版本線上檔案存放庫，依照其支援的方法來更新這些發行版本。  
 
-### 檢視更新部署
-<a id="viewing-update-deployments" class="xliff"></a>
+### <a name="viewing-update-deployments"></a>檢視更新部署
 按一下 [更新部署] 圖格可檢視現有更新部署的清單。  其分組依據為狀態 – **已排程**、**執行中**和**已完成**。<br><br> ![更新部署排程頁面](./media/oms-solution-update-management/update-updatedeployment-schedule-page.png)<br>  
 
 下表說明每個更新部署所顯示的屬性。
@@ -211,8 +194,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 | Windows 更新 |列出更新部署中包含的 Windows 更新及每個更新的安裝狀態。  選取要執行記錄搜尋的更新，以傳回該特定更新的所有更新記錄，或按一下要執行記錄搜尋的狀態，以傳回部署的所有更新記錄。 |
 | Linux 更新 |列出更新部署中包含的 Linux 更新及每個更新的安裝狀態。  選取要執行記錄搜尋的更新，以傳回該特定更新的所有更新記錄，或按一下要執行記錄搜尋的狀態，以傳回部署的所有更新記錄。 |
 
-### 建立更新部署
-<a id="creating-an-update-deployment" class="xliff"></a>
+### <a name="creating-an-update-deployment"></a>建立更新部署
 按一下畫面頂端的 [新增] 按鈕來建立新的更新部署，以開啟 [新增更新部署] 頁面。  您必須為下表中的屬性提供值。
 
 | 屬性 | 說明 |
@@ -226,18 +208,15 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 <br><br> ![新增更新部署頁面](./media/oms-solution-update-management/update-newupdaterun-page.png)
 
-### 時間範圍
-<a id="time-range" class="xliff"></a>
+### <a name="time-range"></a>時間範圍
 根據預設，更新管理方案中分析的資料範圍是來自過去 1 天內產生之所有已連線的管理群組。
 
 若要變更資料的時間範圍，請選取儀表板頂端的 [資料根據]。 您可以選取過去 7 天、1 天或 6 小時內建立或更新的警示。 或者，也可以選取 [自訂]  ，再指定自訂日期範圍。
 
-## Log Analytics 記錄
-<a id="log-analytics-records" class="xliff"></a>
+## <a name="log-analytics-records"></a>Log Analytics 記錄
 更新管理方案會在 OMS 存放庫中建立兩種類型的記錄。
 
-### 更新記錄
-<a id="update-records" class="xliff"></a>
+### <a name="update-records"></a>更新記錄
 每一部電腦上所安裝或需要的每個更新，都會建立類型為**更新**的記錄。 更新記錄具有下表中的屬性。
 
 | 屬性 | 說明 |
@@ -278,8 +257,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 
 ![具有記錄類型為更新之圖格的記錄搜尋清單檢視](./media/oms-solution-update-management/update-la-view-list.png)
 
-### UpdateSummary 記錄
-<a id="updatesummary-records" class="xliff"></a>
+### <a name="updatesummary-records"></a>UpdateSummary 記錄
 每部 Windows 代理程式電腦都會建立類型為 **UpdateSummary** 的記錄。 每次掃描電腦中的更新時，就會更新此記錄。 **UpdateSummary** 記錄具有下表中的屬性。
 
 | 屬性 | 說明 |
@@ -302,8 +280,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 | WindowsUpdateSetting |電腦安裝重要更新之方式的設定。<br>可能的值包括：<br>- 已停用<br>- 先通知再安裝<br>- 排程的安裝 |
 | WSUSServer |WSUS 伺服器的 URL (如果電腦已設定為要使用)。 |
 
-## 記錄搜尋範例
-<a id="sample-log-searches" class="xliff"></a>
+## <a name="sample-log-searches"></a>記錄搜尋範例
 下表提供此方案所收集之更新記錄的記錄搜尋範例。
 
 | 查詢 | 說明 |
@@ -330,19 +307,16 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 | Type:UpdateRunProgress UpdateRunName="DeploymentName" &#124; measure Count() by Computer |在此更新回合中更新的電腦 (以您的更新部署名稱取代此值) | 
 | Type=Update and OSType=Linux and OSName = Ubuntu &#124; measure count() by Computer |有任何可用更新的所有「Ubuntu」機器清單 | 
 
-## 疑難排解
-<a id="troubleshooting" class="xliff"></a>
+## <a name="troubleshooting"></a>疑難排解
 
 本節提供的資訊有助於排解更新管理解決方案的疑難問題。  
 
-### 如何針對更新部署進行疑難排解？
-<a id="how-do-i-troubleshoot-update-deployments" class="xliff"></a>
+### <a name="how-do-i-troubleshoot-update-deployments"></a>如何針對更新部署進行疑難排解？
 您可以從與支援此解決方案的 OMS 工作區連結之自動化帳戶的 [作業] 刀鋒視窗，檢視負責部署排定更新部署內含更新之 Runbook 的結果。  **Patch-MicrosoftOMSComputer** Runbook是以特定受管理電腦為目標的子 Runbook，而檢閱詳細資訊串流將呈現該部署的詳細資訊。  輸出會顯示適用的必要更新、下載狀態、安裝狀態，以及其他詳細資料。<br><br> ![更新部署作業狀態](media/oms-solution-update-management/update-la-patchrunbook-outputstream.png)<br>
 
 如需進一步資訊，請參閱[自動化 Runbook 輸出和訊息](../automation/automation-runbook-output-and-messages.md)。   
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics](../log-analytics/log-analytics-log-searches.md) 中的記錄搜尋，檢視詳細的更新資料。
 * [建立您自己的儀表板](../log-analytics/log-analytics-dashboards.md)，其中會顯示受管理電腦的更新相容性。
 * 在偵測到電腦遺漏重大更新或電腦已停用自動更新時[建立警示](../log-analytics/log-analytics-alerts.md)。  

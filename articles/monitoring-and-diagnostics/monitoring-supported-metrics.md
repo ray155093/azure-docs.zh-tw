@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 5/10/2017
+ms.date: 7/05/2017
 ms.author: johnkem
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: ff47eaa27351f8d1685090edc54d90e5e91a1de0
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: b034251438c65dd13d9ca0bb116699532e3960ef
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -27,8 +27,8 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 
 > [!NOTE]
 > 其他度量可在入口網站中或使用舊版 API 提供。 這份清單僅包含使用彙總 Azure 監視器度量管線的公開預覽時可供使用的公開預覽度量。
-> 
-> 
+>
+>
 
 ## <a name="microsoftanalysisservicesservers"></a>Microsoft.AnalysisServices/servers
 
@@ -90,8 +90,10 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|CoreCount|核心計數|Count|總計|Batch 帳戶中的核心總數|
-|TotalNodeCount|節點計數|Count|總計|Batch 帳戶中的節點總數|
+|CoreCount|專用核心計數|Count|總計|Batch 帳戶中的專用核心總數|
+|TotalNodeCount|專用節點計數|Count|總計|Batch 帳戶中的專用節點總數|
+|LowPriorityCoreCount|LowPriority 核心計數|Count|總計|Batch 帳戶中的低優先順序核心總數|
+|TotalLowPriorityNodeCount|低優先順序節點計數|Count|總計|Batch 帳戶中的低優先順序節點總數|
 |CreatingNodeCount|建立節點計數|Count|總計|正在建立的節點數目|
 |StartingNodeCount|啟動節點計數|Count|總計|啟動的節點數目|
 |WaitingForStartTaskNodeCount|等候啟動工作節點計數|Count|總計|等待啟動工作完成的節點數目|
@@ -103,6 +105,7 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |RunningNodeCount|執行節點計數|Count|總計|執行節點的數目|
 |LeavingPoolNodeCount|離開集區節點計數|Count|總計|離開集區的節點數目|
 |UnusableNodeCount|無法使用的節點計數|Count|總計|無法使用的節點數目|
+|PreemptedNodeCount|先占節點計數|Count|總計|先占節點的數量|
 |TaskStartEvent|工作啟動的事件|Count|總計|已啟動的工作總次數|
 |TaskCompleteEvent|工作完成事件|Count|總計|已完成的工作總次數|
 |TaskFailEvent|工作失敗事件|Count|總計|失敗狀態中已完成的工作總數|
@@ -336,7 +339,41 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|CustomerInsightsApiCalls|CustomerInsightsApiCalls|Count|總計||
+|DCIApiCalls|Customer Insights API 呼叫|Count|總計||
+|DCIMappingImportOperationSuccessfulLines|對應匯入作業成功行|Count|總計||
+|DCIMappingImportOperationFailedLines|對應匯入作業失敗行|Count|總計||
+|DCIMappingImportOperationTotalLines|對應匯入作業行總計|Count|總計||
+|DCIMappingImportOperationRuntimeInSeconds|對應匯入作業執行階段 (以秒為單位)|秒|總計||
+|DCIOutboundProfileExportSucceeded|輸出設定檔匯出成功|Count|總計||
+|DCIOutboundProfileExportFailed|輸出設定檔匯出失敗|Count|總計||
+|DCIOutboundProfileExportDuration|輸出設定檔匯出持續時間|秒|總計||
+|DCIOutboundKpiExportSucceeded|輸出 KPI 匯出成功|Count|總計||
+|DCIOutboundKpiExportFailed|輸出 KPI 匯出失敗|Count|總計||
+|DCIOutboundKpiExportDuration|輸出 KPI 匯出持續時間|秒|總計||
+|DCIOutboundKpiExportStarted|輸出 KPI 匯出開始|秒|總計||
+|DCIOutboundKpiRecordCount|輸出 KPI 記錄計數|秒|總計||
+|DCIOutboundProfileExportCount|輸出設定檔匯出計數|秒|總計||
+|DCIOutboundInitialProfileExportFailed|輸出初始設定檔匯出失敗|秒|總計||
+|DCIOutboundInitialProfileExportSucceeded|輸出初始設定檔匯出成功|秒|總計||
+|DCIOutboundInitialKpiExportFailed|輸出初始 KPI 匯出失敗|秒|總計||
+|DCIOutboundInitialKpiExportSucceeded|輸出初始 KPI 匯出成功|秒|總計||
+|DCIOutboundInitialProfileExportDurationInSeconds|輸出初始設定檔匯出持續時間 (以秒為單位)|秒|總計||
+|AdlaJobForStandardKpiFailed|標準 KPI 的 Adla 作業失敗 (以秒為單位)|秒|總計||
+|AdlaJobForStandardKpiTimeOut|標準 KPI 的 Adla 作業逾時 (以秒為單位)|秒|總計||
+|AdlaJobForStandardKpiCompleted|標準 KPI 的 Adla 作業完成 (以秒為單位)|秒|總計||
+|ImportASAValuesFailed|匯入 ASA 值失敗計數|Count|總計||
+|ImportASAValuesSucceeded|匯入 ASA 值成功計數|Count|總計||
+
+## <a name="microsoftdatalakeanalyticsaccounts"></a>Microsoft.DataLakeAnalytics/accounts
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|JobEndedSuccess|成功的作業|Count|總計|成功作業計數。|
+|JobEndedFailure|失敗的作業|Count|總計|失敗作業計數。|
+|JobEndedCancelled|取消的作業|Count|總計|取消作業計數。|
+|JobAUEndedSuccess|成功 AU 時間|秒|總計|成功作業的 AU 時間總計。|
+|JobAUEndedFailure|失敗 AU 時間|秒|總計|失敗作業的 AU 時間總計。|
+|JobAUEndedCancelled|取消的 AU 時間|秒|總計|取消作業的 AU 時間總計。|
 
 ## <a name="microsoftdbformysqlservers"></a>Microsoft.DBforMySQL/servers
 
@@ -485,6 +522,13 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |---|---|---|---|---|
 |輸送量|輸送量|每秒位元組|平均值||
 
+## <a name="microsoftnetworkexpressroutecircuits"></a>Microsoft.Network/expressRouteCircuits
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|BytesIn|BytesIn|Count|總計||
+|BytesOut|BytesOut|Count|總計||
+
 ## <a name="microsoftnotificationhubsnamespacesnotificationhubs"></a>Microsoft.NotificationHubs/Namespaces/NotificationHubs
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
@@ -548,10 +592,55 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |outgoing.mpns.dropped|MPNS 已捨棄通知|Count|總計|MPNS 已捨棄的推播計數 (MPNS 回應標頭︰X-NotificationStatus: QueueFull 或 Suppressed)。|
 |outgoing.mpns.pnserror|MPNS 錯誤|Count|總計|因為與 MPNS 通訊錯誤而失敗的推播計數。|
 |outgoing.mpns.authenticationerror|MPNS 驗證錯誤|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
-|notificationhub.devices|通知中樞裝置|Count|平均值|通知中樞的裝置計數|
-|notificationhub.pushes|通知中樞推播通知|Count|總計|通知中樞內的推播通知計數|
+|notificationhub.pushes|所有外寄通知|Count|總計|通知中樞的所有外寄通知|
 |incoming.all.requests|所有傳入要求|Count|總計|針對通知中樞傳入的要求總數|
 |incoming.all.failedrequests|所有傳入的失敗要求|Count|總計|針對通知中樞傳入的失敗要求總數|
+
+## <a name="microsoftpowerbidedicatedcapacities"></a>Microsoft.PowerBIDedicated/capacities
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|qpu_metric|QPU|Count|平均值|QPU。 範圍 0-100 (S1)、0-200 (S2) 和 0-400 (S4)|
+|memory_metric|記憶體|位元組|平均值|記憶體。 範圍 0-25 GB (S1)、0-50 GB (S2) 和 0-100 GB (S4)|
+|TotalConnectionRequests|連線要求的總計|Count|平均值|連線要求的總計。 這些是達到的。|
+|SuccessfullConnectionsPerSec|每秒連線成功的次數|每秒計數|平均值|成功完成連線的速率。|
+|TotalConnectionFailures|連線失敗的總計|Count|平均值|連線嘗試失敗的總計。|
+|CurrentUserSessions|目前的使用者工作階段|Count|平均值|目前建立的使用者工作階段數目。|
+|QueryPoolBusyThreads|查詢集區忙碌執行緒|Count|平均值|查詢執行緒集區中的忙碌執行緒數目。|
+|CommandPoolJobQueueLength|命令集區作業佇列長度|Count|平均值|命令執行緒集區佇列中的作業數目。|
+|ProcessingPoolJobQueueLength|處理集區作業佇列長度|Count|平均值|處理執行緒集區佇列中的非 I/O 作業數目。|
+|CurrentConnections|連接：目前的連接|Count|平均值|目前已建立的用戶端連接數目。|
+|CleanerCurrentPrice|記憶體︰清除工具目前價格|Count|平均值|記憶體目前的價格 ($/位元組/時間)，並正規化為 1000。|
+|CleanerMemoryShrinkable|記憶體︰可壓縮的清除器記憶體|位元組|平均值|背景清除器將清除的記憶體數量，以 KB 為單位。|
+|CleanerMemoryNonshrinkable|記憶體︰不可壓縮的清除器記憶體|位元組|平均值|背景清除器將不會清除的記憶體數量，以 KB 為單位。|
+|MemoryUsage|記憶體：記憶體使用量|位元組|平均值|伺服器處理序用於計算清除器記憶體價格的記憶體使用量。 等於計數器 Process\PrivateBytes 加上記憶體對應的資料大小，忽略 xVelocity 記憶體內部分析引擎 (VertiPaq) 在超出 xVelocity 引擎記憶體限制外對應或配置的任何記憶體。|
+|MemoryLimitHard|記憶體︰固定記憶體限制|位元組|平均值|組態檔中的固定記憶體限制。|
+|MemoryLimitHigh|記憶體︰記憶體上限|位元組|平均值|來自組態檔的記憶體上限。|
+|MemoryLimitLow|記憶體︰記憶體下限|位元組|平均值|來自組態檔的記憶體下限。|
+|MemoryLimitVertiPaq|記憶體︰記憶體限制 VertiPaq|位元組|平均值|來自組態檔的記憶體內部限制。|
+|配額|記憶體︰配額|位元組|平均值|目前的記憶體配額，以位元組為單位。 記憶體配額也就是指授與使用的記憶體，或是保留的記憶體。|
+|QuotaBlocked|記憶體︰封鎖的配額|Count|平均值|在釋放其他記憶體配額之前，目前已封鎖的配額要求數目。|
+|VertiPaqNonpaged|記憶體︰未分頁的 VertiPaq|位元組|平均值|工作集中已封鎖來供記憶體內部引擎使用的記憶體位元組。|
+|VertiPaqPaged|記憶體︰分頁的 VertiPaq|位元組|平均值|可供記憶體內部資料使用的分頁記憶體位元組。|
+|RowsReadPerSec|處理︰每秒讀取的資料列|每秒計數|平均值|從所有關聯式資料庫讀取資料列的速率。|
+|RowsConvertedPerSec|處理︰每秒轉換的資料列|每秒計數|平均值|處理期間資料列轉換的速率。|
+|RowsWrittenPerSec|處理︰每秒寫入的資料列|每秒計數|平均值|處理期間資料列寫入的速率。|
+|CommandPoolBusyThreads|執行緒︰命令集區的忙碌執行緒數|Count|平均值|命令執行緒集區中的忙碌執行緒數。|
+|CommandPoolIdleThreads|執行緒︰命令集區的閒置執行緒數|Count|平均值|命令執行緒集區中的閒置執行緒數。|
+|LongParsingBusyThreads|執行緒︰完整剖析的忙碌執行緒數|Count|平均值|完整剖析執行緒集區中的忙碌執行緒數目。|
+|LongParsingIdleThreads|執行緒︰完整剖析的閒置執行緒數|Count|平均值|完整剖析執行緒集區中的閒置執行緒數目。|
+|LongParsingJobQueueLength|執行緒︰完整剖析的作業佇列長度|Count|平均值|完整剖析執行緒集區佇列中的作業數目。|
+|ProcessingPoolBusyIOJobThreads|執行緒︰處理集區的忙碌 I/O 作業執行緒數|Count|平均值|處理執行緒集區中執行 I/O 作業的執行緒數目。|
+|ProcessingPoolBusyNonIOThreads|執行緒︰處理集區的忙碌非 I/O 執行緒數|Count|平均值|處理執行緒集區中執行非 I/O 作業的執行緒數目。|
+|ProcessingPoolIOJobQueueLength|執行緒：處理集區 I/O 作業佇列長度|Count|平均值|處理執行緒集區佇列中的 I/O 作業數目。|
+|ProcessingPoolIdleIOJobThreads|執行緒︰處理集區的閒置 I/O 作業執行緒數|Count|平均值|處理執行緒集區中 I/O 作業的閒置執行緒數目。|
+|ProcessingPoolIdleNonIOThreads|執行緒︰處理集區的閒置非 I/O 執行緒數|Count|平均值|處理執行緒集區中專供非 I/O 作業使用的閒置執行緒數目。|
+|QueryPoolIdleThreads|執行緒︰查詢集區的閒置執行緒數|Count|平均值|處理執行緒集區中 I/O 作業的閒置執行緒數目。|
+|QueryPoolJobQueueLength|執行緒︰查詢集區的作業佇列長度|Count|平均值|查詢執行緒集區佇列中的作業數目。|
+|ShortParsingBusyThreads|執行緒︰簡短剖析的忙碌執行緒數|Count|平均值|簡短剖析執行緒集區中的忙碌執行緒數目。|
+|ShortParsingIdleThreads|執行緒︰簡短剖析的閒置執行緒數|Count|平均值|簡短剖析執行緒集區中的閒置執行緒數目。|
+|ShortParsingJobQueueLength|執行緒︰簡短剖析的作業佇列長度|Count|平均值|簡短剖析執行緒集區佇列中的作業數目。|
+|memory_thrashing_metric|記憶體猛移|百分比|平均值|記憶體猛移的平均值。|
 
 ## <a name="microsoftsearchsearchservices"></a>Microsoft.Search/searchServices
 
@@ -596,17 +685,33 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |度量|度量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
 |cpu_percent|CPU 百分比|百分比|平均值|CPU 百分比|
+|database_cpu_percent|CPU 百分比|百分比|平均值|CPU 百分比|
 |physical_data_read_percent|資料 IO 百分比|百分比|平均值|資料 IO 百分比|
+|database_physical_data_read_percent|資料 IO 百分比|百分比|平均值|資料 IO 百分比|
 |log_write_percent|記錄 IO 百分比|百分比|平均值|記錄 IO 百分比|
+|database_log_write_percent|記錄 IO 百分比|百分比|平均值|記錄 IO 百分比|
 |dtu_consumption_percent|DTU 百分比|百分比|平均值|DTU 百分比|
+|database_dtu_consumption_percent|DTU 百分比|百分比|平均值|DTU 百分比|
 |storage_percent|儲存體百分比|百分比|平均值|儲存體百分比|
 |workers_percent|背景工作角色百分比|百分比|平均值|背景工作角色百分比|
+|database_workers_percent|背景工作角色百分比|百分比|平均值|背景工作角色百分比|
 |sessions_percent|工作階段百分比|百分比|平均值|工作階段百分比|
+|database_sessions_percent|工作階段百分比|百分比|平均值|工作階段百分比|
 |eDTU_limit|eDTU 限制|Count|平均值|eDTU 限制|
 |storage_limit|儲存體限制|位元組|平均值|儲存體限制|
 |eDTU_used|已使用 eDTU|Count|平均值|已使用 eDTU|
 |storage_used|已使用儲存體|位元組|平均值|已使用儲存體|
+|database_storage_used|已使用儲存體|位元組|平均值|已使用儲存體|
 |xtp_storage_percent|記憶體內部 OLTP 儲存體百分比|百分比|平均值|記憶體內部 OLTP 儲存體百分比|
+
+## <a name="microsoftsqlservers"></a>Microsoft.Sql/servers
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|dtu_consumption_percent|DTU 百分比|百分比|平均值|DTU 百分比|
+|database_dtu_consumption_percent|DTU 百分比|百分比|平均值|DTU 百分比|
+|storage_used|已使用儲存體|位元組|平均值|已使用儲存體|
+|database_storage_used|已使用儲存體|位元組|平均值|已使用儲存體|
 
 ## <a name="microsoftstreamanalyticsstreamingjobs"></a>Microsoft.StreamAnalytics/streamingjobs
 
@@ -635,7 +740,7 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |BytesReceived|資料輸入|位元組|總計|資料輸入|
 |BytesSent|資料輸出|位元組|總計|資料輸出|
 
-## <a name="microsoftwebsites-including-functions"></a>Microsoft.Web/sites (包括函式)
+## <a name="microsoftwebsites-excluding-functions"></a>Microsoft.Web/sites (不包括函式)
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
@@ -655,6 +760,16 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |MemoryWorkingSet|記憶體工作集|位元組|平均值|記憶體工作集|
 |AverageMemoryWorkingSet|平均記憶體工作集|位元組|平均值|平均記憶體工作集|
 |AverageResponseTime|平均回應時間|秒|平均值|平均回應時間|
+
+## <a name="microsoftwebsites-functions"></a>Microsoft.Web/sites (函式)
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|BytesReceived|資料輸入|位元組|總計|資料輸入|
+|BytesSent|資料輸出|位元組|總計|資料輸出|
+|Http5xx|Http 伺服器錯誤|Count|總計|Http 伺服器錯誤|
+|MemoryWorkingSet|記憶體工作集|位元組|平均值|記憶體工作集|
+|AverageMemoryWorkingSet|平均記憶體工作集|位元組|平均值|平均記憶體工作集|
 |FunctionExecutionUnits|函式執行單位|Count|平均值|函式執行單位|
 |FunctionExecutionCount|函式執行計數|Count|平均值|函式執行計數|
 
@@ -685,5 +800,4 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 * [了解 Azure 監視器中的度量](monitoring-overview-metrics.md)
 * [建立度量警示](insights-receive-alert-notifications.md)
 * [將度量匯出至儲存體、事件中樞或 Log Analytics](monitoring-overview-of-diagnostic-logs.md)
-
 

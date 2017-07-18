@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/21/2016
+ms.date: 07/06/2017
 ms.author: nini
-translationtype: Human Translation
-ms.sourcegitcommit: 6d20dc322a2493b9dd9a3fd843512befc1e90100
-ms.openlocfilehash: a822e7eb85eca42cba85d191e1effd7240deb1af
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: a9d1b05e8f6740cb7c5ccf15dbe33b15bdbe27b0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -28,6 +29,9 @@ ms.lasthandoff: 02/28/2017
 >
 >
 
+
+![Service Fabric 符號](./media/log-analytics-service-fabric/service-fabric-assessment-symbol.png)
+
 本文說明如何在 Log Analytics 中使用 Service Fabric 解決方案，來協助識別 Service Fabric 叢集中的問題並且進行疑難排解，方法是取得 Service Fabric 節點如何執行，以及您的應用程式和微服務如何執行的可見度。
 
 Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，方法是從 Azure WAD 資料表收集此資料。 然後 Log Analytics 會讀取 Service Fabric 架構事件，包括**可靠的服務事件**、**動作項目事件**、**操作事件**和**自訂 ETW 事件**。 Service Fabric 解決方案儀表板會向您顯示 Service Fabric 環境中值得注意的問題和相關事件。
@@ -35,27 +39,27 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 ## <a name="installing-and-configuring-the-solution"></a>安裝和設定方案
 請遵循這三個簡單步驟以安裝及設定解決方案︰
 
-1. 請確定您使用的 OMS 工作區與您用來建立所有叢集資源 (包括儲存體帳戶) 的相同 Azure 訂用帳戶相關聯。 請參閱[開始使用 Log Analytics](log-analytics-get-started.md)建立 OMS 工作區的詳細資訊。
-2. 設定 OMS 以收集及檢視 Service Fabric 記錄檔。
+1. 請確定您使用的 Log Analytics 工作區與您用來建立所有叢集資源 (包括儲存體帳戶) 的相同 Azure 訂用帳戶相關聯。 請參閱[開始使用 Log Analytics](log-analytics-get-started.md)，以取得建立 Log Analytics 工作區的詳細資訊。
+2. 設定 Log Analytics 以收集及檢視 Service Fabric 記錄檔。
 3. 在您的工作區中啟用 Service Fabric 解決方案。
 
-## <a name="configure-oms-to-collect-and-view-service-fabric-logs"></a>設定 OMS 以收集及檢視 Service Fabric 記錄檔
-在本節中，您將學習如何設定 OMS 以擷取 Service Fabric 記錄檔。 記錄檔可讓您使用 OMS 入口網站，檢視、分析您的叢集或該叢集中執行之應用程式與服務的問題，並且進行疑難排解。
+## <a name="configure-log-analytics-to-collect-and-view-service-fabric-logs"></a>設定 Log Analytics 以收集及檢視 Service Fabric 記錄檔
+在本節中，您將學習如何設定 Log Analytics 以擷取 Service Fabric 記錄檔。 記錄檔可讓您使用 OMS 入口網站，針對叢集或叢集中所執行的應用程式與服務，檢視、分析其中的問題，並且進行疑難排解。
 
 > [!NOTE]
-> Azure 診斷延伸模組必須設定為將記錄檔上傳至與 OMS 搜尋目標相符的儲存體資料表。 如需如何收集記錄檔的詳細資訊，請參閱[如何使用 Azure 診斷收集記錄檔](../service-fabric/service-fabric-diagnostics-how-to-setup-wad.md)。 這份文章中的組態設定範例將顯示儲存體資料表的名稱。 一旦在叢集上設定診斷，並且將記錄檔上傳至儲存體帳戶，下一個步驟是設定 OMS 來收集這些記錄檔。
+> Azure 診斷擴充功能必須設定為將記錄檔上傳至與 Log Analytics 搜尋目標相符的儲存體資料表。 如需詳細資訊，請參閱[使用 Azure 診斷收集記錄](../service-fabric/service-fabric-diagnostics-how-to-setup-wad.md)。 這份文章中的組態設定範例將顯示儲存體資料表的名稱。 在叢集上設定好診斷，並且將記錄檔上傳至儲存體帳戶之後，下一個步驟便是設定 Log Analytics 來收集這些記錄檔。
 >
 >
 
-確定您更新 **template.json** 檔案中的 **EtwEventSourceProviderConfiguration** 區段，以在藉由執行 **deploy.ps1** EventSources 的項目。 要上傳的資料表與 (ETWEventTable) 相同。 目前，OMS 只能讀取該資料表的應用程式 ETW 事件。 不過，支援自訂 ETW 資料表正在開發中。
+確定您更新 **template.json** 檔案中的 **EtwEventSourceProviderConfiguration** 區段，以在藉由執行 **deploy.ps1** EventSources 的項目。 要上傳的資料表與 (ETWEventTable) 相同。 目前，Log Analytics 只能從 *WADETWEventTable* 資料表中讀取應用程式 ETW 事件。
 
 下列工具是用來執行此章節中的某些作業：
 
 * Azure PowerShell
 * [Operations Management Suite](http://www.microsoft.com/oms)
 
-### <a name="configure-an-oms-workspace-to-show-the-cluster-logs"></a>設定 OMS 工作區來顯示叢集記錄檔
-如上所述建立 OMS 工作區之後，接下來就是設定工作區，從 Azure 儲存體資料表中提取診斷延伸模組從叢集上傳的記錄檔。 若要這樣做，請執行下列 PowerShell 指令碼：
+### <a name="configure-a-log-analytics-workspace-to-show-the-cluster-logs"></a>設定 Log Analytics 工作區來顯示叢集記錄檔
+如上所述建立 Log Analytics 工作區之後，接下來就是設定工作區，以便從 Azure 儲存體資料表中提取診斷擴充功能從叢集上傳的記錄檔。 若要這樣做，請執行下列 PowerShell 指令碼：
 
 ```
 <#
@@ -63,8 +67,8 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
     It will enable all supported data types (currently Service Fabric Events, ETW Events and IIS Logs).
     It supports Resource Manager storage accounts.
     If you have more than one Azure Subscription, you will be prompted for the subscription to configure.
-    If you have more than one OMS workspace you will be prompted for the workspace to configure.
-    It will then look through your Service Fabric clusters, and configure your OMS workspace to read Diagnostics from storage accounts that are connected to that cluster and have diagnostics enabled.
+    If you have more than one Log Analytics workspace you will be prompted for the workspace to configure.
+    It will then look through your Service Fabric clusters, and configure your Log Analytics workspace to read Diagnostics from storage accounts that are connected to that cluster and have diagnostics enabled.
 #>
 
 try
@@ -88,12 +92,12 @@ function Select-Subscription {
 
             $count = 1
             foreach ($subscription in $allSubscriptions) {
-                $uiPrompt += "$count. " + $subscription.SubscriptionName + " (" + $subscription.SubscriptionId + ")`n"
+                $uiPrompt += "$count. " + $subscription.Name + " (" + $subscription.Id + ")`n"
                 $count++
             }
             $answer = (Read-Host -Prompt $uiPrompt) - 1
             $subscription = $allSubscriptions[$answer]
-             Write-Host $subscription.SubscriptionId
+             Write-Host $subscription.Id
         }  
     }
     return $subscription
@@ -135,7 +139,7 @@ function Check-ETWProviderLogging {
          }  
          elseif ( $table -ne $expectedTable )
          {
-             Write-Warning ("$id $provider events are being written to $table instead of WAD$expectedTable. Events will not be collected by OMS")
+             Write-Warning ("$id $provider events are being written to $table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
          }  
          else
          {
@@ -244,7 +248,7 @@ function Select-StorageAccount {
                             {
                                 $existingConfig = Get-AzureRmOperationalInsightsStorageInsight -Workspace $workspace -Name $insightsName -ErrorAction Stop
                             }
-                        catch [Hyak.Common.CloudException]
+                        catch
                             {
                                 # HTTP Not Found is returned if the storage insight doesn't exist
                             }
@@ -287,12 +291,12 @@ $workspace = Select-Workspace
 $storageAccount = Select-StorageAccount
 ```
 
-設定 OMS 工作區以從儲存體帳戶的 Azure 資料表讀取之後，登入 Azure 入口網站，然後從 [所有資源] 選取 OMS 工作區。 選取之後，您應該會看到連接到該 OMS 工作區的儲存體帳戶記錄檔數目。 選取 [儲存體帳戶記錄檔] 圖格，並且從儲存體帳戶記錄檔的清單確認，您的儲存體帳戶已連接至該 OMS 工作區︰
+設定 Log Analytics 工作區以讀取儲存體帳戶的 Azure 資料表之後，接著請登入 Azure 入口網站，然後從 [所有資源] 選取 Log Analytics 工作區。 選取之後，您應該會看到連接到該 Log Analytics 工作區的儲存體帳戶記錄檔數目。 選取 [儲存體帳戶記錄檔] 圖格，並且根據儲存體帳戶記錄檔的清單，確認您的儲存體帳戶已連接至該 Log Analytics 工作區︰
 
 ![儲存體帳戶記錄檔](./media/log-analytics-service-fabric/sf1.png)
 
 ## <a name="enable-the-service-fabric-solution"></a>啟用 Service Fabric 解決方案
-使用下列指令碼以將解決方案新增至 OMS 工作區。 在 PowerShell 中執行指令碼，使用與您想要在其中啟用 Service Fabric 解決方案的 OMS 工作區相關聯的 Azure 訂用帳戶。
+使用下列指令碼以將解決方案新增至 Log Analytics 工作區。 在 PowerShell 中執行指令碼，使用與您想要在其中啟用 Service Fabric 解決方案的 Log Analytics 工作區相關聯的 Azure 訂用帳戶。
 
 ```
 function Select-Subscription {
@@ -337,18 +341,18 @@ function Select-Workspace {
     return $workspace
 }
 $subscription = Select-Subscription
-$subscriptionId = $subscription.SubscriptionId
+$subscriptionId = $subscription.Id
 $subscription = Select-AzureRmSubscription -SubscriptionId $subscriptionId
 $workspace = Select-Workspace
 Set-AzureRmOperationalInsightsIntelligencePack -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -IntelligencePackName "ServiceFabric" -Enabled $true
 ```
 
-啟用此解決方案之後，Service Fabric 圖格會新增至您的 OMS 概觀頁面上，具有值得注意的問題檢視，例如過去 24 小時內發生的 runAsync 失敗和取消。
+啟用此解決方案之後，Service Fabric 圖格會新增至您的 Log Analytics 概觀頁面，並顯示值得注意的問題，像是過去 24 小時內發生的 runAsync 失敗和取消。
 
 ![Service Fabric 圖格](./media/log-analytics-service-fabric/sf2.png)
 
 ### <a name="view-service-fabric-events"></a>檢視 Service Fabric 事件
-按一下 [Service Fabric] 圖格以開啟 Service Fabric 儀表板。 此儀表板包含下表中的資料行。 每個資料行依計數列出前十個事件，這幾個事件符合該資料行中指定時間範圍的準則。 您可以按一下每個資料行右下角的 [查看全部] ，或按一下資料行標頭，以執行記錄搜尋來提供完整清單。
+按一下 [Service Fabric] 圖格以開啟 Service Fabric 儀表板。 此儀表板包含下表中的資料行。 每個資料行依計數列出前 10 個事件，這幾個事件符合該資料行中指定時間範圍的準則。 您可以按一下每個資料行右下角的 [查看全部] ，或按一下資料行標頭，以執行記錄搜尋來提供完整清單。
 
 | **Service Fabric 事件** | **description** |
 | --- | --- |
@@ -364,24 +368,24 @@ Set-AzureRmOperationalInsightsIntelligencePack -ResourceGroupName $workspace.Res
 
 下表顯示 Service Fabric 的資料收集方法及如何收集資料的其他詳細資料。
 
-| 平台 | 直接代理程式 | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
+| 平台 | 直接代理程式 | Operations Manager 代理程式 | Azure 儲存體 | 是否需要 Operations Manager？ | 透過管理群組傳送的 Operations Manager 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |![否](./media/log-analytics-malware/oms-bullet-red.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |![是](./media/log-analytics-malware/oms-bullet-green.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |10 分鐘 |
 
 > [!NOTE]
-> 您可以按一下儀表板頂端的 [根據最近 7 天的資料]，變更 Service Fabric 解決方案中這些事件的範圍。 您也可以顯示過去 7 天、1 天或 6 個小時內產生的事件。 或者，也可以選取 [自訂]，以指定自訂日期範圍。
+> 您可以按一下儀表板頂端的 [根據最近 7 天的資料]，變更 Service Fabric 解決方案中這些事件的範圍。 您也可以顯示過去七天、一天或六個小時內產生的事件。 或者，也可以選取 [自訂]，以指定自訂日期範圍。
 >
 >
 
-## <a name="troubleshoot-your-service-fabric-and-oms-configuration"></a>針對 Service Fabric 和 OMS 組態進行疑難排解
-如果您需要確認 OMS 組態，因為您無法在 OMS 中檢視事件資料，請使用下列指令碼。 它會讀取您的 Service Fabric 診斷組態，檢查有無資料寫入至資料表，並確認 OMS 已設定為從資料表讀取。
+## <a name="troubleshoot-your-service-fabric-and-log-analytics-configuration"></a>針對 Service Fabric 和 Log Analytics 組態進行疑難排解
+因為無法在 Log Analytics 中檢視事件資料，而需要確認 Log Analytics 組態時，請使用下列指令碼。 它會讀取您的 Service Fabric 診斷組態、檢查資料是否寫入資料表，並確認 Log Analytics 已設定為從資料表讀取。
 
 ```
 <#
-    Verify Service Fabric and OMS configuration
+    Verify Service Fabric and Log Analytics configuration
     1. Read Service Fabric diagnostics configuration
     2. Check for data being written into the tables
-    3. Verify OMS is configured to read from the tables
+    3. Verify Log Analytics is configured to read from the tables
 
     Supported tables:
     WADServiceFabricReliableActorEventTable
@@ -505,7 +509,7 @@ function Check-ETWProviderLogging {
         }
         elseif ( $table -ne $expectedTable )
         {
-            Write-Warning ("$id $provider events are being written to $table instead of WAD$expectedTable. Events will not be collected by OMS")
+            Write-Warning ("$id $provider events are being written to $table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
         }
         else
         {
@@ -604,7 +608,7 @@ $OMSworkspace = $allResources.Where({($_.ResourceType -eq "Microsoft.Operational
 
 if ($OMSworkspace.Name -ne $workspaceName)
 {
-    Write-Error ("Unable to find OMS Workspace " + $workspaceName)
+    Write-Error ("Unable to find Log Analytics Workspace " + $workspaceName)
 }
 
 $serviceFabricClusters = $allResources.Where({$_.ResourceType -eq "Microsoft.ServiceFabric/clusters"})

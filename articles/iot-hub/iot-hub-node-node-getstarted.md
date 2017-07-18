@@ -1,6 +1,6 @@
 ---
 title: "開始使用 Azure IoT 中樞 (Node) | Microsoft Docs"
-description: "如何使用適用於 Node.js 的 Azure IoT SDK 將裝置到雲端訊息從裝置傳送至 Azure IoT 中樞。 您可以建立模擬裝置應用程式來傳送訊息、建立服務應用程式以在身分識別登錄中註冊裝置，以及建立服務應用程式以從 IoT 中樞讀取裝置到雲端訊息。"
+description: "了解如何使用適用於 Node.js 的 IoT SDK 將裝置到雲端訊息傳送至 Azure IoT 中樞。 建立模擬裝置和服務應用程式來註冊您的裝置、傳送訊息，並從 IoT 中樞讀取訊息。"
 services: iot-hub
 documentationcenter: nodejs
 author: dominicbetts
@@ -15,12 +15,11 @@ ms.workload: na
 ms.date: 05/22/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
-ms.openlocfilehash: b04fe441cf83ed616b0464eec83a6caf3a449532
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 3df643a517250d85200a887f5c4e62ed6c66c9c4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/23/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="connect-your-simulated-device-to-your-iot-hub-using-node"></a>使用 Node 將您的模擬裝置連線至 IoT 中樞

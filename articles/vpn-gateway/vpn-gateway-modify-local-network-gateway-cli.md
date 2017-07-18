@@ -1,6 +1,6 @@
 ---
-title: "修改區域網路閘道 IP 位址前置詞和 VPN 閘道 IP 位址| Azure| CLI| Microsoft Docs"
-description: "本文逐步解說如何使用 Azure CLI 將區域網路閘道的 IP 位址首碼進行變更"
+title: "修改區域網路閘道 IP 位址首碼和 VPN 閘道 IP 位址| Azure| CLI| Microsoft Docs"
+description: "本文逐步解說如何使用 Azure CLI 變更區域網路閘道的 IP 位址首碼。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -13,19 +13,26 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/24/2017
+ms.date: 06/19/2017
 ms.author: cherylmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 81c1a6e2357c8d336449224fac841be8dcc2a3cd
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: cbcb0b626aceccf9c5a29e60e5b0c66e7812dee1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
 # <a name="modify-local-network-gateway-settings-using-the-azure-cli"></a>使用 Azure CLI 修改區域網路閘道設定
 
-有時候區域網路閘道 AddressPrefix 或 GatewayIPAddress 的設定會變更。 本文將說明如何修改區域網路閘道設定。 您也可以在 Azure 入口網站或 PowerShell 中修改下列設定。
+有時候區域網路閘道位址首碼或閘道 IP 位址的設定會變更。 本文將說明如何修改區域網路閘道設定。 您也可以從下列清單選取不同的選項來使用不同的方法修改這些設定：
+
+> [!div class="op_single_selector"]
+> * [Azure 入口網站](vpn-gateway-modify-local-network-gateway-portal.md)
+> * [PowerShell](vpn-gateway-modify-local-network-gateway.md)
+> * [Azure CLI](vpn-gateway-modify-local-network-gateway-cli.md)
+>
+>
 
 ## <a name="before-you-begin"></a>開始之前
 

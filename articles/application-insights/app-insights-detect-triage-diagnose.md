@@ -1,6 +1,6 @@
 ---
-title: "偵測和診斷 Web 應用程式問題 - Azure Application Insights | Microsoft Docs"
-description: "分析損毀及偵測和診斷應用程式的效能問題"
+title: "DevOps 適用的 Azure Application Insights 概觀 | Microsoft Docs"
+description: "了解如何在 Dev Ops 環境中使用 Application Insights。"
 author: CFreemanwa
 services: application-insights
 documentationcenter: 
@@ -11,30 +11,27 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 03/14/2017
+ms.date: 06/26/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 05fe4996a8a9c886f2f1b61471dc80550633ecf6
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: c6bfa094f5f06483a9c59a1e0167e5fa7f8f053e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/16/2017
+ms.lasthandoff: 06/28/2017
 
 
 ---
-# <a name="detect-triage-and-diagnose-with-application-insights"></a>使用 Application Insights 刪除、分級和診斷
+# <a name="overview-of-application-insights-for-devops"></a>DevOps 適用的 Application Insights 概觀
 
-
-[Application Insights](app-insights-overview.md) 是適用於 Web 開發人員的可延伸「應用程式效能管理」(APM) 服務。 它可協助您瞭解您應用程式在作用中時的執行和使用情況。 當發生問題時，它可讓您了解、協助您評估影響，以及協助您判斷原因。
+透過 [Application Insights](app-insights-overview.md)，您可以迅速瞭解您的應用程式在作用中時如何執行和使用。 如果發生問題，它可讓您了解、協助您評估影響，以及協助您判斷原因。
 
 以下是某個開發 Web 應用程式的小組的敘述：
 
 * *「幾天前，我們部署了次要的 Hotfix。我們沒有執行廣泛測試階段，但很不幸地，有些未預期的變更被合併到裝載中，造成前端與後端之間的不相容。伺服器例外狀況隨即湧現，警報發出，我們便知道了這個情況。在按幾下 Application Insights 入口網站之後，我們從例外狀況堆疊取得了足夠的資訊，而得以縮小問題。我們立即復原並將損害降至最低。Application Insights 使得這個部分的開發作業週期變得非常輕鬆且可行。」*
 
-讓我們來看看一般 Web 開發小組如何使用 Application Insights 來管理效能。 我們會跟隨 Fabrikam 銀行的小組，開發線上銀行系統 (OBS)。
+在本文中，我們追隨 Fabrikam Bank 中一個開發線上銀行系統 (OBS) 的團隊，了解他們如何使用 Application Insights 快速回應客戶和進行更新。  
 
-![銀行網站範例](./media/app-insights-detect-triage-diagnose/03-bank.png)
-
-小組會以下列方式進行 devOps 循環：
+此團隊會處理下圖所示的 DevOps 循環：
 
 ![DevOps 循環](./media/app-insights-detect-triage-diagnose/00-devcycle.png)
 
@@ -62,9 +59,9 @@ Marcela Markova 是 OBS 小組的資深開發人員，主導線上效能監視�
 
 ![顯示對前一個期間執行的 Web 測試](./media/app-insights-detect-triage-diagnose/04-webtests.png)
 
-但更重要的是，任何失敗的相關警示將以電子郵件方式寄送給開發小組。 以該方式，他們幾乎可在所有客戶之前便得知該情況。
+但更重要的是，任何失敗的相關警示會以電子郵件方式寄送給開發小組。 以該方式，他們幾乎可在所有客戶之前便得知該情況。
 
-## <a name="monitor-performance-metrics"></a>監視效能度量
+## <a name="monitor-performance"></a>監視效能
 在 Application Insights 中的概觀頁面上，有一個顯示各種[重要度量](app-insights-web-monitor-performance.md)的圖表。
 
 ![各種度量](./media/app-insights-detect-triage-diagnose/05-perfMetrics.png)
@@ -79,7 +76,7 @@ Marcela 有些擔心伺服器回應圖形。 此圖表會顯示伺服器自收�
 
 其中似乎沒有資源限制的徵兆，也許伺服器回應圖表中的起伏只是巧合。
 
-## <a name="alerts"></a>Alerts
+## <a name="set-alerts-to-meet-goals"></a>設定警示以符合目標
 儘管如此，她還是會多加留意回應時間。 如果它們變得太高，她想立即知道。
 
 因此，她針對回應時間大於一般臨界值的情況設定了一個[警示](app-insights-metrics-explorer.md)。 這可以確保當回應時間變慢時她就會知道。
@@ -88,14 +85,14 @@ Marcela 有些擔心伺服器回應圖形。 此圖表會顯示伺服器自收�
 
 您可以在其他各種不同的度量上設定警示。 例如，您可以在例外狀況計數變高或可用記憶體變低，或用戶端要求中有尖峰時收到電子郵件。
 
-## <a name="smart-detection-alerts"></a>智慧型偵測警示
+## <a name="stay-informed-with-smart-detection-alerts"></a>獲得有關智慧型偵測警示的資訊
 隔天，確實收到了一封來自 Application Insights 的電子郵件。 但是開啟郵件之後，她發現並不是她所設定的回應時間警示。 而是郵件告知她失敗的要求 (也就是傳回 500 或更高數字之失敗代碼的要求) 數目突然提高。
 
 發生失敗的要求時使用者會看到錯誤，通常是在程式碼中擲出例外狀況之後。 也許他們會看到訊息指出 「抱歉，我們現在無法更新您的詳細資料。 」 或者，極度尷尬的是，使用者的螢幕上會顯示堆疊傾印 (出自於 Web 伺服器禮貌回應)。
 
 這個警示令人驚訝，因為她上次查看時，失敗的要求計數很低，完全不用擔心。 其中一小部分的失敗預期是在忙碌的伺服器中。
 
-這也讓她稍微感到驚訝，因為她之前並不需要設定這個警示。 事實上，Application Insights 自動隨附「智慧型偵測」。 它會自動調整至您 app 的一般失敗模式，並且「習慣」特定頁面、高負載或和其他計量連結的失敗。 只有當增加量超出預期的量時它才會發出警示。
+這也讓她稍微感到驚訝，因為她之前並不需要設定這個警示。 Application Insights 包含智慧型偵測。 它會自動調整至您 app 的一般失敗模式，並且「習慣」特定頁面、高負載或和其他計量連結的失敗。 只有當增加量超出預期的量時它才會發出警示。
 
 ![主動診斷電子郵件](./media/app-insights-detect-triage-diagnose/21.png)
 
@@ -105,13 +102,13 @@ Marcela 有些擔心伺服器回應圖形。 此圖表會顯示伺服器自收�
 
 該電子郵件也顯示發生的特定例外狀況，甚至 - 更有趣的 - 是與對特定資料庫呼叫失敗關聯的失敗。 這解釋了為何 Marcela 的團隊即使最近沒有部署任何更新也會突然發生錯誤。
 
-她向資料庫團隊的主管確認。 沒錯，他們在過去半小時釋出了 Hot Fix；而不巧的是，或許是基礎結構有些微小變更...
+Marcella 會根據這封電子郵件偵測資料庫團隊的主管。 她發現他們在過去半小時釋出了 Hot Fix；而不巧的是，或許是基礎結構有些微小變更...
 
 因此，在問題發生後的 15 分鐘內，甚至是在檢查紀錄之前，就已經開始修正問題。 不過，Marcela 按了一下連結來開啟 Application Insights。 此時直接開啟了一個失敗的要求，而且她可以在相依性呼叫的關聯清單中看到失敗的資料庫呼叫。
 
 ![失敗的要求](./media/app-insights-detect-triage-diagnose/23.png)
 
-## <a name="detecting-exceptions"></a>偵測例外狀況
+## <a name="detect-exceptions"></a>偵測例外狀況
 只要一點點設定，就可以將 [例外狀況](app-insights-asp-net-exceptions.md) 自動報告給 Application Insights。 也可以在程式碼中呼叫 [TrackException()](app-insights-api-custom-events-metrics.md#trackexception) ，明確擷取這些例外狀況：  
 
     var telemetry = new TelemetryClient();
@@ -153,30 +150,18 @@ TrackException 用來報告例外狀況，因為它會傳送堆疊的副本。 T
 
 ![在「診斷搜尋」中，請使用篩選器來顯示特定類型的資料](./media/app-insights-detect-triage-diagnose/appinsights-333facets.png)
 
-## <a name="monitoring-user-activity"></a>監視使用者活動
-當回應時間一直都不錯，而且例外狀況不多時，開發小組可以繼續往可用性的方向努力。 他們可以思考如何改善使用者體驗，以及如何鼓勵更多使用者達到想要的目標。
 
-例如，使用者在網站上的典型使用者旅程是明確的「漏斗圖」。 許多客戶會研究不同類型的貸款利率。 少部分的客戶會繼續填寫報價單。 在取得報價單的客戶當中，有一部分會繼續，並取得貸款。
-
-![頁面檢視計數](./media/app-insights-detect-triage-diagnose/12-funnel.png)
-
-透過找出最多客戶放棄的位置，企業可以思考如何讓更多使用者通過漏斗。 在某些情況下，可能是使用者體驗 (UX) 失敗 - 例如，很難找到 [下一步] 按鈕，或者指示不太明顯。 更有可能是因為重要的商業理由放棄：可能是貸款利率太高。
-
-無論任何原因，資料都可協助團隊了解使用者在做什麼。 此時可以插入更多追蹤呼叫，了解更多細節。 TrackEvent() 可以用來計算任何使用者動作，小至個別的按鈕點擊，大到如付清貸款等重要成果。
-
-團隊一直都有使用者活動的相關資訊。 只是現在，每當設計出一個新功能時，就要思考如何取得其使用方式的意見反應。 團隊如果從一開始就在功能中設計追蹤呼叫， 就可以使用意見反應在每個開發週期中改進功能。
-
-## <a name="proactive-monitoring"></a>主動監視
+## <a name="monitor-proactively"></a>主動監視
 Marcela 不會無所事事等候警示。 在每次重新部署之後，她都會立即查看[回應時間](app-insights-web-monitor-performance.md) - 除了例外狀況計數之外，也查看整體數據和最緩慢的要求表。  
 
 ![回應時間圖及伺服器回應時間格線。](./media/app-insights-detect-triage-diagnose/09-dependencies.png)
 
 她可以評估每個部署的效能影響，通常是將每週與前一週比較。 如果突然有變慢的情況，她會將該情況向相關的開發人員反應。
 
-## <a name="triage"></a>分級
+## <a name="triage-issues"></a>分級問題
 分級 - 評估問題的嚴重性和程度 - 是偵測後的第一個步驟。 我們是否應該在半夜打電話給小組？ 或是問題可以留到累積的工作中下一次方便的時候？ 分級時有一些重要的問題。
 
-發生多少次？ [概觀] 分頁的圖表可提供問題的某些觀點。 例如，Fabrikam 應用程式在一個晚上產生了四個 Web 測試警示。 小組在早上查看圖表，可以發現確實出現一些紅點，但多數的測試仍是綠色。 深入探索可用性圖表，很明顯地，這所有的間歇性問題都來自一個測試位置。 這顯然是僅影響一個路徑的網路問題，而且很可能可自行解決。  
+發生頻率為何？ [概觀] 分頁的圖表可提供問題的某些觀點。 例如，Fabrikam 應用程式在一個晚上產生了四個 Web 測試警示。 小組在早上查看圖表，可以發現確實出現一些紅點，但多數的測試仍是綠色。 深入探索可用性圖表，很明顯地，這所有的間歇性問題都來自一個測試位置。 這顯然是僅影響一個路徑的網路問題，而且很可能可自行解決。  
 
 相反地，例外狀況計數或回應時間圖表中明顯且穩定的上升則明顯有其他問題需要注意。
 
@@ -190,7 +175,7 @@ Marcela 不會無所事事等候警示。 在每次重新部署之後，她都�
 
 封鎖案例的重要性如何？ 如果這是功能性問題，封鎖了特定的使用者劇本，有很大影響嗎？ 如果客戶無法支付帳單，便很嚴重；如果客戶無法變更其畫面色彩喜好設定，也可以稍候再解決。 事件或例外狀況的詳細資料或緩慢頁面的身分識別，會告知您客戶發生問題的位置。
 
-## <a name="diagnosis"></a>診斷
+## <a name="diagnose-issues"></a>診斷問題
 診斷與偵測不太一樣。 開始追蹤程式碼之前，您應該對問題的原因、位置和發生時機有約略的構念。
 
 **發生時機為何？** 事件和度量圖表提供的歷程檢視可讓您輕鬆將影響與可能原因產生相互關聯。 如果回應時間或例外狀況率中有間歇性的尖峰，請查看要求計數：如果尖峰是在相同時間，則可能是資源問題。 您需要指派更多 CPU 或記憶體嗎？ 或者它是無法管理負載的相依性？
@@ -207,18 +192,33 @@ Marcela 不會無所事事等候警示。 在每次重新部署之後，她都�
 
 Fabrikam 的帳戶間轉送發生間歇性問題，但只有某些帳戶類型有此情況。 為了更加了解發生的情況，他們在程式碼中的重要點插入了 TrackTrace() 呼叫，附加帳戶類型作為每個呼叫的內容。 那使得要在診斷搜尋中僅篩選掉這些追蹤更為輕鬆。 他們也將參數值附加為追蹤呼叫的屬性和測量。
 
-## <a name="dealing-with-it"></a>處理
-診斷問題之後，您可以製訂修正問題的計劃。 也許您需要復原最近的變更，或也許您可以繼續並修正它。 修正完成之後，Application Insights 將告知您是否成功。  
+## <a name="respond-to-discovered-issues"></a>回應所發現的問題
+診斷問題之後，您可以製訂修正問題的計劃。 也許您需要復原最近的變更，或也許您可以繼續並修正它。 修正完成後，Application Insights 會告知您是否成功。  
 
 Fabrikam 銀行的開發小組對效能測量採取較使用 Application Insights 之前更具結構的方法。
 
 * 他們會在 Application Insights 概觀頁面就特定度量設定效能目標。
 * 他們從頭為應用程式設計效能度量，例如透過「漏斗」測量使用者進度的度量。  
 
-## <a name="usage"></a>使用量
-Application Insights 也可以用來了解使用者在應用程式內執行的動作。 執行順暢時，小組會想要得知哪些功能最受歡迎、使用者喜歡或感到有困難的部份，以及使用者回來的頻率。 這些資訊有助於將他們近期的工作排定優先順序。 而他們可以計劃測量每個功能的成功度，作為開發週期的一部份。 [閱讀更多資訊](app-insights-web-track-usage.md)。
 
-## <a name="your-applications"></a>您的應用程式
+## <a name="monitor-user-activity"></a>監視使用者活動
+當回應時間一直都不錯，而且例外狀況不多時，開發小組可以繼續往可用性的方向努力。 他們可以思考如何改善使用者體驗，以及如何鼓勵更多使用者達到想要的目標。
+
+Application Insights 也可以用來了解使用者在應用程式內執行的動作。 執行順暢時，小組會想要得知哪些功能最受歡迎、使用者喜歡或感到有困難的部份，以及使用者回來的頻率。 這些資訊有助於將他們近期的工作排定優先順序。 而他們可以計劃測量每個功能的成功度，作為開發週期的一部份。 
+
+例如，使用者在網站上的典型使用者旅程是明確的「漏斗圖」。 許多客戶會研究不同類型的貸款利率。 少部分的客戶會繼續填寫報價單。 在取得報價單的客戶當中，有一部分會繼續，並取得貸款。
+
+![頁面檢視計數](./media/app-insights-detect-triage-diagnose/12-funnel.png)
+
+透過找出最多客戶放棄的位置，企業可以思考如何讓更多使用者通過漏斗。 在某些情況下，可能是使用者體驗 (UX) 失敗 - 例如，很難找到 [下一步] 按鈕，或者指示不太明顯。 更有可能是因為重要的商業理由放棄：可能是貸款利率太高。
+
+無論任何原因，資料都可協助團隊了解使用者在做什麼。 此時可以插入更多追蹤呼叫，了解更多細節。 TrackEvent() 可以用來計算任何使用者動作，小至個別的按鈕點擊，大到如付清貸款等重要成果。
+
+團隊一直都有使用者活動的相關資訊。 只是現在，每當設計出一個新功能時，就要思考如何取得其使用方式的意見反應。 團隊如果從一開始就在功能中設計追蹤呼叫， 就可以使用意見反應在每個開發週期中改進功能。
+
+[深入了解如何追蹤使用量](app-insights-usage-overview.md)。
+
+## <a name="apply-the-devops-cycle"></a>套用 DevOps 週期
 以上就是一個小組如何使用 Application Insights 來不只是修正個別問題，還改善其開發週期的情況。 希望這已提供您一些概念，讓您了解 Application Insights 如何協助您在自己的應用程式中進行應用程式效能管理。
 
 ## <a name="video"></a>影片

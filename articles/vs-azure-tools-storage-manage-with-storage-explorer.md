@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: tarcher
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: fbcd35529c5d2360f5b0c9de4d3c9c4a08a0cc8f
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 83a6543a8fd95139fdcb6c031979382b4736a4ad
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="get-started-with-storage-explorer-preview"></a>開始使用儲存體總管 (預覽)
@@ -113,7 +112,7 @@ Azure 儲存體總管 (預覽) 是一個獨立應用程式，可讓您在 Window
     每個欄位的詳細資料如下所示︰
 
     * **環境名稱**：使用者可以自訂此欄位。
-    * **授權單位**：此值應該是 https://login.windows.net。 若為 Azure China，請使用 https://login.chinacloudapi.cn。
+    * **授權單位**：此值應該是 https://login.microsoftonline.com。 若為 Azure China，請使用 https://login.chinacloudapi.cn。
     * **登入資源識別碼**：藉由執行下列 PowerShell 指令碼來擷取此值︰
 
         如果您是雲端系統管理員︰

@@ -14,11 +14,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/13/2017
+ms.date: 06/29/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: 7e18325426bac86d89ff0235e18ddca9fd21e8de
-ms.openlocfilehash: 41a58493c8931e8ce241ce31ecb1ca20b5a82cb3
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: cbdc964b16cbc6cf291dbc4b6f60b20d67d9fc41
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -54,7 +56,7 @@ ms.openlocfilehash: 41a58493c8931e8ce241ce31ecb1ca20b5a82cb3
 
 對於在 2017 年 1 月 10 日之前建立 AMS 帳戶的使用者，您具有**傳統**類型的串流端點。 這個類型是串流端點 "1.0" 版的一部分。
 
-如果您的 **"1.0" 版**串流端點有 >=&1; 個進階串流單位 (SU)，則會是進階串流端點，且提供所有 AMS 功能 (就像**標準/進階**類型)，不需要任何額外的設定步驟。
+如果您的 **"1.0" 版**串流端點有 >= 1 個進階串流單位 (SU)，則會是進階串流端點，且提供所有 AMS 功能 (就像**標準/進階**類型)，不需要任何額外的設定步驟。
 
 >[!NOTE]
 >**傳統**串流端點 ("1.0" 版和 0 SU) 提供有限的功能，且不包含 SLA。 建議移轉至**標準**類型，以獲得更好的體驗和使用動態封裝或加密等功能，以及**標準**類型隨附的其他功能。 若要移轉至**標準**類型，請移至 [Azure 入口網站](https://portal.azure.com/)，然後選取 [選擇標準]。 如需移轉的詳細資訊，請參閱[移轉文件](#migration-between-types)一節。
@@ -78,8 +80,8 @@ ms.openlocfilehash: 41a58493c8931e8ce241ce31ecb1ca20b5a82cb3
 功能|標準|高級
 ---|---|---
 前 15 天免費| 是 |否
-輸送量 |未使用 Azure CDN 時最多 600 Mbps。 隨著 CDN 調整。|每個串流單位 (SU)&200; Mbps。 隨著 CDN 調整。
-SLA | 99.9|99.9 (每個 SU&200; Mbps)。
+輸送量 |未使用 Azure CDN 時最多 600 Mbps。 隨著 CDN 調整。|每個串流單位 (SU) 200 Mbps。 隨著 CDN 調整。
+SLA | 99.9|99.9 (每個 SU 200 Mbps)。
 CDN|Azure CDN、協力廠商 CDN 或沒有 CDN。|Azure CDN、協力廠商 CDN 或沒有 CDN。
 按比例計費| 每日|每日
 動態加密|是|是
@@ -112,10 +114,5 @@ IP 篩選/G20/自訂主機|是|是
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

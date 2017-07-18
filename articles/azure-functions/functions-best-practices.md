@@ -14,32 +14,31 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 02/27/2017
+ms.date: 06/13/2017
 ms.author: glenga
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 2fd12dd32ed3c8479c7460cbc0a1cac3330ff4f4
-ms.openlocfilehash: 53dcaea155471d47eb61317c52d38524c05e4600
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: 5408bf986b67d420d4d1359961ec83510c97cd05
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
 
-# <a name="tips-for-improving-the-performance-and-reliability-of-azure-functions"></a>改善 Azure Functions 效能和可靠性的秘訣
+# <a name="optimize-the-performance-and-reliability-of-azure-functions"></a>將 Azure Functions 效能和可靠性最佳化
 
-##<a name="overview"></a>概觀
-
-本文提供實作函式應用程式時需考量的最佳作法的集合。 請記得，您的函數應用程式是 Azure App Service 中的應用程式。 所以也適用 App Service 最佳做法。
+本文提供指引來改善函式應用程式的效能和可靠性。 
 
 
-## <a name="avoid-large-long-running-functions"></a>避免大型長時間執行的函式
+## <a name="avoid-long-running-functions"></a>避免長時間執行的函式
 
-大型長時間執行的函式可能會造成非預期的逾時問題。 函式可能會因為許多 Node.js 相依性而變大。 匯入這些相依性可能會造成載入時間增加，導致未預期的逾時。 Node.js 相依性可以明確地由您的程式碼中的多個 `require()` 陳述式載入。 根據您的程式碼所載入的單一模組 (具有其本身的內部相依性)，相依性也可能是隱含的。  
+大型長時間執行的函式可能會造成非預期的逾時問題。 函式可能會因為許多 Node.js 相依性而變大。 匯入相依性也可能會造成載入時間增加，而導致未預期的逾時。 系統會以明確和隱含方式載入相依性。 您的程式碼載入的單一模組可能會載入其本身的其他模組。  
 
-在可能時，將大型函式重構為較小的函式集，共用運作並快速傳回回應。 例如，Webhook 或 HTTP 觸發程序函式可能要求在特定時間限制內的通知回應。 您可以將 HTTP 觸發程序承載傳遞到要由佇列觸發程序函式處理的佇列中。 此方法可讓您延後實際工作，並傳回立即回應。 對於要求立即回應的 Webhook 很常見。
+在可能時，將大型函式重構為較小的函式集，共用運作並快速傳回回應。 例如，Webhook 或 HTTP 觸發程序函式可能要求在特定時間限制內的通知回應；Webhook 通常需要立即的回應。 您可以將 HTTP 觸發程序承載傳遞到要由佇列觸發程序函式處理的佇列中。 此方法可讓您延後實際工作，並傳回立即回應。
 
 
-## <a name="cross-function-communication"></a>跨函式通訊。
+## <a name="cross-function-communication"></a>跨函式通訊
 
 整合多個函式時，對跨函式通訊使用儲存體佇列通常是最佳作法。  主要原因是儲存體佇列更便宜和容易佈建。 
 
@@ -50,7 +49,6 @@ ms.lasthandoff: 03/01/2017
 事件中樞對於支援大量通訊很有用。
 
 
-
 ## <a name="write-functions-to-be-stateless"></a>撰寫無狀態函式 
 
 若可能，Functions 應該是無狀態和具有等冪性。 將任何必要的狀態資訊與您的資料產生關聯。 例如，正在處理訂單就可能具有相關聯的 `state` 成員。 函式本身保持無狀態時，函式可以依據該狀態處理訂單。 
@@ -58,7 +56,7 @@ ms.lasthandoff: 03/01/2017
 特別建議計時器觸發程序使用等冪函式。 例如，如果您有一天必須執行一次的項目，請編寫它，使得它可在一天中的任何時間執行，並具有相同的結果。 特定日沒有工作時，就可以結束函式。 如果先前的執行無法完成，下一次執行應該會定停止的位置開始。
 
 
-## <a name="write-defensive-functions"></a>編寫防禦性函式。
+## <a name="write-defensive-functions"></a>編寫防禦性函式
 
 假設您的函式可能隨時會遇到例外狀況。 設計您的函式，使得它能夠在下一次執行期間從先前的失敗點繼續執行。 假設需要執行下列動作的案例︰
 
@@ -74,7 +72,7 @@ ms.lasthandoff: 03/01/2017
 利用已針對您在 Azure Functions 平台中所使用元件提供的防禦性措施。 例如，請參閱文件中**處理有害的佇列訊息**中的 [Azure 儲存體佇列觸發程序](functions-bindings-storage-queue.md#trigger)。
  
 
-## <a name="dont-mix-test-and-production-code-in-the-same-function-app"></a>不要在相同函式應用程式中混用測試和實際執行程式碼。
+## <a name="dont-mix-test-and-production-code-in-the-same-function-app"></a>不要在相同函式應用程式中混用測試和實際執行程式碼
 
 函式應用程式內的 Functions 會共用資源。 例如，共用記憶體。 如果您在生產環境中使用函式應用程式，請勿對它新增與測試相關的函式和資源。 在實際執行程式碼執行期間可能導致發生未預期的額外負荷。
 
@@ -92,18 +90,15 @@ ms.lasthandoff: 03/01/2017
 
 ## <a name="use-async-code-but-avoid-taskresult"></a>使用非同步程式碼但避免 Task.Result
 
-非同步程式設計是建議的最佳作法。 不過，請務必避免參考 `Task.Result` 屬性。 這個方法基本上會對另一個執行緒的鎖定進行忙碌-等候。 保持鎖定會產生鎖死的可能性。
+非同步程式設計是建議的最佳作法。 不過，請務必避免參考 `Task.Result` 屬性。 這個方法可能會導致執行緒耗盡。
 
 
-
+[!INCLUDE [HTTP client best practices](../../includes/functions-http-client-best-practices.md)]
 
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱下列資源：
 
-* [Azure Functions 開發人員參考](functions-reference.md)
-* [Azure Functions C# 開發人員參考](functions-reference-csharp.md)
-* [Azure Functions F# 開發人員參考](functions-reference-fsharp.md)
-* [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
-* [HTTP 效能最佳化的模式與做法](https://github.com/mspnp/performance-optimization/blob/master/ImproperInstantiation/docs/ImproperInstantiation.md)
+因為 Azure Functions 使用 Azure App Service，所以您也應該充分了解 Azure App Service 指導方針。
+* [HTTP 效能最佳化的模式與做法](https://docs.microsoft.com/azure/architecture/antipatterns/improper-instantiation/)
 
 

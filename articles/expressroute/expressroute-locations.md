@@ -12,18 +12,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/30/2017
+ms.date: 07/03/2017
 ms.author: kaanan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
-ms.openlocfilehash: 6286e059da7df95303bca00b5910632302bd19b7
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 8fdf343f2d70dce4f9457277affcfd6e5dae3b78
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/04/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
-# ExpressRoute 合作夥伴和對等互連位置
-<a id="expressroute-partners-and-peering-locations" class="xliff"></a>
+# <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
 
 > [!div class="op_single_selector"]
 > * [依提供者的位置](expressroute-locations.md)
@@ -39,8 +38,7 @@ ms.lasthandoff: 07/04/2017
 
 如果您至少與地緣政治區域內的一個 ExpressRoute 位置連線，您將有權存取地緣政治區域內所有區域中的 Azure 服務。
 
-### 地緣政治區域內 ExpressRoute 位置的 Azure 區域。
-<a id="azure-regions-to-expressroute-locations-within-a-geopolitical-region" class="xliff"></a>
+### <a name="azure-regions-to-expressroute-locations-within-a-geopolitical-region"></a>地緣政治區域內 ExpressRoute 位置的 Azure 區域。
 下表提供地緣政治區域內 ExpressRoute 位置的 Azure 區域對應。
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
@@ -54,8 +52,7 @@ ms.lasthandoff: 07/04/2017
 | **印度** |印度西部、印度中部、印度南部 |辰內，孟買 |
 | **南韓** |韓國中部、韓國南部 |釜山、首爾 |
 
-### 國家雲端的區域和地理政治界限
-<a id="regions-and-geopolitical-boundaries-for-national-clouds" class="xliff"></a>
+### <a name="regions-and-geopolitical-boundaries-for-national-clouds"></a>國家雲端的區域和地理政治界限
 下表提供國家雲端的區域和地理政治界限等資訊。
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
@@ -71,8 +68,7 @@ ms.lasthandoff: 07/04/2017
 下表顯示服務提供者的位置。 如果您想依位置檢視可用的提供者，請參閱[位置服務提供者](expressroute-locations-providers.md#locations)。
 
 
-### 生產 Azure
-<a id="production-azure" class="xliff"></a>
+### <a name="production-azure"></a>生產 Azure
 | **服務提供者** | **Microsoft Azure** | **Office 365 和 Dynamics 365** | **位置** |
 | --- | --- | --- | --- |
 | **[AARNet](https://www.aarnet.edu.au/network-and-services/cloud-services-applications/azure-expressroute/)** |支援 |支援 |墨爾本、雪梨 |
@@ -107,7 +103,7 @@ ms.lasthandoff: 07/04/2017
 | **[新一代資料](http://www.nextgenerationdata.co.uk/ngd-cloud-gateway/)** |支援 |支援 |Newport(Wales) |
 | **NEXTDC** |支援 |支援 |墨爾本、雪梨 |
 | **[NTT Communications](http://www.ntt.com/en/services/network/virtual-private-network.html)** |支援 |支援 |倫敦、洛杉磯、大阪、新加坡、東京、華盛頓特區 |
-| **NTT SmartConnect** |敬請期待 |敬請期待 |大阪 |
+| **[NTT SmartConnect](http://cloud.nttsmc.com/cxc/azure.html)** |支援 |支援 |大阪 |
 | **[Orange](http://www.orange-business.com/en/products/business-vpn-galerie)** |支援 |支援 |阿姆斯特丹、香港、倫敦、巴黎+、矽谷、新加坡、雪梨、華盛頓特區 |
 | **PCCW Global Limited** |支援 |支援 |香港 |
 | **Sejong Telecom** |支援 |支援 |首爾 |
@@ -128,11 +124,9 @@ ms.lasthandoff: 07/04/2017
 
  **+** 表示即將推出
 
-### 國家雲端環境
-<a id="national-cloud-environment" class="xliff"></a>
+### <a name="national-cloud-environment"></a>國家雲端環境
 
-### 美國政府雲端
-<a id="us-government-cloud" class="xliff"></a>
+### <a name="us-government-cloud"></a>美國政府雲端
 | **服務提供者** | **Microsoft Azure** | **Office 365** | **位置** |
 | --- | --- | --- | --- |
 | **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** |支援 |支援 |芝加哥、華盛頓特區 |
@@ -141,16 +135,14 @@ ms.lasthandoff: 07/04/2017
 | **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |支援 | 支援 | 芝加哥、達拉斯 |
 | **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** |支援 |支援 |芝加哥、達拉斯、紐約、華盛頓特區 |
 
-### 中國
-<a id="china" class="xliff"></a>
+### <a name="china"></a>中國
 | **服務提供者** | **Microsoft Azure** | **Office 365** | **位置** |
 | --- | --- | --- | --- |
 | **China Telecom** |支援 |不支援 |北京、上海 |
 
 若要深入了解，請參閱 [ExpressRoute (中國)](http://www.windowsazure.cn/home/features/expressroute/)。
 
-### 德國
-<a id="germany" class="xliff"></a>
+### <a name="germany"></a>德國
 | **服務提供者** | **Microsoft Azure** | **Office 365** | **位置** |
 | --- | --- | --- | --- |
 | **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** |支援 |不支援 |柏林+、法蘭克福 |
@@ -159,8 +151,7 @@ ms.lasthandoff: 07/04/2017
 | **Interxion** |支援 |不支援 |法蘭克福 |
 | **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |支援  | 不支援 | 柏林 |
 
-## 透過 Exchange 提供者連線
-<a id="connectivity-through-exchange-providers" class="xliff"></a>
+## <a name="connectivity-through-exchange-providers"></a>透過 Exchange 提供者連線
 
 如果上一節中未列出您的連線提供者，您仍然可以建立連線。
 
@@ -178,8 +169,7 @@ ms.lasthandoff: 07/04/2017
 * 排序一個 ExpressRoute 循環，將 Exchange 視為連線至 Microsoft 的連線提供者。
   * 依照 [建立 ExpressRoute 循環](expressroute-howto-circuit-classic.md) 中的步驟來設定連線。
 
-## 透過額外服務提供者連線
-<a id="connectivity-through-additional-service-providers" class="xliff"></a>
+## <a name="connectivity-through-additional-service-providers"></a>透過額外服務提供者連線
 
 | **連線提供者** | **Exchange** | **位置** |
 | --- | --- | --- |
@@ -189,6 +179,7 @@ ms.lasthandoff: 07/04/2017
 | **[Altice Business](https://golightpath.com/transport)** |Equinix |紐約、華盛頓特區 |
 | **[Arteria Networks Corporation](https://arteria-net.com/business/service/cloud_access/sca/)** |Equinix |東京 |
 | **[Bezeq International Ltd.](https://www.bezeqint.net/english)** | euNetworks | 倫敦 |
+| **[BroadBand Tower, Inc.](http://www.bbtower.co.jp/product-service/data-center/network/dcconnect-for-azure/)** | Equinix | 東京 |
 | **[C3ntro Telecom](http://www.c3ntro.com/data/cloud-conectivity/)** | Equinix、Megaport | 達拉斯 |
 | **[Cogeco Peer 1](https://www.cogecopeer1.com/en/)**| Equinix | 蒙特婁、多倫多 |
 | **[Cox Business](https://www.cox.com/business/networking/cloud-connectivity.html)** | Equinix | 達拉斯、矽谷、華盛頓特區 | 
@@ -216,20 +207,18 @@ ms.lasthandoff: 07/04/2017
 | **[Windstream](http://www.windstreambusiness.com/solutions/cloud-services/cloud-and-managed-hosting-services)**| Equinix | 芝加哥、矽谷、華盛頓特區 |
 | **Zain** |Equinix |倫敦|
 | **[Zertia](http://www.zertia.es/index.php/novedades)**| Level 3 | 馬德里 |
-| **[Zirro](https://zirro.com/services/)**| Equinix | 多倫多、蒙特婁 |
+| **[Zirro](https://zirro.com/services/)**| Equinix | 蒙特婁、多倫多 |
 
-## 透過資料中心提供者連線
-<a id="connectivity-through-datacenter-providers" class="xliff"></a>
+## <a name="connectivity-through-datacenter-providers"></a>透過資料中心提供者連線
 | **提供者** | **Exchange** |
 | --- | --- |
-| **[Cyrus One](https://cyrusone.com/enterprise-data-center-services/connectivity-and-interconnection/)** | Megaport |
+| **[Cyrus One](https://cyrusone.com/enterprise-data-center-services/connectivity-and-interconnection/cloud-connectivity-reaching-amazon-microsoft-google-and-more/microsoft-azure-expressroute/?doing_wp_cron=1498512235.6733090877532958984375)** | Megaport |
 | **[Digital Realty](https://www.digitalrealty.com/services/interconnection/service-exchange/)** | Megaport |
 | **[EdgeConnex](http://www.edgeconnex.com/services/edge-data-centers-proximity-matters/)** | Megaport |
 | **[RagingWire Data Centers](http://www.ragingwire.com/wholesale/wholesale-data-centers-worldwide-nexcenters)** | 主控台 |
 | **[T5 Datacenters](http://t5datacenters.com/network-cloud-connect/)** | 主控台 |
 
-## 透過 National Research and Education Networks (NREN) 連線
-<a id="connectivity-through-national-research-and-education-networks-nren" class="xliff"></a>
+## <a name="connectivity-through-national-research-and-education-networks-nren"></a>透過 National Research and Education Networks (NREN) 連線
 
 | **提供者**|
 | --- |
@@ -245,8 +234,7 @@ ms.lasthandoff: 07/04/2017
 
 * 如果連線提供者未列於此處，請查看他們是否已連線到上列的任何 ExpressRoute Exchange 提供者。
 
-## ExpressRoute 系統整合者
-<a id="expressroute-system-integrators" class="xliff"></a>
+## <a name="expressroute-system-integrators"></a>ExpressRoute 系統整合者
 根據您的網路規模，為符合您的需求而啟用私人連線可能有一定的難度。 您可以使用下表所列出的任何系統整合者來協助您開始使用 ExpressRoute。
 
 | **系統整合者** | **Continent** |
@@ -271,8 +259,7 @@ ms.lasthandoff: 07/04/2017
 | **[Vigilant.IT](https://vigilant.it/expressroute)** | 澳大利亞 |
 
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 * 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 * 請確定符合所有必要條件。 請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
 

@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/05/2016
+ms.date: 06/15/2017
 ms.author: hkanna
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: cbc33fa15d069b55844cc6e4356ca5a01b40c199
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 613fd0c1164ac34d36d5f21d07dfdf00c8aad614
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 ---
 
@@ -228,7 +229,7 @@ StorSimple 提供下列優點︰
 
 -   NetBackup 資料庫應在伺服器本機，而且不在 StorSimple 磁碟區上。
 -   在災害復原時，請將 NetBackup 資料庫備份在 StorSimple 磁碟區上。
--   我們支援此解決方案的 NetBackup 完整和增量備份。 我們建議您不要使用綜合和差異備份。
+-   我們為此解決方案支援 NetBackup 完整和增量備份 (在 NetBackup 中也稱為差異化增量備份)。 建議您不要使用綜合和累積增量備份。
 -   備份資料檔案最好只包含特定作業的資料。 例如，不允許在不同作業之間附加媒體。
 
 如需實作這些需求的最新 NetBackup 設定和最佳作法，請參閱 NetBackup 文件 (網址為 [www.veritas.com](https://www.veritas.com))。

@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 08/09/2016
+ms.date: 07/05/2017
 ms.author: sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ddf93a0db278fffa2aa45fdc73a1c7f57a84fb39
-ms.openlocfilehash: 14140a6aa8c8cccf658f8e98305659e8ae76dcad
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: 1925d4ff8f5b16a0df56de987f8653cfd8441c52
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/31/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 01/31/2017
 * 「查詢效能深入解析」要求 [查詢存放區](https://msdn.microsoft.com/library/dn817826.aspx) 在您的資料庫上為作用中狀態。 如果查詢存放區不在執行中，則入口網站會提示您將它開啟。
 
 ## <a name="permissions"></a>權限
-需有下列 [角色型存取控制](../active-directory/role-based-access-control-configure.md) 權限，才能使用「查詢效能深入解析」︰ 
+需有下列 [角色型存取控制](../active-directory/role-based-access-control-what-is.md) 權限，才能使用「查詢效能深入解析」︰ 
 
 * 檢視排名最前面的資源取用查詢和圖表時，需具備**讀取器**、**擁有者**、**參與者**、**SQL DB 參與者** 或 **SQL Server 參與者** 權限。 
 * 檢視查詢文字時，需具備**擁有者**、**參與者**、**SQL DB 參與者**或 **SQL Server 參與者**權限。
@@ -80,7 +80,7 @@ ms.lasthandoff: 01/31/2017
      
      使用核取方塊，選取或清除圖表要包含或排除的個別查詢。
 3. 如果您的資料過期了，請按一下 [重新整理]  按鈕。
-4. 您可以使用滑桿和縮放按鈕來變更觀測間隔，並調查尖峰︰ ![settings](./media/sql-database-query-performance/zoom.png)
+4. 您可以使用滑桿和縮放按鈕來變更觀測間隔，並調查尖峰︰![設定](./media/sql-database-query-performance/zoom.png)
 5. (選擇性) 如果您想要不同的檢視，您可以選取 [自訂]  索引標籤，然後設定：
    
    * 度量 (CPU、持續時間、執行計數)

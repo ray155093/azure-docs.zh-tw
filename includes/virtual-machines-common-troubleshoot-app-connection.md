@@ -113,6 +113,10 @@
 * 從您的用戶端電腦輸出到 Azure 虛擬機器的應用程式要求流量。
 * 來自 Azure 虛擬機器的輸入應用程式回應流量。
 
+## <a name="step-4-if-you-cannot-access-the-application-use-ip-verify-to-check-the-settings"></a>步驟 4 如果您無法存取應用程式，請使用 IP 驗證來檢查設定。 
+
+如需詳細資訊，請參閱 [Azure 網路監視概觀](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview)。 
+
 ## <a name="additional-resources"></a>其他資源
 [針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
 

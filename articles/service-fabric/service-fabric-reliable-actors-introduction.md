@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/10/2017
+ms.date: 06/29/2017
 ms.author: vturecek
-translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 9b6668bf4b3f826a1d41527ce4a7ae8d05936731
-ms.lasthandoff: 03/08/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: e89be04a0d6fe90a89e293e67d42f0204eb7000a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -144,15 +145,9 @@ Reliable Actors 執行階段會提供簡單的回合式存取模型來存取動�
 動作項目執行階段在控制叫用這些方法的狀況下，提供這些並行保證。 例如，動作項目執行階段會對為回應用戶端要求而進行的方法叫用，以及對計時器與提醒回呼提供這些保證。 然而，如果動作項目程式碼在動作項目執行階段提供的機制之外直接叫用這些方法，則執行階段無法提供任何並行保證。 例如，如果在某個與動作項目方法所傳回的工作不相關聯的工作內容中叫用方法，則執行階段無法提供並行保證。 如果從動作項目自行建立的執行緒叫用方法，則執行階段也無法提供並行保證。 因此，若要執行背景作業，動作項目應使用遵守回合式並行的 [動作項目計時器和動作項目提醒](service-fabric-reliable-actors-timers-reminders.md) 。
 
 ## <a name="next-steps"></a>後續步驟
-* [開始使用 Reliable Actors](service-fabric-reliable-actors-get-started.md)
-* [Reliable Acto 如何使用 Service Fabric 平台](service-fabric-reliable-actors-platform.md)
-* [動作項目狀態管理](service-fabric-reliable-actors-state-management.md)
-* [動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
-* [動作項目計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
-* [動作項目事件](service-fabric-reliable-actors-events.md)
-* [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
-* [動作項目多型和物件導向的設計模式](service-fabric-reliable-actors-polymorphism.md)
-* [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
+* 從建置您的第一個 Reliable Actors 服務開始著手：
+   * [開始在 .NET 上使用 Reliable Actors](service-fabric-reliable-actors-get-started.md)
+   * [開始在 Java 上使用 Reliable Actors](service-fabric-reliable-actors-get-started-java.md)
 
 <!--Image references-->
 [1]: ./media/service-fabric-reliable-actors-introduction/concurrency.png

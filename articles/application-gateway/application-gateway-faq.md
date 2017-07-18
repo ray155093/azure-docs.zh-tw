@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/28/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 037045c4e76d0fb8e96944fe8a3235223594a034
-ms.lasthandoff: 03/30/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: 3b2ddf764f54d2e7f23b02b5b593077938ac9355
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/29/2017
 
 
 ---
@@ -32,7 +33,7 @@ Azure 應用程式閘道是服務形式的應用程式傳遞控制器 (ADC)，�
 
 **問：應用程式閘道支援哪些功能？**
 
-應用程式閘道支援 SSL 卸載和端對端 SSL、Web 應用程式防火牆 (預覽)、以 cookie 為基礎的工作階段親和性、以 url 路徑為基礎的路由、多重站台裝載和其他功能。 如需完整的支援功能清單，請瀏覽[應用程式閘道簡介](application-gateway-introduction.md)
+應用程式閘道支援 SSL 卸載和端對端 SSL、Web 應用程式防火牆、以 cookie 為基礎的工作階段親和性、以 url 路徑為基礎的路由、多重站台裝載和其他功能。 如需完整的支援功能清單，請瀏覽[應用程式閘道簡介](application-gateway-introduction.md)
 
 **問：應用程式閘道與 Azure Load Balancer 之間的差異為何？**
 
@@ -78,6 +79,10 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 是，應用程式閘道會將 x-forwarded-for、x-forwarded-proto 和 x-forwarded-port 標頭插入已轉寄至後端的要求。 x-forwarded-for 標頭的格式是以逗號分隔的 IP:Port 清單。 x-forwarded-proto 的有效值為 http 或 https。 X-forwarded-port 指定要求送達應用程式閘道的連接埠。
 
+**問：部署應用程式閘道需要多久的時間？進行更新時，我的應用程式閘道是否仍有作用？**
+
+新的應用程式閘道部署可能需要長達 20 分鐘來佈建。 執行個體大小/計數的變更不會產生干擾，而閘道會在這段期間保持作用中。
+
 ## <a name="configuration"></a>組態
 
 **問：應用程式閘道一律部署在虛擬網路中？**
@@ -90,11 +95,17 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 **問：是否可以在應用程式閘道子網路中部署其他任何項目？**
 
-否，但是您可以在子網路中部署其他應用程式閘道
+否，但是您可以在子網路中部署其他應用程式閘道。
 
 **問：應用程式閘道子網路是否支援網路安全性群組？**
 
-應用程式閘道子網路支援網路安全性群組，但必須針對連接埠 65503-65534 放入例外狀況，後端健康狀態才能正常運作。 不會封鎖輸出網際網路連線。
+應用程式閘道子網路支援網路安全性群組，但有下列限制：
+
+* 必須放入連接埠 65503-65534 上傳入流量的例外狀況，後端健康情況才能正常運作。
+
+* 不會封鎖輸出網際網路連線。
+
+* 必須允許來自 AzureLoadBalancer 標籤的流量。
 
 **問：應用程式閘道的限制為何？是否可以增加這些限制？**
 
@@ -122,7 +133,21 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 **問：自訂探查的 [主機] 欄位表示什麼？**
 
-主機欄位指定探查要送達的名稱。 只有當應用程式閘道上設定多站台時適用，否則請使用 '127.0.0.1'。 此值與 VM 主機名稱不同，其格式為 \<protocol\>://\<host\>:\<port\>\<path\>。 
+主機欄位指定探查要送達的名稱。 只有當應用程式閘道上設定多站台時適用，否則請使用 '127.0.0.1'。 此值與 VM 主機名稱不同，其格式為 \<protocol\>://\<host\>:\<port\>\<path\>。
+
+**問：我可以將一些來源 IP 的應用程式閘道存取列入允許清單嗎？**
+
+使用應用程式閘道子網路上的 NSG 可以完成此作業。 應依照所列的優先順序在子網路施加下列限制：
+
+* 允許來源 IP/IP 範圍的傳入流量。
+
+* 允許從所有來源至連接埠 65503-65534 的傳入要求以便進行[後端健康情況通訊](application-gateway-diagnostics.md)。
+
+* 允許 [NSG](../virtual-network/virtual-networks-nsg.md) 上傳入的 Azure 負載平衡器探查 (AzureLoadBalancer 標籤) 和輸入虛擬網路流量 (VirtualNetwork 標籤)。
+
+* 使用「全部拒絕」規則封鎖所有其他傳入流量。
+
+* 允許所有目的地對網際網路的輸出流量。
 
 ## <a name="performance"></a>效能
 
@@ -283,3 +308,4 @@ WAF 目前支援 CRS [2.2.9](application-gateway-crs-rulegroups-rules.md#owasp22
 ## <a name="next-steps"></a>後續步驟
 
 若要深入了解應用程式閘道，請瀏覽[應用程式閘道簡介](application-gateway-introduction.md)。
+

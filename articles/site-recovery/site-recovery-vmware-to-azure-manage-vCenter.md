@@ -1,5 +1,5 @@
 ---
-title: " 在 Azure Site Recovery 中管理 VMware vCenter Server | Microsoft Docs"
+title: " 在 Azure Site Recovery 中管理 VMware vCenter Server | Microsoft Doc"
 description: "本文說明如何在 Azure Site Recovery 中新增並管理 VMware vCenter。"
 services: site-recovery
 documentationcenter: 
@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: backup-recovery
-ms.date: 2/14/2017
+ms.date: 06/29/2017
 ms.author: anoopkv
-translationtype: Human Translation
-ms.sourcegitcommit: 96e6696818a0de2fadd55ff7e0ccee350d2666ad
-ms.openlocfilehash: 5578dea457f3eeda72e3a1e4e61382cdf0de285d
-ms.lasthandoff: 02/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 091f0884417535427c52beee7bcdc5ed1dd83315
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 ---
 
@@ -26,9 +27,9 @@ ms.lasthandoff: 02/22/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-**支援 VMware vCenter 和 VMware vSphere ESX 主機** | **詳細資料**
---- | ---
-**內部部署 VMware 伺服器** | 一個或多個 VMware vSphere 伺服器 (執行具有最新更新的 6.0、5.5 或 5.1)。 這些伺服器應該位在與設定伺服器 (或另一台處理序伺服器) 相同的網路。<br/><br/> 建議您使用 vCenter 伺服器 (執行具有最新更新的 6.0 或 5.5) 來管理主機。 當您部署 6.0 版時，僅支援 5.5 中可用的功能。
+**支援 VMware vCenter 和 VMware vSphere ESX 主機** | **詳細資料** |
+|--- | --- |
+|**內部部署 VMware 伺服器** | 一個或多個 VMware vSphere 伺服器 (執行具有最新更新的 6.0、5.5 或 5.1)。 這些伺服器應該位在與設定伺服器 (或另一台處理序伺服器) 相同的網路。<br/><br/> 建議您使用 vCenter 伺服器 (執行具有最新更新的 6.0 或 5.5) 來管理主機。 當您部署 6.0 版時，僅支援 5.5 中可用的功能。|
 
 ## <a name="prepare-an-account-for-automatic-discovery"></a>準備帳戶以進行自動探索
 Site Recovery 需要存取 VMware，才能讓處理序伺服器自動探索虛擬機器，以及針對虛擬機器進行容錯移轉和容錯回復。

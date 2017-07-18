@@ -1,6 +1,6 @@
 ---
 title: "Azure 隨選媒體編碼器的比較 | Microsoft Docs"
-description: "本主題比較**媒體編碼器標準**和**媒體編碼器高階工作流程**的編碼功能。"
+description: "本主題比較「媒體編碼器標準」和「媒體編碼器高階工作流程」的編碼功能。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -12,11 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/27/2017
+ms.date: 06/27/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: 5cbe0b7f71f8dfd6f3a41fa6ff4b0c6ab5e6985d
-ms.openlocfilehash: dd5b1f9298bc4d864377c98114ce4a91ba8bfdae
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: 32cbfbc78fbb808ed59142b80602a751f607706d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/29/2017
 
 
 ---
@@ -25,13 +27,30 @@ ms.openlocfilehash: dd5b1f9298bc4d864377c98114ce4a91ba8bfdae
 
 本主題比較**媒體編碼器標準**和**媒體編碼器高階工作流程**的編碼功能。
 
-### <a name="a-idbillingabilling-meter-used-by-each-encoder"></a><a id="billing"></a>每個編碼器所使用的計費計量表
+## <a name="video-and-audio-processing-capabilities"></a>視訊和音訊處理功能
+
+下表比較媒體編碼器標準 (MES) 和媒體編碼器高階工作流程 (MEPW) 之間的功能。 
+
+|功能|Media Encoder Standard|媒體編碼器高階工作流程|
+|---|---|---|
+|編碼時套用條件式邏輯<br/>(例如，如果輸入是 HD，則編碼 5.1 音訊)|否|是|
+|隱藏式輔助字幕|否|[是](media-services-premium-workflow-encoder-formats.md#a-idclosedcaptioningasupport-for-closed-captioning)|
+|[Dolby® Professional Loudness Correction](http://www.dolby.com/us/en/technologies/dolby-professional-loudness-solutions.pdf)<br/> with Dialogue Intelligence™|否|是|
+|非交錯顯示、反轉電影|基本|廣播品質|
+|偵測並移除黑色框線 <br/>(垂直黑邊、上下黑邊)|否|是|
+|縮圖產生|[是](media-services-dotnet-generate-thumbnail-with-mes.md)|[是](media-services-media-encoder-premium-workflow-tutorials.md#a-idthumbnailstomultibitratemp4aadding-thumbnails-to-multibitrate-mp4-output)|
+|裁剪/修剪和拼接視訊|[是](media-services-advanced-encoding-with-mes.md#a-idtrimvideoatrim-a-video-clipping)|是|
+|音訊或視訊的覆疊|[是](media-services-advanced-encoding-with-mes.md#a-idoverlayacreate-an-overlay)|[是](media-services-media-encoder-premium-workflow-multiplefilesinput.md#example-1--overlay-an-image-on-top-of-the-video)|
+|圖形的覆疊|從影像來源|從影像和文字來源|
+|多重音訊語言曲目|限制|[是](media-services-media-encoder-premium-workflow-multiplefilesinput.md#example-2--multiple-audio-language-encoding)|
+
+## <a id="billing"></a>每個編碼器所使用的計費計量表
 | 媒體處理器名稱 | 適用的價格 | 注意事項 |
 | --- | --- | --- |
 | **Media Encoder Standard** |ENCODER |在 ENCODER 資料行底下，「編碼工作」會以[這裡][1]指定的費率，根據所有產生來輸出之媒體檔案的總持續時間 (以分鐘為單位) 計費。 |
 | **媒體編碼器高階工作流程** |PREMIUM ENCODER |在 PREMIUM ENCODER 資料行底下，「編碼工作」會以[這裡][1]指定的費率，根據所有產生來輸出之媒體檔案的總持續時間 (以分鐘為單位) 計費。 |
 
-### <a name="input-containerfile-formats"></a>輸入容器/檔案格式
+## <a name="input-containerfile-formats"></a>輸入容器/檔案格式
 | 輸入容器/檔案格式 | Media Encoder Standard | Media Encoder Premium Workflow |
 | --- | --- | --- |
 | Adobe® Flash® F4V |是 |是 |
@@ -48,7 +67,7 @@ ms.openlocfilehash: dd5b1f9298bc4d864377c98114ce4a91ba8bfdae
 | Matroska/WebM |是 |否 |
 | QuickTime (.mov) |是 |否 |
 
-### <a name="input-video-codecs"></a>輸入視訊轉碼器
+## <a name="input-video-codecs"></a>輸入視訊轉碼器
 | 輸入視訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
 | --- | --- | --- |
 | AVC 8 位元/10 位元，高達 4:2:2，包括 AVCIntra |8 位元 4:2:0 和 4:2:2 |是 |
@@ -68,7 +87,7 @@ ms.openlocfilehash: dd5b1f9298bc4d864377c98114ce4a91ba8bfdae
 | Apple ProRes 4444 |是 |否 |
 | Apple ProRes 4444 XQ |是 |否 |
 
-### <a name="input-audio-codecs"></a>輸入音訊轉碼器
+## <a name="input-audio-codecs"></a>輸入音訊轉碼器
 | 輸入音訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
 | --- | --- | --- |
 | AES (SMPTE 331M 和 302M，AES3-2003) |否 |是 |
@@ -84,7 +103,7 @@ ms.openlocfilehash: dd5b1f9298bc4d864377c98114ce4a91ba8bfdae
 | [Opus](https://en.wikipedia.org/wiki/Opus_\(audio_format\)) |是 |否 |
 | [Vorbis](https://en.wikipedia.org/wiki/Vorbis)</a> |是 |否 |
 
-### <a name="output-containerfile-formats"></a>輸出容器/檔案格式
+## <a name="output-containerfile-formats"></a>輸出容器/檔案格式
 | 輸出容器/檔案格式 | Media Encoder Standard | Media Encoder Premium Workflow |
 | --- | --- | --- |
 | Adobe® Flash® F4V |否 |是 |
@@ -97,7 +116,7 @@ ms.openlocfilehash: dd5b1f9298bc4d864377c98114ce4a91ba8bfdae
 | AVI (未壓縮 8 位元/10 位元) |否 |是 |
 | Smooth Streaming 檔案格式 (PIFF 1.3) |否 |是 |
 
-### <a name="output-video-codecs"></a>輸出視訊轉碼器
+## <a name="output-video-codecs"></a>輸出視訊轉碼器
 | 輸出視訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
 | --- | --- | --- |
 | AVC (H.264；8 位元；高達 High Profile、Level 5.2；4K Ultra HD；AVC Intra) |僅限 8 位元 4:2:0 |是 |
@@ -105,9 +124,11 @@ ms.openlocfilehash: dd5b1f9298bc4d864377c98114ce4a91ba8bfdae
 | MPEG-2 (高達 422 Profile 和 High Level，包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs ® 和 D10 等變種) |否 |是 |
 | MPEG-1 |否 |是 |
 | Windows Media 視訊/VC-1 |否 |是 |
-| JPEG 縮圖建立 |否 |是 |
+| JPEG 縮圖建立 |是 |是 |
+| PNG 縮圖建立 |是 |是 |
+| BMP 縮圖建立 |是 |否 |
 
-### <a name="output-audio-codecs"></a>輸出音訊轉碼器
+## <a name="output-audio-codecs"></a>輸出音訊轉碼器
 | 輸出音訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
 | --- | --- | --- |
 | AES (SMPTE 331M 和 302M，AES3-2003) |否 |是 |
@@ -133,9 +154,4 @@ ms.openlocfilehash: dd5b1f9298bc4d864377c98114ce4a91ba8bfdae
 
 <!--Reference links in article-->
 [1]: http://azure.microsoft.com/pricing/details/media-services/
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

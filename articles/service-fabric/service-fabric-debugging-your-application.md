@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/07/2017
+ms.date: 06/29/2017
 ms.author: vturecek;mikhegn
-translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 6167f3edd3e99522a8997382d6569c82ea387d5c
-ms.lasthandoff: 03/09/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 2459025899a7f5ffebf44fa104ed112c0eb99dfa
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.lasthandoff: 03/09/2017
    > Visual Studio 將附加至您應用程式的所有執行個體。 當您逐步執行程式碼時，系統可能會透過多個程序叫用中斷點而導致並行工作階段。 若要嘗試在叫用中斷點之後停用它們，請在執行緒識別碼上條件化每個中斷點，或使用診斷事件。
    > 
    > 
-4. [診斷事件]  視窗將自動開啟，讓您可以即時檢視診斷事件。
+4. [診斷事件] 視窗會自動開啟，讓您可以即時檢視診斷事件。
    
     ![即時檢視診斷事件][diagnosticevents]
 5. 您也可以在 [雲端總管] 開啟 [診斷事件] 視窗。  在 [Service Fabric] 之下，以滑鼠右鍵按一下任何節點，然後選擇 [檢視串流追蹤]。
@@ -54,7 +55,7 @@ ms.lasthandoff: 03/09/2017
     ```csharp
     ServiceEventSource.Current.ServiceMessage(this, "My ServiceMessage with a parameter {0}", result.Value.ToString());
     ```
-7. [診斷事件]  視窗支援篩選、暫停和即時檢查事件。  篩選是事件訊息的簡易字串搜尋，包括其內容。
+7. [診斷事件] 視窗支援篩選、暫停和即時檢查事件。  篩選是事件訊息的簡易字串搜尋，包括其內容。
    
     ![篩選、暫停和繼續，或即時檢查事件][diagnosticeventsactions]
 8. 偵錯服務如同偵錯任何其他應用程式。 您通常可以透過 Visual Studio 設定中斷點，以便進行偵錯。 即使可靠集合會在多個節點上複寫，它們仍會實作 IEnumerable。 這表示您可以在 Visual Studio 中使用 [結果檢視]，同時進行偵錯以查看已在內部儲存的內容。 您可以在程式碼中的任何位置輕鬆設定中斷點。
@@ -81,7 +82,7 @@ ms.lasthandoff: 03/09/2017
    
     ![啟用遠端偵錯][enableremotedebugging]
    
-    這麼做會開始在您的叢集節點上啟用遠端偵錯延伸模組的程序，以及所需的網路組態。
+    這麼做會開始在您的叢集節點上啟用遠端偵錯擴充功能的程序，也會啟用所需的網路組態。
 2. 在 [雲端總管] 中的叢集節點上按一下滑鼠右鍵，然後選擇 [附加偵錯工具]
    
     ![連結偵錯工具][attachdebugger]
@@ -127,7 +128,7 @@ ms.lasthandoff: 03/09/2017
    
     ![啟用遠端串流追蹤][enablestreamingtraces]
    
-    這麼做會開始在您的叢集節點上啟用串流追蹤延伸模組的程序，以及所需的網路組態。
+    這麼做會開始在您的叢集節點上啟用串流追蹤擴充功能的程序，也會啟用所需的網路組態。
 2. 展開 [雲端總管] 中的 [節點] 元素，以滑鼠右鍵按一下您要串流追蹤的節點，然後選擇 [檢視串流追蹤]
    
     ![檢視遠端串流追蹤][viewremotestreamingtraces]

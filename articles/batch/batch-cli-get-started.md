@@ -16,10 +16,10 @@ ms.date: 05/11/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
-ms.openlocfilehash: 19014e65920b16d2efbaa475b7c17b2a4e3a8471
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a818a41e2e11926c2dee27e081ae8ffc0a4a6298
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/13/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -180,13 +180,14 @@ az batch task list --job-id job001
 * 使用 `-h` 取得任何 CLI 命令的 **說明文字**
 * 使用 `-v` 和 `-vv` 來顯示 **verbose** 命令輸出。 包含 `-vv` 旗標後，Azure CLI 會顯示實際的 REST 要求和回應。 這些參數方便用於顯示完整的錯誤輸出。
 * 您可以使用 `--json` 選項檢視 **JSON 格式的命令輸出**。 例如， `az batch pool show pool001 --json` 會以 JSON 格式顯示 pool001 的屬性。 您可以接著複製並修改此輸出，以便用於 `--json-file` (請參閱本文前面的 [JSON 檔案](#json-files) )。
+<!---Loc Comment: Please, check link [JSON files] since it's not redirecting to any location.--->
 * [Batch 論壇][batch_forum] 受 Batch 小組成員監視。 如果您遇到問題或需要特定作業的協助，您可以在此張貼您的問題。
 
 ## <a name="next-steps"></a>後續步驟
 
 * 如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 * 如需 Batch 資源的詳細資訊，請參閱[適用於開發人員的 Azure Batch 概觀](batch-api-basics.md)。
-* 請參閱 [使用 Azure Batch 應用程式封裝部署應用程式](batch-application-packages.md) ，了解如何使用此功能來管理和部署您在 Batch 計算節點上執行的應用程式。
+* 請參閱[使用 Batch 應用程式套件將應用程式部署至計算節點](batch-application-packages.md)，了解如何使用此功能來管理和部署您在 Batch 計算節點上執行的應用程式。
 
 [batch_forum]: https://social.msdn.microsoft.com/forums/azure/home?forum=azurebatch
 [github_readme]: https://github.com/Azure/azure-xplat-cli/blob/dev/README.md

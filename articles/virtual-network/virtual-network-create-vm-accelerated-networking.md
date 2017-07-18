@@ -17,16 +17,16 @@ ms.date: 05/10/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: 43663ed8becfa69c06699709a18623652df28ed6
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: 0d74a13968338d5dc88eab3353316c77c7544615
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
 # <a name="create-a-virtual-machine-with-accelerated-networking"></a>使用加速網路來建立虛擬機器
 
-在本教學課程中，您將了解如何使用加速網路來建立 Azure 虛擬機器 (VM)。 加速網路可以對 VM 啟用 Single Root I/O Virtualization (SR-IOV)，大幅提升其網路效能。 這個高效能路徑會略過資料路徑的主機而減少延遲、抖動和 CPU 使用率，供支援的 VM 類型上最嚴苛的網路工作負載使用。 下圖顯示有和沒有加速網路的兩部虛擬機器 (VM) 之間的通訊︰
+在本教學課程中，您將了解如何使用加速網路來建立 Azure 虛擬機器 (VM)。 加速網路是 GA for Windows，而且針對特定 Linux 發佈則處於公開預覽狀態。 加速網路可以對 VM 啟用 Single Root I/O Virtualization (SR-IOV)，大幅提升其網路效能。 這個高效能路徑會略過資料路徑的主機而減少延遲、抖動和 CPU 使用率，供支援的 VM 類型上最嚴苛的網路工作負載使用。 下圖顯示有和沒有加速網路的兩部虛擬機器 (VM) 之間的通訊︰
 
 ![比較](./media/virtual-network-create-vm-accelerated-networking/image1.png)
 
@@ -48,8 +48,8 @@ ms.lasthandoff: 05/16/2017
 
 * **網路介面建立︰**您只能對新的 NIC 啟用加速網路。 無法對現有 NIC 來啟用。
 * **VM 建立：**啟用加速網路的 NIC 只能在 VM 建立之後附加至 VM。 NIC 無法附加至現有的 VM。
-* **區域︰**大多數 Azure 區域都有提供具有加速網路的 Windows VM。 具有加速網路的 Linux VM 則只在兩個區域提供︰美國中南部和美國西部 2。 我們會在未來擴大可使用這項功能的區域。
-* **支援的作業系統︰**Windows：Microsoft Windows Server 2012 R2 Datacenter 和 Windows Server 2016。 Linux：Ubuntu Server 16.04 LTS (核心為 4.4.0-77 或更新版本)。 我們很快就會再新增其他散發套件。
+* **區域︰**大多數 Azure 區域都有提供具有加速網路的 Windows VM。 多個區域都提供具有加速網路的 Linux VM。 我們會擴大可使用這項功能的區域。 如需最新資訊，請參閱下方的 Azure 虛擬網路更新部落格。   
+* **支援的作業系統︰**Windows：Microsoft Windows Server 2012 R2 Datacenter 和 Windows Server 2016。 Linux：Ubuntu Server 16.04 LTS (含核心 4.4.0-77 或更高版本)、SLES 12 SP2、RHEL 7.3 和 CentOS 7.3 (由 “Rogue Wave Software” 發佈)。
 * **VM 大小︰**一般用途和具有八個以上核心的計算最佳化執行個體大小。 如需詳細資訊，請參閱 [Windows](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 和 [Linux](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) VM 大小的相關文章。 未來將增加支援的 VM 執行個體大小。
 
 這些限制如有變更，將會透過 [Azure 虛擬網路更新](https://azure.microsoft.com/updates/accelerated-networking-in-preview)頁面發佈。
@@ -72,7 +72,7 @@ ms.lasthandoff: 05/16/2017
 
     如果您不熟悉 Azure，請深入了解[資源群組](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-group)、[訂用帳戶](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#subscription)和[位置](https://azure.microsoft.com/regions) (這也稱為區域)。
 5. 在出現的 [選擇大小] 刀鋒視窗中，於 [最小核心數] 方塊中輸入 8，然後按一下 [檢視全部]。
-6. 按一下 [DS4_V2 標準]，然後按一下 [選取] 按鈕。
+6. 按一下 [DS4_V2 標準] 或任何支援的 VM，然後按一下 [選取] 按鈕。
 7. 在出現的 [設定] 刀鋒視窗中保留所有設定，但在 [加速網路] 下按一下 [啟用]，然後按一下 [確定] 按鈕。 **注意︰**如果您在先前的步驟中所選取的 VM 大小、作業系統或位置等值不是本文的[限制](#Limitations)一節所列出的值，您就不會看到 [加速網路]。
 8. 在出現的 [摘要] 刀鋒視窗中，按一下 [確定] 按鈕。 Azure 會開始建立 VM。 VM 需要花幾分鐘的時間來建立。
 9. 若要安裝 Windows 的加速網路驅動程式，請完成本文之[設定 Windows](#configure-windows) 一節的步驟。
@@ -157,28 +157,20 @@ ms.lasthandoff: 05/16/2017
 5. 在為了通知您找不到遠端連線發行者而出現的 [遠端桌面連線] 方塊中，按一下 [連線] 按鈕。
 6. 在出現的 [Windows 安全性] 方塊中，按一下 [更多選擇]，然後按一下 [使用不同帳戶]。 輸入您在步驟 4 中所輸入的使用者名稱和密碼，然後按一下 [確定] 按鈕。
 7. 在為了通知您無法驗證遠端電腦身分識別而出現的 [遠端桌面連線] 方塊中，按一下 [是] 按鈕。
-8. 在 MyVm VM 上按一下 Windows 的 [開始] 按鈕，並按一下 [Internet Explorer]。
-9. 在出現的 [Internet Explorer 11] 方塊中，按一下 [使用建議的安全性、隱私權與相容性設定]，然後按一下 [確定]。
-10. 在 Internet Explorer 的網址列中輸入 https://gallery.technet.microsoft.com/Azure-Accelerated-471b5d84，然後按 Enter 鍵。
-11. 在出現的 [安全性警示] 方塊中，按一下 [確定]。
-12. 在出現的 [Internet Explorer] 方塊中，按一下 [新增]，按一下 [信任的網站] 方塊中的 [新增] 按鈕，然後按一下 [關閉] 按鈕。 針對後續出現的方塊完成這些步驟。
-13. 若要下載檔案，請對它按一下。
-14. 當 [授權、使用規定] 方塊出現時，按一下 [我同意]。
-15. 在畫面底部所出現的方塊中按一下 [儲存] 按鈕來允許 Internet Explorer 儲存該檔案，然後按一下 [開啟資料夾] 按鈕。
-16. 若要安裝加速網路驅動程式，請對該檔案按兩下。 在安裝精靈執行期間接受所有預設值，並在精靈結束時按一下 [是] 按鈕來重新啟動 VM。
-17. 在 VM 重新啟動後，再次完成步驟 9 至 12，以便連線到 VM。
-18. 以滑鼠右鍵按一下 Windows 的 [開始] 按鈕，然後按一下 [裝置管理員]。 展開 [網路介面卡] 節點。 確認 **Mellanox ConnectX-3 Virtual Function Ethernet Adapter** 有出現，如下圖所示︰
+8. 以滑鼠右鍵按一下 Windows 的 [開始] 按鈕，然後按一下 [裝置管理員]。 展開 [網路介面卡] 節點。 確認 **Mellanox ConnectX-3 Virtual Function Ethernet Adapter** 有出現，如下圖所示︰
    
     ![裝置管理員](./media/virtual-network-create-vm-accelerated-networking/image2.png)
 
+9. 現在已啟用您 VM 的加速網路。
+
 ## <a name="create-a-linux-vm"></a>建立 Linux VM
-您可以使用 Azure 入口網站或 Azure [PowerShell](#linux-powershell) 來建立 VM。
+您可以使用 Azure 入口網站或 Azure [PowerShell](#linux-powershell) 來建立 Ubuntu 或 SLES VM。 RHEL 和 CentOS VM 的工作流程不同。  請參閱下面的指示。
 
 ### <a name="linux-portal"></a>入口網站
 1. 完成本文之[建立 Linux VM - PowerShell](#linux-powershell) 一節的步驟 1 至 5，以註冊 Linux 的加速網路 (預覽版)。  您無法在入口網站中註冊預覽版。
 2. 完成本文之[建立 Windows VM - 入口網站](#windows-portal)一節的步驟 1 至 8。 在步驟 2 中，按一下 [Ubuntu Server 16.04 LTS] 而不是 [Windows Server 2016 Datacenter]。 在本教學課程中，選擇使用密碼而不是 SSH 金鑰，但實際上兩者皆可用於生產部署。 當您完成本文之[建立 Windows VM - 入口網站](#windows-portal)一節的步驟 7 時，如果**加速網路**未出現，原因很可能是下列其中之一︰
     - 您尚未註冊預覽版。 確認您的註冊狀態是**已註冊**，如本文之[建立 Linux VM - PowerShell](#linux-powershell) 一節的步驟 4 所述。 **注意︰**如果您參與測試 Windows VM 的加速網路預覽版 (不再需要註冊就能使用 Windows VM 加速網路)，您並不會自動註冊 Linux VM 的加速網路預覽版。 您必須註冊 Linux VM 的加速網路預覽版才能參與測試此功能。
-    - 您尚未選取本文的[限制](#simitations)一節所列出的 VM 大小、作業系統或位置。
+    - 您尚未選取本文的[限制](#limitations)一節所列出的 VM 大小、作業系統或位置。
 3. 若要安裝 Linux 的加速網路驅動程式，請完成本文之[設定 Linux](#configure-linux) 一節的步驟。
 
 ### <a name="linux-powershell"></a>PowerShell
@@ -191,28 +183,26 @@ ms.lasthandoff: 05/16/2017
 2. 按一下 Windows 的 [開始] 按鈕，輸入 **powershell**，然後按一下搜尋結果中的 [PowerShell]，以啟動 PowerShell 工作階段。
 3. 在 PowerShell 視窗中輸入 `login-azurermaccount` 命令，以使用您的 Azure [帳戶](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#account)進行登入。 如果您還沒有帳戶，則可以註冊[免費試用](https://azure.microsoft.com/offers/ms-azr-0044p)帳戶。
 4. 完成下列步驟來註冊 Azure 的加速網路功能預覽版︰
-    - 輸入下列命令：
-
-        ```powershell
-        Register-AzureRmProviderFeature -FeatureName AllowAcceleratedNetworkingFeature -ProviderNamespace Microsoft.Network
-        Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
-        ```
-    - 傳送電子郵件給 [axnpreview@microsoft.com](mailto:axnpreview@microsoft.com?subject=Request%20to%20enable%20subscription%20%3csubscription%20id%3e)，並附上您的 Azure 訂用帳戶識別碼與用途。 
+    - 傳送電子郵件給 [axnpreview@microsoft.com](mailto:axnpreview@microsoft.com?subject=Request%20to%20enable%20subscription%20%3csubscription%20id%3e)，並附上您的 Azure 訂用帳戶識別碼與用途。 請等候來自 Microsoft 有關正在啟用您訂用帳戶的電子郵件確認。
     - 輸入下列命令以確認您已註冊預覽版︰
     
-        `Get-AzureRmProviderFeature -FeatureName AllowAcceleratedNetworkingFeature -ProviderNamespace Microsoft.Network`
+        ```powershell
+        Get-AzureRmProviderFeature -FeatureName AllowAcceleratedNetworkingForLinux -ProviderNamespace Microsoft.Network
+        ```
 
         在輸入上述命令後，若輸出中未出現**已註冊**，請勿繼續進行步驟 5。 必須看到如下的輸出才能繼續︰
     
+        ```powershell
+        FeatureName                        ProviderName      RegistrationState
+        -----------                        ------------      -----------------
+        AllowAcceleratedNetworkingForLinux Microsoft.Network Registered
         ```
-        FeatureName                       ProviderName      RegistrationState
-        -----------                       ------------      -----------------
-        AllowAcceleratedNetworkingFeature Microsoft.Network Registered
-        ```
+        
       >[!NOTE]
       >如果您參與測試 Windows VM 的加速網路預覽版 (不再需要註冊就能使用 Windows VM 加速網路)，您並不會自動註冊 Linux VM 的加速網路預覽版。 您必須註冊 Linux VM 的加速網路預覽版才能參與測試此功能。
       >
-5. 在瀏覽器中複製下列指令碼：
+5. 在瀏覽器中，複製下列指令碼，以視需要替代 Ubuntu 或 SLES。  同樣地，Redhat 和 CentOS 具有不同的工作流程，如下所述：
+
     ```powershell
     $RgName="MyResourceGroup"
     $Location="westus2"
@@ -251,6 +241,14 @@ ms.lasthandoff: 05/16/2017
       -PublicIpAddressId $Pip.Id `
       -EnableAcceleratedNetworking
      
+    # Create a new Storage account and define the new VM’s OSDisk name and its URI
+    # Must end with ".vhd" extension
+    $OSDiskName = "MyOsDiskName.vhd"
+    # Storage account name must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+    $OSDiskSAName = "thestorageaccountname"  
+    $StorageAccount = New-AzureRmStorageAccount -ResourceGroupName $RgName -Name $OSDiskSAName -Type "Standard_GRS" -Location $Location
+    $OSDiskUri = $StorageAccount.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OSDiskName
+ 
     # Define a credential object for the VM. PowerShell prompts you for a username and password.
     $Cred = Get-Credential
 
@@ -266,15 +264,18 @@ ms.lasthandoff: 05/16/2017
       -Offer UbuntuServer `
       -Skus 16.04-LTS `
       -Version latest | `
-    Add-AzureRmVMNetworkInterface -Id $Nic.Id 
+    Add-AzureRmVMNetworkInterface -Id $Nic.Id | `
+    Set-AzureRmVMOSDisk -Name $OSDiskName `
+      -VhdUri $OSDiskUri `
+      -CreateOption FromImage 
 
     # Create the virtual machine.    
     New-AzureRmVM `
       -ResourceGroupName $RgName `
       -Location $Location `
       -VM $VmConfig
-    #
     ```
+    
 6. 在 PowerShell 視窗中，以滑鼠右鍵按一下來貼上並開始執行指令碼。 系統會提示您輸入使用者名稱和密碼。 當您在下一個步驟連線到 VM 時，請使用這些認證來登入 VM。 如果指令碼失敗，請確認︰
     - 您已註冊預覽版，如步驟 4 所述
     - 如果您在執行指令碼之前變更過指令碼的 VM 大小、作業系統類型或位置等值，請確認該值有列在本文的[限制](#Limitations)一節中。
@@ -291,19 +292,161 @@ ms.lasthandoff: 05/16/2017
 5. Azure 會開啟方塊來請您輸入 `ssh adminuser@<ipaddress>`。 在 Cloud Shell 中輸入這個命令 (或從步驟 4 所出現的方塊中複製此命令，然後將它貼到 Cloud Shell)，然後按 Enter 鍵。
 6. 在詢問您是否要繼續連線的問題中輸入 [是]，然後按 Enter 鍵。
 7. 輸入您在建立 VM 時所輸入的密碼。 成功登入 VM 後，您會看到 adminuser@MyVm:~$ 提示字元。 您現在已透過 Cloud Shell 工作階段登入 VM 了。 **注意︰**Cloud Shell 工作階段會在閒置 10 分鐘後逾時。
-8. 在提示字元中輸入 `uname -r`，並確認輸出結果符合下列版本：「4.4.0-77-generic」。
-9.    執行接下來的命令，以在標準網路 vNIC 和加速網路 vNIC 之間建立繫結。 網路流量會使用效能較高的加速網路 vNIC，而繫結動作則可確保網路流量不會因為某些設定有所變更而中斷。 
-    - `wget https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/plain/tools/hv/bondvf.sh`
-    - `chmod +x ./bondvf.sh`
-    - `sudo ./bondvf.sh`
-    - `sudo mv ~/bondvf.sh /etc/init.d`
-    - `sudo update-rc.d bondvf.sh defaults` 注意︰如果您收到錯誤，而其內容指出「insserv︰警告︰指令碼 'bondvf.sh' 遺漏 LSB 標記和覆寫」，您不必理會這個錯誤。
-    - `sudo nano /etc/network/interfaces.d/50-cloud-init.cfg` 開啟 GNU nano 編輯器來編輯檔案。
-    - 在編輯器中，於每一行指令開頭新增 #，將 *auto etho0* 和 *iface eth0 inet dhcp* 這兩行指令註解化。 在對每一行新增 # 之後，指令碼行看起來如下列範例︰
-        - #<a name="auto-eth0"></a>auto eth0
-        - #<a name="iface-eth0-inet-dhcp"></a>iface eth0 inet dhcp
-10. 按住 **Ctrl+X** 鍵，輸入 **Y**，然後按 **Enter** 鍵來儲存檔案。
-11. 輸入 `sudo shutdown -r now` 命令來重新啟動 VM。
-12. 在 VM 重新啟動後，再次完成步驟 5 至 7 以重新連線到 VM。
-13.    執行 `ifconfig` 命令，並確認 bond0 已出現，而且介面顯示為 UP。 **注意︰**使用加速網路的應用程式必須透過 bond0 介面而非 eth0 來通訊。  在加速網路功能正式推出之前，介面名稱可能會變更。
+
+此時，指示會根據您正在使用的發佈而不同。 
+
+#### <a name="ubuntusles"></a>Ubuntu/SLES
+
+1. 在提示中，輸入 `uname -r`，並確認下列項目的版本：
+
+    * Ubuntu 是 "4.4.0-77-generic" 或更新版本
+    * SLES 是 "4.4.59-92.20-default" 或更新版本
+
+2. 執行接下來的命令，以在標準網路 vNIC 和加速網路 vNIC 之間建立繫結。 網路流量會使用效能較高的加速網路 vNIC，而繫結動作則可確保網路流量不會因為某些設定有所變更而中斷。
+          
+     ```bash
+     wget https://raw.githubusercontent.com/LIS/lis-next/master/tools/sriov/configure_hv_sriov.sh
+     chmod +x ./configure_hv_sriov.sh
+     sudo ./configure_hv_sriov.sh
+     ```
+3. 執行指令碼之後，會在暫停 60 秒之後重新啟動 VM。
+4. 在 VM 重新啟動後，再次完成步驟 5 至 7 以重新連線到 VM。
+5. 執行 `ifconfig` 命令，並確認 bond0 已出現，而且介面顯示為 UP。 
+ 
+ >[!NOTE]
+      >使用加速網路的應用程式必須透過 bond0 介面而非 eth0 來通訊。  在加速網路功能正式推出之前，介面名稱可能會變更。
+
+#### <a name="rhelcentos"></a>RHEL/CentOS
+
+建立 Red Hat Enterprise Linux 或 CentOS 7.3 VM 時需要一些額外的步驟，才能載入 SR-IOV 所需的最新驅動程式以及網路卡的虛擬函式 (VF) 驅動程式。 指示的第一個階段會準備映像，以用來建立一或多個已預先載入驅動程式的虛擬機器。
+
+##### <a name="phase-one-prepare-a-red-hat-enterprise-linux-or-centos-73-base-image"></a>第一個階段：準備 Red Hat Enterprise Linux 或 CentOS 7.3 基礎映像。 
+
+1.  在 Azure 上佈建非 SRIOV CentOS 7.3 VM
+
+2.  安裝 LIS 4.2.1：
+    
+    ```bash
+    wget http://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.1-1.tar.gz
+    tar -xvf lis-rpms-4.2.1-1.tar.gz
+    cd LISISO && sudo ./install.sh
+    ```
+
+3.  下載設定檔
+    
+    ```bash
+    cd /etc/udev/rules.d/  
+    sudo wget https://raw.githubusercontent.com/LIS/lis-next/master/tools/sriov/60-hyperv-vf-name.rules 
+    cd /usr/sbin/
+    sudo wget https://raw.githubusercontent.com/LIS/lis-next/master/tools/sriov/hv_vf_name 
+    sudo chmod +x hv_vf_name
+    cd /etc/sysconfig/network-scripts/
+    sudo wget https://raw.githubusercontent.com/LIS/lis-next/master/tools/sriov/ifcfg-vf1   
+    ```
+
+4.  取消佈建此 VM
+
+    ```bash
+    sudo waagent -deprovision+user 
+    ```
+
+5.  從 Azure 入口網站停止此 VM，並移至 VM 的 [磁碟]，然後擷取 OSDisk 的 VHD URI。 此 URI 包含基礎映像的 VHD 名稱和其儲存體帳戶。 
+ 
+##### <a name="phase-two-provision-new-vms-on-azure"></a>第二個階段：在 Azure 上佈建新的 VM
+
+1.  使用第一個階段中所擷取的基礎映像 VHD，並在 vNIC 上啟用 AcceleratedNetworking，佈建以 New-AzureRMVMConfig 為基礎的新 VM：
+
+    ```powershell
+    $RgName="MyResourceGroup"
+    $Location="westus2"
+    
+    # Create a resource group
+    New-AzureRmResourceGroup `
+     -Name $RgName `
+     -Location $Location
+
+    # Create a subnet
+    $Subnet = New-AzureRmVirtualNetworkSubnetConfig `
+     -Name MySubnet `
+     -AddressPrefix 10.0.0.0/24
+
+    # Create a virtual network
+    $Vnet=New-AzureRmVirtualNetwork `
+     -ResourceGroupName $RgName `
+     -Location $Location `
+     -Name MyVnet `
+     -AddressPrefix 10.0.0.0/16 `
+     -Subnet $Subnet
+    
+    # Create a public IP address
+    $Pip = New-AzureRmPublicIpAddress `
+     -Name MyPublicIp `
+     -ResourceGroupName $RgName `
+     -Location $Location `
+     -AllocationMethod Static
+    
+    # Create a virtual network interface and associate the public IP address to it
+    $Nic = New-AzureRmNetworkInterface `
+     -Name MyNic `
+     -ResourceGroupName $RgName `
+     -Location $Location `
+     -SubnetId $Vnet.Subnets[0].Id `
+     -PublicIpAddressId $Pip.Id `
+     -EnableAcceleratedNetworking
+    
+    # Specify the base image's VHD URI (from phase one step 5). 
+    # Note: The storage account of this base image vhd should have "Storage service encryption" disabled
+    # See more from here: https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption
+    # This is just an example URI, you will need to replace this when running this script
+    $sourceUri="https://myexamplesa.blob.core.windows.net/vhds/CentOS73-Base-Test120170629111341.vhd" 
+
+    # Specify a URI for the location from which the new image binary large object (BLOB) is copied to start the virtual machine. 
+    # Must end with ".vhd" extension
+    $destOsDiskName = "MyOsDiskName.vhd" 
+    $destOsDiskUri = "https://myexamplesa.blob.core.windows.net/vhds/" + $destOsDiskName
+    
+    # Define a credential object for the VM. PowerShell prompts you for a username and password.
+    $Cred = Get-Credential
+    
+    # Create a custom virtual machine configuration
+    $VmConfig = New-AzureRmVMConfig `
+     -VMName MyVM -VMSize Standard_DS4_v2 | `
+    Set-AzureRmVMOperatingSystem `
+     -Linux `
+     -ComputerName myVM `
+     -Credential $Cred | `
+    Add-AzureRmVMNetworkInterface -Id $Nic.Id | `
+    Set-AzureRmVMOSDisk `
+     -Name $OSDiskName `
+     -SourceImageUri $sourceUri `
+     -VhdUri $destOsDiskUri `
+     -CreateOption FromImage `
+     -Linux
+    
+    # Create the virtual machine.    
+    New-AzureRmVM `
+     -ResourceGroupName $RgName `
+     -Location $Location `
+     -VM $VmConfig
+    ```
+
+2.  VM 開機之後，請透過 "lspci" 檢查 VF 裝置，並檢查 Mellanox 項目。 例如，我們應該會在 lspci 輸出中看到這個項目：
+    
+    ```
+    0001:00:02.0 Ethernet controller: Mellanox Technologies MT27500/MT27520 Family [ConnectX-3/ConnectX-3 Pro Virtual Function]
+    ```
+    
+3.  執行 bonding 指令碼，方式為：
+
+    ```bash
+    sudo bondvf.sh
+    ```
+
+4.  重新啟動新的 VM：
+
+    ```bash
+    sudo reboot
+    ```
+
+VM 的開頭應該設定為 bond0，並啟用加速網路路徑。  執行 `ifconfig` 進行確認。
 

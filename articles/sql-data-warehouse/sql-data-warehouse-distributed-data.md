@@ -13,13 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: tables
-ms.date: 10/31/2016
+ms.date: 06/29/2017
 ms.author: jrj;barbkess
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2548f779767635865daf790d301d86feff573a29
-ms.openlocfilehash: 195b78a7f634d01f228c90efb34763e4175708ac
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: ec9b3cc391a75b4f3a75f95a2ff9613c0317bfa2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/24/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -65,12 +65,10 @@ ms.lasthandoff: 01/24/2017
 ### <a name="can-i-view-the-compute-nodes"></a>可以檢視計算節點嗎？
 每個計算節點有節點 ID，且在有關 SQL 資料倉儲和平行資料倉儲的系統檢視中可以看見。  您可以在名稱開頭為 sys.pdw_nodes 的系統檢視中尋找 node_id 資料行表來看到計算節點。 如需系統檢視的清單，請參閱 [MPP 系統檢視](sql-data-warehouse-reference-tsql-statements.md)。
 
-## <a name="Replicated"></a>複寫平行資料倉儲的資料表
-適用於︰平行資料倉儲
+## <a name="Replicated"></a>複寫資料表
+複寫資料表會在每個計算節點上都儲存一份完整的資料表複本。 複寫資料表可使在進行聯結或彙總之前，不需要在計算節點之間傳輸資料。 由於在每個計算節點上儲存完整資料表所需的額外儲存體，因此複寫資料表僅在小型資料表才可行。  
 
-除了使用分散式資料表之外，平行資料倉儲會提供選項來複寫資料表。 *複寫資料表*是在每個計算節點上完整儲存的資料表。 複寫資料表會在聯結或彙總中使用資料表之前，移除在計算節點之間傳輸其資料表資料列的需要。 由於在每個計算節點上儲存完整資料表所需的額外儲存體，因此複寫資料表僅在小型資料表才可行。  
-
-下圖顯示儲存在每個計算節點上的複寫資料表。 複寫資料表會儲存在指派給計算節點的所有磁碟。 此磁碟策略會使用 SQL Server 檔案群組來實作。  
+下圖顯示儲存在每個計算節點上的複寫資料表。 針對 SQL 資料倉儲，複寫資料表會由循環配置資源資料表維護，並會完整複製到每個計算節點上的第一個散發資料庫。 針對平行處理資料倉儲，複寫資料表會儲存在指派給計算節點的所有磁碟上。  此磁碟策略會使用 SQL Server 檔案群組來實作。  
 
 ![複寫的資料表](media/sql-data-warehouse-distributed-data/replicated-table.png "複寫的資料表") 
 

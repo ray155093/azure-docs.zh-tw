@@ -16,12 +16,11 @@ ms.workload: na
 ms.date: 06/08/2017
 ms.author: glenga
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
-ms.openlocfilehash: f00ca3b8a35c0c49277457bd42fe8a314520d5a5
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 01b23996a9cd3a8368a78085dec905d020612b48
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="create-your-first-function-in-the-azure-portal"></a>在 Azure 入口網站中建立您的第一個函式
@@ -64,7 +63,7 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
     ![從 Azure 入口網站複製函式 URL](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
 
-2. 將 HTTP 要求的 URL 貼到瀏覽器的網址列。 將查詢字串 `&name=<yourname>` 附加至此 URL 並執行要求。 下圖顯示瀏覽器中對於函式傳回之 GET 要求所做出的回應︰
+2. 將函式 URL 貼入瀏覽器的網址列中。 將查詢字串 `&name=<yourname>` 附加至此 URL，並按鍵盤上的 `Enter` 鍵執行要求。 下列是 Edge 瀏覽器中函式所傳回的範例回應：
 
     ![瀏覽器中的函式回應。](./media/functions-create-first-azure-function/function-app-browser-testing.png)
 
