@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/03/2017
+ms.date: 06/27/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 951a7849beb9653083ed0112dbbb6cf57175469d
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: f27bc3689f228809e9db8f61485ea0c8b4b302d1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -31,8 +31,6 @@ ms.lasthandoff: 05/11/2017
 * 原則指派 - 您將原則定義套用至範圍 (訂用帳戶或資源群組)
 
 本主題著重於原則定義。 如需原則指派的相關資訊，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)或[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。
-
-Azure 提供一些內建原則定義，可能會降低您需要定義的原則數目。 如果內建的原則定義適用於您的案例，則在指派給範圍時使用該定義。
 
 建立和更新資源 (PUT 和 PATCH 作業) 時，會評估原則。
 
@@ -50,6 +48,22 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 * 指派原則的 `Microsoft.Authorization/policyassignments/write` 權限 
 
 這些權限不包括在**參與者**角色中。
+
+## <a name="built-in-policies"></a>內建原則
+
+Azure 提供一些內建原則定義，可能會降低您需要定義的原則數目。 在繼續處理原則定義之前，您應該先考慮內建原則是否已提供所需的定義。 內建的原則定義如下：
+
+* 允許的位置
+* 允許的資源類型
+* 允許的儲存體帳戶 SKU
+* 允許的虛擬機器 SKU
+* 套用標籤和預設值
+* 強制執行標籤和值
+* 不允許的資源類型
+* 需要 SQL Server 12.0 版
+* 需要儲存體帳戶加密
+
+您可以透[入口網站](resource-manager-policy-portal.md)、[PowerShell](resource-manager-policy-create-assign.md#powershell) 或 [Azure CLI](resource-manager-policy-create-assign.md#azure-cli) 來指派任何這些原則。
 
 ## <a name="policy-definition-structure"></a>原則定義結構
 使用 JSON 來建立原則定義。 原則定義中包含以下的項目︰
@@ -149,7 +163,7 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 
 **not** 語法會反轉條件的結果。 **allOf** 語法 (類似於邏輯**And** 作業) 需要所有的條件為 true。 **anyOf** 語法 (類似於邏輯**Or** 作業) 需要一或多個條件為 true。
 
-您可以巢狀邏輯運算子。 下列範例顯示 **And** 作業內變成巢狀的 **Not** 作業。 
+您可以巢狀邏輯運算子。 下列範例顯示 **allOf** 作業中的巢狀 **not** 作業。 
 
 ```json
 "if": {
@@ -194,27 +208,7 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 * `location`
 * `tags`
 * `tags.*` 
-* 屬性別名
-
-您可以使用屬性別名來存取資源類型的特定屬性。 支援的別名為：
-
-* Microsoft.CDN/profiles/sku.name
-* Microsoft.Compute/virtualMachines/imageOffer
-* Microsoft.Compute/virtualMachines/imagePublisher
-* Microsoft.Compute/virtualMachines/sku.name
-* Microsoft.Compute/virtualMachines/imageSku 
-* Microsoft.Compute/virtualMachines/imageVersion
-* Microsoft.SQL/servers/databases/edition
-* Microsoft.SQL/servers/databases/elasticPoolName
-* Microsoft.SQL/servers/databases/requestedServiceObjectiveId
-* Microsoft.SQL/servers/databases/requestedServiceObjectiveName
-* Microsoft.SQL/servers/elasticPools/dtu
-* Microsoft.SQL/servers/elasticPools/edition
-* Microsoft.SQL/servers/version
-* Microsoft.Storage/storageAccounts/accessTier
-* Microsoft.Storage/storageAccounts/enableBlobEncryption
-* Microsoft.Storage/storageAccounts/sku.name
-* Microsoft.Web/serverFarms/sku.name
+* 屬性別名 - 如需清單，請參閱[別名](#aliases)。
 
 ### <a name="effect"></a>效果
 原則支援三種效果類型 - `deny`、`audit` 和 `append`。 
@@ -237,127 +231,131 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 
 值可以是字串或 JSON 格式物件。 
 
+## <a name="aliases"></a>別名
+
+您可以使用屬性別名來存取資源類型的特定屬性。 
+
+**Microsoft.Cache/Redis**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Cache/Redis/enableNonSslPort | 設定是否啟用非 SSL Redis 伺服器連接埠 (6379)。 |
+| Microsoft.Cache/Redis/shardCount | 設定要在進階叢集快取上建立的分區數目。  |
+| Microsoft.Cache/Redis/sku.capacity | 設定要部署的 Redis 快取大小。  |
+| Microsoft.Cache/Redis/sku.family | 設定要使用的 SKU 系列。 |
+| Microsoft.Cache/Redis/sku.name | 設定要部署的 Redis 快取類型。 |
+
+**Microsoft.Cdn/profiles**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.CDN/profiles/sku.name | 設定定價層的名稱。 |
+
+**Microsoft.Compute/disks**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Compute/imageOffer | 設定用來建立虛擬機器的平台映像或 Marketplace 映像供應項目。 |
+| Microsoft.Compute/imagePublisher | 設定用來建立虛擬機器的平台映像或 Marketplace 映像發行者。 |
+| Microsoft.Compute/imageSku | 設定用來建立虛擬機器的平台映像或 Marketplace 映像 SKU。 |
+| Microsoft.Compute/imageVersion | 設定用來建立虛擬機器的平台映像或 Marketplace 映像版本。 |
+
+
+**Microsoft.Compute/virtualMachines**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Compute/imageOffer | 設定用來建立虛擬機器的平台映像或 Marketplace 映像供應項目。 |
+| Microsoft.Compute/imagePublisher | 設定用來建立虛擬機器的平台映像或 Marketplace 映像發行者。 |
+| Microsoft.Compute/imageSku | 設定用來建立虛擬機器的平台映像或 Marketplace 映像 SKU。 |
+| Microsoft.Compute/imageVersion | 設定用來建立虛擬機器的平台映像或 Marketplace 映像版本。 |
+| Microsoft.Compute/licenseType | 將映像或磁碟設定為內部部署授權。 這個值只會用於包含 Windows Server 作業系統的映象。  |
+| Microsoft.Compute/virtualMachines/imageOffer | 設定用來建立虛擬機器的平台映像或 Marketplace 映像供應項目。 |
+| Microsoft.Compute/virtualMachines/imagePublisher | 設定用來建立虛擬機器的平台映像或 Marketplace 映像發行者。 |
+| Microsoft.Compute/virtualMachines/imageSku | 設定用來建立虛擬機器的平台映像或 Marketplace 映像 SKU。 |
+| Microsoft.Compute/virtualMachines/imageVersion | 設定用來建立虛擬機器的平台映像或 Marketplace 映像版本。 |
+| Microsoft.Compute/virtualMachines/osDisk.Uri | 設定 vhd URI。 |
+| Microsoft.Compute/virtualMachines/sku.name | 設定虛擬機器的大小。 |
+
+**Microsoft.Compute/virtualMachines/extensions**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Compute/virtualMachines/extensions/publisher | 設定擴充功能發行者的名稱。 |
+| Microsoft.Compute/virtualMachines/extensions/type | 設定擴充功能的類型。 |
+| Microsoft.Compute/virtualMachines/extensions/typeHandlerVersion | 設定擴充功能的版本。 |
+
+**Microsoft.Compute/virtualMachineScaleSets**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Compute/imageOffer | 設定用來建立虛擬機器的平台映像或 Marketplace 映像供應項目。 |
+| Microsoft.Compute/imagePublisher | 設定用來建立虛擬機器的平台映像或 Marketplace 映像發行者。 |
+| Microsoft.Compute/imageSku | 設定用來建立虛擬機器的平台映像或 Marketplace 映像 SKU。 |
+| Microsoft.Compute/imageVersion | 設定用來建立虛擬機器的平台映像或 Marketplace 映像版本。 |
+| Microsoft.Compute/licenseType | 將映像或磁碟設定為內部部署授權。 這個值只會用於包含 Windows Server 作業系統的映象。 |
+| Microsoft.Compute/VirtualMachineScaleSets/computerNamePrefix | 設定擴展集中所有虛擬機器的電腦名稱前置詞。 |
+| Microsoft.Compute/VirtualMachineScaleSets/osdisk.imageUrl | 設定使用者映像的 Blob URI。 |
+| Microsoft.Compute/VirtualMachineScaleSets/osdisk.vhdContainers | 設定用於儲存擴展集作業系統磁碟的容器 URL。 |
+| Microsoft.Compute/VirtualMachineScaleSets/sku.name | 設定擴展集中虛擬機器的大小。 |
+| Microsoft.Compute/VirtualMachineScaleSets/sku.tier | 設定擴展集中的虛擬機器層。 |
+  
+**Microsoft.Network/applicationGateways**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Network/applicationGateways/sku.name | 設定閘道的大小。 |
+
+**Microsoft.Network/virtualNetworkGateways**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Network/virtualNetworkGateways/gatewayType | 設定此虛擬網路閘道的類型。 |
+| Microsoft.Network/virtualNetworkGateways/sku.name | 設定閘道 SKU 名稱。 |
+
+**Microsoft.Sql/servers**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Sql/servers/version | 設定伺服器的版本。 |
+
+**Microsoft.Sql/databases**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Sql/servers/databases/edition | 設定資料庫的版本。 |
+| Microsoft.Sql/servers/databases/elasticPoolName | 設定資料庫所在彈性集區的名稱。 |
+| Microsoft.Sql/servers/databases/requestedServiceObjectiveId | 設定伺服器所設定的服務層級目標識別碼。 |
+| Microsoft.Sql/servers/databases/requestedServiceObjectiveName | 設定資料庫所設定之服務等級目標的名稱。  |
+
+**Microsoft.Sql/elasticpools**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| servers/elasticpools | Microsoft.Sql/servers/elasticPools/dtu | 設定資料庫彈性集區的所有共用 DTU。 |
+| servers/elasticpools | Microsoft.Sql/servers/elasticPools/edition | 設定彈性集區的版本。 |
+
+**Microsoft.Storage/storageAccounts**
+
+| Alias | 說明 |
+| ----- | ----------- |
+| Microsoft.Storage/storageAccounts/accessTier | 設定用於計費的存取層。 |
+| Microsoft.Storage/storageAccounts/accountType | 設定 SKU 名稱。 |
+| Microsoft.Storage/storageAccounts/enableBlobEncryption | 設定服務是否對儲存在 Blob 儲存體服務中的資料進行加密。 |
+| Microsoft.Storage/storageAccounts/enableFileEncryption | 設定服務是否對儲存在檔案儲存體服務中的資料進行加密。 |
+| Microsoft.Storage/storageAccounts/sku.name | 設定 SKU 名稱。 |
+| Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly | 設定對於儲存體服務僅允許 HTTPS 流量。 |
+
+
 ## <a name="policy-examples"></a>原則範例
 
 下列主題包含原則範例︰
 
 * 如需標籤原則的範例，請參閱[套用標籤的資源原則](resource-manager-policy-tags.md)。
+* 如需命名和文字模式的範例，請參閱[為名稱和文字套用資源原則](resource-manager-policy-naming-convention.md)。
 * 如需儲存體原則的範例，請參閱[將資源原則套用至儲存體帳戶](resource-manager-policy-storage.md)。
 * 如需虛擬機器原則的範例，請參閱[將資源原則套用至 Linux VM](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json) 和[將資源原則套用至 Windows VM](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 
-### <a name="allowed-resource-locations"></a>允許的資源位置
-若要指定允許的位置，請參閱[原則定義結構](#policy-definition-structure)一節中的範例。 若要指派此原則定義，請使用包含資源識別碼 `/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c` 的內建原則。
-
-### <a name="not-allowed-resource-locations"></a>不允許的資源位置
-若要指定不允許的位置，請使用下列的原則定義︰
-
-```json
-{
-  "properties": {
-    "parameters": {
-      "notAllowedLocations": {
-        "type": "array",
-        "metadata": {
-          "description": "The list of locations that are not allowed when deploying resources",
-          "strongType": "location",
-          "displayName": "Not allowed locations"
-        }
-      }
-    },
-    "displayName": "Not allowed locations",
-    "description": "This policy enables you to block locations that your organization can specify when deploying resources.",
-    "policyRule": {
-      "if": {
-        "field": "location",
-        "in": "[parameters('notAllowedLocations')]"
-      },
-      "then": {
-        "effect": "deny"
-      }
-    }
-  }
-}
-```
-
-### <a name="allowed-resource-types"></a>允許的資源類型
-下列範例顯示的原則只允許 Microsoft.Resources、Microsoft.Compute、Microsoft.Storage、Microsoft.Network 資源類型的部署。 所有其他的則會被拒絕︰
-
-```json
-{
-  "if": {
-    "not": {
-      "anyOf": [
-        {
-          "field": "type",
-          "like": "Microsoft.Resources/*"
-        },
-        {
-          "field": "type",
-          "like": "Microsoft.Compute/*"
-        },
-        {
-          "field": "type",
-          "like": "Microsoft.Storage/*"
-        },
-        {
-          "field": "type",
-          "like": "Microsoft.Network/*"
-        }
-      ]
-    }
-  },
-  "then": {
-    "effect": "deny"
-  }
-}
-```
-
-### <a name="set-naming-convention"></a>設定命名慣例
-下列範例示範如何使用 **like** 條件所支援的萬用字元。 條件指出如果名稱符合所述模式 (namePrefix\*nameSuffix)，則拒絕要求：
-
-```json
-{
-  "if": {
-    "not": {
-      "field": "name",
-      "like": "namePrefix*nameSuffix"
-    }
-  },
-  "then": {
-    "effect": "deny"
-  }
-}
-```
-
-若要指定資源名稱符合模式，請使用符合條件。 下列範例需要以 `contoso` 為開頭，且包含六個額外字母的名稱︰
-
-```json
-{
-  "if": {
-    "not": {
-      "field": "name",
-      "match": "contoso??????"
-    }
-  },
-  "then": {
-    "effect": "deny"
-  }
-}
-```
-
-如需兩個數字、破折號、三個字母、破折號和四個數字的日期模式，請使用︰
-
-```json
-{
-  "if": {
-    "field": "tags.date",
-    "match": "##-???-####"
-  },
-  "then": {
-    "effect": "deny"
-  }
-}
-```
 
 ## <a name="next-steps"></a>後續步驟
 * 在定義原則規則後，將它指派給範圍。 若要透過入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)。 若要透過 REST API、PowerShell 或 Azure CLI 來指派原則，請參閱[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。

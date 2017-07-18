@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/17/2017
+ms.date: 06/30/2017
 ms.author: msfussell
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 0379cd02fe663fbe9f024bc2f786186b0ea1358b
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 3c1e80305cb65f41a6981b99f69e8b87f89599ac
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -130,8 +131,10 @@ Service Fabric 有三個資料分割配置可選擇：
 2. 在 [新增專案]  對話方塊中，選擇 Service Fabric 應用程式
 3. 將專案命名為 "AlphabetPartitions"。
 4. 在 [建立服務] 對話方塊中，選擇 [具狀態] 服務，命名為 "Alphabet.Processing"，如下圖所示。
-   
-    ![具狀態服務螢幕擷取畫面](./media/service-fabric-concepts-partitioning/createstateful.png)
+       ![Visual Studio 中的新增服務對話方塊][1]
+
+  <!--  ![Stateful service screenshot](./media/service-fabric-concepts-partitioning/createstateful.png)-->
+
 5. 設定資料分割數目。 開啟位於 AlphabetPartitions 專案的 ApplicationPackageRoot 資料夾中的 ApplicationManifest.xml 檔案，將參數 Processing_PartitionCount 更新為 26，如下所示。
    
     ```xml
@@ -371,3 +374,4 @@ Service Fabric 有三個資料分割配置可選擇：
 
 [wikipartition]: https://en.wikipedia.org/wiki/Partition_(database)
 
+[1]: ./media/service-fabric-create-your-first-application-in-visual-studio/new-project-dialog-2.png

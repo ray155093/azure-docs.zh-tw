@@ -12,24 +12,24 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/30/2017
+ms.date: 06/29/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 3a2166fefc8d0b1602562b753e0413be458fae98
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: e9a858addb768ce051fccce0eaf83e49a83da21b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
 # <a name="assign-and-manage-resource-policies"></a>指派和管理資源原則
 
-若要實作原則，您必須執行三個步驟︰
+若要實作原則，您必須執行這些步驟︰
 
-1. 使用 JSON 定義原則規則。
-2. 從您在上一個步驟中建立的 JSON 在您的訂用帳戶中建立原則定義。 這個步驟會使原則可供指派，但不會將規則套用至您的訂用帳戶。
-3. 將原則指派給範圍 (例如訂用帳戶或資源群組)。 現在會強制執行原則的規則。
-
-Azure 提供了一些預先定義的原則，可能會降低您需要定義的原則數目。 如果預先定義的原則適用於您的案例，請略過前兩個步驟，並將預先定義的原則指派給範圍。
+1. 檢查原則定義 (包含 Azure 提供的內建原則)，以查看您的訂用帳戶中是否已存在符合您需求的定義。
+2. 如果存在，請記下它的名稱。
+3. 如果不存在，請使用 JSON 定義原則規則，並將它新增為訂用帳戶中的原則定義。 這個步驟會使原則可供指派，但不會將規則套用至您的訂用帳戶。
+4. 不論存在與否，請將原則指派給範圍 (例如訂用帳戶或資源群組)。 現在會強制執行原則的規則。
 
 本文著重於建立原則定義，然後透過 REST API、PowerShell 或 Azure CLI 將該定義指派至範圍的步驟。 如果您想要使用入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)。 本文並不會著重於建立原則定義的語法。 如需原則語法的詳細資訊，請參閱[資源原則概觀](resource-manager-policy.md)。
 
@@ -144,30 +144,55 @@ GET /subscriptions/{id}/providers?$expand=resourceTypes/aliases&api-version=2015
 
 繼續 PowerShell 範例之前，請確定您已[安裝最新版](/powershell/azure/install-azurerm-ps)的 Azure PowerShell。 原則參數是於 3.6.0 版中加入。 如果您使用舊版本，範例會傳回找不到參數的錯誤。
 
-### <a name="create-policy-definition"></a>建立原則定義
-您可以使用 `New-AzureRmPolicyDefinition` cmdlet 建立原則定義。 以下範例會建立一個原則定義，只允許北歐和西歐中的資源。
+### <a name="view-policy-definitions"></a>檢視原則定義
+若要查看訂用帳戶中的所有原則定義，請使用下列命令：
 
 ```powershell
-$policy = New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description "Policy to allow resource creation only in certain regions" -Policy '{
-   "if": {
-     "not": {
-       "field": "location",
-       "in": "[parameters(''allowedLocations'')]"
-     }
-   },
-   "then": {
-     "effect": "deny"
-   }
- }' -Parameter '{
-     "allowedLocations": {
-       "type": "array",
-       "metadata": {
-         "description": "An array of permitted locations for resources.",
-         "strongType": "location",
-         "displayName": "List of locations"
-       }
-     }
- }'
+Get-AzureRmPolicyDefinition
+```
+
+它會傳回所有可用的原則定義，包括內建原則。 每個原則都以下列格式傳回：
+
+```powershell
+Name               : e56962a6-4747-49cd-b67b-bf8b01975c4c
+ResourceId         : /providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c
+ResourceName       : e56962a6-4747-49cd-b67b-bf8b01975c4c
+ResourceType       : Microsoft.Authorization/policyDefinitions
+Properties         : @{displayName=Allowed locations; policyType=BuiltIn; description=This policy enables you to
+                     restrict the locations your organization can specify when deploying resources. Use to enforce
+                     your geo-compliance requirements.; parameters=; policyRule=}
+PolicyDefinitionId : /providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c
+```
+
+在繼續建立原則定義之前，請先查看內建原則。 如果找到可套用所需限制的內建原則，則您可以略過建立原則定義。 反之，將內建原則指派給所需的範圍。
+
+### <a name="create-policy-definition"></a>建立原則定義
+您可以使用 `New-AzureRmPolicyDefinition` cmdlet 建立原則定義。
+
+```powershell
+$policy = New-AzureRmPolicyDefinition -Name coolAccessTier -Description "Policy to specify access tier." -Policy '{
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "equals": "Microsoft.Storage/storageAccounts"
+      },
+      {
+        "field": "kind",
+        "equals": "BlobStorage"
+      },
+      {
+        "not": {
+          "field": "Microsoft.Storage/storageAccounts/accessTier",
+          "equals": "cool"
+        }
+      }
+    ]
+  },
+  "then": {
+    "effect": "deny"
+  }
+}'
 ```            
 
 輸出會儲存在於原則指派期間使用的 `$policy` 物件中。 
@@ -175,39 +200,41 @@ $policy = New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description 
 您不需要指定 JSON 做為參數，而可以提供路徑給包含原則規則的 .json 檔案。
 
 ```powershell
-$policy = New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description "Policy to allow resource creation only in certain regions" -Policy "c:\policies\storageskupolicy.json"
+$policy = New-AzureRmPolicyDefinition -Name coolAccessTier -Description "Policy to specify access tier." -Policy "c:\policies\coolAccessTier.json"
 ```
 
 ### <a name="assign-policy"></a>指派原則
 
-使用 `New-AzureRmPolicyAssignment` cmdlet 將原則套用至所需範圍︰
+使用 `New-AzureRmPolicyAssignment` Cmdlet 將原則套用至所需範圍。 以下範例將原則指派到資源群組。
 
 ```powershell
 $rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
+New-AzureRMPolicyAssignment -Name accessTierAssignment -Scope $rg.ResourceId -PolicyDefinition $policy
+```
+
+若要指派需要參數的原則，可建立包含那些值的物件。 以下範例會擷取內建原則並將參數值傳入：
+
+```powershell
+$rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
+$policy = Get-AzureRmPolicyDefinition -Id /providers/Microsoft.Authorization/policyDefinitions/e5662a6-4747-49cd-b67b-bf8b01975c4c
 $array = @("West US", "West US 2")
-$param = @{"allowedLocations"=$array}
-New-AzureRMPolicyAssignment -Name regionPolicyAssignment -Scope $rg.ResourceId -PolicyDefinition $policy -PolicyParameterObject $param
+$param = @{"listOfAllowedLocations"=$array}
+New-AzureRMPolicyAssignment -Name locationAssignment -Scope $rg.ResourceId -PolicyDefinition $policy -PolicyParameterObject $param
 ```
 
-### <a name="view-policies"></a>檢視原則
+### <a name="view-policy-assignment"></a>檢視原則指派
 
-若要取得所有的原則指派，請使用：
-
-```powershell
-Get-AzureRmPolicyAssignment
-```
-
-若要取得特定的原則，請使用：
+若要取得特定的原則指派，請使用：
 
 ```powershell
 $rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
-(Get-AzureRmPolicyAssignment -Name regionPolicyAssignment -Scope $rg.ResourceId
+(Get-AzureRmPolicyAssignment -Name accessTierAssignment -Scope $rg.ResourceId
 ```
 
 若要檢視原則定義的原則規則，請使用：
 
 ```powershell
-(Get-AzureRmPolicyDefinition -Name regionPolicyDefinition).Properties.policyRule | ConvertTo-Json
+(Get-AzureRmPolicyDefinition -Name coolAccessTier).Properties.policyRule | ConvertTo-Json
 ```
 
 ### <a name="remove-policy-assignment"></a>移除原則指派 
@@ -218,39 +245,70 @@ $rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
 Remove-AzureRmPolicyAssignment -Name regionPolicyAssignment -Scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
 ```
 
-## <a name="azure-cli-20"></a>Azure CLI 2.0
+## <a name="azure-cli"></a>Azure CLI
+
+### <a name="view-policy-definitions"></a>檢視原則定義
+若要查看訂用帳戶中的所有原則定義，請使用下列命令：
+
+```azurecli
+az policy definition list
+```
+
+它會傳回所有可用的原則定義，包括內建原則。 每個原則都以下列格式傳回：
+
+```azurecli
+{                                                            
+  "description": "This policy enables you to restrict the locations your organization can specify when deploying resources. Use to enforce your geo-compliance requirements.",                      
+  "displayName": "Allowed locations",                                                                                                                "id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",                                                 "name": "e56962a6-4747-49cd-b67b-bf8b01975c4c",                                                                                                    "policyRule": {                                                                                                                                      "if": {                                                                                                                                              "not": {                                                                                                                                             "field": "location",                                                                                                                               "in": "[parameters('listOfAllowedLocations')]"                                                                                                   }                                                                                                                                                },                                                                                                                                                 "then": {                                                                                                                                            "effect": "Deny"                                                                                                                                 }                                                                                                                                                },                                                                                                                                                 "policyType": "BuiltIn"
+}
+```
+
+在繼續建立原則定義之前，請先查看內建原則。 如果找到可套用所需限制的內建原則，則您可以略過建立原則定義。 反之，將內建原則指派給所需的範圍。
 
 ### <a name="create-policy-definition"></a>建立原則定義
 
-您可以使用 Azure CLI 2.0 搭配原則定義命令來建立原則定義。 以下範例會建立一個原則，只允許北歐和西歐中的資源。
+您可以使用 Azure CLI 搭配原則定義命令來建立原則定義。
 
 ```azurecli
-az policy definition create --name regionPolicyDefinition --description "Policy to allow resource creation only in certain regions" --rules '{    
-  "if" : {
-    "not" : {
-      "field" : "location",
-      "in" : ["northeurope" , "westeurope"]
-    }
+az policy definition create --name coolAccessTier --description "Policy to specify access tier." --rules '{
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "equals": "Microsoft.Storage/storageAccounts"
+      },
+      {
+        "field": "kind",
+        "equals": "BlobStorage"
+      },
+      {
+        "not": {
+          "field": "Microsoft.Storage/storageAccounts/accessTier",
+          "equals": "cool"
+        }
+      }
+    ]
   },
-  "then" : {
-    "effect" : "deny"
+  "then": {
+    "effect": "deny"
   }
 }'    
 ```
 
 ### <a name="assign-policy"></a>指派原則
 
-您可以使用原則指派命令將原則套用至所需的範圍：
+您可以使用原則指派命令將原則套用至所需的範圍。 以下範例將原則指派到資源群組。
 
 ```azurecli
-az policy assignment create --name regionPolicyAssignment --policy regionPolicyDefinition --scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
+az policy assignment create --name coolAccessTierAssignment --policy coolAccessTier --scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
 ```
 
-### <a name="view-policy-definition"></a>檢視原則定義
-若要取得原則定義，請使用下列命令：
+### <a name="view-policy-assignment"></a>檢視原則指派
+
+若要檢視原則指派，請提供原則指派名稱和範圍：
 
 ```azurecli
-az policy definition show --name regionPolicyAssignment
+az policy assignment show --name coolAccessTierAssignment --scope "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}"
 ```
 
 ### <a name="remove-policy-assignment"></a>移除原則指派 
@@ -258,62 +316,7 @@ az policy definition show --name regionPolicyAssignment
 若要移除原則指派，請使用：
 
 ```azurecli
-az policy assignment delete --name regionPolicyAssignment --scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
-```
-
-## <a name="azure-cli-10"></a>Azure CLI 1.0
-
-### <a name="create-policy-definition"></a>建立原則定義
-
-您可以使用 Azure CLI 搭配原則定義命令來建立原則定義。 以下範例會建立一個原則，只允許北歐和西歐中的資源。
-
-```azurecli
-azure policy definition create --name regionPolicyDefinition --description "Policy to allow resource creation only in certain regions" --policy-string '{    
-  "if" : {
-    "not" : {
-      "field" : "location",
-      "in" : ["northeurope" , "westeurope"]
-    }
-  },
-  "then" : {
-    "effect" : "deny"
-  }
-}'    
-```
-
-您可指定包含該原則的 .json 檔案路徑，而不以內嵌方式指定該原則。
-
-```azurecli
-azure policy definition create --name regionPolicyDefinition --description "Policy to allow resource creation only in certain regions" --policy "path-to-policy-json-on-disk"
-```
-
-### <a name="assign-policy"></a>指派原則
-
-您可以使用原則指派命令將原則套用至所需的範圍：
-
-```azurecli
-azure policy assignment create --name regionPolicyAssignment --policy-definition-id /subscriptions/{subscription-id}/providers/Microsoft.Authorization/policyDefinitions/{policy-name} --scope    /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
-```
-
-此處的範圍是您指定之資源群組的名稱。 如果 policy-definition-id 參數的值為未知，您可以透過 Azure CLI 取得該值。 
-
-```azurecli
-azure policy definition show {policy-name}
-```
-
-### <a name="view-policy"></a>檢視原則
-若要取得原則，請使用下列命令：
-
-```azurecli
-azure policy definition show {definition-name} --json
-```
-
-### <a name="remove-policy-assignment"></a>移除原則指派 
-
-若要移除原則指派，請使用：
-
-```azurecli
-azure policy assignment delete --name regionPolicyAssignment --scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
+az policy assignment delete --name coolAccessTier --scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
 ```
 
 ## <a name="next-steps"></a>後續步驟

@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 03/23/2017
+ms.date: 06/27/2017
 ms.author: babanisa;sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: b8ed786fe0c049d9be7ba1ca1cb6adef1950b8e9
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 775900fcae1b2832a5d0951e2a4053562c21455e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -29,27 +30,28 @@ ms.lasthandoff: 03/24/2017
 * **[診斷記錄](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**。 您可以設定診斷記錄，以取得在工作內所發生之所有事件的更詳細資訊。 診斷記錄涵蓋從建立工作到刪除工作期間的活動，包括工作執行時發生的更新與活動。
 
 ## <a name="turn-on-diagnostic-logs"></a>開啟診斷記錄
-診斷記錄預設為停用。 若要啟用診斷記錄，請執行下列動作：
 
-1.    在 [Azure 入口網站](https://portal.azure.com)中，移至 [資料流處理工作] 刀鋒視窗。
+診斷記錄預設為停用。 若要啟用診斷記錄，請執行下列步驟：
 
-2.    在 [監視] 底下，移至 [診斷記錄] 刀鋒視窗。
+1.  在 [Azure 入口網站](https://portal.azure.com)中，移至 [資料流處理工作] 刀鋒視窗。
+
+2.  在 [監視] 底下，移至 [診斷記錄] 刀鋒視窗。
 
     ![瀏覽到診斷記錄的刀鋒視窗](./media/service-bus-diagnostic-logs/image1.png)  
 
-3.    按一下 [開啟診斷]。
+3.  按一下 [開啟診斷]。
 
     ![開啟診斷記錄](./media/service-bus-diagnostic-logs/image2.png)
 
-4.    針對 [狀態]，按一下 [開啟]。
+4.  針對 [狀態]，按一下 [開啟]。
 
     ![變更診斷記錄狀態](./media/service-bus-diagnostic-logs/image3.png)
 
-5.    設定您要使用的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
+5.  設定您要使用的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
 
-6.    選取您要收集的記錄類別，例如**執行**或**製作**。
+6.  選取您要收集的記錄類別，例如**執行**或**製作**。
 
-7.    儲存新的診斷設定。
+7.  儲存新的診斷設定。
 
 新的設定大約會在 10 分鐘內生效。 之後，記錄就會顯示在 [診斷記錄] 刀鋒視窗上已設定的封存目標中。
 
@@ -57,7 +59,7 @@ ms.lasthandoff: 03/24/2017
 
 ## <a name="diagnostic-logs-schema"></a>診斷記錄結構描述
 
-所有記錄都會以「JavaScript 物件標記法」(JSON) 格式儲存。 每個項目都具有字串欄位，這些欄位會使用下列範例所述的格式。
+所有的記錄檔都會以 JavaScript 物件標記法 (JSON) 格式儲存。 每個項目都具有字串欄位，這些欄位會使用下列小節所述的格式。
 
 ## <a name="operation-logs-example"></a>作業記錄範例
 
@@ -68,7 +70,7 @@ ms.lasthandoff: 03/24/2017
 名稱 | 說明
 ------- | -------
 ActivityId | 用於追蹤的內部識別碼
-EventName | 作業名稱             
+EventName | 作業名稱           
 resourceId | Azure Resource Manager 資源識別碼
 SubscriptionId | 訂用帳戶識別碼
 EventTimeString | 作業時間
@@ -80,21 +82,23 @@ category | OperationalLogs
 以下是作業記錄 JSON 字串的範例：
 
 ```json
-Example:
 {
-     "ActivityId": "6aa994ac-b56e-4292-8448-0767a5657cc7",
-     "EventName": "Create Queue",
-     "resourceId": "/SUBSCRIPTIONS/1A2109E3-9DA0-455B-B937-E35E36C1163C/RESOURCEGROUPS/DEFAULT-SERVICEBUS-CENTRALUS/PROVIDERS/MICROSOFT.SERVICEBUS/NAMESPACES/SHOEBOXEHNS-CY4001",
-     "SubscriptionId": "1a2109e3-9da0-455b-b937-e35e36c1163c",
-     "EventTimeString": "9/28/2016 8:40:06 PM +00:00",
-     "EventProperties": "{\"SubscriptionId\":\"1a2109e3-9da0-455b-b937-e35e36c1163c\",\"Namespace\":\"shoeboxehns-cy4001\",\"Via\":\"https://shoeboxehns-cy4001.servicebus.windows.net/f8096791adb448579ee83d30e006a13e/?api-version=2016-07\",\"TrackingId\":\"5ee74c9e-72b5-4e98-97c4-08a62e56e221_G1\"}",
-     "Status": "Succeeded",
-     "Caller": "ServiceBus Client",
-     "category": "OperationalLogs"
+  "ActivityId": "6aa994ac-b56e-4292-8448-0767a5657cc7",
+  "EventName": "Create Queue",
+  "resourceId": "/SUBSCRIPTIONS/1A2109E3-9DA0-455B-B937-E35E36C1163C/RESOURCEGROUPS/DEFAULT-SERVICEBUS-CENTRALUS/PROVIDERS/MICROSOFT.SERVICEBUS/NAMESPACES/SHOEBOXEHNS-CY4001",
+  "SubscriptionId": "1a2109e3-9da0-455b-b937-e35e36c1163c",
+  "EventTimeString": "9/28/2016 8:40:06 PM +00:00",
+  "EventProperties": "{\"SubscriptionId\":\"1a2109e3-9da0-455b-b937-e35e36c1163c\",\"Namespace\":\"shoeboxehns-cy4001\",\"Via\":\"https://shoeboxehns-cy4001.servicebus.windows.net/f8096791adb448579ee83d30e006a13e/?api-version=2016-07\",\"TrackingId\":\"5ee74c9e-72b5-4e98-97c4-08a62e56e221_G1\"}",
+  "Status": "Succeeded",
+  "Caller": "ServiceBus Client",
+  "category": "OperationalLogs"
 }
 ```
 
 ## <a name="next-steps"></a>後續步驟
+
+請造訪下列連結以深入了解服務匯流排：
+
 * [服務匯流排簡介](service-bus-messaging-overview.md)
 * [開始使用服務匯流排](service-bus-dotnet-get-started-with-queues.md)
 

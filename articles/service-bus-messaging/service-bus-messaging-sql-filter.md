@@ -12,19 +12,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/23/2017
+ms.date: 06/27/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: c5127a457e99772a52b76e28e7fd3a3e4dd861b0
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 3aaec8f9b6a3bbcf814f771405c3b589de6f7ae0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
 
 # <a name="sqlfilter-syntax"></a>SQLFilter 語法
 
-*SqlFilter* 為 [SqlFilter Class](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) 的執行個體，代表對 [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage)進行評估之 SQL 語言為基礎的篩選條件運算式。 SqlFilter 支援 SQL-92 標準的子集。  
+*SqlFilter* 為 [SqlFilter Class](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) 的執行個體，代表對 [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) 進行評估之以 SQL 語言為基礎的篩選條件運算式。 SqlFilter 支援 SQL-92 標準的子集。  
   
  本主題列出 SqlFilter 文法的詳細資料。  
   
@@ -87,7 +88,7 @@ ms.lasthandoff: 03/24/2017
 [[:IsLetter:]][_[:IsLetter:][:IsDigit:]]*  
 ```  
   
-這表示任何以字母為開頭且後面跟著一或多個底線/字母/數字的字串。  
+此文法表示任何以字母為開頭且後面跟著一或多個底線/字母/數字的字串。  
   
 `[:IsLetter:]` 表示分類為 Unicode 字母的任何 Unicode 字元。 如果 `c` 為 Unicode 字母，`System.Char.IsLetter(c)` 會傳回 `true`。  
   
@@ -148,7 +149,7 @@ ms.lasthandoff: 03/24/2017
   
 -   `<integer_constant>` 是數字的字串，不會以引號括住且不包含小數點。 值會在內部儲存為 `System.Int64`，並遵循相同的範圍。  
   
-     以下為長常數的範例：  
+     這些是長常數的範例：  
   
     ```  
     1894  

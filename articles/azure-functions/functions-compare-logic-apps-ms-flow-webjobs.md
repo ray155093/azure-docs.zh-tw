@@ -17,10 +17,10 @@ ms.date: 09/08/2016
 ms.author: chrande; glenga
 ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 0f35d79870301bcba9f009f7dbc00696ce426458
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 31661e5840a6b65f54f9df027a7e3ecab8768055
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 ---
 # <a name="choose-between-flow-logic-apps-functions-and-webjobs"></a>在 Flow、Logic Apps、Functions 和 WebJobs 之間做選擇
@@ -50,7 +50,7 @@ Flow 可讓任何辦公室工作人員有能力執行簡單的整合 (例如取�
 | --- | --- | --- |
 | 觀眾 |辦公室工作人員、商務使用者 |IT 專家、開發人員 |
 | 案例 |自助服務 |關鍵任務 |
-| 設計工具 |瀏覽器中、僅限 UI |有瀏覽器內和 [Visual Studio](../logic-apps/logic-apps-deploy-from-vs.md)、[程式碼檢視](../logic-apps/logic-apps-author-definitions.md)可用 |
+| 設計工具 |瀏覽器內及行動裝置應用程式，僅限 UI |有瀏覽器內和 [Visual Studio](../logic-apps/logic-apps-deploy-from-vs.md)、[程式碼檢視](../logic-apps/logic-apps-author-definitions.md)可用 |
 | DevOps |特定、在生產環境中開發 |在 [Azure 資源管理](../logic-apps/logic-apps-arm-provision.md) |
 | 管理員體驗 |[https://flow.microsoft.com](https://flow.microsoft.com) |[https://portal.azure.com](https://portal.azure.com) |
 | 安全性 |標準做法︰[資料主權](https://wikipedia.org/wiki/Technological_Sovereignty)、敏感資料的[待用加密](https://wikipedia.org/wiki/Data_at_rest#Encryption)等。 |Azure 的安全性保證︰[Azure 安全性](https://www.microsoft.com/trustcenter/Security/AzureSecurity)、[資訊安全中心](https://azure.microsoft.com/services/security-center/)、[稽核記錄檔](https://azure.microsoft.com/blog/azure-audit-logs-ux-refresh/)等。 |

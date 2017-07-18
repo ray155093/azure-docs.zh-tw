@@ -12,17 +12,18 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 01/05/2017
+ms.date: 06/30/2017
 ms.author: mfussell
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: ce1291261cd8f65d44873217345ae6efaa515534
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: e673b45a43a06d18040c3437caf8765704d5c36a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
 # <a name="configure-security-policies-for-your-application"></a>設定應用程式的安全性原則
-使用 Azure Service Fabric，您可以協助保護叢集中以不同使用者帳戶執行的應用程式。 在以該使用者帳戶部署時，Service Fabric 也會協助保護應用程式所使用的資源，例如檔案、目錄和憑證。 如此一來，即使在共用主控環境中，執行中的應用程式就不會彼此干擾。
+藉由使用 Azure Service Fabric，您便可以保護在叢集中以不同使用者帳戶執行的應用程式。 在以該使用者帳戶部署時，Service Fabric 也會協助保護應用程式所使用的資源，例如檔案、目錄和憑證。 如此一來，即使在共用主控環境中，執行中的應用程式就不會彼此干擾。
 
 根據預設，Service Fabric 應用程式會在用以執行 Fabric.exe 程序的帳戶之下執行。 Service Fabric 也能夠以本機使用者帳戶或本機系統帳戶 (在應用程式的資訊清單內指定) 執行應用程式。 支援的本機系統帳戶類型為 **LocalUser**、**NetworkService**、**LocalService** 和 **LocalSystem**。
 
@@ -202,7 +203,7 @@ Echo "Test console redirection which writes to the application log folder on the
 在前述步驟中，您看到了如何將 RunAs 原則套用到 SetupEntryPoint。 讓我們深入了解如何建立可當作服務原則套用的不同主體。
 
 ### <a name="create-local-user-groups"></a>建立本機使用者群組
-您可以定義和建立使用者群組，然後將一或多個使用者新增至群組。 如果不同的服務進入點有多個使用者，而且他們需要有可在群組層級取得的某些常見權限，這是特別有用。 下列範例顯示名為 **LocalAdminGroup** 且具有系統管理員權限的本機群組。 Customer1 和 Customer2 這兩個使用者會成為此本機群組的成員。
+您可以定義和建立使用者群組，然後將一或多個使用者新增至群組。 當不同的服務進入點有多個使用者，而他們需要具備可在群組層級取得的某些通用權限時，這會很有用。 下列範例顯示名為 **LocalAdminGroup** 且具有系統管理員權限的本機群組。 Customer1 和 Customer2 這兩個使用者會成為此本機群組的成員。
 
 ```xml
 <Principals>
@@ -239,7 +240,7 @@ Echo "Test console redirection which writes to the application log folder on the
 </Principals>
 ```
 
-如果應用程式要求使用者帳戶和密碼在所有機器上必須都相同 (例如，為了啟用 NTLM 驗證)，叢集資訊清單就必須將 NTLMAuthenticationEnabled 設定為 true。 叢集資訊清單也必須指定將用來在所有機器產生相同密碼的 NTLMAuthenticationPasswordSecret。
+如果應用程式要求使用者帳戶和密碼在所有機器上必須都相同 (例如，為了啟用 NTLM 驗證)，叢集資訊清單就必須將 NTLMAuthenticationEnabled 設定為 true。 叢集資訊清單也必須指定用來在所有機器產生相同密碼的 NTLMAuthenticationPasswordSecret。
 
 ```xml
 <Section Name="Hosting">
@@ -270,7 +271,7 @@ Echo "Test console redirection which writes to the application log folder on the
 </Policies>
 ```
 ### <a name="use-an-active-directory-domain-group-or-user"></a>使用 Active Directory 網域群組或使用者
-對於安裝在 Windows Server 上的 Service Fabric 執行個體，獨立安裝程式可讓您以 Active Directory 使用者或群組帳戶的認證來執行服務。 注意︰這是您的網域內部部署的 Active Directory，與 Azure Active Directory (Azure AD) 無關。 然後，您可以使用網域使用者或群組，存取網域中已經被授與權限的其他資源 (例如檔案共用)。
+對於安裝在 Windows Server 上的 Service Fabric 執行個體，獨立安裝程式可讓您以 Active Directory 使用者或群組帳戶的認證來執行服務。 這是在您網域內的內部部署 Active Directory，與 Azure Active Directory (Azure AD) 無關。 然後，您可以使用網域使用者或群組，存取網域中已經被授與權限的其他資源 (例如檔案共用)。
 
 下列範例顯示的 Active Directory 使用者稱為 *TestUser*，其網域密碼以稱為 *MyCert* 的憑證加密。 您可以使用 `Invoke-ServiceFabricEncryptText` Powershell 命令來建立密碼加密文字。 如需詳細資訊，請參閱[管理 Service Fabric 應用程式中的密碼](service-fabric-application-secret-management.md)。
 
@@ -304,7 +305,7 @@ Echo "Test console redirection which writes to the application log folder on the
 ```
 New-ADServiceAccount -name svc-Test$ -DnsHostName svc-test.contoso.com  -ServicePrincipalNames http/svc-test.contoso.com -PrincipalsAllowedToRetrieveManagedPassword SfNode0$,SfNode1$,SfNode2$,SfNode3$,SfNode4$
 ```
-2. 在每個 Service Fabric 叢集節點上 (例如 `SfNode0$,SfNode1$,SfNode2$,SfNode3$,SfNode4$`) 上，安裝和測試 gMSA。
+2. 在每個 Service Fabric 叢集節點 (例如 `SfNode0$,SfNode1$,SfNode2$,SfNode3$,SfNode4$`) 上，安裝並測試 gMSA。
 ```
 Add-WindowsFeature RSAT-AD-PowerShell
 Install-AdServiceAccount svc-Test$
@@ -330,7 +331,7 @@ Test-AdServiceAccount svc-Test$
 ```
 
 ## <a name="assign-a-security-access-policy-for-http-and-https-endpoints"></a>為 HTTP 和 HTTPS 端點指派安全性存取原則
-如果您將 RunAs 原則套用到服務，而且服務資訊清單宣告具有 HTTP 通訊協定的端點資源，則您必須指定 **SecurityAccessPolicy**，以確保配置給這些端點的連接埠都已針對用以執行服務的 RunAs 使用者帳戶，正確列入存取控制清單中。 否則， **http.sys** 無法存取服務，而且您從用戶端呼叫時將會失敗。 下列範例會將 Customer3 帳戶套用到名為 **ServiceEndpointName** 的端點，並給予完整的存取權限。
+如果您將 RunAs 原則套用到服務，而且服務資訊清單宣告具有 HTTP 通訊協定的端點資源，則您必須指定 **SecurityAccessPolicy**，以確保配置給這些端點的連接埠都已針對用以執行服務的 RunAs 使用者帳戶，正確列入存取控制清單中。 否則， **http.sys** 無法存取服務，而且您從用戶端呼叫時將會失敗。 下列範例會將 Customer1 帳戶套用到名為 **EndpointName** 的端點，這會給予它完整的存取權限。
 
 ```xml
 <Policies>
@@ -351,7 +352,12 @@ Test-AdServiceAccount svc-Test$
   <EndpointBindingPolicy EndpointRef="EndpointName" CertificateRef="Cert1" />
 </Policies
 ```
+## <a name="upgrading-multiple-applications-with-https-endpoints"></a>使用 https 端點來升級多個應用程式
+使用 http**s** 時，請務必小心，不要將「相同的連接埠」用於相同應用程式的不同執行個體。 原因是 Service Fabric 將無法升級其中一個應用程式執行個體的憑證。 舉例來說，如果應用程式 1 或應用程式 2 都想要將其憑證 1 升級至憑證 2。 當進行升級時，Service Fabric 可能已清除憑證 1 在 http.sys 的註冊，儘管另一個應用程式仍然在使用它。 為了防止這種情況，Service Fabric 會偵測到該連接埠上已經有另一個應用程式以該憑證註冊 (因為 http.sys)，而讓作業失敗。
 
+因此，Service Fabric 不支援在不同的應用程式執行個體中，使用「相同的連接埠」來升級兩個不同的服務。 換句話說，您無法在相同連接埠的不同服務上使用相同的憑證。 如果您需要在相同的連接埠上使用共用憑證，就必須使用放置條件約束，以確保將這些服務放在不同的機器上。 或者，可能的話，考慮針對每個應用程式執行個體中的每個服務，使用 Service Fabric 動態連接埠。 
+
+如果您看到使用 https 進行升級失敗，系統將會顯示錯誤警告「Windows HTTP 伺服器 API 針對共用連接埠的應用程式不支援多個憑證」。
 
 ## <a name="a-complete-application-manifest-example"></a>完整的應用程式資訊清單範例
 下列應用程式資訊清單顯示許多不同的設定：

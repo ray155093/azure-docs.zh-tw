@@ -1,6 +1,6 @@
 ---
 title: "如何搭配 Java 使用 Azure 服務匯流排主題 | Microsoft Docs"
-description: "了解如何在 Azure 使用服務匯流排主題及訂用帳戶。 程式碼範例專為 Java 應用程式撰寫。"
+description: "使用 Azure 中的服務匯流排主題和訂用帳戶。"
 services: service-bus-messaging
 documentationcenter: java
 author: sethmanheim
@@ -12,13 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 03/23/2017
+ms.date: 06/28/2017
 ms.author: sethm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 7132d1e42963d2e419d2bf1b7866ca5888f8719d
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 03cc66659c599b07623e4ba4757b8512a67577b1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/24/2017
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -152,7 +152,7 @@ BrokeredMessage message = new BrokeredMessage("MyMessage");
 service.sendTopicMessage("TestTopic", message);
 ```
 
-傳送至服務匯流排主題的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage] *物件具有一組標準方法 (例如* *setLabel* *和* *TimeToLive** )、一個用來保存自訂應用程式特定屬性的字典，以及任意應用程式資料的主體。應用程式可設定訊息主體，方法是將任何可序列化物件傳遞到 [BrokeredMessage][BrokeredMessage] 的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。或者，也可以提供 **java.io.InputStream** 。
+傳送至服務匯流排主題的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage]* 物件具有一組標準方法 (例如 **setLabel** 和 **TimeToLive**)、一個用來保存自訂應用程式特定屬性的字典，以及一個任意應用程式資料的主體。 應用程式可設定訊息主體，方法是將任何可序列化物件傳遞到 [BrokeredMessage][BrokeredMessage]的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來將物件序列化。 或者，也可以提供 **java.io.InputStream**。
 
 下列範例將示範如何傳送五則測試訊息至上述程式碼片段中所取得的 `TestTopic` **MessageSender**。
 請注意迴圈反覆運算上每個訊息的 **MessageNumber** 屬性值的變化 (這可判斷接收訊息的訂用帳戶為何)：
@@ -168,7 +168,7 @@ service.sendTopicMessage("TestTopic", message);
 }
 ```
 
-服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。
+服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有限制。 此主題大小會在建立時定義，上限是 5 GB。
 
 ## <a name="how-to-receive-messages-from-a-subscription"></a>如何自訂用帳戶接收訊息
 若要從訂用帳戶接收訊息，請使用 **ServiceBusContract** 物件。 接收的訊息可在兩種不同的模式下運作：**ReceiveAndDelete** 和 **PeekLock**。
