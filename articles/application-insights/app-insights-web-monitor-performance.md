@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 11/25/2015
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: cbdef43381deac957c0e48b7043273c43b032935
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 4fbf4fcfba4452111f406fe0f2303731877eba71
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/07/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -29,6 +29,9 @@ ms.lasthandoff: 04/07/2017
 Application Insights 可以監視 Java 和 ASP.NET Web 應用程式與服務、WCF 服務。 這些服務可以裝載在內部部署、虛擬機器上，或做為 Microsoft Azure 網站。 
 
 用戶端方面，Application Insights 可從網頁及各種裝置 (包括 iOS、Android 和 Windows 市集應用程式) 上取得遙測。
+
+>[!Note]
+> 我們讓尋找您的 Web 應用程式中緩慢執行分頁有新的體驗。 如果您沒有它的存取權，藉由使用[預覽刀鋒視窗](app-insights-previews.md)以設定預覽選項來啟用它。 在[使用互動式效能調查尋找及修正效能瓶頸](#Find-and-fix-performance-bottlenecks-with-an-interactive-Performance-investigation)中深入了解這個新體驗。
 
 ## <a name="setup"></a>設定效能監視
 如果您尚未將 Application Insights 新增至專案中 (亦即專案沒有 ApplicationInsights.config)，請選擇以下任一種方法來開始使用：
@@ -52,16 +55,14 @@ Application Insights 可以監視 Java 和 ASP.NET Web 應用程式與服務、W
 
 > [!NOTE]
 > **取消核取所有度量** 可查看所有可供選擇的項目。 度量分為多個群組；當您選取群組的任何成員時，只有該群組的其他成員會出現。
-> 
-> 
 
 ## <a name="metrics"></a>這具有哪些意義？ 效能磚和報告
-您可以取用多種效能度量。 我們從預設顯示在應用程式分頁中的度量開始討論。
+您可以取用多種效能計量。 我們從預設顯示在應用程式分頁中的度量開始討論。
 
 ### <a name="requests"></a>要求
 在指定期間內接收到的 HTTP 要求數量。 將此度量與其他報告中的結果比較，可了解應用程式在各種負載下的行為。
 
-HTTP 要求包括頁面、資料及影像的所有 GET 或 POST 要求。
+HTTP 要求包括分頁、資料及映像的所有 GET 或 POST 要求。
 
 按一下磚可取得特定 URL 的計數。
 
@@ -72,7 +73,7 @@ HTTP 要求包括頁面、資料及影像的所有 GET 或 POST 要求。
 
 找尋異常的高峰。 一般來說，當要求增加時，回應時間也會上升。 如果出現不相稱的上升跡象，表示應用程式可能遭遇到資源限制 (例如，應用程式使用之服務的 CPU 或容量)。
 
-按一下磚可取得特定 URL 的時間。
+按一下圖格可取得特定 URL 的時間。
 
 ![](./media/app-insights-web-monitor-performance/appinsights-42reqs.png)
 
@@ -95,7 +96,7 @@ HTTP 要求包括頁面、資料及影像的所有 GET 或 POST 要求。
 
 ![取消選取所有度量以查看完整的集合](./media/app-insights-web-monitor-performance/appinsights-62allchoices.png)
 
-選取任何度量將會停用其他度量，使其無法顯示在同一個圖表中。
+選取任何計量將會停用其他計量，使其無法顯示在同一個圖表中。
 
 ## <a name="set-alerts"></a>設定警示
 若要在任何度量有不尋常的值時收到電子郵件通知，請加入警示。 您可以選擇將電子郵件傳送給帳戶管理員，或傳送給特定的電子郵件地址。
@@ -114,6 +115,37 @@ HTTP 要求包括頁面、資料及影像的所有 GET 或 POST 要求。
 * 設定 [Web 測試][availability]，以在網站故障、回應異常或過於緩慢時收到警示。 
 * 比較要求計數與其他度量，了解失敗或回應過慢的情況是否與負載有關。
 * 在程式碼中[插入及搜尋追蹤陳述式][diagnostic]有助於找出問題所在。
+* 使用[即時計量資料流][livestream]監視作業中的 Web 應用程式。
+* 使用[快照集偵錯工具][snapshot]擷取 .Net 應用程式的狀態。
+
+## <a name="find-and-fix-performance-bottlenecks-with-an-interactive-performance-investigation"></a>使用互動式效能調查尋找及修正效能瓶頸
+
+您可以使用新的 Application Insights 互動式效能調查，以找出減緩整體效能的 Web 應用程式區域。 您可以快速地找出減緩速度的特定分頁，並且使用[分析工具](app-insights-profiler.md)以查看這些分頁之間是否有相互關聯。
+
+### <a name="create-a-list-of-slow-performing-pages"></a>建立一份執行緩慢分頁的清單 
+
+找出效能問題的第一個步驟是取得緩慢回應分頁的清單。 下列螢幕擷取畫面示範如何使用 [效能] 刀鋒視窗取得一份要進一步調查的潛在分頁清單。 您可以從這個分頁快速地查看應用程式的回應時間在大約下午 6:00 時以及再次於大約下午 10 點時減緩。 您也可以看到 GET 客戶/詳細資料作業有一些長時間執行的作業，回應時間中間值為 507.05 毫秒。 
+
+![Application Insights 互動式效能](./media/app-insights-web-monitor-performance/performance1.png)
+
+### <a name="drill-down-on-specific-pages"></a>向下鑽研特定分頁
+
+您有了應用程式效能的快照集之後，您可以取得更多特定執行緩慢作業的詳細資料。 按一下清單中的任何作業以查看詳細資料，如下所示。 您可以從圖表中查看效能是否以相依性為基礎。 您也可以查看有多少使用者遇到各種不同的回應時間。 
+
+![Application Insights 作業刀鋒視窗](./media/app-insights-web-monitor-performance/performance5.png)
+
+### <a name="drill-down-on-a-specific-time-period"></a>在特定時間週期向下鑽研
+
+您識別要調查的時間點之後，更進一步向下鑽研以查看可能導致效能減緩的特定作業。 當您按一下特定時間點時，會取得分頁的詳細資料，如下所示。 在以下範例中，您可以看到針對指定時間週期列出的作業，以及伺服器回應碼和作業持續時間。 如果您需要將此資訊傳送給開發小組，您也有開啟 TFS 工作項目的 URL。
+
+![Application Insights 時間配量](./media/app-insights-web-monitor-performance/performance2.png)
+
+### <a name="drill-down-on-a-specific-operation"></a>在特定作業向下鑽研
+
+您識別要調查的時間點之後，更進一步向下鑽研以查看可能導致效能減緩的特定作業。 從清單按一下作業，以查看作業的詳細資料，如下所示。 在此範例中，您可以看到作業失敗，且 Application Insights 提供應用程式擲回之例外狀況的詳細資料。 同樣地，您可以從這個刀鋒視窗輕鬆地建立 TFS 工作項目。
+
+![Application Insights 作業刀鋒視窗](./media/app-insights-web-monitor-performance/performance3.png)
+
 
 ## <a name="next"></a>接續步驟
 [Web 測試][availability] - 定期從全世界傳送 Web 要求給應用程式。
@@ -135,6 +167,9 @@ HTTP 要求包括頁面、資料及影像的所有 GET 或 POST 要求。
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md
 [usage]: app-insights-web-track-usage.md
+[livestream]: app-insights-live-stream.md
+[snapshot]: app-insights-snapshot-debugger.md
+
 
 
 

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/12/2017
 ms.author: raymondl;garye
-translationtype: Human Translation
-ms.sourcegitcommit: 247d370c1f80729856e53690045991127ad54351
-ms.openlocfilehash: 4c9f2bb57e3669327d8704b93fa56e2ace1e8b35
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 482726c1dae5385964e08b720e529817d5907537
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -54,7 +55,7 @@ Web 服務的 API 文件會包含 Web 服務使用者在存取 Web 服務時，�
    * 在 **[請指定驗證類型]**底下，選取 [帳戶]。
    * 輸入 Azure Blob 儲存體的帳戶資訊。 
      <p />
-3. 按一下 **[以容器參數為開頭的 Blob 路徑]**右邊的圖示。 它看起來像這樣：
+3. 按一下 [以容器參數為開頭的 Blob 路徑]**** 右邊的圖示。 它看起來像這樣：
    
    ![Web 服務參數圖示][icon]
    
@@ -76,7 +77,7 @@ Web 服務的使用者現在即可在存取 Web 服務時，為[匯出資料][wr
 ## <a name="more-information"></a>詳細資訊
 如需更詳細的範例，請參閱 [Machine Learning Blog](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) 中的 [Web 服務參數](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx)項目。
 
-如需存取 Machine Learning Web 服務的詳細資訊，請參閱 [如何使用已發佈的 Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+有關存取 Machine Learning Web 服務的詳細資訊，請參閱[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 <!-- Images -->
 [icon]: ./media/machine-learning-web-service-parameters/icon.png

@@ -3,7 +3,7 @@ title: "使用 Docker 電腦在 Azure 中建立 Linux 主機 | Microsoft Docs"
 description: "說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。"
 services: virtual-machines-linux
 documentationcenter: 
-author: squillace
+author: iainfoulds
 manager: timlt
 editor: tysonn
 ms.assetid: 164b47de-6b17-4e29-8b7d-4996fa65bea4
@@ -12,52 +12,57 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 07/22/2016
-ms.author: rasquill
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: b303510970aca957a4da5f2ed51a9125302d419a
-ms.lasthandoff: 04/03/2017
+ms.date: 06/19/2017
+ms.author: iainfou
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: a69951ed60edab8ae20374ab3869b468979c4907
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
-# <a name="use-docker-machine-with-the-azure-driver"></a>使用 Docker 電腦搭配 Azure 驅動程式
-[Docker](https://www.docker.com/) 使用 Linux 容器 (而非 VM) 來提供虛擬化，以隔離共用資源上的應用程式資料與計算。 本主題說明如何及何時使用 [Docker 電腦](https://docs.docker.com/machine/)。 `docker-machine` 命令可在 Azure 中建立新的 Linux VM，而該 VM 會當作 Linux 容器的 Docker 主機啟用。
+# <a name="how-to-use-docker-machine-to-create-hosts-in-azure"></a>如何使用 Docker 電腦在 Azure 中建立主機
+這篇文章說明如何使用 [Docker 電腦](https://docs.docker.com/machine/)在 Azure 中建立主機。 `docker-machine` 命令會在 Azure 中建立 Linux 虛擬機器 (VM)，然後安裝 Docker。 接著，您可以使用相同本機工具和工作流程，在 Azure 中管理您的 Docker 主機。
 
 ## <a name="create-vms-with-docker-machine"></a>使用 Docker 電腦建立 VM
-使用驅動程式選項 (`-d`) 的 `azure` 驅動程式引數和任何其他引數，以 `docker-machine create` 命令在 Azure 中建立 Docker 主機 VM。 
+首先，使用 [az account show](/cli/azure/account#show) 取得您的 Azure 訂用帳戶識別碼，如下所示：
 
-下例依賴預設值，但它確實會開啟連接網際網路的 VM 連接埠 80 以使用 nginx 容器來進行測試、讓 `ops` 成為 SSH 的登入使用者，以及呼叫新的 VM `machine`。 
+```azurecli
+sub=$(az account show --query "id" -o tsv)
+```
 
-輸入 `docker-machine create --driver azure` 查看選項及其預設值，您也可以參閱 [Docker Azure 驅動程式文件](https://docs.docker.com/machine/drivers/azure/)。 (請注意，如果啟用了雙因素驗證，系統會提示您使用第二個因素驗證)。
+您使用 `docker-machine create`，將 *azure* 指定為驅動程式，在 Azure 中建立 Docker 主機 VM。 如需詳細資訊，請參閱 [Docker Azure 驅動程式文件](https://docs.docker.com/machine/drivers/azure/)
+
+下列範例會建立名為 *myVM* 的 VM，建立名為 *azureuser* 的使用者帳戶，並且在主機 VM 上開啟連接埠 80。 依照任何提示登入您的 Azure 帳戶，並且授與 Docker 電腦權限以建立及管理資源。
 
 ```bash
 docker-machine create -d azure \
-  --azure-ssh-user ops \
-  --azure-subscription-id <Your AZURE_SUBSCRIPTION_ID> \
-  --azure-open-port 80 \
-  machine
+    --azure-subscription-id $sub \
+    --azure-ssh-user azureuser \
+    --azure-open-port 80 \
+    myvm
 ```
 
-輸出應該類似下面這樣，端視您的帳戶中是否設定了雙因素驗證。
+輸出大致如下列範例所示：
 
 ```bash
 Creating CA: /Users/user/.docker/machine/certs/ca.pem
 Creating client certificate: /Users/user/.docker/machine/certs/cert.pem
 Running pre-create checks...
-(machine) Microsoft Azure: To sign in, use a web browser to open the page https://aka.ms/devicelogin. Enter the code <code> to authenticate.
-(machine) Completed machine pre-create checks.
+(myvmdocker) Completed machine pre-create checks.
 Creating machine...
-(machine) Querying existing resource group.  name="machine"
-(machine) Creating resource group.  name="machine" location="eastus"
-(machine) Configuring availability set.  name="docker-machine"
-(machine) Configuring network security group.  name="machine-firewall" location="eastus"
-(machine) Querying if virtual network already exists.  name="docker-machine-vnet" location="eastus"
-(machine) Configuring subnet.  name="docker-machine" vnet="docker-machine-vnet" cidr="192.168.0.0/16"
-(machine) Creating public IP address.  name="machine-ip" static=false
-(machine) Creating network interface.  name="machine-nic"
-(machine) Creating storage account.  name="vhdsolksdjalkjlmgyg6" location="eastus"
-(machine) Creating virtual machine.  name="machine" location="eastus" size="Standard_A2" username="ops" osImage="canonical:UbuntuServer:15.10:latest"
+(myvmdocker) Querying existing resource group.  name="docker-machine"
+(myvmdocker) Creating resource group.  name="docker-machine" location="westus"
+(myvmdocker) Configuring availability set.  name="docker-machine"
+(myvmdocker) Configuring network security group.  name="myvmdocker-firewall" location="westus"
+(myvmdocker) Querying if virtual network already exists.  rg="docker-machine" location="westus" name="docker-machine-vnet"
+(myvmdocker) Creating virtual network.  name="docker-machine-vnet" rg="docker-machine" location="westus"
+(myvmdocker) Configuring subnet.  name="docker-machine" vnet="docker-machine-vnet" cidr="192.168.0.0/16"
+(myvmdocker) Creating public IP address.  name="myvmdocker-ip" static=false
+(myvmdocker) Creating network interface.  name="myvmdocker-nic"
+(myvmdocker) Creating storage account.  sku=Standard_LRS name="vhdski0hvfazyd8mn991cg50" location="westus"
+(myvmdocker) Creating virtual machine.  location="westus" size="Standard_A2" username="azureuser" osImage="canonical:UbuntuServer:16.04.0-LTS:latest" name="myvmdocker"
 Waiting for machine to be running, this may take a few minutes...
 Detecting operating system of created instance...
 Waiting for SSH to be available...
@@ -69,65 +74,68 @@ Copying certs to the remote machine...
 Setting Docker configuration on the remote daemon...
 Checking connection to Docker...
 Docker is up and running!
-To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env machine
+To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env myvmdocker
 ```
 
-## <a name="configure-your-docker-shell"></a>設定您的 Docker 介面
-現在請輸入 `docker-machine env <VM name>` ，看看設定介面需要做些什麼。 
+## <a name="configure-your-docker-shell"></a>設定您的 Docker 殼層
+若要連線到 Azure 中的 Docker 主機，請定義適當的連線設定。 如輸出結尾所述，檢視 Docker 主機的連線資訊，如下所示： 
 
 ```bash
-docker-machine env machine
+docker-machine env myvmdocker
 ```
 
-這會列印環境資訊，看起來像這樣。 請注意，IP 位址已指派，如此您需要測試 VM。
+輸出類似於下列範例：
 
 ```bash
 export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://191.237.46.90:2376"
-export DOCKER_CERT_PATH="/Users/rasquill/.docker/machine/machines/machine"
+export DOCKER_HOST="tcp://40.68.254.142:2376"
+export DOCKER_CERT_PATH="/Users/user/.docker/machine/machines/machine"
 export DOCKER_MACHINE_NAME="machine"
 # Run this command to configure your shell:
-# eval $(docker-machine env machine)
+# eval $(docker-machine env myvmdocker)
 ```
 
-您可以執行建議的組態命令，或自行設定環境變數。 
+若要定義連線設定，您可以執行建議的設定命令 (`eval $(docker-machine env myvmdocker)`)，或手動設定環境變數。 
 
 ## <a name="run-a-container"></a>執行容器
-現在，您可以執行簡單的 Web 伺服器，測試所有項目是否都運作正常。 我們在此使用標準的 nginx 映像，指定它應接聽連接埠 80，而且若 VM 重新啟動，則容器也應該重新啟動 (`--restart=always`)。 
+為了查看作用中的容器，讓我們執行基本 NGINX 網頁伺服器。 使用 `docker run` 建立容器，並且為 Web 流量公開連接埠 80，如下所示：
 
 ```bash
 docker run -d -p 80:80 --restart=always nginx
 ```
 
-輸出應該類似下面這樣：
+輸出類似於下列範例：
 
 ```bash
 Unable to find image 'nginx:latest' locally
 latest: Pulling from library/nginx
-efd26ecc9548: Pull complete
-a3ed95caeb02: Pull complete
-83f52fbfa5f8: Pull complete
-fa664caa1402: Pull complete
-Digest: sha256:12127e07a75bda1022fbd4ea231f5527a1899aad4679e3940482db3b57383b1d
+ff3d52d8f55f: Pull complete
+226f4ec56ba3: Pull complete
+53d7dd52b97d: Pull complete
+Digest: sha256:41ad9967ea448d7c2b203c699b429abe1ed5af331cd92533900c6d77490e0268
 Status: Downloaded newer image for nginx:latest
-25942c35d86fe43c688d0c03ad478f14cc9c16913b0e1c2971cb32eb4d0ab721
+675e6056cb81167fe38ab98bf397164b01b998346d24e567f9eb7a7e94fba14a
+```
+
+使用 `docker ps` 檢視執行中容器。 下列範例輸出顯示使用已公開連接埠 80 執行的 NGINX 容器：
+
+```bash
+CONTAINER ID    IMAGE    COMMAND                   CREATED          STATUS          PORTS                          NAMES
+d5b78f27b335    nginx    "nginx -g 'daemon off"    5 minutes ago    Up 5 minutes    0.0.0.0:80->80/tcp, 443/tcp    festive_mirzakhani
 ```
 
 ## <a name="test-the-container"></a>測試容器
-使用 `docker ps`檢查執行中容器：
+取得 Docker 主機的公用 IP 位址，如下所示：
+
 
 ```bash
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
-d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago       Up 5 minutes        0.0.0.0:80->80/tcp, 443/tcp   goofy_mahavira
+docker-machine ip myvmdocker
 ```
 
-查看執行中的容器，輸入 `docker-machine ip <VM name>` 以尋找 IP 位址 (如果忘記請從 `env` 命令)：
+若要查看作用中的容器，開啟網頁瀏覽器並輸入上述命令輸出中所述的公用 IP 位址：
 
-![執行 ngnix 容器](./media/docker-machine/nginxsuccess.png)
+![執行 ngnix 容器](./media/docker-machine/nginx.png)
 
 ## <a name="next-steps"></a>後續步驟
-如果有興趣，您可以試用 Azure [Docker VM 擴充功能](dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，用 Azure CLI 或 Azure Resource Manager 範本執行相同的作業。 
-
-如需更多使用 Docker 的範例，請參閱 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 連線[示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的[使用 Docker](https://github.com/Microsoft/HealthClinic.biz/wiki/Working-with-Docker)。 如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure 開發人員工具快速入門](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
-
+您也可以使用 [Docker VM 延伸模組](dockerextension.md)建立主機。 如需使用 Docker Compose 的範例，請參閱[在 Azure 中開始使用 Docker 與 Compose](docker-compose-quickstart.md)。
 

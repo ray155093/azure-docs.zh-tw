@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 0a66567d7381f38787f9aa7652c944e4bb3aef82
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 311cee724fc77256748153b5167d2a38ccba9775
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -41,19 +41,21 @@ ms.lasthandoff: 05/09/2017
 建立新的 Application Insights 資源時，基本方案是預設方案，應可滿足大部分客戶的需要。
 
 * 基本方案是依照您的資料量收費︰Application Insights 接收的遙測位元組數。 資料量是測量 Application Insights 從應用程式收到的未壓縮 JSON 資料套件的大小。
+對於[匯入分析的表格式資料](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-analytics-import)，資料磁碟區會測量為傳送至 Application Insights 之檔案的解壓縮大小。  
 * 每個應用程式的第一個 1 GB 是免費的，因此如果只是實驗或開發，您可能不需要付費。
 * [即時計量串流](app-insights-live-stream.md)資料不會計入價格用途。
-* 在基本方案中，可以依照每一 GB 額外付費使用[連續匯出](app-insights-export-telemetry.md)，不過它在 2017 年 3 月初以前是免費的。
+* 在基本方案中，可以依照每一 GB 額外付費使用[連續匯出](app-insights-export-telemetry.md)。
 
 ### <a name="enterprise-plan"></a>企業方案
 
-* 在企業方案中，您的應用程式可以使用 Application Insights 的所有功能。 在企業方案中[連續匯出](app-insights-export-telemetry.md)和 [Log Analytics 連接器](https://go.microsoft.com/fwlink/?LinkId=833039&amp;clcid=0x409)為免費，無需任何額外的費用。
+* 在企業方案中，您的應用程式可以使用 Application Insights 的所有功能。 [連續匯出](app-insights-export-telemetry.md)和 
+
+[Log Analytics 連接器](https://go.microsoft.com/fwlink/?LinkId=833039&amp;clcid=0x409)在企業方案中為免費，無需任何額外的費用。
 * 在企業方案中，是依照傳送所有應用程式遙測的每一節點付費。 
  * 「節點」是裝載應用程式的實體或虛擬伺服器機器，或是平台即服務 (PaaS) 角色執行個體。
  * 開發用電腦、用戶端瀏覽器、行動裝置不算節點。
  * 如果您的應用程式有數個會傳送遙測的元件，例如 Web 服務和後端背景工作，會將它們分開計算。
- * [即時計量串流](app-insights-live-stream.md)資料不會計入價格用途。
-* 整個訂用帳戶的收費是依照每一節點，而非每一應用程式。 如果您有五個節點傳送 12 個應用程式的遙測，則是以五個節點計算收費。
+ * [即時計量資料流](app-insights-live-stream.md)資料不會針對價格目的進行計算。* 橫跨訂用帳戶，您的費用是針對每個節點，而不是每個應用程式。 如果您有五個節點傳送 12 個應用程式的遙測，則是以五個節點計算收費。
 * 雖然費用是按月報價，您的收費僅適用於一個節點從一個應用程式傳送遙測的任何小時。 每小時的費用是月費報價 / 744 (一個月 31 天的小時數)。
 * 每個節點 (資料粒度為小時) 偵測每日 200 MB 的資料量配置。 未使用的資料配置不會帶到隔天。
  * 如果您選擇企業價格方案，每個訂用帳戶會根據傳送遙測資料至該訂用帳戶中 Application Insights 資源的節點數，得到每日資料額度。 因此，如果您有 5 個節點全天候傳送資料，您會有合起來 1GB 的資料額度，套用至該訂用帳戶中的所有 Application Insights 資源。 由於內含資料會在所有節點之間共用，因此特定節點所傳送的資料是否超過其他節點並無妨。 如果某一天，Application Insights 資源收到超過此訂用帳戶的每日資料配置，則會按 GB 收取資料超量費用。 
@@ -79,9 +81,18 @@ ms.lasthandoff: 05/09/2017
 [多步驟 Web 測試](app-insights-monitor-web-app-availability.md#multi-step-web-tests)會有一項額外的費用。 這是指執行連續動作的 Web 測試。 
 
 單一頁面的 ping 測試沒有另外的費用。 來自 ping 測試和多步驟測試的遙測，會與來自您應用程式的其他遙測一起計費。
+ 
+## <a name="operations-management-suite-subscription-entitlement"></a>Operations Management Suite 訂用帳戶權利
 
-## <a name="review-pricing-plan-and-estimate-costs-for-your-application-insights-resource"></a>檢閱 Application Insights 資源的價格方案並評估成本
-在您應用程式的 Application Insights 資源中開啟 [功能 + 價格] 刀鋒視窗。
+在[最近宣布](https://blogs.technet.microsoft.com/msoms/2017/05/19/azure-application-insights-enterprise-as-part-of-operations-management-suite-subscription/)，購買 Microsoft Operations Management Suite E1 和 E2 的客戶可以取得 Application Insights Enterprise 作為額外的元件，不需其他成本。 具體來說，Operations Management Suite E1 和 E2 的每個單位包含 1 個 Application Insights Enterprise 方案節點的權利。 如先前所述，每個 Application Insights 節點包含每天最多 200 MB 的內嵌資料 (獨立於 Log Analytics 資料擷取)，具有 90 天資料保留期，不需其他費用。 
+
+> [!NOTE]
+> 若要確保您取得此權利，您的 Application Insights 資源必須在 Enterprise 定價方案中。 此權利僅適用作為節點，因此基本方案中的 Application Insights 資源不會帶來任何效益。 請注意，此權利將不會顯示在 [功能 + 定價] 刀鋒視窗上顯示的估計成本。 
+>
+ 
+## <a name="review-pricing-plans-and-estimate-costs"></a>檢閱定價方案和估計成本
+
+Applicaition Insights 可讓您輕鬆地了解可用的定價方案，以及根據最近的使用模式可能的成本。 從開啟 Azure 入口網站之 Application Insights 資源中的 [功能 + 定價] 刀鋒視窗開始：
 
 ![選擇價格。](./media/app-insights-pricing/01-pricing.png)
 

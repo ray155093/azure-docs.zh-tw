@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: trinadhk;markgal
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: f8cb0030290d200ab79e340b9b0fe8f5765d49f0
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 35a21cb99ca4bad124a9f764cef9da453e1fe47f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -119,6 +120,11 @@ ms.lasthandoff: 03/18/2017
      如需建立備份原則的指示，請參閱 [定義備份原則](backup-azure-manage-vms.md#defining-a-backup-policy)。
 
 [!INCLUDE [backup-create-backup-policy-for-vm](../../includes/backup-create-backup-policy-for-vm.md)]
+
+> [!NOTE]
+> 在管理備份原則時，請務必遵循[最佳做法](backup-azure-vms-introduction.md#best-practices)以便獲得最佳備份效能
+>
+>
 
 ## <a name="on-demand-backup-of-a-virtual-machine"></a>虛擬機器的隨選備份
 設定保護後，您可以執行虛擬機器的隨選備份。 如果初始備份已暫止，則隨選備份會在復原服務保存庫中建立虛擬機器的完整複本。 如果已完成初始備份，隨選備份只會將前一個備份快照的變更傳送到復原服務保存庫。 亦即，後續備份一律是增量備份。

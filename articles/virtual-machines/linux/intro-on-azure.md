@@ -13,12 +13,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 02/02/2017
+ms.date: 06/01/2017
 ms.author: szark
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: eaac5300292e328bcff9ddf5447bea0e53075179
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 7bd0c5549a2e1f592681760d5ef464b9570ca4ab
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -26,13 +27,13 @@ ms.lasthandoff: 04/03/2017
 本主題摘要說明在 Azure 雲端中使用 Linux 虛擬機器的相關資訊。 使用組件庫中現存的映像來部署 Linux 虛擬機器會很簡單。
 
 ## <a name="authentication-usernames-passwords-and-ssh-keys"></a>驗證：使用者名稱、密碼和 SSH 金鑰
-使用 Azure 傳統入口網站來建立 Linux 虛擬機器時，系統會要求您提供使用者名稱、密碼或 SSH 公開金鑰。 在 Azure 上部署 Linux 虛擬機器的使用者名稱選擇受到下列限制：不允許使用已存在於虛擬機器中的系統帳戶名稱 (UID <100)，例如 'root'。
+使用 Azure 入口網站來建立 Linux 虛擬機器時，系統會要求您提供使用者名稱和密碼或 SSH 公開金鑰。 在 Azure 上部署 Linux 虛擬機器的使用者名稱選擇受到下列限制：不允許使用已存在於虛擬機器中的系統帳戶名稱 (UID <100)，例如 'root'。
 
 * 請參閱[建立執行 Linux 的虛擬機器](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * 請參閱[如何對 Azure 上的 Linux 使用 SSH](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="obtaining-superuser-privileges-using-sudo"></a>使用 `sudo`
-在 Azure 上部署虛擬機器執行個體時所指定的使用者帳戶是特殊權限帳戶。 此帳戶由 Azure Linux 代理程式設定，可使用 `sudo` 公用程式將權限提升至 root (超級使用者帳戶)。 使用此使用者帳戶登入之後，您將能夠以 root 的身分使用命令語法來執行命令。
+在 Azure 上部署虛擬機器執行個體時所指定的使用者帳戶是特殊權限帳戶。 此帳戶由 Azure Linux 代理程式設定，可使用 `sudo` 公用程式將權限提升至 root (超級使用者帳戶)。 使用此使用者帳戶登入之後，您就能夠以 root 的身分使用命令語法來執行命令：
 
     # sudo <COMMAND>
 
@@ -41,7 +42,7 @@ ms.lasthandoff: 04/03/2017
 * 請參閱[在 Azure 中的 Linux 虛擬機器上使用根權限](use-root-privileges.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="firewall-configuration"></a>防火牆設定
-Azure 提供輸入封包篩選器，可限制只能連線至 Azure 傳統入口網站中指定的連接埠。 預設允許的連接埠只有 SSH。 您可以在 Azure 傳統入口網站中設定端點，以開放存取 Linux 虛擬機器上的其他連接埠：
+Azure 提供輸入封包篩選器，可限制只能連線至 Azure 入口網站中指定的連接埠。 預設允許的連接埠只有 SSH。 您可以在 Azure 入口網站中設定端點，以開放存取 Linux 虛擬機器上的其他連接埠：
 
 * 請參閱：[如何設定虛擬機器的端點](../windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -69,9 +70,9 @@ Azure Linux 代理程式包括可自動偵測此名稱變更、適當地設定�
 ## <a name="virtual-machine-image-capture"></a>擷取虛擬機器映像
 Azure 可將現有虛擬機器的狀態擷取到映像中，供以後用來部署其他虛擬機器執行個體。 Azure Linux 代理程式可用來回復佈建過程中執行的一些自訂。 您可以依照下列步驟將虛擬機器擷取為映像：
 
-1. 執行 **waagent -deprovision** 來還原佈建自訂。 或執行 **waagent -deprovision+user** ，選擇性地刪除佈建期間指定的使用者帳戶及所有相關資料。
+1. 執行 **waagent -deprovision** 來還原佈建自訂。 或是 **waagent -deprovision+user**，選擇性地將佈建期間指定的使用者帳戶及所有相關資料刪除。
 2. 關閉虛擬機器。
-3. 按一下 Azure 傳統入口網站中的 [擷取]  或使用 Powershell 或 CLI 工具，將虛擬機器擷取為映像。
+3. 按一下 Azure 入口網站中的 [擷取] 或使用 PowerShell 或 CLI 工具，將虛擬機器擷取為映像。
    
    * 請參閱：[如何擷取 Linux 虛擬機器作為範本使用](classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 

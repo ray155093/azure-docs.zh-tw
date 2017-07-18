@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
-ms.date: 05/5/2017
+ms.date: 06/9/2017
 ms.author: LADocs; dimazaid; estfan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 8446790af6af160c4b2d463191405faaed68bf0e
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 4b6f21c7949493ac1f95e7c0f255e5c96613adf1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -56,9 +56,9 @@ ms.lasthandoff: 05/17/2017
 
 * 您必須[已在本機電腦上安裝資料閘道](logic-apps-gateway-install.md)。
 
-* 您需要 Azure 帳戶，而且此帳戶必須擁有用來[安裝內部部署資料閘道](logic-apps-gateway-install.md#requirements)的公司或學校電子郵件地址。
+* 登入 Azure 入口網站時，您必須使用之前用來[安裝內部部署資料閘道](logic-apps-gateway-install.md#requirements)的同一個公司或學校帳戶。 為閘道安裝在 Azure 入口網站建立閘道資源時，登入的帳戶也必須擁有 Azure 訂用帳戶以供使用。
 
-* 您的閘道安裝不能已由其他 Azure 閘道資源加以宣告。 您只能將閘道安裝關聯至一個閘道資源。 當您建立閘道資源時便已完成宣告，因此該安裝無法再供其他資源使用。
+* 您的閘道安裝不能已由 Azure 閘道資源加以宣告。 您只能將閘道安裝關聯至一個 Azure 閘道資源。 當您建立閘道資源時便已完成宣告，因此該安裝無法再供其他資源使用。
 
 ## <a name="set-up-the-data-gateway-connection"></a>設定資料閘道連線
 

@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 05/27/2016
 ms.author: torsteng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7eecd3cc01cc708c3da1efb1cbb3b1cddb86d6f0
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: 7e6ccf51a4b75eef16a7df5c1a1018954af8e5dd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 11/17/2016
+ms.lasthandoff: 06/22/2017
 
 
 ---
@@ -29,8 +29,8 @@ ms.lasthandoff: 11/17/2016
 ## <a name="configuring-certificates"></a>設定憑證
 憑證有兩種設定方式。 
 
-1. [設定 SSL 憑證](#To-Configure-the-SSL#Certificate)
-2. [設定用戶端憑證](#To-Configure-Client-Certificates) 
+1. [設定 SSL 憑證](#to-configure-the-ssl-certificate)
+2. [設定用戶端憑證](#to-configure-client-certificates) 
 
 ## <a name="to-obtain-certificates"></a>取得憑證
 您可以從公用憑證授權單位 (CA) 或從 [Windows 憑證服務](http://msdn.microsoft.com/library/windows/desktop/aa376539.aspx)取得憑證。 這些是取得憑證的慣用方法。
@@ -53,43 +53,43 @@ ms.lasthandoff: 11/17/2016
 需要 SSL 憑證，才能將通訊加密和驗證伺服器。 從以下三種案例中選擇最適用的案例，然後執行其所有步驟：
 
 ### <a name="create-a-new-self-signed-certificate"></a>建立新的自我簽署憑證
-1. [建立自我簽署憑證](#Create-a-Self-Signed-Certificate)
-2. [建立自我簽署 SSL 憑證的 PFX 檔案](#Create-PFX-file-for-Self-Signed-SSL-Certificate)
-3. [將 SSL 憑證上傳至雲端服務](#Upload-SSL-Certificate-to-Cloud-Service)
-4. [在服務組態檔中更新 SSL 憑證](#Update-SSL-Certificate-in-Service-Configuration-File)
-5. [匯入 SSL 憑證授權單位](#Import-SSL-Certification-Authority)
+1. [建立自我簽署憑證](#create-a-self-signed-certificate)
+2. [建立自我簽署 SSL 憑證的 PFX 檔案](#create-pfx-file-for-self-signed-ssl-certificate)
+3. [將 SSL 憑證上傳至雲端服務](#upload-ssl-certificate-to-cloud-service)
+4. [在服務組態檔中更新 SSL 憑證](#update-ssl-certificate-in-service-configuration-file)
+5. [匯入 SSL 憑證授權單位](#import-ssl-certification-authority)
 
 ### <a name="to-use-an-existing-certificate-from-the-certificate-store"></a>如何從憑證存放區使用現有的憑證
-1. [從憑證存放區匯出 SSL 憑證](#Export-SSL-Certificate-From-Certificate-Store)
-2. [將 SSL 憑證上傳至雲端服務](#Upload-SSL-Certificate-to-Cloud-Service)
-3. [在服務組態檔中更新 SSL 憑證](#Update-SSL-Certificate-in-Service-Configuration-File)
+1. [從憑證存放區匯出 SSL 憑證](#export-ssl-certificate-from-certificate-store)
+2. [將 SSL 憑證上傳至雲端服務](#upload-ssl-certificate-to-cloud-service)
+3. [在服務組態檔中更新 SSL 憑證](#update-ssl-certificate-in-service-configuration-file)
 
 ### <a name="to-use-an-existing-certificate-in-a-pfx-file"></a>如何使用 PFX 檔案中現有的憑證
-1. [將 SSL 憑證上傳至雲端服務](#Upload-SSL-Certificate-to-Cloud-Service)
-2. [在服務組態檔中更新 SSL 憑證](#Update-SSL-Certificate-in-Service-Configuration-File)
+1. [將 SSL 憑證上傳至雲端服務](#upload-ssl-certificate-to-cloud-service)
+2. [在服務組態檔中更新 SSL 憑證](#update-ssl-certificate-in-service-configuration-file)
 
 ## <a name="to-configure-client-certificates"></a>設定用戶端憑證
 需要用戶端憑證，才能驗證服務的要求。 從以下三種案例中選擇最適用的案例，然後執行其所有步驟：
 
 ### <a name="turn-off-client-certificates"></a>關閉用戶端憑證
-1. [關閉用戶端憑證式驗證](#Turn-Off-Client-Certificate-Based-Authentication)
+1. [關閉用戶端憑證式驗證](#turn-off-client-certificate-based-authentication)
 
 ### <a name="issue-new-self-signed-client-certificates"></a>發行新的自我簽署用戶端憑證
-1. [建立自我簽署憑證授權單位](#Create-a-Self-Signed-Certification-Authority)
-2. [將 CA 憑證上傳至雲端服務](#Upload-CA-Certificate-to-Cloud-Service)
-3. [在服務組態檔中更新 CA 憑證](#Update-CA-Certificate-in-Service-Configuration-File)
-4. [發行用戶端憑證](#Issue-Client-Certificates)
-5. [建立用戶端憑證的 PFX 檔案](#Create-PFX-files-for-Client-Certificates)
+1. [建立自我簽署憑證授權單位](#create-a-self-signed-certification-authority)
+2. [將 CA 憑證上傳至雲端服務](#upload-ca-certificate-to-cloud-service)
+3. [在服務組態檔中更新 CA 憑證](#update-ca-certificate-in-service-configuration-file)
+4. [發行用戶端憑證](#issue-client-certificates)
+5. [建立用戶端憑證的 PFX 檔案](#create-pfx-files-for-client-certificates)
 6. [匯入用戶端憑證](#Import-Client-Certificate)
-7. [複製用戶端憑證指紋](#Copy-Client-Certificate-Thumbprints)
-8. [在服務組態檔中設定允許的用戶端](#Configure-Allowed-Clients-in-the-Service-Configuration-File)
+7. [複製用戶端憑證指紋](#copy-client-certificate-thumbprints)
+8. [在服務組態檔中設定允許的用戶端](#configure-allowed-clients-in-the-service-configuration-file)
 
 ### <a name="use-existing-client-certificates"></a>使用現有的用戶端憑證
-1. [Find CA Public Key](#Find-CA-Public Key)
+1. [Find CA Public Key](#find-ca-public-key)
 2. [將 CA 憑證上傳至雲端服務](#Upload-CA-certificate-to-cloud-service)
 3. [在服務組態檔中更新 CA 憑證](#Update-CA-Certificate-in-Service-Configuration-File)
 4. [複製用戶端憑證指紋](#Copy-Client-Certificate-Thumbprints)
-5. [在服務組態檔中設定允許的用戶端](#Configure-Allowed-Clients-in-the-Service-Configuration File)
+5. [在服務組態檔中設定允許的用戶端](#configure-allowed-clients-in-the-service-configuration-file)
 6. [設定用戶端憑證撤銷檢查](#Configure-Client-Certificate-Revocation-Check)
 
 ## <a name="allowed-ip-addresses"></a>允許的 IP 位址
@@ -99,19 +99,19 @@ ms.lasthandoff: 11/17/2016
 需要憑證來加密儲存在中繼資料存放區中的認證。 從以下三種案例中選擇最適用的案例，然後執行其所有步驟：
 
 ### <a name="use-a-new-self-signed-certificate"></a>使用新的自我簽署憑證
-1. [建立自我簽署憑證](#Create-a-Self-Signed-Certificate)
-2. [建立自我簽署加密憑證的 PFX 檔案](#Create-PFX-file-for-Self-Signed-Encryption-Certificate)
-3. [將加密憑證上傳至雲端服務](#Upload-Encryption-Certificate-to-Cloud-Service)
-4. [在服務組態檔中更新加密憑證](#Update-Encryption-Certificate-in-Service-Configuration-File)
+1. [建立自我簽署憑證](#create-a-self-signed-certificate)
+2. [建立自我簽署加密憑證的 PFX 檔案](#create-pfx-file-for-self-signed-ssl-certificate)
+3. [將加密憑證上傳至雲端服務](#upload-encryption-certificate-to-cloud-service)
+4. [在服務組態檔中更新加密憑證](#update-encryption-certificate-in-service-configuration-file)
 
 ### <a name="use-an-existing-certificate-from-the-certificate-store"></a>從憑證存放區使用現有的憑證
-1. [從憑證存放區匯出加密憑證](#Export-Encryption-Certificate-From-Certificate-Store)
-2. [將加密憑證上傳至雲端服務](#Upload-Encryption-Certificate-to-Cloud-Service)
-3. [在服務組態檔中更新加密憑證](#Update-Encryption-Certificate-in-Service-Configuration-File)
+1. [從憑證存放區匯出加密憑證](#export-encryption-certificate-from-certificate-store)
+2. [將加密憑證上傳至雲端服務](#upload-encryption-certificate-to-cloud-service)
+3. [在服務組態檔中更新加密憑證](#update-encryption-certificate-in-service-configuration-file)
 
 ### <a name="use-an-existing-certificate-in-a-pfx-file"></a>使用 PFX 檔案中現有的憑證
-1. [將加密憑證上傳至雲端服務](#Upload-Encryption-Certificate-to-Cloud-Service)
-2. [在服務組態檔中更新加密憑證](#Update-Encryption-Certificate-in-Service-Configuration-File)
+1. [將加密憑證上傳至雲端服務](#upload-encryption-certificate-to-cloud-service)
+2. [在服務組態檔中更新加密憑證](#update-encryption-certificate-in-service-configuration-file)
 
 ## <a name="the-default-configuration"></a>預設組態
 預設組態會拒絕對 HTTP 端點的所有存取。 這是建議設定，因為對這些端點的要求可能帶有機密資訊 (如資料庫認證)。
@@ -402,16 +402,16 @@ ms.lasthandoff: 11/17/2016
 ## <a name="export-certificate"></a>匯出憑證
 在 [ **憑證匯出精靈**] 中：
 
-1. 按 [下一步] 。
+1. 按一下 [下一步] 。
 2. 選取 [是]，再選取 [匯出私密金鑰]。
-3. 按 [下一步] 。
+3. 按一下 [下一步] 。
 4. 選取想要的輸出檔案格式。
 5. 核取所需的選項。
 6. 核取 [ **密碼**]。
 7. 輸入強式密碼並加以確認。
-8. 按 [下一步] 。
+8. 按一下 [下一步] 。
 9. 輸入或瀏覽至用來儲存憑證的檔案名稱 (使用 .PFX 副檔名)。
-10. 按 [下一步] 。
+10. 按一下 [下一步] 。
 11. 按一下 [完成] 。
 12. 按一下 [確定] 。
 
@@ -422,7 +422,7 @@ ms.lasthandoff: 11/17/2016
    
    * 如果只有在目前使用者下執行的處理程序會存取服務，請選取 [ **目前使用者** ]
    * 如果這台電腦中的其他處理程序會存取服務，請選取 [ **本機電腦** ]
-2. 按 [下一步] 。
+2. 按一下 [下一步] 。
 3. 如果從檔案匯入，請確認檔案路徑。
 4. 如果匯入 .PFX 檔案：
    1. 輸入密碼以保護私密金鑰

@@ -1,5 +1,5 @@
 ---
-title: "取得驗證應用程式以從程式碼存取 SQL Database 的所需值 | Microsoft Docs"
+title: "取得應用程式驗證的值 - Azure SQL Database | Microsoft Docs"
 description: "建立服務主體以從程式碼存取 SQL Database。"
 services: sql-database
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.workload: data-management
 ms.date: 09/30/2016
 ms.author: sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 6fb71859d0ba2e0f2b39d71edd6d518b7a03bfe9
-ms.openlocfilehash: 321b1630680f8bd4271f863b2cbe39be1a00cb89
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: ec6256e9c5bb0d9c8d15d0f673cea70b3915eb34
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/16/2017
+ms.lasthandoff: 06/22/2017
 
 
 ---

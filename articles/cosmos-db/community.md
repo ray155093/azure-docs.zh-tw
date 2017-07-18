@@ -15,10 +15,10 @@ ms.workload: data-services
 ms.date: 03/07/2017
 ms.author: andrl
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 371976a35ae285942decaf8e22651e98f6217a95
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: b78d8d257ea31e7cb6b4e1abfb32c81fcea67b6d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -57,7 +57,7 @@ DoQmentDB 是一個以 Node.js Promise 為基礎的用戶端，可在 Azure Cosm
 ### <a name="swagger-rest-api-for-documentdb"></a>DocumentDB 的 Swagger REST API
 *由 Howard Edidin 撰寫*
 
-可以輕鬆部署為 API 應用程式的 Azure Cosmos DB DocumentDB REST API Swagger 檔案。
+可以輕鬆部署為 API 應用程式的 Azure Cosmos DB REST API Swagger 檔案，適於 DocumentDB API。
 
 在 [GitHub](https://github.com/HEDIDIN/DocumentDB-REST/tree/master/DocumentDBRestApi) 上了解相關資訊。
 
@@ -100,7 +100,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure Cosmos DB DocumentDB API 的 F
 
 ## <a name="events-and-recordings"></a>活動和記錄
 ### <a name="recent-and-upcoming-events"></a>最新和近期活動
-| 活動名稱 | 主講人 | 位置 | 日期 | Hashtag |
+| 活動名稱 | 主講人 | 位置 | 日期 | 主題標籤 |
 | --- | --- | --- | --- | --- |
 |[南佛羅里達州程式碼研討會：在 10 分鐘內使用 Azure DocumentDB 編寫出適用於 .NET 開發人員的 NoSQL (英文)](http://www.fladotnet.com/codecamp/Agenda.aspx)| [Santosh Hari](https://twitter.com/_s_hari)|佛羅里達州戴維|2017 年 3 月 11 日|[#sflcc](https://twitter.com/search?q=%23sflcc&ref_src=twsrc%5Etfw)|
 |[奧蘭多市程式碼研討會：在 10 分鐘內使用 Azure DocumentDB 編寫出適用於 .NET 開發人員的 NoSQL (英文)](http://orlandocodecamp.com/Sessions/Details/20)| [Santosh Hari](https://twitter.com/_s_hari)|佛羅里達州桑福德|2017 年 4 月 8 日|[#OrlandoCC](https://twitter.com/hashtag/OrlandoCC?src=hash&ref_src=twsrc%5Etfw)|
@@ -200,7 +200,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure Cosmos DB DocumentDB API 的 F
 
 ## <a name="discussion"></a>討論區
 ### <a name="twitter"></a>Twitter
-在 Twitter [@DocumentDB](https://twitter.com/DocumentDB) 上關注我們的動態，並透過 [#DocumentDB](https://twitter.com/hashtag/DocumentDB) 雜湊標記來掌握最新的對話。
+在 Twitter [@DocumentDB](https://twitter.com/DocumentDB) 上關注我們的動態，並透過 [#DocumentDB](https://twitter.com/hashtag/DocumentDB) 主題標籤來掌握最新的對話。
 
 ### <a name="online-forums"></a>線上論壇
 | 論壇提供者 | 說明 |

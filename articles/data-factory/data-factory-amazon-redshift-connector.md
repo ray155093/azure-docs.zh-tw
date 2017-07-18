@@ -14,34 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: jingwang
-translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 524b87d95d3060c780b296350797501847c80638
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: e3079b55036a514b31249e5930f40ab4346f437a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
 # <a name="move-data-from-amazon-redshift-using-azure-data-factory"></a>使用 Azure Data Factory 從 Amazon Redshift 移動資料
 本文說明如何使用 Azure Data Factory 中的「複製活動」，從 Amazon Redshift 移動資料。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
 
-您可以將資料從 Amazon Redshift 複製到任何支援的接收資料存放區。 如需複製活動所支援作為接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 Data Factory 目前只支援將資料從 Amazon Redshift 移到其他資料存放區，而不支援將資料從其他資料存放區移到 Amazon Redshift。
+您可以將資料從 Amazon Redshift 複製到任何支援的接收資料存放區。 如需複製活動所支援作為接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 Data Factory 目前支援將資料從 Amazon Redshift 移到其他資料存放區，而不支援將資料從其他資料存放區移到 Amazon Redshift。
 
 ## <a name="prerequisites"></a>必要條件
 * 如果您要將資料移到內部部署的資料存放區，請在內部部署的電腦上安裝[資料管理閘道](data-factory-data-management-gateway.md)。 接著，將 Amazon Redshift 叢集的存取權授與「資料管理閘道」(使用該電腦的 IP 位址)。 如需相關指示，請參閱 [授權存取叢集](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) 。
-* 如果您要移動資料到 Azure 資料存放區，請參閱 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653) 以取得 Microsoft Azure 資料中心所使用的計算 IP 位址範圍 (包括 SQL 範圍)。
+* 如果您要移動資料到 Azure 資料存放區，請參閱 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653) 以取得 Azure 資料中心所使用的計算 IP 位址和 SQL 範圍。
 
 ## <a name="getting-started"></a>開始使用
 您可以藉由使用不同的工具/API，建立內含複製活動的管線，以從 Amazon Redshift 來源移動資料。
 
 建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API**及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
 
 不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
 
-1. 建立「已連結的服務」，以將輸入和輸出資料存放區連結到 Data Factory。
-2. 建立「資料集」，以代表複製作業的輸入和輸出資料。 
-3. 建立「管線」，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
+1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
+2. 建立**資料集**，代表複製作業的輸入和輸出資料。 
+3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
 
 使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來從 Amazon Redshift 資料存放區複製資料之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例：將資料從 Amazon Redshift 複製到 Azure Blob](#json-example-copy-data-from-amazon-redshift-to-azure-blob) 一節。 
 
@@ -62,7 +63,7 @@ ms.lasthandoff: 03/29/2017
 ## <a name="dataset-properties"></a>資料集屬性
 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 所有資料集類型 (Azure SQL、Azure Blob、Azure 資料表等) 的結構、可用性及原則等區段都相似。
 
-每個資料集類型的 **typeProperties** 區段都不同，可提供資料存放區中的資料位置資訊。 **RelationalTable** 資料集類型的 typeProperties 區段 (包含 Amazon Redshift 資料集) 具有下列屬性
+不同類型資料集的 **typeProperties** 區段不同。 它提供資料存放區中資料的位置之相關資訊。 **RelationalTable** 資料集類型的 typeProperties 區段 (包含 Amazon Redshift 資料集) 具有下列屬性
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
@@ -71,7 +72,7 @@ ms.lasthandoff: 03/29/2017
 ## <a name="copy-activity-properties"></a>複製活動屬性
 如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
+而活動的 **typeProperties** 區段中，可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
 當複製活動的來源是 **RelationalSource** 類型 (包含 Amazon Redshift) 時，typeProperties 區段可使用下列屬性：
 
@@ -127,7 +128,7 @@ ms.lasthandoff: 03/29/2017
 ```
 **Amazon Redshift 輸入資料集：**
 
-設定 **"external": true** 會告知 Data Factory 服務該資料集是 Data Factory 外部的資料集，而不是由 Data Factory 中的活動所產生。 在不是由管線中的活動所產生的輸入資料集上，請將此屬性設定為 true。
+設定 `"external": true` 可讓 Data Factory 服務知道資料集是在 Data Factory 外部，而不是由 Data Factory 中的活動所產生。 在不是由管線中的活動所產生的輸入資料集上，請將此屬性設定為 true。
 
 ```json
 {

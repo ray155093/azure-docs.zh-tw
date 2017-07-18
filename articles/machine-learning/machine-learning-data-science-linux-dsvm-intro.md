@@ -15,16 +15,17 @@ ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: d8ae05316b424af7d87c3c5ebdac575bcc04998d
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: f5c33212da13b33be60488992d93305807c98d38
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
 # <a name="provision-the-linux-data-science-virtual-machine"></a>佈建 Linux 資料科學虛擬機器
 Linux 資料科學虛擬機器是以 CentOS 為基礎的 Azure 虛擬機器，其中隨附預先安裝的工具集合。 這些工具通常用來執行資料分析和機器學習。 包含的重要軟體元件如下︰
 
+* 作業系統：Linux CentOS 散發套件。
 * Microsoft R Server Developer Edition
 * Anaconda Python 散發套件 (2.7 版和 3.5 版)，包括常用的資料分析程式庫
 * JuliaPro - 使用受歡迎科學和資料分析程式庫的 Julia 語言策劃分佈

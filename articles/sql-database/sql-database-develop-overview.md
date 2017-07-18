@@ -8,17 +8,18 @@ manager: jhubbard
 editor: genemi
 ms.assetid: 67c02204-d1bd-4622-acce-92115a7cde03
 ms.service: sql-database
-ms.custom: development
+ms.custom: develop apps
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: sstein
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 338fa476377e9ff04c9a1f4e585f790b92a59f87
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: 50024fdb487e859b870a1025b23790f1cc5d1a18
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/08/2017
 
 
 ---
@@ -59,14 +60,14 @@ Azure SQL Database 提供資源以在 SQL Database 上限制存取、保護資�
 * 程式碼範例︰如需示範重試邏輯的程式碼範例，請在以下位置參閱您選擇語言的範例︰[SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
 * 詳細資訊： [SQL Database 用戶端程式的錯誤訊息](sql-database-develop-error-messages.md)
 
-## <a name="managing-connections"></a>管理連接
+## <a name="managing-connections"></a>管理連線
 * 在您的用戶端連線邏輯中，將預設的逾時覆寫為 30 秒。  預設 15 秒對於依賴網際網路的連線而言太短。
 * 如果您使用的是 [連接集區](http://msdn.microsoft.com/library/8xx3tyca.aspx)，請確定在程式未主動使用時即時關閉連接，而不是準備重複使用連接。
 
 ## <a name="network-considerations"></a>網路考量事項
 * 在託管您的用戶端程式的電腦上，請確定防火牆允許連接埠 1433 上的傳出 TCP 通訊。  詳細資訊： [設定 Azure SQL Database 防火牆](sql-database-configure-firewall-settings.md)
 * 如果您的用戶端程式是在 Azure 虛擬機器 (VM) 上執行，而用戶端程式會連線至 SQL Database，您就必須開啟該 VM 上特定的連接埠範圍。 詳細資訊：[針對 ADO.NET 4.5 和 SQL Database 之 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
-* 與 Azure SQL Database 的用戶端連線有時會略過 proxy 並直接與資料庫互動。 1433 以外的連接埠變得重要。 詳細資訊：[針對 ADO.NET 4.5 和 SQL Database 之 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
+* 與 Azure SQL Database 的用戶端連線有時會略過 proxy 並直接與資料庫互動。 1433 以外的連接埠變得重要。 如需詳細資訊，請參閱 [Azure SQL Database 連線架構](sql-database-connectivity-architecture.md)和[針對 ADO.NET 4.5 及 SQL Database 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)一節。
 
 ## <a name="data-sharding-with-elastic-scale"></a>使用 Elastic Scale 的資料分區化
 Elastic Scale 會簡化相應放大 (和相應縮小) 的程序。 

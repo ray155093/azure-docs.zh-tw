@@ -15,17 +15,15 @@ ms.workload: storage-backup-recovery
 ms.date: 06/05/2017
 ms.author: pratshar
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: 0df4b3535449c88f11fa7a58811f68c82549558f
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: 198640030b638720863ffae05543b32692608f1b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
-# <a name="test-----failover-to-azure-in-site-recovery"></a>在 Site Recovery 中測試容錯移轉到 Azure
-> [!div class="op_single_selector"]
-> * [執行測試容錯移轉至 Azure](./site-recovery-test-failover-to-azure.md)
-> * [測試容錯移轉 (VMM 至 VMM)](./site-recovery-test-failover-vmm-to-vmm.md)
+# <a name="test--failover-to-azure-in-site-recovery"></a>在 Site Recovery 中測試容錯移轉到 Azure
+
 
 
 本文提供使用 Azure 做為復原站台，對使用 Site Recovery 保護的虛擬機器與實體伺服器執行測試容錯移轉或 DR (災害復原) 訓練的相關資訊和指示。
@@ -50,7 +48,7 @@ ms.lasthandoff: 05/02/2017
     1.  **最新處理**︰這個選項會將復原方案的所有虛擬機器容錯移轉至 Site Recovery 服務已處理的最新復原點。 當您進行虛擬機器的測試容錯移轉時，也會顯示最新處理復原點的時間戳記。 如果您正在執行某個復原方案的容錯移轉，您可以移至個別的虛擬機器，並查看 [最新復原點] 圖格以取得此資訊。 因為沒有花時間處理未處理的資料，此選項提供低 RTO (復原時間目標) 容錯移轉選項。
     1.    **最新的應用程式一致**︰這個選項會將復原方案的所有虛擬機器容錯移轉至 Site Recovery 服務已處理的最新應用程式一致復原點。 當您進行虛擬機器的測試容錯移轉時，也會顯示最新應用程式一致復原點的時間戳記。 如果您正在執行某個復原方案的容錯移轉，您可以移至個別的虛擬機器，並查看 [最新復原點] 圖格以取得此資訊。
     1.    **最新**︰此選項會先處理已傳送到 Site Recovery 服務的所有資料，先為每個虛擬機器建立復原點後再進行容錯移轉。 此選項提供最低的 RPO (復原點目標)，因為在容錯移轉後建立的虛擬機器會包含觸發容錯移轉時已複寫到 Site Recovery 服務的所有資料。
-    1.    **自訂**︰如果您要執行虛擬機器的測試容錯移轉，您可以使用此選項以容錯移轉至特定復原點。
+    1.  **自訂**︰如果您要執行虛擬機器的測試容錯移轉，您可以使用此選項以容錯移轉至特定復原點。
 1. 選取一個 **Azure 虛擬網路**︰提供一個 Azure 虛擬網路，測試虛擬機器會建立於該處。 Site Recovery 會嘗試在名稱相同的子網路中建立測試虛擬機器，並使用虛擬機器的 [計算與網路] 設定中提供的 IP。 如果針對測試容錯移轉提供的 Azure 虛擬網路中沒有名稱相同的子網路，則會在依字母順序的第一個子網路中建立測試虛擬機器。 如果子網路中沒有相同的 IP，虛擬機器會取得子網路中另一個可用的 IP 位址。 請參閱此節以[瞭解更多詳細資訊](#creating-a-network-for-test-failover)
 1. 如果您正在容錯移轉到 Azure 且已啟用資料加密，請在 [加密金鑰] 中，選取當您在提供者安裝期間啟用資料加密時所發出的憑證。 如果您尚未在虛擬機器上啟用加密，您可以忽略此步驟。
 1. 在 [工作]  索引標籤上追蹤容錯移轉進度。 您應該可以在 Azure 入口網站中看到測試複本機器。
@@ -77,19 +75,19 @@ ms.lasthandoff: 05/02/2017
 
 在某些情況下，虛擬機器的容錯移轉會需要其他中繼步驟，通常會費時大約 8 到 10 分鐘才能完成。 這些情況如下所示︰
 
-* VMware 虛擬機器使用的行動服務版本早於 9.8 版
-* 實體伺服器 
+* VMware 虛擬機器使用的版本比行動服務版本 9.8 更早
+* 實體伺服器
 * VMware Linux 虛擬機器
 * 如同實體伺服器般受到保護的 Hyper-V 虛擬機器
-* 沒有以下驅動程式作為開機驅動程式的 VMware 虛擬機器 
-    * storvsc 
-    * vmbus 
-    * storflt 
-    * intelide 
+* 沒有以下驅動程式作為開機驅動程式的 VMware 虛擬機器
+    * storvsc
+    * vmbus
+    * storflt
+    * intelide
     * atapi
 * 沒有啟用 DHCP 服務的 VMware 虛擬機器，無論其是否正在使用 DHCP 或靜態 IP 位址
 
-在其他所有情況下則不需要此中繼步驟，且容錯移轉所花費的時間非常少。 
+在其他所有情況下則不需要此中繼步驟，且容錯移轉所花費的時間非常少。
 
 
 ## <a name="creating-a-network-for-test-failover"></a>建立測試容錯移轉的網路

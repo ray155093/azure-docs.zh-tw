@@ -16,10 +16,10 @@ ms.date: 07/07/2016
 ms.author: glenga
 ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: 17289f6401b36ff6e6a201564aa387f42c712699
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 2d6e1ba60d1f81aa1a9d3afde4ac9b621b01f04d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
+ms.lasthandoff: 06/03/2017
 
 ---
 # <a name="azure-app-service-virtual-machines-service-fabric-and-cloud-services-comparison"></a>Azure App Service、虛擬機器、Service Fabric 及雲端服務的比較
@@ -33,7 +33,7 @@ Azure App Service 是大多數 Web 應用程式的最佳選擇。 部署和管�
 如果現有的應用程式需要進行大幅修改才能在 App Service 或 Service Fabric 中執行，您可以選擇 [虛擬機器] 以簡化移轉至雲端的工作。 不過，相較於 Azure App Service 和 Service Fabric，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。 如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。 Azure 虛擬機器是基礎結構即服務 (IaaS)，而 App Service 和 Service Fabric 是平台即服務 (Paas)。 
 
 ## <a name="features"></a>功能比較
-下表比較 App Service、雲端服務、虛擬機器及 Service Fabric 的功能，以協助您做出最佳選擇。 如需每個選項目前的 SLA 資訊，請參閱＜ [Azure 服務等級協定](/support/legal/sla/)＞。
+下表比較 App Service、雲端服務、虛擬機器及 Service Fabric 的功能，以協助您做出最佳選擇。 如需每個選項目前的 SLA 資訊，請參閱＜ [Azure 服務等級協定](https://azure.microsoft.com/support/legal/sla/)＞。
 
 | 功能 | App Service (Web 應用程式) | 雲端服務 (Web 角色) | 虛擬機器 | Service Fabric | 注意事項 |
 | --- | --- | --- | --- | --- | --- |
@@ -56,8 +56,8 @@ Azure App Service 是大多數 Web 應用程式的最佳選擇。 部署和管�
 | 整合 Visual Studio |X |X |X |X | |
 | 遠端偵錯 |X |X |X | | |
 | 利用 TFS 來部署程式碼 |X |X |X |X | |
-| 利用 [Azure 虛擬網路](/services/virtual-network/) |X |X |X |X |另請參閱＜ [Azure 網站虛擬網路整合](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/) |
-| 支援 [Azure 流量管理員](/services/traffic-manager/) |X |X |X |X | |
+| 利用 [Azure 虛擬網路](/azure/virtual-network/) |X |X |X |X |另請參閱＜ [Azure 網站虛擬網路整合](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/) |
+| 支援 [Azure 流量管理員](/azure/traffic-manager/) |X |X |X |X | |
 | 整合式端點監視 |X |X |X | | |
 | 透過桌面遠端來存取伺服器 | |X |X |X | |
 | 安裝任何自訂 MSI | |X |X |X |Service Fabric 可讓您以 [來賓可執行檔](../service-fabric/service-fabric-deploy-existing-app.md) 的形式託管任何可執行檔，也可讓您在 VM 上安裝任何應用程式。 |
@@ -144,7 +144,7 @@ Azure App Service 是此案例的絕佳解決方案，因為您可先免費使�
 如果 App Service 上不支援您的開放原始碼架構，您可以在其中一個其他 Azure Web 裝載選項上執行它。 「虛擬機器」則需要您在機器映像 (可以是 Windows 或 Linux 型) 上安裝並設定軟體。
 
 ### <a id="lob"></a>我有個主要商務應用程式需要連線至公司網路。
-若要建立企業營運系統應用程式，您的網站可能需要直接存取公司網路上的服務或資料。 在 App Service、Service Fabric和虛擬機器上利用 [Azure 虛擬網路服務](/services/virtual-network/)即可達成。 在 App Service 上，您可以使用 [VNET 整合功能](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/)，讓您的 Azure 應用程式彷彿就像在公司網路上執行一樣。
+若要建立企業營運系統應用程式，您的網站可能需要直接存取公司網路上的服務或資料。 在 App Service、Service Fabric和虛擬機器上利用 [Azure 虛擬網路服務](/azure/virtual-network/)即可達成。 在 App Service 上，您可以使用 [VNET 整合功能](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/)，讓您的 Azure 應用程式彷彿就像在公司網路上執行一樣。
 
 ### <a id="mobile"></a>我想要裝載 REST API 或 Web 服務供行動用戶端使用
 HTTP 型 Web 服務可讓您支援各種用戶端，包括行動用戶端。 ASP.NET Web API 等架構會與 Visual Studio 整合，讓您更容易建立及取用 REST 服務。  這些服務是透過 Web 端點公開，因此在 Azure 上可以使用任何 Web 裝載技術來支援此案例。 不過，App Service 是裝載 REST API 的絕佳選擇。 使用 App Service，您可以：
@@ -162,31 +162,31 @@ HTTP 型 Web 服務可讓您支援各種用戶端，包括行動用戶端。 ASP
 ## <a id="nextsteps"></a> 後續步驟
 如需有關這三個 Web 主控選項的詳細資訊，請參閱 [Azure 簡介](../fundamentals-introduction-to-azure.md)。
 
-若要開始對應用程式使用您選擇的選項，請參閱下列資源：
+若要開始對應用程式使用所選擇的選項，請參閱下列資源：
 
-* [Azure App Service](/documentation/services/app-service/)
-* [Azure 雲端服務](/documentation/services/cloud-services/)
-* [Azure 虛擬機器](/documentation/services/virtual-machines/)
-* [Service Fabric](/documentation/services/service-fabric)
+* [Azure App Service](/azure/app-service/)
+* [Azure 雲端服務](/azure/cloud-services/)
+* [Azure 虛擬機器](/azure/virtual-machines/)
+* [Service Fabric](/azure/service-fabric/)
 
 <!-- URL List -->
 
-[Azure App Service]: /services/app-service/
-[Cloud Services]: http://go.microsoft.com/fwlink/?LinkId=306052
-[Virtual Machines]: http://go.microsoft.com/fwlink/?LinkID=306053
-[Service Fabric]: /services/service-fabric
+[Azure App Service]: /azure/app-service/
+[Cloud Services]: /azure/cloud-services/
+[Virtual Machines]: /azure/virtual-machines/
+[Service Fabric]: /azure/service-fabric/
 [ClearDB]: http://www.cleardb.com/
 [WebJobs]: http://go.microsoft.com/fwlink/?linkid=390226&clcid=0x409
-[Configuring an SSL certificate for an Azure Website]: http://www.windowsazure.com/develop/net/common-tasks/enable-ssl-web-site/
-[azurestore]: http://www.windowsazure.com/gallery/store/
-[scripting]: http://www.windowsazure.com/documentation/scripts/?services=web-sites
-[dotnet]: http://www.windowsazure.com/develop/net/
-[nodejs]: http://www.windowsazure.com/develop/nodejs/
-[PHP]: http://www.windowsazure.com/develop/php/
-[Python]: http://www.windowsazure.com/develop/python/
-[servicebus]: http://www.windowsazure.com/documentation/services/service-bus/
-[sqldatabase]: http://www.windowsazure.com/documentation/services/sql-database/
-[Storage]: http://www.windowsazure.com/documentation/services/storage/
+[Configuring an SSL certificate for an Azure Website]: app-service-web-tutorial-custom-ssl.md
+[azurestore]: https://azuremarketplace.microsoft.com/en-us/marketplace/apps
+[scripting]: https://azure.microsoft.com/documentation/scripts/?services=web-sites
+[dotnet]: https://azure.microsoft.com/develop/net/
+[nodejs]: https://azure.microsoft.com/develop/nodejs/
+[PHP]: https://azure.microsoft.com/develop/php/
+[Python]: https://azure.microsoft.com/develop/python/
+[servicebus]: /azure/service-bus/
+[sqldatabase]: /azure/sql-database/
+[Storage]: /azure/storage/
 
 <!-- IMG List -->
 

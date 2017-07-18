@@ -12,12 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/21/2017
+ms.date: 05/18/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: 1d35fbbe14d1597c23d8521bc21c683b520f0ea6
-ms.openlocfilehash: 34141bb2c3c6e159e4ce3d567b830451c59ed84c
-ms.lasthandoff: 02/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: d5a2d1f3d85b8a2212326cfcfd0ba5d80356b769
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -28,14 +29,16 @@ ms.lasthandoff: 02/01/2017
 >
 >
 
-本文說明如何使用監視及管理應用程式來監視、管理與偵錯您的 Azure Data Factory 管線，以及建立警示以便在失敗時收到通知。 您也可以觀看下列影片以了解如何使用監視及管理應用程式。
+本文說明如何使用監視及管理應用程式來監視、管理與偵錯您的 Data Factory 管線。 同時也會提供如何建立警示以取得失敗通知的詳細資訊。 您可以藉由觀賞下列影片開始使用應用程式：
+
+> [!NOTE]
+> 影片中顯示的使用者介面可能不完全符合您在入口網站中看到的使用者介面。 它比較舊，但是概念相同。 
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-Data-Factory-Monitoring-and-Managing-Big-Data-Piplines/player]
 >
->
 
-## <a name="open-the-monitoring-and-management-app"></a>開啟監視及管理應用程式
-若要開啟監視及管理應用程式，針對您的 Data Factory 按一下 [Data Factory] 刀鋒視窗上的 [監視及管理] 磚。
+## <a name="launch-the-monitoring-and-management-app"></a>啟動監視及管理應用程式
+若要啟動監視及管理應用程式，針對您的 Data Factory 按一下 [Data Factory] 刀鋒視窗上的 [監視及管理] 圖格。
 
 ![Data Factory 首頁上的監視磚](./media/data-factory-monitor-manage-app/MonitoringAppTile.png)
 
@@ -46,7 +49,13 @@ ms.lasthandoff: 02/01/2017
 > [!NOTE]
 > 如果您看到網頁瀏覽器停滯在「授權中...」，請清除 [封鎖第三方 Cookie 和站台資料] 核取方塊，或保留選取該核取方塊但建立 **login.microsoftonline.com** 的例外狀況，然後再試一次開啟應用程式。
 
-如果未在底部的清單中看見活動時段，請按一下工具列上的 [重新整理] 按鈕重新整理清單。 此外，為 [開始時間] 和 [結束時間] 篩選條件設定正確的值。  
+
+在中間窗格的 [活動時段] 清單中，您會在每次執行活動時看到活動時段。 例如，如果您有活動排程在五個小時內每小時執行，您會看到與五個資料配量與相關聯的五個活動時段。 如果您沒有在底部的清單中看到活動時段，請執行下列作業：
+ 
+- 更新頂端的**開始時間**和**結束時間**篩選以符合管線的開始和結束時間，然後按一下 [套用] 按鈕。  
+- [活動時段] 清單不會自動重新整理。 按一下 [活動時段] 清單中工具列上的 [重新整理] 按鈕。  
+
+如果您還沒有用來測試這些步驟的 Data Factory 應用程式，請進行教學課程：[使用 Data Factory 將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
 ## <a name="understand-the-monitoring-and-management-app"></a>了解監視及管理應用程式
 左側有三個索引標籤︰[資源總管]、[監視檢視] 以及 [警示]。 預設會選取第一個索引標籤 ([資源總管])。
@@ -55,9 +64,9 @@ ms.lasthandoff: 02/01/2017
 這時會顯示下列項目：
 
 * 左窗格中的資源總管**樹狀檢視**。
-* 頂端的 [圖表檢視]。
+* 中間窗格頂端的**圖表檢視**。
 * 中間窗格底部的 [活動時段] 清單。
-* 右窗格中的 [屬性] 和 [活動時段總管] 索引標籤。
+* 右窗格中的 [屬性]、[活動時段總管] 和 [指令碼] 索引標籤。
 
 在資源總管中，您可以在樹狀檢視的 Data Factory 看到所有資源 (管線、資料集、連結的服務)。 當您在 [資源總管] 中選取物件時：
 
@@ -81,23 +90,31 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![管線執行中](./media/data-factory-monitor-manage-app/PipelineRunning.png)
 
-[圖表檢視] 中的管線有三個命令列按鈕。 第二個按鈕可以讓您暫停管線。 暫停不會終止正在執行的活動，還會讓活動繼續完成。 第三個按鈕會暫停管線，並終止管線正在執行的活動。 第一個按鈕會讓管線繼續執行。 您的管線暫停時，管線的色彩會變更為黃色︰
+您可以暫停、繼續或終止管線，方法是在圖表檢視中選取它，以及使用命令列上的按鈕。
 
-![磚上的暫停/繼續按鈕](./media/data-factory-monitor-manage-app/SuspendResumeOnTile.png)
+![命令列上的暫停/繼續](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
+ 
+[圖表檢視] 中的管線有三個命令列按鈕。 第二個按鈕可以讓您暫停管線。 暫停不會終止正在執行的活動，還會讓活動繼續完成。 第三個按鈕會暫停管線，並終止管線正在執行的活動。 第一個按鈕會讓管線繼續執行。 您的管線暫停時，管線的色彩會變更。 例如，暫停管線看起來像下圖所示： 
+
+![管線已暫停](./media/data-factory-monitor-manage-app/PipelinePaused.png)
 
 您可以使用 Ctrl 鍵，以多重選取兩個以上的管線。 您可以使用命令列按鈕來同時暫停/繼續多個管線。
 
-![命令列上的暫停/繼續](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
+您也可以用滑鼠右鍵按一下管線，並選取選項來暫停、繼續或終止管線。 
 
-您可以查看管線中的所有活動，方法是用滑鼠右鍵按一下管線磚，然後按一下 [開啟管線]。
+![管線的內容功能表](./media/data-factory-monitor-manage-app/right-click-menu-for-pipeline.png)
+
+按一下 [開啟管線] 選項，查看管線中的所有活動。 
 
 ![開啟管線功能表](./media/data-factory-monitor-manage-app/OpenPipelineMenu.png)
 
-在開啟的管線檢視中，您會看到管線裡的所有活動。 在這個範例中只有一個活動：複製活動。 如要回到上一個檢視，請按一下頂端階層連結功能表中的 Data Factory 名稱。
+在開啟的管線檢視中，您會看到管線裡的所有活動。 在這個範例中只有一個活動：複製活動。 
 
 ![已開啟的管線](./media/data-factory-monitor-manage-app/OpenedPipeline.png)
 
-在管線檢視中，當您按一下某個輸出資料集時，或當您把滑鼠游標移動到輸出資料集上時，您會看到該資料集的 [活動時段] 快顯視窗。
+如要回到上一個檢視，請按一下頂端階層連結功能表中的 Data Factory 名稱。
+
+在管線檢視中，當您選取某個輸出資料集時，或當您把滑鼠游標移動到輸出資料集上時，您會看到該資料集的 [活動時段] 快顯視窗。
 
 ![活動時段快顯視窗](./media/data-factory-monitor-manage-app/ActivityWindowsPopup.png)
 

@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 12/29/2016
+ms.date: 06/01/2017
 ms.author: danlep
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 4e542ea6431933668d96f7028431826bceb9f337
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 2ec31c5444f72c7255d8925bdb3ea85854cfaf1a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -58,7 +59,7 @@ Microsoft HPC Pack 是免費提供的工具，可在內部部署環境中或 Azu
     設定憑證以保護前端節點與 Azure 之間的連線。 如需相關選項和程序，請參閱 [為 HPC Pack 設定 Azure 管理憑證的案例](http://technet.microsoft.com/library/gg481759.aspx)。 針對測試部署，HPC Pack 會安裝可快速上傳至您的 Azure 訂用帳戶的預設 Microsoft HPC Azure 管理憑證。
 3. **建立新的雲端服務和儲存體帳戶**
    
-    使用 Azure 傳統入口網站來建立雲端服務和儲存體帳戶，以在可使用支援 RDMA 之執行個體的區域中進行部署。
+    使用 Azure 入口網站來建立雲端服務和儲存體帳戶，在可使用支援 RDMA 之執行個體的區域中進行部署。
 4. **建立 Azure 節點範本**
    
     使用 [HPC 叢集管理員] 中的 [建立節點範本精靈]。 如需相關步驟，請參閱「使用 Microsoft HPC Pack 部署 Azure 節點的步驟」中的 [建立 Azure 節點範本](http://technet.microsoft.com/library/gg481758.aspx#BKMK_Templ) 。

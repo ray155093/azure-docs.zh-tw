@@ -13,19 +13,19 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/22/2017
+ms.date: 06/06/2017
 ms.author: anhoh
 ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 7b3bf2ebb02b748801f418066e9f16cb0197cde5
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 23a4a82dbdb611f4da90562af936fca28da9b24d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/13/2017
 
 ---
 # <a name="how-to-import-data-into-azure-cosmos-db-for-the-documentdb-api"></a>如何將資料匯入到 DocumentDB API 的 Azure Cosmos DB？
 
-本教學課程提供使用 Azure Cosmos DB 資料移轉工具的相關指示，可將資料從各種來源 (包括 JSON 檔案、CSV 檔案、SQL、MongoDB、Azure 資料表儲存體、Amazon DynamoDB 及 DocumentDB 集合) 匯入到 Azure Cosmos DB。 針對 DocumentDB API 從單一分割區集合移轉到多重分割區集合時，也可以使用資料移轉工具。
+本教學課程提供使用 Azure Cosmos DB：DocumentDB API 資料移轉工具的相關指示，可將資料從各種來源 (包括 JSON 檔案、CSV 檔案、SQL、MongoDB、Azure 資料表儲存體、Amazon DynamoDB 及 Azure Cosmos DB DocumentDB API 集合) 匯入到要與 Azure Cosmos DB 和 DocumentDB API 搭配使用的集合。 針對 DocumentDB API 從單一分割區集合移轉到多重分割區集合時，也可以使用資料移轉工具。
 
 將資料匯入到 Azure Cosmos DB 來與 DocumentDB API 搭配使用時，僅適用資料移轉工具。 目前不支援匯入資料來與資料表 API 或圖形 API 搭配使用。 
 
@@ -112,7 +112,7 @@ JSON 檔案來源匯入工具選項可讓您匯入一或多個單一文件 JSON 
 
 MongoDB 來源匯入工具選項可讓您從個別的 MongoDB 集合匯入，並使用查詢來選擇性地篩選文件，及/或使用投影來修改文件結構。  
 
-![MongoDB 來源選項的螢幕擷取畫面 - documentdb 與 mongodb 的比較](./media/import-data/mongodbsource.png)
+![MongoDB 來源選項的螢幕擷取畫面](./media/import-data/mongodbsource.png)
 
 連接字串會採用標準的 MongoDB 格式：
 
@@ -136,13 +136,13 @@ MongoDB 來源匯入工具選項可讓您從個別的 MongoDB 集合匯入，並
 ## <a id="MongoDBExport"></a>匯入 MongoDB 匯出檔案
 
 > [!IMPORTANT]
-> 如果您要匯入到具有 MongoDB 支援的 Azure Cosmos DB 帳戶，請遵循這些[指示](mongodb-migrate.md)。
+> 如果您要匯入具有 MongoDB 支援的 Azure Cosmos DB 帳戶中，請遵循這些[指示](mongodb-migrate.md)。
 > 
 > 
 
 MongoDB 匯出 JSON 檔案來源匯入工具選項可讓您匯入從 mongoexport 公用程式產生的一或多個 JSON 檔案。  
 
-![MongoDB 匯出來源選項的螢幕擷取畫面 - documentdb 與 mongodb 的比較](./media/import-data/mongodbexportsource.png)
+![MongoDB 匯出來源選項的螢幕擷取畫面](./media/import-data/mongodbexportsource.png)
 
 新增包含要匯入之 MongoDB 匯出 JSON 檔案的資料夾，您可以選擇是否要以遞迴方式搜尋子資料夾中的檔案。
 
@@ -253,7 +253,7 @@ Amazon DynamoDB 連接字串的格式如下：
 
 以下是從 Amazon DynamoDB 匯入的命令列範例：
 
-    dt.exe /s:DynamoDB /s.ConnectionString:ServiceURL=https://dynamodb.us-east-1.amazonaws.com;AccessKey=<accessKey>;SecretKey=<secretKey> /s.Request:"{   """TableName""": """ProductCatalog""" }" /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:catalogCollection /t.CollectionThroughput:2500
+    dt.exe /s:DynamoDB /s.ConnectionString:ServiceURL=https://dynamodb.us-east-1.amazonaws.com;AccessKey=<accessKey>;SecretKey=<secretKey> /s.Request:"{   """TableName""": """ProductCatalog""" }" /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<Azure Cosmos DB Endpoint>;AccountKey=<Azure Cosmos DB Key>;Database=<Azure Cosmos DB Database>;" /t.Collection:catalogCollection /t.CollectionThroughput:2500
 
 ## <a id="BlobImport"></a>從 Azure Blob 儲存體匯入檔案
 JSON 檔案、MongoDB 匯出檔案和 CSV 檔案來源匯入工具選項可讓您從 Azure Blob 儲存體匯入一或多個檔案。 指定 Blob 容器 URL 和帳戶金鑰之後，只需提供規則運算式來選取要匯入的檔案。
@@ -264,7 +264,7 @@ JSON 檔案、MongoDB 匯出檔案和 CSV 檔案來源匯入工具選項可讓�
 
     dt.exe /s:JsonFile /s.Files:"blobs://<account key>@account.blob.core.windows.net:443/importcontainer/.*" /t:CosmosDBBulk /t.ConnectionString:"AccountEndpoint=<CosmosDB Endpoint>;AccountKey=<CosmosDB Key>;Database=<CosmosDB Database>;" /t.Collection:doctest
 
-## <a id="DocumentDBSource"></a>從 DocumentDB 匯入
+## <a id="DocumentDBSource"></a>若要從 Azure Cosmos DB DocumentDB API 集合匯入
 Azure Cosmos DB 來源匯入工具選項可讓您從一或多個 Azure Cosmos DB 集合匯入資料，並選擇性地使用查詢來篩選文件。  
 
 ![Azure Cosmos DB 來源選項的螢幕擷取畫面](./media/import-data/documentdbsource.png)
@@ -315,7 +315,7 @@ Azure Cosmos DB 來源匯入工具選項具有下列進階選項：
     dt.exe /s:CosmosDB /s.ConnectionString:"AccountEndpoint=<CosmosDB Endpoint>;AccountKey=<CosmosDB Key>;Database=<CosmosDB Database>;" /s.Collection:StoresSub /t:JsonFile /t.File:StoresExport.json /t.Overwrite /t.CollectionThroughput:2500
 
 > [!TIP]
-> Azure Cosmos DB 資料匯入工具也支援從 [Azure Cosmos DB 模擬器](local-emulator.md)匯入資料。 從本機模擬器匯入資料時，請將端點設定為 https://localhost:<port>。 
+> Azure Cosmos DB 資料匯入工具也支援從 [Azure Cosmos DB 模擬器](local-emulator.md)匯入資料。 從本機模擬器匯入資料時，請將端點設定為 `https://localhost:<port>`。 
 > 
 > 
 
@@ -339,7 +339,7 @@ HBase Stargate 連接字串的格式如下：
 
     dt.exe /s:HBase /s.ConnectionString:ServiceURL=<server-address>;Username=<username>;Password=<password> /s.Table:Contacts /t:CosmosDBBulk /t.ConnectionString:"AccountEndpoint=<CosmosDB Endpoint>;AccountKey=<CosmosDB Key>;Database=<CosmosDB Database>;" /t.Collection:hbaseimport
 
-## <a id="DocumentDBBulkTarget"></a>匯入到 DocumentDB (大量匯入)
+## <a id="DocumentDBBulkTarget"></a>匯入 DocumentDB API 中 (大量匯入)
 為了提高效率，Azure Cosmos DB 大量匯入工具可讓您使用 Azure Cosmos DB 預存程序，從任何可用的來源選項匯入。 此工具支援匯入到一個單一分割的 Azure Cosmos DB 集合，以及跨多個單一分割 Azure Cosmos DB 集合分割資料的分區化匯入。 如需分割資料的詳細資訊，請參閱 [Azure Cosmos DB 的資料分割與調整規模](partition-data.md)。 此工具將建立並執行預存程序，然後從目標集合中將它刪除。  
 
 ![Azure Cosmos DB 大量選項的螢幕擷取畫面](./media/import-data/documentdbbulk.png)
@@ -403,7 +403,7 @@ Azure Cosmos DB 大量匯入工具含有下列其他進階選項：
 > 
 > 
 
-## <a id="DocumentDBSeqTarget"></a>匯入到 DocumentDB (循序記錄匯入)
+## <a id="DocumentDBSeqTarget"></a>匯入 DocumentDB API 中 (循序記錄匯入)
 Azure Cosmos DB 循序記錄匯入工具可讓您從任何可用的來源選項逐筆匯入記錄。 如果您打算匯入至已達到預存程序配額的現有集合，您可以選擇此選項。 此工具支援匯入到單一 (單一分割區和多重分割區兩者) 的 Azure Cosmos DB 集合，以及跨多個單一分割區和/或多重分割區 Azure Cosmos DB 集合分割資料的分區化匯入。 如需分割資料的詳細資訊，請參閱 [Azure Cosmos DB 的資料分割與調整規模](partition-data.md)。
 
 ![Azure Cosmos DB 循序記錄匯入選項的螢幕擷取畫面](./media/import-data/documentdbsequential.png)
@@ -414,7 +414,7 @@ Azure Cosmos DB 連接字串的格式如下：
 
 就像[如何管理 Azure Cosmos DB 帳戶](manage-account.md)中所述，可從 Azure 入口網站的 [金鑰] 刀鋒視窗中擷取 Azure Cosmos DB 帳戶的連接字串，但必須以下列格式將資料庫的名稱附加至連接字串：
 
-    Database=<CosmosDB Database>;
+    Database=<Azure Cosmos DB Database>;
 
 > [!NOTE]
 > 若要確定可以存取連接字串欄位中指定的 Azure Cosmos DB 執行個體，請使用 Verify 命令。

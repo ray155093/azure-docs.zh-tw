@@ -3,7 +3,7 @@ title: "Azure Cosmos DB 中的一致性層級 | Microsoft Docs"
 description: "Azure Cosmos DB 具有五個一致性層級，有助於在最終一致性、可用性和延遲的取捨之間取得平衡。"
 keywords: "最終一致性, azure cosmos db, azure, Microsoft azure"
 services: cosmos-db
-author: syamkmsft
+author: mimig1
 manager: jhubbard
 editor: cgronlun
 documentationcenter: 
@@ -13,19 +13,19 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/11/2017
-ms.author: syamk
+ms.date: 06/16/2017
+ms.author: mimig
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: b4f4a32a19c2145a18557a54d5a495ef0c8dec75
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: abca1eff9d0b79420e70da5a4c551eceda478491
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
 # <a name="tunable-data-consistency-levels-in-azure-cosmos-db"></a>Azure Cosmos DB 中的 Tunable 資料一致性層級
-Azure Cosmos DB 是針對每個資料模型考量到全球發佈的全新設計。 它的設計目的是提供可預測的低延遲保證、99.99% 的可用性 SLA，以及多個定義完善且寬鬆的一致性層級模型。 Azure Cosmos DB 目前提供五種一致性層級：強式、限定過期、工作階段和最終。 
+Azure Cosmos DB 是針對每個資料模型考量到全球發佈的全新設計。 它的設計目的是提供可預測的低延遲保證、99.99% 的可用性 SLA，以及多個定義完善且寬鬆的一致性層級模型。 Azure Cosmos DB 目前提供五種一致性層級：強式、限定過期、工作階段、一致的前置和最終。 
 
 除了**強式**和**最終一致性**模型通常是由分散式資料庫所提供，Azure Cosmos DB 還提供其他三個已仔細編碼且可運作的一致性模型，並已根據真實世界的使用案例驗證過它們的實用性。 這些模型是**限定過期**、**工作階段**和**一致前置詞**一致性層級。 總言之，這五個一致性層級可讓您在一致性、可用性與延遲三者間做出合理取捨。 
 
@@ -40,13 +40,13 @@ Azure Cosmos DB 是針對每個資料模型考量到全球發佈的全新設計�
  
 **一致性層級和保證**
 
-| 一致性層級    | 保證 |
+| 一致性層級 | 保證 |
 | --- | --- |
 | 強式 | 線性化能力 |
-| 限定過期    | 一致前置詞。 讀取落後寫入 (k 前置詞或 t 間隔) |
-| 工作階段    | 一致前置詞。 單純讀取、單純寫入、讀取您的寫入、讀取後接寫入 |
-| 一致前置詞    | 傳回的更新是所有更新的部分前置詞 (沒有間隔) |
-| 最終    | 次序錯誤讀取 |
+| 限定過期 | 一致前置詞。 讀取落後寫入 (k 前置詞或 t 間隔) |
+| 工作階段   | 一致前置詞。 單純讀取、單純寫入、讀取您的寫入、讀取後接寫入 |
+| 一致前置詞 | 傳回的更新是所有更新的部分前置詞 (沒有間隔) |
+| 最終  | 次序錯誤讀取 |
 
 您可以在 Cosmos DB 帳戶上設定預設一致性層級 (並在稍後覆寫特定讀取要求的一致性)。 就內部而言，預設的一致性層級適用於跨區域之分割區集合內的資料。 大約 73% 的租用戶使用工作階段一致性，而 20% 的租用戶則偏好限定過期。 我們發現，大約有 3% 的客戶在一開始試驗不同的一致性層級，然後才決定應用程式的特定一致性選擇。 我們也發現只有 2% 的租用戶在個別要求基礎上覆寫一致性層級。 
 

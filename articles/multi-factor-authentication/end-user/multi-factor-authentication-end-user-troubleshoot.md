@@ -6,20 +6,21 @@ keywords: "多重要素驗證用戶端, 驗證的問題, 相互關聯識別碼"
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: yossib
 ms.assetid: 8f3aef42-7f66-4656-a7cd-d25a971cb9eb
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/15/2017
+ms.date: 06/15/2017
 ms.author: kgremban
+ms.reviewer: yossib
 ms.custom: end-user
-translationtype: Human Translation
-ms.sourcegitcommit: 4ff028f88e984f28bc0f4a228aabed1fabc90560
-ms.openlocfilehash: 2eab76ba42955616ae4d6909c1568f03da0c1819
-ms.lasthandoff: 12/22/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: 10b63a859c67b965734e32ec979b26a1ea6cc516
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/22/2017
 
 ---
 # <a name="having-trouble-with-two-step-verification"></a>使用雙步驟驗證遇到困難
@@ -28,7 +29,7 @@ ms.lasthandoff: 12/22/2016
 ## <a name="i-lost-my-phone-or-it-was-stolen"></a>我的手機遺失或遭竊
 有兩種方式可以取回您的帳戶。 第一種是使用備用驗證電話號碼登入 (如果已設定)。 第二種是要求您的系統管理員清除您的設定。
 
-如果您的手機遺失或遭竊，也建議讓您的系統管理員重設您的應用程式密碼，並清除任何已記住的裝置。 如果您的系統管理員不確定如何完成這項作業，請將他們指向這篇文章︰[管理使用者和裝置](../multi-factor-authentication-manage-users-and-devices.md)。
+如果您的手機遺失或遭竊，也建議讓您的系統管理員重設您的應用程式密碼，並清除任何已記住的裝置。 如果您的管理員不確定如何完成這項工作，請將他們指向這篇文章︰[管理使用者和裝置](../multi-factor-authentication-manage-users-and-devices.md)。
 
 ### <a name="use-an-alternate-phone-number"></a>使用備用電話號碼
 如果您已設定多個驗證選項 (包含不同裝置上的次要電話號碼或驗證器應用程式)，則可以使用其中一個選項來登入。
@@ -60,14 +61,14 @@ ms.lasthandoff: 12/22/2016
     ![不同的驗證方式](./media/multi-factor-authentication-end-user-troubleshoot/diff_option.png)
 2. 選取您想要使用的電話號碼或傳遞方法。
    
-    如果您收到多個驗證碼，則只有最新的驗證碼才有效。
+    如果收到多個驗證碼，請使用最新的驗證碼。
 
 如果您未設定其他方法，請連絡系統管理員並要求他們清除您的設定。 下次登入時，系統會提示您再次[設定多重要素驗證](multi-factor-authentication-end-user-first-time.md)。
 
 如果您經常因手機收訊不良而延遲，則建議在智慧型手機上使用 [Microsoft Authenticator 應用程式](microsoft-authenticator-app-how-to.md)。 應用程式可以產生您用來登入的隨機安全驗證碼，而且這些代碼不需要任何手機訊號或網際網路連接。
 
 ## <a name="app-passwords-are-not-working"></a>應用程式密碼無效
-首先，請確定您輸入的是正確的應用程式密碼。  如果仍無法登入，請嘗試登入並 [建立新的應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)。  如果還是無法登入，請要求系統管理員[刪除您現有的應用程式密碼](../multi-factor-authentication-manage-users-and-devices.md)，然後建立新的密碼。
+首先，請確定您輸入的是正確的應用程式密碼。 如果仍無法登入，請嘗試登入並[建立應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)。  如果還是無法登入，請要求系統管理員[刪除您現有的應用程式密碼](../multi-factor-authentication-manage-users-and-devices.md)，然後建立新的密碼。
 
 ## <a name="i-didnt-find-an-answer-to-my-problem"></a>我找不到我問題的解答。
 如果您已嘗試這些疑難排解步驟，但仍發生問題，請連絡系統管理員或設定多因素驗證的人員。 他們應該可以協助您。

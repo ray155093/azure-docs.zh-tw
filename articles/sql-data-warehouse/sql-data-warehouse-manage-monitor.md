@@ -16,10 +16,10 @@ ms.custom: performance
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
 ms.translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 3735d656429da1f1fe7569f640b272b099382032
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 7ce6c2cdf1e28852da536414533ccdcdaeb437e5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/03/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -174,6 +174,117 @@ ORDER BY waits.object_name, waits.object_type, waits.state;
 ```
 
 如果查詢正在主動等候另一個查詢的資源，則狀態會是 **AcquireResources**。  如果查詢具有全部的所需資源，則狀態會是 **Granted**。
+
+## <a name="monitor-tempdb"></a>監視 tempdb
+高 tempdb 使用量是效能緩慢及記憶體不足問題的根本原因。 請先檢查是否有資料扭曲或品質低落的資料列群組，並採取適當的動作。 如果您在查詢執行期間發現 tempdb 達到其上限，請考慮調整您的資料倉儲。 以下描述如何識別每個節點上每個查詢的 tempdb 使用量。 
+
+建立下列檢視，以針對 sys.dm_pdw_sql_requests 建立適當節點識別碼的關聯。 這可讓您運用其他傳遞 DMV，並將這些資料表與 sys.dm_pdw_sql_requests 聯結。
+
+```sql
+-- sys.dm_pdw_sql_requests with the correct node id
+CREATE VIEW sql_requests AS
+(SELECT
+       sr.request_id,
+       sr.step_index,
+       (CASE 
+              WHEN (sr.distribution_id = -1 ) THEN 
+              (SELECT pdw_node_id FROM sys.dm_pdw_nodes WHERE type = 'CONTROL') 
+              ELSE d.pdw_node_id END) AS pdw_node_id,
+       sr.distribution_id,
+       sr.status,
+       sr.error_id,
+       sr.start_time,
+       sr.end_time,
+       sr.total_elapsed_time,
+       sr.row_count,
+       sr.spid,
+       sr.command
+FROM sys.pdw_distributions AS d
+RIGHT JOIN sys.dm_pdw_sql_requests AS sr ON d.distribution_id = sr.distribution_id)
+```
+執行下列查詢可監視 tempdb：
+
+```sql
+-- Monitor tempdb
+SELECT
+    sr.request_id,
+    ssu.session_id,
+    ssu.pdw_node_id,
+    sr.command,
+    sr.total_elapsed_time,
+    es.login_name AS 'LoginName',
+    DB_NAME(ssu.database_id) AS 'DatabaseName',
+    (es.memory_usage * 8) AS 'MemoryUsage (in KB)',
+    (ssu.user_objects_alloc_page_count * 8) AS 'Space Allocated For User Objects (in KB)',
+    (ssu.user_objects_dealloc_page_count * 8) AS 'Space Deallocated For User Objects (in KB)',
+    (ssu.internal_objects_alloc_page_count * 8) AS 'Space Allocated For Internal Objects (in KB)',
+    (ssu.internal_objects_dealloc_page_count * 8) AS 'Space Deallocated For Internal Objects (in KB)',
+    CASE es.is_user_process
+    WHEN 1 THEN 'User Session'
+    WHEN 0 THEN 'System Session'
+    END AS 'SessionType',
+    es.row_count AS 'RowCount'
+FROM sys.dm_pdw_nodes_db_session_space_usage AS ssu
+    INNER JOIN sys.dm_pdw_nodes_exec_sessions AS es ON ssu.session_id = es.session_id AND ssu.pdw_node_id = es.pdw_node_id
+    INNER JOIN sys.dm_pdw_nodes_exec_connections AS er ON ssu.session_id = er.session_id AND ssu.pdw_node_id = er.pdw_node_id
+    INNER JOIN sql_requests AS sr ON ssu.session_id = sr.spid AND ssu.pdw_node_id = sr.pdw_node_id
+WHERE DB_NAME(ssu.database_id) = 'tempdb'
+    AND es.session_id <> @@SPID
+    AND es.login_name <> 'sa' 
+ORDER BY sr.request_id;
+```
+## <a name="monitor-memory"></a>監視記憶體
+
+記憶體是效能緩慢及記憶體不足問題的根本原因。 請先檢查是否有資料扭曲或品質低落的資料列群組，並採取適當的動作。 如果您在查詢執行期間發現 SQL Server 記憶體使用量達到其上限，請考慮調整您的資料倉儲。
+
+下列查詢會傳回每個節點的 SQL Server 記憶體使用量和記憶體不足壓力：   
+```sql
+-- Memory consumption
+SELECT
+  pc1.cntr_value as Curr_Mem_KB, 
+  pc1.cntr_value/1024.0 as Curr_Mem_MB,
+  (pc1.cntr_value/1048576.0) as Curr_Mem_GB,
+  pc2.cntr_value as Max_Mem_KB,
+  pc2.cntr_value/1024.0 as Max_Mem_MB,
+  (pc2.cntr_value/1048576.0) as Max_Mem_GB,
+  pc1.cntr_value * 100.0/pc2.cntr_value AS Memory_Utilization_Percentage,
+  pc1.pdw_node_id
+FROM
+-- pc1: current memory
+sys.dm_pdw_nodes_os_performance_counters AS pc1
+-- pc2: total memory allowed for this SQL instance
+JOIN sys.dm_pdw_nodes_os_performance_counters AS pc2 
+ON pc1.object_name = pc2.object_name AND pc1.pdw_node_id = pc2.pdw_node_id
+WHERE
+pc1.counter_name = 'Total Server Memory (KB)'
+AND pc2.counter_name = 'Target Server Memory (KB)'
+```
+## <a name="monitor-transaction-log-size"></a>監視交易記錄大小
+下列查詢會傳回每個發佈上的交易記錄大小。 請檢查是否有資料扭曲或品質低落的資料列群組，並採取適當的動作。 如果其中一個記錄檔達到 160 GB，您應該考慮將您的執行個體相應放大或限制您交易的大小。 
+```sql
+-- Transaction log size
+SELECT
+  instance_name as distribution_db,
+  cntr_value*1.0/1048576 as log_file_size_used_GB,
+  pdw_node_id 
+FROM sys.dm_pdw_nodes_os_performance_counters 
+WHERE 
+instance_name like 'Distribution_%' 
+AND counter_name = 'Log File(s) Used Size (KB)'
+AND counter_name = 'Target Server Memory (KB)'
+```
+## <a name="monitor-transaction-log-rollback"></a>監視交易記錄復原
+如果您的查詢失敗或需要長時間才能繼續，您可以檢查及監視是否有任何交易復原。
+```sql
+-- Monitor rollback
+SELECT 
+    SUM(CASE WHEN t.database_transaction_next_undo_lsn IS NOT NULL THEN 1 ELSE 0 END),
+    t.pdw_node_id,
+    nod.[type]
+FROM sys.dm_pdw_nodes_tran_database_transactions t
+JOIN sys.dm_pdw_nodes nod ON t.pdw_node_id = nod.pdw_node_id
+GROUP BY t.pdw_node_id, nod.[type]
+```
 
 ## <a name="next-steps"></a>後續步驟
 請參閱[系統檢視][System views]以取得 DMV 的詳細資訊。

@@ -11,23 +11,18 @@ ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.workload: 
+ms.workload: storage-backup-recovery
 ms.date: 06/05/2017
 ms.author: ruturajd
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 1c56a7f16361ac4fae97be6c9f21c959723b396c
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 622604dc3ce69085feff6705168d58ad9938c429
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
 # <a name="fail-back-from-azure-to-an-on-premises-site"></a>從 Azure 容錯回復至內部部署網站
-
-> [!div class="op_single_selector"]
-> * [從 Azure 容錯回復 VMware/實體機器](site-recovery-failback-azure-to-vmware.md)
-> * [從 Azure 容錯回復 Hyper-V VM](site-recovery-failback-from-azure-to-hyper-v.md)
-
 
 本文說明如何將虛擬機器從 Azure 虛擬機器容錯回復到內部部署網站。 請遵循本文中的指示，將已使用[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md) 教學課程從內部部署網站容錯移轉至 Azure 的 VMware 虛擬機器或 Windows/Linux 實體伺服器進行容錯回復。
 
@@ -76,7 +71,7 @@ ms.lasthandoff: 04/27/2017
 
 將實體機器容錯回復到 Azure 時，只能容錯回復為 VMware 虛擬機器 (亦稱為 P2A2V)。 此流程是屬於替代位置復原的範圍。
 
-* Windows Server 2008 R2 SP1 伺服器如果受保護且容錯移轉至 Azure，則無法容錯回復。
+* Windows Server 2008 R2 SP1 實體伺服器如果受保護且容錯移轉至 Azure，則無法容錯回復。
 * 請確定您至少探索一部主要目標伺服器以及需要容錯回復到的必要 ESX/ESXi 主機。
 
 ## <a name="have-you-completed-reprotection"></a>您已完成重新保護嗎？
@@ -112,7 +107,7 @@ ms.lasthandoff: 04/27/2017
 
 ### <a name="what-happens-to-vmware-tools-post-failback"></a>VMware 工具在容錯回復後會發生什麼狀況？
 
-容錯移轉至 Azure 期間，VMware 工具無法在 Azure 虛擬機器上執行。 萬一遇上 Windows 虛擬機器，ASR 會在容錯移轉期間停用 VMware 工具。 萬一遇上 Linux 虛擬機器，ASR 會在容錯移轉期間解除安裝 VMware 工具。 
+容錯移轉至 Azure 期間，VMware 工具無法在 Azure 虛擬機器上執行。 萬一遇上 Windows 虛擬機器，ASR 會在容錯移轉期間停用 VMware 工具。 萬一遇上 Linux 虛擬機器，ASR 會在容錯移轉期間解除安裝 VMware 工具。
 
 在 Windows 虛擬機器容錯回復期間，VMware 工具也會在容錯回復之後立即重新啟用。 同樣地，針對 Linux 虛擬機器，VMware 工具會在容錯回復期間重新安裝於電腦上。
 

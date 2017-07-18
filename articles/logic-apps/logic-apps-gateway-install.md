@@ -13,13 +13,13 @@ ms.devlang:
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
-ms.date: 05/5/2017
+ms.date: 06/9/2017
 ms.author: LADocs; dimazaid; estfan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 8a1ae2ef790455383118bb55c34f6ca10fe0169e
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 7122b970c2e4703df9771e8ace4e710399ca3e6c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -76,19 +76,22 @@ ms.lasthandoff: 05/17/2017
 
 * 請勿將閘道安裝在關閉、進入睡眠狀態，或未連線到網際網路的電腦上，因為閘道無法在這些情況下執行。 此外，透過無線網路的閘道效能可能會受到影響。
 
-* 您用來登入的 Azure 帳戶必須具有由 Azure Active Directory (Azure AD) 所管理的公司或學校電子郵件地址。 需要有此帳戶才能讓內部部署資料閘道關聯到 Azure AD 型帳戶的 Azure 訂用帳戶。
+* 在安裝期間，您必須登入[公司或學校帳戶](https://docs.microsoft.com/azure/active-directory/sign-up-organization)，該帳戶是由 Azure Active Directory (Azure AD) 所管理，而非 Microsoft 帳戶。 
 
-  > [!TIP] 
-  > 如果您擁有 Microsoft 帳戶 (例如 @outlook.com)，您可以使用 Azure 帳戶來[建立公司或學校電子郵件地址](../virtual-machines/windows/create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)。 或者，如果您已註冊 Office 365 供應項目，但是未提供實際的公司電子郵件，您的登入地址看起來可能會像 jeff@contoso.onmicrosoft.com。 
+  稍後在建立並將閘道資源關聯至閘道安裝時，您必須在 Azure 入口網站中使用同一個公司或學校帳戶。 接著，在建立邏輯應用程式與內部部署資料來源間的連線時，選取該閘道資源。 [為何必須使用公司或學校的 Azure AD 帳戶？](#why-azure-work-school-account)
+
+  > [!TIP]
+  > 如果您註冊 Office 365 供應項目，但是未提供實際的公司電子郵件，您的登入位址看起來可能會像 jeff@contoso.onmicrosoft.com。 
 
 * 如果您現有的閘道在設定時使用的是 14.16.6317.4 版之前的安裝程式，您就無法藉由執行最新版的安裝程式來變更閘道位置。 不過，您可以使用最新版的安裝程式，來對新的閘道設定您想要的位置。
   
   如果您的閘道安裝程式版本比 14.16.6317.4 還舊，但您尚未安裝閘道，則可以下載並使用最新版的安裝程式。
 
 <a name="install-gateway"></a>
+
 ## <a name="install-the-data-gateway"></a>安裝資料閘道
 
-1.    [在本機電腦上下載並執行閘道安裝程式](http://go.microsoft.com/fwlink/?LinkID=820931&clcid=0x409)。
+1.  [在本機電腦上下載並執行閘道安裝程式](http://go.microsoft.com/fwlink/?LinkID=820931&clcid=0x409)。
 
 2. 檢閱並接受使用規定和隱私權聲明。
 
@@ -96,29 +99,38 @@ ms.lasthandoff: 05/17/2017
 
 4. 在系統提示時，使用公司或學校的 Azure 帳戶而非 Microsoft 帳戶來登入。
 
-5. 現在向[閘道雲端服務](#gateway-cloud-service)註冊您的閘道安裝。 
+   ![使用 Azure 公司或學校帳戶登入](./media/logic-apps-gateway-install/sign-in-gateway-install.png)
 
-     閘道雲端服務會將資料來源認證和閘道詳細資料予以加密並儲存。 
-     此服務也會在雲端使用者 (例如邏輯應用程式)、內部部署資料閘道和內部部署資料來源之間路由傳送查詢和其結果。
+5. 現在向[閘道雲端服務](#gateway-cloud-service)註冊您已安裝的閘道。 選擇**在這部電腦上註冊新的閘道**。
 
-     1. 為閘道安裝提供名稱，並建立修復金鑰。 
-     確認修復金鑰。
+   閘道雲端服務會將資料來源認證和閘道詳細資料予以加密並儲存。 
+   此服務也會在邏輯應用程式、內部部署資料閘道和內部部署資料來源之間路由傳送查詢和其結果。
 
-        > [!IMPORTANT] 
-        > 修復金鑰必須至少包含 8 個字元。 請務必將金鑰儲存並保管在安全的地方。 當您想要移轉、還原或取代現有閘道時，也需要此金鑰。
+6. 為閘道安裝提供名稱。 建立復原金鑰，然後確認復原金鑰。 
 
-     2. 若要變更閘道安裝所使用之閘道雲端服務和 Azure 服務匯流排的預設區域，請選擇 [變更區域]。
+   > [!IMPORTANT] 
+   > 修復金鑰必須至少包含 8 個字元。 請務必將金鑰儲存並保管在安全的地方。 當您想要移轉、還原或取代現有閘道時，也需要此金鑰。
 
-        例如，您可以選取和邏輯應用程式相同的區域，也可以選取最靠近內部部署資料來源的區域，以便減少延遲。 閘道資源和邏輯應用程式可位於不同位置。
+   1. 若要變更閘道安裝所使用之閘道雲端服務和 Azure 服務匯流排的預設區域，請選擇 [變更區域]。
 
-        > [!IMPORTANT]
-        > 安裝完成後就無法變更此區域。 此區域也會決定並限制您可以用來為閘道建立 Azure 資源的位置。 因此當您在 Azure 中建立閘道資源時，請確定資源位置符合您在閘道安裝期間所選取的區域。
-        > 
-        > 如果您之後想要為閘道使用不同區域，就必須設定新的閘道。
+      ![變更區域](./media/logic-apps-gateway-install/change-region-gateway-install.png)
 
-     3. 完成之後，請選擇 [設定]。
+      預設區域是與 Azure AD 租用戶相關聯的區域。
 
-6. 現在，在 Azure 入口網站中遵循下列步驟，以便[為閘道建立 Azure 資源](../logic-apps/logic-apps-gateway-connection.md)。 
+   2. 在下一個窗格中，開啟**選取區域**以選擇不同的區域。
+
+      ![選取其他區域](./media/logic-apps-gateway-install/select-region-gateway-install.png)
+
+      例如，您可以選取和邏輯應用程式相同的區域，也可以選取最靠近內部部署資料來源的區域，以便減少延遲。 閘道資源和邏輯應用程式可位於不同位置。
+
+      > [!IMPORTANT]
+      > 安裝完成後就無法變更此區域。 此區域也會決定並限制您可以用來為閘道建立 Azure 資源的位置。 因此當您在 Azure 中建立閘道資源時，請確定資源位置符合您在閘道安裝期間所選取的區域。
+      > 
+      > 如果您之後想要為閘道使用不同區域，就必須設定新的閘道。
+
+   3. 準備就緒時，請選擇 [完成]。
+
+7. 現在，在 Azure 入口網站中遵循下列步驟，以便[為閘道建立 Azure 資源](../logic-apps/logic-apps-gateway-connection.md)。 
 
 深入了解[資料閘道的運作方式](#gateway-cloud-service)。
 
@@ -127,7 +139,12 @@ ms.lasthandoff: 05/17/2017
 若要執行這些工作，您必須擁有安裝閘道時所指定的修復金鑰。
 
 1. 在電腦的 [開始] 功能表中，選擇 [內部部署資料閘道]。
-2. 安裝程式開啟後，提供您想要移轉、還原或取代之閘道的修復金鑰。
+
+2. 安裝程式開啟後，登入先前用來安裝閘道的同一個公司或學校的 Azure 帳戶。
+
+3. 選擇**移轉、還原或取代現有閘道**。
+
+4. 提供您想要移轉、還原或取代之閘道的名稱和復原金鑰。
 
 <a name="restart-gateway"></a>
 ## <a name="restart-the-gateway"></a>重新啟動閘道
@@ -199,7 +216,7 @@ TcpTestSucceeded       : True
 <a name="gateway-cloud-service"></a>
 ## <a name="how-does-the-data-gateway-work"></a>資料閘道如何運作？
 
-資料閘道可讓雲端使用者 (例如邏輯應用程式)、閘道雲端服務和內部部署資料來源之間，快速且安全地進行通訊。 
+資料閘道可讓邏輯應用程式、閘道雲端服務和內部部署資料來源之間，快速且安全地進行通訊。 
 
 ![diagram-for-on-premises-data-gateway-flow](./media/logic-apps-gateway-install/how-on-premises-data-gateway-works-flow-diagram.png)
 
@@ -228,8 +245,10 @@ TcpTestSucceeded       : True
 **問**︰閘道必須安裝在與資料來源相同的電腦上嗎？ <br/>
 **答**：否。 閘道會使用所提供的連線資訊連線至資料來源。 在此請將閘道視為用戶端應用程式。 閘道只需要能夠連線到所提供的伺服器名稱。
 
+<a name="why-azure-work-school-account"></a>
+
 **問︰**︰為何必須使用公司或學校的 Azure 帳戶來登入？ <br/>
-**答**︰內部部署資料閘道只能與公司或學校的 Azure 帳戶相關聯。 登入帳戶會儲存在由 Azure Active Directory (Azure AD) 所管理的租用戶中。 Azure AD 帳戶的 UPN 通常會與電子郵件地址相符。
+**答**︰安裝內部部署資料閘道時，您只能使用公司或學校的 Azure 帳戶。 登入帳戶會儲存在由 Azure Active Directory (Azure AD) 所管理的租用戶中。 Azure AD 帳戶的使用者主體名稱 (UPN) 通常會與電子郵件地址相符。
 
 **問**︰我的認證儲存在哪裡？ <br/>
 **答**：您針對資料來源輸入的認證會以加密方式儲存在閘道雲端服務中。 認證會在內部部署資料閘道進行解密。

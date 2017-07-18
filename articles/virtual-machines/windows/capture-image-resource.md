@@ -16,16 +16,16 @@ ms.topic: article
 ms.date: 02/27/2017
 ms.author: cynthn
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 4ffbe7e28d8b4c7d421bec477455a94609cd127a
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: e428b755f6696bd6d4047ad77579a8e9665dfbd8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
-# <a name="capture-a-managed-image-of-a-generalized-vm-in-azure"></a>在 Azure 中擷取一般化 VM 的受控映像
+# <a name="create-a-managed-image-of-a-generalized-vm-in-azure"></a>在 Azure 中建立一般化 VM 的受控映像
 
-您可以從在儲存體帳戶中儲存為受控磁碟或非受控磁碟的一般化 VM，建立受控映像資源。 此映像接著可用來建立多部使用受控磁碟進行儲存的 VM。 
+您可以從在儲存體帳戶中儲存為受控磁碟或非受控磁碟的一般化 VM，建立受控映像資源。 映像接著便可用來建立多個 VM。 
 
 
 ## <a name="generalize-the-windows-vm-using-sysprep"></a>使用 Sysprep 將 Windows VM 一般化
@@ -117,7 +117,7 @@ Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 
     ```powershell
     New-AzureRmImage -Image $image -ImageName $imageName -ResourceGroupName $rgName
-    ```    
+    ``` 
 
 
 
@@ -144,7 +144,7 @@ Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 3. 將 VM 標示為一般化。
 
     ```powershell
-    Set-AzureRmVm -ResourceGroupName $rgName -Name $vmName -Generalized    
+    Set-AzureRmVm -ResourceGroupName $rgName -Name $vmName -Generalized 
     ```
 4.  使用一般化 OS VHD 建立映像。
 
@@ -185,10 +185,10 @@ Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 
     ```powershell
     New-AzureRmImage -ImageName $imageName -ResourceGroupName $rgName -Image $imageConfig
-    ```    
+    ``` 
     
 
 ## <a name="next-steps"></a>後續步驟
-- 您現在可以[從一般化受控映像建立 VM](create-vm-generalized-managed.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。    
+- 您現在可以[從一般化受控映像建立 VM](create-vm-generalized-managed.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。  
 
 

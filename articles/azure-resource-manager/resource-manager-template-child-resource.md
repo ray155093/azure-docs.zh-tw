@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/02/2017
+ms.date: 06/01/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
-ms.openlocfilehash: d7560b689d7cea56d40ffa2db9542f74a649f9c1
-ms.lasthandoff: 03/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 5b6ce5526f354008eb4a697deec737876f22391f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -29,6 +30,16 @@ ms.lasthandoff: 03/03/2017
 子資源名稱的格式如下︰`{parent-resource-name}/{child-resource-name}`
 
 不過，根據子資源是以巢狀方式內嵌於父資源中，還是本身位於最上層而定，您在範本中指定類型和名稱的方式會有所不同。 本主題說明如何處理這兩種方式。
+
+當建構資源的完整參考時，要從類型和名稱合併區段的順序並非只是將兩個串連。  相反地，在命名空間之後，使用從最特定到最不特定的一連串*類型/名稱*組：
+
+```json
+{resource-provider-namespace}/{parent-resource-type}/{parent-resource-name}[/{child-resource-type}/{child-resource-name}]*
+```
+
+例如：
+
+`Microsoft.Compute/virtualMachines/myVM/extensions/myExt` 為正確 `Microsoft.Compute/virtualMachines/extensions/myVM/myExt` 為不正確
 
 ## <a name="nested-child-resource"></a>巢狀子資源
 定義子資源的最簡單方式是將其以巢狀方式內嵌於父資源中。 下列範例顯示以巢狀方式內嵌於 SQL Server 中的 SQL Database。

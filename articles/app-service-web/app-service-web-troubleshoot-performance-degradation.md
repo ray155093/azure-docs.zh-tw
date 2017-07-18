@@ -16,10 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: 5ea043ce3bcd0f500fd765f13764ea3ee83e1ba9
-ms.openlocfilehash: 83c3592014c73c0cf36d371d2752bc76b7c8a4e8
-ms.lasthandoff: 02/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: 97ef8d2693296fc2692be46afcedfd01b07d743f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/22/2017
 
 
 ---
@@ -115,6 +116,12 @@ Web Apps 環境會針對來自 Web 伺服器和 Web 應用程式的記錄資訊�
 您可在 Azure App Service、Web Apps、API Apps 和 WebJobs 進行遠端分析。 若您的處理序執行速度比預期緩慢，或 HTTP 要求的延遲情形高於一般且處理序的 CPU 使用量偏高，您可以從遠端分析處理序，取得 CPU 取樣呼叫堆疊，來分析處理序活動和程式碼忙碌路徑。
 
 如需詳細資訊，請參閱 [Azure App Service 中的遠端分析支援](https://azure.microsoft.com/blog/remote-profiling-support-in-azure-app-service)。
+
+#### <a name="use-application-insights-profiler"></a>使用 Application Insights Profiler
+
+App Service 應用程式有時候會因為特定程式碼未以有效率的方式撰寫而變慢。 範例包括可以平行執行以及在不想要的資料庫鎖定爭用中執行的循序程式碼。 在程式碼中移除這些瓶頸會增加應用程式的效能，但是如果沒有設定精細的追蹤和記錄，則難以偵測。 Application Insights Profiler 會協助克服 App Service 應用程式的這項挑戰。 
+
+Application Insights Profiler 利用最少的設定，提供每個 Web 呼叫和追蹤之回應時間的統計資料，指出哪一行程式碼造成回應變慢。 如需詳細資訊，請參閱[使用 Application Insights 來分析即時 Azure Web 應用程式](../application-insights/app-insights-profiler.md)。 
 
 #### <a name="use-the-azure-app-service-support-portal"></a>使用 Azure App Service 支援入口網站
 Web Apps 透過查看 HTTP 記錄檔、事件記錄檔、處理序傾印等，提供您疑難排解 Web 應用程式相關問題的能力。 您可以利用我們位於 **http://&lt;your app name>.scm.azurewebsites.net/Support** 的支援入口網站，存取所有這方面的資訊。

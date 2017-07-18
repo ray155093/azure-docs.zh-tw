@@ -12,12 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/30/2017
+ms.date: 06/19/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: eeaab56b376ffd3123efb95a1223b7344dd6d187
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1e6f2b9de47d1ce84c4043f5f6e73d462e0c1271
+ms.openlocfilehash: 65709ef9f6cdd50fb8650a1a11c9321defb9cf5b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/21/2017
 
 
 ---
@@ -111,16 +112,16 @@ Data Factory 中有內建的活動，例如複製活動，其可將資料從來�
 
    ![](./media/data-factory-data-processing-using-batch/image3.png)
 
-   **Inputfolder** 和 **outputfolder** 是 **mycontainer** 中的最上層資料夾，且 **inputfolder** 包含具有日期時間戳記 (YYYY-MM-DD-HH) 的子資料夾。
+   `Inputfolder` 和 `outputfolder` 是 `mycontainer` 中的最上層資料夾。 `inputfolder` 具有含日期時間戳記 (YYYY-MM-DD-HH) 的子資料夾。
 
-   如果您使用 **Azure 儲存體總管**，在下一個步驟中，您必須上傳具有下列名稱的檔案：inputfolder/2015-11-16-00/file.txt、inputfolder/2015-11-16-01/file.txt 等等。 此步驟會自動建立資料夾。
+   如果您使用 **Azure 儲存體總管**，在下一個步驟中，您必須上傳具有下列名稱的檔案：`inputfolder/2015-11-16-00/file.txt`、`inputfolder/2015-11-16-01/file.txt` 等等。 此步驟會自動建立資料夾。
 3. 在您的電腦上建立內容中含有關鍵字 **Microsoft** 的文字檔 **file.txt**。 例如：“test custom activity Microsoft test custom activity Microsoft”。
 4. 將檔案上傳至 Azure Blob 儲存體中的下列輸入資料夾。
 
    ![](./media/data-factory-data-processing-using-batch/image4.png)
 
-   如果您使用 **Azure 儲存體總管**，請將檔案 **file.txt** 上傳至 **mycontainer**。 在工具列上按一下 [複製]，以建立 blob 的複本。 在 [複製 Blob] 對話方塊中，將**目的地 Blob 名稱**變更為 **inputfolder/2015-11-16-00/file.txt**。 重複此步驟，以建立 inputfolder/2015-11-16-01/file.txt、inputfolder/2015-11-16-02/file.txt、inputfolder/2015-11-16-03/file.txt、inputfolder/2015-11-16-04/file.txt，依此類推。 此動作會自動建立資料夾。
-5. 建立另一個名為 **customactivitycontainer**的容器。 您會將自訂活動 zip 檔案上傳至此容器。
+   如果您使用 **Azure 儲存體總管**，請將檔案 **file.txt** 上傳至 **mycontainer**。 在工具列上按一下 [複製]，以建立 blob 的複本。 在 [複製 Blob] 對話方塊中，將**目的地 Blob 名稱**變更為 `inputfolder/2015-11-16-00/file.txt`。 重複此步驟以建立 `inputfolder/2015-11-16-01/file.txt`、`inputfolder/2015-11-16-02/file.txt`、`inputfolder/2015-11-16-03/file.txt`、`inputfolder/2015-11-16-04/file.txt` 等等。 此動作會自動建立資料夾。
+5. 建立另一個容器，名為：`customactivitycontainer`。 您會將自訂活動 zip 檔案上傳至此容器。
 
 #### <a name="visual-studio"></a>Visual Studio
 安裝 Microsoft Visual Studio 2012 或更新版本，以建立要在 Data Factory 解決方案中使用的自訂 Batch 活動。
@@ -157,8 +158,8 @@ public IDictionary<string, string> Execute(
 
    1. 啟動 **Visual Studio 2012**/**2013/2015**。
    2. 按一下 [檔案]，指向 [新增]，然後按一下 [專案]。
-   3. 展開 [範本]，然後選取 [Visual C#]**\#**。在此逐步解說中，您使用 C\# 中，但您可以使用任何 .NET 語言來開發自訂活動。
-   4. 從右邊的專案類型清單中選取 [類別庫]  。
+   3. 展開 [範本]，然後選取 [Visual C#]**\#**。 在此逐步解說中，您使用 C\# 中，但您可以使用任何 .NET 語言來開發自訂活動。
+   4. 從右邊的專案類型清單中選取 [類別庫]。
    5. 針對 [名稱] 輸入 **MyDotNetActivity**。
    6. 在 [位置] 中選取 **C:\\ADF**。 建立資料夾 **ADF** (如果不存在)。
    7. 按一下 [確定]  以建立專案。
@@ -368,7 +369,7 @@ public IDictionary<string, string> Execute(
 3. 建立 zip 檔案 **MyDotNetActivity.zip**，檔案中包含 **\\bin\\Debug** 資料夾中的所有二進位檔。 建議您新增 MyDotNetActivity.**pdb** 檔案，讓您可以取得額外的詳細資訊，例如在失敗發生時，原始程式碼中引起問題的程式碼行號。
 
    ![](./media/data-factory-data-processing-using-batch/image5.png)
-4. 將 **MyDotNetActivity.zip** 當作 Blob 上傳至 Blob 容器：Azure Blob 儲存體中的 **customactivitycontainer**，由 **ADFTutorialDataFactory** 中的 **StorageLinkedService** 連結服務使用。 如果 Blob 容器 **customactivitycontainer** 不存在，請自行建立。
+4. 將 **MyDotNetActivity.zip** 當作 Blob 上傳至 Blob 容器：Azure Blob 儲存體中的 `customactivitycontainer`，由 **ADFTutorialDataFactory** 中的 **StorageLinkedService** 連結服務使用。 建立 blob 容器 `customactivitycontainer` (如果尚未存在)。
 
 #### <a name="execute-method"></a>Execute 方法
 本節提供 Execute 方法中與程式碼相關的詳細資料和注意事項。
@@ -447,7 +448,7 @@ public IDictionary<string, string> Execute(
 ### <a name="create-the-data-factory"></a>建立 Data Factory
 在 [建立自訂活動] [](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。 在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
 
-自訂活動的輸入資料集代表 blob 儲存體中輸入資料夾 (mycontainer\\inputfolder) 的 blob (檔案)。 活動的輸出資料集代表 blob 儲存體中輸出資料夾 (mycontainer\\outputfolder) 的輸出 blob。
+自訂活動的輸入資料集代表 blob 儲存體中輸入資料夾 (`mycontainer\\inputfolder`) 的 blob (檔案)。 活動的輸出資料集代表 blob 儲存體中輸出資料夾 (`mycontainer\\outputfolder`) 的輸出 blob。
 
 將一或多個檔案放置在輸入資料夾中：
 
@@ -668,7 +669,7 @@ test custom activity Microsoft test custom activity Microsoft
     }
     ```
 
-    為每個輸入配量產生輸出 blob/檔案。 以下是為每個配量命名輸出檔案的方式。 所有的輸出檔案會產生於一個輸出資料夾中：**mycontainer\\outputfolder**。
+    為每個輸入配量產生輸出 blob/檔案。 以下是為每個配量命名輸出檔案的方式。 所有的輸出檔案會產生於一個輸出資料夾中：`mycontainer\\outputfolder`。
 
     | **配量** | **開始時間**          | **輸出檔案**       |
     |-----------|-------------------------|-----------------------|
@@ -771,7 +772,7 @@ test custom activity Microsoft test custom activity Microsoft
 
    ![](./media/data-factory-data-processing-using-batch/image13.png)
 6. 使用 Azure 入口網站檢視與**配量**相關聯的**工作**，並查看每個配量在哪個 VM 上執行。 請參閱 [Data Factory 和 Batch 整合](#data-factory-and-batch-integration) 一節，以取得詳細資料。
-7. 在您的 Azure Blob 儲存體中，您應會在 **mycontainer** 的 **outputfolder** 中看見輸出檔案。
+7. 在您的 Azure Blob 儲存體中，您應會在 `mycontainer` 的 `outputfolder` 中看見輸出檔案。
 
    ![](./media/data-factory-data-processing-using-batch/image15.png)
 
@@ -788,7 +789,7 @@ test custom activity Microsoft test custom activity Microsoft
 10. 現在，在 **OutputDataset** 刀鋒視窗中，以滑鼠右鍵按一下 [配量開始時間] 設定為 **11/16/2015 01:00:00 AM** 的配量，然後按一下 [執行]，以重新執行/重新處理配量。 現在，配量會有 5 個檔案，而不是 1 個檔案。
 
     ![](./media/data-factory-data-processing-using-batch/image17.png)
-11. 在配量執行完成，且其狀態為 [就緒] 之後，在您 Blob 儲存體之 **mycontainer** 的 **outputfolder** 中驗證此配量的輸出檔案 (**2015-11-16-01.txt**) 中的內容。 配量的每個檔案應該都有一行。
+11. 在配量執行完成，且其狀態為 [就緒] 之後，在您 Blob 儲存體之 `mycontainer` 的 `outputfolder` 中驗證此配量的輸出檔案 (**2015-11-16-01.txt**) 中的內容。 配量的每個檔案應該都有一行。
 
     ```
     2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file.txt.
@@ -804,7 +805,7 @@ test custom activity Microsoft test custom activity Microsoft
 >
 
 #### <a name="data-factory-and-batch-integration"></a>Data Factory 和 Batch 整合
-Data Factory 服務會在 Azure Batch 中建立作業，其名為： **adf-poolname:job-xxx**。
+Data Factory 服務會在 Azure Batch 中建立作業，其名為：`adf-poolname:job-xxx`。
 
 ![Azure Data Factory - Batch 作業](media/data-factory-data-processing-using-batch/data-factory-batch-jobs.png)
 
@@ -855,7 +856,7 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為： **adf-pooln
    ![](./media/data-factory-data-processing-using-batch/image21.png)
 
    > [!NOTE]
-   > 您會在 Azure Blob 儲存體中看到一個**容器**，名為：**adfjobs**。 此容器並不會自動刪除，但您可在完成解決方案的測試後安全地加以刪除。 同樣地，Data Factory 解決方案也會建立 Azure Batch **作業**，名為：**adf-\<pool ID/name\>:job-0000000001**。 您可以在測試解決方案之後刪除此作業 (如果您要的話)。
+   > 您會在 Azure Blob 儲存體中看到一個**容器**，名為：`adfjobs`。 此容器並不會自動刪除，但您可在完成解決方案的測試後安全地加以刪除。 同樣地，Data Factory 解決方案也會建立 Azure Batch **作業**，名為：`adf-\<pool ID/name\>:job-0000000001`。 您可以在測試解決方案之後刪除此作業 (如果您要的話)。
    >
    >
 7. 自訂活動不會使用來自您套件的 **app.config** 檔案。 因此，如果您的程式碼會從組態檔讀取任何連接字串，則在執行階段沒有作用。 最佳做法是使用 Azure Batch 將所有祕密存放在 **Azure KeyVault** 中、使用以憑證為基礎的服務主體來保護金鑰保存庫，然後將憑證發佈至 Azure Batch 集區。 接著，.NET 自訂活動便可以在執行階段從 KeyVault 存取密碼。 此解決方案是一般解決方案，可以擴展至任何類型的祕密，不僅限於連接字串。
@@ -865,12 +866,12 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為： **adf-pooln
 #### <a name="extend-the-sample"></a>擴充範例
 您可以擴充此範例，以深入了解 Azure Data Factory 和 Azure Batch 的功能。 例如，若要處理不同時間範圍的配量，請執行下列步驟：
 
-1. 在 **inputfolder**中新增下列子資料夾，然後將輸入檔案放入這些資料夾中：2015-11-16-05、2015-11-16-06、201-11-16-07、2011-11-16-08、2015-11-16-09。 將管線的結束時間從 `2015-11-16T05:00:00Z` 變更為 `2015-11-16T10:00:00Z`。 在 [圖表檢視] 中，按兩下 **InputDataset**，並確認輸入配量已就緒。 按兩下 **OuptutDataset** ，以查看輸出配量的狀態。 如果它們都處於 [就緒] 狀態，請在 outputfolder 中查看輸出檔案。
+1. 在 `inputfolder`中新增下列子資料夾，然後將輸入檔案放入這些資料夾中：2015-11-16-05、2015-11-16-06、201-11-16-07、2011-11-16-08、2015-11-16-09。 將管線的結束時間從 `2015-11-16T05:00:00Z` 變更為 `2015-11-16T10:00:00Z`。 在 [圖表檢視] 中，按兩下 **InputDataset**，並確認輸入配量已就緒。 按兩下 **OuptutDataset** ，以查看輸出配量的狀態。 如果它們都處於 [就緒] 狀態，請在輸出資料夾中查看輸出檔案。
 2. 增加或減少**並行**設定，以了解它對您解決方案的效能有何影響，尤其是在 Azure Batch 上執行的處理。 (請參閱「步驟 4：建立並執行管線」，以進一步了解**並行**設定。)
 3. 建立 [每個 VM 的工作數上限] 較低/較高的集區。 若要使用您所建立的新集區，請更新 Data Factory 解決方案中的 Azure Batch 連結服務。 (請參閱「步驟 4：建立並執行管線」，以進一步了解 [每個 VM 的工作數上限] 設定。)
 4. 建立具有 **自動調整** 功能的 Azure Batch 集區。 自動調整 Azure Batch 集區中的計算節點就是動態調整應用程式所使用的處理能力。 
 
-    這裡的範例公式會有下列行為：當集區一開始建立時，它會以 1 部 VM 啟動。 $PendingTasks 計量會定義執行中 + 作用中 (已排入佇列) 狀態的工作數目。  公式會尋找過去 180 秒內的平均擱置中工作數目，並據以設定 TargetDedicated。 它會確保 TargetDedicated 一律不會超過 25 部 VM。 因此，當提交新工作時，集區會自動成長而且工作會完成，VM 會依序成為可用，而且自動調整規模功能會壓縮那些 VM。 您可以視需要調整 startingNumberOfVMs and maxNumberofVMs。
+    這裡的範例公式會有下列行為：當集區一開始建立時，它會以 1 部 VM 啟動。 $PendingTasks 計量會定義執行中 + 作用中 (已排入佇列) 狀態的工作數目。  公式會尋找過去 180 秒內的平均擱置中工作數目，並據以設定 TargetDedicated。 它會確保 TargetDedicated 一律不會超過 25 部 VM。 因此，當提交新工作時，集區會自動成長而且工作會完成，VM 會依序成為可用，而且自動調整規模功能會壓縮那些 VM。 您可以視需要調整 startingNumberOfVMs 及 maxNumberofVMs。
  
     自動調整公式：
 

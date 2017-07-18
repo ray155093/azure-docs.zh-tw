@@ -1,6 +1,6 @@
 ---
-title: "在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3 | Microsoft Docs"
-description: "在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3"
+title: "在 Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3 | Microsoft Docs"
+description: "在 Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3"
 services: virtual-machines-windows
 documentationcenter: 
 author: hermanndms
@@ -16,85 +16,115 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 09/16/2016
 ms.author: hermannd
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 75e2508aa942067fb84d34cf00f3f9f953f1573e
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 31ecec607c78da2253fcf16b3638cc716ba3ab89
+ms.openlocfilehash: 91eed294077ff72d0760018b10c98f32db88f3be
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/23/2017
 
 
 ---
-# <a name="deploying-sap-ides-ehp7-sp3-for-sap-erp-60-on-microsoft-azure"></a>在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3
-本文說明如何透過 SAP Cloud Appliance Library 3.0 在 Microsoft Azure 上部署與 SQL Server 和 Windows OS 搭配執行的 SAP IDES。 螢幕擷取畫面會逐步示範此程序。 從程序觀點來看，部署清單中其他解決方案時的運作方式也相同。 使用者只需選取不同的解決方案。
+# <a name="deploy-sap-ides-ehp7-sp3-for-sap-erp-60-on-azure"></a>在 Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3
+本文說明如何透過 SAP Cloud Appliance Library (SAP CAL) 3.0 在 Azure 上部署與 SQL Server 和 Windows 作業系統搭配執行的 SAP IDES 系統。 螢幕擷取畫面會顯示逐步程序。 若要部署不同的解決方案，請遵循相同的步驟。
 
-若要開始使用 SAP Cloud Appliance Library (SAP CAL)，請前往 [這裡](https://cal.sap.com/)。 SAP 提供了有關全新 [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience)的部落格。 
+若要開始使用 SAP CAL，請前往 [SAP Cloud Appliance Library](https://cal.sap.com/) 網站。 SAP 也有關於全新 [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience) 的部落格。 
 
-下列螢幕擷取畫面逐步示範如何在 Microsoft Azure 上部署 SAP IDES。 此程序在其他解決方案也是以相同的方式運作。
+> [!NOTE]
+自 2017 年 5 月 29 日起，除了較不建議使用的傳統部署模型外，您還可以使用 Azure Resource Manager 部署模型來部署 SAP CAL。 我們建議您使用新的 Resource Manager 部署模型，而不要使用傳統部署模型。
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic1.jpg)
+如果您已建立使用傳統模型的 SAP CAL 帳戶，則必須建立其他 SAP CAL 帳戶。 您必須使用 Resource Manager 模型，以獨佔方式將此帳戶部署至 Azure。
 
-第一張圖顯示 Microsoft Azure 上所有可用的解決方案。 醒目提示的 Windows 型 SAP IDES 解決方案已被選擇來完成此程序，此解決方案只有在 Azure 上才可使用。
+在登入 SAP CAL 之後，第一個頁面通常會帶您進入 [解決方案] 頁面。 SAP CAL 上所提供的解決方案會不斷增加，所以您可能必須捲動很久才能找到您要的解決方案。 反白顯示的 Azure 專用 Windows 型 SAP IDE 解決方案會示範部署程序：
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic2.jpg)
+![SAP CAL 解決方案](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic1.jpg)
 
-首先必須建立新的 SAP CAL 帳戶。 Azure 目前有兩個選擇 - 標準 Azure 以及在中國大陸由合作夥伴 21Vianet 運作的 Azure。
+### <a name="create-an-account-in-the-sap-cal"></a>在 SAP CAL 中建立帳戶
+1. 若要第一次進行 SAP CAL 登入，請使用您的 SAP S-User 或其他已向 SAP 註冊的使用者。 然後定義 SAP CAL 帳戶，以供 SAP CAL 用來在 Azure 上部署應用裝置。 在帳戶定義中，您需要：
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic3.jpg)
+    a. 選取 Azure 上的部署模型 (Resource Manager 或傳統)。
 
-然後使用者必須輸入可在 Azure 入口網站上找到的 Azure 訂用帳戶識別碼 - 請進一步參閱底下的取得方式。 之後必須下載 Azure 管理憑證。
+    b.這是另一個 C# 主控台應用程式。 輸入您的 Azure 訂用帳戶。 一個 SAP CAL 帳戶只能指派給一個訂用帳戶。 如果您需要多個訂用帳戶，則必須另外建立 SAP CAL 帳戶。
+    
+    c. 賦予 SAP CAL 部署到 Azure 訂用帳戶的權限。
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic6.jpg)
+    > [!NOTE]
+    接下來的步驟會示範如何針對 Resource Manager 部署建立 SAP CAL 帳戶。 如果您已有連結至傳統部署模型的 SAP CAL 帳戶，則您「必須」遵循下列步驟來建立新的 SAP CAL 帳戶。 新的 SAP CAL 帳戶必須以 Resource Manager 模式部署。
 
-在新的 Azure 入口網站中，使用者可在左側找到 [訂用帳戶] 項目。 按一下可顯示您的使用者的所有作用中訂用帳戶。
+2. 若要建立新的 SAP CAL 帳戶，[帳戶] 頁面會顯示兩個適用於 Azure 的選項： 
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic7.jpg)
+    a. **Microsoft Azure (傳統)** 是傳統部署模型，目前不再建議使用。
 
-選取其中一個訂用帳戶，然後選擇 [管理憑證]，表示有對新的 Azure Resource Manager 模型使用「服務主體」的新概念。
-SAP CAL 尚未針對這個新的模型進行調整，仍需要「傳統」模型和舊版 Azure 入口網站才能使用管理憑證。
+    b.這是另一個 C# 主控台應用程式。 **Microsoft Azure** 是新的 Resource Manager 部署模型。
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic4.jpg)
+    ![SAP CAL 帳戶](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic-2a.PNG)
 
-使用者可以在這裡看到舊版 Azure 入口網站。 上傳管理憑證，可讓 SAP CAL 有權限在客戶訂用帳戶內建立虛擬機器。 在「訂用帳戶」索引標籤之下，使用者可以找到必須在 SAP CAL 入口網站中輸入的訂用帳戶識別碼。
+    若要在 Resource Manager 模型中部署，請選取 [Microsoft Azure]。
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic5.jpg)
+    ![SAP CAL 帳戶](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic3c.PNG)
 
-在第二個索引標籤上，可以接著上傳之前從 SAP CAL 下載的管理憑證。
+3. 輸入可在 Azure 入口網站上找到的 Azure **訂用帳戶識別碼**。 
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic8.jpg)
+    ![SAP CAL 訂用帳戶識別碼](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic3c.PNG)
 
-隨即跳出小型對話方塊，以便選取下載的憑證檔案。
+4. 若要授權 SAP CAL 部署到您所定義的 Azure 訂用帳戶，請按一下 [授權]。 瀏覽器索引標籤中會出現下列頁面：
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic9.jpg)
+    ![Internet Explorer 雲端服務登入](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic4c.PNG)
 
-上傳憑證後，即可在 SAP CAl 內測試 SAP CAL 與客戶 Azure 訂用帳戶之間的連線。 應會跳出一則小訊息，告知此連線有效。
+5. 如果頁面中列出多個使用者，請選擇連結至成為您所選 Azure 訂用帳戶共同管理員的 Microsoft 帳戶。 瀏覽器索引標籤中會出現下列頁面：
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic10.jpg)
+    ![Internet Explorer 雲端服務確認](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic5a.PNG)
 
-設定帳戶之後，使用者必須選取應部署的解決方案並建立執行個體。
-在「基本」模式中，這真的微不足道。 輸入執行個體名稱，選擇 Azure 區域並定義解決方案的主要密碼。
+6. 按一下 [接受]。 如果授權成功，SAP CAL 帳戶定義便會再次顯示。 片刻之後便會出現訊息來確認授權程序已成功。
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic11.jpg)
+7. 若要將新建立的 SAP CAL 帳戶指派給您的使用者，請在右邊的文字方塊中輸入您的 [使用者識別碼]，然後按一下 [新增]。 
 
-在一段時間之後，視解決方案的大小和複雜性 (由 SAP CAL 提供估計) 而定，它會顯示為「作用中」並可供使用。 這非常簡單。
+    ![帳戶與使用者的關聯](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic8a.PNG)
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic12.jpg)
+8. 若要讓您的帳戶與您用來登入 SAP CAL 的使用者產生關聯，請按一下 [檢閱]。 
 
-查看解決方案的一些詳細資料，使用者可以看到已部署的 VM 種類。 在此案例中，有一個 SAP CAL 所建立、D12 大小的單一 Azure VM。
+9. 若要在使用者與新建立的 SAP CAL 帳戶之間建立關聯，請按一下 [建立]。
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic13.jpg)
+    ![使用者與帳戶的關聯](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic9b.PNG)
 
-在 Azure 入口網站上，可以找到以 SAP CAL 中所提供的相同執行個體名稱開頭的虛擬機器。
+您已成功建立可執行下列作業的 SAP CAL 帳戶：
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic14.jpg)
+- 使用 Resource Manager 部署模型。
+- 將 SAP 系統部署到您的 Azure 訂用帳戶。
 
-現在可以透過 SAP CAL 入口網站中的 [連接] 按鈕連接到解決方案。 小型對話方塊包含使用者指南的連結，其中說明使用解決方案時的所有預設認證。
-[這裡](https://caldocs.hana.ondemand.com/caldocs/help/Getting_Started_Guide_IDES607MSSQL.pdf) 提供 IDES 解決方案指南的連結。
+> [!NOTE]
+您可能需要先註冊 SAP CAL 訂用帳戶，才可以部署以 Windows 和 SQL Server 為基礎的 SAP IDES 解決方案。 否則在概觀頁面上，解決方案可能會顯示為 [已鎖定]。
 
-![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic15.jpg)
+### <a name="deploy-a-solution"></a>部署解決方案
+1. 在設定 SAP CAL 帳戶之後，請選取 [Windows 和 SQL Server 上的 SAP IDES 解決方案] 解決方案。 按一下 [建立執行個體]，並確認使用條款和條件。 
 
-另一個選項是登入 Windows VM，然後啟動預先設定的 SAP GUI (舉例來說)。
+2. 在 [基本模式: 建立執行個體] 頁面上，您必須：
 
+    a. 輸入執行個體**名稱**。
 
+    b.這是另一個 C# 主控台應用程式。 選取 Azure **區域**。 您可能需要 SAP CAL 訂用帳戶才能取得所提供的多個 Azure 區域。
 
+    c.  輸入解決方案的主要**密碼**，如下所示：
 
-<!--HONumber=Nov16_HO3-->
+    ![SAP CAL 基本模式：建立執行個體](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic10a.png)
+
+3. 按一下 [建立] 。 在一段時間之後，視解決方案的大小和複雜性 (SAP CAL 會提供預估) 而定，狀態將會顯示為作用中並可供使用： 
+
+    ![SAP CAL 執行個體](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic12a.png)
+
+4. 若要尋找 SAP CAL 所建立的資源群組及其所有物件，請移至 Azure 入口網站。 您會發現以 SAP CAL 中所提供的相同執行個體名稱開頭的虛擬機器。
+
+    ![資源群組物件](./media/cal-ides-erp6-ehp7-sp3-sql/ides_resource_group.PNG)
+
+5. 在 SAP CAL 入口網站中，移至已部署的執行個體，然後按一下 [連線]。 下列快顯視窗隨即出現： 
+
+    ![連線到執行個體](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic14a.PNG)
+
+6. 請先按一下 [開始使用指南]，之後您才能使用其中一個選項來連線至已部署的系統。 文件會指出每個連線方法的使用者。 這些使用者的密碼會設定為您在部署程序開始時所定義的主要密碼。 文件中會另外列出多名功能使用者及其密碼，以供您用來登入已部署的系統。
+
+    ![SAP 歡迎使用文件](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic15.jpg)
+
+在幾個小時內，狀況良好的 SAP IDES 系統便會部署在 Azure 中。
+
+如果您已購買 SAP CAL 訂用帳戶，SAP 便可完全支援透過 SAP CAL 在 Azure 上進行部署。 支援佇列是 BC-VCM-CAL。
 
 

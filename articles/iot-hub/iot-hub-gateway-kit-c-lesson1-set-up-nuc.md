@@ -4,7 +4,7 @@ description: "將 Intel NUC 設定為在感應器和 Azure IoT 中樞之間做�
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: yjianfeng
+manager: timlt
 tags: 
 keywords: "iot 閘道, intel nuc, nuc 電腦, DE3815TYKE"
 ms.assetid: 917090d6-35c2-495b-a620-ca6f9c02b317
@@ -16,11 +16,10 @@ ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 475664845a9922c5225ea1fd8e008bcb5582bd67
+ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
+ms.openlocfilehash: b9e842a93dfdb7699158a11978aa622c31382d28
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 06/26/2017
 
 ---
 # <a name="set-up-intel-nuc-as-an-iot-gateway"></a>將 Intel NUC 設定為 IoT 閘道器
@@ -105,6 +104,12 @@ Azure IoT Edge 套件包含預先編譯的 IoT Edge 二進位檔及其相依性�
    ```
 
    > 若系統顯示 [包括此通道?] 提示，請輸入 'y'。
+   
+   如果您收到 `import read failed(-1)` 錯誤，請使用下列命令來解決此問題：
+   ```bash
+   wget http://iotdk.intel.com/misc/iot_pub2.key 
+   rpm --import iot_pub2.key  
+   ```
 
    `rpm` 命令會匯入 rpm 索引鍵。 `smart channel` 命令會將 rpm 通道新增至智慧型套件管理員。 執行 `smart update` 命令前，您將會看到如下的輸出。
 

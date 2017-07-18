@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 04/28/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 64b09448149b7e1efd8b76663a27b6c7ec1eb3c7
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: d3d74d44bdd7ce6b49ec58b70c7ddb8081e11f96
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -34,18 +34,19 @@ ms.lasthandoff: 05/17/2017
 
 這些教學課程將為您介紹 Azure IoT 中樞與裝置的 SDK。 這些教學課程涵蓋的常見 IoT 案例會說明 IoT 中樞的功能。 教學課程也將說明如何將 IoT 中樞與其他 Azure 服務和工具結合，建置更強大的 IoT 解決方案。 在教學課程中，您可以選擇使用模擬或實際的 IoT 裝置。 此外，您可以了解如何使用閘道來將裝置連線到您的 IoT 中樞。
 
-## <a name="device-setup-scenario-connect-iot-device-or-gateway-to-azure-iot-hub"></a>裝置設定案例︰將 IoT 裝置或閘道連線至 Azure IoT 中樞
+## <a name="setup-your-device-connect-iot-device-or-gateway-to-azure-iot-hub"></a>設定您的裝置︰將 IoT 裝置或閘道連線至 Azure IoT 中樞
 
 您可以選擇要開始使用的真實或模擬裝置。
 
 | IoT 裝置                       | 程式設計語言 |
 |---------------------------------|----------------------|
-| Raspberry Pi                    | [Node.js][Pi_Nd]、[C][Pi_C]           |
+| Raspberry Pi                    | [Node.js][Pi_Nd]、[C][Pi_C]、[Python][Pi_Py]           |
 | Intel Edison                    | [Node.js][Ed_Nd]、[C][Ed_C]           |
 | Adafruit Feather HUZZAH ESP8266 | [Arduino][Hu_Ard]              |
 | Sparkfun ESP8266 Thing 開發人員      | [Arduino][Th_Ard]              |
 | Adafruit Feather M0             | [Arduino][M0_Ard]              |
-| 模擬裝置                | [.NET][Sim_NET]、[Java][Sim_Jav]、[Node.js][Sim_Nd]、[Python][Sim_Pyth]              |
+| 電腦上的模擬的裝置          | [.NET][Sim_NET]、[Java][Sim_Jav]、[Node.js][Sim_Nd]、[Python][Sim_Pyth]              |
+| 線上裝置模擬器         | [Raspberry Pi (Node.js)][Ol_Sim] |
 
 此外，您可以使用 IoT Edge 閘道來將裝置連線到您的 IoT 中樞。
 
@@ -54,26 +55,12 @@ ms.lasthandoff: 05/17/2017
 | Intel NUC (模型 DE3815TYKE) | C                    | [Wind River Linux][NUC_Lnx] |
 | 模擬閘道            | C                    | [Linux][Sim_Lnx]、[Windows][Sim_Win] |
 
-## <a name="extended-iot-scenarios-use-other-azure-services-and-tools"></a>延伸 IoT 案例︰使用其他 Azure 服務和工具
-
-當您已將裝置連線到 IoT 中樞時，可以瀏覽使用其他 Azure 工具和服務的其他案例︰
-
-| 案例                                    | Azure 服務或工具              |
-|---------------------------------------------|------------------------------------|
-| [管理 IoT 中樞訊息][Mg_IoT_Hub_Msg]                    | iothub-explorer 工具               |
-| [管理 IoT 裝置][Mg_IoT_Dv]               | iothub-explorer 工具               |
-| [將 IoT 中樞訊息儲存至 Azure 儲存體][Sv_IoT_Msg_Stor]                      | Azure 表格儲存體               |
-| [將感應器資料視覺化][Vis_Data]             | Microsoft Power BI、Azure Web Apps |
-| [使用感應器資料預測天氣][Weather_Forecast] | Azure Machine Learning             |
-| [自動異常偵測和回應][Anomaly_Detect]    | Azure Logic Apps                   |
-
-## <a name="next-steps"></a>後續步驟
-
-當您完成這些教學課程時，可以在[開發人員指南][lnk-dev-guide]中進一步探索 IoT 中樞的功能。 您可以在[作法][lnk-how-to]一節找到其他教學課程。
+[!INCLUDE [iot-hub-get-started-extended](../../includes/iot-hub-get-started-extended.md)]
 
 
 [Pi_Nd]: iot-hub-raspberry-pi-kit-node-get-started.md
 [Pi_C]: iot-hub-raspberry-pi-kit-c-get-started.md
+[Pi_Py]: iot-hub-raspberry-pi-kit-node-get-started.md
 [Ed_Nd]: iot-hub-intel-edison-kit-node-get-started.md
 [Ed_C]: iot-hub-intel-edison-kit-c-get-started.md
 [Hu_Ard]: iot-hub-arduino-huzzah-esp8266-get-started.md
@@ -86,11 +73,5 @@ ms.lasthandoff: 05/17/2017
 [NUC_Lnx]: iot-hub-gateway-kit-c-lesson1-set-up-nuc.md
 [Sim_Lnx]: iot-hub-linux-iot-edge-get-started.md
 [Sim_Win]: iot-hub-windows-iot-edge-get-started.md
-[Mg_IoT_Hub_Msg]: iot-hub-explorer-cloud-device-messaging.md
-[Mg_IoT_Dv]: iot-hub-device-management-iothub-explorer.md
-[Sv_IoT_Msg_Stor]: iot-hub-store-data-in-azure-table-storage.md
-[Vis_Data]: iot-hub-live-data-visualization-in-power-bi.md
-[Weather_Forecast]: iot-hub-weather-forecast-machine-learning.md
-[Anomaly_Detect]: iot-hub-monitoring-notifications-with-azure-logic-apps.md
-[lnk-dev-guide]: iot-hub-devguide.md
-[lnk-how-to]: iot-hub-how-to.md
+[Ol_Sim]: iot-hub-raspberry-pi-web-simulator-get-started.md
+

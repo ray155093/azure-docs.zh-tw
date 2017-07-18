@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/26/2017
+ms.date: 06/13/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 66c71906614e5d0c8e8531271444fc59a5cb779f
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: 71588c6ea8ed8371a5ceca241290af65a0866345
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -52,47 +52,6 @@ ms.lasthandoff: 04/28/2017
 | resourceName 或 resourceIdentifier |是 |字串 |資源的唯一識別碼。 |
 | apiVersion |是 |字串 |資源執行階段狀態的 API 版本。 一般而言，格式為 **yyyy-mm-dd**。 |
 
-### <a name="remarks"></a>備註
-
-開頭為 **list** 的任何作業都可在您的範本中用為函式。 可用作業不只包含 listKeys，還包含像 `list`、`listAdminKeys` 和 `listStatus` 等作業。 為判斷哪一個資源類型具有 list 作業，您可以使用下列選項：
-
-* 檢視資源提供者的 [REST API 作業](/rest/api/)，並尋找 list 作業。 例如，儲存體帳戶具有 [listKeys 作業](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys)。
-* 使用 [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell Cmdlet。 下列範例會取得儲存體帳戶的所有 list 作業︰
-
-  ```powershell
-  Get-AzureRmProviderOperation -OperationSearchString "Microsoft.Storage/*" | where {$_.Operation -like "*list*"} | FT Operation
-  ```
-* 使用下列 Azure CLI 命令，以及 JSON 公用程式 [jq (英文)](http://stedolan.github.io/jq/download/) 來只篩選出 list 作業：
-
-  ```azurecli
-  azure provider operations show --operationSearchString */apiapps/* --json | jq ".[] | select (.operation | contains(\"list\"))"
-  ```
-
-使用 [resourceId 函式](#resourceid)或 `{providerNamespace}/{resourceType}/{resourceName}` 格式來指定資源。
-
-### <a name="examples"></a>範例
-
-下列範例顯示如何在 outputs 區段中從儲存體帳戶傳回主要和次要金鑰。
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "storageAccountId": {
-            "type": "string"
-        }
-    },
-    "resources": [],
-    "outputs": {
-        "storageKeysOutput": {
-            "value": "[listKeys(parameters('storageAccountId'), '2016-01-01')]",
-            "type" : "object"
-        }
-    }
-}
-``` 
-
 ### <a name="return-value"></a>傳回值
 
 從 listKeys 傳回的物件具有下列格式︰
@@ -116,6 +75,48 @@ ms.lasthandoff: 04/28/2017
 
 其他 list 函式具有不同的傳回格式。 若要查看函式的格式，請將函式放入 [輸出] 區段，如範本範例所示。 
 
+### <a name="remarks"></a>備註
+
+開頭為 **list** 的任何作業都可在您的範本中用為函式。 可用作業不只包含 listKeys，還包含像 `list`、`listAdminKeys` 和 `listStatus` 等作業。 為判斷哪一個資源類型具有 list 作業，您可以使用下列選項：
+
+* 檢視資源提供者的 [REST API 作業](/rest/api/)，並尋找 list 作業。 例如，儲存體帳戶具有 [listKeys 作業](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys)。
+* 使用 [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell Cmdlet。 下列範例會取得儲存體帳戶的所有 list 作業︰
+
+  ```powershell
+  Get-AzureRmProviderOperation -OperationSearchString "Microsoft.Storage/*" | where {$_.Operation -like "*list*"} | FT Operation
+  ```
+* 使用下列 Azure CLI 命令可只篩選出 list 作業：
+
+  ```azurecli
+  az provider operation show --namespace Microsoft.Storage --query "resourceTypes[?name=='storageAccounts'].operations[].name | [?contains(@, 'list')]"
+  ```
+
+使用 [resourceId 函式](#resourceid)或 `{providerNamespace}/{resourceType}/{resourceName}` 格式來指定資源。
+
+
+### <a name="example"></a>範例
+
+下列範例顯示如何在 outputs 區段中從儲存體帳戶傳回主要和次要金鑰。
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountId": {
+            "type": "string"
+        }
+    },
+    "resources": [],
+    "outputs": {
+        "storageKeysOutput": {
+            "value": "[listKeys(parameters('storageAccountId'), '2016-01-01')]",
+            "type" : "object"
+        }
+    }
+}
+``` 
+
 <a id="providers" />
 
 ## <a name="providers"></a>提供者
@@ -129,24 +130,6 @@ ms.lasthandoff: 04/28/2017
 |:--- |:--- |:--- |:--- |
 | providerNamespace |是 |字串 |提供者的命名空間 |
 | resourceType |否 |字串 |所指定命名空間內的資源類型。 |
-
-### <a name="examples"></a>範例
-
-下列範例顯示如何使用 provider 函數：
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [],
-    "outputs": {
-        "providerOutput": {
-            "value": "[providers('Microsoft.Storage', 'storageAccounts')]",
-            "type" : "object"
-        }
-    }
-}
-```
 
 ### <a name="return-value"></a>傳回值
 
@@ -162,6 +145,46 @@ ms.lasthandoff: 04/28/2017
 
 不保證所傳回的值會有陣列順序。
 
+### <a name="example"></a>範例
+
+下列範例顯示如何使用 provider 函數：
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [],
+    "outputs": {
+        "providerOutput": {
+            "value": "[providers('Microsoft.Web', 'sites')]",
+            "type" : "object"
+        }
+    }
+}
+```
+
+上述範例會以下列格式傳回物件︰
+
+```json
+{
+  "resourceType": "sites",
+  "locations": [
+    "South Central US",
+    "North Europe",
+    "West Europe",
+    "Southeast Asia",
+    ...
+  ],
+  "apiVersions": [
+    "2016-08-01",
+    "2016-03-01",
+    "2015-08-01-preview",
+    "2015-08-01",
+    ...
+  ]
+}
+```
+
 <a id="reference" />
 
 ## <a name="reference"></a>reference
@@ -176,6 +199,10 @@ ms.lasthandoff: 04/28/2017
 | resourceName 或 resourceIdentifier |是 |string |資源的名稱或唯一識別碼。 |
 | apiVersion |否 |字串 |指定的資源的 API 版本。 如果在相同的範本內未供應資源，則請包含此參數。 一般而言，格式為 **yyyy-mm-dd**。 |
 
+### <a name="return-value"></a>傳回值
+
+每種資源類型都會針對 reference 函式傳回不同屬性。 此函式不會傳回單一的預先定義格式。 若要查看資源類型的屬性，請在輸出區段中傳回物件，如範例所示。
+
 ### <a name="remarks"></a>備註
 
 reference 函數會從執行階段狀態衍生其值，因此不能用在 variables 區段中。 它可以用於範本的 outputs 區段中。 
@@ -184,30 +211,24 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 
 若要查看資源類型的屬性名稱和值，請建立一個會在 outputs 區段中傳回物件的範本。 如果您有一個該類型的現有資源，您的範本就會傳回物件，而不會部署任何新資源。 
 
-### <a name="examples"></a>範例
-
-下列範例會參考未部署在此範本中，但是存在於相同資源群組內的儲存體帳戶。
+一般而言，您可以使用 **reference** 函式從物件傳回特定值，例如 Blob 端點 URI 或完整網域名稱。
 
 ```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "storageAccountName": {
-            "type": "string"
-        }
+"outputs": {
+    "BlobUri": {
+        "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01').primaryEndpoints.blob]",
+        "type" : "string"
     },
-    "resources": [],
-    "outputs": {
-        "ExistingStorage": {
-            "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01')]",
-            "type" : "object"
-        }
+    "FQDN": {
+        "value": "[reference(concat('Microsoft.Network/publicIPAddresses/', parameters('ipAddressName')), '2016-03-30').dnsSettings.fqdn]",
+        "type" : "string"
     }
 }
 ```
 
-或者，您可以部署並參考相同範本中的資源。
+### <a name="example"></a>範例
+
+若要部署並參考相同範本中的資源，請使用：
 
 ```json
 {
@@ -242,24 +263,44 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 }
 ``` 
 
-一般而言，您可以使用 reference 函式從物件傳回特定值，例如 Blob 端點 URI 或完整網域名稱。
+上述範例會以下列格式傳回物件︰
 
 ```json
-"outputs": {
-    "BlobUri": {
-        "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01').primaryEndpoints.blob]",
-        "type" : "string"
-    },
-    "FQDN": {
-        "value": "[reference(concat('Microsoft.Network/publicIPAddresses/', parameters('ipAddressName')), '2016-03-30').dnsSettings.fqdn]",
-        "type" : "string"
-    }
+{
+   "creationTime": "2017-06-13T21:24:46.618364Z",
+   "primaryEndpoints": {
+     "blob": "https://examplestorage.blob.core.windows.net/",
+     "file": "https://examplestorage.file.core.windows.net/",
+     "queue": "https://examplestorage.queue.core.windows.net/",
+     "table": "https://examplestorage.table.core.windows.net/"
+   },
+   "primaryLocation": "southcentralus",
+   "provisioningState": "Succeeded",
+   "statusOfPrimary": "available",
+   "supportsHttpsTrafficOnly": false
 }
 ```
 
-### <a name="return-value"></a>傳回值
+下列範例會參考未部署在此範本中，但是存在於相同資源群組內的儲存體帳戶。
 
-每種資源類型都會針對 reference 函式傳回不同屬性。 此函式不會傳回單一的預先定義格式。 若要查看資源類型的屬性，請在輸出區段中傳回物件，如範例所示。
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "type": "string"
+        }
+    },
+    "resources": [],
+    "outputs": {
+        "ExistingStorage": {
+            "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01')]",
+            "type" : "object"
+        }
+    }
+}
+```
 
 <a id="resourcegroup" />
 
@@ -268,7 +309,40 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 
 傳回代表目前資源群組的物件。 
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+傳回的物件會使用下列格式：
+
+```json
+{
+  "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}",
+  "name": "{resourceGroupName}",
+  "location": "{resourceGroupLocation}",
+  "tags": {
+  },
+  "properties": {
+    "provisioningState": "{status}"
+  }
+}
+```
+
+### <a name="remarks"></a>備註
+
+resourceGroup 函式的常見用法是在和資源群組相同的位置中建立資源。 下列範例使用資源群組位置來指派網站的位置。
+
+```json
+"resources": [
+   {
+      "apiVersion": "2016-08-01",
+      "type": "Microsoft.Web/sites",
+      "name": "[parameters('siteName')]",
+      "location": "[resourceGroup().location]",
+      ...
+   }
+]
+```
+
+### <a name="example"></a>範例
 
 下列範本會傳回資源群組的屬性。
 
@@ -286,33 +360,15 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 }
 ```
 
-resourceGroup 函式的常見用法是在和資源群組相同的位置中建立資源。 下列範例使用資源群組位置來指派網站的位置。
-
-```json
-"resources": [
-   {
-      "apiVersion": "2014-06-01",
-      "type": "Microsoft.Web/sites",
-      "name": "[parameters('siteName')]",
-      "location": "[resourceGroup().location]",
-      ...
-   }
-]
-```
-
-### <a name="return-value"></a>傳回值
-
-傳回的物件會使用下列格式：
+上述範例會以下列格式傳回物件︰
 
 ```json
 {
-  "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}",
-  "name": "{resourceGroupName}",
-  "location": "{resourceGroupLocation}",
-  "tags": {
-  },
+  "id": "/subscriptions/{subscription-id}/resourceGroups/examplegroup",
+  "name": "examplegroup",
+  "location": "southcentralus",
   "properties": {
-    "provisioningState": "{status}"
+    "provisioningState": "Succeeded"
   }
 }
 ```
@@ -334,29 +390,40 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 | resourceName1 |是 |string |資源的名稱。 |
 | resourceName2 |否 |string |如果是巢狀資源，則為下一個資源名稱區段。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
 
-下列範例會傳回資源群組中儲存體帳戶的資源識別碼：
+識別碼會以下列格式傳回：
 
 ```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [],
-    "outputs": {
-        "resourceIdOutput": {
-            "value": "[resourceId('Microsoft.Storage/storageAccounts','examplestorage')]",
-            "type" : "string"
-        }
-    }
-}
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 ```
 
-下列範例顯示如何擷取不同資源群組網站的資源識別碼，以及不同資源群組的資料庫資源識別碼：
+### <a name="remarks"></a>備註
+
+您指定的參數值取決於資源是否在相同的訂用帳戶和資源群組中作為目前的部署。
+
+若要在相同的訂用帳戶和資源群組中取得儲存體帳戶的資源識別碼，請使用：
 
 ```json
-[resourceId('otherResourceGroup', 'Microsoft.Web/sites', parameters('siteName'))]
-[resourceId('otherResourceGroup', 'Microsoft.SQL/servers/databases', parameters('serverName'), parameters('databaseName'))]
+"[resourceId('Microsoft.Storage/storageAccounts','examplestorage')]"
+```
+
+若要在相同的訂用帳戶但不同的資源群組中取得儲存體帳戶的資源識別碼，請使用：
+
+```json
+"[resourceId('otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
+```
+
+若要在不同的訂用帳戶和資源群組中取得儲存體帳戶的資源識別碼，請使用：
+
+```json
+"[resourceId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
+```
+
+若要在不同的資源群組中取得資料庫的資源識別碼，請使用：
+
+```json
+"[resourceId('otherResourceGroup', 'Microsoft.SQL/servers/databases', parameters('serverName'), parameters('databaseName'))]"
 ```
 
 通常，在替代資源群組中使用儲存體帳戶或虛擬網路時，需要使用此函數。 儲存體帳戶或虛擬網路可能用於多個資源群組中；因此，您不想要在刪除單一資源群組時刪除它們。 下列範例顯示如何輕鬆地使用外部資源群組中的資源：
@@ -404,13 +471,44 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 }
 ```
 
-### <a name="return-value"></a>傳回值
+### <a name="example"></a>範例
 
-識別碼會以下列格式傳回：
+下列範例會傳回資源群組中儲存體帳戶的資源識別碼：
 
 ```json
-/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [],
+    "outputs": {
+        "sameRGOutput": {
+            "value": "[resourceId('Microsoft.Storage/storageAccounts','examplestorage')]",
+            "type" : "string"
+        },
+        "differentRGOutput": {
+            "value": "[resourceId('otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]",
+            "type" : "string"
+        },
+        "differentSubOutput": {
+            "value": "[resourceId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]",
+            "type" : "string"
+        },
+        "nestedResourceOutput": {
+            "value": "[resourceId('Microsoft.SQL/servers/databases', 'serverName', 'databaseName')]",
+            "type" : "string"
+        }
+    }
+}
 ```
+
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| sameRGOutput | String | /subscriptions/{current-sub-id}/resourceGroups/examplegroup/providers/Microsoft.Storage/storageAccounts/examplestorage |
+| differentRGOutput | String | /subscriptions/{current-sub-id}/resourceGroups/otherResourceGroup/providers/Microsoft.Storage/storageAccounts/examplestorage |
+| differentSubOutput | String | /subscriptions/{different-sub-id}/resourceGroups/otherResourceGroup/providers/Microsoft.Storage/storageAccounts/examplestorage |
+| nestedResourceOutput | String | /subscriptions/{current-sub-id}/resourceGroups/examplegroup/providers/Microsoft.SQL/servers/serverName/databases/databaseName |
 
 <a id="subscription" />
 
@@ -419,7 +517,20 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 
 傳回目前部署的訂用帳戶詳細資料。 
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+此函式會傳回下列格式︰
+
+```json
+{
+    "id": "/subscriptions/{subscription-id}",
+    "subscriptionId": "{subscription-id}",
+    "tenantId": "{tenant-id}",
+    "displayName": "{name-of-subscription}"
+}
+```
+
+### <a name="example"></a>範例
 
 下列範例顯示在 outputs 區段中所呼叫的 subscription 函式。 
 
@@ -434,19 +545,6 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
             "type" : "object"
         }
     }
-}
-```
-
-### <a name="return-value"></a>傳回值
-
-此函式會傳回下列格式︰
-
-```json
-{
-    "id": "/subscriptions/{subscription-id}",
-    "subscriptionId": "{subscription-id}",
-    "tenantId": "{tenant-id}",
-    "displayName": "{name-of-subscription}"
 }
 ```
 

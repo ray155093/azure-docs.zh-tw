@@ -12,30 +12,39 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 04/28/2017
+ms.date: 06/01/2017
 ms.author: vturecek
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: 182c3d02883ceae83c9ba12c0f27085d133ac47a
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: b19aaa652f2c15573ded632ca1348e1a6752f080
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
+ms.lasthandoff: 06/10/2017
 
 
 ---
 # <a name="build-a-web-service-front-end-for-your-application-using-aspnet-core"></a>使用 ASP.NET Core 建置應用程式的 Web 服務前端
-根據預設，Azure Service Fabric 服務不提供 Web 的公用介面。 若要對 HTTP 用戶端公開應用程式的功能，您必須建立 Web 專案來做為進入點，然後從該處與個別服務進行通訊。
+根據預設，Azure Service Fabric 服務不提供 Web 的公用介面。 若要對 HTTP 用戶端公開應用程式的功能，您必須建立 Web 專案來作為進入點，然後從該處與個別服務通訊。
 
-在本教學課程中，我們將從 [在 Visual Studio 中建立第一個應用程式](service-fabric-create-your-first-application-in-visual-studio.md) 教學課程中斷處來開始講起，並在具狀態計數器服務前面新增 Web 服務。 如果您尚未這麼做，請返回並先逐步進行該教學課程。
+在本教學課程中，我們從[在 Visual Studio 中建立第一個應用程式](service-fabric-create-your-first-application-in-visual-studio.md)教學課程中斷處來開始講起，並在具狀態計數器服務前面新增 ASP.NET Core 的 Web 服務。 如果您尚未這麼做，請返回並先逐步進行該教學課程。
+
+## <a name="set-up-your-environment-for-aspnet-core"></a>設定環境使其適用於 ASP.NET Core
+
+您需要 Visual Studio 2017 才能完成本教學課程。 任何版本都可以。 
+
+ - [安裝 Visual Studio 2017](https://www.visualstudio.com/)
+
+若要開發 ASP.NET Core Service Fabric 應用程式，您應該安裝下列工作負載：
+ - **Azure 開發** (在 [Web 和 Cloud] 之下)
+ - **ASP.NET 與 Web 開發** (在 [Web 和 Cloud] 之下)
+ - **.NET Core 跨平台開發** (在 [其他工具集] 之下)
+
+>[!Note] 
+>適用於 Visual Studio 2015 的 .NET Core 工具不會再更新，但是如果您仍在使用 Visual Studio 2015，則必須安裝 [.NET Core VS 2015 工具預覽 2](https://www.microsoft.com/net/download/core)。
 
 ## <a name="add-an-aspnet-core-service-to-your-application"></a>將 ASP.NET Core 服務新增至您的應用程式
-ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建立新式 Web UI 和 Web API。 若要完整了解 ASP.NET Core 如何與 Service Fabric 整合，強烈建議您仔細閱讀 [Service Fabric Reliable Services 中的 ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md) 文章，不過現在您可以依照本指南來快速上手。
+ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建立新式 Web UI 和 Web API。 
 
 讓我們將 ASP.NET Web API 專案新增至現有的應用程式。
-
-
-> [!NOTE]
-> 本教學課程係根據[適用於 Visual Studio 2017 的 ASP.NET Core 工具](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc)。 適用於 Visual Studio 2015 的 .NET Core 工具不再進行更新。
-
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下應用程式專案中的 [服務]，然後選擇 [新增] > [新增 Service Fabric Explorer]。
    
@@ -44,52 +53,54 @@ ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建�
    
     ![在新服務對話方塊中選擇 ASP.NET Web 服務][vs-new-service-dialog]
 
-3. 下一頁會提供一組 ASP.NET Core 專案範本。 請注意，如果利用少量的額外程式碼來註冊 Service Fabric 執行階段的服務，建立了 Service Fabric 應用程式之外的 ASP.NET Core 專案，則這些全都是您會看到的相同選擇。 在本教學課程中，我們會選擇 [Web API] 。 但您可以將相同的概念套用於建置完整的 Web 應用程式。
+3. 下一頁會提供一組 ASP.NET Core 專案範本。 請注意，如果利用少量的額外程式碼來註冊 Service Fabric 執行階段的服務，建立了 Service Fabric 應用程式之外的 ASP.NET Core 專案，則這些全都是您會看到的相同選擇。 在本教學課程中，選擇 [Web API]。 但您可以將相同的概念套用於建置完整的 Web 應用程式。
    
     ![選擇 ASP.NET 專案類型][vs-new-aspnet-project-dialog]
    
-    建立 Web API 專案後，您的應用程式中會有兩個服務。 隨著您繼續建置應用程式，您將以完全相同的方式加入更多服務。 每個服務都可以獨立設定版本和升級。
-
-> [!TIP]
-> 若要深入了解 ASP.NET Core，請參閱 [ASP.NET Core 文件](https://docs.microsoft.com/aspnet/core/)。
-> 
+    建立 Web API 專案後，您的應用程式中應有兩個服務。 隨著您繼續建置應用程式，您可以用完全相同的方式新增更多服務。 每個服務都可以獨立設定版本和升級。
 
 ## <a name="run-the-application"></a>執行應用程式
 若要了解我們所做的事情，就讓我們部署新的應用程式並看看 ASP.NET Core Web API 範本所提供的預設行為。
 
 1. 在 Visual Studio 按 F5 以進行應用程式偵錯。
-2. 部署完成時，Visual Studio 會啟動瀏覽器並瀏覽至 ASP.NET Web API 服務的根目錄，其預設為接聽連接埠 8966。 ASP.NET Core Web API 範本不根提供根目錄的預設行為，因此您將在瀏覽器中收到錯誤。
-3. 將 `/api/values` 新增至瀏覽器中的位置。 這將會叫用 Web API 範本中 ValuesController 上的 `Get` 方法。 它會傳回範本所提供的預設回應，也就是包含兩個字串的 JSON 陣列：
+2. 部署完成時，Visual Studio 會啟動瀏覽器並瀏覽至 ASP.NET Web API 服務的根目錄。 ASP.NET Core 的 Web API 範本不提供根目錄的預設行為，因此您會在瀏覽器中看到 404 錯誤。
+3. 將 `/api/values` 新增至瀏覽器中的位置。 這會叫用 Web API 範本中 ValuesController 上的 `Get` 方法。 它會傳回範本所提供的預設回應，也就是包含兩個字串的 JSON 陣列：
    
     ![從 ASP.NET Core Web API 範本傳回的預設值][browser-aspnet-template-values]
    
-    在本教學課程結束前，我們會以具狀態服務的最新計數器值取代這些預設值。
+    在本教學課程結束前，此頁面會顯示我們的具狀態服務中的最新計數器值，而不是這些預設值。
 
 ## <a name="connect-the-services"></a>連接服務
-對於您與可靠服務通訊的方式，Service Fabric 會提供完整的彈性。 在單一應用程式中，您可能擁有可透過 TCP 存取的服務、可透過 HTTP REST API 存取的其他服務，並且還有其他可透過 Web 通訊端存取的服務。 如需可用選項和相關權衡取捨的背景，請參閱 [與服務進行通訊](service-fabric-connect-and-communicate-with-services.md)。 在本教學課程中，我們會遵循下列其中一種更簡單的方法並使用 SDK 中提供的 `ServiceProxy`/`ServiceRemotingListener` 類別。
+對於您與可靠服務通訊的方式，Service Fabric 會提供完整的彈性。 在單一應用程式中，您可能擁有可透過 TCP 存取的服務、可透過 HTTP REST API 存取的其他服務，並且還有其他可透過 Web 通訊端存取的服務。 如需可用選項和相關權衡取捨的背景，請參閱 [與服務進行通訊](service-fabric-connect-and-communicate-with-services.md)。 在此教學課程中，我們使用 SDK 中提供的 [Service Fabric 服務遠端](service-fabric-reliable-services-communication-remoting.md)。
 
-在 `ServiceProxy` 方法 (模仿遠端程序呼叫或 RPC) 中，您會定義一個介面以做為服務的公用合約。 然後使用該介面來產生 Proxy 類別，以便與服務進行互動。
+在服務遠端的做法中 (模仿遠端程序呼叫 (RPC))，您會定義一個介面以作為服務的公用合約。 然後使用該介面來產生 Proxy 類別，以便與服務進行互動。
 
-### <a name="create-the-interface"></a>建立介面
-我們會先建立做為具狀態服務與其用戶端之間合約的介面，包括 ASP.NET Core 專案。
+### <a name="create-the-remoting-interface"></a>建立遠端介面
+一開始先建立介面作為具狀態服務與其他服務之間的合約，在這個案例中是 ASP.NET Core 的 Web 專案。 這個介面必須由使用它進行 RPC 呼叫的所有服務共用，因此我們會在它自己的類別庫專案中建立它。
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下您的方案並選擇 [加入] **將** > 。
+
 2. 在左側導覽窗格中選擇 [Visual C#] 項目，然後選取 [類別庫] 範本。 確定 .NET Framework 版本已設定為 **4.5.2**。
    
     ![為具狀態服務建立介面專案][vs-add-class-library-project]
 
-3. 為了讓介面可供 `ServiceProxy`使用，它必須衍生自 IService 介面。 這個介面會包含在其中一個 Service Fabric NuGet 封裝中。 若要新增封裝，請以滑鼠右鍵按一下新的類別庫專案，然後選擇 [管理 NuGet 封裝] 。
-4. 搜尋 **Microsoft.ServiceFabric.Services.Remoting** 套件並加以安裝。
+3. 安裝 **Microsoft.ServiceFabric.Services.Remoting** NuGet 套件。 在 NuGet 套件管理員中搜尋**Microsoft.ServiceFabric.Services.Remoting**，並將它安裝在使用服務遠端的所有解決方案中的專案，包括：
+   - 包含服務介面的類別庫專案
+   - 具狀態的服務專案
+   - ASP.NET Core 的 Web 服務專案
    
     ![新增服務 NuGet 封裝][vs-services-nuget-package]
 
-5. 在類別庫中，透過單一方法 `GetCountAsync`建立介面，並從 IService 擴充介面。
+4. 在類別庫中，透過單一方法 `GetCountAsync` 建立介面，並從 `Microsoft.ServiceFabric.Services.Remoting.IService` 擴充介面。 遠端介面必須衍生自這個介面，以指出它是服務遠端的介面。
    
     ```c#
+    using Microsoft.ServiceFabric.Services.Remoting;
+    using System.Threading.Tasks;
+        
+    ...
+
     namespace MyStatefulService.Interface
     {
-        using Microsoft.ServiceFabric.Services.Remoting;
-   
         public interface ICounter: IService
         {
             Task<long> GetCountAsync();
@@ -112,7 +123,7 @@ ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建�
    
     public class MyStatefulService : StatefulService, ICounter
     {        
-          // ...
+         ...
     }
     ```
 3. 現在實作 `ICounter` 介面中所定義的單一方法，即 `GetCountAsync`。
@@ -120,8 +131,8 @@ ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建�
     ```c#
     public async Task<long> GetCountAsync()
     {
-      var myDictionary =
-        await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
+        var myDictionary = 
+            await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
    
         using (var tx = this.StateManager.CreateTransaction())
         {          
@@ -132,14 +143,14 @@ ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建�
     ```
 
 ### <a name="expose-the-stateful-service-using-a-service-remoting-listener"></a>使用服務遠端處理接聽程式公開具狀態服務
-實作 `ICounter` 介面後，讓具狀態服務可從其他服務呼叫的最後一個步驟是開啟通訊通道。 對於具狀態服務，Service Fabric 會提供稱為 `CreateServiceReplicaListeners`的可覆寫方法。 透過此方法，您可以根據想要為服務啟用的通訊類型，指定一或多個通訊接聽程式。
+實作 `ICounter` 介面後，最後一個步驟是開啟服務遠端的通訊通道。 對於具狀態服務，Service Fabric 會提供稱為 `CreateServiceReplicaListeners`的可覆寫方法。 透過此方法，您可以根據想要為服務啟用的通訊類型，指定一或多個通訊接聽程式。
 
 > [!NOTE]
 > 用於開啟無狀態服務之通訊通道的對等方法稱為 `CreateServiceInstanceListeners`。
-> 
-> 
 
-在此情況下，我們將取代現有的 `CreateServiceReplicaListeners` 方法，並提供 `ServiceRemotingListener` 的執行個體，其會透過 `ServiceProxy` 來建立可從用戶端呼叫的 RPC 端點。  
+在此案例中，我們取代現有的 `CreateServiceReplicaListeners` 方法，並提供 `ServiceRemotingListener` 的執行個體，此執行個體會透過 `ServiceProxy` 建立可從用戶端呼叫的 RPC 端點。  
+
+`IService` 介面上的 `CreateServiceRemotingListener` 擴充方法可讓您輕鬆地使用所有預設設定建立 `ServiceRemotingListener`。 若要使用這個擴充方法，請確定您已匯入 `Microsoft.ServiceFabric.Services.Remoting.Runtime` 命名空間。 
 
 ```c#
 using Microsoft.ServiceFabric.Services.Remoting.Runtime;
@@ -159,11 +170,11 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 
 ### <a name="use-the-serviceproxy-class-to-interact-with-the-service"></a>使用 ServiceProxy 類別來與服務互動
-現在，具狀態服務已經準備好接收來自其他服務的流量。 因此，剩下的工作便是從 ASP.NET Web 服務加入程式碼來與其通訊。
+現在，具狀態服務已經準備好接收透過 RPC 來自其他服務的流量。 因此，剩下的工作便是從 ASP.NET Web 服務加入程式碼來與其通訊。
 
 1. 在 ASP.NET 專案中，新增對含有 `ICounter` 介面之類別庫的參考。
 
-2. 將 Microsoft.ServiceFabric.Services.Remoting 套件新增至 ASP.NET 專案，就如同先前對類別庫專案所做的一樣。 這會提供 `ServiceProxy` 類別。
+2. 稍早您將 **Microsoft.ServiceFabric.Services.Remoting** NuGet 套件新增到 ASP.NET 專案。 這個套件提供 `ServiceProxy` 類別，可用來對具狀態服務進行 RPC 呼叫。 請確定此 NuGet 套件已安裝在 ASP.NET Core 的 Web 服務專案中。
 
 4. 在 **Controllers** 資料夾中，開啟 `ValuesController` 類別。 請注意， `Get` 方法目前只會傳回 "value1" 和 "value2" 的硬式編碼字串陣列，這符合我們稍早在瀏覽器中所見的內容。 使用下列程式碼來取代此實作：
    
@@ -173,7 +184,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
     using Microsoft.ServiceFabric.Services.Remoting.Client;
    
     ...
-   
+
+    [HttpGet]
     public async Task<IEnumerable<string>> Get()
     {
         ICounter counter =
@@ -207,22 +219,20 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 若要深入了解 Service Fabric 中的 Kestrel 和 WebListener，請參閱 [Service Fabric Reliable Services 中的 ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md)。
 
-## <a name="connecting-to-a-reliable-actors-service"></a>連線至 Reliable Actors 服務
-本教學課程著重於新增會與具狀態服務通訊的 Web 前端。 但是您可以依照非常類似的模型來與動作項目交談。 事實上，這比較簡單。
-
-當您建立動作項目專案時，Visual Studio 自動替您產生介面專案。 您可以使用該介面在 Web 專案中產生動作項目 Proxy 來與動作項目進行通訊。 系統會自動提供通訊通道。 因此您不需要如同在本教學課程中處理具狀態服務一樣，建立 `ServiceRemotingListener` 。
+## <a name="connecting-to-a-reliable-actor-service"></a>連線至 Reliable Actor 服務
+本教學課程著重於新增會與具狀態服務通訊的 Web 前端。 但是您可以依照非常類似的模型來與動作項目交談。 當您建立 Reliable Actor 專案時，Visual Studio 會自動替您產生介面專案。 您可以使用該介面在 Web 專案中產生動作項目 Proxy 來與動作項目進行通訊。 系統會自動提供通訊通道。 因此您不需要如同在本教學課程中處理具狀態服務一樣，建立 `ServiceRemotingListener` 。
 
 ## <a name="how-web-services-work-on-your-local-cluster"></a>Web 服務在本機叢集上的運作方式
-一般而言，您可以將完全相同的 Service Fabric 應用程式部署到您在本機叢集上部署之多部電腦的叢集，而且極度相信它會如預期般運作。 這是因為本機叢集只是摺疊成單一機器的五個節點的組態。
+一般而言，您可以將完全相同的 Service Fabric 應用程式部署到您在本機叢集上部署之多部電腦的叢集，而且有把握它會如預期般運作。 這是因為本機叢集只是摺疊成單一機器的五個節點的組態。
 
 不過，提到 Web 服務，有一個重要細微差別。 當您的叢集位於負載平衡器後方時，如同在 Azure 中一樣，您必須確定 Web 服務已部署在每一部機器上，因為負載平衡器只會將流量循環配置於各電腦。 您可以將服務的 `InstanceCount` 設定為特殊值 "-1" 來達到此目的。
 
-相反地，當您在本機執行 Web 服務時，您必須確定服務只有一個執行個體正在執行。 否則，您將會與正在相同路徑和連接埠上進行接聽的多個處理序發生衝突。 因此，本機部署的 Web 服務執行個體計數應該設為 "1"。
+相反地，當您在本機執行 Web 服務時，您必須確定服務只有一個執行個體正在執行。 否則，您會與正在相同路徑和連接埠上進行接聽的多個處理序發生衝突。 因此，本機部署的 Web 服務執行個體計數應該設為 "1"。
 
 若要了解如何針對不同環境設定不同的值，請參閱 [管理多個環境的應用程式參數](service-fabric-manage-multiple-environment-app-configuration.md)。
 
 ## <a name="next-steps"></a>後續步驟
-既然您已使用 ASP.NET Core 為應用程式設定 Web 前端，請參閱 [Service Fabric Reliable Services 中的 ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md) 文章，以深入了解 ASP.NET Core 如何與 Service Fabric 整合。
+現在，您已使用 ASP.NET Core 為應用程式設定 Web 前端，請參閱 [Service Fabric Reliable Services 中的 ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md) 以深入了解 ASP.NET Core 如何與 Service Fabric 合作。
 
 接下來，從整體角度[深入了解與服務進行通訊](service-fabric-connect-and-communicate-with-services.md)，以完整了解 Service Fabric 中的服務通訊如何運作。
 

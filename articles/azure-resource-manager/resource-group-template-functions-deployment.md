@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/26/2017
+ms.date: 06/13/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: ce888415b6a5f82fb3d49834b055f8afe97442a8
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: af2deef5a2e2c7cff8f485f7ea6846a0e087ecca
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -38,32 +38,6 @@ ms.lasthandoff: 04/28/2017
 `deployment()`
 
 傳回目前部署作業的相關資訊。
-
-### <a name="examples"></a>範例
-
-下列範例會傳回部署物件︰
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [],
-    "outputs": {
-        "subscriptionOutput": {
-            "value": "[deployment()]",
-            "type" : "object"
-        }
-    }
-}
-```
-
-下列範例說如何根據上層範本 URI，使用部署() 連結至另一個範本。
-
-```json
-"variables": {  
-    "sharedTemplateUrl": "[uri(deployment().properties.templateLink.uri, 'shared-resources.json')]"  
-}
-```  
 
 ### <a name="return-value"></a>傳回值
 
@@ -113,7 +87,57 @@ ms.lasthandoff: 04/28/2017
 }
 ```
 
+### <a name="remarks"></a>備註
 
+您可以上層範本的 URI 作為基礎，使用部署() 連結至另一個範本。
+
+```json
+"variables": {  
+    "sharedTemplateUrl": "[uri(deployment().properties.templateLink.uri, 'shared-resources.json')]"  
+}
+```  
+
+### <a name="example"></a>範例
+
+下列範例會傳回部署物件︰
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [],
+    "outputs": {
+        "subscriptionOutput": {
+            "value": "[deployment()]",
+            "type" : "object"
+        }
+    }
+}
+```
+
+上述範例會傳回下列物件︰
+
+```json
+{
+  "name": "deployment",
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "resources": [],
+      "outputs": {
+        "subscriptionOutput": {
+          "type": "Object",
+          "value": "[deployment()]"
+        }
+      }
+    },
+    "parameters": {},
+    "mode": "Incremental",
+    "provisioningState": "Accepted"
+  }
+}
+```
 
 <a id="parameters" />
 
@@ -128,9 +152,13 @@ ms.lasthandoff: 04/28/2017
 |:--- |:--- |:--- |:--- |
 | parameterName |是 |字串 |要傳回的參數名稱。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
 
-下列範例顯示 parameters 函數的簡化用法。
+指定參數的值。
+
+### <a name="remarks"></a>備註
+
+一般而言，您可以使用參數來設定資源的值。 下列範例會將網站的名稱設定為部署期間所傳入的參數值。
 
 ```json
 "parameters": { 
@@ -140,7 +168,7 @@ ms.lasthandoff: 04/28/2017
 },
 "resources": [
    {
-      "apiVersion": "2014-06-01",
+      "apiVersion": "2016-08-01",
       "name": "[parameters('siteName')]",
       "type": "Microsoft.Web/Sites",
       ...
@@ -148,9 +176,72 @@ ms.lasthandoff: 04/28/2017
 ]
 ```
 
-### <a name="return-value"></a>傳回值
+### <a name="example"></a>範例
 
-參數的類型。
+下列範例顯示 parameters 函數的簡化用法。
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "stringParameter": {
+            "type" : "string",
+            "defaultValue": "option 1"
+        },
+        "intParameter": {
+            "type": "int",
+            "defaultValue": 1
+        },
+        "objectParameter": {
+            "type": "object",
+            "defaultValue": {"one": "a", "two": "b"}
+        },
+        "arrayParameter": {
+            "type": "array",
+            "defaultValue": [1, 2, 3]
+        },
+        "crossParameter": {
+            "type": "string",
+            "defaultValue": "[parameters('stringParameter')]"
+        }
+    },
+    "variables": {},
+    "resources": [],
+    "outputs": {
+        "stringOutput": {
+            "value": "[parameters('stringParameter')]",
+            "type" : "string"
+        },
+        "intOutput": {
+            "value": "[parameters('intParameter')]",
+            "type" : "int"
+        },
+        "objectOutput": {
+            "value": "[parameters('objectParameter')]",
+            "type" : "object"
+        },
+        "arrayOutput": {
+            "value": "[parameters('arrayParameter')]",
+            "type" : "array"
+        },
+        "crossOutput": {
+            "value": "[parameters('crossParameter')]",
+            "type" : "string"
+        }
+    }
+}
+```
+
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| stringOutput | String | 選項 1 |
+| intOutput | int | 1 |
+| objectOutput | Object | {"one": "a", "two": "b"} |
+| arrayOutput | 陣列 | [1, 2, 3] |
+| crossOutput | String | 選項 1 |
 
 <a id="variables" />
 
@@ -165,26 +256,82 @@ ms.lasthandoff: 04/28/2017
 |:--- |:--- |:--- |:--- |
 | variableName |是 |String |要傳回的變數名稱。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
 
-下列範例會使用變數值。
+指定變數的值。
+
+### <a name="remarks"></a>備註
+
+一般而言，您可以使用變數將範本簡化，方法是僅建構一次複雜的值。 下列範例會建構儲存體帳戶的唯一名稱。
 
 ```json
 "variables": {
-  "storageName": "[concat('storage', uniqueString(resourceGroup().id))]"
+    "storageName": "[concat('storage', uniqueString(resourceGroup().id))]"
 },
 "resources": [
-  {
-    "type": "Microsoft.Storage/storageAccounts",
-    "name": "[variables('storageName')]",
-    ...
-  }
+    {
+        "type": "Microsoft.Storage/storageAccounts",
+        "name": "[variables('storageName')]",
+        ...
+    },
+    {
+        "type": "Microsoft.Compute/virtualMachines",
+        "dependsOn": [
+            "[variables('storageName')]"
+        ],
+        ...
+    }
 ],
 ```
 
-### <a name="return-value"></a>傳回值
+### <a name="example"></a>範例
 
-變數的類型。
+範例範本會傳回不同的變數值。
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {
+        "var1": "myVariable",
+        "var2": [ 1,2,3,4 ],
+        "var3": "[ variables('var1') ]",
+        "var4": {
+            "property1": "value1",
+            "property2": "value2"
+        }
+    },
+    "resources": [],
+    "outputs": {
+        "exampleOutput1": {
+            "value": "[variables('var1')]",
+            "type" : "string"
+        },
+        "exampleOutput2": {
+            "value": "[variables('var2')]",
+            "type" : "array"
+        },
+        "exampleOutput3": {
+            "value": "[variables('var3')]",
+            "type" : "string"
+        },
+        "exampleOutput4": {
+            "value": "[variables('var4')]",
+            "type" : "object"
+        }
+    }
+}
+```
+
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| exampleOutput1 | String | myVariable |
+| exampleOutput2 | 陣列 | [1, 2, 3, 4] |
+| exampleOutput3 | String | myVariable |
+| exampleOutput4 |  Object | {"property1": "value1", "property2": "value2"} |
 
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 Azure Resource Manager 範本中各區段的說明，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。

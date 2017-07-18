@@ -5,17 +5,16 @@ services: postgresql
 author: kamathsun
 ms.author: sukamat
 manager: jhubbard
-editor: jasonh
-ms.assetid: 
+editor: jasonwhowell
 ms.service: postgresql-database
-ms.tgt_pltfrm: portal
+ms.custom: mvc
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 06/01/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 2df8d6e3d3629ad0e383aa80ba7fee02f8862410
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: a4ddb9d4f672de6cf1ebe137bf06e5e2c8b7796f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/16/2017
 
 ---
 # <a name="limitations-in-azure-database-for-postgresql"></a>適用於 PostgreSQL 的 Azure 資料庫中的限制
@@ -45,23 +44,24 @@ ms.lasthandoff: 05/10/2017
 到達太多連接時，您可能會收到下列錯誤：
 > 嚴重錯誤︰很抱歉，已經有太多用戶端
 
-## <a name="preview-functional-limitations"></a>預覽功能限制：
-### <a name="scale-operations"></a>調整作業：
-1.    目前不支援跨服務層動態調整伺服器。 也就是在基本和標準服務層之間切換。
-2.    目前不支援依需求在預先建立的伺服器上動態增加儲存體。
-3.    不支援減少伺服器儲存體大小。
+## <a name="preview-functional-limitations"></a>預覽功能限制
+### <a name="scale-operations"></a>調整作業
+1.  目前不支援跨服務層動態調整伺服器。 也就是在基本和標準服務層之間切換。
+2.  目前不支援依需求在預先建立的伺服器上動態增加儲存體。
+3.  不支援減少伺服器儲存體大小。
 
-### <a name="server-version-upgrades"></a>伺服器版本升級：
+### <a name="server-version-upgrades"></a>伺服器版本升級
 - 目前不支援在主要資料庫引擎版本之間進行自動轉換。
 
-### <a name="subscription-management"></a>訂用帳戶管理：
+### <a name="subscription-management"></a>訂用帳戶管理
 - 目前不支援跨訂用帳戶和資源群組動態移動預先建立的伺服器。
 
-### <a name="point-in-time-restore"></a>還原時間點：
-1.    不允許還原到不同服務層和/或計算單位與儲存體大小。
-2.    不支援還原已卸除的伺服器。
+### <a name="point-in-time-restore"></a>還原時間點
+1.  不允許還原到不同服務層和/或計算單位與儲存體大小。
+2.  不支援還原已卸除的伺服器。
 
-## <a name="next-steps"></a>後續步驟：
-- 了解[每個服務層中可用的項目](concepts-service-tiers.md)
+## <a name="next-steps"></a>後續步驟
+- 了解[每個定價層層中可用的項目](concepts-service-tiers.md)
 - 了解[支援的 PostgreSQL 資料庫版本](concepts-supported-versions.md)
 - 檢閱[如何使用 Azure 入口網站，在適用於 PostgreSQL 的 Azure 資料庫中備份和還原伺服器](howto-restore-server-portal.md)
+

@@ -13,12 +13,13 @@ ms.workload: multiple
 ms.tgt_pltfrm: linux
 ms.devlang: na
 ms.topic: article
-ms.date: 09/13/2016
+ms.date: 06/01/2017
 ms.author: guybo
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 1c1591079bf09da6fbe50d848b05ec7791657e04
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 43175672c81373b5c9cc1bddc8ce27bcaaf5ec14
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -28,14 +29,14 @@ ms.lasthandoff: 04/03/2017
 
 適用於 Linux 的 Microsoft Azure CustomScript 延伸模組提供一種方式，讓您可以執行使用該虛擬機器 (VM) 所支援的任何指令碼語言 (例如 Python 和 Bash) 所撰寫的任意程式碼來自訂 VM。 這提供極具彈性的方式，自動將應用程式部署到多部電腦。
 
-您可以使用 Azure 傳統入口網站、Windows PowerShell 或 Azure 命令列介面 (Azure CLI)，來部署 CustomScript 延伸模組。
+您可以使用 Azure 入口網站、Windows PowerShell 或 Azure 命令列介面 (Azure CLI)，來部署 CustomScript 延伸模組。
 
 在本文中我們將使用 Azure CLI，將簡單的 LAMP 應用程式部署至以傳統部署模型建立的 Ubuntu VM。
 
 ## <a name="prerequisites"></a>必要條件
 在此範例中，會先建立兩個執行 Ubuntu 14.04 或更新版本的 Azure VM。 VM 的名稱為 script-vm 和 lamp-vm。 建立 VM 時請使用唯一名稱。 其中一個用來執行 CLI 命令，而另一個用來部署 LAMP 應用程式。
 
-您也需要 Azure 儲存體帳戶和金鑰才能存取它 (您可以從 Azure 傳統入口網站取得此資訊)。
+您也需要 Azure 儲存體帳戶和金鑰才能存取它 (您可以從 Azure 入口網站取得此資訊)。
 
 如果您需要在 Azure 上建立 Linux VM 的說明，請參閱[建立執行 Linux 的虛擬機器](createportal.md)。
 

@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 5/04/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 080b732d78731e6281e82ddc28a3e84ae8755ffa
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 0e9c10b77110efe90239863ee603acbd54b17ead
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -63,7 +63,7 @@ Application Insights 偵測到您的應用程式以下列其中一種方式降�
   
   ![智慧型偵測設定](./media/app-insights-proactive-diagnostics/smart_detection_configuration.png)
   
-  * [智慧型偵測] 電子郵件中的 [取消訂閱] 連結也會 
+  * 您可以使用智慧型偵測電子郵件中的 [取消訂閱] 連結，停止接收電子郵件通知。
 
 每個 Application Insights 資源每天僅限一個關於智慧型偵測效能異常的電子郵件。 只有在當天偵測到至少一個新的問題時，才會傳送電子郵件。 您不會重複收到任何訊息。 
 

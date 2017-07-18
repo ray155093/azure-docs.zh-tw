@@ -13,12 +13,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 4/5/2017
+ms.date: 5/22/2017
 ms.author: markgal;trinadhk
-translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: b6780e3dc0833c9a074ba85566848ac4246fa848
-ms.lasthandoff: 04/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 6d390a75df51a22aa4e60094f3e4ba945a5725ad
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -118,7 +119,8 @@ Azure 備份提供指令碼架構。 為確保備份 Linux VM 時應用程式的
 * 安排 VM 備份在非尖峰時段進行。 如此一來，備份服務會使用 IOPS 將資料從客戶儲存體帳戶傳輸到保存庫。
 * 確定有原則套用至橫跨不同儲存體帳戶的 VM。 我們的建議是，相同備份排程只保護單一儲存體帳戶中總計不超過 20 個的磁碟。 如果您的儲存體帳戶中有超過 20 個磁碟，請將這些 VM 分散到多個原則，以在備份程序的傳輸階段取得所需的 IOPS。
 * 請勿將進階儲存體上執行的 VM 還原至相同的儲存體帳戶。 如果還原作業程序與備份作業一致，將會減少備份可用的 IOPS。
-* 建議您在不同的進階儲存體帳戶上執行每個進階 VM，以確保擁有最佳的備份效能。
+* 若要進行進階 VM 備份，請確定裝載進階磁碟的儲存體帳戶至少有 50% 的可用空間可供暫存快照集，以便能順利完成備份。 
+* 請確定為了進行備份而在 Linux VM 上啟用的 python 版本為 2.7
 
 ## <a name="data-encryption"></a>資料加密
 Azure 備份不會在備份過程中加密資料。 不過，您可以在 VM 中加密資料，並順暢地備份受保護的資料 (深入了解 [加密資料的備份](backup-azure-vms-encryption.md))。

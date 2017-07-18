@@ -12,26 +12,29 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 06/07/2017
 ms.author: banders
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: a26b1f6c13b11d0fb6b47599fee43f955cbf7b7a
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: bb89bed9778056c52e47d984e5d559a4abf864a2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 
 ---
 # <a name="plan-hyper-v-virtual-machine-capacity-with-the-capacity-and-performance-solution-preview"></a>使用容量和效能解決方案來規劃 Hyper-V 虛擬機器容量 (預覽)
 
-![容量和效能解決方案](./media/log-analytics-capacity/capacity-solution.png) 您可以使用 Log Analytics 中的容量和效能解決方案，來協助您了解 Hyper-V 伺服器的容量。 這個解決方案可顯示主機以及在這些 Hyper-V 主機上執行之 VM 的整體使用率 (CPU、記憶體和磁碟)，以讓您深入了解 Hyper-V 環境。 系統會跨所有主機和在其上執行的 VM 來收集 CPU、記憶體和磁碟的計量。
+![容量與效能符號](./media/log-analytics-capacity/capacity-solution.png)
+
+您可以使用 Log Analytics 中的容量和效能解決方案，來協助您了解 Hyper-V 伺服器的容量。 這個解決方案可顯示主機以及在這些 Hyper-V 主機上執行之 VM 的整體使用率 (CPU、記憶體和磁碟)，以讓您深入了解 Hyper-V 環境。 系統會跨所有主機和在其上執行的 VM 來收集 CPU、記憶體和磁碟的計量。
 
 此解決方案：
 
--    顯示 CPU 和記憶體使用率最高與最低的主機
--    顯示 CPU 和記憶體使用率最高與最低的 VM
--    顯示 IOPS 和輸送量使用率最高與最低的 VM
--    顯示哪些 VM 在哪些主機上執行
--    顯示在叢集共用磁碟區內具有高輸送量、IOPS 和延遲的前幾大磁碟
+-   顯示 CPU 和記憶體使用率最高與最低的主機
+-   顯示 CPU 和記憶體使用率最高與最低的 VM
+-   顯示 IOPS 和輸送量使用率最高與最低的 VM
+-   顯示哪些 VM 在哪些主機上執行
+-   顯示在叢集共用磁碟區內具有高輸送量、IOPS 和延遲的前幾大磁碟
 - 可讓您根據群組進行自訂和篩選
 
 > [!NOTE]
@@ -93,7 +96,7 @@ New Management Pack with id:"Microsoft.IntelligencePacks.CapacityPerformance", v
     - **主機記憶體使用率** 根據所選時段以圖表顯示主機電腦的記憶體使用率趨勢和主機清單。 將滑鼠暫留在折線圖上，可檢視特定時間點的詳細資料。 按一下折線圖可在記錄搜尋中檢視更多詳細資料。 按一下任何主機名稱可開啟記錄搜尋並檢視所裝載 VM 的記憶體計數器詳細資料。
 - **虛擬機器**
     - **VM CPU 使用率** 根據所選時段以圖表顯示虛擬機器的 CPU 使用率趨勢和虛擬機器清單。 將滑鼠暫留在折線圖上，可檢視前 3 個 VM 在特定時間點的詳細資料。 按一下折線圖可在記錄搜尋中檢視更多詳細資料。 按一下任何 VM 名稱可開啟記錄搜尋並檢視 VM 的彙總 CPU 計數器詳細資料。
-    - **VM 記憶體使用率** 根據所選時段以圖表顯示虛擬機器的記憶體使用率趨勢和虛擬機器清單。 將滑鼠暫留在折線圖上，可檢視前 3 個 VM 在特定時間點的詳細資料。 按一下折線圖可在記錄搜尋中檢視更多詳細資料。 按一下任何 VM 名稱可開啟記錄搜尋並檢視 VM 的彙總記憶體計數器詳細資料。
+    - **VM 記憶體使用率**以所選時段作為基礎，用圖表顯示虛擬機器的記憶體使用率趨勢和虛擬機器清單。 將滑鼠暫留在折線圖上，可檢視前 3 個 VM 在特定時間點的詳細資料。 按一下折線圖可在記錄搜尋中檢視更多詳細資料。 按一下任何 VM 名稱可開啟記錄搜尋並檢視 VM 的彙總記憶體計數器詳細資料。
     - **VM 磁碟 IOPS 總數** 根據所選時段以圖表顯示虛擬機器的磁碟 IOPS 總數趨勢和虛擬機器清單以及各自的 IOPS。 將滑鼠暫留在折線圖上，可檢視前 3 個 VM 在特定時間點的詳細資料。 按一下折線圖可在記錄搜尋中檢視更多詳細資料。 按一下任何 VM 名稱可開啟記錄搜尋並檢視 VM 的彙總磁碟 IOPS 計數器詳細資料。
     - **VM 磁碟輸送量總數** 根據所選時段以圖表顯示虛擬機器的磁碟輸送量總數趨勢和虛擬機器清單以及各自的磁碟輸送量總數。 將滑鼠暫留在折線圖上，可檢視前 3 個 VM 在特定時間點的詳細資料。 按一下折線圖可在記錄搜尋中檢視更多詳細資料。 按一下任何 VM 名稱可開啟記錄搜尋並檢視 VM 的彙總磁碟輸送量總數計數器詳細資料。
 - **叢集共用磁碟區**

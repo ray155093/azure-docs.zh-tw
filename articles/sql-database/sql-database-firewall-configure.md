@@ -18,10 +18,10 @@ ms.workload: data-management
 ms.date: 04/10/2017
 ms.author: rickbyh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 744ad6cfc15453e1db7a012eebe09ceba226fde9
+ms.sourcegitcommit: 8be2bcb9179e9af0957fcee69680ac803fd3d918
+ms.openlocfilehash: 583c91376418d20d34db17d57d3fa14a1e71cd3b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/15/2017
+ms.lasthandoff: 06/23/2017
 
 
 ---
@@ -69,11 +69,16 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 ## <a name="creating-and-managing-firewall-rules"></a>建立和管理防火牆規則
 您可使用 [Azure 入口網站](https://portal.azure.com/)，或是以程式設計方式使用 [Azure PowerShell](https://msdn.microsoft.com/library/azure/dn546724.aspx)、[Azure CLI](/cli/azure/sql/server/firewall-rule#create) 或 [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx)，建立第一個伺服器層級防火牆設定。 後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。 
+
 > [!IMPORTANT]
 > 資料庫層級防火牆規則只能使用 Transact-SQL 來建立和管理。 
 >
 
 為了改進效能，系統會暫時在資料庫層級快取伺服器層級防火牆規則。 若應重新整理快取，請參閱 [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx)。 
+
+> [!TIP]
+> 您可以使用 [SQL Database 稽核](sql-database-auditing.md)來稽核伺服器等級和資料庫等級防火牆的變更。
+>
 
 ### <a name="azure-portal"></a>Azure 入口網站
 
@@ -149,7 +154,7 @@ EXECUTE sp_delete_firewall_rule @name = N'ContosoFirewallRule'
 ```powershell
 New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
     -ServerName $servername `
-    -FirewallRuleName "AllowSome" -StartIpAddress "0.0.0.0" -EndIpAddress "0.0.0.1"
+    -FirewallRuleName "AllowSome" -StartIpAddress "0.0.0.0" -EndIpAddress "0.0.0.0"
 ```
 
 > [!TIP]
@@ -169,7 +174,7 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
 
 ```azurecli-interactive
 az sql server firewall-rule create --resource-group myResourceGroup --server $servername \
-    -n AllowYourIp --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.1
+    -n AllowYourIp --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 ```
 
 > [!TIP]

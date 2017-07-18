@@ -13,18 +13,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/24/2017
+ms.date: 06/19/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: f85be2c605ec5dadd9296486d3a1357c39e40b64
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: a3f2e8634981ac158312e6b9700db92415e9e6c5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
 # <a name="performance-and-scale-testing-with-azure-cosmos-db"></a>Azure Cosmos DB 的效能和規模測試
-效能和規模測試是應用程式開發過程中的關鍵步驟。 對許多應用程式來說，資料庫層對整體效能和延展性具有相當重大的影響，因此是效能測試的重要元件。 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) 是為了能夠彈性延展及獲得可預測的效能而建置，因此非常適合需要高效能資料庫層的應用程式。 
+效能和規模測試是應用程式開發過程中的關鍵步驟。 對許多應用程式來說，資料庫層對整體效能和延展性具有相當重大的影響，因此是效能測試的重要元件。 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 是為了能夠彈性延展及獲得可預測的效能而建置，因此非常適合需要高效能資料庫層的應用程式。 
 
 這篇文章適合做為針對其 Cosmos DB 工作負載實作效能測試套件或針對高效能應用程式案例評估 Cosmos DB 之開發人員的參考。 主要是著重在隔離的資料庫效能測試，但也包含適用於實際執行應用程式的最佳做法。
 
@@ -50,7 +50,7 @@ ms.lasthandoff: 05/31/2017
 **步驟 2：** 修改 App.config 中 EndpointUrl、AuthorizationKey、CollectionThroughput 及 DocumentTemplate (選擇性) 的設定。
 
 > [!NOTE]
-> 以高輸送量佈建集合之前，請參閱 [價格頁面](https://azure.microsoft.com/pricing/details/documentdb/) 以估算每個集合的成本。 Cosmos DB 對儲存體和輸送量是以小時為基礎獨立計費，因此您可以藉由在測試後刪除或降低 DocumentDB 集合的輸送量來節省成本。
+> 以高輸送量佈建集合之前，請參閱 [價格頁面](https://azure.microsoft.com/pricing/details/cosmos-db/) 以估算每個集合的成本。 Cosmos DB 對儲存體和輸送量是以小時為基礎獨立計費，因此您可以藉由在測試後刪除或降低 DocumentDB 集合的輸送量來節省成本。
 > 
 > 
 
@@ -100,19 +100,16 @@ ms.lasthandoff: 05/31/2017
     DocumentDBBenchmark completed successfully.
 
 
-**步驟 4 (如有必要)：** 從工具回報的輸送量 (RU/秒) 應該等於或大於佈建的集合輸送量。 如果情況並非如此，向上微調 DegreeOfParallelism 可協助您達到該限制。 如果來自用戶端應用程式的輸送量達持平狀態，在相同或不同機器上啟動多個應用程式執行個體將可協助您在各個不同的執行個體達到所佈建的限制。 如果您需要協助進行這個步驟，請撰寫電子郵件寄至 askdocdb@microsoft.com 或在 [Azure 入口網站](https://portal.azure.com)提出支援票證。
+**步驟 4 (如有必要)：** 從工具回報的輸送量 (RU/秒) 應該等於或大於佈建的集合輸送量。 如果情況並非如此，向上微調 DegreeOfParallelism 可協助您達到該限制。 如果來自用戶端應用程式的輸送量達持平狀態，在相同或不同機器上啟動多個應用程式執行個體將可協助您在各個不同的執行個體達到所佈建的限制。 如果您需要協助進行這個步驟，請撰寫電子郵件寄至 askcosmosdb@microsoft.com 或在 [Azure 入口網站](https://portal.azure.com)提出支援票證。
 
 讓應用程式處於執行狀態之後，您便可以嘗試不同的[索引編製原則](indexing-policies.md)和[一致性層級](consistency-levels.md)，以了解它們對輸送量和延遲的影響。 您也可以檢閱原始程式碼，然後對自己的測試套件或實際執行應用程式實作類似的組態。
 
 ## <a name="next-steps"></a>後續步驟
-在這篇文章中，我們探討了如何使用 .NET 主控台應用程式來執行 Cosmos DB 的相關效能和規模測試。 如需有關使用 Cosmos DB 的其他資訊，請參閱下面的連結。
+在這篇文章中，我們探討了如何使用 .NET 主控台應用程式來執行 Cosmos DB 的相關效能和規模測試。 如需有關使用 Azure Cosmos DB 的其他資訊，請參閱下面的連結。
 
 * [Azure Cosmos DB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)
 * [改善 Azure Cosmos DB 效能的用戶端設定選項](performance-tips.md)
 * [Azure Cosmos DB 中的伺服器端資料分割](partition-data.md)
-* [DocumentDB 集合和效能等級](performance-levels.md)
-* [MSDN 上的 DocumentDB .NET SDK 文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)
-* [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
-* [有關效能秘訣的 Azure Cosmos DB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
+
 
 

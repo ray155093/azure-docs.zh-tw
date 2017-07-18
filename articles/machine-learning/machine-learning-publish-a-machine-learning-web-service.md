@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 01/06/2017
 ms.author: garye
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 5bcdb2cd11ffa633bce4e0faee4f49d9053a662b
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 39761f94efc530452a41ef9f2130976803cff711
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/31/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -118,7 +118,7 @@ RRS 測試頁面會顯示輸入、輸出以及任何您已為實驗定義的全�
 
 [取用]  頁面提供您存取 Web 服務所需的所有資訊。 例如，API 金鑰可用來允許經過授權的存取服務。
 
-如需存取 Machine Learning Web 服務的詳細資訊，請參閱 [如何使用已發佈的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+有關存取 Machine Learning Web 服務的詳細資訊，請參閱[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 #### <a name="manage-your-new-web-service"></a>管理新式 Web 服務
 您可以在 Machine Learning Web 服務入口網站中管理新的 Web 服務。 從[入口網站主頁面](https://services.azureml-test.net/)按一下 [Web 服務]。 從 Web 服務頁面可以刪除或複製服務。 若要監視特定的服務，請按一下服務，然後按一下 [儀表板] 。 若要監視與 Web 服務相關聯的批次作業，請按一下 [批次要求記錄檔] 。
@@ -158,7 +158,7 @@ RRS 測試頁面會顯示輸入、輸出以及任何您已為實驗定義的全�
 
 儀表板提供您存取 Web 服務所需的所有資訊。 例如，提供 API 金鑰以允許服務的授權存取權，以及提供 API 說明頁面以協助您開始撰寫程式碼。
 
-如需存取 Machine Learning Web 服務的詳細資訊，請參閱 [如何使用已發佈的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+有關存取 Machine Learning Web 服務的詳細資訊，請參閱[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 #### <a name="manage-your-classic-web-service"></a>管理傳統 Web 服務
 您可以執行各種動作來監視 Web 服務。 您可以更新它和刪除它。 除了部署傳統 Web 服務時所建立的預設端點之外，您也可以新增其他端點至傳統 Web 服務。

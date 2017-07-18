@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: f4bf4138ce3a9a2495a0a0fd46e149f6ac96d82d
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 49091d4a85bed23927850f9c0bbc5ea8b6e8c9e1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -47,7 +47,7 @@ ms.lasthandoff: 05/10/2017
 ![應用程式設定][3]
 
 ## <a name="deploy-your-web-app"></a>部署 Web 應用程式
-從管理入口網站中選擇 [部署選項] 時，您可以選擇使用本機 Git 或 GitHub 儲存機制來部署您的應用程式。 其餘的指示類似非 Linux Web 應用程式的指示。 您可以依照[本機 Git 部署](app-service-deploy-local-git.md)或[連續部署](app-service-continuous-deployment.md)中的指示部署應用程式。
+從管理入口網站中選擇 [部署選項] 時，您可以選擇使用本機 Git 或 GitHub 存放庫來部署您的應用程式。 其餘的指示類似非 Linux Web 應用程式的指示。 您可以依照[本機 Git 部署](app-service-deploy-local-git.md)或[連續部署](app-service-continuous-deployment.md)中的指示部署應用程式。
 
 您也可以使用 FTP 將應用程式上傳至您的網站。 您可以從 [診斷記錄檔] 區段取得 Web 應用程式的 FTP 端點，如下圖所示︰
 

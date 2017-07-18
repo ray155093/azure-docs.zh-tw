@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 11/17/2016
 ms.author: LADocs; mandia
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: ff86340f18a2d3d13d55b7e0bcd4122d9b85ccd9
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: dd4e4282d774c2c336889b1df887806bfe512c10
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/20/2017
+ms.lasthandoff: 06/07/2017
 
 ---
 
@@ -731,7 +731,7 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 
 ## <a name="table-action"></a>資料表動作
 
-`table` 可讓您將項目的陣列轉換為 **CVS** 或 **HTML** 資料表。
+`table` 可讓您將項目的陣列轉換為 **CSV** 或 **HTML** 資料表。
 
 假設 @triggerBody() 是
 
@@ -789,7 +789,7 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 |名稱|必要|類型|說明|
 |--------|------------|--------|---------------|
 |from|是|陣列|來源陣列。|
-|format|是|String|格式，**CVS** 或 **HTML**。|
+|format|是|String|格式，**CSV** 或 **HTML**。|
 |columns|否|陣列|資料行。 允許覆寫資料表的預設圖形。|
 |資料行標頭|否|String|資料行的標頭。|
 |資料行值|是|String|資料行的值。|

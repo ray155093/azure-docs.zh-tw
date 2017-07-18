@@ -4,7 +4,7 @@ description: "使用 Power BI 來視覺化收集自感應器並傳送至 Azure I
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "即時資料視覺效果, 即時資料視覺效果, 感應器資料視覺效果"
 ms.assetid: e67c9c09-6219-4f0f-ad42-58edaaa74f61
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/29/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: ba25cdee46ce4ceb5acd5ff9da683a057f2bd733
-ms.lasthandoff: 04/25/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: 404ab1682d9b77f22e60888340ffb70a101ed5d4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/15/2017
 
 ---
 # <a name="visualize-real-time-sensor-data-from-azure-iot-hub-using-power-bi"></a>使用 Power BI 將 Azure IoT 中樞的即時感應器資料視覺化
@@ -120,11 +120,7 @@ ms.lasthandoff: 04/25/2017
 
 ## <a name="create-and-publish-a-power-bi-report-to-visualize-the-data"></a>建立及發佈 Power BI 報告，以將資料視覺化。
 
-1. 確保範例應用程式正在執行中。 如果不在執行中，請執行下列命令以在 Pi 上執行應用程式：
-
-   ```bash
-   gulp run
-   ```
+1. 確保範例應用程式正在您的裝置上執行。 如果沒有，您可以參考[設定您的裝置](https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started)下的教學課程。
 1. 登入您的 [Power BI](https://powerbi.microsoft.com/en-us/) 帳戶。
 1. 請移至建立串流分析作業輸出時所設定的群組工作區。
 1. 按一下 [串流資料集]。
@@ -164,3 +160,4 @@ Microsoft 也會提供 [Power BI 行動應用程式](https://powerbi.microsoft.c
 有替代方法可將 Azure IoT 中樞的資料視覺化。 請參閱[使用 Azure Web Apps 將來自 Azure IoT 中樞的即時感應器資料視覺化](iot-hub-live-data-visualization-in-web-apps.md)。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
+

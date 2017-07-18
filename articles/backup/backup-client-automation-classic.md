@@ -13,11 +13,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
+ms.date: 06/14/2017
 ms.author: saurse;markgal;nkolli;trinadhk
-translationtype: Human Translation
-ms.sourcegitcommit: d8289128414bc67a7c064c827a9bec047f6f22bc
-ms.openlocfilehash: 096c119ad116b87b3e27b71ab9a286d2961cf7df
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 0871f061da668360ff5749f5097353645ee26c82
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -28,7 +30,13 @@ ms.openlocfilehash: 096c119ad116b87b3e27b71ab9a286d2961cf7df
 >
 >
 
-本文說明如何使用 PowerShell 在 Windows Server 或 Windows 用戶端上設定 Azure 備份，以及管理備份和復原。
+本文說明如何使用 PowerShell 來將 Windows Server 或 Windows 工作站的資料備份到備份保存庫。 Microsoft 建議讓大部分的新部署使用復原服務保存庫。 如果您是 Azure 備份的新手使用者，而且尚未在訂用帳戶中建立備份保存庫，請利用[使用 PowerShell 管理 Data Protection Manager 資料並部署到 Azure](backup-client-automation.md) 一文，以將資料儲存在復原服務保存庫中。 
+
+> [!IMPORTANT]
+> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> **自 2017 年 11 月 1 日起**：
+>- 任何其餘的備份保存庫都會自動升級至復原服務保存庫。
+>- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
+>
 
 ## <a name="install-azure-powershell"></a>安裝 Azure PowerShell
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
@@ -605,9 +613,4 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 
 * [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
 * [備份 Windows 伺服器](backup-configure-vault.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

@@ -3,7 +3,7 @@ title: "Azure Application Insights 中分析的參考資料 | Microsoft Docs"
 description: "分析 (強大的 Application Insights 搜尋工具) 中陳述式的參考資料。 "
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: eea324de-d5e5-4064-9933-beb3a97b350b
 ms.service: application-insights
@@ -11,13 +11,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 05/05/2017
+ms.date: 07/05/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 3fb2464e3757d316367487506f0aca9f1c2e35cc
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: dd3478966e4e5ccc9f108940401c7ee9454087dd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -35,7 +35,7 @@ ms.lasthandoff: 05/10/2017
 ## <a name="index"></a>索引
 **Let** [let](#let-clause) | [materialize](#materialize) 
 
-**查詢和運算子** [as](#as-operator) | [autocluster](#evaluate-autocluster) | [basket](#evaluate-basketv2) | [count](#count-operator) | [datatable](#datatable-operator) | [diffpatterns](#evaluate-diffpatterns) | [distinct](#distinct-operator) | [evaluate](#evaluate-operator) | [extend](#extend-operator) | [extractcolumns](#evaluate-extractcolumns) | [find](#find-operator) | [getschema](#getschema-operator) | [join](#join-operator) | [limit](#limit-operator) | [make-series](#make-series-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render directive](#render-directive) | [restrict clause](#restrict-clause) | [sample](#sample-operator) | [sample-distinct](#sample-distinct-operator) | [sort](#sort-operator) | [summarize](#summarize-operator) | [table](#table-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator) 
+**查詢和運算子** [as](#as-operator) | [autocluster](#evaluate-autocluster_v2) | [basket](#evaluate-basketv2) | [count](#count-operator) | [datatable](#datatable-operator) | [diffpatterns](#evaluate-diffpatterns_v2) | [distinct](#distinct-operator) | [evaluate](#evaluate-operator) | [extend](#extend-operator) | [extractcolumns](#evaluate-extractcolumns) | [find](#find-operator) | [getschema](#getschema-operator) | [join](#join-operator) | [limit](#limit-operator) | [make-series](#make-series-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render directive](#render-directive) | [restrict clause](#restrict-clause) | [sample](#sample-operator) | [sample-distinct](#sample-distinct-operator) | [sort](#sort-operator) | [summarize](#summarize-operator) | [table](#table-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator) 
 
 **彙總** [any](#any) | [argmax](#argmax) | [argmin](#argmin) | [avg](#avg) | [buildschema](#buildschema) | [count](#count) | [countif](#countif) | [dcount](#dcount) | [dcountif](#dcountif) | [makelist](#makelist) | [makeset](#makeset) | [max](#max) | [min](#min) | [percentile](#percentile) | [percentiles](#percentiles) | [percentilesw](#percentilesw) | [percentilew](#percentilew) | [stdev](#stdev) | [sum](#sum) | [variance](#variance)
 
@@ -44,7 +44,7 @@ ms.lasthandoff: 05/10/2017
 **數字** [算術運算子](#arithmetic-operators) | [數值常值](#numeric-literals) | [abs](#abs) | [bin](#bin) | [exp](#exp) | [floor](#floor) | [gamma](#gamma) | [log](#log) | [rand](#rand) | [sqrt](#sqrt) | [todouble](#todouble) | [toint](#toint) | [tolong](#tolong)
 
 **數值序列** 
-[series_fir](#seriesfir) | [series\_fit\_line](#seriesfitline) | [series\_fit\_2lines](#seriesfit2lines) | [series_iir](#seriesiir) | [series_periods](#seriesperiods) | [series_stats](#seriesstats) | 
+[series_fir](#seriesfir) | [series\_fit\_line](#seriesfitline) | [series\_fit\_2lines](#seriesfit2lines) | [series_iir](#seriesiir) |[series_outliers](#seriesoutliers)| [series_periods](#seriesperiods) | [series_stats](#seriesstats) | 
 
 **日期和時間** [日期和時間運算式](#date-and-time-expressions) | [日期和時間常值](#date-and-time-literals) | [ago](#ago) | [datepart](#datepart) | [dayofmonth](#dayofmonth) | [dayofweek](#dayofweek) | [dayofyear](#dayofyear) | [endofday](#endofday) | [endofmonth](#endofmonth) | [endofweek](#endofweek) | [endofyear](#endofyear) | [getmonth](#getmonth) | [getyear](#getyear) | [now](#now) | [startofday](#startofday) | [startofmonth](#startofmonth) | [startofweek](#startofweek) | [startofyear](#startofyear) | [todatetime](#todatetime) | [totimespan](#totimespan) | [weekofyear](#weekofyear)
 
@@ -318,14 +318,16 @@ datatable (Supplier: string, Fruit: string, Price:int)
 
 `evaluate` 必須是在查詢管線中的最後一個運算子 (除了可能的 `render` 以外)。 它不得出現在函式主體中。
 
-[evaluate autocluster](#evaluate-autocluster) | [evaluate basket](#evaluate-basketv2) | [evaluate diffpatterns](#evaluate-diffpatterns) | [evaluate extractcolumns](#evaluate-extractcolumns)
+[evaluate autocluster](#evaluate-autocluster_v2) | [evaluate basket](#evaluate-basketv2) | [evaluate diffpatterns](#evaluate-diffpatterns_v2) | [evaluate extractcolumns](#evaluate-extractcolumns)
 
-#### <a name="evaluate-autocluster"></a>evaluate autocluster
+#### <a name="evaluate-autocluster-deprecated"></a>evaluate autocluster (已被取代)
      T | evaluate autocluster()
 
 Autocluster 是可在一組資料中快速找到自然群組的方法。 例如，在大量的要求資料中，您可能會快速識別 80% 的 404 失敗都是同一個特定 URL、由特定城市中的一個用戶端所提出的要求。
 
 AutoCluster 可尋找資料中離散屬性 (維度) 的常見模式，並將原始查詢的結果 (不論是 100 或 100000 個資料列) 減少至少量模式。 AutoCluster 特別開發來協助分析失敗 (如例外狀況、毀損)，但可能作用於任何已篩選的資料集上。 
+
+**這一版的 `autocluster` 已過時。請使用 [autocluster_v2](#evaluate-autocluster_v2).**
 
 **語法**
 
@@ -374,6 +376,92 @@ AutoCluster 會傳回一組 (通常很少) 模式，以擷取有橫跨多個離�
   
     範例： `T | evaluate autocluster("weight_column=sample_Count")` 
 
+<a name="evaluate-autocluster_v2"></a>
+
+#### <a name="evaluate-autoclusterv2"></a>evaluate autocluster_v2
+
+    T | evaluate autocluster_v2()
+
+AutoCluster 可尋找資料中離散屬性 (維度) 的常見模式，並將原始查詢的結果 (不論是 100 或 100000 個資料列) 減少至少量模式。 AutoCluster 特別開發來協助分析失敗 (如例外狀況、毀損)，但可能作用於任何已篩選的資料集上。 AutoCluster 演算法是由 Developer Analytics 研究團隊所開發 (KustoML@microsoft.com)。
+
+此外掛程式會取代已被取代的 autocluster 外掛程式語法。     
+
+**語法**
+`T | evaluate autocluster_v2( arguments )`
+
+**Returns** AutoCluster 會傳回一組 (通常很少) 模式，以擷取有橫跨多個離散屬性之共用常見值的部分資料。 每個模式會以結果中的一個資料列表示。 第一個資料行是區段識別碼。 下兩個資料行是原始查詢中由模式所擷取之資料列的計數和百分比。 其餘的資料行來自原始查詢，其值是資料行中的特定值或表示變數值的萬用字元值 (預設為 null)。 請注意，模式並未不同︰它們可能會重疊，而且通常不會涵蓋所有原始資料列。 某些資料列可能不會落在任何模式之下。
+
+**提示** 在輸入管線中使用 `where` 和 `project`，將資料減少到僅只您感興趣的資料。
+當您找到有趣的資料列時，您可藉由將其特定值加入至您的 `where` 篩選器，進一步深入探索。
+
+**引數 (全部選用)** `T | evaluate autocluster_V2([*SizeWight*,*WeightColumn*,*NumSeeds*,*CustomWildcard*,...])
+
+所有引數皆為選用，但必須為上述順序。 若要指示需使用預設值，請放置字串波狀符號值 - '~' (請參閱以下範例)。
+
+**可用的引數**
+
+- SizeWeight - 0<*double* <1 [預設值 0.5] 可讓您控制泛型 (高涵蓋範圍) 與資訊豐富 (許多共用值) 之間的平衡。 增加此值通常可減少模式數目，而每個模式傾向於涵蓋較大的百分比。 減少此值通常會產生具有更多共用值和較小涵蓋百分比的更特定模式。 幕後的公式是正規化泛型分數和資訊豐富分數 (以 SizeWeight** 和 1-SizeWeight 當作權數) 之間的加權幾何平均值。 
+
+**範例**
+`T | evaluate autocluster_v2(0.8)`
+
+- WeightColumn - *column_name*
+
+根據指定的權數 (依預設每個資料都列具有權數 '1') 考慮輸入中的每個資料列。 引數必須是數值資料行名稱 (例如 int、long、real)。 權數資料行的常見用法是考慮已內嵌至各資料列的資料取樣或分組/彙總。
+
+**範例**
+`T | evaluate autocluster_v2('~', sample_Count)`
+
+`- NumSeeds - *int* [default 25]
+
+種子數目可決定演算法的初始本機搜尋點數。 在某些情況下，視資料的結構而定，增加種子數目會透過以查詢速度變慢所換取的搜尋空間增加，來增加結果的數目 (或品質)。 此值具有雙向的遞減結果，因此減少至 5 以下將達到顯著的效能改進，而增加至 50 以上很少會產生其他模式。
+
+**範例**
+`T | evaluate autocluster_v2('~','~',15)`
+
+- CustomWildcard - *any_value_per_type*
+
+在結果資料表中設定特定類型的萬用字元值，會指出目前的模式沒有這個資料行的限制。 預設值是 null，而字串預設值為空字串。 如果預設值是資料中的可用值，則需使用不同的萬用字元值 (例如 *)。
+
+**範例**
+
+`T | evaluate autocluster_v2('~','~','~',int (-1), double(-1), long(0), datetime(1900-1-1))`
+
+**範例**
+```
+StormEvents 
+| where monthofyear(StartTime) == 5
+| extend Damage = iff(DamageCrops + DamageProperty > 0 , "YES" , "NO")
+| project State , EventType , Damage
+| evaluate autocluster_v2(0.6)
+```
+**結果**
+|SegmentId|Count|百分比|State|EventType|Damage|
+----------|-----|-------|-----|---------|------|
+0|2278|38.7||Hail|否
+1|512|8.7||Thunderstorm Wind|是
+2|898|15.3|德克薩斯州|||
+
+**包含自訂萬用字元的範例**
+```
+StormEvents 
+| where monthofyear(StartTime) == 5
+| extend Damage = iff(DamageCrops + DamageProperty > 0 , "YES" , "NO")
+| project State , EventType , Damage 
+| evaluate autocluster_v2(0.2, '~', '~', '*')
+```
+**結果**
+|SegmentId|Count|百分比|State|EventType|Damage|
+----------|-----|-------|-----|---------|------|
+0|2278|38.7|\*|Hail|否
+1|512|8.7|\*|Thunderstorm Wind|是
+2|898|15.3|德克薩斯州|\*|\*|
+
+**其他資訊**
+
+-  AutoCluster 主要是以下列文件中的 Seed-Expand 演算法為基礎：[使用離散屬性的遙測資料採礦演算法](http://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1)，全文檢索連結：[pdf](https://kusto.azurewebsites.net/docs/queryLanguage/images/queries/ICPRAM17telemetry.pdf)。 
+
+
 #### <a name="evaluate-basket-deprecated"></a>evaluate basket (已過時)
 
      T | evaluate basket()
@@ -417,9 +505,13 @@ Basket 可尋找資料中離散屬性 (維度) 的所有常見模式，將會傳
 
 **傳回**
 
-所有出現於事件的多個指定分數 (預設值 0.05) 中的模式。 針對每個模式，模式中未設定的資料行 (亦即，沒有特定值的限制) 將包含萬用字元值，其預設為 null 值 (請參閱下方「引數」一節了解如何進行手動變更)。
+置物籃會傳回高於比例閾值 (預設值：0.05) 的所有經常出現模式。每個模式是以結果中的一個資料列表示。
+
+第一個資料行是區段識別碼。 下兩個資料行是原始查詢中由模式所擷取之資料列的計數和百分比。 其餘的資料行來自原始查詢，其值是資料行中的特定值或表示變數值的萬用字元值 (預設為 null)。
 
 **引數 (全部選用)**
+
+範例： `T | evaluate basket_v2([Threshold, WeightColumn, MaxDimensions, CustomWildcard, CustomWildcard, ...])`
 
 所有引數皆為選用，但必須為下列順序。 若要指示需使用預設值，可以使用波狀符號字元 '~' (請參閱以下範例)。
 
@@ -427,17 +519,17 @@ Basket 可尋找資料中離散屬性 (維度) 的所有常見模式，將會傳
   
     將資料列的最小比率設為認定的頻繁 (不會傳回較小比例的模式)。
   
-    範例： `T | evaluate basket(0.02)`
-* 權數資料行 itemCount
+    範例： `T | evaluate basket_v2(0.02)`
+* Weight column *-column_name*
   
-    使用這個可將取樣和計量預先彙總納入考量。 每個資料列都會以本資料行中所指定的權數進行屬性化。 依預設，每個資料列都有 '1' 的權數。 這會將已內嵌至每個資料列的資料貯體或彙總納入考量。
+    根據指定的權數 (依預設每個資料都列具有權數 '1') 考慮輸入中的每個資料列。 引數必須是數值資料行名稱 (例如 int、long、real)。 權數資料行的常見用法是考慮已內嵌至各資料列的資料取樣或分組/彙總。
   
-    範例： `T | evaluate basket('~', itemCount)`
+    範例： `T | evaluate basket_v2('~', sample_Count)`
 * 最大維度︰1 < int (預設值︰5)
   
     設定每個 Basket 的不相關維度數目上限 (依預設會受到限制以縮減查詢執行階段)。
 
-    範例： `T | evaluate basket('~', '~', 3)`
+    範例： `T | evaluate basket_v2('~', '~', 3)`
 * 自訂的萬用字元類型︰每種類型的任何值
   
     在結果資料表中設定特定類型的萬用字元值，會指出目前的模式沒有這個資料行的限制。 預設值是 null，而字串預設值為空字串。 如果預設值是資料中的可用值，則需使用不同的萬用字元值 (例如 *)。
@@ -446,13 +538,50 @@ Basket 可尋找資料中離散屬性 (維度) 的所有常見模式，將會傳
 
 **範例**
 
-``` AIQL
-requests 
-| evaluate basket_v2(0.7, itemCount)
+``` 
+StormEvents 
+| where monthofyear(StartTime) == 5
+| extend Damage = iff(DamageCrops + DamageProperty > 0 , "YES" , "NO")
+| project State, EventType, Damage, DamageCrops
+| evaluate basket_v2(0.2)
 ```
+結果
 
-#### <a name="evaluate-diffpatterns"></a>evaluate diffpatterns
-     requests | evaluate diffpatterns("split=success")
+|SegmentId|Count|百分比|State|EventType|Damage|DamageCrops
+----------|-----|-------|-----|---------|------|-----------
+0|4574|77.7|||否|0
+1|2278|38.7||Hail|否|0
+2|5675|96.4||||0
+3|2371|40.3||Hail||0
+4|1279|21.7||Thunderstorm Wind||0
+5|2468|41.9||Hail|||
+6|1310|22.3|||是||
+7|1291|21.9||Thunderstorm Wind||
+
+包含自訂萬用字元的範例
+```
+StormEvents 
+| where monthofyear(StartTime) == 5
+| extend Damage = iff(DamageCrops + DamageProperty > 0 , "YES" , "NO")
+| project State, EventType, Damage, DamageCrops
+| evaluate basket_v2(0.2, '~', '~', '*', int(-1))
+```
+結果
+
+|SegmentId|Count|百分比|State|EventType|Damage|DamageCrops
+----------|-----|-------|-----|---------|------|-----------
+0|4574|77.7|\*|\*|否|0
+1|2278|38.7|\*|Hail|否|0
+2|5675|96.4|\*|\*|\*|0
+3|2371|40.3|\*|Hail|\*|0
+4|1279|21.7|\*|Thunderstorm Wind|\*|0
+5|2468|41.9|\*|Hail|\*|-1|
+6|1310|22.3|\*|\*|是|-1|
+7|1291|21.9|\*|Thunderstorm Wind|\*|-1|
+
+#### <a name="evaluate-diffpatterns-deprecated"></a>evaluate diffpatterns (已被取代)
+**這個版本的 diffpatterns 外掛程式已被取代。請使用新的 [diffpatterns](#evaluate-diffpatterns_v2) 外掛程式語法。**
+requests | evaluate diffpatterns("split=success")
 
 Diffpatterns 會識別相同結構的兩個資料集之間的差異 - 例如，事件發生時的要求記錄，和一般要求記錄。 Diffpatterns 特別開發來協助分析失敗 (例如：藉由比較指定時間範圍內的失敗與非失敗），但有可能找到相同結構的任兩個資料集之間的差異。 
 
@@ -502,6 +631,110 @@ Diffpatterns 會傳回一組 (通常很少) 模式，以擷取兩個集合中的
     根據指定的權數 (依預設每個資料都列具有權數 '1') 考慮輸入中的每個資料列。 權數資料行的常見用法是考慮已內嵌至各資料列的資料取樣或分組/彙總。
   
     `requests | evaluate autocluster("weight_column=itemCount")`
+
+<a name="evaluate-diffpatterns_v2"></a>
+#### <a name="evaluate-diffpatternsv2"></a>evaluate diffpatterns_v2
+'T | evaluate diffpatterns_v2(splitColumn)`
+
+Diffpatterns 會比較相同結構的兩個資料集，並尋找可描繪兩個資料集之間差異的離散屬性 (維度) 模式。 Diffpatterns 特別開發來協助分析失敗 (例如：藉由比較指定時間範圍內的失敗與非失敗），但有可能找到相同結構的任兩個資料集之間的差異。 Diffpatterns 演算法是由 Developer Analytics 研究團隊所開發 (KustoML@microsoft.com)。
+
+此外掛程式會取代已被取代的 diffpatterns 外掛程式語法。
+
+**語法**
+
+`T | evaluate diffpatterns_v2(SplitColumn, SplitValueA, SplitValueB [, arguments] )`
+
+**傳回**
+
+Diffpatterns 會傳回一組 (通常很少) 模式，以擷取兩個集合中的不同資料部分 (也就是，此模式會擷取第一個資料集中高百分比的資料列和第二個集合中低百分比的資料列)。 每個模式會以結果中的一個資料列表示。
+第一個資料行是區段識別碼。 接下來四個資料行是原始查詢中由每個資料集的模式所擷取之資料列的計數和百分比，第六個資料行是兩個資料集之間的差異 (以絕對百分點表示)。 其餘的資料行是來自原始查詢。
+針對每個模式，模式中未設定的資料行 (亦即，沒有特定值的限制) 將包含預設為 null 的萬用字元值 (請參閱下方「引數」一節了解如何進行手動變更萬用字元)。
+請注意，模式並未不同︰它們可能會重疊，而且通常不會涵蓋所有原始資料列。 某些資料列可能不會落在任何模式之下。
+
+**秘訣**
+
+在輸入管線中使用 where 和 project，將資料減少到僅只您感興趣的資料。
+當您找到有趣的資料列時，您可藉由將其特定值加入至您的 `where` 篩選器，進一步深入探索。
+
+**必要的引數**
+
+`T | evaluate diffpatterns_v2(SplitColumn, SplitValueA, SplitValueB [, WeightColumn, Threshold, MaxDimensions, CustomWildcard, ...])` 
+
+- SplitColumn - *column_name* 
+
+告知演算法如何將查詢分割成資料集。 根據 SplitValueA 和 SplitValueB 引數的指定值 (請參閱下文)，演算法會將查詢分割成兩個資料集 "A"和"B"，然後分析兩者之間的差異。 因此，分割資料行必須至少有兩個相異值。
+
+- SplitValueA - *string*
+
+指定之 SplitColumn 中其中一個值的字串表示。 在其 SplitColumn 中具備此值的所有資料列均會視為資料集 "A"。
+
+- SplitValueB - *string*
+
+指定之 SplitColumn 中其中一個值的字串表示。 在其 SplitColumn 中具備此值的所有資料列均會視為資料集 "B"。
+
+**範例**
+
+```
+T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns_v2(splitColumn, "Success","Failure")
+```
+**選用引數**
+
+所有其他引數皆為選用，但必須為下列順序。 若要指示需使用預設值，請放置字串波狀符號值 - '~' (請參閱以下範例)。
+
+- WeightColumn - *column_name*
+
+根據指定的權數 (依預設每個資料都列具有權數 '1') 考慮輸入中的每個資料列。 引數必須是數值資料行名稱 (例如 int、long、real)。 權數資料行的常見用法是考慮已內嵌至各資料列的資料取樣或分組/彙總。
+
+**範例**
+```
+T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns_v2(splitColumn, "Success","Failure", sample_Count)
+```
+- 閾值︰0.015 < double < 1 [預設值：0.05]
+
+設定兩個集合之間的最小模式 (比率) 差異。
+
+**範例**
+```
+T | extend splitColumn = iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns_v2(splitColumn, "Success","Failure", "~", 0.04)
+```
+- MaxDimensions - 0 < int [預設值：無限制]
+
+設定每個結果模式的不相關維度數目上限，指定限制會縮減查詢執行階段。
+
+**範例**
+```
+T | extend splitColumn = iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns_v2(splitColumn, "Success","Failure", "~", "~", 3)
+```
+- CustomWildcard - *any_value_per_type*
+
+在結果資料表中設定特定類型的萬用字元值，會指出目前的模式沒有這個資料行的限制。 預設值是 null，而字串預設值為空字串。 如果預設值是資料中的可用值，則需使用不同的萬用字元值 (例如 *)。 請參閱下列範例。
+
+**範例**
+```
+T | extend splitColumn = iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns_v2(splitColumn, "Success","Failure", "~", "~", "~", int(-1), double(-1), long(0), datetime(1900-1-1))
+```
+
+**範例**
+```
+StormEvents 
+| where monthofyear(StartTime) == 5
+| extend Damage = iff(DamageCrops + DamageProperty > 0 , 1 , 0)
+| project State , EventType , Source , Damage, DamageCrops
+| evaluate diffpatterns_v2(Damage, "0", "1" )
+```
+**結果**
+
+|SegmentId|CountA|CountB|PercentA|PercentB|DiffAB|State|EventType|來源|DamageCrops
+----------|------|------|--------|--------|------|-----|---------|------|-----------
+0|2278|93|49.8|7.1|42.7||Hail||0
+1|779|512|17.03|39.08|22.05||Thunderstorm Wind|||
+2|1098|118|24.01|9.01|15|||Trained Spotter|0|
+3|136|158|2.97|12.06|9.09|||Newspaper||
+4|359|214|7.85|16.34|8.49||Flash Flood|||
+5|50|122|1.09|9.31|8.22|愛荷華州||||
+6|655|279|14.32|21.3|6.98|||執法機關||
+7|150|117|3.28|8.93|5.65||Flood|||
+8|362|176|7.91|13.44|5.52|||Emergency Manager||
 
 #### <a name="evaluate-extractcolumns"></a>evaluate extractcolumns
      exceptions | take 1000 | evaluate extractcolumns("details=json") 
@@ -1068,8 +1301,10 @@ range timestamp from ago(4h) to now() step 1m
 
 **引數**
 
-* *ColumnName:* 要檢查的資料行。 它必須是字串類型。
-* *Threshold:* 範圍 {0..1} 內的值。 預設值為 0.001。 若為大型輸入，臨界值應該小一點。 
+*  要檢查的資料行。 它必須是字串類型。
+* <seg>
+  *
+  * 範圍 {0..1} 內的值。</seg> 預設值為 0.001。 若為大型輸入，臨界值應該小一點。 
 
 **傳回**
 
@@ -2346,7 +2581,41 @@ range t from 1 to 1 step 1
 |2.0|3.0|
 |3.0|6.0|
 |4.0|10.0|
+### <a name="seriesoutliers"></a>series_outliers 
 
+Series_outliers() 函式會以包含動態陣列的資料行作為輸入，並產生相同長度的動態數值陣列作為輸入。 陣列的每個值會指出一個分數，以表示使用 Tukey 測試的可能異常狀況。 值大於 1.5 或小於-1.5，表示異常狀況分別在輸入的相同元素中上升或下降。  
+
+**語法**  
+
+```
+series_outliers(x,kind,ignore_val,min_percentile,max_percentile)  
+```
+**引數** 
+* x：動態陣列資料格，也就是數值的陣列。 假設值為等距的，否則可能會產生非預期的結果。  
+* kind： 極端值偵測演算法。 目前支援 "tukey" 和 "ctukey"。 預設值為"ctukey"。  
+* ignore_val： 表示序列中遺漏值的數值，指出，預設值為 double(null)。
+* min_percentile：可供計算一般分量間範圍，預設值是 10 (僅 ctukey)。
+* max_percentile：可供計算一般分量間範圍，預設值是 90 (僅 ctukey)。
+
+下表描述 "tukey" 和 "ctukey" 之間的差異：
+
+|演算法|預設分量範圍|支援自訂分量範圍|
+|---------|----------------------|------------------------------|
+|"tukey"|25% / 75%|否|
+|"ctukey"|10% / 90%|是|
+
+**重要事項** 使用此函式最方便的方法，是將它套用至 `make-series` 運算子的結果。
+
+**範例** 
+
+針對下列輸入   
+```
+[30,28,5,27,31,38,29,80,25,37,30]
+``` 
+series_outliers() 傳回  
+[0.0,0.0,-3.206896551724138,-0.1724137931034483,0.0,2.6666666666666667,0.0,16.666666666666669,-0.4482758620689655,2.3333333333333337,0.0]
+
+這表示 5 為異常狀況減少，而 80 為異常狀況增加 (相較於序列的其餘部分)。 
 
 ### <a name="seriesperiods"></a>series_periods
 
@@ -3094,7 +3363,8 @@ substring("ABCD", 0, 2)       // AB
 * `parsejson('21')` - 包含數字的動態類型單一值
 * `parsejson('"21"')` - 包含字串的動態類型單一值
 
-> ![附註] 雙引號 (`"`) 必須用來括住 JSON 中的標籤和字串值。 因此，使用單引號 (`'`) 引述 JSON 編碼的字串常值通常會比較容易。
+> [!NOTE]
+> 雙引號 (`"`) 必須用來括住 JSON 中的標籤和字串值。 因此，使用單引號 (`'`) 引述 JSON 編碼的字串常值通常會比較容易。
 > 
 
 此範例會建立動態值，然後使用其欄位︰
@@ -3278,7 +3548,7 @@ json 所指定類型為 `dynamic` 的物件。
 "\"addresses\":[{\"postcode\":\"C789\",\"street\":\"high st\",\"town\":\"Cardigan\"},{\"postcode\":\"J456\",\"street\":\"low st\",\"town\":\"Jumper\"}],\"name\":\"Ada\""
 ```
 
-則下列片段會擷取物件中 `duration` 位置的值，並從中擷取兩個位置：`duration.value` 和  `duration.min` (分別為 `118.0` 和 `110.0`)。
+則下列片段會擷取物件中 `duration` 位置的值，並從中擷取兩個位置：`duration.value` 和 `duration.min` (分別為 `118.0` 和 `110.0`)。
 
 ```AIQL
 customEvents
@@ -3287,7 +3557,8 @@ customEvents
 | extend duration_value=d.duration.value, duration_min=d["duration"]["min"]
 ```
 
-> ![附註] 雙引號字元必須用來括住 JSON 中的標籤和字串值。 
+> [!NOTE]
+> 雙引號字元必須用來括住 JSON 中的標籤和字串值。 
 >
 
 

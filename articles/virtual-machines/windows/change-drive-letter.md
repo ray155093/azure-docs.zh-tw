@@ -13,13 +13,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 05/11/2017
+ms.date: 05/31/2017
 ms.author: cynthn
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: abe380b8cb5988479197353282ef76442ee75930
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 7667175c01be2421bfc3badd83b1d8aaeb29bfde
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -31,10 +31,7 @@ ms.lasthandoff: 05/12/2017
 如需有關 Azure 如何使用暫存磁碟的詳細資訊，請參閱 [了解 Microsoft Azure 虛擬機器上的暫存磁碟機](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
 
 ## <a name="attach-the-data-disk"></a>連接資料磁碟
-首先，您需要將資料磁碟連接到虛擬機器。 
-
-* 若要使用入口網站，請參閱[如何在 Azure 入口網站連接受控資料磁碟](attach-managed-disk-portal.md)
-* 若要使用傳統入口網站，請參閱[如何將資料磁碟連接至 Windows 虛擬機器](classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 
+首先，您需要將資料磁碟連接到虛擬機器。 若要使用入口網站來執行此操作，請參閱[如何在 Azure 入口網站連接受控資料磁碟](attach-managed-disk-portal.md)。
 
 ## <a name="temporarily-move-pagefilesys-to-c-drive"></a>暫時將 pagefile.sys 移到 C 磁碟機
 1. 連接至虛擬機器。 

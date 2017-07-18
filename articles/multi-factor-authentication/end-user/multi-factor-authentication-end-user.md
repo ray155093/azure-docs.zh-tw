@@ -5,39 +5,40 @@ services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: curtland
 ms.assetid: e02cc045-2ac0-41ff-b07f-e9255e320383
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/15/2017
+ms.date: 06/15/2017
 ms.author: kgremban
+ms.reviewer: yossib
 ms.custom: end-user
-translationtype: Human Translation
-ms.sourcegitcommit: 4ff028f88e984f28bc0f4a228aabed1fabc90560
-ms.openlocfilehash: dd9b0692dbc044e4bed26cfe7e9e4be11450a595
-ms.lasthandoff: 12/22/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: 6527e624ce9c911b201881ffd409c57b2f065ef3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/22/2017
 
 ---
 # <a name="what-does-azure-multi-factor-authentication-mean-for-me"></a>Azure Multi-Factor Authentication 對我有何意義？
-所以，您已向某個 IT 人員取得電子郵件，或甚至是您的老闆表示他們已對您的帳戶加入其他安全性驗證。  因此這代表什麼？
+您從某個 IT 人員或老闆取得一封電子郵件，他們表示已對您的帳戶新增其他安全性驗證。  因此這代表什麼？
 
-別擔心。  這只是表示您的組織想要採取一些額外的步驟，以確保您在登入 Office 365 等項目時就是您所表明的人員。  使用您的使用者名稱、密碼及電話的組合，即可完成此作業。  您的辦公室電話或智慧型電話。
+別擔心。 您的組織只是想要採取額外步驟，以確保您在登入時就是您所表明的人員。 使用您的使用者名稱、密碼及電話的組合，即可完成這項驗證。  
 
-所以，您所需進行第一件事就是完成註冊程序。  但是在我們開始該程序之前，有幾件事要決定。
+所以，您所需進行的第一件事就是完成註冊流程。  但是在我們開始該程序之前，有幾件事要決定。
 
 * **辦公室電話或行動電話** - 選擇使用您的辦公室電話或行動電話。
-* **行動電話通話、簡訊或行動應用程式** - 如果您使用行動電話，請選擇接到電話、簡訊，或使用行動應用程式。
+* **行動電話通話、簡訊或行動應用程式** - 如果使用行動電話，請選擇接收電話、簡訊，或使用行動應用程式。
 * **具有通知或驗證碼的行動應用程式** - 如果您使用行動應用程式，請選擇收到您要回應的通知或驗證碼。
 
 > [!NOTE]
-> 請注意，您的 IT 部門可能會停用上述一或多個選項。  如果發生這種情況，將無法在註冊期間使用這些選項。  
+> 您的 IT 部門可能會停用上述一或多個選項。  若是如此，這些選項在註冊流程期間將無法使用。  
 
-既然您已決定驗證方法，現在就可以開始註冊。  使用[設定體驗](multi-factor-authentication-end-user-first-time.md)連結，開始逐步完成註冊程序。
+既然您已決定驗證方法，現在就可以開始註冊。 使用[設定體驗](multi-factor-authentication-end-user-first-time.md)連結，開始逐步完成註冊流程。
 
-## <a name="how-to-get-going-with-multi-factor-authentication"></a>如何開始使用 Multi-Factor Authentication
+## <a name="how-to-get-going-with-two-step-verification"></a>如何使用雙步驟驗證
 選取以下其中一個主題以便開始。
 
 | 主題 | 說明 |

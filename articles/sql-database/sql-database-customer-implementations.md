@@ -16,10 +16,10 @@ ms.workload: NA
 ms.date: 03/03/2017
 ms.author: carlrab
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: b05b24bf9a14570b07c2c1ab3076835c7167b647
+ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
+ms.openlocfilehash: 24c345e173ffe3cd215552b604e8b6cc525d8aa7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/10/2017
+ms.lasthandoff: 06/21/2017
 
 
 ---
@@ -32,3 +32,10 @@ ms.lasthandoff: 03/10/2017
 - [SnelStart](sql-database-implementation-snelstart.md)：SnelStart 為荷蘭的中小企業 (SMB) 撰寫常用的財務和商務管理軟體。 它的 55,000 個客戶是由其 110 個員工提供服務，其中包括 35 個 IT 人員。 藉由從桌面軟體移至 Azure 上的軟體即服務 (SaaS) 方案組建，SnelStart 不僅透過使用 C# 中的熟悉環境將管理自動化，還透過使用彈性集區避免過度佈建或佈建不足以將效能和延展性最佳化，來充分利用了內建服務。 使用 Azure 讓 SnelStart 能夠在內部部署環境與雲端之間靈活移動客戶。
 
 - [Umbraco](sql-database-implementation-umbraco.md)：為了簡化客戶部署，Umbraco 新增了 Umbraco 即服務 (UaaS)：這是一個軟體即服務 (SaaS) 方案，此方案既不需要內部部署又提供內建的調整功能，而且還透過讓開發人員能夠專注於產品創新而非解決方案管理，免除了管理上的額外負荷。 Umbraco 藉由倚賴 Microsoft Azure 所提供的彈性平台即服務 (PaaS) 模型而得以提供所有這些優點。
+
+- [仲裁](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)：仲裁會透過 SQL Database 讓重要資料庫的工作負載加倍，同時降低 70% 的 DTU。
+
+- [任務](https://customers.microsoft.com/en-US/story/quest)：任務專注於一個目標，在 SQL Server Enterprise 服務上提供其焦點：為資料庫專業人員提供最佳工具，可維護資料安全、移動該資料並監視資料庫作業。 透過焦點，SQL Server 資料庫系統管理員可以使用 Microsoft Azure 和 Azure SQL Database 來進行監視、偵測、診斷，並提供解析 SQL Server 效能問題的方法，不論坐在辦公室或在家工作都能辦到。
+
+- [Microsoft Synamics](https://customers.microsoft.com/story/dynamics365operationsproductteam)：為提供客戶完整的受管理軟體即服務 (SaaS) 供應項目，本簡短案例研究重點說明了最佳做法與課程，是取自 Dynamics 365 for Operations 產品小組移轉至 Azure SQL Database 的經驗。 透過 Azure SQL Database，Dynamics 365 for Operations 小組能夠明顯地以較少人員來管理及操作服務，並能以立即可用的管理功能 (例如，資料庫自動備份、資料庫備份保留、高可用性和災害復原等功能) 輕鬆擴充。 這搭配上透過簡單式自動化佈建資料庫的能力，促使 Azure SQL Database 成為能經得起大規模服務的絕佳平台。
+

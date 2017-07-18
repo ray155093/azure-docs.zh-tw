@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/05/2017
 ms.author: shlo
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: df37f4e7975f1f399398d5c881d17cbe3833ee45
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 97e40e0081e1dcce0ed42748a053c46cecf569ba
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -36,14 +36,14 @@ ms.lasthandoff: 05/08/2017
 | [Azure SQL](#azure-sql-linked-service)、[Azure SQL 資料倉儲](#azure-sql-data-warehouse-linked-service)、[SQL Server](#sql-server-linked-service) |[預存程序](data-factory-stored-proc-activity.md) |
 
 ## <a name="supported-hdinsight-versions-in-azure-data-factory"></a>Azure Data Factory 中支援的 HDInsight 版本
-Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個版本選擇都會建立特定版本的 Hortonworks Data Platform (HDP) 散發，以及該散發內包含的一組元件。 Microsoft 會持續更新所支援 HDInsight 版本的清單，以提供最新的 Hadoop 生態系統元件和修正程式。 HDInsight 3.2 已於 04/01/2017 淘汰，如需詳細資訊，請參閱[支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。
+Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個版本選擇都會建立特定版本的 Hortonworks Data Platform (HDP) 散發，以及該散發內包含的一組元件。 Microsoft 會持續更新所支援 HDInsight 版本的清單，以提供最新的 Hadoop 生態系統元件和修正程式。 HDInsight 3.2 在 2017 年 4 月 1 日已被取代。 如需詳細資訊，請參閱[支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。
 
 這會影響具有對 HDInsight 3.2 叢集執行活動的現有 Azure Data Factory。 我們建議使用者遵循下一節的指導方針來更新受影響的 Data Factory：
 
 ### <a name="for-linked-services-pointing-to-your-own-hdinsight-clusters"></a>針對指向您自己的 HDInsight 叢集的連結服務
 * **指向您自己的 HDInsight 3.2 或舊版叢集的 HDInsight 連結服務：**
 
-  Azure Data Factory 支援將作業提交至您自己的 HDInsight 叢集，從 HDI 3.1 至[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。 不過，根據[支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)中記載的淘汰原則，在 04/01/2017 之後，您無法再建立 HDInsight 3.2 叢集。  
+  Azure Data Factory 支援將作業提交至您自己的 HDInsight 叢集，從 HDI 3.1 至[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。 不過，根據[支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)中記載的取代原則，在 2017 年 4 月 1 日之後，您無法再建立 HDInsight 3.2 叢集。  
 
   **建議：** 
   * 利用[可以搭配不同 HDInsight 版本使用的 Hadoop 元件](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions)和[與 HDInsight 版本相關聯的 Hortonworks 版本資訊](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions)中記載的資訊，執行測試以確保參考此連結服務之活動的相容性為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。
@@ -69,24 +69,23 @@ Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個�
   
   自 **2017/05/15** 起，Azure Data Factory 支援建立隨選 HDInsight 叢集 3.3 版或更新版本。 對現有隨選 HDInsight 3.2 連結服務的支援期限已延長至 **2017/07/15**。 
 
-  在 **2017/05/15** 之前，如果 version 和 osType 屬性保留空白，則預設值為： 
+  在 **2017/07/15** 之前，如果 version 和 osType 屬性保留空白，則預設值為： 
 
   | 屬性 | 預設值 | 必要 |
   | --- | --- | --- |
-  版本    | Windows 叢集為 HDI 3.1，Linux 叢集為 HDI 3.2。| 否
+  版本   | Windows 叢集為 HDI 3.1，Linux 叢集為 HDI 3.2。| 否
   osType | 預設值為 Windows | 否
 
-  在 **2017/05/15** 之後，如果 version 和 osType 屬性保留空白，則預設值為：
+  在 **2017/07/15** 之後，如果 version 和 osType 屬性保留空白，則預設值為：
 
   | 屬性 | 預設值 | 必要 |
   | --- | --- | --- |
-  版本    | Windows 叢集為 HDI 3.3，Linux 叢集為 3.5。    | 否
-  osType | 預設值為 Linux    | 否
+  版本   | Windows 叢集為 HDI 3.3，Linux 叢集為 3.5。    | 否
+  osType | 預設值為 Linux | 否
 
   **建議：** 
-  * 在 **2017/05/15** 之前，更新連結服務，以明確地在隨選 HDInsight 連結服務 JSON 定義中定義預期的 Version 和 osType 組合。 您可以將 Version 設定為 3.2 來確保回溯相容性。 
-  * 在 **2017/05/15** 與 **2017/07/15** 之間，利用[可以搭配不同 HDInsight 版本使用的 Hadoop 元件](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions)和[與 HDInsight 版本相關聯的 Hortonworks 版本資訊](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions)中記載的資訊執行測試，以確保參考此連結服務的活動與[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)之間的相容性。  
-  * 在 **2017/07/15** 之前，將隨選 HDInsight 連結服務 JSON 定義中的 Version 屬性更新為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)，或使用預設值 (即 HDInsight 3.5) 以取得最新的 Hadoop 生態系統元件和修正程式。 如需詳細的 JSON 定義，請參閱 [Azure HDInsight 隨選連結服務範例](#azure-hdinsight-on-demand-linked-service)。
+  * 在 **2017/07/15** 之前利用[可以搭配不同 HDInsight 版本使用的 Hadoop 元件](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions)和[與 HDInsight 版本相關聯的 Hortonworks 版本資訊](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions)中記載的資訊，執行測試以確保參考此連結服務之活動的相容性為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。  
+  * 在 **2017/07/15**之後，如果您想要覆寫預設設定，請確定您明確對 osType 指定版本值。 
 
 >[!Note]
 >目前 Azure Data Factory 不支援使用 Azure Data Lake Store 作為主要存放區的 HDInsight 叢集。 使用 Azure 儲存體作為 HDInsight 叢集的主要存放區。 
@@ -127,7 +126,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
             "clusterSize": 4,
             "timeToLive": "00:05:00",
             "osType": "linux",
-            "linkedServiceName": "StorageLinkedService"
+            "linkedServiceName": "AzureStorageLinkedService"
         }
     }
 }
@@ -147,7 +146,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | --- | --- | --- |
 | 類型 |type 屬性應設為 **HDInsightOnDemand**。 |是 |
 | clusterSize |叢集中的背景工作/資料節點數。 HDInsight 叢集會利用您為此屬性指定的 2 個前端節點以及背景工作節點數目來建立。 節點大小為具有 4 個核心的 Standard_D3，因此 4 個背景工作節點的叢集需要 24 個核心 (4\*4 = 16 個核心用於背景工作節點，加上 2\*4 = 8 個核心用於前端節點)。 如需 Standard_D3 層的詳細資料，請參閱[在 HDInsight 中建立 Linux 型 Hadoop 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。 |是 |
-| timetolive |隨選 HDInsight 叢集允許的閒置時間。 指定在活動執行完成後，如果叢集中沒有其他作用中的作業，隨選 HDInsight 叢集要保持運作多久。<br/><br/>例如，如果活動執行花費 6 分鐘，而 timetolive 設為 5 分鐘，叢集會在處理活動執行的 6 分鐘期間之後保持運作 5 分鐘。 如果 6 分鐘期間內執行另一個活動，則會由相同叢集來處理。<br/><br/>建立隨選 HDInsight 叢集是昂貴的作業 (可能需要一段時間)，因此請視需要使用這項設定，重複使用隨選 HDInsight 叢集以改善 Data Factory 的效能。<br/><br/>如果您將 timetolive 值設為 0，叢集會在處理活動執行後立即刪除。 另一方面，如果您設定較高的值，叢集可能會有不必要的閒置而導致高成本。 因此，請務必根據您的需求設定適當的值。<br/><br/>如果適當地設定 timetolive 屬性值，則多個管線可以共用隨選 HDInsight 叢集的執行個體 |是 |
+| timetolive |隨選 HDInsight 叢集允許的閒置時間。 指定在活動執行完成後，如果叢集中沒有其他作用中的作業，隨選 HDInsight 叢集要保持運作多久。<br/><br/>例如，如果活動執行花費 6 分鐘，而 timetolive 設為 5 分鐘，叢集會在處理活動執行的 6 分鐘期間之後保持運作 5 分鐘。 如果 6 分鐘期間內執行另一個活動，則會由相同叢集來處理。<br/><br/>建立隨選 HDInsight 叢集是昂貴的作業 (可能需要一段時間)，因此請視需要使用這項設定，重複使用隨選 HDInsight 叢集以改善 Data Factory 的效能。<br/><br/>如果您將 timetolive 值設為 0，叢集會在活動執行完成後立即刪除。 然而，如果您設定較高的值，叢集可能會有不必要的閒置而導致高成本。 因此，請務必根據您的需求設定適當的值。<br/><br/>如果適當地設定 timetolive 屬性值，則多個管線可以共用隨選 HDInsight 叢集的執行個體。  |是 |
 | 版本 |HDInsight 叢集的版本。 針對 Windows 叢集的預設值為 3.1，針對 Linux 叢集的預設值為 3.2。 |否 |
 | 預設容器 | 隨選叢集用於儲存及處理資料的 Azure 儲存體連結服務。 建立 HDInsight 叢集的區域和這個 Azure 儲存體帳戶的區域相同。<p>目前，您無法建立使用 Azure Data Lake Store 做為儲存體的隨選 HDInsight 叢集。 如果您想要在 Azure Data Lake Store 中儲存 HDInsight 處理的結果資料，可使用複製活動將 Azure Blob 儲存體的資料複製到 Azure Data Lake Store。 </p>  | 是 |
 | additionalLinkedServiceNames |指定 HDInsight 連結服務的其他儲存體帳戶，讓 Data Factory 服務代表您註冊它們。 這些儲存體帳戶與 HDInsight 叢集必須在相同區域，而建立此叢集的區域與 linkedServiceName 所指定之儲存體帳戶的區域相同。 |否 |
@@ -307,7 +306,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 "accountName": "mybatchaccount.eastus"
 ```
 
-另一個選項是提供 batchUri 端點，如下列範例所示。  
+另一個選項是提供 batchUri 端點，如下列範例所示：
 
 ```json
 "accountName": "adfteam",
@@ -419,8 +418,9 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
     }
 }
 ```
+請針對 WindowsFormsWebAuthenticationDialog 類別，新增對下列項目的參考：Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll。 
 
-請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 您必須針對 WindowsFormsWebAuthenticationDialog 類別將參考新增至：Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll。 
+請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 
 
 ## <a name="azure-sql-linked-service"></a>Azure SQL 連結服務
 您可建立 Azure SQL 連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 如需此連結服務的詳細資料，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#linked-service-properties) 一文。

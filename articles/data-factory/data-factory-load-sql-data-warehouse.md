@@ -12,19 +12,19 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/19/2017
+ms.date: 07/11/2017
 ms.author: jingwang
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: d0aea6ffc04792e7e70a15accf92de05c553ff46
-ms.lasthandoff: 04/20/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: c1485205f49dae28adbddbf679fc120a6e52bff6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 ---
-# <a name="load-1-tb-into-azure-sql-data-warehouse-under-15-minutes-with-azure-data-factory-copy-wizard"></a>使用 Azure Data Factory 在 15 分鐘內將 1 TB 載入至 Azure SQL 資料倉儲 [複製精靈]
+# <a name="load-1-tb-into-azure-sql-data-warehouse-under-15-minutes-with-data-factory"></a>使用 Data Factory 在 15 分鐘內將 1 TB 載入至 Azure SQL 資料倉儲
 [Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)是一種雲端架構、相應放大的資料庫，可處理巨量關聯式與非關聯式資料。  SQL 資料倉儲是以巨量平行處理 (MPP) 架構為基礎，最適用於企業資料倉儲工作負載。  它透過單獨調整儲存體和計算的彈性，來提供雲端彈性。
 
-現在，使用 Azure SQL 資料倉儲比之前使用 **Azure Data Factory** 還要簡單。  Azure Data Factory 是一個完全受管理的雲端架構資料整合服務，可用來將現有系統的資料填入 SQL 資料倉儲，並節省評估 SQL 資料倉儲並在其上建置分析解決方案的寶貴時間。  以下是使用 Azure Data Factory 將資料載入至 Azure SQL 資料倉儲的主要優點：
+現在，使用 Azure SQL 資料倉儲比之前使用 **Azure Data Factory** 還要簡單。  Azure Data Factory 是一個完全受管理的雲端架構資料整合服務，可用來將現有系統的資料填入 SQL 資料倉儲，並節省評估 SQL 資料倉儲及建置分析解決方案的寶貴時間。 以下是使用 Azure Data Factory 將資料載入至 Azure SQL 資料倉儲的主要優點：
 
 * **容易設定**：不需要編寫指令碼的 5 步驟直覺式精靈。
 * **豐富的資料存放區支援**︰一組豐富內部部署和雲端架構資料存放區的內部支援。
@@ -36,7 +36,7 @@ ms.lasthandoff: 04/20/2017
 本文提供使用複製精靈將資料移到 Azure SQL 資料倉儲的逐步指示。
 
 > [!NOTE]
-> 如需從 Azure SQL 資料倉儲來回移動資料之 Data Factory 功能的一般資訊，請參閱[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料](data-factory-azure-sql-data-warehouse-connector.md)一文。
+>  如需從 Azure SQL 資料倉儲來回移動資料之 Data Factory 功能的一般資訊，請參閱[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料](data-factory-azure-sql-data-warehouse-connector.md)一文。
 >
 > 您也可以使用 Azure 入口網站、Visual Studio、PowerShell 等來建置管線。請參閱 [教學課程：將資料從 Azure Blob 複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得快速逐步解說，其中包含如何使用 Azure Data Factory 中複製活動的逐步指示。  
 >
@@ -139,7 +139,7 @@ ms.lasthandoff: 04/20/2017
 
 1. 輸入 **CopyFromBlobToAzureSqlDataWarehouse** 作為 [工作名稱]
 2. 選取 [立即執行一次] 選項。   
-3. 按 [下一步] 。  
+3. 按一下 [下一步] 。  
 
     ![複製精靈 - 屬性頁面](media/data-factory-load-sql-data-warehouse/copy-wizard-properties-page.png)
 
@@ -181,7 +181,7 @@ ms.lasthandoff: 04/20/2017
 
 ## <a name="step-4-performance-settings"></a>步驟 4：效能設定
 
-預設會核取 [允許 Polybase]。  按 [下一步] 。
+預設會核取 [允許 Polybase]。  按一下 [下一步] 。
 
 ![複製精靈 - 結構描述對應頁面](media/data-factory-load-sql-data-warehouse/performance-settings-page.png)
 

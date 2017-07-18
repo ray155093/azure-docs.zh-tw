@@ -13,16 +13,19 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/13/2016
-ms.author: padmavc
+ms.author: LADocs; padmavc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 4d68fde29e85fcf9aa623b4d798262bcd486a8bb
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: d1c61ba220b4334f053428a23e620e8004fc60f7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
 # <a name="track-b2b-messages-in-the-operations-management-suite-portal"></a>在 Operations Management Suite 入口網站中追蹤 B2B 訊息
+
+![記錄應用程式 B2B 符號](./media/logic-apps-track-b2b-messages-omsportal/logic-apps-b2b-symbol.png)
+
 B2B 通訊牽涉到兩個執行中商務程序或應用程式之間的訊息交換。 在 Operations Management Suite 入口網站中使用下列網頁型追蹤功能，以確認是否正確地處理訊息︰
 
 * 訊息計數和狀態
@@ -56,7 +59,7 @@ B2B 通訊牽涉到兩個執行中商務程序或應用程式之間的訊息交�
 6. 選取 [新增]，將 **Logic Apps B2B** 訊息新增至首頁。  
 ![選取 [新增]](media/logic-apps-track-b2b-messages-omsportal/omshomepage3.png)
 
-7. **邏輯應用程式 B2B 訊息**會出現在首頁上。   
+7. **Logic Apps B2B 訊息**會出現在首頁上。   
 ![選取首頁](media/logic-apps-track-b2b-messages-omsportal/omshomepage4.png)
 
 ## <a name="track-data-in-the-operations-management-suite-portal"></a>在 Operations Management Suite 入口網站中追蹤資料
@@ -67,9 +70,10 @@ B2B 通訊牽涉到兩個執行中商務程序或應用程式之間的訊息交�
 2. 在首頁選取「Logic Apps B2B 訊息」以檢視 AS2 和 X12 訊息狀態。  資料是根據一天。
 ![選取 Logic Apps B2B 訊息](media/logic-apps-track-b2b-messages-omsportal/omshomepage5.png)
 
-3. 依狀態選取 AS2 或 X12 訊息，請移至訊息清單。 下一個營幕擷取畫面會顯示 AS2 訊息狀態。 AS2 和 X12 訊息狀態屬性描述稍後會出現在「訊息清單屬性描述」。  
+3. 依狀態選取 AS2 或 X12 或 EDIFACT 訊息，以移至訊息清單。 下一個營幕擷取畫面會顯示 AS2 訊息狀態。 AS2 和 X12 訊息狀態屬性描述稍後會出現在「訊息清單屬性描述」。  
 ![選取 AS2 訊息狀態](media/logic-apps-track-b2b-messages-omsportal/as2messagelist.png)
-4. 在 AS2 或 X12 訊息清單中選取一列以前往記錄搜尋。  記錄搜尋會列出所有具有相同執行識別碼的動作。
+
+4. 在 AS2 或 X12 或 EDIFACT 訊息清單中選取一列，以前往記錄搜尋。  記錄搜尋會列出所有具有相同執行識別碼的動作。
 ![選取訊息狀態](media/logic-apps-track-b2b-messages-omsportal/logsearch.png)
 
 ## <a name="message-list-property-descriptions"></a>訊息清單屬性描述
@@ -92,8 +96,8 @@ B2B 通訊牽涉到兩個執行中商務程序或應用程式之間的訊息交�
 
 | 屬性 | 說明 |
 | --- | --- |
-| 傳送者 | 針對 AS2 協議的接收設定中所設定的來賓合作夥伴，或傳送設定中設定的主機合作夥伴。 |
-| 接收者 | 針對 AS2 協議的接收設定中所設定的主機合作夥伴，或傳送設定中設定的來賓合作夥伴。 |
+| 傳送者 | 針對 X12 合約之接收設定中所設定的來賓夥伴，或傳送設定中所設定的主機夥伴。 |
+| 接收者 | 針對 X12 合約之接收設定中所設定的主機夥伴，或傳送設定中所設定的來賓夥伴。 |
 | 邏輯應用程式 | 已設定 AS2 動作的邏輯應用程式。 |
 | 狀態 | X12 訊息狀態 <br>成功 = 已接收或傳送良好的 X12 訊息，未設定任何函式認可 <br>成功 = 已接收或傳送良好的 X12 訊息，函式認可已設定且接收，或已傳送函式認可 <br>失敗 = 已接收或傳送不正確的 X12 訊息 <br>暫止 = 已接收或傳送良好的 X12 訊息，函式認可已設定且應該函式認可。 |
 | Ack | 功能認可 (997) 狀態 <br>接受 = 已接收或傳送正值的函式認可 <br>拒絕 = 已接收或傳送負值的函式認可 <br>暫止 = 預期函式認可但未收到 <br>暫止 = 已產生函式認可，但無法傳送給夥伴 <br>不需要 = 未設定函式認可 |
@@ -103,6 +107,24 @@ B2B 通訊牽涉到兩個執行中商務程序或應用程式之間的訊息交�
 | ICN | X12 訊息的交換控制編號。 |
 | TSCN | X12 訊息的交易集控制編號。 |
 | Timestamp | X12 動作處理訊息的時間。 |
+
+
+#### <a name="edifact-message-list-property-descriptions"></a>EDIFACT 訊息清單屬性描述
+
+| 屬性 | 說明 |
+| --- | --- |
+| 傳送者 | 針對 EDIFACT 合約之接收設定中所設定的來賓夥伴，或傳送設定中所設定的主機夥伴。 |
+| 接收者 | 針對 EDIFACT 合約之接收設定中所設定的主機夥伴，或傳送設定中所設定的來賓夥伴。 |
+| 邏輯應用程式 | 已設定 AS2 動作的邏輯應用程式。 |
+| 狀態 | EDIFACT 訊息狀態 <br>成功 = 已接收或傳送良好的 X12 訊息，未設定任何函式認可 <br>成功 = 已接收或傳送良好的 X12 訊息，函式認可已設定且接收，或已傳送函式認可 <br>失敗 = 已接收或傳送不正確的 X12 訊息 <br>暫止 = 已接收或傳送良好的 X12 訊息，函式認可已設定且應該函式認可。 |
+| Ack | 功能認可 (997) 狀態 <br>接受 = 已接收或傳送正值的函式認可 <br>拒絕 = 已接收或傳送負值的函式認可 <br>暫止 = 預期函式認可但未收到 <br>暫止 = 已產生函式認可，但無法傳送給夥伴 <br>不需要 = 未設定函式認可 |
+| 方向 | EDIFACT 訊息方向。 |
+| 相互關連識別碼 | 與所有邏輯應用程式內的觸發程序和動作相關聯的識別碼。 |
+| 訊息類型 |  EDIFACT 訊息類型。 |
+| ICN | EDIFACT 訊息的交換控制編號。 |
+| TSCN | EDIFACT 訊息的交易集控制編號。 |
+| Timestamp | EDIFACT 動作處理訊息的時間。 |
+
 
 ## <a name="queries-in-the-operations-management-suite-portal"></a>在 Operations Management Suite 入口網站中查詢
 

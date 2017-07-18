@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: aelnably;wesmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: dcce8d855f8c37d40fe8f09ef0a97e46b342e3cf
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 3fb0f6b26f36ef4044c9733ace05c4f59909ddda
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -62,6 +62,10 @@ ms.lasthandoff: 05/10/2017
 
 **答：** 是。
 
+**問：**我可以使用 **Web 部署**來部署我的 Web 應用程式嗎？
+
+**答：**是，您需要將稱為 `UseWebDeployScm` 的應用程式設定設定為 `false`。
+
 ## <a name="language-support"></a>語言支援
 
 **問︰**是否支援未編譯的 .NET Core 應用程式？
@@ -70,7 +74,7 @@ ms.lasthandoff: 05/10/2017
 
 **問︰**您是否支援以 Composer 做為 PHP 應用程式的相依性管理程式？
 
-**答：**否。 您必須部署具有所有相依性的 PHP 應用程式。 我們計劃在未來的版本中提供完整的部署體驗。
+**答：** 是。 在 Git 部署期間，Kudu 應該會偵測到您要部署 PHP 應用程式 (這點受惠於 composer.json 檔案)，並且會為您觸發編輯器安裝。
 
 ## <a name="custom-containers"></a>自訂容器
 

@@ -3,7 +3,7 @@ title: "在 Azure Log Analytics 中收集並分析效能計數器 | Microsoft Do
 description: "Log Analytics 會收集效能計數器以分析 Windows 和 Linux 代理程式的效能。  本文說明如何設定 Windows 和 Linux 代理程式的效能計數器收集、儲存在 OMS 儲存機制中的相關詳細資料，以及如何在 OMS 入口網站中分析這些資料。"
 services: log-analytics
 documentationcenter: 
-author: bwren
+author: mgoedtel
 manager: carmonm
 editor: tysonn
 ms.assetid: 20e145e4-2ace-4cd9-b252-71fb4f94099e
@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/24/2017
-ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 853177202e4724546242d4e8d1b41b456a444eeb
-ms.openlocfilehash: 2381b7e9ab4514d6668569c2a58d108af5008a7e
-ms.lasthandoff: 02/27/2017
+ms.date: 06/16/2017
+ms.author: magoedte
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 4ce302095fc36f046785ac45d1a9452de321113c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -27,28 +28,160 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 ![效能計數器](media/log-analytics-data-sources-performance-counters/overview.png)
 
 ## <a name="configuring-performance-counters"></a>設定效能計數器
-從 [Log Analytics [設定] 中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)設定效能計數器。
+在 OMS 入口網站中，從 [Log Analytics [設定] 中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)設定效能計數器。
 
 當您第一次為新的 OMS 工作區設定 Windows 或 Linux 效能計數器時，系統會提供選項，讓您快速建立數個常用的計數器。  這些計數器旁邊皆會列出核取方塊。  確認已核取所有想一開始就建立的計數器，然後按一下 **[Add the selected performance counters]** \ (加入選取的效能計數器) 。
+
+對於 Windows 效能計數器，您可以選擇每個效能計數器的特定執行個體。 對於 Linux 效能計數器，您選擇的每個計數器的執行個體會套用至父計數器的所有子計數器。 下表顯示可用於 Linux 和 Windows 效能計數器的常見執行個體。
+
+| 執行個體名稱 | 說明 |
+| --- | --- |
+| \_總計 |所有執行個體的總數 |
+| \* |所有執行個體 |
+| (/&#124;/var) |比對名為 / 或 /var 的執行個體 |
+
+### <a name="windows-performance-counters"></a>Windows 效能計數器
 
 ![設定 Windows 效能計數器](media/log-analytics-data-sources-performance-counters/configure-windows.png)
 
 請遵循此程序以加入要收集的新 Windows 效能計數器。
 
-1. 在文字方塊中輸入計數器名稱，格式為 *object(instance)\counter*。  開始輸入時，您就會看到符合的常用計數器清單。  您可以從清單中選取計數器，或自行輸入。  您也可以指定 *object\counter*，以傳回特定計數器的所有執行個體。
+1. 在文字方塊中輸入計數器名稱，格式為 *object(instance)\counter*。  開始輸入時，您就會看到符合的常用計數器清單。  您可以從清單中選取計數器，或自行輸入。  您也可以指定 *object\counter*，以傳回特定計數器的所有執行個體。  
+
+    從具名執行個體收集 SQL Server 效能計數器時，所有具名執行個體的計數器會以 MSSQL$ 作為開頭，後面接著執行個體的名稱。  例如，若要從具名 SQL 執行個體 INST2 的資料庫效能物件收集所有資料庫的「記錄快取命中率」計數器，請指定 `MSSQL$INST2:Databases(*)\Log Cache Hit Ratio`。 
+ 
 2. 按一下 **+** 或按 **Enter**，將計數器新增至清單。
 3. 新增計數器時，它會以 10 秒作為 [取樣間隔時間] 的預設值。  如果您想要降低所收集之效能資料的儲存需求，可以將此值變更為最多 1800 秒 (30 分鐘)。
 4. 加入所要的計數器後，請按一下畫面頂端的 [儲存]  按鈕以儲存設定。
+
+### <a name="linux-performance-counters"></a>Linux 效能計數器
 
 ![設定 Linux 效能計數器](media/log-analytics-data-sources-performance-counters/configure-linux.png)
 
 請遵循此程序以加入要收集的新 Linux 效能計數器。
 
-1. 根據預設，所有組態變更都會自動發送給所有代理程式。  若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。  如果您想以手動方式在每個 Linux 代理程式上修改這個檔案，只要取消核取 [Apply below configuration to my Linux machines] (將下列組態套用至我的 Linux 機器) 方塊即可。
+1. 根據預設，所有組態變更都會自動發送給所有代理程式。  若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。  如果您想在每個 Linux 代理程式上手動修改這個檔案，請取消核取 [將下列設定套用至我的 Linux 機器] 方塊，並遵循下列指引。
 2. 在文字方塊中輸入計數器名稱，格式為 *object(instance)\counter*。  開始輸入時，您就會看到符合的常用計數器清單。  您可以從清單中選取計數器，或自行輸入。  
 3. 按一下 **+** 或按 **Enter**，將計數器新增至物件的其他計數器清單。
 4. 物件的所有計數器都會使用相同的 [取樣間隔時間] 。  預設值為 10 秒。  如果您想要降低所收集之效能資料的儲存空間需求，請將此值變更為最多 1800 秒 (30 分鐘)。
 5. 加入所要的計數器後，請按一下畫面頂端的 [儲存]  按鈕以儲存設定。
+
+#### <a name="configure-linux-performance-counters-in-configuration-file"></a>在組態檔中設定 Linux 效能計數器
+除了使用 OMS 入口網站設定 Linux 效能計數器，您還可以選擇在 Linux 代理程式上編輯組態檔。  要收集的效能計量是由 **/etc/opt/microsoft/omsagent/\<工作區識別碼\>/conf/omsagent.conf** 中的組態所控制。 
+
+要收集之效能計量的每個物件或類別都應該當成單一 `<source>` 元素定義於組態檔中。 語法遵循下面的模式。
+
+    <source>
+      type oms_omi  
+      object_name "Processor"
+      instance_regex ".*"
+      counter_name_regex ".*"
+      interval 30s
+    </source>
+
+
+下表說明此元素中的參數。
+
+| 參數 | 說明 |
+|:--|:--|
+| object\_name | 收集的物件名稱。 |
+| instance\_regex |  此「規則運算式」定義要收集的執行個體。 值 `.*` 指定所有執行個體。 若只要收集 \_Total 執行個體的處理器計量，您可以指定 `_Total`。 若只要收集 crond 或 sshd 執行個體的程序計量，您可以指定：`(crond\|sshd)`。 |
+| counter\_name\_regex | 此「規則運算式」定義要收集的計數器 (針對物件)。 若要收集物件的所有計數器，請指定︰ `.*`。 若只要收集記憶體物件的交換空間計數器，舉例來說，您可以指定︰`.+Swap.+` |
+| interval | 物件計數器的收集頻率。 |
+
+
+下表列出您可以在組態檔中指定的物件和計數器。  還有其他計數器適用於特定應用程式，如[在 Log Analytics 中收集 Linux 應用程式的效能計數器](log-analytics-data-sources-linux-applications.md)中所述。 
+
+| 物件名稱 | 計數器名稱 |
+|:--|:--|
+| Logical Disk | % Free Inodes |
+| Logical Disk | % Free Space |
+| Logical Disk | % Used Inodes |
+| Logical Disk | % Used Space |
+| Logical Disk | Disk Read Bytes/sec  |
+| Logical Disk | Disk Reads/sec  |
+| Logical Disk | Disk Transfers/sec |
+| Logical Disk | Disk Write Bytes/sec |
+| Logical Disk | Disk Writes/sec |
+| Logical Disk | Free Megabytes |
+| Logical Disk | Logical Disk Bytes/sec |
+| 記憶體 | % Available Memory |
+| 記憶體 | % Available Swap Space |
+| 記憶體 | % Used Memory |
+| 記憶體 | % Used Swap Space |
+| 記憶體 | Available MBytes Memory |
+| 記憶體 | Available MBytes Swap |
+| 記憶體 | Page Reads/sec |
+| 記憶體 | Page Writes/sec |
+| 記憶體 | Pages/sec |
+| 記憶體 | Used MBytes Swap Space |
+| 記憶體 | Used Memory MBytes |
+| 網路 | Total Bytes Transmitted |
+| 網路 | Total Bytes Received |
+| 網路 | Total Bytes |
+| 網路 | Total Packets Transmitted |
+| 網路 | Total Packets Received |
+| 網路 | Total Rx Errors |
+| 網路 | Total Tx Errors |
+| 網路 | Total Collisions |
+| Physical Disk | Avg. Disk sec/Read |
+| Physical Disk | Avg. Disk sec/Transfer |
+| Physical Disk | Avg. Disk sec/Write |
+| Physical Disk | Physical Disk Bytes/sec |
+| Process | Pct Privileged Time |
+| Process | Pct User Time |
+| Process | Used Memory kBytes |
+| Process | Virtual Shared Memory |
+| 處理器 | % DPC Time |
+| 處理器 | % Idle Time |
+| 處理器 | % Interrupt Time |
+| 處理器 | % IO Wait Time |
+| 處理器 | % Nice Time |
+| 處理器 | % Privileged Time |
+| 處理器 | % Processor Time |
+| 處理器 | % User Time |
+| 系統 | Free Physical Memory |
+| 系統 | Free Space in Paging Files |
+| 系統 | Free Virtual Memory |
+| 系統 | 處理序 |
+| 系統 | Size Stored In Paging Files |
+| 系統 | Uptime |
+| 系統 | 使用者 |
+
+
+以下是效能計量的預設組態。
+
+    <source>
+      type oms_omi
+      object_name "Physical Disk"
+      instance_regex ".*"
+      counter_name_regex ".*"
+      interval 5m
+    </source>
+    
+    <source>
+      type oms_omi
+      object_name "Logical Disk"
+      instance_regex ".*
+      counter_name_regex ".*"
+      interval 5m
+    </source>
+    
+    <source>
+      type oms_omi
+      object_name "Processor"
+      instance_regex ".*
+      counter_name_regex ".*"
+      interval 30s
+    </source>
+    
+    <source>
+      type oms_omi
+      object_name "Memory"
+      instance_regex ".*"
+      counter_name_regex ".*"
+      interval 30s
+    </source>
 
 ## <a name="data-collection"></a>資料收集
 只要代理程式有安裝相關計數器，Log Analytics 就會依照其指定的取樣間隔時間，收集全部代理程式上所有指定的效能計數器。  資料不彙總，在 OMS 訂用帳戶的指定期間，所有記錄搜尋檢視中都會提供未經處理資料。
@@ -64,7 +197,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | CounterValue |計數器的數值。 |
 | InstanceName |事件執行個體的名稱。  如果沒有執行個體即為空白。 |
 | ObjectName |效能物件的名稱 |
-| SourceSystem |收集資料的來源代理程式類型。 <br> OpsManager – Windows 代理程式，直接連接或 SCOM <br> Linux – 所有的 Linux 代理程式  <br> AzureStorage – Azure 診斷 |
+| SourceSystem |收集資料的來源代理程式類型。 <br><br>OpsManager – Windows 代理程式，直接連接或 SCOM <br> Linux – 所有的 Linux 代理程式  <br> AzureStorage – Azure 診斷 |
 | TimeGenerated |資料取樣的日期和時間。 |
 
 ## <a name="sizing-estimates"></a>大小估計值
@@ -83,19 +216,21 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | Type=Perf (ObjectName=Processor) CounterName="% Processor Time" InstanceName=_Total &#124; measure Avg(Average) as AVGCPU  by Computer |所有電腦的平均 CPU 使用率 |
 | Type=Perf (CounterName="% Processor Time") &#124;  measure max(Max) by Computer |所有電腦的最大 CPU 使用率 |
 | Type=Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Computer="MyComputerName" &#124; measure Avg(Average) by InstanceName |指定電腦之所有執行個體的平均目前磁碟佇列長度 |
-| Type=Perf CounterName="DiskTransfers/sec" &#124; measure percentile95(Average) by Computer |所有電腦之第&95; 個百分位數的 Disk Transfers/Sec |
+| Type=Perf CounterName="DiskTransfers/sec" &#124; measure percentile95(Average) by Computer |所有電腦之第 95 個百分位數的 Disk Transfers/Sec |
 | Type=Perf CounterName="% Processor Time" InstanceName="_Total"  &#124; measure avg(CounterValue) by Computer Interval 1HOUR |所有電腦每小時平均 CPU 使用率 |
 | Type=Perf Computer="MyComputer" CounterName=%* InstanceName=_Total &#124; measure percentile70(CounterValue) by CounterName Interval 1HOUR |特定電腦每小時每個 % 百分比計數器的 70 個百分位數 |
 | Type=Perf CounterName="% Processor Time" InstanceName="_Total"  (Computer="MyComputer") &#124; measure min(CounterValue), avg(CounterValue), percentile75(CounterValue), max(CounterValue) by Computer Interval 1HOUR |特定電腦每小時平均、最小、最大和 75 個百分位數的 CPU 使用量 |
+| Type=Perf ObjectName="MSSQL$INST2:Databases" InstanceName=master | 資料庫效能物件中的所有效能資料適用於來自具名 SQL Server 執行個體 INST2 的 master 資料庫。  
 
 ## <a name="viewing-performance-data"></a>檢視效能資料
-在執行效能資料的記錄搜尋時，預設會顯示 [記錄] 檢視。  若要以圖形形式檢視資料，請按一下 [計量]。  如需詳細的圖形檢視，請按一下計數器旁的 **+**。  
+在執行效能資料的記錄搜尋時，預設會顯示 [清單] 檢視。  若要以圖形形式檢視資料，請按一下 [計量]。  如需詳細的圖形檢視，請按一下計數器旁的 **+**。  
 
 ![摺疊的計量檢視](media/log-analytics-data-sources-performance-counters/metricscollapsed.png)
 
 若要彙總記錄搜尋中的效能資料，請參閱[在 OMS 中隨需彙總和視覺化度量](http://blogs.technet.microsoft.com/msoms/2016/02/26/on-demand-metric-aggregation-and-visualization-in-oms/)。
 
+
 ## <a name="next-steps"></a>後續步驟
+* [從 Linux 應用程式收集效能計數器](log-analytics-data-sources-linux-applications.md)，包括 MySQL 和 Apache HTTP Server。
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。  
 * 將收集的資料匯出至 [Power BI](log-analytics-powerbi.md) 以進行其他視覺效果和分析。
-

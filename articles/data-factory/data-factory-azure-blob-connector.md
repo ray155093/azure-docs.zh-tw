@@ -13,13 +13,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/11/2017
+ms.date: 06/22/2017
 ms.author: jingwang
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 90c4cd42aa9dcef2cda4ec66e64393bf474b6a60
+ms.sourcegitcommit: 61fd58063063d69e891d294e627ae40cb878d65b
+ms.openlocfilehash: 7be5e5095b8aa6f2ae3d8c0b636883c4ff7ced63
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 06/22/2017
 
 
 ---
@@ -223,16 +223,16 @@ Data Factory 支援使用下列符合 CLS 規範的 .NET 型類型值，在 “s
     5. 按 [下一步] 。
     ![複製工具 - 選擇輸入檔案或資料夾](./media/data-factory-azure-blob-connector/chose-input-file-folder.png) 
 7. 在 [檔案格式設定] 頁面上，您會看到分隔符號以及精靈藉由剖析檔案自動偵測到的結構描述。 
-    1. 確認 [檔案格式] 已設定為 [文字格式]。 您可以在下拉式清單中看到所有支援的格式。 例如：JSON、Avro、ORC、Parquet。 
-    2. 確認 [資料行分隔符號] 已設定為 [`Comma (,)`]。 您可以在下拉式清單中看到 Data Factory 支援的其他資料行分隔符號。 您也可以指定自訂的分隔符號。 
-    3. 確認 [資料列分隔符號] 已設定為 [`Carriage Return + Line feed (\r\n)`]。 您可以在下拉式清單中看到 Data Factory 支援的其他資料列分隔符號。 您也可以指定自訂的分隔符號。 
-    4. 確認 [略過行數] 已設定為 [0]。 如果您希望略過檔案開頭的幾行，則請在這裡輸入數字。 
-    5. 確認未設定 [第一個資料列包含資料行名稱]。 如果來源檔案的第一個資料列包含資料行名稱，則請選取此選項。 
-    6. 確認已設定 [將空白資料行值視為 Null] 選項。 
-    7. 展開 [進階設定] 以查看可用的進階選項。 
-    8. 在頁面底部，查看來自 emp.txt 檔案之資料的 [預覽]。 
-    9. 按一下底部的 [結構描述] 索引標籤，以查看複製精靈藉由查看來源檔案中的資料所推斷出的結構描述。 
-    10. 檢閱分隔符號並預覽資料之後，請按 [下一步]。
+    1. 確認下列選項：a. [檔案格式] 已設定為 [文字格式]。 您可以在下拉式清單中看到所有支援的格式。 例如：JSON、Avro、ORC、Parquet。
+        b.這是另一個 C# 主控台應用程式。 [資料行分隔符號] 已設定為 [`Comma (,)`]。 您可以在下拉式清單中看到 Data Factory 支援的其他資料行分隔符號。 您也可以指定自訂的分隔符號。
+        c. [資料列分隔符號] 已設定為 [`Carriage Return + Line feed (\r\n)`]。 您可以在下拉式清單中看到 Data Factory 支援的其他資料列分隔符號。 您也可以指定自訂的分隔符號。
+        d. [略過行數] 已設定為 [0]。 如果您希望略過檔案開頭的幾行，則請在這裡輸入數字。
+        e.  未設定 [第一個資料列包含資料行名稱]。 如果來源檔案的第一個資料列包含資料行名稱，則請選取此選項。
+        f. 已設定 [將空白資料行值視為 Null] 選項。
+    2. 展開 [進階設定] 以查看可用的進階選項。
+    3. 在頁面底部，查看來自 emp.txt 檔案之資料的 [預覽]。
+    4. 按一下底部的 [結構描述] 索引標籤，以查看複製精靈藉由查看來源檔案中的資料所推斷出的結構描述。
+    5. 檢閱分隔符號並預覽資料之後，請按 [下一步]。
     ![複製工具 - 檔案格式設定](./media/data-factory-azure-blob-connector/copy-tool-file-format-settings.png)  
 8. 在 [目的地資料存放區] 頁面上，選取 [Azure Blob 儲存體]，然後按 [下一步]。 在這個逐步解說中，您將使用「Azure Blob 儲存體」同時作為來源和目的地資料存放區。    
     ![複製精靈 - 選取目的地資料存放區](media/data-factory-azure-blob-connector/select-destination-data-store.png)
@@ -243,13 +243,13 @@ Data Factory 支援使用下列符合 CLS 規範的 .NET 型類型值，在 “s
    4. 選取您的 Azure 儲存體帳戶。 
    5. 按 [下一步] 。     
 10. 在 [選擇輸出檔案或資料夾] 頁面上︰ 
-    1. 將 [資料夾路徑] 指定為 **adfblobconnector/output/{year}/{month}/{day}**。 輸入 **TAB**。 
-    2. 針對 [年]，選取 [yyyy]。 
-    3. 針對 [月]，確定它已設定為 [MM]。 
-    4. 針對 [日]，確定它已設定為 [dd]。 
-    5. 確認 [壓縮類型] 已設定為 [無]。 
-    6. 確認 [複製行為] 已設定為 [合併檔案]。 如果已經有同名的輸出檔案存在，則新內容會新增到該相同檔案的結尾。  
-    7. 按 [下一步] 。 
+    6. 將 [資料夾路徑] 指定為 **adfblobconnector/output/{year}/{month}/{day}**。 輸入 **TAB**。
+    7. 針對 [年]，選取 [yyyy]。
+    8. 針對 [月]，確定它已設定為 [MM]。
+    9. 針對 [日]，確定它已設定為 [dd]。
+    10. 確認 [壓縮類型] 已設定為 [無]。
+    11. 確認 [複製行為] 已設定為 [合併檔案]。 如果已經有同名的輸出檔案存在，則新內容會新增到該相同檔案的結尾。
+    12. 按 [下一步] 。
     ![複製工具 - 選擇輸出檔案或資料夾](media/data-factory-azure-blob-connector/choose-the-output-file-or-folder.png)
 11. 在 [檔案格式設定] 頁面上，檢閱設定，然後按 [下一步]。 這裡的其中一額外選項是為輸出檔案新增標頭。 如果您選取該選項，就會新增標頭資料列，其中會含有來自來源結構描述的資料行名稱。 您可以在檢視來源的結構描述時，重新命名預設的資料行名稱。 例如，您可以將第一個資料行變更為「名字」，而將第二個資料行變更為「姓氏」。 接著，系統就會產生含有以這些名稱作為資料行名稱之標頭的輸出檔案。 
     ![複製工具 - 目的地的檔案格式設定](media/data-factory-azure-blob-connector/file-format-destination.png)
