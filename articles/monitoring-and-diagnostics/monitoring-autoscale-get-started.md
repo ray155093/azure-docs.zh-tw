@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/07/2017
 ms.author: rajram
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: a0a420adc57a0bcbb3779183324ab7bfafcb5bf1
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 4faccae708b5407d1eb64e746824a23688bc5834
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -39,7 +39,7 @@ Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲�
 
 您可以使用頂端的篩選窗格來縮小清單範圍，以選取特定資源群組中的資源、選取特定的資源類型或選取特定的資源。
 
-針對每個資源，您可以找到目前的執行個體計數及其自動調整規模狀態。 自動調整規模狀態可以是
+針對每個資源，您將會找到目前的執行個體計數及其自動調整規模狀態。 自動調整規模狀態可以是
 
 - 未設定︰您尚未針對此資源啟用自動調整規模設定
 - 已啟用：您已針對此資源啟用自動調整規模設定
@@ -69,7 +69,7 @@ Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲�
 - 按一下 [新增調整規模的條件]
 - 設定調整規模模式和規則，與預設條件一樣
 - 針對排程選取 [重複特定天數]
-- 選取天數，以及應針對選取的天數套用調整規模條件的開始/結束時間。
+- 選取天數，以及應針對選取的天數套用調整規模條件的開始/結束時間
 
 ![根據排程調整規模的條件][9]
 ## <a name="scale-differently-on-specific-dates"></a>在特定日期以不同方式調整規模
@@ -78,7 +78,7 @@ Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲�
 - 按一下 [新增調整規模的條件]
 - 設定調整規模模式和規則，與預設條件一樣
 - 針對排程選取 [指定開始/結束日期]
-- 選取開始/結束日期，以及應針對選取的日期套用調整規模條件的開始/結束時間。
+- 選取開始/結束日期，以及應針對選取的日期套用調整規模條件的開始/結束時間
 
 ![根據日期調整規模的條件][10]
 
@@ -123,3 +123,4 @@ Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲�
 [12]: ./media/monitoring-autoscale-get-started/scale-definition-json.png
 [13]: ./media/monitoring-autoscale-get-started/disable-autoscale.png
 [14]: ./media/monitoring-autoscale-get-started/set-manualscale.png
+

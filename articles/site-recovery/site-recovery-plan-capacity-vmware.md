@@ -1,6 +1,6 @@
 ---
-title: "規劃容量並調整 Azure 中的 VMware 複寫 | Microsoft Docs"
-description: "將 VMware VM 複寫至 Azure 時，請使用本文規劃容量和調整"
+title: "使用 Azure Site Recovery 針對 VMware 到 Azure 的複寫進行容量規劃和調整 | Microsoft Docs"
+description: "使用 Azure Site Recovery 將 VMware VM 複寫至 Azure 時，可使用本文來進行容量規劃和調整。"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -12,22 +12,23 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 02/05/2017
+ms.date: 05/24/2017
 ms.author: rayne
-translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 86366359e065c9a9b4a52136254588e67125fb5f
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 8b580ac239bfb6d7b633fb03d4cfb91b168b0610
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
 # <a name="plan-capacity-and-scaling-for-vmware-replication-with-azure-site-recovery"></a>使用 Azure Site Recovery 規劃容量並調整 Azure 中的 VMware 複寫
 
-使用這份文件找出在將內部部署 VMware VM 和實體伺服器複寫至 Azure 時，如何使用 [Azure Site Recovery](site-recovery-overview.md) 規劃容量和調整。
+您可透過這篇文章，了解在使用 [Azure Site Recovery](site-recovery-overview.md) 將內部部署 VMware VM 和實體伺服器複寫至 Azure 時，如何進行容量規劃和調整。
 
 ## <a name="how-do-i-start-capacity-planning"></a>如何開始容量規劃？
 
-使用 [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner-doc) 收集複寫環境的相關資訊。 這包括相容和不相容的虛擬機器數目、每個 VM 的磁碟，以及每個磁碟的資料變換等相關資訊。 它也會探討網路頻寬需求，以及要成功複寫和測試容錯移轉所需的 Azure 基礎結構。
+針對 VM 複寫，執行 [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner-doc) 以收集複寫環境的相關資訊。 [深入了解](site-recovery-deployment-planner.md) 此工具。 您可收集相容與不相容 VM、每個 VM 的磁碟，以及每個磁碟的資料變換等相關資訊。 此工具也涵蓋網路頻寬需求，以及要成功複寫和測試容錯移轉所需的 Azure 基礎結構。
 
 ## <a name="capacity-considerations"></a>容量考量
 
@@ -79,7 +80,7 @@ ms.lasthandoff: 03/22/2017
 
 ## <a name="control-network-bandwidth"></a>控制網路頻寬
 
-您可以使用[部署規劃工具](https://aka.ms/asr-deployment-planner-doc)來計算複寫 (包括初始複寫，而後是差異複寫) 所需的頻寬 。 若要控制複寫所用的頻寬數量，您有幾個選項可用︰
+在使用 [Deployment Planner 工具](site-recovery-deployment-planner.md)來計算複寫 (初始複寫，然後是差異複寫) 所需的頻寬之後，您可以使用幾個選項來控制用於複寫的頻寬大小：
 
 * **節流頻寬**︰複寫至 Azure 的 VMware 流量會經過特定的處理序伺服器。 您可在執行作為處理序伺服器的機器上進行頻寬節流。
 * **影響頻寬**︰您可以使用幾個登錄機碼來影響用於複寫的頻寬：
@@ -87,6 +88,7 @@ ms.lasthandoff: 03/22/2017
   * **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\DownloadThreadsPerVM** 可指定在容錯回復期間用於資料傳輸的執行緒數目。
 
 ### <a name="throttle-bandwidth"></a>節流頻寬
+
 1. 在作為處理序伺服器的機器上開啟 Azure 備份 MMC 嵌入式管理單元。 根據預設，備份的捷徑位於桌面上或在下列資料夾中：C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin。
 2. 在嵌入式管理單元中，按一下 [變更屬性]。
 
@@ -140,9 +142,7 @@ ms.lasthandoff: 03/22/2017
 3. 在 [選取目標處理序伺服器] 中，選取您要使用的新處理序伺服器，然後選取該伺服器將處理的虛擬機器。 按一下資訊圖示以取得伺服器的相關資訊。 為了協助您進行負載的判斷，會顯示將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間。 按一下核取記號以開始複寫到新處理序伺服器。
 
 
+## <a name="next-steps"></a>後續步驟
 
-
-
-
-
+下載並執行 [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner)。
 

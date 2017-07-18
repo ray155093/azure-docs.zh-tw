@@ -12,18 +12,19 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 05/25/17
 ms.author: elioda
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 1eacd13562adcff96fdd0dd3fd91c78ef6a26dbf
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 32d5baf404efddd2e3ce122b14ea8c256bf56299
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
-# <a name="reference---iot-hub-query-language-for-device-twins-and-jobs"></a>參考 - 裝置對應項和作業的 IoT 中樞查詢語言
-## <a name="overview"></a>概觀
-IoT 中樞提供功能強大、類似 SQL 的語言，來擷取有關[裝置對應項][lnk-twins]和[作業][lnk-jobs]的資訊。 本文提供︰
+# <a name="reference---iot-hub-query-language-for-device-twins-jobs-and-message-routing"></a>參考 - 裝置對應項、作業和訊息路由的 IoT 中樞查詢語言
+
+IoT 中樞提供功能強大、類似 SQL 的語言，來擷取有關[裝置對應項][lnk-twins]、[作業][lnk-jobs]和[訊息路由][lnk-devguide-messaging-routes]的資訊。 本文提供︰
 
 * IoT 中樞查詢語言主要功能的簡介，以及
 * 語言的詳細說明。
@@ -32,100 +33,114 @@ IoT 中樞提供功能強大、類似 SQL 的語言，來擷取有關[裝置對�
 [裝置對應項][lnk-twins]可以包含標籤和屬性形式的任意 JSON 物件。 IoT 中樞可讓您以包含所有裝置對應項資訊的單一 JSON 文件形式查詢裝置對應項。
 比方說，假設您的 IoT 中樞裝置對應項有下列結構︰
 
-        {                                                                      
-            "deviceId": "myDeviceId",                                            
-            "etag": "AAAAAAAAAAc=",                                              
-            "tags": {                                                            
-                "location": {                                                      
-                    "region": "US",                                                  
-                    "plant": "Redmond43"                                             
-                }                                                                  
-            },                                                                   
-            "properties": {                                                      
-                "desired": {                                                       
-                    "telemetryConfig": {                                             
-                        "configId": "db00ebf5-eeeb-42be-86a1-458cccb69e57",            
-                        "sendFrequencyInSecs": 300                                          
-                    },                                                               
-                    "$metadata": {                                                   
-                    ...                                                     
-                    },                                                               
-                    "$version": 4                                                    
-                },                                                                 
-                "reported": {                                                      
-                    "connectivity": {                                                
-                        "type": "cellular"                            
-                    },                                                               
-                    "telemetryConfig": {                                             
-                        "configId": "db00ebf5-eeeb-42be-86a1-458cccb69e57",            
-                        "sendFrequencyInSecs": 300,                                         
-                        "status": "Success"                                            
-                    },                                                               
-                    "$metadata": {                                                   
-                    ...                                                
-                    },                                                               
-                    "$version": 7                                                    
-                }                                                                  
-            }                                                                    
+```json
+{
+    "deviceId": "myDeviceId",
+    "etag": "AAAAAAAAAAc=",
+    "tags": {
+        "location": {
+            "region": "US",
+            "plant": "Redmond43"
         }
+    },
+    "properties": {
+        "desired": {
+            "telemetryConfig": {
+                "configId": "db00ebf5-eeeb-42be-86a1-458cccb69e57",
+                "sendFrequencyInSecs": 300
+            },
+            "$metadata": {
+            ...
+            },
+            "$version": 4
+        },
+        "reported": {
+            "connectivity": {
+                "type": "cellular"
+            },
+            "telemetryConfig": {
+                "configId": "db00ebf5-eeeb-42be-86a1-458cccb69e57",
+                "sendFrequencyInSecs": 300,
+                "status": "Success"
+            },
+            "$metadata": {
+            ...
+            },
+            "$version": 7
+        }
+    }
+}
+```
 
 IoT 中樞可以將裝置對應項公開為稱為**裝置**的文件集合。
 因此，下列查詢會擷取整組裝置對應項︰
 
-        SELECT * FROM devices
+```sql
+SELECT * FROM devices
+```
 
 > [!NOTE]
 > [Azure IoT SDK][lnk-hub-sdks] 支援將大型結果分頁。
->
->
 
 IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如，
 
-        SELECT * FROM devices
-        WHERE tags.location.region = 'US'
+```sql
+SELECT * FROM devices
+WHERE tags.location.region = 'US'
+```
 
 會擷取 **location.region** 標籤設為 **US**的裝置對應項。
 布林運算子和算術比較也受到支援，例如
 
-        SELECT * FROM devices
-        WHERE tags.location.region = 'US'
-            AND properties.reported.telemetryConfig.sendFrequencyInSecs >= 60
+```sql
+SELECT * FROM devices
+WHERE tags.location.region = 'US'
+    AND properties.reported.telemetryConfig.sendFrequencyInSecs >= 60
+```
 
 會擷取所有位於 US、且設定為遙測傳送頻率比每分鐘還低的裝置對應項。 為了方便起見，您也可以使用陣列常數搭配 **IN** 和 **NIN** (不在) 運算子。 例如，
 
-        SELECT * FROM devices
-        WHERE property.reported.connectivity IN ['wired', 'wifi']
+```sql
+SELECT * FROM devices
+WHERE properties.reported.connectivity IN ['wired', 'wifi']
+```
 
 會擷取所有報告使用 WiFi 或有線連線能力的裝置對應項。 您通常必須識別包含特定屬性的所有裝置對應項。 為了實現此目的，IoT 中樞支援 `is_defined()` 函式。 例如，
 
-        SELECT * FROM devices
-        WHERE is_defined(property.reported.connectivity)
+```SQL
+SELECT * FROM devices
+WHERE is_defined(properties.reported.connectivity)
+```
 
 擷取可定義 `connectivity` 報告屬性的所有裝置對應項。 請參閱 [WHERE 子句][lnk-query-where]一節，以取得篩選功能的完整參考。
 
 群組和彙總也受到支援。 例如，
 
-        SELECT properties.reported.telemetryConfig.status AS status,
-            COUNT() AS numberOfDevices
-        FROM devices
-        GROUP BY properties.reported.telemetryConfig.status
+```sql
+SELECT properties.reported.telemetryConfig.status AS status,
+    COUNT() AS numberOfDevices
+FROM devices
+GROUP BY properties.reported.telemetryConfig.status
+```
 
 會傳回每個遙測組態狀態中的裝置計數。
 
-        [
-            {
-                "numberOfDevices": 3,
-                "status": "Success"
-            },
-            {
-                "numberOfDevices": 2,
-                "status": "Pending"
-            },
-            {
-                "numberOfDevices": 1,
-                "status": "Error"
-            }
-        ]
+```json
+[
+    {
+        "numberOfDevices": 3,
+        "status": "Success"
+    },
+    {
+        "numberOfDevices": 2,
+        "status": "Pending"
+    },
+    {
+        "numberOfDevices": 1,
+        "status": "Error"
+    }
+]
+```
 
 上述範例說明了如下情況：三個裝置回報設定成功、兩個仍在套用組態，一個回報發生錯誤。
 
@@ -133,15 +148,17 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 查詢功能由 [C# 服務 SDK][lnk-hub-sdks] 在 **RegistryManager** 類別中公開。
 以下是簡單查詢的範例︰
 
-        var query = registryManager.CreateQuery("SELECT * FROM devices", 100);
-        while (query.HasMoreResults)
-        {
-            var page = await query.GetNextAsTwinAsync();
-            foreach (var twin in page)
-            {
-                // do work on twin object
-            }
-        }
+```csharp
+var query = registryManager.CreateQuery("SELECT * FROM devices", 100);
+while (query.HasMoreResults)
+{
+    var page = await query.GetNextAsTwinAsync();
+    foreach (var twin in page)
+    {
+        // do work on twin object
+    }
+}
+```
 
 請注意**查詢**物件如何以頁面大小 (最多 1000) 具現化，然後藉由呼叫 **GetNextAsTwinAsync** 方法多次擷取多個頁面。
 請注意，查詢物件會公開多個 **Next\*** (視查詢所需的還原序列化選項，例如裝置對應項或作業物件，或使用投影時要使用的一般 JSON 而定)。
@@ -150,22 +167,24 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 查詢功能由[適用於 Node.js 的 Azure IoT 服務 SDK][lnk-hub-sdks] 在 **Registry** 物件中公開。
 以下是簡單查詢的範例︰
 
-        var query = registry.createQuery('SELECT * FROM devices', 100);
-        var onResults = function(err, results) {
-            if (err) {
-                console.error('Failed to fetch the results: ' + err.message);
-            } else {
-                // Do something with the results
-                results.forEach(function(twin) {
-                    console.log(twin.deviceId);
-                });
+```nodejs
+var query = registry.createQuery('SELECT * FROM devices', 100);
+var onResults = function(err, results) {
+    if (err) {
+        console.error('Failed to fetch the results: ' + err.message);
+    } else {
+        // Do something with the results
+        results.forEach(function(twin) {
+            console.log(twin.deviceId);
+        });
 
-                if (query.hasMoreResults) {
-                    query.nextAsTwin(onResults);
-                }
-            }
-        };
-        query.nextAsTwin(onResults);
+        if (query.hasMoreResults) {
+            query.nextAsTwin(onResults);
+        }
+    }
+};
+query.nextAsTwin(onResults);
+```
 
 請注意**查詢**物件如何以頁面大小 (最多 1000) 具現化，然後藉由呼叫 **nextAsTwin** 方法多次擷取多個頁面。
 請注意，查詢物件會公開多個 **Next\*** (視查詢所需的還原序列化選項，例如裝置對應項或作業物件，或使用投影時要使用的一般 JSON 而定)。
@@ -173,8 +192,6 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 ### <a name="limitations"></a>限制
 > [!IMPORTANT]
 > 根據裝置對應項中的最新值，查詢結果可能會有數分鐘的延遲。 若依識別碼查詢個別裝置對應項，建議您一律使用抓取裝置對應項 API，這一律包含最新的值，而且有較高的節流處理限制。
->
->
 
 目前僅支援在基本類型 (沒有物件) 之間進行比較，例如 `... WHERE properties.desired.config = properties.reported.config` 只會在這些屬性具有基本值時才受到支援。
 
@@ -182,32 +199,34 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 [作業][lnk-jobs]可提供方法來對裝置組執行作業。 每個裝置對應項皆包含屬於 **jobs** 集合一部分之作業的資訊。
 在邏輯上，
 
-        {                                                                      
-            "deviceId": "myDeviceId",                                            
-            "etag": "AAAAAAAAAAc=",                                              
-            "tags": {                                                            
-                ...                                                              
-            },                                                                   
-            "properties": {                                                      
-                ...                                                                 
-            },
-            "jobs": [
-                {
-                    "deviceId": "myDeviceId",
-                    "jobId": "myJobId",    
-                    "jobType": "scheduleTwinUpdate",            
-                    "status": "completed",                    
-                    "startTimeUtc": "2016-09-29T18:18:52.7418462",
-                    "endTimeUtc": "2016-09-29T18:20:52.7418462",
-                    "createdDateTimeUtc": "2016-09-29T18:18:56.7787107Z",
-                    "lastUpdatedDateTimeUtc": "2016-09-29T18:18:56.8894408Z",
-                    "outcome": {
-                        "deviceMethodResponse": null   
-                    }                                         
-                },
-                ...
-            ]                                                             
-        }
+```json
+{
+    "deviceId": "myDeviceId",
+    "etag": "AAAAAAAAAAc=",
+    "tags": {
+        ...
+    },
+    "properties": {
+        ...
+    },
+    "jobs": [
+        {
+            "deviceId": "myDeviceId",
+            "jobId": "myJobId",
+            "jobType": "scheduleTwinUpdate",
+            "status": "completed",
+            "startTimeUtc": "2016-09-29T18:18:52.7418462",
+            "endTimeUtc": "2016-09-29T18:20:52.7418462",
+            "createdDateTimeUtc": "2016-09-29T18:18:56.7787107Z",
+            "lastUpdatedDateTimeUtc": "2016-09-29T18:18:56.8894408Z",
+            "outcome": {
+                "deviceMethodResponse": null
+            }
+        },
+        ...
+    ]
+}
+```
 
 目前，此集合可在 IoT 中樞查詢語言中以 **devices.jobs** 的形式來查詢。
 
@@ -218,25 +237,31 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 
 例如，若要取得影響單一裝置的所有作業 (過去的和排程的)，您可以使用下列查詢︰
 
-        SELECT * FROM devices.jobs
-        WHERE devices.jobs.deviceId = 'myDeviceId'
+```sql
+SELECT * FROM devices.jobs
+WHERE devices.jobs.deviceId = 'myDeviceId'
+```
 
 請注意這個查詢如何為每個傳回的作業提供裝置特定的狀態 (可能的話還會提供直接方法回應)。
 您也可以在 **devices.jobs** 集合的所有物件屬性上，使用任意布林值條件進行篩選。
 例如下列查詢：
 
-        SELECT * FROM devices.jobs
-        WHERE devices.jobs.deviceId = 'myDeviceId'
-            AND devices.jobs.jobType = 'scheduleTwinUpdate'
-            AND devices.jobs.status = 'completed'
-            AND devices.jobs.createdTimeUtc > '2016-09-01'
+```sql
+SELECT * FROM devices.jobs
+WHERE devices.jobs.deviceId = 'myDeviceId'
+    AND devices.jobs.jobType = 'scheduleTwinUpdate'
+    AND devices.jobs.status = 'completed'
+    AND devices.jobs.createdTimeUtc > '2016-09-01'
+```
 
 會針對在 2016 年 9 月之後所建立的裝置 **myDeviceId** 擷取所有已完成的裝置對應項更新作業。
 
 您也可以擷取單一作業的每一裝置結果。
 
-        SELECT * FROM devices.jobs
-        WHERE devices.jobs.jobId = 'myJobId'
+```sql
+SELECT * FROM devices.jobs
+WHERE devices.jobs.jobId = 'myJobId'
+```
 
 ### <a name="limitations"></a>限制
 **devices.jobs** 上的查詢目前不支援︰
@@ -249,25 +274,31 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 
 使用[裝置對雲端路由][lnk-devguide-messaging-routes]，您可以設定 IoT 中樞，以根據對個別訊息評估的運算式，將裝置對雲端訊息分派至不同的端點。
 
-路由[條件][lnk-query-expressions]會使用相同的 IoT 中樞查詢語言做為對應項和作業查詢中的條件。 路由條件會依據採用下列 JSON 表示法的訊息屬性進行評估︰
+路由[條件][lnk-query-expressions]會使用相同的 IoT 中樞查詢語言做為對應項和作業查詢中的條件。 路由條件會依據訊息標頭和內文進行評估。 您的路由查詢運算式可能只涉及訊息標頭、只涉及訊息內文，或同時涉及訊息標頭和訊息內文。 IoT 中樞假設標頭和訊息內文有特定結構描述才能路由傳送訊息，下列各節將說明讓 IoT 中樞正確路由所需的項目：
 
-        {
-            "$messageId": "",
-            "$enqueuedTime": "",
-            "$to": "",
-            "$expiryTimeUtc": "",
-            "$correlationId": "",
-            "$userId": "",
-            "$ack": "",
-            "$connectionDeviceId": "",
-            "$connectionDeviceGenerationId": "",
-            "$connectionAuthMethod": "",
-            "$content-type": "",
-            "$content-encoding": ""
+### <a name="routing-on-message-headers"></a>依據訊息標頭進行路由
 
-            "userProperty1": "",
-            "userProperty2": ""
-        }
+IoT 中樞假設訊息路由的訊息標頭採用下列 JSON 表示法：
+
+```json
+{
+    "$messageId": "",
+    "$enqueuedTime": "",
+    "$to": "",
+    "$expiryTimeUtc": "",
+    "$correlationId": "",
+    "$userId": "",
+    "$ack": "",
+    "$connectionDeviceId": "",
+    "$connectionDeviceGenerationId": "",
+    "$connectionAuthMethod": "",
+    "$content-type": "",
+    "$content-encoding": "",
+
+    "userProperty1": "",
+    "userProperty2": ""
+}
+```
 
 訊息系統屬性前面會加上 `'$'` 符號。
 使用者屬性則一律透過其名稱來存取。 若使用者屬性名稱剛好與系統屬性 (例如 `$to`) 相同，將使用 `$to` 運算式擷取使用者屬性。
@@ -281,25 +312,47 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 
 例如，如果您使用 `messageType` 屬性，您可能想要將所有遙測都路由傳送至一個端點，以及將所有警示路由傳送至另一個端點。 您可以撰寫下列運算式來路由傳送遙測資料︰
 
-        messageType = 'telemetry'
+```sql
+messageType = 'telemetry'
+```
 
 以及撰寫下列運算式來路由傳送警示訊息︰
 
-        messageType = 'alert'
+```sql
+messageType = 'alert'
+```
 
 也支援布林運算式和函式。 這項功能可讓您區分嚴重性層級，例如︰
 
-        messageType = 'alerts' AND as_number(severity) <= 2
+```sql
+messageType = 'alerts' AND as_number(severity) <= 2
+```
 
 請參閱[運算式和條件][lnk-query-expressions]一節，以取得支援的完整運算子和函式清單。
+
+### <a name="routing-on-message-bodies"></a>依據訊息內文進行路由
+
+IoT 中樞只有在訊息內文是以 UTF-8、UTF-16 或 UTF-32 編碼的正確格式 JSON 時，才能依據訊息內文的內容進行路由。 您必須將訊息的內容類型設定為 `application/json`，並將內容編碼設定為訊息標頭支援的其中一個 UTF 編碼，IoT 中樞才能依據內文的內容路由傳送訊息。 如果未指定任一標頭，IoT 中樞將不會嘗試對訊息評估任何涉及內文的查詢運算式。 如果您的訊息不是 JSON 訊息，或者如果訊息未指定內容類型和內容編碼，您仍然可以使用訊息路由來依據訊息標頭路由傳送訊息。
+
+您可以在查詢運算式中使用 `$body` 來路由傳送訊息。 您可以在查詢運算式中使用簡單內文參考、內文陣列參考或多個內文參考。 您的查詢運算式也可以將內文參考與訊息標頭參考合併。 例如，以下是所有有效的查詢運算式：
+
+```sql
+$body.message.Weather.Location.State = 'WA'
+$body.Weather.HistoricalData[0].Month = 'Feb'
+$body.Weather.Temperature = 50 AND $body.message.Weather.IsEnabled
+length($body.Weather.Location.State) = 2
+$body.Weather.Temperature = 50 AND Status = 'Active'
+```
 
 ## <a name="basics-of-an-iot-hub-query"></a>IoT 中樞查詢的基本概念
 每一個 IoT 中樞查詢都包含 SELECT 和 FROM 子句，以及選擇性的 WHERE 和 GROUP BY 子句。 每個查詢都會在 JSON 文件的集合上執行，例如裝置對應項。 FROM 子句會指出要在其上反覆運算的文件集合 (**devices** 或 **devices.jobs**)。 然後，會套用 WHERE 子句中的篩選。 若為彙總，此步驟的結果會依照 GROUP BY 子句中所指定的方式針對每個群組進行分組，並依 SELECT 子句中所指定的方式產生一個資料列。
 
-        SELECT <select_list>
-        FROM <from_specification>
-        [WHERE <filter_condition>]
-        [GROUP BY <group_specification>]
+```sql
+SELECT <select_list>
+FROM <from_specification>
+[WHERE <filter_condition>]
+[GROUP BY <group_specification>]
+```
 
 ## <a name="from-clause"></a>FROM 子句
 **FROM <from_specification>** 子句只能採用兩個值︰**FROM devices** (用來查詢裝置對應項) 或 **FROM devices.jobs** (用來查詢作業的每一裝置詳細資料)。
@@ -315,23 +368,25 @@ SELECT 子句 (**SELECT <select_list>**) 是必要子句，並可指定要從查
 
 以下是 SELECT 子句的文法︰
 
-        SELECT [TOP <max number>] <projection list>
+```
+SELECT [TOP <max number>] <projection list>
 
-        <projection_list> ::=
-            '*'
-            | <projection_element> AS alias [, <projection_element> AS alias]+
+<projection_list> ::=
+    '*'
+    | <projection_element> AS alias [, <projection_element> AS alias]+
 
-        <projection_element> :==
-            attribute_name
-            | <projection_element> '.' attribute_name
-            | <aggregate>
+<projection_element> :==
+    attribute_name
+    | <projection_element> '.' attribute_name
+    | <aggregate>
 
-        <aggregate> :==
-            count()
-            | avg(<projection_element>)
-            | sum(<projection_element>)
-            | min(<projection_element>)
-            | max(<projection_element>)
+<aggregate> :==
+    count()
+    | avg(<projection_element>)
+    | sum(<projection_element>)
+    | min(<projection_element>)
+    | max(<projection_element>)
+```
 
 其中 **attribute_name** 指的是 FROM 集合中 JSON 文件的任何屬性。 您可以在[開始使用裝置對應項查詢][lnk-query-getstarted]一節中找到一些 SELECT 子句範例。
 
@@ -342,17 +397,21 @@ SELECT 子句 (**SELECT <select_list>**) 是必要子句，並可指定要從查
 
 使用 GROUP BY 的查詢範例如下︰
 
-        SELECT properties.reported.telemetryConfig.status AS status,
-            COUNT() AS numberOfDevices
-        FROM devices
-        GROUP BY properties.reported.telemetryConfig.status
+```sql
+SELECT properties.reported.telemetryConfig.status AS status,
+    COUNT() AS numberOfDevices
+FROM devices
+GROUP BY properties.reported.telemetryConfig.status
+```
 
 GROUP BY 的正式語法如下︰
 
-        GROUP BY <group_by_element>
-        <group_by_element> :==
-            attribute_name
-            | < group_by_element > '.' attribute_name
+```
+GROUP BY <group_by_element>
+<group_by_element> :==
+    attribute_name
+    | < group_by_element > '.' attribute_name
+```
 
 其中 **attribute_name** 指的是 FROM 集合中 JSON 文件的任何屬性。
 
@@ -368,29 +427,31 @@ GROUP BY 的正式語法如下︰
 
 運算式的語法如下︰
 
-        <expression> ::=
-            <constant> |
-            attribute_name |
-            <function_call> |
-            <expression> binary_operator <expression> |
-            <create_array_expression> |
-            '(' <expression> ')'
+```
+<expression> ::=
+    <constant> |
+    attribute_name |
+    <function_call> |
+    <expression> binary_operator <expression> |
+    <create_array_expression> |
+    '(' <expression> ')'
 
-        <function_call> ::=
-            <function_name> '(' expression ')'
+<function_call> ::=
+    <function_name> '(' expression ')'
 
-        <constant> ::=
-            <undefined_constant>
-            | <null_constant>
-            | <number_constant>
-            | <string_constant>
-            | <array_constant>
+<constant> ::=
+    <undefined_constant>
+    | <null_constant>
+    | <number_constant>
+    | <string_constant>
+    | <array_constant>
 
-        <undefined_constant> ::= undefined
-        <null_constant> ::= null
-        <number_constant> ::= decimal_literal | hexadecimal_literal
-        <string_constant> ::= string_literal
-        <array_constant> ::= '[' <constant> [, <constant>]+ ']'
+<undefined_constant> ::= undefined
+<null_constant> ::= null
+<number_constant> ::= decimal_literal | hexadecimal_literal
+<string_constant> ::= string_literal
+<array_constant> ::= '[' <constant> [, <constant>]+ ']'
+```
 
 其中：
 
@@ -426,7 +487,7 @@ GROUP BY 的正式語法如下︰
 | ABS(x) | 傳回指定之數值運算式的絕對 (正) 值。 |
 | EXP(x) | 傳回指定之數值運算式 (e^x) 的指數值。 |
 | POWER(x,y) | 將指定之運算式的值傳回給指定的乘冪 (x^y)。|
-| SQUARE(x)    | 傳回指定之數值的平方。 |
+| SQUARE(x) | 傳回指定之數值的平方。 |
 | CEILING(x) | 傳回大於或等於指定之數值運算式的最小整數值。 |
 | FLOOR(x) | 傳回小於或等於指定之數值運算式的最大整數。 |
 | SIGN(x) | 傳回指定之數值運算式的正數 (+1)、零 (0) 或負數 (-1) 符號。|
@@ -472,9 +533,9 @@ GROUP BY 的正式語法如下︰
 [lnk-devguide-endpoints]: iot-hub-devguide-endpoints.md
 [lnk-devguide-quotas]: iot-hub-devguide-quotas-throttling.md
 [lnk-devguide-mqtt]: iot-hub-mqtt-support.md
-[lnk-devguide-messaging-routes]: iot-hub-devguide-messaging.md#routing-rules
-[lnk-devguide-messaging-format]: iot-hub-devguide-messaging.md#message-format
-
+[lnk-devguide-messaging-routes]: iot-hub-devguide-messages-read-custom.md
+[lnk-devguide-messaging-format]: iot-hub-devguide-messages-construct.md
+[lnk-devguide-messaging-routes]: ./iot-hub-devguide-messages-read-custom.md
 
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md
 

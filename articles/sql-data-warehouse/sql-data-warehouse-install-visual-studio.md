@@ -3,7 +3,7 @@ title: "安裝適用於 SQL 資料倉儲的 Visual Studio 和 SSDT | Microsoft D
 description: "安裝適用於 Azure SQL 資料倉儲的 Visual Studio 和 SQL Server Development Tools (SSDT)"
 services: sql-data-warehouse
 documentationcenter: NA
-author: barbkess
+author: antvgski
 manager: jhubbard
 editor: 
 ms.assetid: 0ed9b406-9b42-4fe6-b963-fe0a5b48aac1
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: connect
 ms.date: 03/30/2017
-ms.author: barbkess
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: ae025ee2e6865b225efc5e225e261ac579a339aa
-ms.lasthandoff: 04/03/2017
+ms.author: anvang;barbkess
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: f7023b78c241a7bc8014276cd0bfa455165b42cc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.lasthandoff: 04/03/2017
 ## <a name="step-2-install-ssdt"></a>步驟 2：安裝 SSDT
 若要安裝適用於 Visual Studio 的 SSDT，只需依照下列步驟，從 Visual Studio 檢查 SSDT 更新。
 
-1. 在 Visual Studio 中，按一下 [工具] / [擴充功能和更新] / [更新]
+1. 在 Visual Studio 中，按一下 [工具] / [擴充功能和更新] / [更新]。
 2. 選取 [產品更新]，然後尋找 [適用於資料庫工具的 Microsoft SQL Server 更新]
 
 如果找不到更新，表示您應該已安裝最新版本。  若要確認已安裝 SSDT，請按一下 [說明] / [關於 Microsoft Visual Studio]，然後在清單中尋找 SQL Server Data Tools。  SSDT 的最新版本是 14.0.60525.0。  如果無法在 Visual Studio 中使用安裝選項，或者您也可以瀏覽 [SSDT 下載][SSDT Download]頁面，手動下載和安裝 SSDT。

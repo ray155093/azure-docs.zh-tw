@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 04/27/2017
 ms.author: sethm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f291186c6a68dea8aa00b846a2e6f3ad0d7996c
-ms.openlocfilehash: 4e145740f8485e4a02c70f2c9d3a9fa6057da635
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: ef14dbaecf5675fa92c91cb5df58b65f59764fa7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -64,9 +64,9 @@ var azure = require('azure');
 ### <a name="set-up-a-service-bus-connection"></a>設定服務匯流排連接
 Azure 模組會讀取環境變數 AZURE\_SERVICEBUS\_NAMESPACE 和 AZURE\_SERVICEBUS\_ACCESS\_KEY，以取得連接服務匯流排所需的資訊。 如果您未設定這些環境變數，必須在呼叫 **createServiceBusService** 時指定帳戶資訊。
 
-如需在「Azure 雲端服務」組態檔中設定環境變數的範例，請參閱[使用儲存體的 Node.js 雲端服務][Node.js Cloud Service with Storage]。
+如需在 Azure 雲端服務的環境變數設定範例，請參閱[使用儲存體的 Node.js 雲端服務][Node.js Cloud Service with Storage]。
 
-如需在 [Azure 傳統入口網站][Azure classic portal] 中設定 Azure 網站環境變數的範例，請參閱[使用儲存體的 Node.js Web 應用程式][Node.js Web Application with Storage]。
+如需 Azure 網站的環境變數設定範例，請參閱[使用儲存體的 Node.js Web 應用程式][Node.js Web Application with Storage]。
 
 ## <a name="create-a-topic"></a>建立主題
 **ServiceBusService** 物件可讓您使用主題。 下列程式碼將建立 **ServiceBusService** 物件。 請將程式碼新增至 **server.js** 檔案的頂端附近，放置在匯入 azure 模型的陳述式後方：

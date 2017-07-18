@@ -1,28 +1,35 @@
 ---
-title: "Azure SQL Database 的稽核、TDS 重新導向及 IP 端點 |Microsoft Docs"
+title: "Azure SQL Database 的資料表稽核、TDS 重新導向及 IP 端點 | Microsoft Docs"
 description: "了解在 Azure SQL Database 中實作資料表稽核時的稽核、TDS 重新導向及 IP 端點變更。"
 services: sql-database
 documentationcenter: 
-author: ronitr
+author: giladm
 manager: jhubbard
 editor: 
 ms.assetid: 4ef19ed1-e798-43a2-ad99-0e563f93ab53
 ms.service: sql-database
-ms.custom: security-protect
+ms.custom: security
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
-ms.author: ronitr
-translationtype: Human Translation
-ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
-ms.openlocfilehash: bcc02abb62b21aadb10e62320b02b33c3c244c17
-ms.lasthandoff: 02/17/2017
+ms.date: 05/31/2017
+ms.author: giladm
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 1447a75758475dd6536ef1bcd0e8432e5618dab8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
-# <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-auditing"></a>SQL Database - 下層用戶端支援與針對「稽核」的 IP 端點變更
+
+# <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-table-auditing"></a>SQL Database - 資料表稽核的舊版用戶端支援與 IP 端點變更
+
+> [!IMPORTANT]
+> 本文件僅適用於資料表稽核，也就是**現已淘汰**。<br>
+> 請使用新的 [Blob 稽核](sql-database-auditing.md)方法，**不**需要修改舊版用戶端連接字串。 Blob 稽核的其他資訊位在[開始使用 SQL Database 稽核](sql-database-auditing.md)。
+
 [資料庫稽核](sql-database-auditing.md)可自動與支援 TDS 重新導向的 SQL 用戶端搭配運作。 請注意，使用「Blob 稽核」方法時，不適用重新導向。
 
 ## <a id="subheading-1"></a>舊版用戶端支援

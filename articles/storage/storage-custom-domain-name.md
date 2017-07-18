@@ -12,13 +12,13 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 05/25/2017
 ms.author: marsma
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: e99294069f92f51d212b38b1c5ee12232c6dc77d
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: f3336d4b0036e1dc181de1f1296da521f68b9464
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 04/27/2017
 您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 Blob 資料。 Blob 儲存體的預設端點是 `<storage-account-name>.blob.core.windows.net`。 若您將自訂網域和子網域 (如 **www.contoso.com**) 對應至儲存體帳戶的 Blob 端點，則可讓使用者使用該網域存取您儲存體帳戶中的 Blob 資料。
 
 > [!IMPORTANT]
-> Azure 儲存體尚未支援使用自訂網域的 HTTPS。 雖然目前尚未訂出可分享的特定時程表，但我們已了解到客戶對此功能具有熱切需求。
+> Azure 儲存體尚未以原生方式支援使用自訂網域的 HTTPS。 您目前可以[使用 Azure CDN 透過 HTTP 以自訂網域存取 blob](./storage-https-custom-domain-cdn.md)。
 >
 
 下表展示的幾個範例 URL，適用於名為 **mystorageaccount** 之儲存體帳戶中的 Blob 資料。 針對儲存體帳戶註冊的自訂網域為 **www.contoso.com**：
@@ -71,7 +71,7 @@ ms.lasthandoff: 04/27/2017
 1. 尋找管理 CNAME 的區段。 您可能需要移至進階設定頁面，並尋找 **CNAME**、**Alias** 或 **Subdomains** 單字。
 1. 建立新的 CNAME 記錄並提供子網域別名，如 **www** 或 **photos**。 接著，以 **mystorageaccount.blob.core.windows.net** 格式 (其中 *mystorageaccount* 代表儲存體帳戶的名稱) 提供主機名稱 (即 Blob 服務端點)。 在 [Azure 入口網站](https://portal.azure.com)中，主機名稱會顯示於 [自訂網域] 刀鋒視窗的項目 #1。
 1. 在 [Azure 入口網站](https://portal.azure.com) [自訂網域] 刀鋒視窗的文字方塊中，輸入包含子網域的自訂網域名稱。 例如，若您的網域為 **contoso.com**，且子網域別名為 **www**，請輸入 **www.contoso.com**。 若您的子網域為 **photos**，請輸入 **photos.contoso.com**。 子網域為*必要項目*。
-1. 在 [自訂網域] 刀鋒視窗上選取 [儲存]，以註冊您的自訂網域。 若註冊成功，則您會看見訊息指出已成功更新儲存體帳戶。
+1. 在 [自訂網域] 刀鋒視窗上選取 [儲存]，以註冊您的自訂網域。 如果註冊成功，您會看見指出已成功更新儲存體帳戶的入口網站通知。
 
 一旦透過 DNS 傳播您的新 CNAME 記錄，使用者只要具備適當權限，即可透過您的自訂網域檢視 Blob 資料。
 
@@ -87,7 +87,7 @@ ms.lasthandoff: 04/27/2017
 1. 建立新的 CNAME 記錄，並提供包含 *asverify* 子網域的子網域別名。 例如 **asverify.www** 或 **asverify.photos**。 接著，以 **asverify.mystorageaccount.blob.core.windows.net** 格式 (其中 **mystorageaccount** 代表儲存體帳戶的名稱) 提供主機名稱 (即 Blob 服務端點)。 在 [Azure 入口網站](https://portal.azure.com)中，主機名稱會顯示於 [自訂網域] 刀鋒視窗的項目 #2。
 1. 在 [Azure 入口網站](https://portal.azure.com) [自訂網域] 刀鋒視窗的文字方塊中，輸入包含子網域的自訂網域名稱。 不包含 *asverify*。 例如，若您的網域為 **contoso.com**，且子網域別名為 **www**，請輸入 **www.contoso.com**。 若您的子網域為 **photos**，請輸入 **photos.contoso.com**。 子網域為必要項目。
 1. 選取 [使用間接 CNAME 驗證] 核取方塊。
-1. 在 [自訂網域] 刀鋒視窗上選取 [儲存]，以註冊您的自訂網域。 若註冊成功，則您會看見訊息指出已成功更新儲存體帳戶。 此時，自訂網域已通過 Azure 的驗證，不過前往網域的流量尚未路由傳送到儲存體帳戶。
+1. 在 [自訂網域] 刀鋒視窗上選取 [儲存]，以註冊您的自訂網域。 如果註冊成功，您會看見指出已成功更新儲存體帳戶的入口網站通知。 此時，自訂網域已通過 Azure 的驗證，不過前往網域的流量尚未路由傳送到儲存體帳戶。
 1. 返回 DNS 提供者的網站，然後建立將子網域對應至 Blob 服務端點的另一個 CNAME 記錄。 例如，將子網域指定為 **www** 或 **photos** (無 *asverify*)，並將主機名稱指定為 **mystorageaccount.blob.core.windows.net** (其中 **mystorageaccount** 為您儲存體帳戶的名稱)。 待這個步驟完成後，自訂網域的註冊作業也宣告完成。
 1. 最後，您可刪除已建立的 CNAME 記錄 (包含 **asverify** 子網域)，因為只有在中繼步驟中才需要使用該記錄。
 
@@ -106,6 +106,17 @@ ms.lasthandoff: 04/27/2017
 ## <a name="deregister-a-custom-domain"></a>取消註冊自訂網域
 
 若要取消註冊您的 Blob 儲存體端點自訂網域，請使用下列其中一項程序。
+
+### <a name="azure-portal"></a>Azure 入口網站
+
+請在 Azure 入口網站中執行下列作業，以移除自訂的網域設定：
+
+1. 在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的儲存體帳戶。
+1. 在功能表刀鋒視窗的 [BLOB SERVICE] 下方，選取 [自訂網域] 以開啟 [自訂網域] 刀鋒視窗。
+1. 清除包含自訂網域名稱的文字方塊中的內容。
+1. 選取 [儲存] 按鈕。
+
+順利移除自訂網域後，您會看到指出已成功更新儲存體帳戶的入口網站通知。
 
 ### <a name="azure-cli-20"></a>Azure CLI 2.0
 
@@ -134,7 +145,7 @@ ms.lasthandoff: 04/27/2017
 使用 [Set-AzureRmStorageAccount](/powershell/module/azurerm.storage/set-azurermstorageaccount) PowerShell cmdlet，並指定 `-CustomDomainName`引數值的空字串 (`""`)，以移除自訂網域註冊。
 
 * 命令格式︰
-  
+
   ```powershell
   Set-AzureRmStorageAccount `
       -ResourceGroupName "<resource-group-name>" `
@@ -151,11 +162,7 @@ ms.lasthandoff: 04/27/2017
       -CustomDomainName ""
   ```
 
-### <a name="azure-portal"></a>Azure 入口網站
-
-您目前無法移除使用 Azure 入口網站的自訂網域註冊。 這是已知的問題。 我們目前未提供解決日期，但在解決此問題時會更新本文。 在此過渡期間，請使用 Azure CLI 2.0 或 Azure PowerShell 來移除自訂網域設定。
-
 ## <a name="next-steps"></a>後續步驟
 * [將自訂網域對應至 Azure 內容傳遞網路 (CDN) 端點](../cdn/cdn-map-content-to-custom-domain.md)
-
+* [使用 Azure CDN 透過 HTTP 以自訂網域存取 blob](./storage-https-custom-domain-cdn.md)
 

@@ -14,12 +14,12 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 09/14/2016
 ms.author: rclaus
-ms.custom: H1Hack27Feb2017
+ms.custom: H1Hack27Feb2017, mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: d47447007c3bac51dc9ee0a17948ef9a42377a22
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 981b87540070dff18a01d6bf3dce24a675b451aa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="azure-and-linux"></a>Azure 和 Linux
@@ -52,7 +52,6 @@ Azure 虛擬機器可供您靈活部署各種運算方案。 您可以在大部�
 當您在 Azure 中部署 VM 時，會從我們一系列的大小中選取一個適合您工作負載的 VM 大小。 大小也會影響虛擬機器的處理能力、記憶體和儲存體容量。 收費的依據則是 VM 執行和使用其配置資源的時間長短。 完整的[虛擬機器大小](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)清單。
 
 以下是一些從我們提供的系列 (A、D、DS、G 和 GS) 中選取一個 VM 大小的基本指導方針。
-
 * A 系列 VM 是物超所值的入門級 VM，適用於輕度工作負載和開發/測試案例。 所有區域皆廣泛提供此系列 VM，其可用來連接並使用虛擬機器可用的所有標準資源。
 * A 系列大小 (A8 - A11) 則是特殊的可進行大量運算的組態，適用於高效能的運算叢集應用程式。
 * D 系列 VM 是為了執行要求更高計算能力和暫存磁碟效能的應用程式所設計。 D 系列 VM 提供更快的處理器、較高的記憶體與核心比率，以及適用於暫存磁碟的固態硬碟 (SSD)。
@@ -94,7 +93,7 @@ Microsoft 與我們的合作夥伴密切合作，以確保更新可用的映像�
 * Docker - [Azure Marketplace - 與 Docker Swarm 搭配使用的 Azure Container Service](https://azure.microsoft.com/marketplace/partners/microsoft/acsswarms/)
 * Jenkins - [Azure Marketplace - CloudBees Jenkins Platform](https://azure.microsoft.com/marketplace/partners/cloudbees/jenkins-platformjenkins-platform/)
 
-## <a name="getting-setup-on-azure"></a>在 Azure 上進行設定
+## <a name="getting-started-with-linux-on-azure"></a>在 Azure 上開始使用 Linux
 若要開始使用 Azure，您需要一個 Azure 帳戶、安裝 Azure CLI，以及一組 SSH 公開和私密金鑰。
 
 ### <a name="sign-up-for-an-account"></a>註冊帳戶

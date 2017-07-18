@@ -17,10 +17,10 @@ ms.custom: H1Hack27Feb2017
 ms.date: 03/31/2017
 ms.author: LADocs; jehollan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 32a5cfdb520c745dbd0fa5c433849bd3783a364e
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: c92692db23ac59f67890e26cce6b2d3272e8901d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 06/01/2017
 
 ---
 
@@ -32,9 +32,9 @@ ms.lasthandoff: 05/11/2017
 
 * [要求](../connectors/connectors-native-reqres.md)
 
-* [API 連線 Webhook](logic-apps-workflow-actions-triggers.md#api-connection)
+* [API 連線 Webhook](logic-apps-workflow-actions-triggers.md#api-connection-trigger)
 
-* [HTTP Webhook](../connectors/connectors-native-http.md)
+* [HTTP Webhook](../connectors/connectors-native-webhook.md)
 
    > [!NOTE]
    > 雖然我們的範例使用 [要求] 觸發程序，但是您可以使用任何列出的 HTTP 觸發程序，而且所有的原則都會同樣地套用到其他觸發程序類型。
@@ -211,7 +211,7 @@ ms.lasthandoff: 05/11/2017
 
 ## <a name="reference-content-from-an-incoming-request"></a>參考來自傳入要求的內容
 
-如果內容的類型是 `application/json`，您可以從傳入要求參考屬性。 否則，會將內容視為可傳遞給其他 API 的單一二進位單位。 必須轉換此內容，才能在工作流程內部參考該內容。 例如，如果您要傳遞 `application/xml` 內容，可以使用 `@xpath()` 進行 XPath 擷取，或使用 `@json()` 來將 XML 轉換成 JSON。 深入了解如何[使用內容類型](../logic-apps/logic-apps-content-type.md)。
+如果內容的類型是 `application/json`，您可以從傳入要求參考屬性。 否則，會將內容視為可傳遞給其他 API 的單一二進位單位。 若要在工作流程內部參考此內容，您必須轉換該內容。 例如，如果您要傳遞 `application/xml` 內容，可以使用 `@xpath()` 進行 XPath 擷取，或使用 `@json()` 來將 XML 轉換成 JSON。 深入了解如何[使用內容類型](../logic-apps/logic-apps-content-type.md)。
 
 若要取得傳入要求的輸出，您可以使用 `@triggerOutputs()` 函式。 輸出可能如下列範例所示︰
 
@@ -277,9 +277,11 @@ ms.lasthandoff: 05/11/2017
 
 答：Azure 會使用共用存取簽章 (SAS)，安全地產生邏輯應用程式回呼 URL。 這個簽章是以查詢參數的形式傳遞，且必須在引發您的邏輯應用程式之前先驗證。 Azure 會使用每個邏輯應用程式、觸發程序名稱以及要執行作業之秘密金鑰的唯一組合來產生簽章。 因此，除非某人具有邏輯應用程式秘密金鑰的存取權，否則他們無法產生有效的簽章。
 
-   > [!NOTE]
-   > 對於生產/安全系統，強烈建議直接從瀏覽器呼叫邏輯應用程式，原因在於 URL 中包含共用存取金鑰，以及系統會在全體邏輯應用程式客戶之間共用網域而無法管理安全內容原則。
-
+   > [!IMPORTANT]
+   > 對於生產和安全系統，強烈建議直接從瀏覽器呼叫邏輯應用程式，因為：
+   > 
+   > * URL 中出現共用存取金鑰。
+   > * 您由於邏輯應用程式客戶之間共用網域，而無法管理安全內容原則。
 
 #### <a name="q-can-i-configure-http-endpoints-further"></a>問︰我可以進一步設定 HTTP 端點嗎？
 

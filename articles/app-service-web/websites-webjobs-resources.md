@@ -14,22 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/25/2017
 ms.author: glenga
-translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: fc5c87e45f3c92172f01a462451bc145ce8b0b16
-ms.lasthandoff: 03/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 9023ca104fcab29bc0b16ecd3a6584848e2d453e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
 # <a name="azure-webjobs-documentation-resources"></a>Azure WebJobs 文件資源
 ## <a name="overview"></a>概觀
-本主題連結至有關如何使用 Azure WebJobs 和 Azure WebJobs SDK 的文件資源。 Azure WebJob 可讓您輕鬆地在 [App Service Web 應用程式、API 應用程式或行動應用程式](../app-service/app-service-value-prop-what-is.md)上以背景處理序的方式執行指令碼或程式。 您可以上傳並執行可執行檔，例如 cmd、bat、exe (.NET)、ps1、sh、php、py、js 和 jar。 這些程式會依照排程 (cron) 或持續當作 WebJobs 執行。
+本主題連結至有關如何使用 Azure WebJobs 和 Azure WebJobs SDK 的文件資源。 Azure WebJob 可讓您輕鬆地在 [App Service Web 應用程式、API 應用程式或行動應用程式](../app-service/app-service-value-prop-what-is.md)上以背景處理序的方式執行指令碼或程式。 您可以上傳並執行 cmd、bat、exe (.NET)、ps1、sh、php、py、js 和 jar 這類可執行檔。 這些程式會依照排程 (cron) 或持續當作 WebJobs 執行。
 
-[WebJobs SDK](websites-webjobs-resources.md) 的目的是為了簡化您對 WebJob 可執行的一般工作 (例如，映像處理、佇列處理、RSS 彙總、檔案維護和傳送電子郵件) 所撰寫的程式碼。 WebJobs SDK 具有內建功能，用於處理 Azure 儲存體和服務匯流排、工作排程和處理錯誤，以及許多其他常見案例。 此外，它的設計具有擴充性，而且有 [擴充功能的開放原始碼儲存機制](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview)。 [Azure Functions](../azure-functions/functions-overview.md) (目前為預覽) 以使用 C# 指令碼、Node.js 和其他語言的 WebJobs SDK 版本為基礎。 
+[WebJobs SDK](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk) 的目的是為了簡化您對 WebJob 可執行的一般工作 (例如，映像處理、佇列處理、RSS 彙總、檔案維護和傳送電子郵件) 所撰寫的程式碼。 WebJobs SDK 具有內建功能，用於處理 Azure 儲存體和服務匯流排、工作排程和處理錯誤，以及許多其他常見案例。 此外，它的設計具有擴充性，而且有 [擴充功能的開放原始碼儲存機制](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview)。 [Azure Functions](../azure-functions/functions-overview.md) (目前為預覽) 以使用 C# 指令碼、Node.js 和其他語言的 WebJobs SDK 版本為基礎。 
 
 [!INCLUDE [app-service-web-webjobs-corenote](../../includes/app-service-web-webjobs-corenote.md)]
 
-使用 Visual Studio 中的整合工具可完美地建立、部署和管理 WebJobs。 您可以從範本建立 WebJobs、發佈及管理 (執行/停止/監視/偵錯) 它們。 
+使用 Visual Studio 中的整合工具可完美地建立、部署和管理 WebJobs。 您可以從範本建立 WebJobs、加以發佈並進行管理 (執行、停止、監視與偵錯)。 
 
 Azure 入口網站中的 WebJob 儀表板提供強大的管理功能，讓您能夠完全掌控 WebJob 的執行，包括叫用 WebJob 內個別函數的功能。 儀表板也會顯示函數執行階段和記錄輸出。 
 
@@ -38,7 +39,7 @@ Azure 入口網站中的 WebJob 儀表板提供強大的管理功能，讓您能
 * [Azure WebJobs 太酷了，趕快使用，不要猶豫！](http://www.troyhunt.com/2015/01/azure-webjobs-are-awesome-and-you.html) (取自 Troy Hunt 的部落格文章，英文。)
 * [Azure WebJobs 功能 (英文)](https://azure.microsoft.com/blog/2014/10/22/webjobs-goes-into-full-production/)
 * [什麼是 Azure WebJobs SDK (英文)](websites-dotnet-webjobs-sdk.md)
-* [Microsoft Patterns and Practices 提供的背景工作指引 (英文)](/documentation/articles/best-practices-background-jobs/)
+* [Microsoft Patterns and Practices 提供的背景工作指引 (英文)](https://docs.microsoft.com/azure/architecture/best-practices/background-jobs)
 * [宣佈推出 Microsoft Azure WebJobs SDK 的 1.1.0 RTM (英文)](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/)
 * [開始使用 Azure WebJobs SDK (英文)](websites-dotnet-webjobs-sdk-get-started.md)
 * [如何透過 WebJobs SDK 使用 Azure 佇列儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)

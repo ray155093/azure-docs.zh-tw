@@ -3,7 +3,7 @@ title: "Azure 中 Windows VM 的 VM 保留維護 | Microsoft Docs"
 description: "針對記憶體保留更新的就地 VM 移轉。"
 services: virtual-machines-windows
 documentationcenter: 
-author: 
+author: zivr
 manager: timlt
 editor: 
 tags: azure-service-management,azure-resource-manager
@@ -14,11 +14,12 @@ ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2017
-ms.author: 
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: bc903f7523295da704ea8f0128dd553e3fdd96a9
-ms.lasthandoff: 03/31/2017
+ms.author: zivr
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 8888bafbc3aba24168312b611a9b4fbde25f376d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -37,4 +38,5 @@ ms.lasthandoff: 03/31/2017
 
 多重執行個體更新 (可用性設定組中的 VM) 一次只會套用到一個更新網域。
 
-在虛擬機器中執行的應用程式，可以透過呼叫中繼資料服務排定的事件，來了解即將發行的更新。 如需排定的事件的詳細資訊，請參閱 [Azure 中繼資料服務 - 排定的事件](../virtual-machines-scheduled-events.md)。
+這些更新對某些應用程式的影響可能比對其他應用程式更大。 例如，執行即時事件處理、媒體串流處理或轉碼，或是高輸送量網路服務案例的應用程式，其設計可能不會容許暫停 30 秒。 在虛擬機器中執行的應用程式，可以透過呼叫 [Azure 中繼資料服務](../virtual-machines-instancemetadataservice-overview.md)的[排程的事件](../virtual-machines-scheduled-events.md) API，來了解即將發行的更新。
+

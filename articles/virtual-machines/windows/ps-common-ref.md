@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 03/02/2017
 ms.author: davidmu
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 6b6e3f0a1182fbce209494af111cf8159e43b639
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: b8714cf97e0497cfea2b5c449ec857a16cc14924
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -64,7 +64,7 @@ ms.lasthandoff: 05/17/2017
 | 重新啟動執行中的 VM |[Restart-AzureRmVM](/powershell/module/azurerm.compute/restart-azurermvm) -ResourceGroupName $myResourceGroup -Name $myVM |
 | 刪除 VM |[Remove-AzureRmVM](/powershell/module/azurerm.compute/remove-azurermvm) -ResourceGroupName $myResourceGroup -Name $myVM |
 | 一般化 VM |[Set-AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm) -ResourceGroupName $myResourceGroup -Name $myVM -Generalized<BR></BR><BR></BR>您在執行 Save-AzureRmVMImage 前需執行此命令。 |
-| 擷取 VM |[Save-AzureRmVMImage](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/Save-AzureRmVMImage) -ResourceGroupName $myResourceGroup -VMName $myVM -DestinationContainerName "myImageContainer" -VHDNamePrefix "myImagePrefix" -Path "C:\filepath\filename.json"<BR></BR><BR></BR>必須[關閉並一般化](generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)虛擬機器以用來建立映像。 請在執行此命令前，執行 Set-AzureRmVm。 |
+| 擷取 VM |[Save-AzureRmVMImage](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/Save-AzureRmVMImage) -ResourceGroupName $myResourceGroup -VMName $myVM -DestinationContainerName "myImageContainer" -VHDNamePrefix "myImagePrefix" -Path "C:\filepath\filename.json"<BR></BR><BR></BR>虛擬機器必須[就緒、關閉並一般化](prepare-for-upload-vhd-image.md)後，才能用以建立映像。 請在執行此命令前，執行 Set-AzureRmVm。 |
 | 更新 VM |[Update-AzureRmVM](/powershell/module/azurerm.compute/update-azurermvm) -ResourceGroupName $myResourceGroup -VM $vm<BR></BR><BR></BR>使用 Get-AzureRmVM 取得目前的 VM 組態，變更 VM 物件上的組態設定，然後執行此命令。 |
 | 將資料磁碟新增至 VM |[Add-AzureRmVMDataDisk](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/Add-AzureRmVMDataDisk) -VM $vm -Name "myDataDisk" -VhdUri "https://mystore1.blob.core.windows.net/vhds/myDataDisk.vhd" -LUN # -Caching ReadWrite -DiskSizeinGB # -CreateOption Empty<BR></BR><BR></BR>使用 Get-AzureRmVM 來取得 VM 物件。 指定磁碟的 LUN 編號和大小。 執行 Update-AzureRmVM 以將組態變更套用至 VM。 您新增的磁碟尚未初始化。 |
 | 從 VM 移除資料磁碟 |[Remove-AzureRmVMDataDisk](/powershell/module/azurerm.compute/remove-azurermvmdatadisk) -VM $vm -Name "myDataDisk"<BR></BR><BR></BR>使用 Get-AzureRmVM 來取得 VM 物件。 執行 Update-AzureRmVM 以將組態變更套用至 VM。 |

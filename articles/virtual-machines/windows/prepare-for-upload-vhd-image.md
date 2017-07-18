@@ -13,12 +13,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 1/11/2017
+ms.date: 5/26/2017
 ms.author: glimoli;genli
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 104063500a33dfe55c56467517a5002c562772df
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 4d8972e5a18cbe471ec4c5baa53992cc23fad129
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -261,20 +262,31 @@ sc config RemoteRegistry start= auto
    * [KB3115224](https://support.microsoft.com/kb/3115224) 為在 Windows Server 2012 R2 或 Windows Server 2012 主機上執行的 VM 提供的可靠性改進
    * [KB3140410](https://support.microsoft.com/kb/3140410) MS16-031：Microsoft Windows 的安全性更新，可解決提高權限問題：2016 年 3 月 8 日
    * [KB3063075](https://support.microsoft.com/kb/3063075) 當您在 Microsoft Azure 中執行 Windows Server 2012 R2 虛擬機器時，會記錄許多識別碼 129 的事件
-   * [KB3137061](https://support.microsoft.com/kb/3137061) Microsoft Azure VM 無法從網路中斷情況復原，並發生資料損毀問題
    * [KB3114025](https://support.microsoft.com/kb/3114025) 當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢
    * [KB3033930](https://support.microsoft.com/kb/3033930) Hotfix 可針對 Windows 中的 Azure 服務，提高每個處理序在 RIO 緩衝區中的 64K 限制
    * [KB3004545](https://support.microsoft.com/kb/3004545) 您無法在 Windows 中透過 VPN 連線，存取裝載於 Azure 裝載服務上的虛擬機器
    * [KB3082343](https://support.microsoft.com/kb/3082343) 當 Azure 網站間 VPN 通道使用 Windows Server 2012 R2 RRAS 時，遺失了跨單位 VPN 連線
-   * [KB3140410](https://support.microsoft.com/kb/3140410) MS16-031：Microsoft Windows 的安全性更新，可解決提高權限問題：2016 年 3 月 8 日
    * [KB3146723](https://support.microsoft.com/kb/3146723) MS16-048：CSRSS 安全性更新的描述︰2016 年 4 月 12 日
    * [KB2904100](https://support.microsoft.com/kb/2904100) 在 Windows 中，系統會在磁碟 I/O 期間凍結
      
 ## 執行 Sysprep  <a id="step23"></a>    
-如果您想要建立映像以部署至多部電腦，您需要先[執行 Sysprep 來將該映像一般化](generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，然後將 VHD 上傳至 Azure。 您不需要執行 Sysprep 即可使用特定的 VHD。 如需詳細資訊，請參閱下列文章。
+如果您想要建立部署至多部 VM 的映像，您需要先執行 Sysprep 來將該映像一般化，再將 VHD 上傳至 Azure。 您不需要執行 Sysprep 即可使用特定的 VHD。 
+
+Sysprep 會移除您的所有個人帳戶資訊以及其他項目，並準備電腦以做為映像。 如需 Sysprep 的詳細資訊，請參閱 [如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx)。
+
+請確定 Sysprep 支援電腦上執行的伺服器角色。 如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
+
+1. 登入 Windows 虛擬機器。
+2. 以系統管理員身分開啟 [命令提示字元] 視窗。 切換至 **%windir%\system32\sysprep** 目錄，然後執行 `sysprep.exe`。
+3. 在 [系統準備工具] 對話方塊中，選取 [進入系統全新體驗 (OOBE)]，並確認已勾選 [一般化] 核取方塊。
+4. 在 [關機選項] 中選取 [關機]。
+5. 按一下 [確定] 。
    
-   * [使用 Sysprep 將 Windows 虛擬機器一般化](generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-   * [伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
+    ![啟動 Sysprep](./media/upload-generalized-managed/sysprepgeneral.png)
+6. Sysprep 完成時，會關閉虛擬機器。 不要重新啟動 VM。
+
+
+
 
 ## <a name="complete-recommended-configurations"></a>完成建議的設定
 下列設定不會影響 VHD 上傳。 不過，我們強烈建議您設定它們。
@@ -300,6 +312,6 @@ sc config RemoteRegistry start= auto
     ```
 
 ## <a name="next-steps"></a>後續步驟
-* [將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](upload-generalized-managed.md)
 
 

@@ -13,12 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/10/2017
-ms.author: padmavc
+ms.author: LADocs; padmavc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 197df490690754730425231f358fde31d17dcfad
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 97864ade77fc694bd1eababe22e6eeb4b9d6e11e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -69,71 +69,73 @@ Logic Apps 整合帳戶中的商務持續性會根據 B2B 通訊協定 X12、AS2
 
 ## <a name="x12"></a>X12 
 EDI X12 文件的商務持續性是根據控制編號：
-* 收到合作夥伴發出的控制編號 (輸入訊息)  
-* 產生控制編號 (輸出訊息) 並傳送給合作夥伴 
-    
-    > [!Tip]
+
+> [!Tip]
     > 您也可以使用 [X12 快速啟動範本](https://azure.microsoft.com/documentation/templates/201-logic-app-x12-disaster-recovery-replication/)來建立 Logic Apps。 建立主要和次要整合帳戶是使用範本的必要條件。 這個範本可讓您建立 2 個 Logic Apps，一個用於接收的控制編號，另一個用於產生的控制編號。 會在 Logic Apps 中建立個別的觸發程序和動作，將觸發程序連線至主要整合帳戶，並將動作連線至次要整合帳戶。
-    > 
+    >
     >
 
-### <a name="control-numbers-received-from-partners"></a>收到合作夥伴發出的控制編號
+必要條件：在 X12 合約接收設定中選取重複檢查設定，以啟用輸入訊息 ![x12 搜尋](./media/logic-apps-enterprise-integration-b2b-business-continuity/dupcheck.png)的 DR 功能  
 
-1. 啟用合約接收設定上的重複檢查   
-![X12 搜尋](./media/logic-apps-enterprise-integration-b2b-business-continuity/dupcheck.png)  
+1. 在次要地區中建立[邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。    
 
-2. 在次要地區中建立[邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 
-
-3. 搜尋 **X12**，並選取 [X12 - 修改接收的控制編號時]。   
-![X12 搜尋](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12recevicedCN1.png)
-
-4. 觸發程序會提示您建立整合帳戶的連線。 觸發程序需連線至主要區域整合帳戶。 輸入連線名稱，並選取清單中的 [主要區域整合帳戶]，然後按一下 [建立]。  
-![主要區域整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12recevicedCN2.png)
-
-5. **開始控制編號同步處理的日期時間**設定是選用的。 **頻率**可以設為**天**、**小時**、**分鐘**或**秒**的間隔。  
-![日期時間和頻率](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12recevicedCN3.png)
-
-6. 選取 [新增步驟] > [新增動作]。    
-![新增動作](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12recevicedCN4.png)
-
-7. 搜尋 **X12**，並選取 [X12 - 新增或更新接收的控制編號]。   
-![已接收的控制編號修改](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12recevicedCN5.png)
-
-8. 若要將動作連線到次要地區整合帳戶，請選取 [變更連線] > [新增新的連線]，取得可用整合帳戶的清單。 輸入連線名稱，並選取清單中的 [次要地區整合帳戶]，然後按一下 [建立]。   
-![次要地區整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12recevicedCN6.png)
-
-9. 選取動態內容，並儲存邏輯應用程式。 
-![動態內容](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12recevicedCN7.png)
-
-10. 根據時間間隔，觸發程序會輪詢主要區域接收的控制編號資料表，並提取新的記錄。 動作會將它們更新至次要地區整合帳戶。 如果沒有更新，則觸發程序狀態將顯示為**忽略**。
-![控制編號資料表](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12recevicedCN8.png)
-
-### <a name="control-numbers-generated-and-sent-to-partners"></a>產生控制編號並傳送給合作夥伴
-1. 在次要地區中建立[邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
-
-2. 搜尋 **X12**，並選取 [X12 - 修改產生的控制編號時]。  
-![已產生的控制編號修改](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12generatedCN1.png)
+2. 搜尋 **X12**，並選取 [X12 - 當控制編號修改時]。   
+![x12 搜尋](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn1.png)
 
 3. 觸發程序會提示您建立整合帳戶的連線。 觸發程序需連線至主要區域整合帳戶。 輸入連線名稱，並選取清單中的 [主要區域整合帳戶]，然後按一下 [建立]。   
-![主要區域整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12generatedCN2.png) 
+![主要區域整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn2.png)
 
-4. **開始控制編號同步處理的日期時間**設定是選用的。 **頻率**可以設為**天**、**小時**、**分鐘**或**秒**的間隔。  
-![日期時間和頻率](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12generatedCN3.png)  
+4. **開始控制編號同步處理的日期時間**設定是選用的。 **頻率**可以設為**天**、**小時**、**分鐘**或**秒**的間隔。   
+![日期時間和頻率](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn3.png)
 
-5. 選取 [新增步驟] > [新增動作]。  
-![新增動作](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12generatedCN4.png)
+5. 選取 [新增步驟] > [新增動作]。    
+![新增動作](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn4.png)
 
-6. 搜尋 **X12**，並選取 [X12 - 新增或更新產生的控制編號時]。   
-![所產生的控制編號新增或更新](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12generatedCN5.png)
+6. 搜尋 **X12**，並選取 [X12 - 新增或更新控制編號]。   
+![已接收的控制編號修改](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn5.png)
 
-7. 若要將動作連線到次要整合帳戶，請選取 [變更連線] > [新增新的連線]，取得可用整合帳戶的清單。 輸入連線名稱，並選取清單中的 [次要地區整合帳戶]，然後按一下 [建立]。   
-![次要地區整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12generatedCN6.png)
+7. 若要將動作連線到次要地區整合帳戶，請選取 [變更連線] > [新增新的連線]，取得可用整合帳戶的清單。 輸入連線名稱，並選取清單中的 [次要地區整合帳戶]，然後按一下 [建立]。   
+![次要地區整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn6.png)
 
-8. 選取動態內容，並儲存邏輯應用程式。 
-![動態內容](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12generatedCN7.png)
+8. 選取動態內容，並儲存邏輯應用程式。   
+![動態內容](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn7.png)
 
-9. 根據時間間隔，觸發程序會輪詢主要區域接收的控制編號資料表，並提取新的記錄。 動作會將它們更新至次要地區整合帳戶。 如果沒有更新，則觸發程序狀態將顯示為**忽略**。  
-![控制編號資料表](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12generatedCN8.png)
+9. 根據時間間隔，觸發程序會輪詢主要區域接收的控制編號資料表，並提取新的記錄。 動作會將它們更新至次要地區整合帳戶。 如果沒有更新，則觸發程序狀態將顯示為**忽略**。   
+![控制編號資料表](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12recevicedcn8.png)
+
+根據時間間隔，累加式執行階段狀態會從主要區域複寫至次要地區。 在災難事件期間，沒有主要區域可用時，會對於商務持續性將流量導向次要區域。 
+
+## <a name="edifact"></a>EDIFACT 
+EDI EDIFACT 文件的商務持續性是根據控制編號：
+
+必要條件：在 EDIFACT 合約接收設定中選取重複檢查設定，以啟用輸入訊息的 DR 功能     
+![EDIFACT 搜尋](./media/logic-apps-enterprise-integration-b2b-business-continuity/edifactdupcheck.png)  
+
+1. 在次要地區中建立[邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。    
+
+2. 搜尋 **EDIFACT**，並選取 [EDIFACT - 當控制編號修改時]。     
+![edifact 搜尋](./media/logic-apps-enterprise-integration-b2b-business-continuity/edifactcn1.png)
+
+4. 觸發程序會提示您建立整合帳戶的連線。 觸發程序需連線至主要區域整合帳戶。 輸入連線名稱，並選取清單中的 [主要區域整合帳戶]，然後按一下 [建立]。    
+![主要區域整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12CN2.png)
+
+5. **開始控制編號同步處理的日期時間**設定是選用的。 **頻率**可以設為**天**、**小時**、**分鐘**或**秒**的間隔。    
+![日期時間和頻率](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn3.png)
+
+6. 選取 [新增步驟] > [新增動作]。    
+![新增動作](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn4.png)
+
+7. 搜尋 **EDIFACT**，並選取 [EDIFACT - 新增或更新控制編號]。   
+![已接收的控制編號修改](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn5.png)
+
+8. 若要將動作連線到次要地區整合帳戶，請選取 [變更連線] > [新增新的連線]，取得可用整合帳戶的清單。 輸入連線名稱，並選取清單中的 [次要地區整合帳戶]，然後按一下 [建立]。   
+![次要地區整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn6.png)
+
+9. 選取動態內容，並儲存邏輯應用程式。   
+![動態內容](./media/logic-apps-enterprise-integration-b2b-business-continuity/edifactcn5.png)
+
+10. 根據時間間隔，觸發程序會輪詢主要區域接收的控制編號資料表，並提取新的記錄。 動作會將它們更新至次要地區整合帳戶。 如果沒有更新，則觸發程序狀態將顯示為**忽略**。   
+![控制編號資料表](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12recevicedcn8.png)
 
 根據時間間隔，累加式執行階段狀態會從主要區域複寫至次要地區。 在災難事件期間，沒有主要區域可用時，會對於商務持續性將流量導向次要區域。 
 
@@ -148,30 +150,31 @@ EDI X12 文件的商務持續性是根據控制編號：
 1. 在次要地區中建立[邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。  
 
 2. 搜尋 **AS2**，並選取 [AS2 - 建立 MIC 值時]。   
-![AS2 搜尋](./media/logic-apps-enterprise-integration-b2b-business-continuity/AS2messageid1.png)
+![as2 搜尋](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid1.png)
 
 3. 觸發程序會提示您建立整合帳戶的連線。 觸發程序需連線至主要區域整合帳戶。 輸入連線名稱，並選取清單中的 [主要區域整合帳戶]，然後按一下 [建立]。   
-![主要區域整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/AS2messageid2.png)
+![主要區域整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid2.png)
 
 4. **開始 MIC 值同步處理的日期時間**設定是選用的。 **頻率**可以設為**天**、**小時**、**分鐘**或**秒**的間隔。   
-![日期時間和頻率](./media/logic-apps-enterprise-integration-b2b-business-continuity/AS2messageid3.png)
+![日期時間和頻率](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid3.png)
 
 5. 選取 [新增步驟] > [新增動作]。  
-![新增動作](./media/logic-apps-enterprise-integration-b2b-business-continuity/AS2messageid4.png)
+![新增動作](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid4.png)
 
 6. 搜尋 **AS2**，並選取 [AS2 - 新增或更新 MIC]。  
-![MIC 新增或更新](./media/logic-apps-enterprise-integration-b2b-business-continuity/AS2messageid5.png)
+![MIC 新增或更新](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid5.png)
 
 7. 若要將動作連線到次要整合帳戶，請選取 [變更連線] > [新增新的連線]，取得可用整合帳戶的清單。 輸入連線名稱，並選取清單中的 [次要地區整合帳戶]，然後按一下 [建立]。    
-![次要地區整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/AS2messageid6.png)
+![次要地區整合帳戶名稱](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid6.png)
 
 8. 選取動態內容，並儲存邏輯應用程式。   
-![動態內容](./media/logic-apps-enterprise-integration-b2b-business-continuity/AS2messageid7.png)
+![動態內容](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid7.png)
 
 9. 根據時間間隔，觸發程序會輪詢主要區域資料表，並提取新的記錄。 動作會將它們更新至次要地區整合帳戶。 如果沒有更新，則觸發程序狀態將顯示為**忽略**。  
-![主要區域資料表](./media/logic-apps-enterprise-integration-b2b-business-continuity/AS2messageid8.png)
+![主要區域資料表](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid8.png)
 
 根據時間間隔，累加式執行階段狀態會從主要區域複寫至次要地區。 在災難事件期間，沒有主要區域可用時，會對於商務持續性將流量導向次要區域。 
+
 
 ## <a name="next-steps"></a>後續步驟
 [深入了解監視 B2B 訊息](logic-apps-monitor-b2b-message.md)。   

@@ -13,22 +13,19 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 02/7/2017
+ms.date: 05/22/2017
 ms.author: cynthn
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: e308b75581ca5372a4de168895f2eeb140a69a78
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 527f3f33e2b5996c6fa7b7dc874123bba5ab39dd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
-# <a name="create-a-vm-from-a-generalized-managed-vm-image"></a>從一般化受控 VM 映像建立 VM
+# <a name="create-a-vm-from-a-managed-image"></a>從 Managed 映像建立 VM
 
 您可以在 Azure 中從受控 VM 映像建立多個 VM。 受控 VM 映像包含建立 VM 所需的資訊，包括 OS 和資料磁碟。 組成映像的 VHD (包括 OS 磁碟和任何資料磁碟) 會儲存為受控磁碟。 
-
-一般化 VM 已使用 [Sysprep](generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 移除您所有的個人帳戶資訊。 您可以藉由在內部部署 VM 上執行 Sysprep，然後[將 VHD 上傳至 Azure](upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，或藉由在現有 Azure VM 上執行 Sysprep，然後[擷取 VM 的映像](capture-image-resource.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以建立一般化 VM。
-
 
 
 ## <a name="prerequisites"></a>必要條件

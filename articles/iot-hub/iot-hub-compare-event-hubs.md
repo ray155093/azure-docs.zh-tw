@@ -15,10 +15,10 @@ ms.workload: na
 ms.date: 01/31/2017
 ms.author: elioda
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 944f67d1d5a56c3c478da0c3af0b1f9b8797eee1
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 405dd2f8147c20ce7b96b228fdf417e86a86de92
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -34,7 +34,7 @@ IoT 中樞的主要使用案例之一是從裝置收集遙測。 因此，經常
 | 裝置通訊協定支援 |支援 MQTT、MQTT over WebSockets、AMQP、AMQP over WebSocket 及 HTTP。 此外，IoT 中樞還可搭配 [Azure IoT 通訊協定閘道][lnk-azure-protocol-gateway]來使用，後者是支援自訂通訊協定的可自訂通訊協定閘道實作。 |支援 AMQP、透過 WebSockets 的 AMQP 和 HTTP。 |
 | 安全性 |提供每個裝置的身分識別與可撤銷的存取控制。 請參閱 [IoT 中樞開發人員指南的安全性章節]。 |提供全事件中樞的[共用存取原則][Event Hubs - security]，以及透過[發行者原則][Event Hubs publisher policies]的有限撤銷支援。 IoT 解決方案通常需要實作自訂解決方案來支援每個裝置的認證以及防詐騙措施。 |
 | 作業監視 |可讓 IoT 解決方案訂閱一組豐富的裝置身分識別管理和連線事件，例如個別裝置驗證錯誤、節流和格式錯誤的例外狀況。 這些事件可讓您快速識別個別裝置層級的連線問題。 |僅公開彙總的度量。 |
-| 調整 |已最佳化以支援數百萬同時連接的裝置。 |可支援更多同時連接的限制數目：每個 [Azure 服務匯流排配額][Azure Service Bus quotas]高達 5,000 個 AMQP 連接。 另一方面，事件中樞可讓您指定每個傳送訊息的分割。 |
+| 調整 |已最佳化以支援數百萬同時連接的裝置。 |依據每個 [Azure 服務匯流排配額][Azure Service Bus quotas]計量連線數目。 另一方面，事件中樞可讓您指定每個傳送訊息的分割。 |
 | 裝置 SDK |除了直接 MQTT、AMQP 和 HTTP API 以外，提供[裝置 SDK][Azure IoT SDKs] 給各種平台和語言。 |除了 AMQP 和 HTTP 傳送介面以外，在 .NET、Java 和 C 上都提供支援。 |
 | 檔案上傳 |可讓 IoT 解決方案將檔案從裝置上傳到雲端。 包含一個用於整合工作流程的檔案通知端點，以及一個用於支援偵錯的作業監視類別。 | 不支援。 |
 | 將訊息路由至多個端點 | 最多支援 10 個自訂端點。 規則會決定訊息路由至自訂端點的方式。 如需詳細資訊，請參閱[使用 IoT 中樞傳送及接收訊息][lnk-devguide-messaging]。 | 需要撰寫及裝載額外的程式碼才能發送訊息。 |

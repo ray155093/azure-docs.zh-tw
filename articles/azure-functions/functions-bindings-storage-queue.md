@@ -1,9 +1,9 @@
 ---
-title: "Azure Functions 儲存體佇列繫結 | Microsoft Docs"
+title: "Azure Functions 佇列儲存體繫結 | Microsoft Docs"
 description: "瞭解如何在 Azure Functions 中使用「Azure 儲存體」觸發程序和繫結。"
 services: functions
 documentationcenter: na
-author: christopheranderson
+author: lindydonna
 manager: erikre
 editor: 
 tags: 
@@ -14,91 +14,87 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 01/18/2017
-ms.author: chrande, glenga
-translationtype: Human Translation
-ms.sourcegitcommit: 770cac8809ab9f3d6261140333ec789ee1390daf
-ms.openlocfilehash: bf9bd2a1b5acdf5a4a4f862bef693f8c60c63a33
-ms.lasthandoff: 01/20/2017
+ms.date: 05/30/2017
+ms.author: donnam, glenga
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 85a3386c8159eb1abf01ccd35c6aea04f5710d5c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
-# <a name="azure-functions-storage-queue-bindings"></a>Azure Functions 儲存體佇列繫結
+# <a name="azure-functions-queue-storage-bindings"></a>Azure Functions 佇列儲存體繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 Azure 儲存體佇列繫結進行設定及撰寫程式碼。 Azure Functions 支援 Azure 儲存體佇列的觸發程序和輸出繫結。
+本文說明如何在 Azure Functions 中為 Azure 佇列儲存體繫結進行設定及撰寫程式碼。 Azure Functions 支援適用於 Azure 佇列的觸發程序和輸出繫結。 如需所有繫結中可用的功能，請參閱 [Azure Functions 觸發程序和繫結概念](functions-triggers-bindings.md)。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="trigger"></a>
 
-## <a name="storage-queue-trigger"></a>儲存體佇列觸發程序
-Azure 儲存體佇列觸發程序可讓您監視儲存體佇列的新訊息，並對它們做出回應。 
+## <a name="queue-storage-trigger"></a>佇列儲存體觸發程序
+Azure 佇列儲存體觸發程序可讓您監視佇列儲存體的新訊息，並對它們做出回應。 
 
-函式的儲存體佇列觸發程序會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+使用 Functions 入口網站中的 [整合] 索引標籤定義佇列觸發程序。 該入口網站會在 *function.json* 的 **bindings** 區段中建立下列定義：
 
 ```json
 {
-    "name": "<Name of input parameter in function signature>",
-    "queueName": "<Name of queue to poll>",
-    "connection":"<Name of app setting - see below>",
     "type": "queueTrigger",
-    "direction": "in"
+    "direction": "in",
+    "name": "<The name used to identify the trigger data in your code>",
+    "queueName": "<Name of queue to poll>",
+    "connection":"<Name of app setting - see below>"
 }
 ```
 
-`connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，您可以在 [整合] 索引標籤中設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[管理 App Service 設定](functions-how-to-use-azure-function-app-settings.md#manage-app-service-settings)。
+* `connection` 屬性必須包含應用程式設定的名稱，其中包含儲存體連接字串。 在 Azure 入口網站中，當您選取儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。
 
-您可以在 host.json 檔案中提供[其他設定](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)，進一步微調儲存體佇列觸發程序。  
-
-### <a name="handling-poison-queue-messages"></a>處理有害的佇列訊息
-當佇列觸發程序函數失敗時，Azure Functions 會針對指定的佇列訊息重試該函數最多五次，包括第一次嘗試。 如果五次嘗試全都失敗，Functions 會將訊息新增至名為 *&lt;originalqueuename>-poison* 的儲存體佇列。 您可以撰寫函數，透過記錄或傳送通知表示需要手動處理，來處理有害佇列中的訊息。 
-
-若要手動處理有害訊息，您可以藉由檢查 `dequeueCount` 來取得訊息受到挑選來處理的次數 (請參閱[佇列觸發程序中繼資料)](#meta)。
+您可以在 [host.json 檔案](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)中提供其他設定，進一步微調佇列儲存體觸發程序。 例如，您可以變更 host.json 中的佇列輪詢間隔。
 
 <a name="triggerusage"></a>
 
-## <a name="trigger-usage"></a>觸發程序使用方式
-在 C# 函式中，您使用在您函式簽章中的具名參數 (例如 `<T> <name>`) 繫結至輸入的訊息。
-其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [觸發程序繫結](#trigger) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
+## <a name="using-a-queue-trigger"></a>使用佇列觸發程序
+在 Node.js 函式中，使用 `context.bindings.<name>` 存取佇列資料。
 
-佇列訊息可以還原序列化為下列任何一種類型︰
 
-* [物件](https://msdn.microsoft.com/library/system.object.aspx) - 用於 JSON 序列化訊息。 當您宣告自訂輸入類型時，執行階段會嘗試將 JSON 物件還原序列化。 
-* String
-* 位元組陣列
-* [CloudQueueMessage](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueuemessage.aspx) (僅限 C#)
+在 .NET 函式中，使用方法參數 (例如`CloudQueueMessage paramName`) 存取佇列承載。 其中，`paramName` 是您在[觸發程序設定](#trigger)中指定的值。 佇列訊息可以還原序列化為下列任何一種類型︰
+
+* POCO 物件。 佇列承載為 JSON 物件時使用。 Functions 執行階段會將承載還原序列化為 POCO 物件。 
+* `string`
+* `byte[]`
+* [`CloudQueueMessage`]
 
 <a name="meta"></a>
 
 ### <a name="queue-trigger-metadata"></a>佇列觸發程序中繼資料
-您可以使用這些變數名稱，在函式中取得佇列中繼資料︰
+佇列觸發程序提供數個中繼資料屬性。 這些屬性可作為其他繫結中繫結運算式的一部分或程式碼中的參數使用。 這些值的語意與 [`CloudQueueMessage`] 相同。
 
-* expirationTime
-* insertionTime
-* nextVisibleTime
-* id
-* popReceipt
-* dequeueCount
-* queueTrigger (將佇列訊息文字做為字串擷取的另一種方式)
+* **QueueTrigger** - 佇列承載 (如果為有效字串)
+* **DequeueCount** - 鍵入 `int`。 此訊息已從佇列清除的次數。
+* **ExpirationTime** - 鍵入 `DateTimeOffset?`。 訊息到期時間。
+* **Id** - 鍵入 `string`。 佇列訊息識別碼。
+* **InsertionTime** - 鍵入 `DateTimeOffset?`。 訊息新增至佇列的時間。
+* **NextVisibleTime** - 鍵入 `DateTimeOffset?。 下次顯示訊息的時間。
+* **PopReceipt** - 鍵入 `string`。 訊息的離開通知。
 
-請參閱[觸發程序範例](#triggersample)以了解如何使用佇列中繼資料
+請參閱[觸發程序範例](#triggersample)以了解如何使用佇列中繼資料。
 
 <a name="triggersample"></a>
 
 ## <a name="trigger-sample"></a>觸發程序範例
-假設您有下列 function.json，則會定義儲存體佇列觸發程序︰
+假設您有下列 function.json，定義了佇列觸發程序：
 
 ```json
 {
     "disabled": false,
     "bindings": [
         {
+            "type": "queueTrigger",
+            "direction": "in",
             "name": "myQueueItem",
             "queueName": "myqueue-items",
-            "connection":"",
-            "type": "queueTrigger",
-            "direction": "in"
+            "connection":"MyStorageConnectionString"
         }
     ]
 }
@@ -111,9 +107,14 @@ Azure 儲存體佇列觸發程序可讓您監視儲存體佇列的新訊息，�
 
 <a name="triggercsharp"></a>
 
-### <a name="trigger-sample-in-c"></a>C 中的觸發程序範例# #
+### <a name="trigger-sample-in-c"></a>C# 中的觸發程序範例 #
 ```csharp
-public static void Run(string myQueueItem, 
+#r "Microsoft.WindowsAzure.Storage"
+
+using Microsoft.WindowsAzure.Storage.Queue;
+using System;
+
+public static void Run(CloudQueueMessage myQueueItem, 
     DateTimeOffset expirationTime, 
     DateTimeOffset insertionTime, 
     DateTimeOffset nextVisibleTime,
@@ -123,7 +124,7 @@ public static void Run(string myQueueItem,
     int dequeueCount,
     TraceWriter log)
 {
-    log.Info($"C# Queue trigger function processed: {myQueueItem}\n" +
+    log.Info($"C# Queue trigger function processed: {myQueueItem.AsString}\n" +
         $"queueTrigger={queueTrigger}\n" +
         $"expirationTime={expirationTime}\n" +
         $"insertionTime={insertionTime}\n" +
@@ -160,113 +161,117 @@ module.exports = function (context) {
 };
 ```
 
+### <a name="handling-poison-queue-messages"></a>處理有害的佇列訊息
+當佇列觸發程序函數失敗時，Azure Functions 會針對指定的佇列訊息重試該函數最多五次，包括第一次嘗試。 如果五次嘗試全都失敗，Functions 執行階段會將訊息新增至名為 &lt;原始佇列名稱>-poison 的佇列儲存體。 您可以撰寫函數，透過記錄或傳送通知表示需要手動處理，來處理有害佇列中的訊息。 
+
+若要手動處理有害訊息，請檢查佇列訊息的 `dequeueCount` (請參閱[佇列觸發程序中繼資料](#meta))。
+
 <a name="output"></a>
 
-## <a name="storage-queue-output-binding"></a>儲存體佇列輸出繫結
-Azure 儲存體佇列輸出繫結可讓您在函式中將訊息寫入儲存體佇列。 
+## <a name="queue-storage-output-binding"></a>佇列儲存體輸出繫結
+Azure 佇列儲存體輸出繫結可讓您將訊息寫入佇列。 
 
-函式的儲存體佇列輸出會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+使用 Functions 入口網站中的 [整合] 索引標籤定義佇列輸出繫結。 該入口網站會在 *function.json* 的 **bindings** 區段中建立下列定義：
 
 ```json
 {
-  "name": "<Name of output parameter in function signature>",
-    "queueName": "<Name of queue to write to>",
-    "connection":"<Name of app setting - see below>",
-  "type": "queue",
-  "direction": "out"
+   "type": "queue",
+   "direction": "out",
+   "name": "<The name used to identify the trigger data in your code>",
+   "queueName": "<Name of queue to write to>",
+   "connection":"<Name of app setting - see below>"
 }
 ```
 
-`connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[管理 App Service 設定](functions-how-to-use-azure-function-app-settings.md#manage-app-service-settings)。
+* `connection` 屬性必須包含應用程式設定的名稱，其中包含儲存體連接字串。 在 Azure 入口網站中，當您選取儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。
 
 <a name="outputusage"></a>
 
-## <a name="output-usage"></a>輸出使用方式
-在 C# 函數中，您可以使用像是 `out <T> <name>` 函數簽章中的具名 `out` 參數來寫入佇列訊息。 在這種情控下，`T` 是您要用來序列化訊息的資料類型，而 `paramName` 是您在 [輸出繫結](#output) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取輸出。
+## <a name="using-a-queue-output-binding"></a>使用佇列輸出繫結
+在 Node.js 函數中，您會使用 `context.bindings.<name>` 存取輸出佇列。
 
-您可以在您的程式碼中使用任何資料類型輸出佇列訊息︰
+在 .NET 函式中，您可以輸出至下列任何類型。 如果有型別參數 `T`，`T` 必須是其中一個支援的輸出類型，例如 `string` 或 POCO。
 
-* 任何[物件](https://msdn.microsoft.com/library/system.object.aspx)：`out MyCustomType paramName`  
-用於 JSON 序列化。  當您宣告自訂輸出類型時，執行階段會嘗試將物件序列化為 JSON。 函數結束時，如果輸出參數為 Null，則執行階段會建立佇列訊息作為 Null 物件。
-* 字串：`out string paramName`  
-用於測試訊息。 當函數結束時，如果字串參數非 Null，執行階段才會建立訊息。
-* 位元組陣列：`out byte[]` 
+* `out T` (序列化為 JSON)
+* `out string`
+* `out byte[]`
+* `out` [`CloudQueueMessage`] 
+* `ICollector<T>`
+* `IAsyncCollector<T>`
+* [`CloudQueue`](/dotnet/api/microsoft.windowsazure.storage.queue.cloudqueue)
 
-C# 函數支援這些額外的輸出類型︰
-
-* [CloudQueueMessage](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueuemessage.aspx)︰`out CloudQueueMessage` 
-* `ICollector<T>` 或 `IAsyncCollector<T>`，其中的 `T` 是支援的類型之一。
+您也可以使用方法傳回型別作為輸出繫結。
 
 <a name="outputsample"></a>
 
-## <a name="output-sample"></a>輸出範例
-假設您有下列 function.json，則會定義[儲存體佇列觸發程序](functions-bindings-storage-queue.md)、儲存體 blob 輸入和儲存體 blob 輸出︰
-
-儲存體佇列輸出繫結的範例 *function.json*，此繫結會使用手動觸發程序並將輸入寫入佇列訊息︰
+## <a name="queue-output-sample"></a>佇列輸出範例
+下列 *function.json* 定義 HTTP 觸發程序與佇列輸出的繫結：
 
 ```json
 {
   "bindings": [
     {
-      "type": "manualTrigger",
+      "type": "httpTrigger",
       "direction": "in",
+      "authLevel": "function",
       "name": "input"
     },
     {
+      "type": "http",
+      "direction": "out",
+      "name": "return"
+    },
+    {
       "type": "queue",
-      "name": "myQueueItem",
-      "queueName": "myqueue",
-      "connection": "my_storage_connection",
-      "direction": "out"
+      "direction": "out",
+      "name": "$return",
+      "queueName": "outqueue",
+      "connection": "MyStorageConnectionString",
     }
-  ],
-  "disabled": false
+  ]
 }
 ``` 
 
-請參閱可為每個輸入佇列訊息寫入輸出佇列訊息的特定語言範例。
+請參閱透過傳入 HTTP 承載輸出佇列訊息的特定語言範例。
 
 * [C#](#outcsharp)
 * [Node.js](#outnodejs)
 
 <a name="outcsharp"></a>
 
-### <a name="output-sample-in-c"></a>C 中的輸出範例# #
+### <a name="queue-output-sample-in-c"></a>C# 中的佇列輸出範例 #
 
 ```cs
-public static void Run(string input, out string myQueueItem, TraceWriter log)
+// C# example of HTTP trigger binding to a custom POCO, with a queue output binding
+public class CustomQueueMessage
 {
-    myQueueItem = "New message: " + input;
+    public string PersonName { get; set; }
+    public string Title { get; set; }
+}
+
+public static CustomQueueMessage Run(CustomQueueMessage input, TraceWriter log)
+{
+    return input;
 }
 ```
 
-或者，若要傳送多個訊息，
+若要傳送多個訊息，請使用 `ICollector`：
 
 ```cs
-public static void Run(string input, ICollector<string> myQueueItem, TraceWriter log)
+public static void Run(CustomQueueMessage input, ICollector<CustomQueueMessage> myQueueItem, TraceWriter log)
 {
-    myQueueItem.Add("Message 1: " + input);
-    myQueueItem.Add("Message 2: " + "Some other message.");
+    myQueueItem.Add(input);
+    myQueueItem.Add(new CustomQueueMessage { PersonName = "You", Title = "None" });
 }
 ```
-
-<!--
-<a name="outfsharp"></a>
-### Output sample in F# ## 
-```fsharp
-
-```
--->
 
 <a name="outnodejs"></a>
 
-### <a name="output-sample-in-nodejs"></a>Node.js 中的輸出範例
+### <a name="queue-output-sample-in-nodejs"></a>Node.js 中的佇列輸出範例
 
 ```javascript
-module.exports = function(context) {
-    // Define a new message for the myQueueItem output binding.
-    context.bindings.myQueueItem = "new message";
-    context.done();
+module.exports = function (context, input) {
+    context.done(null, input.body);
 };
 ```
 
@@ -282,8 +287,10 @@ module.exports = function(context) {
 
 ## <a name="next-steps"></a>後續步驟
 
-如需一個使用儲存體佇列觸發程序和繫結的函數範例，請參閱 [建立連接至 Azure 服務的 Azure Functions](functions-create-an-azure-connected-function.md)。
+如需使用佇列儲存體觸發程序和繫結的函式範例，請參閱[建立連線至 Azure 服務的 Azure 函式](functions-create-an-azure-connected-function.md)。
 
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 
+<!-- LINKS -->
 
+[`CloudQueueMessage`]: /dotnet/api/microsoft.windowsazure.storage.queue.cloudqueuemessage

@@ -4,21 +4,21 @@ description: "本文討論 Azure Site Recovery 的相關熱門問題。"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
-manager: cfreeman
+manager: carmonm
 editor: 
 ms.assetid: 5cdc4bcd-b4fe-48c7-8be1-1db39bd9c078
-ms.service: get-started-article
+ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 02/21/2017
+ms.date: 05/22/2017
 ms.author: raynew
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: d3351e4a480caa1bf02e82545f130b14bf6f0910
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 4947e4a1bbf6578c2908051c6f1d28430b61cde8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -27,20 +27,19 @@ ms.lasthandoff: 05/17/2017
 
 ## <a name="general"></a>一般
 ### <a name="what-does-site-recovery-do"></a>Site Recovery 的功能是什麼？
-Site Recovery 可藉由協調及自動執行從內部部署虛擬機器和實體伺服器到 Azure 或次要資料中心的複寫，為您的商務持續性與災害復原 (BCDR) 做出貢獻。 [深入了解](site-recovery-overview.md)。
+Site Recovery 可協調並自動執行區域、內部部署虛擬機器和實體伺服器之間至 Azure 的 Azure VM 複寫；協調並自動執行內部部署機器至次要資料中心的複寫，藉此保障您的商務持續性與災害復原 (BCDR) 策略。 [深入了解](site-recovery-overview.md)。
 
 ### <a name="what-can-site-recovery-protect"></a>Site Recovery 可以保護什麼？
+* **Azure VM**：Site Recovery 可複寫在支援的 Azure VM 上執行的任何工作負載。
 * **Hyper-V 虛擬機器**：Site Recovery 可以保護 Hyper-V VM 上執行的任何工作負載。
 * **實體伺服器**：Site Recovery 可以保護執行 Windows 或 Linux 的實體伺服器。
 * **VMware 虛擬機器**：Site Recovery 可以保護 VMware VM 上執行的任何工作負載。
 
 ### <a name="does-site-recovery-support-the-azure-resource-manager-model"></a>Site Recovery 是否支援 Azure Resource Manager？
-除了 Azure 傳統入口網站中的 Site Recovery 之外，Azure 入口網站中也提供 Site Recovery 且支援 Resource Manager。 對大多數部署案例而言，Azure 入口網站中的 Site Recovery 提供一個簡化的部署體驗，而您可以將 VM 和實體伺服器複寫至傳統儲存體或 Resource Manager 儲存體。 以下是支援的部署：
+Azure 入口網站提供的 Site Recovery 可支援 Resource Manager。 Site Recovery 支援 Azure 傳統入口網站的舊版部署。 您無法在傳統入口網站中建立新的保存庫，其亦不支援新功能。
 
-* [在 Azure 入口網站中將 VMware VM 或實體伺服器複寫至 Azure](site-recovery-vmware-to-azure.md)
-* [在 Azure 入口網站中將 VMM 雲端中的 Hyper-V VM 複寫至 Azure](site-recovery-vmm-to-azure.md)
-* [在 Azure 入口網站中將 Hyper-V VM (不使用 VMM) 複寫至 Azure](site-recovery-hyper-v-site-to-azure.md)
-* [在 Azure 入口網站中將 VMM 雲端中的 Hyper-V VM 複寫至次要站台](site-recovery-vmm-to-vmm.md)
+### <a name="can-i-replicate-azure-vms"></a>我可以複寫 Azure VM 嗎？
+是，您可以在 Azure 區域之間複寫支援的 Azure VM。 [深入了解](site-recovery-azure-to-azure.md)。
 
 ### <a name="what-do-i-need-in-hyper-v-to-orchestrate-replication-with-site-recovery"></a>在 Hyper-V 中，我需要什麼，才能使用 Site Recovery 來協調複寫？
 對於 Hyper-V 主機伺服器，您的需求視部署案例而定。 請查看下列主題中的 Hyper-V 先決條件：
@@ -87,6 +86,10 @@ Site Recovery 授權是根據受保護的執行個體，其中的執行個體是
 
 - 如果 VM 磁碟複寫到標準儲存體帳戶，Azure 儲存體會依據儲存體使用量收費。 例如，如果來源磁碟大小是 1 TB，使用量是 400 GB，Site Recovery 會在 Azure 中建立 1 TB 的 VHD，但要收費的儲存體是 400 GB (加上複寫記錄檔使用的儲存體空間量)。
 - 如果 VM 磁碟複寫到進階儲存體帳戶，Azure 儲存體會依據佈建的儲存體大小收費，四捨五入到最接近的進階儲存體磁碟選項。 例如，如果來源磁碟大小是 50GB，Site Recovery 會在 Azure 中建立 50 GB 的磁碟，而 Azure 會將此對應到最接近的進階儲存體磁碟 (P10)。  成本是依據 P10 計算，而非 50 GB 的磁碟大小。  [深入了解](https://aka.ms/premium-storage-pricing)。  如果您使用進階儲存體，也需要複寫記錄所需的標準儲存體帳戶，這些記錄檔使用的標準儲存體空間量也會計費。
+- 在測試容錯移轉或容錯移轉發生之前，不會建立任何磁碟。 在複寫狀態下，系統會依據[儲存體定價計算機](https://azure.microsoft.com/en-in/pricing/calculator/)產生「分頁 Blob 和磁碟」類別的儲存體費用。 這些費用會依據進階/標準的儲存體類型和資料備援類型 (LRS、GRS、RA-GRS 等) 而定。
+- 如果您選取要在容錯移轉時使用受控磁碟的選項，即會在容錯移轉/測試容錯移轉之後套用[受控磁碟的費用](https://azure.microsoft.com/en-in/pricing/details/managed-disks/)。 在複寫期間不會套用受控磁碟的費用。
+- 如果您未選取要在容錯移轉時使用受控磁碟的選項，系統會在容錯移轉之後依據[儲存體定價計算機](https://azure.microsoft.com/en-in/pricing/calculator/)產生「分頁 Blob 和磁碟」類別的儲存體費用。 這些費用會依據進階/標準的儲存體類型和資料備援類型 (LRS、GRS、RA-GRS 等) 而定。
+- 在穩定狀態複寫期間，以及容錯移轉/測試容錯移轉之後的一般 VM 操作，均會收取儲存體交易費用。 不過，這些費用微乎其微。
 
 測試容錯移轉期間也會產生成本，將適用 VM、儲存體、輸出和儲存體交易成本。
 

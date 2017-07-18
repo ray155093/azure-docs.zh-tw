@@ -2,6 +2,7 @@
 title: "將資料匯入 Azure Application Insights 中的分析 | Microsoft Docs"
 description: "匯入靜態資料以加入應用程式遙測，或匯入個別的資料流以分析查詢。"
 services: application-insights
+keywords: "開啟結構描述、匯入資料"
 documentationcenter: 
 author: CFreemanwa
 manager: carmonm
@@ -13,10 +14,10 @@ ms.topic: article
 ms.date: 03/20/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: d649644959d907ff7fd6c1de360b091682f13d5b
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 8504be28baf202c0b04ee89b18122b29a93588ab
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---

@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 05/16/2017
 ms.author: robb
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 8075ab1f36f66a718b2a53d5f42f0c267d58050f
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 119e8a237f24cdc80a1ab8e376f2b308c9eada05
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
-# <a name="list-of-azure-diagnostics-versions"></a>Azure 診斷版本清單
+# <a name="azure-diagnostics-extention-configuration-schema-versions-and-history"></a>Azure 診斷延伸模組的設定結構描述版本和歷程記錄
 針對隨附於 Microsoft Azure SDK 的 Azure 診斷擴充功能組態結構描述版本，此頁面會建立其索引。  
 
 > [!NOTE]
@@ -131,7 +131,7 @@ Azure 診斷擴充功能要與 Azure 監視器、Application Insights 和 Log An
 ### <a name="diagnostics-extension-17"></a>診斷擴充功能 1.7 版 
 已新增路由至 EventHub 的能力。
 
-### <a name="diagnostics-extention-15"></a>診斷擴充功能 1.5 版
+### <a name="diagnostics-extension-15"></a>診斷延伸模組 1.5 版
 已增加接收器元素以及將診斷資料傳送至 [Application Insights](../application-insights/app-insights-cloudservices.md) 的能力，因此可更容易在應用程式以及系統和基礎結構層級中診斷問題。
 
 ### <a name="azure-sdk-26-and-diagnostics-extension-13"></a>Azure SDK 2.6 和診斷擴充功能 1.3 版 

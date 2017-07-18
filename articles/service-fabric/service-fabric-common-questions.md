@@ -15,10 +15,10 @@ ms.workload: na
 ms.date: 05/10/2017
 ms.author: seanmck
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 2bfbb3b8f7282ec8ae8abe9597230a3485221ecf
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 0d1d795a4d6965de6cdc2b9bd81a24a27a255566
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 05/25/2017
 
 ---
 
@@ -77,9 +77,14 @@ ms.lasthandoff: 05/11/2017
 
 如果您要建立叢集以在部署應用程式之前測試應用程式，建議您在[持續整合/持續部署管線](service-fabric-set-up-continuous-integration.md)中動態建立那些叢集。
 
+
+### <a name="how-do-i-upgrade-my-operating-system-for-example-from-windows-server-2012-to-windows-server-2016"></a>如何升級我的作業系統 (例如從 Windows Server 2012 升級到 Windows Server 2016)？
+
+在我們努力改善體驗時，您的責任是升級。 您必須升級叢集的虛擬機器上的作業系統映像，一次一部 VM。 
+
 ## <a name="container-support"></a>容器支援
 
-### <a name="why-are-my-containers-that-are-deployed-to-sf-are-unable-to-resolve-dns-addresses"></a>為何部署到 SF 的容器無法解析 DNS 位址？
+### <a name="why-are-my-containers-that-are-deployed-to-sf-unable-to-resolve-dns-addresses"></a>為何部署到 SF 的容器無法解析 DNS 位址？
 
 已有人針對 5.6.204.9494 版的叢集回報這個問題 
 

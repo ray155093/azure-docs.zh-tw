@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/02/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: ff0b234f27e2d5068cc0dcdc73e32e60f8622633
-ms.lasthandoff: 03/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: f8917ca67aa5f15ccc11030fd0292ac803d9e994
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -113,6 +114,9 @@ private static async void SendDeviceToCloudMessagesAsync()
 如需有關如何處理來自服務匯流排佇列之訊息的詳細資訊，請參閱[開始使用佇列][Service Bus queue]。
 
 1. 如[開始使用佇列][Service Bus queue]所述，建立服務匯流排佇列。 此佇列必須與您的 IoT 中樞位於相同的訂用帳戶和區域中。 記下命名空間和佇列名稱。
+
+    > [!NOTE]
+    > 作為 IoT 中樞端點的服務匯流排佇列和主題不能啟用 [工作階段] 或 [重複偵測]。 如果已啟用其中一個選項，端點會在 Azure 入口網站中顯示為 [無法連線]。
 
 2. 在 Azure 入口網站中，開啟 IoT 中樞然後按一下 [端點]。
     

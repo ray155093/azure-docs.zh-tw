@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/23/2017
+ms.date: 05/23/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: eec118430c6262626728c3156634361c977ccb4b
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: c34fb7295e8f386f0e7cf2c1db6b26a3e49eae98
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -32,6 +33,9 @@ ms.lasthandoff: 03/29/2017
 ## <a name="create-an-alert-rule"></a>建立警示規則
 
 若要使用 OMS 入口網站建立警示規則，首先針對應叫用警示的記錄，建立記錄搜尋。  [警示]  按鈕將可供您使用，以便建立和設定警示規則。
+
+>[!NOTE]
+> 目前最多可以在 OMS 工作區中建立 250 個警示規則。 
 
 1. 從 [OMS 概觀] 頁面，按一下 [記錄檔搜尋] 。
 2. 建立新的記錄檔搜尋查詢，或選取已儲存的記錄檔搜尋。 

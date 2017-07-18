@@ -15,9 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3216868d867f4c840a610c45855d22575ded609c
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: f01d3b43a7953697a6b03e176dace33448d95cd9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -41,7 +43,7 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
 
 雖然此範例使用 TCP 連接埠 3389，但是可以使用下列的步驟判斷任何連接埠的輸入和輸出連線失敗。
 
-### <a name="view-effective-security-rules-for-a-virtual-machine"></a>檢視虛擬機器的有效安全性規則
+### <a name="vm"></a>檢視虛擬機器的有效安全性規則
 完成下列步驟對 VM 的 NSG 進行疑難排解：
 
 您可以從 VM 本身檢視 NIC 上完整的有效安全性規則清單。 如果您有權限，也可以從有效規則的刀鋒視窗新增、修改和刪除 NIC 和子網路的 NSG 規則。
@@ -92,7 +94,7 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
    
     開啟 VM 的 RDP 連線或使用 PsPing 工具，確認 TCP 連接埠 3389 已開啟。 您可以閱讀 [PsPing 下載頁面](https://technet.microsoft.com/sysinternals/psping.aspx)進一步了解 PsPing。
 
-### <a name="view-effective-security-rules-for-a-network-interface"></a>檢視網路介面的有效安全性規則
+### <a name="nic"></a>檢視網路介面的有效安全性規則
 如果您 VM 的流量流程因特定 NIC 而受到影響，可以完成下列步驟從網路介面內容檢視 NIC 的有效規則完整清單︰
 
 1. 登入 Azure 入口網站，位址是 https://portal.azure.com。
@@ -109,7 +111,7 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
    > 
 4. 您可以直接編輯與 NIC 和子網路相關聯之 NSG 的規則。 若要了解如何進行，請閱讀＜檢視虛擬機器的有效安全性規則＞  一節的步驟 8。
 
-## <a name="view-effective-security-rules-for-a-network-security-group-nsg"></a>檢視網路安全性群組 (NSG) 的有效安全性規則
+## <a name="nsg"></a>檢視網路安全性群組 (NSG) 的有效安全性規則
 修改 NSG 規則時，可以檢閱特定 VM 上新增規則的影響。 您可以檢視套用指定 NSG 之所有 NIC 的完整有效安全性規則清單，而不必從指定的 NSG 刀鋒視窗切換內容。 若要對 NSG 中的有效規則進行疑難排解，請完成下列步驟︰
 
 1. 登入 Azure 入口網站，位址是 https://portal.azure.com。
@@ -148,10 +150,5 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
 * 如果您有對等互連的 VNet，VIRTUAL_NETWORK 標籤預設會自動展開以包含對等互連的 VNet 的首碼。 您可以在 **ExpandedAddressPrefix** 清單中檢視這些首碼，對任何與 VNet 對等互連連線相關的問題進行疑難排解。 
 * 只有在有 NSG 與 VM 的 NIC 和/或子網路關聯時，才會顯示有效安全性規則。 
 * 如果沒有 NSG 與 NIC 或子網路相關聯，且您已對 VM 指派公用 IP 位址，則會開啟所有連接埠供輸入和輸出存取。 如果 VM 有公用 IP 位址，強烈建議對 NIC 或子網路套用 NSG。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -4,7 +4,7 @@ description:
 services: 
 documentationcenter: 
 author: vikramdesai01
-manager: vikramdesai01
+manager: vikdesai
 editor: 
 tags: billing
 ms.assetid: e4c4d136-2826-4938-868f-a7e67ff6b025
@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: vikdesai
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 3453e80246393f15cf0ee2eb29b2fb1d53f77078
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 247782a86a0d20486513dff0dae0c1564b5ecb72
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -63,7 +64,7 @@ ms.lasthandoff: 04/26/2017
     ![顯示「帳單讀者」在 Azure 入口網站中可見內容的螢幕擷取畫面](./media/billing-manage-access/billing-reader-view.png)
 
 > [!NOTE]
-> 「帳單讀者」功能目前為預覽版，僅適用於 Azure 全球雲端。
+> 「帳單讀者」功能目前為預覽版，尚未支援企業 (EA) 訂用帳戶或非全球雲端。
 
 ## <a name="adding-users-to-other-roles"></a>將使用者新增到其他角色
 
@@ -76,3 +77,4 @@ ms.lasthandoff: 04/26/2017
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
 
 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+

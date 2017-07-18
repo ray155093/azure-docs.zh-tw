@@ -12,12 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 04/03/2017
+ms.date: 05/30/2017
 ms.author: alkohli
-translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 3457601f1d295d17d50725ec19cae96ae6efb5b6
-ms.lasthandoff: 03/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 7dc2f29db64218b9db17eaf555c43a7ad282ea07
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -47,7 +48,7 @@ Update 4 包含裝置軟體、USM 韌體、LSI 驅動程式與韌體、Storport 
 
 確認您的裝置是否正在執行 **StorSimple 8000 系列 Update 4 (6.3.9600.17820)**。 [ **上次更新日期** ] 應該也已修改。 
 
-* 您會看到有可用的維護模式更新 (此訊息可能會在您安裝更新之後繼續顯示長達 24 小時)。 維護模式更新為干擾性更新，會導致裝置產生停機時間，且只能透過您裝置的 Windows PowerShell 介面加以套用。 
+* 您會看到有可用的維護模式更新 (此訊息可能會在您安裝更新之後繼續顯示長達 24 小時)。 維護模式更新為干擾性更新，會導致裝置產生停機時間，且只能透過您裝置的 Windows PowerShell 介面加以套用。
  
 * 下載維護模式更新，方法是使用[下載 Hotfix](#to-download-hotfixes) 中列出的步驟來搜尋和下載 KB4011837，它會安裝磁碟韌體更新 (此時應該已經安裝其他更新)。 請遵循 [安裝及驗證維護模式 Hotfix](#to-install-and-verify-maintenance-mode-hotfixes) 中列出的步驟安裝維護模式更新。 
 
@@ -76,9 +77,9 @@ Hotfix 方法涉及下列三個步驟：
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |安裝在資料夾|
 | --- | --- | --- | --- | --- | --- |
-| 1. |KB4011839 |軟體更新 |定期  <br></br>非干擾性 |~ 25 分鐘 |FirstOrderUpdate|
+| 1. |KB4011839 <br> (2 個檔案) |裝置軟體更新 <br> CiS/MDS 代理程式更新 |定期 <br></br>非干擾性 |~ 25 分鐘 |FirstOrderUpdate <br> _先安裝裝置軟體更新再安裝 Cis/MDS 代理程式更新_|
 | 2A. |KB4011841 <br> KB4011842 |LSI 驅動程式與韌體更新 <br> USM 韌體更新 (3.38 版) |定期  <br></br>非干擾性 |~ 3 小時 <br> (包括 2A. 2B. + 2C.)|SecondOrderUpdate|
-| 2B. |KB3139398、KB3108381 <br> KB3205400、KB3142030 <br> KB3197873、KB3197873 <br> KB3192392、KB3153704 <br> KB3174644、KB3139914  |OS 安全性更新套件 |定期  <br></br>非干擾性 |- |SecondOrderUpdate|
+| 2B. |KB3139398、KB3108381 <br> KB3205400、KB3142030 <br> KB3197873、KB3192392  <br> KB3153704、KB3174644 <br> KB3139914  |OS 安全性更新套件 |定期  <br></br>非干擾性 |- |SecondOrderUpdate|
 | 2C. |KB3210083、KB3103616 <br> KB3146621、KB3121261 <br> KB3123538 |OS 更新套件 |定期  <br></br>非干擾性 |- |SecondOrderUpdate|
 
 除了前面表格所示的所有更新之外，您可能還需要安裝磁碟韌體更新。 您可以執行 `Get-HcsFirmwareVersion` Cmdlet 來確認是否需要進行磁碟韌體更新。 如果您執行的是這些韌體版本：`XMGJ`、`XGEG`、`KZ50`、`F6C2`、`VR08`、`N002`、`0106`，您就不需要安裝這些更新。

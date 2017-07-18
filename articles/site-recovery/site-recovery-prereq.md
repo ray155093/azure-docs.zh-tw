@@ -12,24 +12,27 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 03/27/2017
+ms.date: 06/23/2017
 ms.author: rajanaki
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 5ff598af73b6be727753ecac5b99f28bae19a417
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 1ed0bfe4f1b77db00dc858f010f72e084e77039e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 ---
 
-#  <a name="prerequisites-for-replication-to-azure-by-using-azure-site-recovery"></a>使用 Azure Site Recovery 複寫至 Azure 的必要條件
+#  <a name="prerequisites-for-replication-from-on-premises-to-azure-using-azure-site-recovery"></a>使用 Azure Site Recovery 從內部部署複寫至 Azure 的必要條件
 
+> [!div class="op_single_selector"]
+> * [從 Azure 複寫至 Azure](site-recovery-azure-to-azure-prereq.md)
+> * [從內部部署複寫至 Azure](site-recovery-prereq.md)
 
-Azure Site Recovery 服務可藉由將內部部署實體伺服器和虛擬機器的複寫協調至雲端 (Azure) 或次要資料中心，協助您建立商務持續性和災害復原 (BCDR) 策略。 當主要位置運作中斷時，您可以容錯移轉至次要位置，讓應用程式和工作負載保持可用。 當主要位置恢復正常作業時，您即可容錯回復至該位置。 如需有關 Site Recovery 的詳細資訊，請參閱[什麼是 Site Recovery？](site-recovery-overview.md)。
+Azure Site Recovery 服務可協調 Azure 虛擬機器至其他 Azure 區域的複寫、內部部署實體伺服器和虛擬機器至雲端 (Azure) 或次要資料中心的複寫，以協助您建立商務持續性和災害復原 (BCDR) 策略。 當主要位置運作中斷時，您可以容錯移轉至次要位置，讓應用程式和工作負載保持可用。 當主要位置恢復正常作業時，您即可容錯回復至該位置。 如需有關 Site Recovery 的詳細資訊，請參閱[什麼是 Site Recovery？](site-recovery-overview.md)。
 
-本文摘要說明開始 Site Recovery 至 Azure 複寫的必要條件。
+本文摘要說明開始進行從內部部署到 Azure 的 Site Recovery 複寫的必要條件。
 
 在本文下方張貼意見，或在 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 提出技術問題。
-
 
 ## <a name="azure-requirements"></a>Azure 需求
 
@@ -44,7 +47,7 @@ Azure Site Recovery 服務可藉由將內部部署實體伺服器和虛擬機器
 **網路對應** | 如果您在 Virtual Machine Manager 雲端中複寫 Hyper-V VM，則需要設定網路對應，以便容錯移轉之後，讓 Azure VM 在建立時連接至適當的網路。
 
 >[!NOTE]
->以下各節說明客戶環境中各種元件的必要條件。 如需有關支援特定設定的詳細資訊，請參閱[支援矩陣](site-recovery-support-matrix.md)。
+>以下各節說明客戶環境中各種元件的必要條件。 如需特定設定支援的詳細資料，請參閱[支援矩陣](site-recovery-support-matrix.md)。
 >
 
 ## <a name="disaster-recovery-of-vmware-virtual-machines-or-physical-windows-or-linux-servers-to-azure"></a>VMware 虛擬機器或實體 Windows 或 Linux 伺服器至 Azure 的災害復原
@@ -67,7 +70,7 @@ Azure Site Recovery 服務可藉由將內部部署實體伺服器和虛擬機器
 | --- | --- |
 | **內部部署** (VMware VM) | 複寫的 VM 應該安裝並執行 VMware 工具。<br/><br/> VM 應該要符合建立 Azure VM 的 [Azure 必要條件](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。<br/><br/>受保護機器上的個別磁碟容量不可超過 1,023 GB。 <br/><br/>安裝磁碟機上必須至少有 2 GB 的可用空間來進行元件安裝。<br/><br/>如果您想要啟用多部 VM 一致性，應該將 VM 本機防火牆上的連接埠 20004 開啟。<br/><br/>機器名稱應包含介於 1 到 63 個字元 (字母、數字和連字號)。 名稱必須以字母或數字開頭，並以字母或數字結尾。 您可以在為機器啟用複寫後修改 Azure 名稱。<br/><br/> |
 | **Windows 機器** (實體或 VMware) | 機器應該執行受支援的 64 位元作業系統：Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 (至少為 SP1)。<br/><br/> 作業系統應安裝在 C 磁碟機上。OS 磁碟應該是 Windows 基本磁碟而非動態磁碟。 資料磁碟可以為動態。<br/><br/>|
-| **Linux 機器** (實體或 VMware) | 您需要受支援的 64 位元作業系統：Red Hat Enterprise Linux 6.7、6.8、7.1 或 7.2；Centos 6.5、6.6、6.7、6.8、7.0、7.1 或 7.2；Oracle Enterprise Linux 6.4 或 6.5 (執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3)、SUSE Linux Enterprise Server 11 SP3、SUSE Linux Enterprise Server 11 SP4。<br/><br/>受保護機器上您的 /etc/hosts 檔案應該包含將本機主機名稱對應到所有網路介面卡相關聯之 IP 位址的項目。<br/><br/>如果您想要在容錯轉移之後使用安全殼層用戶端 (ssh) 連線到執行 Linux 的 Azure 虛擬機器，請確認受保護機器上的安全殼層服務已設為在系統開機時自動啟動，且防火牆規則允許 ssh 與其連線。<br/><br/>主機名稱、掛接點、裝置名稱和 Linux 系統路徑和檔案名稱 (例如 /etc/; /usr) 僅可使用英文。<br/><br/>下列目錄必須一律位於來源伺服器的同個磁碟 (OS 磁碟) (若設為獨立資料分割/檔案系統)：/ (root)、/boot、/usr、/usr/local、/var、/ 等等<br/><br/>諸如中繼資料總和檢查碼等 XFS v5 功能，目前不受 XFS 檔案系統的 ASR 所支援。 請確定 XFS 檔案系統未使用任何 v5 功能。 您可使用 xfs_info 公用程式來檢查資料分割的 XFS 超級區塊。 若 ftype 設為 1，則會使用 XFSv5 功能。<br/><br/>在 Red Hat Enterprise Linux 7 和 CentOS 7 伺服器上，必須安裝和提供可用的 lsof 公用程式。<br/><br/>
+| **Linux 機器** (實體或 VMware) | 您需要受支援的 64 位元作業系統：Red Hat Enterprise Linux 6.7、6.8、7.1 或 7.2；Centos 6.5、6.6、6.7、6.8、7.0、7.1 或 7.2；Ubuntu 14.04 LTS 伺服器 (如需 Ubuntu 支援的核心版本清單，請參閱[受支援的作業系統](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions))；Oracle Enterprise Linux 6.4 或 6.5 (執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3))、SUSE Linux Enterprise Server 11 SP3、SUSE Linux Enterprise Server 11 SP4。<br/><br/>受保護機器上您的 /etc/hosts 檔案應該包含將本機主機名稱對應到所有網路介面卡相關聯之 IP 位址的項目。<br/><br/>如果您想要在容錯轉移之後使用安全殼層用戶端 (ssh) 連線到執行 Linux 的 Azure 虛擬機器，請確認受保護機器上的安全殼層服務已設為在系統開機時自動啟動，且防火牆規則允許 ssh 與其連線。<br/><br/>主機名稱、掛接點、裝置名稱和 Linux 系統路徑和檔案名稱 (例如 /etc/; /usr) 僅可使用英文。<br/><br/>下列目錄必須一律位於來源伺服器的同個磁碟 (OS 磁碟) (若設為獨立資料分割/檔案系統)：/ (root)、/boot、/usr、/usr/local、/var、/ 等等<br/><br/>諸如中繼資料總和檢查碼等 XFS v5 功能，目前不受 XFS 檔案系統的 ASR 所支援。 請確定 XFS 檔案系統未使用任何 v5 功能。 您可使用 xfs_info 公用程式來檢查資料分割的 XFS 超級區塊。 若 ftype 設為 1，則會使用 XFSv5 功能。<br/><br/>在 Red Hat Enterprise Linux 7 和 CentOS 7 伺服器上，必須安裝和提供可用的 lsof 公用程式。<br/><br/>
 
 
 ## <a name="disaster-recovery-of-hyper-v-virtual-machines-to-azure-no-virtual-machine-manager"></a>Hyper-V 虛擬機器至 Azure (無 Virtual Machine Manager) 的災害復原

@@ -1,9 +1,9 @@
 ---
-title: "Azure Functions 儲存體 blob 繫結 | Microsoft Docs"
+title: "Azure Functions Blob 儲存體繫結 | Microsoft Docs"
 description: "瞭解如何在 Azure Functions 中使用「Azure 儲存體」觸發程序和繫結。"
 services: functions
 documentationcenter: na
-author: christopheranderson
+author: lindydonna
 manager: erikre
 editor: 
 tags: 
@@ -14,101 +14,111 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 03/06/2017
-ms.author: chrande, glenga
+ms.date: 05/25/2017
+ms.author: donnam, glenga
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 198a8421636945bdf60c4ed519d065617a7fc287
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: b819bf4461f14033dd2c00331e3c3e4d0fbafde6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
+ms.lasthandoff: 05/31/2017
 
 
 ---
 # <a name="azure-functions-blob-storage-bindings"></a>Azure Functions Blob 儲存體繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 Azure 儲存體 blob 繫結進行設定及撰寫程式碼。 Azure Functions 支援適用於 Azure 儲存體 blob 的觸發程序、輸入和輸出繫結。
+本文說明如何在 Azure Functions 中設定及使用 Azure Blob 儲存體繫結。 Azure Functions 支援適用於 Azure Blob 儲存體的觸發程序、輸入和輸出繫結。 如需所有繫結中可用的功能，請參閱 [Azure Functions 觸發程序和繫結概念](functions-triggers-bindings.md)。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 > [!NOTE]
-> 不支援[僅限 blob 儲存體帳戶](../storage/storage-create-storage-account.md#blob-storage-accounts)。 Azure Functions 需要一般用途的儲存體帳戶才能使用 blob。 
-> 
+> 不支援[僅限 blob 儲存體帳戶](../storage/storage-create-storage-account.md#blob-storage-accounts)。 Blob 儲存體觸發程序和繫結需要一般用途的儲存體帳戶。 
 > 
 
 <a name="trigger"></a>
+<a name="storage-blob-trigger"></a>
+## <a name="blob-storage-triggers-and-bindings"></a>Blob 儲存體觸發程序和繫結
 
-## <a name="storage-blob-trigger"></a>儲存體 Blob 觸發程序
-「Azure 儲存體」Blob 觸發程序可讓您監視新增和更新之 Blob 的儲存體容器，並在偵測到變更時執行您的函式程式碼。 
+使用 Azure Blob 儲存體觸發程序，就會在偵測到新的或更新的 blob 時呼叫您的函式程式碼。 Blob 內容會當成函式輸入提供。
 
-儲存體 blob 觸發程序的函式會使用下列 `bindings` function.json 陣列中的 JSON 物件︰
+使用 Functions 入口網站中的 [整合] 索引標籤定義 Blob 儲存體觸發程序。 該入口網站會在 *function.json* 的 **bindings** 區段中建立下列定義：
 
 ```json
 {
-    "name": "<Name of input parameter in function signature>",
+    "name": "<The name used to identify the trigger data in your code>",
     "type": "blobTrigger",
     "direction": "in",
     "path": "<container to monitor, and optionally a blob name pattern - see below>",
-    "connection":"<Name of app setting - see below>"
+    "connection": "<Name of app setting - see below>"
 }
 ```
 
-請注意：
+使用 `blob` 將 blob 輸入和輸出繫結定義為繫結類型：
 
-* 如 `path`，請參閱[命名模式](#pattern)以了解如何格式化 blob 名稱模式。
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定](functions-how-to-use-azure-function-app-settings.md)。 
+```json
+{
+  "name": "<The name used to identify the blob input in your code>",
+  "type": "blob",
+  "direction": "in", // other supported directions are "inout" and "out"
+  "path": "<Path of input blob - see below>",
+  "connection":"<Name of app setting - see below>"
+},
+```
 
-在執行取用方案時，如果函數應用程式已進入閒置狀態，則處理新 blob 時最多會有 10 分鐘的延遲。 如果函式應用程式正在執行，Blob 的處理速度會較快。 為了避免發生此初始延遲，您可以使用一般的 App Service 方案並啟用 [永遠開啟]，或使用其他機制來觸發 Blob 的處理，例如包含 Blob 名稱的佇列訊息。 
+* `path` 屬性支援繫結運算式和篩選參數。 請參閱[名稱模式](#pattern)。
+* `connection` 屬性必須包含應用程式設定的名稱，其中包含儲存體連接字串。 在 Azure 入口網站中，當您選取儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。
 
-另外，如需詳細資訊，請參閱下列其中一個子標題︰
-
-* [名稱模式](#pattern)
-* [Blob 回條](#receipts)
-* [處理有害的 blob](#poison)
+> [!NOTE]
+> 當您在使用情況方案中使用 blob 觸發程序時，函數應用程式進入閒置狀態之後，處理新 blob 最多會有 10 分鐘的延遲。 在函數應用程式開始執行之後，會立即處理 blob。 為了避免發生此初始延遲，請考慮下列做法︰
+> - 使用 App Service 方案並啟用「永遠開啟」。
+> - 使用其他機制來觸發 blob 處理，像是包含 blob 名稱的佇列訊息。 如需範例，請參閱[具有 blob 輸入繫結的佇列觸發程序](#input-sample)。
 
 <a name="pattern"></a>
 
 ### <a name="name-patterns"></a>名稱模式
-您可以在 `path` 屬性中指定 Blob 名稱模式。 例如：
+您可以在 `path` 屬性中，指定可篩選或繫結運算式的 blob 名稱模式。 請參閱[繫結運算式和模式](functions-triggers-bindings.md#binding-expressions-and-patterns)。
+
+例如，若要篩選至以 "original" 字串開頭的 blob，請使用下列定義。 此路徑會在 *input* 容器中尋找名為 *original-Blob1.txt* 的 blob，且函式程式碼中的 `name` 變數值為 `Blob1`。
 
 ```json
 "path": "input/original-{name}",
 ```
 
-此路徑會在 *input* 容器中尋找名為 *original-Blob1.txt* 的 Blob，且函式程式碼中的 `name` 變數值會是 `Blob1`。
-
-另一個範例：
+若要分別繫結至 blob 檔案名稱和副檔名，請使用兩個模式。 此路徑也會尋找名為 *original-Blob1.txt* 的 blob，且函式程式碼中的 `blobname` 和 `blobextension` 變數值為 *original-Blob1* 和 *txt*。
 
 ```json
 "path": "input/{blobname}.{blobextension}",
 ```
 
-此路徑也會尋找名為 *original-Blob1.txt* 的 Blob，而函式程式碼中的 `blobname` 和 `blobextension` 變數值會是 *original-Blob1* 和 *txt*。
-
-您可以使用檔案副檔名的固定值來限制 blob 的類型。 例如：
+您可以使用檔案副檔名的固定值來限制 blob 的類型。 例如，若只要在 .png 檔案上觸發，請使用下列模式：
 
 ```json
 "path": "samples/{name}.png",
 ```
 
-在此情況下，只有 *samples* 容器中的 *.png* blob 會觸發函式。
-
-大括號是名稱模式中的特殊字元。 如果要指定名稱中包含大括號的 Blob 名稱，請按兩下大括號。 例如：
+大括號是名稱模式中的特殊字元。 若要指定名稱中包含大括號的 blob 名稱，您可以使用兩個大括號來逸出大括號。 下列範例會在 *images* 容器中尋找名為 *{20140101}-soundfile.mp3* 的 blob，且函式程式碼中的 `name` 變數值為 *soundfile.mp3*。 
 
 ```json
 "path": "images/{{20140101}}-{name}",
 ```
 
-此路徑會在 *images* 容器中尋找名為 *{20140101}-soundfile.mp3* 的 blob，而函式程式碼中的 `name` 變數值會是 *soundfile.mp3*。 
+### <a name="trigger-metadata"></a>觸發程序中繼資料
+
+Blob 觸發程序提供數個中繼資料屬性。 這些屬性可作為其他繫結中繫結運算式的一部分或程式碼中的參數使用。 這些值的語意與 [CloudBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob?view=azure-dotnet) 相同。
+
+- **BlobTrigger**： 輸入 `string`。 觸發的 blob 路徑
+- **URI**： 輸入 `System.Uri`。 Blob 的主要位置 URI。
+- **屬性**： 輸入 `Microsoft.WindowsAzure.Storage.Blob.BlobProperties`。 Blob 的系統屬性。
+- **中繼資料**： 輸入 `IDictionary<string,string>`。 Blob 的使用者定義中繼資料。
 
 <a name="receipts"></a>
 
 ### <a name="blob-receipts"></a>Blob 回條
-Azure Functions 執行階段可確保不會針對一樣新或版本相同的 blob 多次呼叫 blob 觸發程序函式。 它的運作方式是藉由維護 *Blob 回條* 來判斷指定的 Blob 版本是否已處理過。
+Azure Functions 執行階段可確保不會針對一樣新或更新的 blob 多次呼叫 blob 觸發程序函式。 為了判斷指定的 blob 版本是否已處理過，它會維護 *blob 回條*。
 
-Blob 回條儲存於您函數應用程式 (`AzureWebJobsStorage` 應用程式設定所指定) 的 Azure 儲存體帳戶中名為 *azure-webjobs-hosts* 的容器中。 Blob 回條具有下列資訊：
+Azure Functions 會將 blob 回條儲存在您函數應用程式 (`AzureWebJobsStorage` 應用程式設定所定義) 的 Azure 儲存體帳戶中名為 *azure-webjobs-hosts*的容器中。 Blob 回條具有下列資訊：
 
-* 已觸發的函式 ("*&lt;function app name>*.Functions.*&lt;function name>*"，例如："functionsf74b96f7.Functions.CopyBlob")
+* 已觸發的函數 ("&lt;函數應用程式名稱>.Functions.&lt;函數名稱>"，例如："MyFunctionApp.Functions.CopyBlob")
 * 容器名稱
 * Blob 類型 ("BlockBlob" 或 "PageBlob")
 * Blob 名稱
@@ -119,7 +129,9 @@ Blob 回條儲存於您函數應用程式 (`AzureWebJobsStorage` 應用程式設
 <a name="poison"></a>
 
 ### <a name="handling-poison-blobs"></a>處理有害的 blob
-當 blob 觸發程序函式失敗時，Azure Functions 依預設會針對指定的 blob 重試該函式最多 5 次 (包括第一次嘗試)。 如果 5 次嘗試全都失敗，函式會將訊息新增至名為 *webjobs-blobtrigger-有害* 的儲存體佇列。 適用於有害 Blob 的佇列訊息是一個 JSON 物件，其中包含下列屬性：
+當指定 blob 的 blob 觸發程序函式失敗時，Azure Functions 預設一共會重試該函式 5 次。 
+
+如果 5 次嘗試全都失敗，Azure Functions 會將訊息新增至名為 *webjobs-blobtrigger-poison* 的儲存體佇列。 適用於有害 Blob 的佇列訊息是一個 JSON 物件，其中包含下列屬性：
 
 * FunctionId (格式為 *&lt;function app name>*.Functions.*&lt;function name>*)
 * BlobType ("BlockBlob" 或 "PageBlob")
@@ -128,35 +140,27 @@ Blob 回條儲存於您函數應用程式 (`AzureWebJobsStorage` 應用程式設
 * ETag (Blob 版本識別碼，例如："0x8D1DC6E70A277EF")
 
 ### <a name="blob-polling-for-large-containers"></a>大型容器的 Blob 輪詢
-如果繫結所監看的 blob 容器包含超過 10,000 個 blob，Functions 執行階段會掃描記錄檔以監看新增或變更的 blob。 此程序不是即時。 可能直到建立 Blob 之後數分鐘或更久，才會觸發函數。 此外，[會以「最大努力」建立儲存體記錄](https://msdn.microsoft.com/library/azure/hh343262.aspx)。 並不保證會擷取所有的事件。 在某些情況下可能會遺失記錄檔。 如果您的應用程式無法接受大容器 blob 觸發程序的速度和可靠性限制，建議的方法是當您建立 blob 時建立[佇列訊息](../storage/storage-dotnet-how-to-use-queues.md)，並使用[佇列觸發程序](functions-bindings-storage-queue.md)而非 blob 觸發程序來處理 blob。
+如果所監看的 blob 容器包含超過 10,000 個 blob，Functions 執行階段會掃描記錄檔以監看新增或變更的 blob。 此程序不是即時。 可能直到建立 Blob 之後數分鐘或更久，才會觸發函數。 此外，[會以「最大努力」建立儲存體記錄](/rest/api/storageservices/About-Storage-Analytics-Logging)。 並不保證會擷取所有的事件。 在某些情況下可能會遺失記錄檔。 如果您需要更快或更可靠的 blob 處理，請考慮在建立 blob 時建立[佇列訊息](../storage/storage-dotnet-how-to-use-queues.md) 
+。 然後，使用[佇列觸發程序](functions-bindings-storage-queue.md) (而不是 blob 觸發程序) 處理該 blob。
 
 <a name="triggerusage"></a>
 
-## <a name="trigger-usage"></a>觸發程序使用方式
-在 C# 函式中，您使用在您函式簽章中的具名參數 (例如 `<T> <name>`) 繫結至輸入的 blob 資料。
-其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [觸發 JSON](#trigger) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
+## <a name="using-a-blob-trigger-and-input-binding"></a>使用 blob 觸發程序和輸入繫結
+在 .NET 函式中，使用方法參數 (例如`Stream paramName`) 存取 blob 資料。 其中，`paramName` 是您在[觸發程序設定](#trigger)中指定的值。 在 Node.js 函式中，使用 `context.bindings.<name>` 存取 blob 的輸入資料。
 
-blob 可以還原序列化為下列任何一種類型︰
-
-* 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化的 blob 資料。
-  如果您宣告自訂輸入類型 (例如 `FooType`)，Azure Functions 會嘗試將 JSON 資料還原序列化為您指定的類型。
-* 字串 - 適用於文字 blob 資料。
-
-在 C# 函式中，您也可以繫結至下列任何類型，函式的執行階段會嘗試使用該類型還原序列化 blob 資料︰
+在 .NET 中，您可以繫結至下列清單中的任何類型。 如果用作輸入繫結，其中一些類型需要 *function.json* 中的 `inout` 繫結方向。 標準編輯器不支援此方向，因此您必須使用進階編輯器。
 
 * `TextReader`
 * `Stream`
-* `ICloudBlob`
-* `CloudBlockBlob`
-* `CloudPageBlob`
-* `CloudBlobContainer`
-* `CloudBlobDirectory`
-* `IEnumerable<CloudBlockBlob>`
-* `IEnumerable<CloudPageBlob>`
-* 透過 [ICloudBlobStreamBinder](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md#icbsb) 
+* `ICloudBlob` (需要 "inout" 繫結方向)
+* `CloudBlockBlob` (需要 "inout" 繫結方向)
+* `CloudPageBlob` (需要 "inout" 繫結方向)
+* `CloudAppendBlob` (需要 "inout" 繫結方向)
+
+如果預期為文字 blob，您也可以繫結至 .NET `string` 類型。 由於會將整個 blob 內容載入記憶體中，因此只有在 blob 大小很小時才建議這樣做。 一般而言，最好使用 `Stream` 或 `CloudBlockBlob` 類型。
 
 ## <a name="trigger-sample"></a>觸發程序範例
-假設您有下列 function.json，則會定義儲存體 blob 觸發程序︰
+假設您有下列 function.json，定義了 blob 儲存體觸發程序：
 
 ```json
 {
@@ -167,7 +171,7 @@ blob 可以還原序列化為下列任何一種類型︰
             "type": "blobTrigger",
             "direction": "in",
             "path": "samples-workitems",
-            "connection":""
+            "connection":"MyStorageAccount"
         }
     ]
 }
@@ -180,26 +184,31 @@ blob 可以還原序列化為下列任何一種類型︰
 
 <a name="triggercsharp"></a>
 
-### <a name="trigger-usage-in-c"></a>C# 中的觸發程序使用方式 #
+### <a name="blob-trigger-examples-in-c"></a>C# 中的 Blob 觸發程序範例 #
 
 ```cs
-public static void Run(string myBlob, TraceWriter log)
+// Blob trigger sample using a Stream binding
+public static void Run(Stream myBlob, TraceWriter log)
 {
-    log.Info($"C# Blob trigger function processed: {myBlob}");
+   log.Info($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
 }
 ```
 
-<!--
-<a name="triggerfsharp"></a>
-### Trigger usage in F# ##
-```fsharp
+```cs
+// Blob trigger binding to a CloudBlockBlob
+#r "Microsoft.WindowsAzure.Storage"
 
-``` 
--->
+using Microsoft.WindowsAzure.Storage.Blob;
+
+public static void Run(CloudBlockBlob myBlob, string name, TraceWriter log)
+{
+    log.Info($"C# Blob trigger function Processed blob\n Name:{name}\nURI:{myBlob.StorageUri}");
+}
+```
 
 <a name="triggernodejs"></a>
 
-### <a name="trigger-usage-in-nodejs"></a>Node.js 中的觸發程序使用方式
+### <a name="trigger-example-in-nodejs"></a>Node.js 中的觸發程序範例
 
 ```javascript
 module.exports = function(context) {
@@ -207,53 +216,26 @@ module.exports = function(context) {
     context.done();
 };
 ```
+<a name="outputusage"></a> <a name=storage-blob-output-binding"></a>
 
-<a name="input"></a>
+## <a name="using-a-blob-output-binding"></a>使用 blob 輸出繫結
 
-## <a name="storage-blob-input-binding"></a>儲存體 Blob 輸入繫結
-Azure 儲存體 blob 輸入繫結可讓您在函式中從儲存體容器使用 blob。 
+在 .NET 函式中，您應該在函式簽章中使用 `out string` 參數，或使用下列清單中的其中一個類型。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取輸出 blob。
 
-儲存體 blob 輸入的函式會使用下列 `bindings` function.json 陣列中的 JSON 物件︰
+在 .NET 函式中，您可以輸出至下列任何類型：
 
-```json
-{
-  "name": "<Name of input parameter in function signature>",
-  "type": "blob",
-  "direction": "in"
-  "path": "<Path of input blob - see below>",
-  "connection":"<Name of app setting - see below>"
-},
-```
-
-請注意：
-
-* `path` 必須包含容器名稱和 blob 名稱。 例如，如果您在函數中有[佇列觸發程序](functions-bindings-storage-queue.md)，您可以使用 `"path": "samples-workitems/{queueTrigger}"` 以與觸發程序訊息中指定之 blob 名稱相符的名稱來指向 `samples-workitems` 容器中的 blob。   
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定](functions-how-to-use-azure-function-app-settings.md)。 
-
-<a name="inputusage"></a>
-
-## <a name="input-usage"></a>輸入使用方式
-在 C# 函式中，您使用在您函式簽章中的具名參數 (例如 `<T> <name>`) 繫結至輸入的 blob 資料。
-其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [輸入繫結](#input) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
-
-blob 可以還原序列化為下列任何一種類型︰
-
-* 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化的 blob 資料。
-  如果您宣告自訂輸入類型 (例如 `InputType`)，Azure Functions 會嘗試將 JSON 資料還原序列化為您指定的類型。
-* 字串 - 適用於文字 blob 資料。
-
-在 C# 函式中，您也可以繫結至下列任何類型，函式的執行階段會嘗試使用該類型還原序列化 blob 資料︰
-
-* `TextReader`
+* `out string`
+* `TextWriter`
 * `Stream`
+* `CloudBlobStream`
 * `ICloudBlob`
 * `CloudBlockBlob` 
 * `CloudPageBlob` 
 
-<a name="inputsample"></a>
+<a name="input-sample"></a>
 
-## <a name="input-sample"></a>輸入範例
-假設您有下列 function.json，則會定義[儲存體佇列觸發程序](functions-bindings-storage-queue.md)、儲存體 blob 輸入和儲存體 blob 輸出︰
+## <a name="queue-trigger-with-blob-input-and-output-sample"></a>具有 blob 輸入和輸出的佇列觸發程序範例
+假設您有下列 function.json，定義了[佇列儲存體觸發程序](functions-bindings-storage-queue.md)、blob 儲存體輸入和 blob 儲存體輸出。 請注意 `queueTrigger` 中繼資料屬性 在 blob 輸入和輸出 `path` 屬性中的使用方式：
 
 ```json
 {
@@ -291,82 +273,29 @@ blob 可以還原序列化為下列任何一種類型︰
 
 <a name="incsharp"></a>
 
-### <a name="input-usage-in-c"></a>C# 中的輸入使用方式 #
+### <a name="blob-binding-example-in-c"></a>C# 中的 blob 繫結範例 #
 
 ```cs
-public static void Run(string myQueueItem, string myInputBlob, out string myOutputBlob, TraceWriter log)
+// Copy blob from input to output, based on a queue trigger
+public static void Run(string myQueueItem, Stream myInputBlob, out string myOutputBlob, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
     myOutputBlob = myInputBlob;
 }
 ```
 
-<!--
-<a name="infsharp"></a>
-### Input usage in F# ##
-```fsharp
-
-``` 
--->
-
 <a name="innodejs"></a>
 
-### <a name="input-usage-in-nodejs"></a>Node.js 中的輸入使用方式
+### <a name="blob-binding-example-in-nodejs"></a>Node.js 中的 blob 繫結範例
 
 ```javascript
+// Copy blob from input to output, based on a queue trigger
 module.exports = function(context) {
     context.log('Node.js Queue trigger function processed', context.bindings.myQueueItem);
     context.bindings.myOutputBlob = context.bindings.myInputBlob;
     context.done();
 };
 ```
-
-<a name="output"></a>
-
-## <a name="storage-blob-output-binding"></a>儲存體 Blob 輸出繫結
-Azure 儲存體 blob 輸出繫結可讓您在函式中將 blob 寫入儲存體容器。 
-
-函式的儲存體 blob 輸出會使用下列 `bindings` function.json 陣列中的 JSON 物件︰
-
-```json
-{
-  "name": "<Name of output parameter in function signature>",
-  "type": "blob",
-  "direction": "out",
-  "path": "<Path of input blob - see below>",
-  "connection": "<Name of app setting - see below>"
-}
-```
-
-請注意：
-
-* `path` 必須包含容器名稱和要寫入的 blob 名稱。 例如，如果您在函數中有[佇列觸發程序](functions-bindings-storage-queue.md)，您可以使用 `"path": "samples-workitems/{queueTrigger}"` 以與觸發程序訊息中指定之 blob 名稱相符的名稱來指向 `samples-workitems` 容器中的 blob。   
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定](functions-how-to-use-azure-function-app-settings.md)。 
-
-<a name="outputusage"></a>
-
-## <a name="output-usage"></a>輸出使用方式
-在 C# 函式中，您使用函式簽章中名為 `out` 的參數 (例如 `out <T> <name>`) 繫結至輸出 blob，其中 `T` 是您想要用來序列化資料的資料類型，而 `paramName` 是您在[輸出繫結](#output)中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取輸出 blob。
-
-您可以使用下列任何類型寫入輸出 blob︰
-
-* 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化。
-  如果您宣告自訂輸出類型 (例如 `out OutputType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 null，則函式的執行階段會建立 blob 作為 null 物件。
-* 字串 - (`out string paramName`) 適用於文字 blob 資料。 當函式結束時，如果字串參數非 Null，就只會建立 Blob。
-
-在 C# 函式中，您也可以輸出至下列任何類型︰
-
-* `TextWriter`
-* `Stream`
-* `CloudBlobStream`
-* `ICloudBlob`
-* `CloudBlockBlob` 
-* `CloudPageBlob` 
-
-<a name="outputsample"></a>
-
-## <a name="output-sample"></a>輸出範例
-請參閱[輸入範例](#inputsample).
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]

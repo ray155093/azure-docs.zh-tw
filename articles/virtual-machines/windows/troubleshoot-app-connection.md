@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中針對 Windows VM 上的應用程式存取問題進行疑難排解 | Microsoft Docs"
-description: "如果您無法存取在 Azure 虛擬機器上執行的應用程式，請使用下列步驟釐清問題的來源。"
+title: "在 Azure 中針對 Windows VM 應用程式存取問題進行疑難排解 | Microsoft Docs"
+description: "使用這些詳細的疑難排解步驟，將連線至在 Azure 中 Windows 虛擬機器上執行之應用程式時發生的問題隔離。"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -13,16 +13,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: support-article
-ms.date: 12/20/2016
+ms.date: 05/18/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: edcea6f2cd924404ed089d71f213613b14c66d17
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 5e9f54a666799147cee8d8b5af5fd8aa3bac1780
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
-# <a name="troubleshoot-access-to-an-application-running-on-an-azure-virtual-machine"></a>疑難排解存取在 Azure 虛擬機器上執行的應用程式
+# <a name="troubleshoot-access-to-an-application-running-on-a-windows-virtual-machine-in-azure"></a>疑難排解在 Azure 中 Windows 虛擬機器上執行的應用程式存取
 [!INCLUDE [virtual-machines-common-troubleshoot-app-connection](../../../includes/virtual-machines-common-troubleshoot-app-connection.md)]
 
 

@@ -12,13 +12,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/15/2017
+ms.date: 05/15/2017
 ms.author: kgremban
 ms.custom: end-user
-translationtype: Human Translation
-ms.sourcegitcommit: 3fd5b85f718313d8267157157e45965b2b21f2db
-ms.openlocfilehash: 60c84a5f5c675b012f2504f6fe222f35ce4d0646
-ms.lasthandoff: 02/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: fac7f969f943312fca1eacc41dca3b8e65cf2024
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 ---
 # <a name="what-are-app-passwords-in-azure-multi-factor-authentication"></a>什麼是 Azure Multi-Factor Authentication 中的應用程式密碼？
@@ -62,8 +63,9 @@ ms.lasthandoff: 02/03/2017
 4. 按一下 [建立] 。
 5. 輸入應用程式密碼的名稱，然後按 [下一步] 
 6. 將應用程式密碼複製到剪貼簿，並將它貼到您的應用程式。
-
+   
    ![雲端](./media/multi-factor-authentication-end-user-app-passwords/app2.png)
+
 
 ### <a name="to-delete-app-passwords-in-the-azure-portal"></a>在 Azure 入口網站中刪除應用程式密碼
 1. 登入 Azure 傳統入口網站。
@@ -81,17 +83,14 @@ ms.lasthandoff: 02/03/2017
 1. 登入 [https://myapps.microsoft.com](https://myapps.microsoft.com)
 2. 按一下右上方的您的名稱，然後選擇 [設定檔]。
 3. 選取 [其他安全性驗證]。
-
    ![選取 [其他安全性驗證] - 螢幕擷取畫面](./media/multi-factor-authentication-end-user-manage/myapps1.png)
 
 4. 選取 [應用程式密碼]。
-
    ![選取 [應用程式密碼] - 螢幕擷取畫面](./media/multi-factor-authentication-end-user-app-passwords/apppass2.png)
 
 5. 按一下 [建立] 。
 6. 輸入應用程式密碼的名稱，然後按 [下一步] 。
 7. 將應用程式密碼複製到剪貼簿，並將它貼到您的應用程式。
-
    ![建立應用程式密碼](./media/multi-factor-authentication-end-user-app-passwords/create2.png)
 
 ### <a name="to-delete-an-app-password-using-the-myapps-portal"></a>使用 Myapps 入口網站刪除應用程式密碼
