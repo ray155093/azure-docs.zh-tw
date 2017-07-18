@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/15/2017
 ms.author: marsma
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: 6a5ba89d8b17e0646cd8a6185da6d1094fd64d12
+ms.sourcegitcommit: 8be2bcb9179e9af0957fcee69680ac803fd3d918
+ms.openlocfilehash: 0237d10ccd9424da0ec10bc2773b978ffc11a294
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/23/2017
 
 ---
 # <a name="azure-storage-replication"></a>Azure 儲存體複寫
@@ -111,7 +111,9 @@ LRS 相較於其他選項是最低的成本選項，並提供最少的持久性�
 | 印度中部 |印度南部 |
 | 印度西部 |印度南部 |
 | 美國政府愛荷華州 |美國政府維吉尼亞州 |
-| 美國政府維吉尼亞州 |美國政府愛荷華州 |
+| 美國政府維吉尼亞州 |美國政府德克薩斯州 |
+| 美國政府德克薩斯州 |美國政府亞利桑那州 |
+| 美國政府亞利桑那州 |美國政府德克薩斯州 |
 | 加拿大中部 |加拿大東部 |
 | 加拿大東部 |加拿大中部 |
 | 英國西部 |英國南部 |
@@ -122,6 +124,11 @@ LRS 相較於其他選項是最低的成本選項，並提供最少的持久性�
 | 美國中西部 |美國西部 2 |
 
 如需有關 Azure 支援區域的最新資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。
+
+>[!NOTE]  
+> 美國維吉尼亞州政府次要區域是美國德克薩斯州政府。 之前，美國維吉尼亞州政府將美國愛荷華州政府視為次要區域。 仍將美國愛荷華州政府視為次要區域的儲存體帳戶會移轉至將美國德克薩斯州視為次要區域。 
+> 
+> 
 
 ## <a name="read-access-geo-redundant-storage"></a>讀取權限異地備援儲存體
 除了 GRS 所提供的跨兩個區域複寫之外，讀取權限異地備援儲存體 (RA-GRS) 會透過提供次要位置資料的唯讀權限，最大化儲存體帳戶的可用性。
@@ -135,6 +142,49 @@ LRS 相較於其他選項是最低的成本選項，並提供最少的持久性�
 * 如果 Microsoft 可起始容錯移轉到次要區域，您將會在完成容錯移轉之後具有該資料的讀取和寫入權限。 如需詳細資訊，請參閱[災害復原指南](storage-disaster-recovery-guidance.md)。 
 * RA-GRS 適用於高可用性目的。 如需擴充性的指引，請檢閱[效能檢查清單](storage-performance-checklist.md)。
 
+## <a name="frequently-asked-questions"></a>常見問題集
+
+<a id="howtochange"></a>
+#### <a name="1-how-can-i-change-the-geo-replication-type-of-my-storage-account"></a>1.我要如何變更儲存體帳戶的異地複寫類型？
+
+   您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure Powershell](storage-powershell-guide-full.md) 或以程式設計方式使用我們的多個儲存體用戶端程式庫之一，將儲存體帳戶的異地複寫類型變更為 LRS、GRS 或 RA-GRS。 請注意，ZRS 帳戶無法轉換成 LRS 或 GRS。 同樣地，現有 LRS 或 GRS 帳戶無法轉換為 ZRS 帳戶。
+
+<a id="changedowntime"></a>
+#### <a name="2-will-there-be-any-down-time-if-i-change-the-replication-type-of-my-storage-account"></a>2.若我變更儲存體帳戶的複寫類型，是否會有任何停機時間？
+
+   否，不會有任何停機時間。
+
+<a id="changecost"></a>
+#### <a name="3-will-there-be-any-additional-cost-if-i-change-the-replication-type-of-my-storage-account"></a>3.若我變更儲存體帳戶的複寫類型，是否會產生任何額外費用？
+
+   是。 如果您將儲存體帳戶從 LRS 變更為 GRS (或 RA-GRS)，對於涉及將現有資料從主要位置複製到次要位置的輸出，會產生額外費用。 複製初始資料之後，將資料從主要位置異地複寫到次要位置將不會產生額外的輸出費用。 有關頻寬費用的詳細資料，可在 [Azure 儲存體定價頁面](https://azure.microsoft.com/pricing/details/storage/blobs/)找到。 如果您要從 GRS 變更為 LRS，將沒有額外費用，但會從次要位置刪除資料。
+
+<a id="ragrsbenefits"></a>
+#### <a name="4-how-can-ra-grs-help-me"></a>4.RA-GRS 可以給我什麼協助？
+   
+   GRS 儲存體可將資料從主要區域複寫到與主要區域距離數百英哩的次要區域。 在此案例中，即使發生主要區域因全區中斷或嚴重損壞而無法復原的情況，您的資料仍會是永久性。 RA-GRS 儲存體除了包含此功能之外，還能讓您從次要位置讀取資料。 如需有關如何利用此功能的一些概念，請參閱[使用 RA-GRS 儲存體設計高可用性應用程式](storage-designing-ha-apps-with-ragrs.md)。 
+
+<a id="lastsynctime"></a>
+#### <a name="5-is-there-a-way-for-me-to-figure-out-how-long-it-takes-to-replicate-my-data-from-the-primary-to-the-secondary-region"></a>5.是否有辦法可以讓我知道將資料從主要區域複寫到次要區域所需花費的時間？
+   
+   如果您使用 RA-GRS 儲存體，可查閱儲存體帳戶的上次同步處理時間。 上次同步處理時間是 GMT 日期/時間值；在上次同步處理時間之前完成的所有主要位置寫入都已成功寫入到次要位置，這表示現在已經可以從次要位置讀取這些資料。 在上次同步處理時間之後完成的主要位置寫入可能已可讀取，也可能無法讀取。 您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure PowerShell](storage-powershell-guide-full.md)，或以程式設計方式使用 REST API 或其中一個儲存體用戶端程式庫查詢這個值。 
+
+<a id="outage"></a>
+#### <a name="6-how-can-i-switch-to-the-secondary-region-if-there-is-an-outage-in-the-primary-region"></a>6.如果主要區域發生中斷，我要如何改為次要區域？
+   
+   如需詳細資訊，請參閱文章[如果 Azure 儲存體發生中斷應該怎麼辦](storage-disaster-recovery-guidance.md)。
+
+<a id="rpo-rto"></a>
+#### <a name="7-what-is-the-rpo-and-rto-with-grs"></a>7.RPO 和使用 GRS 的 RTO 為何？
+   
+   復原點目標 (RPO)：在 GRS 和 RA-GRS 中，儲存體服務會以非同步方式將資料從主要位置異地複寫到次要位置。 如果發生重大區域性災害而必須執行容錯移轉，則可能會遺失尚未進行異地複寫的最近差異變更。 可能資料遺失的分鐘數稱為 RPO (這是指資料可以復原的時間點)。 我們的 RPO 通常低於 15 分鐘，但目前並沒有關於異地複寫時間長短的 SLA。
+
+   復原時間目標 (RTO)：這是測量我們完成容錯移轉並使儲存體帳戶恢復上線 (如果必須進行容錯移轉) 的標準。 執行容錯移轉的時間包括下列各項：
+    * 我們用來調查及判斷是否可在主要位置復原資料，或者我們是否需要進行容錯移轉所花費的時間。
+    * 變更主要 DNS 項目以指向次要位置來容錯移轉帳戶。
+
+   我們對於保存您的資料採取非常認真負責的態度，所以如果有任何機會能夠復原資料，我們都會延後執行容錯移轉，而專注於復原主要位置的資料。 未來，我們打算提供 API 來讓您從帳戶層級觸發容錯移轉，使您更夠自行控制 RTO，但此目標尚未實現。
+   
 ## <a name="next-steps"></a>後續步驟
 * [使用 RA-GRS 儲存體設計高可用性應用程式](storage-designing-ha-apps-with-ragrs.md)
 * [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)

@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 4/25/2017
 ms.author: markgal;trinadhk;
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 045dfff9a439674c220a962907d2fe91f2fe0b35
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 072efdccaa8df5d430314d753a437b524986b53c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -92,7 +93,7 @@ ms.lasthandoff: 04/26/2017
 備份 VM 時，VM 上的備份擴充功能會使用 HTTPS API 將快照管理命令傳送到 Azure 儲存體。 透過 HTTP Proxy 路由傳送擴充功能流量，因為它是唯一為了要存取公用網際網路而設定的元件。
 
 > [!NOTE]
-> 對於應該使用什麼 Proxy 軟體，並無任何建議。 請務必挑選與下面設定步驟相容的 Proxy。
+> 對於應該使用什麼 Proxy 軟體，並無任何建議。 請務必挑選具備輸出綁定 (outbound stickiness) 功能，且與下方設定步驟相容的 Proxy。 確定第三方軟體沒有修改 Proxy 設定
 >
 >
 

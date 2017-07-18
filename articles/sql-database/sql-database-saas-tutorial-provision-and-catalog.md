@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure SQL Database 在多租用戶應用程式中佈建新的租用戶 | Microsoft Docs"
-description: "在 Wingtip SaaS 應用程式中佈建及編目新租用戶"
+description: "了解如何在 Wingtip SaaS 應用程式中佈建及編目新租用戶"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -9,24 +9,26 @@ manager: jhubbard
 editor: 
 ms.assetid: 
 ms.service: sql-database
-ms.custom: tutorial
+ms.custom: scale out apps
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: hero-article
-ms.date: 05/24/2017
+ms.topic: article
+ms.date: 05/31/2017
 ms.author: sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: cf2fa0950f9f9df833051979b02355236214c4ea
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: f6beb62246aaf59bfd81467f07d347913a20677b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
 # <a name="provision-new-tenants-and-register-them-in-the-catalog"></a>佈建新的租用戶並在目錄中註冊它們
 
-在本教學課程中，您會在 Wingtip SaaS 應用程式中佈建新租用戶。 您會建立租用戶、租用戶資料庫，並在類別目錄中註冊租用戶。 「類別目錄」是維護許多 SaaS 應用程式租用戶及其資料間之對應的資料庫。 使用這些指令碼來探索使用的佈建及編目模式，以及在類別目錄中實作註冊新租用戶的方式。 類別目錄扮演將應用程式要求導向正確資料庫的重要角色。
+在本教學課程中，您會在 Wingtip SaaS 應用程式中佈建新租用戶。 您可以佈建租用戶資料庫，並在目錄中註冊來建立租用戶。 「目錄」是維護 SaaS 應用程式租用戶及其資料間之對應的資料庫。
+
+使用這些指令碼來探索使用的佈建及編目模式，以及在類別目錄中實作註冊新租用戶的方式。 目錄扮演將應用程式要求導向正確資料庫的重要角色。
 
 在本教學課程中，您將了解如何：
 
@@ -34,7 +36,7 @@ ms.lasthandoff: 05/25/2017
 
 > * 佈建單一新租用戶
 > * 佈建一批額外的租用戶
-> * 了解佈建新租用戶，及將它們註冊到類別目錄的細節。
+> * 了解佈建租用戶和將它們註冊到目錄的細節
 
 
 若要完成本教學課程，請確定已完成下列必要條件：
@@ -44,24 +46,24 @@ ms.lasthandoff: 05/25/2017
 
 ## <a name="introduction-to-the-saas-catalog-pattern"></a>SaaS 編目模式簡介
 
-在許多以資料庫為基礎的多租用戶 SaaS 應用程式中，知道每個租用戶的資訊儲存位置是很重要的。 在 SaaS 編目模式中，會使用類別目錄資料庫來保存租用戶及其資料儲存位置之間的對應。 Wingtip SaaS 應用程式使用使用單一租用戶資料庫架構，但不論使用多租用戶或單一租用戶資料庫，都是套用在類別目錄中儲存租用戶與資料庫對應的基本模式。
+在許多以資料庫為基礎的多租用戶 SaaS 應用程式中，知道每個租用戶的資訊儲存位置是很重要的。 在 SaaS 編目模式中，會使用類別目錄資料庫來保存租用戶及其資料儲存位置之間的對應。 Wingtip SaaS 應用程式會每個資料庫架構都使用單一租用戶，但不論使用多租用戶或單一租用戶資料庫，都是套用在目錄中儲存租用戶與資料庫對應的基本模式。
 
 已指派每個租用戶索引鍵，以在類別目錄中區別其資料。 在 Wingtip SaaS 應用程式中，索引鍵是由租用戶名稱的雜湊組成。 此模式可讓應用程式 URL 的租用戶名稱部分用於建構索引鍵，並擷取特定租用戶的連線。 可以使用其他識別碼配置而不會影響整體模式。
 
-應用程式中的類別目錄是在[彈性資料庫用戶端程式庫 (EDCL)](sql-database-elastic-database-client-library.md) 中使用「分區管理」技術實作。 EDCL 負責建立及管理以資料庫為基礎的「類別目錄」，並在其中維護「分區對應」。 類別目錄會包含索引鍵 (租用戶) 和其資料庫 (分區) 之間的對應。
+應用程式中的類別目錄是在[彈性資料庫用戶端程式庫 (EDCL)](sql-database-elastic-database-client-library.md) 中使用「分區管理」技術實作。 EDCL 負責建立及管理以資料庫為基礎的「類別目錄」，並在其中維護「分區對應」。 目錄會包含索引鍵 (租用戶) 和其分區 (資料庫) 之間的對應。
 
 > [!IMPORTANT]
 > 對應資料可在類別目錄資料庫中取得，但請勿編輯它！ 務必只使用彈性資料庫用戶端程式庫 API 編輯對應資料。 不支援直接操作對應資料，這樣做可能有造成類別目錄損毀的風險。
 
-Wingtip SaaS 應用程式是透過複製「範本」資料庫來佈建新租用戶。
+
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 [用於下載 Wingtip SaaS 指令碼的步驟](sql-database-wtp-overview.md#download-the-wingtip-saas-scripts)。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 [用於下載 Wingtip SaaS 指令碼的步驟](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts)。
 
-## <a name="provision-a-new-tenant"></a>佈建新租用戶
+## <a name="provision-one-new-tenant"></a>佈建一個新租用戶
 
-如果您已經在[第一個 Wingtip SaaS 教學課程](sql-database-saas-tutorial.md)中建立租用戶，則可以跳至下一節：[佈建一批租用戶](#provision-a-batch-of-tenants)。
+如果您已經在[第一個 Wingtip SaaS 教學課程](sql-database-saas-tutorial.md)中建立租用戶，則可以跳至下一節來[佈建一批租用戶](#provision-a-batch-of-tenants)。
 
 執行 *Demo-ProvisionAndCatalog* 指令碼以快速建立租用戶並在類別目錄中註冊它：
 
@@ -79,13 +81,13 @@ Wingtip SaaS 應用程式是透過複製「範本」資料庫來佈建新租用�
 
 ## <a name="provision-a-batch-of-tenants"></a>佈建一批租用戶
 
-此練習會佈建一批額外的租用戶。 建議您在完成其他 Wingtip SaaS 教學課程之前進行此練習。
+此練習會佈建一批額外的租用戶。 建議您在完成其他 Wingtip SaaS 教學課程之前佈建一批租用戶，才會有多個資料庫可以使用。
 
 1. 在 [PowerShell ISE] 中開啟 \\Learning Modules\\Utilities\\*Demo-ProvisionAndCatalog.ps1* 並設定下列值：
    * **$DemoScenario** = **3**，設定為 **3** 以「佈建一批租用戶」。
 1. 按 **F5** 並執行指令碼。
 
-此指令碼會部署一批額外的租用戶。 它會使用控制批次處理的 [Azure Resource Manager 範本](../azure-resource-manager/resource-manager-template-walkthrough.md)，並且將每個資料庫的佈建委派到連結的範本。 以此方式使用範本可讓 Azure Resource Manager 代理指令碼的佈建程序。 範本以平行方式佈建資料庫，它可以視需要處理重試，進而最佳化整體程序。 該指令碼是獨立的，因此如果中斷，請再次執行它。
+此指令碼會部署一批額外的租用戶。 它會使用控制批次處理的 [Azure Resource Manager 範本](../azure-resource-manager/resource-manager-template-walkthrough.md)，並且將每個資料庫的佈建委派到連結的範本。 以此方式使用範本可讓 Azure Resource Manager 代理指令碼的佈建程序。 範本以平行方式佈建資料庫，它可以視需要處理重試，進而最佳化整體程序。 指令碼為等冪，如果它失敗，或因為任何原因而停止，請再次執行。
 
 ### <a name="verify-the-batch-of-tenants-successfully-deployed"></a>確認已成功部署一批租用戶
 
@@ -94,12 +96,12 @@ Wingtip SaaS 應用程式是透過複製「範本」資料庫來佈建新租用�
    ![資料庫清單](media/sql-database-saas-tutorial-provision-and-catalog/database-list.png)
 
 
-## <a name="provision-and-catalog-detailed-walkthrough"></a>佈建及編目的詳細逐步解說
+## <a name="provision-and-catalog-details"></a>佈建及目錄詳細資料
 
 若要深入了解 Wingtip 應用程式實作新租用戶佈建的方式，請再次執行 *Demo-ProvisionAndCatalog* 指令碼並佈建另一個租用戶。 這次，新增中斷點並逐步執行工作流程：
 
-1. 開啟 ...\\Learning Modules\Utilities\_Demo-ProvisionAndCatalog.ps1_ 並將下列項目設定為目前不存在於類別目錄中的新租用戶值：
-   * **$TenantName** = 設定為新名稱 (例如，*Hackberry Hitters*)。
+1. 開啟 ...\\Learning Modules\Utilities\_Demo-ProvisionAndCatalog.ps1_ 並設定下列參數：
+   * **$TenantName** = 租用戶名稱必須是唯一的，因此請設定為和任何現有租用戶不同的名稱 (例如，*Hackberry Hitters*)。
    * **$VenueType** = 使用其中一個預先定義的場地類型 (例如，*judo*)。
    * **$DemoScenario** = 1，設定為 **1** 以「佈建單一租用戶」。
 
@@ -107,7 +109,7 @@ Wingtip SaaS 應用程式是透過複製「範本」資料庫來佈建新租用�
 
    ![中斷點](media/sql-database-saas-tutorial-provision-and-catalog/breakpoint.png)
 
-1. 按 **F5** 以執行指令碼。 當到達中斷點時，按 **F11** 來逐步執行。 使用 **F10** 來追蹤指令碼的執行，並使用 **F11** 來跳過或進入呼叫的函式。 [使用 PowerShell 指令碼及對其進行偵錯的祕訣](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise)
+1. 若要執行指令碼，請按 **F5**。 當到達中斷點時，按 **F11** 來逐步執行。 使用 **F10** 來追蹤指令碼的執行，並使用 **F11** 來跳過或進入呼叫的函式。 [使用 PowerShell 指令碼及對其進行偵錯的祕訣](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise)
 
 ### <a name="examine-the-provision-and-catalog-implementation-in-detail-by-stepping-through-the-script"></a>逐步執行指令碼以詳細檢查佈建及編目實作
 
@@ -115,7 +117,7 @@ Wingtip SaaS 應用程式是透過複製「範本」資料庫來佈建新租用�
 
 1. 將包含用於登入之函式的 **SubscriptionManagement.psm1** 模組匯入到 Azure，並選取您正在使用的 Azure 訂用帳戶。
 1. 匯入對[分區管理](sql-database-elastic-scale-shard-map-management.md)函式提供類別目錄和租用戶層級抽象概念的 **CatalogAndDatabaseManagement.psm1** 模組。 此模組很重要且值得探討，其中包含大部分的編目模式。
-1. **取得設定詳細資料**。 逐步執行 _Get-Configuration_ (使用 **F11**) 並查看指定應用程式設定的方式。 資源名稱和其他應用程式特定值是在這裡定義的，但在您熟悉指令碼之前，請勿變更這裡的任何值。
+1. **取得設定詳細資料**。 逐步執行 *Get-Configuration* (使用 **F11**) 並查看指定應用程式設定的方式。 資源名稱和其他應用程式特定值是在這裡定義的，但在您熟悉指令碼之前，請勿變更這裡的任何值。
 1. **取得類別目錄物件**。 逐步執行 *Get-Catalog* 以查看如何使用從 **AzureShardManagement.psm1** 匯入的分區管理函式來將類別目錄初始化。 類別目錄由下列物件組成：
    * $catalogServerFullyQualifiedName 是使用標準主幹加上您的 [使用者] 名稱來建構：_catalog-\<使用者\>.database.windows.net_。
    * $catalogDatabaseName 是從下列設定擷取：*tenantcatalog*。
@@ -125,10 +127,10 @@ Wingtip SaaS 應用程式是透過複製「範本」資料庫來佈建新租用�
 1. **計算新的租用戶索引鍵**。 會使用雜湊函式從租用戶名稱建立租用戶索引鍵。
 1. **檢查租用戶索引鍵是否已存在**。 會檢查類別目錄以確定索引鍵可供使用。
 1. **租用戶資料庫是使用 New-TenantDatabase 來佈建。** 使用 **F11** 來逐步執行並查看使用 Resource Manager 範本佈建資料庫的方式。
-    
+
 資料庫名稱是使用租用戶名稱來建構，使分區和租用戶之間的從屬關係一目瞭然 (輕鬆就能使用其他資料庫命名策略)。
 
-Resource Manager 範本會用來建立租用戶資料庫，方法是在類別目錄伺服器上複製「範本」資料庫 (baseTenantDB)。  另一個方法是先建立空資料庫，然後透過匯入 bacpac 將它初始化。
+Resource Manager 範本會用來建立租用戶資料庫，方法是在類別目錄伺服器上複製「範本」資料庫 (basetenantdb)。  另一個方法是先建立空資料庫，然後透過匯入 bacpac 將它初始化。
 
 Resource Manager 範本位於 …\\Learning Modules\\Common\\ 資料夾：*tenantdatabasecopytemplate.json*
 
@@ -137,8 +139,8 @@ Resource Manager 範本位於 …\\Learning Modules\\Common\\ 資料夾：*tenan
 租用戶資料庫會以 *Add-TenantDatabaseToCatalog* 使用租用戶索引鍵在類別目錄中註冊。 使用 **F11** 來逐步執行以查看詳細資料：
 
 * 類別目錄資料庫已新增到分區對應 (已知資料庫的清單)。
-* 已建立將索引鍵值連結到分區的對應。
-* 已新增租用戶相關的其他中繼資料 (場地的名稱)。
+* 已建立將索引鍵值 (租用戶) 連結到分區 (資料庫) 的對應。
+* 已新增租用戶相關的其他中繼資料。
 
 佈建完成之後，執行會返回到原始的 *Demo-ProvisionAndCatalog* 指令碼，且新租用戶的 [Events (活動)] 頁面會在瀏覽器中開啟：
 
@@ -149,20 +151,9 @@ Resource Manager 範本位於 …\\Learning Modules\\Common\\ 資料夾：*tenan
 
 未包含在此教學課程中的其他佈建模式包括：
 
-**預先佈建資料庫。** 此模式利用彈性集區中的資料庫不會新增額外成本 (針對彈性集區計費而不是資料庫)，以及閒置的資料庫不會耗用資源的特點。 藉由在集區中預先佈建資料庫，然後在需要時才配置它們，可以大幅降低租用戶上線時間。 可以視需要調整預先佈建的資料庫數目，以針對預期的佈建率保留適當的緩衝。
+**預先佈建資料庫。** 預先佈建模式會利用彈性集區中的資料庫，並不會增加額外成本。 針對彈性集區計費，而不是資料庫，而且閒置資料庫不會耗用任何資源。 藉由在集區中預先佈建資料庫，並在需要時才配置它們，可以大幅降低租用戶上線時間。 可以視需要調整預先佈建的資料庫數目，以針對預期的佈建率保留適當的緩衝。
 
-**自動佈建。** 在此模式中，會使用專用的佈建服務，視需要自動佈建伺服器、集區與資料庫 - 包括在彈性集區中預先佈建資料庫 (若有需要)。 如果資料庫已被解除委任並刪除，可以視需要以佈建服務填入彈性集區中的間隔。 此類服務可以是簡單或複雜的 (例如，跨多個地理位置處理佈建)，且如果已針對 DR 使用異地複寫，就可自動設定該策略。 若使用自動佈建模式，用戶端應用程式或指令碼會將佈建要求送出到將由佈建服務處理的佇列，然後會輪詢該服務以判斷是否完成。 若使用預先佈建，則會使用在背景執行的服務 (負責管理替代資料庫的佈建) 來快速處理要求。
-
-
-## <a name="stopping-wingtip-saas-application-related-billing"></a>停止 Wingtip SaaS 應用程式的相關計費
-
-如果您不打算繼續進行其他教學課程，建議您刪除所有資源，以暫止計費。 刪除 Wingtip 應用程式部署所在的資源群組，這樣也會刪除其所有資源。
-
-* 在入口網站中，瀏覽至應用程式的資源群組並將它刪除，以停止與此 Wingtip 部署相關的所有計費。
-
-## <a name="tips"></a>祕訣
-
-* EDCL 也提供重要功能，可讓用戶端應用程式連線至類別目錄並進行操作。 您也可以使用 EDCL 來擷取所指定索引鍵值的 ADO.NET 連線，讓應用程式能連線到正確的資料庫。 用戶端會快取此連線資訊，以將對類別目錄資料庫的流量降到最低，並加快應用程式的速度。
+**自動佈建。** 在自動佈建模式中，會使用專用的佈建服務，視需要自動佈建伺服器、集區與資料庫 - 包括在彈性集區中預先佈建資料庫 (若有需要)。 如果資料庫已被解除委任並刪除，可以視需要以佈建服務填入彈性集區中的間隔。 此類服務可以是簡單或複雜的 (例如，跨多個地理位置處理佈建)，且如果已針對災害復原使用異地複寫，就可自動設定該策略。 若使用自動佈建模式，用戶端應用程式或指令碼會將佈建要求送出到將由佈建服務處理的佇列，然後會輪詢該服務以判斷是否完成。 若使用預先佈建，則會使用在背景執行的服務 (負責管理替代資料庫的佈建) 來快速處理要求。
 
 
 
@@ -174,9 +165,9 @@ Resource Manager 範本位於 …\\Learning Modules\\Common\\ 資料夾：*tenan
 
 > * 佈建單一新租用戶
 > * 佈建一批額外的租用戶
-> * 了解佈建新租用戶，及將它們註冊到類別目錄的細節。
+> * 了解佈建租用戶和將它們註冊到目錄的細節
 
-[效能監視教學課程](sql-database-saas-tutorial-performance-monitoring.md)
+試用[效能監視教學課程](sql-database-saas-tutorial-performance-monitoring.md)。
 
 ## <a name="additional-resources"></a>其他資源
 

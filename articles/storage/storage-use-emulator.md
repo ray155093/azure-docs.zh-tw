@@ -12,12 +12,13 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/21/2017
+ms.date: 06/08/2017
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: e9601830a2444772dd268160c9ad821a772bc1b4
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1e6f2b9de47d1ce84c4043f5f6e73d462e0c1271
+ms.openlocfilehash: 9820cef564e291d1c8aee7c360198de1dc05379e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/21/2017
 
 
 ---
@@ -28,7 +29,7 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 ## <a name="get-the-storage-emulator"></a>取得儲存體模擬器
 儲存體模擬器隨 [Microsoft Azure SDK](https://azure.microsoft.com/downloads/)提供。 您也可以使用[獨立安裝程式](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409) (直接下載) 來安裝儲存體模擬器。 若要安裝儲存體模擬器，您必須具有電腦上的系統管理權限。
 
-儲存體模擬器目前只能在 Windows 上執行。
+儲存體模擬器目前只能在 Windows 上執行。 針對考慮適用於 Linux 之儲存體模擬器的使用者，有一個選擇是社群維護的開放原始碼儲存體模擬器 [Azurite](https://github.com/arafato/azurite)。
 
 > [!NOTE]
 > 在某個儲存體模擬器版本中建立的資料不保證可在使用不同版本時加以存取。 如果您需要長期保存資料，建議您將該資料儲存於 Azure 儲存體帳戶中 (而不是儲存體模擬器中)。
@@ -259,6 +260,7 @@ https://storageaccount.blob.core.windows.net/sascontainer?sv=2012-02-12&se=2015-
 
 ## <a name="next-steps"></a>後續步驟
 
+* 評估跨平台的社群維護開放原始碼儲存體模擬器 [Azurite](https://github.com/arafato/azurite)。 
 * [使用 .NET 的 Azure 儲存體範例](storage-samples-dotnet.md)包含開發應用程式時您可以使用的數個程式碼範例的連結。
 * 您可以使用 [Microsoft Azure 儲存體總管](http://storageexplorer.com)，來使用雲端儲存體帳戶和儲存體模擬器中的資源。
 

@@ -13,18 +13,19 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 05/30/2017
 ms.author: cynthn
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 8b823c42743bc477dceaa3270836de8ebd92c28f
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: bd14d9902f4061965c008454a14f91d3927f5b99
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
 # <a name="create-a-windows-virtual-machine-with-powershell-and-the-classic-deployment-model"></a>以 PowerShell 以及傳統部署模型建立 Windows 虛擬機器
 > [!div class="op_single_selector"]
-> * [Azure 傳統入口網站 - Windows](tutorial.md)
+> * [Azure 入口網站 - Windows](tutorial.md)
 > * [PowerShell - Windows](create-powershell.md)
 > 
 > 
@@ -164,7 +165,7 @@ ms.lasthandoff: 04/27/2017
 
     New-AzureVM –ServiceName "<short name of the cloud service>" -VMs $vm1
 
-雲端服務的簡短名稱會顯示在 Azure 傳統入口網站的「雲端服務」清單中，也可能會顯示在 Azure 入口網站的「資源群組」清單中。
+雲端服務的簡短名稱就是 Azure 入口網站的「雲端服務」清單中，或 Azure 入口網站的「資源群組」清單中所顯示的名稱。
 
 選項 2：在現有的雲端服務和虛擬網路中建立虛擬機器。
 
@@ -180,7 +181,7 @@ ms.lasthandoff: 04/27/2017
 如果您將再次建立這個虛擬機器或類似的虛擬機器，您可以：
 
 * 將此命令集儲存為 PowerShell 指令碼檔案 (*.ps1)。
-* 在 Azure 傳統入口網站的 [自動化]  區段中，將這個命令集儲存為 Azure 自動化 Runbook。
+* 在 Azure 入口網站的 [自動化帳戶]  區段中，將這個命令集儲存為 Azure 自動化 Runbook。
 
 ## <a id="examples"></a>範例
 以下是使用上述步驟建置 Azure PowerShell 命令集的兩個範例，這些命令集將建立以 Windows 為基礎的 Azure 虛擬機器。

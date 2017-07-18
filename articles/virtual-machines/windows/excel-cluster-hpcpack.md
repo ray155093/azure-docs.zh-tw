@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 04/11/2017
+ms.date: 06/01/2017
 ms.author: danlep
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 8c40a0d44463c75e92444b393336db1daf270ee1
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: acd2ee7fb94c43493ffd9ffee157f2c3e795b63e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -60,7 +61,7 @@ ms.lasthandoff: 04/27/2017
    
    a. 在 [參數] 頁面上，輸入或修改範本參數的值。 (按一下說明資訊的每個設定旁邊的圖示。)下列畫面顯示範例值。 此範例會在 *hpc.local* 網域中建立名為 *hpc01* 的叢集，由一個前端節點和 2 個計算節點組成。 計算節點是從包括 Microsoft Excel 的 HPC Pack VM 映像建立。
    
-   ![輸入參數][parameters]
+   ![輸入參數][parameters-new-portal]
    
    > [!NOTE]
    > 前端節點 VM 會在 Windows Server 2012 R2 上從 HPC Pack 2012 R2 的 [最新 Marketplace 映像](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) 自動建立。 目前此映像以 HPC Pack 2012 R2 Update 3 為基礎。
@@ -78,9 +79,9 @@ ms.lasthandoff: 04/27/2017
    e. 在 [法律條款] 頁面上檢閱條款。 如果您同意，請按一下 [購買]。 接著，當您完成範本值的設定時，請按一下 [建立]。
 4. 當部署完成時 (通常需要約 30 分鐘)，從叢集前端節點匯出叢集憑證檔。 在稍後的步驟中，您要在用戶端電腦上匯入此公開憑證以提供安全 HTTP 繫結的伺服器端驗證。
    
-   a. 從 Azure 入口網站透過「遠端桌面」連線到前端節點。
+   a. 在 Azure 入口網站中，依序移至儀表板，選取前端節點，然後按一下頁面頂端的 [連線]，即可使用遠端桌面連線。
    
-    ![連接至前端節點][connect]
+    <!-- ![Connect to the head node][connect] -->
    
    b.這是另一個 C# 主控台應用程式。 在憑證管理員中，使用標準程序來匯出前端節點憑證 (位於 Cert: \LocalMachine\My 之下) 而不需私密金鑰。 在此範例中，匯出 *CN = hpc01.eastus.cloudapp.azure.com*。
    
@@ -332,12 +333,12 @@ HPC Pack 部署指令碼會執行一段時間。 指令碼會匯出和下載叢�
 ```
 
 ### <a name="use-nettcp-binding"></a>使用 NetTcp 繫結
-若要使用 NetTcp 繫結，組態就像是連接至內部部署叢集。 您必須在前端節點 VM 上開啟幾個端點。 舉例來說，如果您使用 HPC Pack IaaS 部署指令碼來建立叢集，請依下列方式在 Azure 傳統入口網站中設定端點。
+若要使用 NetTcp 繫結，組態就像是連接至內部部署叢集。 您必須在前端節點 VM 上開啟幾個端點。 舉例來說，如果您使用 HPC Pack IaaS 部署指令碼來建立叢集，請依下列方式在 Azure 入口網站中設定端點。
 
 1. 停止 VM。
 2. 新增 TCP 連接埠 9090、9087、9091、9094 分別做為工作階段、訊息代理程式、訊息代理程式背景工作和資料服務
    
-    ![設定端點][endpoint]
+    ![設定端點][endpoint-new-portal]
 3. 啟動 VM。
 
 SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS 叢集的完整名稱。
@@ -351,6 +352,7 @@ SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS �
 [github]: ./media/excel-cluster-hpcpack/github.png
 [template]: ./media/excel-cluster-hpcpack/template.png
 [parameters]: ./media/excel-cluster-hpcpack/parameters.png
+[parameters-new-portal]: ./media/excel-cluster-hpcpack/parameters-new-portal.png
 [create]: ./media/excel-cluster-hpcpack/create.png
 [connect]: ./media/excel-cluster-hpcpack/connect.png
 [cert]: ./media/excel-cluster-hpcpack/cert.png
@@ -359,5 +361,6 @@ SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS �
 [options]: ./media/excel-cluster-hpcpack/options.png
 [run]: ./media/excel-cluster-hpcpack/run.png
 [endpoint]: ./media/excel-cluster-hpcpack/endpoint.png
+[endpoint-new-portal]: ./media/excel-cluster-hpcpack/endpoint-new-portal.png
 [udf]: ./media/excel-cluster-hpcpack/udf.png
 

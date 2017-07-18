@@ -12,25 +12,32 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 1/31/2017
+ms.date: 06/14/2017
 ms.author: saurse;trinadhk;markgal;
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be6bc58ab856309004904626db166331b29199a8
-ms.openlocfilehash: aa8ccc15971bed76d7ce8fd554e6a0f89d985fb8
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: e2eac02d194c8a3de653292664cb94a55aafc9b7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/02/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
-# 使用傳統部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
-<a id="restore-files-to-a-windows-server-or-windows-client-machine-using-the-classic-deployment-model" class="xliff"></a>
+# <a name="restore-files-to-a-windows-server-or-windows-client-machine-using-the-classic-deployment-model"></a>使用傳統部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
 > [!div class="op_single_selector"]
 > * [傳統入口網站](backup-azure-restore-windows-server-classic.md)
 > * [Azure 入口網站](backup-azure-restore-windows-server.md)
 >
 >
 
-此文章說明如何從備份保存庫還原資料。 若要還原資料，您可以使用 Microsoft Azure 復原服務 (MARS) 代理程式中的 [復原資料精靈]。 當您還原資料時，您可以︰
+本文說明如何從備份保存庫復原資料，並將資料還原到伺服器或電腦。 從 2017 年 3 月開始，您無法再於傳統入口網站中建立備份保存庫。
+
+> [!IMPORTANT]
+> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> **自 2017 年 11 月 1 日起**：
+>- 任何其餘的備份保存庫都會自動升級至復原服務保存庫。
+>- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
+>
+
+若要還原資料，您可以使用 Microsoft Azure 復原服務 (MARS) 代理程式中的 [復原資料精靈]。 當您還原資料時，您可以︰
 
 * 將資料還原到進行備份的相同電腦。
 * 將資料還原至其他電腦。
@@ -44,12 +51,11 @@ ms.lasthandoff: 02/02/2017
 「立即還原」可用於 Azure 入口網站中的復原服務保存庫以及傳統入口網站中的備份保存庫。 如果您想要使用「立即還原」，請下載 MARS 更新，並依照提及「立即還原」部分中的程序進行操作。
 
 
-## 使用「立即還原」將資料還原至同一台電腦
-<a id="use-instant-restore-to-recover-data-to-the-same-machine" class="xliff"></a>
+## <a name="use-instant-restore-to-recover-data-to-the-same-machine"></a>使用「立即還原」將資料還原至同一台電腦
 
 如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
 
-1. 開啟 **Microsoft Azure 備份** 嵌入式管理單元。 如果您不知道嵌入式管理單元的安裝位置，請在電腦或伺服器上搜尋 **Microsoft Azure 備份**。
+1. 開啟 **Microsoft Azure 備份** 嵌入式管理單元。 如果您不知道快照安裝的位置，請在電腦或伺服器上搜尋 **Microsoft Azure 備份**。
 
     傳統型應用程式應該會出現在搜尋結果中。
 
@@ -57,9 +63,9 @@ ms.lasthandoff: 02/02/2017
 
     ![復原資料](./media/backup-azure-restore-windows-server/recover.png)
 
-3. 在 [開始使用] 窗格中，若要將資料還原至同一部伺服器或電腦，請選取 [本台伺服器 (`<server name>`)] 並按一下 [下一步]。
+3. 在 [開始使用] 窗格中，若要將資料還原至同一台伺服器或電腦，請選取 [這台伺服器 (`<server name>`)] 並按一下 [下一步]。
 
-    ![選擇 [本台伺服器] 選項以將資料還原到同一部電腦](./media/backup-azure-restore-windows-server/samemachine_gettingstarted_instantrestore.png)
+    ![選擇 [這台伺服器] 選項以將資料還原到同一台電腦](./media/backup-azure-restore-windows-server/samemachine_gettingstarted_instantrestore.png)
 
 4. 在 [選取復原模式] 窗格上，選擇 [個別檔案與資料夾]，然後按一下 [下一步]。
 
@@ -93,8 +99,7 @@ ms.lasthandoff: 02/02/2017
     >
 
 
-## 將資料還原到相同電腦
-<a id="recover-data-to-the-same-machine" class="xliff"></a>
+## <a name="recover-data-to-the-same-machine"></a>將資料還原到相同電腦
 如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
 
 1. 開啟 **Microsoft Azure 備份** 嵌入式管理單元。
@@ -126,8 +131,7 @@ ms.lasthandoff: 02/02/2017
    * 強烈建議您針對正在復原檔案上的 ACL 保留預設還原選項。
 8. 提供這些輸入之後，按一下 [下一步] 。 就會開始執行將檔案還原到這部電腦的復原工作流程。
 
-## 還原至其他電腦
-<a id="recover-to-an-alternate-machine" class="xliff"></a>
+## <a name="recover-to-an-alternate-machine"></a>還原至其他電腦
 若您遺失整個伺服器，您仍然可從 Azure 備份將資料還原到其他電腦。 下列步驟說明工作流程。  
 
 這些步驟中所使用的術語包含：
@@ -167,8 +171,7 @@ ms.lasthandoff: 02/02/2017
     ![加密](./media/backup-azure-restore-windows-server-classic/encryption.png)
 11. 一旦提供輸入，則按一下 [復原] ，將會觸發還原備份檔案到所提供目的地的程序。
 
-## 使用「立即還原」將資料還原至其他電腦
-<a id="use-instant-restore-to-restore-data-to-an-alternate-machine" class="xliff"></a>
+## <a name="use-instant-restore-to-restore-data-to-an-alternate-machine"></a>使用「立即還原」將資料還原至其他電腦
 若您遺失整個伺服器，您仍然可從 Azure 備份將資料還原到其他電腦。 下列步驟說明工作流程。
 
 這些步驟中所使用的術語包含：
@@ -231,13 +234,11 @@ ms.lasthandoff: 02/02/2017
     >
 
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 * [Azure 備份常見問題集](backup-azure-backup-faq.md)
 * 造訪 [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)(英文)。
 
-## 詳細資訊
-<a id="learn-more" class="xliff"></a>
+## <a name="learn-more"></a>詳細資訊
 * [Azure 備份概觀](http://go.microsoft.com/fwlink/p/?LinkId=222425)
 * [備份 Azure 虛擬機器](backup-azure-vms-introduction.md)
 * [備份 Microsoft 工作負載](backup-azure-dpm-introduction.md)

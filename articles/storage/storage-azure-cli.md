@@ -12,13 +12,13 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: azurecli
 ms.topic: article
-ms.date: 05/15/2017
+ms.date: 06/02/2017
 ms.author: marsma
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: 90b67cf3d136882d59ed7fe4210f93fb694e96a6
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 6098216f7dd901ea48fb3ab969c7934cc288b247
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -257,7 +257,8 @@ az storage blob upload \
 
  如需不同 Blob 類型的詳細資訊，請參閱[了解區塊 Blob、附加 Blob 及分頁 Blob](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs)。
 
-### <a name="download-blobs-from-a-container"></a>從容器下載 Blob
+
+### <a name="download-a-blob-from-a-container"></a>從容器下載 Blob
 此範例示範如何從容器下載 Blob：
 
 ```azurecli
@@ -267,35 +268,47 @@ az storage blob download \
     --file ~/mydownloadedblob.png
 ```
 
+### <a name="list-the-blobs-in-a-container"></a>列出容器中的 Blob
+
+使用 [az storage blob list](/cli/azure/storage/blob#list) 命令列出容器中的 blob。
+
+```azurecli
+az storage blob list \
+    --container-name mycontainer \
+    --output table
+```
+
 ### <a name="copy-blobs"></a>複製 Blob
 您可以在儲存體帳戶內或在不同儲存體帳戶和區域之間，以非同步方式複製 Blob。
 
-下列範例示範如何從一個儲存體帳戶複製 Blob 到另一個儲存體帳戶。 我們會先在另一個帳戶中建立容器，並將其 blob 指定為公開、可匿名存取。 接下來，我們會將檔案上傳至容器，最後，將 blob 從該容器複製到目前帳戶中的 **mycontainer** 容器。
+下列範例示範如何從一個儲存體帳戶複製 Blob 到另一個儲存體帳戶。 我們會先在來源儲存體帳戶中建立容器，指定對其 Blob 的公用讀取存取權。 接著，我們會將檔案上傳至容器，最後，將 Blob 從該容器複製到目的地儲存體帳戶中的容器。
 
 ```azurecli
-# Create container in second account
+# Create container in source account
 az storage container create \
-    --account-name <accountName2> \
-    --account-key <accountKey2> \
-    --name mycontainer2 \
+    --account-name sourceaccountname \
+    --account-key sourceaccountkey \
+    --name sourcecontainer \
     --public-access blob
 
-# Upload blob to container in second account
+# Upload blob to container in source account
 az storage blob upload \
-    --account-name <accountName2> \
-    --account-key <accountKey2> \
-    --file ~/Images/HelloWorld.png \
-    --container-name mycontainer2 \
-    --name myBlockBlob2
+    --account-name sourceaccountname \
+    --account-key sourceaccountkey \
+    --container-name sourcecontainer \
+    --file ~/Pictures/sourcefile.png \
+    --name sourcefile.png
 
-# Copy blob from second account to current account
+# Copy blob from source account to destination account (destcontainer must exist)
 az storage blob copy start \
-    --source-uri https://<accountname2>.blob.core.windows.net/mycontainer2/myBlockBlob2 \
-    --destination-blob myBlobBlob \
-    --destination-container mycontainer
+    --account-name destaccountname \
+    --account-key destaccountkey \
+    --destination-blob destfile.png \
+    --destination-container destcontainer \
+    --source-uri https://sourceaccountname.blob.core.windows.net/sourcecontainer/sourcefile.png
 ```
 
-來源 blob URL (由 `--source-uri` 指定) 必須是可公開存取，或包含共用存取簽章 (SAS) 權杖。
+在上面的範例中，目的地容器必須已存在於目的地儲存體帳戶中，複製作業才能成功。 此外，在 `--source-uri` 引數中指定的來源 Blob 必須包含共用存取簽章 (SAS) 權杖，或者可公開存取，如此範例所示。
 
 ### <a name="delete-a-blob"></a>刪除 Blob
 若要刪除 Blob，請使用 `blob delete` 命令：

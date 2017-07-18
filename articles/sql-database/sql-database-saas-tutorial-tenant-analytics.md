@@ -1,6 +1,6 @@
 ---
 title: "針對多個 Azure SQL Database 執行分析查詢 | Microsoft Docs"
-description: "對多個 Azure SQL Database 執行分散式查詢"
+description: "從租用戶資料庫將資料擷取至分析資料庫，以便進行離線分析"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -14,19 +14,19 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 06/16/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 5331f9a7b46f1dd31d4aa246ad9d188b5a5afc19
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 4e32407d5f321198358e07980907c3420aaf56c6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
-# <a name="run-distributed-queries-across-multiple-azure-sql-databases"></a>對多個 Azure SQL Database 執行分散式查詢
+# <a name="extract-data-from-tenant-databases-into-an-analytics-database-for-offline-analysis"></a>從租用戶資料庫將資料擷取至分析資料庫，以便進行離線分析
 
-在本教學課程中，您可針對目錄中的每個租用戶執行分析查詢。 建立可執行查詢的彈性作業。 此作業會擷取資料，並將其載入在目錄伺服器上建立的不同分析資料庫。 查詢此資料庫，可以擷取藏在所有租用戶日常操作資料中的深入解析。 從租用戶分析資料庫內的結果傳回查詢建立資料表，作為作業的輸出。
+在本教學課程中，您可以使用彈性作業來對每個租用戶資料庫執行查詢。 該作業會擷取票券銷售資料，並將其載入至分析資料庫 (或資料倉儲) 中進行分析。 查詢此分析資料庫，即可以從所有租用戶日常作業資料中擷取深入解析。
 
 
 在本教學課程中，您了解如何：
@@ -47,7 +47,7 @@ SaaS 應用程式的其中一個絕佳機會是使用儲存在雲端的豐富租
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 [用於下載 Wingtip SaaS 指令碼的步驟](sql-database-wtp-overview.md#download-the-wingtip-saas-scripts)。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 [用於下載 Wingtip SaaS 指令碼的步驟](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts)。
 
 ## <a name="deploy-a-database-for-tenant-analytics-results"></a>部署租用戶分析結果的資料庫
 
@@ -121,3 +121,4 @@ SaaS 應用程式的其中一個絕佳機會是使用儲存在雲端的豐富租
 
 * 其他[以 Wingtip SaaS 應用程式為基礎的教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [彈性作業](sql-database-elastic-jobs-overview.md)
+

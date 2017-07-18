@@ -1,6 +1,6 @@
 ---
-title: "使用 AzCopy 複製或移動資料到儲存體 | Microsoft Docs"
-description: "使用 AzCopy 公用程式來從 Blob、資料表和檔案內容移動或來回複製資料。 從本機檔案複製資料到 Azure 儲存體，或在儲存體帳戶內或之間複製資料。 輕鬆地將資料移轉至 Azure 儲存體。"
+title: "使用 AzCopy on Windows 複製或移動資料到 Azure 儲存體 | Microsoft Docs"
+description: "使用 AzCopy on Windows 公用程式來從 Blob、資料表和檔案內容移動或來回複製資料。 從本機檔案複製資料到 Azure 儲存體，或在儲存體帳戶內或之間複製資料。 輕鬆地將資料移轉至 Azure 儲存體。"
 services: storage
 documentationcenter: 
 author: seguler
@@ -12,30 +12,27 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/30/2017
+ms.date: 05/14/2017
 ms.author: seguler
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: f703da63c4243c73cf68d3df9953f73d2462ac1c
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 045778822022752295bb634bdf734daaf36ab938
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
-# <a name="transfer-data-with-the-azcopy-command-line-utility"></a>使用 AzCopy 命令列公用程式傳輸資料
-## <a name="overview"></a>Overview
-AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率地將資料複製到和複製出 Microsoft Azure Blob、檔案和表格儲存體所設計。 您可以從儲存體帳戶內或是在儲存體帳戶之間，從一個物件複製資料到另一個物件。
+# <a name="transfer-data-with-the-azcopy-on-windows"></a>使用 AzCopy on Windows 傳送資料
+AzCopy 是個命令列公用程式，專為使用簡單命令高效率地將資料複製到和複製出 Microsoft Azure Blob、檔案和表格儲存體所設計。 您可以從儲存體帳戶內或是在儲存體帳戶之間，從一個物件複製資料到另一個物件。
 
-> [!NOTE]
-> 本指南假設您已熟悉 [Azure 儲存體](https://azure.microsoft.com/services/storage/)。 如果不熟悉，閱讀 [Azure 儲存體簡介](storage-introduction.md) 說明文件會很有幫助。 最重要的是，您需要 [建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account) 才能開始使用 AzCopy。
-> 
-> 
+有兩個 AzCopy 版本可供您下載。 AzCopy on Windows 內建有 .NET Framework，並且提供 Windows 樣式的命令列選項。 [AzCopy on Linux](storage-use-azcopy-linux.md) 內建有 .NET Core Framework，其以提供 POSIX 樣式命令列選項的 Linux 平台為目標。 本文涵蓋之內容包括 AzCopy on Windows。
 
 ## <a name="download-and-install-azcopy"></a>下載並安裝 AzCopy
-### <a name="windows"></a>Windows
-下載 [最新版本的 AzCopy](http://aka.ms/downloadazcopy)。
+### <a name="azcopy-on-windows"></a>AzCopy on Windows
+下載 [最新版本的 AzCopy on Windows](http://aka.ms/downloadazcopy)。
 
-### <a name="maclinux"></a>Mac/Linux
-AzCopy 不適用於 Mac/Linux OS。 不過，Azure CLI 是適合用來將資料複製到和複製出 Azure 儲存體的替代方案。 若要深入了解，請閱讀 [使用 Azure CLI 搭配 Azure 儲存體](storage-azure-cli.md) 。
+#### <a name="installation-on-windows"></a>在 Windows 上安裝
+使用安裝程式安裝 AzCopy on Windows 之後，請開啟命令視窗並瀏覽至電腦上的 AzCopy 安裝目錄，也就是 `AzCopy.exe` 可執行檔的所在位置。 若有需要，您可以在您的系統路徑中加入 AzCopy 安裝位置。 根據預設，AzCopy 會安裝到 `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` 或 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy`。
 
 ## <a name="writing-your-first-azcopy-command"></a>撰寫第一個 AzCopy 命令
 AzCopy 命令的基本語法是：
@@ -43,8 +40,6 @@ AzCopy 命令的基本語法是：
 ```azcopy
 AzCopy /Source:<source> /Dest:<destination> [Options]
 ```
-
-開啟命令視窗，並瀏覽至電腦上的 AzCopy 安裝目錄，也就是 `AzCopy.exe` 可執行檔的位置。 若有需要，您可以在您的系統路徑中加入 AzCopy 安裝位置。 根據預設，AzCopy 會安裝到 `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` 或 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy`。
 
 下列範例會示範各種不同的 Microsoft Azure Blob、檔案和資料表資料複製案例。 如需每個範例中所使用參數的詳細說明，請參閱 [AzCopy 參數](#azcopy-parameters) 一節。
 
@@ -897,6 +892,7 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 * [如何使用 .NET 的檔案儲存體](storage-dotnet-how-to-use-files.md)
 * [如何使用 .NET 的資料表儲存體](storage-dotnet-how-to-use-tables.md)
 * [如何建立、管理或刪除儲存體帳戶](storage-create-storage-account.md)
+* [使用 AzCopy on Linux 傳送資料](storage-use-azcopy-linux.md)
 
 ### <a name="azure-storage-blog-posts"></a>Azure 儲存體部落格文章：
 * [Azure 儲存體資料移動文件庫預覽簡介](https://azure.microsoft.com/blog/introducing-azure-storage-data-movement-library-preview-2/)

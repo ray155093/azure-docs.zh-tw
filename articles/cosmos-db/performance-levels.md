@@ -16,10 +16,10 @@ ms.date: 05/24/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 929ee15b77215ca6b150918eff6f608dc153776e
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 38afe40cf45cf13d587faf13cc5216e4326b84a0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -143,7 +143,7 @@ S1、S2 和 S3 效能層級不提供 DocumentDB API 集合所提供的彈性。 
 
 **若要使用 .NET SDK 移轉至單一資料分割集合**
 
-變更集合的效能層級的另一個選項是透過我們的 SDK。 本節只涵蓋使用我們的 [.NET SDK](https://msdn.microsoft.com/library/azure/dn948556.aspx) 來變更集合的效能層級，但程序類似於我們的其他 [SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)。 如果您不熟悉我們的 .NET SDK，請瀏覽我們的 [開始使用教學課程](documentdb-get-started.md)。
+變更集合的效能層級的另一個選項是透過我們的 SDK。 本節只涵蓋使用我們的 [DocumentDB .NET API](documentdb-sdk-dotnet.md)來變更集合的效能層級，但程序類似於我們的其他 SDK。
 
 以下是變更集合輸送量為每秒 5,000 要求單位的程式碼片段：
     
@@ -177,7 +177,7 @@ EA 客戶將會受保護的價格，直到其目前合約結束。
 ## <a name="next-steps"></a>後續步驟
 若要深入了解 Azure Cosmos DB 的價格和管理資料，請探索這些資源：
 
-1.    [在 Cosmos DB 中分割資料](documentdb-partition-data.md)。 了解單一資料分割容器和資料分割容器的差異，以及實作資料分割策略以順暢地調整的秘訣。
-2.    [Cosmos DB 定價](https://azure.microsoft.com/pricing/details/cosmos-db/)。 深入了解佈建輸送量和使用儲存體的成本。
-3.    [要求單位](request-units.md)。 了解不同作業類型，例如讀取、寫入、查詢的輸送量耗用量。
+1.  [在 Cosmos DB 中分割資料](documentdb-partition-data.md)。 了解單一資料分割容器和資料分割容器的差異，以及實作資料分割策略以順暢地調整的秘訣。
+2.  [Cosmos DB 定價](https://azure.microsoft.com/pricing/details/cosmos-db/)。 深入了解佈建輸送量和使用儲存體的成本。
+3.  [要求單位](request-units.md)。 了解不同作業類型，例如讀取、寫入、查詢的輸送量耗用量。
 

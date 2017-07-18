@@ -1,6 +1,6 @@
 ---
 title: "從遠端桌面連接至 Linux VM | Microsoft Docs"
-description: "了解如何安裝和設定遠端桌面，以連接至 Microsoft Azure Linux VM。"
+description: "了解如何安裝和設定遠端桌面，以連接至傳統部署模型的 Microsoft Azure Linux VM"
 services: virtual-machines-linux
 documentationcenter: 
 author: SuperScottz
@@ -13,40 +13,41 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 02/01/2016
+ms.date: 05/30/2017
 ms.author: mingzhan
-translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: b909d0d18452127cd33bbaa362a12ec414a22329
-ms.lasthandoff: 03/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
+ms.openlocfilehash: 68031d548bdbeda9a83d1bceaaea7c5bbcab3188
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/26/2017
 
 
 ---
 # <a name="using-remote-desktop-to-connect-to-a-microsoft-azure-linux-vm"></a>使用遠端桌面連接至 Microsoft Azure Linux VM
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需本文已更新的 Resource Manager 版本，請參閱[這裡](../use-remote-desktop.md)。
 
 ## <a name="overview"></a>概觀
 RDP (遠端桌面通訊協定) 是用於 Windows 的專屬通訊協定。 我們要如何使用 RDP 從遠端連接到 Linux VM (虛擬機器)？
 
-本指南會為您提供答案！ 它會協助您在 Microsoft Azure Linux VM 上安裝及設定 xrdp，而您能夠從 Windows 電腦使用遠端桌面來連接它。 在本指南中我們會使用執行 Ubuntu 或 OpenSUSE 的 Linux VM 做為範例。
+本指南會為您提供答案！ 它會協助您在 Microsoft Azure Linux VM 上安裝及設定 xrdp，這會讓您能夠從 Windows 電腦使用遠端桌面來連接它。 在本指南中我們會使用執行 Ubuntu 或 OpenSUSE 的 Linux VM 做為範例。
 
-Xrdp 是開放原始碼 RDP 伺服器，可讓您從 Windows 電腦使用遠端桌面連接 Linux 伺服器。 其執行效果比 VNC (虛擬網路運算) 好多了。 VNC 具有 "JPEG"品質和緩慢行為，而 RDP 既快速又清楚。
+xrdp 工具是一個開放原始碼 RDP 伺服器，可讓您從 Windows 電腦使用遠端桌面連接 Linux 伺服器。 RDP 擁有比 VNC (虛擬網路運算) 更好的效能。 VNC 使用 JPEG 品質圖形進行轉譯，而且速度可能很慢，RDP 的速度很快，且圖形品質非常清晰。
 
 > [!NOTE]
 > 您必須已經有執行 Linux 的 Microsoft Azure VM。 若要建立並設定 Linux VM，請參閱 [Azure Linux VM 教學課程](createportal.md)。
 > 
 > 
 
-## <a name="create-endpoint-for-remote-desktop"></a>建立遠端桌面的端點
-我們將對本文件中的遠端桌面使用預設端點 3389。 所以將 3389 端點設定為 Linux VM 的遠端桌面，如下所示：
+## <a name="create-an-endpoint-for-remote-desktop"></a>建立遠端桌面的端點
+我們將對本文件中的遠端桌面使用預設端點 3389。 將 3389 端點設定為 Linux VM 的 `Remote Desktop`，如下所示：
 
-![image](./media/remote-desktop/no1.png)
+![image](./media/remote-desktop/endpoint-for-linux-server.png)
 
-如果您不知道如何設定 VM 的端點，請參閱[指引](setup-endpoints.md)。
+如果您不知道如何為 VM 設定端點，請參閱[本指南](setup-endpoints.md)。
 
 ## <a name="install-gnome-desktop"></a>安裝 Gnome 桌面
-透過 putty 連接到 Linux VM，然後安裝 `Gnome Desktop`。
+透過 `putty` 連接到 Linux VM，然後安裝 `Gnome Desktop`。
 
 針對 Ubuntu，使用：
 
@@ -66,7 +67,7 @@ Xrdp 是開放原始碼 RDP 伺服器，可讓您從 Windows 電腦使用遠端�
 針對 OpenSUSE，使用︰
 
 > [!NOTE]
-> 在以下命令中，使用您正在使用的版本更新 OpenSUSE 版本，以下是 `OpenSUSE 13.2` 的範例命令。
+> 在以下命令中，用您正在使用的版本更新 OpenSUSE 版本。 下方是 `OpenSUSE 13.2` 的範例。
 > 
 > 
 
@@ -82,36 +83,35 @@ Xrdp 是開放原始碼 RDP 伺服器，可讓您從 Windows 電腦使用遠端�
 
 對於 Ubuntu，安裝之後會啟動 xrdp，並在開機時自動啟用。
 
-## <a name="using-xfce-if-you-are-using-ubuntu-version-later-than-ubuntu-1204lts"></a>如果您使用晚於 Ubuntu 12.04LTS 的 Ubuntu 版本則使用 xfce
-由於目前 xrdp 無法支援比 Ubuntu 12.04LTS 更新的 Ubuntu 版本的 Gnome 桌面，因此我們將改用 `xfce` 桌面。
+## <a name="using-xfce-if-you-are-using-an-ubuntu-version-later-than-ubuntu-1204lts"></a>如果您使用比 Ubuntu 12.04LTS 更新的 Ubuntu 版本則使用 xfce
+由於 xrdp 目前的版本不支援比 Ubuntu 12.04LTS 更新的 Ubuntu 版本 Gnome 桌面，因此我們將改用 `xfce` 桌面。
 
-安裝 `xfce`，請使用：
+若要安裝 `xfce`，請使用此命令：
 
     #sudo apt-get install xubuntu-desktop
 
-然後啟用 `xfce`，請使用：
+然後使用此命令啟用 `xfce`：
 
     #echo xfce4-session >~/.xsession
 
-編輯組態檔 `/etc/xrdp/startwm.sh`，請使用：
+編輯組態檔 `/etc/xrdp/startwm.sh`：
 
     #sudo vi /etc/xrdp/startwm.sh   
 
-在 `/etc/X11/Xsession` 一行前面加入 `xfce4-session` 一行。
+在 `/etc/X11/Xsession` 一行前面加入 `xfce4-session` 這一行。
 
-重新啟動 xrdp 服務，請使用：
+若要重新啟動 xrdp 服務，請使用此：
 
     #sudo service xrdp restart
 
 
 ## <a name="connect-your-linux-vm-from-a-windows-machine"></a>從 Windows 電腦連接 Linux VM
-在 Windows 電腦上，啟動遠端桌面用戶端、輸入 Linux VM DNS 名稱或移至 Azure 傳統入口網站中您 VM 的`Dashboard`，再按一下 `Connect` 以連接到您的 Linux VM，您將會看到以下登入視窗：
+在 Windows 電腦中啟動遠端桌面用戶端，並輸入您的 Linux VM DNS 名稱。 或在 Azure 入口網站中移至您 VM 的儀表板，並按一下 `Connect` 來連接 Linux VM。 這時您會看到登入視窗：
 
 ![image](./media/remote-desktop/no2.png)
 
-使用 Linux VM 的 `user` & `password` 進行登入，並立即享有 Microsoft Azure Linux VM 的遠端桌面！
+請使用您 Linux VM 的使用者名稱和密碼登入。
 
-## <a name="next"></a>下一步
-如需使用 xrdp 的詳細資訊，您可以參考 [這裡](http://www.xrdp.org/)(英文)。
-
+## <a name="next-steps"></a>後續步驟
+如需使用 xrdp 的相關詳細資訊，請參閱 [http://www.xrdp.org/](http://www.xrdp.org/) \(英文\)。
 

@@ -1,10 +1,10 @@
 ---
 title: "在 Azure SQL 資料倉儲中暫停、繼續、使用 REST 調整 | Microsoft Docs"
-description: "管理計算能力的 PowerShell 工作。 透過調整 DWU 以調整計算資源。 或者，暫停和繼續計算資源以節省成本。"
+description: "透過 REST、T-SQL 和 PowerShell 管理 SQL 資料倉儲中的運算能力。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
-manager: barbkess
+manager: johnmac
 editor: 
 ms.assetid: 21de7337-9356-49bb-a6eb-06c1beeba2c4
 ms.service: sql-data-warehouse
@@ -14,12 +14,12 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
-ms.author: elbutter;barbkess
+ms.author: elbutter; barbkess
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: 548e61004bd95d9e785fea438eb8b81aa63f1739
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: e250fa59204be14614a4c91fb5a0c1af5a8d5281
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/28/2017
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 03/28/2017
 若要變更 DWU，請使用[建立或更新資料庫][Create or Update Database] REST API。 下例會將裝載在 MyServer 伺服器上的資料庫 MySQLDW 的服務等級目標設定為 DW1000。 此伺服器位於 ResourceGroup1 這個 Azure 資源群組。
 
 ```
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/ResourceGroup1/providers/Microsoft.Sql/servers/MyServer/databases/MySQLDW?api-version=2014-04-01-preview HTTP/1.1
+PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}?api-version=2014-04-01-preview HTTP/1.1
 Content-Type: application/json; charset=UTF-8
 
 {
@@ -60,7 +60,7 @@ Content-Type: application/json; charset=UTF-8
 若要暫停資料庫，請使用[暫停資料庫][Pause Database] REST API。 下例會暫停裝載在 Server01 伺服器上的 Database02 資料庫。 此伺服器位於 ResourceGroup1 這個 Azure 資源群組。
 
 ```
-POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/ResourceGroup1/providers/Microsoft.Sql/servers/Server01/databases/Database02/pause?api-version=2014-04-01-preview HTTP/1.1
+POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}/pause?api-version=2014-04-01-preview HTTP/1.1
 ```
 
 <a name="resume-compute-bk"></a>
@@ -71,13 +71,13 @@ POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups
 若要啟動資料庫，請使用[繼續資料庫][Resume Database] REST API。 下例會啟動裝載在 Server01 伺服器上的 Database02 資料庫。 此伺服器位於 ResourceGroup1 這個 Azure 資源群組。 
 
 ```
-POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/ResourceGroup1/providers/Microsoft.Sql/servers/Server01/databases/Database02/resume?api-version=2014-04-01-preview HTTP/1.1
+POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}/resume?api-version=2014-04-01-preview HTTP/1.1
 ```
 
 ## <a name="check-database-state"></a>檢查資料庫狀態
 
-```json
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}?api-version=2014-04-01 HTTP/1.1
+```
+GET https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}?api-version=2014-04-01 HTTP/1.1
 ```
 
 <a name="next-steps-bk"></a>
