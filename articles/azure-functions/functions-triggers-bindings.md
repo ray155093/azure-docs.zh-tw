@@ -14,13 +14,13 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 04/14/2017
+ms.date: 05/30/2017
 ms.author: donnam
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: f7d0ed4f43c68c73c967a401509f1a5ccac7da0b
+ms.sourcegitcommit: 31ecec607c78da2253fcf16b3638cc716ba3ab89
+ms.openlocfilehash: cc41debb2523df77be4db05817a4c7ac55604439
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/23/2017
 
 
 ---
@@ -190,6 +190,23 @@ let Run(input: WorkItem, log: TraceWriter) =
     json
 ```
 
+## <a name="binding-datatype-property"></a>繫結 dataType 屬性
+
+在.NET 中會使用類型定義輸入資料的資料類型。 例如，使用 `string` 繫結至要以二進位格式讀取之佇列觸發程序和位元組陣列的文字。
+
+對於 JavaScript 等具有動態類型的語言，則會在繫結定義中使用 `dataType` 屬性。 例如，若要以二進位格式讀取 HTTP 要求的內容，請使用類別 `binary`：
+
+```json
+{
+    "type": "httpTrigger",
+    "name": "req",
+    "direction": "in",
+    "dataType": "binary"
+}
+```
+
+`dataType` 也另具有 `stream` 和 `string` 兩種選項。
+
 ## <a name="resolving-app-settings"></a>解析應用程式設定
 為了遵循最佳做法，祕密和連接字串應使用應用程式設定來管理，而不是使用組態檔。 這會限制對這些祕密的存取，並保護儲存在公用原始檔控制存放庫的 *function.json*。
 
@@ -307,6 +324,19 @@ Azure Functions 透過 `{rand-guid}` 繫結運算式，提供在繫結中產生 
 }
 ```
 
+### <a name="current-time"></a>目前時間
+
+您可以使用繫結運算式 `DateTime`，系統會將其解析為 `DateTime.UtcNow`。
+
+```json
+{
+  "type": "blob",
+  "name": "blobOutput",
+  "direction": "out",
+  "path": "my-output-container/{DateTime}"
+}
+```
+
 ## <a name="bind-to-custom-input-properties-in-a-binding-expression"></a>在繫結運算式中繫結到自訂輸入屬性
 
 繫結運算式也可以參考在其觸發程序承載中定義的屬性。 例如，您可能想要從在 Webhook 中提供的檔案名稱動態地繫結到 Blob 儲存體檔案。
@@ -377,6 +407,10 @@ module.exports = function (context, info) {
     context.done();
 }
 ```
+
+## <a name="configuring-binding-data-at-runtime"></a>在執行階段設定繫結資料
+
+在 C# 和其他 .NET 語言中，您可以使用相對於 function.json 中宣告式繫結的命令式繫結模式。 當繫結參數需要在執行階段而不是設計階段中計算時，命令式繫結非常有用。 若要深入了解，請參閱 C# 開發人員參考中的[在執行階段透過命令式繫結進行繫結](functions-reference-csharp.md#imperative-bindings)。
 
 ## <a name="next-steps"></a>後續步驟
 如需特定繫結的詳細資訊，請參閱下列文章：

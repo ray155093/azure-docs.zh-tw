@@ -16,10 +16,10 @@ ms.date: 05/04/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 25183c6c3c69f7d4c2872252197e2dc8662fefd4
+ms.sourcegitcommit: 532ff423ff53567b6ce40c0ea7ec09a689cee1e7
+ms.openlocfilehash: 6a69dc900eee2f539a2b1740c4e89132e2bd6db7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/06/2017
 
 
 ---
@@ -28,6 +28,8 @@ ms.lasthandoff: 05/10/2017
 ## <a name="overview"></a>概觀
 
 每個 IoT 中樞都有身分識別登錄，可儲存允許連線至 IoT 中樞之裝置的相關資訊。 若要讓裝置可以連線到 IoT 中樞，IoT 中樞的身分識別登錄中必須先有該裝置的項目。 裝置也必須根據身分識別登錄中儲存的認證，向 IoT 中樞進行驗證。
+
+儲存在身分識別登錄的裝置識別碼會區分大小寫。
 
 總括來說，身分識別登錄是支援 REST 的裝置身分識別資源集合。 當您在身分識別登錄中新增項目時，IoT 中樞會在服務 (例如，包含傳遞中雲端到裝置訊息的佇列) 中建立一組每一裝置資源。
 
@@ -177,7 +179,7 @@ IoT 中樞開發人員指南中的其他參考主題包括︰
 * [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞公開給執行階段和管理作業的各種端點。
 * [節流和配額][lnk-quotas]說明適用於 IoT 中樞服務的配額，和使用服務時所預期的節流行為。
 * [Azure IoT 裝置和服務 SDK][lnk-sdks] 列出各種語言 SDK，可供您在開發與「IoT 中樞」互動的裝置和服務應用程式時使用。
-* [裝置對應項和作業的 IoT 中樞查詢語言][lnk-query]說明的 IoT 中樞查詢語言可用來從 IoT 中樞擷取有關裝置對應項和作業的資訊。
+* [裝置對應項、作業和訊息路由的 IoT 中樞查詢語言][lnk-query]說明可用於從 IoT 中樞擷取有關裝置對應項和作業資訊的 IoT 中樞查詢語言。
 * [IoT 中樞 MQTT 支援][lnk-devguide-mqtt]針對 MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
 
 ## <a name="next-steps"></a>後續步驟

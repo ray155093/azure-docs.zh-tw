@@ -12,20 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 01/25/2017
+ms.date: 06/05/2017
 ms.author: rajanaki
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 711fb0715b7f12e12a742136f75af8069cbc83d8
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: 6664cb20393ec5f588c8eeb119d6f606a0072861
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/15/2017
 
 
 ---
-# <a name="azure-site-recovery-support-matrix-for-replicating-to-azure"></a>用於複寫至 Azure 的 Azure Site Recovery 支援矩陣
-
-> [!div class="op_single_selector"]
-> * [複寫至 Azure](site-recovery-support-matrix-to-azure.md)
-> * [複寫至客戶擁有的次要網站](site-recovery-support-matrix-to-sec-site.md)
+# <a name="azure-site-recovery-support-matrix-for-replicating-from-on-premises-to-azure"></a>用於從內部部署複寫至 Azure 的 Azure Site Recovery 支援矩陣
 
 
 本文摘要說明在複寫和復原到 Azure 時 Azure Site Recovery 支援的組態和元件。 如需 Azure Site Recovery 需求的相關資訊，請參閱[必要條件](site-recovery-prereq.md)。
@@ -68,16 +65,23 @@ ms.lasthandoff: 04/17/2017
 複寫至 Azure 時，受保護的虛擬機器必須符合 [Azure 需求](#failed-over-azure-vm-requirements)。
 下表摘要說明使用 Azure Site Recovery 時各種部署案例中的複寫作業系統支援。 這項支援適用於在上述 OS 中執行的任何工作負載。
 
- **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)** |
+ **VMware/實體伺服器** | **Hyper-V (含/不含 VMM)** |
 --- | --- |
-64 位元的 Windows Server 2012 R2、Windows Server 2012、Windows Server 2008 R2 (至少含 SP1)<br/><br/> Red Hat Enterprise Linux 6.7、6.8、7.1、7.2 <br/><br/> CentOS 6.5、6.6、6.7、6.8、7.0、7.1、7.2 <br/><br/> Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 <br/><br/> SUSE Linux Enterprise Server 11 SP4 <br/>(不支援 SLES 11 SP3 至 SLES 11 SP4 的複寫電腦升級。 若已將複寫電腦從 SLES 11SP3 升級至 SLES 11 SP4，則您必須停用複寫以在升級後重新提供電腦防護。） | 任何 [Hyper-V 支援的](https://technet.microsoft.com/library/cc794868.aspx)的客體 OS
+64 位元的 Windows Server 2012 R2、Windows Server 2012、Windows Server 2008 R2 (至少含 SP1)<br/><br/> Red Hat Enterprise Linux 6.7、6.8、7.1、7.2 <br/><br/>CentOS 6.5、6.6、6.7、6.8、7.0、7.1、7.2 <br/><br/>Ubuntu 14.04 LTS 伺服器 [(支援的核心版本)](#supported-ubuntu-kernel-versions-for-vmwarephysical-servers)<br/><br/>Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 <br/><br/> SUSE Linux Enterprise Server 11 SP4 <br/>(不支援 SLES 11 SP3 至 SLES 11 SP4 的複寫電腦升級。 若已將複寫電腦從 SLES 11SP3 升級至 SLES 11 SP4，則您必須停用複寫以在升級後重新提供電腦防護。） | 任何 [Hyper-V 支援的](https://technet.microsoft.com/library/cc794868.aspx)的客體 OS
 
 
 >[!IMPORTANT]
 >(適用於複寫至 Azure 的 VMware/實體伺服器)
 >
 > 在 Red Hat Enterprise Linux Server 7+ 和 CentOS 7+ 伺服器上，自 Azure Site Recovery 行動服務 9.8 版本起開始支援 3.10.0-514 核心版本。<br/><br/>
-> 若客戶使用行動服務版本低於 9.8 版的 3.10.0-514 核心版本，則必須停用複寫、將行動服務版本更新至 9.8 版，然後再啟用複寫。  
+> 若客戶使用行動服務版本低於 9.8 版的 3.10.0-514 核心版本，則必須停用複寫、將行動服務版本更新至 9.8 版，然後再啟用複寫。
+
+
+### <a name="supported-ubuntu-kernel-versions-for-vmwarephysical-servers"></a>VMware/實體伺服器支援的 Ubuntu 核心版本
+
+**版本** | **行動服務版本** | **核心版本** |
+--- | --- | --- |
+14.04 LTS | 9.9 | 3.13.0-24-generic 至 3.13.0-117-generic、<br/>3.16.0-25-generic 至 3.16.0-77-generic、<br/>3.19.0-18-generic 至 3.19.0-80-generic、<br/>4.2.0-18-generic 至 4.2.0-42-generic、<br/>4.4.0-21-generic 至 4.4.0-75-generic |
 
 ## <a name="supported-file-systems-and-guest-storage-configurations-on-linux-vmwarephysical-servers"></a>Linux 上的支援檔案系統與客體儲存體組態 (VMware/實體伺服器)
 
@@ -90,7 +94,7 @@ ms.lasthandoff: 04/17/2017
 
 >[!Note]
 > 在 Linux 伺服器上，下列目錄必須一律位於來源伺服器的同個磁碟 (OS 磁碟) (若設為獨立資料分割/檔案系統)：/ (root)、/boot、/usr、/usr/local、/var、/ 等等<br/><br/>
-> 諸如中繼資料總和檢查碼等 XFS v5 功能，目前不受 XFS 檔案系統的 ASR 所支援。 請確定 XFS 檔案系統未使用任何 v5 功能。 您可使用 xfs_info 公用程式來檢查資料分割的 XFS 超級區塊。 若 ftype 設為 1，則會使用 XFSv5 功能。 
+> 諸如中繼資料總和檢查碼等 XFS v5 功能，目前不受 XFS 檔案系統的 ASR 所支援。 請確定 XFS 檔案系統未使用任何 v5 功能。 您可使用 xfs_info 公用程式來檢查資料分割的 XFS 超級區塊。 若 ftype 設為 1，則會使用 XFSv5 功能。
 >
 
 

@@ -12,13 +12,13 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/27/2017
+ms.date: 06/16/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: f36ce029acebfccdfa84122a86ea3a642c048b8c
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 3aab67303fd349195c2ffb8d0854efec74e47070
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -34,7 +34,7 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 ## <a name="operation-throttles"></a>作業節流
 作業節流是在分鐘範圍內套用的速率限制，主要是為了避免不當使用。 IoT 中樞會試著儘可能避免傳回錯誤，但如果違反節流太久，就會開始傳回例外狀況。
 
-以下是強制執行的節流清單。 個別中心的值如下。
+下表顯示強制執行的節流。 個別中心的值如下。
 
 | 節流 | 免費和 S1 中樞 | S2 中樞 | S3 中樞 | 
 | -------- | ------- | ------- | ------- |
@@ -50,7 +50,7 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 | 作業的操作 <br/> (建立、更新、列出、刪除) | 1.67/秒/單位 (100/分鐘/單位) | 1.67/秒/單位 (100/分鐘/單位) | 83.33/秒/單位 (5000/分鐘/單位) |
 | 作業的每一裝置操作輸送量 | 10/秒 | 最大值為 10/秒或 1/秒/單位 | 50/秒/單位 |
 
-鄭重說明，「裝置連線」  節流是控制 IoT 中樞建立新裝置連線的速率，而不是同時可連線的裝置數目上限。 節流受制於為 IoT 中樞佈建的單位數。
+鄭重說明，「裝置連線」節流是控制 IoT 中樞建立新裝置連線的速率。 「裝置連線」節流不會控制同時連線裝置的數目上限。 節流受制於為 IoT 中樞佈建的單位數。
 
 例如，若您購買單一 S1 單位，則得到每秒 100 個連線的節流。 因此，要連線到 100,000 個裝置，至少需要 1000 秒 (約 16 分鐘)。 不過，若您已將裝置登錄在您的身分識別登錄中，則可以有任意數量的同時連線裝置。
 
@@ -66,29 +66,36 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 
 ## <a name="other-limits"></a>其他限制
 
-IoT 中樞會對其不同功能強制實施其他限制。
+IoT 中樞會強制執行其他操作限制：
 
 | 作業 | 限制 |
 | --------- | ----- |
 | 檔案上傳 URI | 10000 個 SAS URI 可以讓儲存體帳戶一次用盡。 <br/> 10 個 SAS URI/裝置可以一次用盡。 |
-| 作業 | 作業歷程記錄最多保留 30 天 <br/> 並行作業數上限為 1 個 (若為免費和 S1)、5 個 (若為 S2)、10 個 (若為 S3)。 |
+| 作業 | 作業歷程記錄最多保留 30 天 <br/> 並行作業數上限為 1 個 (適用於免費版和 S1)、5 個 (適用於 S2)、10 個 (適用於 S3)。 |
 | 額外端點 | 付費 SKU 中樞包含 10 個額外端點。 免費 SKU 中樞包含 1 個額外端點。 |
 | 訊息路由規則 | 付費 SKU 中樞包含 100 個路由規則。 免費 SKU 中樞包含 5 個路由規則。 |
+| 裝置到雲端傳訊 | 訊息大小上限為 256 KB |
+| 雲端到裝置傳訊 | 訊息大小上限為 64 KB |
+| 雲端到裝置傳訊 | 擱置傳遞的訊息上限為 50 |
 
 > [!NOTE]
-> 您目前可以連線到單一 IoT 中樞的裝置數目上限為 500,000 個。 如果您想要上調此限制，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
+> 您目前可以連線到單一 IoT 中樞的裝置數目上限為 500,000 個。 如果您想要上調此限制，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/support/options/)。
 
 ## <a name="latency"></a>延遲
-IoT 中樞會努力地為所有作業提供低延遲的服務。 不過，由於網路狀況和其他無法預期的因素，它並無法保證最大延遲。因此在設計解決方案時，請避免假設 IoT 中樞作業會獲得最大延遲。 請將 IoT 中樞佈建在與您的裝置最靠近的 Azure 區域，並考慮使用 Azure IoT Edge 在裝置或靠近裝置的閘道上執行無法容忍延遲的作業。
+IoT 中樞會努力地為所有作業提供低延遲的服務。 不過，由於網路狀況及其他無法預測的因素，其無法保證最大延遲。 設計您的解決方案時，您應該：
+
+* 避免進行有關任何 IoT 中樞作業最大延遲的任何假設。
+* 在與您的裝置最靠近的 Azure 區域中佈建 IoT 中樞。
+* 考慮使用 Azure IoT Edge 在裝置或靠近裝置的閘道上執行無法容忍延遲的作業。
 
 如先前所述，多個 IoT 中樞單位既會影響節流功能，又不會提供額外的延遲好處或保證。
-若作業的延遲時間莫名其妙增加，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
+如果您注意到作業的延遲時間莫名其妙增加，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/support/options/)。
 
 ## <a name="next-steps"></a>後續步驟
 此 IoT 中樞開發人員指南中的其他參考主題包括︰
 
 * [IoT 中樞端點][lnk-devguide-endpoints]
-* [裝置對應項和作業的 IoT 中樞查詢語言][lnk-devguide-query]
+* [裝置對應項、作業和訊息路由的 IoT 中樞查詢語言][lnk-devguide-query]
 * [IoT 中樞的 MQTT 支援][lnk-devguide-mqtt]
 
 [lnk-pricing]: https://azure.microsoft.com/pricing/details/iot-hub

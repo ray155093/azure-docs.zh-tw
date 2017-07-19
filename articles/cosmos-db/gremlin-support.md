@@ -1,31 +1,31 @@
 ---
 title: "Azure Cosmos DB Gremlin 支援 | Microsoft Docs"
-description: "了解 Gremlin 語言、Azure Cosmos DB 中可用的功能和步驟"
-services: cosmosdb
+description: "了解 Apache TinkerPop 的 Gremlin 語言，Azure Cosmos DB 中可用使用其功能和步驟"
+services: cosmos-db
 documentationcenter: 
 author: arramac
 manager: jhubbard
 editor: 
 tags: 
-ms.assetid: 
-ms.service: cosmosdb
+ms.assetid: 6016ccba-0fb9-4218-892e-8f32a1bcc590
+ms.service: cosmos-db
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: 
-ms.date: 05/10/2017
+ms.date: 06/10/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: db2287782df66ecee0795adb483e253021d0c2cf
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: acea54d202d1117cf2dfb1d35ad48346daa9053d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
 
 # <a name="azure-cosmos-db-gremlin-graph-support"></a>Azure Cosmos DB Gremlin graph 支援
-Azure Cosmos DB 支援使用 [Gremlin]([Gremlin language](http://tinkerpop.apache.org/docs/current/reference/#graph-traversal-steps)) 圖形 API 建立圖表實體，以及執行圖表查詢和周遊作業。 您可以使用 Gremlin 語言建立圖表實體 (頂點和邊緣)、修改這些實體內的屬性、執行查詢和周遊，以及刪除實體。 
+Azure Cosmos DB 支援 [Gremlin]([Gremlin](http://tinkerpop.apache.org/docs/current/reference/#graph-traversal-steps))，該圖形 API 是 [Apache Tinkerpop](http://tinkerpop.apache.org) 的圖形周遊語言，可用於建立圖表實體和執行圖表查詢作業。 您可以使用 Gremlin 語言建立圖表實體 (頂點和邊緣)、修改這些實體內的屬性、執行查詢和周遊，以及刪除實體。 
 
 Azure Cosmos DB 在圖表資料庫中提供符合企業需求的功能。 其中包括全域散發、獨立調整儲存體和輸送量、可預測的個位數毫秒延遲、自動編製索引，以及 99.99% 的 SLA。 由於 Azure Cosmos DB 支援 TinkerPop/Gremlin，您可以輕鬆地移轉使用另一個圖表資料庫撰寫的應用程式，而不必變更程式碼。 此外，憑藉 Gremlin 支援，Azure Cosmos DB 與啟用 TinkerPop 的分析架構緊密整合，例如 [Apache Spark GraphX](http://spark.apache.org/graphx/)。 
 
@@ -50,7 +50,7 @@ Azure Cosmos DB 在圖表資料庫中提供符合企業需求的功能。 其中
 - 執行 OS︰膝上型電腦執行 Windows OS
 - 使用︰代表某個人使用的裝置。 例如，Robin 使用序號 77 的 Motorola 手機
 
-讓我們使用 [Gremlin 主控台](http://tinkerpop.apache.org/docs/current/reference/#gremlin-console)對此圖表執行一些作業。 也可以在您選擇的平台 (Java、Node.js、Python 或 .NET) 使用 Gremlin 驅動程式執行這些作業。  在了解 Azure Cosmos DB 中支援什麼功能之前，讓我們先看看幾個範例，以熟悉語法。
+讓我們使用 [Gremlin 主控台](http://tinkerpop.apache.org/docs/current/reference/#gremlin-console) (英文) 對此圖表執行一些作業。 也可以在您選擇的平台 (Java、Node.js、Python 或 .NET) 使用 Gremlin 驅動程式執行這些作業。  在了解 Azure Cosmos DB 中支援什麼功能之前，讓我們先看看幾個範例，以熟悉語法。
 
 首先，讓我們看看 CRUD。 下列 Gremlin 陳述式會將 "Thomas" 頂點插入圖表中︰
 
@@ -94,7 +94,7 @@ TinkerPop 是一套涵蓋各種圖表技術的標準。 因此，它採用標準
 
 從 Gremlin 作業傳回結果時，Azure Cosmos DB 會使用 [GraphSON 格式](https://github.com/thinkaurelius/faunus/wiki/GraphSON-Format)。 GraphSON 是 Gremlin 使用 JSON 表示頂點、邊緣和屬性 (單一值和多重值屬性) 的標準格式。 
 
-例如，下列程式碼片段顯示 Azure Cosmos DB 中一個頂點的 GraphSON 表示。 
+例如，下列程式碼片段顯示從 Azure Cosmos DB 傳回用戶端之頂點的 GraphSON 表示法。 
 
 ```json
   {
@@ -172,6 +172,7 @@ GraphSON 用於頂點的屬性如下︰
 | --- | --- | --- | --- |
 | `addE` | 在兩個頂點之間新增邊緣 | [addE 步驟](http://tinkerpop.apache.org/docs/current/reference/#addedge-step) | |
 | `addV` | 將頂點新增至圖表 | [addV 步驟](http://tinkerpop.apache.org/docs/current/reference/#addvertex-step) | |
+| `and` | 確保所有周遊都會傳回值 | [and 步驟](http://tinkerpop.apache.org/docs/current/reference/#and-step) | |
 | `as` | 將變數指派給步驟輸出的步驟調變器 | [as 步驟](http://tinkerpop.apache.org/docs/current/reference/#as-step) | |
 | `by` | 搭配 `group` 和 `order` 一起使用的步驟調變器 | [by 步驟](http://tinkerpop.apache.org/docs/current/reference/#by-step) | |
 | `coalesce` | 傳回第一次有傳回結果的周遊 | [coalesce 步驟](http://tinkerpop.apache.org/docs/current/reference/#coalesce-step) | |
@@ -209,4 +210,3 @@ GraphSON 用於頂點的屬性如下︰
 ## <a name="next-steps"></a>後續步驟
 * [使用我們的 SDK](create-graph-dotnet.md) 開始建置圖表應用程式 
 * 深入了解 [Azure Cosmos DB 的圖表支援](graph-introduction.md)
-

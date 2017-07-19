@@ -11,13 +11,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/11/2017
+ms.date: 06/15/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: 1436b39fdb9a66a00903442496cc5203b47c1bcb
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: d8b041213b269775175a810e585103d3c538557f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -90,7 +90,7 @@ ms.lasthandoff: 05/12/2017
 
 ## <a name="deploy-the-template"></a>部署範本
 
-若要部署範例範本，您可以使用 Azure PowerShell 或 Azure CLI。 您必須使用 2017年 5 月或更新版本的 Azure PowerShell 或 Azure CLI 版本。 這些範例會假設您已在本機將範本儲存為名為 **crossrgdeployment.json** 的檔案。
+若要部署範例範本，您可以使用入口網站、Azure PowerShell 或 Azure CLI。 若是使用 Azure PowerShell 或 Azure CLI，您必須使用 2017年 5 月或更新版本。 這些範例會假設您已在本機將範本儲存為名為 **crossrgdeployment.json** 的檔案。
 
 對於 PowerShell：
 
@@ -117,6 +117,42 @@ az group deployment create \
 ```
 
 部署完成後，您會看到兩個資源群組。 每個資源群組都包含儲存體帳戶。
+
+## <a name="use-resourcegroup-function"></a>使用 resourceGroup() 函數
+
+對於跨資源群組部署，[resouceGroup() 函數](resource-group-template-functions-resource.md#resourcegroup)會根據您指定巢狀範本的方式，以不同的方式進行解析。 
+
+如果您將某個範本內嵌於另一個範本內，巢狀範本中的 resouceGroup() 會解析至父資源群組。 內嵌範本會使用下列格式：
+
+```json
+"apiVersion": "2017-05-10",
+"name": "embeddedTemplate",
+"type": "Microsoft.Resources/deployments",
+"resourceGroup": "crossResourceGroupDeployment",
+"properties": {
+    "mode": "Incremental",
+    "template": {
+        ...
+        resourceGroup() refers to parent resource group
+    }
+}
+```
+
+如果您連結至個別範本，連結範本中的 resouceGroup() 會解析至巢狀資源群組。 連結範本會使用下列格式：
+
+```json
+"apiVersion": "2017-05-10",
+"name": "linkedTemplate",
+"type": "Microsoft.Resources/deployments",
+"resourceGroup": "crossResourceGroupDeployment",
+"properties": {
+    "mode": "Incremental",
+    "templateLink": {
+        ...
+        resourceGroup() in linked template refers to linked resource group
+    }
+}
+```
 
 ## <a name="next-steps"></a>後續步驟
 
