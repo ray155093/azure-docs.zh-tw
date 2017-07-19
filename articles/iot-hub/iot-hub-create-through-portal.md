@@ -20,7 +20,6 @@ ms.openlocfilehash: 7a68a2764d17b53164ded5096ddee68ab8c723ed
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/16/2017
 
-
 ---
 # <a name="create-an-iot-hub-using-the-azure-portal"></a>使用 Azure 入口網站建立 IoT 中樞
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
@@ -42,6 +41,8 @@ ms.lasthandoff: 05/16/2017
 
 ### <a name="choose-the-name-of-the-iot-hub"></a>選擇 IoT 中樞的名稱
 若要建立 IoT 中樞，您必須替 IoT 中樞命名。 此名稱必須是 IoT 中樞內唯一的名稱。 解決方案後端不允許中樞重複，所以建議此中樞的名稱盡可能是唯一的。
+
+[!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
 ### <a name="choose-the-pricing-tier"></a>選擇定價層。
 您可以從 4 個層級中選擇：**免費**、**標準 1**、**標準 2** 和**標準 S3**。 免費層只允許 500 個裝置連接至 IoT 中樞，每天最多 8,000 封訊息。

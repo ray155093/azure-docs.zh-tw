@@ -94,6 +94,8 @@ ms.lasthandoff: 07/13/2017
       }
     }
     ```
+   [!INCLUDE [iot-hub-pii-note-naming-device](../../includes/iot-hub-pii-note-naming-device.md)]
+
 7. 儲存並關閉 **CreateDeviceIdentity.js** 檔案。
 8. 若要執行 **createdeviceidentity** 應用程式，請在命令提示字元中於 createdeviceidentity 資料夾內執行下列命令：
    

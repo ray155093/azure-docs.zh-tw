@@ -14,6 +14,7 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
+ms.reviewer: nigu
 ms.translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: e81ef1d182108114305291273227ce2ac4dacf3f
@@ -21,9 +22,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 12/29/2016
 
 ---
-<a id="sign-in-experiences-with-azure-ad-identity-protection" class="xliff"></a>
-
-# 使用 Azure AD Identity Protection 時的登入體驗
+# <a name="sign-in-experiences-with-azure-ad-identity-protection"></a>使用 Azure AD Identity Protection 時的登入體驗
 透過 Azure Active Directory Identity Protection，您可以：
 
 * 要求使用者進行註冊，以進行 Multi-Factor Authentication
@@ -48,9 +47,7 @@ ms.lasthandoff: 12/29/2016
 * 遭到入侵的帳戶復原
 * 已封鎖遭到入侵的帳戶
 
-<a id="multi-factor-authentication-registration" class="xliff"></a>
-
-## Multi-Factor Authentication 註冊
+## <a name="multi-factor-authentication-registration"></a>Multi-Factor Authentication 註冊
 在遭到入侵的帳戶復原流程和有風險的登入流程中，最佳的使用者體驗皆是使用者可以自行復原。 如果使用者已註冊 Multi-Factor Authentication，他們便有與其帳戶相關聯的電話號碼可用來通過安全性挑戰。 從帳戶入侵復原時，不需要技術服務人員或系統管理員介入。 因此，強烈建議您讓使用者註冊 Multi-Factor Authentication。 
 
 系統管理員可以：
@@ -70,9 +67,7 @@ ms.lasthandoff: 12/29/2016
    
     ![補救](./media/active-directory-identityprotection-flows/142.png "補救")
 
-<a id="risky-sign-in-recovery" class="xliff"></a>
-
-## 有風險的登入復原
+## <a name="risky-sign-in-recovery"></a>有風險的登入復原
 當系統管理員設定登入風險的原則後，受影響的使用者會在嘗試登入時收到通知。 
 
 **有風險的登入流程有兩個步驟：** 
@@ -84,16 +79,12 @@ ms.lasthandoff: 12/29/2016
    
     ![補救](./media/active-directory-identityprotection-flows/121.png "補救")
 
-<a id="risky-sign-in-blocked" class="xliff"></a>
-
-## 已封鎖有風險的登入
+## <a name="risky-sign-in-blocked"></a>已封鎖有風險的登入
 系統管理員也可以選擇設定登入風險原則，以根據風險層級防止使用者登入。 若要解除封鎖，使用者必須連絡系統管理員或技術服務人員，或者嘗試從熟悉的位置或裝置登入。 藉由解決 Multi-Factor Authentication 自行復原，不是此種情況的適用選項。
 
 ![補救](./media/active-directory-identityprotection-flows/200.png "補救")
 
-<a id="compromised-account-recovery" class="xliff"></a>
-
-## 遭到入侵的帳戶復原
+## <a name="compromised-account-recovery"></a>遭到入侵的帳戶復原
 設定使用者風險安全性原則之後，符合原則中指定的使用者風險層級 (因而假定遭到入侵) 的使用者，必須先經歷使用者入侵復原流程，才可以登入。 
 
 **使用者入侵復原流程有三個步驟：**
@@ -109,23 +100,17 @@ ms.lasthandoff: 12/29/2016
    
    ![補救](./media/active-directory-identityprotection-flows/111.png "補救")
 
-<a id="compromised-account-blocked" class="xliff"></a>
-
-## 已封鎖遭到入侵的帳戶
+## <a name="compromised-account-blocked"></a>已封鎖遭到入侵的帳戶
 若要讓遭到使用者風險安全性原則封鎖的使用者解除封鎖，該使用者必須連絡系統管理員或技術服務人員。 藉由解決 Multi-Factor Authentication 自行復原，不是此種情況的適用選項。
 
 ![補救](./media/active-directory-identityprotection-flows/104.png "補救")
 
-<a id="reset-password" class="xliff"></a>
-
-## 重設密碼
+## <a name="reset-password"></a>重設密碼
 如果遭到入侵的使用者已遭封鎖而無法登入，系統管理員可以為其產生暫時密碼。 使用者必須在下次登入期間變更密碼。
 
 ![補救](./media/active-directory-identityprotection-flows/160.png "補救")
 
-<a id="see-also" class="xliff"></a>
-
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md) 
 
 

@@ -14,6 +14,7 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
+ms.reviewer: nigu
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 2e229cab7b8a498d3015183d438e2bc2465822aa
 ms.openlocfilehash: f526af67a94ce0cab61591d9250f4742b1ede579
@@ -21,9 +22,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 12/29/2016
 
 ---
-<a id="vulnerabilities-detected-by-azure-active-directory-identity-protection" class="xliff"></a>
-
-# Azure Active Directory Identity Protection 偵測到的弱點
+# <a name="vulnerabilities-detected-by-azure-active-directory-identity-protection"></a>Azure Active Directory Identity Protection 偵測到的弱點
 弱點是您的環境中攻擊者可以利用的弱點。 我們建議您處理這些弱點，以改善組織的安全性狀態，並防止攻擊者利用這些弱點。
 
 
@@ -33,9 +32,7 @@ ms.lasthandoff: 12/29/2016
 
 下列各節概述 Identity Protection 所報告的弱點。
 
-<a id="multi-factor-authentication-registration-not-configured" class="xliff"></a>
-
-## 未設定 Multi-Factor Authentication 註冊
+## <a name="multi-factor-authentication-registration-not-configured"></a>未設定 Multi-Factor Authentication 註冊
 此弱點可協助您控制組織中部署的 Azure Multi-Factor Authentication。 
 
 Azure Multi-Factor Authentication 會為使用者驗證提供第二層安全性。 這有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。 它可以透過一些簡單的驗證選項 (例如電話、文字訊息，或行動應用程式通知或驗證代碼，以及第三方 OATH 權杖) 來提供強大的驗證功能。
@@ -44,9 +41,7 @@ Azure Multi-Factor Authentication 會為使用者驗證提供第二層安全性�
 
 如需詳細資訊，請參閱 [什麼是 Azure Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 
-<a id="unmanaged-cloud-apps" class="xliff"></a>
-
-## 未受管理的雲端應用程式
+## <a name="unmanaged-cloud-apps"></a>未受管理的雲端應用程式
 此弱點可協助您識別組織中未受管理的雲端應用程式。
 
 在現代企業中，IT 部門通常不會知道組織中的使用者用於進行工作的所有雲端應用程式。 很容易知道為什麼系統管理員必須對未經授權存取公司資料、可能的資料外洩和其他安全性風險有所顧慮。 
@@ -55,9 +50,7 @@ Azure Multi-Factor Authentication 會為使用者驗證提供第二層安全性�
 
 如需詳細資訊，請參閱 [使用 Cloud App Discovery 尋找未受管理的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)。
 
-<a id="security-alerts-from-privileged-identity-management" class="xliff"></a>
-
-## 來自 Privileged Identity Management 的安全性警示
+## <a name="security-alerts-from-privileged-identity-management"></a>來自 Privileged Identity Management 的安全性警示
 此弱點可協助您找出並解決有關您組織中特殊權限身分識別的警示。  
 
 若要讓使用者能夠執行特殊權限作業，組織必須賦予使用者在 Azure AD、Azure 或 Office 365 資源或其他 SaaS 應用程式中的暫時或永久特殊權限存取權。 這些特殊權限的使用者會增加您組織的受攻擊面。 此弱點可協助您識別具有非必要特殊權限存取權的使用者，並採取適當的行動來減少或消除其所造成的風險。 
@@ -66,9 +59,7 @@ Azure Multi-Factor Authentication 會為使用者驗證提供第二層安全性�
 
 如需詳細資訊，請參閱 [Azure AD Privileged Identity Management](active-directory-privileged-identity-management-configure.md)。 
 
-<a id="see-also" class="xliff"></a>
-
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
 

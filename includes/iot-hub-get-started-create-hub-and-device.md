@@ -15,7 +15,9 @@
 
      **釘選到儀表板**：選取此選項可讓您從儀表板輕鬆地存取 IoT 中樞。
 
-    ![輸入資訊以建立 IoT 中樞](../articles/iot-hub/media/iot-hub-create-hub-and-device/2_fill-in-fields-for-azure-iot-hub-portal.png)
+   ![輸入資訊以建立 IoT 中樞](../articles/iot-hub/media/iot-hub-create-hub-and-device/2_fill-in-fields-for-azure-iot-hub-portal.png)
+
+   [!INCLUDE [iot-hub-pii-note-naming-hub](iot-hub-pii-note-naming-hub.md)]
 
 3. 按一下 [建立] 。 建立 IoT 中樞可能需要數分鐘。 您可以在 [通知] 窗格中看到進度。
 
@@ -45,6 +47,8 @@
    **將裝置連線至 IoT 中樞**：按一下 [啟用]。
 
    ![在 IoT 中樞的裝置總管中新增裝置](../articles/iot-hub/media/iot-hub-create-hub-and-device/6_add-device-in-azure-iot-hub-device-explorer-portal.png)
+
+   [!INCLUDE [iot-hub-pii-note-naming-device](iot-hub-pii-note-naming-device.md)]
 
 4. 按一下 [儲存] 。
 5. 建立裝置之後，請在 [裝置總管] 窗格中開啟裝置。

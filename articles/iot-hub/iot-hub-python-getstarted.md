@@ -77,6 +77,8 @@ ms.lasthandoff: 07/13/2017
     CONNECTION_STRING = "[IoTHub Connection String]"
     DEVICE_ID = "MyFirstPythonDevice"
     ```
+   [!INCLUDE [iot-hub-pii-note-naming-device](../../includes/iot-hub-pii-note-naming-device.md)]
+
 3. 新增下列函式，以列印部分的裝置資訊。
 
     ```python
