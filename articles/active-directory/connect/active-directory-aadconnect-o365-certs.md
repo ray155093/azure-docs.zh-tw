@@ -21,10 +21,8 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 01/27/2017
 
 ---
-# 更新 Office 365 和 Azure Active Directory 的同盟憑證
-<a id="renew-federation-certificates-for-office-365-and-azure-active-directory" class="xliff"></a>
-## Overview
-<a id="overview" class="xliff"></a>
+# <a name="renew-federation-certificates-for-office-365-and-azure-active-directory"></a>更新 Office 365 和 Azure Active Directory 的同盟憑證
+## <a name="overview"></a>Overview
 為了讓 Azure Active Directory (Azure AD) 與 Active Directory Federation Services (AD FS) 之間能夠成功地同盟，AD FS 用來向 Azure AD 簽署安全性權杖的憑證應該符合 Azure AD 中所設定的憑證。 任何不相符都可能導致信任受損。 Azure AD 會確保這項資訊在您部署 AD FS 和 Web 應用程式 Proxy (適用於外部網路存取) 時保持同步。
 
 本文提供您其他資訊，以便在下列情況時管理權杖簽署憑證，並讓憑證與 Azure AD 保持同步︰
@@ -33,18 +31,16 @@ ms.lasthandoff: 01/27/2017
 * 您不會對權杖簽署憑證使用預設的 AD FS 設定。
 * 您要使用協力廠商的識別提供者。
 
-## 權杖簽署憑證的預設 AD FS 設定
-<a id="default-configuration-of-ad-fs-for-token-signing-certificates" class="xliff"></a>
+## <a name="default-configuration-of-ad-fs-for-token-signing-certificates"></a>權杖簽署憑證的預設 AD FS 設定
 權杖簽署和權杖解密憑證通常是自我簽署的憑證，有效期為一年。 根據預設，AD FS 包含名為 **AutoCertificateRollover**的自動更新程序。 如果您使用 AD FS 2.0 或更新版本，Office 365 和 Azure AD 在您的憑證到期之前會自動進行更新。
 
-### 從 Office 365 入口網站或電子郵件更新通知
-<a id="renewal-notification-from-the-office-365-portal-or-an-email" class="xliff"></a>
+### <a name="renewal-notification-from-the-office-365-portal-or-an-email"></a>從 Office 365 入口網站或電子郵件更新通知
 > [!NOTE]
 > 如果您收到電子郵件或入口網站通知，要求您更新 Office 憑證，請參閱 [管理權杖簽署憑證的變更](#managecerts) ，檢查您是否需要採取任何動作。 Microsoft 已知可能會有在不需要採取任何動作的情況下仍送出憑證更新通知的問題。
 >
 >
 
-Azure AD 會嘗試監視同盟中繼資料，並依照此中繼資料的指示更新權杖簽署憑證。 在權杖簽署憑證到期前&30; 天，Azure AD 會藉由輪詢同盟中繼資料，檢查是否已有新的憑證可供使用。
+Azure AD 會嘗試監視同盟中繼資料，並依照此中繼資料的指示更新權杖簽署憑證。 在權杖簽署憑證到期前 30 天，Azure AD 會藉由輪詢同盟中繼資料，檢查是否已有新的憑證可供使用。
 
 * 如果它能成功輪詢同盟中繼資料並擷取新的憑證，使用者就不會收到電子郵件通知或 Office 365 入口網站發出的警告。
 * 如果它無法擷取新的權杖簽署憑證，不論原因是無法取得同盟中繼資料，還是自動憑證變換並未啟用，Azure AD 都會發出電子郵件通知和 O365 入口網站中的警告。
@@ -61,8 +57,7 @@ Azure AD 會嘗試監視同盟中繼資料，並依照此中繼資料的指示�
 >
 
 ## 檢查是否需要更新憑證 <a name="managecerts"></a>
-### 步驟 1︰檢查 AutoCertificateRollover 狀態
-<a id="step-1-check-the-autocertificaterollover-state" class="xliff"></a>
+### <a name="step-1-check-the-autocertificaterollover-state"></a>步驟 1︰檢查 AutoCertificateRollover 狀態
 在 AD FS 伺服器上開啟 Powershell。 檢查 AutoCertificateRollover 值是否已設定為 True。
 
     Get-Adfsproperties
@@ -72,8 +67,7 @@ Azure AD 會嘗試監視同盟中繼資料，並依照此中繼資料的指示�
 >[!NOTE] 
 >如果您使用 AD FS 2.0，請先執行 Add-Pssnapin Microsoft.Adfs.Powershell。
 
-### 步驟 2︰確認 AD FS 和 Azure AD 已同步
-<a id="step-2-confirm-that-ad-fs-and-azure-ad-are-in-sync" class="xliff"></a>
+### <a name="step-2-confirm-that-ad-fs-and-azure-ad-are-in-sync"></a>步驟 2︰確認 AD FS 和 Azure AD 已同步
 在 AD FS 伺服器上開啟 Azure AD Powershell 提示字元，並連線到 Azure AD。
 
 > [!NOTE]
@@ -91,8 +85,7 @@ Azure AD 會嘗試監視同盟中繼資料，並依照此中繼資料的指示�
 
 如果這兩個輸出中的指紋相符，您的憑證便已與 Azure AD 同步。
 
-### 步驟 3︰檢查憑證是否即將到期
-<a id="step-3-check-if-your-certificate-is-about-to-expire" class="xliff"></a>
+### <a name="step-3-check-if-your-certificate-is-about-to-expire"></a>步驟 3︰檢查憑證是否即將到期
 在 Get-MsolFederationProperty 或 Get-AdfsCertificate 的輸出中，檢查「不晚於」之下的日期。 如果日期相隔不到 30 天，您應採取動作。
 
 | AutoCertificateRollover | 憑證與 Azure AD 同步 | 可公開取得同盟中繼資料 | 有效期 | 動作 |
@@ -129,8 +122,7 @@ https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
 
 在這些案例中，每當您更新權杖簽署憑證時，您還必須使用 PowerShell 命令 Update-MsolFederatedDomain 更新 Office 365 網域。
 
-### 步驟 1︰確認 AD FS 具有新的權杖簽署憑證
-<a id="step-1-ensure-that-ad-fs-has-new-token-signing-certificates" class="xliff"></a>
+### <a name="step-1-ensure-that-ad-fs-has-new-token-signing-certificates"></a>步驟 1︰確認 AD FS 具有新的權杖簽署憑證
 **非預設設定**
 
 如果您處於非預設的 AD FS 設定 (也就是 **AutoCertificateRollover** 設定為 **False**)，則您想必也是使用自訂憑證 (非自我簽署)。 如需如何更新 AD FS 權杖簽署憑證的詳細資訊，請參閱 [給未使用 AD FS 自我簽署憑證之客戶的指導方針](https://msdn.microsoft.com/library/azure/JJ933264.aspx#BKMK_NotADFSCert)。
@@ -155,8 +147,7 @@ https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
 
 現在應該會列出兩個憑證，一個的 **NotAfter** 日期大約在未來一年，且 **IsPrimary** 值是 **False**。
 
-### 步驟 2︰更新 Office 365 信任的新權杖簽署憑證
-<a id="step-2-update-the-new-token-signing-certificates-for-the-office-365-trust" class="xliff"></a>
+### <a name="step-2-update-the-new-token-signing-certificates-for-the-office-365-trust"></a>步驟 2︰更新 Office 365 信任的新權杖簽署憑證
 使用要用於信任的新權杖簽署憑證更新 Office 365，如下所示。
 
 1. 開啟適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組。
