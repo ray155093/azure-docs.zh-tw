@@ -2,16 +2,16 @@
 title: "Azure 執行個體中繼資料服務概觀 | Microsoft Docs"
 description: "RESTful 介面，用以取得 VM 的計算、網路和近期維護事件的相關資訊。"
 services: virtual-machines-windows, virtual-machines-linux,virtual-machines-scale-sets, cloud-services
-documentationcenter: 
+documentationcenter: virtual-machines
 author: harijay
 manager: timlt
 editor: 
-tags: 
-ms.service: azure-instancemetadataservice
+tags: azure-resource-manager
+ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
+ms.workload: infrastructure
 ms.date: 03/27/2017
 ms.author: harijay
 ms.translationtype: Human Translation

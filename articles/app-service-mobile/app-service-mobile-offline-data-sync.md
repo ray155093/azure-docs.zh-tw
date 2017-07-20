@@ -2,7 +2,7 @@
 title: "Azure Mobile Apps 中的離線資料同步處理 | Microsoft Docs"
 description: "Azure 行動應用程式離線資料同步處理功能的概念參考與概觀"
 documentationcenter: windows
-author: adrianhall
+author: dhei
 manager: adrianha
 editor: 
 services: app-service\mobile
@@ -14,11 +14,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: adrianha
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 15a3f9f40bdb84b939b30e33e5f2033411adc3cc
 ms.openlocfilehash: dc179f6186d501bc7c8e4ca72b2bf23e89a9443e
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/11/2017
-
 
 ---
 # <a name="offline-data-sync-in-azure-mobile-apps"></a>Azure 行動應用程式中的離線資料同步處理

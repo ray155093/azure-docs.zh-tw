@@ -50,6 +50,7 @@
 #### [索引數](sql-data-warehouse-tables-index.md)
 #### [身分識別](sql-data-warehouse-tables-identity.md)
 #### [分割數](sql-data-warehouse-tables-partition.md)
+#### [複寫的資料表](design-guidance-for-replicated-tables.md)
 #### [統計資料](sql-data-warehouse-tables-statistics.md)
 #### [暫存](sql-data-warehouse-tables-temporary.md)
 

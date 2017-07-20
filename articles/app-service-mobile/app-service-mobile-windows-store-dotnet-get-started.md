@@ -3,7 +3,7 @@ title: "建立使用於 Mobile Apps 的通用 Windows 平台 (UWP) | Microsoft D
 description: "遵循此教學課程，可開始使用 Azure 行動應用程式後端進行 C#、Visual Basic 或 JavaScript 的通用 Windows 平台 (UWP) 應用程式開發。"
 services: app-service\mobile
 documentationcenter: windows
-author: adrianhall
+author: dhei
 manager: adrianha
 editor: 
 ms.assetid: 47124296-2908-4d92-85e0-05c4aa6db916
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: adrianha
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: 1a031c4858bcbc75ee807ba520e1b22c89471498
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/16/2017
-
 
 ---
 # <a name="create-a-windows-app"></a>建立 Windows 應用程式
@@ -28,12 +28,12 @@ ms.lasthandoff: 02/16/2017
 本教學課程顯示如何將雲端型後端服務新增到通用 Windows 平台 (UWP) 應用程式。 如需詳細資訊，請參閱 [什麼是 Mobile Apps？](app-service-mobile-value-prop.md)。 以下是已完成之應用程式的螢幕截圖：
 
 ![完成的電腦桌面應用程式](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-quickstart-completed-desktop.png)   
-在電腦桌面上執行。 
+在電腦桌面上執行。
 
 ![完成的手機應用程式](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-quickstart-completed.png)  
 在手機上執行
 
-完成本教學課程是 UWP 應用程式的所有其他行動應用程式教學課程的必要條件。 
+完成本教學課程是 UWP 應用程式的所有其他行動應用程式教學課程的必要條件。
 
 ## <a name="prerequisites"></a>必要條件
 若要完成此教學課程，您需要下列項目：
@@ -43,8 +43,8 @@ ms.lasthandoff: 02/16/2017
 
 > [!NOTE]
 > 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往 [試用 App Service](https://azure.microsoft.com/try/app-service/mobile/)。 您可以於該處，在 App Service 中立即建立短期的入門行動 app - 不需信用卡，不需任何承諾。
-> 
-> 
+>
+>
 
 ## <a name="create-a-new-azure-mobile-app-backend"></a>建立新的 Azure 行動應用程式後端
 依照下列步驟建立新的行動應用程式後端。
@@ -60,20 +60,20 @@ ms.lasthandoff: 02/16/2017
 設定行動應用程式後端之後，您就可以建立新用戶端應用程式或修改現有的應用程式，以連接到 Azure。 在本節中，您會下載 UWP 應用程式範本專案，而該專案已自訂要連接到行動應用程式後端。
 
 1. 回到行動應用程式後端的 [快速啟動] 刀鋒視窗中，按一下您的 [建立新的應用程式]  >  [下載]，然後解壓縮壓縮的專案檔案至本機電腦。
-   
+
     ![下載 Windows 快速入門專案](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-app-windows-quickstart.png)
 2. (選擇性) 將 UWP 應用程式專案加入至與伺服器專案相同的方案。 如此即可更輕鬆地在相同的 Visual Studio 方案中偵錯及測試應用程式和後端 (如果您選擇這麼做的話)。 若要將 UWP 應用程式專案加入方案，您必須使用 Visual Studio 2015 或更新版本。
 3. 在使用 UWP 應用程式做為啟始專案時，按 F5 鍵來部署和執行應用程式。
 4. 在應用程式的 [插入 TodoItem] 文字方塊中輸入有意義的文字 (例如「完成教學課程」(Complete the tutorial)」)，然後按一下 [儲存]。
-   
+
     ![Windows 快速入門完整桌面](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-quickstart-startup.png)
-   
+
     如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。
 5. (選擇性) 停止應用程式，並在不同的裝置或行動裝置模擬器上加以重新啟動。
-   
+
     ![Windows 快速入門完整手機](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-quickstart-completed.png)
-   
-    請注意，從先前步驟中儲存的資料，會在 UWP 應用程式啟動後從 Azure 載入。 
+
+    請注意，從先前步驟中儲存的資料，會在 UWP 應用程式啟動後從 Azure 載入。
 
 ## <a name="next-steps"></a>後續步驟
 * [將驗證新增至應用程式中](app-service-mobile-windows-store-dotnet-get-started-users.md)  
