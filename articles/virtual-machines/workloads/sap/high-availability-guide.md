@@ -1027,7 +1027,7 @@ _**圖 15：**Azure 內部負載平衡器的預設 ASCS/SCS 負載平衡規_
 
 如果您想要將其他號碼用於 SAP ASCS 或 SCS 執行個體，您就必須從預設值變更其連接埠的名稱和值。
 
-1.  在 Azure 入口網站中，選取 [<*SID*>-lb-ascs 負載平衡器]**** > [負載平衡規則]。
+1.  在 Azure 入口網站中，選取 **<*SID*>-lb-ascs 負載平衡器** > **[負載平衡規則]**。
 2.  針對屬於 SAP ASCS 或 SCS 執行個體的所有負載平衡規則，變更下列值：
 
   * 名稱
@@ -1500,7 +1500,7 @@ Microsoft .NET Framework 3.5 不會自動啟用或安裝在 Windows Server 2012 
 
   SAP Azure Resource Manager 範本中已定義連接埠號碼。 您可以在 PowerShell 中指派連接埠號碼。
 
-  若要針對 **SAP <SID**> IP** 叢集資源設定新的 ProbePort 值，執行下列 PowerShell 指令碼。 請更新您環境的 PowerShell 變數。 指令碼執行之後，系統會提示您重新啟動 SAP 叢集群組，以啟動變更。
+  若要針對 **SAP <*SID*> IP** 叢集資源設定新的 ProbePort 值，執行下列 PowerShell 指令碼。 請更新您環境的 PowerShell 變數。 指令碼執行之後，系統會提示您重新啟動 SAP 叢集群組，以啟動變更。
 
   ```PowerShell
   $SAPSID = "PR1"      # SAP <SID>
