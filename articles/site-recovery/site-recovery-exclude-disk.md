@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2017
 ms.author: nisoneji
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 6e52a647e817b64e331937c0b0f1d44f9f6c11a0
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: fccbe88e3c0c2b2f3e9958f5f2f27adc017e4d03
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/06/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="exclude-disks-from-replication"></a>從複寫排除磁碟
@@ -51,7 +50,7 @@ ms.lasthandoff: 04/06/2017
 ## <a name="how-to-exclude-disks-from-replication"></a>如何排除磁碟不要複寫？
 
 ### <a name="vmware-to-azure"></a>VMware 至 Azure
-從 Azure Site Recovery 入口網站，依照[啟用複寫](site-recovery-vmware-to-azure.md#enable-replication)工作流程來保護虛擬機器。 在工作流程的第四個步驟中，使用 [要複寫的磁碟] 資料行，排除磁碟不要複寫。 依預設會選取所有磁碟進行複寫。 針對您想排除而不要複寫的磁碟清除核取方塊，然後完成步驟以啟用複寫。
+從 Azure Site Recovery 入口網站，依照[啟用複寫](site-recovery-vmware-to-azure.md)工作流程來保護虛擬機器。 在工作流程的第四個步驟中，使用 [要複寫的磁碟] 資料行，排除磁碟不要複寫。 依預設會選取所有磁碟進行複寫。 針對您想排除而不要複寫的磁碟清除核取方塊，然後完成步驟以啟用複寫。
 
 ![排除磁碟不要複寫，並針對 VMware 到 Azure 容錯回復啟用複寫](./media/site-recovery-exclude-disk/v2a-enable-replication-exclude-disk1.png)
 
@@ -67,7 +66,7 @@ ms.lasthandoff: 04/06/2017
 >
 
 ### <a name="hyper-v-to-azure"></a>Hyper-V 至 Azure
-從 Azure Site Recovery 入口網站，依照[啟用複寫](site-recovery-hyper-v-site-to-azure.md#enable-replication)工作流程來保護虛擬機器。 在工作流程的第四個步驟中，使用 [要複寫的磁碟] 資料行，排除磁碟不要複寫。 依預設會選取所有磁碟進行複寫。 針對您想排除而不要複寫的磁碟清除核取方塊，然後完成步驟以啟用複寫。
+從 Azure Site Recovery 入口網站，依照[啟用複寫](site-recovery-hyper-v-site-to-azure.md)工作流程來保護虛擬機器。 在工作流程的第四個步驟中，使用 [要複寫的磁碟] 資料行，排除磁碟不要複寫。 依預設會選取所有磁碟進行複寫。 針對您想排除而不要複寫的磁碟清除核取方塊，然後完成步驟以啟用複寫。
 
 ![排除磁碟不要複寫，並針對 Hyper-V 到 Azure 容錯回復啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
 

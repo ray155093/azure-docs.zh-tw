@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/07/2017
+ms.date: 07/12/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 68e475891a91e4ae45a467cbda2b7b51c8020dbd
-ms.openlocfilehash: 240475240be76265c2a2f150a4a6d8f4aa0d3664
-
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: 8a08f6e441a856a06bf7870747ca20af45a0364e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="getting-started-with-azure-ad-connect-using-express-settings"></a>使用快速設定開始使用 Azure AD Connect
@@ -35,9 +36,9 @@ ms.openlocfilehash: 240475240be76265c2a2f150a4a6d8f4aa0d3664
 3. 在 [歡迎] 畫面上，選取同意授權條款的方塊，然後按一下 [繼續] 。  
 4. 在 [快速設定] 畫面上，按一下 [ **使用快速設定**]。  
    ![歡迎使用 Azure AD Connect](./media/active-directory-aadconnect-get-started-express/express.png)
-5. 在 [連接到 Azure AD] 畫面上，輸入您的 Azure AD 的全域系統管理員使用者名稱和密碼。 按 [下一步] 。  
+5. 在 [連接到 Azure AD] 畫面上，輸入您的 Azure AD 的全域系統管理員使用者名稱和密碼。 按一下 [下一步] 。  
    ![連接至 Azure AD](./media/active-directory-aadconnect-get-started-express/connectaad.png) 如果您收到錯誤訊息，而且有連線問題，請參閱[針對連線問題進行疑難排解](active-directory-aadconnect-troubleshoot-connectivity.md)中的必要條件步驟。
-6. 在 [連接到 AD DS] 畫面上輸入企業系統管理員帳戶的使用者名稱和密碼。 您可以用 NetBios 或 FQDN 格式輸入網域部分，也就是 FABRIKAM\administrator 或 fabrikam.com\administrator。 按一下頁面底部的 [新增] 來單一登入應用程式。  
+6. 在 [連接到 AD DS] 畫面上輸入企業系統管理員帳戶的使用者名稱和密碼。 您可以用 NetBios 或 FQDN 格式輸入網域部分，也就是 FABRIKAM\administrator 或 fabrikam.com\administrator。 按一下 [下一步] 。  
    ![連線到 AD DS](./media/active-directory-aadconnect-get-started-express/connectad.png)
 7. 只有在未完成[必要條件](active-directory-aadconnect-prerequisites.md)中的[驗證網域](../active-directory-add-domain.md)時，才會顯示 [[**Azure AD 登入組態**](active-directory-aadconnect-user-signin.md#azure-ad-sign-in-configuration)] 頁面。
    ![未驗證的網域](./media/active-directory-aadconnect-get-started-express/unverifieddomain.png)  
@@ -72,10 +73,5 @@ ms.openlocfilehash: 240475240be76265c2a2f150a4a6d8f4aa0d3664
 | 使用自訂設定進行安裝 |
 | 從 DirSync 升級 |
 | 用於安裝的帳戶 |
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

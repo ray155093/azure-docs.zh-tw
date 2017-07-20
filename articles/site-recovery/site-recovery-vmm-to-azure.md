@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/14/2017
 ms.author: raynew
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 7de37f106e33d425b3b497cec640bac3fa4afa74
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: b53e7f5454cd97f013fdce052f0a990a44958dee
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="replicate-hyper-v-virtual-machines-in-vmm-clouds-to-azure-using-site-recovery-in-the-azure-portal"></a>使用 Azure 入口網站中的 Site Recovery 將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure
@@ -42,7 +41,7 @@ ms.lasthandoff: 05/17/2017
 請依照下列文件完成這些部署步驟︰
 
 
-1. [深入了解](site-recovery-components.md#hyper-v-to-azure)此部署的架構。 此外，[深入了解](site-recovery-hyper-v-azure-architecture.md) Site Recovery 中 Hyper-V 複寫的運作方式。
+1. [深入了解](site-recovery-components.md)此部署的架構。 此外，[深入了解](site-recovery-hyper-v-azure-architecture.md) Site Recovery 中 Hyper-V 複寫的運作方式。
 2. 確認必要條件和限制。
 3. 設定 Azure 網路和儲存體帳戶。
 4. 準備內部部署 VMM 伺服器和 Hyper-V 主機。
