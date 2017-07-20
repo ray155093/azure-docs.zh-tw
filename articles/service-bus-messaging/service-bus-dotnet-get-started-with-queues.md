@@ -20,16 +20,11 @@ ms.openlocfilehash: 02d0ce093bc42cffa4f3993826c61c8aeca4d033
 ms.contentlocale: zh-tw
 ms.lasthandoff: 07/01/2017
 
-
 ---
-<a id="get-started-with-service-bus-queues" class="xliff"></a>
-
-# 開始使用服務匯流排佇列
+# <a name="get-started-with-service-bus-queues"></a>開始使用服務匯流排佇列
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-<a id="what-will-be-accomplished" class="xliff"></a>
-
-## 將會完成的工作
+## <a name="what-will-be-accomplished"></a>將會完成的工作
 本教學課程涵蓋下列步驟：
 
 1. 使用 Azure 入口網站建立服務匯流排命名空間。
@@ -37,50 +32,36 @@ ms.lasthandoff: 07/01/2017
 3. 撰寫主控台應用程式來傳送訊息。
 4. 撰寫主控台應用程式以接收上一個步驟中傳送的訊息。
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 1. [Visual Studio 2015 或更新版本](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2017。
 2. Azure 訂用帳戶。
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-<a id="1-create-a-namespace-using-the-azure-portal" class="xliff"></a>
-
-## 1.使用 Azure 入口網站建立命名空間
+## <a name="1-create-a-namespace-using-the-azure-portal"></a>1.使用 Azure 入口網站建立命名空間
 如果您已建立服務匯流排傳訊命名空間，請跳至[使用 Azure 入口網站建立佇列](#2-create-a-queue-using-the-azure-portal)一節。
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-<a id="2-create-a-queue-using-the-azure-portal" class="xliff"></a>
-
-## 2.使用 Azure 入口網站建立佇列
+## <a name="2-create-a-queue-using-the-azure-portal"></a>2.使用 Azure 入口網站建立佇列
 如果您已經建立服務匯流排佇列，請跳至[將訊息傳送至佇列](#3-send-messages-to-the-queue)一節。
 
 [!INCLUDE [service-bus-create-queue-portal](../../includes/service-bus-create-queue-portal.md)]
 
-<a id="3-send-messages-to-the-queue" class="xliff"></a>
-
-## 3.將訊息傳送到佇列
+## <a name="3-send-messages-to-the-queue"></a>3.將訊息傳送到佇列
 為了將訊息傳送到佇列，我們使用 Visual Studio 撰寫 C# 主控台應用程式。
 
-<a id="create-a-console-application" class="xliff"></a>
-
-### 建立主控台應用程式
+### <a name="create-a-console-application"></a>建立主控台應用程式
 
 啟動 Visual Studio，並建立新的**主控台應用程式 (.NET Framework)** 專案。
 
-<a id="add-the-service-bus-nuget-package" class="xliff"></a>
-
-### 新增服務匯流排 NuGet 封裝
+### <a name="add-the-service-bus-nuget-package"></a>新增服務匯流排 NuGet 封裝
 1. 以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。
 2. 按一下 [瀏覽] 索引標籤，搜尋 [Microsoft Azure 服務匯流排]，然後選取 [WindowsAzure.ServiceBus] 項目。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
    
     ![選取 NuGet 封裝][nuget-pkg]
 
-<a id="write-some-code-to-send-a-message-to-the-queue" class="xliff"></a>
-
-### 撰寫一些程式碼來將訊息傳送到佇列
+### <a name="write-some-code-to-send-a-message-to-the-queue"></a>撰寫一些程式碼來將訊息傳送到佇列
 1. 在 Program.cs 檔案開頭處新增以下 `using` 陳述式。
    
     ```csharp
@@ -126,7 +107,6 @@ ms.lasthandoff: 07/01/2017
                 var client = QueueClient.CreateFromConnectionString(connectionString, queueName);
                 var message = new BrokeredMessage("This is a test message!");
 
-                Console.WriteLine(String.Format("Message body: {0}", message.GetBody<String>()));
                 Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
 
                 client.Send(message);
@@ -141,9 +121,7 @@ ms.lasthandoff: 07/01/2017
    
       ![訊息大小][queue-message]
 
-<a id="4-receive-messages-from-the-queue" class="xliff"></a>
-
-## 4.從佇列接收訊息
+## <a name="4-receive-messages-from-the-queue"></a>4.從佇列接收訊息
 
 1. 若要接收您剛傳送的訊息，請建立新的主控台應用程式，並和上面的傳送者應用程式類似，新增服務匯流排 NuGet 套件的參考。
 2. 在 Program.cs 檔案開頭處新增以下 `using` 陳述式。
@@ -204,9 +182,7 @@ ms.lasthandoff: 07/01/2017
 
 恭喜！ 您現已建立佇列、傳送訊息和接收訊息。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 查看 [GitHub 存放庫以及範例](https://github.com/Azure/azure-service-bus/tree/master/samples)，其中會展示一些更進階的服務匯流排傳訊功能。
 
