@@ -15,6 +15,7 @@
 ### [配置設定](multi-factor-authentication-whats-next.md)
 ### [MFA 中的報告](multi-factor-authentication-manage-reports.md)
 ### [使用現有的網路原則伺服器](multi-factor-authentication-nps-extension.md)
+#### [NPS 擴充功能的進階組態](nps-extension-advanced-configuration.md)
 ### [建立驗證提供者](multi-factor-authentication-get-started-auth-provider.md)
 ### Azure MFA 內部部署
 #### [安裝使用者入口網站](multi-factor-authentication-get-started-portal.md)

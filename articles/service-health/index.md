@@ -13,16 +13,15 @@ ms.topic: landing-page
 ms.date: 07/07/2017
 ms.author: bernardm
 ms.translationtype: HT
-ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
-ms.openlocfilehash: d95507be7af7eb69cbab4e11a2aa6af1a9775b0c
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 1452c1dd56829d162d464c4a359fa8c86ce74a6b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 07/19/2017
 
 ---
-# Azure 服務健康情況文件
-<a id="azure-service-health-documentation" class="xliff"></a>
+# <a name="azure-service-health-documentation"></a>Azure 服務健康情況文件
 
-當 Azure 問題影響到您的資源健康情況時，服務健康情況會協助進行診斷並取得支援。 它會通知您資源的目前及過去的健康狀態，並協助您解決問題。 當您需要協助以解決 Azure 服務問題時，它能提供技術支援。
+Azure 服務健康情況提供個人化的指導方針並在 Azure 服務問題影響到您時提供支援，同時協助您準備即將進行的已規劃維護。 Azure 服務健康情況會透過針對目標及彈性的通知，提醒您及您的小組。
 <ul class="panelContent cardsFTitle">
     <li>
         <a href="/azure/service-health/service-health-overview">

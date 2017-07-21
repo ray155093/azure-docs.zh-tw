@@ -20,6 +20,7 @@
 ### [使用診斷 VM 擴充功能 v2.x 監視 VM](diagnostic-extension-v2.md)
 ### [插入自訂資料](inject-custom-data.md)
 ### [重設 Linux 的密碼或金鑰、修正 SSH 並檢查磁碟](reset-access.md)
+### [維護](planned-maintenance-schedule.md)
 ### [使用 CLI 建立 Docker 主機](cli-use-docker.md)
 ### [使用入口網站建立 Docker 主機](portal-use-docker.md)
 ### [如何搭配swarm 使用 Docker](../../virtual-machines-linux-docker-swarm.md)

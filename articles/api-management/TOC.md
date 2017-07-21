@@ -46,6 +46,10 @@
 ### [使用 Git 進行設定](api-management-configuration-repository-git.md)
 ### [使用 Azure 監視器監視](api-management-howto-use-azure-monitor.md)
 ### [使用角色型存取控制](api-management-role-based-access-control.md)
+### 與 Service Fabric 整合
+#### [概觀](../service-fabric/service-fabric-api-management-overview.md)
+#### [快速入門](../service-fabric/service-fabric-api-management-quick-start.md)
+
 # 參考
 ## [PowerShell](/powershell/azure/overview)
 ## [REST](/rest/api/apimanagement/)

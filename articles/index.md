@@ -4,10 +4,10 @@ hide_bc: true
 title: "Microsoft Azure 文件"
 description: "了解如何使用 Microsoft Azure 雲端服務建置和管理功能強大的應用程式。 取得文件、程式碼範例、教學課程等資訊。"
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 39252624b3ae254721ad514f666ea8498d5f37bc
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 7c1971abc2b71f6f23d8be2950aae8b56b4ceba1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/20/2017
 
 ---
 <div id="main" class="v2">
@@ -15,7 +15,7 @@ ms.lasthandoff: 07/13/2017
         <h1 class="screenReader">Microsoft Azure 文件</h1>
         <ul class="cardsY panelContent featuredContent">
             <li>
-                <a href="http://aka.ms/azuredevgetstarted/">
+                <a href="/azure/guides/developer/azure-developer-guide">
                     <div class="cardSize">
                         <div class="cardPadding">
                             <div class="card">
@@ -140,7 +140,8 @@ ms.lasthandoff: 07/13/2017
                                                     <ul class="noBullet">
                                                         <li><a class="barLink" href="/azure/app-service-web/">Web Apps</a></li>
                                                         <li><a class="barLink" href="/azure/azure-functions/">無伺服器#</a></li>
-                                                        <li><a class="barLink" href="/azure/container-service/">Kubernetes</a></li>
+                                                        <li><a class="barLink" href="/azure/container-service/">搭配 Kubernetes 的容器</a></li>
+                                                        <li><a class="barLink" href="/azure/service-fabric/">搭配 Service Fabric 的微服務</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -704,7 +705,7 @@ ms.lasthandoff: 07/13/2017
                                         </li>
                                         <li>
                                             <a href="/azure/data-lake-store/">
-                                                <img src="media/index/DataLakeStore.svg" alt="" />
+                                                <img src="media/index/Azure-Data-Lake-Store-COLOR.svg" alt="" />
                                                 <p>Data Lake Store</p>
                                             </a>
                                         </li>
@@ -755,13 +756,13 @@ ms.lasthandoff: 07/13/2017
                                         </li>
                                         <li>
                                             <a href="/azure/data-lake-analytics/">
-                                                <img src="media/index/DataLakeStore.svg" alt="" />
+                                                <img src="media/index/Azure-Data-Lake-Analytics-COLOR.svg" alt="" />
                                                 <p>Data Lake Analytics</p>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/azure/data-lake-store/">
-                                                <img src="media/index/DataLakeStore.svg" alt="" />
+                                                <img src="media/index/Azure-Data-Lake-Store-COLOR.svg" alt="" />
                                                 <p>Data Lake Store</p>
                                             </a>
                                         </li>
@@ -1035,9 +1036,9 @@ ms.lasthandoff: 07/13/2017
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/azure/resource-health">
+                                            <a href="/azure/service-health">
                                                 <img src="media/index/resource-health.svg" alt="" />
-                                                <p>Azure 資源健康狀態</p>
+                                                <p>Azure 服務健康情況</p>
                                             </a>
                                         </li>
                                         <li>
@@ -1450,7 +1451,7 @@ ms.lasthandoff: 07/13/2017
                                             <div class="card">
                                                 <div class="cardImageOuter">
                                                     <div class="cardImage">
-                                                        <img src="media/index/DataLakeStore.svg" alt="" />
+                                                        <img src="media/index/Azure-Data-Lake-Store-COLOR.svg" alt="" />
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
@@ -2197,7 +2198,7 @@ ms.lasthandoff: 07/13/2017
                                             <div class="card">
                                                 <div class="cardImageOuter">
                                                     <div class="cardImage">
-                                                        <img src="media/index/DataLakeStore.svg" alt="" />
+                                                        <img src="media/index/Azure-Data-Lake-Analytics-COLOR.svg" alt="" />
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
@@ -2216,7 +2217,7 @@ ms.lasthandoff: 07/13/2017
                                             <div class="card">
                                                 <div class="cardImageOuter">
                                                     <div class="cardImage">
-                                                        <img src="media/index/DataLakeStore.svg" alt="" />
+                                                        <img src="media/index/Azure-Data-Lake-Store-COLOR.svg" alt="" />
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
@@ -3014,7 +3015,7 @@ ms.lasthandoff: 07/13/2017
                                 </a>
                             </li>
                             <li>
-                                <a href="/azure/resource-health/">
+                                <a href="/azure/service-health/">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
@@ -3024,8 +3025,8 @@ ms.lasthandoff: 07/13/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Azure 資源健康狀態</h3>
-                                                    <p>當 Azure 問題影響到您的資源時，協助診斷並取得支援</p>
+                                                    <h3>Azure 服務健康情況</h3>
+                                                    <p>當 Azure 服務中的問題影響您時，提供個人化指導方針和支援。</p>
                                                 </div>
                                             </div>
                                         </div>
