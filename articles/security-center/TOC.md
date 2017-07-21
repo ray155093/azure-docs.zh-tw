@@ -19,6 +19,7 @@
 
 ## 防止
 ### [設定安全性原則](security-center-policies.md)
+### [及時存取](security-center-just-in-time.md)
 ### [實作安全性建議](security-center-recommendations.md)
 
 ### [應用程式建議](security-center-application-recommendations.md)
