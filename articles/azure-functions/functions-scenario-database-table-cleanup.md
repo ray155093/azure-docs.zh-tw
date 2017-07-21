@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Functions 執行排程的清除工作 | Microsoft Docs"
-description: "使用 Azure Functions 建立會根據事件計時器執行的 C# 函數。"
+title: "使用 Azure Functions 執行資料庫清除工作 | Microsoft Docs"
+description: "使用 Azure Functions 排程可連接到 Azure SQL Database 以定期清除資料列的工作。"
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -13,91 +13,117 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 09/26/2016
+ms.date: 05/22/2017
 ms.author: glenga
 ms.translationtype: Human Translation
-ms.sourcegitcommit: b873a7d0ef9efa79c9a173a8bfd3522b12522322
-ms.openlocfilehash: c0b4a963275dae5bbf203388cb61086393803b15
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: 6fd0e32374827b249f5aba1cbfc39117c88c6272
 ms.contentlocale: zh-tw
-ms.lasthandoff: 11/29/2016
+ms.lasthandoff: 05/25/2017
 
 
 ---
-# <a name="use-azure-functions-to-perform-a-scheduled-clean-up-task"></a>使用 Azure Functions 執行排程的清除工作
-本主題將示範如何使用 Azure Functions，以 C# 建立可根據事件計時器執行的新函數，來清除資料庫資料表中的資料列。 新的函式是根據 Azure Functions 入口網站中的預先定義範本所建立。 若要支援此案例，您也必須在函數應用程式中設定資料庫連接字串以做為 App Service 設定。 
+# <a name="use-azure-functions-to-connect-to-an-azure-sql-database"></a>使用 Azure Functions 連接到 Azure SQL Database
+本主題示範如何使用 Azure Functions 建立可清除 Azure SQL Database 資料表中資料列的排程作業。 新的 C# 函數是根據 Azure 入口網站中預先定義的計時器觸發程序範本所建立。 若要支援此案例，您也必須在函數應用程式中設定資料庫連接字串作為設定。 此案例會對資料庫使用大量作業。 若要讓您的函數程序在 Mobile Apps 資料表中進行個別的 CRUD 作業，您應該改用 [Mobile Apps 繫結](functions-bindings-mobile-apps.md)。
 
 ## <a name="prerequisites"></a>必要條件
-您必須先具備有效的 Azure 帳戶，才可以建立函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。
 
-本主題將示範在 SQL Database 中名為 TodoItems  的資料表中執行大量清除作業的 Transact-SQL 命令。 當您完成 [Azure App Service Mobile Apps 快速入門教學課程](../app-service-mobile/app-service-mobile-ios-get-started.md)時，即會建立這個相同的 TodoItems 資料表。 您也可以使用範例資料庫，如果您選擇使用不同的資料表，您將需要修改命令。
++ 本主題使用計時器觸發的函數。 完成主題[在 Azure 中建立由計時器觸發的函數](functions-create-scheduled-function.md)中的步驟，以建立此函數的 C# 版本。   
 
-你可以在入口網站中 [所有設定] > [應用程式設定] > [連接字串] > [顯示連接字串值] > [MS_TableConnectionString] 下方，取得行動應用程式後端所使用的連接字串。 您也可以在入口網站中 [所有設定] > [屬性] > [顯示資料庫連接字串] > [ADO.NET (SQL 驗證)] 下方，直接從 SQL Database 中取得連接字串。
++ 本主題將示範在 AdventureWorksLT 範例資料庫的 **SalesOrderHeader** 資料表中執行大量清除作業的 Transact-SQL 命令。 若要建立 AdventureWorksLT 範例資料庫，請完成本主題[在 Azure 入口網站中建立 Azure SQL 資料庫](../sql-database/sql-database-get-started-portal.md)中的步驟。 
 
-此案例會對資料庫使用大量作業。 若要讓您的函數程序在 Mobile Apps 資料表中進行個別的 CRUD 作業，您應該改用行動資料表繫結。
+## <a name="get-connection-information"></a>取得連線資訊
 
-## <a name="set-a-sql-database-connection-string-in-the-function-app"></a>在函數應用程式中設定 SQL Database 連接字串
-函式應用程式可在 Azure 中主控函式的執行。 在函數應用程式設定中儲存連接字串和其他機密資料是最佳做法。 這可以避免當您的函數程式碼在儲存機制中的某處結束時發生意外洩漏。 
+完成[在 Azure 入口網站中建立 Azure SQL 資料庫](../sql-database/sql-database-get-started-portal.md)時，您必須取得所建立之資料庫的連接字串。
 
-1. 移至 [Azure Functions 入口網站](https://functions.azure.com/signin) ，然後以您的 Azure 帳戶登入。
-2. 如果您要使用現有的函式應用程式，請從 [您的函式應用程式] 中選取，然後按一下 [開啟]。 若要建立新的函式應用程式，請輸入新函式應用程式的唯一 [名稱] 或接受所產生的名稱、選取您偏好的 [區域]，然後按一下 [建立 + 開始使用]。 
-3. 在您的函式應用程式中，按一下 [函式應用程式設定] > [移至 App Service 設定]。 
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+ 
+3. 從左側功能表中選取 [SQL Database]，然後選取 [SQL 資料庫] 頁面上的資料庫。
+
+4. 選取 [顯示資料庫連接字串]，然後複製完整的 **ADO.NET** 連接字串。
+
+    ![複製 ADO.NET 連接字串。](./media/functions-scenario-database-table-cleanup/adonet-connection-string.png)
+
+## <a name="set-the-connection-string"></a>設定連接字串 
+
+函式應用程式可在 Azure 中主控函式的執行。 在函數應用程式設定中儲存連接字串和其他機密資料是最佳做法。 使用應用程式設定可避免意外洩露連接字串與您的程式碼。 
+
+1. 瀏覽至您建立的函數應用程式。[在 Azure 中建立由計時器觸發的函數](functions-create-scheduled-function.md)。
+
+2. 選取 [平台功能] > [應用程式設定]。
    
-    ![函數應用程式設定刀鋒視窗](./media/functions-create-an-event-processing-function/functions-app-service-settings.png)
-4. 在函式應用程式中，按一下 [所有設定]、向下捲動至 [應用程式設定]，然後在 [連接字串] 下方針對 [名稱] 輸入 `sqldb_connection`、將連接字串貼入 [值] 中、按一下 [儲存]，然後關閉函式應用程式刀鋒視窗以返回 Functions 入口網站。
+    ![函數應用程式的應用程式設定。](./media/functions-scenario-database-table-cleanup/functions-app-service-settings.png)
+
+2. 向下捲動至 [連接字串]，然後使用資料表中指定的設定來新增連接字串。
    
-    ![App Service 設定連接字串](./media/functions-create-an-event-processing-function/functions-app-service-settings-connection-strings.png)
+    ![將連接字串新增至函數應用程式設定。](./media/functions-scenario-database-table-cleanup/functions-app-service-settings-connection-strings.png)
+
+    | 設定       | 建議的值 | 說明             | 
+    | ------------ | ------------------ | --------------------- | 
+    | **名稱**  |  sqldb_connection  | 用於存取函數程式碼的預存連接字串。    |
+    | **值** | 複製的字串  | 貼上您在上一節中複製的連接字串。 |
+    | **類型** | SQL Database | 使用預設的 SQL Database 連接。 |   
+
+3. 按一下 [儲存] 。
 
 現在，您可以加入 C# 函數程式碼來連接到 SQL Database。
 
-## <a name="create-a-timer-triggered-function-from-the-template"></a>從範本建立計時器觸發函數
-1. 在函式應用程式中，按一下 [+ 新增函式] > [TimerTrigger - C#] > [建立]。 這會以預設名稱建立函數，此函數會以每分鐘一次的預設排程來執行。 
-   
-    ![建立新的計時器觸發函數](./media/functions-create-an-event-processing-function/functions-create-new-timer-trigger.png)
-2. 在 [開發] 索引標籤的 [程式碼] 窗格中，在現有函式程式碼上方新增下列組件參考：
+## <a name="update-your-function-code"></a>更新函數程式碼
+
+1. 在函數應用程式中，選取計時器觸發的函數。
+ 
+3. 在現有函數程式碼頂端新增下列組件參考：
+
     ```cs
-        #r "System.Configuration"
-        #r "System.Data"
+    #r "System.Configuration"
+    #r "System.Data"
     ```
 
 3. 將下列 `using` 陳述式加入至函數：
     ```cs
-        using System.Configuration;
-        using System.Data.SqlClient;
-        using System.Threading.Tasks;
+    using System.Configuration;
+    using System.Data.SqlClient;
+    using System.Threading.Tasks;
     ```
 
 4. 使用下列程式碼來取代現有的 **Run** 函數：
     ```cs
-        public static async Task Run(TimerInfo myTimer, TraceWriter log)
+    public static async Task Run(TimerInfo myTimer, TraceWriter log)
+    {
+        var str = ConfigurationManager.ConnectionStrings["sqldb_connection"].ConnectionString;
+        using (SqlConnection conn = new SqlConnection(str))
         {
-            var str = ConfigurationManager.ConnectionStrings["sqldb_connection"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(str))
+            conn.Open();
+            var text = "UPDATE SalesLT.SalesOrderHeader " + 
+                    "SET [Status] = 5  WHERE ShipDate < GetDate();";
+
+            using (SqlCommand cmd = new SqlCommand(text, conn))
             {
-                conn.Open();
-                var text = "DELETE from dbo.TodoItems WHERE Complete='True'";
-                using (SqlCommand cmd = new SqlCommand(text, conn))
-                {
-                    // Execute the command and log the # rows deleted.
-                    var rows = await cmd.ExecuteNonQueryAsync();
-                    log.Info($"{rows} rows were deleted");
-                }
+                // Execute the command and log the # rows affected.
+                var rows = await cmd.ExecuteNonQueryAsync();
+                log.Info($"{rows} rows were updated");
             }
         }
+    }
     ```
 
-5. 按一下 [儲存]、針對下一個函式執行監看 [記錄] 視窗，然後記下從 TodoItems 資料表中刪除的資料列數目。
-6. (選擇性) 使用 [Mobile Apps 快速入門應用程式](../app-service-mobile/app-service-mobile-ios-get-started.md)，將其他項目標示為「已完成」，然後返回 [記錄] 視窗，並監看在下一個執行期間該函式會刪除同樣數目的資料列。 
+    此範例命令會根據出貨日期來更新 **Status** 資料行。 其應該會更新 32 個資料列。
+
+5. 按一下 [儲存]、針對下一個函數執行監看 [記錄] 視窗，然後記下 **SalesOrderHeader** 資料表中更新的資料列數目。
+
+    ![檢視函數記錄。](./media/functions-scenario-database-table-cleanup/functions-logs.png)
 
 ## <a name="next-steps"></a>後續步驟
-如需 Azure Functions 的詳細資訊，請參閱下列主題。
+
+接下來，了解如何將 Functions 與 Logic Apps 搭配使用以與其他服務整合。
+
+> [!div class="nextstepaction"] 
+> [建立與 Logic Apps 整合的函數](functions-twitter-email.md)
+
+如需有關 Functions 的詳細資訊，請參閱下列主題：
 
 * [Azure Functions 開發人員參考](functions-reference.md)  
-   可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。
+  可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。
 * [測試 Azure Functions](functions-test-a-function.md)  
-   說明可用於測試函式的各種工具和技巧。
-* [如何調整 Azure 函式](functions-scale.md)  
-  討論 Azure Functions 可用的服務方案，包括取用方案，以及如何選擇正確的方案。  
-
-
-
+  說明可用於測試函式的各種工具和技巧。  
 

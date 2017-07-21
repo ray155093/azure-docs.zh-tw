@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 05/09/2017
 ms.author: cynthn
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: 9c29390756ac2cd925ed7d2989393e63ed0a1239
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: f0cf88a06c5470ef173b22e7213419a6c8760723
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -58,6 +58,29 @@ ms.lasthandoff: 05/10/2017
 8. 在 [格式化新磁碟] 對話方塊中，檢查設定，然後按一下 [開始]。
 9. 系統會向您顯示警告，說明格式化磁碟將會清除所有資料，請按一下 [確定]。
 10. 格式化完成之後，按一下 [確定]。
+
+## <a name="use-trim-with-standard-storage"></a>搭配使用 TRIM 與標準儲存體
+
+如果您使用標準儲存體 (HDD)，您應該啟用 TRIM。 TRIM 會捨棄磁碟上未使用的區塊，因此您只需支付實際使用的儲存體。 如果您建立大型檔案，然後將它們刪除，這便可節省成本。 
+
+您可以執行此命令來檢查 TRIM 設定。 在您的 Windows VM 上開啟命令提示字元並輸入︰
+
+```
+fsutil behavior query DisableDeleteNotify
+```
+
+如果命令傳回 0，則已正確啟用 TRIM。 如果傳回 1，請執行下列命令來啟用 TRIM：
+```
+fsutil behavior set DisableDeleteNotify 0
+```
+
+從磁碟中刪除資料之後，您可以使用 TRIM 來執行重組，以確保 TRIM 作業正確排清：
+
+```
+defrag.exe <volume:> -l
+```
+
+您也可以確保已透過格式化磁碟區，修剪整個磁碟區。
 
 ## <a name="next-steps"></a>後續步驟
 如果您的應用程式需要使用 D: 磁碟機來儲存資料，可以[變更 Windows 暫存磁碟的磁碟機代號](change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
