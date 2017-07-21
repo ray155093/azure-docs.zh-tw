@@ -21,12 +21,10 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 01/12/2017
 
 ---
-# 與 Azure AD 同盟的多網域支援
-<a id="multiple-domain-support-for-federating-with-azure-ad" class="xliff"></a>
+# <a name="multiple-domain-support-for-federating-with-azure-ad"></a>與 Azure AD 同盟的多網域支援
 以下文件提供與 Office 365 或 Azure AD 網域同盟時，如何使用多個最上層網域和子網域的指引。
 
-## 多個最上層網域支援
-<a id="multiple-top-level-domain-support" class="xliff"></a>
+## <a name="multiple-top-level-domain-support"></a>多個最上層網域支援
 若要讓多個最上層網域與 Azure AD 同盟，您需要一些讓單一最上層網域同盟時不需要的額外組態。
 
 當網域與 Azure AD 同盟時，系統會在 Azure 中的網域上設定幾個屬性。  其中一個重要屬性是 IssuerUri。  這是 Azure AD 用來識別與權杖相關聯之網域的 URI。  該 URI 不需要解析為任何內容，不過它必須是有效的 URI。  根據預設，Azure AD 會在內部部署 AD FS 組態中將其設定為同盟服務識別碼的值。
@@ -48,8 +46,7 @@ ms.lasthandoff: 01/12/2017
 
 ![同盟錯誤](./media/active-directory-multiple-domains/error.png)
 
-### SupportMultipleDomain 參數
-<a id="supportmultipledomain-parameter" class="xliff"></a>
+### <a name="supportmultipledomain-parameter"></a>SupportMultipleDomain 參數
 若要解決這個問題，我們需要使用 `-SupportMultipleDomain` 參數來加入不同的 IssuerUri。  這個參數可搭配下列 Cmdlet 使用：
 
 * `New-MsolFederatedDomain`
@@ -82,8 +79,7 @@ ms.lasthandoff: 01/12/2017
 > 
 > 
 
-## 如何更新 AD FS 與 Azure AD 之間的信任
-<a id="how-to-update-the-trust-between-ad-fs-and-azure-ad" class="xliff"></a>
+## <a name="how-to-update-the-trust-between-ad-fs-and-azure-ad"></a>如何更新 AD FS 與 Azure AD 之間的信任
 如果您未設定 AD FS 與 Azure AD 執行個體之間的同盟信任，可能需要重新建立此信任。  這是因為當我們最初未使用 `-SupportMultipleDomain` 參數進行設定時，系統會將 IssuerUri 設定為預設值。  在以下螢幕擷取畫面中，您可以看到 IssuerUri 的設定為 https://adfs.bmcontoso.com/adfs/services/trust。
 
 回過頭來，如果我們已成功地在 Azure AD 入口網站中加入新網域，然後再嘗試使用 `Convert-MsolDomaintoFederated -DomainName <your domain>`轉換，我們會收到下列錯誤。
@@ -127,8 +123,7 @@ ms.lasthandoff: 01/12/2017
    ![新增其他 Azure AD 網域](./media/active-directory-multiple-domains/add2.png)
 5. 按一下 [安裝]
 
-### 確認新的最上層網域
-<a id="verify-the-new-top-level-domain" class="xliff"></a>
+### <a name="verify-the-new-top-level-domain"></a>確認新的最上層網域
 藉由使用 PowerShell 命令 `Get-MsolDomainFederationSettings -DomainName <your domain>`，您可以檢視更新的 IssuerUri。  以下螢幕擷取畫面顯示原始網域上的同盟設定已更新 http://bmcontoso.com/adfs/services/trust
 
 ![Get-MsolDomainFederationSettings](./media/active-directory-multiple-domains/MsolDomainFederationSettings.png)
@@ -137,14 +132,12 @@ ms.lasthandoff: 01/12/2017
 
 ![Get-MsolDomainFederationSettings](./media/active-directory-multiple-domains/settings2.png)
 
-## 子網域的支援
-<a id="support-for-sub-domains" class="xliff"></a>
+## <a name="support-for-sub-domains"></a>子網域的支援
 在加入子網域時，因為 Azure AD 處理網域的方式，導致子網域會繼承父項的設定。  這表示 IssuerUri 需要與父項相符。
 
 因此，假設我有 bmcontoso.com，後來再加入 corp.bmcontoso.com。  這表示來自 corp.bmcontoso.com 使用者的 IssuerUri 必須是 **http://bmcontoso.com/adfs/services/trust**。  不過，以上針對 Azure AD 實作的標準規則，會以為簽發者 **http://corp.bmcontoso.com/adfs/services/trust** 產生權杖。 的權杖，這與網域所需的值不符，因此驗證將會失敗。
 
-### 如何啟用子網域的支援
-<a id="how-to-enable-support-for-sub-domains" class="xliff"></a>
+### <a name="how-to-enable-support-for-sub-domains"></a>如何啟用子網域的支援
 若要解決這個問題，您需要更新 Microsoft Online 的 AD FS 信賴憑證者信任。  若要這樣做，您必須設定自訂宣告規則，以使其在建構自訂簽發者值時能夠從使用者的 UPN 尾碼移除任何子網域。 
 
 下列宣告將會執行這項操作︰
@@ -152,7 +145,7 @@ ms.lasthandoff: 01/12/2017
     c:[Type == "http://schemas.xmlsoap.org/claims/UPN"] => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, "^.*@([^.]+\.)*?(?<domain>([^.]+\.?){2})$", "http://${domain}/adfs/services/trust/"));
 
 [!NOTE]
-規則運算式中的最後一個數字設定了您根網域中的父網域數目。 此處我所擁有的是 bmcontoso.com，因此必須有&2; 個父網域。 如果要保留&3; 個父網域 (亦即 corp.bmcontoso.com)，則數字就會是&3;。 最後可以指出一個範圍，系統一律會進行比對來符合網域數目上限。 "{2,3}" 會比對出&2; 到&3; 個網域 (亦即 bmfabrikam.com 和 corp.bmcontoso.com)。
+規則運算式中的最後一個數字設定了您根網域中的父網域數目。 此處我所擁有的是 bmcontoso.com，因此必須有 2 個父網域。 如果要保留 3 個父網域 (亦即 corp.bmcontoso.com)，則數字就會是 3。 最後可以指出一個範圍，系統一律會進行比對來符合網域數目上限。 "{2,3}" 會比對出 2 到 3 個網域 (亦即 bmfabrikam.com 和 corp.bmcontoso.com)。
 
 請使用下列步驟來加入自訂宣告，以支援子網域。
 
