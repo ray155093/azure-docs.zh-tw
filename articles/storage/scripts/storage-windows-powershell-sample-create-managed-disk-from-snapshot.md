@@ -1,14 +1,14 @@
 ---
 title: "Azure PowerShell 指令碼範例 - 從快照集建立受控磁碟 | Microsoft Docs"
 description: "Azure PowerShell 指令碼範例 - 從快照集建立受控磁碟"
-services: managed-disks
+services: virtual-machines-windows
 documentationcenter: storage
-author: ramankum
+author: ramankumarlive
 manager: kavithag
-editor: ramankum
+editor: tysonn
 tags: azure-service-management
 ms.assetid: 
-ms.service: managed-disks-windows
+ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: sample
 ms.tgt_pltfrm: vm-windows

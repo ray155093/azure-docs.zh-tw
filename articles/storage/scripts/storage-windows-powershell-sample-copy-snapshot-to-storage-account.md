@@ -1,14 +1,14 @@
 ---
 title: "Azure PowerShell 指令碼範例 - 將快照集匯出/複製成不同區域的儲存體帳戶當做 VHD | Microsoft Docs"
 description: "Azure PowerShell 指令碼範例 - 將快照集匯出/複製成不同區域的儲存體帳戶當做 VHD"
-services: managed-disks
+services: virtual-machines-windows
 documentationcenter: storage
-author: ramankum
+author: ramankumarlive
 manager: kavithag
-editor: ramankum
+editor: tysonn
 tags: azure-service-management
 ms.assetid: 
-ms.service: managed-disks-windows
+ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: sample
 ms.tgt_pltfrm: vm-windows

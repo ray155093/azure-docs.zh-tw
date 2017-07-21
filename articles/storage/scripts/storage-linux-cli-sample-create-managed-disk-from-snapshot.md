@@ -1,14 +1,14 @@
 ---
 title: "Azure CLI 指令碼範例 - 從快照集建立受控磁碟 | Microsoft Docs"
 description: "Azure CLI 指令碼範例 - 從快照集建立受控磁碟"
-services: managed-disks-linux
+services: virtual-machines-linux
 documentationcenter: storage
-author: ramankum
+author: ramankumarlive
 manager: kavithag
-editor: ramankum
+editor: tysonn
 tags: azure-service-management
 ms.assetid: 
-ms.service: managed-disks-linux
+ms.service: virtual-machines-linux
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-linux
