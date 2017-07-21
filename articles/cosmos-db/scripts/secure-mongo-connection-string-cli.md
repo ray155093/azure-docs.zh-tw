@@ -16,11 +16,11 @@ ms.tgt_pltfrm: cosmosdb
 ms.workload: database
 ms.date: 06/02/2017
 ms.author: mimig
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
-ms.openlocfilehash: 6faee797ff309fef2b748fa5ac7522a2c090c37f
+ms.translationtype: HT
+ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
+ms.openlocfilehash: 916c92cab39306352fdf9dff0e0685fd61832d16
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
+ms.lasthandoff: 07/15/2017
 
 ---
 
@@ -50,10 +50,10 @@ az group delete --name myResourceGroup
 
 | 命令 | 注意事項 |
 |---|---|
-| [az group create](/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
-| [az cosmosdb update](/cli/azure/cosmosdb/name#update) | 更新 Azure Cosmos DB 帳戶。 |
-| [az cosmosdb list-connection-strings](/cli/azure/cosmosdb/list-connection-strings) | 取得帳戶的連接字串。|
-| [az group delete](/cli/azure/resource#delete) | 刪除資源群組，包括所有的巢狀資源。 |
+| [az group create](https://docs.microsoft.com/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
+| [az cosmosdb update](https://docs.microsoft.com/cli/azure/cosmosdb#update) | 更新 Azure Cosmos DB 帳戶。 |
+| [az cosmosdb list-connection-strings](https://docs.microsoft.com/cli/azure/cosmosdb#list-connection-strings) | 取得帳戶的連接字串。|
+| [az group delete](https://docs.microsoft.com/cli/azure/group#delete) | 刪除資源群組，包括所有的巢狀資源。 |
 
 ## <a name="next-steps"></a>後續步驟
 

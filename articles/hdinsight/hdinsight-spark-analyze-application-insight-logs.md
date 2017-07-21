@@ -16,10 +16,10 @@ ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: 02ecc95d97719908a18f615dc3e19af2a563cc73
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8ccb94ea1b415c93d9dc3faefab3cbf8fb075b89
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -36,7 +36,7 @@ ms.lasthandoff: 05/26/2017
 * 熟悉以 Linux 為基礎的 HDInsight 叢集的建立程序。 如需詳細資訊，請參閱[在 HDInsight 中建立 Spark](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
   > [!IMPORTANT]
-  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 * 網頁瀏覽器。
 

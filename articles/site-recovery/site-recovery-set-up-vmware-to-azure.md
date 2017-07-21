@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
-ms.openlocfilehash: fd331d805c0c6ddcfb492db2902a8e53b23dcab3
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: a2fabc56463c8cbf0b8a76b7a84369ed8e535486
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
+ms.lasthandoff: 07/14/2017
 
 ---
 
@@ -33,7 +33,7 @@ ms.lasthandoff: 06/30/2017
 
 此文章假設您已經建立：
 - [Azure 入口網站](http://portal.azure.com "Azure 入口網站")中的復原服務保存庫。
-- 您 VMware vCenter 中可用來進行[自動探索](./site-recovery-vmware-to-azure.md#vmware-account-permissions)的專用帳戶。
+- 您 VMware vCenter 中可用來進行[自動探索](./site-recovery-vmware-to-azure.md)的專用帳戶。
 - 可供安裝組態伺服器的虛擬機器。
 
 ## <a name="configuration-server-minimum-requirements"></a>組態伺服器最低需求

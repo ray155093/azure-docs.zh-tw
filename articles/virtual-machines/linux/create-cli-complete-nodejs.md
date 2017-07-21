@@ -16,10 +16,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 02/09/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 6fcdd64759cb12ae8804bd0cc8dc4edfeec949bd
-ms.lasthandoff: 04/03/2017
+ms.translationtype: HT
+ms.sourcegitcommit: d941879aee6042b38b7f5569cd4e31cb78b4ad33
+ms.openlocfilehash: 201ccd523e49d638ace50fbc0ffdceb705b35473
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/10/2017
 
 
 ---
@@ -33,8 +34,6 @@ ms.lasthandoff: 04/03/2017
 * 兩個位於可用性設定組內的 VM。
 * 一個在連接埠 80 有負載平衡規則的負載平衡器。
 * 可保護 VM 防止不必要流量的網路安全性群組 (NSG) 規則。
-
-![基本環境概觀](./media/create-cli-complete/environment_overview.png)
 
 若要建立此自訂環境，您需要處於 Resource Manager 模式 (`azure config mode arm`) 的最新 [Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 您也需要 JSON 剖析工具。 此範例使用 [jq](https://stedolan.github.io/jq/)。
 

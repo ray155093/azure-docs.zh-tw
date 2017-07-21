@@ -3,7 +3,7 @@ title: "Azure Active Directory 報告稽核 API 範例 | Microsoft Docs"
 description: "如何開始使用 Azure Active Directory 報告 API"
 services: active-directory
 documentationcenter: 
-author: dhanyahk
+author: MarkusVi
 manager: femila
 editor: 
 ms.assetid: de8b8ec3-49b3-4aa8-93fb-e38f52c99743
@@ -14,41 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2017
 ms.author: dhanyahk;markvi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 665b613db31b15b6f6d2826a0795be6275c832ca
-ms.openlocfilehash: 8216fa7ab092b2d0225d075d933fa56fbab56f40
+ms.reviewer: dhanyahk
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: aab705688079601bbce93455f7dda80cdd733110
 ms.contentlocale: zh-tw
-ms.lasthandoff: 12/29/2016
+ms.lasthandoff: 07/19/2017
 
 ---
-<a id="azure-active-directory-reporting-audit-api-samples" class="xliff"></a>
-
-# Azure Active Directory 報告稽核 API 範例
+# <a name="azure-active-directory-reporting-audit-api-samples"></a>Azure Active Directory 報告稽核 API 範例
 本主題是 Azure Active Directory 報告 API 相關主題集合的一部分。  
 Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽核資料。
 本主題的範疇是為您提供 **稽核 API**的範例程式碼。
 
 請參閱：
 
-* [稽核記錄](active-directory-reporting-azure-portal.md#audit-logs) 以取得詳細概念資訊
+* [稽核記錄](active-directory-reporting-azure-portal.md#activity-reports) 以取得詳細概念資訊
 * [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md) 以取得報告 API 的詳細資訊。
 
 如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
 
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 您必須先完成 [存取 Azure AD 報告 API 的必要條件](active-directory-reporting-api-prerequisites.md)，才能使用本主題中的範例。  
 
-<a id="known-issue" class="xliff"></a>
-
-## 已知問題
+## <a name="known-issue"></a>已知問題
 如果您的租用戶位於歐洲地區，「應用程式驗證」將無法運作。 請使用「使用者驗證」做為因應措施來存取稽核 API，直到我們修正此問題為止。 
 
-<a id="powershell-script" class="xliff"></a>
-
-## PowerShell 指令碼
+## <a name="powershell-script"></a>PowerShell 指令碼
     # This script will require registration of a Web Application in Azure Active Directory (see https://azure.microsoft.com/documentation/articles/active-directory-reporting-api-getting-started/)
 
     # Constants
@@ -93,16 +86,12 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽
     $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
 
-<a id="executing-the-powershell-script" class="xliff"></a>
-
-### 執行 PowerShell 指令碼
+### <a name="executing-the-powershell-script"></a>執行 PowerShell 指令碼
 完成指令碼編輯後，加以執行並確認從稽核記錄報告傳回預期的資料。
 
 指令碼會以 JSON 格式傳回稽核報告的輸出。 它也會建立具有相同輸出的 `audit.json` 檔案。 您可透過修改指令碼以從其他報告傳回資料來進行實驗，以及取消註解您不需要的輸出格式。
 
-<a id="bash-script" class="xliff"></a>
-
-## Bash 指令碼
+## <a name="bash-script"></a>Bash 指令碼
     #!/bin/bash
 
     # Author: Ken Hoff (kenhoff@microsoft.com)
@@ -130,9 +119,7 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽
 
     echo $REPORT | ./jq-win64.exe -r '.value' | ./jq-win64.exe -r ".[]"
 
-<a id="python-script" class="xliff"></a>
-
-## Python 指令碼
+## <a name="python-script"></a>Python 指令碼
     # Author: Michael McLaughlin (michmcla@microsoft.com)
     # Date: January 20, 2016
     # This requires the Python Requests module: http://docs.python-requests.org
@@ -177,9 +164,7 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽
 
 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 您要自訂本主題中的範例嗎？ 請查看 [Azure Active Directory 稽核 API 參考](active-directory-reporting-api-audit-reference.md)。 
 * 如果您想要查看使用 Azure Active Directory 報告 API 的完整概觀，請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
 * 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  

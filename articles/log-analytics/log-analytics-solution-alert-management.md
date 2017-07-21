@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/07/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 885de1e94e3ce520621dc8dc7a4a495501f6a429
-ms.openlocfilehash: 35b4c30de20c46312bd7e4524a4264450184138a
-ms.lasthandoff: 02/18/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 3714730dce9c856f602cf46e013b1ff6a89cfb07
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="alert-management-solution-in-operations-management-suite-oms"></a>Operations Management Suite (OMS) 中的警示管理解決方案
 
 ![Alert Management icon](media/log-analytics-solution-alert-management/icon.png)
 
-警示管理解決方案可協助您分析 Log Analytics 儲存機制中的所有警示。  這些警示可能來自各種來源，包括[由 Log Analytics 所建立](log-analytics-alerts.md)或[從 Nagios 或 Zabbix 匯入](log-analytics-linux-agents.md#linux-alerts)的來源。  此方案也會從所有[連接的 System Center Operations Manager (SCOM) 管理群組](log-analytics-om-agents.md)匯入警示。
+警示管理解決方案可協助您分析 Log Analytics 儲存機制中的所有警示。  這些警示可能來自各種來源，包括[由 Log Analytics 所建立](log-analytics-alerts.md)或[從 Nagios 或 Zabbix 匯入](log-analytics-linux-agents.md)的來源。  此方案也會從所有[連接的 System Center Operations Manager (SCOM) 管理群組](log-analytics-om-agents.md)匯入警示。
 
 ## <a name="prerequisites"></a>必要條件
 此方案將會使用 Log Analytics 中類型為**警示**的所有記錄，因此您必須執行收集這些記錄所需的所有組態。
 
 - 針對 Log Analytics 警示，[建立警示規則](log-analytics-alerts.md)，以直接在儲存機制中建立警示記錄。
-- 針對 Nagios 和 Zabbix 警示，[設定這些伺服器](log-analytics-linux-agents.md#linux-alerts)，以將警示傳送至 Log Analytics。
+- 針對 Nagios 和 Zabbix 警示，[設定這些伺服器](log-analytics-linux-agents.md)，以將警示傳送至 Log Analytics。
 - 針對 SCOM 警示，[將 Operations Manager 管理群組連接到 Log Analytics 工作區](log-analytics-om-agents.md)。  系統會將 SCOM 中建立的所有警示匯入 Log Analytics。  
 
 ## <a name="configuration"></a>組態

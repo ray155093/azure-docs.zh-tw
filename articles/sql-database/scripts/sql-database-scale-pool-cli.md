@@ -16,11 +16,11 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: f1f178d05826e8d2a37b41f2f98ed0ddf83f542b
+ms.translationtype: HT
+ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
+ms.openlocfilehash: abceba7d250622d8cf27e41d3bb37f3d8a995b5f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
+ms.lasthandoff: 07/14/2017
 
 ---
 
@@ -54,9 +54,9 @@ az group delete --name myResourceGroup
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
 | [az sql server create](https://docs.microsoft.com/cli/azure/sql/server#create) | 建立主控 SQL Database 的邏輯伺服器。 |
-| [az sql elastic-pools create](https://docs.microsoft.com/cli/azure/sql/elastic-pools#create) | 在邏輯伺服器內建立彈性資料庫集區。 |
+| [az sql elastic-pools create](https://docs.microsoft.com/cli/azure/sql/elastic-pool#create) | 在邏輯伺服器內建立彈性資料庫集區。 |
 | [az sql db create](https://docs.microsoft.com/cli/azure/sql/db#create) | 在邏輯伺服器中建立 SQL Database。 |
-| [az sql elastic-pools update](https://docs.microsoft.com/cli/azure/sql/elastic-pools#update) | 更新彈性資料庫集區，在此範例中是變更指派的 eDTU。 |
+| [az sql elastic-pools update](https://docs.microsoft.com/cli/azure/sql/elastic-pool#update) | 更新彈性資料庫集區，在此範例中是變更指派的 eDTU。 |
 | [az group delete](https://docs.microsoft.com/cli/azure/vm/extension#set) | 刪除資源群組，包括所有的巢狀資源。 |
 
 ## <a name="next-steps"></a>後續步驟

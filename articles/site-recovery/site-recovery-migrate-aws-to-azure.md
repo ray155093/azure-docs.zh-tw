@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/31/2017
 ms.author: bsiva
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 31ecec607c78da2253fcf16b3638cc716ba3ab89
-ms.openlocfilehash: b2420da03b83a355215d7beeffd5b4cff10da75b
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: b3c0727a279649f4f7dae30d41027129ce5b04ee
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/23/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="migrate-virtual-machines-in-amazon-web-services-aws-to-azure-with-azure-site-recovery"></a>使用 Azure Site Recovery 將 Amazon Web Services (AWS) 中的虛擬機器移轉至 Azure
@@ -43,7 +42,7 @@ Site Recovery 可用於移轉執行下列任何作業系統的 EC2 執行個體�
 
 以下是您針對此部署所需要的項目︰
 
-* **組態伺服器**︰執行 Windows Server 2012 R2 的 Amazon EC2 VM 部署為組態伺服器。 根據預設，當您部署設定伺服器時，會安裝其他 Azure Site Recovery 元件 (處理序伺服器和主要目標伺服器)。 本文說明在 Azure 入口網站中進行移轉的步驟，且是以[進一步了解](site-recovery-components.md#vmware-to-azure)的指示為基礎
+* **組態伺服器**︰執行 Windows Server 2012 R2 的 Amazon EC2 VM 部署為組態伺服器。 根據預設，當您部署設定伺服器時，會安裝其他 Azure Site Recovery 元件 (處理序伺服器和主要目標伺服器)。 本文說明在 Azure 入口網站中進行移轉的步驟，且是以[進一步了解](site-recovery-components.md)的指示為基礎
 
 * **EC2 執行個體**︰您想要移轉的 Amazon EC2 虛擬機器執行個體。
 

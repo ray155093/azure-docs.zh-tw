@@ -13,13 +13,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/24/2016
+ms.date: 07/07/2016
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 68b4e317c51e18d61c8bde80d9fce2d63910847c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6221f5fa113bf58ed3f5e0767b79b2b647005c71
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -123,7 +123,7 @@ ms.lasthandoff: 05/31/2017
     ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 座標清單](./media/powerbi-visualize/power_bi_connector_pbiresultflattenlist.png)
 7. 為了將座標陣列簡維化，我們將建立名為 LatLong 的 [自訂資料行]  。  選取 [新增資料行] 功能區，然後按一下 [新增自訂資料行]。  此時應會出現 [新增自訂資料行]  視窗。
 8. 提供新資料行的名稱，例如 LatLong。
-9. 接下來，指定新資料行的自訂公式。  在我們的範例中，我們將依照下列方式使用以下公式，串連以逗號分隔的緯度和經度值： `Text.From([Document.Location.coordinates]{1})&","&Text.From([Document.Location.coordinates]{0})`。 按一下 [確定] 。
+9. 接下來，指定新資料行的自訂公式。  在我們的範例中，我們將依照下列方式使用以下公式，串連以逗號分隔的緯度和經度值： `Text.From([coordinates]{1})&","&Text.From([coordinates]{0})`。 按一下 [確定] 。
    
     如需資料分析運算式 (DAX) (包括 DAX 函數) 的詳細資訊，請瀏覽 [Power BI Desktop 中的 DAX 基礎](https://support.powerbi.com/knowledgebase/articles/554619-dax-basics-in-power-bi-desktop)。
    

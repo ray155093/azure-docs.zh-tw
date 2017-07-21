@@ -16,8 +16,8 @@ ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
-ms.openlocfilehash: 9b23f34300248ff87ed4a6abbeb6cfdda6570581
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 945b09ccdb7537987da33d32d94a3ccacd829ffd
 ms.contentlocale: zh-tw
 
 
@@ -35,7 +35,7 @@ ms.contentlocale: zh-tw
 1. 前往 [Microsoft 應用程式註冊入口網站 (英文)](https://apps.dev.microsoft.com/portal/register-app) 註冊應用程式
 2. 輸入應用程式的名稱和您的電子郵件 
 3. 確定已取消選取 [Guided Setup (引導式設定)] 選項
-4. 按一下 `Add Platforms`，然後選取 `Native Application` 並按下 [儲存]
+4. 按一下 `Add Platform`，然後選取 `Native Application` 並按下 [儲存]
 5.  開啟 `MainActivity` (在 `app` > `java` > *`{host}.{namespace}`* 底下)
 6.  以您剛剛註冊的應用程式識別碼取代開頭為 `final static String CLIENT_ID` 之該行中的 *[在這裡輸入應用程式識別碼]*：
 

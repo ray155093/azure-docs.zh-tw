@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/07/2017
 ms.author: andrl
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: b78d8d257ea31e7cb6b4e1abfb32c81fcea67b6d
+ms.translationtype: HT
+ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
+ms.openlocfilehash: 4be7f077fa5bc03531baf2443c663f1d8bc4a1c8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/15/2017
 
 ---
 # <a name="community-portal"></a>社群入口網站
@@ -105,7 +104,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure Cosmos DB DocumentDB API 的 F
 |[南佛羅里達州程式碼研討會：在 10 分鐘內使用 Azure DocumentDB 編寫出適用於 .NET 開發人員的 NoSQL (英文)](http://www.fladotnet.com/codecamp/Agenda.aspx)| [Santosh Hari](https://twitter.com/_s_hari)|佛羅里達州戴維|2017 年 3 月 11 日|[#sflcc](https://twitter.com/search?q=%23sflcc&ref_src=twsrc%5Etfw)|
 |[奧蘭多市程式碼研討會：在 10 分鐘內使用 Azure DocumentDB 編寫出適用於 .NET 開發人員的 NoSQL (英文)](http://orlandocodecamp.com/Sessions/Details/20)| [Santosh Hari](https://twitter.com/_s_hari)|佛羅里達州桑福德|2017 年 4 月 8 日|[#OrlandoCC](https://twitter.com/hashtag/OrlandoCC?src=hash&ref_src=twsrc%5Etfw)|
 |[全球 Azure 戰鬥營︰利用 Azure Functions 和 DocumentDB 在 Azure 中進行無伺服器運算 (英文)](https://www.eventbrite.com/e/2017-global-azure-bootcamp-atlanta-usa-tickets-31817713638)| [Josh Lane](https://twitter.com/jplane)|喬治亞州亞特蘭大|2017 年 4 月 22 日|[#GlobalAzure](https://twitter.com/hashtag/GlobalAzure?src=hash)|
-|[NDC Olso 2017：Azure DocumentDB - 您可能 (尚未) 使用的最佳 NoSQL Database](http://ndcoslo.com/talk/azure-documentdb-the-best-nosql-database-youre-probably-not-using-yet/)|[Josh Lane](https://twitter.com/jplane)|挪威奧斯陸|2017 年 6 月 14 日|[#ndcoslo](https://twitter.com/search?q=%23ndcoslo)|
+|[NDC Olso 2017：Azure DocumentDB - 您可能 (尚未) 使用的最佳 NoSQL Database](http://ndcoslo.com/talk/azure-cosmos-db-the-best-nosql-database-youre-probably-not-using-yet/)|[Josh Lane](https://twitter.com/jplane)|挪威奧斯陸|2017 年 6 月 14 日|[#ndcoslo](https://twitter.com/search?q=%23ndcoslo)|
 
 您在演講或舉辦活動嗎？*[請告訴我們](mailto:askcosmosdb@microsoft.com)該如何協助您！*
 

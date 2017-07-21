@@ -14,12 +14,11 @@ ms.topic: article
 ms.workload: storage-backup-recovery
 ms.date: 03/27/2017
 ms.author: ruturajd
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: 795dd0c05daf560e5a271fef5356eb83d72a6112
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: dde0bb6b4f6bc10afdd7d40adc6689d42b37de81
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/16/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="fail-back-vmware-virtual-machines-and-physical-servers-to-the-on-premises-site"></a>將 VMWare 虛擬機器和實體伺服器容錯回復至內部部署網站
@@ -70,7 +69,7 @@ ms.lasthandoff: 06/16/2017
 ## <a name="prerequisites"></a>必要條件
 * 若要容錯回復 VMware VM 和實體伺服器，您需要 VMware 環境。 不支援容錯回復至實體伺服器。
 * 若要容錯回復，您必須在最初設定保護時建立 Azure 網路。 要進行容錯回復，就需要有從 Azure 網路 (Azure VM 所在網路) 連往內部部署網站的 VPN 或 ExpressRoute 連線。
-* 如果您想要容錯回復到的目標 VM 是由 vCenter 伺服器所管理，您必須確定已擁有在 vCenter 伺服器上探索 VM 的必要權限。 如需詳細資訊，請參閱[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access)。
+* 如果您想要容錯回復到的目標 VM 是由 vCenter 伺服器所管理，您必須確定已擁有在 vCenter 伺服器上探索 VM 的必要權限。 如需詳細資訊，請參閱[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md)。
 * 如果 VM 上有快照，重新保護程序將會失敗。 您可以刪除快照或磁碟。
 * 進行容錯回復之前，請建立這些元件：
   * **在 Azure 中建立處理伺服器**。 此元件是您在容錯回復期間建立並保持運作的 Azure VM。 容錯回復完成後，便可以刪除該 VM。
@@ -110,7 +109,7 @@ ms.lasthandoff: 06/16/2017
  * 映像的名稱是 *Microsoft Azure Site Recovery Process Server V2*。 選取 [傳統] 做為部署模型。
 
        ![Select "Classic" as the Process Server deployment model](./media/site-recovery-failback-azure-to-vmware-classic/templatename.png)
- * 根據[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server)中的指示安裝處理伺服器。
+ * 根據[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md)中的指示安裝處理伺服器。
 7. 如果您選取 [Resource Manager] Azure 網路，請提供下列資訊來部署處理伺服器：
 
   * 您想要在其中部署伺服器的資源群組名稱
@@ -123,7 +122,7 @@ ms.lasthandoff: 06/16/2017
 
     ![在 [新增處理伺服器] 對話方塊中輸入資訊](./media/site-recovery-failback-azure-to-vmware-classic/psinputsadd.png)
 
-8. 按一下 [確定] 。 此動作會觸發在處理伺服器安裝期間建立 Resource Manager 部署類型虛擬機器的作業。 若要將該伺服器登錄到組態伺服器，請依照[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server) 中的指示在 VM 內執行安裝程式。 將會一併觸發部署處理伺服器的作業。
+8. 按一下 [確定] 。 此動作會觸發在處理伺服器安裝期間建立 Resource Manager 部署類型虛擬機器的作業。 若要將該伺服器登錄到組態伺服器，請依照[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md) 中的指示在 VM 內執行安裝程式。 將會一併觸發部署處理伺服器的作業。
 
   處理伺服器會列在 [組態伺服器] >  [關聯的伺服器] >  [處理伺服器] 索引標籤上。
 
@@ -142,7 +141,7 @@ ms.lasthandoff: 06/16/2017
 1. 若要在 Windows 上設定主要目標伺服器，請從要在其上安裝主要目標伺服器的 VM 開啟快速入門頁面。
 2. 下載「Azure Site Recovery 統一安裝程式」精靈的安裝檔案。
 3. 執行安裝程式，並在 [開始之前] 中選取 [新增額外處理伺服器以相應放大部署]。
-4. 以您 [設定管理伺服器](site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server)時的相同方式完成精靈。 在 [組態伺服器詳細資料] 頁面上，指定主要目標伺服器的 IP 位址並輸入複雜密碼來存取 VM。
+4. 以您 [設定管理伺服器](site-recovery-vmware-to-azure-classic.md)時的相同方式完成精靈。 在 [組態伺服器詳細資料] 頁面上，指定主要目標伺服器的 IP 位址並輸入複雜密碼來存取 VM。
 
 ### <a name="set-up-a-linux-vm-as-the-master-target-server"></a>將 Linux VM 設定為主要目標伺服器
 若要設定管理伺服器並以 Linux VM 執行主要目標伺服器，請安裝 CentOS 6.6 基本作業系統。 接著，擷取每個 SCSI 硬碟的 SCSI 識別碼，安裝一些其他套件，並套用一些自訂變更。
@@ -232,7 +231,7 @@ ms.lasthandoff: 06/16/2017
 重新保護完成之後，VM 會複寫回 Azure，而且您可以執行容錯移轉。
 
 ### <a name="resolve-common-failback-issues"></a>解決常見容錯回復問題
-* 如果您執行唯讀的使用者 vCenter 探索並保護虛擬機器，這樣會成功且容錯回復可作用。 在重新保護期間，容錯回復會失敗，因為無法探索資料存放區。 徵兆是重新保護期間不會列出資料存放區。 若要解決此問題，您可以使用有適當權限的帳戶更新 vCenter 認證並重試作業。 如需詳細資訊，請參閱[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access)
+* 如果您執行唯讀的使用者 vCenter 探索並保護虛擬機器，這樣會成功且容錯回復可作用。 在重新保護期間，容錯回復會失敗，因為無法探索資料存放區。 徵兆是重新保護期間不會列出資料存放區。 若要解決此問題，您可以使用有適當權限的帳戶更新 vCenter 認證並重試作業。 如需詳細資訊，請參閱[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md)
 * 當您將 Linux VM 容錯回復並在內部部署執行它時，您會看到 Network Manager 套件已從該機器解除安裝。 發生此解除安裝的原因是，當在 Azure 中復原 VM 時，Network Manager 套件已被移除。
 * 當 VM 是以靜態 IP 位址設定且容錯移轉至 Azure 時，IP 位址是透過 DHCP 取得。 當您容錯移轉回內部部署時，該 VM 會繼續使用 DHCP 取得 IP 位址。 視需要手動登入機器，並將 IP 位址設定回靜態位址。
 * 如果您是使用 ESXi 5.5 免費版或 vSphere 6 Hypervisor 免費版，則容錯移轉會成功，但容錯回復不會成功。 若要啟用容錯回復，請升級到上述程式的評估授權。

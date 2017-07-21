@@ -14,12 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/09/2017
 ms.author: vidarmsft
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
-ms.openlocfilehash: 19346f2e4f2860258c421d76729abeb82f0e8987
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: b4d575587eec1bcf43c33c7faeb8360ec67b5214
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/10/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="automated-disaster-recovery-solution-using-azure-site-recovery-for-file-shares-hosted-on-storsimple"></a>針對 StorSimple 上裝載的檔案共用使用 Azure Site Recovery 的自動化災害復原解決方案
@@ -124,7 +123,7 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
    > 這將會導致檔案共用暫時無法使用。
    >
    >
-2. 從 Azure Site Recovery 入口網站為檔案伺服器 VM [啟用虛擬機器保護](../site-recovery/site-recovery-hyper-v-site-to-azure.md#enable-replication)。
+2. 從 Azure Site Recovery 入口網站為檔案伺服器 VM [啟用虛擬機器保護](../site-recovery/site-recovery-hyper-v-site-to-azure.md)。
 3. 當起始同步處理開始時，您可以再次重新連線目標。 移至 iSCSI 啟動器，選取 StorSimple 裝置，然後按一下 [連線] 。
 4. 當同步完成且 VM 的狀態為 [受保護] 時，請選取 VM，選取 [設定] 索引標籤，然後據以更新 VM 的網路 (這是已容錯移轉的 VM 所屬的網路)。 如果網路沒有顯示，表示同步仍在進行中。
 
