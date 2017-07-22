@@ -12,14 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 10/24/2016
+ms.date: 07/19/2017
 ms.author: cabailey
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: c45695129c1795b44b933a6d60e2f21a98542f7d
+ms.translationtype: HT
+ms.sourcegitcommit: 2812039649f7d2fb0705220854e4d8d0a031d31e
+ms.openlocfilehash: 73b4ae4b7baca434c6aed99a2e59a9102b0d96ed
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
-
+ms.lasthandoff: 07/22/2017
 
 ---
 # <a name="get-started-with-azure-key-vault"></a>開始使用 Azure 金鑰保存庫
@@ -172,7 +171,7 @@ ms.lasthandoff: 05/25/2017
 10. 複製此頁面的用戶端識別碼，您將在後續步驟中使用此識別碼來設定保存庫上的權限。
 
 ## <a id="authorize"></a>授權應用程式使用金鑰或密碼
-若要授權應用程式存取保存庫中的金鑰或密碼，請使用  [Set-AzureRmKeyVaultAccessPolicy](/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy) Cmdlet。
+若要授權應用程式存取保存庫中的金鑰或密碼，請使用 [Set-AzureRmKeyVaultAccessPolicy](/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy) Cmdlet。
 
 例如，如果您的保存庫名稱是 **ContosoKeyVault** ，且您要授權的應用程式具有 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed 的用戶端識別碼，您想要授權應用程式使用保存庫中的金鑰來進行解密並簽署，則請執行下列作業：
 

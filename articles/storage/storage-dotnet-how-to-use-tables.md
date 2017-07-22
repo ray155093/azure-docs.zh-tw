@@ -14,12 +14,11 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 04/10/2017
 ms.author: marsma
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: bcd59c9951965fb1304bb8da678fd1f04ddded14
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: 16a9dad1b01fdbef5ec8949bf9ff25497f33d994
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 07/21/2017
 
 ---
 # <a name="get-started-with-azure-table-storage-using-net"></a>以 .NET 開始使用 Azure 表格儲存體
@@ -37,7 +36,7 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 
 您需要下列項目才能成功完成此教學課程︰
 
-* [Microsoft Visual Studio](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
+* [Microsoft Visual Studio](https://www.visualstudio.com/downloads/)
 * [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
 * [適用於.NET 的 Azure 設定管理員](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
 * [Azure 儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)
