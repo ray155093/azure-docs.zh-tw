@@ -20,7 +20,6 @@ ms.openlocfilehash: 97e40e0081e1dcce0ed42748a053c46cecf569ba
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/20/2017
 
-
 ---
 # <a name="compute-environments-supported-by-azure-data-factory"></a>Azure Data Factory 支援的計算環境
 本文說明您可用來處理或轉換資料的各種計算環境。 其中還提供在設定將這些計算環境連結至 Azure Data Factory 的連結服務時，Data Factory 所支援的不同組態 (隨選與自備) 的詳細資料。
@@ -123,9 +122,10 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
     "properties": {
         "type": "HDInsightOnDemand",
         "typeProperties": {
-            "clusterSize": 4,
+            "version": "3.5",
+            "clusterSize": 1,
             "timeToLive": "00:05:00",
-            "osType": "linux",
+            "osType": "Linux",
             "linkedServiceName": "AzureStorageLinkedService"
         }
     }

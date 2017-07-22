@@ -12,15 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 07/19/2017
 ms.author: priyamo
-ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 146d1377a017becdcdcd7fed7b97f07c2cb2bb39
-ms.openlocfilehash: dceaab3f89675ae8e046419aaa5173c2733b0660
+ms.sourcegitcommit: f48df694e6ac20a11f92faebeeec273745fbfaed
+ms.openlocfilehash: 53e9fd58e72d83db32fa1fab937b4618cd4cd159
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/29/2017
-
+ms.lasthandoff: 02/09/2017
 
 ---
 # <a name="how-azure-active-directory-uses-the-saml-protocol"></a>Azure Active Directory 使用 SAML 通訊協定的方式
@@ -28,9 +26,7 @@ Azure Active Directory (Azure AD) 會使用 SAML 2.0 通訊協定，讓應用程
 
 SAML 通訊協定需要識別提供者 (Azure AD) 和服務提供者 (應用程式)，才能交換本身的相關資訊。
 
-向 Azure AD 註冊應用程式時，應用程式開發人員會向 Azure AD 註冊同盟的相關資訊。 這包括應用程式的「重新導向 URI」和「中繼資料 URI」。
-
-Azure AD 會使用雲端服務的 **中繼資料 URI** 來擷取雲端服務的簽署金鑰和登出 URI。 如果應用程式不支援中繼資料 URI，開發人員必須連絡 Microsoft 支援服務以提供登出 URI 和簽署金鑰。
+向 Azure AD 註冊應用程式時，應用程式開發人員會向 Azure AD 註冊同盟的相關資訊。 這包括應用程式的**重新導向 URI**。
 
 Azure Active Directory 會公開租用戶專屬和一般 (租用戶獨立) 單一登入和單一登出端點。 這些 URL 代表可定址的位置 -- 它們不只是識別碼 -- 因此您可以前往端點來讀取中繼資料。
 

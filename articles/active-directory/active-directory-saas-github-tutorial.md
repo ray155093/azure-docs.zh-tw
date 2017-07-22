@@ -11,13 +11,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 07/20/2017
 ms.author: jeedes
-translationtype: Human Translation
+ms.reviewer: jeedes
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
 ms.openlocfilehash: 8b0417d131bc25225e777285b9e4bfbaa97aad8f
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/29/2017
-
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-github"></a>教學課程：Azure Active Directory 與 GitHub 整合
@@ -126,10 +127,10 @@ GitHub 與 Azure AD 整合提供下列優點：
 4. 在 [使用者屬性] 區段中，選取 [user.mail] 做為 [使用者識別碼]。
 
     ![設定單一登入](./media/active-directory-saas-github-tutorial/tutorial_github_attribute_new01.png)
-     
+    
 5. 在 [SAML 簽署憑證] 區段中，按一下 [建立新憑證]。
 
-     ![設定單一登入](./media/active-directory-saas-github-tutorial/tutorial_github_03.png)
+    ![設定單一登入](./media/active-directory-saas-github-tutorial/tutorial_github_03.png)
 
 6. 在 [建立新憑證] 對話方塊中，按一下行事曆圖示並選取 [到期日]。 然後按一下 [儲存] 按鈕。
 
@@ -167,9 +168,9 @@ GitHub 與 Azure AD 整合提供下列優點：
 
     a. **登入 URL**：從 Azure AD 的 [設定 GitHub] 區段中，輸入 [SAML 單一登入服務 URL]
 
-      b. **簽發者**︰從 Azure AD 的 [設定 GitHub] 區段中，輸入 [SAML 實體識別碼]
+    b. **簽發者**︰從 Azure AD 的 [設定 GitHub] 區段中，輸入 [SAML 實體識別碼]
 
-       c. **公開憑證**：在記事本中開啟已從 Azure AD 下載的憑證並複製內容，包括 "BEGIN CERTIFICATE" 和 "END CERTIFICATE"
+    c. **公開憑證**：在記事本中開啟已從 Azure AD 下載的憑證並複製內容，包括 "BEGIN CERTIFICATE" 和 "END CERTIFICATE"
 
     ![設定](./media/active-directory-saas-github-tutorial/tutorial_github_config_github_051.png)
 

@@ -13,12 +13,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/17/2016
+ms.date: 07/20/2017
 ms.author: billmath
-translationtype: Human Translation
+ms.reviewer: jesakowi
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 095497656a1c6ed1fe5322b6015de750d8fd6f15
 ms.openlocfilehash: 3706ed729a525526a415d3a3367e6b8245ead812
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/07/2016
 
 ---
 
@@ -215,10 +217,5 @@ ms.openlocfilehash: 3706ed729a525526a415d3a3367e6b8245ead812
 (**ClientId** 是 FabrikamMail 的服務主體物件識別碼 (剛剛建立的)，**PrincipalId** 是 (已同意之使用者的) 使用者物件識別碼，**ResourceId** 是 Exchange 的服務主體物件識別碼，Scope 是已同意之 Exchange 中的權限)。
 
 如果不允許使用者同意，他們就會看到一個畫面，指出需要有權限。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 
