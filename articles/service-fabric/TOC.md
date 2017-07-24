@@ -290,7 +290,8 @@
 ## 監視與診斷
 ### [監視與診斷應用程式](service-fabric-diagnostics-overview.md)
 ### 產生事件
-#### [產生基礎結構層級事件](service-fabric-diagnostics-event-generation-infra.md)
+#### [產生平台層級活動](service-fabric-diagnostics-event-generation-infra.md)
+##### [作業通道](service-fabric-diagnostics-event-generation-operational.md)
 ##### [Reliable Services 事件](service-fabric-reliable-services-diagnostics.md)
 ##### [Reliable Actors 事件](service-fabric-reliable-actors-diagnostics.md)
 ##### [效能計量](service-fabric-diagnostics-event-generation-perf.md)

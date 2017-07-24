@@ -257,6 +257,11 @@
           href: app-service-web-app-azure-resource-manager-powershell.md
         - name: 使用 Azure 自動化管理應用程式
           href: automation-manage-web-app.md
+    - name: 整合
+      items:
+        - name: 匯出至 PowerApps 和 Microsoft Flow
+          href: >-
+            ../app-service/app-service-export-api-to-powerapps-and-flow.md?toc=%2fazure%2fapp-service-web%2ftoc.json
     - name: App Service 環境
       items:
         - name: 使用 App Service 環境

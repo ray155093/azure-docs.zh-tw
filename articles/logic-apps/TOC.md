@@ -62,14 +62,14 @@
 
 ## 管理與監視
 ### [使用 Visual Studio 管理邏輯應用程式](logic-apps-manage-from-vs.md)
-### [監視 Logic Apps](logic-apps-monitor-your-logic-apps.md)
 ### [管理整合帳戶](logic-apps-enterprise-integration-accounts.md)
+### [監視邏輯應用程式狀態](logic-apps-monitor-your-logic-apps.md)
 ### [監視 B2B 訊息](logic-apps-monitor-b2b-message.md)
+#### [在 OMS 中追蹤 B2B 訊息](logic-apps-track-b2b-messages-omsportal.md)
+#### [B2B 訊息的查詢 OMS](logic-apps-track-b2b-messages-omsportal-query-filter-control-number.md)
 #### [AS2 追蹤結構描述](logic-apps-track-integration-account-as2-tracking-schemas.md)
 #### [X12 追蹤結構描述](logic-apps-track-integration-account-x12-tracking-schema.md)
 #### [自訂追蹤結構描述](logic-apps-track-integration-account-custom-tracking-schema.md)
-#### [在 OMS 中追蹤 B2B 訊息](logic-apps-track-b2b-messages-omsportal.md)
-#### [訊息的查詢 OMS](logic-apps-track-b2b-messages-omsportal-query-filter-control-number.md)
 
 ## 範例、案例和逐步解說
 ### [概觀](logic-apps-examples-and-scenarios.md)
@@ -81,7 +81,6 @@
 ## 定價與計費
 ### [價格](https://azure.microsoft.com/pricing/details/logic-apps/)
 ### [使用量計量](logic-apps-pricing.md)
-
 
 # 無伺服器
 ## 概觀

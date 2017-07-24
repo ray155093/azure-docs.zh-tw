@@ -398,6 +398,8 @@
           href: migration-classic-resource-manager-faq.md
     - name: 疑難排解
       items:
+        - name: 在現有的可用性設定組中新增 Azure VM 的可支援性
+          href: ../virtual-machines-availability-set-supportability.md
         - name: 重設 Linux VM 密碼
           href: virtual-machines-linux-reset-password.md
         - name: 了解系統重新開機
