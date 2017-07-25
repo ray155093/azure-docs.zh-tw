@@ -12,13 +12,13 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/18/2016
+ms.date: 7/17/2017
 ms.author: tarcher
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: 83a6543a8fd95139fdcb6c031979382b4736a4ad
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: 0b1f7711586cdfacbbfb28af121c7f37ba564cde
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="get-started-with-storage-explorer-preview"></a>開始使用儲存體總管 (預覽)
@@ -68,80 +68,7 @@ Azure 儲存體總管 (預覽) 是一個獨立應用程式，可讓您在 Window
 
 ## <a name="connect-to-an-azure-stack-subscription"></a>連線到 Azure Stack 訂用帳戶
 
-您需要有 VPN 連線，儲存體總管才能從遠端存取 Azure Stack 訂用帳戶。 若要深入了解如何設定 Azure Stack 的 VPN 連線，請參閱[使用 VPN 連線到 Azure Stack](azure-stack/azure-stack-connect-azure-stack.md#connect-with-vpn)。
-
-對於 Azure Stack 概念證明 (POC)，您必須匯出 Azure Stack 授權單位根憑證。 若要這樣做：
-
-1. 在 MAS-CON01、Azure Stack 主機電腦或具有 Azure Stack 之 VPN 連線的本機電腦上開啟 `mmc.exe`。 
-
-2. 在 [檔案] 中，選取 [新增/移除嵌入式管理單元]，然後新增 [憑證] 以管理 [本機電腦] 的 [電腦帳戶]。
-
-    ![透過 mmc.exe 載入 Azure Stack 根憑證][25]   
-
-3. 在 **Console Root\Certificated (Local Computer)\Trusted Root Certification Authorities\Certificates** 之下尋找 **AzureStackCertificationAuthority**。 
-
-4. 以滑鼠右鍵按一下此項目，選取 [所有工作] > [匯出]，然後依照指示，匯出 **Base-64 encoded X.509 (.CER)** 憑證。  
-
-    下一個步驟中會使用所匯出的憑證。   
-
-    ![匯出根 Azure Stack 授權單位的根憑證][26]   
-
-5. 在儲存體總管 (預覽) 中，在 [編輯] 功能表上，指向 [SSL 憑證]，然後選取 [匯入憑證]。 使用檔案選擇器對話方塊來尋找和開啟您在上一個步驟中瀏覽的憑證。  
-
-    匯入之後，系統會提示您重新啟動儲存體總管。
-
-    ![將憑證匯入儲存體總管 (預覽) 中][27]
-
-6. 儲存體總管 (預覽) 重新啟動後，請選取 [編輯] 功能表，然後確保已選取 [目標 Azure Stack]。 若未選取，請加以選取，然後重新啟動儲存體總管，變更才會生效。 不需要進行此設定，即可相容於 Azure Stack 環境。
-
-    ![確保已選取目標 Azure Stack][28]
-
-7. 在左側窗格中，選取 [管理帳戶]。  
-    隨即顯示您已登入的所有 Microsoft 帳戶。
-
-8. 若要連線到 Azure Stack 帳戶，請選取 [新增帳戶]。
-
-    ![新增 Azure Stack 帳戶][29]
-
-9. 在 [新增帳戶] 對話方塊中，選取 [Azure 環境] 之下的 [建立自訂環境]，然後按 [下一步]。
-
-10. 輸入 Azure Stack 自訂環境的所有必要資訊，然後按一下 [登入]。 
-
-11. 若要使用至少與一個作用中 Azure Stack 訂用帳戶相關聯的 Azure Stack 帳戶進行登入，請填寫 [登入自訂雲端環境] 對話方塊。  
-
-    每個欄位的詳細資料如下所示︰
-
-    * **環境名稱**：使用者可以自訂此欄位。
-    * **授權單位**：此值應該是 https://login.microsoftonline.com。 若為 Azure China，請使用 https://login.chinacloudapi.cn。
-    * **登入資源識別碼**：藉由執行下列 PowerShell 指令碼來擷取此值︰
-
-        如果您是雲端系統管理員︰
-
-        ```powershell
-        PowerShell (Invoke-RestMethod -Uri https://adminmanagement.local.azurestack.external/metadata/endpoints?api-version=1.0 -Method Get).authentication.audiences[0]
-        ```
-
-        如果您是租用戶︰
-
-        ```powershell
-        PowerShell (Invoke-RestMethod -Uri https://management.local.azurestack.external/metadata/endpoints?api-version=1.0 -Method Get).authentication.audiences[0]
-        ```
-
-    * **圖表端點**：此值應該是 https://login.windows.net。 若為 Azure China，請使用 https://graph.chinacloudapi.cn。
-    * **ARM 資源識別碼**：使用相同的值作為**登入資源識別碼**。
-    * **ARM 資源端點**：Azure Resource Manager 資源端點的範例︰
-
-        * 若為雲端系統管理員：https://adminmanagement.local.azurestack.external   
-        * 若為租用戶：https://management.local.azurestack.external
- 
-    * **租用戶識別碼**：選擇性。 只有在必須指定目錄時，才會提供此值。
-
-12. 成功使用 Azure Stack 帳戶登入後，左窗格會填入與該帳戶相關聯的 Azure Stack 訂用帳戶。 選取您想要使用的 Azure Stack 訂用帳戶，然後選取 [套用]。 (選取或清除 [所有訂用帳戶] 核取方塊切換開關，可選取全部或不選取任何列出的 Azure Stack 訂用帳戶。)
-
-    ![在填妥 [自訂雲端環境] 對話方塊後選取 Azure Stack 訂用帳戶][30]  
-    左窗格會顯示與所選 Azure Stack 訂用帳戶相關聯的儲存體帳戶。
-
-    ![包含 Azure Stack 訂用帳戶的儲存體帳戶清單][31]
+如需連線到 Azure Stack 訂用帳戶的詳細資訊，請參閱[將儲存體總管連線至 Azure Stack 訂用帳戶](azure-stack/azure-stack-storage-connect-se.md)。
 
 ## <a name="work-with-local-development-storage"></a>使用本機開發儲存體
 使用儲存體總管 (預覽)，您可以使用 Azure 儲存體模擬器來處理本機儲存體。 此方法可讓您撰寫程式碼並測試儲存體，而不需在 Azure 上部署儲存體帳戶，因為 Azure 儲存體模擬器正在模擬儲存體帳戶。

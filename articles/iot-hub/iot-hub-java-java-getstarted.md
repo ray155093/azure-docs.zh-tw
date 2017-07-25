@@ -16,19 +16,19 @@ ms.date: 06/29/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 7d95ba163712c8a3610839029fe3453bd5c308a8
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 7f0fbaf5d8e0379fc67ad62ea7c9ab63c6737150
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/19/2017
 
 ---
-# <a name="connect-your-simulated-device-to-your-iot-hub-using-java"></a>使用 Java 將您的模擬裝置連線至 IoT 中樞
+# <a name="connect-your-device-to-your-iot-hub-using-java"></a>使用 Java 將您的裝置連線至 IoT 中樞
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
 在本教學課程結尾處，您會有三個 Java 主控台應用程式：
 
-* **create-device-identity**，這會建立裝置身分識別和相關聯的安全性金鑰，來連線到您的模擬裝置應用程式。
-* **read-d2c-messages**，其中顯示模擬裝置應用程式所傳送的遙測。
+* **create-device-identity**，這會建立裝置身分識別和相關聯的安全性金鑰，以連線到您的裝置應用程式。
+* **read-d2c-messages**，其中顯示裝置應用程式所傳送的遙測。
 * **simulated-device**，這會使用先前建立的裝置身分識別連接到您的 IoT 中樞，並使用 MQTT 通訊協定每秒傳送遙測訊息。
 
 > [!NOTE]
@@ -93,6 +93,7 @@ ms.lasthandoff: 07/13/2017
     private static final String connectionString = "{yourhubconnectionstring}";
     private static final String deviceId = "myFirstJavaDevice";
     ```
+[!INCLUDE [iot-hub-pii-note-naming-device](../../includes/iot-hub-pii-note-naming-device.md)]
 
 8. 修改 **main** 方法的簽章以新增如下所示的例外狀況：
 
@@ -302,9 +303,12 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     mvn clean package -DskipTests
     ```
 
+<<<<<<< HEAD
+## <a name="create-a-device-app"></a>建立裝置應用程式
+=======
 ## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 
-在本節中，您會撰寫 Java 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
+>>>>>>> master 在本節中，您會撰寫 Java 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
 1. 在「建立裝置識別」一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **simulated-device** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
 
@@ -374,11 +378,19 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
       }
     }
     ```
+<<<<<<< HEAD
+9. 在 **App** 類別內新增下列巢狀 **EventCallback** 類別，以顯示 IoT 中樞在處理來自裝置應用程式的訊息時，所傳回的認可狀態。 這個方法也會在處理訊息時通知應用程式中的主執行緒：
+   
+    ```
+    private static class EventCallback implements IotHubEventCallback
+    {
+=======
 
-9. 在 **App** 類別內新增下列巢狀 **EventCallback** 類別，以顯示 IoT 中樞在處理來自模擬裝置應用程式的訊息時，所傳回的認可狀態。 這個方法也會在處理訊息時通知應用程式中的主執行緒：
+9. Add the following nested **EventCallback** class inside the **App** class to display the acknowledgement status that the IoT hub returns when it processes a message from the simulated device app. This method also notifies the main thread in the app when the message has been processed:
 
     ```java
     private static class EventCallback implements IotHubEventCallback {
+>>>>>>> master
       public void execute(IotHubStatusCode status, Object context) {
         System.out.println("IoT Hub responded to message with status: " + status.name());
    
@@ -488,8 +500,11 @@ RegistryManager registryManager = RegistryManager.createFromConnectionString(con
     ![顯示傳送到 IoT 中樞之訊息數目的 Azure 入口網站使用量圖格][43]
 
 ## <a name="next-steps"></a>後續步驟
+<<<<<<< HEAD 在此教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。 您會將此裝置身分識別用於啟用裝置應用程式，以將裝置到雲端訊息傳送至 IoT 中樞。 您也會建立一個應用程式來顯示 IoT 中樞所接收的訊息。 
+=======
 
 在此教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。 您會將此裝置身分識別用於啟用模擬裝置應用程式，以將裝置到雲端訊息傳送至 IoT 中樞。 您也會建立一個應用程式來顯示 IoT 中樞所接收的訊息。
+>>>>>>> master
 
 若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰
 

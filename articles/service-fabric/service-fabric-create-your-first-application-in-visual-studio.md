@@ -1,163 +1,138 @@
 ---
-title: "建立您的第一個 Azure 微服務應用程式 | Microsoft Docs"
-description: "使用 Visual Studio 建立、部署和偵錯 Service Fabric 應用程式"
+title: "使用 C# 建立 Azure Service Fabric 可靠服務"
+description: "使用 Visual Studio，建立、部署和偵錯以 Azure Service Fabric 為建置基礎的 Reliable Service 應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
 manager: timlt
-editor: 
+editor: vturecek
 ms.assetid: c3655b7b-de78-4eac-99eb-012f8e042109
 ms.service: service-fabric
 ms.devlang: dotNet
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 05/05/2017
+ms.date: 06/28/2017
 ms.author: ryanwi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: dea338477ca82eead9e272ed9a1709cb2643f743
+ms.translationtype: HT
+ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
+ms.openlocfilehash: f93298e6483fd8c9dfda835964aeebd1a430af69
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
-
+ms.lasthandoff: 07/15/2017
 
 ---
-# <a name="create-your-first-azure-service-fabric-application"></a>建立第一個 Azure Service Fabric 應用程式
-> [!div class="op_single_selector"]
-> * [C# - Windows](service-fabric-create-your-first-application-in-visual-studio.md)
-> * [Java - Linux](service-fabric-create-your-first-linux-application-with-java.md)
-> * [C# - Linux](service-fabric-create-your-first-linux-application-with-csharp.md)
-> 
-> 
 
-Service Fabric SDK 包含的 Visual Studio 增益集提供用來建立、部署和偵錯 Service Fabric 應用程式的範本和工具。 本主題會逐步解說在 Visual Studio 2017 或 Visual Studio 2015 中建立第一個應用程式的程序。
+# <a name="create-your-first-c-service-fabric-stateful-reliable-services-application"></a>建立第一個 C# Service Fabric 具狀態 Reliable Services 應用程式
+
+了解如何在短短幾分鐘內在 Windows 上部署適用於 .NET 的第一個 Service Fabric 應用程式。 當您完成時，將會有以可靠服務應用程式執行的本機叢集。
 
 ## <a name="prerequisites"></a>必要條件
-開始之前，請確定您已 [設定開發環境](service-fabric-get-started.md)。
 
-## <a name="video-walkthrough"></a>影片逐步解說
-下列影片逐步解說本教學課程中的步驟：
-
-> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Creating-your-first-Service-Fabric-application-in-Visual-Studio/player]
-> 
-> 
+開始之前，請確定您已 [設定開發環境](service-fabric-get-started.md)。 這包括安裝 Service Fabric SDK 及 Visual Studio 2017 或 2015。
 
 ## <a name="create-the-application"></a>建立應用程式
-Service Fabric 應用程式可以包含一或多個服務，而每個服務在提供應用程式的功能時都有特定角色。 使用 [新增專案] 精靈，隨著第一個服務專案一起建立應用程式專案。 您稍後也可以視需要新增更多服務。
 
-1. 以系統管理員身分啟動 Visual Studio。
-2. 按一下 [檔案] > [新增專案] > [雲端] > [Service Fabric 應用程式]。
-3. 替應用程式命名，然後按一下 [確定] 。
+以**系統管理員**身分啟動 Visual Studio。
+
+使用 `CTRL`+`SHIFT`+`N` 建立專案
+
+在 [新增專案]  對話方塊中，選擇 [雲端] > [Service Fabric 應用程式]。
+
+將應用程式命名為 **MyApplication**，然後按 [確定]。
+
    
-    ![Visual Studio 中的新增專案對話方塊][1]
-4. 在下一頁選擇 [具狀態]  ，做為要包含在應用程式中的第一個服務類型。 予以命名，然後按一下 [確定] 。
-   
-    ![Visual Studio 中的新增服務對話方塊][2]
-   
-   > [!NOTE]
-   > 如需選項的詳細資訊，請參閱 [Service Fabric 程式設計模型概觀](service-fabric-choose-framework.md)。
-   > 
-   > 
-   
-    Visual Studio 會建立應用程式專案和具狀態服務專案，並在 [方案總管] 中加以顯示。
-   
-    ![使用具狀態服務建立應用程式後的方案總管][3]
-   
-    應用程式專案未直接包含任何程式碼。 它反而會參考一組服務專案。 此外，它包含三種其他類型的內容：
-   
-   * **發佈設定檔**：用來管理不同環境的工具喜好設定。
-   * **指令碼**：包含用來部署/升級應用程式的 PowerShell 指令碼。 Visual Studio 會在幕後使用指令碼。 該指令碼也可以直接在命令列叫用。
-   * **應用程式定義**︰包含 *ApplicationPackageRoot*下的應用程式資訊清單。 相關聯的應用程式參數檔案位於 *ApplicationParameters*下方，它們可以定義應用程式，讓您得以特別為指定的環境設定應用程式。
-     
-     如需服務專案的內容概觀，請參閱 [開始使用 Reliable Services](service-fabric-reliable-services-quick-start.md)。
+![Visual Studio 中的新增專案對話方塊][1]
+
+您可以從下一個對話方塊建立任何類型的 Service Fabric 應用程式。 在本快速入門中，選擇 [具狀態服務]。
+
+將服務命名為 **MyStatefulService**，然後按 [確定]。
+
+![Visual Studio 中的新增服務對話方塊][2]
+
+
+Visual Studio 會建立應用程式專案和具狀態服務專案，並在 [方案總管] 中加以顯示。
+
+![使用具狀態服務建立應用程式後的方案總管][3]
+
+應用程式專案 (**MyApplication**) 未直接包含任何程式碼。 它反而會參考一組服務專案。 此外，它包含三種其他類型的內容：
+
+* **發佈設定檔**  
+可供部署至不同環境的設定檔。
+
+* **指令碼**  
+包含用來部署/升級應用程式的 PowerShell 指令碼。
+
+* **應用程式定義**  
+包含 ApplicationPackageRoot 之下的 ApplicationManifest.xml 檔案，其描述您的應用程式組合。 相關聯的應用程式參數檔案位於 ApplicationParameters 之下，其可用來指定指定環境特有參數。 Visual Studio 會在部署至特定環境的期間，選取相關聯的發行設定檔中指定的應用程式參數檔案。
+    
+如需服務專案的內容概觀，請參閱 [開始使用 Reliable Services](service-fabric-reliable-services-quick-start.md)。
 
 ## <a name="deploy-and-debug-the-application"></a>部署和偵錯應用程式
-您現在有一個應用程式，您可以試著執行它。
 
-1. 在 Visual Studio 中按 F5，部署應用程式以供偵錯。
+請執行您現有的應用程式。
+
+在 Visual Studio 中，按 `F5` 部署應用程式以供偵錯。
+
+>[!NOTE]
+>您第一次在本機執行及部署應用程式時，Visual Studio 會建立本機叢集以供偵錯。 這可能需要一些時間。 叢集建立狀態會顯示在 Visual Studio 輸出視窗中。
+
+備妥叢集時，您會收到來自 SDK 隨附的本機叢集系統匣管理員應用程式的通知。
    
-   > [!NOTE]
-   > 第一次部署需要一些時間，因為 Visual Studio 正在建立本機叢集進行開發。 本機叢集會只會在一部電腦上執行您在多部電腦的叢集中建置的相同平台程式碼。 叢集建立狀態會顯示在 Visual Studio 輸出視窗中。
-   > 
-   > 
+![本機叢集系統匣通知][4]
+
+啟動應用程式後，Visual Studio 會自動顯示 [診斷事件檢視器]，以便查看服務的追蹤輸出。
    
-    備妥叢集時，您會收到來自 SDK 隨附的本機叢集系統匣管理員應用程式的通知。
+![診斷事件檢視器][5]
+
+我們使用的具狀態服務範本只會顯示在 **MyStatefulService.cs** 的 `RunAsync` 方法中遞增的計數器值。
+
+展開其中一個事件以查看更多詳細資料，包括程式碼執行所在的節點。 在此情況下是 \_Node\_2，但在您的電腦上可能會是其他節點。
    
-    ![本機叢集系統匣通知][4]
-2. 啟動應用程式後，Visual Studio 會自動顯示 [診斷事件檢視器]，以便查看服務的追蹤輸出。
-   
-    ![診斷事件檢視器][5]
-   
-    在具狀態服務範本的情況下，訊息只會顯示在 MyStatefulService.cs 的 `RunAsync` 方法中遞增的計數器值。
-3. 展開其中一個事件以查看更多詳細資料，包括程式碼執行所在的節點。 在此情況下是 _Node_2，雖然這在您的電腦上可能有所不同。
-   
-    ![診斷事件檢視器詳細資訊][6]
-   
-    本機叢集包含五個裝載於單一電腦上的節點。 它是模仿有五個節點的叢集，其節點位於不同的電腦上。 讓我們取下本機叢集上的其中一個節點來模擬遺失機器，以及在相同的時間運用 Visual Studio 偵錯工具。
-   
-   > [!NOTE]
-   > 專案範本所發出的應用程式診斷事件會使用內含的 `ServiceEventSource` 類別。 如需詳細資訊，請參閱 [如何在本機監視及診斷服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)。
-   > 
-   > 
-4. 在您的服務專案中尋找衍生自 StatefulService 的類別 (例如 MyStatefulService)，以及在 `RunAsync` 方法的第一行上設定中斷點。
-   
-    ![具狀態服務 RunAsync 方法的中斷點][7]
-5. 以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式並選擇 [管理本機叢集]，以啟動 Service Fabric Explorer。
-   
-    ![從本機叢集管理員啟動 Service Fabric Explorer][systray-launch-sfx]
-   
-    Service Fabric Explorer 提供了叢集的視覺表示法，包括部署至叢集的應用程式集以及構成叢集的實體節點集合。 若要了解 Service Fabric Explorer，請參閱 [視覺化叢集](service-fabric-visualizing-your-cluster.md)。
-6. 在左窗格中展開 [叢集] > [節點]，並尋找您的程式碼執行所在的節點。
-7. 按一下 [動作] > [停用 (重新啟動)] 來模擬電腦重新啟動。 或在左窗格中的節點清單檢視停用節點)。
-   
-    ![在 Service Fabric Explorer 中停止節點][sfx-stop-node]
-   
-    您應該會在 Visual Studio 中短暫看見達到您的中斷點，因為您一個節點上所做的計算完美地容錯移轉至另一個節點。
-8. 返回 [診斷事件檢視器] 並觀察訊息。 計數器已繼續遞增，即使事件實際上來自不同的節點。
-   
-    ![容錯移轉之後的診斷事件檢視器][diagnostic-events-viewer-detail-post-failover]
+![診斷事件檢視器詳細資訊][6]
+
+本機叢集包含五個裝載於單一電腦上的節點。 在生產環境中，每個節點會裝載於不同的實體或虛擬機器上。 讓我們取下本機叢集上的其中一個節點來模擬遺失機器，以及在相同的時間運用 Visual Studio 偵錯工具。
+
+在 [方案總管] 視窗中，開啟 **MyStatefulService.cs**。 
+
+尋找 `RunAsync` 方法，並在方法的第一行上設定中斷點。
+
+![具狀態服務 RunAsync 方法的中斷點][7]
+
+以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式並選擇 [管理本機叢集]，以啟動 [Service Fabric Explorer] 工具。
+
+![從本機叢集管理員啟動 Service Fabric Explorer][systray-launch-sfx]
+
+[**Service Fabric Explorer**](service-fabric-visualizing-your-cluster.md) 會提供叢集的視覺表示法。 其中包括部署至叢集的應用程式集以及構成叢集的實體節點集合。
+
+在左窗格中展開 [叢集] > [節點]，並尋找您的程式碼執行所在的節點。
+
+按一下 [動作] > [停用 (重新啟動)] 來模擬電腦重新啟動。
+
+![在 Service Fabric Explorer 中停止節點][sfx-stop-node]
+
+您應該會在 Visual Studio 中短暫看見達到您的中斷點，因為您一個節點上所做的計算完美地容錯移轉至另一個節點。
+
+
+接下來，返回 [診斷事件檢視器] 並觀察訊息。 計數器已繼續遞增，即使事件實際上來自不同的節點。
+
+![容錯移轉之後的診斷事件檢視器][diagnostic-events-viewer-detail-post-failover]
 
 ## <a name="cleaning-up-the-local-cluster-optional"></a>清除本機叢集 (選擇性)
-在我們做結論之前，請務必記得本機叢集是真實的。 停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。 但叢集會繼續在背景中執行。 您有數個選項可管理叢集：
 
-1. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
-2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 唯有您打算停用本機叢集一陣子或需要回收資源時，再刪除叢集。
+請記住，此本機叢集是真實的叢集。 停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。 不過，叢集會繼續在背景中執行。 當您準備要停止本機叢集時，有幾個選項可用。
 
-## <a name="deploy-your-application-to-an-azure-cluster"></a>將應用程式部署至 Azure 叢集
-現在您已在本機部署應用程式，可以將相同的應用程式部署至 Azure。 [在 Azure 上建立您的第一個 Service Fabric 叢集](service-fabric-get-started-azure-cluster.md)文件逐步解說使用 Azure PowerShell 或入口網站的步驟。
+### <a name="keep-application-and-trace-data"></a>保留應用程式和追蹤資料
 
-一旦您已設定 Azure 叢集，即可依照[發佈至 Azure 叢集](service-fabric-publish-app-remote-cluster.md)一文，從 Visual Studio 將此應用程式發佈至 Azure。  
+以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式，然後選擇 [停止本機叢集]，以關閉叢集。
 
-## <a name="switch-cluster-mode-of-your-local-development-cluster"></a>切換本機開發叢集的叢集模式
-根據預設，本機開發叢集已設定為以 5 個節點的叢集方式執行，這很適合用於偵錯跨多個節點部署的服務。 不過，將應用程式部署到 5 個節點的開發叢集可能需要一些時間。 如果您想要快速反覆執行程式碼變更，但不要在 5 個節點上執行您的應用程式，將開發叢集切換到 1 個節點的模式。 若要在具有一個節點的叢集上執行您的程式碼，請以滑鼠右鍵按一下系統匣中的 [本機叢集管理員] 並選取 [交換器叢集模式] -> [1 個節點]。  
+### <a name="delete-the-cluster-and-all-data"></a>刪除叢集和所有資料
 
-![切換叢集模式][switch-cluster-mode]
+以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式，然後選擇 [移除本機叢集]，以移除叢集。 
 
-當您變更叢集模式且移除此叢集上佈建或執行的所有應用程式時，開發叢集會重設。
-
-您也可以使用 PowerShell 來變更叢集模式：
-
-1. 以系統管理員身分啟動新的 PowerShell 視窗。
-2. 從 SDK 資料夾執行叢集設定指令碼：
-   
-    ```powershell
-    & "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1" -CreateOneNodeCluster
-    ```
-   
-    叢集設定需要一些時間。 設定完成後，您應該會看到輸出類似於：
-   
-    ![叢集設定輸出][cluster-setup-success-1-node]
-
-
+如果您選擇此選項，Visual Studio 會在您下一次執行應用程式時重新部署叢集。 如果您打算停用本機叢集一陣子或需要回收資源，請選擇此選項。
 
 ## <a name="next-steps"></a>後續步驟
-* 了解如何[在 Azure 中建立叢集](service-fabric-cluster-creation-via-portal.md)或[在 Windows 上建立獨立叢集](service-fabric-cluster-creation-for-windows-server.md)。
-* 嘗試使用 [Reliable Services](service-fabric-reliable-services-quick-start.md) 或 [Reliable Actors](service-fabric-reliable-actors-get-started.md) 程式設計模型來建立服務。
-* 嘗試將 [Windows 容器](service-fabric-deploy-container.md)或現有應用程式部署為[來賓可執行檔](service-fabric-deploy-existing-app.md)。
-* 了解如何透過 [Web 服務前端](service-fabric-add-a-web-frontend.md)在網際網路公開服務。
-* 逐步完成 [實際操作實驗室](https://msdnshared.blob.core.windows.net/media/2016/07/SF-Lab-Part-I.docx) 及建立無狀態服務、設定監視和健康情況報告，以及執行應用程式升級。
-* 了解 [Service Fabric 支援選項](service-fabric-support.md)
-
+深入了解 [Reliable Services](service-fabric-reliable-services-introduction.md)。
 <!-- Image References -->
 
 [1]: ./media/service-fabric-create-your-first-application-in-visual-studio/new-project-dialog.png

@@ -13,22 +13,20 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 61fd58063063d69e891d294e627ae40cb878d65b
-ms.openlocfilehash: ab95f61e2d88f82bf2b24aea786c7dbadfb9c0fe
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 5c642bb814a279756e8391f12fdc86b6ec0b4a8f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/22/2017
+ms.lasthandoff: 07/20/2017
 
 ---
-# 如何使用 Azure Active Directory Power BI 內容套件
-<a id="how-to-use-the-azure-active-directory-power-bi-content-pack" class="xliff"></a>
+# <a name="how-to-use-the-azure-active-directory-power-bi-content-pack"></a>如何使用 Azure Active Directory Power BI 內容套件
 
 身為 IT 管理員，了解您的使用者如何採用及使用 Azure Active Directory 功能相當重要。 這可讓您規劃 IT 基礎結構及通訊，以增加使用量和充分運用 AAD 功能。 Azure Active Directory 的 power BI 內容套件可讓您進一步分析資料，以了解如何使用此資料來收集更豐富的分析結果，讓您清楚知道 Azure Active Directory 中您重度依賴的各種功能狀況。  透過將 Azure Active Directory API 與 Power BI 整合，您可以輕鬆地下載預先建立的內容套件，並使用 Power BI 提供的豐富視覺效果經驗深入了解 Azure Active Directory 中所有活動。 您可以建立自己的儀表板，並輕鬆地與組織中所有人共用。 
 
 本主題會提供逐步指示，說明如何在您的環境中安裝及使用內容套件。
 
-## 安裝
-<a id="installation" class="xliff"></a>  
+## <a name="installation"></a>安裝  
 
 **安裝 Power BI 內容套件：**
 
@@ -69,13 +67,11 @@ ms.lasthandoff: 06/22/2017
  
     ![Azure Active Directory Power BI 內容套件](./media/active-directory-reporting-power-bi-content-pack-how-to/08.png) 
 
-## 此內容套件有何功用？
-<a id="what-can-i-do-with-this-content-pack" class="xliff"></a>
+## <a name="what-can-i-do-with-this-content-pack"></a>此內容套件有何功用？
 
 在說明此內容套件的功用前，您可以快速預覽內容套件中的各種報表。 報表資料可回溯至 **30 天前**。
 
-### 此版 Azure Active Directory 記錄內容套件中包含的報表
-<a id="reports-included-in-this-version-of-azure-active-directory-logs-content-pack" class="xliff"></a>
+### <a name="reports-included-in-this-version-of-azure-active-directory-logs-content-pack"></a>此版 Azure Active Directory 記錄內容套件中包含的報表
 
 **應用程式使用量和趨勢報表**：分析您組織中使用的應用程式，以及哪些應用程式最常使用和使用時機。 您可以使用此報表來收集分析結果，了解您最近在組織中推出的應用程式使用狀況，或找出哪些應用程式較受歡迎。 透過執行這些動作，您可以在發現未使用的應用程式時，改善使用方式。
 
@@ -100,8 +96,7 @@ ms.lasthandoff: 06/22/2017
 
 **SSPR 漏斗圖**：了解在組織中如何完成密碼重設。 了解透過 SSPR 工具嘗試進行密碼重設的次數，以及成功重設的次數。 使用 SSPR 漏斗圖可更深入了解密碼重設錯誤的狀況，以及了解發生特定錯誤的原因。 此報表會提供更深入的說明，讓您了解如何在組織中使用 SSPR 工具，如此一來，您就可以做出正確決策。
 
-## 自訂 Azure AD 的活動內容套件
-<a id="customizing-azure-ad-activity-content-pack" class="xliff"></a>
+## <a name="customizing-azure-ad-activity-content-pack"></a>自訂 Azure AD 的活動內容套件
 
 **變更視覺效果**：您可以按一下 [編輯報表] 並選取您想要的視覺效果，來變更報表的視覺效果。
  
@@ -129,15 +124,13 @@ ms.lasthandoff: 06/22/2017
 
 
 
-## 排定每日重新整理 Power BI 報表
-<a id="scheduling-a-daily-refresh-of-your-power-bi-report" class="xliff"></a>
+## <a name="scheduling-a-daily-refresh-of-your-power-bi-report"></a>排定每日重新整理 Power BI 報表
 
 若要排定每日重新整理 Power BI 報表，請移至 [資料集 > 設定 > 排定重新整理]，並執行下列設定。
  
 ![Azure Active Directory Power BI 內容套件](./media/active-directory-reporting-power-bi-content-pack-how-to/15.png) 
 
-## 更新至較新版本的內容套件
-<a id="updating-to-newer-version-of-content-pack" class="xliff"></a>
+## <a name="updating-to-newer-version-of-content-pack"></a>更新至較新版本的內容套件
 
 如果您想要更新內容套件，以取得較新版本：
 
@@ -149,11 +142,12 @@ ms.lasthandoff: 06/22/2017
 
 新版的內容套件開始運作時，您就可以透過刪除與舊版相關聯的基礎報表和資料庫來移除舊版。
 
-## 仍然有問題嗎？
-<a id="still-having-issues" class="xliff"></a> 
+## <a name="still-having-issues"></a>仍然有問題嗎？ 
 
 請參閱我們的[疑難排解指南](active-directory-reporting-troubleshoot-content-pack.md)。 如需使用 Power BI 的一般說明，請參閱這些[說明文章](https://powerbi.microsoft.com/en-us/documentation/powerbi-service-get-started/)。
  
 
+## <a name="next-steps"></a>後續步驟
 
+如需報告概觀，請參閱 [Azure Active Directory 報告](active-directory-reporting-azure-portal.md)。
 

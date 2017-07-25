@@ -13,14 +13,14 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 05/02/2017
+ms.date: 07/15/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: 8c51af189e8086a509d44546882e1b26605dddae
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: d009020e86fdfed6a45b5b63b9664c623bcb1843
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
+ms.lasthandoff: 07/18/2017
 
 ---
 
@@ -48,7 +48,7 @@ ssh-keygen -t rsa -b 2048
 
 1. 按一下 Azure 入口網站左上角的 [新增] 按鈕。
 
-2. 依序選取 [計算] 和 [Ubuntu Server 16.04 LTS]，並確保 [Resource Manager] 是選取的部署模型。 按一下 [ **建立** ] 按鈕。 
+2. 選取 [計算]，然後選取 [Ubuntu Server 16.04 LTS]。 
 
 3. 輸入虛擬機器資訊。 針對 [驗證類型] 選取 [SSH 公開金鑰]。 貼上 [SSH 公開金鑰] 時，請謹慎地移除任何前置或尾端的空白字元。 完成時，按一下 [確定]。
 
@@ -58,7 +58,7 @@ ssh-keygen -t rsa -b 2048
 
     ![顯示 VM 大小的螢幕擷取畫面](./media/quick-create-portal/create-linux-vm-portal-sizes.png)  
 
-5. 在 [設定] 刀鋒視窗中，選取 [使用受控磁碟] 之下的 [是]，保留其餘設定的預設值，然後按一下 [確定]。
+5. 在 [設定] 刀鋒視窗上，保留預設值並按一下 [確定]。
 
 6. 在 [摘要] 頁面上，按一下 [確定] 來啟動虛擬機器部署。
 

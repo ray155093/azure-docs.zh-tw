@@ -9,10 +9,10 @@ editor: jasonwhowell
 ms.service: postgresql-database
 ms.custom: mvc
 ms.topic: hero-article
-ms.date: 06/19/2017
+ms.date: 07/12/2017
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 2b81b9e1ae2abfd332bd6048b7643b4245ca374b
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: c065d692d2a4ac369cb13a70d09b30498e6c9106
 ms.contentlocale: zh-tw
 ms.lasthandoff: 07/13/2017
 
@@ -38,12 +38,12 @@ ms.lasthandoff: 07/13/2017
  ![適用於 PostgreSQL 的 Azure 資料庫 - 建立資料庫](./media/quickstart-create-database-portal/1-create-database.png)
 
 3.  在新伺服器詳細資料表單中填入下列資訊，如上圖所示︰
-    - 伺服器名稱：**mypgserver-20170401** (伺服器的名稱會與 DNS 名稱對應，因此必須是全域唯一的) 
+    - 伺服器名稱：**mypgserver-20170401** (選擇全域唯一的伺服器名稱，因為此名稱會對應至 DNS 名稱)
     - 訂用帳戶：如果您有多個訂用帳戶，請選擇資源所在或作為計費對象的適當訂用帳戶。
     - 資源群組︰**myresourcegroup**
     - 您選擇的伺服器管理員登入和密碼
-    - 位置
-    - PostgreSQL 版本
+    - 位置：選擇最接近您的位置。
+    - PostgreSQL 版本：選擇最新版本。
 
   > [!IMPORTANT]
   > 需要伺服器系統管理員登入以及您在此處指定的密碼，稍後才能在本快速入門中登入伺服器及其資料庫。 請記住或記錄此資訊，以供稍後使用。

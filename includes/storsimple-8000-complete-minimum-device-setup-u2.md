@@ -1,8 +1,10 @@
 <!--author=alkohli last changed: 01/12/17-->
 
-#### 完成最小的 StorSimple 裝置安裝
-<a id="to-complete-the-minimum-storsimple-device-setup" class="xliff"></a>
+#### <a name="to-complete-the-minimum-storsimple-device-setup"></a>完成最小的 StorSimple 裝置安裝
 
+   > [!NOTE]
+   > 一旦完成最基本的裝置設定，您就無法變更裝置名稱。
+   
 1. 從 [裝置] 刀鋒視窗的表格式裝置清單中，選取並按一下您的裝置。 裝置處於 [就緒可進行設定] 狀態。 [設定裝置] 刀鋒視窗隨即開啟。
 
      ![StorSimple 最小裝置設定網路介面](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig1.png)
@@ -26,9 +28,6 @@
 1. 按一下 [確定] 。 裝置設定隨即啟動。 完成裝置設定時，您會收到通知。 [裝置] 刀鋒視窗中的裝置狀態會變更為 [上線]。
 
     ![StorSimple 最小裝置設定網路介面](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig4.png)
-
-   > [!NOTE]
-   > 您可以存取 [裝置設定] 刀鋒視窗，隨時修改所有的其他裝置設定。
 
 <!--Link reference-->
 [Test]: https://technet.microsoft.com/library/dn715782(v=wps.630).aspx

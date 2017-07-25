@@ -13,12 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/05/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 769377af7bf62d35c45c6e2e7b0ae3311b784894
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 457ba9c9f74bc9d88800607a2f78a3c3c96cea07
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="instrument-web-apps-at-runtime-with-application-insights"></a>在執行階段使用 Application Insights 檢測 Web 應用程式
@@ -42,10 +41,10 @@ ms.lasthandoff: 05/10/2017
 | [更詳細的例外狀況](app-insights-asp-net-exceptions.md) | |是 |
 | [相依性診斷](app-insights-asp-net-dependencies.md) |在 .Net 4.6 + 上，但較少細節 |是，完整詳細資料︰結果碼、SQL 命令文字、HTTP 指令動詞|
 | [系統效能計數器](app-insights-performance-counters.md) |是 |是 |
-| [自訂遙測的 API][api] |是 | |
-| [追蹤記錄檔整合](app-insights-asp-net-trace-logs.md) |是 | |
-| [頁面檢視和使用者資料](app-insights-javascript.md) |是 | |
-| 不需要重建程式碼 |否 | |
+| [自訂遙測的 API][api] |是 |否 |
+| [追蹤記錄檔整合](app-insights-asp-net-trace-logs.md) |是 |否 |
+| [頁面檢視和使用者資料](app-insights-javascript.md) |是 |否 |
+| 需要重新建置程式碼 |是 | 否 |
 
 
 ## <a name="monitor-a-live-azure-web-app"></a>監視即時 Azure Web 應用程式

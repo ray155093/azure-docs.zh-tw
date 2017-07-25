@@ -16,17 +16,19 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 07/05/2017
 ms.author: rachelap, glenga
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: 2d539dd51834e935f9c5f7a6be42011ffe9e0870
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: be7a9979ba7e6aa26c60b24bcc892ca35af3c1fc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/19/2017
 
 ---
-# <a name="create-your-first-function-using-visual-studio"></a>使用 Visual Studio 建立第一個函式 
+# <a name="create-your-first-function-using-visual-studio"></a>使用 Visual Studio 建立第一個函式
 
-Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要先建立 VM 或發佈 Web 應用程式。 
+Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要先建立 VM 或發佈 Web 應用程式。
+
+> [!IMPORTANT]
+> 本主題使用預覽版本的 Visual Studio 來完成其步驟。 請先確定已安裝 [Visual Studio 2017 15.3 預覽版](https://www.visualstudio.com/vs/preview/)，再繼續執行。
 
 本主題中，您可以了解如何使用 Azure Function Tools for Visual Studio 2017 在本機建立及測試 "hello world" 函式。 您接著會將函式程式碼發行至 Azure。
 
@@ -37,7 +39,7 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 若要完成本教學課程，請安裝：
 
 * [Visual Studio 2017 預覽版本 15.3](https://www.visualstudio.com/vs/preview/)，包括 **Azure 開發**工作負載。
-    
+
     ![安裝包含 Azure 開發工作負載的 Visual Studio 2017](./media/functions-create-your-first-function-visual-studio/functions-vs-workloads.png)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]

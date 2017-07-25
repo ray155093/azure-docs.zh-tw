@@ -15,17 +15,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 6/01/2017
 ms.author: negat
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
-ms.openlocfilehash: f9cc157f25e70a8154614b659fb7e59b7fd06ed1
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: 8ec9709bfb553f6ee89611e92330dedb6129055d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/02/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="azure-vm-scale-sets-and-managed-disks"></a>Azure VM 擴展集與受控磁碟
 
-Azure [虛擬機器擴展集](/azure/virtual-machine-scale-sets/)現在支援具有受控磁碟的虛擬機器。 搭配使用受控磁碟與擴展集有數個優點，包括：
+Azure [虛擬機器擴展集](/azure/virtual-machine-scale-sets/)支援具有受控磁碟的虛擬機器。 搭配使用受控磁碟與擴展集有數個優點，包括：
 
 * 您不再需要預先建立和管理儲存體帳戶，來儲存作業系統磁碟以供擴展集 VM 使用。
 
@@ -44,13 +43,9 @@ az vmss create -g dsktest -n dskvmss --image ubuntults --instance-count 10 --dat
 
 或者，您可以針對包含 `vmss` 的資料夾查閱 [Azure 快速入門範本 GitHub 存放庫 (英文)](https://github.com/Azure/azure-quickstart-templates)，以查看預先建置來部署擴展集之範本的範例。 若要分辨哪些範本已經在使用受控磁碟，您可以參考[這份清單](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)。
 
-## <a name="api-versions"></a>API 版本
-
-含有受控磁碟的擴展集需要 `2016-04-30-preview` 或更新版本的 Microsoft.Compute APi 版本。 含有非受控磁碟的擴展集將以其目前進行的方式繼續運作，即使是在支援受控磁碟的新 API 版本中也一樣。 不過，即使是在這些新的 API 版本中，含有非受控磁碟的擴展集還是無法受益於受控磁碟。
-
 ## <a name="next-steps"></a>後續步驟
 
-若要尋找更多有關一般受控磁碟的資訊，請參閱[這篇文章](../storage/storage-managed-disks-overview.md)。
+如需更多有關一般受控磁碟的資訊，請參閱[這篇文章](../storage/storage-managed-disks-overview.md)。
 
 若要了解如何轉換 Resource Manager 範本來佈建含有受控磁碟的擴展集，請參閱[這篇文章](./virtual-machine-scale-sets-convert-template-to-md.md)。 對於 Resource Manager 範本的修改同樣適用於 Azure REST API。
 
