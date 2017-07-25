@@ -122,7 +122,7 @@ ms.lasthandoff: 05/26/2017
 
    c. 針對 Java 次要版本選擇 [最新]。
 
-   d. 針對 Web 容器選擇 [Newest Tomcat 8.5] (最新的 Tomcat 8.5) (實際上不會使用此容器；Azure 將會使用您 Spring Boot 應用程式中的容器)。
+   d. 針對 Web 容器選擇 [Newest Tomcat 8.5] \(最新的 Tomcat 8.5) (實際上不會使用此容器；Azure 將會使用您 Spring Boot 應用程式中的容器)。
 
    e. 按一下 [儲存] 。
 

@@ -32,7 +32,7 @@ ms.lasthandoff: 06/15/2017
 
 ## <a name="map-networks"></a>對應網路
 
-若要將一個 Azure 區域中的 Azure 虛擬網路對應至另一個地區中的另一個虛擬網路，請移至 [Site Recovery 基礎結構] -> [網路對應] (適用於 Azure 虛擬機器)，並建立網路對應。
+若要將一個 Azure 區域中的 Azure 虛擬網路對應至另一個地區中的另一個虛擬網路，請移至 [Site Recovery 基礎結構] -> [網路對應] \(適用於 Azure 虛擬機器)，並建立網路對應。
 
 ![網路對應](./media/site-recovery-network-mapping-azure-to-azure/network-mapping1.png)
 

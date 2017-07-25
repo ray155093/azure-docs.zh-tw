@@ -77,7 +77,7 @@ Azure 媒體 REST 要求若要成功，呼叫的使用者必須擁有嘗試存�
         租用戶資訊可從 Azure 入口網站擷取。 將游標放在右上角登入的使用者名稱上方。
     * 媒體服務資源 URI。 
 
-        同一 Azure 環境中的媒體服務帳戶的這個 URI 都相同 (例如，https://rest.media.azure.net)。
+        同一 Azure 環境中的媒體服務帳戶的這個 URI 都相同 (例如， https://rest.media.azure.net )。
 
     * 媒體服務 (原生) 應用程式用戶端識別碼。
     * 媒體服務 (原生) 應用程式重新導向 URI。
@@ -119,7 +119,7 @@ Azure 媒體 REST 要求若要成功，呼叫的使用者必須擁有嘗試存�
         租用戶資訊可從 Azure 入口網站擷取。 將游標放在右上角登入的使用者名稱上方。
     * 媒體服務資源 URI。 
 
-        同一 Azure 環境中的媒體服務帳戶的這個 URI 都相同 (例如，https://rest.media.azure.net)。
+        同一 Azure 環境中的媒體服務帳戶的這個 URI 都相同 (例如， https://rest.media.azure.net )。
 
     * REST 媒體服務的資源 URI。
 
