@@ -71,7 +71,7 @@ Wingtip SaaS 應用程式是使用每一租用戶一個資料庫的模型來建�
 
 ### <a name="open-the-events-app-to-review-the-current-events"></a>開啟事件應用程式以檢閱目前的事件
 
-1. 開啟 [事件中樞] (http://events.wtp.&lt;user&gt;.trafficmanager.net)，然後按一下 [Contoso Concert Hall]：
+1. 開啟 *[事件中樞]* \(http://events.wtp.&lt;user&gt;.trafficmanager.net)，然後按一下 **[Contoso Concert Hall]**：
 
    ![事件中樞](media/sql-database-saas-tutorial-restore-single-tenant/events-hub.png)
 

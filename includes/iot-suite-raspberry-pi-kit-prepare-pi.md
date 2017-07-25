@@ -69,19 +69,21 @@ Raspbian 的預設認證是使用者名稱 **pi** 和密碼 **raspberry**。 在
 
 您必須先在 Raspberry Pi 上啟用串列周邊介面 (SPI) 匯流排，才可以執行範例應用程式。 Raspberry Pi 會透過 SPI 匯流排與 BME280 感應器裝置通訊。 使用下列命令來編輯組態檔︰
 
-`sudo nano /boot/config.txt`
+```sh
+sudo nano /boot/config.txt
+```
 
 請尋找以下這行︰
 
-```
-#dtparam=spi=on
-```
+`#dtparam=spi=on`
 
 - 若要取消註解這行，請刪除開頭的 `#`。
 - 儲存您的變更 (**Ctrl-O**、**Enter**) 並結束編輯器 (**Ctrl-X**)。
 - 若要啟用 SPI，請重新啟動 Raspberry Pi。 重新啟動會中斷終端機的連線，您必須在 Raspberry Pi 重新啟動時再次登入︰
 
-  `sudo reboot`
+  ```sh
+  sudo reboot
+  ```
 
 
 [img-connection-diagram]: media/iot-suite-raspberry-pi-kit-prepare-pi/rpi2_remote_monitoring.png

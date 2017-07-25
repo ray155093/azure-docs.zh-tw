@@ -37,7 +37,7 @@ ms.lasthandoff: 06/20/2017
 - [直接部署開放原始碼 Cloud Foundry 套件][oss-cf-bosh]，方法是設定 [BOSH](http://bosh.io) 導向器，這是一個 VM，它會協調 Cloud Foundry 環境的部署。
 
 > [!IMPORTANT] 
-> 如果您正在從 Azure Marketplace 部署 PCF，請記下存取 Pivotal Apps Manager 所需的 SYSTEMDOMAINURL 和管理員認證，這兩個項目都在市集部署指南中提及。 需要這兩個項目才能完成本教學課程。 對於市集部署，SYSTEMDOMAINURL 在表單 https://system.ip-address.cf.pcfazure.com 中。
+> 如果您正在從 Azure Marketplace 部署 PCF，請記下存取 Pivotal Apps Manager 所需的 SYSTEMDOMAINURL 和管理員認證，這兩個項目都在市集部署指南中提及。 需要這兩個項目才能完成本教學課程。 對於市集部署，SYSTEMDOMAINURL 在表單 https://system.*ip-address*.cf.pcfazure.com 中。
 
 ## <a name="connect-to-the-cloud-controller"></a>連線至 Cloud Controller
 

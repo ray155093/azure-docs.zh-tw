@@ -138,13 +138,13 @@ ms.lasthandoff: 06/08/2017
 
 **在 Azure 傳統入口網站中建立邏輯應用程式的應用程式識別碼**
 
-1. 在 Azure 傳統入口網站中，選擇 [Active Directory][](https://manage.windowsazure.com/#Workspaces/ActiveDirectoryExtension/directory)。
+1. 在 Azure 傳統入口網站中，選擇 [**[Active Directory]**](https://manage.windowsazure.com/#Workspaces/ActiveDirectoryExtension/directory) 。
 
 2. 選取您用於 Web 應用程式或 API 應用程式的相同目錄。
 
 3. 在 [應用程式] 索引標籤上，選擇頁面底部的 [新增]。
 
-4. 為您的應用程式識別碼提供名稱，然後選擇 [下一步] (向右箭號)。
+4. 為您的應用程式識別碼提供名稱，然後選擇 **[下一步]** \(向右箭號)。
 
 5. 在 [應用程式屬性] 下，提供格式化為**登入 URL** 和**應用程式識別碼 URI** 之網域的唯一字串，然後選擇 [完成] (勾選記號)。
 
@@ -190,7 +190,7 @@ ms.lasthandoff: 06/08/2017
 
    ![開啟驗證](./media/logic-apps-custom-hosted-api/custom-web-api-app-authentication.png)
 
-3. 現在建立 Web 應用程式或 API 應用程式的應用程式識別碼，如下所示。 在 [Azure Active Directory 設定] 刀鋒視窗上，將 [管理模式] 設定為 [快速]。 選擇 [建立新的 AD 應用程式]。 為您的應用程式識別碼提供名稱，然後選擇 [確定]。 
+3. 現在建立 Web 應用程式或 API 應用程式的應用程式識別碼，如下所示。 在 [Azure Active Directory 設定] 刀鋒視窗上，將 [管理模式] 設定為 [快速]。 選擇 [建立新的 AD 應用程式]。 為您的應用程式識別碼提供名稱，然後選擇 **[確定]**。 
 
    ![建立 Web 應用程式或 API 應用程式的應用程式識別碼](./media/logic-apps-custom-hosted-api/custom-api-application-identity.png)
 
@@ -221,7 +221,7 @@ ms.lasthandoff: 06/08/2017
 
 **在 Azure 傳統入口網站中尋找 web 應用程式或 API 應用程式的應用程式識別碼之用戶端識別碼和租用戶識別碼**
 
-1. 在 Azure 傳統入口網站中，選擇 [Active Directory][](https://manage.windowsazure.com/#Workspaces/ActiveDirectoryExtension/directory)。
+1. 在 Azure 傳統入口網站中，選擇 [**[Active Directory]**](https://manage.windowsazure.com/#Workspaces/ActiveDirectoryExtension/directory) 。
 
 2.  選取您用於 Web 應用程式或 API 應用程式的目錄。
 

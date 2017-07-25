@@ -12,14 +12,13 @@ ms.devlang: nodejs
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/24/2017
+ms.date: 07/25/2017
 ms.author: dobett
 ms.translationtype: Human Translation
 ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
 ms.openlocfilehash: 6d8e6ef070c3b9d9623f4b29ab97a5d20f69d499
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/03/2017
-
 
 ---
 # <a name="connect-your-raspberry-pi-3-to-the-remote-monitoring-solution-and-send-telemetry-from-a-real-sensor-using-nodejs"></a>將 Raspberry Pi 3 連線到遠端監視解決方案，並且使用 Node.js 從真實感應器傳送遙測
@@ -60,33 +59,44 @@ ms.lasthandoff: 05/03/2017
 
 1. 若要更新 Raspberry Pi，請使用下列命令︰
 
-    `sudo apt-get update`
+    ```sh
+    sudo apt-get update
+    ```
 
 1. 若要將 Node.js 二進位檔下載至 Raspberry Pi，請使用下列命令︰
 
-    `wget https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-armv7l.tar.gz`
+    ```sh
+    wget https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-armv7l.tar.gz
+    ```
 
 1. 使用下列命令來安裝二進位檔：
 
-    `sudo tar -C /usr/local --strip-components 1 -xzf node-v6.10.2-linux-armv7l.tar.gz`
+    ```sh
+    sudo tar -C /usr/local --strip-components 1 -xzf node-v6.10.2-linux-armv7l.tar.gz
+    ```
 
 1. 若要確認您已成功安裝 Node.js 6.10.2 版，請使用下列命令︰
 
-    `node --version`
+    ```sh
+    node --version
+    ```
 
 ### <a name="clone-the-repositories"></a>複製存放庫
 
 如果您尚未這麼做，請在 Pi 上執行下列命令來複製所需的存放庫︰
 
-`cd ~`
-
-`git clone --recursive https://github.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit.git`
+```sh
+cd ~
+git clone --recursive https://github.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit.git`
+```
 
 ### <a name="update-the-device-connection-string"></a>更新裝置連接字串
 
 使用下列命令，將 **nano** 編輯器中的範例來源檔案開啟︰
 
-`nano ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic/remote_monitoring.js`
+```sh
+nano ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic/remote_monitoring.js
+```
 
 請尋找以下這行︰
 
@@ -100,13 +110,16 @@ var connectionString = 'HostName=[Your IoT hub name].azure-devices.net;DeviceId=
 
 執行下列命令來安裝範例的必要條件套件︰
 
-`cd ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic`
-
-`npm install`
+```sh
+cd ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic
+npm install
+```
 
 您現在可以在 Raspberry Pi 上執行範例程式。 輸入命令：
 
-`sudo node ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic/remote_monitoring.js`
+```sh
+sudo node ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic/remote_monitoring.js
+```
 
 下列範例輸出是您在 Raspberry Pi 的命令提示字元所看到的輸出範例︰
 
@@ -119,7 +132,6 @@ var connectionString = 'HostName=[Your IoT hub name].azure-devices.net;DeviceId=
 ## <a name="next-steps"></a>後續步驟
 
 請瀏覽 [Azure IoT 開發人員中心](https://azure.microsoft.com/develop/iot/)，取得更多 Azure IoT 的相關範例和文件。
-
 
 [img-raspberry-output]: ./media/iot-suite-raspberry-pi-kit-node-get-started-basic/app-output.png
 

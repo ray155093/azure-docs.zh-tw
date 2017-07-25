@@ -41,7 +41,7 @@ ms.lasthandoff: 06/17/2017
 
 4. 按一下頂端功能表列上的 [設定]。
 
-5. 將 [啟用記錄] 選項設定為 [錯誤] (僅記錄錯誤) 或 [所有] (適用於完整記錄)。
+5. 將 **[啟用記錄]** 選項設定為 *[錯誤]* \(僅記錄錯誤) 或 *[所有]* \(適用於完整記錄)。
 
    ![選取記錄等級](media/machine-learning-web-services-logging/enable-logging.png)
 
