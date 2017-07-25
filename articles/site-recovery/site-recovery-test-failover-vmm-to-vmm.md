@@ -110,7 +110,7 @@ ms.lasthandoff: 06/20/2017
 
 
 ## <a name="test-failover-to-a-production-network-on-a-recovery-site"></a>在復原網路上測試容錯移轉到生產網路
-當您進行測試容錯移轉時，建議您選擇與在 [網路對應][](https://docs.microsoft.com/azure/site-recovery/site-recovery-network-mapping) 中提供的生產復原網站網路不同的網路。 但是，如果您真的想驗證容錯移轉的虛擬機器中的端對端網路連線，請注意下列幾點︰
+當您進行測試容錯移轉時，建議您選擇與在 [網路對應](https://docs.microsoft.com/azure/site-recovery/site-recovery-network-mapping) 中提供的生產復原網站網路不同的網路。 但是，如果您真的想驗證容錯移轉的虛擬機器中的端對端網路連線，請注意下列幾點︰
 
 * 進行測試容錯移轉時，請確定主要虛擬機器已關機。 如果不這麼做，相同的網路中將同時有兩部虛擬機器以相同的身分識別執行。 這可能造成不良的後果。
 * 當您清除測試容錯移轉虛擬機器時，您對測試容錯移轉虛擬機器所做的任何變更將會遺失。 這些變更不會複寫回主要虛擬機器。

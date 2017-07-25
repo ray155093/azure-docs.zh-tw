@@ -129,7 +129,7 @@ ms.lasthandoff: 06/01/2017
 
 如需您可以用來接收雲端對裝置訊息之 SDK 的資訊，請參閱 [Azure IoT SDK][lnk-sdks]。
 
-若要嘗試接收雲端對裝置訊息，請參閱[傳送雲端到裝置][ lnk-c2d-tutorial]教學課程。
+若要嘗試接收雲端對裝置訊息，請參閱 [傳送雲端到裝置][lnk-c2d-tutorial] 教學課程。
 
 [img-lifecycle]: ./media/iot-hub-devguide-messages-c2d/lifecycle.png
 

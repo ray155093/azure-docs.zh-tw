@@ -46,7 +46,7 @@ Azure 符合多種業界規範及標準，可讓您使用在虛擬機器中執�
 
 ![SQL Server 連線](./media/virtual-machines-windows-sql-security/sql-vm-connectivity-option.png)
 
-如需最佳的安全性，請為您的案例選擇最嚴格的選項。 例如，如果您執行的應用程式可存取相同 VM 上的 SQL Server，則 [本機] 是最安全的選擇。 如果您執行的 Azure 應用程式需要存取 SQL Server，則 [私人] 只可保護指定之 [Azure 虛擬網路](../../../virtual-network/virtual-networks-overview.md) 內的 SQL Server 通訊。 如果您需要 SQL Server VM的 [公用] (網際網路) 存取，請務必遵循本主題中的其他最佳做法，以縮寫受攻擊面。
+如需最佳的安全性，請為您的案例選擇最嚴格的選項。 例如，如果您執行的應用程式可存取相同 VM 上的 SQL Server，則 [本機] 是最安全的選擇。 如果您執行的 Azure 應用程式需要存取 SQL Server，則 [私人] 只可保護指定之 [Azure 虛擬網路](../../../virtual-network/virtual-networks-overview.md) 內的 SQL Server 通訊。 如果您需要 SQL Server VM的 [公用] \(網際網路) 存取，請務必遵循本主題中的其他最佳做法，以縮寫受攻擊面。
 
 入口網站中選取的選項會使用 VM [網路安全性群組](../../../virtual-network/virtual-networks-nsg.md) (NSG) 上的輸入安全性規則來允許或拒絕虛擬機器的網路流量。 您可以修改或建立新的輸入 NSG 規則，以允許 SQL Server 連接埠 (預設值 1433) 的流量。 您也可以指定允許透過此連接埠通訊的特定 IP 位址。
 
