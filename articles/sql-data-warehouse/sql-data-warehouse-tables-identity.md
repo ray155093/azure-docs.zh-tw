@@ -280,15 +280,15 @@ AND     tb.name = 'T1'
 <!--MSDN references-->
 [Identity property]: https://msdn.microsoft.com/library/ms186775.aspx
 [sys.identity_columns]: https://msdn.microsoft.com/library/ms187334.aspx
-[IDENTITY()]: https://msdn.microsoft.com/library/ms189838.aspx \(英文\)
+[IDENTITY()]: https://msdn.microsoft.com/library/ms189838.aspx
 [@@IDENTITY]: https://msdn.microsoft.com/library/ms187342.aspx
-[SCOPE_IDENTITY]: https://msdn.microsoft.com/library/ms190315.aspx \(英文\)
-[IDENT_CURRENT]: https://msdn.microsoft.com/library/ms175098.aspx \(英文\)
-[IDENT_INCR]: https://msdn.microsoft.com/library/ms189795.aspx \(英文\)
-[IDENT_SEED]: https://msdn.microsoft.com/library/ms189834.aspx \(英文\)
-[DBCC CHECK_IDENT()]: https://msdn.microsoft.com/library/ms176057.aspx \(英文\)
+[SCOPE_IDENTITY]: https://msdn.microsoft.com/library/ms190315.aspx
+[IDENT_CURRENT]: https://msdn.microsoft.com/library/ms175098.aspx
+[IDENT_INCR]: https://msdn.microsoft.com/library/ms189795.aspx
+[IDENT_SEED]: https://msdn.microsoft.com/library/ms189834.aspx
+[DBCC CHECK_IDENT()]: https://msdn.microsoft.com/library/ms176057.aspx
 
-[MSDN 中的 bcp]: https://msdn.microsoft.com/library/ms162802.aspx \(英文\)
+[MSDN 中的 bcp]: https://msdn.microsoft.com/library/ms162802.aspx
   
 
 <!--Other Web references-->  

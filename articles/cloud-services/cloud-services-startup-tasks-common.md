@@ -188,7 +188,7 @@ powershell -ExecutionPolicy Unrestricted -command "Install-WindowsFeature Web-IP
 
 最後，修改 Web 角色 [web.config](http://www.iis.net/configreference/system.webserver/security/ipsecurity#005) 檔案中的 **system.webServer** 區段，新增具有存取權的 IP 位址清單，如以下範例所示：
 
-此範例組態 **允許** 所有 IP 存取伺服器 (另外定義的&2; 個 IP 除外)。
+此範例組態 **允許** 所有 IP 存取伺服器 (另外定義的 2 個 IP 除外)。
 
 ```xml
 <system.webServer>
@@ -203,7 +203,7 @@ powershell -ExecutionPolicy Unrestricted -command "Install-WindowsFeature Web-IP
 </system.webServer>
 ```
 
-此範例組態 **拒絕** 所有 IP 存取伺服器 (另外定義的&2; 個 IP 除外)。
+此範例組態 **拒絕** 所有 IP 存取伺服器 (另外定義的 2 個 IP 除外)。
 
 ```xml
 <system.webServer>
