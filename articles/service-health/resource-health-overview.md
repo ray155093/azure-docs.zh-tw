@@ -83,7 +83,7 @@ ms.lasthandoff: 07/11/2017
 
 ![從 [資源] 刀鋒視窗將資源健康狀態開啟](./media/resource-health-overview/from-resource-blade.png)
 
-您也可以存取資源健康狀態，方法為按一下 [更多服務]，然後在 [篩選] 文字方塊中輸入**資源健康狀態**，將 [說明 + 支援] 刀鋒視窗開啟。 最後按一下 [資源健康狀態][](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/resourceHealth)。
+您也可以存取資源健康狀態，方法為按一下 [更多服務]，然後在 [篩選] 文字方塊中輸入**資源健康狀態**，將 [說明 + 支援] 刀鋒視窗開啟。 最後按一下 [**資源健康狀態**](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/resourceHealth) 。
 
 ![從 [更多服務] 將資源健康狀態開啟](./media/resource-health-overview/FromOtherServices.png)
 
