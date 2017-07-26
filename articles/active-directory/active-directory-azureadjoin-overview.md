@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 05/16/2017
 ms.author: markvi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 31574a82d190b9b157f8df3308fac298924eada5
+ms.sourcegitcommit: 532ff423ff53567b6ce40c0ea7ec09a689cee1e7
+ms.openlocfilehash: d3a3d3efe1c43caff3b8d2956c14e8c90d05d22b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 12/29/2016
+ms.lasthandoff: 06/06/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 12/29/2016
 ## <a name="what-is-azure-active-directory-join"></a>什麼是 Azure Active Directory Join？
 Azure Active Directory Join (Azure AD Join) 是一項功能，可在 Azure Active Directory 中登錄公司擁有的裝置來啟用集中式管理。 這表示使用者 (員工和學生) 可以透過 Azure Active Directory 連線到企業雲端。 這樣能夠簡化 Windows 部署，從任何 Windows 裝置 (公司擁有或個人擁有的 (BYOD)) 存取組織應用程式和資源。
 
-Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不具內部部署 Windows Server Active Directory 基礎結構的中小型企業)。 但是，Azure AD Join 能夠且也會供大型組織在無法加入傳統網域的裝置上 (例如行動裝置)，或主要需存取 Office 365 或其他 Azure AD SaaS 應用程式的使用者使用。
+Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不具內部部署 Windows Server Active Directory 基礎結構的中小型企業)。 雖然如此，Azure AD Join 能夠且也將供大型組織使用，對象是無法加入傳統網域的裝置 (例如，行動裝置)，或主要需存取 Office 365 或已與 Azure AD 整合的其他 SaaS 應用程式的使用者。
 
 雖然傳統網域在能夠加入網域的裝置上仍提供最佳的內部部署體驗，但 Azure AD Join 適用於無法加入網域的裝置。 Azure AD Join 亦適用於在雲端管理使用者。 它是藉由使用行動裝置管理功能進行管理，而不是使用傳統網域管理工具，像是群組原則和 System Center Configuration Manager (SCCM)。
 
@@ -53,7 +53,7 @@ Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不
 ## <a name="how-do-different-devices-work-with-azure-ad-join"></a>不同的裝置如何與 Azure AD Join 搭配運作？
 | 公司裝置 (已加入內部部署網域) | 公司裝置 (已加入雲端) | 個人裝置 |
 | --- | --- | --- |
-| 使用者可以使用工作認證登入 Windows (就像他們現在所做的一樣) |使用者可以使用 Azure AD 中管理的工作認證來登入 Windows。 這在三種情況下與公司裝置有關：1) 組織在內部部署沒有 Active Directory (例如，小型企業)。 2) 組織並未在 Active Directory 中建立所有使用者帳戶 (比方說，不在 Active Directory 中建立學生、顧問或週期性工作者的帳戶)。 3) 組織有無法加入 (內部部署) 網域的公司裝置，例如執行 Mobile SKU 的手機或平板電腦 (比方說，攜帶到廠區/零售店的第二個裝置)。 Azure AD Join 在受管理和同盟組織中支援加入公司裝置。 |使用者使用其個人 Microsoft 帳戶認證登入 Windows (沒有改變)。 |
+| 使用者可以使用工作認證登入 Windows (就像他們現在所做的一樣) |使用者可以使用 Azure AD 中管理的工作認證來登入 Windows。 這在三種情況下與公司裝置有關： <ol><li>組織在內部部署沒有 Active Directory (例如，小型企業)。</li><li>組織並未在 Active Directory 中建立所有使用者帳戶 (比方說，未在 Active Directory 中建立學生、顧問或週期性工作者的帳戶)。</li><li>組織具有無法加入 (內部部署) 網域的公司裝置，例如，執行 Mobile SKU 的手機或平板電腦 (比方說，攜帶到廠區/零售店的第二個裝置)。</li></ol> Azure AD Join 在受管理和同盟組織中支援加入公司裝置。 |使用者使用其個人 Microsoft 帳戶認證登入 Windows (沒有改變)。 |
 | 使用者可以存取漫遊設定和企業 Windows 市集。 這些服務會使用工作帳戶，不需要個人的 Microsoft 帳戶。 這需要組織將其內部部署 Active Directory 連接到 Azure AD。 |使用者可以執行自助式設定。 除了由 IT 佈建裝置，使用者也可以透過他們的工作帳戶完成初次執行體驗 (FRX)，這兩種方法都有支援。 |使用者可輕鬆新增未在 Active Directory 或 Azure AD 中管理的工作帳戶。 |
 | 使用者能夠從桌面經由 SSO 存取工作應用程式、網站和資源 -- 包括使用 Azure AD 進行驗證的內部部署資源和雲端應用程式。 |裝置會自動在企業目錄 (Azure AD) 中註冊，並自動在行動裝置管理中註冊。 (Azure AD Premium 功能。) |使用者能夠利用此工作帳戶經由 SSO 穿梭於各應用程式及存取網站/資源。 |
 | 使用者可以新增個人的 Microsoft 帳戶來存取個人圖片和檔案，而不會影響企業資料。 (漫遊設定繼續使用其工作帳戶。)Microsoft 帳戶啟用 SSO，不再引導漫遊設定。 |使用者可以在 winlogon 上執行自助式密碼重設 (SSPR)，這表示他們能夠重設忘記的密碼。 (Azure AD Premium 功能。) |使用者可以存取企業 Windows 市集，因而可在他們的個人裝置上取得並使用企業營運應用程式。 |

@@ -15,14 +15,15 @@ ms.devlang: na
 ms.date: 04/04/2017
 ms.author: parakhj
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
-ms.openlocfilehash: ed82300211f54f39423c24039ca418fca9da94c3
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 0a0d91d622ed72ed22cfaaa0350b31ca653de483
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/01/2017
-
+ms.lasthandoff: 06/02/2017
 
 ---
 # <a name="azure-active-directory-b2c-custom-policies"></a>Azure Active Directory B2C：自訂原則
+
+[!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
 ## <a name="what-are-custom-policies"></a>何謂自訂原則？
 
@@ -62,14 +63,14 @@ Azure AD B2C 中的內建原則依照上述的 3 檔案模式，但開發人員�
 Azure 的客戶身分識別和存取管理 (CIAM) 服務。 服務包括︰
 
 1. 特殊用途 Azure Active Directory 形式的使用者目錄，可透過 Microsoft Graph 存取，保存本機帳戶和同盟帳戶的使用者資料 
-2. 存取**身分識別經驗引擎**，協調使用者與實體之間的信任，並在它們之間傳遞宣告，以完成身分識別/存取管理工作 
+2. 存取**識別體驗架構**，協調使用者與實體之間的信任，並在它們之間傳遞宣告，以完成身分識別/存取權管理工作 
 3. Security Token Service (STS)，發出識別碼權杖、重新整理權杖和存取權杖 (及對等的 SAML 判斷提示)，並驗證它們以保護資源。
 
-Azure AD B2C 依序與身分識別提供者、使用者、其他系統和本機使用者目錄互動，以達成身分識別工作 (例如登入使用者、註冊新的使用者、重設密碼)。 建立多方信任和執行這些步驟的基礎平台稱為「識別經驗引擎」，而原則 (也稱為使用者旅程圖或信任架構原則 ) 會明確定義動作項目、動作、通訊協定及完成的步驟順序。
+Azure AD B2C 依序與身分識別提供者、使用者、其他系統和本機使用者目錄互動，以達成身分識別工作 (例如登入使用者、註冊新的使用者、重設密碼)。 建立多方信任和執行這些步驟的基礎平台稱為識別體驗架構，而原則 (也稱為使用者旅程圖或信任架構原則) 會明確定義動作項目、動作、通訊協定及完成的步驟順序。
 
-### <a name="identity-experience-engine"></a>識別經驗引擎
+### <a name="identity-experience-framework"></a>身分識別體驗架構
 
-完全可設定、原則導向、雲端式的 Azure 平台，協調標準通訊協定格式 (例如 OpenIDConnect、OAuth、SAML、WSFed) 實體 (大致上是宣告提供者) 和少數非標準格式 (例如以 REST API 為基礎的系統對系統宣告交換) 實體之間的信任。 I2E 建立方便使用、白標籤的體驗，支援 HTML、CSS 和 jscript。  目前，身分識別經驗引擎僅適用於 Azure AD B2C 服務的情況，且優先用於 CIAM 相關的工作。
+完全可設定、原則導向、雲端式的 Azure 平台，協調標準通訊協定格式 (例如 OpenIDConnect、OAuth、SAML、WSFed) 實體 (大致上是宣告提供者) 和少數非標準格式 (例如以 REST API 為基礎的系統對系統宣告交換) 實體之間的信任。 I2E 建立方便使用、白標籤的體驗，支援 HTML、CSS 和 jscript。  識別體驗架構目前僅適用於 Azure AD B2C 服務的情況，且優先用於 CIAM 相關的工作。
 
 ### <a name="built-in-policies"></a>內建原則
 
@@ -78,17 +79,9 @@ Azure AD B2C 依序與身分識別提供者、使用者、其他系統和本機�
 
 ### <a name="custom-policies"></a>自訂原則
 
-組態檔，定義 Azure AD B2C 租用戶中的身分識別經驗引擎行為。 自訂原則是以一或多個 XML 檔案的形式存取 (請參閱原則檔案定義)，被信賴憑證者 (例如應用程式) 叫用時，由身分識別經驗引擎執行這些檔案。 身分識別開發人員可以直接編輯自訂原則，可完成的工作數量幾乎沒有限制。 設定自訂原則的開發人員必須仔細定義信任關係，以包含中繼資料端點、精確的宣告交換定義，並設定每個識別提供者所需的祕密、金鑰和憑證。
+組態檔，定義 Azure AD B2C 租用戶中識別體驗架構的行為。 自訂原則可以一或多個 XML 檔案的形式存取 (請參閱原則檔案定義)，當信賴憑證者 (例如應用程式) 叫用時，會由識別體驗架構執行這些檔案。 身分識別開發人員可以直接編輯自訂原則，可完成的工作數量幾乎沒有限制。 設定自訂原則的開發人員必須仔細定義信任關係，以包含中繼資料端點、精確的宣告交換定義，並設定每個識別提供者所需的祕密、金鑰和憑證。
 
-### <a name="policy-files"></a>原則檔
-
-自訂原則以一或多個 XML 格式的檔案表示，各檔案在階層鏈中彼此參考。 XML 元素定義︰宣告結構描述、宣告轉換、內容定義、宣告提供者/技術設定檔和 Userjourney 協調流程步驟等元素。 我們建議使用三種類型的原則檔︰
-
-- **基底檔案**，其中包含大部分的定義，Azure 有提供完整的範例。  建議您儘可能不要變更這個檔案，才有利於原則的疑難排解和長期維護
-- **擴充檔案**，其中保存租用戶的唯一組態變更
-- **信賴憑證者 (RP) 檔案**，這是以單一工作為主的檔案，直接由應用程式或服務 (也稱為信賴憑證者) 叫用。  如需詳細資訊，請參閱原則檔案定義的相關文件。  每個唯一的工作需要自己的 RP，而根據品牌需求而定，數目可能是「應用程式總數 x 使用案例總數」。
-
-## <a name="policy-file-definitions-for-identity-experience-engine-trustframeworks"></a>識別經驗引擎 Trustframeworks 的原則檔案定義
+## <a name="policy-file-definitions-for-identity-experience-framework-trustframeworks"></a>識別體驗架構 Trustframeworks 的原則檔案定義
 
 ### <a name="policy-files"></a>原則檔
 
@@ -108,7 +101,7 @@ Azure AD B2C 依序與身分識別提供者、使用者、其他系統和本機�
 
 ### <a name="inheritance-model"></a>繼承模型
 
-應用程式呼叫 RP 原則檔時，B2C 中的識別經驗引擎會從先基底原則檔、再從擴充原則檔、最後從 RP 原則檔，新增所有元素，以組合目前生效的原則。  RP 檔案會覆寫擴充原則檔中相同類型和名稱的元素，而擴充原則檔會覆寫基底原則檔。
+當應用程式呼叫 RP 原則檔時，B2C 中的識別體驗架構將先從基底原則檔、再從擴充原則檔、最後從 RP 原則檔，新增所有元素，以組合目前生效的原則。  RP 檔案會覆寫擴充原則檔中相同類型和名稱的元素，而擴充原則檔會覆寫基底原則檔。
 
 Azure AD B2C 中的**內建原則**依照上述的 3 檔案模式，但開發人員只能看到信賴憑證者 (RP) 檔案，而入口網站是在背景中變更擴充檔案。  整個 Azure AD B2C 共用一個基底原則檔，此檔案由 Azure B2C 小組控制，且經常更新。
 

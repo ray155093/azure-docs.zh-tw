@@ -1,55 +1,57 @@
 ---
-title: "Azure Active Directory 目錄的特性 | Microsoft Docs"
-description: "了解您的目錄為完全獨立的資源以管理 Azure Active Directory 目錄"
-services: active-directory
+title: "Azure Active Directory 租用戶互動的特性 | Microsoft Docs"
+description: "了解您的目錄為完全獨立的資源，以管理 Azure Active Directory 租用戶"
+services: active-tenant
 documentationcenter: 
 author: curtand
 manager: femila
-editor: 
+editor: piotrci
 ms.assetid: 2b862b75-14df-45f2-a8ab-2a3ff1e2eb08
-ms.service: active-directory
+ms.service: active-tenant
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 05/08/2017
+ms.date: 06/01/2017
 ms.author: curtand
-ms.custom: H1Hack27Feb2017
+ms.custom: H1Hack27Feb2017;it-pro
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f8b63e5831897d3a45298b0415bb2d6d44ab0de1
-ms.openlocfilehash: 5ec00d5e8380f121dd9302cf08a0708c530aab9b
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: 142bd7fea8d1a409662282b9b23a2e1598c9e86e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/01/2017
+ms.lasthandoff: 06/08/2017
 
 
 ---
-# <a name="understand-how-multiple-azure-active-directory-directories-interact"></a>了解多個 Azure Active Directory 目錄的互動方式
-在 Azure Active Directory (Azure AD) 目錄中，每個目錄都是完全獨立的資源：對等、全功能，且在邏輯上獨立於您管理的其他目錄。 目錄之間沒有任何父子關聯性。 目錄之間的這項獨立性包括資源獨立性、系統管理獨立性和同步處理獨立性。
+
+# <a name="understand-how-multiple-azure-active-directory-tenants-interact"></a>了解多個 Azure Active Directory 租用戶如何互動
+
+在 Azure Active Directory (Azure AD) 目錄中，每個租用戶都是完全獨立的資源：邏輯上獨立於您所管理之其他租用戶的對等。 租用戶之間沒有任何父子關聯性。 這個在租用戶之間的獨立性包括資源獨立性、系統管理獨立性，以及同步處理獨立性。
 
 ## <a name="resource-independence"></a>資源獨立性
-如果您在某個目錄中建立或刪除資源，則不會影響另一個目錄中的任何資源 (但外部使用者有部分例外狀況)，如下所述。 如果您搭配使用自訂網域 'contoso.com' 與某個目錄，則它不能與任何其他目錄搭配使用。
+* 當您在某個租用戶中建立或刪除資源時，並不會影響另一個租用戶中的任何資源 (但有外部使用者有部分例外)。 
+* 如果將您的其中一個網域名稱與某個租用戶搭配使用，該網域名稱就無法與任何其他租用戶搭配使用。
 
 ## <a name="administrative-independence"></a>系統管理獨立性
-如果是 'Contoso' 目錄的非系統管理使用者，請建立 'Test' 測試目錄，然後：
+如果 'Contoso' 租用戶的非系統管理使用者建立 'Test' 測試租用戶，則：
 
-* 根據預設，建立目錄的使用者會新增為該新目錄的外部使用者，並會獲得該目錄中的全域管理員角色。
-* 'Contoso' 目錄的系統管理員沒有 'Test' 目錄的直接系統管理權限，除非 'Test' 的系統管理員特別將這些權限授與他們。 'Contoso' 的系統管理員如果可控制建立 'Test' 的使用者帳戶，即可控制 'Test' 目錄的存取權。
-* 如果您變更 (新增或移除) 某個目錄中使用者的系統管理員角色，則變更不會影響另一個目錄中該使用者可能有的任何系統管理員角色。
+* 系統預設會將建立租用戶的使用者新增為該新租用戶的外部使用者，並將該租用戶中的全域管理員角色指派給他。
+* 'Contoso' 租用戶的系統管理員並沒有 'Test' 租用戶的直接系統管理權限，除非 'Test' 的系統管理員明確地授與他們這些權限。 不過，'Contoso' 的系統管理員如果可控制建立 'Test' 的使用者帳戶，便可控制對 'Test' 租用戶的存取權。
+* 如果您為某個使用者新增/移除在某個租用戶中的系統管理員角色，此變更並不會影響到該使用者在另一個租用戶中擁有的系統管理員角色。
 
 ## <a name="synchronization-independence"></a>同步處理獨立性
-您可以單獨設定每個 Azure AD 目錄，以取得從任一項目的單一執行個體同步處理的資料：
+您可以單獨設定每個 Azure AD 租用戶，以從下列任一工具的單一執行個體同步處理資料：
 
-* 目錄同步處理 (DirSync) 工具，以與單一 AD 樹系同步處理資料。
-* Azure Active Directory Connector for Forefront Identity Manager，以與一或多個內部部署樹系和 (或) 非 Azure AD 資料來源同步處理資料。
+* Azure AD Connect 工具：可與單一 AD 樹系同步處理資料。
+* Azure Active Directory Connector for Forefront Identity Manager：可與一或多個內部部署樹系和/或非 Azure AD 資料來源同步處理資料。
 
-## <a name="add-an-azure-ad-directory"></a>新增 Azure AD 目錄
-若要在 Azure 傳統入口網站中新增 Azure AD 目錄，請選取左邊的 Azure Active Directory 延伸模組，然後點選 [新增] 。
+## <a name="add-an-azure-ad-tenant"></a>新增 Azure AD 租用戶
+若要在 Azure 傳統入口網站中新增 Azure AD 租用戶，請選取左邊的 Azure Active Directory 延伸模組，然後點選 [新增]。
 
 > [!NOTE]
-> 與其他 Azure 資源不同，您的目錄不是 Azure 訂用帳戶的子資源。 如果您取消或允許 Azure 訂用帳戶到期，則還是可以使用 Azure PowerShell、Azure Graph API 或其他介面 (例如 Office 365 系統管理中心) 存取目錄資料。 您也可以關聯另一個訂用帳戶與目錄。
->
+> 與其他 Azure 資源不同，您的租用戶並非 Azure 訂用帳戶的子資源。 如果您的 Azure 訂用帳戶被取消或到期，您仍然可以使用 Azure PowerShell、Azure Graph API 或「Office 365 系統管理中心」來存取租用戶資料。 您也可以將另一個訂用帳戶與租用戶建立關聯。
 >
 
 ## <a name="next-steps"></a>後續步驟
-如需 Azure AD 授權問題和最佳作法的一般概觀，請參閱 [什麼是 Azure Active Directory 授權？](active-directory-licensing-what-is.md)。
+如需 Azure AD 授權問題和最佳做法的廣泛概觀，請參閱[什麼是 Azure Active Directory 租用戶授權？](active-directory-licensing-whatis-azure-portal.md)
 

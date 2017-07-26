@@ -11,13 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/14/2017
+ms.date: 06/22/2017
 ms.author: jeedes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: 5e363a3e59b077a7bccfaff2ae6eee51418c77e5
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: 77b5fb94cdfa5722081198aabc59fbf86229c2b0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/22/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 05/05/2017
 
 在本教學課程中，您會了解如何整合 Cerner Central 與 Azure Active Directory (Azure AD)。
 
-Cerner Central 與 Azure AD 整合提供下列優點：
+將 Cerner Central 與 Azure AD 整合可提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 Cerner Central 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Cerner Central (單一登入)
@@ -38,7 +38,7 @@ Cerner Central 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 Cerner Central 整合，您需要下列項目：
 
 - Azure AD 訂用帳戶
-- 已啟用 Cerner Central 單一登入功能的訂用帳戶
+- 已核准的 Cerner Central 系統帳戶
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -51,10 +51,10 @@ Cerner Central 與 Azure AD 整合提供下列優點：
 ## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 從資源庫中新增 Cerner Central
+1. 從資源庫新增 Cerner Central
 2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-cerner-central-from-the-gallery"></a>從資源庫中新增 Cerner Central
+## <a name="adding-cerner-central-from-the-gallery"></a>從資源庫新增 Cerner Central
 若要設定將 Cerner Central 整合到 Azure AD 中，您需要從資源庫將 Cerner Central 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 Cerner Central，執行下列步驟：**
@@ -75,28 +75,28 @@ Cerner Central 與 Azure AD 整合提供下列優點：
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_search.png)
 
-5. 在結果窗格中，選取 [Cerner Central]，然後按一下 [新增] 按鈕以新增應用程式。
+5. 在結果面板中，選取 [Cerner Central]，然後按一下 [新增] 按鈕以新增該應用程式。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-在本節中，您會以測試使用者 "Britta Simon" 的身分，設定及測試 Azure AD 與 Cerner Central 的單一登入。
+在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Cerner Central 搭配運作的 Azure AD 單一登入。
 
-為了讓單一登入運作，Azure AD 必須知道 Cerner Central 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 Cerner Central 中的相關使用者之間建立連結關聯性。
+若要讓單一登入能夠運作，Azure AD 必須知道 Cerner Central 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 Cerner Central 中的相關使用者之間建立連結關聯性。
 
 若要設定及測試 Azure AD 與 Cerner Central 的單一登入，您需要完成下列構成要素：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 Cerner Central 測試使用者](#creating-a-cerner-central-test-user)** - 在 Cerner Central 中建立一個 Britta Simon 對應項目，連結到 Azure AD 中代表她的項目。
+3. **[建立 Cerner Central 測試使用者](#creating-a-cerner-central-test-user)** - 在 Cerner Central 中建立一個與 Azure AD 中代表 Britta Simon 之項目連結的 Britta Simon 對應項目。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，並在您的 Cerner Central 應用程式中設定單一登入。
+在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，然後在您的 Cerner Central 應用程式中設定單一登入。
 
-**若要設定 Azure AD 與Cerner Central 的單一登入，執行下列步驟：**
+**若要設定與 Cerner Central 搭配運作的 Azure AD 單一登入，執行下列步驟：**
 
 1. 在 Azure 入口網站的 [Cerner Central] 應用程式整合頁面上，按一下 [單一登入]。
 
@@ -110,18 +110,33 @@ Cerner Central 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_url.png)
 
-    a. 在 [識別碼] 文字方塊中，使用下列模式將值輸入：`https://<instancename>.cernercentral.com/session-api/protocol/saml2/metadata`
+    a. 在 [識別碼] 文字方塊中，使用下列模式來輸入值：
+    
+    | |
+    |--|
+    | `https://<instancename>.cernercentral.com/session-api/protocol/saml2/metadata` |
+    | `https://<instancename>.sandboxcerner.com/session-api/protocol/saml2/metadata` |
+    | `https://<instancename>.sandboxcernercentral.com/session-api/protocol/saml2/metadata` |
+    | `https://sandboxcernercentral.com/session-api/protocol/saml2/metadata` |
+    | `https://<instancename>.cernercentral.com/session-api/protocol/saml2/metadata` |
 
-    b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<instancename>.cernercentral.com/session-api/protocol/saml2/sso`
+    b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，使用下列模式輸入 URL： 
+    | |
+    |--|
+    | `https://<instancename>.cernercentral.com/session-api/protocol/saml2/sso` |
+    | `https://cernercentral.com/<instasncename>` |
+    | `https://sandboxcernercentral.com/<instancename>` |
+    | `https://sandboxcernercentral.com/<instancename>` |
+    | `https://<subdomain>.sandboxcernercentral.com/<instancename>` |
 
     > [!NOTE] 
-    > 這些都不是真正的值。 請使用實際的識別碼和回覆 URL 更新這些值。 在此建議您在 [識別碼] 中使用唯一的字串值。 請連絡 [Cerner Central 支援小組](https://www.cerner.com/support)以取得這些值。
+    > 這些都不是真正的值。 請使用實際的識別碼和回覆 URL 更新這些值。 請連絡 [Cerner Central 支援小組](https://wiki.ucern.com/display/CernerCentral/Contacting+Cloud+Operations)以取得這些值。
  
-5. 按一下 [儲存]  按鈕。
+4. 按一下 [儲存]  按鈕。
 
     ![設定單一登入](./media/active-directory-saas-cernercentral-tutorial/tutorial_general_400.png)
 
-6. 若要產生**中繼資料** URL，執行下列步驟︰
+5. 若要產生**中繼資料** URL，執行下列步驟︰
 
     a. 按一下 [應用程式註冊]。
     
@@ -141,7 +156,7 @@ Cerner Central 與 Azure AD 整合提供下列優點：
 
     e. 使用下列模式產生**中繼資料 URL**︰`<FEDERATION METADATA DOCUMENT url>?appid=<application id>`
 
-7. 為了要在 **Cerner Central** 端設定單一登入，您必須將已下載的**中繼資料 XML** 傳送給 [Cerner Central 支援小組](https://www.cerner.com/support)。 由他們設定應用程式端的單一登入以完成整合。
+6. 為了要在 **Cerner Central** 端設定單一登入，您必須將已下載的**中繼資料 XML** 傳送給 [Cerner Central 支援小組](https://wiki.ucern.com/display/CernerCentral/Contacting+Cloud+Operations)。 由他們設定應用程式端的單一登入以完成整合。
 
 > [!TIP]
 > 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
@@ -180,11 +195,11 @@ Cerner Central 與 Azure AD 整合提供下列優點：
  
 ### <a name="creating-a-cerner-central-test-user"></a>建立 Cerner Central 測試使用者
 
-若要讓 Azure AD 使用者可以登入 Cerner Central，必須將他們佈建到 Cerner Central。 有很多種方法可以在 Cerner Central 應用程式中建立使用者。 若要手動建立 Cerner Central 使用者，請與 [Cerner Central 支援小組](https://www.cerner.com/support)合作。
+**Cerner Central** 應用程式可允許從任何同盟身分識別提供者進行驗證。 如果使用者能夠登入應用程式首頁，即表示他們已同盟，而不需進行任何手動佈建。
 
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
-在本節中，您把 Cerner Central 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+在本節中，您會將 Cerner Central 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
 
@@ -194,7 +209,7 @@ Cerner Central 與 Azure AD 整合提供下列優點：
 
     ![指派使用者][201] 
 
-2. 在應用程式清單中，選取 [Cerner Central] 。
+2. 在應用程式清單中，選取 [Cerner Central]。
 
     ![設定單一登入](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_app.png) 
 
@@ -216,7 +231,7 @@ Cerner Central 與 Azure AD 整合提供下列優點：
 
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
-當您在「存取面板」中按一下 [Cerner Central] 圖格時，應該會自動登入您的 Cerner Central 應用程式。 如需「存取面板」的詳細資訊，請參閱[存取面板簡介](https://msdn.microsoft.com/library/dn308586)。
+當您在「存取面板」中按一下 [Cerner Central] 圖格時，應該會自動登入您的 Cerner Central 應用程式。 如需「存取面板」的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 ## <a name="additional-resources"></a>其他資源
 

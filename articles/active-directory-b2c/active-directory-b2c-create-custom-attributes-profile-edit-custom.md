@@ -15,10 +15,10 @@ ms.devlang: na
 ms.date: 04/29/2017
 ms.author: joroja
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 83748140c7b92b95a648ae3ecf78f22e2393780b
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: c2bbb8058ce335c7568d5260ddd0274ca36c9c52
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 06/02/2017
 
 ---
 # <a name="azure-active-directory-b2c-creating-and-using-custom-attributes-in-a-custom-profile-edit-policy"></a>Azure Active Directory B2C︰在自訂設定檔編輯原則中建立和使用自訂屬性。
@@ -39,38 +39,38 @@ ms.lasthandoff: 05/08/2017
 
 Azure AD B2C 可讓您擴充每個使用者帳戶所儲存的屬性組合。 您也可以使用 [Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md)讀取和寫入這些屬性。
 
-[!NOTE]
-我們將自訂屬性或擴充屬性稱為 Azure AD B2C 目錄的功能。  擴充屬性會擴充目錄中的使用者物件結構描述。  若要在原則中使用自訂屬性來作為自訂宣告，請將其定義在原則的 `ClaimsSchema` 中。
+>[!NOTE]
+>我們將自訂屬性或擴充屬性稱為 Azure AD B2C 目錄的功能。  擴充屬性會擴充目錄中的使用者物件結構描述。  若要在原則中使用自訂屬性來作為自訂宣告，請將其定義在原則的 `ClaimsSchema` 中。
 
-[!NOTE]
-擴充屬性只能註冊在應用程式物件上，即使這些屬性可能包含使用者的資料也是如此。 屬性會附加至應用程式。 應用程式物件必須取得寫入權限才能註冊擴充屬性。 任何單一物件均可寫入 100 個擴充屬性 (所有類型和所有應用程式皆可)。 擴充屬性會新增到目標目錄類型，而且在 Azure AD B2C 目錄租用戶中會立即變成可供存取。
+>[!NOTE]
+>擴充屬性只能註冊在應用程式物件上，即使這些屬性可能包含使用者的資料也是如此。 屬性會附加至應用程式。 應用程式物件必須取得寫入權限才能註冊擴充屬性。 任何單一物件均可寫入 100 個擴充屬性 (所有類型和所有應用程式皆可)。 擴充屬性會新增到目標目錄類型，而且在 Azure AD B2C 目錄租用戶中會立即變成可供存取。
 如果您刪除應用程式，則這些擴充屬性以及其中包含之所有使用者的資料也會全部移除。 如果應用程式刪除擴充屬性，則擴充屬性會從目標目錄物件上移除，其中所包含的任何資料也都會移除。
 
-[!NOTE]
-擴充屬性只存在於租用戶中已註冊之應用程式的內容裡。 該應用程式的物件識別碼必須包含在使用該識別碼的 TechnicalProfile 中
+>[!NOTE]
+>擴充屬性只存在於租用戶中已註冊之應用程式的內容裡。 該應用程式的物件識別碼必須包含在使用該識別碼的 TechnicalProfile 中
 
-[!NOTE]
-Azure AD B2C 目錄通常會包含名為 `b2c-extensions-app` 的 Web API 應用程式。  此應用程式主要是供 b2c 內建原則用在透過 Azure 入口網站所建立的自訂宣告中。  使用此應用程式來為 b2c 自訂原則註冊擴充屬性的建議，僅適用於進階使用者。
+>[!NOTE]
+>Azure AD B2C 目錄通常會包含名為 `b2c-extensions-app` 的 Web API 應用程式。  此應用程式主要是供 b2c 內建原則用在透過 Azure 入口網站所建立的自訂宣告中。  使用此應用程式來為 b2c 自訂原則註冊擴充屬性的建議，僅適用於進階使用者。
 
 
 ## <a name="creating-a-new-application-to-store-the-extension-properties"></a>建立新的應用程式來儲存擴充屬性
 
 1. 開啟瀏覽工作階段並瀏覽至 [Azure 入口網站](https://portal.azure.com)，然後使用您想要設定之 B2C 目錄的系統管理認證來登入。
-1. 在左側導覽功能表中按一下 `Azure Active Directory`。 您可能需要選取 [更多服務 >] 才能找到它。
-1. 選取 `App registrations`，然後按一下 `New application registration`
+1. 在左方的導覽功能表中，按一下 [Azure Active Directory]。 您可能需要選取 [更多服務 >] 才能找到它。
+1. 選取 [應用程式註冊]，然後按一下 [新增應用程式註冊]
 1. 提供下列建議項目︰
-  * 指定 Web 應用程式的名稱︰`WebApp-GraphAPI-DirectoryExtensions`
+  * 指定 Web 應用程式的名稱：**WebApp-GraphAPI-DirectoryExtensions**
   * 應用程式類型︰Web 應用程式/API
   * 登入 URL：https://{tenantName}.onmicrosoft.com/WebApp-GraphAPI-DirectoryExtensions
-1. 選取 `Create`。 `notifications` 中會出現成功完成
-1. 選取新建立的 Web 應用程式︰`WebApp-GraphAPI-DirectoryExtensions`
-1. 選取設定︰`Required permissions`
-1. 選取 API `Windows Active Directory`
-1. 勾選下列應用程式權限︰`Read and write directory data` 和 `Save`
-1. 選擇 `Grant permissions` 並確認 `Yes`。
+1. 選取 [建立]。 [通知] 中會出現成功完成
+1. 選取新建立的 Web 應用程式：**WebApp-GraphAPI-DirectoryExtensions**
+1. 選取 [設定]：**必要權限**
+1. 選取 API [Windows Active Directory]
+1. 在 [應用程式權限] 中標上核取記號：**讀取及寫入目錄資料**，然後**儲存**
+1. 選擇 [授與權限]，然後確認 [是]。
 1. 將來自 WebApp-GraphAPI-DirectoryExtensions>Settings>Properties> 的下列識別碼複製到剪貼簿並儲存
-*  `Application ID`。 範例：`103ee0e6-f92d-4183-b576-8c3739027780`
-* `Object ID`。 範例：`80d8296a-da0a-49ee-b6ab-fd232aa45201`
+*  **應用程式識別碼**。 範例： `103ee0e6-f92d-4183-b576-8c3739027780`
+* **物件識別碼**。 範例： `80d8296a-da0a-49ee-b6ab-fd232aa45201`
 
 ## <a name="modifying-your-custom-policy-to-add-the-applicationobjectid"></a>修改您的自訂原則以新增 `ApplicationObjectId`
 
@@ -98,13 +98,16 @@ Azure AD B2C 目錄通常會包含名為 `b2c-extensions-app` 的 Web API 應用
         </ClaimsProvider>
     </ClaimsProviders>
 ```
-[!NOTE]
-<TechnicalProfile Id="AAD-Common"> 很「通用」，因為其元素會透過下列元素而重複使用在所有的 Azure Active Directory TechnicalProfiles 中︰
+
+>[!NOTE]
+><TechnicalProfile Id="AAD-Common"> 很「通用」，因為其元素會透過下列元素而重複使用在所有的 Azure Active Directory TechnicalProfiles 中︰
+
 ```
       <IncludeTechnicalProfile ReferenceId="AAD-Common" />
 ```
-[!NOTE]
-當 TechnicalProfile 第一次寫入到新建立的擴充屬性時，您可能會遇到一次性錯誤，因為系統會在找不到此屬性時加以建立。  .*  
+
+>[!NOTE]
+>當 TechnicalProfile 第一次寫入到新建立的擴充屬性時，您可能會遇到一次性錯誤，因為系統會在找不到此屬性時加以建立。  .*  
 
 ## <a name="using-the-new-extension-property--custom-attribute-in-a-user-journey"></a>在使用者旅程中使用新的擴充屬性/自訂屬性
 
@@ -140,9 +143,12 @@ Azure AD B2C 目錄通常會包含名為 `b2c-extensions-app` 的 Web API 應用
 </ClaimsSchema>
 ```
 4. 在基底原則檔 `TrustFrameworkBase.xml` 中新增相同的宣告定義。  
-注意︰您通常不需要在基底原則檔和擴充原則檔中新增 `ClaimType` 定義，不過，由於接下來的步驟會將 extension_loyaltyId 新增到基底原則檔的 TechnicalProfiles 中，因此原則驗證器會拒絕上傳沒有此項目的基底原則檔。
 
-注意︰追蹤 TrustFrameworkBase.xml 檔案中名為「ProfileEdit」之使用者旅程的執行情形可能會有用。  請在編輯器中搜尋相同名稱的使用者旅程，並注意到協調流程步驟 5 會叫用 TechnicalProfileReferenceID="SelfAsserted-ProfileUpdate"。  搜尋並檢查此 TechnicalProfile 以熟悉流程。
+>[!NOTE]
+>通常不需同時在基底原則檔和擴充原則檔中新增 `ClaimType` 定義，不過，由於接下來的步驟會將 extension_loyaltyId 新增到基底原則檔的 TechnicalProfiles 中，因此原則驗證器將拒絕上傳沒有此項目的基底原則檔。
+
+>[!NOTE]
+>追蹤 TrustFrameworkBase.xml 檔案中名為「ProfileEdit」之使用者旅程圖的執行情形可能有用。  請在編輯器中搜尋相同名稱的使用者旅程，並注意到協調流程步驟 5 會叫用 TechnicalProfileReferenceID="SelfAsserted-ProfileUpdate"。  搜尋並檢查此 TechnicalProfile 以熟悉流程。
 
 5. 在 TechnicalProfile "SelfAsserted-ProfileUpdate" 中新增 loyaltyId 來作為輸入和輸出宣告
 
@@ -233,8 +239,9 @@ Azure AD B2C 目錄通常會包含名為 `b2c-extensions-app` 的 Web API 應用
      </TechnicalProfile>
 ```
 
-[!IMPORTANT]
-上述的 IncludeTechnicalProfile 元素會將 AAD-Common 的所有元素新增到這個 TechnicalProfile。
+
+>[!IMPORTANT]
+>上述的 IncludeTechnicalProfile 元素會將 AAD-Common 的所有元素新增到這個 TechnicalProfile。
 
 ## <a name="test-the-custom-policy-using-run-now"></a>使用 [立即執行] 測試自訂原則
 
@@ -276,7 +283,8 @@ Azure AD B2C 目錄通常會包含名為 `b2c-extensions-app` 的 Web API 應用
 * **技術設定檔 (TP)** 是一個元素類型，您可以將它想作是「函式」，而它可定義端點的名稱、其中繼資料、其通訊協定，並詳細說明身分識別體驗架構所應該執行的宣告交換。  當這個「函式」在協調流程步驟中或從另一個 TechnicalProfile 呼叫時，呼叫端會提供 InputClaims 和 OutputClaims 來作為參數。
 
 
-* 如需擴充屬性的完整處理方式，請參閱[目錄結構描述擴充 | 圖形 API 概念](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)
-[!NOTE]一文
-圖形 API 中的擴充屬性會使用 `extension_ApplicationObjectID_attributename` 慣例來命名。自訂原則會將擴充屬性稱為 extension_attributename，因此會省略 XML 中的 ApplicationObjectId
+* 如需擴充屬性的完整處理方式，請參閱[目錄結構描述擴充 | 圖形 API 概念](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions) \(英文\) 一文
+
+>[!NOTE]
+>圖形 API 中的擴充屬性會使用 `extension_ApplicationObjectID_attributename` 慣例來命名。自訂原則會將擴充屬性稱為 extension_attributename，因此會省略 XML 中的 ApplicationObjectId
 
