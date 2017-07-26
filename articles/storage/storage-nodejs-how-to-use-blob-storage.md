@@ -40,7 +40,7 @@ ms.lasthandoff: 07/20/2017
 若要使用 Azure 儲存體，您需要 Azure Storage SDK for Node.js，這包含一組便利程式庫，能與儲存體 REST 服務通訊。
 
 ### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>使用 Node Package Manager (NPM) 取得封裝
-1. 使用命令列介面，例如 **PowerShell** (Windows)、[終端機] (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
+1. 使用命令列介面，例如 **PowerShell** (Windows)、**[終端機]** \(Mac) 或 **Bash** \(Unix)，瀏覽到您建立範例應用程式的資料夾。
 2. 在命令視窗中輸入 **npm install azure-storage** 。 此命令的輸出類似下列程式碼範例。
 
         azure-storage@0.5.0 node_modules\azure-storage
