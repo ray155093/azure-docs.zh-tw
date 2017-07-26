@@ -11,12 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/31/2017
+ms.date: 06/15/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 3482d50b19f8ad9a4db041abe67942e9e7d1931b
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 6ad28cb3adaa63ddc3d3769a650d26ca6a7e2695
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -28,7 +29,7 @@ LinkedIn Learning 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 LinkedIn Learning 的人員
 - 您可以讓使用者利用自己的 Azure AD 帳戶，來自動登入 LinkedIn Learning (單一登入)
-- 您可以在 Azure 管理入口網站中集中管理您的帳戶
+- 您可以在 Azure 入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
@@ -44,8 +45,8 @@ LinkedIn Learning 與 Azure AD 整合提供下列優點：
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-- 除非必要，否則您不應使用生產環境。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+- 除非必要，否則請勿使用生產環境。
+- 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 ## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
@@ -58,7 +59,7 @@ LinkedIn Learning 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 LinkedIn Learning，請執行下列步驟：**
 
-1. 在 **[Azure 管理入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
 
     ![Active Directory][1]
 
@@ -91,15 +92,15 @@ LinkedIn Learning 與 Azure AD 整合提供下列優點：
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-在本節中，您會在 Azure 管理入口網站中啟用 Azure AD 單一登入，並在您的 LinkedIn Learning 應用程式中設定單一登入。
+在本節中，您將在 Azure 入口網站中啟用 Azure AD 單一登入，並在 LinkedIn Learning 應用程式中設定單一登入。
 
 **如要設定搭配 LinkedIn Learning 的 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 管理入口網站的 [LinkedIn Learning] 應用程式整合頁面上，按一下 [單一登入]。
+1. 在 Azure 入口網站的 [LinkedIn Learning] 應用程式整合頁面上，按一下 [單一登入]。
 
     ![設定單一登入][4]
 
-2. 在 [單一登入] 對話方塊上，選取 [SAML 型登入] 做為 [模式]，以啟用單一登入。
+2. 在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。
  
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/tutorial-linkedin_01.png)
 
@@ -109,11 +110,11 @@ LinkedIn Learning 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_admin_01.png)
 
-5. 按一下 **，或按一下「這裡」以從表單**  載入和複製個別欄位，並且複製 [實體 ID] 和 [判斷提示取用者存取 (ACS) URL]
+5. 按一下 [或按一下這裡以從表單載入和複製個別欄位]，並複製 [實體識別碼] 和 [判斷提示取用者存取 (ACS) URL]
 
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_admin_03.png)
 
-6. 如果您想要在 **IDP 起始**模式中設定 SSO，請在 Azure 入口網站的 [LinkedIn Learning 網域和 URL] 底下執行下列步驟
+6. 如果您想要在 [IdP 起始] 模式下設定 SSO，請在 Azure 入口網站的 [LinkedIn Learning 網域和 URL] 下方執行下列步驟
 
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_signon_01.png)
 
@@ -121,7 +122,7 @@ LinkedIn Learning 與 Azure AD 整合提供下列優點：
 
     b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [判斷提示取用者存取 (ACS) URL]
 
-7. 如果您想要在 **SP 起始**中設定 SSO，則在組態區段中按一下 [顯示進階 URL] 設定，然後使用下列模式設定登入 URL：
+7. 如果您想要在 [SP 起始] 下設定 SSO，請按一下 [設定] 區段中的 [顯示進階 URL 設定] 選項，然後以下列模式設定登入 URL：
 
     `https://www.linkedin.com/checkpoint/enterprise/login/<AccountId>?application=learning&applicationInstanceId=<InstanceId>`
 
@@ -131,52 +132,71 @@ LinkedIn Learning 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/updateusermail.png)
     
-9. 在 [使用者屬性] 區段中，按一下 [檢視及編輯所有其他使用者屬性]，然後設定屬性。 您必須新增名為**部門**的另一個宣告，且值必須對應至 **user.department**。
+9. 在 [使用者屬性] 區段中，按一下 [檢視及編輯所有其他使用者屬性]，然後設定屬性。 使用者需要新增名稱為 **email**、**department**、**firstname** 和 **lastname** 的四個宣告，而且值必須分別與 **user.mail**、**user.department**、**user.givenname** 和 **user.surname** 對應
 
     | 屬性名稱 | 屬性值 |
-    | --- | --- |    
+    | --- | --- |
+    | 電子郵件| user.mail |    
     | department| user.department |
+    | firstname| user.givenname |
+    | lastname| user.surname |
+    
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinlearning-tutorial/userattribute.png)
+    
+    a. 按一下 [新增屬性] 以開啟 [屬性] 對話方塊。
 
-       ![Creating an Azure AD test user](./media/active-directory-saas-linkedinlearning-tutorial/userattribute.png)
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinLearning-tutorial/tutorial_attribute_04.png)
 
-       a. Click on Add attribute to open the attribute details page add the department attribute as shown below-
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinLearning-tutorial/tutorial_attribute_05.png)
+    
+    b.這是另一個 C# 主控台應用程式。 在 [名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
+    
+    c. 在 [值] 清單中，選取該列所顯示的值。
+    
+    d. 按一下 [確定]。
 
-       ![Creating an Azure AD test user](./media/active-directory-saas-linkedinLearning-tutorial/adduserattribute.png)
-   
-       b. Click on **Ok** to save the attribute.
+10. 針對 **name** 屬性執行下列步驟：
 
-10. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將 XML 檔案儲存在您的電腦上。
+    a. 按一下該屬性，以開啟 [編輯屬性] 視窗。
+
+    ![設定單一登入](./media/active-directory-saas-linkedinLearning-tutorial/url_update.png)
+
+    b.這是另一個 C# 主控台應用程式。 刪除**命名空間**中的 URL 值。
+    
+    c. 按一下 [確定] 以儲存設定。
+
+11. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將 XML 檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/tutorial-linkedinlearning_certificate.png) 
 
-11. 按一下 [儲存] 。
+12. 按一下 [儲存] 。
 
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_general_400.png)
 
-12. 移至 [LinkedIn 系統管理員設定] 區段。 按一下 [上傳 XML 檔案] 選項，將您剛剛從 Azure 入口網站下載的 XML 檔案上傳。
+13. 移至 [LinkedIn 系統管理員設定] 區段。 按一下 [上傳 XML 檔案] 選項，將您從 Azure 入口網站下載的 XML 檔案上傳。
 
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_metadata_03.png)
 
-13. 按一下 [開啟] 以啟用 SSO。 SSO 狀態將會從 [未連線] 變更為 [已連線]
+14. 按一下 [開啟] 以啟用 SSO。 SSO 狀態會從 [未連線] 變更為 [已連線]
 
     ![設定單一登入](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_admin_05.png)
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-本節目標是在 Azure 管理入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][100]
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 管理入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
+1. 在 **Azure 入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinlearning-tutorial/create_aaduser_01.png) 
 
-2. 移至 [使用者和群組]，然後按一下 [所有使用者] 以顯示使用者清單。
+2. 若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。
     
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinlearning-tutorial/create_aaduser_02.png) 
 
-3. 在對話方塊的頂端，按一下 [新增] 以開啟 [使用者] 對話方塊。
+3. 若要開啟 [使用者] 對話方塊，按一下對話方塊頂端的 [新增]。
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinlearning-tutorial/create_aaduser_03.png) 
 
@@ -194,19 +214,19 @@ LinkedIn Learning 與 Azure AD 整合提供下列優點：
 
 ### <a name="creating-a-linkedin-learning-test-user"></a>建立 LinkedIn Learning 測試使用者
 
-LinkedIn Learning 應用程式僅在使用者佈建時支援，驗證之後，會在應用程式中自動建立使用者。 在 LinkedIn Learning 入口網站的系統管理設定頁面上，將 [自動指派授權] 切換為作用中，以在佈建時啟用，這個動作也會將授權指派給使用者。
+Linked Learning 應用程式支援。 及時使用者佈建，以及在驗證之後，會在應用程式中建立使用者。 在 LinkedIn Learning 入口網站的系統管理設定頁面上，將 [自動指派授權] 切換為作用中，以在佈建時啟用，這個動作也會將授權指派給使用者。
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinLearning-tutorial/LinkedinUserprovswitch.png)
 
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
-在本節中，您會將 LinkedIn Learning 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+在本節中，您將把 LinkedIn Learning 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
 
 **若要將 Britta Simon 指派到 LinkedIn Learning，請執行下列步驟：**
 
-1. 在 Azure 管理入口網站中，開啟應用程式檢視，然後瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
 
     ![指派使用者][201] 
 
@@ -238,7 +258,6 @@ LinkedIn Learning 應用程式僅在使用者佈建時支援，驗證之後，�
 
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
-
 
 <!--Image references-->
 
