@@ -97,7 +97,7 @@ ms.lasthandoff: 06/28/2017
 
   如果發生錯誤並指出「需要 Microsoft Visual C++ 2015 可轉散發套件更新 1 或更新版本」，可從[Microsoft 下載中心](https://www.microsoft.com/download/)下載並安裝最新的更新套件。 同時安裝 x86 和 x64 版本。
 
-3. 移至 [AD FS] > [驗證原則] > [編輯全域多重要素驗證原則]。 取消勾選 [WindowsAzureMultiFactorAuthentication] 或 [AzureMFAServerAuthentication] (根據目前安裝的版本而定)。 
+3. 移至 [AD FS] > [驗證原則] > [編輯全域多重要素驗證原則]。 取消勾選 **[WindowsAzureMultiFactorAuthentication]** 或 **[AzureMFAServerAuthentication]** \(根據目前安裝的版本而定)。 
 
   完成此步驟之後，您必須先完成步驟 8，才能在此 AD FS 叢集中透過 MFA Server 進行雙步驟驗證。
 

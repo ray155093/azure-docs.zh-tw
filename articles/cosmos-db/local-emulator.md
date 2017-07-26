@@ -177,7 +177,7 @@ Azure Cosmos DB 模擬器預設會安裝到 `C:\Program Files\Azure Cosmos DB Em
 
 .NET 語言和執行階段使用 Windows 憑證存放區來安全地連線到 Azure Cosmos DB 本機模擬器。 其他語言則有自己管理和使用憑證的方法。 Java 使用自己的[憑證存放區](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html)，而 Python 使用[通訊端包裝函式](https://docs.python.org/2/library/ssl.html)。
 
-若要取得憑證來搭配未整合 Windows 憑證存放區的語言和執行階段使用，您必須使用 Windows 憑證管理員將它匯出。 您可以執行 certlm.msc 或依照[匯出 Azure Cosmos DB 模擬器憑證](./local-emulator-export-ssl-certificates.md)中的逐步指示開始。 憑證管理員執行之後時，開啟 [個人憑證] (如下所示)，並將有 "DocumentDBEmulatorCertificate" 易記名稱的憑證匯出為 BASE-64 編碼的 X.509 (.cer) 檔案。
+若要取得憑證來搭配未整合 Windows 憑證存放區的語言和執行階段使用，您必須使用 Windows 憑證管理員將它匯出。 您可以執行 certlm.msc 或依照[匯出 Azure Cosmos DB 模擬器憑證](./local-emulator-export-ssl-certificates.md)中的逐步指示開始。 憑證管理員執行之後時，開啟 [個人憑證] \(如下所示)，並將有 "DocumentDBEmulatorCertificate" 易記名稱的憑證匯出為 BASE-64 編碼的 X.509 (.cer) 檔案。
 
 ![Azure Cosmos DB 本機模擬器的 SSL 憑證](./media/local-emulator/database-local-emulator-ssl_certificate.png)
 

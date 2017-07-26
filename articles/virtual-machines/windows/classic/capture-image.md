@@ -69,7 +69,7 @@ Azure 會將映像儲存於 [VM 映像 (傳統)] 下方，當您檢視所有 Azu
 
 9. 按一下 [我已在虛擬機器上執行 Sysprep]。 此核取方塊指的是在步驟 3-5 中使用 Sysprep 的動作。 將 Windows Server 映像新增到自訂映像組合之前，「必須」先執行 Sysprep，將映像一般化。
 
-10. 完成擷取時，新映像會在 [Marketplace] (位於 [計算]、[VM 映像 (傳統)] 容器) 中變成可供使用狀態。
+10. 完成擷取時，新映像會在 **[Marketplace]** \(位於 [計算] 、[VM 映像 (傳統)] 容器) 中變成可供使用狀態。
 
     ![成功擷取映像](./media/capture-image/VMCapturedImageAvailable.png)
 
