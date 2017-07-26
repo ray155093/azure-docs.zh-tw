@@ -67,7 +67,7 @@ cd php-docs-hello-world
 php -S localhost:8080
 ```
 
-開啟網頁瀏覽器，然後瀏覽至範例應用程式 (位於 http://localhost:8080)。
+開啟網頁瀏覽器，然後瀏覽至範例應用程式 (位於 http://localhost:8080 ) 。
 
 您會看到來自範例應用程式的 **Hello World!** 訊息顯示在網頁中。
 
