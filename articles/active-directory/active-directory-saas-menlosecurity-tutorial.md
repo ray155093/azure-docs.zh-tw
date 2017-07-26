@@ -11,13 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/25/2017
+ms.date: 05/08/2017
 ms.author: jeedes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
-ms.openlocfilehash: baf984be59e19f7503c36b12d2b90570ce957edf
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 75366abafa551d21630b0edddb65db23b9ea9d42
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/29/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -224,7 +224,7 @@ ms.lasthandoff: 04/29/2017
 
 在本節中，您會測試您的 Azure AD 單一登入設定。
 
-透過任何前面加上的 URL 來登入您的應用程式 (例如 `https://safe.menlosecurity.com/http://www.cnn.com/`)，然後輸入 Azure AD 認證。 接著在成功驗證之後，系統會將您重新導向至適當的網站。
+在 "InPrivate" 或 "Incognito" 模式中開啟瀏覽器視窗，以觸發新的驗證。  在 Internet Explorer 中，使用 Ctrl+Shift+P。  在 Chrome 中，使用 Ctrl+Shift+N。  在隱私瀏覽視窗中，瀏覽受保護的資源並執行 Azure AD 登入。  成功登入後，即會在隔離的工作階段中將您帶往要求的網站。
 
 ## <a name="additional-resources"></a>其他資源
 

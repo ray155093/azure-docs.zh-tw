@@ -14,13 +14,14 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-translationtype: Human Translation
-ms.sourcegitcommit: 0587dfcd6079fc8df91bad5a5f902391d3657a6b
-ms.openlocfilehash: e6749bdf73acc9c05e71c85410bb3d95c57a0a9f
-ms.lasthandoff: 12/08/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 10726bdaf1aa0a98276747868771999625ccf5e5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -60,7 +61,7 @@ Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。 它可與
 > 
 
 ### <a name="prerequisites"></a>必要條件
-開始進行本教學課程之前，您必須具備下列條件：
+開始進行本教學課程之前，您必須具備下列項目：
 
 * **具有 Azure PowerShell 的工作站**。 
   
@@ -69,7 +70,7 @@ Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。 它可與
   
 
 ## <a name="define-oozie-workflow-and-the-related-hiveql-script"></a>定義 Oozie 工作流程和相關的 HiveQL 指令碼
-Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。 預設的工作流程檔案名稱為 *workflow.xml*。 以下是您將在本教學課程中使用的工作流程檔案。
+Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。 預設的工作流程檔案名稱為 *workflow.xml*。 以下是您在本教學課程中使用的工作流程檔案。
 
     <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
         <start to = "RunHiveScript"/>
@@ -128,13 +129,13 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
 
 此工作流程中定義了兩個動作。 起始動作為 *RunHiveScript*。 如果此動作順利執行，則下一個動作為 *RunSqoopExport*。
 
-RunHiveScript 有數個變數。 當您使用 Azure PowerShell 從工作站提交 Oozie 工作時，要傳入這些值。
+RunHiveScript 有數個變數。 當您使用 Azure PowerShell 從工作站提交 Oozie 工作時，會傳入這些值。
 
 <table border = "1">
 <tr><th>工作流程變數</th><th>說明</th></tr>
 <tr><td>${jobTracker}</td><td>指定 Hadoop 工作追蹤器的 URL。 在 HDInsight 3.0 和 2.1 版中使用 <strong>jobtrackerhost:9010</strong>。</td></tr>
 <tr><td>${nameNode}</td><td>指定 Hadoop 名稱節點的 URL。 使用預設檔案系統位址，例如 <i>wasbs://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>。</td></tr>
-<tr><td>${queueName}</td><td>指定要將工作提交過去的佇列名稱。 使用<strong>預設值</strong>。</td></tr>
+<tr><td>${queueName}</td><td>指定要將工作提交至其中的佇列名稱。 使用<strong>預設值</strong>。</td></tr>
 </table>
 
 <table border = "1">

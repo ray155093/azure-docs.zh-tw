@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/29/2017
+ms.date: 05/30/2017
 ms.author: sethm;clemensv
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 31bf24034558582eb138251207580e8f7fd7ddaf
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 5abdbf70d4fdb2c7feb0f3537ecc0f2abf0775a0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
@@ -40,7 +41,8 @@ Azure 事件中樞安全性模型符合下列需求：
 所有權杖都經過 SAS 金鑰簽署。 一般而言，所有權杖都會經過同一個金鑰簽署。 用戶端並不知道該金鑰；這可避免其他用戶端製造權杖。
 
 ### <a name="create-the-sas-key"></a>建立 SAS 金鑰
-建立 Azure 事件中樞命名空間時，此服務會產生名為 **RootManageSharedAccessKey** 的 256 位元 SAS 金鑰。 這個金鑰能授與命名空間的傳送、聆聽及管理權限。 您可以建立額外的金鑰。 建議您產生一個可授與對特定事件中樞之傳送權限的金鑰。 在本主題的其餘部分，假設您將此金鑰命名為 **EventHubSendKey**。
+
+建立事件中樞命名空間時，此服務會產生名為 **RootManageSharedAccessKey** 的 256 位元 SAS 金鑰。 這個金鑰能授與命名空間的傳送、聆聽及管理權限。 您也可以建立額外的金鑰。 建議您產生一個可授與對特定事件中樞之傳送權限的金鑰。 在本主題的其餘部分，假設您將此金鑰命名為 **EventHubSendKey**。
 
 以下範例會在建立事件中樞時，建立一個僅限傳送的金鑰：
 
@@ -63,6 +65,7 @@ nm.CreateEventHub(ed);
 ```
 
 ### <a name="generate-tokens"></a>產生權杖
+
 您可以使用 SAS 金鑰來產生權杖。 您只能為每個用戶端產生一個權杖。 您可以使用下列方法來產生權杖。 所有權杖都是以 **EventHubSendKey** 金鑰產生。 每個權杖均有一個指派的唯一 URI。
 
 ```csharp
@@ -88,7 +91,7 @@ SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFm
 ### <a name="sending-data"></a>傳送資料
 建立權杖之後，系統就會為每個用戶端佈建其自己的唯一權杖。
 
-當用戶端將資料傳送到事件中樞時，會為自己的權杖加上傳送要求標記。 為了防止攻擊者竊聽及竊取權杖，用戶端與事件中樞之間的通訊必須透過已加密的通道進行。
+當用戶端將資料傳送到事件中樞時，會使用權杖標記自己傳送的要求。 為了防止攻擊者竊聽及竊取權杖，用戶端與事件中樞之間的通訊必須透過已加密的通道進行。
 
 ### <a name="blacklisting-clients"></a>將用戶端列入黑名單
 如果權杖遭攻擊者竊取，攻擊者便可以模擬權杖遭竊的用戶端。 將用戶端列入黑名單可讓用戶端變成無法使用，直到它收到使用不同發行者的新權杖為止。
@@ -96,7 +99,6 @@ SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFm
 ## <a name="authentication-of-back-end-applications"></a>後端應用程式的驗證
 
 為了驗證取用「事件中樞」用戶端所產生之資料的後端應用程式，「事件中樞」採用一個與「服務匯流排」主題所用模型相似的安全性模型。 事件中樞取用者群組等同於服務匯流排主題的訂用帳戶。 如果建立取用者群組的要求有附帶權杖，而該權杖可授與事件中樞或事件中樞所屬之命名空間的管理權限，用戶端便可以建立取用者群組。 如果接收要求有附帶權杖，而該權杖可授與該取用者群組、事件中樞或事件中樞所屬之命名空間的接收權限，用戶端便可以取用來自取用者群組的資料。
-
 
 目前版本的服務匯流排不支援個別訂用帳戶的 SAS 規則。 相同情況亦適用於事件中樞取用者群組。 我們會在日後將這兩項功能加入 SAS 支援。
 

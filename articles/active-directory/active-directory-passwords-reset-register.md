@@ -6,21 +6,21 @@ keywords:
 documentationcenter: 
 author: MicrosoftGuyJFlo
 manager: femila
+ms.reviewer: gahug
 ms.assetid: 
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: end-user
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: bd0175558a94a146a365e8c1a32522f1e54c184e
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 485dfa067bd64312f6ae68a533117db1556318ed
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
-
+ms.lasthandoff: 05/26/2017
 
 ---
 # <a name="register-for-self-service-password-reset"></a>註冊自助式密碼重設
@@ -45,6 +45,16 @@ ms.lasthandoff: 05/03/2017
 如果您在驗證電話或驗證電子郵件中輸入資料，在全域目錄中會看不見。 您和您的系統管理員是唯一可以看到此資料的人員。 只有您可以查看您安全性問題的答案。
 
 系統管理員在一段時間後可能會要求您確認驗證方法，確定您仍有適當的已註冊方法。
+
+## <a name="common-problems-and-their-solutions"></a>常見問題及其解決方案
+
+ 以下提供一些常見的錯誤案例及其解決方案：
+
+| 錯誤案例| 您看到什麼錯誤訊息？| 方案 |
+| --- | --- | --- |
+| 在輸入我的使用者 ID 後，出現了「請連絡您的系統管理員」頁面 | 請連絡您的系統管理員 <br> <br> 我們偵測到您的使用者帳戶密碼未受到 Microsoft 管理。 因此，我們無法自動重設您的密碼。 <br> <br> 您必須連絡 IT 人員以尋求進一步的協助。 | 您之所以看到此訊息，是因為 IT 人員在內部部署環境中管理您的密碼，而不允許您從 [無法存取您的帳戶] 連結重設您的密碼。 <br> <br> 若要重設密碼，請直接向 IT 人員尋求協助，讓他們了解您想要重設密碼，而為您啟用這項功能。|
+| 在輸入我的使用者 ID 後，出現了「您的帳戶未啟用密碼重設」錯誤 | 您的帳戶未啟用密碼重設功能 <br> <br> 很抱歉，IT 人員還沒將您的帳戶設定用於此服務。 <br> <br> 如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。 | 您之所以看到此訊息，是因為 IT 人員尚未針對您的組織啟用從 [無法存取您的帳戶] 連結重設密碼的功能，或尚未授權您使用該功能。 <br> <br> 若要重設密碼，請按一下 [連絡系統管理員] 連結以傳送電子郵件給公司的 IT 人員，讓他們了解您想要重設密碼，而為您啟用這項功能。 |
+| 在輸入我的使用者 ID 後，出現了「我們無法驗證您的帳戶」錯誤 | 我們無法驗證您的帳戶 <br> <br> 如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。 | 您之所以看到此訊息，是因為您已啟用密碼重設，但並未註冊使用此服務。 若要註冊密碼重設，請在重新取得帳戶存取權後移至 http://aka.ms/ssprsetup。 <br> <br> 若要重設密碼，請按一下 [連絡系統管理員] 連結，以傳送電子郵件給公司的 IT 人員。 |
 
 ## <a name="next-steps"></a>後續步驟
 

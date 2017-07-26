@@ -12,29 +12,29 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/04/2017
+ms.date: 07/18/2017
 ms.author: adegeo
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 5489762a7a392e4e4098d85cba22d560e9858267
-ms.lasthandoff: 04/27/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: bc7e9a53f71eff828eaf8c45c104c5dc73018824
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 ---
 # <a name="connecting-azure-cloud-services-roles-to-a-custom-ad-domain-controller-hosted-in-azure"></a>將 Azure 雲端服務角色連接到裝載於 Azure 中的自訂 AD 網域控制站
-我們會先在 Azure 中設定虛擬網路 (VNet)。 接著再將 Active Directory 網域控制站 (裝載於 Azure 虛擬機器上) 加入 VNet。 下一步是將現有雲端服務角色加入預先建立的 VNet，然後再將它們連接到網域控制站。
+我們會先在 Azure 中設定虛擬網路 (VNet)。 接著再將 Active Directory 網域控制站 (裝載於 Azure 虛擬機器上) 加入 VNet。 下一步是將現有雲端服務角色加入預先建立的 VNet，然後將它們連接到網域控制站。
 
 在開始之前，請將以下幾件事牢記在心：
 
 1. 本教學課程使用 PowerShell，因此請確認您已安裝 Azure PowerShell 且已準備就緒。 如需設定 Azure PowerShell 的說明，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azure/overview)。
 2. AD 網域控制站和 Web/背景工作角色執行個體必須位在 VNet 中。
 
-請遵循以下逐步指南，如果您遇到任何問題，請在下方留言， 我們將會回覆您 (沒錯，我們真的會閱讀留言)。
+請依本逐步指南作業，如果遇到任何問題，請在本文結尾處留言。 我們將會回覆您 (沒錯，我們真的會閱讀留言)。
 
 雲端服務所參考的網路必須是**傳統虛擬網路**。
 
 ## <a name="create-a-virtual-network"></a>建立虛擬網路
-您可以使用 Azure 傳統入口網站或 PowerShell 在 Azure 中建立虛擬網路。 在本教學課程中，我們將使用 PowerShell。 若要使用 Azure 傳統入口網站建立虛擬網路，請參閱「 [建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)」。
+您可以使用 Azure 入口網站或 PowerShell 在 Azure 中建立虛擬網路。 在本教學課程中，我們將使用 PowerShell。 若要使用 Azure 入口網站建立虛擬網路，請參閱[建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。
 
 ```powershell
 #Create Virtual Network
@@ -66,7 +66,7 @@ Set-AzureVNetConfig -ConfigurationPath $vnetConfigPath
 ## <a name="create-a-virtual-machine"></a>建立虛擬機器
 完成虛擬網路的設定後，您需要建立 AD 網域控制站。 在本教學課程中，我們會在 Azure 虛擬機器上設定 AD 網域控制站。
 
-若要這樣做，請使用以下命令透過 PowerShell 建立虛擬機器：
+若要這樣做，請使用下列命令透過 PowerShell 建立虛擬機器：
 
 ```powershell
 # Initialize variables
@@ -88,17 +88,17 @@ New-AzureQuickVM -Windows -ServiceName $vmsvc1 -Name $vm1 -ImageName $imgname -A
 ## <a name="promote-your-virtual-machine-to-a-domain-controller"></a>將虛擬機器提升為網域控制站
 若要將虛擬機器設定為 AD 網域控制站，您需要登入 VM 並進行設定。
 
-若要登入 VM，您可以透過 PowerShell 取得 RDP 檔案；請使用下列命令。
+若要登入 VM，您可以透過 PowerShell 取得 RDP 檔案，請使用下列命令：
 
 ```powershell
 # Get RDP file
 Get-AzureRemoteDesktopFile -ServiceName $vmsvc1 -Name $vm1 -LocalPath <rdp-file-path>
 ```
 
-登入 VM 後，請依照「 [如何設定客戶的 AD 網域控制站](http://social.technet.microsoft.com/wiki/contents/articles/12370.windows-server-2012-set-up-your-first-domain-controller-step-by-step.aspx)」中的逐步指導將虛擬機器設為 AD 網域控制站。
+登入 VM 後，請遵循[如何設定客戶的 AD 網域控制站](http://social.technet.microsoft.com/wiki/contents/articles/12370.windows-server-2012-set-up-your-first-domain-controller-step-by-step.aspx)中的逐步指南，將虛擬機器設為 AD 網域控制站。
 
 ## <a name="add-your-cloud-service-to-the-virtual-network"></a>將雲端服務加入虛擬網路
-接下來，您需要將雲端服務部署加入剛才建立的 VNet。 若要這樣做，請使用 Visual Studio 或選擇的編輯器將相關區段加入 cscfg，藉此修改雲端服務 cscfg。
+接下來，您需要將雲端服務部署新增至新的 VNet。 若要這樣做，請使用 Visual Studio 或選擇的編輯器將相關區段加入 cscfg，藉此修改雲端服務 cscfg。
 
 ```xml
 <ServiceConfiguration serviceName="[hosted-service-name]" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="[os-family]" osVersion="*">
@@ -150,7 +150,7 @@ Set-AzureServiceADDomainExtension -Service <your-cloud-service-hosted-service-na
 
 就這麼簡單。
 
-您的雲端服務現在應該已加入自訂網域控制站。 如果您想要深入了解設定 AD 網域延伸時可用的其他選項，請依下圖所示的方法使用 PowerShell 說明。
+您的雲端服務應該已加入自訂網域控制站。 如果您想要深入了解設定 AD 網域延伸時可用的其他選項，請使用 PowerShell 說明。 以下是一些範例：
 
 ```powershell
 help Set-AzureServiceADDomainExtension

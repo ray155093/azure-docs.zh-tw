@@ -12,10 +12,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 12/05/2016
 ms.author: joroja
-translationtype: Human Translation
-ms.sourcegitcommit: 43224628d5726ac2fb0e8c27c649421af7ceeee4
-ms.openlocfilehash: 6cf375fbfe265a53591b9987ebd32db6df73fcb4
-ms.lasthandoff: 02/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
+ms.openlocfilehash: 5b9955b2af7f20a79981315fa33a0eb5380a5465
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/23/2017
 
 
 ---
@@ -29,16 +30,16 @@ Azure Active Directory B2C (或 Azure AD B2C) 的持續使用費用會計入 Azu
 https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 
 ## <a name="step-1---create-an-azure-ad-b2c-tenant"></a>步驟 1 - 建立 Azure AD B2C 租用戶
-
-必須先完成 B2C 租用戶建立。 如果您已經建立目標 B2C 租用戶，請略過此步驟。 [開始使用 Azure AD B2C](https://azure.microsoft.com/documentation/articles/active-directory-b2c-get-started/)
+必須先完成 B2C 租用戶建立。 如果您已經建立目標 B2C 租用戶，請略過此步驟。 [開始使用 Azure AD B2C](active-directory-b2c-get-started.md)
 
 ## <a name="step-2---open-azure-portal-in-the-azure-ad-tenant-that-shows-your-azure-subscription"></a>步驟 2 - 在 Azure AD 租用戶中開啟 Azure 入口網站，以顯示您的 Azure 訂用帳戶
-瀏覽至 portal.azure.com。 切換至 Azure AD 租用戶，以顯示您想要使用的 Azure 訂用帳戶。 此 Azure AD 租用戶與 B2C 租用戶不同。 在 Azure 入口網站中，按一下儀表板右上角的帳戶名稱以選取 Azure AD 租用戶。 需要有 Azure 訂用帳戶才能繼續執行。 [取得 Azure 訂用帳戶](https://account.windowsazure.com/signup?showCatalog=True)
+瀏覽至 [Azure 入口網站](https://portal.azure.com)。 切換至 Azure AD 租用戶，以顯示您想要使用的 Azure 訂用帳戶。 此 Azure AD 租用戶與 B2C 租用戶不同。 在 Azure 入口網站中，按一下儀表板右上角的帳戶名稱以選取 Azure AD 租用戶。 需要有 Azure 訂用帳戶才能繼續執行。 [取得 Azure 訂用帳戶](https://account.windowsazure.com/signup?showCatalog=True)
 
 ![切換至 Azure AD 租用戶](./media/active-directory-b2c-how-to-enable-billing/SelectAzureADTenant.png)
 
 ## <a name="step-3---create-a-b2c-tenant-resource-in-azure-marketplace"></a>步驟 3 - 在 Azure Marketplace 中建立 B2C 租用戶資源
 按一下 [Marketplace] 圖示開啟 [Marketplace]，或選取儀表板的左上角的綠色 "+"。  搜尋並選取 Azure Active Directory B2C。 選取 [建立]。
+
 ![選取 Marketplace](./media/active-directory-b2c-how-to-enable-billing/marketplace.png)
 
 ![搜尋 AD B2C](./media/active-directory-b2c-how-to-enable-billing/searchb2c.png)
@@ -75,12 +76,5 @@ https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 ## <a name="next-steps"></a>後續步驟
 針對每個 B2C 租用戶完成這些步驟後，您的 Azure 訂用帳戶就會根據 Azure 直接或企業合約詳細資料計費。
 - 檢閱您選取的 Azure 訂用帳戶內的使用量和計費
-- 使用[使用量報告 API](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-reference-usage-reporting-api) 來檢閱詳細的每天使用量報告
-
-
-
-<!--Reference style links - using these makes the source content way more readable than using inline links-->
-[gog]: http://google.com/        
-[yah]: http://search.yahoo.com/  
-[msn]: http://search.msn.com/    
+- 使用[使用量報告 API](active-directory-b2c-reference-usage-reporting-api.md) 來檢閱詳細的每天使用量報告
 

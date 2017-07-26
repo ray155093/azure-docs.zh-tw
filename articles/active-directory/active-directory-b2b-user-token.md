@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/06/2017
+ms.date: 05/25/2017
 ms.author: sasubram
-translationtype: Human Translation
-ms.sourcegitcommit: 807c80b397abe6ff4dfebc2aa7e443c7c5e84e99
-ms.openlocfilehash: 313118740815de02a9f0797ab334eb7f6f900c58
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 57b170539513953bd6a01ab4dd362a65cf905496
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---

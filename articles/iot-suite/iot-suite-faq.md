@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 05/15/2017
 ms.author: corywink
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 9b92801609dfc8d14352a50edd10f8902c87c661
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 9f850175be843b29432c4803a150ddb2ec79780d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -95,6 +95,14 @@ ms.lasthandoff: 05/10/2017
 
 請參閱 Eric Golpe 的部落格文章：[刪除 Azure AD 租用戶的逐步解說 (英文)][lnk-delete-aad-tennant]。
 
+### <a name="what-is-opc-ua"></a>什麼是 OPC UA？
+
+2008 年發行的 OPC 整合架構 (UA) 是一種與平台無關且服務導向的互通性標準，可供各種產業系統和裝置使用，例如產業 PC、PLC 和感應器。 OPC UA 會將個別 OPC Classic 規格的所有功能整合成一個內建安全性的可延伸架構。 它是 OPC Foundation 所推動的一套標準。 [OPC Foundation][lnk-opc-foundation] 是有 440 個以上成員的非營利組織，其共同目標是提供基礎結構、規格、技術和程序，以使用 OPC 規格來促進多廠商、多平台、安全且可靠的互通性。
+
+### <a name="why-did-microsoft-choose-opc-ua-for-the-connected-factory-preconfigured-solution"></a>Microsoft 為什麼選擇 OPC UA 作為連線工廠的預先設定解決方案？
+
+Microsoft 選擇 OPC UA 的原因是它是一種開放式、非專屬、與平台無關、業界認同且已核准的標準。 它是 Industrie 4.0 (RAMI4.0) 參考架構解決方案的必要項目，以確保一組廣泛製造程序與設備之間的互通性。 Microsoft 看到客戶建置 Industrie 4.0 解決方案的需求。 OPC UA 支援可協助降低客戶達到其目標的障礙物，並對他們提供即時商務價值。
+
 ### <a name="next-steps"></a>後續步驟
 
 您也可以瀏覽一些其他功能和預先設定的 IoT 套件解決方案的功能︰
@@ -102,6 +110,7 @@ ms.lasthandoff: 05/10/2017
 * [預先設定的預防性維護解決方案概觀][lnk-predictive-overview]
 * [從頭建立 IoT 安全性][lnk-security-groundup]
 
+[lnk-opc-foundation]: http://opcfoundation.org/
 [lnk-predictive-overview]: iot-suite-predictive-overview.md
 [lnk-security-groundup]: securing-iot-ground-up.md
 

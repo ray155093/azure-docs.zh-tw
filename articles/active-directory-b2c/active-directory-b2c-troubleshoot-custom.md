@@ -15,10 +15,10 @@ ms.devlang: na
 ms.date: 04/04/2017
 ms.author: saeeda
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 07eddeb35c2b88b2de08270d9ff5de317cc09ec7
+ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
+ms.openlocfilehash: db658319637f1a45616091e034a0fc4db44885d4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/22/2017
 
 ---
 
@@ -101,8 +101,8 @@ traces \| where timestamp > ago(1d) | 查看 Azure AD B2C 在最後一天產生�
 
 您可以在[這裡](https://docs.microsoft.com/azure/application-insights/app-insights-analytics)深入了解分析工具。
 
-^[!NOTE]
-^ 該社群已開發了使用者旅程檢視器來協助身分識別開發人員。  此檢視器不受 Microsoft 支援，僅依原狀提供使用。  它會讀取您的 Application Insights 執行個體，並提供結構良好的使用者旅程事件檢視。  請取得原始碼，並將它部署在您自己的解決方案中。
+>[!NOTE]
+>該社群已開發了使用者旅程檢視器來協助身分識別開發人員。  此檢視器不受 Microsoft 支援，僅依原狀提供使用。  它會讀取您的 Application Insights 執行個體，並提供結構良好的使用者旅程事件檢視。  請取得原始碼，並將它部署在您自己的解決方案中。
 
 [Github 用來存放不受支援之自訂原則範例和相關工具的存放庫](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies)
 

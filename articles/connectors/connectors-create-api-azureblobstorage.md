@@ -16,10 +16,10 @@ ms.workload: integration
 ms.date: 05/02/2017
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: a52cc8d5685fad849bf8ea2a4c4f8fde3f340bde
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: bc7908868828bd1628633cf9e57f8c44f8000827
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -71,9 +71,9 @@ ms.lasthandoff: 05/10/2017
 > [!TIP]
 > [儲存體總管](http://storageexplorer.com/)是很適合用來管理多個儲存體帳戶的工具。
 
-## <a name="view-the-swagger"></a>檢視 Swagger
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-請參閱 [Swagger 詳細資料](/connectors/azureblobconnector/)。 
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/azureblobconnector/)的所有限制。 
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。

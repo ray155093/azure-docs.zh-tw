@@ -16,10 +16,10 @@ ms.date: 05/15/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 1199840da725afdae3ee69a26db9ceedb2ab37e3
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 74809ce12a2a273a18ff3e0559aefd79fb4d2da7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/26/2017
 
 ---
 
@@ -28,7 +28,7 @@ ms.lasthandoff: 05/17/2017
 了解如何使用指令碼動作，將其他 Azure 儲存體帳戶新增至使用 Linux 當成作業系統的現有 HDInsight 叢集。
 
 > [!IMPORTANT]
-> 本文件中的資訊是有關如何在建立叢集之後，將其他儲存體新增至叢集。 如需在叢集建立期間新增其他儲存體帳戶的相關資訊，請參閱[建立 Linux 型 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md#use-additional-storage)文件中的__使用其他儲存體__一節。
+> 本文件中的資訊是有關如何在建立叢集之後，將其他儲存體新增至叢集。 如需在叢集建立期間新增儲存體帳戶的資訊，請參閱[使用 Hadoop、Spark、Kafka 等在 HDInsight 中設定叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
 ## <a name="how-it-works"></a>運作方式
 
@@ -122,7 +122,7 @@ curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/cluster
 
 2. 從頁面左邊的服務清單中，選取 [HDFS]。 然後選取頁面中間的 [設定] 索引標籤。
 
-3. 在 [篩選...] 欄位中，輸入 __fs.azure.account__ 值。 這會傳回已新增到叢集的任何其他儲存體帳戶項目。 有兩種項目類型：__keyprovider__ 和 __key__。 兩者都會包含儲存體帳戶名稱做為金鑰名稱的一部分。 
+3. 在 [篩選...] 欄位中，輸入 __fs.azure.account__ 值。 這會傳回已新增到叢集的任何其他儲存體帳戶項目。 有兩種項目類型：__keyprovider__ 和 __key__。 兩者都會包含儲存體帳戶名稱做為金鑰名稱的一部分。
 
     下列是名為 __mystorage__ 之儲存體帳戶的項目範例：
 
@@ -150,3 +150,4 @@ curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/cluster
 ## <a name="next-steps"></a>後續步驟
 
 您已了解如何將其他儲存體帳戶新增至現有的 HDInsight 叢集。 如需指令碼動作的詳細資訊，請參閱[使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)
+

@@ -12,13 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/27/2016
+ms.date: 07/05/2017
 ms.author: adegeo
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: a8f1bf660c44f7716767d3244a7d6e7f7acf8a83
-ms.lasthandoff: 04/27/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: c4ec436df17926114e3e27eabc8ed12761c9614e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 ---
 # <a name="how-to-manage-cloud-services"></a>如何管理雲端服務
@@ -28,7 +28,7 @@ ms.lasthandoff: 04/27/2017
 >
 >
 
-您可以在 Azure 入口網站的 [雲端服務 (傳統)]  區域中管理雲端服務。 本文章說明您在管理雲端服務時，可以採取的一些常見動作。 其中包括更新、刪除、調整以及將預備部署升級為生產部署。
+在 Azure 入口網站的 [雲端服務 (傳統)] 區域中，您可以更新服務角色或部署、將預備部署提升至生產、將資源連結至您的雲端服務以便於查看資源相依性，並將資源一起調整，以及刪除雲端服務或部署。
 
 如需如何調整雲端服務的詳細資訊，可在 [這裡](cloud-services-how-to-scale-portal.md)取得。
 
@@ -47,7 +47,7 @@ ms.lasthandoff: 04/27/2017
 4. **選擇性** 更新部署標籤和儲存體帳戶。
 5. 如果有任何角色只有一個角色執行個體，請選取 [即使一個或多個角色包含單一執行個體，也要部署]  ，讓升級能夠繼續。
 
-    要讓 Azure 保證服務在雲端服務更新期間有 99.95% 的可用性，每個角色都至少必須有兩個角色執行個體 (虛擬機器)。 有兩個角色執行個體，其中一部虛擬機器將會在另一部虛擬機器更新時處理用戶端要求。
+    要讓 Azure 保證服務在雲端服務更新期間有 99.95% 的可用性，每個角色都至少必須有兩個角色執行個體 (虛擬機器)。 有兩個角色執行個體，其中一部虛擬機器會在另一部虛擬機器更新時處理用戶端要求。
 
 6. 在封裝上傳完成之後，選取 [開始部署]  以套用更新。
 7. 按一下 [確定]  開始更新服務。
@@ -78,15 +78,15 @@ ms.lasthandoff: 04/27/2017
 
 成功的部署交換有兩個主要必要條件：
 
-- 如果您想要讓生產環境位置使用靜態 IP 位址，就必須為您的預備位置也保留一個靜態 IP 位址。 否則，交換將會失敗。
+- 如果您想要讓生產環境位置使用靜態 IP 位址，就必須為您的預備位置也保留一個靜態 IP 位址。 否則，交換會失敗。
 
-- 您的所有角色執行個體必須都處於執行中狀態，您才能執行交換。 您可以在 Azure 入口網站的 [概觀] 刀鋒視窗中，或藉由使用 [Windows PowerShell 中的 Get-AzureRole 命令](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0)，來檢查執行個體的狀態。
+- 您的所有角色執行個體必須都處於執行中狀態，您才能執行交換。 您可以在 Azure 入口網站的 [概觀] 刀鋒視窗中檢查您的執行個體狀態。 或者，也可以使用 Windows PowerShell 的 [Get-AzureRole](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0) 命令。
 
 請注意，客體 OS 更新和服務修復作業也可能導致部署交換失敗。 如需詳細資訊，請參閱[對雲端服務部署問題進行疑難排解](cloud-services-troubleshoot-deployment-problems.md)。
 
 **交換是否會導致我的應用程式停止運作？我應該如何處理該情況？**
 
-如最後一節所述，部署交換通常非常快，因為它只是 Azure 負載平衡器中的組態變更。 不過，在某些情況下，它會花費十秒以上的時間，而導致暫時性的連線失敗。 若要限縮對您客戶造成的影響，請考慮實作[用戶端重試邏輯](../best-practices-retry-general.md)。
+如最後一節中所述，部署交換通常很快，因為它只是 Azure 負載平衡器中的設定變更。 不過，在某些情況下，它會花費十秒以上的時間，而導致暫時性的連線失敗。 若要限縮對您客戶造成的影響，請考慮實作[用戶端重試邏輯](../best-practices-retry-general.md)。
 
 ## <a name="how-to-link-a-resource-to-a-cloud-service"></a>作法：將資源連結到雲端服務
 Azure 入口網站不會像目前 Azure 傳統入口網站一樣將資源連結一起。 相反地，會在雲端服務所使用的相同資源群組中部署額外的資源。
@@ -112,8 +112,14 @@ Azure 入口網站不會像目前 Azure 傳統入口網站一樣將資源連結�
 
 > [!NOTE]
 > 當刪除雲端服務並且已設定詳細監視時，您必須從儲存體帳戶中手動刪除資料。 如需何處可找到這些度量表的相關資訊，請參閱 [這篇](cloud-services-how-to-monitor.md) 文章。
->
->
+
+
+## <a name="how-to-find-more-information-about-failed-deployments"></a>如何： 尋找失敗部署的詳細資訊
+[概觀] 刀鋒視窗上方有狀態列。 當您按一下該列時，即會開啟新的刀鋒視窗，並顯示任何錯誤訊息。 如果部署不包含任何錯誤，則 [資訊] 刀鋒視窗會是空白的。
+
+![Cloud Services Swap](./media/cloud-services-how-to-manage-portal/status-info.png)
+
+
 
 [Azure portal]: https://portal.azure.com
 

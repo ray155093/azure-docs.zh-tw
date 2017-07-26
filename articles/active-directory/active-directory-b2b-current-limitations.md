@@ -13,13 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 05/04/2017
+ms.date: 05/23/2017
 ms.author: sasubram
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: f13f4ac6e32f568fb5f56261b542e0e2c49f5b3d
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 581e5d1fb5fb08d0dc89ed2c85edcb5f0005650b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -28,13 +28,10 @@ ms.lasthandoff: 05/12/2017
 Azure Active Directory (Azure AD) B2B 共同作業目前受限於本文所述的限制。
 
 ## <a name="possible-double-multi-factor-authentication"></a>可能的雙重多重要素驗證
-使用 Azure AD B2B，您便可以在資源組織 (邀請組織) 強制執行多重要素驗證。 若要了解採用此方法的詳細原因，請參閱 [B2B 共同作業使用者的條件式存取](active-directory-b2b-mfa-instructions.md)。 這意謂著如果合作夥伴已設定並強制執行多重要素驗證，該合作夥伴的使用者可能必須在其主要組織執行一次驗證，然後在您的組織中再執行一次驗證。
-
-在未來的版本中，我們打算引進一項原則，讓您可以藉由選擇信任合作夥伴的多重要素驗證，來避免發生雙重驗證的問題。
-
+使用 Azure AD B2B，您便可以在資源組織 (邀請組織) 強制執行多重要素驗證。 若要了解採用此方法的詳細原因，請參閱 [B2B 共同作業使用者的條件式存取](active-directory-b2b-mfa-instructions.md)。 如果合作夥伴已設定並強制使用 Multi-Factor Authentication，其使用者可能必須在其所屬組織執行一次驗證，然後在您的組織中再次執行驗證。
 
 ## <a name="instant-on"></a>即時
-在 B2B 共同作業流程中，我們會新增使用者到目錄中，並在邀請兌換與應用程式指派等期間動態更新它們。 更新與寫入通常會在一個目錄執行個體中進行，而且必須複寫到所有執行個體。 在所有執行個體都更新後，複寫作業便已完成。 有時，當系統在一個目錄執行個體中寫入或更新物件，而將擷取此物件的呼叫負載平衡至另一個執行個體時，這便導致發生授權問題。 我們已進行許多工作來消除或減少這些複寫延遲，但在一些罕見的情況下，仍然可能會發生延遲。 如果發生該情況，請重新整理或重試來提供幫助。 如果您正在使用我們的 API 來撰寫應用程式，則採用某種讓步來重試是可減輕此問題的良好防禦性做法。
+在 B2B 共同作業流程中，我們會新增使用者到目錄中，並在邀請兌換與應用程式指派等期間動態更新它們。 更新與寫入通常會在一個目錄執行個體中進行，而且必須複寫到所有執行個體。 在所有執行個體都更新後，複寫作業便已完成。 有時，在某個執行個體中寫入或更新物件，但另一個執行個體呼叫擷取此物件時，就會發生複寫延遲問題。 如果發生該情況，請重新整理或重試來提供幫助。 如果您正在使用我們的 API 來撰寫應用程式，則採用某種讓步來重試是可減輕此問題的良好防禦性做法。
 
 ## <a name="next-steps"></a>後續步驟
 

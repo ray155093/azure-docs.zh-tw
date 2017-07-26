@@ -14,14 +14,14 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 1901613b3e0db19f86247ee78828eccd58fb026b
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 8e77153493b6f37f5f48116b86bad6b25a50d1a1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -34,7 +34,7 @@ ms.lasthandoff: 04/27/2017
 
 [Sqoop][sqoop-user-guide-1.4.4] 是一種可在 Hadoop 叢集和關聯式資料庫之間傳送資料的工具。 此工具可讓您從 SQL Server、MySQL 或 Oracle 等關聯式資料庫管理系統 (RDBMS)，將資料匯入 Hadoop 分散式檔案系統 (HDFS)，使用 MapReduce 或 Hive 轉換 Hadoop 中的資料，然後將資料匯回 RDBMS。 在本教學課程中，您將使用 SQL Server Database 做為關聯式資料庫。
 
-如需 HDInsight 叢集支援的 Sqoop 版本，請參閱 [HDInsight 所提供叢集版本的新功能][hdinsight-versions]。
+如需 HDInsight 叢集所支援的 Sqoop 版本，請參閱 [HDInsight 所提供叢集版本的新功能][hdinsight-versions]。
 
 ## <a name="understand-the-scenario"></a>了解案例
 
@@ -62,7 +62,7 @@ HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
   | sessionid |bigint |
   | sessionpagevieworder |bigint |
 
-您必須先將 sample.log 和 hivesampletable 匯出至 Azure SQL Database 或 SQL Server，再使用下列路徑，將包含行動裝置資料的資料表匯入回到 HDInsight：
+首先，將 sample.log 和 hivesampletable 匯出至 Azure SQL Database 或 SQL Server，然後使用下列路徑，將包含行動裝置資料的資料表匯回 HDInsight：
 
     /tutorials/usesqoop/importeddata
 
@@ -114,7 +114,7 @@ HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
 * **Azure SQL Database**：您必須設定 Azure SQL Database 伺服器的防火牆規則，以允許從您的工作站存取。 如需關於建立 Azure SQL Database 和設定防火牆的指示，請參閱[開始使用 Azure SQL Database][sqldatabase-get-started]。 
   
   > [!NOTE]
-  > 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。 如果此防火牆設定為停用，您必須在 Azure 入口網站中加以啟用。 如需關於建立 Azure SQL Database 和設定防火牆規則的指示，請參閱[建立和設定 SQL Database][sqldatabase-create-configue]。
+  > 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。 如果停用此防火牆設定，則您必須在 Azure 入口網站中加以啟用。 如需關於建立 Azure SQL Database 和設定防火牆規則的指示，請參閱[建立和設定 SQL Database][sqldatabase-create-configue]。
   > 
   > 
 * **SQL Server**：如果您的 HDInsight 叢集與 SQL Server 位於同一個 Azure 虛擬網路上，您可以使用本文中的步驟在 SQL Server Database 上匯入和匯出資料。

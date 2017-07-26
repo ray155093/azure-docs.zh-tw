@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: dde3d1b1b0708d49ac713e18242c3376d301c675
-ms.lasthandoff: 04/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 4fdd007c2cfad7b42f26ab2cacfba06d95c8dad3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.lasthandoff: 04/10/2017
 
 |屬性|說明|
 |---|---|
-|**每個封包的最大位元組 (位元組)** | 來自每個封包所擷取的位元組，如果保留空白，會擷取所有位元組。 來自每個封包所擷取的位元組，如果保留空白，會擷取所有位元組。 如果您僅需要 IPv4 標頭 – 在這裡表示 60 |
+|**每個封包的最大位元組 (位元組)** | 來自每個封包所擷取的位元組，如果保留空白，會擷取所有位元組。 來自每個封包所擷取的位元組，如果保留空白，會擷取所有位元組。 如果您僅需要 IPv4 標頭 – 請在這裡指定 34 |
 |**每個工作階段的最大位元組 (位元組)** | 所擷取其中的位元組總數，一旦達到值時工作階段隨即結束。|
 |**時間限制 (秒)** | 在封包擷取工作階段上設定時間限制。 預設值為 18000 秒或 5 小時。|
 

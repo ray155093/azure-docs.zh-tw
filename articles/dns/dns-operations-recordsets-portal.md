@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: efa52b5f30cab16bfde4202dbfe2c95f4464e2c4
-ms.openlocfilehash: b09b66c44ba94df12934211d5d09430adb667003
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 001b80ccba43beab44f6a598f820df65a85a345f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 ---
 
@@ -26,7 +27,8 @@ ms.lasthandoff: 01/24/2017
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](dns-operations-recordsets-portal.md)
-> * [Azure CLI](dns-operations-recordsets-cli.md)
+> * [Azure CLI 1.0](dns-operations-recordsets-cli-nodejs.md)
+> * [Azure CLI 2.0](dns-operations-recordsets-cli.md)
 > * [PowerShell](dns-operations-recordsets.md)
 
 本文說明如何使用 Azure 入口網站管理 DNS 區域的記錄集和記錄。
@@ -90,7 +92,7 @@ ms.lasthandoff: 01/24/2017
 3. 按一下刀鋒視窗頂端的 [儲存]  來儲存您的設定。
 4. 移除記錄之後，[DNS 區域]  刀鋒視窗上記錄的值將會反映移除。
 
-## <a name="a-namedeleteadelete-a-record-set"></a><a name="delete"></a>刪除記錄集
+## <a name="delete"></a>刪除記錄集
 
 1. 在記錄集的 [記錄集屬性] 刀鋒視窗中，按一下 [刪除]。
 
@@ -110,15 +112,19 @@ ms.lasthandoff: 01/24/2017
 
 ### <a name="modify-ns-records-at-the-zone-apex"></a>在區域頂點修改 NS 記錄
 
-您無法在區域頂點 (名稱 = "@") 自動建立的 NS 記錄集中新增、移除或修改記錄。 修改記錄集 TTL 是唯一允許的變更。
+系統會自動使用每個 DNS 區域在區域頂點建立 NS 記錄集。 此記錄集包含指派給區域的 Azure DNS 名稱伺服器的名稱。
+
+您可以將其他名稱伺服器新增至此 NS 記錄集，以支援使用多個 DNS 提供者的共同裝載網域。 您也可以修改此記錄集的 TTL 和中繼資料。 不過，您無法移除或修改預先填入的 Azure DNS 名稱伺服器。
+
+請注意，這只適用於區域頂點的 NS 記錄集。 區域中的其他 NS 記錄集 (如用於委派子區域) 可以修改，沒有任何限制。
 
 ### <a name="delete-soa-or-ns-record-sets"></a>刪除 SOA 或 NS 記錄集
 
-您無法在建立區域時所自動建立的區域頂點 (名稱 = "@")) 刪除 SOA 和 NS 記錄集。 當您刪除該區域時，就會自動刪除它們。
+您無法在建立區域時所自動建立的區域頂點 (名稱 = "@") 刪除 SOA 和 NS 記錄集。 當您刪除該區域時，就會自動刪除它們。
 
 ## <a name="next-steps"></a>後續步驟
 
 * 如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。
 * 如需自動化 DNS 的相關資訊，請參閱 [使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
-* 如需反向 DNS 記錄的詳細資訊，請參閱 [如何使用 PowerShell 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)。
+* 如需反向 DNS 記錄的詳細資訊，請參閱 [Azure 反向 DNS 和支援概觀](dns-reverse-dns-overview.md)。
 

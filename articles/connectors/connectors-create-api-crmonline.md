@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 02/10/2017
 ms.author: matp; LADocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 845dd16c703362e9e64f02832a35c90e7e77e264
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: d35647921ff540167a3a591fb489d3bab031a5c1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 ---
 
@@ -136,7 +136,7 @@ ms.lasthandoff: 05/10/2017
 
 ![流量記錄識別碼和類型帳戶](./media/connectors-create-api-crmonline/recordid-type-user.png)
 
-若要尋找記錄的識別碼，請參閱下一節：＜尋找記錄識別碼＞**
+若要尋找記錄的識別碼，請參閱下一節：＜尋找記錄識別碼＞
 
 ## <a name="find-the-record-id"></a>尋找記錄識別碼
 
@@ -168,9 +168,9 @@ ms.lasthandoff: 05/10/2017
 
 如需針對邏輯應用程式進行疑難排解的詳細資訊，請參閱[診斷邏輯應用程式失敗](../logic-apps/logic-apps-diagnosing-failures.md)。
 
-## <a name="view-the-swagger"></a>檢視 Swagger
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-請參閱 [Swagger 詳細資料](/connectors/crm/)。 
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/crm/)的所有限制。 
 
 ## <a name="next-steps"></a>後續步驟
 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。

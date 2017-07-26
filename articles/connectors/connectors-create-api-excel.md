@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 08/23/2016
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 423731710c5584f91188a72702b188636d3104e5
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 4d62bee573aba4c8b0445b1f4c44190496fb3a18
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -29,9 +29,9 @@ Logic Apps 中沒有任何 Excel 連接器。
 ## <a name="to-use-excel-data"></a>使用 Excel 資料
 您可以將 Excel 資料儲存為儲存體資料夾中的逗號分隔值 (CSV) 檔案，例如 [OneDrive](connectors-create-api-onedrive.md)。 您也可以搭配使用此 CSV 檔案與 [一般檔案連接器](../logic-apps/logic-apps-enterprise-integration-flatfile.md)。
 
-## <a name="view-the-swagger"></a>檢視 Swagger
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-請參閱 [Swagger 詳細資料](/connectors/excel/)。
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/excel/)的所有限制。
 
 ## <a name="more-connectors"></a>其他連接器
 返回 [API 清單](apis-list.md)。

@@ -14,10 +14,11 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/21/2016
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 1d7f24b8a65347bc54b273d08c06b22320cbeb2c
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 2962e30e5d9c60b8e786e2ba79647cabfc5925cd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 ---
 
@@ -25,7 +26,8 @@ ms.lasthandoff: 04/27/2017
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](dns-operations-recordsets-portal.md)
-> * [Azure CLI](dns-operations-recordsets-cli.md)
+> * [Azure CLI 1.0](dns-operations-recordsets-cli-nodejs.md)
+> * [Azure CLI 2.0](dns-operations-recordsets-cli.md)
 > * [PowerShell](dns-operations-recordsets.md)
 
 本文說明如何使用 Azure PowerShell 來管理 DNS 區域的 DNS 記錄。 也可以使用跨平台 [Azure CLI](dns-operations-recordsets-cli.md) 或 [Azure 入口網站](dns-operations-recordsets-portal.md)來管理 DNS 記錄。
@@ -45,7 +47,7 @@ ms.lasthandoff: 04/27/2017
 
 如果新記錄的名稱和類型與現有記錄相同，您需要[將它新增至現有的記錄集](#add-a-record-to-an-existing-record-set)。 否則，如果新記錄的名稱和類型與現有記錄不同，則必須建立新的記錄集。 
 
-### <a name="create-a-records-in-a-new-record-set"></a>在新記錄集中建立 A 記錄
+### <a name="create-a-records-in-a-new-record-set"></a>在新的記錄集中建立 'A' 記錄
 
 您可以使用 `New-AzureRmDnsRecordSet` Cmdlet 來建立記錄集。 建立記錄集時，您必須指定記錄集名稱、區域、存留時間 (TTL) 和記錄類型，與要建立的記錄。
 
@@ -163,7 +165,7 @@ New-AzureRmDnsRecordSet -Name "test-txt" -RecordType TXT -ZoneName "contoso.com"
 $rs = Get-AzureRmDnsRecordSet -Name "www" -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
 ```
 
-或者，您也可以使用透過 `-Zone' 參數傳遞的區域物件來指定區域。 
+或者，您也可以使用 `-Zone` 參數傳遞的區域物件來指定區域。
 
 ```powershell
 $zone = Get-AzureRmDnsZone -Name "contoso.com" -ResourceGroupName "MyResourceGroup"
@@ -303,13 +305,17 @@ Set-AzureRmDnsRecordSet -RecordSet $rs
 
 ### <a name="to-modify-ns-records-at-the-zone-apex"></a>在區域頂點修改 NS 記錄
 
-您無法在區域頂點 (`-Name "@"` (包含引號)) 在自動建立的 NS 記錄集中新增、移除或修改記錄。 修改記錄集 TTL 與中繼資料是唯一允許的變更。
+系統會自動使用每個 DNS 區域在區域頂點建立 NS 記錄集。 此記錄集包含指派給區域的 Azure DNS 名稱伺服器的名稱。
 
-下列範例示範如何變更 NS 記錄集的 TTL 屬性：
+您可以將其他名稱伺服器新增至此 NS 記錄集，以支援使用多個 DNS 提供者的共同裝載網域。 您也可以修改此記錄集的 TTL 和中繼資料。 不過，您無法移除或修改預先填入的 Azure DNS 名稱伺服器。
+
+請注意，這只適用於區域頂點的 NS 記錄集。 區域中的其他 NS 記錄集 (如用於委派子區域) 可以修改，沒有任何限制。
+
+下列範例顯示如何將其他的名稱伺服器新增至在區域頂點的 NS 記錄集：
 
 ```powershell
 $rs = Get-AzureRmDnsRecordSet -Name "@" -RecordType NS -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
-$rs.Ttl = 300
+Add-AzureRmDnsRecordConfig -RecordSet $rs -Nsdname ns1.myotherdnsprovider.com
 Set-AzureRmDnsRecordSet -RecordSet $rs
 ```
 

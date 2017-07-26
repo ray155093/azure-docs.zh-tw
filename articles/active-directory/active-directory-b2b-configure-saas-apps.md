@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/06/2017
+ms.date: 05/23/2017
 ms.author: sasubram
-translationtype: Human Translation
-ms.sourcegitcommit: 42f93a638ea0bb5139063b76b223fd811ba58fb4
-ms.openlocfilehash: 98bf824831f60a70877e8c41f8b60c339df173d6
-ms.lasthandoff: 02/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 149a493f7b369415f0a2726dd6a576f0195c13d9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -81,7 +82,7 @@ Azure Active Directory (Azure AD) B2B 共同作業可搭配與 Azure AD 整合�
 
 1. 從企業應用程式新增 Box 應用程式。
 
-2. 請執行下列作業來設定單一登入：
+2. 請依下列順序設定單一登入：
 
   ![設定 Box 單一登入](media/active-directory-b2b-configure-saas-apps/configure-box-sso.png)
 
@@ -94,7 +95,7 @@ Azure Active Directory (Azure AD) B2B 共同作業可搭配與 Azure AD 整合�
 
  d. 若要開始將 Box.com 租用戶設定成使用 Azure AD 做為識別提供者，請下載中繼資料檔案，然後將它儲存到本機磁碟機。
 
- e. 將中繼資料檔案轉寄給 Box 支援小組，該小組將會為您設定單一登入。
+ e. 將設定單一登入的中繼資料檔案轉寄給 Box 支援小組。
 
 3. 若要進行 Azure AD 自動使用者設定，請在左窗格中選取 [佈建]，然後選取 [授權]。
 

@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 04/20/2017
 ms.author: jeedes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f291186c6a68dea8aa00b846a2e6f3ad0d7996c
-ms.openlocfilehash: 9c780d89093a6d29a22cd1e5504dcc36b39056ea
+ms.sourcegitcommit: be747170a0d8a7a6defd790a3f8a122c4d397671
+ms.openlocfilehash: 0ebed0c2605862426384c0e219e52c9d626b6246
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 05/23/2017
 
 
 ---
@@ -31,7 +31,7 @@ ScaleX Enterprise 與 Azure AD 整合提供下列優點：
 - 您可以讓使用者使用其 Azure AD 帳戶自動登入 ScaleX Enterprise (單一登入)
 - 您可以在 Azure 入口網站中集中管理您的帳戶
 
-如果您想要知道與 Azure AD 整合的 SaaS 應用程式詳細資訊，請參閱： 什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)。
+如果您想要知道與 Azure AD 整合的 SaaS 應用程式詳細資訊，請參閱： 什麼是搭配 [Azure Active Directory](active-directory-appssoaccess-whatis.md) 的應用程式存取和單一登入？
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -114,7 +114,7 @@ ScaleX Enterprise 與 Azure AD 整合提供下列優點：
 
     a. 在 [識別碼] 文字方塊中，使用下列模式將值輸入：`https://platform.rescale.com/saml2/<company id>/`
 
-    b. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://platform.rescale.com/saml2/<company id>/acs/`
+    b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://platform.rescale.com/saml2/<company id>/acs/`
 
 4. 如果您想要以 **SP** 起始模式設定應用程式，請勾選 [顯示進階 URL 設定]：
 

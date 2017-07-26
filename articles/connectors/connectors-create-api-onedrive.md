@@ -16,10 +16,10 @@ ms.workload: integration
 ms.date: 10/18/2016
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: c5567b2f6fdc9a5708ce611faa372d481d815e7f
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 63bd33bf4e09b98aa53dcfec9fcc4a0109204952
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -88,9 +88,9 @@ ms.lasthandoff: 05/17/2017
 5. **儲存**您的變更 (工具列的左上角)。 邏輯應用程式將會儲存，而且可能會自動啟用。
 
 
-## <a name="view-the-swagger"></a>檢視 Swagger
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-請參閱 [Swagger 詳細資料](/connectors/onedriveconnector/)。
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/onedriveconnector/)的所有限制。
 
 ## <a name="more-connectors"></a>其他連接器
 返回 [API 清單](apis-list.md)。

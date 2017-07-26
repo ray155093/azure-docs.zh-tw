@@ -12,17 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
-ms.date: 03/08/2017
+ms.date: 05/30/2017
 ms.author: sdanie
-translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: af5e181ce254fefe55c847d9988dd8245c75e864
-ms.lasthandoff: 03/09/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
+ms.openlocfilehash: 0fbfb945c66926794721f2ce8cc183dac51ecb27
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/31/2017
 
 
 ---
 # <a name="migrate-from-managed-cache-service-to-azure-redis-cache"></a>從受管理的快取服務移轉至 Azure Redis 快取
 若想將使用 Azure 受管理的快取服務的應用程式移轉至 Azure Redis 快取，您幾乎不需要變更應用程式就可達成，詳細情形取決於快取應用程式所使用的受管理的快取服務功能。 API 雖非完全相同，但卻極為類似，而且您現有使用受管理的快取服務來存取快取的程式碼，大多只需要略做變更即可重複使用。 本主題說明如何對設定和應用程式進行必要的變更，以將受管理的快取服務應用程式移轉為使用 Azure Redis 快取，並說明如何使用 Azure Redis 快取的某些功能，來實作受管理的快取服務快取的功能。
+
+>[!NOTE]
+>受管理的快取服務及 In-Role Cache 已於 2016 年 11 月 30 日起[淘汰](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)。 如果您有任何 In-Role Cache 部署想要移轉到 Azure Redis Cache，您可以依照這篇文章中的步驟作業。
 
 ## <a name="migration-steps"></a>移轉步驟
 要將受管理的快取服務應用程式移轉為使用 Azure Redis 快取，需要執行下列步驟。
@@ -59,7 +63,7 @@ Microsoft Azure Redis 快取有下列階層：
 
 * **基本** - 單一節點。 多種大小，最高為 53 GB。
 * **標準** – 兩個節點 (主要/從屬)。 多種大小，最高為 53 GB。 99.9% SLA。
-* **進階** – 兩個節點的主要/從屬，最多具有 10 個分區。 從 6 GB 到 530 GB 的多種大小 (如需詳細資訊，請與我們連絡)。 所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。 99.9% SLA。
+* **進階** – 兩個節點的主要/從屬，最多具有 10 個分區。 提供多種大小，範圍從 6 GB 到 530 GB。 所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。 99.9% SLA。
 
 每一個階層都有不同的功能和價格。 本指南稍後將探討這些功能，如需定價的詳細資訊，請參閱 [快取定價詳細資料](https://azure.microsoft.com/pricing/details/cache/)。
 

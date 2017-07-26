@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 10/18/2016
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 3c228be32539050123b01c5ccd74547b0d04ed28
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: a3d5cb909dbfcb00f3fbfa0165bb6cd58eb18688
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -32,11 +32,6 @@ ms.lasthandoff: 05/10/2017
 * 使用動作來取得一列資料、插入新的資料列，甚至加以刪除。 例如，當有記錄在 Dynamics CRM Online 中建立時 (觸發程序)，則在 Azure SQL Database 插入資料列 (動作)。 
 
 本主題說明如何在邏輯應用程式中使用 SQL Database 連接器，並且也列出動作。
-
-> [!NOTE]
-> 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。 
-> 
-> 
 
 若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../logic-apps/logic-apps-what-are-logic-apps.md)以及[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
@@ -73,8 +68,9 @@ ms.lasthandoff: 05/10/2017
    > 
 5. **儲存**您的變更 (工具列的左上角)。 邏輯應用程式將會儲存，而且可能會自動啟用。
 
-## <a name="view-the-swagger"></a>檢視 Swagger
-請參閱 [Swagger 詳細資料](/connectors/sql/)。 
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
+
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/sql/)的所有限制。 
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。

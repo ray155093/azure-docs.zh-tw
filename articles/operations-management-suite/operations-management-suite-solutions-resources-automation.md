@@ -4,7 +4,7 @@ description: "OMS 中的解決方案通常會在 Azure 自動化中包含 Runboo
 services: operations-management-suite
 documentationcenter: 
 author: bwren
-manager: jwhit
+manager: carmonm
 editor: tysonn
 ms.assetid: 5281462e-f480-4e5e-9c19-022f36dce76d
 ms.service: operations-management-suite
@@ -12,21 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/17/2017
+ms.date: 05/24/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: a86a20e1e83f412a06f54bb195180b9d2af98ca6
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: c1909183a33ed03d8165671cff25cc8b83b77733
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
 # <a name="adding-azure-automation-resources-to-an-oms-management-solution-preview"></a>將 Azure 自動化資源新增至 OMS 管理解決方案 (預覽)
 > [!NOTE]
 > 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 以下所述的任何結構描述可能會有所變更。   
-> 
-> 
+
 
 [OMS 中的管理解決方案](operations-management-suite-solutions.md)通常會在 Azure 自動化中包含 Runbook，以便自動執行一些程序，例如收集及處理監視資料。  除了 Runbook，自動化帳戶還包含一些資產，例如支援解決方案中所用 Runbook 的變數和排程。  本文說明如何在解決方案中包含 Runbook 與其相關資源。
 
@@ -273,8 +273,20 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
 |:--- |:--- |
 | 說明 | 變數的選擇性說明。 |
 | isEncrypted | 指定是否應加密變數。 |
-| 類型 | 變數的資料類型。 |
+| 類型 | 這個屬性目前沒有任何作用。  變數的資料類型將由初始值所決定。 |
 | value | 變數的值。 |
+
+> [!NOTE]
+> **type** 屬性目前不會影響所建立的變數。  變數的資料類型將由 value 所決定。  
+
+如果您設定變數的初始值，則必須將它設定為正確的資料類型。  下表提供允許的不同資料類型和其語法。  請注意，JSON 中的值應該一律要用引號括住，並以括號括住任何特殊字元。  例如，以括住字串的引號指定字串值 (使用逸出字元 (\\))，並以一組引號指定數值。
+
+| 資料類型 | 說明 | 範例 | 解析成 |
+|:--|:--|:--|:--|
+| 字串   | 以雙引號括住值。  | "\"Hello world\"" | "Hello world" |
+| numeric  | 以單引號括住數值。| "64" | 64 |
+| 布林值  | 以引號括住 **true** 或 **false**。  請注意，此值必須是小寫。 | "true" | true |
+| datetime | 序列化的日期值。<br>您可以在 PowerShell 中使用 ConvertTo-Json Cmdlet，以針對特定日期產生這個值。<br>範例：get-date "5/24/2017 13:14:57" \| ConvertTo-Json | "\\/Date(1495656897378)\\/" | 2017-05-24 13:14:57 |
 
 ## <a name="modules"></a>模組
 您的管理解決方案不需定義您的 Runbook 所用的[全域模組](../automation/automation-integration-modules.md)，因為您永遠可以在自動化帳戶中使用這些模組。  對於 Runbook 所使用的其他任何模組，您不需要包含其資源。

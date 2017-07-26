@@ -16,10 +16,10 @@ ms.workload: integration
 ms.date: 10/05/2016
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: bbf5de2d38cc351d48384ff24e87bbf2881f2e1e
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: c2e2efd356382df9404f5c4ed54f24758b2cd22b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -55,8 +55,9 @@ Salesforce 連接器提供搭配 Salesforce 物件使用的 API。
 > 
 > 
 
-## <a name="view-the-swagger"></a>檢視 Swagger
-請參閱 [Swagger 詳細資料](/connectors/salesforce/)。 
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
+
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/salesforce/)的所有限制。 
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
