@@ -1,6 +1,6 @@
 ---
 title: "使用 Sqoop 在 Data Lake Store和 Azure SQL Database 之間複製資料 | Microsoft Docs"
-description: "使用 Sqoop 在 Azure SQL Database 和資料湖存放區之間複製資料"
+description: "使用 Sqoop 在 Azure SQL Database 和 Data Lake Store 之間複製資料"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -12,29 +12,30 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/06/2017
+ms.date: 06/29/2017
 ms.author: nitinme
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 7f165111cd089d5f32f309235dcbc24d11fb5d64
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 53bf33f6027f1f365bd92251490d5c851fb83f8b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
-# <a name="copy-data-between-data-lake-store-and-azure-sql-database-using-sqoop"></a>使用 Sqoop 在資料湖存放區和 Azure SQL Database 之間複製資料
-了解如何使用 Apache Sqoop 在 Azure SQL Database 和資料湖存放區之間匯入及匯出資料。
+# <a name="copy-data-between-data-lake-store-and-azure-sql-database-using-sqoop"></a>使用 Sqoop 在 Data Lake Store 和 Azure SQL Database 之間複製資料
+了解如何使用 Apache Sqoop 在 Azure SQL Database 和 Data Lake Store 之間匯入及匯出資料。
 
 ## <a name="what-is-sqoop"></a>什麼是 Sqoop？
 巨量資料應用程式是處理非結構化和半結構化資料 (例如記錄和檔案)，很自然的一個選擇。 不過，也有可能需要處理儲存在關聯式資料庫中的結構化資料。
 
-[Apache Sqoop](https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html) 是一個專門設計來在關聯式資料庫和巨量資料儲存機制 (例如 Data Lake Store) 之間傳送資料的工具。 您可以使用它從像是 Azure SQL Database 這類的關聯式資料庫管理系統 (RDBMS)，匯入資料至資料湖存放區。 您可以使用巨量資料工作負載來轉換和分析資料，然後重新將資料匯出到 RDBMS。 在本教學課程中，您會使用 Azure SQL Database 做為匯入/匯出之來源關聯式資料庫。
+[Apache Sqoop](https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html) 是一個專門設計來在關聯式資料庫和巨量資料儲存機制 (例如 Data Lake Store) 之間傳送資料的工具。 您可以使用它從像是 Azure SQL Database 這類的關聯式資料庫管理系統 (RDBMS)，匯入資料至 Data Lake Store。 您可以使用巨量資料工作負載來轉換和分析資料，然後重新將資料匯出到 RDBMS。 在本教學課程中，您會使用 Azure SQL Database 做為匯入/匯出之來源關聯式資料庫。
 
 ## <a name="prerequisites"></a>必要條件
 開始閱讀本文之前，您必須符合下列必要條件：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **Azure Data Lake Store 帳戶**。 如需有關如何建立帳戶的詳細指示，請參閱 [開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)
-* **Azure HDInsight 叢集** 。 請參閱 [建立具有資料湖存放區的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。 本文假設您已使用資料湖存放區存取 HDInsight Linux 叢集。
+* **Azure HDInsight 叢集** 。 請參閱 [建立具有 Data Lake Store 的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。 本文假設您已使用 Data Lake Store 存取 HDInsight Linux 叢集。
 * **Azure SQL Database**。 如需建立方式的指示，請參閱 [建立 Azure SQL Database](../sql-database/sql-database-get-started.md)
 
 ## <a name="do-you-learn-fast-with-videos"></a>使用影片快速學習？
@@ -73,17 +74,17 @@ ms.lasthandoff: 03/25/2017
         INSERT INTO [dbo].[Table1] VALUES (1,'Neal','Kell'), (2,'Lila','Fulton'), (3, 'Erna','Myers'), (4,'Annette','Simpson');
 
 
-## <a name="use-sqoop-from-an-hdinsight-cluster-with-access-to-data-lake-store"></a>從使用資料湖存放區存取的 HDInsight Linux 叢集使用 Sqoop。
-HDInsight 叢集已有可用的 Sqoop 套件。 如果您已設定 HDInsight 叢集使用資料湖存放區做為額外的儲存體，您可以使用 Sqoop (不需要任何組態變更) 在關聯式資料庫 (本範例中為 Azure SQL Database) 與資料湖存放區帳戶之間匯入/匯出資料。
+## <a name="use-sqoop-from-an-hdinsight-cluster-with-access-to-data-lake-store"></a>從使用 Data Lake Store 存取的 HDInsight Linux 叢集使用 Sqoop。
+HDInsight 叢集已有可用的 Sqoop 套件。 如果您已設定 HDInsight 叢集使用 Data Lake Store 做為額外的儲存體，您可以使用 Sqoop (不需要任何組態變更) 在關聯式資料庫 (本範例中為 Azure SQL Database) 與 Data Lake Store 帳戶之間匯入/匯出資料。
 
 1. 在本教學課程中，我們假設您已經建立 Linux 叢集，因此您應該使用 SSH 來連線至叢集。 請參閱 [連線至以 Linux 為基礎的 HDInsight 叢集](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)。
-2. 請確認您是否可從叢集存取資料湖存放區帳戶。 從 SSH 提示字元執行下列命令：
+2. 請確認您是否可從叢集存取 Data Lake Store 帳戶。 從 SSH 提示字元執行下列命令：
 
         hdfs dfs -ls adl://<data_lake_store_account>.azuredatalakestore.net/
 
-    這應會提供資料湖存放區帳戶中的檔案/資料夾清單。
+    這應會提供 Data Lake Store 帳戶中的檔案/資料夾清單。
 
-### <a name="import-data-from-azure-sql-database-into-data-lake-store"></a>從 Azure SQL Database 將資料匯入至資料湖存放區
+### <a name="import-data-from-azure-sql-database-into-data-lake-store"></a>從 Azure SQL Database 將資料匯入至 Data Lake Store
 1. 瀏覽至提供 Sqoop 封裝的目錄。 一般而言，這會在 `/usr/hdp/<version>/sqoop/bin`。
 2. 從 **Table1** 將資料匯入至 Data Lake Store。 使用下列語法：
 
@@ -96,7 +97,7 @@ HDInsight 叢集已有可用的 Sqoop 套件。 如果您已設定 HDInsight 叢
 
         sqoop-import --connect "jdbc:sqlserver://mysqoopserver.database.windows.net:1433;username=nitinme@mysqoopserver;password=<password>;database=mysqoopdatabase" --table Table1 --target-dir adl://myadlstore.azuredatalakestore.net/Sqoop/SqoopImportTable1
 
-1. 請確認資料已被傳輸至資料湖存放區帳戶。 執行以下命令：
+1. 請確認資料已被傳輸至 Data Lake Store 帳戶。 執行以下命令：
 
         hdfs dfs -ls adl://hdiadlstore.azuredatalakestore.net/Sqoop/SqoopImportTable1/
 
@@ -109,10 +110,10 @@ HDInsight 叢集已有可用的 Sqoop 套件。 如果您已設定 HDInsight 叢
         -rwxrwxrwx   0 sshuser hdfs         13 2016-02-26 21:09 adl://hdiadlstore.azuredatalakestore.net/Sqoop/SqoopImportTable1/part-m-00002
         -rwxrwxrwx   0 sshuser hdfs         18 2016-02-26 21:09 adl://hdiadlstore.azuredatalakestore.net/Sqoop/SqoopImportTable1/part-m-00003
 
-    每個 **part-m-***檔案會對應至來源資料表**Table1**中的資料列。*您可以檢視 part-m- 檔案的內容來確認。
+    每個 **part-m-*** 檔案會對應至來源資料表 **Table1**中的資料列。 您可以檢視 part-m-* 檔案的內容來確認。
 
 
-### <a name="export-data-from-data-lake-store-into-azure-sql-database"></a>從資料湖存放區將資料匯出到 Azure SQL Database
+### <a name="export-data-from-data-lake-store-into-azure-sql-database"></a>從 Data Lake Store 將資料匯出到 Azure SQL Database
 1. 從 Data Lake Store 帳戶將資料匯出到 Azure SQL Database 中的空白資料表 **Table2**。 使用下列語法。
 
         sqoop-export --connect "jdbc:sqlserver://<sql-database-server-name>.database.windows.net:1433;username=<username>@<sql-database-server-name>;password=<password>;database=<sql-database-name>" --table Table2 --export-dir adl://<data-lake-store-name>.azuredatalakestore.net/Sqoop/SqoopImportTable1 --input-fields-terminated-by ","

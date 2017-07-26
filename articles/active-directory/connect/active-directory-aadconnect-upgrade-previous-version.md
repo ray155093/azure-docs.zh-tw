@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: Identity
-ms.date: 02/08/2017
+ms.date: 07/12/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: 085706dacdcb0cd5a4169ccac4dc7fd8b8ddb6e0
-ms.lasthandoff: 03/03/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 03de42352b92692a0fa5c6ee3f335592cb2b66c1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 ---
 # <a name="azure-ad-connect-upgrade-from-a-previous-version-to-the-latest"></a>Azure AD Connect：從舊版升級到最新版本
@@ -46,6 +46,8 @@ ms.lasthandoff: 03/03/2017
 ![就地升級](./media/active-directory-aadconnect-upgrade-previous-version/inplaceupgrade.png)
 
 如果您已對現成的同步處理規則進行變更，則系統會在升級時會將這些規則設定回預設組態。 如要確保您的組態在系統升級之後會保留下來，請確保依照[變更預設組態的最佳做法](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)所述來變更組態。
+
+在就地升級期間，可能會傳入變更而必須在升級完成之後執行特定的同步處理活動 (包括「完整匯入」步驟和「完整同步處理」步驟)。 若要延遲這類活動，請參閱[如何延遲升級之後的完整同步處理](#how-to-defer-full-synchronization-after-upgrade)一節。
 
 ## <a name="swing-migration"></a>變換移轉
 如果您的伺服器部署很複雜，或是您的物件很多，在使用中的系統上進行就地升級可能並不實際。 就某些客戶而言，此程序可能需花好幾天的時間，而在這段期間並不會處理任何差異變更。 當您打算對您的組態進行大幅變更，而且想要在這些變更推送至雲端前試用看看，也可以使用這個方法。
@@ -89,6 +91,42 @@ ms.lasthandoff: 03/03/2017
 3. 預備伺服器的連接器 GUID 會跟作用中伺服器的不一樣，必須加以變更。 若要取得 GUID，請啟動 [同步處理規則編輯器]、選取某個代表同一個已連線系統的現成規則，然後按一下 [匯出]。 請用預備伺服器的 GUID 取代 PS1 檔中的 GUID。
 4. 在 PowerShell 命令提示字元中執行 PS1 檔， 以便在預備伺服器上建立自訂同步處理規則。
 5. 針對所有自訂規則重複此步驟。
+
+## <a name="how-to-defer-full-synchronization-after-upgrade"></a>如何延遲升級之後的完整同步處理
+在就地升級期間，可能會傳入變更而必須執行特定的同步處理活動 (包括「完整匯入」步驟和「完整同步處理」步驟)。 例如，連接器結構描述變更時，需要在受影響的連接器上執行**完整匯入**步驟，而全新的同步化規則變更則需要執行**完整同步處理**步驟。 在升級期間，Azure AD Connect 會決定需要何種同步處理活動，並將其記錄為「覆寫」。 在下列同步處理週期內，同步處理排程器會挑出這些覆寫並執行。 覆寫成功執行之後就會移除。
+
+在某些情況下，您可能不想在升級之後立即進行這些覆寫。 例如，您有很多個同步處理的物件，而且想要讓這些同步處理步驟在下班之後執行。 移除這些覆寫：
+
+1. 在升級期間，**清除** [在設定完成時開始同步處理程序] 選項。 這會停用同步處理排程器，並且避免在移除覆寫之前自動開始同步處理週期。
+
+   ![DisableFullSyncAfterUpgrade](./media/active-directory-aadconnect-upgrade-previous-version/disablefullsync01.png)
+
+2. 升級完成之後，執行下列 Cmdlet 來找出已新增哪些覆寫：`Get-ADSyncSchedulerConnectorOverride | fl`
+
+   >[!NOTE]
+   > 覆寫是連接器專屬。 在下列範例中，「完整匯入」步驟和「完整同步處理」步驟已新增至內部部署 AD 連接器與 Azure AD 連接器。
+
+   ![DisableFullSyncAfterUpgrade](./media/active-directory-aadconnect-upgrade-previous-version/disablefullsync02.png)
+
+3. 記下現有已新增的覆寫。
+   
+4. 若要在任意連接器上同時移除完整匯入和完整同步處理的覆寫，請執行下列 Cmdlet：`Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid-of-ConnectorIdentifier> -FullImportRequired $false -FullSyncRequired $false`
+
+   若要移除所有連接器上的覆寫，請執行下列 PowerShell 指令碼：
+
+   ```
+   foreach ($connectorOverride in Get-ADSyncSchedulerConnectorOverride)
+   {
+       Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier $connectorOverride.ConnectorIdentifier.Guid -FullSyncRequired $false -FullImportRequired $false
+   }
+   ```
+
+5. 若要繼續排程器，請執行下列 Cmdlet：`Set-ADSyncScheduler -SyncCycleEnabled $true`
+
+   >[!IMPORTANT]
+   > 請記得儘早執行必要的同步處理步驟。 您可以使用 Synchronization Service Manager 來手動執行這些步驟，或使用 Set-ADSyncSchedulerConnectorOverride Cmdlet 將覆寫加回。
+
+若要在任意連接器上同時新增完整匯入和完整同步處理的覆寫，請執行下列 Cmdlet：`Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid> -FullImportRequired $true -FullSyncRequired $true`
 
 ## <a name="next-steps"></a>後續步驟
 深入了解[將內部部署身分識別與 Azure Active Directory 整合](active-directory-aadconnect.md)。

@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure PowerShell 設定已加入網域的 HDInsight 叢集 | Microsoft Docs"
+title: "使用 PowerShell 設定已加入網域的 HDInsight 叢集 - Azure | Microsoft Docs"
 description: "了解如何使用 Azure PowerShell 安裝及設定已加入網域的 HDInsight 叢集"
 services: hdinsight
 documentationcenter: 
@@ -16,15 +16,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 11/02/2016
 ms.author: saurinsh
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 6f4189cb30d528a106dd8889c06acd621aebb699
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: d31ad53525ef75bdb61c42409dc07bba4138fc25
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
 # <a name="configure-domain-joined-hdinsight-clusters-preview-using-azure-powershell"></a>使用 Azure PowerShell 設定已加入網域的 HDInsight 叢集 (預覽)
 了解如何使用 Azure PowerShell 設定具有 Azure Active Directory (Azure AD) 和 [Apache Ranger](http://hortonworks.com/apache/ranger/) 的 Azure HDInsight 叢集。 Azure PowerShell 指令碼可供用來加快設定速度並減少出錯機會。 您可以只在 Linux 架構的叢集上設定已加入網域的 HDInsight。 如需詳細資訊，請參閱[已加入網域的 HDInsight 叢集簡介](hdinsight-domain-joined-introduction.md)。
+
+> [!IMPORTANT]
+> Oozie 未在已加入網路的 HDInsight 上啟用。
 
 已加入網域之 HDInsight 叢集的典型設定步驟如下︰
 
@@ -59,7 +63,7 @@ ms.lasthandoff: 04/27/2017
 * Azure PowerShell。  請參閱[安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ## <a name="create-an-azure-classic-vnet-for-your-azure-ad"></a>為您的 Azure AD 建立 Azure 傳統 VNet。
-如需指示，請參閱[這裡](hdinsight-domain-joined-configure.md#create-an-azure-classic-vnet)。
+如需指示，請參閱[這裡](hdinsight-domain-joined-configure.md#create-an-azure-virtual-network-classic)。
 
 ## <a name="create-and-configure-azure-ad-and-azure-ad-ds"></a>建立和設定 Azure AD 與 Azure AD DS。
 如需指示，請參閱[這裡](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad)。
@@ -73,7 +77,7 @@ ms.lasthandoff: 04/27/2017
 2. 填入下列變數的值：
    
    * **$SubscriptionName** – 要用來建立 HDInsight 叢集的 Azure 訂用帳戶名稱。 您已在此訂用帳戶中建立傳統虛擬網路，而且將會在訂用帳戶下建立 HDInsight 叢集的 Azure Resource Manager 虛擬網路。
-   * **$ClassicVNetName** – 包含 Azure AD DS 的傳統虛擬網路。 此虛擬網路必須位於和前面所提供者相同的訂用帳戶。 此虛擬網路必須使用 Azure 入口網站來建立，而非使用傳統入口網站。 如果您依照[設定已加入網域的 HDInsight 叢集 (預覽)](hdinsight-domain-joined-configure.md#create-an-azure-classic-vnet) 中的指示進行，則預設名稱是 contosoaadvnet。
+   * **$ClassicVNetName** – 包含 Azure AD DS 的傳統虛擬網路。 此虛擬網路必須位於和前面所提供者相同的訂用帳戶。 此虛擬網路必須使用 Azure 入口網站來建立，而非使用傳統入口網站。 如果您依照[設定已加入網域的 HDInsight 叢集 (預覽)](hdinsight-domain-joined-configure.md#create-an-azure-virtual-network-classic) 中的指示進行，則預設名稱是 contosoaadvnet。
    * **$ClassicResourceGroupName** – 前述傳統虛擬網路的 Resource Manager 群組名稱。 例如 contosoaadrg。 
    * **$ArmResourceGroupName** – 要在其中建立 HDInsight 叢集的資源群組名稱。 您可以使用和 $ArmResourceGroupName 相同的資源群組。  如果資源群組不存在，指令碼會建立資源群組。
    * **$ArmVNetName** – 要在其中建立 HDInsight 叢集的 Resource Manager 虛擬網路名稱。 此虛擬網路將會置入 $ArmResourceGroupName。  如果 VNet 不存在，PowerShell 指令碼會予以建立。 如果存在，則應該會成為您在前面所提供之資源群組的一部分。

@@ -13,12 +13,15 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 04/12/2017
-ms.author: sasubram
-translationtype: Human Translation
-ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
-ms.openlocfilehash: 9cd8edf47059a5f574489a604156890d157c8b1a
-ms.lasthandoff: 04/13/2017
+ms.date: 06/27/2017
+ms.author: curtand
+ms.custom: aaddev
+ms.reviewer: sasubram
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: fbc12a52555b190d43b5e953fd4d19923a25b0ed
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -27,11 +30,11 @@ ms.lasthandoff: 04/13/2017
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AhwrweCBdsc" frameborder="0" allowfullscreen></iframe>
 
-Azure AD 企業對企業 (B2B) 共同作業功能可讓任何使用 Azure AD 的組織安全地與來自任何其他組織的使用者共同作業 – 不論該組織是小還是大；有或沒有 Azure AD；事實上，也不論它是否具有 IT 組織。 
+Azure AD 企業對企業 (B2B) 共同作業功能可讓任何使用 Azure AD 的組織 (不論規模大小)，安全地與來自任何其他組織的使用者共同作業。 這些組織可以有或沒有 Azure AD，或甚至可以有或沒有 IT 組織。 
 
-使用 Azure AD 的組織可以將文件、資源及應用程式的存取權提供給它們的合作夥伴，同時又保有完整的公司資料控制權。 開發人員可以使用 Azure AD 企業對企業 API 來撰寫應用程式，以既安全又可為使用者提供順暢且直覺式瀏覽的方式，將兩個組織結合在一起。
+使用 Azure AD 的組織可以將文件、資源及應用程式的存取權提供給它們的合作夥伴，同時又保有其本身公司資料的完整控制權。 開發人員可以使用 Azure AD 企業對企業 API 來撰寫應用程式，以更安全的方式將兩個組織結合在一起。 還可讓使用者相當輕鬆地瀏覽。
 
-我們的客戶中高達 **97%** 告訴我們 Azure AD B2B 共同作業對他們非常重要。
+我們的客戶中有 97% 告訴我們，Azure AD B2B 共同作業對他們非常重要。
 
 ![圓形圖](media/active-directory-b2b-what-is-azure-ad-b2b/97-percent-support.png)
 
@@ -51,7 +54,7 @@ Azure AD 企業對企業 (B2B) 共同作業功能可讓任何使用 Azure AD 的
 
 * 可提供對任何公司應用程式或資料的存取權，同時又套用精密、Azure AD 提供技術的授權原則
 
-* 流暢的使用者體驗
+* 方便使用者
 
 * 企業級的應用程式與資料安全性
 
@@ -67,7 +70,7 @@ Azure AD 企業對企業 (B2B) 共同作業功能可讓任何使用 Azure AD 的
 
 系統管理員可以在 [Azure 入口網站](https://portal.azure.com)中新增 B2B 共同作業 (來賓) 使用者。
 
-![圓形圖](media/active-directory-b2b-what-is-azure-ad-b2b/adding-b2b-users-admin.png)
+![新增來賓使用者](media/active-directory-b2b-what-is-azure-ad-b2b/adding-b2b-users-admin.png)
 
 ### <a name="enable-your-collaborators-to-bring-their-own-identity"></a>讓您的共同作業者使用自己的身分識別
 
@@ -84,14 +87,17 @@ B2B 共同作業者可以使用自己選擇的身分識別來登入。 如果使
 
 ### <a name="authorization-policies-protect-your-corporate-content"></a>授權原則可保護您的公司內容
 
-系統管理員可以建立條件式存取原則，例如可以在租用戶層級、應用程式層級或針對特定使用者強制執行「多重要素驗證」，以保護公司應用程式和資料。
+可以強制執行條件式存取原則，例如多重要素驗證：
+- 在租用戶層級
+- 在應用程式層級
+- 針對特定使用者來保護公司應用程式和資料
 
 ![新增成員](media/active-directory-b2b-what-is-azure-ad-b2b/add-member.png)
 
 ### <a name="use-our-apis-and-sample-code-to-easily-build-applications-to-onboard"></a>使用我們的 API 和範例程式碼來輕鬆建置要上線的應用程式
 讓您的外部合作夥伴以針對您組織需求量身打造的方式上線使用
 
-藉由使用 [Azure AD B2B 邀請 API](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)，組織將可徹底自訂其上線體驗，包括建立自助式註冊入口網站，我們在 Github 上為其提供了範例程式碼：<https://github.com/Azure/active-directory-dotnet-graphapi-b2bportal-web>
+您可以使用 [B2B 共同作業邀請 API](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation) 來自訂入門訓練體驗，包括建立自助式註冊入口網站。 我們[在 Github](https://github.com/Azure/active-directory-dotnet-graphapi-b2bportal-web) 提供自助式入口網站的範例程式碼。
 
 ![註冊入口網站](media/active-directory-b2b-what-is-azure-ad-b2b/sign-up-portal.png)
 
@@ -103,7 +109,7 @@ B2B 共同作業者可以使用自己選擇的身分識別來登入。 如果使
 
 * 資訊工作者體驗可在[存取面板](https://myapps.microsoft.com)中進行。
 
-* 一如往常，如有任何意見反應、討論及建議，請透過我們的 [Microsoft 技術社群 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B/bd-p/AzureAD_B2b) 與產品小組聯繫。
+* 一如往常，如有任何意見反應、討論及建議，請透過我們的 [Microsoft 技術社群 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B/bd-p/AzureAD_B2b)，與產品小組聯繫。
 
 請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 

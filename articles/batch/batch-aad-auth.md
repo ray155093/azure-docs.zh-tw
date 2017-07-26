@@ -13,13 +13,13 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 04/27/2017
+ms.date: 06/20/2017
 ms.author: tamram
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 92090975e8e4e38b3ea99045c226a2777ef86405
+ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
+ms.openlocfilehash: 9c03bde919c46cd301229255c0b12ee69dda6f78
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 06/20/2017
 
 ---
 
@@ -108,7 +108,11 @@ Azure Batch 支援使用 [Azure Active Directory][aad_about] (Azure AD)進行驗
 
 3. 開啟應用程式的 [設定] 刀鋒視窗。 在 [API 存取] 區段中，選取 [必要權限]。
 4. 在 [必要權限] 刀鋒視窗中，按一下 [新增] 按鈕。
-5. 在步驟 1 中，搜尋 **MicrosoftAzureBatch**選取 **Microsoft Azure Batch (MicrosoftAzureBatch)**，然後按一下 [選取] 按鈕。
+5. 在步驟 1 中，搜尋 Batch API。 搜尋這些字串，直到您找到 API 為止：
+    1. **MicrosoftAzureBatch**。
+    2. **Microsoft Azure Batch**。 較新的 Azure AD 租用戶可以使用這個名稱。
+    3. **ddbf3205-c6bd-46ae-8127-60eb93363864** 是 Batch API 的識別碼。 
+6. 一旦您找到 Batch API，請選取它，然後按一下 [選取] 按鈕。
 6. 在步驟 2 中，選取 [存取 Azure Batch 服務] 旁的核取方塊，然後按一下 [選取] 按鈕。
 7. 按一下 [完成] 按鈕。
 

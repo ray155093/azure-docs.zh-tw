@@ -17,21 +17,20 @@ ms.date: 05/08/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f8b63e5831897d3a45298b0415bb2d6d44ab0de1
-ms.openlocfilehash: 7df8805139b6e3cc23041a8201b496fb7fce8063
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: 684cb55c0bf2abfa1fc1410d7fc1224a220c2713
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/01/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
 # <a name="what-is-microsoft-azure-active-directory-licensing-in-the-azure-classic-portal"></a>Azure 傳統入口網站中的 Microsoft Azure Active Directory 授權為何？
 
 > [!div class="op_single_selector"]
-> * [Azure 入口網站](active-directory-licensing-get-started-azure-portal.md)
-> * [Azure 傳統入口網站](active-directory-licensing-what-is.md)
+> * [取得 Azure 入口網站指示](active-directory-licensing-get-started-azure-portal.md)
+> * [Azure 傳統入口網站資訊](active-directory-licensing-what-is.md)
 >
 >
-
 
 Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDaaS)」解決方案與平台。 Azure AD 提供許多功能與技術的版本，從可搭配任何 Microsoft 服務 (例如 Office 365、Dynamics、Microsoft Intune 和 Azure) 使用的 Azure AD 免費版 (Azure AD 在此模式中不會產生任何使用費用)，到許多 Azure AD 付費版本，例如 Enterprise Mobility Suite (EMS)、Azure AD Premium 與 Basic，以及 Azure Multi-Factor Authentication (MFA)。 如同許多 Microsoft 線上服務一般，大多數 Azure AD 付費版本都是透過賦予每位使用者權利來提供，就像在 Office 365、Microsoft Intune 和 Azure AD 中一樣。 在這些情況下，服務購買是由一或多個訂用帳戶來表示，而且每個訂用帳戶會在您的租用戶中包含預先購買的授權數目。 每位使用者權利是透過授權指派、在使用者與產品之間建立連結、啟用使用者的服務元件，以及使用一個預付授權來達成。
 

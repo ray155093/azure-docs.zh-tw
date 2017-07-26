@@ -15,10 +15,10 @@ ms.tgt_pltfrm: na
 ms.date: 04/15/2017
 ms.author: eugenesh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: faa6d403aa130738ae0b58ba1ffc828a1e37e9f4
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 509682297a3db090caa73bd9438f6434257d558f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/28/2017
 
 ---
 
@@ -34,7 +34,8 @@ blob 索引子可以從下列文件格式擷取文字：
 * XML
 * ZIP
 * EML
-* 純文字檔案  
+* RTF
+* 純文字檔案
 * JSON (請參閱[編製 JSON Blob 的索引](search-howto-index-json-blobs.md) 預覽功能)
 * CSV (請參閱[編製 CSV Blob 的索引](search-howto-index-csv-blobs.md) 預覽功能)
 
@@ -141,7 +142,7 @@ blob 索引子可以從下列文件格式擷取文字：
 
 > [!NOTE]
 > 根據預設，結構化內容 (例如 JSON 或CSV) 的 Blob 會以單一區塊文字編製索引。 如果您要以結構化方式編製 JSON 和 CSV blob 的索引，請參閱[編製 JSON blob 的索引](search-howto-index-json-blobs.md)和[編製 CSV blob 的索引](search-howto-index-csv-blobs.md)預覽功能。
-> 
+>
 > 複合或內嵌文件 (例如 ZIP 封存或具有內嵌 Outlook 電子郵件 (內含附件) 的 Word 文件) 也會編制索引為單一文件。
 
 * 文件的文字內容會擷取至名為 `content` 的字串欄位。
@@ -366,7 +367,9 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 | XML (application/xml) |`metadata_content_type`</br>`metadata_content_encoding`</br> |移除 XML 標記並且擷取文字 |
 | JSON (application/json) |`metadata_content_type`</br>`metadata_content_encoding` |擷取文字<br/>注意：如果您需要從 JSON Blob 擷取多個文件欄位，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md) 的詳細資訊 |
 | EML (message/rfc822) |`metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_creation_date`<br/>`metadata_subject` |擷取文字，包括附件 |
-| 純文字 (text/plain) |`metadata_content_type`</br>`metadata_content_encoding`</br> | |
+| RTF (應用程式/rtf) |`metadata_content_type`</br>`metadata_author`</br>`metadata_character_count`</br>`metadata_creation_date`</br>`metadata_page_count`</br>`metadata_word_count`</br> | 擷取文字|
+| 純文字 (text/plain) |`metadata_content_type`</br>`metadata_content_encoding`</br> | 擷取文字|
+
 
 ## <a name="help-us-make-azure-search-better"></a>協助我們改進 Azure 搜尋服務
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。

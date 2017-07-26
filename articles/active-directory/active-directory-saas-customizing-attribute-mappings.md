@@ -12,14 +12,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/16/2017
+ms.date: 06/17/2017
 ms.author: markvi
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 18415c92d50a00c14823685857ab7e2624334ec7
-ms.openlocfilehash: 19e934895279adb3a32096fffafd567b294c3009
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 6ca2fdc9c68ea0030d938eeaebd57aafa0e2790f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/01/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -29,32 +29,25 @@ Microsoft Azure AD 支援使用者佈建到例如 Salesforce、Google Apps 等�
 在 Azure AD 使用者物件和每個 SaaS app 的使用者物件之間，有一組預先設定的屬性對應。 有些 app 則管理其他類型的物件，例如群組或連絡人。 <br> 
 您可以根據您的業務需求自訂預設的屬性對應。 這表示您可以變更或刪除現有的屬性對應，或建立新的屬性對應。
 
-在 Azure AD 入口網站中，您可以在 SaaS 應用程式工具列中按一下 [屬性] 存取這項功能。
+在 Azure AD 入口網站中，您可以存取這項功能，方法是在 [企業應用程式] 的 [管理] 區段中，按一下 [佈建] 底下的 [對應] 設定。
 
-> [!NOTE]
-> 您必須為 SaaS 應用程式啟用使用者佈建，才能使用 [屬性] 連結。 
-> 
-> 
 
-![Salesforce][1] 
+![Salesforce][5] 
 
-當您按一下工具列的 [屬性] 時，就會出現目前為 SaaS 應用程式設定的對應清單。
+按一下 [對應]設定，可開啟相關的 [屬性對應] 刀鋒視窗。  
+SaaS 應用程式需要有幾個屬性對應才能正確運作。 若為必要的屬性，[刪除] 功能就無法使用。
 
-以下螢幕擷取畫面顯示上述的範例︰
 
-![Salesforce][2]  
+![Salesforce][6]  
 
-在上述範例中，您可以看到 Salesforce 中受管理的物件的 **firstName** 屬性填入了連結 Azure AD 物件的 **givenName** 值。
+在上述範例中，您可以看到 Salesforce 中受管理的物件的 **Username** 屬性填入了連結 Azure Active Directory 物件的 **userPrincipalName** 值。
 
-如果您想要自訂屬性對應，或如果您想要將自訂設定還原為預設組態，可以依序按一下應用程式底部工具列中的相關按鈕。
+您可以按一下對應來自訂現有的 [屬性對應]。 這會開啟 [編輯屬性] 刀鋒視窗。
 
-![Salesforce][3]  
+![Salesforce][7]  
 
-SaaS 應用程式需要有幾個屬性對應才能正確運作。 在屬性資料表中，相關的屬性對應在 [必要] 屬性的值為 [是]。 如果某個屬性對應是必要的，您就無法刪除它。 在此情況下，[刪除]  功能就無法使用。
 
-若要修改現有的屬性對應，請選取對應，然後按一下 [編輯] 即可。 此時會顯示一個對話方塊頁面，讓您修改選取的屬性對應。
-
-![編輯屬性對應][4]  
+  
 
 ## <a name="understanding-attribute-mapping-types"></a>了解屬性對應類型
 有了屬性對應，您就可以控制屬性在協力廠商 SaaS 應用程式中填入的方式。 支援四種不同的對應類型：
@@ -65,11 +58,29 @@ SaaS 應用程式需要有幾個屬性對應才能正確運作。 在屬性資�
   如需詳細資訊，請參閱[在 Azure Active Directory 中撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md)。
 * **無** - 目標屬性保留未修改。 不過，如果目標屬性是空的，就會填入您所指定的預設值。
 
-除了這四個基本屬性對應類型，自訂屬性對應還支援 **預設** 值指派的概念。 預設值指派可確保當 Azure AD 中和目標物件都沒有值時，目標屬性會填入某個值。
+除了這四個基本屬性對應類型，自訂屬性對應還支援選擇性的**預設**值指派的概念。 預設值指派可確保當 Azure AD 中和目標物件都沒有值時，目標屬性會填入某個值。 最常見的設定是將其保留空白。
+
+
+## <a name="understanding-attribute-mapping-properties"></a>了解屬性對應屬性
+
+在前一個區段中，您已經引進了屬性對應類型屬性。
+除了這個屬性之外，屬性對應也會支援下列屬性：
+
+- **來源屬性** - 來源系統的使用者屬性 (例如：Azure Active Directory)。
+- **目標屬性** – 目標系統中的使用者屬性 (例如：ServiceNow)。
+- **使用此屬性比對物件** – 是否應該將此對應用於唯一識別來源與目標系統之間的使用者。 這通常會在 Azure AD 中的 userPrincipalName 或 mail 屬性上加以設定，通常會對應至目標應用程式中的使用者名稱欄位。
+- **比對優先順序** – 您可以設定多個比對屬性。 具有多個屬性時，系統會以此欄位定義的順序進行評估。 只要找到相符項目，便不會評估進一步比對屬性。
+- **套用此對應**
+    - **一律** – 將此對應套用於使用者建立和更新動作
+    - **僅限建立期間** - 僅將此對應套用於使用者建立動作
+
+
+## <a name="what-you-should-know"></a>您應該知道的事情
 
 Microsoft Azure AD 提供有效率的同步處理程序實作。 在初始化環境中，同步處理期間只會處理需要更新的物件。 更新屬性對應會影響同步處理期間的效能。 更新屬性對應組態需要重新評估所有受管理的物件。 建議您最好不要經常變更屬性對應。
 
-## <a name="related-articles"></a>相關文章
+## <a name="next-steps"></a>後續步驟
+
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 * [自動化 SaaS 應用程式使用者佈建/解除佈建](active-directory-saas-app-provisioning.md)
 * [撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md)
@@ -83,4 +94,8 @@ Microsoft Azure AD 提供有效率的同步處理程序實作。 在初始化環
 [2]: ./media/active-directory-saas-customizing-attribute-mappings/ic775419.png
 [3]: ./media/active-directory-saas-customizing-attribute-mappings/ic775420.png
 [4]: ./media/active-directory-saas-customizing-attribute-mappings/ic775421.png
+[5]: ./media/active-directory-saas-customizing-attribute-mappings/21.png
+[6]: ./media/active-directory-saas-customizing-attribute-mappings/22.png
+[7]: ./media/active-directory-saas-customizing-attribute-mappings/23.png
+
 

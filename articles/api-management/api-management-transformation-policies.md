@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: c46a85aaf5237a2a7643cc9069255bdad9ab1d69
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: c2bed904b82c569b28a6e00d0cc9b49107c148dd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 ---
 # <a name="api-management-transformation-policies"></a>API 管理轉換原則
@@ -227,15 +228,28 @@ ms.lasthandoff: 04/07/2017
     </outbound>  
 </policies>  
 ```  
+在這個範例中，設定後端服務原則會根據查詢字串中傳遞的版本值，將要求路由傳送至不同於 API 指定的後端服務。
   
- 在這個範例中，設定後端服務原則會根據查詢字串中傳遞的版本值，將要求路由傳送至不同於 API 指定的後端服務。  
+一開始的後端服務基底 URL 是來自 API 設定。 因此要求 URL `https://contoso.azure-api.net/api/partners/15?version=2013-05&subscription-key=abcdef` 變成 `http://contoso.com/api/10.4/partners/15?version=2013-05&subscription-key=abcdef`，其中 `http://contoso.com/api/10.4/` 是 API 設定中指定的後端服務 URL。  
   
- 一開始的後端服務基底 URL 是來自 API 設定。 因此要求 URL `https://contoso.azure-api.net/api/partners/15?version=2013-05&subscription-key=abcdef` 變成 `http://contoso.com/api/10.4/partners/15?version=2013-05&subscription-key=abcdef`，其中 `http://contoso.com/api/10.4/` 是 API 設定中指定的後端服務 URL。  
+套用 [<choose\>](api-management-advanced-policies.md#choose) 原則陳述式後，後端服務基底 URL 可能再次變更，根據版本要求查詢參數的值變為 `http://contoso.com/api/8.2` 或 `http://contoso.com/api/9.1`。 例如，如果其值為 `"2013-15"`，最終的要求 URL 會變成 `http://contoso.com/api/8.2/partners/15?version=2013-05&subscription-key=abcdef`。  
   
- 套用 [<choose\>](api-management-advanced-policies.md#choose) 原則陳述式後，後端服務基底 URL 可能再次變更，根據版本要求查詢參數的值變為 `http://contoso.com/api/8.2` 或 `http://contoso.com/api/9.1`。 例如，如果其值為 `"2013-15"`，最終的要求 URL 會變成 `http://contoso.com/api/8.2/partners/15?version=2013-05&subscription-key=abcdef`。  
+如果需要進一步轉換要求，可使用其他[轉換原則](api-management-transformation-policies.md#TransformationPolicies)。 例如，將要求路由傳送到版本特定後端之後要移除版本查詢參數，可使用[設定查詢字串參數](api-management-transformation-policies.md#SetQueryStringParameter)原則移除現在變得多餘的版本屬性。  
   
- 如果需要進一步轉換要求，可使用其他[轉換原則](api-management-transformation-policies.md#TransformationPolicies)。 例如，將要求路由傳送到版本特定後端之後要移除版本查詢參數，可使用[設定查詢字串參數](api-management-transformation-policies.md#SetQueryStringParameter)原則移除現在變得多餘的版本屬性。  
+### <a name="example"></a>範例  
   
+```xml  
+<policies>  
+    <inbound>  
+        <set-backend-service backend-id="my-sf-service" sf-partition-key="@(context.Request.Url.Query.GetValueOrDefault("userId","")" sf-replica-type="primary" /> 
+    </inbound>  
+    <outbound>  
+        <base />  
+    </outbound>  
+</policies>  
+```  
+在此範例中，原則會將要求傳送至 Service Fabric 後端，使用 userId 查詢字串作為資料分割索引鍵，以及使用資料分割的主要複本。  
+
 ### <a name="elements"></a>元素  
   
 |名稱|說明|必要|  
@@ -246,8 +260,13 @@ ms.lasthandoff: 04/07/2017
   
 |名稱|說明|必要|預設值|  
 |----------|-----------------|--------------|-------------|  
-|base-url|新的後端服務基底 URL。|是|N/A|  
-  
+|base-url|新的後端服務基底 URL。|否|N/A|  
+|backend-id|要傳送至的後端識別碼。|否|N/A|  
+|sf-partition-key|僅適用於後端為 Service Fabric 服務並使用 'backend-id' 指定時。 用於從名稱解析服務解析特定資料分割。|否|N/A|  
+|sf-replica-type|僅適用於後端為 Service Fabric 服務並使用 'backend-id' 指定時。 控制要求應移至資料分割的主要或次要複本。 |否|N/A|    
+|sf-resolve-condition|僅適用於後端為 Service Fabric 服務時。 識別新的解析是否必須重複呼叫 Service Fabric 後端的條件。|否|N/A|    
+|sf-service-instance-name|僅適用於後端為 Service Fabric 服務時。 允許在執行階段變更服務執行個體。 |否|N/A|    
+
 ### <a name="usage"></a>使用量  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
@@ -655,7 +674,7 @@ OriginalUrl.
   <outbound>  
       <base />  
       <xsl-transform>  
-          <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">  
+        <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">  
             <xsl:output omit-xml-declaration="yes" method="xml" indent="yes" />  
             <!-- Copy all nodes directly-->  
             <xsl:template match="node()| @*|*">  
@@ -663,7 +682,7 @@ OriginalUrl.
                     <xsl:apply-templates select="@* | node()|*" />  
                 </xsl:copy>  
             </xsl:template>  
-          </xsl:stylesheet>  
+        </xsl:stylesheet>  
     </xsl-transform>  
   </outbound>  
 </policies>  

@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 37a9de5909cf4d6b4568e40de001861d083a85df
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: 96680319a6c4c0f0a4673cd6303a5b172f428797
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/10/2017
 
 
 ---
@@ -106,12 +106,14 @@ Docker 容器是常見的 Web 應用程式部署方法。 藉由使用 Docker �
 
       * **新的登入認證**︰建立一組新的登入認證。 如果您選取此選項，請執行下列作業︰
 
-        a. 在 [VM 認證] 索引標籤上提供下列資訊，以供 Docker 主機的虛擬機器登入認證使用︰     * **使用者名稱**︰輸入虛擬機器登入認證的使用者名稱。
+        a. 在 [VM 認證] 索引標籤上提供下列資訊，以供 Docker 主機的虛擬機器登入認證使用︰***使用者名稱**︰輸入虛擬機器登入認證的使用者名稱。
              * **密碼**和**確認**︰輸入虛擬機器登入認證的密碼。
-             * **SSH**︰輸入 Docker 主機的安全殼層 (SSH) 設定。 您可以選取下列其中一個選項：        * **無**︰將虛擬機器指定為不允許 SSH 連線。
+             * **SSH**︰輸入 Docker 主機的安全殼層 (SSH) 設定。 您可以選取下列其中一個選項：***無**︰將虛擬機器指定為不允許 SSH 連線。
                 * **自動產生**︰自動建立透過 SSH 連線的必要設定。
-                * **從目錄匯入**︰可讓您指定內含一組先前儲存之 SSH 設定的目錄。 此目錄必須包含下列兩個檔案︰           * *id_rsa*︰包含使用者的 RSA 識別。
-                   * *id_rsa.pub*︰包含用於驗證的 RSA 公開金鑰。
+                * **從目錄匯入**︰可讓您指定內含一組先前儲存之 SSH 設定的目錄。 此目錄必須包含下列兩個檔案︰
+                
+                  * *id_rsa*: Contains the RSA identification for a user.
+                  * *id_rsa.pub*: Contains the RSA public key that is used for authentication.
             
         b.這是另一個 C# 主控台應用程式。 在 [Docker 精靈存取] 索引標籤上，提供下列資訊︰
 
@@ -185,14 +187,14 @@ Azure 工具組會開始將您的 Web 應用程式部署至 Azure 中的 Docker 
 如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列資源：
 
 * [適用於 Eclipse 的 Azure 工具組]
-  * [適用於 Eclipse 的 Azure 工具組的新功能]
+  * [Azure Toolkit for Eclipse 的新功能]
   * [安裝 Azure Toolkit for Eclipse]
   * [Azure Toolkit for Eclipse 的登入指示]
   * [在 Eclipse 中建立 Azure Hello World Web 應用程式]
 * [Azure Toolkit for IntelliJ]
   * [適用於 IntelliJ 的 Azure 工具組新增功能]
   * [安裝 Azure Toolkit for IntelliJ]
-  * [Azure Toolkit for IntelliJ 的登入指示]
+  * [適用於 IntelliJ 的 Azure 工具組登入指示]
   * [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
 
 如需有關使用 Azure 搭配 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]和[適用於 Visual Studio Team Services 的 Java 工具]。
@@ -208,8 +210,8 @@ Azure 工具組會開始將您的 Web 應用程式部署至 Azure 中的 Docker 
 [安裝 Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
 [安裝 Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
 [Azure Toolkit for Eclipse 的登入指示]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Azure Toolkit for IntelliJ 的登入指示]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[適用於 Eclipse 的 Azure 工具組的新功能]: ./azure-toolkit-for-eclipse-whats-new.md
+[適用於 IntelliJ 的 Azure 工具組登入指示]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Azure Toolkit for Eclipse 的新功能]: ./azure-toolkit-for-eclipse-whats-new.md
 [適用於 IntelliJ 的 Azure 工具組新增功能]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/

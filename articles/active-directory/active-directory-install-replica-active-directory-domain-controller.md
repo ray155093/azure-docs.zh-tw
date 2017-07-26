@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/08/2017
 ms.author: curtand
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 7b267f11a2989b1e621906a46ea4e3bf7f58ca2b
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 2adf6d6758c260f539277dafe8b9fadc3d9acb8b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -81,7 +81,7 @@ ms.lasthandoff: 04/27/2017
 登入 VM，並確認您具備整個站台對站台 VPN 的連線能力，或是對內部部署網路上的資源具備 ExpressRoute 連線功能。 然後在 Azure VM 上安裝 AD DS。 您可以使用您用來在內部部署網路上安裝其他網域控制站的相同程序 (UI、Windows PowerShell 或回應檔案)。 當您安裝 AD DS 時，請務必指定新磁碟區的 AD 資料庫、記錄檔和 SYSVOL 的位置。 如果您需要複習一下 AD DS 安裝，請參閱[安裝 Active Directory Domain Services (等級 100)](https://technet.microsoft.com/library/hh472162.aspx) 或[在現有網域中安裝複本 Windows Server 2012 網域控制站 (等級 200)](https://technet.microsoft.com/library/jj574134.aspx)。
 
 ## <a name="reconfigure-dns-server-for-the-virtual-network"></a>重新設定虛擬網路的 DNS 伺服器
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下虛擬網路的名稱，然後按一下 [設定] 索引標籤來[重新設定虛擬網路的 DNS 伺服器 IP 位址](../virtual-network/virtual-networks-manage-dns-in-vnet.md)，以使用指派給複本 DC 的靜態 IP 位址，而不是內部部署 DNS 伺服器的 IP 位址。
+1. 在 [Azure 入口網站](https://portal.azure.com)的 [搜尋資源] 方塊中，輸入「虛擬網路」，然後在搜尋結果中按一下 [虛擬網路 (傳統)]。 按一下虛擬網路的名稱，然後按一下[重新設定虛擬網路的 DNS 伺服器 IP 位址](../virtual-network/virtual-network-manage-network.md#dns-servers)，以使用指派給複本 DC 的靜態 IP 位址，而不是內部部署 DNS 伺服器的 IP 位址。
 2. 若要確保虛擬網路上的所有複本 DC VM 都已設定為使用虛擬網路上的 DNS 伺服器，請按一下 [虛擬機器]，按一下每個 VM 的狀態欄，然後按一下 [重新啟動]。 請等到 VM 顯示 [執行中]  狀態，再嘗試登入。
 
 ## <a name="create-vms-for-application-servers"></a>建立應用程式伺服器的 VM

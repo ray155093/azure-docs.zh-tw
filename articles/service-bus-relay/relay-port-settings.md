@@ -12,19 +12,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/24/2017
+ms.date: 07/03/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 783e797ad318fe926ba9e72e2eea027beb4a5994
-ms.lasthandoff: 03/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 5906495c565dad583e74a43b2e5eed57e0c68df1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
 
 # <a name="azure-relay-port-settings"></a>Azure 轉送連接埠設定
 
-下表說明 Azure 轉送的連接埠值所需的組態。
+下表說明 Azure 轉送的連接埠值所需的設定。
 
 ## <a name="hybrid-connections"></a>混合式連線
 混合式連線使用 WebSockets 做為基礎傳輸機制，僅使用 **HTTPS**。 

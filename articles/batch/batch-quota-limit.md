@@ -12,14 +12,14 @@ ms.workload: big-compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/05/2017
+ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 56e8f5579da2b5bed7975f25f0779c54d70cb886
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: f3f69ed8d3a985afe07e648e7512a88b25278ced
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/26/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -72,8 +72,10 @@ ms.lasthandoff: 04/26/2017
 | [應用程式](batch-application-packages.md)  |20 |
 | 每個應用程式的應用程式封裝 |40 |
 | 應用程式封裝大小 (每一個) |大約 195 GB<sup>1</sup> |
+| 最大啟動工作大小 | 32768 個字元<sup>2</sup> |
 
-<sup>1</sup> 對於區塊 Blob 大小上限的 Azure 儲存體限制
+<sup>1</sup> 對於區塊 Blob 大小上限的 Azure 儲存體限制<br />
+<sup>2</sup> 包含資源檔案和環境變數
 
 ## <a name="view-batch-quotas"></a>檢視 Batch 配額
 在 [Azure 入口網站][portal]中檢視您的 Batch 帳戶配額。
@@ -111,14 +113,14 @@ ms.lasthandoff: 04/26/2017
    
     d. **支援方案** > **配額支援 - 已包含**
    
-    按 [下一步] 。
+    按一下 [下一步] 。
 4. 在 [問題]  刀鋒視窗上：
    
     a. 根據[商業影響][support_sev]選取 [嚴重性]。
    
     b.這是另一個 C# 主控台應用程式。 在 [詳細資料] 中，指定每個您想要變更的配額、Batch 帳戶名稱和新限制。
    
-    按 [下一步] 。
+    按一下 [下一步] 。
 5. 在 [連絡資訊]  刀鋒視窗上：
    
     a. 選取 [偏好的連絡方式]。

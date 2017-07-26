@@ -16,111 +16,144 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/23/2017
 ms.author: juliens
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: a8a3716f8d03b596285026426c7514b7b642cb25
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: a394f7ec3f7985b97eec2eb649a8a310a31ac657
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/04/2017
 
 
 ---
 # <a name="use-acr-with-a-dcos-cluster-to-deploy-your-application"></a>搭配使用 ACR 與 Azure DC/OS 叢集以部署應用程式
 
-本文將探討如何搭配使用私人容器登錄 (例如 ACR (Azure Container Registry)) 與 DC/OS 叢集。 使用 ACR 可讓您私人儲存映像並對它進行控制，例如版本和 (或) 更新。
+本文探討如何搭配使用 Azure Container Registry 與 DC/OS 叢集。 使用 ACR 可讓您私下儲存和管理容器映像。 本教學課程涵蓋下列工作：
 
-在練習此範例之前，您需要︰ 
-* 已在 Azure Container Service 中設定的 DC/OS 叢集。 請參閱[部署 Azure Container Service 叢集](container-service-deployment.md)。
-* 部署 Azure Container Service。 請參閱[使用 Azure 入口網站建立私人 Docker 容器登錄](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-portal)或[使用 Azure CLI 2.0 建立私人 Docker 容器登錄](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-azure-cli)
-* 已在 DC/OS 叢集內設定檔案共用。 請參閱[建立檔案共用並將它掛接到 DC/OS 叢集](container-service-dcos-fileshare.md)
-* 了解如何使用 [Web UI](container-service-mesos-marathon-ui.md) 或 [REST API](container-service-mesos-marathon-rest.md) 在 DC/OS 叢集中部署 Docker 映像
+> [!div class="checklist"]
+> * 部署 Azure Container Registry (如有需要)
+> * 在 DC/OS 叢集上設定 ACR 驗證
+> * 將映像上傳至 Azure Container Registry
+> * 從 Azure Container Registry 執行容器映像
 
-## <a name="manage-the-authentication-inside-your-cluster"></a>管理叢集內的驗證
+您需要 ACS DC/OS 叢集，才能完成本教學課程中的步驟。 如有需要，[此指令碼範例](./scripts/container-service-cli-deploy-dcos.md)可為您建立一個叢集。
 
-從私人登錄推送和提取映像的傳統方式是先在其上進行驗證。 若要這麼做，您必須在需要使用您私人登錄的任何 Docker 用戶端處理序上使用 `docker login` 命令列。
-而在生產環境中 (本例使用 DC/OS)，您會想要確定您可以從任何節點提取映像。 這表示您想要自動進行驗證程序，而不要在每個電腦上執行命令列，因為您可以想像得到，根據您的叢集大小而定，這會是繁重而惱人的作業。 
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-假設您已經[在 DC/OS 內設定檔案共用](container-service-dcos-fileshare.md)，我們會透過下列方式來利用它︰
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-### <a name="from-any-client-machine-recommended-method"></a>從任何用戶端電腦 [建議方法]
+## <a name="deploy-azure-container-registry"></a>部署 Azure Container Registry
 
-下列命令可在任何環境 (Windows/Mac/Linux) 上執行︰
+如有需要，使用 [az acr create](/cli/azure/acr#create) 命令來建立 Azure Container Registry。 
 
-1. 確定您符合下列必要條件︰
-  * TAR 工具
-    * [Windows](http://gnuwin32.sourceforge.net/packages/gtar.htm)
-  * Docker 
-    * [Windows](https://www.docker.com/docker-windows)
-    * [MAC](https://www.docker.com/docker-mac)
-    * [Ubuntu](https://www.docker.com/docker-ubuntu)
-    * [其他](https://www.docker.com/get-docker)
-  * 檔案共用已[透過下列方法](container-service-dcos-fileshare.md)掛接在您的叢集內
+下列範例會以隨機產生的名稱建立登錄。 使用 `--admin-enabled` 引數也可以用管理帳戶設定登錄。
 
-2. 在您偏好使用的終端機上使用下列命令來起始 ACR 服務的驗證︰`sudo docker login --username=<USERNAME> --password=<PASSWORD> <ACR-REGISTRY-NAME>.azurecr.io`。 您必須以您在 Azure 入口網站上提供的值取代 `USERNAME`、`PASSWORD` 和 `ACR-REGISTRY-NAME` 變數
+```azurecli-interactive
+az acr create --resource-group myResourceGroup --name myContainerRegistry$RANDOM --sku Basic --admin-enabled true
+```
 
-3. 有趣的是，當您在進行 `docker login` 作業時，這些值會儲存在電腦本機上的主資料夾底下 (在 Mac 和 Linux 上是 `cd ~/.docker`，在 Windows 上是 `cd %HOMEPATH%`)。 我們會使用 `tar czf` 命令來壓縮此資料夾的內容。
+一旦建立登錄，Azure CLI 就會輸出類似下列的資料。 請記下 `name` 和 `loginServer`，在稍後的步驟中會用到這些資料。
 
-4. 最後一個步驟是將我們剛才建立的 tar 檔案，複製到[您建立作為必要條件](container-service-dcos-fileshare.md)的檔案共用內。 您可以搭配使用 Azure-CLI 與下列命令 `az storage file upload -s <shareName> --account-name <storageAccountName> --account-key <storageAccountKey> -source <pathToTheTarFile>` 來執行這個步驟
+```azurecli
+{
+  "adminUserEnabled": false,
+  "creationDate": "2017-06-06T03:40:56.511597+00:00",
+  "id": "/subscriptions/f2799821-a08a-434e-9128-454ec4348b10/resourcegroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/myContainerRegistry23489",
+  "location": "eastus",
+  "loginServer": "mycontainerregistry23489.azurecr.io",
+  "name": "myContainerRegistry23489",
+  "provisioningState": "Succeeded",
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic"
+  },
+  "storageAccount": {
+    "name": "mycontainerregistr034017"
+  },
+  "tags": {},
+  "type": "Microsoft.ContainerRegistry/registries"
+}
+```
 
-總結來說，使用下列設定的範例 (使用 Windows 環境) 如下︰
-* ACR 名稱：**`demodcos`**
-* 使用者名稱：**`demodcos`**
-* 密碼：**`+js+/=I1=L+D=+eRpU+/=wI/AjvDo=J0`**
-* 儲存體帳戶名稱︰**`anystorageaccountname`**
-* 儲存體帳戶金鑰︰**`aYGl6Nys4De5J3VPldT1rXxz2+VjgO7dgWytnoWClurZ/l8iO5c5N8xXNS6mpJhSc9xh+7zkT7Mr+xIT4OIVMg==`**
-* 在儲存體帳戶內建立的共用名稱︰**`share`**
-* 要上傳之 tar 封存檔的路徑︰**`%HOMEPATH%/.docker/docker.tar.gz`**
+使用 [az acr credential show](/cli/azure/acr/credential) 命令取得容器登錄認證。 以最後一個步驟中記下的名稱替代 `--name`。 記下一組密碼，稍後的步驟中會用到此密碼。
 
-```bash
-# Changing directory to the home folder of the default user
-cd %HOMEPATH%
+```azurecli-interactive
+az acr credential show --name myContainerRegistry23489
+```
 
-# Authentication into my ACR
-docker login --username=demodcos --password=+js+/=I1=L+D=+eRpU+/=wI/AjvDo=J0 demodcos.azurecr.io
+如需 Azure Container Registry 的詳細資訊，請參閱[私人 Docker 容器登錄簡介](../container-registry/container-registry-intro.md)。 
 
-# Tar the contains of the .docker folder
+## <a name="manage-acr-authentication"></a>管理 ACR 驗證
+
+從私人登錄推送和提取映像的傳統方式是先向登錄進行驗證。 若要這樣做，您可以在任何需要存取私人登錄的用戶端上使用 `docker login` 命令。 因為 DC/OS 叢集可以包含許多節點，而所有節點都必須向 ACR 驗證，所以有助於在每個節點上自動執行此程序。 
+
+### <a name="create-shared-storage"></a>建立共用儲存體
+
+此程序會使用已掛接在叢集中每個節點上的 Azure 檔案共用。 如果尚未設定共用儲存體，請參閱[在 DC/OS 叢集內設定檔案共用](container-service-dcos-fileshare.md)。
+
+### <a name="configure-acr-authentication"></a>設定 ACR 驗證
+
+首先，取得 DC/OS 主機的 FQDN，並將它儲存在變數中。
+
+```azurecli-interactive
+FQDN=$(az acs list --resource-group myResourceGroup --query "[0].masterProfile.fqdn" --output tsv)
+```
+
+建立 SSH 與以 DC/OS 為基礎的叢集主機 (或主要主機) 的連線。 如果建立叢集時已使用非預設值，請更新使用者名稱。
+
+```azurecli-interactive
+ssh azureuser@$FQDN
+```
+
+執行下列命令來登入 Azure Container Registry。 以容器登錄的名稱取代 `--username`，並以其中一個提供的密碼取代 `--password`。 以容器登錄的 loginServer 名稱取代範例中的最後一個引數 *mycontainerregistry.azurecr.io*。 
+
+此命令會將驗證值儲存在本機的 `~/.docker` 路徑下。
+
+```azurecli-interactive
+docker -H tcp://localhost:2375 login --username=myContainerRegistry23489 --password=//=ls++q/m+w+pQDb/xCi0OhD=2c/hST mycontainerregistry.azurecr.io
+```
+
+建立壓縮檔案，其中包含容器登錄驗證值。
+
+```azurecli-interactive
 tar czf docker.tar.gz .docker
-
-# Upload the tar archive in the fileshare
-az storage file upload -s share --account-name anystorageaccountname --account-key aYGl6Nys4De5J3VPldT1rXxz2+VjgO7dgWytnoWClurZ/l8iO5c5N8xXNS6mpJhSc9xh+7zkT7Mr+xIT4OIVMg== --source %HOMEPATH%/docker.tar.gz
 ```
 
-### <a name="from-the-master-not-recommended-method"></a>從主機 [不建議的方法]
+將此檔案複製到叢集共用儲存體。 這個步驟讓此檔案可用於 DC/OS 叢集的所有節點上。
 
-我們不建議您從主機執行作業，這樣才能避免錯誤及影響整個環境。
-
-1. 首先，以 SSH 方式連線到 DC/OS 型叢集的主機 (或主要主機)。 例如，`ssh userName@masterFQDN –A –p 22`，其中 masterFQDN 是主機 VM 的完整網域名稱。 [按一下這裡來了解詳細資訊](https://docs.microsoft.com/azure/container-service/container-service-connect#connect-to-a-dcos-or-swarm-cluster)
-
-2. 使用下列命令來起始 ACR 服務的驗證︰`sudo docker login --username=<USERNAME> --password=<PASSWORD> <ACR-REGISTRY-NAME>.azurecr.io`。 您必須以您在 Azure 入口網站上提供的值取代 `USERNAME`、`PASSWORD` 和 `ACR-REGISTRY-NAME` 變數
-
-3. 有趣的是，當您在進行 `docker login` 作業時，這些值會儲存在電腦本機上的主資料夾 `~/.docker` 底下。 我們會使用 `tar czf` 命令來壓縮此資料夾的內容。
-
-4. 最後一個步驟是將我們剛才建立的 tar 檔案複製到檔案共用內。 這項作業可讓叢集內的所有虛擬機器使用此認證，並在 Azure Container Registry 上進行驗證。
-
-總結來說，使用下列設定的範例如下︰
-* ACR 名稱：**`demodcos`**
-* 使用者名稱：**`demodcos`**
-* 密碼：**`+js+/=I1=L+D=+eRpU+/=wI/AjvDo=J0`**
-* 叢集內的掛接點︰**`/mnt/share`**
-
-```bash
-# Changing directory to the home folder of the default user
-cd ~
-
-# Authentication into my ACR
-sudo docker login --username=demodcos --password=+js+/=I1=L+D=+eRpU+/=wI/AjvDo=J0 demodcos.azurecr.io
-
-# Tar the contains of the .docker folder
-sudo tar czf docker.tar.gz .docker
-
-# Copy of the tar file in the file share of my cluster
-sudo cp docker.tar.gz /mnt/share
+```azurecli-interactive
+cp docker.tar.gz /mnt/share/dcosshare
 ```
 
+## <a name="upload-image-to-acr"></a>將映像上傳至 ACR
 
-## <a name="deploy-an-image-from-acr-with-marathon"></a>使用 Marathon 從 ACR 部署映像
+現在從開發電腦或任何已安裝 Docker 的其他系統，建立映像並將它上傳至 Azure Container Registry。
 
-您應該已經將您想要部署的映像推送至容器登錄內。 請參閱[使用 Docker CLI 將您的第一個映像推送至私人 Docker 容器登錄](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-docker-cli)
+從 Ubuntu 映像建立容器。
 
-假設我們想要從裝載在 Azure 上的私人登錄 (ACR) 部署 **simple-web** 映像 (具有 **2.1** 標籤)，我們會使用下列設定︰
+```azurecli-interactive
+docker run ubunut --name base-image
+```
+
+現在將容器擷取至新映像。 映像名稱必須包含容器登錄的 `loginServer` 名稱，其格式為 `loginServer/imageName`。
+
+```azurecli-interactive
+docker -H tcp://localhost:2375 commit base-image mycontainerregistry30678.azurecr.io/dcos-demo
+````
+
+登入 Azure Container Registry。 以 loginServer 名稱取代名稱，以容器登錄的名稱取代 --username，並以其中一個提供的密碼取代 --password。
+
+```azurecli-interactive
+docker login --username=myContainerRegistry23489 --password=//=ls++q/m+w+pQDb/xCi0OhD=2c/hST mycontainerregistry2675.azurecr.io
+```
+
+最後，將映像上傳至 ACR 登錄。 這個範例會上傳名為 dcos-demo 的映像。
+
+```azurecli-interactive
+docker push mycontainerregistry30678.azurecr.io/dcos-demo
+```
+
+## <a name="run-an-image-from-acr"></a>從 ACR 執行映像
+
+若要使用 ACR 登錄中的映像，請建立名為 *acrDemo.json* 的檔案並將下列文字複製到其中。 以容器登錄 loginServer 名稱和映像名稱 (例如 `loginServer/imageName`) 取代映像名稱。 請記下 `uris` 屬性。 這個屬性會保留容器登錄驗證檔案的位置，在此例中是掛接在 DC/OS 叢集中每個節點上的 Azure 檔案共用。
 
 ```json
 {
@@ -128,10 +161,16 @@ sudo cp docker.tar.gz /mnt/share
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "demodcos.azurecr.io/simple-web:2.1",
+      "image": "mycontainerregistry30678.azurecr.io/dcos-demo",
       "network": "BRIDGE",
       "portMappings": [
-        { "hostPort": 0, "containerPort": 80, "servicePort": 10000 }
+        {
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp",
+          "name": "80",
+          "labels": null
+        }
       ],
       "forcePullImage":true
     }
@@ -148,21 +187,25 @@ sudo cp docker.tar.gz /mnt/share
       "intervalSeconds": 2,
       "maxConsecutiveFailures": 10
   }],
-  "labels":{
-    "HAPROXY_GROUP":"external",
-    "HAPROXY_0_VHOST":"YOUR FQDN",
-    "HAPROXY_0_MODE":"http"
-  },
   "uris":  [
-       "file:///mnt/share/docker.tar.gz"
+       "file:///mnt/share/dcosshare/docker.tar.gz"
    ]
 }
 ```
 
-> [!NOTE] 
-> 如您所見，我們使用 **uris** 選項來指定認證的儲存位置。
->
+使用 DC/OC CLI 部署應用程式。
+
+```azurecli-interactive
+dcos marathon app add acrDemo.json
+```
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解如何[管理 DC/OS 容器](container-service-mesos-marathon-ui.md)。
-* 透過 [Marathon REST API](container-service-mesos-marathon-rest.md) 進行 DC/OS 容器管理。
+
+在本教學課程中，您已將 DC/OS 設定為使用 Azure Container Registry，包括下列工作：
+
+> [!div class="checklist"]
+> * 部署 Azure Container Registry (如有需要)
+> * 在 DC/OS 叢集上設定 ACR 驗證
+> * 將映像上傳至 Azure Container Registry
+> * 從 Azure Container Registry 執行容器映像
+

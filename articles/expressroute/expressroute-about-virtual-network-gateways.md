@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/20/2017
+ms.date: 07/05/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: b58a8f7f87a231bd44c9224e3c889c31336ee0b1
-ms.lasthandoff: 03/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: a6363fa380d0bab05d7500141cc6019d1d3f68b8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.lasthandoff: 03/21/2017
 
 當您建立虛擬網路閘道時，需要指定數個設定。 其中一個必要設定會指定是否要對 ExpressRoute 或站對站 VPN 閘道流量使用閘道。 在 Resource Manager 部署模型中，此設定是「-GatewayType」。
 
-如果網路流量是在專用私人連線上傳送，則使用的閘道類型為「ExpressRoute」。 也稱為 ExpressRoute 閘道。 如果網路流量是透過公用網際網路加密傳送，則使用的閘道類型為「Vpn」。 稱之為 VPN 閘道。 站對站、點對站和 VNet 對 VNet 連線都使用 VPN 閘道。 
+如果網路流量是在私人連線上傳送，則使用的閘道類型為「ExpressRoute」。 也稱為 ExpressRoute 閘道。 如果網路流量是透過公用網際網路加密傳送，則使用的閘道類型為「Vpn」。 稱之為 VPN 閘道。 站對站、點對站和 VNet 對 VNet 連線都使用 VPN 閘道。
 
 對於每種閘道類型，每個虛擬網路只能有一個虛擬網路閘道。 例如，您可以有一個使用 -GatewayType Vpn 的虛擬網路閘道，以及一個使用 -GatewayType ExpressRoute 的虛擬網路閘道。 本文著重於 ExpressRoute 虛擬網路閘道。
 

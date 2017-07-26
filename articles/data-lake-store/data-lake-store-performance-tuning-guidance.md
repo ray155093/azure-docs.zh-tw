@@ -12,87 +12,139 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/06/2017
+ms.date: 06/30/2017
 ms.author: stewu
-translationtype: Human Translation
-ms.sourcegitcommit: af11866fc812cd8a375557b7bf9df5cdc9bba610
-ms.openlocfilehash: f0d0c05c08ce198e2702c76ad35b348107c664c7
-ms.lasthandoff: 01/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: e7ea83465328bd4c7479dec4093cd94700463854
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
-# <a name="performance-tuning-guidance-for-azure-data-lake-store"></a>Azure Data Lake Store 的效能微調指導方針
+# <a name="tuning-azure-data-lake-store-for-performance"></a>針對效能目的調整 Azure Data Lake Store
 
-本文提供如何在針對效能 Azure Data Lake Store 進行資料寫入或讀取時取得最佳化效能的指導方針。 本文的目的是協助使用者了解可以針對常用資料上傳/下載工具及資料分析工作負載進行設定的參數。 本指南中的微調是以需使用大量資源的工作負載為目標，此類工作負載需要針對 Data Lake Store 讀取或寫入大量資料。
+Data Lake Store 支援 I/O 密集分析和資料移動的高輸送量。  在 Azure Data Lake Store 中，使用所有可用的輸送量 – 每秒可以讀取或寫入的資料量 – 是取得最佳效能的重要部分。  這可以藉由盡可能平行執行讀取和寫入來達成。
 
-## <a name="prerequisites"></a>必要條件
+![Data Lake Store 效能](./media/data-lake-store-performance-tuning-guidance/throughput.png)
 
-* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **Azure 資料湖儲存區帳戶**。 如需有關如何建立帳戶的詳細指示，請參閱 [開始使用 Azure 資料湖儲存區](data-lake-store-get-started-portal.md)
-* **Azure HDInsight 叢集** 。 請參閱 [建立具有 Data Lake Store 的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。 請確實為叢集啟用遠端桌面。
+Azure Data Lake Store 可以調整以提供所有分析案例的需要輸送量。 根據預設，Azure Data Lake Store 帳戶會自動提供足夠產能，以符合廣泛類別使用案例的需求。 客戶遇到預設限制的情況下，可以將 ADLS 帳戶設定為連絡 Microsoft 支援服務來提供更多輸送量。
 
+## <a name="data-ingestion"></a>資料擷取
 
-## <a name="guidelines-for-data-ingestion-tools"></a>資料擷取工具的方針
+將資料從來源擷取至 ADLS 時，務必考慮來源硬體、來源網路硬體和與 ADLS 的網路連線可能會是瓶頸。  
 
-本節提供改進資料複製或移至 Data Lake Store 期間效能的一般指引。 在本節中，我們將討論限制效能的因素，以及克服那些限制的方式。 下列為幾項需要考量的重點。
+![Data Lake Store 效能](./media/data-lake-store-performance-tuning-guidance/bottleneck.png)
 
-* **來源資料** - 來源資料的源頭可能會產生許多限制。 如果來源資料所在位置具有較低的輸送量能力 (例如轉速較慢或遠端的儲存體)，則輸送量可能會成為瓶頸。 SSD (位於本機磁碟最佳) 能透過較高的磁碟輸送量，提供最佳的效能。
+務必確定資料移動不會受到這些因素影響。
 
-* **網路** - 如果您的來源資料位於 VM 上，則 VM 和 Data Lake Store 之間的網路連線將變得非常重要。 使用具有最大 NIC 的 VM 來取得更多網路頻寬。
+### <a name="source-hardware"></a>來源硬體
 
-* **跨區域複製** - 跨區域資料 I/O 本身便具有相當大的網路成本，例如在美國東部 2 的 VM 上執行資料擷取工具，寫入位於美國中部的 Data Lake Store 帳戶。 如果您要跨區域複製資料，效能可能會降低。 我們建議在和目的地 Data Lake Store 帳戶位於相同區域的 VM 上使用資料擷取作業，來最大化網路輸送量。                                                                                                                                        
+不論您在 Azure 中使用內部部署機器或 VM，您應該仔細選取適當的硬體。 對於來源磁碟硬體，偏好使用 SSD 而非 HDD，並且挑選具有更快磁針的磁碟硬體。 對於來源網路硬體，盡可能使用最快的 NIC。  在 Azure 上，我們建議使用 Azure D14 VM，它有適當的功能強大磁碟和網路硬體。
 
-* **叢集** - 如果您正在透過 HDInsight 叢集 (例如針對 DistCp) 執行資料擷取作業，我們建議針對叢集使用 D 系列 VM，因為它們具有較多的記憶體。 數目較多的核心也能協助提升輸送量。                                                                                                                                                                                                                                                                                                            
+### <a name="network-connectivity-to-azure-data-lake-store"></a>與 Azure Data Lake Store 的網路連線
 
-* **執行緒的並行** - 如果您正在使用 HDInsight 叢集來從儲存體容器複製資料，根據您叢集大小、容器大小及執行緒設定，可使用的執行緒平行數目將會受到限制。 在 Data Lake Store 上取得更加效能的其中一個重要方式，便是提升並行數目。 您應該調整設定以取得最大的並行數目，以取得更高的輸送量。 下列表格為每個擷取方法的設定，可以設定來取得更多並行數目。 請透過表格中的連結，參閱如何使用工具來將資料內嵌到 Data Lake Store 的文章，以及如何針對工具進行效能微調以取得最大輸送量的文章。
+您的來源資料與 Azure Data Lake Store 之間的網路連線有時可能是瓶頸。 當您的來源資料是內部部署時，請考慮使用與 [Azure ExpressRoute](https://azure.microsoft.com/en-us/services/expressroute/) 的專用連結。 如果您的來源資料是在 Azure 中，當資料位於與 Data Lake Store 相同的 Azure 區域時，效能最佳。
 
-    | 工具               | 並行設定                                                                |
-    |--------------------|------------------------------------------------------------------------------------|
-    | [Powershell](data-lake-store-get-started-powershell.md)       | PerFileThreadCount、ConcurrentFileCount |
-    | [AdlCopy](data-lake-store-copy-data-azure-storage-blob.md)    | Azure Data Lake Analytics units         |
-    | [DistCp](data-lake-store-copy-data-wasb-distcp.md)            | -m (mapper)                             |
-    | [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md)| parallelCopies                          |
-    | [Sqoop](data-lake-store-data-transfer-sql-sqoop.md)           | fs.azure.block.size、-m (mapper)        |
+### <a name="configure-data-ingestion-tools-for-maximum-parallelization"></a>設定最大平行處理的資料擷取工具
 
+一旦您解決上述的來源硬體和網路連線瓶頸，您已準備好設定擷取工具。 下表摘要說明數個熱門擷取工具的關鍵設定，並且提供它們的深入效能微調文章。  若要深入了解哪一個工具適用於您的案例，請參閱這篇[文章](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-data-scenarios)。
 
-## <a name="guidelines-while-working-with-hdinsight-workloads"></a>使用 HDInsight 工作負載時的方針
+| 工具               | Settings     | 其他詳細資訊                                                                 |
+|--------------------|------------------------------------------------------|------------------------------|
+| Powershell       | PerFileThreadCount、ConcurrentFileCount |  [連結](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-get-started-powershell#performance-guidance-while-using-powershell)   |
+| AdlCopy    | Azure Data Lake Analytics units  |   [連結](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-copy-data-azure-storage-blob#performance-considerations-for-using-adlcopy)         |
+| DistCp            | -m (mapper)   | [連結](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-copy-data-wasb-distcp#performance-considerations-while-using-distcp)                             |
+| Azure Data Factory| parallelCopies    | [連結](../data-factory/data-factory-copy-activity-performance.md)                          |
+| Sqoop           | fs.azure.block.size、-m (mapper)    |   [連結](https://blogs.msdn.microsoft.com/bigdatasupport/2015/02/17/sqoop-job-performance-tuning-in-hdinsight-hadoop/)        |
 
-針對 Data Lake Store 中的資料執行分析工作負載時，我們建議您使用 HDInsight 3.5 叢集版本以取得最佳的 Data Lake Store 效能。 當您的作業較為 I/O 密集時，部分參數可以針對效能因素進行設定。 例如，如果作業主要包含讀取和寫入，則為 I/O 提升針對 Azure Data Lake Store 的並行將會提升效能。
+## <a name="structure-your-data-set"></a>結構化您的資料集
 
-Azure Data Lake Store 在有更多並行數目的情況下將能取得最佳化的效能。 有幾種基本的方法可以提升 I/O 密集作業的並行。
+當資料儲存在 Data Lake Store 時，檔案大小、檔案數目及資料夾結構都會對效能造成影響。  下一節說明這些區域的最佳做法。  
 
-1. **執行大量的計算 YARN 容器，而不要執行數目較少的大型 YARN 容器** – 擁有較多的容器將會提升輸入和輸出作業的並行，並進一步運用 Data Lake Store 的能力。
+### <a name="file-size"></a>檔案大小
 
-    例如，假設您在 HDInsight 叢集中具有 2 個 D3v2 節點。 每個 D3v2 節點都具有 12GB 的 YARN 記憶體，因此 2 部 D3v2 機器將會有 24GB 的 YARN 記憶體。 我們再假設您已將 YARN 容器大小設為 6GB。 這代表您會有 4 個具有 6GB 的容器。 因此，您可以平行執行 4 個並行工作。 若要提升並行數目，您可以將容器的大小減少至 3GB，這會讓您有 8 個具有 3GB 的容器。 這能讓您平行執行 8 個並行工作。 下列為圖例。
+一般而言，例如 HDInsight 和 Azure Data Lake Analytics 的分析引擎都有每個檔案的額外負荷。  如果您將資料儲存為許多小型檔案，會造成效能的負面影響。  
 
-    ![Data Lake Store 效能](./media/data-lake-store-performance-tuning-guidance/image-1.png)
+一般情況下，將您的資料組織成較大大小的檔案，以提升效能。  根據經驗法則，將檔案中的資料集組織為 256MB 以上。 在例如映像和二進位資料的某些情況下，不能夠平行處理。  在這些情況下，建議將個別檔案保持在 2GB 以下。
 
-    一個常見的問題，是為何不將容器大小減少至 1GB 的記憶體，以便取得 24 個容器並進一步提升並行數目。 這取決於工作是否需要 3GB 的記憶體，或是 1GB 便已足夠。  您在容器中執行的可能是僅需要 1GB 的簡單作業，或是需要 3GB 記憶體的複雜作業。  如果您將容器的大小減少太多，可能會出現記憶體不足的例外狀況。  當發生此狀況時，您應該提升容器的記憶體。  除了記憶體之外，虛擬核心數目也會影響平行處理。
+有時候，資料管線對於具有大量小型檔案的未經處理資料，具有受限制的控制權。  建議進行「cooking」程序，該程序會產生較大的檔案，以用於下游應用程式。  
 
-    ![Data Lake Store 效能](./media/data-lake-store-performance-tuning-guidance/image-2.png)
+### <a name="organizing-time-series-data-in-folders"></a>組織資料夾中的時間序列資料
 
-2. **提升叢集中的記憶體以取得更多並行數目** – 您可以透過提升叢集大小，或是選擇具有更多記憶體的 VM 類型，來提升叢集中的記憶體。 這將會提升可用的 YARN 記憶體，讓您可以建立更多容器，並進一步提升並行數目。  
+對於 Hive 和 ADLA 工作負載，時間序列資料的磁碟分割剪除有助於某些查詢僅讀取資料的子集，進而改善效能。    
 
-    例如，假設您的 HDInsight 叢集中具有單一 D3v2 節點，該節點具有 12GB 的 YARN 記憶體和 3GB 的容器。  您將叢集調整為 2 個 D3v2，這將會把 YARN 記憶體提升至 24GB。  這會把並行數目從 4 提升到 8。
+擷取時間序列資料的這些管線，通常會以檔案和資料夾結構命名非常嚴謹的方式來處理檔案。 以下是很常見的範例，依日期結構化資料：
 
-    ![Data Lake Store 效能](./media/data-lake-store-performance-tuning-guidance/image-3.png)
+    \DataSet\YYYY\MM\DD\datafile_YYYY_MM_DD.tsv
 
-3. **從把工作數目設定為您目前的並行數目開始** – 現在，您已經正確設定容器大小以取得最大的並行數目。 您接著應該設定工作數目以使用所有容器。 每個工作負載中都有不同的工作名稱。
+請注意，日期時間資訊會同時在資料夾和檔案名稱中顯示。
 
-    您也可能要考慮作業大小。 如果作業的大小較大，每個工作可能需要處理較大量的資料。 您可以考慮使用更多工作，讓每個工作不需要處理太多資料。
+對於日期和時間，以下是常見的模式
 
-    例如，假設您有 6 個容器。 我們在一開始應該將工作數目設定為 6。 您可以嘗試使用較高的工作數目，來看看效能是否會提升。 設定較高的工作數目將不會提升並行數目。 如果我們將工作數目設定為大於 6，該工作在下一波之前將不會執行。 如果我們將工作數目設定為小於 6，系統將不會完全運用並行。
+    \DataSet\YYYY\MM\DD\HH\mm\datafile_YYYY_MM_DD_HH_mm.tsv
 
-    每個工作負載都具有不同的可用參數，可用來設定工作數目。 下列表格將列出部分參數。
+同樣地，您對於資料夾和檔案組織的選擇，應該針對較大的檔案大小以及每個資料夾中合理的檔案數目進行最佳化。
 
-    | 工作負載               | 設定工作的參數                                                         |
-    |--------------------|------------------------------------------------------------------------------------|
-    | [HDInsight 上的 Spark](data-lake-store-performance-tuning-spark.md)       | <ul><li>Num-executors</li><li>Executor-memory</li><li>Executor-cores</li></ul> |
-    | [Hive on HDInsight](data-lake-store-performance-tuning-hive.md)    | hive.tez.container.size         |
-    | [MapReduce on HDInsight](data-lake-store-performance-tuning-mapreduce.md)            | <ul><li>Mapreduce.map.memory</li><li>Mapreduce.job.maps</li><li>Mapreduce.reduce.memory</li><li>Mapreduce.job.reduces</li></ul> |
-    | [Storm on HDInsight](data-lake-store-performance-tuning-storm.md)| <ul><li>背景工作處理序數目</li><li>Spout 執行程式執行個體數目</li><li>Bolt 執行程式執行個體數目 </li><li>Spout 工作數目</li><li>Bolt 工作數目</li></ul>|
+## <a name="optimizing-io-intensive-jobs-on-hadoop-and-spark-workloads-on-hdinsight"></a>最佳化 HDInsight 上 Hadoop 和 Spark 工作負載的 I/O 大量作業
+
+作業屬於下列三個類別之一：
+
+* **CPU 密集作業**  這些作業有很長的計算時間和最短的 I/O 時間。  範例包括機器學習和自然語言處理作業。  
+* **記憶體密集作業**  這些作業會使用大量記憶體。  範例包括 PageRank 和即時分析作業。  
+* **I/O 密集作業**  這些作業花費大部分時間執行 I/O。  常見範例是僅執行讀取和寫入作業的複製作業。  其他範例包括讀取大量資料、執行某些資料轉換，然後將資料寫回存放區的資料準備作業。  
+
+下列指南僅適用於 I/O 密集作業。
+
+### <a name="general-considerations-for-an-hdinsight-cluster"></a>HDInsight 叢集的一般考量
+
+* **HDInsight 版本** 為了達到最佳效能，請使用最新版本的 HDInsight。
+* **區域** 將 Data Lake Store 放置在與 HDInsight 叢集相同的區域中。  
+
+HDInsight 叢集是由兩個前端節點和一些背景工作角色節點所組成。 每個背景工作角色節點提供特定數目的核心和記憶體，由 VM 類型決定。  執行作業時，YARN 是資源交涉程式，它會配置可用記憶體和核心來建立容器。  每個容器會執行完成作業所需的工作。  平行執行容器以快速地處理工作。 因此，盡可能平行執行最多容器可提升效能。
+
+HDInsight 叢集內有三個層級可以微調，以增加容器數目並且使用所有可用的輸送量。  
+
+* **實體層**
+* **YARN 層**
+* **工作負載層**
+
+### <a name="physical-layer"></a>實體層
+
+**執行具有更多節點和/或較大大小 VM 的叢集。**  較大的叢集可讓您執行更多 YARN 容器，如下圖所示。
+
+![Data Lake Store 效能](./media/data-lake-store-performance-tuning-guidance/VM.png)
+
+**使用具有較大網路頻寬的 VM。**  如果網路頻寬比 Data Lake Store 輸送量小，網路頻寬量可能會是瓶頸。  不同 VM 會有不同的網路頻寬大小。  選擇具有最大可能網路頻寬的 VM 類型。
+
+### <a name="yarn-layer"></a>YARN 層
+
+**使用較小的 YARN 容器。**  減少每個 YARN 容器的大小以使用相同的資源量來建立更多容器。
+
+![Data Lake Store 效能](./media/data-lake-store-performance-tuning-guidance/small-containers.png)
+
+根據您的工作負載，一定有需要的最小 YARN 容器大小。 如果您挑選的容器太小，您的作業會遇到記憶體不足的問題。 通常 YARN 容器應該不小於 1GB。 通常會看到 3GB YARN 容器。 針對某些工作負載，您可能需要較大的 YARN 容器。  
+
+**增加每個 YARN 容器的核心。**  增加配置給每個容器的核心數目，以增加在每個容器中執行的平行工作數目。  這適用於類似 Spark 的應用程式，它會在每個容器執行多項工作。  對於像是 Hive 的應用程式，它會在每個容器中執行單一執行緒，所以最好是有多個容器，而不是每個容器有多個核心。   
+
+### <a name="workload-layer"></a>工作負載層
+
+**使用所有可用的容器。**  將工作數目設定為等於或大於可用容器的數目，以便利用到所有資源。
+
+![Data Lake Store 效能](./media/data-lake-store-performance-tuning-guidance/use-containers.png)
+
+**失敗的工作成本很高。** 如果每項工作都有大量資料要處理，則工作失敗會造成昂貴的重試成本。  因此，最好是建立更多工作，每個工作處理小量資料。
+
+除了上述的一般方針，每個應用程式都有不同的參數可以針對該特定應用程式進行微調。 下表列出一些參數和連結，以開始進行每個應用程式的效能微調。
+
+| 工作負載               | 設定工作的參數                                                         |
+|--------------------|-------------------------------------------------------------------------------------|
+| [HDInsight 上的 Spark](data-lake-store-performance-tuning-spark.md)       | <ul><li>Num-executors</li><li>Executor-memory</li><li>Executor-cores</li></ul> |
+| [Hive on HDInsight](data-lake-store-performance-tuning-hive.md)    | <ul><li>hive.tez.container.size</li></ul>         |
+| [MapReduce on HDInsight](data-lake-store-performance-tuning-mapreduce.md)            | <ul><li>Mapreduce.map.memory</li><li>Mapreduce.job.maps</li><li>Mapreduce.reduce.memory</li><li>Mapreduce.job.reduces</li></ul> |
+| [Storm on HDInsight](data-lake-store-performance-tuning-storm.md)| <ul><li>背景工作處理序數目</li><li>Spout 執行程式執行個體數目</li><li>Bolt 執行程式執行個體數目 </li><li>Spout 工作數目</li><li>Bolt 工作數目</li></ul>|
 
 ## <a name="see-also"></a>另請參閱
-* [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
-* [開始使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+* [Azure Data Lake Store 概觀](data-lake-store-overview.md)
+* [開始使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 

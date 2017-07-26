@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 06/08/2016
 ms.author: mlearned
-translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: a5b845a93f318b991e14705f0fadea3acd802ced
-ms.lasthandoff: 03/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 766d327a87ed13e04166d71c3d9ae0a1e7a66d19
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -33,11 +34,11 @@ ms.lasthandoff: 03/21/2017
 ## <a name="create-vms-with-docker-machine"></a>使用 Docker 電腦建立 VM
 搭配使用 `docker-machine create` 命令與 `azure` 驅動程式，在 Azure 中建立 Docker 主機 VM。 
 
-Azure 驅動程式將需要您的訂用帳戶識別碼。 您可以使用 [Azure CLI](cli-install-nodejs.md) 或 [Azure 入口網站](https://portal.azure.com)來擷取您的「Azure 訂用帳戶」。 
+Azure 驅動程式需要您的訂用帳戶識別碼。 您可以使用 [Azure CLI](cli-install-nodejs.md) 或 [Azure 入口網站](https://portal.azure.com)來擷取您的「Azure 訂用帳戶」。 
 
 **使用 Azure 入口網站**
 
-* 從左導覽頁面中選取 [訂用帳戶]，並複製到訂用帳戶識別碼。
+* 從左導覽頁面中選取 [訂用帳戶]，並複製訂用帳戶識別碼。
 
 **使用 Azure CLI**
 
@@ -48,7 +49,7 @@ Azure 驅動程式將需要您的訂用帳戶識別碼。 您可以使用 [Azure
 
 下列範例採用[預設值](https://github.com/docker/machine/blob/master/drivers/azure/azure.go#L22)，但會視需要設定下列值： 
 
-* 與所產生的公用 IP 位址和憑證關聯之名稱的 azure-dns。  VM 可以接著安全地停止、釋出動態 IP，然後提供在 VM 以新 IP 重新啟動後重新連線的功能。  名稱前置詞對該區域 UNIQUE_DNSNAME_PREFIX.westus.cloudapp.azure.com 而言必須是唯一的。
+* 與所產生的公用 IP 位址和憑證關聯之名稱的 azure-dns。 這是虛擬機器的 DNS 名稱。 接著，VM 就可以安全地停止、釋出動態 IP，還能夠在 VM 以新的 IP 重新啟動之後重新連線。 該區域必須有唯一的名稱前置詞 UNIQUE_DNSNAME_PREFIX.westus.cloudapp.azure.com。
 * VM 上用以進行對外網際網路存取的開啟連接埠 80
 * 用以使用更快速進階儲存體的 VM 大小
 * 用來作為 VM 磁碟的進階儲存體
@@ -107,7 +108,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago       Up 5 minutes        0.0.0.0:80->80/tcp, 443/tcp   goofy_mahavira
 ```
 
-查看執行中容器，並輸入 `docker-machine ip <VM name>` 以尋找要在瀏覽器中輸入的 IP 位址：
+若要查看執行中的容器，請輸入 `docker-machine ip <VM name>`，找出要在瀏覽器中輸入的 IP 位址：
 
 ```
 PS C:\> docker-machine ip MyDockerHost
@@ -117,7 +118,7 @@ PS C:\> docker-machine ip MyDockerHost
 ![執行 ngnix 容器](./media/vs-azure-tools-docker-machine-azure-config/nginxsuccess.png)
 
 ## <a name="summary"></a>摘要
-運用 docker-machine，您可以在 Azure 中輕鬆地佈建 docker 主機來進行個別 docker 主機驗證。
+docker-machine 可讓您在 Azure 中輕鬆地佈建 docker 主機，以進行個別 docker 主機驗證。
 如需實際執行裝載容器，請參閱 [Azure Container Service](http://aka.ms/AzureContainerService)
 
 若要使用 Visual Studio 開發 .NET Core 應用程式，請參閱 [Docker Tools for Visual Studio](http://aka.ms/DockerToolsForVS)

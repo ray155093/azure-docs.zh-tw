@@ -1,6 +1,6 @@
 ---
-title: "管理 Azure Analysis Services 中的使用者 | Microsoft Docs"
-description: "了解如何以 Azure 管理 Analysis Services 伺服器上的使用者。"
+title: "Azure Analysis Services 中的驗證和使用者權限 | Microsoft Docs"
+description: "了解 Azure Analysis Services 中的驗證和使用者權限。"
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -13,84 +13,76 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 04/18/2016
+ms.date: 06/26/2016
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: 194910a3e4cb655b39a64d2540994d90d34a68e4
-ms.openlocfilehash: 039ed6f4be9f3e0f6b92e5a9f11e12392912df9d
-ms.lasthandoff: 02/16/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 766b2fc3b68d223d80de1da9ef36aec269fe0de9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
-# <a name="manage-users-in-azure-analysis-services"></a>管理 Azure Analysis Services 中的使用者
-在 Azure Analysis Services 中，有兩種類型的使用者：伺服器管理員和資料庫使用者。 
+# <a name="authentication-and-user-permissions"></a>驗證和使用者權限
+Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 進行身分識別管理和使用者驗證。 任何建立、管理或連線到 Azure Analysis Services 伺服器的使用者在相同的訂用帳戶中必須 [Azure AD 租用戶](../active-directory/active-directory-administer.md)的有效使用者身分識別。
 
-## <a name="server-administrators"></a>伺服器管理員
-在 Azure 入口網站，或 SSMS 中的伺服器屬性中，您可以使用您伺服器之控制項刀鋒視窗中的 **Analysis Services 管理員**來管理伺服器管理員。 Analysis Services 管理員是資料庫伺服器管理員，擁有一般資料庫管理工作的權利，例如新增與移除資料庫，以及管理使用者。 根據預設，系統會將在 Azure 入口網站中建立伺服器的使用者自動新增成為 Analysis Services 管理員。
+Azure Analysis Services 支援 [Azure AD B2B 共同作業](../active-directory/active-directory-b2b-what-is-azure-ad-b2b.md)。 透過 B2B，組織外部的使用者可以受邀成為 Azure AD 目錄中的來賓使用者。 來賓可以來自另一個 Azure AD 租用戶目錄或任何有效的電子郵件地址。 使用者一旦受邀並接受 Azure 透過電子郵件傳送的邀請，使用者身分識別就會新增至租用戶目錄。 這些身分識別可以接著新增至安全性群組或成為伺服器管理員或資料庫角色的成員。
 
-![Azure 入口網站的伺服器管理員](./media/analysis-services-manage-users/aas-manage-users-admins.png)
+![Azure Analysis Services 驗證架構](./media/analysis-services-manage-users/aas-manage-users-arch.png)
 
-您也應該知道︰
+## <a name="authentication"></a>驗證
+所有用戶端應用程式和工具會使用一或多個 Analysis Services [用戶端程式庫](analysis-services-data-providers.md) (AMO、MSOLAP、ADOMD) 連線到伺服器。 
 
-* Windows Live ID 不是 Azure Analysis Services 支援的身分識別類型。  
-* Analysis Services 管理員必須是有效的 Azure Active Directory 使用者。
-* 如果透過 Azure Resource Manager 範本建立 Azure Analysis Services 伺服器，Analysis Services 管理員會取得應新增為管理員的使用者 JSON 陣列。
+這三個用戶端程式庫全都支援 Azure AD 互動式流程和非互動式驗證方法。 兩種非互動式方法 (Active Directory 密碼和 Active Directory 整合式驗證) 可以在利用 AMOMD 和 MSOLAP 的應用程式中使用。 這兩種方法絕對不會產生快顯對話方塊。
 
-Analysis Services 管理員與 Azure 資源管理員不同，後者可以管理 Azure 訂用帳戶的資源。 這種做法能夠保持與 Analysis Services 中現有 XMLA 和 TMSL 管理行為的相容性，並可讓您將 Azure 資源管理與 Analysis Services 資料庫管理之間的職責劃分隔離。 若要檢視 Azure Analysis Services 資源的所有角色與存取類型，請使用控制項刀鋒視窗上的存取控制 (IAM)。
+Excel 和 Power BI Desktop 等用戶端應用程式，以及 SSMS 和 SSDT 等工具會在更新至最新版本時，安裝最新版的程式庫。 Power BI Desktop、SSMS 和 SSDT 會每月更新。 Excel 會[與 Office 365 一起更新](https://support.office.com/en-us/article/When-do-I-get-the-newest-features-in-Office-2016-for-Office-365-da36192c-58b9-4bc9-8d51-bb6eed468516)。 Office 365 更新較不頻繁，而且有些組織會使用延遲的通道，這表示更新會延遲多達三個月。
 
-### <a name="to-add-administrators-using-azure-portal"></a>若要使用 Azure 入口網站新增系統管理員
-1. 在您的伺服器的控制刀鋒視窗中，按一下 [Analysis Services 管理員]。
-2. 在 [\<servername> - Analysis Services 管理員]刀鋒視窗中，按一下 [新增]。
-3. 在 [新增伺服器管理員] 刀鋒視窗中，選取要新增的使用者帳戶。
+ 視您使用的用戶端應用程式或工具而定，驗證類型和登入方式可能會不同。 每個應用程式支援使用不同的功能來連線到 Azure Analysis Services 等雲端服務。
 
-## <a name="database-users"></a>資料庫使用者
-資料庫使用者必須新增到資料庫角色。 角色會定義具有相同資料庫權限的使用者和群組。 根據預設，表格式模型資料庫擁有具備讀取權限的預設使用者角色。 若要深入了解，請參閱[表格式模型中的角色](https://msdn.microsoft.com/library/hh213165.aspx)。
 
-Azure Analysis Services 模型資料庫使用者*必須在您的 Azure Active Directory 中*。 指定的使用者名稱必須是組織的電子郵件地址或 UPN。 這與內部部署表格式模型資料庫不同，這些資料庫藉由 Windows 網域使用者名稱來支援使用者。 
+### <a name="sql-server-management-studio-ssms"></a>SQL Server Management Studio (SSMS)
+Azure Analysis Services 伺服器使用 Windows 驗證、Active Directory 密碼驗證和 Active Directory 通用驗證，支援來自 [SSMS V17.1](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms) 和更高版本的連線。 一般而言，建議您使用 Active Directory 通用驗證，因為：
 
-您可以在 SQL Server Data Tools (SSDT) 或在 SQL Server Management Studio (SSMS) 中建立資料庫角色、新增使用者和群組到角色，以及設定資料列層級安全性。 您也可以使用 [Analysis Services PowerShell Cmdlet](https://msdn.microsoft.com/library/hh758425.aspx) 或使用[表格式模型指令碼語言 (英文)](https://msdn.microsoft.com/library/mt614797.aspx) (TMSL) 來新增使用者到角色或從中移除使用者。
+*  支援互動式和非互動式驗證方法。
 
-**TMSL 指令碼範例**
+*  支援受邀加入 AS Azure 租用戶的 Azure B2B 來賓使用者。 連線到伺服器時，來賓使用者必須選取 Active Directory 通用驗證。
 
-在此範例中，使用者和群組會新增至 SalesBI 資料庫的使用者角色。
+*  支援 Multi-Factor Authentication (MFA)。 Azure MFA 以一系列驗證選項協助保護資料和應用程式的存取：電話、簡訊、含有 PIN 的智慧卡或行動應用程式通知。 搭配 Azure AD 使用互動式 MFA 時，會出現快顯對話方塊以進行驗證。
 
-```
-{
-  "createOrReplace": {
-    "object": {
-      "database": "SalesBI",
-      "role": "Users"
-    },
-    "role": {
-      "name": "Users",
-      "description": "All allowed users to query the model",
-      "modelPermission": "read",
-      "members": [
-        {
-          "memberName": "user1@contoso.com",
-          "identityProvider": "AzureAD"
-        },
-        {
-          "memberName": "group1@contoso.com",
-          "identityProvider": "AzureAD"
-        }
-      ]
-    }
-  }
-}
-```
+### <a name="sql-server-data-tools-ssdt"></a>SQL Server 資料工具 (SSDT)
+SSDT 會使用 Active Directory 通用驗證搭配 MFA 支援來連線到 Azure Analysis Services。 系統會提示使用者在首次部署時使用其組織識別碼 (電子郵件) 來登入 Azure。 使用者必須在其部署至的伺服器上，使用具有伺服器管理員權限的帳戶登入 Azure 。 第一次登入 Azure 時會指派權杖。 SSDT 會快取記憶體內部的權杖，以供未來重新連線。
 
-## <a name="role-based-access-control-rbac"></a>角色型存取控制 (RBAC)
+### <a name="power-bi-desktop"></a>Power BI Desktop
+Power BI Desktop 會使用 Active Directory 通用驗證搭配 MFA 支援來連線到 Azure Analysis Services。 系統會提示使用者在首次連線時使用其組織識別碼 (電子郵件) 來登入 Azure。 使用者必須使用伺服器管理員或資料庫角色隨附的帳戶來登入 Azure。
 
-訂用帳戶管理員可以在控制刀鋒視窗中，使用 [存取控制] 來設定角色。 這與上述在伺服器或資料庫層級設定的伺服器管理員或資料庫使用者不同。 
+### <a name="excel"></a>Excel
+Excel 使用者可以使用 Windows 帳戶、組織識別碼 (電子郵件地址) 或外部電子郵件地址，連線到伺服器。 外部電子郵件身分識別必須以來賓使用者的身分存在於 Azure AD 中。
+
+## <a name="user-permissions"></a>使用者權限
+
+**伺服器管理員**專屬於 Azure Analysis Services 伺服器執行個體。 他們會使用 Azure 入口網站、SSMS 和 SSDT 等工具進行連線，以執行新增資料庫新增和管理使用者角色等工作。 根據預設，系統會將建立伺服器的使用者自動新增成為 Analysis Services 伺服器管理員。 使用 Azure 入口網站或 SSMS，可以新增其他系統管理員。 伺服器管理員必須在相同的訂用帳戶中具有 Azure AD 租用戶的帳戶。 若要深入了解，請參閱[管理伺服器管理員](analysis-services-server-admins.md)。 
+
+
+**資料庫使用者**會使用 Excel 或 Power BI 等用戶端應用程式來連線到模型資料庫。 使用者必須新增到資料庫角色。 資料庫角色會定義資料庫的系統管理員、處理或讀取權限。 請務必了解具有系統管理員權限之角色的資料庫使用者與伺服器管理員不同。 不過，根據預設，伺服器管理員也是資料庫管理員。 若要深入了解，請參閱[管理資料庫角色和使用者](analysis-services-database-users.md)。
+
+**Azure 資源擁有者**。 資源擁有者可管理 Azure 訂用帳戶的資源。 資源擁有者可以使用 Azure 入口網站中的 [存取控制]，或使用 Azure Resource Manager 範本，將 Azure AD 使用者身分識別新增至訂用帳戶內的擁有者或參與者角色。 
 
 ![Azure 入口網站中的存取控制](./media/analysis-services-manage-users/aas-manage-users-rbac.png)
 
-角色會套用到使用者或帳戶，讓他們可在入口網站或使用 Azure Resource Manager 範本完成需要執行的工作。 若要深入了解，請參閱[角色型存取控制](../active-directory/role-based-access-control-what-is.md)。
+此層級的角色會套用到使用者或帳戶，讓他們可在入口網站或使用 Azure Resource Manager 範本完成需要執行的工作。 若要深入了解，請參閱[角色型存取控制](../active-directory/role-based-access-control-what-is.md)。 
+
+
+## <a name="database-roles"></a>資料庫角色
+
+ 針對表格式模型定義的角色為資料庫角色。 也就是，這些角色的成員是由具有特定權限的 Azure AD 使用者和安全性群組所組成，而這些權限會定義成員可對模型資料庫採取的動作。 資料庫角色會建立為資料庫中的個別物件，而且只適用於該角色建立所在的資料庫。   
+  
+ 根據預設，當您建立新的表格式模型專案時，模型專案沒有任何角色。 在 SSDT 中可以使用 [角色管理員] 對話方塊來定義角色。 在模型專案設計期間定義角色時，它們只會套用至模型工作區資料庫。 部署模型時，相同的角色會套用至已部署的模型。 部署模型之後，伺服器和資料庫管理員可以使用 SSMS 來管理角色和成員。 若要深入了解，請參閱[管理資料庫角色和使用者](analysis-services-database-users.md)。
+  
+
 
 ## <a name="next-steps"></a>後續步驟
-如果您尚未將表格式模型部署到伺服器，現在正是時候。 若要深入了解，請參閱 [Deploy to Azure Analysis Services](analysis-services-deploy.md) (部署至 Azure Analysis Services)。
 
-如果您已將模型部署至您的伺服器，您便可以透過用戶端或瀏覽器與伺服器連線。 若要深入了解，請參閱 [Get data from Azure Analysis Services server](analysis-services-connect.md) (從 Azure Analysis Services 伺服器取得資料)。
-
-
+[使用 Azure Active Directory 群組來管理資源的存取權](../active-directory/active-directory-manage-groups.md)   
+[管理資料庫角色和使用者](analysis-services-database-users.md)  
+[管理伺服器管理員](analysis-services-server-admins.md)  
+[角色型存取控制](../active-directory/role-based-access-control-what-is.md)  
