@@ -14,11 +14,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 03/21/2017
 ms.author: LADocs; jehollan
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
-ms.openlocfilehash: 8066621670e6e79ff4169253f2a97972e376eaa3
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: b9cd83e6891c723f843825b99dce0e0158fc6ef6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
+ms.lasthandoff: 07/14/2017
 
 ---
 
@@ -72,7 +72,7 @@ ms.lasthandoff: 06/07/2017
 
 |元素名稱|必要|說明|  
 |------------------|--------------|-----------------|  
-|類型|是|**類型**：字串 <p> **宣告**：`"parameters": {"parameter1": {"type": "string"}` <p> **規格**：`"parameters": {"parameter1": {"value": "myparamvalue1"}}` <p> **類型**：securestring <p> **宣告**：`"parameters": {"parameter1": {"type": "securestring"}}` <p> **規格**：`"parameters": {"parameter1": {"value": "myparamvalue1"}}` <p> **類別**：int <p> **宣告**：`"parameters": {"parameter1": {"type": "int"}}` <p> **規格**：`"parameters": {"parameter1": {"value" : 5}}` <p> **類型**：bool <p> **宣告**：`"parameters": {"parameter1": {"type": "array"}}` <p> **規格**：`"parameters": {"parameter1": { "value": true }}` <p> **類型**：陣列 <p> **宣告**：`"parameters": {"parameter1": {"type": "array"}}` <p> **規格**：`"parameters": {"parameter1": { "value": [ array-of-values ]}}` <p> **類型**：物件 <p> **宣告**：`"parameters": {"parameter1": {"type": "object"}}` <p> **規格**：`"parameters": {"parameter1": { "value": { JSON-object } }}` <p> **類型**：secureobject <p> **宣告**：`"parameters": {"parameter1": {"type": "object"}}` <p> **規格**：`"parameters": {"parameter1": { "value": { JSON-object } }}` <p> **注意：**`GET`作業中不會傳回 `securestring` 和 `secureobject` 類型。 所有密碼、金鑰和密碼都應該使用這個類型。|  
+|類型|是|**類型**：字串 <p> **宣告**：`"parameters": {"parameter1": {"type": "string"}` <p> **規格**：`"parameters": {"parameter1": {"value": "myparamvalue1"}}` <p> **類型**：securestring <p> **宣告**：`"parameters": {"parameter1": {"type": "securestring"}}` <p> **規格**：`"parameters": {"parameter1": {"value": "myparamvalue1"}}` <p> **類別**：int <p> **宣告**：`"parameters": {"parameter1": {"type": "int"}}` <p> **規格**：`"parameters": {"parameter1": {"value" : 5}}` <p> **類型**：bool <p> **宣告**：`"parameters": {"parameter1": {"type": "bool"}}` <p> **規格**：`"parameters": {"parameter1": { "value": true }}` <p> **類型**：陣列 <p> **宣告**：`"parameters": {"parameter1": {"type": "array"}}` <p> **規格**：`"parameters": {"parameter1": { "value": [ array-of-values ]}}` <p> **類型**：物件 <p> **宣告**：`"parameters": {"parameter1": {"type": "object"}}` <p> **規格**：`"parameters": {"parameter1": { "value": { JSON-object } }}` <p> **類型**：secureobject <p> **宣告**：`"parameters": {"parameter1": {"type": "object"}}` <p> **規格**：`"parameters": {"parameter1": { "value": { JSON-object } }}` <p> **注意：**`GET`作業中不會傳回 `securestring` 和 `secureobject` 類型。 所有密碼、金鑰和密碼都應該使用這個類型。|  
 |defaultValue|否|在建立資源期間未指定任何值時，請為參數指定預設值。|  
 |allowedValues|否|指定參數允許值的陣列。|  
 |中繼資料|否|指定參數的其他資訊，例如可讀取描述或是 Visual Studio 或其他工具所使用的設計階段資料。|  

@@ -5,7 +5,7 @@
     ![StorSimple 建立雲端設備](./media/storsimple-8000-create-cloud-appliance-u2/sca-create1.png)
 3. 在 [建立雲端設備] 刀鋒視窗中，指定下列詳細資料。
    
-    ![StorSimple 建立雲端設備](./media/storsimple-8000-create-cloud-appliance-u2/sca-create2.png)
+    ![StorSimple 建立雲端設備](./media/storsimple-8000-create-cloud-appliance-u2/sca-create2m.png)
    
    1. **名稱** - 雲端設備的唯一名稱。
    2. **型號** - 選擇雲端設備的型號。 8010 裝置提供 30 TB 的標準儲存體，而 8020 提供 64 TB 的進階儲存體。 指定 8010 以從備份部署項目等級擷取案例。 選取 8020 來部署高效能、低延遲的工作負載，或作為災害復原的次要裝置。
