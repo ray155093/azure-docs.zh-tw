@@ -1,5 +1,5 @@
 ---
-title: "設定 HBase 複寫 | Microsoft Docs"
+title: "設定虛擬網路中的 HBase 叢集複寫 - Azure | Microsoft Docs"
 description: "了解如何針對負載平衡、高可用性、HDInsight 版本之間的零停機時間移轉/更新，以及災害復原來設定 HBase 複寫。"
 services: hdinsight,virtual-network
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a62cd616f0abd59c83c834bf13b4ba8549a9c73e
-ms.openlocfilehash: 83aabe0e5161cd3f94caa996dec29bc020e5308b
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: 7a6a473b6db745563b3667da1013a8e78db8593c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/23/2017
+ms.lasthandoff: 06/10/2017
 
 
 ---
-# <a name="configure-hbase-replication"></a>設定 HBase 複寫
+# <a name="configure-hbase-cluster-replication-within-virtual-networks"></a>設定虛擬網路中的 HBase 叢集複寫
 
 了解如何在單一虛擬網路 (VNet) 內或兩個虛擬網路之間設定 HBase 複寫。
 

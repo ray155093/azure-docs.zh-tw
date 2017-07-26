@@ -12,13 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/20/2017
+ms.date: 06/01/2017
 ms.author: TomSh
+ms.custom: azlog
 ms.translationtype: Human Translation
-ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
-ms.openlocfilehash: 616a29b3f7db817e63a3a3673b845cc86752af77
+ms.sourcegitcommit: 532ff423ff53567b6ce40c0ea7ec09a689cee1e7
+ms.openlocfilehash: 1adabc7f249d9b01f3ad1a819f75b2ef47f72998
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/23/2017
+ms.lasthandoff: 06/06/2017
+
 
 
 ---
@@ -45,6 +47,9 @@ Azure 會為每項 Azure 服務產生大量記錄。 這些記錄檔表示三種
 
 Azure 記錄整合目前支援整合 Azure 活動記錄、您的 Azure 訂用帳戶中 Windows 虛擬機器的 Windows 事件記錄檔、Azure 資訊安全中心警示、Azure 診斷記錄及 Azure Active Directory 稽核記錄。
 
+>[!NOTE]
+雖然 Azure 記錄檔整合是免費的解決方案，記錄檔資訊的儲存體仍會產生 Azure 儲存體成本。
+
 下表說明記錄檔分類和 SIEM 整合詳細資訊
 
 | 記錄類型  |支援 JSON 的記錄分析 (Splunk、ELK)| ArcSight  | QRadar  |   
@@ -55,8 +60,8 @@ Azure 記錄整合目前支援整合 Azure 活動記錄、您的 Azure 訂用帳
 | 診斷記錄 (資源記錄) | 是 | 需要使用者建立 FlexConnector JSON 剖析器檔案。 如需如何進行的指示，請參閱 ArcSight 文件。 | 您必須建立記錄來源擴充。 如需詳細資訊，請參閱 QRadar 文件 |
 | VM 記錄 | 是，透過轉寄的事件，而非透過 JSON | 是，透過轉寄的事件 | 是，透過轉寄的事件 |
 
->[!NOTE]
-雖然 Azure 記錄檔整合是免費的解決方案，記錄檔資訊的儲存體仍會產生 Azure 儲存體成本。
+如需支援之記錄類型的其他資訊，請瀏覽[常見問題集](security-azure-log-integration-faq.md)
+
 
 可透過 [Azure 記錄檔整合 MSDN 論壇](https://social.msdn.microsoft.com/Forums/office/home?forum=AzureLogIntegration)取得社群協助。 論壇讓 AzLog 社群能針對如何充分利用 Azure 記錄檔整合，透過分享問題、 解答、 秘訣和技巧支援彼此。 此外，Azure 記錄整合小組會監視這個論壇，並且會盡全力提供協助。
 

@@ -12,14 +12,13 @@ ms.devlang: c
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/05/2017
+ms.date: 07/25/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 128832c6353a9c4501bcbeeaa7c3b61e6a7929b7
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: 42e82793b73a941df08e438d9e04669a386a8368
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
-
+ms.lasthandoff: 06/08/2017
 
 ---
 # <a name="connect-your-azure-iot-edge-gateway-to-the-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a>將 Azure IoT Edge 閘道連線到預先設定的遠端監視解決方案，並傳送模擬的遙測資料
@@ -28,7 +27,7 @@ ms.lasthandoff: 05/16/2017
 
 本教學課程說明如何使用 Azure IoT Edge 來模擬溫度和溼度資料，以傳送至預先設定的遠端監視解決方案。 教學課程會使用：
 
-- Azure IoT Edge，以實作閘道範例。
+- Azure IoT Edge，以實作範例閘道。
 - IoT 套件遠端監視預先設定解決方案作為以雲端為基礎的後端。
 
 ## <a name="overview"></a>概觀
@@ -81,7 +80,7 @@ sed -i -e 's/\r$//' build.sh
 您現在可以將 IoT Edge 閘道設定為將模擬的遙測資料傳送到遠端監視儀表板。 如需如何設定閘道和 IoT Edge 模組的詳細資訊，請參閱 [Azure IoT Edge 概念][lnk-gateway-concepts]。
 
 > [!TIP]
-> 在本教學課程中，您可以使用 Intel NUC 上的標準 `vi` 文字編輯器。 如果您之前未使用過 `vi`，請先完成入門教學課程 (例如 [Unix - The vi Editor Tutorial][ lnk-vi-tutorial]) 以熟悉這個編輯器。 或者，您可以使用 `smart install nano -y` 命令，來安裝更方便使用的 [nano](https://www.nano-editor.org/) 編輯器。
+> 在本教學課程中，您可以使用 Intel NUC 上的標準 `vi` 文字編輯器。 如果您之前未使用過 `vi`，請先完成入門教學課程 (例如 [Unix - The vi Editor Tutorial][lnk-vi-tutorial] ) 以熟悉這個編輯器。 或者，您可以使用 `smart install nano -y` 命令，來安裝更方便使用的 [nano](https://www.nano-editor.org/) 編輯器。
 
 使用下列命令，將 **vi** 編輯器中的範例組態檔開啟︰
 
@@ -108,7 +107,7 @@ args": [
   {
     "macAddress": "AA:BB:CC:DD:EE:FF",
     "deviceId": "<<Azure IoT Hub Device ID>>",
-    "deviceKey": "<<Azure IoT Hub Device Key>>>"
+    "deviceKey": "<<Azure IoT Hub Device Key>>"
   },
   {
     "macAddress": "AA:BB:CC:DD:EE:FF",

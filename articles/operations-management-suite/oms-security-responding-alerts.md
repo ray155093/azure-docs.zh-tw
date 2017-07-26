@@ -4,7 +4,7 @@ description: "這份文件可協助您使用 OMS 安全性和稽核中可用的 
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
-manager: swadhwa
+manager: mbaldwin
 editor: 
 ms.assetid: 7d45a32b-1341-4bb5-a436-1f42a8a2590a
 ms.service: operations-management-suite
@@ -13,12 +13,13 @@ ms.topic: article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/30/2017
+ms.date: 06/13/2017
 ms.author: yurid
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7161cacfd371aa73974e635a343793bbec76d858
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 0cf9b83d7023641ec445a59a5e61d3da038695fa
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -83,7 +84,19 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 > [!NOTE]
 > 您可以觀看 Microsoft Ignite 所提供的簡報[使用 Operations Management Suite 以引導式調查減輕資料中心的安全性威脅](https://myignite.microsoft.com/videos/5000)，查看如何在事件回應程序期間使用這項功能的示範。
 > 
-> 
+
+### <a name="responding-to-distinct-malicious-ip-accessed"></a>回應存取的相異惡意 IP
+在某些情況下，您可能會發現已從一部受監視的電腦存取潛在惡意 IP：
+
+![威脅情報對應](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig6.png)
+
+會透過 OMS 安全性產生此警示以及其他相同類別中的警示，方法是運用 [Microsoft 威脅情報](https://youtu.be/O4WtxgUrDc8)。 威脅情報資料是由 Microsoft 向主要威脅情報提供者所收集及購買。 這項資料會經常更新，且適用於快速移動威脅。 本質上，在[調查](https://blogs.technet.microsoft.com/msoms/2016/12/08/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/)安全性警示時，應將它與其他安全性資訊的來源進行結合。 
+
+## <a name="customize-alerts-received-via-e-mail"></a>自訂透過電子郵件接收的警示
+
+您可以自訂在 OMS 安全性觸發安全性警示時，組織內的哪些使用者會收到通知。 此選項可在 OMS 儀表板的 [概觀 / 設定] 下找到：
+
+![電子郵件](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig7.png)
 
 ## <a name="see-also"></a>另請參閱
 在這份文件中，您了解到如何使用 OMS 安全性和稽核解決方案中的 [威脅情報]  選項來回應安全性警示。 若要深入了解 OMS 安全性，請參閱下列文章：

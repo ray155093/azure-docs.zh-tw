@@ -1,5 +1,5 @@
 ---
-title: "搭配使用 MapReduce 和 Curl 與 HDInsight 中的 Hadoop | Microsoft Docs"
+title: "搭配使用 MapReduce 和 Curl 與 HDInsight 中的 Hadoop - Azure | Microsoft Docs"
 description: "了解如何使用 Curl 從遠端搭配執行 MapReduce 工作與 HDInsight 上的 Hadoop。"
 services: hdinsight
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/11/2017
+ms.date: 07/12/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: ee7f4536a2d58966f0bcecf19f2a5fec5df68bc2
-ms.lasthandoff: 04/13/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: df22c7315cc55df0e7963bc03a215ab09589b25b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/10/2017
 
 ---
 # <a name="run-mapreduce-jobs-with-hadoop-on-hdinsight-using-rest"></a>使用 REST 搭配 HDInsight 上的 Hadoop 執行 MapReduce 作業

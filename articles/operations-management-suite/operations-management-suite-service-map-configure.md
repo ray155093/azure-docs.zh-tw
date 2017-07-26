@@ -1,6 +1,6 @@
 ---
-title: "在 Operations Management Suite (OMS) 中設定服務對應 | Microsoft Docs"
-description: "服務對應是一個 Operations Management Suite (OMS) 解決方案，可自動探索 Windows 和 Linux 系統上的應用程式元件，並對應服務之間的通訊。  本文會詳細說明如何在環境中部署服務對應並將它用於各種案例。"
+title: "設定 Operations Management Suite 中的服務對應 | Microsoft Docs"
+description: "服務對應是一個 Operations Management Suite 解決方案，可自動探索 Windows 和 Linux 系統上的應用程式元件，並對應服務之間的通訊。 本文會詳細說明如何在環境中部署服務對應並將它用於各種案例。"
 services: operations-management-suite
 documentationcenter: 
 author: daveirwin1
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/18/2016
 ms.author: daseidma;bwren;dairwin
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: e0c74ef9fa2fa2e0b69a3730d7af30969d60e3f8
-ms.lasthandoff: 04/20/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: 9af6c0fc3df2863c8e7b9a6a62acf5ba6b7d2d0a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 ---
-# <a name="configuring-service-map-solution-in-operations-management-suite-oms"></a>在 Operations Management Suite (OMS) 中設定服務對應解決方案
-服務對應可自動探索 Windows 和 Linux 系統上的應用程式元件，並對應服務之間的通訊。 如果您想到您的伺服器，ADM 可讓您以互連系統 (提供重要服務) 的形式檢視它們。  不需要進行任何設定，只要安裝了代理程式，服務對應就會顯示橫跨任何 TCP 連接架構的伺服器、處理程序和連接埠之間的連接。
+# <a name="configure-service-map-in-operations-management-suite"></a>設定 Operations Management Suite 中的服務對應
+服務對應可自動探索 Windows 和 Linux 系統上的應用程式元件，並對應服務之間的通訊。 您可以使用服務對應，將伺服器視為提供重要服務的互連系統，藉此來檢視伺服器。 不需要進行任何設定，只要安裝了代理程式，服務對應就會顯示橫跨任何 TCP 連線架構的伺服器、處理序和連接埠之間的連線。
 
-本文說明設定服務對應與啟用代理程式的詳細資料。  如需使用服務對應的相關資訊，請參閱[在 Operations Management Suite (OMS) 中使用服務對應解決方案](operations-management-suite-service-map.md)
+本文說明設定服務對應與啟用代理程式的詳細資料。 如需使用服務對應的相關資訊，請參閱[在 Operations Management Suite 中使用服務對應解決方案](operations-management-suite-service-map.md)。
 
 ## <a name="dependency-agent-downloads"></a>相依性代理程式下載
 | 檔案 | 作業系統 | 版本 | SHA-256 |
@@ -34,123 +34,82 @@ ms.lasthandoff: 04/20/2017
 
 
 ## <a name="connected-sources"></a>連接的來源
-服務對應會從 Microsoft 相依性代理程式取得它的資料。  相依性代理程式相依於連接至 OMS 的 OMS 代理程式。  這表示，伺服器必須先安裝並設定 OMS 代理程式，然後才能安裝相依性代理程式。  下表描述服務對應解決方案支援的連接來源。
+服務對應會從 Microsoft 相依性代理程式取得它的資料。 「相依性代理程式」有賴於 OMS 代理程式，以連線至 Operations Management Suite。 這表示，伺服器必須先安裝並設定 OMS 代理程式，然後才能安裝相依性代理程式。 下表描述服務對應解決方案支援的連線來源。
 
-| 連接的來源 | 支援 | 說明 |
+| 連線的來源 | 支援 | 說明 |
 |:--|:--|:--|
-| Windows 代理程式 | 是 | 服務對應會分析並收集來自 Windows 代理程式電腦的資料。  <br><br>除了 [OMS 代理程式](../log-analytics/log-analytics-windows-agents.md)外，Windows 代理程式還需要 Microsoft 相依性代理程式。  如需作業系統版本的完整清單，請參閱[支援的作業系統](#supported-operating-systems)。 |
-| Linux 代理程式 | 是 | 服務對應會分析並收集來自 Linux 代理程式電腦的資料。  <br><br>除了 [OMS 代理程式](../log-analytics/log-analytics-linux-agents.md)外，Linux 代理程式還需要 Microsoft 相依性代理程式。  如需作業系統版本的完整清單，請參閱[支援的作業系統](#supported-operating-systems)。 |
-| SCOM 管理群組 | 是 | 服務對應會分析並收集來自已連接之 [System Center Operations Manager (SCOM) 管理群組](../log-analytics/log-analytics-om-agents.md)中 Windows 和 Linux 代理程式的資料。 <br><br>SCOM 代理程式電腦必須能夠直接連接到 OMS。 資料會直接從管理群組傳送至 OMS 存放庫。|
-| Azure 儲存體帳戶 | 否 | 服務對應會收集來自代理程式電腦的資料，因此沒有要從 Azure 儲存體收集的資料。 |
+| Windows 代理程式 | 是 | 服務對應會分析並收集來自 Windows 代理程式電腦的資料。 <br><br>除了 [OMS 代理程式](../log-analytics/log-analytics-windows-agents.md)外，Windows 代理程式還需要 Microsoft 相依性代理程式。 如需作業系統版本的完整清單，請參閱[支援的作業系統](#supported-operating-systems)。 |
+| Linux 代理程式 | 是 | 服務對應會分析並收集來自 Linux 代理程式電腦的資料。 <br><br>除了 [OMS 代理程式](../log-analytics/log-analytics-linux-agents.md)外，Linux 代理程式還需要 Microsoft 相依性代理程式。 如需作業系統版本的完整清單，請參閱[支援的作業系統](#supported-operating-systems)。 |
+| System Center Operations Manager 管理群組 | 是 | 服務對應會在連線的 [System Center Operations Manager 管理群組](../log-analytics/log-analytics-om-agents.md)中，分析並收集來自 Windows 和 Linux 代理程式的資料。 <br><br>System Center Operations Manager 代理程式電腦必須直接連線到 Operations Management Suite。 資料會從管理群組轉送至 Operations Management Suite 存放庫。|
+| Azure 儲存體帳戶 | 否 | 服務對應會收集來自代理程式電腦的資料，因此不會從 Azure 儲存體收集資料。 |
 
 服務對應僅支援 64 位元平台。
 
-在 Windows 中，SCOM 和 OMS 都會使用 Microsoft Monitoring Agent (MMA) 來收集和傳送監視資料   (視內容而定，此代理程式會稱為 SCOM 代理程式、OMS 代理程式、MMA 或直接代理程式)。SCOM 和 OMS 會提供不同版本的現成 MMA，但這些版本可能會各自向 SCOM 和 (或) OMS 報告。  在 Linux 上，OMS Agent for Linux 會收集監視資料並傳送給 OMS。  在具有 OMS 直接代理程式的伺服器上或在透過 SCOM 管理群組連結至 OMS 的伺服器上，您可以使用服務對應。  在本文件中，我們將所有代理程式 (不論是在 Linux 還是 Windows 上、不論連接至 SCOM MG 或直接連接至 OMS) 全都稱為「OMS 代理程式」，除非內容需要才會對代理程式使用特定的部署名稱。
+在 Windows 中，System Center Operations Manager 和 Operations Management Suite 都使用 Microsoft Monitoring Agent (MMA) 來收集和傳送監視資料。 (視內容而定，此代理程式可稱為 System Center Operations Manager 代理程式、OMS 代理程式、Log Analytics 代理程式、MMA 或直接代理程式)。System Center Operations Manager 和 Operations Management Suite 提供不同的內建 MMA 版本。 這些版本可以各自向 System Center Operations Manager 或 Operations Management Suite 報告，或同時向兩者報告。  
 
-服務對應代理程式本身不會傳輸任何資料，因此不需要變更防火牆或連接埠。  服務對應的資料一律會由 OMS 代理程式 (直接或透過 OMS 閘道) 傳輸給 OMS。
+在 Linux 上，適用於 Linux 的 OMS 代理程式會收集監視資料並傳送給 Operations Management Suite。 在具有 OMS 直接代理程式的伺服器上，或在透過 System Center Operations Manager 管理群組連結至 Operations Management Suite 的伺服器上，您可以使用服務對應。  
+
+在本文中，所有代理程式 (無論 Linux 或 Windows、無論是連線到 System Center Operations Manager 管理群組或直接連線到 Operations Management Suite) 一律稱為「OMS 代理程式」。 只有在內容需要時，我們才會使用代理程式特定的部署名稱。
+
+服務對應代理程式本身不會傳輸任何資料，因此不需要變更防火牆或連接埠。 服務對應的資料一律會由 OMS 代理程式 (直接或透過 OMS 閘道) 傳輸給 Operations Management Suite。
 
 ![服務對應代理程式](media/oms-service-map/agents.png)
 
-如果您是 SCOM 客戶且管理群組已連接至 OMS︰
+如果您是管理群組連線到 Operations Management Suite 的 System Center Operations Manager 客戶：
 
-- 如果 SCOM 代理程式可以存取網際網路來連接到 OMS，則不需要進行其他設定。  
-- 如果 SCOM 代理程式無法透過網際網路存取 OMS，您必須將 OMS 閘道設定為使用 SCOM。
+- 如果您的 System Center Operations Manager 代理程式可透過網際網路連線到 Operations Management Suite，就不需要額外的設定。  
+- 如果您的 System Center Operations Manager 代理程式無法透過網際網路存取 Operations Management Suite，就必須設定 OMS 閘道以搭配 System Center Operations Manager 使用。
   
-如果您使用 OMS 直接代理程式，您需要將 OMS 代理程式本身設定為連接至 OMS 或 OMS 閘道。  您可以從 [https://www.microsoft.com/download/details.aspx?id=52666](https://www.microsoft.com/download/details.aspx?id=52666) 下載 OMS 閘道
+如果您使用 OMS 直接代理程式，則需要將 OMS 代理程式本身設定為連線至 Operations Management Suite 或 OMS 閘道。 您可以從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=52666)下載 OMS 閘道。
 
+### <a name="management-packs"></a>管理組件
+在 Operations Management Suite 工作區中啟動服務對應時，會將 300 KB 的管理組件傳送至該工作區中的所有 Windows 伺服器。 如果您是在[連線的管理群組](../log-analytics/log-analytics-om-agents.md)中使用 System Center Operations Manager 代理程式，則會從 System Center Operations Manager 來部署服務對應管理組件。 如果代理程式是直接連線，Operations Management Suite 會提供管理組件。
 
-### <a name="avoiding-duplicate-data"></a>避免資料重複
+管理組件名稱為 Microsoft.IntelligencePacks.ApplicationDependencyMonitor。 它會寫入至 %Programfiles%\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs\。 管理組件所使用的資料來源是 %Program files%\Microsoft Monitoring Agent\Agent\Health Service State\Resources\<AutoGeneratedID>\Microsoft.EnterpriseManagement.Advisor.ApplicationDependencyMonitorDataSource.dll。
 
-如果您是 SCOM 客戶，請勿將 SCOM 代理程式設定為直接與 OMS 通訊，否則資料會報告兩次。  在服務對應中，這會導致電腦在 [機器清單] 中出現兩次。
-
-您只應在下列其中一個位置設定 OMS︰
-
-- 受管理電腦的 SCOM 主控台 Operations Management Suite 面板
-- MMA 屬性中的 Azure Operational Insights 組態
-
-同時使用這兩個組態 (且具有相同工作區) 將導致資料重複。 同時使用這兩個組態 (但工作區不同) 則可能導致組態衝突 (一個啟用服務對應解決方案，另一個則未啟用)，而可能讓資料無法完全流向服務對應。  
-
-即使未在 SCOM 主控台的 OMS 組態中指定機器本身，但如果執行個體群組 (例如「Windows Server 執行個體群組」) 為使用中，仍可能會導致機器透過 SCOM 收到 OMS 組態。
-
-
-
-## <a name="management-packs"></a>管理組件
-在 OMS 工作區中啟動服務對應時，會將 300KB 的管理組件傳送至該工作區中的所有 Microsoft Monitoring Agent。  如果您要在[連接的管理群組](../log-analytics/log-analytics-om-agents.md)中使用 SCOM 代理程式，則會從 SCOM 部署服務對應管理組件。  如果代理程式直接連接，則會由 OMS 傳遞 MP。
-
-MP 名為 Microsoft.IntelligencePacks.ApplicationDependencyMonitor*。  它會寫入至 *%Programfiles%\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs\*。  管理組件所使用的資料來源是 %Program files%\Microsoft Monitoring Agent\Agent\Health Service State\Resources\<AutoGeneratedID>\Microsoft.EnterpriseManagement.Advisor.ApplicationDependencyMonitorDataSource.dll。
-
-
-
-## <a name="configuration"></a>組態
-除了 Windows 和 Linux 電腦要安裝代理程式並連接到 OMS 外，還必須從服務對應解決方案下載相依性代理程式安裝程式，然後以 root 或系統管理員的身分安裝在每個受管理的伺服器上。  服務對應代理程式安裝在向 OMS 報告的伺服器之後，便會在 10 分鐘內出現服務對應相依性對應。
-
-
-### <a name="migrating-from-bluestripe-factfinder"></a>從 BlueStripe FactFinder 移轉
-服務對應會分階段將 BlueStripe 技術傳遞給 OMS。 FactFinder 仍會支援現有客戶，但不再提供個別購買。  此預覽版本的相依性代理程式只能與 OMS 通訊。  如果您目前是 FactFinder 客戶，請找出未受 FactFinder 管理的一組測試用服務對應伺服器。 
-
-### <a name="download-the-dependency-agent"></a>下載相依性代理程式
-除了可提供電腦和 OMS 之間連接的 Microsoft Management Agent (MMA) 和 OMS Linux 代理程式外，服務對應所分析的所有電腦都必須安裝相依性代理程式。  在 Linux 上，必須先安裝 OMS Agent for Linux 再安裝相依性代理程式。 
-
-![服務對應磚](media/oms-service-map/additional_configuration.png)
-
-若要下載相依性代理程式，請按一下 [服務對應] 磚中的 [設定解決方案]，開啟 [相依性代理程式] 刀鋒視窗。  [相依性代理程式] 刀鋒視窗有適用於 Windows 和 Linux 代理程式的連結。 如需在不同系統上安裝代理程式的詳細資料，請參閱下列各節。
-
-### <a name="install-the-dependency-agent"></a>安裝相依性代理程式
-
-#### <a name="microsoft-windows"></a>Microsoft Windows
+## <a name="installation"></a>安裝
+### <a name="install-the-dependency-agent-on-microsoft-windows"></a>在 Microsoft Windows 上安裝相依性代理程式
 必須有系統管理員權限，以便安裝或解除安裝代理程式。
 
-您可以使用 InstallDependencyAgent-Windows.exe 在 Windows 電腦上安裝相依性代理程式。 如果您在執行此可執行檔時不使用任何選項，則會啟動精靈供您遵循，讓您以互動方式安裝。  
+您可以透過 InstallDependencyAgent-Windows.exe，在 Windows 電腦上安裝相依性代理程式。 如果您在執行此可執行檔時不使用任何選項，則會啟動以互動方式安裝的精靈。  
 
 請使用下列步驟在每一部 Windows 電腦上安裝相依性代理程式：
 
-1.    使用「將電腦直接連接到 OMS」上的指示確定已安裝 OMS 代理程式。
-2.    下載 Windows 代理程式，並以下列命令來執行： <br>*InstallDependencyAgent-Windows.exe*
-3.    遵循精靈來安裝代理程式。
-4.    如果相依性代理程式無法啟動，請檢查記錄檔以取得詳細的錯誤資訊。 在 Windows 代理程式上，記錄檔的目錄是 *C:\Program Files\Microsoft Dependency Agent\logs*。 
+1.  依照[將 Windows 電腦連線到 Azure 中的 Log Analytics 服務](../log-analytics/log-analytics-windows-agents.md)的指示來安裝 OMS 代理程式。
+2.  下載 Windows 代理程式，並以下列命令來執行： <br>`InstallDependencyAgent-Windows.exe`
+3.  遵循精靈來安裝代理程式。
+4.  如果相依性代理程式無法啟動，請檢查記錄檔以取得詳細的錯誤資訊。 在 Windows 代理程式上，記錄檔的目錄是 %Programfiles%\Microsoft Dependency Agent\logs。 
 
-系統管理員可透過控制台解除安裝 Windows 的相依性代理程式。
-
-
-#### <a name="linux"></a>Linux
-必須有 root 權限，以便安裝或設定代理程式。
-
-使用 InstallDependencyAgent-Linux64.bin (具有自我解壓縮二進位檔的殼層指令碼) 即可在 Linux 電腦上安裝相依性代理程式。 您可以使用 sh 執行檔案，或對檔案本身新增執行權限。
- 
-請使用下列步驟在每一部 Linux 電腦上安裝相依性代理程式：
-
-1.    使用下列位置所提供的指示確定已安裝 OMS 代理程式：[收集並管理來自 Linux 電腦的資料。必須先安裝 OMS 代理程式再安裝 Linux 相依性代理程式](https://technet.microsoft.com/library/mt622052.aspx)。
-2.    使用下列命令以 root 身分安裝 Linux 相依性代理程式：<br>*sh InstallDependencyAgent-Linux64.bin*。
-3.    如果相依性代理程式無法啟動，請檢查記錄檔以取得詳細的錯誤資訊。 在 Linux 代理程式上，記錄檔的目錄是 /var/opt/microsoft/dependency-agent/log。
-
-### <a name="uninstalling-the-dependency-agent-on-linux"></a>在 Linux 上解除安裝相依性代理程式
-若要將「相依性代理程式」從 Linux 中完全解除安裝，您必須將代理程式本身及隨代理程式自動安裝的「連接器」移除。  您可以使用下列單一命令同時解除安裝這兩項：
-
-    rpm -e dependency-agent dependency-agent-connector
-
-
-### <a name="installing-from-a-command-line"></a>從命令列安裝
-上一節提供了使用預設選項安裝相依性監視代理程式的指引。  下面幾節將會提供使用自訂選項從命令列安裝代理程式的指引。
-
-#### <a name="windows"></a>Windows
-使用下表中的選項以從命令列安裝。 若要查看安裝旗標的清單，請以 /? 旗標執行安裝程式， 如下所示。
+#### <a name="windows-command-line"></a>Windows 命令列
+使用下表中的選項以從命令列安裝。 若要查看安裝旗標的清單，請如下所示使用 /? 旗標執行安裝程式 。
 
     InstallDependencyAgent-Windows.exe /?
 
 | 旗標 | 說明 |
 |:--|:--|
+| /? | 取得命令列選項的清單。 |
 | /S | 執行無訊息安裝，不會出現任何使用者提示。 |
 
-Windows 相依性代理程式的檔案預設位於 *C:\Program Files\Microsoft Dependency Agent*。
+Windows 相依性代理程式的檔案預設位於 C:\Program Files\Microsoft Dependency Agent。
 
+### <a name="install-the-dependency-agent-on-linux"></a>在 Linux 上安裝相依性代理程式
+必須有 root 權限，以便安裝或設定代理程式。
 
-#### <a name="linux"></a>Linux
-使用下表中的選項進行安裝。 若要查看安裝旗標的清單，請以 -help 旗標執行安裝程式，如下所示。
+透過 InstallDependencyAgent-Linux64.bin (具有自我解壓縮二進位檔的殼層指令碼) 即可在 Linux 電腦上安裝相依性代理程式。 您可以使用 sh 來執行檔案，或對檔案本身新增執行權限。
+ 
+請使用下列步驟在每一部 Linux 電腦上安裝相依性代理程式：
+
+1.  依照[收集並管理來自 Linux 電腦的資料](https://technet.microsoft.com/library/mt622052.aspx)的指示來安裝 OMS 代理程式。
+2.  使用下列命令，以 root 身分安裝 Linux 相依性代理程式：<br>`sh InstallDependencyAgent-Linux64.bin`
+3.  如果相依性代理程式無法啟動，請檢查記錄檔以取得詳細的錯誤資訊。 在 Linux 代理程式上，記錄檔的目錄是 /var/opt/microsoft/dependency-agent/log。
+
+若要查看安裝旗標的清單，請如下所示以 -help 旗標執行安裝程式。
 
     InstallDependencyAgent-Linux64.bin -help
 
 | 旗標 | 說明 |
 |:--|:--|
+| -help | 取得命令列選項的清單。 |
 | -s | 執行無訊息安裝，不會出現任何使用者提示。 |
 | --check | 檢查權限和作業系統，但不會安裝代理程式。 |
 
@@ -164,57 +123,122 @@ Windows 相依性代理程式的檔案預設位於 *C:\Program Files\Microsoft D
 | 服務可執行檔 | /opt/microsoft/dependency-agent/bin/microsoft-dependency-agent<br>/opt/microsoft/dependency-agent/bin/microsoft-dependency-agent-manager |
 | 二進位儲存體檔案 | /var/opt/microsoft/dependency-agent/storage |
 
+## <a name="installation-script-examples"></a>安裝指令碼範例
+使用指令碼可輕鬆地一次部署許多伺服器上的相依性代理程式。 若要在 Windows 或 Linux 上下載並安裝相依性代理程式，可以使用下列指令碼範例。
 
+### <a name="powershell-script-for-windows"></a>適用於 Windows 的 PowerShell 指令碼
+```PowerShell
+Invoke-WebRequest "https://aka.ms/dependencyagentwindows" -OutFile InstallDependencyAgent-Windows.exe
+
+.\InstallDependencyAgent-Windows.exe /S
+```
+
+### <a name="shell-script-for-linux"></a>適用於 Linux 的殼層指令碼
+```
+wget --content-disposition https://aka.ms/dependencyagentlinux -O InstallDependencyAgent-Linux64.bin
+sh InstallDependencyAgent-Linux64.bin -s
+```
+
+## <a name="desired-state-configuration"></a>Desired State Configuration
+若要透過 Desired State Configuration 部署相依性代理程式，您可以使用 xPSDesiredStateConfiguration 模組和如下的程式碼：
+```
+configuration ServiceMap {
+
+Import-DscResource -ModuleName xPSDesiredStateConfiguration
+
+$DAPackageLocalPath = "C:\InstallDependencyAgent-Windows.exe"
+
+Node localhost
+{ 
+    # Download and install the Dependency Agent
+    xRemoteFile DAPackage 
+    {
+        Uri = "https://aka.ms/dependencyagentwindows"
+        DestinationPath = $DAPackageLocalPath
+    }
+
+    xPackage DA
+    {
+        Ensure="Present"
+        Name = "Dependency Agent"
+        Path = $DAPackageLocalPath
+        Arguments = '/S'
+        ProductId = ""
+        InstalledCheckRegKey = "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\DependencyAgent"
+        InstalledCheckRegValueName = "DisplayName"
+        InstalledCheckRegValueData = "Dependency Agent"
+        DependsOn = "[xRemoteFile]DAPackage"
+    }
+  }
+}
+```
+
+## <a name="uninstallation"></a>解除安裝
+### <a name="uninstall-the-dependency-agent-on-windows"></a>在 Windows 上解除安裝相依性代理程式
+系統管理員可透過控制台解除安裝 Windows 的相依性代理程式。
+
+系統管理員也可以執行 %Programfiles%\Microsoft Dependency Agent\Uninstall.exe，以解除安裝相依性代理程式。
+
+### <a name="uninstall-the-dependency-agent-on-linux"></a>在 Linux 上解除安裝相依性代理程式
+若要將「相依性代理程式」從 Linux 中完全解除安裝，您必須將代理程式本身及隨代理程式自動安裝的連接器移除。 您可以使用下列單一命令同時解除安裝這兩者：
+
+    rpm -e dependency-agent dependency-agent-connector
 
 ## <a name="troubleshooting"></a>疑難排解
-如果您在安裝或執行服務對應時遇到任何問題，本節內容可以協助您讓服務如常運作。  如果您仍然無法解決問題，請連絡 Microsoft 支援服務。
+如果您在安裝或執行服務對應時遇到任何問題，本節內容可以提供協助。 如果您仍然無法解決問題，請連絡 Microsoft 支援服務。
 
-### <a name="dependency-agent-installation-issues"></a>相依性代理程式安裝問題
+### <a name="dependency-agent-installation-problems"></a>相依性代理程式安裝問題
 #### <a name="installer-asks-for-a-reboot"></a>安裝程式會要求重新開機
-相依性代理程式*通常*不需要在安裝或解除安裝之後重新開機。  不過，在某些罕見情況下，Windows Server 需要重新開機，才能繼續進行安裝。  這會在相依性 (通常是 Microsoft VC++ 可轉散發套件) 因為鎖定的檔案而需要重新開機時發生。
+相依性代理程式*通常*不需要在安裝或解除安裝之後重新開機。 不過，在某些罕見情況下，Windows Server 需要重新開機，才能繼續進行安裝。 這會在相依性 (通常是 Microsoft Visual C++ 可轉散發套件) 因為鎖定的檔案而需要重新開機時發生。
 
-#### <a name="message-unable-to-install-dependency-agent-visual-studio-runtime-libraries-failed-to-install-code--codenumber"></a>訊息「無法安裝相依性代理程式︰無法安裝 Visual Studio 執行階段程式庫 (程式碼 = [code_number])。」
+#### <a name="message-unable-to-install-dependency-agent-visual-studio-runtime-libraries-failed-to-install-code--codenumber-appears"></a>顯示「無法安裝相依性代理程式︰無法安裝 Visual Studio 執行階段程式庫 (程式碼 = [code_number])」訊息
 
-Microsoft 相依性代理程式是建置於 Microsoft Visual Studio 執行階段程式庫。 嘗試安裝程式庫時發生問題。 執行階段程式庫安裝程式會在 %LOCALAPPDATA%\temp 資料夾中建立記錄。 檔案將會是 dd_vcredist_arch_yyyymmddhhmmss.log，其中 arch 是 "x86" 或 "amd64"，yyyymmddhhmmss 是建立記錄的日期和時間 (24 小時制)。 記錄會提供有關阻擋安裝問題的詳細資料。
+Microsoft 相依性代理程式建置於 Microsoft Visual Studio 執行階段程式庫之上。 如果程式庫安裝期間發生問題，就會出現訊息。 
 
-這對於您自己第一次安裝[最新的執行階段程式庫](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads)十分有用。
+執行階段程式庫安裝程式會在 %LOCALAPPDATA%\temp 資料夾中建立記錄。 檔案將會是 dd_vcredist_arch_yyyymmddhhmmss.log，其中 *arch* 是 "x86" 或 "amd64"，*yyyymmddhhmmss* 是建立記錄的日期和時間 (24 小時制)。 記錄會提供導致無法安裝之問題的詳細資料。
 
-以下是一些 code_numbers 和建議的解決方式。
+如果可以先自行安裝[最新的執行階段程式庫](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads)，將會十分有用。
+
+下表列出代碼和建議的解決方式。
 
 | 代碼 | 說明 | 解決方案 |
 |:--|:--|:--|
-| 0x17 | 程式庫安裝程式會要求尚未安裝的 Windows 更新。 | 查看最新的程式庫安裝程式記錄 (如上所述)。<br><br>如果提到 "Windows8.1-KB2999226-x64.msu"，後面再加上一行 "Error 0x80240017: Failed to execute MSU package."，則表示您尚未將安裝 KB2999226 所需的必要條件安裝。  請依照 https://support.microsoft.com/kb/2999226 中必要條件一節的指示。  請注意，您可能需要執行 Windows Update 並重新開機多次，才能安裝所需的必要條件。<br><br>再次執行 Microsoft 相依性代理程式安裝程式。 |
+| 0x17 | 程式庫安裝程式會要求尚未安裝的 Windows 更新。 | 查看最新的程式庫安裝程式記錄。<br><br>如果提到 "Windows8.1-KB2999226-x64.msu"，隨後一行是 "Error 0x80240017: Failed to execute MSU package"，則表示您尚未具備安裝 KB2999226 所需的必要條件。 請依照 [Windows 中的通用 C 執行階段](https://support.microsoft.com/kb/2999226) \(機器翻譯\) 中必要條件一節的指示進行。 您可能需要執行 Windows Update 並重新開機多次，才能安裝必要條件。<br><br>再次執行 Microsoft 相依性代理程式安裝程式。 |
 
 ### <a name="post-installation-issues"></a>安裝後問題
-#### <a name="server-doesnt-show-in-service-map"></a>伺服器未出現在服務對應
+#### <a name="server-doesnt-appear-in-service-map"></a>伺服器未出現在服務對應中
 如果相依性代理程式安裝成功，但是在服務對應解決方案中沒有看到您的伺服器︰
-1. 相依性代理程式是否安裝成功？  您可以查看是否已安裝服務並且執行，以便驗證。<br><br>
-**Windows**︰尋找名稱為「Microsoft 相依性代理程式」的服務<br>
-**Linux**：尋找執行中的程序 "microsoft-dependency-agent"
+* 相依性代理程式是否安裝成功？ 您可以查看是否已安裝服務並且執行，以便驗證。<br><br>
+**Windows**︰尋找名稱為「Microsoft 相依性代理程式」的服務。<br>
+**Linux**：尋找執行中的處理序 "microsoft-dependency-agent"。
 
-2. 您位於 [OMS/Log Analytics 的免費定價層](https://docs.microsoft.com/azure/log-analytics/log-analytics-add-solutions#offers-and-pricing-tiers)嗎？  免費方案允許最多五個唯一的服務對應伺服器。  任何後續伺服器則不會顯示在服務對應中，即使先前五個伺服器不會再傳送資料。
+* 您是否屬於 [Operations Management Suite/Log Analytics 的免費定價層](https://docs.microsoft.com/azure/log-analytics/log-analytics-add-solutions#offers-and-pricing-tiers)？ 免費方案允許最多五個唯一的服務對應伺服器。 任何後續伺服器則不會顯示在服務對應中，即使先前五個伺服器不會再傳送資料。
 
-3. 您的伺服器是否將記錄和效能資料傳送到 OMS？  移至 [記錄搜尋]，然後為您的電腦執行下列查詢︰ 
+* 您的伺服器是否將記錄和效能資料傳送到 Operations Management Suite？ 移至 [記錄搜尋]，然後為您的電腦執行下列查詢︰ 
 
         * Computer="<your computer name here>" | measure count() by Type
         
-您是否在結果中取得各種事件？  是否為最新的資料？  如果是，OMS 代理程式運作正常，並且與 OMS 服務進行通訊。 如果不是，請檢查您伺服器上的 OMS 代理程式︰[OMS Agent for Windows 疑難排解](https://support.microsoft.com/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues)。  [OMS Agent for Linux 疑難排解](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md)。
+  您是否在結果中取得各種事件？ 是否為最新的資料？ 如果是，表示 OMS 代理程式運作正常，並且可與 Operations Management Suite 服務進行通訊。 如果不是，請檢查您伺服器上的 OMS 代理程式︰[適用於 Windows 的 OMS 代理程式疑難排解](https://support.microsoft.com/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues)或[適用於 Linux 的 OMS 代理程式疑難排解](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md) \(英文\)。
 
-#### <a name="server-shows-in-service-map-but-has-no-processes"></a>伺服器會顯示在服務對應，但是沒有任何處理序
-如果在服務對應中看到您的伺服器，但是沒有處理序或連線資料，則表示相依性代理程式已安裝且正在執行，但未載入核心驅動程式。  若要了解為什麼未載入驅動程式，請檢查 wrapper.log 檔案 (Windows) 或 service.log 檔案 (Linux)。  檔案的最後一行應該會指出為什麼 (例如核心不受支援，如果您更新了核心，在 Linux 上可能就會發生這個情況) 未載入核心。
+#### <a name="server-appears-in-service-map-but-has-no-processes"></a>伺服器顯示在服務對應中，但是沒有任何處理序
+如果在服務對應中看到您的伺服器，但是沒有處理序或連線資料，則表示相依性代理程式已安裝且正在執行，但未載入核心驅動程式。 
 
-Windows：C:\Program Files\Microsoft Dependency Agent\logs\wrapper.log
-
-Linux：/var/opt/microsoft/dependency-agent/log/service.log
+請檢查 C:\Program Files\Microsoft Dependency Agent\logs\wrapper.log file (Windows) 檔案或 /var/opt/microsoft/dependency-agent/log/service.log 檔案 (Linux)。 檔案的最後幾行應該會指出未載入核心的原因。 例如，若您更新過核心，在 Linux 上可能會不受支援。
 
 ## <a name="data-collection"></a>資料收集
-視系統相依性的複雜程度而定，每個代理程式每天預計會傳輸大約 25 MB。  每個代理程式每隔 15 秒就會傳送服務對應相依性資料。  
+視系統相依性的複雜程度而定，每個代理程式每天預計會傳輸大約 25 MB。 每個代理程式每隔 15 秒就會傳送服務對應相依性資料。  
 
 相依性代理程式一般會耗用 0.1% 的系統記憶體和 0.1% 的系統 CPU。
 
+## <a name="supported-azure-regions"></a>支援的 Azure 區域
+服務對應目前已在以下 Azure 區域中推出：
+- 美國東部
+- 西歐
+- 美國中西部
+
 
 ## <a name="supported-operating-systems"></a>受支援的作業系統
-下列幾節會列出相依性代理程式所支援的作業系統。   所有作業系統皆不支援 32 位元架構。
+下列幾節會列出相依性代理程式所支援的作業系統。 服務對應不支援任何 32 位元架構的作業系統。
 
 ### <a name="windows-server"></a>Windows Server
 - Windows Server 2016
@@ -223,7 +247,7 @@ Linux：/var/opt/microsoft/dependency-agent/log/service.log
 - Windows Server 2008 R2 SP1
 
 ### <a name="windows-desktop"></a>Windows 桌面
-- WIndows 10
+- Windows 10
 - Windows 8.1
 - Windows 8
 - Windows 7
@@ -231,9 +255,9 @@ Linux：/var/opt/microsoft/dependency-agent/log/service.log
 ### <a name="red-hat-enterprise-linux-centos-linux-and-oracle-linux-with-rhel-kernel"></a>Red Hat Enterprise Linux、CentOS Linux 和 Oracle Linux (搭載 RHEL 核心)
 - 只支援預設版本和 SMP Linux 核心版本。
 - 所有 Linux 散發套件皆不支援非標準的核心版本 (例如 PAE 和 Xen)。 舉例來說，版本字串為「2.6.16.21-0.8-xen」的系統就不受支援。
-- 不支援自訂核心，包括重新編譯的標準核心
-- 不支援 Centos Plus 核心。
-- Oracle Unbreakable Kernel (UEK) 會在下面的不同章節說明。
+- 不支援自訂核心，包括重新編譯的標準核心。
+- 不支援 CentOSPlus 核心。
+- Oracle Unbreakable Enterprise Kernel (UEK) 在本文稍後的章節有相關討論。
 
 
 #### <a name="red-hat-linux-7"></a>Red Hat Linux 7
@@ -265,7 +289,7 @@ Linux：/var/opt/microsoft/dependency-agent/log/service.log
 | 5.10 | 2.6.18-371 |
 | 5.11 | 2.6.18-398<br>2.6.18-400<br>2.6.18-402<br>2.6.18-404<br>2.6.18-406<br>2.6.18-407<br>2.6.18-408<br>2.6.18-409<br>2.6.18-410<br>2.6.18-411<br>2.6.18-412<br>2.6.18-416<br>2.6.18-417<br>2.6.18-419 |
 
-#### <a name="oracle-enterprise-linux-w-unbreakable-kernel-uek"></a>Oracle Enterprise Linux 搭載 Unbreakable Kernel (UEK)
+#### <a name="oracle-enterprise-linux-with-unbreakable-enterprise-kernel"></a>Oracle Enterprise Linux 搭載 Unbreakable Enterprise Kernel
 
 #### <a name="oracle-linux-6"></a>Oracle Linux 6
 | 作業系統版本 | 核心版本
@@ -302,7 +326,7 @@ Linux：/var/opt/microsoft/dependency-agent/log/service.log
 | 10 SP4 | 2.6.16.60 |
 
 ## <a name="diagnostic-and-usage-data"></a>診斷和使用量資料
-當您使用服務對應服務時，Microsoft 會自動收集使用量和效能資料。 Microsoft 使用這項資料來提供和改進服務對應服務的品質、安全性和完整性。 資料中除了包含軟體組態 (如作業系統和版本) 的相關資訊，還包含 IP 位址、DNS 名稱和工作站名稱，以便提供精確且有效率的疑難排解功能。 我們不會收集姓名、地址或其他連絡資訊。
+當您使用服務對應服務時，Microsoft 會自動收集使用量和效能資料。 Microsoft 使用這項資料來提供和改進服務對應服務的品質、安全性和完整性。 這項資料包含軟體組態 (如作業系統和版本) 的相關資訊。 它也會包含 IP 位址、DNS 名稱和工作站名稱，以便能夠正確且有效率地進行疑難排解。 我們不會收集姓名、地址或其他連絡資訊。
 
 如需有關資料收集與使用方式的詳細資訊，請參閱 [Microsoft 線上服務隱私權聲明](https://go.microsoft.com/fwlink/?LinkId=512132)。
 

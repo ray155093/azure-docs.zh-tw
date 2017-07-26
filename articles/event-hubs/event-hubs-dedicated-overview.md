@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/21/2017
+ms.date: 06/01/2017
 ms.author: sethm;babanisa
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: fa0d49498db74ec81c98f3df9317d42cdd31ab46
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: b3af61ec0923a0d9d207cee790d59aa9254a578b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -55,13 +56,13 @@ ms.lasthandoff: 04/18/2017
 * 零維護：負載平衡、作業系統更新、安全性修補程式及資料分割都由我們管理。
 * 每月價格固定。
 
-事件中樞專用也會移除一些標準供應項目的輸送量限制。 基本和標準層的輸送量單位授權您每秒傳送 1000 個事件，或每個 TU 1MBps 的輸入，而輸出則為該數量的兩倍。 專用規模的供應項目的輸入和輸出事件計數沒有限制。 這些限制僅取決於所購買事件中樞的處理能力。
+事件中樞專用也會移除一些標準供應項目的輸送量限制。 基本和標準層的輸送量單位可讓您每個 TU 的輸入為每秒 1000 個事件或每秒 1 MB，而輸出則為該數量的兩倍。 專用規模的供應項目的輸入和輸出事件計數沒有限制。 這些限制僅取決於所購買事件中樞的處理能力。
 
 這項服務以最大型遙測使用者為目標，同時提供給企業合約客戶。
 
 ## <a name="how-to-onboard"></a>如何加入
 
-事件中樞專用平台是透過企業合約，以不同的 CU 大小對外提供。 每個 CU 可提供大約相當於 200 個輸送量單位。 您可以根據需求新增或移除 CU 於當月上下調整容量。 專用方案的獨特之處在於您可從事件中樞產品小組獲得更多實際操作經驗，以最適合您的方式彈性部署。 
+事件中樞專用平台是透過企業合約，以不同的 CU 大小來提供。 每個 CU 可提供大約相當於 200 個輸送量單位。 您可以根據需求新增或移除 CU 於當月上下調整容量。 專用方案的獨特之處在於可從事件中樞產品小組獲得更為實際的加入體驗，以最適合您的方式彈性部署。 
 
 ## <a name="next-steps"></a>後續步驟
 請連絡 Microsoft 銷售代表或 Microsoft 支援服務，以取得事件中樞專用容量的其他詳細資料。 您也可以造訪下列連結以深入了解事件中樞︰

@@ -1,5 +1,5 @@
 ---
-title: "如何刪除 HDInsight 叢集 | Microsoft Docs"
+title: "如何刪除 HDInsight 叢集 - Azure | Microsoft Docs"
 description: "您可用來刪除 HDInsight 叢集的各種方式相關資訊。"
 services: hdinsight
 documentationcenter: 
@@ -12,21 +12,22 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/08/2017
+ms.date: 05/03/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-translationtype: Human Translation
-ms.sourcegitcommit: d391c5c6289aa63e969f63f189eb5db680883f0a
-ms.openlocfilehash: fbb561f4bfda27c74ffdc08c1b07f4adb83286ab
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 7d3aed71d9b5867a87954a60b1e470def0563f71
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 ---
 # <a name="delete-an-hdinsight-cluster-using-your-browser-powershell-or-the-azure-cli"></a>使用您的瀏覽器、PowerShell 或 Azure CLI 刪除 HDInsight 叢集
 
-HDInsight 叢集的計費起自叢集建立時，終至叢集刪除時。 計費是以每分鐘按比例計算，因此不再使用時，請一律刪除您的叢集。 在本文件中，您將了解如何使用 Azure 入口網站、Azure PowerShell 和 Azure CLI 來刪除叢集。
+HDInsight 叢集的計費起自叢集建立時，終至叢集刪除時。 計費是以每分鐘按比例計算，因此不再使用時，請一律刪除您的叢集。 在本文件中，您將了解如何使用 Azure 入口網站、Azure PowerShell 和 Azure CLI 1.0 來刪除叢集。
 
 > [!IMPORTANT]
-> 刪除 HDInsight 叢集並不會刪除與叢集相關聯的 Azure 儲存體帳戶。 儲存體帳戶不會刪除，因此您的資料會保留下來，可供在未來重複使用。
+> 刪除 HDInsight 叢集並不會刪除與叢集相關聯的 Azure 儲存體帳戶。 這可讓您在日後重複使用您的資料。
 
 ## <a name="azure-portal"></a>Azure 入口網站
 

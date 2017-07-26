@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 03/31/2017
+ms.date: 06/06/2017
 ms.author: heidist
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 70b04cde5fe877355c1dea29c78df3dcb8277973
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: bb4cb64260f489e1b316140e4214933cf2b334cd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/08/2017
 
 
 ---
@@ -36,6 +37,7 @@ ms.lasthandoff: 04/07/2017
 | [查詢索引](search-get-started-portal.md) | 使用內建的範例資料建立及查詢索引。 入口網站中的工具是了解查詢類型和搜尋參數的快速方法。 | 2017 年 2 月 |
 | [後續步驟：<br/>.NET 中的程式碼](search-howto-dotnet-sdk.md) | 此 C# 逐步解說說明使用 Azure 搜尋服務 .NET 程式庫來連接、編製索引及查詢的方式。 | 2016 年 11 月 |
 | [後續步驟：<br/>REST 中的程式碼](search-create-index-rest-api.md) | 檢閱使用任何平台和程式設計語言建立 Azure 搜尋服務索引的 REST 呼叫和 JSON 承載。 | 2016 年 12 月 |
+| [全文檢索搜尋如何在 Azure 搜尋服務中運作](search-lucene-query-architecture.md) | Azure 搜尋服務中全文檢索搜尋工作負載的架構與概觀。 | 2017 年 3 月 |
 
 ## <a name="code-samples"></a>程式碼範例
 
@@ -53,9 +55,10 @@ ms.lasthandoff: 04/07/2017
 ## <a name="online-demos"></a>線上示範
 使用 Azure 搜尋服務來提供搜尋體驗的全功能 Web 應用程式。 這些連結能提供使用 Azure 搜尋服務之應用程式的實際操作體驗。
 
-| 連結 | 描述 |
+| 連結 | 說明 |
 |-------|-------------|
-|[Azure 搜尋服務的紐約市求職入口網站示範 (英文)](http://aka.ms/azjobsdemo) | 使用來自紐約市開放資料計畫 (NYC Open Data Initiative) 的資料，示範 Azure 搜尋服務能力的作用中 ASP.NET 網站。 此應用程式使用[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)。 您可以修改程式碼來試用 [Lucene 語法](https://msdn.microsoft.com/library/azure/mt589323.aspx)。 |
+|[搜尋分析器示範](http://alice.unearth.ai) | 顯示來自標準 Lucene 分析器、Lucene 的英文分析器及 Microsoft 的自然語言處理器查詢輸出的實際示範網站。 您可以針對每個搜尋詞彙，以並排比較的方式檢視每個分析器的輸出。 |
+|[Azure 搜尋服務的紐約市求職入口網站示範 ](http://aka.ms/azjobsdemo) \(英文\) | 使用來自紐約市開放資料計畫 (NYC Open Data Initiative) 的資料，示範 Azure 搜尋服務能力的作用中 ASP.NET 網站。 此應用程式使用[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)。 您可以修改程式碼來試用 [Lucene 語法](https://msdn.microsoft.com/library/azure/mt589323.aspx)。 |
 |[泰特美術館示範 (英文)](https://rawgit.com/liamca/azure-search-tate-art-gallery/master/Demo/index.html) | 使用泰特美術館範例資料的託管 ASP.NET 網站。 做為開始，請搜尋 "modern"、"photo" 及 "portrait" 等詞彙。
 |[Azure 搜尋服務示範網站](https://searchsamples.azurewebsites.net/#/) | Azure 搜尋服務的一系列示範應用程式。 使用 Azure 搜尋服務測試媒體搜尋、地理搜尋和產品庫存應用程式。 |
 

@@ -15,9 +15,11 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 10/24/2016
 ms.author: heidist
-translationtype: Human Translation
-ms.sourcegitcommit: fc2f30569acc49dd383ba230271989eca8a14423
-ms.openlocfilehash: 259c59133499a4a3beb0e5f6f3700944df5ab8a9
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: f9f3a7b2369818791ffac1c8eeccef45216c2ff0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/08/2017
 
 ---
 
@@ -83,14 +85,14 @@ ms.openlocfilehash: 259c59133499a4a3beb0e5f6f3700944df5ab8a9
 | 複本上限 |N/A |3 |12 |12 |12 |12 |
 | 每秒查詢數目 |N/A |~3/每個複本 |~15/每個複本 |~60/每個複本 |>60/每個複本 |>60/每個複本 |
 
-<sup>1</sup> 「免費」和「預覽」SKU 並未隨附 SLA。 在 SKU 正式推出之後，才會強制執行 SLA。
+<sup>1</sup> 免費和預覽功能並未隨附服務等級協定 (SLA)。 在所有可計費層中，SLA 會在您為您的服務佈建足夠的備援性時生效。 查詢 (讀取) SLA 時需要兩個 (含) 以上的複本。 查詢和檢索 (讀寫) SLA 時需要三個 (含) 以上的複本。 分割區數目不是 SLA 考量。 
 
 <sup>2</sup> S3 和 S3 HD 都由相同的高容量基礎結構支援，但各自會以不同方式達到最大限制。 S3 的目標是較少量的極大型索引。 因此，其最大限制是資源限制 (每項服務 2.4 TB)。 S3 HD 的目標是大量極小型索引。 到達 1,000 個索引時，S3 HD 就達到其索引條件約束形式的限制。 如果您是需要 1,000 個以上索引的 S3 HD 客戶，請連絡 Microsoft 支援以了解如何繼續進行。
 
 ## <a name="eliminate-skus-that-dont-meet-requirements"></a>排除不符合需求的 SKU
 下列問題可協助您決定適合您工作負載的正確 SKU。
 
-1. 您是否有 **服務等級協定 (SLA)** 需求？ 請將 SKU 決策限縮至「基本」或非預覽版的「標準」。
+1. 您是否有 **服務等級協定 (SLA)** 需求？ 您可以使用任何的可計費層 (「基本」以上)，但必須為服務設定備援。 查詢 (讀取) SLA 時需要兩個 (含) 以上的複本。 查詢和檢索 (讀寫) SLA 時需要三個 (含) 以上的複本。 分割區數目不是 SLA 考量。
 2. **多少索引** ？ 其中一個會納入 SKU 決策因素的最大變數就是每個 SKU 所支援的索引數目。 索引支援在較低的定價層中明顯屬於不同層級。 索引數目需求可能會是 SKU 決策的主要因素。
 3. **多少文件** 載入每個索引？ 文件的數目和大小將決定索引的最終大小。 假設您可以估算出預計的索引大小，您可以將該數字與每個 SKU 的分割區大小做比較，再依存放該大小的索引所需的分割區數目加以擴充。
 4. **什麼是預期的查詢負載**？ 了解儲存體需求之後，請考量查詢工作負載。 S2 及兩個 S3 SKU 提供幾乎相等的輸送量，但 SLA 需求會排除任何預覽版 SKU。
@@ -113,9 +115,4 @@ ms.openlocfilehash: 259c59133499a4a3beb0e5f6f3700944df5ab8a9
 
 * [在入口網站中建立搜尋服務](search-create-service-portal.md)
 * [變更分割區和複本的配置以調整您的服務](search-capacity-planning.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

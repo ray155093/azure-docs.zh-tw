@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure CLI 管理 Hadoop 叢集 | Microsoft Docs"
+title: "使用 Azure CLI 管理 Hadoop 叢集 - Azure HDInsight| Microsoft Docs"
 description: "了解如何使用 Azure 命令列介面來管理 Azure HDInsight 中的 Hadoop 叢集。 Azure CLI 適用於 Windows、Mac 和 Linux。"
 services: hdinsight
 editor: cgronlun
@@ -17,32 +17,32 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: c8067e582dd7e20b4ca35771123303de6c4a4ef6
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 5102d44ebd447b638ab6e26fa1826bad224ed6c3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
 # <a name="manage-hadoop-clusters-in-hdinsight-using-the-azure-cli"></a>使用 Azure CLI 管理 HDInsight 中的 Hadoop 叢集
 [!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
 
-了解如何使用 [Azure 命令列介面](../cli-install-nodejs.md) 來管理 Azure HDInsight 中的 Hadoop 叢集。 Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。
+了解如何使用 [Azure 命令列介面](../cli-install-nodejs.md)來管理 Azure HDInsight 中的 Hadoop 叢集。 Azure CLI 是在 Node.js 中實作。 此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。
 
 本文只涵蓋搭配 HDInsight 使用 Azure CLI。 如需如何使用 Azure CLI 的一般指南，請參閱[安裝及設定 Azure CLI][azure-command-line-tools]。
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
-## <a name="prerequisites"></a>必要條件
-開始閱讀本文之前，您必須符合下列必要條件：
+## <a name="prerequisites"></a>先決條件
+開始閱讀本文之前，您必須符合下列先決條件：
 
-* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* **Azure CLI** - 請參閱 [安裝及設定 Azure CLI](../cli-install-nodejs.md) 以取得安裝和設定資訊。
+* **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* **Azure CLI** - 請參閱[安裝及設定 Azure CLI](../cli-install-nodejs.md) 以取得安裝和設定資訊。
 * **連線到 Azure**，使用下列命令：
   
         azure login
   
-    如需使用公司或學校帳戶驗證的詳細資訊，請參閱 [從 Azure CLI 連線至 Azure 訂用帳戶](../xplat-cli-connect.md)。
+    如需使用公司或學校帳戶驗證的詳細資訊，請參閱[從 Azure CLI 連線至 Azure 訂用帳戶](../xplat-cli-connect.md)。
 * 使用下列命令來**切換至 Azure 資源管理員模式**：
   
         azure config mode arm

@@ -1,5 +1,5 @@
 ---
-title: "使用 Bootstrap 自訂 HDInsight 叢集 | Microsoft Docs"
+title: "使用 Bootstrap 自訂 HDInsight 叢集 - Azure | Microsoft Docs"
 description: "了解如何使用 Bootstrap 自訂 HDInsight 叢集。"
 services: hdinsight
 documentationcenter: 
@@ -14,12 +14,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/25/2017
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: c8abf308c20968f184a80b20dc40185b1631105d
-ms.openlocfilehash: 903004ae83d86ddcda13c6f2fce708e71ffa729b
-ms.lasthandoff: 02/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: c7a6fafa90eac66774d564c82c926c662baf784c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -127,7 +128,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
     }
 
 
-![HDInsight Hadoop 自訂叢集啟動程序 Azure Resource Manager 範本](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
+![HDInsight Hadoop 自訂叢集 Bootstrap Azure Resource Manager 範本](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
 
 ## <a name="see-also"></a>另請參閱
 * [在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision-cluster]提供如何使用其他自訂選項建立 HDInsight 叢集的指示。

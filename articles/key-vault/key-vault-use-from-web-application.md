@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: adhurwit
-translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 2a7f2cb27cb4ed2d23fee09d53f85283a8592b3a
-ms.lasthandoff: 03/09/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: d095bcfe37baefa90cf79bb48bff3f703ce1dad7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -135,7 +136,9 @@ ms.lasthandoff: 03/09/2017
 4. 將憑證加入 Web 應用程式
 
 **取得或建立憑證** 基於本文的目的，我們將測試憑證。 以下幾個命令可讓您在開發人員命令提示字元中用來建立憑證。 變更您要建立憑證檔案的目錄位置。  此外，對於憑證的開始和結束日期，使用目前日期加上 1 年。
-makecert -sv mykey.pvk -n "cn=KVWebApp" KVWebApp.cer -b 03/07/2017 -e 03/07/2018 -r pvk2pfx -pvk mykey.pvk -spc KVWebApp.cer -pfx KVWebApp.pfx -po test123
+
+    makecert -sv mykey.pvk -n "cn=KVWebApp" KVWebApp.cer -b 03/07/2017 -e 03/07/2018 -r
+    pvk2pfx -pvk mykey.pvk -spc KVWebApp.cer -pfx KVWebApp.pfx -po test123
 
 記下 .pfx 的結束日期和密碼 (在此範例中為：07/31/2016 和 test123)。 您將需要在下面使用這些資訊。
 
@@ -162,7 +165,7 @@ makecert -sv mykey.pvk -n "cn=KVWebApp" KVWebApp.cer -b 03/07/2017 -e 03/07/2018
 
 執行這些命令之後，您就可以在 Azure AD 中看到應用程式。 搜尋時，在搜尋對話方塊中，請務必選取 [我公司所擁有的應用程式]，而不是 [我公司所使用的應用程式]。
 
-若要深入了解 Azure AD 應用程式物件和 ServicePrincipal 物件，請參閱 [應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)
+若要深入了解 Azure AD 應用程式物件和 ServicePrincipal 物件，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)
 
 **將程式碼加入 Web 應用程式以使用憑證** 現在我們將程式碼加入您的 Web 應用程式，以存取憑證並使用其進行驗證。
 

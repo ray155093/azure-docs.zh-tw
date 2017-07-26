@@ -1,5 +1,5 @@
 ---
-title: "使用網頁瀏覽器建立 Azure HDInsight (Hadoop) | Microsoft Docs"
+title: "使用網頁瀏覽器建立 Hadoop 叢集 - Azure HDInsight | Microsoft Docs"
 description: "了解如何在 Linux 上使用網頁瀏覽器及 Azure Preview 入口網站，為 HDInsight 建立 Hadoop、HBase、Storm 或 Spark 叢集。"
 services: hdinsight
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 030935ec304cc9b26bd2369fdadf2d99bd094c5d
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 678b2847f9bf39995fa214f181a05c96df9e49f2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -41,11 +41,11 @@ Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Man
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 依序按一下 [+]、[智慧 + 分析] 及 [HDInsight]。
    
-    ![在 Azure 入口網站中建立新的叢集](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.1.png "在 Azure 入口網站中建立新的叢集")
+    ![在 Azure 入口網站中建立新的叢集](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster.png "在 Azure 入口網站中建立新的叢集")
 
 3. 在 [HDInsight] 刀鋒視窗中，依序按一下 [自訂 (大小、設定、應用程式)] 和 [基本]，然後輸入下列資訊。
 
-    ![在 Azure 入口網站中建立新的叢集](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.basics.png "在 Azure 入口網站中建立新的叢集")
+    ![在 Azure 入口網站中建立新的叢集](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-basics.png "在 Azure 入口網站中建立新的叢集")
 
     * 輸入 **叢集名稱**：此名稱必須是全域唯一的。
 
@@ -55,10 +55,10 @@ Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Man
    
         * **叢集類型**︰如果您不知道要選擇哪一個項目，請選取 [Hadoop]。 它是最受歡迎的叢集類型。
      
-             > [!IMPORTANT]
-             > HDInsight 叢集有各種不同類型，這些類型各自對應到叢集微調時所針對的工作負載或技術。 沒有任何支援方法可建立結合多個類型的叢集，例如在一個叢集上並存 Storm 和 HBase。 
-             > 
-             > 
+            > [!IMPORTANT]
+            > HDInsight 叢集有各種不同類型，這些類型各自對應到叢集微調時所針對的工作負載或技術。 沒有任何支援方法可建立結合多個類型的叢集，例如在一個叢集上並存 Storm 和 HBase。 
+            > 
+            > 
         
         * **作業系統**：選取 [Linux]。
         
@@ -75,11 +75,11 @@ Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Man
 
     * 指定將建立叢集的資料中心**位置**。
 
-    * 按 [下一步] 。
+    * 按一下 [下一步] 。
 
 4. 在 [儲存體] 刀鋒視窗中，指定您要 Azure 儲存體 (WASB) 或 Data Lake Store 做為您的預設儲存體。 如需詳細資訊，請參閱下表。
 
-    ![在 Azure 入口網站中建立新的叢集](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.storage.png "在 Azure 入口網站中建立新的叢集")
+    ![在 Azure 入口網站中建立新的叢集](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-storage.png "在 Azure 入口網站中建立新的叢集")
 
     | 儲存體                                      | 說明 |
     |----------------------------------------------|-------------|
@@ -87,7 +87,7 @@ Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Man
     | **Azure Data Lake Store 做為預設儲存體** | 針對 [主要儲存體類型]，請選取 [Data Lake Store]，然後參閱[使用 Azure 入口網站建立 HDInsight 叢集與資料湖存放區](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)一文，以取得相關指示。 |
     | **外部中繼存放區**                      | 您可以選擇性地指定 SQL 資料庫，來儲存與該叢集相關聯的 Hive 和 Oozie 中繼資料。 針對 [為 Hive 選取 SQL 資料庫]，選取 SQL 資料庫，然後提供該資料庫的使用者名稱/密碼。 對 Oozie 中繼資料重複這些步驟。<br><br>針對中繼存放區使用 Azure SQL 資料庫時的一些考量。 <ul><li>用於 metastore 的 Azure SQL Database 必須能夠連線至其他 Azure 服務 (包括 Azure HDInsight)。 在 Azure SQL Database 儀表板中，按一下右側的伺服器名稱。 這是指執行 SQL Database 執行個體的伺服器。 一旦進入伺服器檢視後，按一下 [設定]，然後在 [Azure 服務] 按一下 [是]，再按 [儲存]。</li><li>在建立中繼存放區時，請勿使用包含破折號或連字號的資料庫名稱，因為這會導致叢集建立程序失敗。</li></ul>                                                                                                                                                                       |
 
-    按 [下一步] 。 
+    按一下 [下一步] 。 
 
     > [!WARNING]
     > 不支援在與 HDInsight 叢集不同的位置中使用其他儲存體帳戶。
@@ -97,7 +97,7 @@ Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Man
 
 6. 按一下 [叢集大小]，以顯示將針對此叢集建立的節點相關資訊。 設定該叢集所需的背景工作角色節點數目。 該叢集的預估成本將會顯示在此刀鋒視窗內。
    
-    ![節點定價層刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.nodes.png "指定叢集節點的數目")
+    ![節點定價層刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-nodes.png "指定叢集節點的數目")
    
    > [!IMPORTANT]
    > 如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB ram 的前端節點大小。
@@ -110,18 +110,18 @@ Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Man
 
 7. 按一下 [進階設定] 以設定其他選擇性設定，例如，使用**指令碼動作**自訂叢集以安裝自訂元件，或是加入**虛擬網路**。 如需詳細資訊，請參閱下表。
 
-    ![節點定價層刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.advanced.png "指定叢集節點的數目")
+    ![節點定價層刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-advanced.png "指定叢集節點的數目")
 
     | 選項 | 說明 |
     |--------|-------------|
     | **指令碼動作** | 如果您想要在叢集建立時使用自訂指令碼來自訂該叢集，請使用此選項。 如需指令碼動作的詳細資訊，請參閱 [使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。 |
     | **虛擬網路** | 如果您想要將叢集放入虛擬網路，請選取 Azure 虛擬網路和子網路。 如需搭配虛擬網路使用 HDInsight 的資訊 (包含虛擬網路的特定組態需求)，請參閱 [使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。 |
 
-    按 [下一步] 。
+    按一下 [下一步] 。
 
 8. 在 [摘要] 刀鋒視窗中，確認您先前輸入的資訊，然後按一下 [建立]。
 
-    ![節點定價層刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.summary.png "指定叢集節點的數目")
+    ![節點定價層刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-summary.png "指定叢集節點的數目")
     
     > [!NOTE]
     > 建立叢集需要一些時間，通常約 15 分鐘左右。 使用 [「開始面板」] 上的磚，或頁面左邊的 [通知]  項目，以檢查佈建進度。
@@ -129,7 +129,7 @@ Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Man
     > 
 12. 建立程序完成後，在「開始面板」按一下該叢集磚，以啟動叢集刀鋒視窗。 叢集刀鋒視窗會提供以下資訊。
     
-    ![叢集刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.completed.png "叢集屬性")
+    ![叢集刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-completed.png "叢集屬性")
     
     使用下列資訊來了解此刀鋒視窗頂端的圖示。
     

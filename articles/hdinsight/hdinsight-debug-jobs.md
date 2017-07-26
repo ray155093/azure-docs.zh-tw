@@ -1,5 +1,5 @@
 ---
-title: "在 HDInsight 上對 Hadoop 進行偵錯：檢視記錄與解譯錯誤訊息 | Microsoft Docs"
+title: "針對 HDInsight 上的 Hadoop 進行偵錯：檢視記錄與解譯錯誤訊息 - Azure | Microsoft Docs"
 description: "了解您使用 PowerShell 來管理 HDInsight 時可能收到的錯誤訊息，以及可採取來回復的步驟。"
 services: hdinsight
 tags: azure-portal
@@ -16,15 +16,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/06/2017
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: a2b32f23381ed1f9912edf6432f029e51bdf1be4
-ms.openlocfilehash: bcf2791f0e1788d7d18a4efc123066aaf633d549
-ms.lasthandoff: 02/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 3031644e2975fd59edff13c7a9da1efa418e8abd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 
 ---
 # <a name="analyze-hdinsight-logs"></a>分析 HDInsight 記錄檔
-Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作為預設檔案系統。 這個儲存體帳戶稱為預設儲存體帳戶。 叢集使用預設儲存體帳戶上的 Azure 資料表儲存體和 Blob 儲存體來儲存其記錄檔。  若要找出叢集的預設儲存體帳戶，請參閱 [在 HDInsight 中管理 Hadoop 叢集](hdinsight-administer-use-management-portal.md#find-the-default-storage-account)。 即使在刪除叢集之後，記錄檔仍會保留在儲存體帳戶中。
+Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作為預設檔案系統。 這個儲存體帳戶稱為預設儲存體帳戶。 叢集使用預設儲存體帳戶上的 Azure 資料表儲存體和 Blob 儲存體來儲存其記錄檔。  若要找出叢集的預設儲存體帳戶，請參閱[在 HDInsight 中管理 Hadoop 叢集](hdinsight-administer-use-management-portal.md#find-the-default-storage-account)。 即使在刪除叢集之後，記錄檔仍會保留在儲存體帳戶中。
 
 ## <a name="logs-written-to-azure-tables"></a>寫入 Azure 資料表的記錄檔
 寫入 Azure 資料表的記錄檔可讓人更深入了解 HDInsight 叢集發生的情形。
@@ -70,9 +71,9 @@ Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作�
 * Power Query for Excel
 
 #### <a name="use-power-query-for-excel"></a>使用 Power Query for Excel
-您可以從 [www.microsoft.com/en-us/download/details.aspx?id=39379](http://www.microsoft.com/en-us/download/details.aspx?id=39379)。 請參閱下載頁面上說明的系統需求
+您可以從 [www.microsoft.com/en-us/download/details.aspx?id=39379](http://www.microsoft.com/en-us/download/details.aspx?id=39379) 安裝 Power Query。 查看下載頁面上的系統需求
 
-**若要使用 Power Query 來開啟和分析服務記錄檔**
+**使用 Power Query 來開啟和分析服務記錄**
 
 1. 開啟 **Microsoft Excel**。
 2. 從 [Power Query] 功能表中，按一下 [從 Azure]，然後按一下 [從 Microsoft Azure 資料表儲存體]。
@@ -86,31 +87,31 @@ Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作�
 6. 按一下 [內容] 資料行上的展開圖示，選擇您要匯入至 Excel 試算表的資料行。 在此示範中，我選擇 TraceLevel 和 ComponentName：它可以提供一些基本資訊讓我知道哪些元件有問題。
    
     ![HDInsight Hadoop 記錄檔選擇資料行](./media/hdinsight-debug-jobs/hdinsight-hadoop-analyze-logs-using-excel-power-query-filter.png)
-7. 按一下 [確定]  來匯入資料。
+7. 按一下 [確定] 以匯入資料。
 8. 選取 [TraceLevel]、[Role] 和 [ComponentName] 資料行，然後按一下功能區的 [群組依據] 控制項。
-9. 按一下 [群組依據] 對話方塊中的 [確定] 
+9. 按一下 [群組依據] 對話方塊中的 [確定]
 10. 按一下 [套用並關閉]。
 
 您現在可以視需要使用 Excel 來篩選和排序。 很明顯地，您需要包含其他資料行 (例如 Message)，以便在問題發生時深入探索，但如上所述選取和分組資料行有助於了解 Hadoop 服務發生的情形。 相同的概念也適用於 setuplog 和 hadoopinstalllog 資料表。
 
 #### <a name="use-visual-studio"></a>使用 Visual Studio
-**若要使用 Visual Studio**
+**使用 Visual Studio**
 
 1. 開啟 Visual Studio。
 2. 從 [檢視] 功能表中，按一下 [Cloud Explorer]。 或直接按一下 **CTRL+\, CTRL+X**。
 3. 從 [Cloud Explorer] 中，選取 [資源類型]。  另一個可用的選項是 [資源群組] 。
 4. 展開 [儲存體帳戶]、您叢集的預設儲存體帳戶，然後是 [資料表]。
-5. 按兩下 [hadoopservicelog] 。
+5. 按兩下 [hadoopservicelog]。
 6. 新增篩選器。 例如：
    
         TraceLevel eq 'ERROR'
    
     ![HDInsight Hadoop 記錄檔選擇資料行](./media/hdinsight-debug-jobs/hdinsight-hadoop-analyze-logs-visual-studio-filter.png)
    
-    如需建構篩選器的詳細資訊，請參閱 [建構資料表設計工具的篩選字串](../vs-azure-tools-table-designer-construct-filter-strings.md)。
+    如需建構篩選器的詳細資訊，請參閱[建構資料表設計工具的篩選字串](../vs-azure-tools-table-designer-construct-filter-strings.md)。
 
 ## <a name="logs-written-to-azure-blob-storage"></a>寫入 Azure Blob 儲存體的記錄檔
-[寫入 Azure 資料表的記錄檔](#log-written-to-azure-tables) 可讓人更深入了解 HDInsight 叢集發生的情形。 不過，這些資料表並不會提供工作層級記錄檔，這些記錄檔有助於發生問題時進一步深入探索。 為了提供這一層更深入的詳細資料，針對透過 Templeton 提交的任何作業，HDInsight 叢集設定成將工作記錄檔寫入 Blob 儲存體帳戶。 實際上，這代表使用 Microsoft Azure PowerShell Cmdlet 或 .NET Job Submission API 提交的作業，而不是透過叢集的 RDP/命令列存取所提交的作業。 
+[寫入 Azure 資料表的記錄檔](#log-written-to-azure-tables)可讓人更深入了解 HDInsight 叢集發生的情形。 不過，這些資料表並不會提供工作層級記錄檔，這些記錄檔有助於發生問題時進一步深入探索。 為了提供這一層更深入的詳細資料，針對透過 Templeton 提交的任何作業，HDInsight 叢集設定成將工作記錄檔寫入 Blob 儲存體帳戶。 實際上，這代表使用 Microsoft Azure PowerShell Cmdlet 或 .NET Job Submission API 提交的作業，而不是透過叢集的 RDP/命令列存取所提交的作業。 
 
 若要檢視記錄檔，請參閱[在 Linux 型 HDInsight 上存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs-linux.md)。
 

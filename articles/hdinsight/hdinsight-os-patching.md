@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/21/2017
 ms.author: bhanupr
-translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: f39dfdff2239bb0b55eca50a1e7c706a5408b83a
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: af3c5a19ae8e2e606e4b0506f9f6dddb41192e40
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/10/2017
 
 
 ---
@@ -47,7 +48,7 @@ HDInsight 叢集中的虛擬機器有時候需要重新開機，以便系統可�
 
 使用此指令碼時需要下列資訊︰
 1. 指令碼位置︰https://hdiconfigactions.blob.core.windows.net/linuxospatchingrebootconfigv01/os-patching-reboot-config.sh。
-     HDInsight 會使用此 URI 在叢集中的所有虛擬機器上尋找和執行指令碼。
+    HDInsight 會使用此 URI 在叢集中的所有虛擬機器上尋找和執行指令碼。
   
 2. 指令碼會套用到的叢集節點類型︰headnode、workernode、zookeeper。 此指令碼必須套用至叢集中的所有節點類型。 如果未套用至某個節點類型，則該節點類型的虛擬機器會繼續使用先前的修補排程。
 

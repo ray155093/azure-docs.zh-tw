@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 07/14/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 729c89e26e0c2da3ec88b554645091997dea4552
-ms.openlocfilehash: 1f0406b131957500c303172409cafa6be8fb3228
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: cb88ce2960d63b8a1c5861913b2095bcc977938f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/15/2017
 
 ---
 # <a name="expressroute-circuits-and-routing-domains"></a>ExpressRoute 線路和路由網域
@@ -26,7 +27,7 @@ ms.openlocfilehash: 1f0406b131957500c303172409cafa6be8fb3228
 ![](./media/expressroute-circuit-peerings/expressroute-basic.png)
 
 ## <a name="expressroute-circuits"></a>ExpressRoute 線路
-*ExpressRoute 線路* 代表內部部署基礎結構與 Microsoft 雲端服務之間透過連線提供者的邏輯連線。 您可以訂購多條 ExpressRoute 線路。 每一條線路可以位於相同或不同區域，且可透過不同的連線提供者連接到內部部署。 
+*ExpressRoute 線路* 代表內部部署基礎結構與 Microsoft 雲端服務之間透過連線提供者的邏輯連線。 您可以訂購多條 ExpressRoute 線路。 每一條線路可以位於相同或不同區域，且可透過不同的連線提供者連線到您的內部環境。 
 
 ExpressRoute 線路不對應至任何實體裝置。 線路由一個稱為服務金鑰 (s 金鑰) 的標準 GUID 唯一識別。 服務金鑰是 Microsoft、連線提供者與您之間唯一會交換的資訊。 S 金鑰不是安全性用途的密碼。 ExpressRoute 線路與 s 金鑰之間存在 1:1 對應。
 
@@ -74,7 +75,7 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
 | **路由介面 IP 位址** |RFC1918 和公用 IP 位址 |在路由註冊中向您註冊的公用 IP 位址。 |在路由註冊中向您註冊的公用 IP 位址。 |
 | **MD5 雜湊支援** |是 |是 |是 |
 
-您可以選擇在 ExpressRoute 線路中啟用一或多個路由網域。 如果想要將所有路由網域合併成單一路由網域，您可以選擇將所有路由網域放在相同的 VPN。 您也可以將他們放在不同的路由網域，類似上圖。 建議的設定是將私用對等直接連線到核心網路，而將公用和 Microsoft 對等連結連線到您的 DMZ。
+您可以選擇啟用一或多個路由網域，使之成為 ExpressRoute 線路的一部分。 如果想要將所有路由網域合併成單一路由網域，您可以選擇將所有路由網域放在相同的 VPN。 您也可以將他們放在不同的路由網域，類似上圖。 建議的設定是將私用對等直接連線到核心網路，而將公用和 Microsoft 對等連結連線到您的 DMZ。
 
 如果您選擇使用全部三種對等互連工作階段，就必須擁有三個 BGP 工作階段配對 (每個對等互連類型一組)。 BGP 工作階段配對提供高可用性連結。 如果您透過第 2 層連線提供者來連線，則要負責設定和管理路由。 如需深入瞭解，請檢閱有關設定 ExpressRoute 的 [工作流程](expressroute-workflows.md) 。
 
@@ -85,10 +86,5 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)
   * [設定路由 (線路對等)](expressroute-howto-routing-classic.md)
   * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 
