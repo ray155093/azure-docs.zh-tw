@@ -131,7 +131,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
             private IMongoCollection<MyTask> GetTasksCollection()
             {
                 MongoClientSettings settings = new MongoClientSettings();
-                settings.Server = new MongoServerAddress(host, 10250);
+                settings.Server = new MongoServerAddress(host, 10255);
                 settings.UseSsl = true;
                 settings.SslSettings = new SslSettings();
                 settings.SslSettings.EnabledSslProtocols = SslProtocols.Tls12;
@@ -153,7 +153,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
             private IMongoCollection<MyTask> GetTasksCollectionForEdit()
             {
                 MongoClientSettings settings = new MongoClientSettings();
-                settings.Server = new MongoServerAddress(host, 10250);
+                settings.Server = new MongoServerAddress(host, 10255);
                 settings.UseSsl = true;
                 settings.SslSettings = new SslSettings();
                 settings.SslSettings.EnabledSslProtocols = SslProtocols.Tls12;

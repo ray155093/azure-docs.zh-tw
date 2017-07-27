@@ -150,7 +150,7 @@ DB/databaseAccounts/<cosmosdb-name>",
 
 module.exports = {
   db: {
-    uri: 'mongodb://<cosmosdb-name>:<primary_master_key>@<cosmosdb-name>.documents.azure.com:10250/mean-dev?ssl=true&sslverifycertificate=false'
+    uri: 'mongodb://<cosmosdb-name>:<primary_master_key>@<cosmosdb-name>.documents.azure.com:10255/mean-dev?ssl=true&sslverifycertificate=false'
   }
 };
 ```
@@ -211,7 +211,7 @@ MEAN.js 範例應用程式會將使用者資料儲存於資料庫中。 如果�
 在 `db` 物件中，取代 `uri` 的值，如下列範例中所示。 請務必取代預留位置，如同之前一樣。
 
 ```javascript
-'mongodb://<cosmosdb-name>:<primary_master_key>@<cosmosdb-name>.documents.azure.com:10250/mean?ssl=true&sslverifycertificate=false',
+'mongodb://<cosmosdb-name>:<primary_master_key>@<cosmosdb-name>.documents.azure.com:10255/mean?ssl=true&sslverifycertificate=false',
 ```
 
 > [!NOTE] 

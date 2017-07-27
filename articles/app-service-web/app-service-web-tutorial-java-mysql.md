@@ -110,7 +110,7 @@ cd spring-boot-mysql-todo
 mvnw package spring-boot:run
 ```
 
-開啟瀏覽器至 http://localhost:8080，查看範例如何運作。 在清單中新增工作時，請使用 MySQL 命令提示字元中的下列 SQL 命令，以檢視 MySQL 中儲存的資料。
+開啟瀏覽器至 http://localhost:8080 ，查看範例如何運作。 在清單中新增工作時，請使用 MySQL 命令提示字元中的下列 SQL 命令，以檢視 MySQL 中儲存的資料。
 
 ```SQL
 use testdb;
