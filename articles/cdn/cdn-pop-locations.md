@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-translationtype: Human Translation
-ms.sourcegitcommit: 57d00f2192fed7a2e89ac94e110ebb7e84c83b72
-ms.openlocfilehash: 6d4c9dda6ccf6011d2b2ff5951b9fe42c158e216
-ms.lasthandoff: 01/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 7c13931aa6d17036e59674cdd917e3ca221ac57f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -40,7 +41,7 @@ ms.lasthandoff: 01/25/2017
 | 南歐 |馬德里，西班牙<br />米蘭，義大利 |**&#x2713;**\* |
 | 東亞 |東京，日本<br />大阪，日本<br />巴淡島，印尼<br />雅加達，印尼<br />香港<br />高雄，台灣<br />首爾，南韓<br />新加坡 |**&#x2713;**\* |
 | 南亞和中亞 |班加羅爾，印度<br />辰內，印度<br />新德里，印度<br />孟買，印度 |**&#x2713;**\* |
-| 中東/西亞 |馬斯喀特，阿曼 |**&#x2713;**\* |
+| 中東/西亞 |馬斯喀特，阿曼 <br /> 富吉拉，阿拉伯聯合大公國 |**&#x2713;**\* |
 | 非洲 | |**&#x2713;**\* |
 | 澳大利亞與紐西蘭 |墨爾本，澳大利亞<br />雪梨，澳大利亞 |**&#x2713;**\* |
 

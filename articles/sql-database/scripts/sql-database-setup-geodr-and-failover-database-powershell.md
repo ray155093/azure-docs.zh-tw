@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼 - 設定異地複寫 - 單一 SQL Database | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 使用 PowerShell 為單一 Azure SQL Database 設定作用中異地複寫"
+title: "PowerShell 範例 - 作用中異地複寫 - 單一 Azure SQL Database | Microsoft Docs"
+description: "為單一 Azure SQL Database 設定作用中異地複寫的 Azure PowerShell 範例指令碼"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -14,19 +14,19 @@ ms.devlang: PowerShell
 ms.topic: sample
 ms.tgt_pltfrm: sql-database
 ms.workload: database
-ms.date: 05/23/2017
+ms.date: 06/23/2017
 ms.author: janeng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: b406c288f1e3eee7e92d690915ca0bdebe6cdb3d
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 80bc573233b73882d4bce553de1a627ae76ed1b4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/28/2017
 
 ---
 
-# <a name="configure-active-geo-replication-for-a-single-azure-sql-database-using-powershell"></a>使用 PowerShell 為單一 Azure SQL Database 設定作用中異地複寫
+# <a name="use-powershell-to-configure-active-geo-replication-for-a-single-azure-sql-database"></a>使用 PowerShell 為單一 Azure SQL Database 設定作用中異地複寫
 
-此 PowerShell 指令碼範例會為單一資料庫設定作用中異地複寫，並將其容錯移轉到次要複本。
+此 PowerShell 指令碼範例為單一 Azure SQL Database 設定作用中異地複寫，並將其容錯移轉到 Azure SQL Database 的次要複本。
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 

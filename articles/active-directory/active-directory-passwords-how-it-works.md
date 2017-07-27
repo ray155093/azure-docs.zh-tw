@@ -6,20 +6,21 @@ keywords:
 documentationcenter: 
 author: MicrosoftGuyJFlo
 manager: femila
+ms.reviewer: gahug
 ms.assetid: 618c5908-5bf6-4f0d-bf88-5168dfb28a88
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/12/2017
+ms.date: 07/17/2017
 ms.author: joflore
+ms.custom: it-pro
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 02826ffad9838c3e22721cc3c189e8cc13020059
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 44426571e3fd8aed090ccccc0dcc46dca8098906
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
-
+ms.lasthandoff: 05/25/2017
 
 ---
 # <a name="self-service-password-reset-in-azure-ad-deep-dive"></a>Azure AD 中的自助式密碼重設深入探討
@@ -77,7 +78,7 @@ SSPR 的運作方式 該選項在介面中的意義為何？ 繼續閱讀以深�
 
 使用者只有在系統管理員已啟用且要求的驗證方法中有資料存在時，才能夠重設其密碼。
 
-如果使用者不想要在目錄中顯示行動電話號碼，但仍想要將它使用於密碼重設，系統管理員不得在目錄中填入該行動電話號碼，而使用者應透過[密碼重設註冊入口網站](http://aka.ms/ssprsetup)填入其 [驗證電話] 屬性。 系統管理員仍然可以在使用者的設定檔中看到此資訊，但該資訊不會發佈在其他地方。 如果 Azure 系統管理員帳戶註冊其驗證電話號碼，該號碼會填入行動電話欄位中並顯示出來。
+如果使用者不想要在目錄中顯示行動電話號碼，但仍想要將它使用於密碼重設，系統管理員不得在目錄中填入該行動電話號碼，而使用者應透過[密碼重設註冊入口網站](http://aka.ms/ssprsetup)填入其 [驗證電話] 屬性。 系統管理員可以在使用者的設定檔中看到此資訊，但該資訊不會發佈在其他地方。 如果 Azure 系統管理員帳戶註冊其驗證電話號碼，該號碼會填入行動電話欄位中並顯示出來。
 
 ### <a name="number-of-authentication-methods-required"></a>必要驗證方法數目
 
@@ -242,7 +243,12 @@ Azure AD Connect 公用程式中指定的帳戶必須具有重設密碼、變更
 4. 從 [權限] 索引標籤，按一下 [新增]。
 5. 挑選權限套用至的帳戶 (從 Azure AD Connect 安裝程式)
 6. 在 [套用至] 下拉式方塊中選取 [下階使用者] 物件。
-7. 在 [權限] 底下，核取 [重設密碼]、[變更密碼]、[寫入 lockoutTime] 和 [寫入 pwdLastSet] 的方塊。
+7. 在 [權限] 下，核取下列方塊：
+    * 未過期密碼
+    * 重設密碼
+    * 變更密碼
+    * 寫入 lockoutTime
+    * 寫入 pwdLastSet
 8. 依序按一下 [套用] / [確定] 進行套用並結束開啟的對話方塊。
 
 ## <a name="how-does-password-reset-work-for-b2b-users"></a>B2B 使用者的密碼重設運作方式
@@ -260,7 +266,7 @@ Azure AD Connect 公用程式中指定的帳戶必須具有重設密碼、變更
 
 * [**快速入門**](active-directory-passwords-getting-started.md) - 開始執行 Azure AD 自助式密碼管理 
 * [**授權**](active-directory-passwords-licensing.md) - 設定 Azure AD 授權
-* [**資料**](active-directory-passwords-data.md) - 了解所需的資料以及如何將它使用於密碼管理
+* [**資料**](active-directory-passwords-data.md) -了解所需的資料以及如何將它使用於密碼管理
 * [**推出**](active-directory-passwords-best-practices.md) - 使用此處提供的指引來規劃 SSPR 並部署給使用者
 * [**原則**](active-directory-passwords-policy.md) - 了解並設定 Azure AD 密碼原則
 * [**密碼回寫**](active-directory-passwords-writeback.md) - 密碼回寫如何用在您的內部部署目錄

@@ -8,13 +8,13 @@ ms.service: azure-resource-manager
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 05/11/2017
+ms.date: 05/17/2017
 ms.author: gauravbh; tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 2763da60fe25f2ca55603ecfcbbcefe3e368c25d
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 041254b07584a52ae92e603f60a439050b747af1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -49,8 +49,7 @@ az group create --name managedResourceGroup --location westcentralus
 接下來，使用下列命令在 ainResourceGroup 中部署 applianceMainTemplate.json︰
 
 ```azurecli
-az group deployment --name managedAppDeployment --resourceGroup mainResourceGroup 
-      --templateUri  
+az group deployment create --name managedAppDeployment --resourceGroup mainResourceGroup --templateUri  
 ```
 
 上述的範本執行時，它會提示您提供範本中所定義的參數值。 除了在範本中佈建資源所需的參數之外，您需要兩個金鑰參數值︰
@@ -94,9 +93,9 @@ az appliance definition show -n ravtestAppDef1 -g ravApplianceRG2
 
 在入口網站中也存在使用 ISV 所發佈之受管理應用程式的支援。 所應遵循的步驟如下︰
 
-從 Azure 入口網站的 [建立] 刀鋒視窗中選取 [受管理的應用程式] -
+從 Azure 入口網站的 [建立] 刀鋒視窗中選取 [受服務類別目錄管理的應用程式] -
 
-![](./media/managed-application-consumption/create-blade.png)
+![](./media/managed-application-consumption/create-service-catalog-managed-application.png)
 
 接下來，您會看到不同 ISV/合作夥伴所提供之優惠的清單。 選取您想要建立的項目，然後按一下 [建立]
 

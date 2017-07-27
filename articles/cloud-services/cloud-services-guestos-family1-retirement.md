@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 3/21/2017
+ms.date: 5/21/2017
 ms.author: raiye
-translationtype: Human Translation
-ms.sourcegitcommit: 0994765e37dd8ee1fa6a639a2ed60c913cb170fe
-ms.openlocfilehash: 578059c397319147c8716e2152901dfdc15a28cd
-ms.lasthandoff: 02/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 3178a09dab1cb972a3460d54dc9908fb95cce68b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -28,16 +29,16 @@ ms.lasthandoff: 02/11/2017
 
 **2014 年 11 月 3 日** 客體 OS 系列 1 的延伸支援已結束，並且已完全淘汰。 所有仍以系列 1 為基礎的服務都將受到影響。 我們可能會隨時停止這些服務。 除非您以手動方式自行升級服務，否則我們不保證您的服務能繼續運作。
 
-如果您有其他問題，請造訪[雲端服務論壇](http://social.msdn.microsoft.com/Forums/home?forum=windowsazuredevelopment&filter=alltypes&sort=lastpostdesc)或[連絡 Azure 支援](https://azure.microsoft.com/support/options/)。
+如果您有其他問題，請前往[雲端服務論壇](http://social.msdn.microsoft.com/Forums/home?forum=windowsazuredevelopment&filter=alltypes&sort=lastpostdesc)或[連絡 Azure 支援](https://azure.microsoft.com/support/options/)。
 
 ## <a name="are-you-affected"></a>您受到影響了嗎？
 如果以下任一情況成立，表示您的雲端服務已受到影響：
 
 1. 雲端服務之 ServiceConfiguration.cscfg 檔案明確地指定 "osFamily = "1" 值。
 2. 雲端服務之 ServiceConfiguration.cscfg 檔案未明確指定 osFamily 的值。 在本案例中，系統目前使用預設值 "1" 。
-3. Azure 傳統入口網站列出您的客體作業系統系列值為「Windows Server 2008」。
+3. Azure 入口網站會將您的客體作業系統系列值列為 "Windows Server 2008"。
 
-若要找出每個雲端服務執行的 OS 系列，您可以在 Azure PowerShell 中執行以下程式碼，但請先 [設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 如需指令碼的其他詳細資料，請參閱「 [Azure 客體 OS 系列 1 生命週期結束：2014 年 6 月](http://blogs.msdn.com/b/ryberry/archive/2014/04/02/azure-guest-os-family-1-end-of-life-june-2014.aspx)」(英文) 
+若要找出每個雲端服務執行的作業系統系列，您可以在 Azure PowerShell 中執行下列程式碼，但請先[設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 如需指令碼的詳細資訊，請參閱 [Azure Guest OS Family 1 End of Life: June 2014](http://blogs.msdn.com/b/ryberry/archive/2014/04/02/azure-guest-os-family-1-end-of-life-june-2014.aspx) (Azure 客體 OS 系列 1 生命週期結束：2014 年 6 月)。
 
 ```Powershell
 foreach($subscription in Get-AzureSubscription) {
@@ -74,5 +75,4 @@ foreach($subscription in Get-AzureSubscription) {
 
 ## <a name="next-steps"></a>後續步驟
 檢閱最新的 [客體作業系統版本](cloud-services-guestos-update-matrix.md)。
-
 

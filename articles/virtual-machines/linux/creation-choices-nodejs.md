@@ -15,20 +15,17 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 756141fda3148726af0030a010465ee14e8ce6b6
+ms.translationtype: HT
+ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
+ms.openlocfilehash: 1eb90d44797d66f3e09811918ce5a7f4ad4287c6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
-# 在 Azure 中建立 Linux 虛擬機器的不同方式
-<a id="different-ways-to-create-a-linux-virtual-machine-in-azure" class="xliff"></a>
+# <a name="different-ways-to-create-a-linux-virtual-machine-in-azure"></a>在 Azure 中建立 Linux 虛擬機器的不同方式
 您在 Azure 中可選擇使用您習慣的工具和工作流程來建立 Linux 虛擬機器 (VM)。 本文摘要說明這些差異以及建立 Linux VM 的範例。
 
-## Azure CLI
-<a id="azure-cli" class="xliff"></a>
+## <a name="azure-cli"></a>Azure CLI
 您可以在 Azure 中使用下列其中一個 CLI 版本建立 VM︰
 
 - Azure CLI 1.0 - 適用於傳統和資源管理部署模型 (本文) 的 CLI
@@ -66,18 +63,15 @@ Azure CLI 1.0 可透過 npm 套件、散發版本提供的套件或 Docker 容�
         --size-in-GB 5
     ```
 
-## Azure 入口網站
-<a id="azure-portal" class="xliff"></a>
+## <a name="azure-portal"></a>Azure 入口網站
 [Azure 入口網站](https://portal.azure.com) 可讓您快速建立 VM，因為您的系統不需安裝任何項目。 使用 Azure 入口網站來建立 VM：
 
 * [使用 Azure 入口網站建立 Linux VM](quick-create-portal.md) 
 
-## 作業系統和映像選項
-<a id="operating-system-and-image-choices" class="xliff"></a>
+## <a name="operating-system-and-image-choices"></a>作業系統和映像選項
 建立 VM 時，根據您想要執行的作業系統來選擇映像。 Azure 與其合作夥伴提供許多映像，其中有些包括已預先安裝的應用程式和工具。 或者，上傳您自己的其中一個映像 (請參閱 [下一節](#use-your-own-image))。
 
-### Azure 映像
-<a id="azure-images" class="xliff"></a>
+### <a name="azure-images"></a>Azure 映像
 使用 `azure vm image` CLI 命令，查看可用的發佈者、散發版本和組建。
 
 列出可用的發佈者，如下所示︰
@@ -104,8 +98,6 @@ azure vm image list-skus --location eastus --publisher Canonical --offer UbuntuS
 azure vm image list --location eastus --publisher Canonical --offer UbuntuServer --sku 16.04.0-LTS
 ```
 
-如需有關瀏覽和使用可用映像的更多範例，請參閱 [使用 Azure CLI 瀏覽和選取 Azure 虛擬機器映像](cli-ps-findimage.md#use-azure-cli-10)。
-
 `azure vm quick-create` 和 `azure vm create` 命令有一些別名，您可以用來快速存取更多常見的散發版本及其最新版本。 使用別名通常比每次建立 VM 時指定發佈者、提供項目、SKU 和版本還要快速：
 
 | Alias | 發佈者 | 提供項目 | SKU | 版本 |
@@ -118,8 +110,7 @@ azure vm image list --location eastus --publisher Canonical --offer UbuntuServer
 | SLES |SLES |SLES |12-SP1 |最新 |
 | UbuntuLTS |Canonical |UbuntuServer |14.04.4-LTS |最新 |
 
-### 使用您自己的映像
-<a id="use-your-own-image" class="xliff"></a>
+### <a name="use-your-own-image"></a>使用您自己的映像
 如果您需要特定自訂項目，可以「擷取」  現有的 Azure VM，使用以該 VM 為基礎的映像。 也可以上傳在內部部署建立的映像。 如需有關支援的散發版本以及如何使用自己的映像的詳細資訊，請參閱下列文件：
 
 * [Azure 背書的散發套件](endorsed-distros.md)
@@ -135,8 +126,7 @@ azure vm image list --location eastus --publisher Canonical --offer UbuntuServer
     azure vm capture --resource-group myResourceGroup --vm-name myVM --vhd-name-prefix myCapturedVM
     ```
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 * 透過[入口網站](quick-create-portal.md)、[CLI](quick-create-cli.md) 或 [Azure Resource Manager 範本](../windows/cli-deploy-templates.md)建立 Linux VM。
 * 在建立 Linux VM 後， [新增資料磁碟](add-disk.md)。
 * [重設密碼或 SSH 金鑰及管理使用者](using-vmaccess-extension.md)

@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/16/2017
+ms.date: 06/09/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 5f2615b3df14c82147ff8a2cd997458756581d01
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 518e6a481ab6385b03dd3ddc2e155fb724e677fe
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -43,13 +43,29 @@ AAD 角色控制在預先設定的方案中佈建預先設定的方案以及管�
 
 您可以在[在 Azure AD 中指派系統管理員角色][lnk-aad-admin]中的 AAD 找到有關使用者和系統管理員角色的詳細資訊。 目前的文章內容著重於預先設定的解決方案所使用的**全域管理員**和**使用者**目錄角色。
 
-**全域管理員：** 每一個 AAD 租用戶可以有許多全域管理員。 當您建立 AAD 租用戶時，您會預設為該租用戶的全域管理員。 全域管理員可以佈建預先設定的方案，並獲得其 AAD 租用戶的應用程式內部的 [管理員] 角色。 不過，如果相同的 AAD 租用戶中有其他使用者建立應用程式，則授與全域管理員的預設角色會是 [唯讀]。 全域管理員可以使用 [Azure 入口網站][lnk-portal]來將使用者指派給應用程式的角色。
+### <a name="global-administrator"></a>全域管理員
 
-**使用者：**每一個 AAD 租用戶可以有許多網域使用者。 網域使用者可以透過 [azureiotsuite.com][lnk-azureiotsuite] 網站佈建預先設定的解決方案。 他們針對其佈建的應用程式所獲得的預設角色為 [管理員]。 他們可以使用 [azure-iot-remote-monitoring][lnk-rm-github-repo] 或 [azure-iot-predictive-maintenance][lnk-pm-github-repo]儲存機制中的 build.cmd 指令碼建立應用程式。 不過，他們所獲得的預設角色是 [唯讀]，因為它們沒有指派角色的權限。 如果 AAD 租用戶中有其他使用者建立應用程式，他們預設會獲得該應用程式的 [唯讀] 角色。 他們無法指派應用程式的角色；因此無法新增應用程式 (即使是由他們所佈建) 的使用者或使用者角色。
+每個 AAD 租用戶可以有很多全域系統管理員：
 
-**來賓使用者：** 每一個 AAD 租用戶可以有許多來賓使用者。 來賓使用者在 AAD 租用戶中有一組受限的權限。 因此，來賓使用者無法在 AAD 租用戶中佈建預先設定的方案。
+* 當您建立 AAD 租用戶時，您會預設為該租用戶的全域管理員。
+* 全域管理員可以佈建預先設定的方案，並獲得其 AAD 租用戶的應用程式內部的 [管理員] 角色。
+* 如果相同的 AAD 租用戶中有其他使用者建立應用程式，則授與全域系統管理員的預設角色會是「唯讀」。
+* 全域系統管理員可以使用 [Azure 入口網站][lnk-portal]來將使用者指派給應用程式的角色。
 
-如需詳細資訊，請參閱下列資源：
+### <a name="domain-user"></a>網域使用者
+
+每一個 AAD 租用戶可以有很多網域使用者：
+
+* 網域使用者可以透過 [azureiotsuite.com][lnk-azureiotsuite] 網站佈建預先設定的解決方案。 根據預設，網域使用者在佈建應用程式中會被授與 [系統管理員] 角色。
+* 網域使用者可以使用 [azure-iot-remote-monitoring][lnk-rm-github-repo]、[azure-iot-predictive-maintenance][lnk-pm-github-repo] 或 [azure-iot-connected-factory][lnk-cf-github-repo] 存放庫中的 build.cmd 指令碼建立應用程式。 不過，授與網域使用者的預設角色是「唯讀」，因為網域使用者沒有指派角色的權限。
+* 如果 AAD 租用戶中有其他使用者建立應用程式，網域使用者預設會獲指派該應用程式的「唯讀」角色。
+* 網域使用者無法指派給角色給應用程式。因此，即使應用程式使用者佈建應用程式，網域使用者也無法針對應用程式的使用者新增使用者或角色。
+
+### <a name="guest-user"></a>來賓使用者
+
+每一個 AAD 租用戶可以有很多來賓使用者。 來賓使用者在 AAD 租用戶中有一組受限的權限。 因此，來賓使用者無法在 AAD 租用戶中佈建預先設定的方案。
+
+如需有關 AAD 中使用者和角色的詳細資訊，請參閱下列資源：
 
 * [在 Azure AD 中建立使用者][lnk-create-edit-users]
 * [將使用者指派給應用程式][lnk-assign-app-roles]
@@ -58,13 +74,13 @@ AAD 角色控制在預先設定的方案中佈建預先設定的方案以及管�
 
 Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能力。
 
-在[如何新增或變更 Azure 共同管理員、服務管理員和帳戶管理員][lnk-admin-roles]一文中，您可以深入了解 Azure 共同管理員、服務管理員和帳戶管理員角色。
+在[如何新增或變更 Azure 共同管理員、服務管理員及帳戶管理員][lnk-admin-roles]一文中，進一步了解 Azure 系統管理員角色。
 
 ## <a name="application-roles"></a>應用程式角色
 
 應用程式角色可控制您預先設定的方案中的裝置存取權。
 
-當您佈建預先設定的方案時所建立的應用程式中，已定義兩個角色和一個隱含角色。
+在已佈建的應用程式中有兩個定義的角色和一個隱含角色：
 
 * **管理員︰**擁有完整控制權可新增、管理、移除裝置和修改設定。
 * **唯讀：**可以檢視裝置、規則、動作、作業和遙測。
@@ -99,11 +115,11 @@ Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能
 
 ### <a name="im-a-domain-usermember-on-the-aad-tenant-and-ive-created-a-preconfigured-solution-how-do-i-get-assigned-a-role-for-my-application"></a>我是 AAD 租用戶的網域使用者/成員，我已建立預先設定的方案。 如何獲得我的應用程式的角色？
 
-要求全域管理員將您指派為 AAD 租用戶的全域管理員，以取得自行指派角色給使用者的權限，或要求全域管理員指派角色給您。 如果您想要變更預先設定的方案已部署至的 AAD 租用戶，請參閱下一個問題。
+要求全域系統管理員讓您成為 AAD 租用戶的全域系統管理員，然後自行為使用者指派角色。 或者，要求全域系統管理員直接為您指派角色。 如果您想要變更預先設定的方案已部署至的 AAD 租用戶，請參閱下一個問題。
 
 ### <a name="how-do-i-switch-the-aad-tenant-my-remote-monitoring-preconfigured-solution-and-application-are-assigned-to"></a>如何切換已指派給我的遠端監視預先設定之方案和應用程式的 AAD 租用戶？
 
-您可以從 <https://github.com/Azure/azure-iot-remote-monitoring> 執行雲端部署，並利用新建立的 AAD 租用戶重新部署。 因為當您建立 AAD 租用戶時，您會預設為全域管理員，所以您有新增使用者及指派角色給這些使用者的權限。
+您可以從 <https://github.com/Azure/azure-iot-remote-monitoring> 執行雲端部署，並利用新建立的 AAD 租用戶重新部署。 因為建立 AAD 租用戶時，您預設為全域系統管理員，所以有新增使用者及指派角色給這些使用者的權限。
 
 1. 在 [Azure 入口網站][lnk-portal]中建立 AAD 目錄。
 2. 前往 <https://github.com/Azure/azure-iot-remote-monitoring>。
@@ -135,6 +151,7 @@ Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/
 [lnk-rm-github-repo]: https://github.com/Azure/azure-iot-remote-monitoring
 [lnk-pm-github-repo]: https://github.com/Azure/azure-iot-predictive-maintenance
+[lnk-cf-github-repo]: https://github.com/Azure/azure-iot-connected-factory
 [lnk-aad-admin]: ../active-directory/active-directory-assign-admin-roles.md
 [lnk-classic-portal]: https://manage.windowsazure.com/
 [lnk-portal]: https://portal.azure.com/

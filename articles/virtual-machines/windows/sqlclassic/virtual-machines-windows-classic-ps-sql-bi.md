@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 01/11/2017
+ms.date: 05/30/2017
 ms.author: asaxton
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: ee480f4382a93a2420f7c73f7259ce1f0a03d595
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 1d35dc01aba57dcf8a37db757138abbd7b22c8c5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -39,11 +40,12 @@ Microsoft Azure 虛擬機器資源庫含有包含 SQL Server 安裝的映像。 
 ## <a name="sql-server-images-available-in-azure-virtual-machine-gallery"></a>Azure 虛擬機器資源庫中提供 SQL Server 映像
 Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的映像。 虛擬機器映像上安裝的軟體因作業系統版本與 SQL Server 版本而異。 Azure 虛擬機器資源庫中提供的映像清單經常變更。
 
-![Azure VM 資源庫中的 SQL 映像](./media/virtual-machines-windows-classic-ps-sql-bi/IC741367.png)
+<!--![SQL image in azure VM gallery](./media/virtual-machines-windows-classic-ps-sql-bi/IC741367.png)-->
+![Azure VM 資源庫中的 SQL 映像](./media/virtual-machines-windows-classic-ps-sql-bi/vm-sql-images.png)
 
 ![PowerShell](./media/virtual-machines-windows-classic-ps-sql-bi/IC660119.gif) 下列 PowerShell 指令碼會傳回 ImageName 中包含 “SQL-Server” 的 Azure 映像的清單：
 
-    # assumes you have already uploaded a management certificate to your Microsoft Azure Subscription. View the thumbprint value from the "settings" menu in Azure classic portal.
+    # assumes you have already uploaded a management certificate to your Microsoft Azure Subscription. View the thumbprint value from the "Subscriptions" menu in Azure portal.
 
     $subscriptionID = ""    # REQUIRED: Provide your subscription ID.
     $subscriptionName = "" # REQUIRED: Provide your subscription name.
@@ -66,7 +68,7 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
 * [SQL Server 2016 的版本所支援的功能](https://msdn.microsoft.com/library/cc645993.aspx)
 
 ### <a name="bi-features-installed-on-the-sql-server-virtual-machine-gallery-images"></a>SQL Server 虛擬機器資源庫映像上安裝的 BI 功能
-下表摘要說明常見的 Microsoft Azure 虛擬機器資源庫映像上所安裝 SQL Server 的商務智慧功能
+下表摘要說明常見的 Microsoft Azure 虛擬機器資源庫映像上所安裝 SQL Server 的商務智慧功能：
 
 * SQL Server 2016 SP1 Enterprise
 * SQL Server 2016 SP1 Standard
@@ -156,18 +158,22 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
      
       如需詳細資訊，請參閱 [什麼是雲端服務？](https://azure.microsoft.com/manage/services/cloud-services/what-is-a-cloud-service/)。
 
-**啟動 Reporting Services 組態管理員。**
 
-1. 在 **Windows Server 2012/2016** 中：
-2. 從 [開始] 畫面上，輸入 **Reporting Services** 來查看應用程式的清單。
-3. 以滑鼠右鍵按一下 [Reporting Services 組態管理員]，然後按一下 [以系統管理員身分執行]。
-4. 在 **Windows Server 2008 R2**中：
-5. 按一下 [開始]，然後按一下 [所有程式]。
-6. 按一下 [Microsoft SQL Server 2016] 。
-7. 按一下 [組態工具] 。
-8. 以滑鼠右鍵按一下 [Reporting Services 組態管理員]，然後按一下 [以系統管理員身分執行]。
+**啟動 Reporting Services 組態管理員**
 
-或
+在 **Windows Server 2012/2016** 中：
+
+1. 從 [開始] 畫面上，輸入 **Reporting Services** 來查看應用程式的清單。
+2. 以滑鼠右鍵按一下 [Reporting Services 組態管理員]，然後按一下 [以系統管理員身分執行]。
+
+在 **Windows Server 2008 R2**中：
+
+1. 按一下 [開始]，然後按一下 [所有程式]。
+2. 按一下 [Microsoft SQL Server 2016] 。
+3. 按一下 [組態工具] 。
+4. 以滑鼠右鍵按一下 [Reporting Services 組態管理員]，然後按一下 [以系統管理員身分執行]。
+
+或：
 
 1. 按一下 [啟動] 。
 2. 在 [搜尋程式與檔案] 對話方塊中，輸入 **reporting services**。 如果 VM 執行 Windows Server 2012，請在 Windows Server 2012 [開始] 畫面輸入 **reporting services** 。

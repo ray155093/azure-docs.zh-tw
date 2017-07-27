@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/9/2017
 ms.author: markgal
-translationtype: Human Translation
-ms.sourcegitcommit: 767e3b2e8330b4c52576c90e8ef090e1abc69b42
-ms.openlocfilehash: 20e486be706c6fc02ced8343c050379ceff99d82
-ms.lasthandoff: 01/23/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: 70ea11a7ee273d8c8497a6f12693ddb41ac7cb77
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/29/2017
 
 
 ---
@@ -214,7 +215,7 @@ ms.lasthandoff: 01/23/2017
     ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
 3. 如果您想要新增或變更項目，在 [選取要備份的項目] 畫面中按一下 [新增項目]。
 
-    您也可以在這個精靈頁面中設定 [排除設定]  。 如果您想要排除檔案或檔案類型，請參閱新增 [排除設定](#exclusion-settings)的程序。
+    您也可以在這個精靈頁面中設定 [排除設定]  。 如果您想要排除檔案或檔案類型，請參閱新增 [排除設定](#manage-exclusion-settings)的程序。
 4. 選取要備份的檔案和資料夾，然後按一下 [確定] 。
 
     ![Windows Server 備份排程](./media/backup-azure-manage-windows-server/add-items-modify.png)

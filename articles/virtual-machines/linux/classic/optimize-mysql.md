@@ -13,12 +13,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2015
+ms.date: 05/31/2017
 ms.author: ningk
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: e910c47d88434fae76f9c2d3bcb8a258d7d3fde4
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 8f2ec884fa98e989448ac11675e71f39aa21fa7f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -42,27 +43,22 @@ ms.lasthandoff: 04/03/2017
 本文假設您已經建立 Linux 虛擬機器並已安裝及設定 MYSQL 。 如需開始使用的詳細資訊，請參閱「如何在 Azure 上安裝 MySQL」。  
 
 ### <a name="set-up-raid-on-azure"></a>在 Azure 上設定 RAID
-下列步驟說明如何使用 Azure 傳統入口網站，在 Azure 上建立 RAID。 您也可以使用 Windows PowerShell 指令碼設定 RAID。
+下列步驟說明如何使用 Azure 入口網站，在 Azure 上建立 RAID。 您也可以使用 Windows PowerShell 指令碼設定 RAID。
 在此範例中，我們將設定具有四個磁碟的 RAID 0。  
 
 #### <a name="add-a-data-disk-to-your-virtual-machine"></a>將資料磁碟新增至您的虛擬機器
-在 Azure 傳統入口網站的 [虛擬機器] 頁面上，按一下您要新增資料磁碟的虛擬機器。 在此範例中，虛擬機器是 mysqlnode1。  
+在 Azure 入口網站中移至儀表板，並選取要新增資料磁碟的虛擬機器。 在此範例中，虛擬機器是 mysqlnode1。  
 
-![虛擬機器][1]
+<!--![Virtual machines][1]-->
 
-在虛擬機器頁面上，按一下 [儀表板] 。  
+按一下 [磁碟]，然後按一下 [連結新項目]。
 
-![虛擬機器儀表板][2]
+![虛擬機器新增磁碟](media/optimize-mysql/virtual-machines-linux-optimize-mysql-perf-Disks-option.png)
 
-按一下工作列中的 [連接]。
+建立一個新的 500 GB 磁碟。 確定 [主機快取偏好設定] 是設為 [無]。  完成時，請按一下 [確定] 。
 
-![虛擬機器工作列][3]
+![連接空的磁碟](media/optimize-mysql/virtual-machines-linux-optimize-mysql-perf-attach-empty-disk.png)
 
-然後按一下 [連接空的磁碟] 。  
-
-![連接空的磁碟][4]
-
-資料磁碟的 [主機快取偏好設定] 應設定為 [無]。  
 
 這會將一個空的磁碟新增到虛擬機器中。 再重複執行此步驟三次，您的 RAID 就有四個資料磁碟。  
 
@@ -348,4 +344,5 @@ MySQL 緩慢查詢記錄檔可協助您識別 MySQL 的較慢查詢。 啟用 My
 [12]:media/optimize-mysql/virtual-machines-linux-optimize-mysql-perf-12.png
 [13]:media/optimize-mysql/virtual-machines-linux-optimize-mysql-perf-13.png
 [14]:media/optimize-mysql/virtual-machines-linux-optimize-mysql-perf-14.png
+
 

@@ -10,21 +10,22 @@ ms.assetid: 03c584f1-a93c-4e3d-ac1b-c82b50c75d3e
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
-ms.devlang: nodejs
+ms.devlang: csharp
 ms.topic: article
-ms.date: 05/04/2017
+ms.date: 06/09/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: 3ae3e5d55454a33a35950057667f9648b63bb331
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: ee38401d2a4faa55b9736b1de45e03bde8def5bb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
+ms.lasthandoff: 07/21/2017
 
 ---
+
 # <a name="build-an-aspnet-app-in-azure-with-sql-database"></a>在 Azure 中搭配 SQL Database 來建置 ASP.NET 應用程式
 
-本教學課程示範如何在 Azure 中開發資料導向的 ASP.NET Web 應用程式、將它連接到 Azure SQL Database，並啟用您的資料導向功能。 完成時，您的 ASP.NET 應用程式將會在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中執行，並已連接到 SQL Database。
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) 提供可高度擴充、自我修復的 Web 主機服務。 本教學課程示範如何在 Azure 中開發資料導向的 ASP.NET Web 應用程式，並且將它連線到 [Azure SQL Database](../sql-database/sql-database-technical-overview.md)。 完成時，您的 ASP.NET 應用程式將會在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中執行，並已連線到 SQL Database。
 
 ![已在 Azure Web 應用程式中發佈的 ASP.NET 應用程式](./media/app-service-web-tutorial-dotnet-sqldatabase/azure-app-in-browser.png)
 
@@ -40,41 +41,35 @@ ms.lasthandoff: 06/01/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-執行此範例之前，請先[下載並安裝免費的 Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)。 務必在 Visual Studio 設定期間啟用 **Azure 開發**。
+若要完成本教學課程：
+
+* 使用下列工作負載安裝 [Visual Studio 2017](https://www.visualstudio.com/downloads/)：
+  - **ASP.NET 和 Web 開發**
+  - **Azure 開發**
+
+  ![ASP.NET 和 Web 開發及 Azure 開發 (在 [Web 和雲端] 之下)](media/app-service-web-tutorial-dotnet-sqldatabase/workloads.png)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="download-the-sample"></a>下載範例
-在此步驟中，您要下載範例 ASP.NET 應用程式。
 
-### <a name="get-the-sample-project"></a>取得範例專案
+[下載範例專案](https://github.com/Azure-Samples/dotnet-sqldb-tutorial/archive/master.zip)。
 
-按一下[這裡](https://github.com/Azure-Samples/dotnet-sqldb-tutorial/archive/master.zip)以下載範例專案。
+擷取 (解壓縮) dotnet-sqldb-tutorial-master.zip 檔案。
 
-將下載的 _dotnet-sqldb-tutorial-master.zip_ 解壓縮到工作目錄。
+範例專案包含一個基本 [ASP.NET MVC](https://www.asp.net/mvc) CRUD (建立-讀取-更新-刪除) 應用程式，使用 [Entity Framework Code First](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application)。
 
-> [!TIP]
-> 您可以藉由複製 GitHub 存放庫來取得相同的範例專案：
->
-> ```bash
-> git clone https://github.com/Azure-Samples/dotnet-sqldb-tutorial.git
-> ```
->
->
+### <a name="run-the-app"></a>執行應用程式
 
-這個範例專案包含一個簡單的 [ASP.NET MVC](https://www.asp.net/mvc) CRUD (建立-讀取-更新-刪除) 應用程式，其建置於 [Entity Framework Code First](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application) 上。
+在 Visual Studio 中開啟 dotnet-sqldb-tutorial-master/DotNetAppSqlDb.sln 檔案。 
 
-### <a name="run-the-application"></a>執行應用程式
+輸入 `Ctrl+F5` 以執行應用程式而不偵錯。 應用程式會在預設瀏覽器中顯示。 選取 [新建] 連結，並且建立幾個 [待辦事項] 項目。 
 
-從擷取的目錄中，以 Visual Studio 2017 開啟 _dotnet-sqldb-tutorial-master\DotNetAppSqlDb.sln_。
+![[新增 ASP.NET 專案] 對話方塊](media/app-service-web-tutorial-dotnet-sqldatabase/local-app-in-browser.png)
 
-在開啟範例方案之後，輸入 `F5`，在瀏覽器中執行該方案。
+測試 [編輯]、[詳細資料] 和 [刪除] 連結。
 
-您應該會在首頁中看到簡單的待辦事項清單。 嘗試在空的清單中加入數個待辦事項。
-
-![[新增 ASP.NET 專案] 對話方塊](./media/app-service-web-tutorial-dotnet-sqldatabase/local-app-in-browser.png)
-
-您的資料庫內容會使用名為 `MyDbConnection` 的連接字串。 此連接字串會定義於 _Web.config_，並在 _Models\MyDatabaseContext.cs_ 中進行參考。 當您稍後將 Azure Web 應用程式連線到 Azure SQL Database 時，只需用到此連接字串名稱。 
+應用程式會使用資料庫內容，與資料庫連線。 在這個範例中，資料庫內容會使用名為 `MyDbConnection` 的連接字串。 連接字串是在 Web.config 檔案中設定，並在 Models/MyDatabaseContext.cs 檔案中進行參考。 稍後會在教學課程中使用連接字串名稱，將 Azure Web 應用程式連線到 Azure SQL Database。 
 
 ## <a name="publish-to-azure-with-sql-database"></a>發佈至含有 SQL Database 的 Azure
 
@@ -86,7 +81,7 @@ ms.lasthandoff: 06/01/2017
 
 ![從專案概觀頁面發佈](./media/app-service-web-tutorial-dotnet-sqldatabase/publish-to-app-service.png)
 
-這會開啟 [建立 App Service] 對話方塊，協助您建立在 Azure 中執行 ASP.NET Web 應用程式所需的所有 Azure 資源。
+發佈會開啟 [建立 App Service] 對話方塊，協助您建立在 Azure 中執行 ASP.NET Web 應用程式所需的所有 Azure 資源。
 
 ### <a name="sign-in-to-azure"></a>登入 Azure
 
@@ -96,18 +91,24 @@ ms.lasthandoff: 06/01/2017
 
 登入之後，您即可在此對話方塊中建立 Azure Web 應用程式需要的所有資源。
 
+### <a name="configure-the-web-app-name"></a>設定 Web 應用程式名稱
+
+您可以保留產生的 Web 應用程式名稱，或將它變更為另一個唯一的名稱 (有效的字元是 `a-z`、`0-9` 和 `-`)。 Web 應用程式名稱是作為應用程式預設 URL 的一部分 (`<app_name>.azurewebsites.net`，其中 `<app_name>` 是您的 Web 應用程式名稱)。 Web 應用程式名稱在 Azure 中的所有應用程式之間必須是唯一的。 
+
+![建立 App Service 對話方塊](media/app-service-web-tutorial-dotnet-sqldatabase/wan.png)
+
 ### <a name="create-a-resource-group"></a>建立資源群組
 
-首先，您需有_資源群組_。 
-
-> [!NOTE] 
-> 資源群組是一個邏輯容器，可在其中部署與管理 Azure 資源 (例如 Web 應用程式、資料庫和儲存體帳戶)。
->
->
+[!INCLUDE [resource-group](../../includes/resource-group.md)]
 
 按一下 [資源群組] 旁邊的 [新增]。
 
-將您的資源群組命名為 **myResourceGroup**，然後按一下 [確定]。
+![按一下 [資源群組] 旁邊的 [新增]。](media/app-service-web-tutorial-dotnet-sqldatabase/new_rg2.png)
+
+將資源群組命名為 **myResourceGroup**。
+
+> [!NOTE]
+> 不要按一下 [建立]。 您必須先在稍後步驟中設定 SQL Database。
 
 ### <a name="create-an-app-service-plan"></a>建立應用程式服務方案
 
@@ -117,54 +118,53 @@ ms.lasthandoff: 06/01/2017
 
 在 [設定 App Service 方案] 對話方塊中，使用下列設定來設定新的 App Service 方案︰
 
-- **App Service 方案**：輸入 **myAppServicePlan**。 
-- **位置**︰選擇 [西歐]，或您喜歡的任何其他區域。
-- **大小**︰選擇 [免費]，或您喜歡的任何其他[定價層](https://azure.microsoft.com/pricing/details/app-service/)。
-
-按一下 [確定] 。
-
 ![建立 App Service 方案](./media/app-service-web-tutorial-dotnet-sqldatabase/configure-app-service-plan.png)
 
-### <a name="configure-the-web-app-name"></a>設定 Web 應用程式名稱
-
-在 [Web 應用程式名稱] 中，輸入唯一的應用程式名稱。 此名稱會用來作為應用程式預設 DNS 名稱的一部分 (`<app_name>.azurewebsites.net`)，所以在 Azure 的所有應用程式中必須是唯一的名稱。 您稍後先將自訂網域名稱對應至您的應用程式，再將它公開給使用者。
-
-您也可以接受自動產生的名稱 (已是唯一的)。
-
-若要準備下一個步驟，請按一下 [探索其他 Azure 服務]。
-
-> [!NOTE]
-> 還不要按此對話方塊中的 [建立]。 您必須先在下一個步驟中設定 SQL Database。
-
-![設定 Web 應用程式名稱](./media/app-service-web-tutorial-dotnet-sqldatabase/web-app-name.png)
+| 設定  | 建議的值 | 如需 Blob 的詳細資訊， |
+| ----------------- | ------------ | ----|
+|**App Service 方案**| myAppServicePlan | [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) |
+|**位置**| 西歐 | [Azure 區域](https://azure.microsoft.com/regions/) |
+|**大小**| 免費 | [定價層](https://azure.microsoft.com/pricing/details/app-service/)|
 
 ### <a name="create-a-sql-server-instance"></a>建立 SQL Server 執行個體
 
+建立資料庫之前，您需要 [Azure SQL Database 邏輯伺服器](../sql-database/sql-database-features.md)。 邏輯伺服器包含一組當作群組管理的資料庫。
+
+選取 [瀏覽其他 Azure 服務]。
+
+![設定 Web 應用程式名稱](media/app-service-web-tutorial-dotnet-sqldatabase/web-app-name.png)
+
 在 [服務] 索引標籤中，按一下 [SQL Database] 旁的 [+] 圖示。 
+
+![在 [服務] 索引標籤中，按一下 [SQL Database] 旁的 + 圖示。](media/app-service-web-tutorial-dotnet-sqldatabase/sql.png)
 
 在 [設定 SQL Database] 對話方塊中，按一下 [SQL Server] 旁的 [新增]。 
 
-在 [應用程式名稱] 中，輸入唯一的名稱。 此名稱會用來作為資料庫伺服器預設 DNS 名稱的一部分 (`<server_name>.database.windows.net`)，因此，在 Azure 的所有 SQL Server 執行個體中必須是唯一的名稱。 
+唯一的伺服器名稱隨即產生。 這個名稱是作為邏輯伺服器預設 URL 的一部分，`<server_name>.database.windows.net`。 它在 Azure 中的所有邏輯伺服器執行個體之間必須是唯一的。 您可以變更伺服器名稱，但是在本教學課程中，請保留產生的值。
 
-以您喜歡的方式設定其餘的欄位，然後按一下 [確定]。
+新增系統管理員使用者名稱和密碼，然後選取 [確定]。 如需密碼複雜性需求，請參閱[密碼原則](/sql/relational-databases/security/password-policy)。
 
-![建立 SQL Server 執行個體](./media/app-service-web-tutorial-dotnet-sqldatabase/configure-sql-database-server.png)
+請記住這個使用者名稱和密碼。 您稍後需要它們以便管理邏輯伺服器執行個體。
 
-### <a name="configure-the-sql-database"></a>設定 SQL Database
+![建立 SQL Server 執行個體](media/app-service-web-tutorial-dotnet-sqldatabase/configure-sql-database-server.png)
 
-在 [資料庫名稱] 中，輸入 _myToDoAppDb_ 或您喜歡的任何名稱。
+### <a name="create-a-sql-database"></a>建立 SQL Database
 
-在 [連接字串名稱] 中，輸入 _MyDbConnection_。 此名稱必須符合 _Models\MyDatabaseContext.cs_ 中所參考的連接字串。
+在 [設定 SQL Database] 對話方塊中︰ 
 
-![設定 SQL Database](./media/app-service-web-tutorial-dotnet-sqldatabase/configure-sql-database.png)
+* 保留預設產生的**資料庫名稱**。
+* 在 [連接字串名稱] 中，輸入 *MyDbConnection*。 此名稱必須符合 Models/MyDatabaseContext.cs 中所參考的連接字串。
+* 選取 [確定] 。
 
-### <a name="create-and-publish-the-web-app"></a>建立和發佈 Web 應用程式
+![設定 SQL Database](media/app-service-web-tutorial-dotnet-sqldatabase/configure-sql-database.png)
 
-按一下 [建立] 。 
+[建立 App Service] 對話方塊會顯示您已建立的資源。 按一下 [建立] 。 
 
-當精靈完成建立 Azure 資源時，就會自動將 ASP.NET 應用程式首度發佈至 Azure，然後在預設瀏覽器中啟動已發佈的 Azure Web 應用程式。
+![您已建立的資源](media/app-service-web-tutorial-dotnet-sqldatabase/app_svc_plan_done.png)
 
-嘗試在空的清單中新增數個待辦事項。
+一旦精靈完成建立 Azure 資源，它會將 ASP.NET 應用程式發佈至 Azure。 預設瀏覽器隨即啟動，瀏覽至部署應用程式的 URL。 
+
+新增幾個待辦事項項目。
 
 ![已在 Azure Web 應用程式中發佈的 ASP.NET 應用程式](./media/app-service-web-tutorial-dotnet-sqldatabase/azure-app-in-browser.png)
 
@@ -176,39 +176,43 @@ Visual Studio 可讓您在 [SQL Server 物件總管] 中，輕鬆地探索和管
 
 ### <a name="create-a-database-connection"></a>建立資料庫連接
 
-輸入 `Ctrl`+`` ` ``、`Ctrl`+`S`，來開啟 [SQL Server 物件總管]。
+從 [檢視] 功能表選取 [SQL Server 物件總管]。
 
 在 [SQL Server 物件總管] 上方，按一下 [加入 SQL Server] 按鈕。
 
 ### <a name="configure-the-database-connection"></a>設定資料庫連接
 
-在 [連接] 對話方塊中，展開 [Azure] 節點。 此處會列出 Azure 中您所有的 SQL Database。
+在 [連接] 對話方塊中，展開 [Azure] 節點。 此處會列出 Azure 中您所有的 SQL Database 執行個體。
 
-選取您稍早建立的 SQL Database。 系統會自動在下方填入您稍早使用的連線。
+選取 `DotNetAppSqlDb` SQL Database。 系統會自動在下方填入您稍早建立的連線。
 
-輸入您先前使用的資料庫管理員密碼，然後按一下 [連接]。
+輸入您稍早建立的資料庫管理員密碼，然後按一下 [連線]。
 
 ![從 Visual Studio 設定資料庫連接](./media/app-service-web-tutorial-dotnet-sqldatabase/connect-to-sql-database.png)
 
 ### <a name="allow-client-connection-from-your-computer"></a>允許來自您電腦的用戶端連接
 
-[建立新的防火牆規則] 對話方塊即會開啟。 根據預設，您的 SQL Server 執行個體僅允許來自 Azure 服務 (例如 Azure Web 應用程式) 的連接。 若要直接從 Visual Studio 連接到您的資料庫，您需要在 SQL Server 執行個體中建立防火牆規則，以允許本機電腦的公用 IP 位址。
+[建立新的防火牆規則] 對話方塊即會開啟。 根據預設，您的 SQL Database 執行個體僅允許來自 Azure 服務 (例如 Azure Web 應用程式) 的連線。 若要連線到您的資料庫，請在 SQL Database 執行個體中建立防火牆規則。 防火牆規則允許本機電腦的公用 IP 位址。
 
-在 Visual Studio 中，要這樣做很簡單。 對話方塊中已經填入您的電腦公用 IP 位址。
+對話方塊中已經填入您的電腦公用 IP 位址。
 
 確定已選取 [加入我的用戶端 IP]，然後按一下 [確定]。 
 
-![設定 SQL Server 執行個體的防火牆](./media/app-service-web-tutorial-dotnet-sqldatabase/sql-set-firewall.png)
+![設定 SQL Database 執行個體的防火牆](./media/app-service-web-tutorial-dotnet-sqldatabase/sql-set-firewall.png)
 
-當 Visual Studio 完成建立 SQL Server 執行個體的防火牆設定時，您的連接就會出現在 [SQL Server 物件總管] 中。
+當 Visual Studio 完成建立 SQL Database 執行個體的防火牆設定時，您的連線就會出現在 [SQL Server 物件總管] 中。
 
-您可以在此處執行最常見的資料庫作業，例如執行查詢、建立檢視表和預存程序，以及其他更多作業。 下列範例示範如何檢視資料庫資料。 
+您可以在此處執行最常見的資料庫作業，例如執行查詢、建立檢視表和預存程序，以及其他更多作業。 
+
+以滑鼠右鍵按一下 `Todoes` 資料表並選取 [檢視資料]。 
 
 ![探索 SQL Database 物件](./media/app-service-web-tutorial-dotnet-sqldatabase/explore-sql-database.png)
 
 ## <a name="update-app-with-code-first-migrations"></a>使用 Code First 移轉更新應用程式
 
-在此步驟中，您會使用 Entity Framework 中的 Code First 移轉來變更資料庫結構描述，然後將它發佈至 Azure。
+您可以使用 Visual Studio 中熟悉的工具來更新您在 Azure 中的資料庫與 Web 應用程式。 在此步驟中，您會使用 Entity Framework 中的 Code First 移轉來變更資料庫結構描述，然後將它發佈至 Azure。
+
+如需有關使用 Entity Framework Code First 移轉的詳細資訊，請參閱[使用 MVC 5 開始使用 Entity Framework 6 Code First](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application)。
 
 ### <a name="update-your-data-model"></a>更新資料模型
 
@@ -220,39 +224,39 @@ public bool Done { get; set; }
 
 ### <a name="run-code-first-migrations-locally"></a>在本機執行 Code First 移轉
 
-接下來，執行數個命令以進行 localdb 資料庫的更新。 
+執行數個命令以進行本機資料庫的更新。 
 
-從 [工具] 功能表中，按一下 [NuGet 封裝管理員] > [封裝管理員主控台]。 此主控台通常會在下方視窗中開啟。
+從 [工具] 功能表中，按一下 [NuGet 封裝管理員] > [封裝管理員主控台]。
 
-啟用 Code First 移轉，如下：
+在 [套件管理員主控台] 視窗中，啟用 Code First 移轉：
 
 ```PowerShell
 Enable-Migrations
 ```
 
-加入移轉，如下：
+新增移轉：
 
 ```PowerShell
 Add-Migration AddProperty
 ```
 
-更新 localdb 資料庫，如下：
+更新本機資料庫：
 
 ```PowerShell
 Update-Database
 ```
 
-透過 `F5` 執行應用程式，以測試您的變更。
+輸入 `Ctrl+F5` 以執行應用程式。 測試編輯、詳細資料和建立連結。
 
 如果應用程式載入而不會出現錯誤，則表示 Code First 移轉已成功。 不過，您的頁面仍然看起來一樣，因為您的應用程式邏輯尚未使用這個新屬性。 
 
 ### <a name="use-the-new-property"></a>使用新屬性
 
-讓我們在您的程式碼中進行一些變更以使用 `Done` 屬性。 為了簡單起見，在本教學課程中，您僅需變更 `Index` 和 `Create` 檢視，以查看作用中的屬性。
+在您的程式碼中進行一些變更以使用 `Done` 屬性。 為了簡單起見，在本教學課程中，您僅需變更 `Index` 和 `Create` 檢視，以查看作用中的屬性。
 
 開啟 _Controllers\TodosController.cs_。
 
-尋找 `Create()` 方法，並將 `Done` 加入至 `Bind` 屬性 (Attribute) 中的屬性 (Property) 清單。 完成時，您的 `Create()` 方法簽章應該如下所示：
+尋找 `Create()` 方法，並將 `Done` 加入至 `Bind` 屬性 (Attribute) 中的屬性 (Property) 清單。 完成時，您的 `Create()` 方法簽章應該如以下程式碼所示：
 
 ```csharp
 public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] Todo todo)
@@ -260,7 +264,7 @@ public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] T
 
 開啟 _Views\Todos\Create.cshtml_。
 
-在 Razor 程式碼中，您應該會看到使用 `model.Description` 的 `<div class="form-group">` 標記，然後是另一個使用 `model.CreatedDate` 的 `<div class="form-group">` 標記。 在這兩個標記的正後方，加入另一個使用 `model.Done` 的 `<div class="form-group">` 標記，如下：
+在 Razor 程式碼中，您應該會看到使用 `model.Description` 的 `<div class="form-group">` 元素，然後是另一個使用 `model.CreatedDate` 的 `<div class="form-group">` 元素。 在這兩個元素的正後方，新增另一個使用 `model.Done` 的 `<div class="form-group">` 元素：
 
 ```csharp
 <div class="form-group">
@@ -276,7 +280,7 @@ public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] T
 
 開啟 _Views\Todos\Index.cshtml_。
 
-搜尋空白的 `<th></th>` 標記。 在此標記的正上方，加入下列 Razor 程式碼：
+搜尋空白的 `<th></th>` 元素。 在此元素的正上方，新增下列 Razor 程式碼：
 
 ```csharp
 <th>
@@ -284,7 +288,7 @@ public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] T
 </th>
 ```
 
-尋找包含 `Html.ActionLink()` Helper 方法 的 `<td>` 標記。 在此標記的正上方，加入下列 Razor 程式碼：
+尋找包含 `Html.ActionLink()` Helper 方法的 `<td>` 元素。 在此元素的正上方，新增下列 Razor 程式碼：
 
 ```csharp
 <td>
@@ -294,9 +298,9 @@ public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] T
 
 您只需查看 `Index` 和 `Create` 檢視中的變更。 
 
-再次輸入 `F5` 以執行應用程式。
+輸入 `Ctrl+F5` 以執行應用程式。
 
-您應該能夠立即加入待辦事項，並勾選 [完成]。 然後，它應該會在您的首頁中顯示為已完成的項目。 請記住，這是您現在唯一可以做的動作，因為您並未變更 `Edit` 檢視。
+您現在可以新增待辦事項項目，並且勾選 [完成]。 然後，它應該會在您的首頁中顯示為已完成的項目。 請記住，[`Edit`] 檢視不會顯示 [`Done`] 欄位，因為您沒有變更 [`Edit`] 檢視。
 
 ### <a name="enable-code-first-migrations-in-azure"></a>啟用 Azure 中的 Code First 移轉
 
@@ -326,10 +330,8 @@ public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] T
 
 ![Code First 移轉之後的 Azure Web 應用程式](./media/app-service-web-tutorial-dotnet-sqldatabase/this-one-is-done.png)
 
-> [!NOTE]
-> 請注意，仍會顯示您現有的所有待辦事項。 當您重新發佈 ASP.NET 應用程式時，您 SQL Database 中現有的資料不會遺失。 此外，Code First 移轉只會變更資料結構描述，並讓現有的資料保持不變。
->
->
+仍會顯示您現有的所有待辦事項項目。 當您重新發佈 ASP.NET 應用程式時，您 SQL Database 中現有的資料不會遺失。 此外，Code First 移轉只會變更資料結構描述，並讓現有的資料保持不變。
+
 
 ## <a name="stream-application-logs"></a>資料流應用程式記錄
 
@@ -337,13 +339,11 @@ public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] T
 
 開啟 _Controllers\TodosController.cs_。
 
-請注意，每個動作都是以 `Trace.WriteLine()` 方法開始。 加入此程式碼的用意是，示範將追蹤訊息加入至 Azure web 應用程式是多麼容易。
+每個動作都是以 `Trace.WriteLine()` 方法開始。 新增此程式碼的用意是，示範如何將追蹤訊息新增至 Azure Web 應用程式。
 
 ### <a name="open-server-explorer"></a>開啟伺服器總管
 
-您可以在 [伺服器總管] 中設定 Azure Web 應用程式的記錄。 
-
-若要開啟它，請輸入 `Ctrl`+`Alt`+`S`。
+從 [檢視] 功能表選取 [伺服器總管]。 您可以在 [伺服器總管] 中設定 Azure Web 應用程式的記錄。 
 
 ### <a name="enable-log-streaming"></a>啟用記錄資料流
 
@@ -385,6 +385,8 @@ Application: 2017-04-06T23:30:53  PID[8132] Verbose     POST /Todos/Create
 Application: 2017-04-06T23:30:54  PID[8132] Verbose     GET /Todos/Index
 ```
 
+
+
 ### <a name="stop-log-streaming"></a>停止記錄資料流
 
 若要停止記錄資料流服務，按一下 [輸出] 視窗中的 [停止監視] 按鈕。
@@ -393,35 +395,21 @@ Application: 2017-04-06T23:30:54  PID[8132] Verbose     GET /Todos/Index
 
 ## <a name="manage-your-azure-web-app"></a>管理您的 Azure Web 應用程式
 
-請移至 Azure 入口網站，以查看您所建立的 Web 應用程式。 
+請移至 [Azure 入口網站](https://portal.azure.com)，以查看您所建立的 Web 應用程式。 
 
-若要這麼做，請登入 [https://portal.azure.com](https://portal.azure.com)。
+
 
 按一下左側功能表中的 [App Service]，然後按一下 Azure Web 應用程式的名稱。
 
 ![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-tutorial-dotnet-sqldatabase/access-portal.png)
 
-您已進入 Web 應用程式的_刀鋒視窗_ (水平開啟的入口網站頁面)。 
+您已來到 Web 應用程式的分頁。 
 
-根據預設，Web 應用程式的刀鋒視窗會顯示 [概觀] 頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 刀鋒視窗左側的索引標籤會顯示您可開啟的各種設定頁面。 
+根據預設，入口網站會顯示 [概觀] 分頁。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 分頁左側的索引標籤會顯示您可開啟的各種設定分頁。 
 
-![Azure 入口網站中的 App Service 刀鋒視窗](./media/app-service-web-tutorial-dotnet-sqldatabase/web-app-blade.png)
+![Azure 入口網站中的 App Service 頁面](./media/app-service-web-tutorial-dotnet-sqldatabase/web-app-blade.png)
 
-刀鋒視窗中的索引標籤會顯示您可以新增至 Web 應用程式的許多強大功能。 下表提供幾個可能性︰
-
-- 對應自訂 DNS 名稱
-- 繫結自訂 SSL 憑證
-- 設定連續部署
-- 相應增加和相應放大
-- 新增使用者驗證
-
-## <a name="clean-up-resources"></a>清除資源
- 
-如果您不需要這些資源來進行其他教學課程 (請參閱[後續步驟](#next))，您可以執行下列命令來將這些資源刪除︰ 
-  
-```azurecli 
-az group delete --name myResourceGroup 
-``` 
+[!INCLUDE [Clean up section](../../includes/clean-up-section-portal-web-app.md)]
 
 <a name="next"></a>
 
@@ -437,7 +425,7 @@ az group delete --name myResourceGroup
 > * 將記錄從 Azure 串流到終端機
 > * 在 Azure 入口網站中管理應用程式
 
-前進至下一個教學課程，了解如何對它對應自訂 DNS 名稱。
+前往下一個教學課程，了解如何將自訂的 DNS 名稱對應至 Web 應用程式。
 
 > [!div class="nextstepaction"]
 > [將現有的自訂 DNS 名稱對應至 Azure Web Apps](app-service-web-tutorial-custom-domain.md)

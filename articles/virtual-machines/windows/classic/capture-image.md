@@ -13,18 +13,19 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 03/13/2017
+ms.date: 05/30/2017
 ms.author: cynthn
-translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 06a97b48fed8f80679632f5c0320d4dd73b8e1e2
-ms.lasthandoff: 03/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 6032263848c469ce2f416306e5c91c29f4cb30e4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
 # <a name="capture-an-image-of-an-azure-windows-virtual-machine-created-with-the-classic-deployment-model"></a>擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像。
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需 Resource Manager 模型資訊，請參閱[建立在 Azure 中執行的複本 Windows VM](../../virtual-machines-windows-vhd-copy.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需 Resource Manager 模型的資訊，請參閱[在 Azure 中擷取一般化 VM 的受管理映像](../capture-image-resource.md)。
 
 本文說明如何擷取執行 Windows 的 Azure 虛擬機器，以便用它作為映像來建立其他虛擬機器。 此映像包括作業系統磁碟和任何連結至虛擬機器的資料磁碟。 它不包含網路組態，因此，當您建立其他使用此映像的虛擬機器時，將需要設定網路組態。
 
@@ -55,7 +56,7 @@ Azure 會將映像儲存於 [VM 映像 (傳統)] 下方，當您檢視所有 Azu
    * 按一下 [確定] 。
 
    ![執行 Sysprep](./media/capture-image/SysprepGeneral.png)
-5. Sysprep 會將虛擬機器關機，並會在 Azure 傳統入口網站中，將虛擬機器的狀態變更為 [ **已停止**]。
+5. Sysprep 會將虛擬機器關機，並會在 Azure 入口網站中，將虛擬機器的狀態變更為 [ **已停止**]。
 6. 在 Azure 入口網站中，按一下 [虛擬機器 (傳統)]，然後選取您想要擷取的虛擬機器。 [VM 映像 (傳統)] 群組會在您檢視 [更多服務] 時列於 [計算] 下方。
 
 7. 按一下命令列上的 [擷取] 。
@@ -68,7 +69,7 @@ Azure 會將映像儲存於 [VM 映像 (傳統)] 下方，當您檢視所有 Azu
 
 9. 按一下 [我已在虛擬機器上執行 Sysprep]。 此核取方塊指的是在步驟 3-5 中使用 Sysprep 的動作。 將 Windows Server 映像新增到自訂映像組合之前，「必須」先執行 Sysprep，將映像一般化。
 
-10. 完成擷取時，新映像會在 [Marketplace] (位於 [計算]、[VM 映像 (傳統)] 容器) 中變成可供使用狀態。
+10. 完成擷取時，新映像會在 **[Marketplace]** \(位於 [計算] 、[VM 映像 (傳統)] 容器) 中變成可供使用狀態。
 
     ![成功擷取映像](./media/capture-image/VMCapturedImageAvailable.png)
 

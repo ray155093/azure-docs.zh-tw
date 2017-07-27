@@ -12,12 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/21/2017
+ms.date: 05/18/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 223edfde090c9b77467e032198c2150fbaa56a5b
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 61bb5379cd94dd00814e14420947e7783999ff0a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -27,15 +28,11 @@ ms.lasthandoff: 04/12/2017
 > * [使用監視及管理應用程式](data-factory-monitor-manage-app.md)
 
 
-Azure Data Factory 提供一個可靠且完整的儲存、處理和資料移動服務檢視。 此服務可提供監視儀表板供您︰
+> [!IMPORTANT]
+> 監視及管理應用程式對監視及管理您的資料管線，以及針對任何問題進行疑難排解，提供更佳的支援。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)。 
 
-* 快速評估端對端資料管線健全狀態。
-* 指出問題所在，並視需要採取修正動作。
-* 追蹤資料歷程。
-* 在您的任何來源間追蹤資料之間的關聯性。
-* 檢視作業執行、系統健全狀態和相依性的完整歷程記錄。
 
-本文描述如何監視、管理和偵錯您的管線。 同時也會提供如何建立警示和取得失敗通知的詳細資訊。
+本文描述如何使用 Azure 入口網站和 PowerShell 來監視、管理和偵錯您的管線。 本文也會提供如何建立警示和取得失敗通知的詳細資訊。
 
 ## <a name="understand-pipelines-and-activity-states"></a>了解管線和活動狀態
 藉由使用 Azure 入口網站，您可以：
@@ -44,15 +41,13 @@ Azure Data Factory 提供一個可靠且完整的儲存、處理和資料移動�
 * 檢視管線中的活動。
 * 檢視輸入和輸出資料集。
 
-本節也描述配量從某個狀態轉換至另一個狀態的方法。   
+本節也描述資料集配量從某個狀態轉換至另一個狀態的方法。   
 
 ### <a name="navigate-to-your-data-factory"></a>瀏覽至您的 Data Factory
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下左邊功能表的 [Data Factory]。 如果沒看見，請按一下 [更多服務]，然後在 [智慧 + 分析] 類別底下按一下 [Data Factory]。
 
    ![全部瀏覽 -> Data Factory](./media/data-factory-monitor-manage-pipelines/browseall-data-factories.png)
-
-   您應該會在 [Data Factory] 刀鋒視窗中看到所有 Data Factory。
 3. 在 [Data Factory] 刀鋒視窗中，選取您感興趣的 Data Factory。
 
     ![選取 Data Factory](./media/data-factory-monitor-manage-pipelines/select-data-factory.png)
@@ -62,13 +57,11 @@ Azure Data Factory 提供一個可靠且完整的儲存、處理和資料移動�
    ![Data Factory 刀鋒視窗](./media/data-factory-monitor-manage-pipelines/data-factory-blade.png)
 
 #### <a name="diagram-view-of-your-data-factory"></a>Data Factory 的圖表檢視
-Data Factory 的 [圖表] 檢視提供單一窗格，可用來監視和管理 Data Factory 及其資產。
-
-若要查看 Data Factory 的 [圖表] 檢視，請按一下 Data Factory 首頁上的 [圖表]。
+Data Factory 的 [圖表] 檢視提供單一窗格，可用來監視和管理 Data Factory 及其資產。 若要查看 Data Factory 的 [圖表] 檢視，請按一下 Data Factory 首頁上的 [圖表]。
 
 ![圖表檢視](./media/data-factory-monitor-manage-pipelines/diagram-view.png)
 
-您可以將圖表配置放大、縮小、縮放至適當比例、放大到 100% 和鎖定，以及自動定位管線和資料表。 您也可以查看資料歷程資訊 (也就是顯示所選取項目的上游和下游項目)。
+您可以將圖表配置放大、縮小、縮放至適當比例、放大到 100% 和鎖定，以及自動定位管線和資料集。 您也可以查看資料歷程資訊 (也就是顯示所選取項目的上游和下游項目)。
 
 ### <a name="activities-inside-a-pipeline"></a>管線中的活動
 1. 在管線上按一下滑鼠右鍵，然後按一下 [開啟管線]，就能查看所有管線中的活動，以及活動的輸入和輸出資料集。 當您的管線有超過一個的活動且您想了解單一管線的作業歷程時，這個功能會非常有用。
@@ -172,17 +165,13 @@ Data Factory 內的資料集狀態轉換流程如下：等候中 -> 進行中/�
 
 您可以重設配量，以從 [就緒] 或 [失敗] 狀態返回 [等候] 狀態。 您也可以將配量狀態標記為 [略過]，這會防止活動執行且不會處理該配量。
 
-## <a name="manage-pipelines"></a>管理管線
-您可以使用 Azure Powershell 管理您的管線。 例如，您可以執行 Azure PowerShell Cmdlet 來暫停和繼續執行管線。
+## <a name="pause-and-resume-pipelines"></a>暫停及繼續管線
+您可以使用 Azure Powershell 管理您的管線。 例如，您可以執行 Azure PowerShell Cmdlet 來暫停和繼續執行管線。 
 
-### <a name="pause-and-resume-pipelines"></a>暫停及繼續管線
-您可以使用 **Suspend-AzureRmDataFactoryPipeline** PowerShell Cmdlet 來暫停/暫止管線。 若您在問題獲得解決之前不想執行管線，此 Cmdlet 非常有用。
+> [!NOTE] 
+> 圖表檢視不支援暫停和繼續管線。 如果您想要使用使用者介面，請使用監視及管理應用程式。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)一文。 
 
-例如：在下列螢幕擷取畫面中，**productrecgamalbox1dev** Data Factory 內的 **PartitionProductsUsagePipeline** 發現問題，因此我們想暫止管線。
-
-![暫止的管線](./media/data-factory-monitor-manage-pipelines/pipeline-to-be-suspended.png)
-
-若要暫停管線，請執行下列 PowerShell 命令：
+您可以使用 **Suspend-AzureRmDataFactoryPipeline** PowerShell Cmdlet 來暫停/暫止管線。 若您在問題獲得解決之前不想執行管線，此 Cmdlet 非常有用。 
 
 ```powershell
 Suspend-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
@@ -193,7 +182,7 @@ Suspend-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryNa
 Suspend-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName productrecgamalbox1dev -Name PartitionProductsUsagePipeline
 ```
 
-在 **PartitionProductsUsagePipeline** 修正問題後，您可以執行下列 PowerShell 命令來繼續暫止的管線：
+在修正管線的問題後，您可以執行下列 PowerShell 命令來繼續暫止的管線：
 
 ```powershell
 Resume-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
@@ -203,8 +192,11 @@ Resume-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryNam
 ```powershell
 Resume-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName productrecgamalbox1dev -Name PartitionProductsUsagePipeline
 ```
+
 ## <a name="debug-pipelines"></a>偵錯管線
 Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure PowerShell 來對管線進行偵錯和疑難排解。
+
+> [!NOTE} 使用監視及管理應用程式針對錯誤進行疑難排解更加容易。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)一文。 
 
 ### <a name="find-errors-in-a-pipeline"></a>尋找管線中的錯誤
 如果管線中的活動執行失敗，管線所產生的資料集會因為該失敗而處於錯誤狀態。 您可以使用下列方法，在 Azure Data Factory 中偵錯和疑難排解錯誤。
@@ -221,7 +213,7 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
    ![含有錯誤的活動執行詳細資料刀鋒視窗](./media/data-factory-monitor-manage-pipelines/activity-run-details-with-error.png)     
 
 #### <a name="use-powershell-to-debug-an-error"></a>使用 PowerShell 偵錯錯誤
-1. 啟動 **Azure PowerShell**。
+1. 啟動 **PowerShell**。
 2. 執行 **Get-AzureRmDataFactorySlice** 命令來查看配量及其狀態。 您應該會看到狀態為 [失敗] 的配量。        
 
     ```powershell   
@@ -233,7 +225,7 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
     Get-AzureRmDataFactorySlice -ResourceGroupName ADF -DataFactoryName LogProcessingFactory -DatasetName EnrichedGameEventsTable -StartDateTime 2014-05-04 20:00:00
     ```
 
-   將 **StartDateTime** 取代成您針對 Set-AzureRmDataFactoryPipelineActivePeriod 所指定的 StartDateTime 值。
+   將 **StartDateTime** 取代為您的管線開始時間。 
 3. 現在，執行 **Get-AzureRmDataFactoryRun** Cmdlet，以取得關於此配量之活動執行的詳細資料。
 
     ```powershell   
@@ -279,12 +271,17 @@ Azure Data Factory 提供了許多功能供您使用 Azure 入口網站和 Azure
     ```
 
 ## <a name="rerun-failures-in-a-pipeline"></a>重新執行管線中的失敗
+
+> [!IMPORTANT]
+> 使用監視及管理應用程式針對錯誤進行疑難排解以及重新執行失敗的配量更加容易。 如需使用應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視及管理 Data Factory 管線](data-factory-monitor-manage-app.md)。 
+
 ### <a name="use-the-azure-portal"></a>使用 Azure 入口網站
 在對管線中的失敗進行疑難排解和偵錯後，您可以瀏覽到錯誤配量並按一下命令列上的 [執行] 按鈕，重新執行失敗。
 
 ![重新執行失敗的配量](./media/data-factory-monitor-manage-pipelines/rerun-slice.png)
 
 萬一原則失敗而導致配量驗證失敗 (例如：沒有可用資料)，您可以修正失敗並重新驗證，方法是按一下命令列上的 [驗證] 按鈕。
+
 ![修正錯誤並進行驗證](./media/data-factory-monitor-manage-pipelines/fix-error-and-validate.png)
 
 ### <a name="use-azure-powershell"></a>使用 Azure PowerShell

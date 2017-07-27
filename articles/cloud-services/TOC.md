@@ -21,8 +21,6 @@
 #### [佇列儲存體和已連接的服務](../storage/vs-storage-cloud-services-getting-started-queues.md)
 #### [表格儲存體和已連接的服務](../storage/vs-storage-cloud-services-getting-started-tables.md)
 ### 設定連續建置和部署的套件
-#### [Visual Studio Team Services 和 Git](cloud-services-continuous-delivery-use-vso-git.md)
-#### [Visual Studio Team Services](cloud-services-continuous-delivery-use-vso.md)
 #### [TFS 和 Team Build](cloud-services-dotnet-continuous-delivery.md)
 ### [設定角色的流量規則](cloud-services-enable-communication-role-instances.md)
 ### [處理雲端服務生命週期事件](cloud-services-role-lifecycle-dotnet.md)
@@ -114,7 +112,7 @@
 ## [REST](https://msdn.microsoft.com/library/azure/ee460812)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=compute)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/cloud-services/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-us/home?forum=windowsazuredevelopment)
 ## [價格](https://azure.microsoft.com/pricing/details/cloud-services/)

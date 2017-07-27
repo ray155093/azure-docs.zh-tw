@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/16/2017
+ms.date: 07/18/2017
 ms.author: yurid
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
-ms.openlocfilehash: 2593e6846c897644017083b49ad4ba8219696c6c
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: aefec15c72c6cf8389a29b03be70abb4c7f020b9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/17/2017
-
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="set-security-policies-in-azure-security-center"></a>在 Azure 資訊安全中心設定安全性原則
@@ -43,7 +42,7 @@ ms.lasthandoff: 06/17/2017
     ![定義原則](./media/security-center-policies/security-center-policies-fig1-ga.png)
 3. 所選訂用帳戶的 [安全性原則]  刀鋒視窗隨即開啟，內含一組選項。 此刀鋒視窗中可用的選項如下：
 
-   * **預防原則**︰使用此選項為每個訂用帳戶或資源群組設定原則。  
+   * **預防原則**︰使用此選項為每個訂用帳戶設定原則。  
    * **電子郵件通知**：使用此選項設定在每天第一個警示發生時傳送的電子郵件通知，以及針對高嚴重性警示傳送的電子郵件通知。 電子郵件喜好設定只能針對訂用帳戶原則進行設定。 如需如何設定電子郵件通知的詳細資訊，請閱讀 [在 Azure 資訊安全中心提供安全性連絡人詳細資料](security-center-provide-security-contact-details.md) 。
    * **定價層**：使用此選項來升級定價層選取項目。 若要深入了解價格選項，請參閱[資訊安全中心價格](security-center-pricing.md)。
 4. 確定 [從虛擬機器收集資料] 選項為 [開啟]。 這個選項能夠使用 Microsoft Monitoring Agent (這是 Operations Management Suite 和 Log Analytics 服務所用的相同代理程式) 自動收集現有和新資源的記錄。 從這個代理程式收集的資料，將會儲存在與您的 Azure 訂用帳戶相關聯的現有 Log Analytics 工作區或新的工作區中 (將 VM 的地理位置納入考量)。

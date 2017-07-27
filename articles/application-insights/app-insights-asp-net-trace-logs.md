@@ -3,7 +3,7 @@ title: "在 Application Insights 中探索 .NET 追蹤記錄"
 description: "搜尋使用 Trace、NLog 或 Log4Net 產生的記錄檔。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 0c2a084f-6e71-467b-a6aa-4ab222f17153
 ms.service: application-insights
@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 05/3/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 1b0c902adff1d60a04fb3cddef5862256d54f813
+ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
+ms.openlocfilehash: e562e6a1a6c2b8203f3d5a9a2ee5680372499693
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/19/2017
 
 
 ---
@@ -96,6 +96,19 @@ NuGet 封裝會安裝必要的組件，並修改 web.config 或 app.config。
  * `Name` 會指定要收集之 EventSource 的名稱。
  * `Level` 會指定要收集的記錄等級。 可以是 `Critical`、`Error`、`Informational`、`LogAlways`、`Verbose`、`Warning` 其中一個。
  * `Keywords` (選擇性) 會指定要使用的關鍵字組合之整數值。
+
+## <a name="using-diagnosticsource-events"></a>使用 DiagnosticSource 事件
+您可以將 [System.Diagnostics.DiagnosticSource](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) 設定為要傳送至 Application Insights 作為追蹤的事件。 首先，安裝 [`Microsoft.ApplicationInsights.DiagnosticSourceListener`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DiagnosticSourceListener) NuGet 套件。 然後編輯 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 檔案的 `TelemetryModules` 區段。
+
+```xml
+    <Add Type="Microsoft.ApplicationInsights.DiagnsoticSourceListener.DiagnosticSourceTelemetryModule, Microsoft.ApplicationInsights.DiagnosticSourceListener">
+      <Sources>
+        <Add Name="MyDiagnosticSourceName" />
+      </Sources>
+    </Add>
+```
+
+針對您想要追蹤的每個 DiagnosticSource，新增項目並將其 `Name` 屬性設定為 DiagnosticSource 的名稱。
 
 ## <a name="using-etw-events"></a>使用 ETW 事件
 您可以設定要傳送至 Application Insights 作為追蹤的 ETW 事件。 首先，安裝 `Microsoft.ApplicationInsights.EtwCollector` NuGet 套件。 然後編輯 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 檔案的 `TelemetryModules` 區段。

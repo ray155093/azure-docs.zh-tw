@@ -14,39 +14,39 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 11/02/2016
+ms.date: 06/20/2017
 ms.author: wesmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: 04a8563a0035992cfa4b7d25a4edc14e1db80e44
+ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
+ms.openlocfilehash: eaa97e31fbc2ffb8464b5ec2bd1f0eb5c59fdbd2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/22/2017
 
 
 ---
-# <a name="azure-functions-event-hub-bindings"></a>Azure Functions 事件中樞繫結
+# <a name="azure-functions-event-hubs-bindings"></a>Azure Functions 事件中樞繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-本文說明如何針對 Azure Functions 設定 [Azure 事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md) 繫結以及撰寫程式碼。
+本文說明如何針對 Azure Functions 設定及使用 [Azure 事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md)繫結。
 Azure Functions 支援事件中樞的觸發程序和輸出繫結。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-如果您對「Azure 事件中樞」並不熟悉，請參閱 [Azure 事件中樞概觀](../event-hubs/event-hubs-what-is-event-hubs.md)。
+如果您對 Azure 事件中樞並不熟悉，請參閱[事件中樞概述](../event-hubs/event-hubs-what-is-event-hubs.md)。
 
 <a name="trigger"></a>
 
 ## <a name="event-hub-trigger"></a>事件中樞觸發程序
 使用事件中樞觸發程序將回應傳送至事件中樞事件資料流。 您必須具有事件中樞的讀取存取權，才能設定觸發程序。
 
-函式的事件中樞觸發程序會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+事件中樞函式觸發程序會使用 function.json 之 `bindings` 陣列中的下列 JSON 物件︰
 
 ```json
 {
     "type": "eventHubTrigger",
     "name": "<Name of trigger parameter in function signature>",
     "direction": "in",
-    "path": "<Name of the Event Hub>",
+    "path": "<Name of the event hub>",
     "consumerGroup": "Consumer group to use - see below",
     "connection": "<Name of app setting with connection string - see below>"
 }
@@ -66,7 +66,7 @@ Azure Functions 支援事件中樞的觸發程序和輸出繫結。
 <a name="triggersample"></a>
 
 ## <a name="trigger-sample"></a>觸發程序範例
-假設您的 function.json `bindings` 陣列中有下列事件中樞觸發程序︰
+假設您的 function.json 之 `bindings` 陣列中有下列事件中樞觸發程序︰
 
 ```json
 {
@@ -119,7 +119,7 @@ module.exports = function (context, myEventHubMessage) {
 
 <a name="output"></a>
 
-## <a name="event-hub-output-binding"></a>事件中樞輸出繫結
+## <a name="event-hubs-output-binding"></a>事件中樞輸出繫結
 使用事件中樞輸出繫結將事件寫入事件中樞事件資料流。 您必須具備事件中樞的傳送權限，才能將事件寫入其中。
 
 輸出繫結會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
@@ -149,7 +149,7 @@ module.exports = function (context, myEventHubMessage) {
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>輸出範例
-假設您的 function.json `bindings` 陣列中有下列事件中樞輸出繫結︰
+假設您的 function.json 之 `bindings` 陣列中有下列事件中樞輸出繫結︰
 
 ```json
 {

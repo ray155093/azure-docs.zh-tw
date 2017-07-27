@@ -13,18 +13,18 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/03/2017
+ms.date: 06/13/2017
 ms.author: daleche
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 914084ff790ceb2e11852c5dae757b935f813062
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: b8abf1285318e491d51aadf90f921103d84ce1a4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/15/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
 # <a name="troubleshoot-connection-issues-to-azure-sql-database"></a>針對 Azure SQL Database 連線問題進行疑難排解
-連線到 Azure SQL Database 失敗時，您會收到 [錯誤訊息](sql-database-develop-error-messages.md)。 本文是集中式主題，可協助您針對 Azure SQL Database 連線問題進行疑難排解。 本文除了介紹連線問題的[常見原因](#cause)，還推薦可協助您識別問題的[疑難排解工具](#try-the-troubleshooter-for-azure-sql-database-connectivity-issues)，以及提供疑難排解步驟來解決[暫時性錯誤](#troubleshoot-transient-errors)和[持續性或非暫時性錯誤](#troubleshoot-the-persistent-errors)。 最後，則是列出 [Azure SQL Database 連線問題的所有相關文章](#all-topics-for-azure-sql-database-connection-problems)。
+連線到 Azure SQL Database 失敗時，您會收到 [錯誤訊息](sql-database-develop-error-messages.md)。 本文是集中式主題，可協助您針對 Azure SQL Database 連線問題進行疑難排解。 本文除了介紹連線問題的[常見原因](#cause)，還推薦可協助您識別問題的[疑難排解工具](#try-the-troubleshooter-for-azure-sql-database-connectivity-issues)，以及提供疑難排解步驟來解決[暫時性錯誤](#troubleshoot-transient-errors)和[持續性或非暫時性錯誤](#troubleshoot-persistent-errors)。 
 
 如果您遇到連線問題，請嘗試本文中所述的疑難排解步驟。
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
@@ -42,7 +42,7 @@ ms.lasthandoff: 04/15/2017
 一般而言，Azure SQL Database 的連線問題可以分類如下：
 
 * [暫時性錯誤 (短期或間歇性)](#troubleshoot-transient-errors)
-* [持續性或非暫時性錯誤 (定期重複發生的錯誤)](#troubleshoot-the-persistent-errors)
+* [持續性或非暫時性錯誤 (定期重複發生的錯誤)](#troubleshoot-persistent-errors)
 
 ## <a name="try-the-troubleshooter-for-azure-sql-database-connectivity-issues"></a>嘗試使用 Azure SQL Database 連線問題疑難排解工具
 如果您遇到特定的連線錯誤，請嘗試使用 [此工具](https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database)，此工具可協助您快速識別並解決您的問題。
@@ -69,7 +69,7 @@ Error code 40613: "Database <x> on server <y> is not currently available. Please
 3. 由於資料庫接近其資源限制，因此似乎是暫時性連線問題。 請參閱 [移難排解效能問題](sql-database-troubleshoot-performance.md)。
 4. 如果連線問題繼續發生，或如果您的應用程式發生錯誤的持續時間超過 60 秒，或如果您在一天當中，看到錯誤多次發生，請在 [Azure 支援](https://azure.microsoft.com/support/options)網站上選取 [取得支援]，來提出 Azure 支援要求。
 
-## <a name="troubleshoot-persistent-errors-non-transient-errors"></a>針對持續性錯誤 (非暫時性錯誤) 進行疑難排解
+## <a name="troubleshoot-persistent-errors"></a>針對持續性錯誤進行疑難排解
 如果應用程式持續無法連接到 Azure SQL Database，通常表示下列其中一項發生問題︰
 
 * 防火牆組態。 Azure SQL Database 或用戶端防火牆封鎖 Azure SQL Database 的連接。

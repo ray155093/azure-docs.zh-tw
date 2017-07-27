@@ -19,12 +19,15 @@
 ## 建立及修改電路
 ### [Azure 入口網站](expressroute-howto-circuit-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-circuit-arm.md)
+### [Azure CLI](howto-circuit-cli.md)
 ## 建立和修改對等互連組態
 ### [Azure 入口網站](expressroute-howto-routing-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-routing-arm.md)
+### [Azure CLI](howto-routing-cli.md)
 ## 將虛擬網路連結到 ExpressRoute 線路
 ### [Azure 入口網站](expressroute-howto-linkvnet-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-linkvnet-arm.md)
+### [Azure CLI](howto-linkvnet-cli.md)
 ## 為 ExpressRoute 設定虛擬網路閘道
 ### [Azure 入口網站](expressroute-howto-add-gateway-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-add-gateway-resource-manager.md)
@@ -60,7 +63,7 @@
 ## [流量管理員](/azure/traffic-manager/)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=networking)
 ## [個案研究](https://customers.microsoft.com/Pages/advancedsearch.aspx?mrmcproducts=More%20Products)
 ## [網路部落格](https://azure.microsoft.com/blog/topics/networking/)
 ## [價格](https://azure.microsoft.com/pricing/details/expressroute/)

@@ -14,24 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: cenkd;juliako
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 307c9a377fce32c056a54d35f173efd1bafc4df5
+ms.translationtype: HT
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: 75f117e206df1883ea9eb8a78f9e0ab62f569049
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/16/2017
-
+ms.lasthandoff: 07/19/2017
 
 ---
-# Azure 媒體服務的分散 MP4 即時內嵌規格
-<a id="azure-media-services-fragmented-mp4-live-ingest-specification" class="xliff"></a>
+# <a name="azure-media-services-fragmented-mp4-live-ingest-specification"></a>Azure 媒體服務的分散 MP4 即時內嵌規格
 此規格說明以分散 MP4 為基礎的即時資料流內嵌通訊協定和格式 (Microsoft Azure 媒體服務適用)。 Microsoft Azure 媒體服務提供即時資料流服務，讓客戶使用 Microsoft Azure 作為雲端平台來即時串流即時事件和廣播內容。 本文也討論建置高度備援且穩固即時內嵌機制的最佳作法。
 
-## 1.一致性標記法
-<a id="1-conformance-notation" class="xliff"></a>
+## <a name="1-conformance-notation"></a>1.一致性標記法
 本文中「必須」、「不得」、「必要」、「可」、「不可」、「應該」、「不應」、「建議」、「可能」及「選擇性」等關鍵字的解釋如 RFC 2119 中所述。
 
-## 2.服務圖表
-<a id="2-service-diagram" class="xliff"></a>
+## <a name="2-service-diagram"></a>2.服務圖表
 下圖顯示 Microsoft Azure 媒體服務中即時資料流服務的概況架構：
 
 1. 即時編碼器會將即時摘要推送到透過 Microsoft Azure 媒體服務 SDK 建立並佈建的通道。
@@ -41,12 +37,10 @@ ms.lasthandoff: 02/16/2017
 
 ![image1][image1]
 
-## 3.位元資料流格式 – ISO 14496-12 分散 MP4
-<a id="3-bit-stream-format--iso-14496-12-fragmented-mp4" class="xliff"></a>
+## <a name="3-bit-stream-format--iso-14496-12-fragmented-mp4"></a>3.位元資料流格式 – ISO 14496-12 分散 MP4
 本文中所討論即時資料流內嵌的電傳格式是根據 [ISO-14496-12]。 請參閱 [[MS-SSTR]](http://msdn.microsoft.com/library/ff469518.aspx) 中有關分散 MP4 格式、點播視訊及即時串流內嵌的詳細說明。
 
-### 即時內嵌格式定義
-<a id="live-ingest-format-definitions" class="xliff"></a>
+### <a name="live-ingest-format-definitions"></a>即時內嵌格式定義
 以下的特殊格式定義清單適用於 Microsoft Azure 媒體服務的即時內嵌：
 
 1. ‘ftyp’、LiveServerManifestBox 及 ‘moov’ 方塊「必須」連同每個要求 (HTTP POST) 一起傳送。  「必須」在資料流的開頭傳送，並且若要繼續資料流內嵌時，編碼器必須每次都重新連線。  如需詳細資訊，請參閱 [1] 中的第 6 節。
@@ -58,14 +52,12 @@ ms.lasthandoff: 02/16/2017
 7. MP4 片段持續期間「應該」大約在 2 到 6 秒之間。
 8. 「應該」以遞增順序送達 MP4 片段時間戳記和索引 (TrackFragmentExtendedHeaderBox fragment_ absolute_ time 和 fragment_index)。  雖然 Azure 媒體服務在複製片段方面很有彈性，但是其在根據媒體時間軸將片段重新排列的功能非常有限。
 
-## 4.通訊協定格式 – HTTP
-<a id="4-protocol-format--http" class="xliff"></a>
+## <a name="4-protocol-format--http"></a>4.通訊協定格式 – HTTP
 Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時間執行 HTTP POST 要求，將以分散 MP4 格式封裝的編碼媒體資料傳輸到服務。 每個 HTTP POST 會傳送完整的分散 MP4 位元資料流 ("Stream")，其開頭為標頭方塊 ('ftyp'、"Live Server Manifest Box" 及 'moov' 方塊)，接著連續的一連串片段 (‘moof’ 與 ‘mdat’ 方塊)。 請參閱 [1] 的第 9.2 節中有關 HTTP POST 要求的 URL 語法說明。 以下是 POST URL 的範例： 
 
     http://customer.channel.mediaservices.windows.net/ingest.isml/streams(720p)
 
-### 需求
-<a id="requirements" class="xliff"></a>
+### <a name="requirements"></a>需求
 詳細需求如下：
 
 1. 編碼器「應該」使用相同的內嵌 URL 來傳送空白 “body” (零內容長度) 的 HTTP POST 要求，藉此開始廣播。 這可協助快速偵測即時內嵌端點是否有效，以及是否需要任何的驗證或其他條件。 伺服器無法對每個 HTTP 通訊協定傳回 HTTP 回應，直到收到整個要求為止，包括 POST 內文。 由於即時事件其長時間執行的性質，若無此步驟，編碼器在完成傳送所有的資料之前，無法偵測到任何錯誤。
@@ -76,12 +68,10 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
 6. 如 [1] 中第 9.2 節所述，編碼器「不得」使用 Events() 名詞，才能即時內嵌至 Microsoft Azure 媒體服務。
 7. 如果 HTTP POST 要求在資料流結束時終止或逾時，並發生 TCP 錯誤，則編碼器「必須」使用新連線發出新的 POST 要求，並遵循上述的需求及下列額外的需求：編碼器「必須」為資料流中的每個資料軌重新傳送前兩個 MP4 片段並繼續進行，但不在媒體時間軸上造成不連續。  為每個資料軌重新傳送最後兩個 MP4 片段，可確保不會遺失資料。  換句話說，如果資料流包含音訊和視訊播放軌，而且目前的 POST 要求失敗，則編碼器必須重新連線，然後為音訊播放軌重新傳送最後兩個片段 (先前已成功傳送)，為視訊播放軌重新傳送最後兩個片段 (先前已成功傳送)，以確保不會遺失任何資料。  編碼器「必須」維護媒體片段的 “forward” 緩衝區，當重新連線時會重新傳送此緩衝區。
 
-## 5.時幅
-<a id="5-timescale" class="xliff"></a>
+## <a name="5-timescale"></a>5.時幅
 [[MS-SSTR]](https://msdn.microsoft.com/library/ff469518.aspx) 描述 SmoothStreamingMedia (2.2.2.1 節)、StreamElement (2.2.2.3 節)、StreamFragmentElement (2.2.2.6) 和 LiveSMIL (2.2.7.3.1 節) 的「時幅」使用方式。 如果沒有時幅值，則使用的預設值為 10,000,000 (10 MHz)。 雖然 Smooth Streaming 格式規格不會封鎖使用其他的時幅值，但大部分的編碼器實作會使用此預設值 (10 MHz) 來產生 Smooth Streaming 內嵌資料。 由於 [Azure 媒體動態封裝](media-services-dynamic-packaging-overview.md) 功能之故，建議視訊資料流採用 90 kHz 時幅，音訊資料流則採用 44.1 或 48.1 kHz。 如果不同的資料流採用不同的時幅值，則「必須」傳送資料流層級時幅。 請參閱 [[MS-SSTR]](https://msdn.microsoft.com/library/ff469518.aspx)。     
 
-## 6.「資料流」的定義。
-<a id="6-definition-of-stream" class="xliff"></a>
+## <a name="6-definition-of-stream"></a>6.「資料流」的定義。
 「資料流」是指在撰寫即時簡報、處理資料流容錯移轉和備援案例的即時內嵌中，作業的基本單位。 「資料流」定義為一個唯一的分散 MP4 位元資料流，其中可能包含單一資料軌或多個資料軌。 完整即時簡報可包含一或多個資料流，視即時編碼器組態而定。 以下範例說明各種使用資料流撰寫完整即時簡報的選項。
 
 **範例：** 
@@ -92,30 +82,25 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
 
 音訊 – 128 kbps
 
-### 選項 1：一個資料流中所有的資料軌
-<a id="option-1-all-tracks-in-one-stream" class="xliff"></a>
+### <a name="option-1-all-tracks-in-one-stream"></a>選項 1：一個資料流中所有的資料軌
 在此選項中，單一編碼器會產生所有的音訊/視訊資料軌，並將其結合成一個分散 MP4 位元資料流，系統會透過單一 HTTP POST 連線傳送此資料流。 此範例中有此即時簡報的唯一資料流：
 
 ![image2][image2]
 
-### 選項 2：每個資料軌分在不同的資料流中
-<a id="option-2-each-track-in-a-separate-stream" class="xliff"></a>
+### <a name="option-2-each-track-in-a-separate-stream"></a>選項 2：每個資料軌分在不同的資料流中
 在此選項中，編碼器在每個分散 MP4 位元資料流中只有放一個資料軌，並透過多個分開的 HTTP 連線張貼所有的資料流。 這可透過一或多個編碼器完成。 從即時內嵌的觀點來看，此即時簡報由四個資料流組成。
 
 ![image3][image3]
 
-### 選項 3：將音訊資料軌與位元速率最低的視訊資料軌組合一個資料流
-<a id="option-3-bundle-audio-track-with-the-lowest-bitrate-video-track-into-one-stream" class="xliff"></a>
+### <a name="option-3-bundle-audio-track-with-the-lowest-bitrate-video-track-into-one-stream"></a>選項 3：將音訊資料軌與位元速率最低的視訊資料軌組合一個資料流
 在此選項中，客戶選擇將音訊資料軌與位元速率最低的視訊資料軌組合成一個分散 MP4 位元資料流，並讓另外兩個視訊資料軌分別留在自己的資料流中。 
 
 ![image4][image4]
 
-### 摘要
-<a id="summary" class="xliff"></a>
+### <a name="summary"></a>摘要
 以上「並非」詳盡清單，僅列出此範例中部分可用的內嵌選項。 事實上，即時內嵌支援將資料軌以任何組合分組到資料流。 客戶和編碼器廠商可以根據工程的複雜性、編碼器的能力，以及備援與容錯移轉考量，來選擇自己的實作。 不過請注意，在大部分情況下整個即時簡報只有一個音訊資料軌，因此請務必確保包含音訊資料軌的內嵌資料流是正常的。 這項考量通常可讓音訊資料軌放入自己的資料流 (如選項 2)，或以最低位元速率視訊資料軌建立音訊資料軌 (如選項 3)。 此外若要有更佳的備援與容錯移轉成效，強烈建議針對嵌入到 Microsoft Azure 媒體服務的即時內嵌，將同一個音訊資料軌傳送到兩個不同的資料流 (選項 2 中採用備援音訊資料軌)，或以至少兩個最低位元速率視訊資料軌建置音訊資料軌 (選項 3 中以至少兩個視訊資料流建置)。
 
-## 7.服務容錯移轉
-<a id="7-service-failover" class="xliff"></a>
+## <a name="7-service-failover"></a>7.服務容錯移轉
 基於即時資料流的性質，良好的容錯移轉支援是確保服務可用性的關鍵。 Microsoft Azure 媒體服務的設計可處理各種類型的故障，包括網路錯誤、伺服器錯誤、儲存體問題等。當從即時編碼器端搭配適當的容錯移轉邏輯使用時，客戶便可以從雲端達成高度可靠的即時資料流服務。
 
 在本節中，我們將討論服務容錯移轉的案例。 在此案例中，服務的某一處發生故障，且故障將自己記錄成資訊清單中的網路錯誤。 以下是如何實施編碼器以處理服務容錯移轉的一些建議：
@@ -131,8 +116,7 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
    4. 「必須」重新傳送為每個資料軌傳送的最後兩個片段，並繼續資料流，但不在媒體時間軸上造成不連續。  MP4 片段時間戳記必須連續增加，甚至可橫跨 HTTP POST 要求。
 6. 如果未以可與 MP4 片段持續時間相比的速率傳送資料，則編碼器「應該」終止 HTTP POST 要求。  不傳送資料的 HTTP POST 要求可以防止 Azure 媒體服務在服務更新時，快速地與編碼器中斷連線。  基於這個理由，疏鬆 (廣告訊號) 資料軌的 HTTP POST 「應該」短暫存留，一傳送疏鬆片段便立即終止。
 
-## 8.編碼器容錯移轉
-<a id="8-encoder-failover" class="xliff"></a>
+## <a name="8-encoder-failover"></a>8.編碼器容錯移轉
 編碼器容錯移轉是第二種容錯移轉案例，此案例必須處理，才能進行端對端即時資料流傳遞。 在此案例中，會在編碼器端發生錯誤狀況。 
 
 ![image5][image5]
@@ -146,8 +130,7 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
 5. 新的資料流「必須」在語意上等同上一個資料流，並可在標頭與片段層級互換。
 6. 新的編碼器「應該」嘗試減少資料遺失。  媒體片段的 fragment_absolute_time 與 fragment_index「應該」從編碼器上次停止的點開始增加。  fragment_absolute_time 與 fragment_index「應該」連續增加，但允許視需要造成不連續。  Azure 媒體服務將忽略已收到並處理的片段，因此因重新傳送片段端而發生錯誤，會勝過在媒體時間軸上造成不連續。 
 
-## 9.編碼器備援
-<a id="9-encoder-redundancy" class="xliff"></a>
+## <a name="9-encoder-redundancy"></a>9.編碼器備援
 針對某些需要更高可用性與高品質經驗的重要即時事件，建議使用主動對主動備援編碼器，以達成順暢容錯移轉，而不會遺失資料。
 
 ![image6][image6]
@@ -156,18 +139,15 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
 
 此案例的需求與編碼器容錯移轉的需求幾乎相同，唯一不同處是第二組編碼器會與主要編碼器同時執行。
 
-## 10.服務備援
-<a id="10-service-redundancy" class="xliff"></a>
+## <a name="10-service-redundancy"></a>10.服務備援
 對於高度備援的全域散佈，有時需要跨區域備份以處理區域災難。 透過展開「編碼器備援」拓樸，客戶可以選擇讓備援服務部署在不同的區域，且該區域與第 2 組編碼器連線。 客戶也可以與 CDN 提供者合作，將 GTM (全域流量管理員) 放在兩個服務部署之前，藉此順暢地路由用戶端流量。 編碼器的需求與「編碼器備援」個案相同，唯一不同處為第二組的編碼器必須指向不同的即時內嵌端點。 下圖顯示這項設定：
 
 ![image7][image7]
 
-## 11.特殊類型的內嵌格式
-<a id="11-special-types-of-ingestion-formats" class="xliff"></a>
+## <a name="11-special-types-of-ingestion-formats"></a>11.特殊類型的內嵌格式
 本節討論某些特殊類型的即時內嵌格式，其設計用來處理某些特定案例。
 
-### 疏鬆資料軌
-<a id="sparse-track" class="xliff"></a>
+### <a name="sparse-track"></a>疏鬆資料軌
 當以豐富的用戶端經驗傳遞即時資料流簡報時，通常需要傳輸與主要媒體資料時間同步化的事件或頻內訊號。 動態即時廣告插入是其中一個例子。 此類型的事件訊號不同於一般音訊/視訊資料流，因為其疏鬆的本質之故。 換句話說，訊號資料通常不會連續發生，其間隔難以預測。 疏鬆資料軌的概念經過特別設計，可內嵌並廣播頻內訊號資料。
 
 以下為內嵌疏鬆資料軌的建議實作：
@@ -184,8 +164,7 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
    6. 當讓時間戳記值相等或更大的對應上層資料軌片段可供用戶端使用時，疏鬆資料軌片段便可供用戶端使用。 例如，如果疏鬆片段的時間戳記 t=1000，則預期在用戶端看見視訊 (假設上層資料軌名稱為視訊) 片段時間戳記為 1000 或以上後，便可下載 t=1000 的疏鬆片段。 請注意，實際訊號能夠在簡報時間軸上的不同位置上，非常好地運用在其指定用途。 在上述範例中，t=1000 的疏鬆片段具有 XML 承載，可將廣告插入到數秒後的位置上。
    7. 疏鬆資料軌片段的裝載可以有各種不同的格式 (例如 XML、文字或二進位等)，取決於不同的案例。 
 
-### 備援音訊資料軌
-<a id="redundant-audio-track" class="xliff"></a>
+### <a name="redundant-audio-track"></a>備援音訊資料軌
 在一般的 HTTP 彈性資料流案例中 (例如 Smooth Streaming 或 DASH)，通常在整個簡報中只有一個音訊資料軌。 具有多個品質層級的視訊資料軌可讓用戶端在錯誤條件中選擇，而音訊資料軌不同於這類資料軌，當內嵌的資料流中有損壞的音訊資料軌時，音訊資料軌會是唯一的故障點。 
 
 為解決此問題，Microsoft Azure 媒體服務支援即時內嵌多餘的音訊資料軌。 其概念與可透過不同的資料流多次傳送音訊資料軌相同。 雖然服務只會在用戶端資訊清單中註冊音訊資料軌一次，但它能夠使用多餘的音訊資料軌作為備份，在主要音訊資料軌發生問題時能夠擷取音訊片段。 為了內嵌多餘的音訊資料軌，編碼器必須：
@@ -199,12 +178,10 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
 2. 使用個別的資料流傳送兩個最低的視訊位元速率。 這些資料流皆「應該」包含每個唯一音訊資料軌的複本。  例如，當支援多國語言時，這些資料流「應該」包含每種語言的音訊資料軌。
 3. 使用不同的伺服器 (編碼器) 執行個體來編碼和傳送 (1) 和 (2) 中所提到的多餘資料流。 
 
-## 媒體服務學習路徑
-<a id="media-services-learning-paths" class="xliff"></a>
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
-<a id="provide-feedback" class="xliff"></a>
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 [image1]: ./media/media-services-fmp4-live-ingest-overview/media-services-image1.png

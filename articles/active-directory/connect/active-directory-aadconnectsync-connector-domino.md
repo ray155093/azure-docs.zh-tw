@@ -21,9 +21,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 03/14/2017
 
 ---
-<a id="lotus-domino-connector-technical-reference" class="xliff"></a>
-
-# Lotus Domino 連接器技術參考
+# <a name="lotus-domino-connector-technical-reference"></a>Lotus Domino 連接器技術參考
 本文說明 Lotus Domino 連接器。 本文適用於下列產品：
 
 * Microsoft Identity Manager 2016 (MIM2016)
@@ -32,9 +30,7 @@ ms.lasthandoff: 03/14/2017
 
 對於 MIM2016 和 FIM2010R2，可以從 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=717495)下載此連接器。
 
-<a id="overview-of-the-lotus-domino-connector" class="xliff"></a>
-
-## Lotus Domino 連接器概觀
+## <a name="overview-of-the-lotus-domino-connector"></a>Lotus Domino 連接器概觀
 Lotus Domino 連接器可讓您整合同步處理服務與 IBM 的 Lotus Domino 伺服器。
 
 目前的連接器版本大致支援下列功能：
@@ -48,18 +44,14 @@ Lotus Domino 連接器可讓您整合同步處理服務與 IBM 的 Lotus Domino 
 
 Lotus Domino 連接器使用 Lotus Notes 用戶端與 Lotus Domino 伺服器進行通訊。 由於此相依性，同步處理伺服器上必須安裝支援的 Lotus Notes 用戶端。 用戶端與伺服器之間的通訊是透過 Lotus Notes .NET Interop (Interop.domino.dll) 介面來實作。 此介面可協助 Microsoft.NET 平台和 Lotus Notes 用戶端之間的通訊，並支援 Lotus Domino 文件和檢視的存取。 在執行差異匯入時，也可以使用 C++ 原生介面 (取決於所選的差異匯入方法)。
 
-<a id="prerequisites" class="xliff"></a>
-
-### 必要條件
+### <a name="prerequisites"></a>必要條件
 在您使用連接器之前，請確定同步處理伺服器上有下列先決條件：
 
 * Microsoft .NET 4.5.2 Framework 或更新版本
 * 同步處理伺服器上必須安裝 Lotus Notes 用戶端
 * 要使用 Lotus Domino 連接器，Domino 目錄伺服器上就必須要有預設的 Lotus Domino LDAP 結構描述資料庫 (schema.nsf)。 如果不存在，您可以在 Domino 伺服器上執行或重新啟動 LDAP 服務來加以安裝。
 
-<a id="connected-data-source-permissions" class="xliff"></a>
-
-### 連接的資料來源權限
+### <a name="connected-data-source-permissions"></a>連接的資料來源權限
 若要在 Lotus Domino 連接器上執行任何支援的工作，您必須是下列群組的成員：
 
 * 完整存取權系統管理員
@@ -73,9 +65,7 @@ Lotus Domino 連接器使用 Lotus Notes 用戶端與 Lotus Domino 伺服器進�
 | Import |<li>讀取公用文件</li><li> 完整存取系統管理員 (如果您是完整存取權系統管理員群組的成員，則會自動擁有有效的 ACL 存取權)。</li> |
 | 匯出和設定密碼 |有效的存取權： <li>建立文件</li><li>刪除文件</li><li>讀取公用文件</li><li>編寫公用文件</li><li>複寫或複製文件</li>若為匯出作業，您還需要下列角色： <li>CreateResource</li><li>GroupCreator</li><li>GroupModifier</li><li>UserCreator</li><li>UserModifier</li> |
 
-<a id="direct-operations-and-adminp" class="xliff"></a>
-
-### 直接作業和 AdminP
+### <a name="direct-operations-and-adminp"></a>直接作業和 AdminP
 作業會直接進入 Domino 目錄或透過 AdminP 程序來進行。 下表列出所有支援的物件、作業以及相關的實作方法 (如果適用的話)：
 
 **主要通訊錄**
@@ -98,24 +88,16 @@ Lotus Domino 連接器使用 Lotus Notes 用戶端與 Lotus Domino 伺服器進�
 
 建立資源時會建立 Notes 文件。 同樣地，刪除資源時也會刪除 Notes 文件。
 
-<a id="ports-and-protocols" class="xliff"></a>
-
-### 連接埠和通訊協定
+### <a name="ports-and-protocols"></a>連接埠和通訊協定
 IBM Lotus Notes 用戶端和 Domino 伺服器使用 Notes Remote Procedure Call (NRPC) 進行通訊，其中 NRPC 應使用 TCP/IP。 預設連接埠號碼是 1352，但 Domino 系統管理員可加以變更。
 
-<a id="not-supported" class="xliff"></a>
-
-### 不支援
+### <a name="not-supported"></a>不支援
 目前的 Lotus Domino 連接器版本不支援下列作業：
 
 * 在伺服器之間移動信箱。
 
-<a id="create-a-new-connector" class="xliff"></a>
-
-## 建立新的連接器
-<a id="client-software-installation-and-configuration" class="xliff"></a>
-
-### 用戶端軟體安裝和設定
+## <a name="create-a-new-connector"></a>建立新的連接器
+### <a name="client-software-installation-and-configuration"></a>用戶端軟體安裝和設定
 在伺服器上安裝連接器 **之前** ，必須先安裝 Lotus Notes。
 
 當您安裝時，請務必執行 **單一使用者安裝**。 預設的 **多使用者安裝** 無法運作。  
@@ -126,17 +108,13 @@ IBM Lotus Notes 用戶端和 Domino 伺服器使用 Notes Remote Procedure Call 
 
 **注意：** 啟動 Lotus Notes 一次，且啟動時所使用的使用者位於與做為連接器服務帳戶之帳戶相同的伺服器上。 也請務必關閉伺服器上的 Lotus Notes 用戶端。 因為它無法在連接器嘗試連接到 Domino 伺服器時同時執行。
 
-<a id="create-connector" class="xliff"></a>
-
-### 建立連接器
+### <a name="create-connector"></a>建立連接器
 若要建立 Lotus Domino 連接器，請在 [同步處理服務] 中選取 [管理代理程式] 和 [建立]。 選取 [Lotus Domino (Microsoft)]  連接器。  
 ![CreateConnector](./media/active-directory-aadconnectsync-connector-domino/createconnector.png)
 
 如果您的同步處理服務版本提供設定**架構**的功能，請確定連接器設為預設值，以在**程序**中執行。
 
-<a id="connectivity" class="xliff"></a>
-
-### 連線能力
+### <a name="connectivity"></a>連線能力
 在 [連線能力] 頁面中，您必須指定 Lotus Domino 伺服器名稱，然後輸入登入認證。  
 ![連線能力](./media/active-directory-aadconnectsync-connector-domino/connectivity.png)
 
@@ -162,9 +140,7 @@ Domino 伺服器屬性支援兩種伺服器名稱格式：
 
 當您按 [下一步] 時，就會驗證使用者識別碼和密碼組態參數。
 
-<a id="global-parameters" class="xliff"></a>
-
-### 全域參數
+### <a name="global-parameters"></a>全域參數
 在 [全域參數] 頁面中，您可以設定時區與匯入和匯出作業選項。  
 ![全域參數](./media/active-directory-aadconnectsync-connector-domino/globalparameters.png)
 
@@ -177,9 +153,7 @@ Domino 伺服器屬性支援兩種伺服器名稱格式：
 
 ![刪除使用者的信箱](./media/active-directory-aadconnectsync-connector-domino/AdminP.png)
 
-<a id="import-settings-method" class="xliff"></a>
-
-#### 匯入設定、方法
+#### <a name="import-settings-method"></a>匯入設定、方法
 [完整匯入執行方法]  具有下列選項：
 
 * 搜尋
@@ -189,9 +163,7 @@ Domino 伺服器屬性支援兩種伺服器名稱格式：
 
 **View** 是建議選項，因為其提供正確的資料狀態。 其速度比 [搜尋] 略慢。
 
-<a id="creation-of-virtual-contact-objects" class="xliff"></a>
-
-#### 建立虛擬連絡人物件
+#### <a name="creation-of-virtual-contact-objects"></a>建立虛擬連絡人物件
 **[允許建立 \_Contact 物件]** 具有下列選項：
 
 * None
@@ -210,31 +182,21 @@ Domino 伺服器屬性支援兩種伺服器名稱格式：
 
 這些物件會將 VC=\_Contact 新增到其 DN。
 
-<a id="import-settings-conflict-object" class="xliff"></a>
-
-#### 匯入設定、衝突物件
+#### <a name="import-settings-conflict-object"></a>匯入設定、衝突物件
 **排除衝突物件**
 
 在大型 Domino 實作中，可能會因為複寫問題而讓多個物件具有相同 DN。 在這些情況下，連接器會看到兩個物件雖有不同 UniversalID，卻有相同 DN。 此衝突會導致連接器空間中建立了暫時性物件。 連接器可以忽略 Domino 中已選取做為複寫犧牲者的物件。 建議保持選取此核取方塊。
 
-<a id="export-settings" class="xliff"></a>
-
-#### 匯出設定
+#### <a name="export-settings"></a>匯出設定
 若未選取 [使用 AdminP 來更新參考]  選項，則參考屬性 (例如成員) 的匯出會是直接呼叫，而不會使用 AdminP 程序。 只有在 AdminP 未設定成維護參考完整性時，才能使用此選項。
 
-<a id="routing-information" class="xliff"></a>
-
-#### 路由資訊
+#### <a name="routing-information"></a>路由資訊
 在 Domino 中，參考屬性可能具有內嵌為 DN 尾碼的路由資訊。 例如，群組中的成員屬性可能包含 **CN=example/organization@ABC**。 尾碼 @ABC 就是路由資訊。 Domino 使用路由資訊來傳送電子郵件給正確的 Domino 系統，而此系統可能是位於不同組織的系統。 在 [路由資訊] 欄位中，您可以指定組織內所使用、且在連接器範圍中的路由尾碼。 如果在參考屬性中發現有任何一個值做為其尾碼，便會從參考中移除路由資訊。 如果參考值的路由尾碼無法符合所指定的其中一個值，則會建立 \_Contact 物件。 建立這些 \_Contact 物件時，會將 **RO=@<RoutingSuffix>** 插入 DN 中。 針對這些 \_Contact 物件，也會視需要新增下列屬性以允許新增到實際的物件：\_routingName、\_contactName、\_displayName 和 UniversalID。
 
-<a id="additional-address-books" class="xliff"></a>
-
-#### 其他通訊錄
+#### <a name="additional-address-books"></a>其他通訊錄
 如果您沒有安裝會提供次要通訊錄名稱的 [Directory Assistance]  ，那麼您可以手動輸入這些通訊錄。
 
-<a id="multivalued-transformation" class="xliff"></a>
-
-#### 多重值的轉換
+#### <a name="multivalued-transformation"></a>多重值的轉換
 Lotus Domino 中有許多屬性具有多重值。 相對應的 Metaverse 屬性則通常是單一值。 藉由設定匯入和匯出作業選項，您可以啟用連接器來協助受影響的屬性進行必要轉譯。
 
 **匯出**  
@@ -289,42 +251,30 @@ Lotus Domino 中有許多屬性具有多重值。 相對應的 Metaverse 屬性�
 
 您也可以針對每個屬性設定多重值屬性的匯入和匯出轉換規則，但全域規則除外。 若要設定此選項，請在 [匯入排除屬性清單] 和 [匯出排除屬性清單] 文字方塊中輸入 [objecttype].[attributename]。 例如，如果您輸入 Person.Assistant，且全域旗標設為匯入所有值，則只會匯入第一個值做為助理。
 
-<a id="certifiers" class="xliff"></a>
-
-#### 認證者
+#### <a name="certifiers"></a>認證者
 連接器會列出所有的組織/組織單位。 為了能夠將 person 物件匯出至主要通訊錄，必須要有認證者及其密碼。
 
 如果所有認證者都擁有相同的密碼，就能使用 [密碼適用於所有認證者]  。 然後您可以在此輸入密碼，並只指定認證者檔案。
 
 如果您只要匯入，則不必指定任何認證者。
 
-<a id="configure-provisioning-hierarchy" class="xliff"></a>
-
-### 設定佈建階層
+### <a name="configure-provisioning-hierarchy"></a>設定佈建階層
 設定 Lotus Domino 連接器時，請略過此對話方塊頁面。 Lotus Domino 連接器不支援階層佈建。  
 ![佈建階層](./media/active-directory-aadconnectsync-connector-domino/provisioninghierarchy.png)
 
-<a id="configure-partitions-and-hierarchies" class="xliff"></a>
-
-### 設定資料分割和階層
+### <a name="configure-partitions-and-hierarchies"></a>設定資料分割和階層
 在設定資料分割和階層時，您必須選取名為 NAB=names.nsf 的主要通訊錄。 除了主要通訊錄，您還可以選取次要通訊錄 (如果有的話)。  
 ![分割數](./media/active-directory-aadconnectsync-connector-domino/partitions.png)
 
-<a id="select-attributes" class="xliff"></a>
-
-### 選取屬性
+### <a name="select-attributes"></a>選取屬性
 在設定屬性時，必須選取前置詞為 **\_MMS\_** 的所有屬性。 在對 Lotus Domino 佈建新物件時，必須要有這些屬性。
 
 ![屬性](./media/active-directory-aadconnectsync-connector-domino/attributes.png)
 
-<a id="object-lifecycle-management" class="xliff"></a>
-
-## 物件生命週期管理
+## <a name="object-lifecycle-management"></a>物件生命週期管理
 本節概述 Domino 中的不同物件。
 
-<a id="person-objects" class="xliff"></a>
-
-### Person 物件
+### <a name="person-objects"></a>Person 物件
 Person 物件代表組織和組織單位中的使用者。 除了預設屬性，Domino 系統管理員還可以在 Person 物件中新增自訂屬性。 Person 物件至少必須包含所有必要屬性。 如需必要屬性的完整清單，請參閱 [Lotus Notes 屬性](#lotus-notes-properties)。 若要註冊 person 物件，必須符合下列必要條件：
 
 * 必須已定義通訊錄 (names.nsf)，而且它應該是主要通訊錄。
@@ -345,9 +295,7 @@ Person 物件代表組織和組織單位中的使用者。 除了預設屬性，
 
 這些作業全都會在 Lotus Domino 中執行，然後匯入至同步處理服務。
 
-<a id="resources-and-rooms" class="xliff"></a>
-
-### 資源和會議室
+### <a name="resources-and-rooms"></a>資源和會議室
 資源是 Lotus Domino 中的另一種資料庫。 資源可以是備有各種設備的會議室，例如投影機。 Lotus Domino 連接器也支援依照「資源類型」屬性定義的資源子類型：
 
 | 資源類型 | 資源類型屬性 |
@@ -361,7 +309,7 @@ Person 物件代表組織和組織單位中的使用者。 除了預設屬性，
 * 連接的 Domino 伺服器中應該已有資源保留資料庫
 * 已為資源定義網站
 
-資源保留資料庫包含&3; 種類型的文件：
+資源保留資料庫包含 3 種類型的文件：
 
 * 網站設定檔
 * 資源
@@ -375,9 +323,7 @@ Lotus Domino 連接器會在資源保留資料庫中執行建立、更新和刪�
 **資源的匯入和匯出作業**  
 如同其他任何物件類型一樣，您可以在同步處理服務中匯入和匯出資源。 在設定期間選取物件類型做為資源。 為了成功執行匯出作業，您應該具有資源類型、會議資料庫和網站名稱的詳細資料。
 
-<a id="mail-in-databases" class="xliff"></a>
-
-### 郵寄資料庫
+### <a name="mail-in-databases"></a>郵寄資料庫
 郵寄資料庫是設計來接收郵件的資料庫。 此資料庫是未與任何特定 Lotus Domino 使用者帳戶相關聯 (也就是沒有自己的識別碼檔案和密碼) 的 Lotus Domino 信箱。 郵寄資料庫具有相關聯的唯一 UserID (「簡短名稱」)，並有自己的電子郵件地址。
 
 如果需要可讓不同使用者共用的個別信箱，且此信箱擁有自己的電子郵件地址 (例如：group@contoso.com，則會建立郵寄資料庫。 此信箱是透過其存取控制清單 (ACL) 來控制存取，此清單中包含允許開啟信箱之 Notes 使用者的名稱。
@@ -388,9 +334,7 @@ Lotus Domino 連接器會在資源保留資料庫中執行建立、更新和刪�
 
 在建立郵寄資料庫之前，Domino 伺服器上應該要已有此資料庫 (應該已由 Lotus 系統管理員建立)。
 
-<a id="group-management" class="xliff"></a>
-
-### 群組管理
+### <a name="group-management"></a>群組管理
 您可以從下列資源取得 Lotus Domino 群組管理的詳細概觀：
 
 * [使用群組](http://publib.boulder.ibm.com/infocenter/domhelp/v8r0/index.jsp?topic=/com.ibm.help.domino.admin85.doc/H_USING_GROUPS_OVER.html)
@@ -399,9 +343,7 @@ Lotus Domino 連接器會在資源保留資料庫中執行建立、更新和刪�
 * [管理群組](http://publib.boulder.ibm.com/infocenter/domhelp/v8r0/index.jsp?topic=/com.ibm.help.domino.admin85.doc/H_MANAGING_GROUPS_1804.html)
 * [重新命名群組](http://publib.boulder.ibm.com/infocenter/domhelp/v8r0/index.jsp?topic=/com.ibm.help.domino.admin85.doc/H_RENAMING_A_GROUP_STEPS.html)
 
-<a id="password-management" class="xliff"></a>
-
-### 密碼管理
+### <a name="password-management"></a>密碼管理
 已註冊的 Lotus Domino 使用者有兩種類型的密碼：
 
 1. 使用者密碼 (儲存在 User.id 檔案)
@@ -422,14 +364,10 @@ Lotus Domino 連接器支援下列關於網際網路密碼的作業：
 * [使用網際網路鎖定功能](http://www.ibm.com/developerworks/lotus/library/domino8-lockout/)
 * [管理網際網路密碼](http://publib.boulder.ibm.com/infocenter/domhelp/v8r0/index.jsp?topic=/com.ibm.help.domino.admin85.doc/H_NOTES_AND_INTERNET_PASSWORD_SYNCHRONIZATION_7570_OVER.html)
 
-<a id="reference-information" class="xliff"></a>
-
-## 參考資訊
+## <a name="reference-information"></a>參考資訊
 本節列出 Lotus Domino 連接器的屬性描述和屬性需求等資訊。
 
-<a id="lotus-notes-properties" class="xliff"></a>
-
-### Lotus Notes 屬性
+### <a name="lotus-notes-properties"></a>Lotus Notes 屬性
 在將 Person 物件佈建到 Lotus Domino 目錄時，物件必須有一組已填入特定值的特定屬性。 只有建立作業才需要這些值。
 
 下表列出這些屬性，並提供其描述。
@@ -462,9 +400,7 @@ Lotus Domino 連接器支援下列關於網際網路密碼的作業：
 
 若 \_MMS_ IDStoreType = 2 (將識別碼儲存在郵件檔案中)，NotesRegistrationclass 的 MailSystem 屬性會設為 REG_MAILSYSTEM_INOTES (3)。
 
-<a id="mandatory-attributes" class="xliff"></a>
-
-### 必要屬性
+### <a name="mandatory-attributes"></a>必要屬性
 Lotus Domino 連接器主要支援以下類型的物件 (文件類型)：
 
 * 群組
@@ -483,26 +419,18 @@ Lotus Domino 連接器主要支援以下類型的物件 (文件類型)：
 | 連絡人 (沒有認證者的人員) |<li>\_MMS_IDRegType</li> |
 | 資源 |<li>FullName</li><li>ResourceType</li><li>ConfDB</li><li>ResourceCapacity</li><li>網站</li><li>displayName</li><li>MailFile</li><li>MailServer</li><li>MailDomain</li> |
 
-<a id="common-issues-and-questions" class="xliff"></a>
-
-## 常見問題
-<a id="schema-detection-does-not-work" class="xliff"></a>
-
-### 結構描述偵測沒有作用
+## <a name="common-issues-and-questions"></a>常見問題
+### <a name="schema-detection-does-not-work"></a>結構描述偵測沒有作用
 若要能夠偵測結構描述，Domino 伺服器上必須要有 schema.nsf 檔案存在。 只有在伺服器上安裝了 LDAP 後，才會出現這個檔案。 如果偵測不到結構描述，請確認下列事項：
 
 * Domino 伺服器的根資料夾內有 schema.nsf 檔案
 * 使用者有權限能夠看到 schema.nsf 檔案。
 * 強制重新啟動 LDAP 伺服器。 開啟 **Lotus Domino 主控台**，並使用 **Tell LDAP ReloadSchema** 命令來重新載入結構描述。
 
-<a id="not-all-secondary-address-books-are-visible" class="xliff"></a>
-
-### 無法看見所有次要通訊錄
+### <a name="not-all-secondary-address-books-are-visible"></a>無法看見所有次要通訊錄
 Domino 連接器需依賴 [Directory Assistance]  功能，才能找到次要通訊錄。 如果次要通訊錄不見了，請確認 Domino 伺服器上是否已啟用和設定 [Directory Assistance](http://publib.boulder.ibm.com/infocenter/domhelp/v8r0/index.jsp?topic=%2Fcom.ibm.help.domino.admin85.doc%2FH_ABOUT_DIRECTORY_ASSISTANCE.html) 。
 
-<a id="custom-attributes-in-domino" class="xliff"></a>
-
-### Domino 中的自訂屬性
+### <a name="custom-attributes-in-domino"></a>Domino 中的自訂屬性
 Domino 中有數種方式可延伸結構描述，使其顯示為連接器可使用的自訂屬性。
 
 **方法 1：延伸 Lotus Domino 結構描述**
@@ -565,8 +493,6 @@ Domino 中有數種方式可延伸結構描述，使其顯示為連接器可使�
 7. 將必要屬性新增至 ExtensibleObjectClass 之後，按一下 [儲存並關閉]。
 8. 系統會為各自的預設物件類別建立具有延伸屬性的 ExtensibleObjectClass。
 
-<a id="troubleshooting" class="xliff"></a>
-
-## 疑難排解
+## <a name="troubleshooting"></a>疑難排解
 * 如需如何啟用記錄來疑難排解連接器的資訊，請參閱 [如何啟用連接器的 ETW 追蹤](http://go.microsoft.com/fwlink/?LinkId=335731)。
 

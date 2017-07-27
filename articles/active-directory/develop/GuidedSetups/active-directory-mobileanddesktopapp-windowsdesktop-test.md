@@ -16,10 +16,10 @@ ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
-ms.openlocfilehash: 04580626bafe1b432d87ccd44cdff219922ec002
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 972cc48057c13271d725b0c973c3ccf651ad27c4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -54,7 +54,6 @@ ms.lasthandoff: 07/06/2017
 ### <a name="more-information-about-scopes-and-delegated-permissions"></a>與範圍和委派的權限有關的詳細資訊
 圖形 API 需要 `user.read` 範圍才能讀取使用者設定檔。 根據預設值，在我們註冊入口網站上註冊的每個應用程式中都會自動新增此範圍。 您後端伺服器的部分其他圖形 API 和自訂 API 也會需要其他範圍。 例如，對於圖形 API 而言，就需要 `Calendars.Read` 來列出使用者的行事曆。 為了在應用程式內容中存取使用者的行事曆，您需要新增 `Calendars.Read` 委派應用程式註冊的資訊，然後將 `Calendars.Read` 新增至 `AcquireTokenAsync` 呼叫。 系統可能會在您增加範圍數目時，提示使用者同意其他事項。
 
-如果後端 API 不需要範圍 (不建議)，您可以在 `AcquireTokenAsync` 呼叫中使用 `ClientId` 作為範圍。
 <!--end-collapse-->
 
 

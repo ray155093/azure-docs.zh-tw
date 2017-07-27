@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: markvi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 3f6ae31f577eb1bc70a06e183518aadbc6279159
+ms.reviewer: asteen
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: ea2dc2762b556da837fa1d6674e01aba32face92
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
-
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="article-index-for-application-management-in-azure-active-directory"></a>Azure Active Directory 中應用程式管理的文章索引
@@ -203,7 +203,7 @@ Azure Active Directory 提供數個報告和警示，以協助您監視組織對
 | 追蹤對可以存取特定應用程式所做變更的人員 |[Azure Active Directory 稽核報告事件](active-directory-reporting-audit-events.md) |
 | 使用報告 API，將這些報告的資料匯出至您偏好的工具 |[開始使用 Azure AD 報告 API](active-directory-reporting-api-getting-started.md) |
 
-若要查看不同版本的 Azure Active Directory 隨附哪些報告，請 [按一下這裡](active-directory-view-access-usage-reports.md#report-editions)。
+若要查看不同版本的 Azure Active Directory 隨附哪些報告，請 [按一下這裡](active-directory-view-access-usage-reports.md)。
 
 ## <a name="see-also"></a>另請參閱
 [什麼是 Azure Active Directory？](active-directory-whatis.md)

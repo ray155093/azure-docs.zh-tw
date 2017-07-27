@@ -12,14 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 04/13/2017
+ms.date: 06/09/2017
 ms.author: vidarmsft
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 3c7c972cdc395e2e20e7f6a296a2ffab6efad66d
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: b4d575587eec1bcf43c33c7faeb8360ec67b5214
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/15/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="automated-disaster-recovery-solution-using-azure-site-recovery-for-file-shares-hosted-on-storsimple"></a>針對 StorSimple 上裝載的檔案共用使用 Azure Site Recovery 的自動化災害復原解決方案
@@ -90,7 +89,7 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
       > 視版本不同，檔案名稱可能會改變。
       >
       >
-3. 按 [下一步] 。
+3. 按一下 [下一步] 。
 4. 接受 [合約條款] 然後按一下 [下一步]。
 5. 按一下 [完成]。
 6. 使用從 StorSimple 儲存體劃分出來的磁碟區建立檔案共用。 如需詳細資訊，請參閱 [使用 StorSimple Manager 服務管理磁碟區](storsimple-manage-volumes.md)。
@@ -124,7 +123,7 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
    > 這將會導致檔案共用暫時無法使用。
    >
    >
-2. 從 Azure Site Recovery 入口網站為檔案伺服器 VM [啟用虛擬機器保護](../site-recovery/site-recovery-hyper-v-site-to-azure.md#enable-replication)。
+2. 從 Azure Site Recovery 入口網站為檔案伺服器 VM [啟用虛擬機器保護](../site-recovery/site-recovery-hyper-v-site-to-azure.md)。
 3. 當起始同步處理開始時，您可以再次重新連線目標。 移至 iSCSI 啟動器，選取 StorSimple 裝置，然後按一下 [連線] 。
 4. 當同步完成且 VM 的狀態為 [受保護] 時，請選取 VM，選取 [設定] 索引標籤，然後據以更新 VM 的網路 (這是已容錯移轉的 VM 所屬的網路)。 如果網路沒有顯示，表示同步仍在進行中。
 
@@ -141,9 +140,18 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
 ## <a name="create-a-recovery-plan"></a>建立復原計畫
 您可以在 ASR 中建立復原計劃來將檔案共用的容錯移轉程序自動化。 如果發生中斷，您只要按一下就可以在幾分鐘內讓檔案共用重新上線。 若要啟用此自動化功能，您需要 Azure 自動化帳戶。
 
-#### <a name="to-create-the-account"></a>建立帳戶
+#### <a name="to-create-an-automation-account"></a>建立自動化帳戶
 1. 前往 Azure 入口網站 [自動化] &gt;區段。
-2. 建立新的自動化帳戶。 請將它維持在 StorSimple Cloud Appliance 和儲存體帳戶建立所在的相同地理區域中。
+2. 按一下 [+ 加] 按鈕，開啟下方的刀鋒視窗。
+
+   ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image11.png)
+
+   * [名稱] - 輸入一個新的自動化帳戶
+   * [訂用帳戶] - 選擇訂用帳戶
+   * [資源群組] - 建立新的或選擇現有的資源群組
+   * [位置] - 選擇位置，請將它維持在 StorSimple 雲端設備和儲存體帳戶建立所在的相同地理區域中。
+   * 建立 Azure 執行身分帳戶 - 選取 [是] 選項。
+
 3. 前往自動化帳戶，按一下 [Runbooks]  &gt; [瀏覽資源庫] ，來將所有必要的 Runbooks 匯入自動化帳戶。
 4. 尋找資源庫中的 [災害復原]  標籤，以新增下列 Runbook：
 
@@ -154,13 +162,12 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
    * 啟動 StorSimple 虛擬設備
 
      ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image3.png)
+
 5. 選取自動化帳戶中的 Runbook，以發行所有指令碼，並按一下 [編輯]  &gt; [發行] ，然後按一下 [是]  顯示驗證訊息。 在這個步驟之後，[Runbook]  索引標籤看起來會像下面這樣：
 
     ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image4.png)
-6. 在自動化帳戶中，移至 [資產] 索引標籤，按一下 [認證]&gt; &gt; [+ 加入認證] ，然後加入您的 Azure 認證 – 將資產命名為 AzureCredential。
 
-   使用 Windows PowerShell 認證。 這應該是包含組織識別碼使用者名稱與密碼的認證，具備此 Azure 訂用帳戶的存取權且已經停用多重要素驗證。 這是必要的，可在容錯移轉期間代表使用者進行驗證，並讓 DR 網站上的檔案伺服器磁碟區上線。
-7. 在自動化帳戶中，選取 [資產] 索引標籤 &gt; 按一下 [變數]  &gt; [加入變數] ，然後加入下列變數。 您可以選擇將這些資產加密。 這些變數都是復原計劃特定變數。 如果您的復原計劃 (您將會在下一個步驟中建立) 名稱為 TestPlan，您的變數就應該是 TestPlan-StorSimRegKey、TestPlan-AzureSubscriptionName 等等。
+6. 在自動化帳戶中，選取 [資產] 索引標籤 &gt; 按一下 [變數]  &gt; [加入變數] ，然後加入下列變數。 您可以選擇將這些資產加密。 這些變數都是復原計劃特定變數。 如果您的復原計劃 (您將會在下一個步驟中建立) 名稱為 TestPlan，您的變數就應該是 TestPlan-StorSimRegKey、TestPlan-AzureSubscriptionName 等等。
 
    * RecoveryPlanName**-StorSimRegKey**：StorSimple Manager 服務的註冊金鑰。
    * RecoveryPlanName**-AzureSubscriptionName**：Azure 訂用帳戶的名稱。
@@ -179,8 +186,8 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image5.png)
 
-8. 移至 [復原服務]  區段並選取您之前建立的 Azure Site Recovery 保存庫。
-9. 從 [管理] 群組選取 [復原計劃 (站台復原)] 群組，然後如下所述建立新的復原計劃：
+7. 移至 [復原服務]  區段並選取您之前建立的 Azure Site Recovery 保存庫。
+8. 從 [管理] 群組選取 [復原計劃 (站台復原)] 群組，然後如下所述建立新的復原計劃：
 
    a.  按一下 [+ 復原計劃] 按鈕，開啟如下的刀鋒視窗。
 
@@ -292,7 +299,7 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
 
   > [!IMPORTANT]
   > 請從 Azure 入口網站手動執行備份，然後再執行一次復原計劃。
-  
+
 * 複製工作逾時：如果複製磁碟區時花費的時間超出每個指令碼的 Azure Site Recovery 限制 (目前為 120 分鐘)，StorSimple 指令碼就會逾時。
 * 時間同步處理錯誤：StorSimple 指令碼發生錯誤並指出備份失敗，即使在入口網站中備份成功。 發生此問題的可能原因或許是因為 StorSimple 設備的時間可能沒有和時區中目前的時間同步。
 

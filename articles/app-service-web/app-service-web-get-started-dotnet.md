@@ -15,11 +15,11 @@ ms.topic: hero-article
 ms.date: 06/14/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 2b447bcc5930550af3996cb40925ab59d203dc7c
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: b5a7f3ebe5e95d3838e71b7b17b91e85da0d51a2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
+ms.lasthandoff: 07/21/2017
 
 ---
 # <a name="create-an-aspnet-web-app-in-azure"></a>在 Azure 中建立 ASP.NET Web 應用程式
@@ -32,7 +32,7 @@ ms.lasthandoff: 06/20/2017
 
 若要完成本教學課程：
 
-* 使用下列工作負載安裝 [Visual Studio 2017](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx)：
+* 使用下列工作負載安裝 [Visual Studio 2017](https://www.visualstudio.com/downloads/)：
     - **ASP.NET 和 Web 開發**
     - **Azure 開發**
 
@@ -74,7 +74,7 @@ ms.lasthandoff: 06/20/2017
 
 ## <a name="sign-in-to-azure"></a>登入 Azure
 
-在 [建立 App Service] 對話方塊中，選取 [新增帳戶]，然後登入您的 Azure 訂用帳戶。 如果您已經登入，請確定該帳戶具有您的 Azure 訂用帳戶。 您可以選取已登入的帳戶以新增正確的帳戶。
+在 [建立 App Service] 對話方塊中，選取 [新增帳戶]，然後登入您的 Azure 訂用帳戶。 如果您已登入，請從下拉式清單中選取包含所需訂用帳戶的帳戶。
 
 > [!NOTE]
 > 如果您已經登入，請勿選取 [建立]。
@@ -82,8 +82,6 @@ ms.lasthandoff: 06/20/2017
 >
    
 ![登入 Azure](./media/app-service-web-get-started-dotnet/sign-in-azure.png)
-
-登入之後，您即可在此對話方塊中建立 Azure Web 應用程式需要的所有資源。
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
@@ -113,9 +111,7 @@ ms.lasthandoff: 06/20/2017
 
 ## <a name="create-and-publish-the-web-app"></a>建立和發佈 Web 應用程式
 
-在 [Web 應用程式名稱] 中，輸入唯一的應用程式名稱 (有效字元為 `a-z`、`0-9` 和 `-`)。 Web 應用程式的 URL 是 `http://<app_name>.azurewebsites.net`，其中 `<app_name>` 是您的 Web 應用程式名稱。 
-
-您可以接受自動產生的名稱 (這是唯一的)。
+在 [Web 應用程式名稱] 中，輸入唯一的應用程式名稱 (有效字元為 `a-z`、`0-9` 和 `-`)，或接受自動產生的唯一名稱。 Web 應用程式的 URL 是 `http://<app_name>.azurewebsites.net`，其中 `<app_name>` 是您的 Web 應用程式名稱。
 
 選取 [建立] 開始建立 Azure 資源。
 
@@ -125,7 +121,7 @@ ms.lasthandoff: 06/20/2017
 
 ![Azure 中已發佈的 ASP.NET Web 應用程式](./media/app-service-web-get-started-dotnet/published-azure-web-app.png)
 
-URL 會使用您稍早指定的 Web 應用程式名稱，其格式為 `http://<app_name>.azurewebsites.net`。 
+在[建立及發佈步驟](#create-and-publish-the-web-app)中指定的 Web 應用程式名稱會作為 URL 首碼，其格式為 `http://<app_name>.azurewebsites.net`。
 
 恭喜您，您的 ASP.NET Web 應用程式在 Azure App Service 中即時執行。
 

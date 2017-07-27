@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/07/2017
+ms.date: 06/12/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: fe56028d4731a83ffb8010b0094c98dec7374be0
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: c1c9217cf51cef450837bdd255f8c44c14a74ac0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -30,6 +31,6 @@ ms.lasthandoff: 04/18/2017
 您可以造訪下列連結以深入了解事件中樞︰
 
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md)
-* [建立事件中樞](event-hubs-create.md)
+* [事件中樞自動擴大](event-hubs-auto-inflate.md)
 * [事件中樞常見問題集](event-hubs-faq.md)
 

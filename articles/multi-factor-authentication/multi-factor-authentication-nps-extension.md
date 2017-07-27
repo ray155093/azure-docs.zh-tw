@@ -12,21 +12,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/23/2017
+ms.date: 06/13/2017
 ms.author: kgremban
-ms.custom: H1Hack27Feb2017
+ms.custom: H1Hack27Feb2017,it-pro
 ms.translationtype: Human Translation
-ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
-ms.openlocfilehash: 58b289530e16c2a2e9bbe59b372c858ff22ad5ac
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 46f5761caf2883d6083245a9a1fe689ea0529212
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/29/2017
+ms.lasthandoff: 06/17/2017
 
 ---
 # <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication---public-preview"></a>將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合 - 公開預覽
 
 Azure MFA 的網路原則伺服器 (NPS) 擴充功能可使用現有伺服器將雲端式 MFA 功能新增至驗證基礎結構。 利用 NPS 擴充功能，您可以在現有驗證流程中新增通話、簡訊或電話應用程式驗證，而不必安裝、設定及維護新的伺服器。 
 
-這個擴充功能是針對想要保護 VPN 連線但無須部署 Azure MFA Server 的組織所建立。 NPS 擴充功能是用於在 RADIUS 和以雲端為基礎的 Azure MFA 之間作為配接器，為聯盟或同步處理的使用者提供第二個驗證因素。 
+這個擴充功能是針對想要保護 VPN 連線但無須部署 Azure MFA Server 的組織所建立。 NPS 擴充功能是用於在 RADIUS 和以雲端為基礎的 Azure MFA 之間作為配接器，為聯盟或同步處理的使用者提供第二個驗證因素。
 
 使用 Azure MFA 的 NPS 擴充功能時，驗證流程會包含下列元件︰ 
 
@@ -41,11 +41,11 @@ Azure MFA 的網路原則伺服器 (NPS) 擴充功能可使用現有伺服器將
 
 ## <a name="plan-your-deployment"></a>規劃您的部署
 
-NPS 延伸模組會自動處理備援，因此您不需要特殊組態。 
+NPS 延伸模組會自動處理備援，因此您不需要特殊組態。
 
-您可以視需要建立數量不拘的 Azure Multi-Factor Authentication 啟用 NPS 伺服器。 如果您安裝多部伺服器，您應該為每部伺服器使用不同的用戶端憑證。 建立每個伺服器的憑證，意味著您可以個別更新每個憑證，無須擔心所有的伺服器皆停機。 
+您可以視需要建立數量不拘的 Azure Multi-Factor Authentication 啟用 NPS 伺服器。 如果您安裝多部伺服器，您應該為每部伺服器使用不同的用戶端憑證。 建立每個伺服器的憑證，意味著您可以個別更新每個憑證，無須擔心所有的伺服器皆停機。
 
-VPN 伺服器會路由驗證要求，因此伺服器必須留意新的 Azure MFA 啟用 NPS 伺服器。 
+VPN 伺服器會路由驗證要求，因此伺服器必須留意新的 Azure MFA 啟用 NPS 伺服器。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -61,9 +61,9 @@ Windows Server 2008 R2 SP1 或更新版本。
 
 ### <a name="libraries"></a>程式庫
 
-這些程式庫會自動連同延伸模組一起安裝。 
--    [適用於 Visual Studio 2013 的 Visual C++ 可轉散發套件 (X64)](https://www.microsoft.com/download/details.aspx?id=40784)
--    [適用於 Windows PowerShell 1.1.1660 版本的 Microsoft Azure Active Directory 模組](https://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)
+這些程式庫會自動連同延伸模組一起安裝。
+-   [適用於 Visual Studio 2013 的 Visual C++ 可轉散發套件 (X64)](https://www.microsoft.com/download/details.aspx?id=40784)
+-   [適用於 Windows PowerShell 1.1.1660 版本的 Microsoft Azure Active Directory 模組](https://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
@@ -75,7 +75,7 @@ Windows Server 2008 R2 SP1 或更新版本。
 
 ## <a name="prepare-your-environment"></a>準備您的環境
 
-在安裝 NPS 延伸模組之前，您會想要將您的環境準備就緒，以處理驗證流量。 
+在安裝 NPS 延伸模組之前，您會想要將您的環境準備就緒，以處理驗證流量。
 
 ### <a name="enable-the-nps-role-on-a-domain-joined-server"></a>啟用已加入網域之伺服器上的 NPS 角色
 
@@ -84,17 +84,17 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 1. 在伺服器上，從 [伺服器管理員快速入門] 功能表開啟 [新增角色及功能精靈]。
 2. 將您的安裝類型選為 [角色型或功能型安裝]。
 3. 選取 [網路原則與存取服務] 伺服器角色。 隨即顯示快顯視窗，通知您執行這個角色所需的功能。
-4. 繼續執行精靈，直到顯示 [確認] 頁面為止。 選取 [安裝]。 
+4. 繼續執行精靈，直到顯示 [確認] 頁面為止。 選取 [安裝]。
 
-現在您已經具備指定給 NPS 的伺服器，因此也應設定這部伺服器以處理從 VPN 解決方案傳入的 RADIUS 要求。 
+現在您已經具備指定給 NPS 的伺服器，因此也應設定這部伺服器以處理從 VPN 解決方案傳入的 RADIUS 要求。
 
 ### <a name="configure-your-vpn-solution-to-communicate-with-the-nps-server"></a>設定您的 VPN 解決方案與 NPS 伺服器通訊
 
-根據您所使用 VPN 解決方案的不同，設定您 RADIUS 驗證原則的步驟也有所不同。 設定此原則以指向 RADIUS NPS 伺服器。 
+根據您所使用 VPN 解決方案的不同，設定您 RADIUS 驗證原則的步驟也有所不同。 設定此原則以指向 RADIUS NPS 伺服器。
 
 ### <a name="sync-domain-users-to-the-cloud"></a>將網域使用者同步處理至雲端
 
-這個步驟在租用戶上可能已經完成，但建議最好再次檢查，確認 Azure AD Connect 最近已同步處理您的資料庫。 
+這個步驟在租用戶上可能已經完成，但建議最好再次檢查，確認 Azure AD Connect 最近已同步處理您的資料庫。
 
 1. 以系統管理員身分登入 [Azure 入口網站](https://portal.azure.com)。
 2. 選取 [Azure Active Directory]  >  [Azure AD Connect]
@@ -102,9 +102,23 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 
 如果您必須展開新一回合的同步處理，請使用 [Azure AD Connect 同步處理：排程器](../active-directory/connect/active-directory-aadconnectsync-feature-scheduler.md#start-the-scheduler)中的指示。
 
+### <a name="determine-which-authentication-methods-your-users-can-use"></a>判斷您的使用者可以使用的驗證方法
+
+有兩個因素會影響與 NPS 擴充部署搭配提供的驗證方法：
+
+1. 在 RADIUS 用戶端 (VPN、Netscaler 伺服器或其他) 與 NPS 伺服器之間使用的密碼加密演算法。
+   - **PAP** 支援雲端中 Azure MFA 的所有驗證方法：通話、簡訊、行動裝置應用程式通知，和行動裝置應用程式驗證碼。
+   - **CHAPV2** 支援通話和行動裝置應用程式通知。
+   - 不支援 **EAP**。
+2. 用戶端應用程式 (VPN、Netscaler 伺服器或其他) 可以處理的輸入法。 例如，VPN 用戶端是否有一些方法可讓使用者從文字或行動裝置應用程式輸入驗證程式碼？
+
+當您部署 NPS 擴充時，使用這些因素來評估哪些方法可供您的使用者使用。 如果您的 RADIUS 用戶端支援 PAP，但用戶端 UX 沒有驗證碼的輸入欄位，則通話和行動裝置應用程式通知是兩個支援的選項。
+
+您可以在 Azure 中[停用不受支援的驗證方法](multi-factor-authentication-whats-next.md#selectable-verification-methods)。
+
 ### <a name="enable-users-for-mfa"></a>針對 MFA 啟用使用者
 
-在部署完整 NPS 延伸模組之前，您必須針對您想要執行雙步驟驗證的使用者啟用 MFA。 緊接著，若要同時部署與測試延伸模組，您必須至少有一個測試帳戶，並應已針對 Multi-Factor Authentication 完全註冊此帳戶。 
+在部署完整 NPS 延伸模組之前，您必須針對您想要執行雙步驟驗證的使用者啟用 MFA。 緊接著，若要同時部署與測試延伸模組，您必須至少有一個測試帳戶，並應已針對 Multi-Factor Authentication 完全註冊此帳戶。
 
 使用下列步驟啟動測試帳戶：
 1. [針對對 MFA 啟用帳戶](multi-factor-authentication-get-started-user-states.md)。
@@ -116,23 +130,23 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 ## <a name="install-the-nps-extension"></a>安裝 NPS 擴充功能
 
 > [!IMPORTANT]
-> 在與 VPN 存取點不同的伺服器上安裝 NPS 擴充功能。 
+> 在與 VPN 存取點不同的伺服器上安裝 NPS 擴充功能。
 
-### <a name="download-and-install-the-nps-extension-for-azure-mfa"></a>下載並安裝 Azure MFA 的 NPS 延伸模組 
+### <a name="download-and-install-the-nps-extension-for-azure-mfa"></a>下載並安裝 Azure MFA 的 NPS 延伸模組
 
-1.    從 Microsoft 下載中心[下載 NPS 延伸模組](https://aka.ms/npsmfa)。
-2.    將二進位檔複製到您要設定的網路原則伺服器。
-3.    執行 *setup.exe* 並遵循安裝指示。 如果您遇到錯誤，請根據必要條件一節再次檢查兩個已成功安裝的程式庫。
+1.  從 Microsoft 下載中心[下載 NPS 延伸模組](https://aka.ms/npsmfa)。
+2.  將二進位檔複製到您要設定的網路原則伺服器。
+3.  執行 *setup.exe* 並遵循安裝指示。 如果您遇到錯誤，請根據必要條件一節再次檢查兩個已成功安裝的程式庫。
 
 ### <a name="run-the-powershell-script"></a>執行 PowerShell 指令碼
 
 安裝程式會在下列位置建立 PowerShell 指令碼︰`C:\Program Files\Microsoft\AzureMfa\Config` (其中 C:\ 是您的安裝磁碟機)。 此 PowerShell 指令碼會執行下列動作：
 
--    建立自我簽署憑證。
--    讓憑證的公開金鑰與 Azure AD 的服務主體產生關聯。
--    將憑證儲存在本機電腦的憑證存放區。
--    將憑證的私密金鑰存取權授與給網路使用者。
--    重新啟動 NPS。
+-   建立自我簽署憑證。
+-   讓憑證的公開金鑰與 Azure AD 的服務主體產生關聯。
+-   將憑證儲存在本機電腦的憑證存放區。
+-   將憑證的私密金鑰存取權授與給網路使用者。
+-   重新啟動 NPS。
 
 除非您想要使用自己的憑證 (而非 PowerShell 指令碼產生的自我簽署憑證)，否則請執行 PowerShell 指令碼來完成安裝。 如果您在多部伺服器上安裝延伸模組，每一部伺服器都應該有自己的憑證。
 
@@ -145,11 +159,11 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 
    `.\AzureMfaNpsExtnConfigSetup.ps1`
 
-4. PowerShell 會提示您輸入您的租用戶識別碼。 使用您在必要條件一節中從 Azure 入口網站複製的目錄識別碼 GUID。 
+4. PowerShell 會提示您輸入您的租用戶識別碼。 使用您在必要條件一節中從 Azure 入口網站複製的目錄識別碼 GUID。
 5. 以系統管理員身分登入 Azure AD。
 6. PowerShell 會在指令碼完成時顯示成功訊息。  
 
-在您想要進行設定以取得負載平衡的任何其他 NPS 伺服器上，重複上述步驟。 
+在您想要進行設定以取得負載平衡的任何其他 NPS 伺服器上，重複上述步驟。
 
 ## <a name="configure-your-nps-extension"></a>設定 NPS 擴充功能
 
@@ -159,6 +173,10 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 
 - Azure MFA 的 NPS 延伸模組並未包含可將使用者與設定從 MFA Server 移轉至雲端的工具。 有基於此，建議將此延伸模組用於新的部署，而非用於現有部署。 如果您在現有部署上使用此延伸模組，您的使用者必須再次執行證明，以便在雲端中填入其 MFA 詳細資料。  
 - NPS 擴充功能會使用來自內部部署 Active Directory 的 UPN，識別 Azure MFA 上用來執行次要驗證的使用者。 擴充功能無法設定為使用不同的識別碼，例如 UPN 以外的替代登入識別碼或自訂 AD 欄位。  
+- 並非所有的加密通訊協定都支援所有的驗證方法。
+   - **PAP** 支援通話、簡訊、行動裝置應用程式通知和行動裝置應用程式驗證碼
+   - **CHAPV2** 支援通話和行動裝置應用程式通知
+   - 不支援 **EAP**
 
 ### <a name="control-radius-clients-that-require-mfa"></a>控制需要 MFA 的 RADIUS 用戶端
 
@@ -220,6 +238,7 @@ Get-MsolServicePrincipalCredential -AppPrincipalId "981f26a1-7f43-403b-a875-f8b0
 ### <a name="why-do-i-see-http-connect-errors-in-logs-with-all-my-authentications-failing"></a>為何我會在記錄中看到 HTTP 連線錯誤，且我的所有驗證都失敗？
 
 確認可以從執行 NPS 擴充功能的伺服器連線到 https://adnotifications.windowsazure.com。
+
 
 ## <a name="next-steps"></a>後續步驟
 

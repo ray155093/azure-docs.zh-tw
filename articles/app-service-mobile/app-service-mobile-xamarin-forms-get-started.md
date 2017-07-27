@@ -3,8 +3,8 @@ title: "使用 Xamarin.Forms 搭配行動應用程式入門"
 description: "遵循此教學課程，開始使用 Azure 行動應用程式進行 Xamarin.Forms 開發。"
 services: app-service\mobile
 documentationcenter: xamarin
-author: adrianhall
-manager: adrianha
+author: ggailey777
+manager: syntaxc4
 editor: 
 ms.assetid: 5e692220-cc89-4548-96c8-35259722acf5
 ms.service: app-service-mobile
@@ -13,12 +13,12 @@ ms.tgt_pltfrm: mobile-xamarin
 ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/01/2016
-ms.author: adrianha
-translationtype: Human Translation
+ms.author: glenga
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: 6b8c5c2ac2e721c4d6f73c7c17f34eadc041e0c9
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/20/2017
-
 
 ---
 # <a name="create-a-xamarinforms-app"></a>建立 Xamarin.Forms 應用程式
@@ -33,13 +33,13 @@ ms.lasthandoff: 01/20/2017
 若要完成此教學課程，您需要下列項目：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，可以註冊 Azure 試用版並取得最多 10 個免費的行動應用程式，即使在試用期結束之後仍可繼續使用這些應用程式。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* Visual Studio 和 Xamarin。 如需相關指示，請參閱 [設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 。 
+* Visual Studio 和 Xamarin。 如需相關指示，請參閱 [設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 。
 * 已安裝 Xcode v7.0 或更新版本以及 Xamarin Studio Community 的 Mac。 請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)及[針對 Mac 使用者的設定、安裝和驗證](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN)。
 
 > [!NOTE]
 > 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往 [試用 App Service](https://azure.microsoft.com/try/app-service/mobile/)，讓您能立刻在 App Service 中建立短期的入門行動應用程式。 不需要信用卡；無需承諾。
-> 
-> 
+>
+>
 
 ## <a name="create-a-new-azure-mobile-app-backend"></a>建立新的 Azure 行動應用程式後端
 依照下列步驟建立新的行動應用程式後端。
@@ -60,12 +60,12 @@ ms.lasthandoff: 01/20/2017
 
 1. 在您的 Mac 或 Windows 電腦上，於瀏覽器視窗中開啟 [Azure 入口網站] 。
 2. 在行動應用程式的設定刀鋒視窗上，按一下 開始使用 \(在 [行動] 之下) > [Xamarin.Forms]。 在步驟 3 中，按一下 建立新的應用程式 \(如果尚未選取的話)。  接著按一下 [下載]  按鈕。
-   
+
    這會下載包含連線到您行動應用程式之用戶端應用程式的專案。 將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
 3. 將您下載的專案解壓縮，並在 Xamarin Studio 或 Visual Studio 中開啟。
-   
+
    ![][9]
-   
+
    ![][8]
 
 ## <a name="optional-run-the-ios-project"></a>(選擇性) 執行 iOS 專案
@@ -80,11 +80,11 @@ ms.lasthandoff: 01/20/2017
 2. 從 [建置] 功能表中，按一下 [組態管理員]。
 3. 在 [組態管理員] 對話方塊中，選取 iOS 專案的 [建置] 和 [部署] 核取方塊。
 4. 按 **F5** 鍵，以建置專案並在 iPhone 模擬器中啟動 app。
-   
+
    > [!NOTE]
    > 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。 有時候快速入門專案可能未能及時更新為最新版本。    
-   > 
-   > 
+   >
+   >
 
 在應用程式中，輸入有意義的文字 (例如「了解 Xamarin」)，然後按一下 **+** 按鈕。
 
@@ -94,8 +94,8 @@ ms.lasthandoff: 01/20/2017
 
 > [!NOTE]
 > 您將會看到在您方案的可攜式類別庫專案的 TodoItemManager.cs C# 檔案中，存取行動應用程式後端的程式碼。
-> 
-> 
+>
+>
 
 ## <a name="optional-run-the-android-project"></a>(選擇性) 執行 Android 專案
 這一節適用於對 Android 裝置執行 Xamarin Adroid 專案。 如果未使用 Android 裝置，可以略過這一節。
@@ -109,11 +109,11 @@ ms.lasthandoff: 01/20/2017
 2. 從 [建置] 功能表中，按一下 [組態管理員]。
 3. 在 [組態管理員] 對話方塊中，選取 Android 專案的 [建置] 和 [部署] 核取方塊。
 4. 按 **F5** 鍵，以建置專案並在 Android 模擬器中啟動應用程式。
-   
+
    > [!NOTE]
    > 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。 有時候快速入門專案可能未能及時更新為最新版本。    
-   > 
-   > 
+   >
+   >
 
 在應用程式中，輸入有意義的文字 (例如「了解 Xamarin」)，然後按一下 **+** 按鈕。
 
@@ -123,8 +123,8 @@ ms.lasthandoff: 01/20/2017
 
 > [!NOTE]
 > 您將會看到在您方案的可攜式類別庫專案的 TodoItemManager.cs C# 檔案中，存取行動應用程式後端的程式碼。
-> 
-> 
+>
+>
 
 ## <a name="optional-run-the-windows-project"></a>(選擇性) 執行 Windows 專案
 這一節適用於對 Windows 裝置執行 WinApp 專案。 如果未使用 Windows 裝置，可以略過這一節。
@@ -134,11 +134,11 @@ ms.lasthandoff: 01/20/2017
 2. 從 [建置] 功能表中，按一下 [組態管理員]。
 3. 在 [組態管理員] 對話方塊中，選取所選之 Windows 專案的 [建置] 和 [部署] 核取方塊。
 4. 按 **F5** 鍵，以建置專案並在 Windows 模擬器中啟動應用程式。
-   
+
    > [!NOTE]
    > 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。 有時候快速入門專案可能未能及時更新為最新版本。    
-   > 
-   > 
+   >
+   >
 
 在應用程式中，輸入有意義的文字 (例如「了解 Xamarin」)，然後按一下 **+** 按鈕。
 
@@ -148,8 +148,8 @@ ms.lasthandoff: 01/20/2017
 
 > [!NOTE]
 > 您將會看到在您方案的可攜式類別庫專案的 TodoItemManager.cs C# 檔案中，存取行動應用程式後端的程式碼。
-> 
-> 
+>
+>
 
 ## <a name="next-steps"></a>後續步驟
 * [將驗證新增至應用程式中](app-service-mobile-xamarin-forms-get-started-users.md)  
@@ -159,7 +159,7 @@ ms.lasthandoff: 01/20/2017
 * [啟用應用程式的離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md)  
   了解如何使用行動應用程式後端，將離線支援新增至應用程式。 離線同步處理可讓使用者與行動應用程式進行互動&mdash;檢視、新增或修改資料&mdash;即使沒有網路連線進也可行。
 * [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md)  
-  了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。 
+  了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。
 
 <!-- Anchors. -->
 [Getting started with mobile app backends]:#getting-started
@@ -180,5 +180,4 @@ ms.lasthandoff: 01/20/2017
 [Visual Studio Professional 2013]: https://go.microsoft.com/fwLink/p/?LinkID=257546
 [Mobile app SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure 入口網站]: https://portal.azure.com/
-
 

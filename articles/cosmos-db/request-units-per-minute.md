@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: acomet
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: ea63b988a72801ae4c288048021a915b20a34794
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 0c597fa4afa816f9731edb744ae494b6ef928b9e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -114,7 +114,7 @@ await client.ReplaceOfferAsync(offerV2);
 
 **開發/測試環境：**適合。 在開發階段，如果您以不同的工作負載測試您的應用程式，RU/m 在這個階段會很有彈性。 [模擬器](local-emulator.md)是適合用來測試 Azure Cosmos DB 的免費工具。 不過，如果您想要從雲端環境開始，RU/m 可針對您的特殊效能需求而發揮很大的彈性。 您會有更多時間進行開發，不必一開始就擔心效能需求。 我們建議從最小的 RU/s 佈建開始，並啟用 RU/m。
 
-**無法預測、尖峰、每分鐘細微度的需求︰**適合 – 節省︰25-75%。 我們看到 RU/m 提供明顯的改善，且大部分的實際執行案例都屬於這一類。 如果您的 IoT 工作負載在一分鐘內出現幾次尖峰，且當您在系統同時進行大量插入時執行查詢，則需要更多容量來處理尖峰需求。 建議您套用以下的逐步方法，將您的資源需求最佳化。
+**無法預測、尖峰、每分鐘細微度的需求︰**適合 – 節省︰25-75%。 我們看到 RU/m 提供明顯的改善，且大部分的實際執行案例都屬於這一類。 如果您的 IoT 工作負載在一分鐘內出現幾次尖峰，且當您在系統同時進行大量插入時執行查詢，就需要更多容量來處理尖峰需求。 建議您套用以下的逐步方法，將您的資源需求最佳化。
 
  ![此圖表顯示 5 分鐘細微度的要求耗用量](./media/request-units-per-minute/azure-cosmos-db-request-units-per-minute-consumption.png)
  
@@ -176,7 +176,7 @@ var query = client.CreateDocumentQuery<Book>(
 在本文中，我們已描述了 Azure Cosmos DB 中的資料分割運作方式、如何建立分割集合，以及如何為您的應用程式挑選適當的資料分割索引鍵。
 
 * 使用 Azure Cosmos DB 執行規模和效能測試。 如需範例，請參閱[使用 Azure Cosmos DB 執行效能和規模測試](performance-testing.md)。
-* 使用 [SDK](documentdb-sdk-dotnet.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 開始撰寫程式碼。
+* 使用 [SDK](documentdb-sdk-dotnet.md) 或 [REST API](/rest/api/documentdb/) 開始撰寫程式碼。
 * 了解 Azure Cosmos DB 中[佈建的輸送量](request-units.md) 
 
 

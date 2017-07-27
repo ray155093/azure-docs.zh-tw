@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 04/17/2017
 ms.author: muralikk
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 1aebecdaacd3525bec07a9359e52d2bc3d1539de
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: fc0fd0188261263aac550b0f0784076efc807215
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -52,9 +52,7 @@ Azure 匯入/匯出服務可讓您藉由將硬碟寄送到 Azure 資料中心，
 若要開始進行 Blob 儲存體的匯入或匯出程序，請先建立「工作」。 此工作可以是「匯入工作」或「匯出工作」：
 
 * 當您要將內部部署的資料移轉至 Azure 儲存體帳戶中的 Blob 時，請建立匯入工作。
-* 當您要將目前儲存為儲存體帳戶中 Blob 的資料移轉至要運送給您的硬碟時，請建立匯出工作。
-
-當您建立工作時，您會通知匯入/匯出服務您將運送一或多個硬碟至 Azure 資料中心。
+* 當您要將目前儲存為儲存體帳戶中 Blob 的資料移轉至要運送給您的硬碟時，請建立匯出作業。當您建立作業時，會通知匯入/匯出服務，您要將一或多個硬碟運送至 Azure 資料中心。
 
 * 若為匯入工作，您將運送含有資料的硬碟。
 * 若為匯出工作，您將運送空的硬碟。
@@ -69,7 +67,7 @@ Azure 匯入/匯出服務可讓您藉由將硬碟寄送到 Azure 資料中心，
 
 WAImportExport 工具只與 64 位元 Windows 作業系統相容。 請參閱 [作業系統](#operating-system) 一節，以了解支援的特定 OS 版本。
 
-下載最新版的 [WAImportExport 工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)。 如需使用 WAImportExport 工具的詳細資訊，請參閱[使用 WAImportExport 工具](storage-import-export-tool-how-to.md)。
+下載最新版的 [WAImportExport 工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExportV2.zip)。 如需使用 WAImportExport 工具的詳細資訊，請參閱[使用 WAImportExport 工具](storage-import-export-tool-how-to.md)。
 
 >[!NOTE]
 >**前一版本︰**您可以[下載 WAImportExpot V1](http://download.microsoft.com/download/0/C/D/0CD6ABA7-024F-4202-91A0-CE2656DCE413/WaImportExportV1.zip) 版本的工具，並參考 [WAImportExpot V1 使用指南](storage-import-export-tool-how-to-v1.md)。 當資料已預先寫入磁碟時，WAImportExpot V1 版本的工具提供**準備磁碟的支援**。 此外，如果唯一可用的金鑰是 SAS 金鑰，您將需要使用 WAImportExpot V1 工具。
@@ -85,6 +83,8 @@ WAImportExport 工具只與 64 位元 Windows 作業系統相容。 請參閱 [�
 > 此服務不支援隨附內建 USB 介面卡的外接式硬碟。 此外，也無法使用外接式 HDD 機殼內的磁碟；請勿傳送外接式 HDD。
 > 
 > 
+
+以下是用來將資料複製到內部 HDD 的外部 USB 介面卡清單。 Anker 68UPSATAA-02BU Anker 68UPSHHDS-BU Startech SATADOCK22UE Orico 6628SUS3-C-BK (6628 Series) Thermaltake BlacX Hot-Swap SATA External Hard Drive Docking Station (USB 2.0 & eSATA)
 
 ### <a name="encryption"></a>加密
 必須使用「BitLocker 磁碟機加密」將磁碟機上的資料加密。 此功能可保護傳輸中的資料。
@@ -264,8 +264,8 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 1. 識別要匯入的資料。 這可能是本機伺服器或網路共用上的目錄和獨立檔案。  
 2. 根據資料的總大小，決定您需要的磁碟機數目。 採購所需的 2.5 英吋 SSD 或 2.5 英吋/3.5 英吋 SATA II/III 硬碟機數目。
 3. 識別目標儲存體帳戶、容器、虛擬目錄和 Blob。
-4.    決定將複製到每個硬碟的目錄和/或獨立檔案。
-5.    建立資料集和磁碟機集的 CSV 檔。
+4.  決定將複製到每個硬碟的目錄和/或獨立檔案。
+5.  建立資料集和磁碟機集的 CSV 檔。
     
     **資料集 CSV 檔案**
     
@@ -299,8 +299,8 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 
     深入了解[準備磁碟機集 CSV 檔案](storage-import-export-tool-preparing-hard-drives-import.md#prepare-initialdriveset-or-additionaldriveset-csv-file)。
 
-6.    使用 [WAImportExport 工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)將資料複製到一或多個硬碟。
-7.    您可以在磁碟機集 CSV 中的加密欄位指定 "Encrypt"，以在硬碟上啟用 BitLocker 加密。 或者，您也可以手動在硬碟上啟用 BitLocker 加密和指定 "AlreadyEncrypted"，並在執行工具時於磁碟機集 CSV 中提供金鑰。
+6.  使用 [WAImportExport 工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)將資料複製到一或多個硬碟。
+7.  您可以在磁碟機集 CSV 中的加密欄位指定 "Encrypt"，以在硬碟上啟用 BitLocker 加密。 或者，您也可以手動在硬碟上啟用 BitLocker 加密和指定 "AlreadyEncrypted"，並在執行工具時於磁碟機集 CSV 中提供金鑰。
 
 8. 完成磁碟準備工作之後，請勿修改硬碟上的資料或日誌檔案。
 
@@ -471,9 +471,11 @@ Azure 資料中心會將不符支援需求的磁碟機退回給您。 如果包�
 
 否。 您必須針對匯入和匯出工作運送自己的磁碟機。
 
+** 如何存取這個服務所匯入的資料** Azure 儲存體帳戶下的資料可以透過 Azure 入口網站或使用稱為「儲存體總管」的獨立工具進行存取。 https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer 
+
 **匯入作業完成後，我的資料在儲存體帳戶中外觀如何？將保留我的目錄階層嗎？**
 
-準備匯入工作的硬碟時，目的地是由資料集 CSV 的 DstBlobPathOrPrefix 欄位指定。 這是硬碟的資料將複製到其中的儲存體帳戶目的地容器。 在此目的地容器內，會針對硬碟裡的資料夾建立虛擬目錄，並針對檔案建立 Blob。
+準備匯入工作的硬碟時，目的地是由資料集 CSV 的 DstBlobPathOrPrefix 欄位指定。 這是硬碟的資料將複製到其中的儲存體帳戶目的地容器。 在此目的地容器內，會針對硬碟裡的資料夾建立虛擬目錄，並針對檔案建立 Blob。 
 
 **如果磁碟機中具有我儲存體帳戶裡已存在的檔案，那麼服務會覆寫我儲存體帳戶裡的現有 Blob 嗎？**
 
@@ -498,9 +500,9 @@ Azure 資料中心會將不符支援需求的磁碟機退回給您。 如果包�
 
 某些儲存體帳戶位置會對應至替代的運送位置。 先前可用的運送位置也可能暫時對應到替代位置。 工作建立期間，請務必檢查提供的運送地址，然後才運送磁碟機。
 
-**運送我的磁碟機時，貨運公司要求資料中心連絡人名稱和電話號碼。我該提供什麼？**
+**運送我的磁碟機時，貨運公司要求資料中心連絡人地址和電話號碼。我該提供什麼？**
 
-電話號碼已在建立工作時提供給您。 如果您需要連絡人名稱，請連絡我們： waimportexport@microsoft.com ，我們將提供您該資訊。
+在建立作業時，提供電話號碼和 DC 地址。
 
 **可以使用 Azure 匯入/匯出服務將 PST 信箱及 SharePoint 資料複製到 O365 嗎？**
 
@@ -510,11 +512,11 @@ Azure 資料中心會將不符支援需求的磁碟機退回給您。 如果包�
 
 請參閱 [Azure 備份中的離線備份工作流程](../backup/backup-azure-backup-import-export.md)。
 
-**一次出貨最多可以有多少個 HDD？
+**一次出貨最多可以有多少個 HDD？**
 
 一次出貨的 HDD 數量沒有限制，而且如果磁碟屬於多個作業，建議 a) 在磁碟加上所對應作業名稱的標籤。 b) 以帶有 -1、-2 等尾碼的追蹤號碼來更新作業。
   
-**磁碟匯入/匯出所支援的最大區塊 Blob 和分頁 Blob 大小是多少？
+**磁碟匯入/匯出所支援的最大區塊 Blob 和分頁 Blob 大小是多少？**
 
 最大區塊 Blob 大小大約是 4.768 TB 或 5,000,000 MB。
 最大分頁 Blob 大小為 1 TB。

@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 11/28/2016
+ms.date: 05/31/2017
 ms.author: mikeray
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: d9138b17e54aa1c4bf1982b09d3d0ad10e936d4c
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 8e506be42aea4fb3c48c29b771a78dcf694f4518
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -95,7 +96,7 @@ ms.lasthandoff: 03/25/2017
 [!INCLUDE [firewall](../../../../includes/virtual-machines-ag-listener-create-listener.md)]
 
 ### <a name="configure-the-cluster-resources-in-powershell"></a>在 PowerShell 中設定叢集資源
-1. 對於外部負載平衡，您必須取得包含複本之雲端服務的公用虛擬 IP 位址。 登入 Azure 傳統入口網站。 巡覽至包含可用性群組 VM 的雲端服務。 開啟 **儀表板** 檢視。
+1. 對於外部負載平衡，您必須取得包含複本之雲端服務的公用虛擬 IP 位址。 登入 Azure 入口網站。 巡覽至包含可用性群組 VM 的雲端服務。 開啟 **儀表板** 檢視。
 2. 記下 [ **公用虛擬 IP (VIP) 位址**] 下方顯示的位址。 如果您的解決方案跨越多個 VNet，請針對包含主控複本之 VM 的每個雲端服務重複此步驟。
 3. 在其中一個 VM 上，將下方的 PowerShell 指令碼複製到文字編輯器，並將變數設定為之前記下的值。
    

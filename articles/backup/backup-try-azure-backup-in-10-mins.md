@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 2/23/2017
 ms.author: markgal;
-translationtype: Human Translation
-ms.sourcegitcommit: b188affca609dd5ff3aa0d2cba3ec81c1c91888f
-ms.openlocfilehash: 916a4e837d003a73a1801dd25b8ebfbfdcd86312
-ms.lasthandoff: 02/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: c989ca38e2463f8365b55c509e8b2bcf4572b409
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -164,6 +165,15 @@ ms.lasthandoff: 02/24/2017
 
 現已安裝代理程式，且已向保存庫註冊您的電腦。 您已準備好可以設定及排程備份。
 
+## <a name="network-and-connectivity-requirements"></a>網路和連線需求
+
+如果您的電腦/Proxy 具有受限的網際網路存取，請確保將電腦/Proxy 上的防火牆設定，設定為允許下列 URL： <br>
+    1. www.msftncsi.com
+    2. *.Microsoft.com
+    3. *.WindowsAzure.com
+    4. *.microsoftonline.com
+    5. *.windows.ne
+
 ## <a name="back-up-your-files-and-folders"></a>備份檔案和資料夾
 初始備份包括兩項重要工作：
 
@@ -182,7 +192,7 @@ ms.lasthandoff: 02/24/2017
 3. 在排程備份精靈的 [開始使用] 頁面上，按 [下一步] 。
 4. 在 [選取要備份的項目] 頁面上，按一下 [新增項目] 。
 5. 選取您要備份的檔案和資料夾，然後按一下 [確定] 。
-6. 按 [下一步] 。
+6. 按一下 [下一步] 。
 7. 在 [指定備份排程] 頁面上，指定[備份排程]，然後按 [下一步]。
 
     您可以排程每日 (一天最多三次) 或每週備份。

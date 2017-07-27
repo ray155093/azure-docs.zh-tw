@@ -15,19 +15,39 @@ ms.workload: data-services
 ms.date: 05/03/2017
 ms.author: jeffstok
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 6a5ec66172e7920a89ff8c0592224f01f19c9e41
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: e1ab8dd89c0590c8ee309a032efc17edeacf4d0e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/04/2017
 
 
 ---
 # <a name="stream-analytics-release-notes"></a>串流分析版本資訊
 
+## <a name="notes-for-06142017-update-of-stream-analytics-tools-for-visual-studio"></a>適用於 Visual Studio 的 Azure 串流分析工具 2017/06/14 更新注意事項
+此更新適用於我們的 Visual Studio Tools。 此版本包含下列新功能。
+
+| 課程名稱 | 說明 |
+| --- | --- |
+| Java 指令碼編輯器支援 |建立 java 指令碼函式之後，您可以享用原生 java 指令碼編輯器體驗。|
+| 檢視作業執行階段錯誤訊息 | 如果作業執行期間發生執行階段錯誤，您可以在 [錯誤] 索引標籤中調整顯示時間範圍來檢視這些錯誤。 依預設會顯示過去 30 分鐘的錯誤訊息。 |
+| 本機測試輸入的 CSV 和 Avro 支援 | 除了 JSON，現在您還可以使用 CSV 和 Avro 檔案格式作為本機測試輸入。|
+
 ## <a name="notes-for-05032017-update-of-stream-analytics"></a>串流分析 05/03/2017 版本的注意事項
 此更新是我們的疑難排解文件版本。
 
 [疑難排解指南](stream-analytics-troubleshooting-guide.md)和其他文件已經發行。 請檢閱，並歡迎提供意見反應。
+
+## <a name="notes-for-04242017-update-of-stream-analytics-tools-for-visual-studio"></a>適用於 Visual Studio 的 Azure 串流分析工具 2017/04/24 更新注意事項
+此更新適用於我們的 Visual Studio Tools。 此版本包含下列新功能。
+
+| 課程名稱 | 說明 |
+| --- | --- |
+| 在 Visual Studio 中檢視本機測試結果 | 若要檢視本機測試的輸出結果，只要在輸出主控台視窗中按 ENTER 鍵或將它關閉即可。 Visual Studio 的一個視窗中會以資料表格式顯示結果。 |
+| 以 JSON 格式輸出本機結果 | 當您執行本機測試時，產生的輸出結果會同時有 JSON 和 CSV 這兩種檔案格式。 |
+| 預覽 Blob/資料表儲存體輸入/輸出資料 | 您可以在作業檢視中按兩下 blob 或資料表儲存體輸入/輸出，非常輕鬆地在 Visual Studio 內預覽資料。 |
+| 檢視輸入/輸出的錯誤訊息 | 如果發生一些與作業的輸入或輸出有關的執行階段錯誤，這些錯誤會顯示在作業圖表上，您可以暫留在錯誤上來查看詳細的錯誤訊息。|
+
 
 ## <a name="notes-for-02012017-release-of-stream-analytics"></a>串流分析 2017/02/01 版本的注意事項
 此版本包含下列更新。
@@ -147,7 +167,7 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
-* [開始使用 Azure Stream Analytics](stream-analytics-get-started.md)
+* [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)

@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/07/2017
 ms.author: andrl
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 371976a35ae285942decaf8e22651e98f6217a95
+ms.translationtype: HT
+ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
+ms.openlocfilehash: 4be7f077fa5bc03531baf2443c663f1d8bc4a1c8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 07/15/2017
 
 ---
 # <a name="community-portal"></a>社群入口網站
@@ -57,7 +56,7 @@ DoQmentDB 是一個以 Node.js Promise 為基礎的用戶端，可在 Azure Cosm
 ### <a name="swagger-rest-api-for-documentdb"></a>DocumentDB 的 Swagger REST API
 *由 Howard Edidin 撰寫*
 
-可以輕鬆部署為 API 應用程式的 Azure Cosmos DB DocumentDB REST API Swagger 檔案。
+可以輕鬆部署為 API 應用程式的 Azure Cosmos DB REST API Swagger 檔案，適於 DocumentDB API。
 
 在 [GitHub](https://github.com/HEDIDIN/DocumentDB-REST/tree/master/DocumentDBRestApi) 上了解相關資訊。
 
@@ -100,12 +99,12 @@ fluent-plugin-documentdb 是用於輸出到 Azure Cosmos DB DocumentDB API 的 F
 
 ## <a name="events-and-recordings"></a>活動和記錄
 ### <a name="recent-and-upcoming-events"></a>最新和近期活動
-| 活動名稱 | 主講人 | 位置 | 日期 | Hashtag |
+| 活動名稱 | 主講人 | 位置 | 日期 | 主題標籤 |
 | --- | --- | --- | --- | --- |
 |[南佛羅里達州程式碼研討會：在 10 分鐘內使用 Azure DocumentDB 編寫出適用於 .NET 開發人員的 NoSQL (英文)](http://www.fladotnet.com/codecamp/Agenda.aspx)| [Santosh Hari](https://twitter.com/_s_hari)|佛羅里達州戴維|2017 年 3 月 11 日|[#sflcc](https://twitter.com/search?q=%23sflcc&ref_src=twsrc%5Etfw)|
 |[奧蘭多市程式碼研討會：在 10 分鐘內使用 Azure DocumentDB 編寫出適用於 .NET 開發人員的 NoSQL (英文)](http://orlandocodecamp.com/Sessions/Details/20)| [Santosh Hari](https://twitter.com/_s_hari)|佛羅里達州桑福德|2017 年 4 月 8 日|[#OrlandoCC](https://twitter.com/hashtag/OrlandoCC?src=hash&ref_src=twsrc%5Etfw)|
 |[全球 Azure 戰鬥營︰利用 Azure Functions 和 DocumentDB 在 Azure 中進行無伺服器運算 (英文)](https://www.eventbrite.com/e/2017-global-azure-bootcamp-atlanta-usa-tickets-31817713638)| [Josh Lane](https://twitter.com/jplane)|喬治亞州亞特蘭大|2017 年 4 月 22 日|[#GlobalAzure](https://twitter.com/hashtag/GlobalAzure?src=hash)|
-|[NDC Olso 2017：Azure DocumentDB - 您可能 (尚未) 使用的最佳 NoSQL Database](http://ndcoslo.com/talk/azure-documentdb-the-best-nosql-database-youre-probably-not-using-yet/)|[Josh Lane](https://twitter.com/jplane)|挪威奧斯陸|2017 年 6 月 14 日|[#ndcoslo](https://twitter.com/search?q=%23ndcoslo)|
+|[NDC Olso 2017：Azure DocumentDB - 您可能 (尚未) 使用的最佳 NoSQL Database](http://ndcoslo.com/talk/azure-cosmos-db-the-best-nosql-database-youre-probably-not-using-yet/)|[Josh Lane](https://twitter.com/jplane)|挪威奧斯陸|2017 年 6 月 14 日|[#ndcoslo](https://twitter.com/search?q=%23ndcoslo)|
 
 您在演講或舉辦活動嗎？*[請告訴我們](mailto:askcosmosdb@microsoft.com)該如何協助您！*
 
@@ -200,7 +199,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure Cosmos DB DocumentDB API 的 F
 
 ## <a name="discussion"></a>討論區
 ### <a name="twitter"></a>Twitter
-在 Twitter [@DocumentDB](https://twitter.com/DocumentDB) 上關注我們的動態，並透過 [#DocumentDB](https://twitter.com/hashtag/DocumentDB) 雜湊標記來掌握最新的對話。
+在 Twitter [@DocumentDB](https://twitter.com/DocumentDB) 上關注我們的動態，並透過 [#DocumentDB](https://twitter.com/hashtag/DocumentDB) 主題標籤來掌握最新的對話。
 
 ### <a name="online-forums"></a>線上論壇
 | 論壇提供者 | 說明 |

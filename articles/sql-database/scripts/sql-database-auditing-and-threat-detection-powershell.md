@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼 - 設定資料庫稽核與威脅偵測 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 使用 PowerShell 設定 SQL Database 稽核與威脅偵測"
+title: "PowerShell 範例 - 稽核 - 威脅偵測 - Azure SQL Database |Microsoft 文件"
+description: "在 Azure SQL Database 中設定稽核與威脅偵測的 Azure PowerShell 指令碼範例"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -14,19 +14,19 @@ ms.devlang: PowerShell
 ms.topic: sample
 ms.tgt_pltfrm: sql-database
 ms.workload: database
-ms.date: 05/23/2017
+ms.date: 06/23/2017
 ms.author: janeng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 5bb1f0b4b6e548cf4164dae55d13cbebb660232f
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 228772ff6710596c916165a132db31f449d0a327
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/28/2017
 
 ---
 
-# <a name="configure-sql-database-auditing-and-threat-detection-using-powershell"></a>使用 PowerShell 設定 SQL Database 稽核與威脅偵測
+# <a name="use-powershell-to-configure-sql-database-auditing-and-threat-detection"></a>使用 PowerShell 設定 SQL Database 稽核與威脅偵測
 
-此範例 PowerShell 指令碼會設定 SQL Database 稽核與威脅偵測。 
+此 PowerShell 指令碼範例會設定 SQL Database 稽核與威脅偵測。 
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 

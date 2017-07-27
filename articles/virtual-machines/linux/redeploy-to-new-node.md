@@ -12,17 +12,18 @@ ms.devlang: azurecli
 ms.topic: support-article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 12/16/2016
+ms.date: 06/23/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: eeb1c6f95a254245d5598f56fb615e1c83de23d5
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
+ms.openlocfilehash: 7a8653a82775e718c38f65f246d997ba61f99d58
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/26/2017
 
 
 ---
 # <a name="redeploy-linux-virtual-machine-to-new-azure-node"></a>將 Linux 虛擬機器重新部署至新的 Azure 節點
-如果您在 Azure 中進行對 Linux 虛擬機器 (VM) 的 SSH 或應用程式存取疑難排解時一直遇到問題，重新部署 VM 也許可以解決。 重新部署 VM 時會將 VM 移到 Azure 基礎結構內的新節點，然後重新開啟它的電源，保留所有組態選項和相關聯的資源。 本文將說明如何使用 Azure CLI 或 Azure 入口網站來重新部署 VM。
+如果您在 Azure 中進行對 Linux 虛擬機器 (VM) 的 SSH 或應用程式存取疑難排解時遇到問題，重新部署 VM 也許可以解決。 重新部署 VM 時會將 VM 移到 Azure 基礎結構內的新節點，然後重新開啟它的電源。 您所有組態選項和相關聯的資源都會加以保留。 本文將說明如何使用 Azure CLI 或 Azure 入口網站來重新部署 VM。
 
 > [!NOTE]
 > 重新部署 VM 之後，暫存磁碟會遺失，而系統會更新與虛擬網路介面關聯的動態 IP 位址。 
@@ -33,19 +34,19 @@ ms.lasthandoff: 04/03/2017
 - [Azure CLI 1.0](#azure-cli-10)
 - [Azure 入口網站](#using-azure-portal)
 
-## <a name="azure-cli-20"></a>Azure CLI 2.0
+## <a name="use-the-azure-cli-20"></a>使用 Azure CLI 2.0
 請安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
 
-使用 [az vm redeploy](/cli/azure/vm#redeploy) 來重新部署 VM。 下列範例會重新部署名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
+使用 [az vm redeploy](/cli/azure/vm#redeploy) 來重新部署 VM。 下列範例會將名為 *myResourceGroup* 資源群組中名為 *myVM* 的 VM 重新部署：
 
 ```azurecli
 az vm redeploy --resource-group myResourceGroup --name myVM 
 ```
 
-## <a name="azure-cli-10"></a>Azure CLI 1.0
+## <a name="use-the-azure-cli-10"></a>使用 Azure CLI 1.0
 安裝[最新的 Azure CLI 1.0](../../cli-install-nodejs.md)登入 Azure 帳戶，然後確定您處於 Resource Manager 模式 (`azure config mode arm`)。
 
-下列範例會重新部署名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
+下列範例會將名為 *myResourceGroup* 資源群組中名為 *myVM* 的 VM 重新部署：
 
 ```azurecli
 azure vm redeploy --resource-group myResourceGroup --vm-name myVM 

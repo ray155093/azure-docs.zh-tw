@@ -15,10 +15,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 01/19/2017
 ms.author: yuaxu
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 029401a1884aebf0625ad8d68410dcdcd491d0ad
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 532ff423ff53567b6ce40c0ea7ec09a689cee1e7
+ms.openlocfilehash: c8592ea38d62213327549583a1e931ea682ee56e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/06/2017
 
 
 ---
@@ -46,7 +47,7 @@ Azure 通知中樞有兩個資源層級：中樞和命名空間。 中樞是單�
 以基本和標準通知中樞層級來說，若應用程式已正確設定，則可傳送推播通知或執行註冊管理作業的時間至少有 99.9 %。 若要深入了解 SLA，請前往[通知中樞 SLA](https://azure.microsoft.com/support/legal/sla/notification-hubs/) 頁面。
 
 > [!NOTE]
-> 因為推播通知依存於第三方平台通知系統 (如 Apple APNS 和 Google FCM)，因此這些訊息的傳遞沒有 SLA 保證。 通知中樞分批將訊息傳送至平台通知系統 (SLA 保證) 後，就由平台通知系統負責傳遞推播 (無 SLA 保證)。
+> 因為推播通知依存於第三方平台通知系統 (如 Apple APNS 和 Google FCM)，因此這些訊息的傳遞沒有 SLA 保證。 通知中樞將批次傳送至平台通知系統 (SLA 保證) 後，就由平台通知系統負責傳遞推播 (無 SLA 保證)。
 
 ### <a name="which-customers-are-using-notification-hubs"></a>客戶如何使用通知中樞？
 許多客戶都使用通知中樞。 此處列出一些值得注意的︰

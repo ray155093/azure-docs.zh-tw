@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/31/2016
 ms.author: saurinsh
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 21078a82e979af251a08bca70d623c80949d064a
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 9f6de5b516da110b93a1e0cddf835b2bcec77bb7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -29,8 +30,9 @@ ms.lasthandoff: 03/25/2017
 
 > [!NOTE]
 > 此預覽中所述的新功能僅適用於 Hive 工作負載之以 Linux 為基礎的 HDInsight 叢集。 其他工作負載 (例如 HBase、Spark、Storm 和 Kafka) 將在未來版本中啟用。
->
->
+
+> [!IMPORTANT]
+> Oozie 未在已加入網域的 HDInsight 上啟用。
 
 ## <a name="benefits"></a>優點
 企業安全性包含四大要件 – 周邊安全性、驗證、授權和加密。

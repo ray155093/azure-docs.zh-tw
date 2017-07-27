@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 691caf95971ccdd37b12bbc178627f25b228a782
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
+ms.openlocfilehash: ecde5dd3211bfbb290e6910d7d55136d079c6cf3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/26/2017
 
 
 ---
@@ -57,9 +58,13 @@ Azure 會將映像儲存在 [映像] 底下，連同您已上傳的任何映像�
 4. 輸入 **Exit** 關閉 SSH 用戶端。
 
    > [!NOTE]
-   > 其餘步驟會假設您已經在用戶端電腦上[安裝 Azure CLI](../../../cli-install-nodejs.md) 。 您也可以在 [Azure 傳統入口網站][Azure classic portal]中完成接下來的所有步驟。
+   > 其餘步驟會假設您已經在用戶端電腦上[安裝 Azure CLI](../../../cli-install-nodejs.md) 。 您也可以在 [Azure 入口網站](http://portal.azure.com)中完成接下來的所有步驟。
 
 5. 從用戶端電腦，開啟 Azure CLI 並登入您的 Azure 訂用帳戶。 如需詳細資料，請閱讀[從 Azure CLI 連接到 Azure 訂用帳戶](../../../xplat-cli-connect.md)。
+
+   > [!NOTE]
+   > 在 Azure 入口網站中，登入入口網站。
+
 6. 請確定您是處於服務管理模式中：
 
     ```azurecli
@@ -71,9 +76,10 @@ Azure 會將映像儲存在 [映像] 底下，連同您已上傳的任何映像�
     ```azurecli
     azure vm shutdown myVM
     ```
+   如有需要，您可以使用 `azure vm list`，檢視在您的訂用帳戶中建立的所有 VM
 
    > [!NOTE]
-   > 您可以使用 `azure vm list`，檢視在您的訂用帳戶中建立的所有 VM。
+   > 如果您使用 Azure 入口網站，請選取 VM，然後按一下 [停止] 來關閉 VM。
 
 8. 當 VM 停止時，擷取映像。 下列範例會擷取名為 `myVM` 的 VM，並建立名為 `myNewVM` 的一般化映像：
 
@@ -82,6 +88,9 @@ Azure 會將映像儲存在 [映像] 底下，連同您已上傳的任何映像�
     ```
 
     `-t` 子命令會刪除原本的虛擬機器。
+
+    > [!NOTE]
+    > 在 Azure 入口網站中，您可以從中樞功能表選取 [映像] 來擷取映像。 您需要提供映像的下列資訊：名稱、資源群組、位置、作業系統類型和儲存體 Blob 路徑。
 
 9. 新的映像現在可從映像清單中取得，且可用來設定任何新的 VM。 您可以使用下列命令進行檢視：
 
@@ -96,11 +105,10 @@ Azure 會將映像儲存在 [映像] 底下，連同您已上傳的任何映像�
 ## <a name="next-steps"></a>後續步驟
 映像已準備好用來建立 VM。 您可以使用 Azure CLI 命令 `azure vm create`，並提供您已建立的映像名稱。 如需詳細資訊，請參閱[搭配使用 Azure CLI 與傳統部署模型](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
 
-或者，您也可以透過 [Azure 傳統入口網站][Azure classic portal]，使用 [從資源庫] 方法並選取您已建立的映像來建立自訂 VM。 如需詳細資訊，請參閱[如何建立自訂 VM][How to Create a Custom Virtual Machine]。
+或者，您也可以透過 [Azure 入口網站](http://portal.azure.com)，使用 [映像] 方法並選取您已建立的映像來建立自訂 VM。 如需詳細資訊，請參閱[如何建立自訂 VM][How to Create a Custom Virtual Machine]。
 
 **另請參閱：** [Azure Linux 代理程式使用者指南](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-[Azure classic portal]:http://manage.windowsazure.com
 [About Virtual Machine Images in Azure]:../../virtual-machines-linux-classic-about-images.md
 [How to Create a Custom Virtual Machine]:create-custom.md
 [How to Attach a Data Disk to a Virtual Machine]:attach-disk.md

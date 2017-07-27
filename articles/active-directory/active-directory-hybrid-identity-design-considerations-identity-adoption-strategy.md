@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/14/2017
+ms.date: 07/18/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 8a4e26b7ccf4da27b58a6d0bcfe98fc2b5533df8
-ms.openlocfilehash: 47fb1724ac72df8b83012bcacdc435ea847547da
-
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 2c57b394beb6382807a4c8c83de975a0ae68d726
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="define-a-hybrid-identity-adoption-strategy"></a>定義混合式身分識別採用策略
@@ -50,9 +51,9 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 
 | 策略 | 優點 | 缺點 |
 | --- | --- | --- |
-| **雲端身分識別** |在小型組織中易於管理。 <br> 不需要在內部部署安裝 - 不需要額外的硬體<br>使用者離職時輕易停用 |使用者存取雲端中的工作負載時必須登入  <br>  雲端和內部部署身分識別的密碼可能相同，也可能不相同 |
-| **已同步處理** |內部部署密碼會驗證內部部署和雲端目錄  <br>對小型、中型或大型組織來說易於管理 <br>使用者可以對一些資源進行單一登入 (SSO) <br> Microsoft 對於同步處理的慣用方法 <br>  易於管理 |基於公司的特定原則，有些客戶可能不願意將目錄與雲端同步 |
-| **同盟** |使用者可以有單一登入 (SSO)  <br>如果使用者終止或離開時，可以將帳戶立即停用並撤銷存取權。<br>  支援同步處理所無法解決的進階案例 |安裝和設定的詳細步驟 <br> 較高的維護 <br> STS 基礎結構可能需要額外的硬體 <br> 可能需要額外的硬體來安裝同盟伺服器。如果使用 AD FS，則需要額外的軟體 <br> 需要大量的設定才能使用 SSO <br> 重大失敗點是，同盟伺服器關閉時使用者會無法驗證 |
+| **雲端身分識別** |在小型組織中易於管理。 <br> 不需要在內部部署安裝 - 不需要額外的硬體<br>使用者離職時輕易停用 |使用者存取雲端中的工作負載時必須登入  <br> 雲端和內部部署身分識別的密碼可能相同，也可能不相同 |
+| **已同步處理** |內部部署密碼會驗證內部部署和雲端目錄  <br>對小型、中型或大型組織來說易於管理 <br>使用者可以對一些資源進行單一登入 (SSO) <br> Microsoft 對於同步處理的慣用方法 <br> 易於管理 |基於公司的特定原則，有些客戶可能不願意將目錄與雲端同步 |
+| **同盟** |使用者可以有單一登入 (SSO)  <br>如果使用者終止或離開時，可以將帳戶立即停用並撤銷存取權。<br> 支援同步處理所無法解決的進階案例 |安裝和設定的詳細步驟 <br> 較高的維護 <br> STS 基礎結構可能需要額外的硬體 <br> 可能需要額外的硬體來安裝同盟伺服器。如果使用 AD FS，則需要額外的軟體 <br> 需要大量的設定才能使用 SSO <br> 重大失敗點是，同盟伺服器關閉時使用者會無法驗證 |
 
 ### <a name="client-experience"></a>用戶端體驗
 您使用的策略決定使用者的登入體驗。  下表提供使用者所預期之登入體驗的相關資訊。  請注意，所有同盟識別提供者並非在所有案例中都支援 SSO。
@@ -176,7 +177,7 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 
 多重要素設計選項：
 
-| 要保護的資產 | 雲端 MFA | 內部部署 MFA |
+| 要保護的資產 | 雲端 MFA | MFA 內部部署 |
 | --- | --- | --- |
 | Microsoft 應用程式 |yes |yes |
 | 應用程式資源庫中的 SaaS 應用程式 |yes |yes |
@@ -212,10 +213,5 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

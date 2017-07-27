@@ -3,7 +3,7 @@ title: "從行動服務升級為 Azure App Service - Node.js"
 description: "了解如何輕鬆地將您的行動服務應用程式升級為 App Service 行動 App"
 services: app-service\mobile
 documentationcenter: 
-author: adrianhall
+author: ggailey777
 manager: yochayk
 editor: 
 ms.assetid: c58f6df0-5aad-40a3-bddc-319c378218e3
@@ -13,11 +13,12 @@ ms.tgt_pltfrm: mobile
 ms.devlang: node
 ms.topic: article
 ms.date: 10/01/2016
-ms.author: adrianha
-translationtype: Human Translation
+ms.author: glenga
+ms.translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: 879854c4afc6fa5ac31f8e18dad0164e77f190cd
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/08/2016
 
 ---
 # <a name="upgrade-your-existing-nodejs-azure-mobile-service-to-app-service"></a>將您現有的 Node.js Azure 行動服務升級為 App Service
@@ -32,8 +33,8 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 
 > [!TIP]
 > 建議您在升級之前，先 [執行移轉](app-service-mobile-migrating-from-mobile-services.md) 。 如此一來，您就能夠在同一個 App Service 方案中放置兩個版本的應用程式，而不需支付額外成本。
-> 
-> 
+>
+>
 
 ### <a name="improvements-in-mobile-apps-nodejs-server-sdk"></a>Mobile Apps Node.js 伺服器 SDK 中的改進功能
 升級至新的 [Mobile Apps SDK](https://www.npmjs.com/package/azure-mobile-apps) 提供了許多改進功能，包括：
@@ -43,7 +44,7 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 * 您現在可以將網站和您的行動後端裝載在一起。同樣地，很容易就能將 Azure Mobile SDK 新增至任何現有的 express.v4 應用程式。
 * Mobile Apps SDK 是建置來進行跨平台和本機開發，可在 Windows、Linux 和 OSX 平台上進行本機開發與執行。 現在常見的節點開發技術非常容易使用，像是在部署之前執行 [Mocha](https://mochajs.org/) 測試。
 
-## <a name="a-nameoverviewabasic-upgrade-overview"></a><a name="overview"></a>基本升級概觀
+## <a name="overview"></a>基本升級概觀
 為了協助升級 Node.js 後端，Azure App Service 提供了相容性套件。  在升級之後，您將會擁有可部署到新的 App Service 網站的新網站。
 
 行動服務用戶端 SDK 與新的 Mobile Apps 伺服器 SDK「不」  相容。 為了提供您應用程式的服務持續性，您不應該將變更發佈至目前正在服務已發佈之用戶端的網站。 而是應該建立新的行動應用程式做為重複項目。 您可以在同一個 App Service 方案中放置此應用程式，以避免產生額外的財務成本。
@@ -61,12 +62,12 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 
 當已移轉的原始行動服務沒有任何流量時，就能加以刪除。
 
-## <a name="a-nameinstall-npm-packagea-install-the-pre-requisites"></a><a name="install-npm-package"></a> 安裝必要元件
+## <a name="install-npm-package"></a> 安裝必要元件
 您應該在本機電腦上安裝 [節點]。  您也應該安裝相容性套件。  安裝了節點之後，您可以從新的 cmd 或 PowerShell 命令提示字元執行下列命令︰
 
 ```npm i -g azure-mobile-apps-compatibility```
 
-## <a name="a-nameobtain-ams-scriptsa-obtain-your-azure-mobile-services-scripts"></a><a name="obtain-ams-scripts"></a> 取得 Azure 行動服務指令碼
+## <a name="obtain-ams-scripts"></a> 取得 Azure 行動服務指令碼
 * 登入 [Azure 入口網站]。
 * 使用 [所有資源] 或 [應用程式服務]，尋找您的行動服務網站。
 * 在網站內按一下 [工具] -> [Kudu] -> [執行] 以開啟 Kudu 網站。
@@ -76,14 +77,14 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 
 這會下載 ZIP 格式的指令碼。  在本機電腦上建立新的目錄，並在該目錄內解壓縮 `scripts.ZIP` 檔案。  這會建立 `scripts` 目錄。
 
-## <a name="a-namescaffold-appa-scaffold-the-new-azure-mobile-apps-backend"></a><a name="scaffold-app"></a> 建立新的 Azure Mobile Apps 後端的結構
+## <a name="scaffold-app"></a> 建立新的 Azure Mobile Apps 後端的結構
 從包含指令碼目錄的目錄執行下列命令︰
 
 ```scaffold-mobile-app scripts out```
 
 這會在 `out` 目錄中建立已建立結構的 Azure Mobile Apps 後端。  雖然並非必要，但最好將 `out` 目錄放置到您選擇的原始程式碼儲存機制。
 
-## <a name="a-namedeploy-ama-appa-deploy-your-azure-mobile-apps-backend"></a><a name="deploy-ama-app"></a> 部署 Azure Mobile Apps 後端
+## <a name="deploy-ama-app"></a> 部署 Azure Mobile Apps 後端
 在部署期間，您必須執行下列動作︰
 
 1. 在 [Azure 入口網站]中建立新的行動應用程式。
@@ -95,12 +96,12 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 ### <a name="create-a-new-mobile-app"></a>建立新的行動 App
 1. 登入 [Azure 入口網站]。
 2. 按一下 [+ 新增]  >  [Web + 行動]  >  [行動應用程式]，然後為您的行動應用程式後端提供名稱。
-3. 針對 [資源群組] ，選取現有的資源群組或建立新的群組 (使用與應用程式相同的名稱)。 
-   
+3. 針對 [資源群組] ，選取現有的資源群組或建立新的群組 (使用與應用程式相同的名稱)。
+
     您可以選取另一個 App Service 方案或建立新方案。 如需有關應用程式服務方案以及如何在不同的定價層和您所要的位置建立新方案的詳細資訊，請參閱 [Azure App Service 方案深入概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。
-4. 若為 **App Service 方案**，則會選取預設方案 (在 [標準層](https://azure.microsoft.com/pricing/details/app-service/))。 您也可以選取不同的方案，或[建立新的方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md#create-an-app-service-plan)。 App Service 方案的設定會決定與您應用程式相關聯的 [位置、功能、成本和計算資源](https://azure.microsoft.com/pricing/details/app-service/) 。 
-   
-    在決定方案之後，按一下 [建立] 。 這會建立行動應用程式後端。 
+4. 若為 **App Service 方案**，則會選取預設方案 (在 [標準層](https://azure.microsoft.com/pricing/details/app-service/))。 您也可以選取不同的方案，或[建立新的方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md#create-an-app-service-plan)。 App Service 方案的設定會決定與您應用程式相關聯的 [位置、功能、成本和計算資源](https://azure.microsoft.com/pricing/details/app-service/) 。
+
+    在決定方案之後，按一下 [建立] 。 這會建立行動應用程式後端。
 
 ### <a name="run-createviewssql"></a>執行 CreateViews.SQL
 已建立結構的應用程式包含稱為 `createViews.sql`的檔案。  您必須對目標資料庫執行這個指令碼。  目標資料庫的連接字串可取自已移轉的行動服務的 [設定] 刀鋒視窗底下的 [連接字串]。  其名稱為 `MS_TableConnectionString`。
@@ -123,10 +124,11 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 ### <a name="set-up-authentication"></a>設定驗證
 Azure Mobile Apps 可讓您在服務內設定 Azure Active Directory、Facebook、Google、Microsoft 和 Twitter 驗證。  自訂驗證則必須另外開發。  如需詳細資訊，請參閱[驗證概念]文件和[驗證快速入門]文件。  
 
-## <a name="a-nameupdating-clientsaupdate-mobile-clients"></a><a name="updating-clients"></a>更新行動用戶端
+## <a name="updating-clients"></a>更新行動用戶端
 在您擁有可運作的行動 App 後端之後，就能在取用它的新版用戶端應用程式上運作。 Mobile Apps 也會包含新版的用戶端 SDK，而且與上述的伺服器升級類似，您必須先移除所有對行動服務 SDK 的參考，然後安裝 Mobile Apps 版本。
 
-版本間的其中一個主要變更是建構函式不再需要應用程式金鑰。 您現在只需傳入行動 App 的 URL。 例如，在 .NET 用戶端上， `MobileServiceClient` 建構函式現在是：
+版本間的其中一個主要變更是建構函式不再需要應用程式金鑰。
+您現在只需傳入行動 App 的 URL。 例如，在 .NET 用戶端上， `MobileServiceClient` 建構函式現在是：
 
         public static MobileServiceClient MobileService = new MobileServiceClient(
             "https://contoso.azurewebsites.net" // URL of the Mobile App
@@ -176,9 +178,4 @@ Azure Mobile Apps 可讓您在服務內設定 Azure Active Directory、Facebook�
 [Microsoft SQL Server 2014 Express]: http://www.microsoft.com/en-us/server-cloud/Products/sql-server-editions/sql-server-express.aspx
 [ExpressJS Middleware]: http://expressjs.com/guide/using-middleware.html
 [Winston]: https://github.com/winstonjs/winston
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

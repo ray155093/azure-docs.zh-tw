@@ -1,6 +1,6 @@
 ---
 title: "Azure 服務匯流排驗證和授權 | Microsoft Docs"
-description: "共用存取簽章 (SAS) 驗證的概觀。"
+description: "使用共用存取簽章 (SAS) 驗證向服務匯流排驗證應用程式。"
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -12,16 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/21/2017
+ms.date: 06/27/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 4eaae725c62f66de1b50fd2c7094f3e6e89281be
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 5ed7558cfff9991734e909e06e8bac9181131381
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
 # <a name="service-bus-authentication-and-authorization"></a>服務匯流排驗證和授權
+
 應用程式可以使用共用存取簽章 (SAS) 驗證，或透過 Azure Active Directory 存取控制 (也稱為存取控制服務或 ACS) 向 Azure 服務匯流排進行驗證。 共用存取簽章 (SAS) 驗證可讓應用程式使用在命名空間或在與特定權限相關聯的實體上設定的存取金鑰，向服務匯流排進行驗證。 您可以接著使用此金鑰來產生共用存取簽章權杖，以便用戶端用來向服務匯流排進行驗證。
 
 > [!IMPORTANT]
@@ -32,7 +34,7 @@ ms.lasthandoff: 04/27/2017
 
 您可以在服務匯流排命名空間上設定 SAS 的金鑰。 金鑰套用至該命名空間中的所有訊息實體。 您也可以在服務匯流排佇列和主題上設定金鑰。 [Azure 轉送](../service-bus-relay/relay-authentication-and-authorization.md)上也支援 SAS。
 
-若要使用 SAS，您可以在命名空間、佇列或主題上設定包含下列項目的 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件：
+若要使用 SAS，您可以在命名空間、佇列或主題上設定 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件。 此規則由下列元素組成：
 
 * *KeyName* 。
 * *PrimaryKey* 是用來簽署/驗證 SAS 權杖的密碼編譯金鑰。
@@ -67,6 +69,7 @@ New-AzureSBNamespace <namespaceName> "<Region>” -CreateACSNamespace $false
 服務匯流排的 ACS 驗證支援包含在 Azure .NET SDK 2.0 版或更新版本中。 此驗證包括 [SharedSecretTokenProvider](/dotnet/api/microsoft.servicebus.sharedsecrettokenprovider)的支援。 所有接受連接字串做為參數的 API 包括 ACS 連接字串的支援。
 
 ## <a name="next-steps"></a>後續步驟
+
 如需 SAS 的詳細資料，請繼續閱讀[使用共用存取簽章的服務匯流排驗證](service-bus-sas.md)。
 
 如需 Azure 轉送驗證和授權的相關對應資訊，請參閱 [Azure 轉送驗證和授權](../service-bus-relay/relay-authentication-and-authorization.md)。 

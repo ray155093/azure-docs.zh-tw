@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/26/2017
+ms.date: 06/12/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 34fc513b6d4408e341fc5a723ca743daee39b85d
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: 74982663b0501d3a5c7973a5f383e14e0f964696
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -58,7 +58,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 |:--- |:--- |:--- |:--- |
 | convertToArray |是 |整數、字串、陣列或物件 |要轉換為陣列的值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+陣列。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何使用不同類型的陣列函式。
 
@@ -99,9 +103,13 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| intOutput | 陣列 | [1] |
+| stringOutput | 陣列 | ["a"] |
+| objectOutput | 陣列 | [{"a": "b", "c": "d"}] |
 
 <a id="coalesce" />
 
@@ -117,7 +125,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | arg1 |是 |整數、字串、陣列或物件 |要測試是否為 null 的第一個值。 |
 | 其他引數 |否 |整數、字串、陣列或物件 |要測試是否為 null 的其他值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+第一個非 null 參數的值，此值可為字串、整數、陣列或物件。 如果所有參數都是 null，則傳回 null。 
+
+### <a name="example"></a>範例
 
 下列範例顯示不同的聯合用法所得到的輸出。
 
@@ -128,7 +140,14 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
     "parameters": {
         "objectToTest": {
             "type": "object",
-            "defaultValue": {"first": null, "second": null}
+            "defaultValue": {
+                "null1": null, 
+                "null2": null,
+                "string": "default",
+                "int": 1,
+                "object": {"first": "default"},
+                "array": [1]
+            }
         }
     },
     "resources": [
@@ -136,27 +155,37 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
     "outputs": {
         "stringOutput": {
             "type": "string",
-            "value": "[coalesce(parameters('objectToTest').first, parameters('objectToTest').second, 'fallback')]"
+            "value": "[coalesce(parameters('objectToTest').null1, parameters('objectToTest').null2, parameters('objectToTest').string)]"
         },
         "intOutput": {
             "type": "int",
-            "value": "[coalesce(parameters('objectToTest').first, parameters('objectToTest').second, 1)]"
+            "value": "[coalesce(parameters('objectToTest').null1, parameters('objectToTest').null2, parameters('objectToTest').int)]"
         },
         "objectOutput": {
             "type": "object",
-            "value": "[coalesce(parameters('objectToTest').first, parameters('objectToTest').second, parameters('objectToTest'))]"
+            "value": "[coalesce(parameters('objectToTest').null1, parameters('objectToTest').null2, parameters('objectToTest').object)]"
         },
         "arrayOutput": {
             "type": "array",
-            "value": "[coalesce(parameters('objectToTest').first, parameters('objectToTest').second, array(1))]"
+            "value": "[coalesce(parameters('objectToTest').null1, parameters('objectToTest').null2, parameters('objectToTest').array)]"
+        },
+        "emptyOutput": {
+            "type": "bool",
+            "value": "[empty(coalesce(parameters('objectToTest').null1, parameters('objectToTest').null2))]"
         }
     }
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-第一個非 null 參數的值，此值可為字串、整數、陣列或物件。 如果所有參數都是 null，則傳回 null。 
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| stringOutput | String | 預設值 |
+| intOutput | int | 1 |
+| objectOutput | Object | {"first": "default"} |
+| arrayOutput | 陣列 | [1] |
+| emptyOutput | Bool | True |
 
 <a id="concat" />
 
@@ -174,7 +203,10 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 
 此函式可以接受任意數目的引數，並且可針對參數接受字串或陣列。
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+串連值的字串或陣列。
+
+### <a name="example"></a>範例
 
 下一個範例顯示如何結合兩個陣列。
 
@@ -211,6 +243,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
+上述範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| return | 陣列 | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
+
 下列範例顯示如何結合兩個字串值並傳回串連字串。
 
 ```json
@@ -226,15 +264,18 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
     "resources": [],
     "outputs": {
         "concatOutput": {
-            "value": "[concat(parameters('prefix'), uniqueString(resourceGroup().id))]",
+            "value": "[concat(parameters('prefix'), '-', uniqueString(resourceGroup().id))]",
             "type" : "string"
         }
     }
 }
 ```
 
-### <a name="return-value"></a>傳回值
-串連值的字串或陣列。
+上述範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| concatOutput | String | prefix-5yj4yjf5mbg72 |
 
 <a id="contains" />
 
@@ -250,7 +291,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | container |是 |陣列、物件或字串 |其中包含要尋找之值的值。 |
 | itemToFind |是 |字串或整數 |要尋找的值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+找到項目則傳回 **True**，否則會傳回 **False**。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何使用不同類型的 contains：
 
@@ -303,9 +348,16 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-找到項目則傳回 **True**，否則傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| stringTrue | Bool | True |
+| stringFalse | Bool | False |
+| objectTrue | Bool | True |
+| objectFalse | Bool | False |
+| arrayTrue | Bool | True |
+| arrayFalse | Bool | False |
 
 <a id="createarray" />
 
@@ -321,7 +373,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | arg1 |是 |字串、整數、陣列或物件 |陣列中的第一個值。 |
 | 其他引數 |否 |字串、整數、陣列或物件 |陣列中的其他值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+陣列。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何使用不同類型的 createArray：
 
@@ -362,9 +418,14 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| stringArray | 陣列 | ["a", "b", "c"] |
+| intArray | 陣列 | [1, 2, 3] |
+| objectArray | 陣列 | [{"one": "a", "two": "b", "three": "c"}] |
+| arrayArray | 陣列 | [["one", "two", "three"]] |
 
 <a id="empty" />
 
@@ -380,7 +441,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 |:--- |:--- |:--- |:--- |
 | itemToTest |是 |陣列、物件或字串 |要檢查其是否為空白的值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+如果值空白則傳回 **True**，否則會傳回 **False**。
+
+### <a name="example"></a>範例
 
 下列範例會檢查陣列、物件和字串是否空白。
 
@@ -421,9 +486,13 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-如果值空白則傳回 **True**，否則會傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayEmpty | Bool | True |
+| objectEmpty | Bool | True |
+| stringEmpty | Bool | True |
 
 <a id="first" />
 
@@ -438,7 +507,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |陣列或字串 |要擷取其第一個元素或字元的值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+陣列中第一個元素的類型 (字串、整數、陣列或物件) 或字串的第一個字元。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 first 函式與陣列和字串。
 
@@ -467,9 +540,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列中第一個元素的類型 (字串、整數、陣列或物件) 或第一個字元的字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | String | one |
+| stringOutput | String | O |
 
 <a id="intersection" />
 
@@ -486,7 +562,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | arg2 |是 |陣列或物件 |要用來尋找共同元素的第二個值。 |
 | 其他引數 |否 |陣列或物件 |要用來尋找共同元素的其他值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+具有共同元素的陣列或物件。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 intersection 與陣列和物件︰
 
@@ -527,9 +607,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-具有共同元素的陣列或物件。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| objectOutput | Object | {"one": "a", "three": "c"} |
+| arrayOutput | 陣列 | ["two", "three"] |
 
 <a id="last" />
 
@@ -544,7 +627,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |陣列或字串 |要擷取其最後一個元素或字元的值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+陣列中最後一個元素的類型 (字串、整數、陣列或物件) 或字串的最後一個字元。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 last 函式與陣列和字串。
 
@@ -573,9 +660,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列中最後一個元素的類型 (字串、整數、陣列或物件) 或最後一個字元的字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | String | three |
+| stringOutput | String | e |
 
 <a id="length" />
 
@@ -590,7 +680,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |陣列或字串 |要用來取得元素數目的陣列，或用來取得字元數目的字串。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+整數。 
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 length 與陣列和字串：
 
@@ -626,6 +720,13 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
+上述範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayLength | int | 3 |
+| stringLength | int | 13 |
+
 建立資源時，您可在陣列中使用此函式指定反覆運算的數量。 下列範例中，參數 **siteNames** 會參考在建立網站時要使用的名稱陣列。
 
 ```json
@@ -636,10 +737,6 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 ```
 
 如需有關在此陣列中使用函式的詳細資訊，請參閱 [在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
-
-### <a name="return-value"></a>傳回值
-
-整數。 
 
 <a id="min" />
 
@@ -654,7 +751,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |整數的陣列，或以逗號分隔的整數清單 |要用來取得最小值的集合。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+代表最小值的整數。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 min 與陣列和整數清單：
 
@@ -682,9 +783,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-代表最小值的整數。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | int | 0 |
+| intOutput | int | 0 |
 
 <a id="max" />
 
@@ -699,7 +803,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |整數的陣列，或以逗號分隔的整數清單 |要用來取得最大值的集合。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+代表最大值的整數。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 max 與陣列和整數清單：
 
@@ -727,9 +835,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-代表最大值的整數。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | int | 5 |
+| intOutput | int | 5 |
 
 <a id="range" />
 
@@ -745,7 +856,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | startingInteger |是 |int |陣列中的第一個整數。 |
 | numberofElements |是 |int |陣列中的整數數目。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+整數陣列。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何使用 range 函式：
 
@@ -773,9 +888,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-整數陣列。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| rangeOutput | 陣列 | [5, 6, 7] |
 
 <a id="skip" />
 
@@ -791,7 +908,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | originalValue |是 |陣列或字串 |要用於略過的陣列或字串。 |
 | numberToSkip |是 |int |要略過的元素或字元數。 如果此值為 0 或更小的值，則會傳回值內的所有元素或字元。 如果此值大於陣列或字串的長度，則會傳回空白陣列或字串。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+陣列或字串。
+
+### <a name="example"></a>範例
 
 下列範例會略過陣列中指定的元素數目，以及字串中指定的字元數。
 
@@ -835,9 +956,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列或字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | 陣列 | ["three"] |
+| stringOutput | String | two three |
 
 <a id="take" />
 
@@ -853,7 +977,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | originalValue |是 |陣列或字串 |要從其中擷取元素的陣列或字串。 |
 | numberToTake |是 |int |要擷取的元素或字元數。 如果此值為 0 或更小的值，則會傳回空白陣列或字串。 如果此值大於給定陣列或字串的長度，則會傳回陣列或字串中的所有元素。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+陣列或字串。
+
+### <a name="example"></a>範例
 
 下列範例會從陣列中取得指定的元素數目，以及從字串中取得指定的字元數目。
 
@@ -897,9 +1025,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列或字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | 陣列 | ["one", "two"] |
+| stringOutput | String | on |
 
 <a id="union" />
 
@@ -916,7 +1047,11 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | arg2 |是 |陣列或物件 |用來聯結元素的第二個值。 |
 | 其他引數 |否 |陣列或物件 |用來聯結元素的其他值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+陣列或物件。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 union 與陣列和物件︰
 
@@ -931,7 +1066,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
         },
         "secondObject": {
             "type": "object",
-            "defaultValue": {"four": "d", "five": "e", "six": "f"}
+            "defaultValue": {"three": "c", "four": "d", "five": "e"}
         },
         "firstArray": {
             "type": "array",
@@ -939,7 +1074,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
         },
         "secondArray": {
             "type": "array",
-            "defaultValue": ["four", "five"]
+            "defaultValue": ["three", "four"]
         }
     },
     "resources": [
@@ -957,9 +1092,12 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列或物件。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| objectOutput | Object | {"one": "a", "two": "b", "three": "c", "four": "d", "five": "e"} |
+| arrayOutput | 陣列 | ["one", "two", "three", "four"] |
 
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 Azure Resource Manager 範本中各區段的說明，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。

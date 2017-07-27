@@ -12,14 +12,14 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 05/24/2017
+ms.date: 06/12/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: c851e01fb8884b2f601986207d730efb338422a8
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: c1f0bbfd1bea292eedaaf8904a2f60e9415dcbcf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -40,7 +40,7 @@ ms.lasthandoff: 05/31/2017
 
 <tr><td>**SDK 下載**</td><td>[NuGet](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core/)</td></tr>
 
-<tr><td>**API 文件**</td><td>[.NET API 參考文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)</td></tr>
+<tr><td>**API 文件**</td><td>[.NET API 參考文件](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)</td></tr>
 
 <tr><td>**範例**</td><td>[.NET 程式碼範例](documentdb-dotnet-samples.md)</td></tr>
 
@@ -48,7 +48,7 @@ ms.lasthandoff: 05/31/2017
 
 <tr><td>**Web 應用程式教學課程**</td><td>[使用 DocumentDB 開發 Web 應用程式](documentdb-dotnet-application.md)</td></tr>
 
-<tr><td>**目前支援的架構**</td><td>[.NET Standard 1.6](https://www.nuget.org/packages/NETStandard.Library)</td></tr>
+<tr><td>**目前支援的架構**</td><td>[.NET Standard 1.6 和 .NET Standard 1.5](https://www.nuget.org/packages/NETStandard.Library)</td></tr>
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
@@ -56,16 +56,24 @@ ms.lasthandoff: 05/31/2017
 DocumentDB .NET Core SDK 有與最新版 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 類似的功能。
 
 > [!NOTE] 
-> DocumentDB .NET Core SDK 與「通用 Windows 平台」(UWP) 應用程式尚未相容。 如果您有興趣了解可支援 UWP 應用程式的 .NET Core SDK，請傳送電子郵件至 [askdocdb@microsoft.com](mailto:askdocdb@microsoft.com)。
+> DocumentDB .NET Core SDK 與「通用 Windows 平台」(UWP) 應用程式尚未相容。 如果您有興趣了解可支援 UWP 應用程式的 .NET Core SDK，請傳送電子郵件至 [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)。
+
+### <a name="a-name132132"></a><a name="1.3.2"/>1.3.2
+
+*   支援 .NET Standard 1.5 作為其中一個目標架構。
+
+### <a name="a-name131131"></a><a name="1.3.1"/>1.3.1
+
+*   已修正當執行 DocumentDB 查詢時，受影響的 x64 機器不支援 SSE4 指令並且擲回 SEHException 的問題。
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
 
-*    已新增「每分鐘的要求單位 (RU/m)」功能支援。
-*    已新增對新一致性層級 ConsistentPrefix 的支援。
-*    已新增對個別資料分割之查詢計量的支援。
-*    已新增對限制查詢之接續權杖大小的支援。
-*    已新增對失敗要求進行更詳細追蹤的支援。
-*    SDK 中已有一些效能改進。
+*   已新增「每分鐘的要求單位 (RU/m)」功能支援。
+*   已新增對新一致性層級 ConsistentPrefix 的支援。
+*   已新增對個別資料分割之查詢計量的支援。
+*   已新增對限制查詢之接續權杖大小的支援。
+*   已新增對失敗要求進行更詳細追蹤的支援。
+*   SDK 中已有一些效能改進。
 
 ### <a name="a-name122122"></a><a name="1.2.2"/>1.2.2
 
@@ -117,6 +125,8 @@ DocumentDB .NET Core Preview SDK 有與最新版本 [DocumentDB .NET SDK](docume
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.3.2](#1.3.2) |2017 年 6 月 12 日 |--- |
+| [1.3.1](#1.3.1) |2017 年 5 月 23 日 |--- |
 | [1.3.0](#1.3.0) |2017 年 5 月 10 日 |--- |
 | [1.2.2](#1.2.2) |2017 年 4 月 19 日 |--- |
 | [1.2.1](#1.2.1) |2017 年 3 月 29 日 |--- |

@@ -35,7 +35,7 @@
 4. 在 [物件總管] 中，如果您展開 [ **資料庫**]，您會發現新資料庫已建立。
 
 ### <a name="create-a-new-sql-server-login-and-set-permissions"></a>建立新的 SQL Server 登入並且設定權限
-最後，您將會建立新的 SQL Server 登入，具有限制的權限。 您的 Azure 服務會使用此登入而不是內建 sa 登入 (具有伺服器的完整權限)，連接到在內部部署 SQL Server。
+最後，您將會建立新的 SQL Server 登入，具有限制的權限。 您的 Azure 服務會使用此登入而不是內建 sa 登入 (具有伺服器的完整權限)，連線到在內部部署 SQL Server。
 
 1. 在 SQL Server Management Studio 物件總管中，以滑鼠右鍵按一下 [OnPremisesDB] 資料庫，然後按一下 [新增查詢]。
 2. 將下列 TSQL 查詢貼上至查詢視窗。
@@ -64,9 +64,4 @@
        GO  
 3. 在上述指令碼 中，將字串 `<**secure_password**>` 取代為新的 *HybridConnectionsLogin*的安全密碼。
 4. **執行** 查詢以在內部部署資料庫中建立新的登入，並且授與必要的權限。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

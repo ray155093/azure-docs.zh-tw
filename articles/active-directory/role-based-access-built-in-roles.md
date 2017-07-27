@@ -1,9 +1,9 @@
 ---
-title: "Actions 和 NotActions - Azure RBAC 中的角色 | Microsoft Docs"
-description: "本主題說明角色型存取控制 (RBAC) 的內建角色。"
+title: "Actions 和 NotActions - Azure 角色型存取控制 | Microsoft Docs"
+description: "本主題說明角色型存取控制 (RBAC) 的內建角色。 角色會持續新增，因此請查看文件更新時間。"
 services: active-directory
 documentationcenter: 
-author: kgremban
+author: curtand
 manager: femila
 editor: 
 ms.assetid: b547c5a5-2da2-4372-9938-481cb962d2d6
@@ -12,14 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 04/21/2017
-ms.author: kgremban
+ms.date: 06/28/2017
+ms.author: curtand
+ms.reviewer: 
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: a0a3b7ad7757439b5f73c38e759761f671ca2e17
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 7f1aa292e6c15e2702f939b9751fe13a27bc5b7f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/30/2017
 
 ---
 # <a name="built-in-roles-for-azure-role-based-access-control"></a>Azure 角色型存取控制的內建角色
@@ -30,12 +31,12 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 動作會定義您可以對給定資源類型執行的作業類型。 例如：
 - **寫入**可讓您執行 PUT、POST、PATCH 和 DELETE 作業。
-- **讀取**可讓您執行 GET 作業。 
+- **讀取**可讓您執行 GET 作業。
 
-本文只說明現存的不同角色。 但是當您指派角色給使用者時，可以藉由定義範圍來進一步限制所允許的動作。 如果您想要讓某位使用者成為網站參與者，但僅限於某個資源群組，這會很實用。 
+本文只說明現存的不同角色。 但是當您指派角色給使用者時，可以藉由定義範圍來進一步限制所允許的動作。 如果您想要讓某位使用者成為網站參與者，但僅限於某個資源群組，這會很實用。
 
 > [!NOTE]
-> Azure 角色定義不斷地演變。 本文盡可能保持最新內容，但您永遠可以在 Azure PowerShell 中找到最新的角色定義。 使用 [Get-AzureRmRoleDefinition](/powershell/module/azurerm.resources/get-azurermroledefinition) Cmdlet 來列出目前的所有角色。 您可以視情況使用 `(get-azurermroledefinition "<role name>").actions` 或 `(get-azurermroledefinition "<role name>").notactions` 來深入了解特定角色。 使用 [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) 來列出特定 Azure 資源提供者的作業。 
+> Azure 角色定義不斷地演變。 本文盡可能保持最新內容，但您永遠可以在 Azure PowerShell 中找到最新的角色定義。 使用 [Get-AzureRmRoleDefinition](/powershell/module/azurerm.resources/get-azurermroledefinition) Cmdlet 來列出目前的所有角色。 您可以視情況使用 `(get-azurermroledefinition "<role name>").actions` 或 `(get-azurermroledefinition "<role name>").notactions` 來深入了解特定角色。 使用 [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) 來列出特定 Azure 資源提供者的作業。
 
 
 | 角色名稱 | 說明 |
@@ -57,6 +58,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [DNS 區域參與者](#dns-zone-contributor) |可以管理 DNS 區域和記錄 |
 | [Azure Cosmos DB 帳戶參與者](#documentdb-account-contributor) |可以管理 Azure Cosmos DB 帳戶 |
 | [Intelligent Systems 帳戶參與者](#intelligent-systems-account-contributor) |可以管理 Intelligent Systems 帳戶 |
+| 邏輯應用程式參與者 | 可以管理邏輯應用程式的所有層面，但是無法建立新的層面。 |
+| 邏輯應用程式操作員 |可以啟動及停止在邏輯應用程式內定義的工作流程。 |
 | [監視讀取器](#monitoring-reader) |可以讀取所有監視資料 |
 | [監視參與者](#monitoring-contributor) |可以讀取監視資料並編輯監視設定 |
 | [網路參與者](#network-contributor) |可以管理網路資源 |
@@ -67,11 +70,15 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [排程器工作集合參與者](#scheduler-job-collections-contributor) |可以管理排程器工作集合 |
 | [搜尋服務參與者](#search-service-contributor) |可以管理搜尋服務 |
 | [安全性管理員](#security-manager) |可以管理安全性元件、安全性原則及虛擬機器 |
+| [Site Recovery 參與者](#site-recovery-contributor) | 可以管理復原服務保存庫中的 Site Recovery |
+| [Site Recovery 操作員](#site-recovery-operator) | 可以管理復原服務保存庫中 Site Recovery 的容錯移轉和容錯回復作業 |
+| [Site Recovery 讀取者](#site-recovery-reader) | 可以檢視所有 Site Recovery 管理作業  |
 | [SQL DB 參與者](#sql-db-contributor) |可以管理 SQL 資料庫，但是無法管理它們的安全性相關原則 |
 | [SQL 安全性管理員](#sql-security-manager) |可以管理 SQL Server 和資料庫的安全性相關原則 |
 | [SQL Server 參與者](#sql-server-contributor) |可以管理 SQL Server 和資料庫，但是無法管理它們的安全性相關原則 |
 | [傳統儲存體帳戶參與者](#classic-storage-account-contributor) |可以管理傳統儲存體帳戶 |
 | [儲存體帳戶參與者](#storage-account-contributor) |可以管理儲存體帳戶 |
+| [支援要求參與者](#support-request-contributor) | 可以建立及管理支援要求 |
 | [使用者存取系統管理員](#user-access-administrator) |可以管理 Azure 資源的使用者存取 |
 | [傳統虛擬機器參與者](#classic-virtual-machine-contributor) |可以管理傳統虛擬機器，但是無法管理它們連接的虛擬網路或儲存體帳戶 |
 | [虛擬機器參與者](#virtual-machine-contributor) |可以管理虛擬機器，但是無法管理它們連接的虛擬網路或儲存體帳戶 |
@@ -184,7 +191,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.RecoveryServices/Vaults/backupProtectedItems/* | 建立和管理備份項目 |
 | Microsoft.RecoveryServices/Vaults/backupProtectionContainers/* | 建立和管理保存備份項目的容器 |
 | Microsoft.RecoveryServices/Vaults/certificates/* | 建立和管理備份復原服務保存庫中與備份相關的憑證 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 建立和管理與保存庫相關的擴充資訊 | 
+| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 建立和管理與保存庫相關的擴充資訊 |
 | Microsoft.RecoveryServices/Vaults/read | 讀取復原服務保存庫 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/* | 管理擷取新建立容器的探索作業 |
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/* | 建立和管理註冊的身分識別 |
@@ -219,8 +226,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.RecoveryServices/Vaults/backupProtectableItems/* | 建立和管理可以備份的項目 |
 | Microsoft.RecoveryServices/Vaults/backupProtectedItems/read | 讀取備份的項目 |
 | Microsoft.RecoveryServices/Vaults/backupProtectionContainers/read | 讀取保存備份項目的備份容器 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 讀取與保存庫相關的擴充資訊 | 
-| Microsoft.RecoveryServices/Vaults/extendedInformation/write | 寫入與保存庫相關的擴充資訊 | 
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 讀取與保存庫相關的擴充資訊 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/write | 寫入與保存庫相關的擴充資訊 |
 | Microsoft.RecoveryServices/Vaults/read | 讀取復原服務保存庫 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/* | 管理擷取新建立容器的探索作業 |
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read | 讀取保存庫中註冊項目上執行作業的結果 |
@@ -259,7 +266,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/read  | 讀取保存庫中的註冊項目 |
 | Microsoft.RecoveryServices/Vaults/usages/read  |  讀取復原服務保存庫的使用方式 |
 
-## <a name="billing-reader"></a>帳單讀取器
+### <a name="billing-reader"></a>帳單讀取器
 可檢視所有帳單資訊
 
 | **動作** |  |
@@ -516,6 +523,131 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Security/* |建立和管理安全性元件和原則 |
 | Microsoft.Support/* |建立和管理支援票證 |
 
+### <a name="site-recovery-contributor"></a>Site Recovery 參與者
+可以管理所有 Site Recovery 管理動作，但是不能建立復原服務保存庫，也不能授予存取權給其他使用者
+
+| **動作** | |
+| --- | --- |
+| Microsoft.Authorization/*/read | 讀取角色和角色指派 |
+| Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
+| Microsoft.Network/virtualNetworks/read | 讀取虛擬網路 |
+| Microsoft.RecoveryServices/Vaults/certificates/write | 更新保存庫認證憑證 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 建立和管理與保存庫相關的擴充資訊 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | 讀取復原服務保存庫的警示 |
+| Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | 讀取復原服務保存庫通知設定 |
+| Microsoft.RecoveryServices/Vaults/read | 讀取復原服務保存庫 |
+| Microsoft.RecoveryServices/Vaults/refreshContainers/read | 管理擷取新建立容器的探索作業 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/* | 建立和管理註冊的身分識別 |
+| Microsoft.RecoveryServices/vaults/replicationAlertSettings/* | 建立或更新複寫警示設定 |
+| Microsoft.RecoveryServices/vaults/replicationEvents/read | 讀取複寫事件 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/* | 建立和管理複寫網狀架構 |
+| Microsoft.RecoveryServices/vaults/replicationJobs/* | 建立和管理複寫作業 |
+| Microsoft.RecoveryServices/vaults/replicationPolicies/* | 建立和管理複寫原則 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/* | 建立和管理復原計劃 |
+| Microsoft.RecoveryServices/Vaults/storageConfig/* | 建立和管理復原服務保存庫的儲存體設定 |
+| Microsoft.RecoveryServices/Vaults/tokenInfo/read | 讀取復原服務保存庫權杖資訊 |
+| Microsoft.RecoveryServices/Vaults/usages/read | 讀取復原服務保存庫的使用量詳細資料 |
+| Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
+| Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
+| Microsoft.Storage/storageAccounts/read | 讀取儲存體帳戶 |
+| Microsoft.Support/* |建立和管理支援票證 |
+
+### <a name="site-recovery-operator"></a>Site Recovery 操作員
+可以容錯移轉和容錯回復，但是無法執行其他 Site Recovery 管理動作或將存取權指派給其他使用者
+
+| **動作** | |
+| --- | --- |
+| Microsoft.Authorization/*/read | 讀取角色和角色指派 |
+| Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
+| Microsoft.Network/virtualNetworks/read | 讀取虛擬網路 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 讀取與保存庫相關的擴充資訊 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | 讀取復原服務保存庫的警示 |
+| Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | 讀取復原服務保存庫通知設定 |
+| Microsoft.RecoveryServices/Vaults/read | 讀取復原服務保存庫 |
+| Microsoft.RecoveryServices/Vaults/refreshContainers/read | 管理擷取新建立容器的探索作業 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read | 讀取已提交作業的作業狀態和結果 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/read | 讀取資源的已註冊容器 |
+| Microsoft.RecoveryServices/vaults/replicationAlertSettings/read | 讀取複寫警示設定 |
+| Microsoft.RecoveryServices/vaults/replicationEvents/read | 讀取複寫事件 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/checkConsistency/action | 檢查網狀架構的一致性 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/read | 讀取複寫網狀架構 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ reassociateGateway/action | 重新關聯複寫閘道 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/renewcertificate/action | 更新複寫網狀架構憑證 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/replicationNetworks/read | 讀取複寫網狀架構網路 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationNetworks/replicationNetworkMappings/read | 讀取複寫網狀架構網路對應 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/read | 讀取保護容器 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectableItems/read | 取得所有可保護項目的清單 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ applyRecoveryPoint/action | 套用特定復原點 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ failoverCommit/action | 認可容錯移轉項目的容錯移轉 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ plannedFailover/action | 啟動受保護項目的計劃性容錯移轉 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/read | 取得所有受保護項目的清單 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/recoveryPoints/read | 取得可用復原點的清單 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ repairReplication/action | 修復受保護項目的複寫 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/reProtect/action | 開始受保護項目的重新保護|
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/testFailover/action | 啟動受保護項目的測試容錯移轉 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ testFailoverCleanup/action | 啟動測試容錯移轉的清除 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ unplannedFailover/action | 啟動受保護項目的未計劃容錯移轉 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ updateMobilityService/action | 更新行動服務 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectionContainerMappings/read | 讀取保護容器對應 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationRecoveryServicesProviders/read | 讀取復原服務提供者 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationRecoveryServicesProviders/refreshProvider/action | 重新整理復原服務提供者 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationStorageClassifications/read | 讀取複寫網狀架構的儲存體分類 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationStorageClassifications/replicationStorageClassificationMappings/read | 讀取儲存體分類對應 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/replicationvCenters/read | 讀取已註冊 vCenter 資訊 |
+| Microsoft.RecoveryServices/vaults/replicationJobs/* | 建立和管理複寫作業 |
+| Microsoft.RecoveryServices/vaults/replicationPolicies/read | 讀取複寫原則 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/ failoverCommit/action | 認可復原方案容錯移轉的容錯移轉 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/ plannedFailover/action | 啟動復原方案的容錯移轉 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/read | 讀取復原方案 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/reProtect/action | 啟動復原方案的重新保護 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/testFailover/action | 啟動復原方案的測試容錯移轉 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/ testFailoverCleanup/action | 啟動復原方案測試容錯移轉的清除 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/ unplannedFailover/action | 啟動復原方案的未計劃容錯移轉 |
+| Microsoft.RecoveryServices/Vaults/storageConfig/read | 讀取復原服務保存庫的儲存體設定 |
+| Microsoft.RecoveryServices/Vaults/tokenInfo/read | 讀取復原服務保存庫權杖資訊 |
+| Microsoft.RecoveryServices/Vaults/usages/read | 讀取復原服務保存庫的使用量詳細資料 |
+| Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
+| Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
+| Microsoft.Storage/storageAccounts/read | 讀取儲存體帳戶 |
+| Microsoft.Support/* | 建立和管理支援票證 |
+
+### <a name="site-recovery-reader"></a>Site Recovery 讀取者
+可以監視復原服務保存庫中的 Site Recovery 狀態，並且引發支援票證
+
+| **動作** | |
+| --- | --- |
+| Microsoft.Authorization/*/read | 讀取角色和角色指派 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 讀取與保存庫相關的擴充資訊 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/read  | 讀取復原服務保存庫的警示 |
+| Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | 讀取復原服務保存庫通知設定 |
+| Microsoft.RecoveryServices/Vaults/read  | 讀取復原服務保存庫 |
+| Microsoft.RecoveryServices/Vaults/refreshContainers/read  | 管理擷取新建立容器的探索作業 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read  | 讀取已提交作業的作業狀態和結果 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/read  | 讀取資源的已註冊容器 |
+| Microsoft.RecoveryServices/vaults/replicationAlertSettings/read | 讀取複寫警示設定 |
+| Microsoft.RecoveryServices/vaults/replicationEvents/read  | 讀取複寫事件 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/read  | 讀取複寫網狀架構 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/replicationNetworks/read  | 讀取複寫網狀架構網路 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationNetworks/replicationNetworkMappings/read  | 讀取複寫網狀架構網路對應 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/read  |  讀取保護容器 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectableItems/read  | 取得所有可保護項目的清單 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/read  | 取得所有受保護項目的清單 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/recoveryPoints/read  | 取得可用復原點的清單 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectionContainerMappings/read  | 讀取保護容器對應 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationRecoveryServicesProviders/read  | 讀取復原服務提供者 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationStorageClassifications/read  | 讀取複寫網狀架構的儲存體分類 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationStorageClassifications/replicationStorageClassificationMappings/read  |  讀取儲存體分類對應 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/replicationvCenters/read  |  讀取已註冊 vCenter 資訊 |
+| Microsoft.RecoveryServices/vaults/replicationJobs/read  |  讀取複寫作業的狀態 |
+| Microsoft.RecoveryServices/vaults/replicationPolicies/read  |  讀取複寫原則 |
+| Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/read  |  讀取復原方案 |
+| Microsoft.RecoveryServices/Vaults/storageConfig/read  |  讀取復原服務保存庫的儲存體設定 |
+| Microsoft.RecoveryServices/Vaults/tokenInfo/read  |  讀取復原服務保存庫權杖資訊 |
+| Microsoft.RecoveryServices/Vaults/usages/read  |  讀取復原服務保存庫的使用量詳細資料 |
+| Microsoft.Support/*  |  建立和管理支援票證 |
+
 ### <a name="sql-db-contributor"></a>SQL DB 參與者
 可以管理 SQL 資料庫，但是無法管理它們的安全性相關原則
 
@@ -619,6 +751,15 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Storage/storageAccounts/* |建立及管理儲存體帳戶 |
 | Microsoft.Support/* |建立和管理支援票證 |
+
+### <a name="support-request-contributor"></a>支援要求參與者
+可以建立和管理訂用帳戶範圍的支援票證
+
+| **動作** |  |
+| --- | --- |
+| Microsoft.Authorization/*/read | 讀取授權 |
+| Microsoft.Support/* | 建立和管理支援票證 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取角色和角色指派 |
 
 ### <a name="user-access-administrator"></a>使用者存取系統管理員
 可以管理 Azure 資源的使用者存取

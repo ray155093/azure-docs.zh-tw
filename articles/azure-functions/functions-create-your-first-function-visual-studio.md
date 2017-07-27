@@ -14,57 +14,49 @@ ms.devlang: multiple
 ms.topic: hero-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 06/25/2017
+ms.date: 07/05/2017
 ms.author: rachelap, glenga
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 64769458ad90f14c2f7a87b9a405b80616a478be
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: be7a9979ba7e6aa26c60b24bcc892ca35af3c1fc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 07/19/2017
 
 ---
-<a id="create-your-first-function-using-visual-studio" class="xliff"></a>
+# <a name="create-your-first-function-using-visual-studio"></a>使用 Visual Studio 建立第一個函式
 
-# 使用 Visual Studio 建立第一個函式 
+Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要先建立 VM 或發佈 Web 應用程式。
 
-Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要先建立 VM 或發佈 Web 應用程式。 
+> [!IMPORTANT]
+> 本主題使用預覽版本的 Visual Studio 來完成其步驟。 請先確定已安裝 [Visual Studio 2017 15.3 預覽版](https://www.visualstudio.com/vs/preview/)，再繼續執行。
 
 本主題中，您可以了解如何使用 Azure Function Tools for Visual Studio 2017 在本機建立及測試 "hello world" 函式。 您接著會將函式程式碼發行至 Azure。
 
 ![Visual Studio 專案中的 Azure Functions 程式碼](./media/functions-create-your-first-function-visual-studio/functions-vstools-intro.png)
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，請安裝：
 
 * [Visual Studio 2017 預覽版本 15.3](https://www.visualstudio.com/vs/preview/)，包括 **Azure 開發**工作負載。
-    
+
     ![安裝包含 Azure 開發工作負載的 Visual Studio 2017](./media/functions-create-your-first-function-visual-studio/functions-vs-workloads.png)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-<a id="install-azure-functions-tools-for-visual-studio-2017" class="xliff"></a>
-
-## 安裝 Azure Functions Tools for Visual Studio 2017
+## <a name="install-azure-functions-tools-for-visual-studio-2017"></a>安裝 Azure Functions Tools for Visual Studio 2017
 
 在開始之前，您必須下載並安裝 Azure Functions Tools for Visual Studio 2017。 這些工具只能搭配 Visual Studio 2017 預覽版本 15.3 或更新版本使用。 如果您已安裝 Azure Functions Tools，可以略過本節。
 
 [!INCLUDE [Install the Azure Functions Tools for Visual Studio](../../includes/functions-install-vstools.md)]   
 
-<a id="create-an-azure-functions-project-in-visual-studio" class="xliff"></a>
-
-## 在 Visual Studio 中建立 Azure Functions 專案
+## <a name="create-an-azure-functions-project-in-visual-studio"></a>在 Visual Studio 中建立 Azure Functions 專案
 
 [!INCLUDE [Create a project using the Azure Functions template](../../includes/functions-vstools-create.md)]
 
 您現在已建立專案，即可建立第一個函式。
 
-<a id="create-the-function" class="xliff"></a>
-
-## 建立函式
+## <a name="create-the-function"></a>建立函式
 
 在 [方案總管] 中，於專案節點上按一下滑鼠右鍵，然後選取 [新增] > [新增項目]。 選取 [Azure Function]，然後按一下 [新增]。
 
@@ -74,9 +66,7 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 您現在已建立 HTTP 觸發的函式，可以在本機電腦上進行測試。
 
-<a id="test-the-function-locally" class="xliff"></a>
-
-## 在本機測試函式
+## <a name="test-the-function-locally"></a>在本機測試函式
 
 [!INCLUDE [Test the function locally](../../includes/functions-vstools-test.md)]
 
@@ -92,17 +82,13 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 確認函式在本機電腦上正確執行之後，就可以將專案發佈到 Azure。
 
-<a id="publish-the-project-to-azure" class="xliff"></a>
-
-## 將專案發佈到 Azure
+## <a name="publish-the-project-to-azure"></a>將專案發佈到 Azure
 
 您的 Azure 訂用帳戶中必須具有函式應用程式，才可以發佈您的專案。 您可以直接從 Visual Studio 建立函式應用程式。
 
 [!INCLUDE [Publish the project to Azure](../../includes/functions-vstools-publish.md)]
 
-<a id="test-your-function-in-azure" class="xliff"></a>
-
-## 在 Azure 中測試您的函式
+## <a name="test-your-function-in-azure"></a>在 Azure 中測試您的函式
 
 從發行設定檔頁面複製函式應用程式的基底 URL。 使用新的基底 URL，取代在本機測試函式時所使用之 URL 的 `localhost:port` 部分。 如同以往，務必將查詢字串 `&name=<yourname>` 附加至此 URL 並執行要求。
 
@@ -114,14 +100,12 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 ![瀏覽器中的函式回應](./media/functions-create-your-first-function-visual-studio/functions-test-remote-browser.png)
  
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 您已透過 Visual Studio，使用簡單的 HTTP 觸發函式建立 C# 函式應用程式。 
 
 [!INCLUDE [functions-quickstart-next-steps](../../includes/functions-quickstart-next-steps.md)]
 
-若要深入了解如何使用 Azure Functions Core Tools 進行本機測試和偵錯，請參閱[在本機編碼和測試 Azure Functions](functions-run-local.md)。 
+若要深入了解如何使用 Azure Functions Core Tools 進行本機測試和偵錯，請參閱[在本機編碼和測試 Azure Functions](functions-run-local.md)。 若要深入了解如何將函式開發為 .NET 類別庫，請參閱[搭配使用 .NET 類別庫與 Azure Functions](functions-dotnet-class-library.md)。 
 
 

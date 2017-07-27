@@ -3,7 +3,7 @@ title: "使用圖形 API 來建置 Azure Cosmos DB .NET 應用程式 | Microsoft
 description: "提供可用來連線及查詢 Azure Cosmos DB 的 .NET 程式碼範例"
 services: cosmos-db
 documentationcenter: 
-author: mimig1
+author: dennyglee
 manager: jhubbard
 editor: 
 ms.assetid: daacbabf-1bb5-497f-92db-079910703046
@@ -13,14 +13,13 @@ ms.workload:
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 05/21/2017
-ms.author: arramac
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
-ms.openlocfilehash: 3491aa53a55d988876710c0ac19383e642dda27b
+ms.date: 07/14/2017
+ms.author: denlee
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: 1794341ed0d4519eef7f065d04ccf86a7e48a4a4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 07/17/2017
 
 ---
 # <a name="azure-cosmos-db-build-a-net-application-using-the-graph-api"></a>Azure Cosmos DB：使用圖形 API 來建置 .NET 應用程式
@@ -104,19 +103,23 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 現在，返回 Azure 入口網站以取得連接字串資訊，並將它複製到應用程式中。
 
-1. 在 [Azure 入口網站](http://portal.azure.com/)中，於您 Azure Cosmos DB 帳戶的左側瀏覽區中，按一下 [金鑰]，然後按一下 [讀寫金鑰]。 在下一個步驟中，您將使用畫面右側的複製按鈕，將 URI 和主要金鑰複製到 `App.config` 檔案。
+1. 在 Azure 入口網站的 Azure Cosmos DB 帳戶左側瀏覽區中，按一下 [概觀]。 您會將 [Gremlin URI] 值複製到下一個步驟的 App.config 檔案中。 
 
-    ![在 Azure 入口網站的 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/create-graph-dotnet/keys.png)
+    ![在 Azure 入口網站的 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/create-graph-dotnet/gremlin-uri.png)
 
-2. 在 Visual Studio 2017 中，開啟 `App.config` 檔案。 
+    如果 [Gremlin URI] 值空白，您可以從入口網站的 [金鑰] 頁面產生此值，方法是使用 [URI]，移除 https://，然後將文件變更為圖形。 
 
-3. 從入口網站複製您的 URI 值 (使用 [複製] 按鈕)，並使它成為 `App.config` 中的端點金鑰值。 
+2. 在 Visual Studio 2017 中，開啟 App.config 檔案。 
 
-    `<add key="Endpoint" value="FILLME.documents.azure.com:443" />`
+3. 從入口網站複製您的 [Gremlin URI] 值，並使它成為 App.config 中的端點金鑰值。 
 
-4. 然後，從入口網站複製您的主要金鑰值，並使它成為 `App.config` 中的 authKey 值。 
+    `<add key="Endpoint" value="FILLME.graphs.azure.com:443" />`
+
+4. 回到 Azure 入口網站，按一下左導覽功能表上的 [金鑰]，從入口網站複製您的 [主鑰金鑰] 值，並讓它成為 App.config 中的 AuthKey 金鑰值，然後儲存您的變更。 
 
     `<add key="AuthKey" value="FILLME" />`
+
+    ![在 Azure 入口網站的 [金鑰] 頁面上檢視並複製主要金鑰](./media/create-graph-dotnet/keys.png)
 
 您現已更新應用程式，使其具有與 Azure Cosmos DB 通訊所需的所有資訊。 
 

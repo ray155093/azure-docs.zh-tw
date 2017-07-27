@@ -29,6 +29,7 @@
 ### [Data Factory 複製精靈](data-factory-azure-copy-wizard.md)
 #### [在 15 分鐘內載入 1 TB](data-factory-load-sql-data-warehouse.md)
 ### [效能和微調指南](data-factory-copy-activity-performance.md)
+### [容錯](data-factory-copy-activity-fault-tolerance.md)
 ### [安全性考量](data-factory-data-movement-security-considerations.md)
 ### 連接器
 #### [Amazon Redshift](data-factory-amazon-redshift-connector.md)

@@ -33,7 +33,7 @@
 
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=intelligence-analytics)
 ## [JavaScript 內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)
 ## [JavaScript Git 存放庫](https://github.com/Microsoft/PowerBI-JavaScript)
 ## [Power BI C# Git 存放庫](https://github.com/Microsoft/PowerBI-CSharp)

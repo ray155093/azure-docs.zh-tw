@@ -12,12 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/07/2017
+ms.date: 06/26/2017
 ms.author: TomSh
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: f539fc2945b9c6646660d50713d11dd7d822d06f
-ms.lasthandoff: 03/31/2017
+ms.custom: azlog
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: e6aefe5f16e7148f7837a8741355c61851618495
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -31,8 +33,18 @@ ms.lasthandoff: 03/31/2017
 
 它目前於 Azure 商務環境和 Azure Government 中提供，且無法在中國或德國使用。
 
-## <a name="how-can-i-see-the-storage-accounts-from-which-azure-log-integration-is-pulling-azure-vm-logs-from"></a>如何查看 Azure 記錄整合從中提取 Azure VM 記錄檔的儲存體帳戶？
+## <a name="how-can-i-see-the-storage-accounts-from-which-azure-log-integration-is-pulling-azure-vm-logs-from"></a>如何查看 Azure 記錄整合從中提取 Azure VM 記錄的儲存體帳戶？
 執行 **azlog source list**命令。
+
+## <a name="how-can-i-tell-which-subscription-the-azure-log-integration-logs-are-from"></a>如何分辨 Azure 記錄整合記錄來自哪一個訂用帳戶？
+
+在稽核記錄位於 AzureResourcemanagerJson 目錄的案例中，訂用帳戶識別碼是在記錄檔名稱中。 這也適用於 AzureSecurityCenterJson 資料夾中的記錄。 例如：
+
+20170407T070805_2768037.0000000023.**1111e5ee-1111-111b-a11e-1e111e1111dc**.json
+
+Azure Active Directory 稽核記錄包含租用戶識別碼，作為名稱的一部分。
+
+讀取自事件中樞的診斷記錄不包含訂用帳戶識別碼作為名稱的一部分，但是包含指定為建立事件中樞來源一部分的易記名稱。 
 
 ## <a name="how-can-i-update-the-proxy-configuration"></a>如何更新 Proxy 組態？
 如果您的 Proxy 設定不允許直接存取 Azure 儲存體，請開啟 **c:\Program Files\Microsoft Azure Log Integration** 中的 **AZLOG.EXE.CONFIG** 檔案。 更新檔案，以便將組織的 Proxy 位址納入 **defaultProxy** 區段。 更新完成之後，停止並使用 **net stop azlog** 和 **net start azlog** 命令來啟動服務。
@@ -111,8 +123,11 @@ Error:
 
 完成變更之後，請檢查儲存體帳戶，以確保會收集正確的事件。
 
-如果您在安裝和設定期間遇到任何問題，請開啟[支援要求](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request)，選取 [記錄整合] 做為您要求支援的服務。
+如果您在安裝和設定期間遇到任何問題，請開啟[支援要求](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request)，選取 [記錄整合]  作為您要求支援的服務。
 
+### <a name="can-i-use-azure-log-integration-to-integrate-network-watcher-logs-into-my-siem"></a>可以使用 Azure 記錄整合將網路監看員記錄整合到 SIEM 嗎？
+
+網路監看員會產生大量的記錄資訊，這些記錄不一定會傳送到 SIEM。 網路監看員記錄的唯一支援目的地是儲存體帳戶。 Azlog 不支援讀取這些記錄，並且讓它們可供 SIEM 使用
 
 <!--Image references-->
 [1]: ./media/security-azure-log-integration-faq/event-xml.png

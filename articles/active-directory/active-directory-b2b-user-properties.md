@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 04/12/2017
+ms.date: 05/25/2017
 ms.author: sasubram
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 3d7801d8a53ac048333e43ee64724c11c25bf6a8
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 6e49cb202ed03bf50fb9ca34d34924cda434829c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -29,7 +30,7 @@ Azure Active Directory (Azure AD) 企業對企業 (B2B) 共同作業使用者是
 
 根據邀請組織的需求，Azure AD B2B 共同作業使用者可以是下列帳戶狀態之一︰
 
-- 狀態 1：位於 Azure AD 的外部執行個體並表示為主機組織中的來賓使用者。 在此情況下，B2B 使用者會使用屬於其家用租用的 Azure AD 帳戶登入。 如果使用者之外部組織在邀請時不使用 Azure AD，則 Azure AD 的來賓使用者會在使用者兌換其邀請時且 Azure AD 驗證其電子郵件地址之後建立。 這也稱為只是及時 (JIT) 租用或病毒式租用。
+- 狀態 1：位於 Azure AD 的外部執行個體並表示為提出邀請之組織中的來賓使用者。 在此情況下，B2B 使用者會使用屬於受邀租用戶的 Azure AD 帳戶登入。 如果夥伴組織未使用 Azure AD，仍會在 Azure AD 中建立來賓使用者。 他們必須兌換其邀請，而且 Azure AD 必須確認其電子郵件地址。 此排列也稱為 Just-In-Time (JIT) 租用或「熱門」租用。
 
 - 狀態 2：位於 Microsoft 帳戶並表示為主機組織中的來賓使用者。 在此情況下，來賓使用者會以 Microsoft 帳戶登入。 受邀使用者的社交身分識別 (google.com 或類似項目，但不是 Microsoft 帳戶) 會在優惠兌換期間建立為 Microsoft 帳戶。
 
@@ -52,10 +53,10 @@ Azure Active Directory (Azure AD) 企業對企業 (B2B) 共同作業使用者是
 
 ## <a name="key-properties-of-the-azure-ad-b2b-collaboration-user"></a>Azure AD B2B 共同作業使用者的金鑰屬性
 ### <a name="usertype"></a>UserType
-此屬性會指出使用者與主機租用的關聯性。 這可以是兩個值︰
+此屬性會指出使用者與主機租用的關聯性。 此屬性可以包含兩個值：
 - 成員︰此值表示主機組織的員工，以及由組織支薪的使用者。 例如，這位使用者要能夠存取僅供內部使用的網站。 這位使用者就不會被認為是外部共同作業人員。
 
-- 來賓︰此值表示不被視為公司內部的使用者。 此使用者可能是外部共同作業人員、合作夥伴、客戶或例如不預期取得 CEO 內部備忘錄或公司好處的類似使用者。
+- 來賓：這個值表示非公司內部人員的使用者，例如外部共同作業者、合作夥伴、客戶或類似的使用者。 這類使用者不會收到執行長的內部備忘，或收到公司權益。
 
   > [!NOTE]
   > UserType 與使用者登入的方式、使用者的目錄角色等等無關。 此屬性只是表示使用者與主機組織的關聯性，並可讓組織強制執行此屬性的相依原則。
@@ -76,7 +77,7 @@ Azure Active Directory (Azure AD) 企業對企業 (B2B) 共同作業使用者是
   > Source 和 UserType 是獨立的屬性。 Source 的值不代表特定的 UserType 值。
 
 ## <a name="can-azure-ad-b2b-users-be-added-as-members-instead-of-guests"></a>Azure AD B2B 使用者是否可新增為成員而非來賓？
-一般而言，Azure AD B2B 使用者和來賓使用者的意義相同。 因此，Azure AD B2B 共同作業使用者依預設是新增為具有 UserType = [來賓] 的使用者。 不過，在某些情況下，合作夥伴組織是主機組織也所屬之較大組織的成員。 若是如此，主機組織可能會將合作夥伴組織中的使用者視為成員而非來賓。 在此情況下，使用 Azure AD B2B 邀請管理員 API 來從合作夥伴組織新增或邀請使用者至主機組織做為成員。
+一般而言，Azure AD B2B 使用者和來賓使用者的意義相同。 因此，Azure AD B2B 共同作業使用者依預設是新增為具有 UserType = [來賓] 的使用者。 不過，在某些情況下，合作夥伴組織是主機組織也所屬之較大組織的成員。 若是如此，主機組織可能會將合作夥伴組織中的使用者視為成員而非來賓。 使用 Azure AD B2B 邀請管理員 API 來從夥伴組織新增或邀請使用者至主機組織作為成員。
 
 ## <a name="filter-for-guest-users-in-the-directory"></a>篩選目錄中的來賓使用者
 
@@ -86,9 +87,9 @@ Azure Active Directory (Azure AD) 企業對企業 (B2B) 共同作業使用者是
 目前，使用者可以使用 PowerShell 將 UserType 從 [成員] 轉換為 [來賓]，反之亦然。 不過，UserType 屬性應該代表使用者與組織的關聯性。 因此，只有在使用者與組織的關聯性變更時，才應該變更此屬性的值。 如果使用者的關聯性變更，是否應解決使用者主體名稱 (UPN) 是否應該變更等問題？ 使用者是否應該繼續存取相同的資源？ 是否應指派信箱？ 因此，我們不建議以 PowerShell 做為不可部分完成的活動來變更 UserType 。 此外，為免使用 PowerShell 讓這個屬性成為不可變屬性，我們不建議採用此值的相依性。
 
 ## <a name="remove-guest-user-limitations"></a>移除來賓使用者限制
-在某些情況下，您要提供來賓使用者更高的權限。 在此情況下，您可以將來賓使用者新增至任何角色，甚至移除目錄中預設的來賓使用者限制，為使用者提供與成員相同的權限。
+在某些情況下，您要提供來賓使用者更高的權限。 您可以將來賓使用者新增至任何角色，甚至移除目錄中預設的來賓使用者限制，為使用者提供與成員相同的權限。
 
-可以關閉預設來賓使用者限制，公司目錄中的來賓使用者便可獲得與一般使用者 (成員) 相同的目錄權限。
+可以關閉預設來賓使用者限制，如此公司目錄中的來賓使用者便可獲得與成員使用者相同的權限。
 
 ![移除來賓使用者限制](media/active-directory-b2b-user-properties/remove-guest-limitations.png)
 

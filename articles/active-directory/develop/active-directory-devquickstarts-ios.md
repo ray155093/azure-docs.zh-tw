@@ -16,10 +16,10 @@ ms.date: 01/07/2017
 ms.author: brandwe
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 384f4bc285f62b102778118a92a912e73d241663
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 57f465df99ac234466459b8031f61805d8334b59
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -60,8 +60,8 @@ iOS 格式的重新導向 URI：
 <app-scheme>://<bundle-id>
 ```
 
-* **aap-scheme**：這已在您的 XCode 專案中註冊。 它是其他應用程式呼叫您的方式。 您可以在 XCode 專案中找到此項目：[Info.plist] > [URL 類型] > [URL 識別碼]。 如果您尚未設定任何一個，建議您建立一個。
-* **bundle-id**：這是在您的 XCode 專案設定的 [身分識別] 下可找到的 [套件組合識別碼]。
+* **aap-scheme** - 這已在您的 XCode 專案中註冊。 它是其他應用程式呼叫您的方式。 您可以在 Info.plist -> URL types -> URL Identifier 下找到此項目。 如果您尚未設定任何一個，建議您建立一個。
+* **bundle-id** - 這是在您的 XCode 專案設定中，[identity] 下可找到的 [Bundle Identifier]。
 
 此 QuickStart 程式碼的範例：***msquickstart://com.microsoft.azureactivedirectory.samples.graph.QuickStart***
 

@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/17/2017
+ms.date: 06/09/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: a8221c35a440ae859c82072ea170b438dc40d261
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 060680fd4a7ce6e0cde406cc4a8f6f3a21d3c588
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -49,7 +50,7 @@ Azure 原本指提供傳統部署模型。 在此模型中，每個資源會獨�
 2. 服務支援 Resource Manager，但提供兩個類型 - 一個用於 Resource Manager，一個用於傳統。 此案例只適用於虛擬機器、儲存體帳戶和虛擬網路。
 3. 服務不支援 Resource Manager。
 
-若要探索服務是否支援 Resource Manager，請參閱 [Resource Manager 支援的提供者](resource-manager-supported-services.md)。
+若要探索服務是否支援 Resource Manager，請參閱[資源提供者和類型](resource-manager-supported-services.md)。
 
 如果您想要使用的服務不支援 Resource Manager，您必須繼續使用傳統部署。
 

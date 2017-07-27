@@ -1,5 +1,5 @@
 ---
-title: "透過 Azure 入口網站使用內部部署編碼器執行即時串流 | Microsoft Docs"
+title: "使用 Azure 入口網站透過內部部署編碼器執行即時串流 | Microsoft Docs"
 description: "本教學課程將逐步引導您建立針對即時通行傳遞設定的通道。"
 services: media-services
 documentationcenter: 
@@ -14,14 +14,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 01/23/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: 555e0b6340d09517bfd87efe209f0304f3266788
-ms.openlocfilehash: 0818c3124815b53119a5b2d43f16e3154afbc225
-ms.lasthandoff: 01/27/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: b28488ac9037b0f0ff7df892b9c3a61167b1eceb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
-# <a name="how-to-perform-live-streaming-with-on-premise-encoders-using-the-azure-portal"></a>如何使用 Azure 入口網站透過內部部署編碼器執行即時串流
+# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-the-azure-portal"></a>如何使用 Azure 入口網站透過內部部署編碼器執行即時串流
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
@@ -44,7 +45,7 @@ ms.lasthandoff: 01/27/2017
 * [使用 Azure 媒體服務之即時串流的概觀](media-services-manage-channels-overview.md)
 * [使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)
 
-## <a name="a-idscenarioacommon-live-streaming-scenario"></a><a id="scenario"></a>常見即時串流案例
+## <a id="scenario"></a>常見即時串流案例
 下列步驟描述當我們建立一般即時串流應用程式 (其使用針對即時通行傳遞設定的通道) 時，會涉及到的各種工作。 本教學課程示範如何建立及管理即時通行通道和即時事件。
 
 >[!NOTE]
@@ -70,7 +71,7 @@ ms.lasthandoff: 01/27/2017
 9. 刪除事件/程式 (並選擇性地刪除資產)。     
 
 > [!IMPORTANT]
-> 請檢閱 [使用會建立多位元速率串流的內部部署編碼器執行即時視訊串流](media-services-live-streaming-with-onprem-encoders.md) ，以了解具有內部部署編碼器和即時通行通道之即時串流的相關概念和考量。
+> 請檢閱[使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)，以了解具有內部部署編碼器和傳遞通道之即時串流的相關概念和考量。
 > 
 > 
 
@@ -101,7 +102,7 @@ ms.lasthandoff: 01/27/2017
 ### <a name="to-use-the-portal-to-create-a-channel"></a>使用 Azure 入口網站來建立通道
 本節示範如何使用 [快速建立]  選項來建立即時通行通道。
 
-如需即時通行通道的詳細資訊，請參閱 [使用會從建立多位元速率串流的內部部署編碼器執行即時視訊串流](media-services-live-streaming-with-onprem-encoders.md)。
+如需傳遞通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取您的 Azure 媒體服務帳戶。
 2. 在 [設定] 視窗中，按一下 [即時視訊串流]。 
@@ -135,7 +136,7 @@ ms.lasthandoff: 01/27/2017
 即時事件會在停止時自動轉換為點播內容。
 
 ## <a name="clean-up"></a>清除
-如需即時通行通道的詳細資訊，請參閱 [使用會從建立多位元速率串流的內部部署編碼器執行即時視訊串流](media-services-live-streaming-with-onprem-encoders.md)。
+如需傳遞通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 
 * 只有當通道上的所有事件/程式都已停止時，才能停止通道。  停止通道之後，就不會產生任何費用。 當您需要重新啟動它時，它會具有相同的內嵌 URL，因此您不需要重新設定編碼器。
 * 只有當通道上的所有事件都已刪除時，才能刪除通道。

@@ -14,12 +14,13 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 01/23/2017
+ms.date: 05/30/2017
 ms.author: chrande
-translationtype: Human Translation
-ms.sourcegitcommit: bc96edb44dc8bbbbe4687806117990c9d3470fdc
-ms.openlocfilehash: adb70fc58321c11c0b57efc9810a44d0ab2c8a20
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 879be48150cfe13e31064475aa637f13f5f5f9d5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -76,7 +77,7 @@ function.json 檔案會定義函式繫結和其他組態設定。 執行階段�
 > 
 > 
 
-## <a name="a-idfileupdatea-how-to-update-function-app-files"></a><a id="fileupdate"></a> 如何更新函式應用程式檔案
+## <a id="fileupdate"></a> 如何更新函式應用程式檔案
 Azure 入口網站內建的函式編輯器可讓您更新「function.json」  檔案和函式的程式碼檔案。 若要上傳或更新其他檔案 (例如 *package.json*、*project.json* 或相依項目)，您必須使用其他部署方法。
 
 函式應用程式建置於 App Service 之上，因此[標準 Web 應用程式可用的部署選項](../app-service-web/web-sites-deploy.md)也可供函式應用程式使用。 以下是一些您可以用來上傳或更新函式應用程式檔案的方法。 
@@ -96,9 +97,7 @@ Azure 入口網站內建的函式編輯器可讓您更新「function.json」  �
 3. 瀏覽至 `D:\home\site\wwwroot\` 以更新 *host.json*，或瀏覽至 `D:\home\site\wwwroot\<function_name>` 以更新函式的檔案。
 4. 將您要上傳的檔案拖放至檔案方格中適當資料夾。 在檔案方格上您有兩個區域可以拖放檔案。 對於「.zip」  檔案，方塊顯示且具有標籤「拖曳到這裡以上傳和解壓縮」。 對於其他檔案類型，在檔案方格上但是在「解壓縮」方塊外拖放。
 
-#### <a name="to-use-ftp"></a>使用 FTP
-1. 請遵循 [這裡](../app-service-web/web-sites-deploy.md#ftp) 的指示設定 FTP。
-2. 當您已連線到函數應用程式網站時，請將更新的 *host.json* 檔案複製到 `/site/wwwroot`，或將函式檔案複製到 `/site/wwwroot/<function_name>`。
+<!--NOTE: I've removed documentation on FTP, because it does not sync triggers on the consumption plan --DonnaM -->
 
 #### <a name="to-use-continuous-deployment"></a>使用持續部署
 請依照 [Azure Functions 的持續部署](functions-continuous-deployment.md)主題中的指示進行。
@@ -106,8 +105,9 @@ Azure 入口網站內建的函式編輯器可讓您更新「function.json」  �
 ## <a name="parallel-execution"></a>平行執行
 發生速度比單一執行緒函數執行階段快的多個觸發事件可以處理它們時，執行階段可能會平行多次叫用函數。  如果函式應用程式使用[取用主控方案](functions-scale.md#how-the-consumption-plan-works)，則函式應用程式可以自動相應放大。  不論應用程式是在取用主控方案還是一般 [App Service 主控方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)上執行，函式應用程式的每個執行個體可能都會使用多個執行緒平行處理並行函式引動。  每個函式應用程式執行個體中的並行函式叫用次數上限，根據使用的觸發程序類型及函式應用程式內其他函式所使用的資源而有所不同。
 
-## <a name="azure-functions-pulse"></a>Azure Functions 脈衝
-脈衝是顯示您函式執行頻率以及成功和失敗的即時事件資料流。 您也可以監視平均執行時間。 我們將持續加入更多功能和自訂。 您可以從 [監視] 索引標籤存取 [脈衝] 頁面。
+## <a name="functions-runtime-versioning"></a>Functions 執行階段版本設定
+
+您可以使用 `FUNCTIONS_EXTENSION_VERSION` 應用程式設定來設定 Functions 執行階段的版本。 例如，值 "~1" 表示您的函數應用程式會使用 1 做為主要版本。 函數應用程式會在發行時升級為每個新的次要版本。 您可以在 Azure 入口網站的 [設定] 索引標籤中檢視函數應用程式的正確版本。
 
 ## <a name="repositories"></a>儲存機制
 Azure Functions 的程式碼是開放原始碼，儲存於 GitHub 儲存機制中︰

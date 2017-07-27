@@ -1,5 +1,5 @@
 ---
-title: "建立非互動式驗證 .NET HDInsight 應用程式 | Microsoft Docs"
+title: "建立非互動式驗證 .NET HDInsight 應用程式 - Azure | Microsoft Docs"
 description: "了解如何建立非互動式驗證 .NET HDInsight 應用程式。"
 editor: cgronlun
 manager: jhubbard
@@ -17,10 +17,10 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 2b8638ffc3287346a71f591370367655c450e376
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 7821a9e60e60ff01cff06db2a6f216a260c1c41a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/18/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -44,7 +44,7 @@ ms.lasthandoff: 04/18/2017
 **將擁有者角色新增至 Azure AD 應用程式**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左側面板上的 [資源群組]  。
+2. 按一下左側面板上的 [資源群組] 。
 3. 按一下資源群組，它包含您稍後在本教學課程中要在其中執行 Hive 查詢的 HDInsight 叢集。 如果有太多的資源群組，您可以使用篩選器。
 4. 從資源群組功能表中，按一下 [存取控制 (IAM)]。
 5. 從 [使用者] 刀鋒視窗中，按一下 [新增]。

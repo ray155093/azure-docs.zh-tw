@@ -12,16 +12,19 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 06/07/2017
 ms.author: banders
-translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 7e9ca0c15c29fb670b742d939107bb5d4a48245c
-ms.lasthandoff: 03/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: 5c2cb05ced7841899c2bd19f627d13b86a4b05cc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 
 ---
 # <a name="network-performance-monitor-solution-in-log-analytics"></a>Log Analytics 中的網路效能監視器解決方案
+
+![網路效能監控符號](./media/log-analytics-network-performance-monitor/npm-symbol.png)
 
 本文件說明如何設定和使用 Log Analytics 中的網路效能監視器方案，協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。 使用網路效能監視器方案，可以監視兩個網路、子網路或伺服器之間的遺失和延遲。 網路效能監視器會偵測網路問題，例如流量黑洞、路由錯誤，以及傳統網路監視方法無法偵測的問題。 網路效能監視器會產生警示，並違反網路連結的臨界值時發生通知。 系統可以自動學習這些臨界值，您也可以將其設定為使用自訂警示規則。 網路效能監視器可確保及時偵測網路效能問題，並使問題的來源局限於特定網路區段或裝置。
 
@@ -178,7 +181,7 @@ NPM 提供 ICMP 和 TCP 通訊協定選項，供您用來執行綜合交易。
 選擇通訊協定之前，您應該考慮下列資訊：
 
 ##### <a name="discovering-multiple-network-routes"></a>探索多個網路路由
-TCP 在探索多個路由時提供更高的精確度，而且在每個子網路中需要較少的代理程式。 例如，只要有一或二個使用 TCP 的代理程式，就可以探索子網路之間的所有備援路徑。 不過，使用 ICMP 時，需要數個代理程式才能達到類似的結果。 如果使用 ICMP，假設您在兩個子網路間有 *N* 個路由，您在來源或目標子網路就需要超過 5*N* 個代理程式。
+TCP 在探索多個路由時精確度較高，而且在每個子網路中需要的代理程式較少。 例如，只要有一或二個使用 TCP 的代理程式，就可以探索子網路之間的所有備援路徑。 不過，使用 ICMP 時，需要數個代理程式才能達到類似的結果。 如果使用 ICMP，假設您在兩個子網路間有 *N* 個路由，您在來源或目標子網路就需要超過 5*N* 個代理程式。
 
 ##### <a name="accuracy-of-results"></a>結果的精確度
 路由器和交換器對於 ICMP ECHO 封包會指派比 TCP 封包較低的優先順序。 在某些情況下，當網路裝置處於大量負載狀態時，透過 TCP 取得的資料會更貼切地反映應用程式發生的遺失和延遲。 這是因為大部分的應用程式流量都是透過 TCP 傳送。 在這種情況下，ICMP 提供的結果精確度就不及 TCP。
@@ -199,9 +202,9 @@ TCP 通訊協定會要求 TCP 封包傳送至目的地連接埠。 NPM 代理程
 如果您在部署期間選擇使用 ICMP，您可以隨時編輯預設監視規則來切換為 TCP。
 
 ##### <a name="to-edit-the-default-monitoring-rule"></a>編輯預設監視規則
-1.    瀏覽至 [網路效能]  >  [監視]  >  [設定]  >  [監視]，然後按一下 [預設規則]。
-2.    捲動至 [通訊協定] 區段，然後選取您要使用的通訊協定。
-3.    按一下 [儲存] 來套用設定。
+1.  瀏覽至 [網路效能]  >  [監視]  >  [設定]  >  [監視]，然後按一下 [預設規則]。
+2.  捲動至 [通訊協定] 區段，然後選取您要使用的通訊協定。
+3.  按一下 [儲存] 來套用設定。
 
 即使預設規則正在使用特定的通訊協定，您也能以其他通訊協定建立新規則。 您甚至可以建立混合規則，其中某些規則使用 ICMP，而其他使用 TCP。
 

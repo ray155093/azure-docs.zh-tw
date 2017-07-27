@@ -3,7 +3,7 @@ title: "開始使用 Node.js 進行 Azure AD 登入和登出 | Microsoft Docs"
 description: "了解如何建立可整合 Azure AD 以進行登入的 Node.js Express MVS Web 應用程式。"
 services: active-directory
 documentationcenter: nodejs
-author: xerners
+author: navyasric
 manager: mbaldwin
 editor: 
 ms.assetid: 81deecec-dbe2-4e75-8bc0-cf3788645f99
@@ -13,13 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: javascript
 ms.topic: article
 ms.date: 01/07/2017
-ms.author: xerners
+ms.author: nacanuma
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 8d91d551cbb508485ca27d77b23eb319293e4237
+ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
+ms.openlocfilehash: 13317b016f9ff3955f376b858645c42668b0de42
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/20/2017
+ms.lasthandoff: 06/21/2017
 
 
 ---
@@ -144,8 +144,8 @@ Passport 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且�
     ```
 Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有策略寫入器都依循的類似模式。 查看策略，您會看見我們將它當成函式來傳遞，其中帶有一個 token 和一個 done 做為參數。 策略完成所有工作之後會回到我們這邊。 然後我們會想要儲存使用者並隱藏權杖，我們便不需要再次要求它。
 
-    > [!IMPORTANT]
-    > The previous code takes any user that happens to authenticate to our server. This is known as auto-registration. We recommend that you don't let anyone authenticate to a production server without first having them register via a process that you decide on. This is usually the pattern you see in consumer apps, which allow you to register with Facebook but then ask you to provide additional information. If this weren't a sample application, we could have extracted the user's email address from the token object that is returned and then asked the user to fill out additional information. Because this is a test server, we add them to the in-memory database.
+> [!IMPORTANT]
+先前程式碼會讓所有使用者經歷伺服器的驗證。 這就是所謂的自動註冊。 建議不要讓任何使用者未先透過您所決定的程序進行註冊，就向生產伺服器進行驗證。 此模式通常見於消費者應用程式，可允許您向 Facebook 進行註冊，但接著會要求您提供其他資訊。 如果這不是一個範例應用程式，我們就會從所傳回的權杖物件中擷取使用者的電子郵件地址，然後要求該使用者填寫其他資訊。 由於這是一部測試伺服器，因此我們會將它們新增到記憶體內部資料庫。
 
 
 4. 接下來，我們會新增方法，讓我們可以如 Passport 所要求追蹤已登入的使用者。 這些方法包括將使用者資訊序列化和還原序列化。
@@ -210,9 +210,9 @@ Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有
 
 6. 最後，新增路由以將實際的登入要求遞交給 `passport-azure-ad` 引擎：
 
-       
+
        ```JavaScript
- 
+
         // Our Auth routes (section 3)
 
         // GET /auth/openid

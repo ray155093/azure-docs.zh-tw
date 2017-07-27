@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 07/18/2016
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 7b4e14ff2e7e6575574e9da412d29cc2c228990f
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: be8163043535833ce45b3d50939a537406cf8152
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -94,15 +94,16 @@ ms.lasthandoff: 05/10/2017
    ![Twitter 動作圖 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)   
 3. 選取 [推文文字] 控制項。 前述動作和觸發程序的所有輸出現在可顯示在邏輯應用程式中。 您可以選取上述任何輸出，並使用它們做為新推文的部分推文文字。     
    ![Twitter 動作圖 2](../../includes/media/connectors-create-api-twitter/action-2.png)   
-4. 選取 [使用者名稱]****   
+4. 選取 [使用者名稱]   
 5. 在推文文字控制項中輸入「說：」。 在使用者名稱之後執行此動作。  
 6. 選取「推文文字」。       
    ![Twitter 動作圖 3](../../includes/media/connectors-create-api-twitter/action-3.png)   
 7. 儲存您的工作並傳送具有 #Seattle 雜湊標籤的推文，以啟動您的工作流程。  
 
 
-## <a name="view-the-swagger"></a>檢視 Swagger
-請參閱 [Swagger 詳細資料](/connectors/twitterconnector/)。 
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
+
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/twitterconnector/)的所有限制。 
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)

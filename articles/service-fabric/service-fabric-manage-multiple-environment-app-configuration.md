@@ -3,7 +3,7 @@ title: "管理 Service Fabric 中的多個環境 |Microsoft Docs"
 description: "Service Fabric 應用程式可以在任意大小 (從一部電腦至數千部電腦) 的叢集上執行。 在某些情況下，您會想要針對各種環境以不同的方式設定應用程式。 本文說明如何定義每個環境的不同應用程式參數。"
 services: service-fabric
 documentationcenter: .net
-author: seanmck
+author: mikkelhegn
 manager: timlt
 editor: 
 ms.assetid: f406eac9-7271-4c37-a0d3-0a2957b60537
@@ -12,18 +12,20 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 2/06/2017
-ms.author: seanmck
-translationtype: Human Translation
-ms.sourcegitcommit: b57655c8041fa366d0aeb13e744e30e834ec85fa
-ms.openlocfilehash: 7432e45ef33bd4d51fca8e8db8ec880e8beaf3ab
+ms.date: 06/07/2017
+ms.author: mikkelhegn
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: eaf1daf8d9f973fe82ba9e82c60a2a82f2681786
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 
 ---
 # <a name="manage-application-parameters-for-multiple-environments"></a>管理多個環境的應用程式參數
 您可以使用任意數量的電腦 (從一至數千部) 來建立 Service Fabric 叢集。 雖然不需針對各種環境進行修改，即可執行應用程式二進位檔，但您通常會視您要部署的機器數目，以不同的方式設定應用程式。
 
-簡單來說，請考慮無狀態服務的 `InstanceCount` 。 當您在 Azure 中執行應用程式時，您通常要將此參數設定為特殊值 "-1"。 這可確保您的服務在叢集中的每個節點上執行 (或節點中的每個節點，如果您已設定放置條件約束)。 不過，此設定不適用於單一電腦叢集，因為您不能有多個在單一電腦的相同端點上接聽的程序。 然而，您通常會將 `InstanceCount` 設定為 "1"。
+簡單來說，請考慮無狀態服務的 `InstanceCount` 。 當您在 Azure 中執行應用程式時，您通常要將此參數設定為特殊值 "-1"。 這樣設定可確保您的服務在叢集中的每個節點上執行 (或節點中的每個節點，如果您已設定放置條件約束)。 不過，此設定不適用於單一電腦叢集，因為您不能有多個在單一電腦的相同端點上接聽的程序。 然而，您通常會將 `InstanceCount` 設定為 "1"。
 
 ## <a name="specifying-environment-specific-parameters"></a>指定環境特有的參數
 此設定問題的解決方案是一組參數化預設服務和應用程式參數檔案，其中會填入指定之環境的參數值。 預設的服務和應用程式參數是在應用程式和服務資訊清單之中設定。 ServiceManifest.xml 和 ApplicationManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 及工具一起安裝在 *C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*。
@@ -32,18 +34,18 @@ ms.openlocfilehash: 7432e45ef33bd4d51fca8e8db8ec880e8beaf3ab
 Service Fabric 應用程式是由服務執行個體集合所組成。 雖然您可以先建立一個空的應用程式，然後再動態建立所有的服務執行個體，但是大部分的應用程式都有一組應一律在應用程式具現化時建立的核心服務。 這些稱為「預設服務」。 其在應用程式資訊清單中指定，而方括號中包含每個環境組態的預留位置：
 
 ```xml
-    <DefaultServices>
-        <Service Name="Stateful1">
-            <StatefulService
-                ServiceTypeName="Stateful1Type"
-                TargetReplicaSetSize="[Stateful1_TargetReplicaSetSize]"
-                MinReplicaSetSize="[Stateful1_MinReplicaSetSize]">
+  <DefaultServices>
+      <Service Name="Stateful1">
+          <StatefulService
+              ServiceTypeName="Stateful1Type"
+              TargetReplicaSetSize="[Stateful1_TargetReplicaSetSize]"
+              MinReplicaSetSize="[Stateful1_MinReplicaSetSize]">
 
-                <UniformInt64Partition
-                    PartitionCount="[Stateful1_PartitionCount]"
-                    LowKey="-9223372036854775808"
-                    HighKey="9223372036854775807"
-                />
+              <UniformInt64Partition
+                  PartitionCount="[Stateful1_PartitionCount]"
+                  LowKey="-9223372036854775808"
+                  HighKey="9223372036854775807"
+              />
         </StatefulService>
     </Service>
   </DefaultServices>
@@ -72,14 +74,14 @@ DefaultValue 屬性指定當指定的環境缺少更特定的參數時所要使�
 假設您在 `Stateful1` 服務的 Config\Settings.xml 檔案中有下列設定：
 
 ```xml
-    <Section Name="MyConfigSection">
-      <Parameter Name="MaxQueueSize" Value="25" />
-    </Section>
+  <Section Name="MyConfigSection">
+     <Parameter Name="MaxQueueSize" Value="25" />
+  </Section>
 ```
 若要覆寫特定應用程式/環境組的這個值，請在應用程式資訊清單中匯入服務資訊清單時建立 `ConfigOverride` 。
 
 ```xml
-    <ConfigOverrides>
+  <ConfigOverrides>
      <ConfigOverride Name="Config">
         <Settings>
            <Section Name="MyConfigSection">
@@ -98,7 +100,7 @@ DefaultValue 屬性指定當指定的環境缺少更特定的參數時所要使�
 
 ### <a name="setting-and-using-environment-variables"></a>設定及使用環境變數 
 您可以在 ServiceManifest.xml 檔案中指定和設定環境變數，然後依據個別執行個體，在 ApplicationManifest.xml 檔案中覆寫這些變數。
-以下範例顯示兩個環境變數，其中一個已設定值，另一個將被覆寫。 您可以使用應用程式參數來設定環境變數值，其方式與將這些用於組態覆寫時一樣。
+以下範例顯示兩個環境變數，其中一個已設定值，另一個會被覆寫。 您可以使用應用程式參數來設定環境變數值，其方式與將這些用於組態覆寫時一樣。
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -176,7 +178,7 @@ Service Fabric 具有已針對每個服務執行個體設定的內建環境變�
         }
     }
 ```
-下面是具有服務類型 `FrontEndService` 之應用程式類型 `GuestExe.Application` 的範例環境變數 (當在您的本機開發電腦上執行時)。
+以下是具有服務類型 `FrontEndService` 之應用程式類型 `GuestExe.Application` 的範例環境變數 (當在您的本機開發電腦上執行時)。
 
 * **Fabric_ApplicationName = fabric:/GuestExe.Application**
 * **Fabric_CodePackageName = Code**
@@ -202,7 +204,7 @@ Service Fabric 應用程式專案可以包含一或多個應用程式參數檔�
 
 ![方案總管中的應用程式參數檔案][app-parameters-solution-explorer]
 
-若要建立新的參數檔案，只需複製並貼上現有的參數檔案並為它提供新名稱。
+若要建立參數檔案，只需複製並貼上現有的參數檔案並為它提供新名稱。
 
 ## <a name="identifying-environment-specific-parameters-during-deployment"></a>在部署期間識別環境特有的參數
 在部署階段，您需選擇要套用於您的應用程式的適當參數檔案。 您可以透過 Visual Studio 中的 [發佈] 對話方塊或透過 PowerShell 進行。
@@ -226,9 +228,4 @@ Service Fabric 應用程式專案可以包含一或多個應用程式參數檔�
 
 [publishdialog]: ./media/service-fabric-manage-multiple-environment-app-configuration/publish-dialog-choose-app-config.png
 [app-parameters-solution-explorer]:./media/service-fabric-manage-multiple-environment-app-configuration/app-parameters-in-solution-explorer.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

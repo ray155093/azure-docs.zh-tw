@@ -3,7 +3,7 @@ title: "開始使用 Azure AD AngularJS | Microsoft Docs"
 description: "如何建置 AngularJS 單一頁面應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
 services: active-directory
 documentationcenter: 
-author: dstrockis
+author: jmprieur
 manager: mbaldwin
 editor: 
 ms.assetid: f2991054-8146-4718-a5f7-59b892230ad7
@@ -13,11 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: javascript
 ms.topic: article
 ms.date: 01/07/2017
-ms.author: dastrock
-translationtype: Human Translation
-ms.sourcegitcommit: a9997b6a6d30fbd2d21dee5d9c1e3ea92dfa97ab
-ms.openlocfilehash: 0ace1ee96d9266db9310ba73c36788a787a9dd15
-ms.lasthandoff: 02/10/2017
+ms.author: jmprieur
+ms.custom: aaddev
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: 797b6236afad45e3e308ce073a8beb90cb7e94a1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -30,6 +32,7 @@ Azure Active Directory (Azure AD) 可讓您簡單又直截了當地新增登入�
 對於在瀏覽器中執行的 JavaScript 應用程式，Azure AD 提供 Active Directory 驗證程式庫 (ADAL)，又稱為 adal.js。 adal.js 的唯一目的是為了讓您的應用程式輕鬆取得存取權杖。 為了示範究竟多麼簡單，我們將建置一個執行下列動作的 AngularJS 待辦事項清單應用程式：
 
 * 使用 Azure AD 做為身分識別提供者，將使用者登入應用程式。
+
 * 顯示使用者的一些相關資訊。
 * 使用 Azure AD 簽發的持有人權杖，安全地呼叫應用程式的待辦事項清單 API。
 * 將使用者登出應用程式。
@@ -46,7 +49,7 @@ Azure Active Directory (Azure AD) 可讓您簡單又直截了當地新增登入�
 若要讓應用程式能夠驗證使用者並取得權杖，您必須先在 Azure AD 租用戶中註冊這個應用程式：
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在頂端列中，按一下您的帳戶。 在 [目錄] 清單下，選擇您要註冊應用程式的 Azure AD 租用戶。
+2. 如果登入多個目錄，您可能需要確定檢視正確的目錄。 若要這樣做，請在頂端列上，按一下您的帳戶。 在 [目錄] 清單下，選擇您要註冊應用程式的 Azure AD 租用戶。
 3. 按一下左側窗格中的 [更多服務]，然後選取 [Azure Active Directory]。
 4. 按一下 [應用程式註冊]，然後選取 [新增]。
 5. 遵照提示進行，並建立新的 Web 應用程式和/或 Web API：
@@ -62,6 +65,7 @@ Azure Active Directory (Azure AD) 可讓您簡單又直截了當地新增登入�
 ## <a name="step-2-install-adal-and-configure-the-single-page-app"></a>步驟 2︰安裝 ADAL 並設定單一頁面應用程式
 既然您在 Azure AD 中已有應用程式，您可以安裝 adal.js，並撰寫身分識別相關的程式碼。
 
+### <a name="configure-the-javascript-client"></a>設定 JavaScript 用戶端
 首先，使用 [套件管理主控台] 將 adal.js 新增至 TodoSPA 專案：
   1. 下載 [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/master/lib/adal.js) 並將它新增至 `App/Scripts/` 專案目錄。
   2. 下載 [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/master/lib/adal-angular.js) 並將它新增至 `App/Scripts/` 專案目錄。
@@ -74,6 +78,7 @@ Azure Active Directory (Azure AD) 可讓您簡單又直截了當地新增登入�
     ...
     ```
 
+### <a name="configure-the-back-end-server"></a>設定後端伺服器
 為了讓單一頁面應用程式的後端待辦事項清單 API 從瀏覽器接受權杖，後端需要應用程式註冊的組態資訊。 在 TodoSPA 專案中，開啟 `web.config`。 取代 `<appSettings>` 區段中的元素值，以反映您在 Azure 入口網站中所使用的值。 每當使用 ADAL 時，您的程式碼便會參考這些值。
   * `ida:Tenant` 是指您的 Azure AD 租用戶網域，例如 contoso.onmicrosoft.com。
   * `ida:Audience` 是您從入口網站複製的應用程式用戶端識別碼。

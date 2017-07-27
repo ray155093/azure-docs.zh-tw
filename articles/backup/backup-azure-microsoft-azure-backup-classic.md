@@ -13,12 +13,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/10/2017
+ms.date: 06/14/2017
 ms.author: masaran;trinadhk;pullabhk;markgal
-translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 2b278b5c512d3ea0ff045869487d4551118c0e5c
-ms.lasthandoff: 03/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 348df3f4359e572d3514e1b11ce709f946c2efea
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -39,7 +40,7 @@ ms.lasthandoff: 03/14/2017
 >
 
 ## <a name="1-windows-server-machine"></a>1.Windows Server 機器
-![步驟&1;](./media/backup-azure-microsoft-azure-backup/step1.png)
+![步驟 1](./media/backup-azure-microsoft-azure-backup/step1.png)
 
 要啟動並執行 Azure 備份伺服器，第一個步驟是具備 Windows Server 機器。
 
@@ -56,19 +57,21 @@ ms.lasthandoff: 03/14/2017
 如果您打算將 Azure 備份伺服器加入網域，建議您在安裝 Azure 備份伺服器軟體之前，將實體伺服器或虛擬機器加入網域。 「不支援」在部署之後將 Azure 備份伺服器機器移至新網域。
 
 ## <a name="2-backup-vault"></a>2.備份保存庫
-![步驟&2;](./media/backup-azure-microsoft-azure-backup/step2.png)
+![步驟 2](./media/backup-azure-microsoft-azure-backup/step2.png)
 
-無論您是將備份資料傳送至 Azure，或保存在本機，都必須向保存庫註冊 Azure 備份伺服器。
+無論您是將備份資料傳送至 Azure，或保存在本機，都必須向保存庫註冊 Azure 備份伺服器。 如果您是新的 Azure 備份使用者，而且想要使用 Azure 備份伺服器，請參閱[準備使用 Azure 備份伺服器來備份工作負載](backup-azure-microsoft-azure-backup.md)這篇文章的 Azure 入口網站版本。
 
 > [!IMPORTANT]
-> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。 我們仍然支援現有的備份保存庫，您也可以[使用 Azure PowerShell 來建立備份保存庫](./backup-client-automation-classic.md#create-a-backup-vault)。 不過，Microsoft 建議您建立所有部署的復原服務保存庫，因為未來的增強功能僅適用於復原服務保存庫。
->
+> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。
+> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> **自 2017 年 11 月 1 日起**：
+>- 任何其餘的備份保存庫都會自動升級至復原服務保存庫。
+>- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
 >
 
 
 
 ## <a name="3-software-package"></a>3.軟體封裝
-![步驟&3;](./media/backup-azure-microsoft-azure-backup/step3.png)
+![步驟 3](./media/backup-azure-microsoft-azure-backup/step3.png)
 
 ### <a name="downloading-the-software-package"></a>下載軟體封裝
 類似於保存庫認證，您可以從備份保存庫的 [快速啟動頁面]  ，下載適用於應用程式工作負載的 Microsoft Azure 備份伺服器。
@@ -116,12 +119,12 @@ ms.lasthandoff: 03/14/2017
 
 4. 提供 Microsoft Azure 備份伺服器檔案的安裝位置，按 [下一步] 。
 
-    ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/space-screen.png)
+    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/space-screen.png)
 
     備份至 Azure 需要暫存位置。 請確保暫存位置至少為打算備份至雲端的資料的 5%。 在磁碟保護方面，安裝完成之後必須設定獨立的磁碟。 如需有關存放集區的詳細資訊，請參閱 [設定存放集區和磁碟儲存體](https://technet.microsoft.com/library/hh758075.aspx)。
 5. 為受限的本機使用者帳戶提供強式密碼，按 [下一步] 。
 
-    ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/security-screen.png)
+    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/security-screen.png)
 6. 選取是否要使用 *Microsoft Update* 檢查更新，按 [下一步]。
 
    > [!NOTE]
@@ -129,15 +132,15 @@ ms.lasthandoff: 03/14/2017
    >
    >
 
-    ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/update-opt-screen2.png)
+    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/update-opt-screen2.png)
 7. 檢閱「設定值摘要」，按一下 [安裝]。
 
-    ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/summary-screen.png)
+    ![Microsoft Azure 備份必要條件 2](./media/backup-azure-microsoft-azure-backup/summary-screen.png)
 8. 安裝分階段執行。 在第一個階段中，會將 Microsoft Azure 復原服務代理程式安裝在伺服器上。 精靈也會檢查網際網路連線。 如果可連線至網際網路，您可以繼續安裝，否則必須提供 Proxy 詳細資料來連線到網際網路。
 
     下一個步驟是設定 Microsoft Azure 復原服務代理程式。 在設定的過程中，您將必須提供保存庫認證，以向備份保存庫註冊機器。 您也須提供複雜密碼來加密/解密 Azure 與您的內部部署之間所傳送的資料。 您可以自動產生複雜密碼，或提供您自己的複雜密碼，最少 16 個字元。 繼續執行精靈，直到代理程式完成設定。
 
-    ![Azure 備份伺服器必要條件&2;](./media/backup-azure-microsoft-azure-backup/mars/04.png)
+    ![Azure 備份伺服器必要條件 2](./media/backup-azure-microsoft-azure-backup/mars/04.png)
 9. Microsoft Azure 備份伺服器順利完成註冊後，整體安裝精靈會繼續安裝及設定 SQL Server 和 Azure 備份伺服器的元件。 SQL Server 元件安裝完成後，會安裝 Azure 備份伺服器元件。
 
     ![Azure 備份伺服器](./media/backup-azure-microsoft-azure-backup/final-install/venus-installation-screen.png)
@@ -153,7 +156,7 @@ ms.lasthandoff: 03/14/2017
 >
 
 ## <a name="4-network-connectivity"></a>4.網路連線
-![步驟&4;](./media/backup-azure-microsoft-azure-backup/step4.png)
+![步驟 4](./media/backup-azure-microsoft-azure-backup/step4.png)
 
 Azure 備份伺服器需要連線至 Azure 備份服務，產品才能順利運作。 若要驗證機器是否連接至 Azure，請在Azure 備份伺服器 PowerShell 主控台中使用 ```Get-DPMCloudConnection``` Commandlet。 如果 commandlet 的輸出為 TRUE，表示連線存在，否則沒有連線。
 

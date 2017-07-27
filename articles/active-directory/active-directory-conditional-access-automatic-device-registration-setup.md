@@ -12,14 +12,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/07/2017
+ms.date: 06/16/2017
 ms.author: markvi
+ms.reviewer: jairoc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 0fb7e8fe778c8d6f7e12b1c8a75c95941da3d4d9
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: b8cac63967bf837183095cbb235c4a84f2dabcb9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
-
+ms.lasthandoff: 07/06/2017
 
 ---
 # <a name="how-to-configure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊
@@ -33,6 +33,7 @@ ms.lasthandoff: 04/27/2017
 
 - 有關條件式存取，請參閱 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access-azure-portal.md)。 
 - 有關工作場所中的 Windows 10 裝置以及向 Azure AD 註冊後的進階體驗，請參閱[適合企業使用的 Windows 10：使用裝置處理工作](active-directory-azureadjoin-windows10-devices-overview.md)。
+- CSP 中的 Windows 10 企業版 E3，請參閱 [CSP 中的 Windows 10 企業版 E3 概觀](https://docs.microsoft.com/en-us/windows/deployment/windows-10-enterprise-e3-overview)。
 
 
 ## <a name="before-you-begin"></a>開始之前
@@ -59,9 +60,8 @@ ms.lasthandoff: 04/27/2017
     - Windows Server 2012 R2
     - Windows Server 2012
     - Windows Server 2008 R2
-- 下列各項**不支援**舊版 Windows 裝置註冊：
-    - 非同盟環境 (密碼雜湊同步處理組態)。  
-    - 使用漫遊設定檔的裝置。 如果您倚賴設定檔或設定的漫遊，請使用 Windows 10。
+- 在非同盟環境中，**支援**透過無縫單一登入 [Azure Active Directory 無縫單一登入](https://aka.ms/hybrid/sso)來註冊舊版 Windows 裝置。
+- 對於使用漫遊設定檔的裝置，**不支援**註冊舊版 Windows 裝置。 如果您倚賴設定檔或設定的漫遊，請使用 Windows 10。
 
 
 
@@ -137,7 +137,10 @@ Azure AD Connect：
 
     Initialize-ADSyncDomainJoinedComputerSync –AdConnectorAccount [connector account name] -AzureADCredentials $aadAdminCred;
 
-`Initialize-ADSyncDomainJoinedComputerSync` Cmdlet 會使用 Active Directory PowerShell 模組，其倚賴在網域控制站上執行的 Active Directory Web 服務。 執行 Windows Server 2008 R2 和更新版本的網域控制站可支援 Active Directory Web 服務。 
+`Initialize-ADSyncDomainJoinedComputerSync` Cmdlet：
+
+- 使用 Active Directory PowerShell 模組，此模組依賴網域控制站上執行的 Active Directory Web 服務。 執行 Windows Server 2008 R2 和更新版本的網域控制站可支援 Active Directory Web 服務。
+- 只有 **MSOnline PowerShell 模組 1.1.166.0 版**才支援。 若要下載此模組，請使用這個[連結](http://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)。   
 
 對於執行 Windows Server 2008 或更早版本的網域控制站，請使用下列指令碼來建立服務連接點。
 
@@ -524,7 +527,9 @@ Azure AD Connect：
 
 ## <a name="step-4-control-deployment-and-rollout"></a>步驟 4︰控制部署與導入
 
-當您完成所需的步驟時，已加入網域的裝置即可自動向 Azure AD 註冊。 所有已加入網域且執行 Windows 10 年度更新版和 Windows Server 2016 的裝置會在裝置重新啟動或使用者登入時自動向 Azure AD 註冊。 加入網域作業完成之後，向 Azure AD 註冊的新裝置會在裝置重新啟動時向 Azure AD 註冊。
+當您完成所需的步驟時，已加入網域的裝置即可自動向 Azure AD 註冊。 所有已加入網域且執行 Windows 10 年度更新版和 Windows Server 2016 的裝置會在裝置重新啟動或使用者登入時自動向 Azure AD 註冊。 在完成加入網域作業之後，新裝置會在重新啟動時向 Azure AD 註冊。
+
+先前由工作場所加入 Azure AD 的裝置 (例如 Intune) 會轉換成「已加入網域，AAD 已登錄」。不過，由於網域和使用者活動的一般流程，在所有裝置上完成此程序需要一些時間。
 
 ### <a name="remarks"></a>備註
 

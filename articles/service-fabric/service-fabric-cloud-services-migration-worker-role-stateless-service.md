@@ -12,12 +12,13 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/10/2017
+ms.date: 06/29/2017
 ms.author: vturecek
-translationtype: Human Translation
-ms.sourcegitcommit: eddca02c4fba88aee667216568beecc76ea65d7c
-ms.openlocfilehash: def92885587b11ce8275292680a524d0c8e31751
-ms.lasthandoff: 01/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 4ab1f83e88b262b1752300b2786340d9abca8154
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.lasthandoff: 01/25/2017
 ## <a name="cloud-service-project-to-service-fabric-application-project"></a>雲端服務專案到 Service Fabric 應用程式專案
  雲端服務專案和 Service Fabric 應用程式專案結構類似，且兩者皆能代表應用程式的部署單位，也就是說，兩者各自會定義所部署來執行應用程式的完整封裝。 雲端服務專案包含一個或多個 Web 角色和背景工作角色。 同樣地，Service Fabric 應用程式專案也包含一個或多個服務。 
 
-兩者的差別在於，雲端服務專案會結合應用程式部署與 VM 部署，因此其中會包含 VM 組態設定，而 Service Fabric 應用程式專案則只會定義將要部署到 Service Fabric 叢集中一組現有 VM 的應用程式。 Service Fabric 叢集本身只會部署一次，在部署時可透過 ARM 範本或 Azure 入口網站，但此部署中可部署多個 Service Fabric 應用程式。
+兩者的差別在於，雲端服務專案會結合應用程式部署與 VM 部署，因此其中會包含 VM 組態設定，而 Service Fabric 應用程式專案則只會定義將要部署到 Service Fabric 叢集中一組現有 VM 的應用程式。 部署 Service Fabric 叢集時，可透過 Resource Manager 範本或 Azure 入口網站來進行部署，叢集本身只會部署一次，但可在此叢集中部署多個 Service Fabric 應用程式。
 
 ![Service Fabric 和雲端服務專案的比較][3]
 

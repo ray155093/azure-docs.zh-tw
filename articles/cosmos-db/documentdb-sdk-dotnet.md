@@ -12,14 +12,14 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 05/24/2017
+ms.date: 07/05/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 38bd198958180caece4747b972476475059191df
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: e42d4746c89614f6990cb84c0b25871a078ecbec
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -40,7 +40,7 @@ ms.lasthandoff: 05/31/2017
 
 <tr><td>**SDK 下載**</td><td>[NuGet](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/)</td></tr>
 
-<tr><td>**API 文件**</td><td>[.NET API 參考文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)</td></tr>
+<tr><td>**API 文件**</td><td>[.NET API 參考文件](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)</td></tr>
 
 <tr><td>**範例**</td><td>[.NET 程式碼範例](documentdb-dotnet-samples.md)</td></tr>
 
@@ -53,16 +53,22 @@ ms.lasthandoff: 05/31/2017
 
 ## <a name="release-notes"></a>版本資訊
 
+### <a name="a-name11501150"></a><a name="1.15.0"/>1.15.0
+*   已新增對 [DocumentClient](/dotnet/api/microsoft.azure.documents.client.documentclient?view=azure-dotnet) 具現化時指定自訂 JsonSerializerSettings 的支援。
+
+### <a name="a-name11411141"></a><a name="1.14.1"/>1.14.1
+*   針對不支援 SSE4 指令的 x64 電腦，已修正執行 DocumentDB API 查詢時，這類電腦會擲回 SEHException 的問題。
+
 ### <a name="a-name11401140"></a><a name="1.14.0"/>1.14.0
-*    已新增「每分鐘的要求單位 (RU/m)」功能支援。
-*    已新增對新一致性層級 ConsistentPrefix 的支援。
-*    已新增對個別資料分割之查詢計量的支援。
-*    已新增對限制查詢之接續權杖大小的支援。
-*    已新增對失敗要求進行更詳細追蹤的支援。
-*    SDK 中已有一些效能改進。
+*   已新增每分鐘的要求單位 (RU/m) 功能支援。
+*   已新增對新一致性層級 ConsistentPrefix 的支援。
+*   已新增對個別資料分割之查詢計量的支援。
+*   已新增對限制查詢之接續權杖大小的支援。
+*   已新增對失敗要求進行更詳細追蹤的支援。
+*   SDK 中已有一些效能改進。
 
 ### <a name="a-name11341134"></a><a name="1.13.4"/>1.13.4
-* 在功能上與 1.13.4 相同。 已有一些內部變更。
+* 在功能上與 1.13.3 相同。 已有一些內部變更。
 
 ### <a name="a-name11331133"></a><a name="1.13.3"/>1.13.3
 * 在功能上與 1.13.2 相同。 已有一些內部變更。
@@ -173,7 +179,7 @@ ms.lasthandoff: 05/31/2017
   * Take 運算子：可啟用 LINQ 中的 SELECT TOP 行為
   * CompareTo 運算子：可啟用字串範圍比較
   * 條件式 (?) 與聯合運算子 (??)
-* **[已修正]** 將模型投射與 LINQ 查詢中的 Where-In 結合使用時發生 ArgumentOutOfRangeException。  [#81](https://github.com/Azure/azure-documentdb-dotnet/issues/81)
+* **[已修正]** 將模型投射與 LINQ 查詢中的 Where-In 結合使用時發生 ArgumentOutOfRangeException。 [#81](https://github.com/Azure/azure-documentdb-dotnet/issues/81)
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
 * **[已修正]** 如果 Select 不是最後一個運算式，LINQ 提供者會假設沒有任何預測，並會產生不正確的 SELECT *。  [#58](https://github.com/Azure/azure-documentdb-dotnet/issues/58)
@@ -190,42 +196,42 @@ ms.lasthandoff: 05/31/2017
 * **[已修正]** 使用非 en 文化特性資訊時 (例如 nl-NL 等) 的當地語系化問題。 
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
-* 以識別碼為基礎的路由
-  * 新的 UriFactory 協助程式，協助建構以識別碼為基礎的資源連結
+* 已新增以識別碼為基礎的路由
+  * 新的 UriFactory 協助程式，可協助建構以識別碼為基礎的資源連結
   * DocumentClient 上新的多載可接受 URI
 * LINQ 中新增用於地理空間的 IsValid() 和 isvaliddetailed ()
-* 增強的 LINQ 提供者支援
+* 增強的 LINQ 提供者支援：
   * **算術** - Abs、Acos、Asin、Atan、Ceiling、Cos、Exp、Floor、Log、Log10、Pow、Round、Sign、Sin、Sqrt、Tan、Truncate
   * **字串** - Concat、Contains、EndsWith、IndexOf、Count、ToLower、TrimStart、Replace、Reverse、TrimEnd、StartsWith、SubString、ToUpper
   * **陣列** - Concat、Contains、Count
   * **IN** 運算子
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
-* 新增支援來修改索引編製原則
+* 新增修改索引編製原則的支援。
   * DocumentClient 中新的 ReplaceDocumentCollectionAsync 方法
   * ResourceResponse 中新的 IndexTransformationProgress 屬性<T>可追蹤索引原則變更的百分比進度
   * DocumentCollection.IndexingPolicy 現在可變動
-* 新增空間索引編製和查詢的支援
+* 新增空間索引編製和查詢的支援。
   * 新的 Microsoft.Azure.Documents.Spatial 命名空間，可序列化/還原序列化空間類型，例如 Point 和 Polygon
   * 新的 SpatialIndex 類別，可對儲存在 Cosmos DB 中的 GeoJSON 資料編製索引
-* **[已修正]** ：從 LINQ 運算式產生的 SQL 查詢不正確 [#38](https://github.com/Azure/azure-documentdb-net/issues/38)
+* **[已修正]**：從 LINQ 運算式產生的 SQL 查詢不正確 [#38](https://github.com/Azure/azure-documentdb-net/issues/38) \(英文\)。
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
-* 對 Newtonsoft.Json v5.0.7 的相依性 
-* 變更為支援 Order By
+* 已新增對 Newtonsoft.Json v5.0.7 的相依性。
+* 變更為支援 Order By：
   
   * LINQ 提供者支援 OrderBy() 或 OrderByDescending()
   * IndexingPolicy 支援 Order By 
     
-    **NB: 可能中斷變更** 
+    **可能使得舊程式碼無法運作的變更** 
     
-    如果您有與自訂索引原則佈建集合的現有程式碼，您需要更新現有的程式碼才能支援新的 IndexingPolicy 類別。 如果您沒有自訂的索引原則，這個變更不會影響到您。
+    如果現有程式碼以自訂索引原則來佈建集合，則需要更新現有的程式碼，才能支援新的 IndexingPolicy 類別。 如果您沒有自訂的索引原則，這個變更不會影響到您。
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
-* 支援使用新的 HashPartitionResolver 和 RangePartitionResolver 類別及 IPartitionResolver 來分割資料
-* DataContract 序列化
-* LINQ 提供者中的 Guid 支援
-* LINQ 中的 UDF 支援 
+* 使用新的 HashPartitionResolver 和 RangePartitionResolver 類別及 IPartitionResolver，以新增對資料分割的支援。
+* 已新增 DataContract 序列化。
+* 已新增 LINQ 提供者中的 GUID 支援。
+* 已新增 LINQ 中的 UDF 支援。
 
 ### <a name="a-name100100"></a><a name="1.0.0"/>1.0.0
 * GA SDK
@@ -235,12 +241,14 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 新的功能與最佳化項目只會新增至目前的 SDK，因此建議您一律盡早升級至最新的 SDK 版本。 
 
-服務將會拒絕使用已停用 SDK 的任何 Cosmos DB 要求。
+服務會拒絕使用已停用 SDK 的任何 Azure Cosmos DB 要求。
 
 <br/>
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.15.0](#1.15.0) |2017 年 6 月 30 日 |--- |
+| [1.14.1](#1.14.1) |2017 年 5 月 23 日 |--- |
 | [1.14.0](#1.14.0) |2017 年 5 月 10 日 |--- |
 | [1.13.4](#1.13.4) |2017 年 5 月 09 日 |--- |
 | [1.13.3](#1.13.3) |2017 年 5 月 06 日 |--- |

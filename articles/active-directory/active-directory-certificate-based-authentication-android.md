@@ -11,13 +11,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 04/12/2017
+ms.date: 06/07/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 0e2bbb2a94986ca93035aa553db0f9b54af635d5
-ms.lasthandoff: 04/27/2017
-
+ms.reviewer: nigu
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 58733a36e1753c219df51e1fbe845a2f2a0fdbdc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 ---
 # <a name="azure-active-directory-certificate-based-authentication-on-android"></a>Android 上的 Azure Active Directory 憑證式驗證
@@ -30,7 +31,9 @@ ms.lasthandoff: 04/27/2017
 
 設定這項功能之後，就不需要在行動裝置上的特定郵件和 Microsoft Office 應用程式中，輸入使用者名稱和密碼的組合。 
 
-本主題提供 Office 365 企業版、商務版、教育訓練版及美國政府機關方案的租用戶使用者，在 Android 裝置上設定 CBA 的需求和支援案例。 
+本主題提供 Office 365 企業版、商務版、教育版、美國政府機關及中國方案的租用戶使用者，在 Android 裝置上設定 CBA 的需求和支援案例。
+
+
 
 在 Office 365 US Government Defense 和 Federal 方案中，這項功能處於預覽版。
 
@@ -45,6 +48,8 @@ ms.lasthandoff: 04/27/2017
 | Yammer |![勾選][1] |
 | 商務用 Skype |![勾選][1] |
 | Azure 資訊保護應用程式 |![勾選][1] |
+| Microsoft Teams |![勾選][1] |
+
 
 
 ### <a name="implementation-requirements"></a>實作需求

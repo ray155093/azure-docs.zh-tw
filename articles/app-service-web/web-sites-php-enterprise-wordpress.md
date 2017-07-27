@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: web
 ms.date: 10/24/2016
 ms.author: sumuth
-translationtype: Human Translation
-ms.sourcegitcommit: 541dd7bed5a4a9e306642b2c36dd7c9d45aec690
-ms.openlocfilehash: fcaff51b2897b1b0bce8b1c503adfd9425c9fbb4
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: b562e8cbc84fc3a1e7e6dab1845022dfcce692a3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -162,7 +163,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 | --- | --- |
 | **設定 App Service 計劃模式、大小，以及啟用調整規模** |[在 Azure App Service 中調整 Web 應用程式規模][websitescale]。 |
 | **啟用持續資料庫連線** |依預設，WordPress 不會使用持續資料庫連線，因為在多個連線後，此選項會造成資料庫連線進入流速控制狀態。 若要啟用持續連線，請安裝[持續連線配接器外掛程式 (英文)](https://wordpress.org/plugins/persistent-database-connection-updater/installation/)。 |
-| **提升效能** |<ul><li><p><a href="https://azure.microsoft.com/en-us/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/">停用 ARR Cookie</a>，這可以在 WordPress 於多個 Web Apps 執行個體上執行時改善效能。</p></li><li><p>啟用快取。 您可以使用 <a href="http://msdn.microsoft.com/library/azure/dn690470.aspx">Redis cache</a> (預覽版) 搭配 <a href="https://wordpress.org/plugins/redis-object-cache/">Redis 物件快取 WordPress 外掛程式</a>，或者您可以使用 <a href="/gallery/store/">Azure 市集</a>的其中一個快取產品。</p></li><li><p><a href="http://ruslany.net/2010/03/make-wordpress-faster-on-iis-with-wincache-1-1/">利用 Wincache 讓 WordPress 變得更快</a>。 Web 應用程式預設已啟用 Wincache。</p></li><li><p>[在 Azure App Service 中調整 Web 應用程式規模][websitescale]並使用 <a href="http://www.cleardb.com/developers/cdbr/introduction">ClearDB 高可用性路由</a>或 <a href="http://www.mysql.com/products/cluster/">MySQL Cluster CGE</a>。</p></li></ul> |
+| **提升效能** |<ul><li><p><a href="https://azure.microsoft.com/en-us/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/">停用 ARR Cookie</a>，這可以在 WordPress 於多個 Web Apps 執行個體上執行時改善效能。</p></li><li><p>啟用快取。 您可以使用 <a href="http://msdn.microsoft.com/library/azure/dn690470.aspx">Redis cache</a> (預覽版) 搭配 <a href="https://wordpress.org/plugins/redis-object-cache/">Redis 物件快取 WordPress 外掛程式</a>，或者您可以使用 <a href="/gallery/store/">Azure 市集</a>的其中一個快取產品。</p></li><li><p>[利用 Wincache 讓 WordPress 變得更快](https://wordpress.org/plugins/w3-total-cache/)。 Web 應用程式預設已啟用 Wincache。 搭配使用 WinCache 與動態快取時，請關閉 WinCache 的檔案快取，但保留啟用使用者和工作階段快取。 若要關閉檔案快取，請在系統層級的 .ini 檔案中，設定下列值：<br/><code>wincache.fcenabled = 0</code></p></li><li><p>[在 Azure App Service 中調整 Web 應用程式規模][websitescale]並使用 <a href="http://www.cleardb.com/developers/cdbr/introduction">ClearDB 高可用性路由</a>或 <a href="http://www.mysql.com/products/cluster/">MySQL Cluster CGE</a>。</p></li></ul> |
 | **使用 Blob 進行儲存** |<ol><li><p>[建立 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。</p></li><li><p>了解如何[使用內容發佈網路 (CDN)](../cdn/cdn-create-new-endpoint.md) 來異地發佈儲存在 Blob 中的資料。</p></li><li><p>安裝和設定 <a href="https://wordpress.org/plugins/windows-azure-storage/">WordPress 外掛程式的 Azure 儲存體</a>。</p><p>如需此外掛程式的詳細安裝和設定資訊，請參閱<a href="http://plugins.svn.wordpress.org/windows-azure-storage/trunk/UserGuide.docx">使用者指南</a>。</p> </li></ol> |
 | **啟用電子郵件** |使用 Azure 市集來啟用 <a href="https://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/">SendGrid</a>。 安裝 WordPress 的 <a href="http://wordpress.org/plugins/sendgrid-email-delivery-simplified">SendGrid 外掛程式</a>。 |
 | **設定自訂網域名稱** |[在 Azure App Service 中設定自訂網域名稱][customdomain]。 |
@@ -211,7 +212,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 [storageplugin]: https://wordpress.org/plugins/windows-azure-storage/
 [sendgridplugin]: http://wordpress.org/plugins/sendgrid-email-delivery-simplified/
 [phpwebsite]: web-sites-php-configure.md
-[customdomain]: web-sites-custom-domain-name.md
+[customdomain]: app-service-web-tutorial-custom-domain.md
 [trafficmanager]: ../traffic-manager/traffic-manager-overview.md
 [backup]: web-sites-backup.md
 [restore]: web-sites-restore.md
@@ -223,7 +224,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 [staging]: web-sites-staged-publishing.md
 [monitor]: web-sites-monitor.md
 [log]: web-sites-enable-diagnostic-log.md
-[httpscustomdomain]: web-sites-configure-ssl-certificate.md
+[httpscustomdomain]: app-service-web-tutorial-custom-ssl.md
 [mysqlwindows]:../virtual-machines/windows/classic/mysql-2008r2.md
 [mysqllinux]:../virtual-machines/linux/classic/mysql-on-opensuse.md
 [cge]: http://www.mysql.com/products/cluster/

@@ -12,22 +12,24 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/24/2017
+ms.date: 07/05/2017
 ms.author: sethm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: d1756dee37771941caae781682b342986c7ecbc9
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: f3f4a2e721b1a75a5b92a5c17a9939c7013340d4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/27/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
 
 # <a name="azure-relay-hybrid-connections-net-standard-api-overview"></a>Azure 轉送混合式連線 .NET Standard API 概觀
+
 本文將摘要列出一些主要 Azure 轉送混合式連線 .NET Standard [用戶端 API](/dotnet/api/microsoft.azure.relay)。
   
 ## <a name="relay-connection-string-builder"></a>轉送連接字串產生器
-[RelayConnectionStringBuilder][RelayConnectionStringBuilder] 類別將格式化專用於轉送混合式連線的連接字串。 您可以使用它來驗證連接字串的格式，或從頭開始建置連接字串。 如需範例，請參閱下列程式碼片段。
+
+[RelayConnectionStringBuilder][RelayConnectionStringBuilder] 類別會格式化專用於轉送混合式連線的連接字串。 您可以使用它來驗證連接字串的格式，或從頭開始建置連接字串。 如需範例，請參閱下列程式碼：
 
 ```csharp
 var endpoint = "{Relay namespace}";
@@ -44,7 +46,7 @@ var connectionStringBuilder = new RelayConnectionStringBuilder()
 };
 ```
 
-您也可以直接將連接字串傳遞到 `RelayConnectionStringBuilder` 方法。 這可讓您驗證連接字串是有效的格式，如果有任一參數無效，建構函式會擲回 `ArgumentException`。
+您也可以直接將連接字串傳遞到 `RelayConnectionStringBuilder` 方法。 這項作業可讓您確認連接字串格式有效。 如果有任何參數無效，建構函式會產生 `ArgumentException`。
 
 ```csharp
 var myConnectionString = "{RelayConnectionString}";
@@ -67,7 +69,7 @@ catch (ArgumentException ae)
 ### <a name="getting-a-hybrid-connection-stream"></a>取得混合式連線串流
 
 #### <a name="listener"></a>接聽程式
-使用 [HybridConnectionListener][HCListener]，您可以取得如下的 `HybridConnectionStream`︰
+使用 [HybridConnectionListener][HCListener]，您可以取得如下的 `HybridConnectionStream` 物件︰
 
 ```csharp
 // Use the RelayConnectionStringBuilder to get a valid connection string
@@ -79,7 +81,7 @@ var hybridConnectionStream = await listener.AcceptConnectionAsync();
 ```
 
 #### <a name="client"></a>用戶端
-使用 [HybridConnectionClient][HCClient]，您可以取得如下的 `HybridConnectionStream`︰
+使用 [HybridConnectionClient][HCClient]，您可以取得如下的 `HybridConnectionStream` 物件︰
 
 ```csharp
 // Use the RelayConnectionStringBuilder to get a valid connection string
@@ -89,9 +91,9 @@ var hybridConnectionStream = await client.CreateConnectionAsync();
 ```
 
 ### <a name="receiving-data"></a>接收資料
-[HybridConnectionStream][HCStream]類別可允許雙向通訊。 在大部分的使用案例中，您會想持續接收來自串流的資料。 如果您從串流讀取文字，您可能也想使用 [StreamReader](https://msdn.microsoft.com/library/system.io.streamreader(v=vs.110).aspx)，這可讓您更容易剖析資料。 例如，您可以讀取文字 (而非`byte[]`) 格式的資料。
+[HybridConnectionStream][HCStream] 類別允許雙向通訊。 在大部分的案例中，您會持續接收來自串流的資料。 如果您從串流讀取文字，建議您使用 [StreamReader](https://msdn.microsoft.com/library/system.io.streamreader(v=vs.110).aspx) 物件，這可讓您更容易剖析資料。 例如，您可以讀取文字 (而非`byte[]`) 格式的資料。
 
-下列程式碼會從串流讀取個別的文字行，直到要求取消。
+下列程式碼會從串流讀取個別的文字行，直到要求取消：
 
 ```csharp
 // Create a CancellationToken, so that we can cancel the while loop

@@ -15,10 +15,10 @@ ms.workload: na
 ms.date: 05/02/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 2fad3e3fb88d447b377ccfce052035640c1360c3
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: c3646fef95bc06f8febe45718f4f9aeb9aefb42a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 05/16/2017
 適用於多種語言的_裝置 SDK_ 可讓您建立[裝置應用程式](#device-app)來與 IoT 中樞互動。 IoT 中樞教學課程示範如何使用這些裝置 SDK。 您可以在此 GitHub [儲存機制](https://github.com/Azure/azure-iot-sdks)中找到原始程式碼和進一步的裝置 SDK 資訊。
 
 ## <a name="azure-iot-edge"></a>Azure IoT Edge
-IoT Edge 可讓您撰寫應用程式，讓閘道連接的裝置能與 [IoT 中樞](#iot-hub)通訊。 IoT Edge 教學課程示範如何使用此服務。 您可以在此 GitHub [存放庫](https://github.com/Azure/iot-edge)中找到原始程式碼和進一步的 Azure IoT Edge 資訊。
+IoT Edge 可讓您撰寫應用程式，讓閘道連線的裝置能與 [IoT 中樞](#iot-hub)通訊。 IoT Edge 教學課程示範如何使用此服務。 您可以在此 GitHub [存放庫](https://github.com/Azure/iot-edge)中找到原始程式碼和進一步的 Azure IoT Edge 資訊。
 
 ## <a name="azure-iot-service-sdks"></a>Azure IoT 服務 SDK
 適用於多種語言的_服務 SDK_ 可讓您建立[後端應用程式](#back-end-app) 來與 IoT 中樞互動。 IoT 中樞教學課程示範如何使用這些服務 SDK。 您可以在此 GitHub [儲存機制](https://github.com/Azure/azure-iot-sdks)中找到原始程式碼和進一步的服務 SDK 資訊。
@@ -80,7 +80,7 @@ IoT Edge 可讓您撰寫應用程式，讓閘道連接的裝置能與 [IoT 中�
 您可以在 IoT 中樞上建立自訂[端點](iot-hub-devguide-endpoints.md)，以傳遞由[路由規則](#routing-rules)分派的訊息。 自訂端點會直接連線到事件中樞、服務匯流排佇列或服務匯流排主題。
 
 ## <a name="custom-gateway"></a>自訂閘道
-閘道可讓無法直接連接到 [IoT 中樞](#iot-hub)的裝置能夠連線。 您可以使用 [Azure IoT Edge](#azure-iot-gateway-sdk) 來建立自訂閘道，以實作自訂邏輯從而處理 Edge 上的訊息、自訂通訊協定轉換和其他處理。
+閘道可讓無法直接連接到 [IoT 中樞](#iot-hub)的裝置能夠連線。 您可以使用 [Azure IoT Edge](#azure-iot-edge) 來建立自訂閘道，以實作自訂邏輯從而處理 Edge 上的訊息、自訂通訊協定轉換和其他處理。
 
 ## <a name="data-point-message"></a>資料點訊息
 資料點訊息是[裝置到雲端](#device-to-cloud)的訊息，內含風速或溫度等[遙測](#telemetry)資料。
@@ -191,7 +191,7 @@ Azure IoT 套件會使用預先設定的解決方案將多項 Azure 服務封裝
 [作業 REST API](https://docs.microsoft.com/rest/api/iothub/jobapi) 可讓您管理在 IoT 中樞執行的[作業](#job)。
 
 ## <a name="module"></a>模組
-在 [Azure IoT Edge](iot-hub-linux-gateway-sdk-get-started.md) 中，[模組](iot-hub-linux-gateway-sdk-get-started.md)是可執行特定工作的元件。 工作可能包括從裝置擷取訊息、轉換訊息或將訊息傳送至 IoT 中樞。 訊息代理程式會負責在模組之間轉送訊息。 Azure IoT Edge 包含一組範例模組。 您也可以建立自己的自訂模組。
+在 [Azure IoT Edge](iot-hub-linux-iot-edge-get-started.md) 中，[模組](iot-hub-linux-iot-edge-get-started.md)是可執行特定工作的元件。 工作可能包括從裝置擷取訊息、轉換訊息或將訊息傳送至 IoT 中樞。 訊息代理程式會負責在模組之間轉送訊息。 Azure IoT Edge 包含一組範例模組。 您也可以建立自己的自訂模組。
 
 ## <a name="mqtt"></a>MQTT
 [MQTT](http://mqtt.org/) 是 [IoT 中樞](#iot-hub)支援用來與裝置通訊的其中一種傳訊通訊協定。 如需 IoT 中樞支援的傳訊通訊協定詳細資訊，請參閱[使用 IoT 中樞傳送及接收訊息](iot-hub-devguide-messaging.md)。
@@ -224,7 +224,7 @@ IoT 中樞的[作業監視](iot-hub-operations-monitoring.md)可讓您即時監�
 當您連接到雲端服務時，您可以使用重試原則來處理[暫時性錯誤](https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx)。
 
 ## <a name="routing-rules"></a>路由規則
-您必須在 IoT 中樞設定[路由規則](iot-hub-devguide-messaging.md#routing-rules)，以將裝置到雲端訊息路由傳送到[內建端點](#built-in-endpoints)或[自訂端點](#custom-endpoints)，以由您的解決方案後端處理。
+您必須在 IoT 中樞設定[路由規則](iot-hub-devguide-messages-read-custom.md)，以將裝置到雲端訊息路由傳送到[內建端點](#built-in-endpoints)或[自訂端點](#custom-endpoints)，以由您的解決方案後端處理。
 
 ## <a name="sasl-plain"></a>SASL PLAIN
 SASL PLAIN 是 [AMQP](#advanced-message-queue-protocol) 通訊協定用來傳輸安全性權杖的通訊協定。

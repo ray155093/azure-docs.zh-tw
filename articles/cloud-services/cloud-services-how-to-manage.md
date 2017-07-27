@@ -12,13 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/27/2016
+ms.date: 05/18/2017
 ms.author: adegeo
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 76f59384db37967a9210ba5efa49b25788d21cdc
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: e66a3390c08b66e0f2f38725425cd78a36004118
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -113,7 +113,7 @@ ms.lasthandoff: 04/27/2017
     ![Link Page1](./media/cloud-services-how-to-manage/CloudServices_LinkedResources_LinkPage1.png)
 
 4. 按一下 [建立新的資源] 或 [連結現有的資源]。
-5. 選擇要連結的資源類型。 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [ **SQL Database**]。 (預覽版的 Azure 傳統入口網站不支援將儲存體帳戶連結到雲端服務)。
+5. 選擇要連結的資源類型。 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [ **SQL Database**]。 (只有 Azure 傳統入口網站支援將儲存體帳戶連結到雲端服務。)
 6. 若要完成資料庫組態，請依照 Azure 傳統入口網站中 [ **SQL Database** ] 區域的說明中的指示執行。
 
     您可以在訊息區域中追蹤連結作業的進度。

@@ -12,12 +12,13 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 06/29/2017
 ms.author: muralikk
-translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 2aebded82fcf67bf9ad4a00a703e62eb12e2370c
-ms.lasthandoff: 03/30/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: d39ec89b4877e2fca01b68b30bb287a120f2eb71
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -32,23 +33,23 @@ Microsoft Azure 匯入/匯出工具是磁碟機準備及修復工具，可搭配
 
 ## <a name="prerequisites"></a>必要條件
 
-如果您要**準備匯入作業的磁碟機**，您必須符合下列必要條件︰
+如果您正針對匯入作業**準備磁碟機**，就必須符合下列必要條件：
 
 * 您必須擁有有效的 Azure 訂用帳戶。
 * 您的訂用帳戶必須包含可用空間足夠儲存您要匯入之檔案的儲存體帳戶。
-* 您需要至少一個儲存體帳戶的帳戶金鑰。
+* 您至少需要一個儲存體帳戶存取金鑰。
 * 您需要安裝 Windows 7、Windows Server 2008 R2 或更新版本 Windows 作業系統的電腦 (「複製電腦」)。
 * 複製電腦上必須安裝 .NET Framework 4。
 * 複製電腦上必須啟用 BitLocker。
-* 您將需要一個或多個連接至複製電腦的空 3.5 吋 SATA 硬碟。
+* 您需要一或多個連接至複製電腦的空白 3.5 英吋 SATA 硬碟。
 * 您想匯入的檔案必須可從複製機器上存取，無論它們是在網路共用或本機硬碟上。
 
-如果您嘗試**修復已部分失敗的匯入**，您將需要︰
+如果您正嘗試**修復已部分失敗的匯入**，您需要：
 
 * 複製記錄檔
 * 儲存體帳戶金鑰。
 
-如果您嘗試**修復已部分失敗的匯出**，您將需要︰
+如果您正嘗試**修復已部分失敗的匯出**，您需要：
 
 * 複製記錄檔
 * 資訊清單檔案 (選擇性)
@@ -56,7 +57,7 @@ Microsoft Azure 匯入/匯出工具是磁碟機準備及修復工具，可搭配
 
 ## <a name="installing-the-azure-importexport-tool"></a>安裝 Azure 匯入/匯出工具
 
-首先，[下載 Azure 匯入/匯出工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)並解壓縮至您電腦上的目錄，例如 `c:\WAImportExport`。
+首先，[下載 Azure 匯入/匯出工具](https://www.microsoft.com/download/details.aspx?id=55280)並解壓縮至您電腦上的目錄，例如 `c:\WAImportExport`。
 
 Azure 匯入/匯出工具包含下列檔案：
 
@@ -65,45 +66,37 @@ Azure 匯入/匯出工具包含下列檔案：
 * hddid.dll
 * Microsoft.Data.Services.Client.dll
 * Microsoft.WindowsAzure.Storage.dll
+* Microsoft.WindowsAzure.Storage.pdb
+* Microsoft.WindowsAzure.Storage.xml
 * WAImportExport.exe
 * WAImportExport.exe.config
+* WAImportExport.pdb
 * WAImportExportCore.dll
+* WAImportExportCore.pdb
 * WAImportExportRepair.dll
+* WAImportExportRepair.pdb
 
 接下來，在**系統管理員模式**中開啟 [命令提示字元] 視窗，並變更為包含解壓縮檔案的目錄。
 
-若要輸出命令的說明，執行此工具而不包含參數︰
+若要輸出命令的說明，請執行此工具(`WAImportExport.exe`) 而不包含參數：
 
 ```
-WAImportExport, a client tool for Windows Azure Import/Export service. Microsoft (c) 2013
+WAImportExport, a client tool for Windows Azure Import/Export Service. Microsoft (c) 2013
 
 
 Copy directories and/or files with a new copy session:
-    WAImportExport.exe PrepImport
-        /j:<JournalFile>
-        /id:<SessionId> [/logdir:<LogDirectory>]
-        [/sk:<StorageAccountKey>]
-        [/silentmode]
-        [/InitialDriveSet:<driveset.csv>]
+    WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> [/logdir:<LogDirectory>]
+        [/sk:<StorageAccountKey>] [/silentmode] [/InitialDriveSet:<driveset.csv>]
         DataSet:<dataset.csv>
 
 Add more drives:
-    WAImportExport.exe PrepImport
-        /j:<JournalFile>
-        /id:<SessionId>
-        /AdditionalDriveSet:<driveset.csv>
+    WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> /AdditionalDriveSet:<driveset.csv>
 
 Abort an interrupted copy session:
-    WAImportExport.exe PrepImport
-        /j:<JournalFile>
-        /id:<SessionId>
-        /AbortSession
+    WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> /AbortSession
 
 Resume an interrupted copy session:
-    WAImportExport.exe PrepImport
-        /j:<JournalFile>
-        /id:<SessionId>
-        /ResumeSession
+    WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> /ResumeSession
 
 List drives:
     WAImportExport.exe PrepImport /j:<JournalFile> /ListDrives
@@ -178,7 +171,7 @@ Parameters:
     /ExportBlobListFile:<ExportBlobListFile>
         - Required. Path to the XML file containing list of blob paths or blob path
           prefixes for the blobs to be exported. The file format is the same as the
-          blob list blob format in the Put Job operation of the Import/Export service
+          blob list blob format in the Put Job operation of the Import/Export Service
           REST API.
     /DriveSize:<DriveSize>
         - Required. Size of drives to be used for export. For example, 500GB, 1.5TB.

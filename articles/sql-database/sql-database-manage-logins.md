@@ -18,10 +18,10 @@ ms.workload: data-management
 ms.date: 01/23/2017
 ms.author: rickbyh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: f29b2c1da0d9b761634370f5f08ea942b66d9f1f
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: 51edd390c065dd7312ecc54694b5a95ecc11eab8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/15/2017
+ms.lasthandoff: 06/08/2017
 
 
 ---
@@ -34,7 +34,7 @@ ms.lasthandoff: 04/15/2017
 >
 
 > [!TIP]
-> 如需使用 SQL Server 驗證的教學課程，請參閱[教學課程︰SQL Server 驗證](sql-database-control-access-sql-authentication-get-started.md)。 如需使用 Azure Active Directory 驗證的教學課程，請參閱[教學課程：AAD 驗證](sql-database-control-access-aad-authentication-get-started.md)。
+> 如需教學課程，請參閱[保護 Azure SQL Database](sql-database-security-tutorial.md)。
 >
 
 
@@ -191,9 +191,7 @@ GRANT ALTER ANY USER TO Mary;
 
 - 若要深入了解防火牆規則，請參閱 [Azure SQL Database 防火牆](sql-database-firewall-configure.md)。
 - 如需所有 SQL Database 安全性功能的概觀，請參閱 [SQL 安全性概觀](sql-database-security-overview.md)。
-- 如需教學課程，請參閱 [SQL 安全性入門](sql-database-control-access-sql-authentication-get-started.md)
+- 如需教學課程，請參閱[保護 Azure SQL Database](sql-database-security-tutorial.md)。
 - 如需檢視和預存程序的相關資訊，請參閱[建立檢視和預存程序](https://msdn.microsoft.com/library/ms365311.aspx)
 - 如需授與資料庫物件存取權的相關資訊，請參閱[授與資料庫物件的存取權](https://msdn.microsoft.com/library/ms365327.aspx)
-- 如需使用 SQL Server 驗證的教學課程，請參閱[教學課程︰SQL Server 驗證](sql-database-control-access-sql-authentication-get-started.md)。
-- 如需使用 Azure Active Directory 驗證的教學課程，請參閱[教學課程：AAD 驗證](sql-database-control-access-aad-authentication-get-started.md)。
 

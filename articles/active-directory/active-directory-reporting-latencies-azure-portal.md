@@ -12,19 +12,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/05/2017
+ms.date: 07/15/2017
 ms.author: markvi;dhanyahk
+ms.reviewer: dhanyahk
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 1c6b79c5f67cee5d62c9879bdeec926091253af6
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: a1e385c235c3530744a83527574880c5f37caadd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/12/2017
-
+ms.lasthandoff: 07/06/2017
 
 ---
-# <a name="azure-active-directory-reporting-latencies---preview"></a>Azure Active Directory 報告延遲 - 預覽
+# <a name="azure-active-directory-reporting-latencies"></a>Azure Active Directory 報告延遲
 
-透過 Azure Active Directory [預覽版](active-directory-preview-explainer.md)中的報告，您可取得判斷您的環境執行狀況所需的所有資訊。 Azure 入口網站中針對顯示報告資料所花費的時間長度也稱為延遲。 
+透過 Azure Active Directory 中的[報告](active-directory-preview-explainer.md)，您可取得判斷您的環境執行狀況所需的所有資訊。 Azure 入口網站中針對顯示報告資料所花費的時間長度也稱為延遲。 
 
 本主題列出 Azure 入口網站中所有報告類別的延遲資訊。 
 
@@ -91,3 +91,4 @@ Azure Active Directory 使用調適性機器學習服務演算法和啟發學習
 - [Azure Active Directory 入口網站中的風險登入報告](active-directory-reporting-security-risky-sign-ins.md)
 
 如果您想要深入了解風險事件，請參閱 [Azure Active Directory 風險事件](active-directory-reporting-risk-events.md)。
+

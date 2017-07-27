@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 9962766b0a1fdfe313b70ea65e08785ec8a97996
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: d55cfc354ad5a9fc0f06b671f441ba4a0616bb9a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -94,7 +94,10 @@ App Service 在 Linux 上提供預先定義的應用程式堆疊，且支援特�
 
 ## <a name="troubleshooting"></a>疑難排解 ##
 
-當您的應用程式無法使用自訂 Docker 映像來啟動時，請檢查 LogFiles/docker 目錄中的 Docker 記錄檔。 您可以透過 SCM 網站或 FTP 來存取此目錄。 
+當您的應用程式無法使用自訂 Docker 映像來啟動時，請檢查 LogFiles/docker 目錄中的 Docker 記錄檔。 您可以透過 SCM 網站或 FTP 來存取此目錄。
+若要從您的容器記錄 `stdout` 和 `stderr`，您必須啟用 [診斷記錄] 底下的 [網頁伺服器記錄]。
+
+![啟用記錄][8]
 
 ![Using Kudu to view Docker logs][7]
 
@@ -120,4 +123,5 @@ App Service 在 Linux 上提供預先定義的應用程式堆疊，且支援特�
 [5]: ./media/app-service-linux-using-custom-docker-image/existingapp-configure-builtin.png
 [6]: ./media/app-service-linux-using-custom-docker-image/setting-port.png
 [7]: ./media/app-service-linux-using-custom-docker-image/kudu-docker-logs.png
+[8]: ./media/app-service-linux-using-custom-docker-image/logging.png
 

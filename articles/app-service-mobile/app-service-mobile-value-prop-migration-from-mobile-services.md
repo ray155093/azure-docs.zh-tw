@@ -3,8 +3,8 @@ title: "我使用行動服務，App Service 有何幫助？"
 description: "了解 App Service 為您現有的行動服務專案帶來哪些優勢。"
 services: app-service\mobile
 documentationcenter: ios
-author: adrianhall
-manager: adrianha
+author: ggailey777
+manager: syntaxc4
 editor: 
 ms.assetid: 26b68a11-8352-4f78-acd2-e4e0ec177781
 ms.service: app-service-mobile
@@ -13,12 +13,12 @@ ms.tgt_pltfrm: mobile-multiple
 ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/01/2016
-ms.author: adrianha
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: f3b75c10ed0012d682562eb943cb67fc8176ddbb
-ms.lasthandoff: 12/08/2016
-
+ms.author: glenga
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: e23a4f182e6bb0ba53927aa6195967c2464e4233
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 ---
 # <a name="getting-started"> </a>我使用行動服務，App Service 有何幫助？
@@ -28,7 +28,7 @@ ms.lasthandoff: 12/08/2016
 * 針對包含 Web 和行動用戶端的應用程式，提供更簡單、更容易且更符合成本效益的功能
 * 新的主機功能包括 Web 工作、自訂 CName、更完善的監視
 * 與流量管理員的周全整合
-* 除了混合式連線以外，使用 VNet 連線至內部部署資源和 VPN
+* 除了混合式連線以外，還會使用 VNet 連線至內部部署資源和 VPN
 * 使用 NewRelic 或 AppInsights 針對您的應用程式進行監視、警示和疑難排解
 * 更廣泛的基礎計算資源與定價
 * 內建自動調整、負載平衡，以及效能監視。
@@ -64,5 +64,4 @@ ms.lasthandoff: 12/08/2016
 利用 *Azure App Service* ，您現在可以為行動應用程式建立多個私人測試和預備環境。 您可以在部署之前，使用這些環境來執行測試。 不需停機即可切換至生產環境。 Web 應用程式已預先載入，可確保最佳的客戶體驗。
 
 您可以藉由遵循此 *教學課程* ，開始將 [App Service](app-service-mobile-migrating-from-mobile-services.md)運用於您現有的行動服務。
-
 

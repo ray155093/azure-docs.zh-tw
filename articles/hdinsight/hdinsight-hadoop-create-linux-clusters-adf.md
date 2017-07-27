@@ -1,5 +1,5 @@
 ---
-title: "使用 Data Factory 建立 Azure HDInsight (Hadoop) | Microsoft Docs"
+title: "使用 Data Factory 建立隨選 Hadoop 叢集 - Azure HDInsight | Microsoft Docs"
 description: "了解如何使用 Azure Data Factory 在 HDInsight 中建立隨選 Handooop 叢集。"
 services: hdinsight
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/23/2017
+ms.date: 07/20/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: b515ffeebb2ebb4455c48b98d085acef7556291b
-ms.lasthandoff: 04/27/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 657c436cc45bb3818f89b922d74e03cae894778e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 ---
 # <a name="create-on-demand-hadoop-clusters-in-hdinsight-using-azure-data-factory"></a>使用 Azure Data Factory 在 HDInsight 中建立隨選 Handooop 叢集
@@ -312,12 +312,12 @@ Azure 儲存體已連結的服務會連結 Azure 儲存體帳戶至資料處理�
     "properties": {
         "type": "HDInsightOnDemand",
         "typeProperties": {
-            "osType": "linux",
-            "version": "3.2",
+            "version": "3.5",
             "clusterSize": 1,
+            "timeToLive": "00:05:00",
+            "osType": "Linux",
             "sshUserName": "myuser",                            
             "sshPassword": "MyPassword!",
-            "timeToLive": "00:30:00",
             "linkedServiceName": "[variables('storageLinkedServiceName')]"
         }
     }
@@ -550,12 +550,12 @@ FolderPath 會指定包含輸出資料的資料夾路徑︰
         "properties": {
             "type": "HDInsightOnDemand",
             "typeProperties": {
-                "osType": "linux",
-                "version": "3.2",
+                "version": "3.5",
                 "clusterSize": 1,
+                "timeToLive": "00:05:00",
+                "osType": "Linux",
                 "sshUserName": "myuser",                            
                 "sshPassword": "MyPassword!",
-                "timeToLive": "00:30:00",
                 "linkedServiceName": "[variables('storageLinkedServiceName')]",
                 "additionalLinkedServiceNames": "[variables('defaultStorageLinkedServiceName')]"
             }
@@ -573,7 +573,9 @@ FolderPath 會指定包含輸出資料的資料夾路徑︰
 ## <a name="appendix"></a>附錄
 
 ### <a name="azure-cli-script"></a>Azure CLI 指令碼
-您可以使用 Azure CLI ，而不是使用 Azure PowerShell 來執行教學課程。 若要使用 Azure CLI，先依照下列指示安裝 Azure CLI： [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+您可以使用 Azure CLI ，而不是使用 Azure PowerShell 來執行教學課程。 若要使用 Azure CLI，先依照下列指示安裝 Azure CLI：
+
+[!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 #### <a name="use-azure-cli-to-prepare-the-storage-and-copy-the-files"></a>使用 Azure CLI 準備儲存體並複製檔案
 

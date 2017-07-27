@@ -1,10 +1,10 @@
 ---
-title: SMTP | Microsoft Docs
+title: "Azure Logic Apps 中的 SMTP 連接器 | Microsoft Docs"
 description: "使用 Azure App Service 建立邏輯應用程式。 連接到 SMTP 以傳送電子郵件。"
 services: logic-apps
 documentationcenter: .net,nodejs,java
-author: msftman
-manager: erikre
+author: MandiOhlinger
+manager: anneta
 editor: 
 tags: connectors
 ms.assetid: d4141c08-88d7-4e59-a757-c06d0dc74300
@@ -14,10 +14,12 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 07/15/2016
-ms.author: deonhe
-translationtype: Human Translation
-ms.sourcegitcommit: 9c74b25a2ac5e2088a841d97920035376b7f3f11
-ms.openlocfilehash: 3a0fdef111fbd4a9f7491e247f2236cf70b89dca
+ms.author: mandia; ladocs
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 1cf96bbf8bd215d7ddb3c99860a5cb4e668be3c2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -27,7 +29,7 @@ ms.openlocfilehash: 3a0fdef111fbd4a9f7491e247f2236cf70b89dca
 若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)來開始。
 
 ## <a name="connect-to-smtp"></a>連接到 SMTP
-您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。 例如，若要連接到 SMTP，您必須先有 SMTP *連線*。 若要建立連線，您需要提供平常用來存取所要連線之服務的認證。 因此，在 SMTP 範例中，您需要連接名稱、SMTP 伺服器位址，以及使用者登入資訊的認證才能建立 SMTP 連線。 [深入了解連線]()  
+您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。 例如，若要連接到 SMTP，您必須先有 SMTP「連線」。 若要建立連線，請輸入平常用來存取連線服務的認證。 因此，在 SMTP 範例中，請輸入連接名稱、SMTP 伺服器位址，以及使用者登入資訊等認證來建立 SMTP 連線。  
 
 ### <a name="create-a-connection-to-smtp"></a>建立至 SMTP 的連線
 > [!INCLUDE [Steps to create a connection to SMTP](../../includes/connectors-create-api-smtp.md)]
@@ -64,63 +66,9 @@ ms.openlocfilehash: 3a0fdef111fbd4a9f7491e247f2236cf70b89dca
    ![](../../includes/media/connectors-create-api-smtp/using-smtp-action-4.PNG)  
 6. 儲存您的工作以啟動工作流程。  
 
-## <a name="technical-details"></a>技術詳細資訊
-以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-## <a name="smtp-triggers"></a>SMTP 觸發程序
-SMTP 沒有觸發程序。 
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/smtpconnector/)的所有限制。
 
-## <a name="smtp-actions"></a>SMTP 動作
-SMTP 具有下列動作︰
-
-| 動作 | 說明 |
-| --- | --- |
-| [傳送電子郵件](connectors-create-api-smtp.md#send-email) |這樣作業會將電子郵件傳送給一或多位收件者。 |
-
-### <a name="action-details"></a>動作詳細資料
-以下是此連接器的動作以及其回應的詳細資料︰
-
-### <a name="send-email"></a>傳送電子郵件
-這樣作業會將電子郵件傳送給一或多位收件者。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 收件人 |收件人 |指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com |
-| CC |副本 |指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com |
-| 主旨 |主旨 |電子郵件主旨 |
-| 內文 |body |電子郵件內文 |
-| 從 |從 |寄件者的電子郵件地址，例如 sender@domain.com |
-| IsHtml |是 HTML |以 HTML 格式傳送電子郵件 (true/false) |
-| 密件副本 |密件副本 |指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com |
-| 重要性 |重要性 |電子郵件的重要性 (高、一般或低) |
-| ContentData |附件內容資料 |內容資料 (base64 編碼用於資料流，以及現狀用於字串) |
-| ContentType |附件內容類型 |內容類型 |
-| ContentTransferEncoding |附件內容轉移編碼 |內容轉移編碼 (base64 或無) |
-| FileName |附件檔案名稱 |檔案名稱 |
-| ContentId |附件內容識別碼 |內容識別碼 |
-
-* 表示這是必要屬性
-
-## <a name="http-responses"></a>HTTP 回應
-上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰ 
-
-| 名稱 | 說明 |
-| --- | --- |
-| 200 |OK |
-| 202 |已接受 |
-| 400 |不正確的要求 |
-| 401 |未經授權 |
-| 403 |禁止 |
-| 404 |找不到 |
-| 500 |內部伺服器錯誤。 發生未知錯誤。 |
-| 預設值 |作業失敗。 |
-
-## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
-
-
+## <a name="more-connectors"></a>其他連接器
+返回 [API 清單](apis-list.md)。

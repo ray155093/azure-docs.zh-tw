@@ -12,18 +12,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/05/2017
+ms.date: 07/19/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: d8c49272789e7d33c6f0684875765a1ecea5a2ff
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: f2d0332d815c82d7d47625e020de2e9c5099deeb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 07/20/2017
 
 ---
-# Azure Active Directory 入口網站中的稽核活動報告
-<a id="audit-activity-reports-in-the-azure-active-directory-portal" class="xliff"></a> 
+# <a name="audit-activity-reports-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中的稽核活動報告 
 
 透過 Azure Active Directory 中的報告，您可以取得判斷您的環境執行狀況所需的資訊。
 
@@ -38,15 +37,13 @@ Azure AD 中的報告架構包含下列元件：
 
 本主題提供稽核活動的概觀。
  
-## 誰可以存取資料？
-<a id="who-can-access-the-data" class="xliff"></a>
+## <a name="who-can-access-the-data"></a>誰可以存取資料？
 * 具有安全性系統管理員或安全性讀取器角色的使用者
 * 全域管理員
 * 個別使用者 (非系統管理員) 可以看到自己的活動
 
 
-## 稽核記錄
-<a id="audit-logs" class="xliff"></a>
+## <a name="audit-logs"></a>稽核記錄
 
 Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記錄。  
 所有稽核資料的第一個進入點是 [Azure Active Directory] 的 [活動] 區段中的 [稽核記錄]。
@@ -76,8 +73,7 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 ![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/22.png "稽核記錄檔")
 
 
-## 篩選稽核記錄檔
-<a id="filtering-audit-logs" class="xliff"></a>
+## <a name="filtering-audit-logs"></a>篩選稽核記錄檔
 
 若要將報告的資料縮小至您適用的層級，您可以使用下列欄位篩選稽核資料︰
 
@@ -134,19 +130,17 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 
 **活動**篩選條件是根據您類別和您選取的活動資源類型。 您可以選取您想要查看的特定活動或選擇全部。 
 
-您可以使用圖形 API https://graph.windows.net/$tenantdomain/activities/auditActivityTypes?api-version=beta 來取得所有稽核活動的清單 (其中，$tenantdomain 是網域名稱)，或請參閱[稽核報告事件](active-directory-reporting-audit-events.md#list-of-audit-report-events)一文。
+您可以使用圖形 API https://graph.windows.net/$tenantdomain/activities/auditActivityTypes?api-version=beta 來取得所有稽核活動的清單 (其中，$tenantdomain 是網域名稱)，或請參閱[稽核報告事件](active-directory-reporting-audit-events.md)一文。
 
 
-## 稽核記錄快速鍵
-<a id="audit-logs-shortcuts" class="xliff"></a>
+## <a name="audit-logs-shortcuts"></a>稽核記錄快速鍵
 
 除了 **Azure Active Directory** 之外，Azure 入口網站可提供您稽核資料的兩個額外進入點︰
 
 - 使用者和群組
 - 企業應用程式
 
-### 使用者和群組稽核記錄檔
-<a id="users-and-groups-audit-logs" class="xliff"></a>
+### <a name="users-and-groups-audit-logs"></a>使用者和群組稽核記錄檔
 
 透過以使用者和群組為基礎的稽核報告，可以取得下列問題的解答︰
 
@@ -170,8 +164,7 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 
 ![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/93.png "稽核記錄檔")
 
-### 企業應用程式稽核記錄
-<a id="enterprise-applications-audit-logs" class="xliff"></a>
+### <a name="enterprise-applications-audit-logs"></a>企業應用程式稽核記錄
 
 透過以應用程式為基礎的稽核報告，可以取得下列問題的解答︰
 
@@ -190,8 +183,8 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 ![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/25.png "稽核記錄檔")
 
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
-請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。
+## <a name="next-steps"></a>後續步驟
+
+如需報告概觀，請參閱 [Azure Active Directory 報告](active-directory-reporting-azure-portal.md)。
 
 

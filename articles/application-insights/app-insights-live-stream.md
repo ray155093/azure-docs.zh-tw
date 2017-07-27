@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights 中的自訂即時計量和診斷 | Microsoft Docs"
-description: "利用自訂計量和失敗、追蹤與事件之即時摘要等診斷問題，即時監視 web 應用程式。"
+title: "Azure Application Insights 中具有自訂計量和診斷功能的即時計量資料流 | Microsoft Docs"
+description: "透過自訂計量即時監視您的 Web 應用程式，並透過失敗、追蹤和事件的即時摘要診斷問題。"
 services: application-insights
 documentationcenter: 
 author: SoubhagyaDash
@@ -11,36 +11,69 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 05/24/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: 86e01cf6cb14334e85da4102610fa7feb66cb543
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 68820f9c018b1076bae8dc0195906d0f34590748
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/26/2017
 
 ---
 
-# <a name="custom-live-metrics-and-events-monitor--diagnose-with-1-second-latency"></a>自訂即時計量和事件︰以 1 秒的延遲進行監視與診斷 
-即時計量串流會以 1 秒接近即時的延遲來顯示您的 [Application Insights](app-insights-overview.md) 計量和事件。 此即時監視有助於減少偵測和診斷的平均時間，可協助您符合 SLA。 您可以：
-* 即時監視自訂 KPI︰實驗將您現有的 Application Insights 遙測進行篩選、切割及細分，立即從入口網站取得最相關的 KPI。 不會變更任何程式碼或設定，且不需要部署。 任何您可能會傳送的自訂計量或測量也可供使用。
-* 即時偵測及診斷：請參閱隨詳細例外狀況追蹤所發生的要求和相依性失敗。 將任何已知的問題篩選掉，以著重於真實/新增的問題。
-* 即時偵錯︰將問題重現，並即時查看所有相關的遙測，利用自訂篩選到可識別重現互動的特定工作階段識別碼 (或利用任何自訂屬性)。 收集來自任何/所有伺服器的資訊，搶先開始修正問題。
-* 立即查看資源消耗回應負載的方式︰當您執行負載測試時，即時監視任何 Windows 效能計數器，或在任何項目受到負面影響之前，監視要處理的生產環境。 無需變更任何設定或進行部署。
-* 驗證要發行的修正。 請確定您服務的更新發生時順利進行。 請驗證您已修正的失敗不會再發生。
+# <a name="live-metrics-stream-monitor--diagnose-with-1-second-latency"></a>即時計量資料流︰以 1 秒的延遲進行監視與診斷 
+
+使用 [Application Insights](app-insights-overview.md) 中的即時計量資料流，探查您即時生產環境 Web 應用程式中的活動訊號。 選取並篩選要即時監看的計量和效能計數器，而不會對您的服務造成任何干擾。 檢查失敗要求和例外狀況範例中的堆疊追蹤。 即時計量資料流可搭配[分析工具](app-insights-profiler.md)、[快照集偵錯工具](app-insights-snapshot-debugger.md)和[效能測試](app-insights-monitor-web-app-availability.md#performance-tests)，為您的即時網站提供強大且非侵入性的診斷工具。
+
+您可以使用即時計量資料流：
+
+* 藉由監看效能和失敗計數，在發行修正程式時進行驗證。
+* 監看測試負載的影響，並即時診斷問題。 
+* 藉由選取並篩選您想要監看的計量，專注於特定測試工作階段或篩選出已知問題。
+* 在發生例外狀況時取得其追蹤。
+* 試驗篩選，以尋找最相關的 KPI。
+* 即時監看任何 Windows 效能計數器。
 * 輕鬆識別有問題的伺服器，並將所有 KPI/即時摘要篩選到只有該伺服器。
 
-即時計量與事件串流資料是免費的︰它不會新增至您的帳單。 當您開啟入口網站體驗時，資料會從您的伺服器隨需進行串流處理。 只要資料仍在圖表上就會保存，之後便會捨棄該資料。 完整功能適用於 ASP.NET 傳統應用程式，而 .NET Core 應用程式目前只有一組固定的即時計量和範例失敗。 我們會使所有支援的 SDK 達到最新即時串流功能的標準。 
+[![即時計量資料流影片](./media/app-insights-live-stream/youtube.png)](https://www.youtube.com/watch?v=zqfHf1Oi5PY)
 
-我們在進行任何取樣之前，會從您的應用程式執行個體收集即時串流，或是套用任何自訂的 TelemetryProcessors。 
+即時計量資料流目前適用於在內部部署或雲端中執行的 ASP.NET 應用程式。 
 
-![即時計量串流影片](./media/app-insights-live-stream/youtube.png) [即時計量串流影片](https://www.youtube.com/watch?v=zqfHf1Oi5PY)
+## <a name="get-started"></a>開始使用
 
-按一下左側的選項或是 [概觀] 刀鋒視窗上的按鈕，可存取即時計量和事件︰
+1. 如果您尚未在 ASP.NET Web 應用程式或 [Windows Server 應用程式](app-insights-windows-services.md)中[安裝 Application Insights](app-insights-asp-net.md)，請立即安裝。 
+2. **更新至最新版本**的 Application Insights 套件。 在 Visual Studio 中，以滑鼠右鍵按一下專案，然後選擇 [管理 Nuget 套件]。 開啟 [更新] 索引標籤，核取 [包含發行前版本]，然後選取所有 Microsoft.ApplicationInsights.* 套件。
+
+    重新部署您的應用程式。
+
+3. 在 [Azure 入口網站](https://portal.azure.com)中，開啟您應用程式的 Application Insights 資源，然後開啟 [即時資料流]。
+
+4. 如果您可能在篩選中使用客戶名稱等敏感性資料，請[保護控制通道](#secure-the-control-channel)。
+
 
 ![在 [概觀] 刀鋒視窗中，按一下 [即時資料流]](./media/app-insights-live-stream/live-stream-2.png)
 
-## <a name="custom-live-kpi"></a>自訂即時 KPI
+### <a name="no-data-check-your-server-firewall"></a>沒有資料？ 請檢查您的伺服器防火牆
+
+檢查是否已開啟您伺服器防火牆中[即時計量資料流的連出連接埠](app-insights-ip-addresses.md#outgoing-ports)。 
+
+
+## <a name="how-does-live-metrics-stream-differ-from-metrics-explorer-and-analytics"></a>即時計量資料流與計量瀏覽器和分析有何不同？
+
+| |即時資料流 | 計量瀏覽器和分析 |
+|---|---|---|
+|延遲|在一秒內顯示資料|在幾分鐘後進行彙總|
+|沒有保留|資料在圖表上就會保存，之後便會捨棄該資料|[資料會保留 90 天](app-insights-data-retention-privacy.md#how-long-is-the-data-kept)|
+|隨選|當您開啟即時計量時會串流處理資料|每當安裝並啟用 SDK 時都會傳送資料|
+|免費|即時資料流資料免費|依[價格](app-insights-pricing.md)付費
+|取樣|傳輸所有選取的計量和計數器。 取樣失敗和堆疊追蹤。 不會套用 TelemetryProcessors。|可能[取樣](app-insights-api-filtering-sampling.md)事件|
+|控制通道|篩選控制項訊號會傳送至 SDK。 建議您[保護這個通道](#secure-channel)。|對入口網站的單向通訊|
+
+
+## <a name="select-and-filter-your-metrics"></a>選取並篩選您的計量
+
+(適用於具有最新 SDK 的傳統 ASP.NET 應用程式)。
+
 您可以從入口網站將任何篩選條件套用在任何 Application Insights 遙測上，以便即時監視自訂 KPI。 按一下您將滑鼠移過任何圖表時所顯示的篩選條件控制項。 下列圖表是使用 URL 和 Duration 屬性的篩選條件來繪製自訂要求計數 KPI。 利用可顯示符合您在任一時間點所指定準則之遙測即時摘要的「串流預覽」區段來驗證您的篩選條件。 
 
 ![自訂要求 KPI](./media/app-insights-live-stream/live-stream-filteredMetric.png)
@@ -77,7 +110,7 @@ ms.lasthandoff: 05/10/2017
 ## <a name="sdk-requirements"></a>SDK 需求
 [Application Insights SDK for Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) 的 2.4.0-beta2 版或更新版本提供「自訂即時計量串流」。 請記得選取 NuGet 套件管理員的 [包括預先發行] 選項。
 
-## <a name="authenticated-channel"></a>驗證的頻道
+## <a name="secure-the-control-channel"></a>保護控制通道
 您指定的自訂篩選條件準則會傳回給 Application Insights SDK 中的即時計量元件。 篩選條件可能會包含機密資訊，例如 customerIDs。 除了檢測金鑰之外，您還可以利用祕密 API 金鑰來保護頻道安全。
 ### <a name="create-an-api-key"></a>建立 API 金鑰
 
@@ -108,6 +141,15 @@ ms.lasthandoff: 05/10/2017
 >我們強烈建議您在篩選條件準則中輸入潛在的機密資訊 (例如 CustomerID) 之前，先設定驗證的頻道。
 >
 
+## <a name="generating-a-performance-test-load"></a>產生效能測試負載
+
+如果您想要監看負載增加的影響，請使用 [效能測試] 刀鋒視窗。 它會模擬來自許多同時使用者的要求。 它可以執行單一 URL 的「手動測試」(Ping 測試)，或執行您上傳的[多重步驟 Web 效能測試](app-insights-monitor-web-app-availability.md#multi-step-web-tests) (上傳方式與可用性測試相同)。
+
+> [!TIP]
+> 建立效能測試之後，在不同的視窗中開啟測試和 [即時資料流] 刀鋒視窗。 您可以查看已排入佇列之效能測試的開始時間，並同時監看即時資料流。
+>
+
+
 ## <a name="troubleshooting"></a>疑難排解
 
 沒有資料？ 如果您的應用程式是在受保護的網路中︰即時計量串流會使用與其他 Application Insights 遙測不同的 IP 位址。 請確定[這些 IP 位址](app-insights-ip-addresses.md)在您的防火牆中為開啟狀態。
@@ -117,5 +159,5 @@ ms.lasthandoff: 05/10/2017
 ## <a name="next-steps"></a>後續步驟
 * [使用 Application Insights 監視使用情況](app-insights-web-track-usage.md)
 * [使用診斷搜尋](app-insights-diagnostic-search.md)
-
-
+* [分析工具](app-insights-profiler.md)
+* [快照集偵錯工具](app-insights-snapshot-debugger.md)

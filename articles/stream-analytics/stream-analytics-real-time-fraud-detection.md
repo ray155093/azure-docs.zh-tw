@@ -1,233 +1,400 @@
----
-title: "用串流分析：即時詐騙偵測 | Microsoft Docs"
-description: "了解如何使用串流分析建立即時詐騙偵測解決方案。 使用事件中樞以即時處理事件。"
-keywords: "異常偵測, 詐騙偵測, 即時異常偵測"
-services: stream-analytics
-documentationcenter: 
-author: jeffstokes72
-manager: jhubbard
-editor: cgronlun
-ms.assetid: c10dd53f-d17a-4268-a561-cb500a8c04eb
-ms.service: stream-analytics
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-services
-ms.date: 03/28/2017
-ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
-ms.openlocfilehash: deb528faa29a1e547286b0560d0f2b8decf3f90a
-ms.lasthandoff: 05/01/2017
-
-
----
 # <a name="get-started-using-azure-stream-analytics-real-time-fraud-detection"></a>開始使用 Azure 串流分析：即時詐騙偵測
-了解如何利用 Azure 串流分析建立即時詐騙偵測的端對端解決方案。 將事件帶至 Azure 事件中樞、撰寫用於彙總或警示的串流分析查詢，以及將結果傳送到輸出接收器，以深入了解資料並即時處理。 已說明電信的即時異常偵測，但範例技巧同樣適用於其他類型的詐騙偵測，例如信用卡或身分盜用案例。
 
-串流分析是完全受管理的服務，可用來對雲端中的串流資料進行低延遲、高可用性、可調整的複雜事件處理。 如需詳細資訊，請參閱 [Azure 串流分析簡介](stream-analytics-introduction.md)。
+本教學課程提供如何使用 Azure 串流分析的端對端實例。 您會了解如何： 
+
+* 將串流事件帶入 Azure 事件中樞的執行個體中。 在本教學課程中，您將使用我們提供的應用程式來模擬行動電話中繼資料記錄流。
+
+* 撰寫類似 SQL 的串流分析查詢來轉換資料、彙總資訊或尋找模式。 您將了解如何使用查詢來檢查傳入資料流，並尋找可能是詐騙的電話。
+
+* 將結果傳送至輸出接收 (儲存體)，讓您分析來深入探索。 在此案例中，您會將可疑的通話資料傳送至 Azure Blob 儲存體。
+
+在本教學課程中，我們會根據通話資料來舉例說明即時詐欺偵測。 但是，我們說明的技巧也適用於其他類型的詐騙偵測，例如信用卡詐騙或身分盜用。 
 
 ## <a name="scenario-telecommunications-and-sim-fraud-detection-in-real-time"></a>案例：即時偵測電信與 SIM 詐騙
-電信公司有大量的資料都是來電。 公司需要下列資料︰
 
-* 將此資料削減至可管理的數量，並深入了解在不同時間與各地理區域的客戶使用情況。
-* 即時偵測 SIM 詐騙 (同時間來自相同身分識別但不同地理位置的多通來電)，以便公司能輕鬆藉由通知客戶或關閉服務來回應。
-
-典型的物聯網 (IoT) 案例有大量遙測或來自感應器的資料。 客戶想要彙總資料或即時收到異常的相關警示。
+電信公司有大量的資料都是來電。 該公司想要即時偵測詐騙電話，以便通知客戶或針對特定號碼停止服務。 有一種 SIM 詐騙牽涉到同一身分識別大約在同一時間從不同地理位置撥來很多通電話。 為了偵測這種詐騙，該公司需要檢查來電記錄並尋找特定模式。在此案例中，是檢查大約在同一時間從不同國家/地區的來電。 任何歸類到此類別的電話記錄會寫入儲存體，以進一步分析。
 
 ## <a name="prerequisites"></a>必要條件
-* 從 Microsoft 下載中心下載 [TelcoGenerator.zip](http://download.microsoft.com/download/8/B/D/8BD50991-8D54-4F59-AB83-3354B69C8A7E/TelcoGenerator.zip) 。
-* 選擇性： [GitHub](https://aka.ms/azure-stream-analytics-telcogenerator)
 
-## <a name="create-azure-event-hubs-input-and-consumer-group"></a>建立 Azure 事件中樞輸入與取用者群組
-這個範例應用程式會產生事件並推送至事件中樞執行個體以供即時處理。 服務匯流排事件中樞是 Stream Analytics 慣用的事件擷取方法。 您可以在 [Azure 服務匯流排文件](/azure/service-bus/)中深入了解事件中樞。
+在本教學課程中，您會透過用戶端應用程式來產生範例通話中繼資料，以模擬通話資料。 該應用程式會產生一些很像是詐騙電話的記錄。 
 
-若要建立事件中樞：
+開始之前，請確定您具有下列項目：
 
-1. 在 [Azure 入口網站](https://manage.windowsazure.com/)中，按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]。 提供名稱、區域及新的或現有命名空間，以建立新的事件中樞。  
-2. 每個串流分析工作都應該從單一事件中樞取用者群組讀取資料，這才是最佳做法。 稍後我們將逐步引導您進行建立取用者群組。 [深入了解取用者群組](https://msdn.microsoft.com/library/azure/dn836025.aspx)。 若要建立取用者群組，請移至新建立的事件中樞，然後依序按一下 [取用者群組] 索引標籤、頁面最下方的 [建立]，然後提供取用者群組的名稱。
-3. 為了授權存取事件中樞，我們需要建立一個共用存取原則。 按一下事件中樞的 [設定] 索引標籤。
-4. 在 [共用存取原則] 下方，建立一個擁有 [管理] 權限的新原則。
+* 一個 Azure 帳戶。
+* 通話事件產生器應用程式。 您可以從 Microsoft 下載中心下載 [TelcoGenerator.zip 檔案](http://download.microsoft.com/download/8/B/D/8BD50991-8D54-4F59-AB83-3354B69C8A7E/TelcoGenerator.zip)，以取得此應用程式。 將此套件解壓縮至電腦上的資料夾。 如果您想要看到原始程式碼，並在偵錯工具中執行應用程式，您可以從 [GitHub](https://aka.ms/azure-stream-analytics-telcogenerator) 取得應用程式原始程式碼。 
 
-   ![共用存取原則，您可以利用管理權限來建立原則。](./media/stream-analytics-real-time-fraud-detection/stream-ananlytics-shared-access-policies.png)
-5. 按一下頁面底部的 [儲存]  。
-6. 移至 [儀表板]，按一下頁面最下方的 [連線資訊]，然後複製並儲存連線資訊。
+    >[!NOTE]
+    >Windows 可能會封鎖下載的 .zip 檔案。 請無法解壓縮，請以滑鼠右鍵按一下檔案，然後選取 [內容]。 如果看到「這個檔案來自另一部電腦，可能會封鎖以協助保護您的電腦」訊息，請選取 [解除封鎖] 選項，並按一下 [套用]。
+
+如果想要檢查資料流分析作業的結果，您也需要工具來檢視 Azure Blob 儲存體容器的內容。 如果您使用 Visual Studio，您可以使用 [Azure Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-resources-server-explorer-browse-manage) 或 [Visual Studio Cloud Explorer](https://docs.microsoft.com/en-us/azure/vs-azure-tools-resources-managing-with-cloud-explorer)。 或者，您可以安裝獨立工具，例如 [Azure 儲存體總管](http://storageexplorer.com/)或 [Azure 總管](http://www.cerebrata.com/products/azure-explorer/introduction)。 
+
+## <a name="create-an-azure-event-hubs-to-ingest-events"></a>建立 Azure 事件中樞來內嵌事件
+
+若要分析資料流，您需要將資料流「內嵌」到 Azure。 內嵌資料的一般做法是使用 [Azure 事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md)，這可讓您每秒內嵌數百萬個事件，然後處理並儲存事件資訊。 在本教學課程中，您將建立事件中樞，然後由通話事件產生器應用程式將通話資料傳送至該事件中樞。 如需深入了解事件中樞，請參閱 [Azure 服務匯流排文件](https://docs.microsoft.com/en-us/azure/service-bus/)。
+
+>[!NOTE]
+>如需此程序的詳細資訊，請參閱[使用 Azure 入口網站建立事件中樞命名空間和事件中樞](../event-hubs/event-hubs-create.md)。 
+
+### <a name="create-a-namespace-and-event-hub"></a>建立命名空間和事件中樞
+在此程序中，您需要先建立事件中樞命名空間，再將事件中樞新增至該命名空間。 事件中樞命名空間可在邏輯上將相關的事件匯流排執行個體分組。 
+
+1. 登入 Azure 入口網站，按一下 [新增] > [物聯網] > [事件中樞]。 
+
+2. 在 [建立命名空間] 刀鋒視窗中，輸入命名空間名稱，例如 `<yourname>-eh-ns-demo`。 您可以使用任何名稱作為命名空間，但名稱在 URL 中必須有效，而且在整個 Azure 內必須唯一的。 
+    
+3. 選取訂用帳戶並建立或選擇資源群組，然後按一下 [建立]。 
+
+    ![建立事件中樞命名空間](./media/stream-analytics-real-time-fraud-detection/stream-analytics-create-eventhub-namespace-new-portal.png)
+ 
+4. 當命名空間完成部署時，請在 Azure 資源清單中尋找事件中樞命名空間。 
+
+5. 按一下新的命名空間，然後在命名空間刀鋒視窗中，按一下 [+&nbsp;事件中樞]。 
+
+    ![建立新事件中樞的 [新增事件中樞] 按鈕 ](./media/stream-analytics-real-time-fraud-detection/stream-analytics-create-eventhub-button-new-portal.png)    
+ 
+6. 將新的事件中樞命名為 `sa-eh-frauddetection-demo`。 您可以使用不同的名稱。 如果這樣做，請記下來，因為稍後需要用到此名稱。 您目前不需要為事件中樞設定其他任何選項。
+
+    ![建立新事件中樞的刀鋒視窗](./media/stream-analytics-real-time-fraud-detection/stream-analytics-create-eventhub-new-portal.png)
+    
+ 
+7. 按一下 [建立] 。
+### <a name="grant-access-to-the-event-hub-and-get-a-connection-string"></a>授權存取事件中樞並取得連接字串
+
+事件中樞必須有原則來允許適當的存取權，流程才能將資料傳送到事件中樞。 存取原則會產生包含授權資訊的連接字串。
+
+1.  在事件命名空間刀鋒視窗中，按一下 [事件中樞]，然後按一下新事件中樞的名稱。
+
+2.  在事件中樞刀鋒視窗中，按一下 [共用存取原則]，然後按一下 [+&nbsp;新增]。
+
+    >[!NOTE]
+    >請確定您正在使用事件中樞，而不是事件中樞命名空間。
+
+3.  新增名為 `sa-policy-manage-demo` 的原則，然後在 [宣告] 中，選取 [管理]。
+
+    ![建立新事件中樞存取原則的刀鋒視窗](./media/stream-analytics-real-time-fraud-detection/stream-analytics-create-shared-access-policy-manage-new-portal.png)
+ 
+4.  按一下 [建立] 。
+
+5.  部署原則之後，在共用存取原則清單中按一下此原則。
+
+6.  找出標示為 [連接字串-主要索引鍵] 的方塊，按一下連接字串旁邊的複製按鈕。 
+    
+    ![從存取原則複製主要的連接字串索引鍵](./media/stream-analytics-real-time-fraud-detection/stream-analytics-shared-access-policy-copy-connection-string-new-portal.png)
+ 
+7.  將連接字串貼到文字編輯器。 稍微編輯一下此連接字串，下一節需要用到它。
+
+    連接字串如下所示：
+
+        Endpoint=sb://YOURNAME-eh-ns-demo.servicebus.windows.net/;SharedAccessKeyName=sa-policy-manage-demo;SharedAccessKey=Gw2NFZwU1Di+rxA2T+6hJYAtFExKRXaC2oSQa0ZsPkI=;EntityPath=sa-eh-frauddetection-demo
+
+    請注意，連接字串包含多個機碼值組，以分號分隔：`Endpoint`、`SharedAccessKeyName`、`SharedAccessKey` 和 `EntityPath`。  
 
 ## <a name="configure-and-start-the-event-generator-application"></a>設定並啟動事件產生器應用程式
-我們提供的用戶端應用程式將產生範例來電中繼資料，然後推播至事件中樞。 使用下列步驟來設定此應用程式。  
 
-1. 下載 [TelcoGenerator.zip 檔案](http://download.microsoft.com/download/8/B/D/8BD50991-8D54-4F59-AB83-3354B69C8A7E/TelcoGenerator.zip)，並將其解壓縮至目錄。
+啟動 TelcoGenerator 應用程式之前，需要先設定，讓它將通話記錄傳送到您剛才建立的事件中樞。
 
-   > [!NOTE]
-   > Windows 可能會封鎖下載的 zip 檔案。 請以滑鼠右鍵按一下檔案，然後選取 [內容]。 如果顯示「這個檔案來自另一部電腦，可能會封鎖以協助保護您的電腦。」訊息，則勾選 [解除封鎖] 方塊，並在 zip 檔案上按一下 [套用]。
-   >
-   > 
-2. 將 telcodatagen.exe.config 中的 Microsoft.ServiceBus.ConnectionString 與 EventHubName 值換成事件中樞連接字串與名稱。
+### <a name="configure-the-telcogeneratorapp"></a>設定 TelcoGeneratorapp
 
-   從 Azure 入口網站複製的連接字串會將連接名稱放在結尾。 請務必從 "add key=" 欄位移除 ";EntityPath=<value>"。
-3. 啟動應用程式。 使用方式如下：
+1.  在已複製連接字串的編輯器中，記下 `EntityPath` 值，然後移除 `EntityPath` 組 (別忘了移除前面的分號)。 
 
-   telcodatagen.exe [#NumCDRsPerHour] [SIM Card Fraud Probability] [#DurationHours]
+2.  在您解壓縮 TelcoGenerator.zip 檔案的資料夾中，利用編輯器開啟 telcodatagen.exe.config 檔案。 (有一個以上的 .config 檔案，請確定是開啟正確的檔案。)
 
-下列範例將在兩小時的期間內產生 1,000 個事件，當中的詐騙機率約為 20%。
+3.  在 `<appSettings>` 元素中，執行下列動作：
 
-    telcodatagen.exe 1000 .2 2
+    * 將 `EventHubName` 索引鍵的值設為事件中樞名稱 (也就是實體路徑的值)。
+    * 將 `Microsoft.ServiceBus.ConnectionString` 索引鍵的值設為連接字串。 
 
-您將會看到傳到送事件中樞的記錄。 一些將在此即時詐騙偵測應用程式中使用的索引鍵欄位定義如下：
+    `<appSettings>` 看起來如下範例所示。 (為了清楚起見，我們插入換行並移除授權權杖中的某些字元。)
 
-| Record      | 定義                               |
-| ----------- | ---------------------------------------- |
-| CallrecTime | 電話開始時間的時間戳記。       |
-| SwitchNum   | 用來接通電話的電話交換機。 |
-| CallingNum  | 來電者的電話號碼。              |
-| CallingIMSI | 國際行動用戶識別碼 (IMSI)。  來電者的唯一識別碼。 |
-| CalledNum   | 受話方的電話號碼。      |
-| CalledIMSI  | 國際行動用戶識別碼 (IMSI)。  受話方的唯一識別碼。 |
+    ![顯示事件中樞名稱和連接字串的 TelcoGenerator 應用程式組態檔](./media/stream-analytics-real-time-fraud-detection/stream-analytics-telcogenerator-config-file-app-settings.png)
+ 
+4.  儲存檔案。 
 
-## <a name="create-a-stream-analytics-job"></a>建立串流分析工作
-現在，我們已經有了一連串的電信事件，我們可以設定串流分析工作來即時分析這些事件。
+### <a name="start-the-app"></a>啟動應用程式
+1.  開啟命令視窗，切換至解壓縮 TelcoGenerator 應用程式的資料夾。
+2.  輸入下列命令：
 
-### <a name="provision-a-stream-analytics-job"></a>佈建資料流分析工作
-1. 在 Azure 入口網站中，按一下 [新增] > [資料服務] > [串流分析] > [快速建立]。
-2. 指定下列值，然後按一下 [建立 STREAM ANALYTICS 工作] ：
+        telcodatagen.exe 1000 .2 2
 
-   * **工作名稱**：輸入工作名稱。
-   * **區域**：選取要執行此工作的區域。 請考慮將工作和事件中樞放在相同的區域以確保更好的效能，以及在區域之間傳輸資料時無須付費。
-   * **儲存體帳戶**：選擇您為在此區域內執行的所有串流分析工作儲存監視資料時所要使用的 Azure 儲存體帳戶。 您可以選擇現有的儲存體帳戶，或建立新帳戶。
-3. 按一下左窗格中的 [串流分析]，以列出串流分析工作。
+    參數如下： 
 
-   ![串流分析服務圖示](./media/stream-analytics-real-time-fraud-detection/stream-analytics-service-icon.png)
+    * 每小時的 CDR 數目。 
+    * SIM 卡詐騙機率：應用程式模擬詐騙電話的頻率 (所有通話的百分比)。 值 .2 表示大約 20% 的通話記錄可能是詐騙。
+    * 持續時間 (小時)。 應用程式應該執行的時數。 您也可以隨時在命令列按下 Ctrl+C 來停止應用程式。
 
-   新工作會以 [已建立] 的狀態列出。 請注意，頁面底部的 [啟動]  按鈕會停用。 您必須先設定工作輸入、輸出、查詢等項目，才能啟動工作。
+    幾秒之後，隨著應用程式將通話記錄傳送到事件中樞，它會開始在螢幕上顯示通話記錄。
 
-### <a name="specify-job-input"></a>指定工作輸入
-1. 在串流分析工作中，按一下頁面上方的 [輸入]，然後按一下 [新增輸入]。 開啟的對話方塊會逐步引導您完成設定輸入。
-2. 按一下 [資料流]，然後按一下右鍵。
-3. 按一下 [事件中樞]，然後按一下右鍵。
-4. 在第三頁上輸入或選取下列值：
+您在此即時詐騙偵測應用程式中會用到的一些重要欄位如下：
 
-   * **輸入別名**：輸入此工作的易記名稱，例如 *CallStream*。 請注意，此名稱將用於後續的查詢。
-   * **事件中樞**：如果您建立的事件中樞與串流分析工作位於相同的訂用帳戶中，請選取事件中樞所在的命名空間。
+|**記錄**|**定義**|
+|----------|--------------|
+|`CallrecTime`|通話開始時間的時間戳記。 |
+|`SwitchNum`|用來接通電話的電話交換機。 在此範例中，交換機是代表發話國的字串 (美國、中國、英國、德國或澳大利亞)。 |
+|`CallingNum`|來電者的電話號碼。 |
+|`CallingIMSI`|國際行動用戶識別碼 (IMSI)。 這是來電者的唯一識別碼。 |
+|`CalledNum`|受話方的電話號碼。 |
+|`CalledIMSI`|國際行動用戶識別碼 (IMSI)。 這是受話方的唯一識別碼。 |
 
-     如果您的事件中樞位於不同的訂用帳戶中，請選取 [使用其他訂用帳戶中的事件中樞]，然後手動輸入 [服務匯流排命名空間]、[事件中樞名稱]、[事件中樞原則名稱]、[事件中樞原則索引鍵] 及 [事件中樞資料分割計數] 資訊。
-   * **事件中樞名稱**：選取事件中樞的名稱。
-   * **事件中樞原則名稱**：選取先前在本教學課程中建立的事件中樞原則。
-   * **事件中樞取用者群組**：輸入在本教學課程稍早建立的取用者群組名稱。
-5. 按一下向右按鈕。
-6. 指定下列值：
 
-   * **事件序列化程式格式**：JSON
-   * **編碼**：UTF8
-7. 按一下 [核取] 按鈕以新增此來源，並確認串流分析可成功連接到事件中樞。
+## <a name="create-a-stream-analytics-job-to-manage-streaming-data"></a>建立串流分析作業來管理串流資料
 
-### <a name="specify-job-query"></a>指定工作查詢
-串流分析支援用來說明轉換的簡單、宣告式查詢模型，以供即時處理。 若要深入了解語言，請參閱 [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/dn834998.aspx)。 本教學課程將協助您撰寫和測試數個呼叫資料的即時串流查詢。
+既然已取得通話事件的資料流，您可以開始設定串流分析作業。 此作業會從您設定的事件中樞讀取資料。 
 
-#### <a name="optional-sample-input-data"></a>選擇性：範例輸入資料
-若要驗證對實際工作資料的查詢結果，您可以使用 [範例資料] 功能，從資料流擷取事件並為這些事件建立 .JSON 檔案進行測試。  下列步驟將示範如何執行這項操作。 我們也提供範例 [telco.json](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/telco.json) 檔案以供測試之用。
+### <a name="create-the-job"></a>建立作業 
 
-1. 選取事件中樞輸入，然後按一下頁面最下方的 [範例資料]。
-2. 在開啟的對話方塊中，指定開始收集資料的 [開始時間] 以及表示要取用多少其他的資料 [持續時間]。
-3. 按一下 [核取] 按鈕，以開始從輸入中的資料進行取樣。  產生資料檔案可能需要一或兩分鐘的時間。  此程序完成時，按一下 [詳細資料]，下載產生的 .JSON 檔案，並儲存檔案。
+1. 在 Azure 入口網站中，按一下 [新增] > [物聯網] > [串流分析作業]。
 
-   ![下載並將處理的資料儲存在 JSON 檔案中](./media/stream-analytics-real-time-fraud-detection/stream-analytics-download-save-json-file.png)
+2. 將作業命名為 `sa_frauddetection_job_demo`，並指定訂用帳戶、資源群組和位置。
 
-#### <a name="pass-through-query"></a>傳遞查詢
-如果您想要封存每一個事件，您可以使用傳遞查詢，讀取事件或訊息承載中的所有欄位。 若要開始，請執行一項投射事件中所有欄位的簡單傳遞查詢。
+    最好將作業和事件中樞放在相同的區域，以達到最佳效能，在區域之間傳送資料也不需要付費。
 
-1. 按一下 Stream Analytics 頁面頂端的 [查詢]  。
-2. 在程式碼編輯器中新增下列程式碼：
+    ![建立新的串流分析作業](./media/stream-analytics-real-time-fraud-detection/stream-analytics-create-sa-job-new-portal.png)
 
-     SELECT * FROM CallStream
+3. 按一下 [建立] 。
 
-   > [!IMPORTANT]
-   > 請確定輸入來源的名稱符合您先前指定的輸入名稱。
-   >
-   > 
-3. 在查詢編輯器中按一下 [測試]  。
-4. 提供測試檔案。 使用先前步驟建立的檔案或 [telco.json](https://github.com/Azure/azure-stream-analytics/blob/master/Samples/SampleDataFiles/Telco.json)均可。
-5. 按一下 [核取] 按鈕，然後參閱查詢定義下方顯示的結果。
+    即可建立作業，入口網站會顯示作業詳細資料。 但還沒有開始運作，您必須先設定作業，作業才能啟動。
 
-   ![查詢定義結果](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sim-fraud-output.png)
+### <a name="configure-job-input"></a>設定作業輸入
 
-### <a name="column-projection"></a>資料行投影
-我們現在要減少傳回的欄位以成為更小的集合。
+1. 在儀表板或 [所有資源] 刀鋒視窗中，尋找並選取 `sa_frauddetection_job_demo` 資料流分析作業。 
+2. 在串流分析作業刀鋒視窗的 [作業拓撲] 區段中，按一下 [輸入] 方塊。
 
-1. 在程式碼編輯器中，將查詢變更成：
+    ![串流分析作業刀鋒視窗中位於 [拓撲] 下的輸入方塊](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-input-box-new-portal.png)
+ 
+3. 按一下 [+&nbsp;新增]，然後在刀鋒視窗中填入這些值：
 
-     SELECT CallRecTime, SwitchNum, CallingIMSI, CallingNum, CalledNum   FROM CallStream
-2. 按一下查詢編輯器中的 [重新執行]  ，即可看到查詢結果。
+    * **輸入別名**：使用名稱 `CallStream`。 如果使用不同的名稱，請記下來，因為稍後需要用到。
+    * **來源類型**：選取 [資料流]。 (**參考資料**是指靜態的查閱資料，在本教學課程中不會用到。)
+    * **來源**：選取 [事件中樞]。
+    * **匯入選項**：選取 [使用目前訂用帳戶的事件中樞]。 
+    * **服務匯流排命名空間**：選取您稍早建立的事件中樞命名空間 (`<yourname>-eh-ns-demo`)。
+    * **事件中樞**：選取您稍早建立的事件中樞 (`sa-eh-frauddetection-demo`)。
+    * **事件中樞原則名稱**：選取您稍早建立的存取原則 (`sa-policy-manage-demo`)。
 
-   ![查詢編輯器中的輸出。](./media/stream-analytics-real-time-fraud-detection/stream-analytics-query-editor-output.png)
+    ![建立串流分析作業的新輸入](./media/stream-analytics-real-time-fraud-detection/stream-analytics-create-sa-input-new-portal.png)
 
-### <a name="count-of-incoming-calls-by-region-tumbling-window-with-aggregation"></a>各區域的來電計數：含彙總的輪轉視窗
-為了比較各區域的來電數量，我們會利用 [TumblingWindow](https://msdn.microsoft.com/library/azure/dn835055.aspx) 每隔五秒取得依 **SwitchNum** 分組的來電計數。
+4. 按一下 [建立] 。
 
-1. 在程式碼編輯器中，將查詢變更成：
+## <a name="create-queries-to-transform-real-time-data"></a>建立查詢來轉換即時資料
 
-     SELECT System.Timestamp as WindowEnd, SwitchNum, COUNT(*) as CallCount   FROM CallStream TIMESTAMP BY CallRecTime   GROUP BY TUMBLINGWINDOW(s, 5), SwitchNum
+目前，您已設定串流分析作業來讀取傳入資料流。 下一步是建立轉換來即時分析資料。 做法是建立查詢。 串流分析支援用來說明轉換的簡單、宣告式查詢模型，以供即時處理。 查詢使用類似 SQL 的語言，可針對串流分析來擴充一些功能。 
 
-   此查詢會使用 [Timestamp By]  關鍵字，在裝載中指定一個暫時運算時會用到的時間戳記欄位。 如果未指定這個欄位，會根據每個事件到達事件中樞的時間，計算時間窗口。 請參閱 [串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)中的＜到達時間與應用程式時間的比較＞。
+非常簡單的查詢可能就只是讀取所有傳入資料。 不過，您通常會建立查詢來尋找特定資料，或資料中的關聯性。 在這一節的教學課程中，您將建立並測試幾個查詢來學習幾種方法，以轉換輸入資料流來分析。 
 
-   請注意，您可以使用 **System.Timestamp** 屬性存取每個視窗結束時的時間戳記。
-2. 按一下查詢編輯器中的 [重新執行]  ，即可看到查詢結果。
+您在此處建立的查詢只是在螢幕上顯示轉換後的資料。 在稍後一節中，您將設定輸出接收，並設定查詢將轉換後的資料寫入該接收。
 
-   ![Timestand By 的查詢結果](./media/stream-analytics-real-time-fraud-detection/stream-ananlytics-query-editor-rerun.png)
+若要深入了解語言，請參閱 [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/dn834998.aspx)。
 
-### <a name="sim-fraud-detection-with-a-self-join"></a>使用自我聯結執行 SIM 詐騙偵測
-為了識別潛在的詐騙使用量，我們將尋找源自相同使用者卻在 5 秒內於不同位置撥出的電話。  我們會 [聯結](https://msdn.microsoft.com/library/azure/dn835026.aspx) 呼叫事件資料流本身，檢查是否有上述情況。
+### <a name="get-sample-data-for-testing-queries"></a>取得範例資料來測試查詢
 
-1. 在程式碼編輯器中，將查詢變更成：
+TelcoGenerator 應用程式正在將通話記錄傳送到事件中樞，而串流分析作業已設定來讀取事件中樞。 您可以使用查詢來測試作業，確定能正確讀取。 若要在 Azure 主控台測試查詢，您需要範例資料。 在這個逐步解說中，您將從傳入事件中樞的資料流擷取範例資料。
 
-     SELECT System.Timestamp as Time, CS1.CallingIMSI, CS1.CallingNum as CallingNum1,   CS2.CallingNum as CallingNum2, CS1.SwitchNum as Switch1, CS2.SwitchNum as Switch2   FROM CallStream CS1 TIMESTAMP BY CallRecTime   JOIN CallStream CS2 TIMESTAMP BY CallRecTime   ON CS1.CallingIMSI = CS2.CallingIMSI   AND DATEDIFF(ss, CS1, CS2) BETWEEN 1 AND 5   WHERE CS1.SwitchNum != CS2.SwitchNum
-2. 按一下查詢編輯器中的 [重新執行]  ，即可看到查詢結果。
+1. 請確定 TelcoGenerator 應用程式正在執行且產生通話記錄。
+2. 在入口網站中，返回串流分析作業刀鋒視窗。 (如果已關閉此刀鋒視窗，請在 [所有資源] 刀鋒視窗中搜尋 `sa_frauddetection_job_demo`。)
+3. 按一下 [查詢] 方塊。 Azure 會列出作業已設定的輸入和輸出，還可讓您建立查詢，在輸入資料流傳送至輸出時進行轉換。
+4. 在 [查詢] 刀鋒視窗中，按一下 `CallStream` 輸入旁邊的點，然後選取 [來自輸入的範例資料]。
 
-   ![聯結的查詢結果](./media/stream-analytics-real-time-fraud-detection/stream-ananlytics-query-editor-join.png)
+    ![用於在串流分析作業中輸入範例資料的功能表選項，已選取 [來自輸入的範例資料]](./media/stream-analytics-real-time-fraud-detection/stream-analytics-create-sample-data-from-input.png)
 
-### <a name="create-output-sink"></a>建立輸出接收
-現在我們已經定義好一個事件資料流、一個負責擷取事件的事件中樞，以及一個進行資料流轉換處理的查詢，最後的步驟就是定義工作的輸出接收。 我們會將詐騙行為事件寫入 Azure Blob 儲存體。
+    這會開啟刀鋒視窗，讓您決定要花多少時間來讀取輸入資料流，以指定取得多少範例資料。
 
-請使用下列步驟來建立 Blob 儲存體的容器 (如果沒有的話)。
+5. 將 [分鐘] 設定為 3，然後按一下 [確定]。 
+    
+    ![輸入資料流的取樣選項，已選取 [3 分鐘]。](./media/stream-analytics-real-time-fraud-detection/stream-analytics-input-create-sample-data.png)
 
-1. 使用現有的儲存體帳戶，或者依序按一下 [新增] > [資料服務] > [儲存體] > [快速建立]，然後依照指示操作以建立新的儲存體帳戶。
-2. 選取儲存體帳戶，按一下頁面上方的 [容器]，然後按一下 [新增]。
-3. 指定容器的 [名稱]，並將 [存取] 設定為 [公用 Blob]。
+    Azure 會從輸入資料流取樣 3 分鐘的資料，備妥範例資料時會通知您。 (這需要等一下。) 
 
-## <a name="specify-job-output"></a>指定工作輸出
-1. 在串流分析工作中，按一下頁面上方的 [輸出]，然後按一下 [新增輸出]。 開啟的對話方塊會逐步引導您完成設定輸出。
-2. 按一下 [BLOB 儲存體]，然後按一下右鍵。
-3. 在第三頁上輸入或選取下列值：
+範例資料會暫時儲存，開啟查詢視窗時即可使用。 如果您關閉查詢視窗，則會捨棄範例資料，您將必須建立一組新的範例資料。 
 
-   * **輸出別名**：為這個工作輸出設定一個容易記的名稱。
-   * **訂用帳戶**：如果建立的 Blob 儲存體與串流分析工作屬於相同的訂用帳戶，請按一下 [從目前的訂用帳戶使用儲存體帳戶]。 如果儲存體屬於不同的訂用帳戶，請按一下 [從另一個訂用帳戶使用儲存體帳戶]，然後手動輸入 [儲存體帳戶]、[儲存體帳戶金鑰]、[容器] 等資訊。
-   * **儲存體帳戶名稱**：選取儲存體帳戶的名稱。
-   * **容器**：選取容器的名稱。
-   * **檔案名稱前置詞**：輸入當您填寫 Blob 輸出時，所使用的檔案前置詞。
-4. 按一下向右按鈕。
-5. 指定下列值：
+或者，您可以[從 GitHub](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/telco.json) 取得含有範例資料的 .json 檔案，然後上傳該 .json 檔案作為 `CallStream` 輸入的範例資料。 
 
-   * **事件序列化程式格式**：JSON
-   * **編碼**：UTF8
-6. 按一下 [核取] 按鈕即可新增這個來源，並確認串流分析可以成功連接到儲存體帳戶。
+### <a name="test-using-a-pass-through-query"></a>使用傳遞查詢來測試
 
-## <a name="start-job-for-real-time-processing"></a>開始即時處理工作
-由於工作輸入、查詢及輸出都已經指定好了，現在可以開始執行串流分析工作來進行即時詐騙偵測。
+如果您想要封存每一個事件，您可以使用傳遞查詢，讀取事件承載中的所有欄位。
 
-1. 從 [儀表板] 工作，按一下頁面最下方的 [開始]。
-2. 在開啟的對話方塊中，按一下 [工作開始時間]，然後按一下對話方塊最下方的 [核取] 按鈕。 工作狀態會變更為 [啟動中] 而且短時間內就會變成 [執行中]。
+1. 在查詢視窗中，輸入此查詢︰
 
-## <a name="view-fraud-detection-output"></a>檢視詐騙偵測輸出
-使用 [Azure 儲存體總管](http://storageexplorer.com/) 或 [Azure 總管](http://www.cerebrata.com/products/azure-explorer/introduction) 此類的工具，以即時檢視正在寫入至您輸出中的詐騙事件。  
+        SELECT 
+            *
+        FROM 
+            CallStream
 
-![詐騙偵測：即時檢視的詐騙事件](./media/stream-analytics-real-time-fraud-detection/stream-ananlytics-view-real-time-fraudent-events.png)
+    >[!NOTE]
+    >如同 SQL，關鍵字不區分大小寫，空白字元也不重要。
+
+    在此查詢中，`CallStream` 是您建立輸入時所指定的別名。 如果您使用不同的別名，請改為使用該名稱。
+
+2. 按一下 [ **測試**]。
+
+    串流分析作業會查詢範例資料，然後在視窗底部顯示輸出。 這表示事件中樞和串流分析作業都正確設定。 (如前所述，稍後您將建立輸出接收供查詢寫入資料)。
+
+    ![串流分析作業輸出，顯示已產生 73 筆記錄](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-sample-output.png)
+
+    您確實會看到的記錄數目取決於 3 分鐘範例中所擷取的記錄數目。
+ 
+### <a name="reduce-the-number-of-fields-using-a-column-projection"></a>使用資料行投影來減少欄位數目
+
+在許多情況下，您的分析不需要輸入資料流的所有資料行。 您可以使用查詢來投影更小的一組傳回欄位，比傳遞查詢傳回的欄位更少。
+
+1. 在程式碼編輯器中，將查詢變更如下：
+
+        SELECT CallRecTime, SwitchNum, CallingIMSI, CallingNum, CalledNum 
+        FROM 
+            CallStream
+
+2. 再按一次 [測試]。 
+
+    ![投影的串流分析作業輸出，顯示已產生 25 筆記錄](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-sample-output-projection.png)
+ 
+### <a name="count-incoming-calls-by-region-tumbling-window-with-aggregation"></a>各區域的來電計數：含彙總的輪轉視窗
+
+假設您想要計算每個區域的來電數目。 在串流資料中，當您想要執行彙總函式時，例如計數，您需要將資料流分割成時態單位 (因為資料流本身實際上沒有止境)。 做法是使用串流分析[視窗函式](stream-analytics-window-functions.md)。 然後，您就可以將該視窗內的資料當作一個單位來使用。
+
+在這個轉換過程中，您需要有一連串不重疊的時態性視窗，每個視窗會有一組特定的資料讓您分組和彙總。 這種視窗稱為「輪轉視窗」。 在輪轉視窗中，您可以取得依 `SwitchNum` (代表發話國) 分組的來電計數。 
+
+1. 在程式碼編輯器中，將查詢變更如下：
+
+        SELECT 
+            System.Timestamp as WindowEnd, SwitchNum, COUNT(*) as CallCount 
+        FROM
+            CallStream TIMESTAMP BY CallRecTime 
+        GROUP BY TUMBLINGWINDOW(s, 5), SwitchNum
+
+    此查詢在 `FROM` 子句中使用 `Timestamp By` 關鍵字，以指定使用輸入資料流中的哪個時間戳記欄位來定義輪轉視窗。 在此案例中，視窗會將每一筆記錄的資料依 `CallRecTime` 欄位分段。 (如果未指定欄位，則時間範圍作業會使用每個事件抵達事件中樞的時間。 請參閱[串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)中的＜抵達時間與應用時間的比較＞。 
+
+    投影包含 `System.Timestamp`，它會傳回每個視窗結尾的時間戳記。 
+
+    若要指定使用輪轉視窗，請在 `GROUP BY ` 子句中使用 [TUMBLINGWINDOW](https://msdn.microsoft.com/library/dn835055.aspx) 函式。 在此函式中，您可以指定時間單位 (從一微秒到一天即可) 和視窗大小 (單位數量)。 在此範例中，輪轉視窗由 5 秒的間隔組成，所以會依國家/地區產生每 5 秒的來電計數。
+
+2. 再按一次 [測試]。 在結果中，可看見 **WindowEnd** 底下的時間戳記是以 5 秒為增量單位。
+
+    ![彙總的串流分析作業輸出，顯示已產生 13 筆記錄](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-sample-output-aggregation.png)
+ 
+### <a name="detect-sim-fraud-using-a-self-join"></a>使用自我聯結來偵測 SIM 詐騙
+
+在此範例中，我們可以將詐騙手法想像成同一位使用者在 5 秒內從不同位置撥出多通電話。 例如，按照常理，同一位使用者不可能同時從美國和澳大利亞打電話。 
+
+若要檢查這些情況，您可以使用自我聯結的串流資料，根據 `CallRecTime` 值將資料流聯結到本身。 然後，您可以尋找 `CallingIMSI` 值 (發話號碼) 相同但 `SwitchNum` 值 (發話國) 不同的通話記錄。
+
+當您在串流資料中使用聯結時，聯結必須稍微限制相符的資料列在時間上可以相隔多久。 (如稍早所述，串流資料實際上是沒有止境。)在聯結的 `ON` 子句內，可使用 `DATEDIFF` 函式來指定關聯性的時間界限。 在此案例中，聯結是以 5 秒間隔的通話資料為基礎。
+
+1. 在程式碼編輯器中，將查詢變更如下： 
+
+        SELECT  System.Timestamp as Time, 
+            CS1.CallingIMSI, 
+            CS1.CallingNum as CallingNum1, 
+            CS2.CallingNum as CallingNum2, 
+            CS1.SwitchNum as Switch1, 
+            CS2.SwitchNum as Switch2 
+        FROM CallStream CS1 TIMESTAMP BY CallRecTime 
+            JOIN CallStream CS2 TIMESTAMP BY CallRecTime 
+            ON CS1.CallingIMSI = CS2.CallingIMSI 
+            AND DATEDIFF(ss, CS1, CS2) BETWEEN 1 AND 5 
+        WHERE CS1.SwitchNum != CS2.SwitchNum
+
+    此查詢就像任何 SQL 聯結一樣，差別在於聯結中的 `DATEDIFF` 函式。 這是串流分析專用的 `DATEDIFF` 版本，必須出現在 `ON...BETWEEN` 子句中。 參數是時間單位 (在此範例中為秒) 和兩個聯結來源的別名。 (這不同於標準 SQL `DATEDIFF` 函式。) 
+
+    `WHERE` 子句中的條件會標出詐騙電話：發話端交換機不相同。 
+
+2. 再按一次 [測試]。 
+
+    ![自我聯結的串流分析作業輸出，顯示已產生 6 筆記錄](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-sample-output-self-join.png)
+
+3. 按一下 [儲存] 。 這會將自我聯結查詢儲存在串流分析作業中。 (不會儲存範例資料。)
+
+    ![儲存串流分析作業](./media/stream-analytics-real-time-fraud-detection/stream-analytics-query-editor-save-button-new-portal.png)
+
+## <a name="create-an-output-sink-to-store-transformed-data"></a>建立輸出接收以儲存轉換後的資料
+
+您已定義事件資料流、用來內嵌事件的事件中樞，以及用來轉換資料流的查詢。 最後一個步驟是定義作業的輸出接收，也就是轉換後的資料流寫入的地方。 
+
+您可以使用許多資源作為輸出接收，例如 SQL Server 資料庫、資料表儲存體、Data Lake 儲存體、Power BI，甚至是另一個事件中樞。 在本教學課程中，您會將資料流寫入 Azure Blob 儲存體，通常會選擇這一項來收集事件資訊供稍後分析，因為它支援非結構化資料。
+
+如果您已有 blob 儲存體帳戶，則可直接使用。 在本教學課程中，我們將示範如何建立只用於本教學課程的新儲存體帳戶。
+
+### <a name="create-an-azure-blob-storage-account"></a>建立 Azure Blob 儲存體帳戶
+
+1. 在 Azure 入口網站中，返回串流分析作業刀鋒視窗。 (如果已關閉此刀鋒視窗，請在 [所有資源] 刀鋒視窗中搜尋 `sa_frauddetection_job_demo`。)
+2. 在 [作業拓撲] 區段中，按一下 [輸出] 方塊。 
+3. 在 [輸出] 刀鋒視窗中，按一下 [+&nbsp;新增]，然後在刀鋒視窗中填入這些值：
+
+    * **輸出別名**：使用名稱 `CallStream-FraudulentCalls`。 
+    * **接收器**：選取 [Blob 儲存體]。
+    * **匯入選項**：選取 [使用來自目前訂用帳戶的 Blob 儲存體]。
+    * **儲存體帳戶**。 選取 [建立新儲存體帳戶]。
+    * **儲存體帳戶** (第二個方塊)。 輸入 `YOURNAMEsademo`，其中 `YOURNAME` 是您的名稱或另一個唯一字串。 名稱只能使用小寫字母和數字，而且在整個 Azure 中必須是唯一的。 
+    * **容器**。 輸入 `sa-fraudulentcalls-demo`。
+    儲存體帳戶名稱和容器名稱一起用來提供 blob 儲存體的 URI，例如： 
+
+    `http://yournamesademo.blob.core.windows.net/sa-fraudulentcalls-demo/...`
+    
+    ![串流分析作業的 [新輸出] 刀鋒視窗](./media/stream-analytics-real-time-fraud-detection/stream-analytics-create-output-blob-storage-new-console.png)
+    
+4. 按一下 [建立] 。 
+
+    Azure 會建立儲存體帳戶，並自動產生金鑰。 
+
+5. 關閉 [輸出] 刀鋒視窗。 
+
+## <a name="start-the-streaming-analytics-job"></a>啟動串流分析作業
+
+現在已設定作業。 您已指定輸入 (事件中樞)、轉換 (用來尋找詐騙電話的查詢) 和輸出 (blob 儲存體)。 您現在可以啟動作業。 
+
+1. 請確定 TelcoGenerator 應用程式正在執行。
+
+2. 在作業刀鋒視窗中，按一下 [啟動]。
+
+    ![啟動串流分析工作](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-start-output.png)
+
+3. 在 [啟動作業] 刀鋒視窗的 [作業輸出開始時間] 中，選取 [現在]。 
+
+4. 按一下 [啟動] 。 
+
+    ![串流分析作業的 [啟動作業] 刀鋒視窗](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-start-job-blade.png)
+
+    作業啟動後，Azure 會通知您，在作業刀鋒視窗中，狀態會顯示為 [執行中]。
+
+    ![串流分析作業狀態，顯示「執行中」](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-running-status.png)
+    
+
+## <a name="examine-the-transformed-data"></a>檢查已轉換的資料
+
+您現在已完成串流分析作業。 此作業會檢查通話中繼資料的資料流，即時尋找詐騙電話，並將這些詐騙電話的相關資訊寫入儲存體。 
+
+若要完成本教學課程，您可能需要查看串流分析作業所擷取的資料。 資料正分成區塊 (檔案) 寫入 Azure Blob 儲存體。 您可以使用任何可讀取 Azure Blob 儲存體的工具。 如＜必要條件＞一節所述，您可以在 Visual Studio 中使用 Azure 擴充，也可以使用 [Azure 儲存體總管](http://storageexplorer.com/)或 [Azure 總管](http://www.cerebrata.com/products/azure-explorer/introduction)之類的工具。 
+
+當您在 blob 儲存體中檢查檔案的內容時，您會看到類似如下的內容：
+
+![Azure blob 儲存體與串流分析輸出](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sa-job-blob-storage-view.png)
+ 
+
+## <a name="clean-up-resources"></a>清除資源
+
+我們還有其他文章繼續探討詐騙偵測案例，而且會使用您在本教學課程中所建立的資源。 如果您想要繼續，請參閱稍後在**後續步驟**下方的建議。
+
+不過，如果您已完成，也不需要您已建立的資源，則可以刪除它們，以免產生不必要的 Azure 費用。 在此情況下，建議您採取下列動作：
+
+1. 停止串流分析作業。 在 [作業] 刀鋒視窗中，按一下頂端的 [停止]。
+2. 停止 Telco Generator 應用程式。 在您啟動應用程式的命令視窗中，按 Ctrl+C。
+3. 如果您建立的新 blob 儲存體帳戶只用於本教學課程，請刪除它。 
+4. 刪除串流分析作業。
+5. 刪除事件中樞。
+6. 刪除事件中樞命名空間。
 
 ## <a name="get-support"></a>取得支援
+
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
+
+您可以閱讀下列文章來繼續本教學課程：
+
+* [串流分析及 Power BI：適用於串流資料的即時分析儀表板](stream-analytics-power-bi-dashboard.md)。 本文示範如何將串流分析作業的 TelCo 輸出傳送至 Power BI，以呈現即時視覺效果和進行分析。
+* [如何使用 Azure Functions 在 Azure Redis 快取中儲存 Azure 串流分析的資料](stream-analytics-functions-redis.md)。 本文示範如何使用 Azure Functions 透過服務匯流排佇列將詐騙電話寫入 Azure Redis 快取。
+
+如需串流分析在整體上的詳細資訊，請參閱下列文章：
+
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
-
-

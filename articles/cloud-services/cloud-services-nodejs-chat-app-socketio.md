@@ -14,10 +14,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: e9607d2426192eca990261e5ef3b4e06b25b1dec
-ms.lasthandoff: 03/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: efa459f6b382ff22c94802e1250836d5f622b4ed
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/29/2017
 
 
 ---
@@ -80,6 +81,7 @@ Socket.IO 提供 node.js 伺服器和用戶端之間的即時通訊。 本教學
          , nib = require('nib')
        //, sio = require('..//..//lib//socket.io'); //Original
          , sio = require('socket.io');                //Updated
+         var port = process.env.PORT || 3000;         //Updated
 3. 為了確保應用程式在正確的連接埠上接聽，請在 [記事本] 或您喜歡的編輯器中開啟 server.js，然後變更下列這一行，將 **3000** 改為 **process.env.port**，如下所示：
    
        //app.listen(3000, function () {            //Original
@@ -105,9 +107,18 @@ Socket.IO 提供 node.js 伺服器和用戶端之間的即時通訊。 本教學
 1. 發出下列命令來啟動模擬器：
    
        PS C:\node\chatapp\WorkerRole1> Start-AzureEmulator -Launch
+   
+   > [!NOTE]
+   > 如果您在啟動模擬器時遇到問題，例如：Start-AzureEmulator：發生未預期的失敗。  詳細資料：發生未預期的錯誤。通訊物件 System.ServiceModel.Channels.ServiceChannel 無法用於通訊，因為它處於錯誤狀態。
+   
+      重新安裝 AzureAuthoringTools v 2.7.1 和 AzureComputeEmulator v 2.7 - 請確定版本相符。
+   >
+   >
+
+
 2. 開啟瀏覽器並瀏覽至 **http://127.0.0.1**。
 3. 當瀏覽器視窗開啟時，請輸入暱稱，然後按 Enter 鍵。
-   這樣可讓您以特定的暱稱來張貼訊息。 若要測試多使用者功能，請使用相同 URL 開啟其他瀏覽器視窗，並輸入不同的暱稱。
+   這可讓您以特定的暱稱來張貼訊息。 若要測試多使用者功能，請使用相同 URL 開啟其他瀏覽器視窗，並輸入不同的暱稱。
    
    ![兩個瀏覽器視窗顯示 User1 和 User2 的交談訊息](./media/cloud-services-nodejs-chat-app-socketio/socketio-8.png)
 4. 測試應用程式之後，發出下列命令來停止模擬器：

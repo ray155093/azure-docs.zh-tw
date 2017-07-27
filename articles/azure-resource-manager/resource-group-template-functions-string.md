@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/15/2017
+ms.date: 06/13/2017
 ms.author: tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: 9932ac04699f49b7a3ea3dabe4d380fdc4d05ec1
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: a6c33f11dfcbb02689956269ce5a37408534b6cd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
-
+ms.lasthandoff: 07/21/2017
 
 ---
 # <a name="string-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 範本的字串函式
@@ -70,6 +69,10 @@ ms.lasthandoff: 05/16/2017
 |:--- |:--- |:--- |:--- |
 | inputString |是 |字串 |要以 base64 表示法傳回的值。 |
 
+### <a name="return-value"></a>傳回值
+
+字串，包含 base64 表示法。
+
 ### <a name="examples"></a>範例
 
 下列範例顯示如何使用 base64 函式。
@@ -111,9 +114,13 @@ ms.lasthandoff: 05/16/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-字串，包含 base64 表示法。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| base64Output | String | b25lLCB0d28sIHRocmVl |
+| toStringOutput | String | one, two, three |
+| toJsonOutput | Object | {"one": "a", "two": "b"} |
 
 <a id="base64tojson" />
 
@@ -127,6 +134,10 @@ ms.lasthandoff: 05/16/2017
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | base64Value |是 |字串 |要轉換為 JSON 物件的 base64 表示法。 |
+
+### <a name="return-value"></a>傳回值
+
+JSON 物件。
 
 ### <a name="examples"></a>範例
 
@@ -169,9 +180,13 @@ ms.lasthandoff: 05/16/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-JSON 物件。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| base64Output | String | b25lLCB0d28sIHRocmVl |
+| toStringOutput | String | one, two, three |
+| toJsonOutput | Object | {"one": "a", "two": "b"} |
 
 <a id="base64tostring" />
 
@@ -185,6 +200,10 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | base64Value |是 |字串 |要轉換為字串的 base64 表示法。 |
+
+### <a name="return-value"></a>傳回值
+
+轉換後之 base64 值的字串。
 
 ### <a name="examples"></a>範例
 
@@ -227,9 +246,13 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-轉換後之 base64 值的字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| base64Output | String | b25lLCB0d28sIHRocmVl |
+| toStringOutput | String | one, two, three |
+| toJsonOutput | Object | {"one": "a", "two": "b"} |
 
 <a id="bool" />
 
@@ -243,6 +266,9 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |字串或整數 |要轉換為布林值的值。 |
+
+### <a name="return-value"></a>傳回值
+轉換值的布林值。
 
 ### <a name="examples"></a>範例
 
@@ -274,8 +300,14 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
-布林值。
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| trueString | Bool | True |
+| falseString | Bool | False |
+| trueInt | Bool | True |
+| falseInt | Bool | False |
 
 <a id="concat" />
 
@@ -290,6 +322,9 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |字串或陣列 |串連的第一個值。 |
 | 其他引數 |否 |字串 |串連的其他值 (循序順序)。 |
+
+### <a name="return-value"></a>傳回值
+串連值的字串或陣列。
 
 ### <a name="examples"></a>範例
 
@@ -308,12 +343,18 @@ JSON 物件。
     "resources": [],
     "outputs": {
         "concatOutput": {
-            "value": "[concat(parameters('prefix'), uniqueString(resourceGroup().id))]",
+            "value": "[concat(parameters('prefix'), '-', uniqueString(resourceGroup().id))]",
             "type" : "string"
         }
     }
 }
 ```
+
+上述範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| concatOutput | String | prefix-5yj4yjf5mbg72 |
 
 下一個範例顯示如何結合兩個陣列。
 
@@ -350,8 +391,11 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
-串連值的字串或陣列。
+上述範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| return | 陣列 | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
 
 <a id="contains" />
 
@@ -366,6 +410,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | container |是 |陣列、物件或字串 |其中包含要尋找之值的值。 |
 | itemToFind |是 |字串或整數 |要尋找的值。 |
+
+### <a name="return-value"></a>傳回值
+
+找到項目則傳回 **True**，否則會傳回 **False**。
 
 ### <a name="examples"></a>範例
 
@@ -420,9 +468,16 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-找到項目則傳回 **True**，否則會傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| stringTrue | Bool | True |
+| stringFalse | Bool | False |
+| objectTrue | Bool | True |
+| objectFalse | Bool | False |
+| arrayTrue | Bool | True |
+| arrayFalse | Bool | False |
 
 <a id="datauri" />
 
@@ -437,6 +492,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | stringToConvert |是 |字串 |要轉換為資料 URI 的值。 |
 
+### <a name="return-value"></a>傳回值
+
+格式化為資料 URI 的字串。
+
 ### <a name="examples"></a>範例
 
 下列範例會將值轉換為資料 URI，並將資料 URI 轉換為字串︰
@@ -469,9 +528,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-格式化為資料 URI 的字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| dataUriOutput | String | data:text/plain;charset=utf8;base64,SGVsbG8= |
+| toStringOutput | String | Hello, World! |
 
 <a id="datauritostring" />
 
@@ -486,6 +548,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | dataUriToConvert |是 |字串 |要轉換的資料 URI 值。 |
 
+### <a name="return-value"></a>傳回值
+
+字串，包含已轉換的值。
+
 ### <a name="examples"></a>範例
 
 下列範例會將值轉換為資料 URI，並將資料 URI 轉換為字串︰
@@ -518,9 +584,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-字串，包含已轉換的值。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| dataUriOutput | String | data:text/plain;charset=utf8;base64,SGVsbG8= |
+| toStringOutput | String | Hello, World! |
 
 <a id="empty" /> 
 
@@ -534,6 +603,10 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | itemToTest |是 |陣列、物件或字串 |要檢查其是否為空白的值。 |
+
+### <a name="return-value"></a>傳回值
+
+如果值空白則傳回 **True**，否則會傳回 **False**。
 
 ### <a name="examples"></a>範例
 
@@ -576,9 +649,13 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-如果值空白則傳回 **True**，否則會傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayEmpty | Bool | True |
+| objectEmpty | Bool | True |
+| stringEmpty | Bool | True |
 
 <a id="endswith" />
 
@@ -593,6 +670,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | stringToSearch |是 |字串 |其中包含要尋找之項目的值。 |
 | stringToFind |是 |string |要尋找的值。 |
+
+### <a name="return-value"></a>傳回值
+
+如果最後一個字元或字串字元與該值相符，則傳回 **True**；否則會傳回 **False**。
 
 ### <a name="examples"></a>範例
 
@@ -632,9 +713,16 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-如果最後一個字元或字串字元與該值相符，則傳回 **True**；否則會傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| startsTrue | Bool | True |
+| startsCapTrue | Bool | True |
+| startsFalse | Bool | False |
+| endsTrue | Bool | True |
+| endsCapTrue | Bool | True |
+| endsFalse | Bool | False |
 
 <a id="first" />
 
@@ -648,6 +736,10 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |陣列或字串 |要擷取其第一個元素或字元的值。 |
+
+### <a name="return-value"></a>傳回值
+
+陣列中第一個字元的字串或第一個元素的類型 (字串、整數、陣列或物件)。
 
 ### <a name="examples"></a>範例
 
@@ -678,9 +770,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列中第一個字元的字串或第一個元素的類型 (字串、整數、陣列或物件)。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | String | one |
+| stringOutput | String | O |
 
 <a id="indexof" />
 
@@ -695,6 +790,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | stringToSearch |是 |字串 |其中包含要尋找之項目的值。 |
 | stringToFind |是 |string |要尋找的值。 |
+
+### <a name="return-value"></a>傳回值
+
+整數，代表要尋找之項目的位置。 此值是以零為起始。 如果找不到項目，則傳回 -1。
 
 ### <a name="examples"></a>範例
 
@@ -730,10 +829,15 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-整數，代表要尋找之項目的位置。 此值是以零為起始。 如果找不到項目，則傳回 -1。
-
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| firstT | int | 0 |
+| lastT | int | 3 |
+| firstString | int | 2 |
+| lastString | int | 0 |
+| notFound | int | -1 |
 
 <a id="last" />
 
@@ -747,6 +851,10 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |陣列或字串 |要擷取其最後一個元素或字元的值。 |
+
+### <a name="return-value"></a>傳回值
+
+陣列中最後一個字元的字串，或最後一個元素的類型 (字串、整數、陣列或物件)。
 
 ### <a name="examples"></a>範例
 
@@ -777,9 +885,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列中最後一個字元的字串，或最後一個元素的類型 (字串、整數、陣列或物件)。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | String | three |
+| stringOutput | String | e |
 
 <a id="lastindexof" />
 
@@ -794,6 +905,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | stringToSearch |是 |字串 |其中包含要尋找之項目的值。 |
 | stringToFind |是 |string |要尋找的值。 |
+
+### <a name="return-value"></a>傳回值
+
+整數，代表要尋找之項目的最後一個位置。 此值是以零為起始。 如果找不到項目，則傳回 -1。
 
 ### <a name="examples"></a>範例
 
@@ -829,10 +944,15 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-整數，代表要尋找之項目的最後一個位置。 此值是以零為起始。 如果找不到項目，則傳回 -1。
-
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| firstT | int | 0 |
+| lastT | int | 3 |
+| firstString | int | 2 |
+| lastString | int | 0 |
+| notFound | int | -1 |
 
 <a id="length" />
 
@@ -846,6 +966,10 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |陣列或字串 |要用來取得元素數目的陣列，或用來取得字元數目的字串。 |
+
+### <a name="return-value"></a>傳回值
+
+整數。 
 
 ### <a name="examples"></a>範例
 
@@ -883,9 +1007,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-整數。 
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayLength | int | 3 |
+| stringLength | int | 13 |
 
 <a id="padleft" />
 
@@ -904,6 +1031,10 @@ JSON 物件。
 
 如果原始字串長度超過要填補的字元數，則不會新增任何字元。
 
+### <a name="return-value"></a>傳回值
+
+至少含有指定字元數的字串。
+
 ### <a name="examples"></a>範例
 
 下列範例顯示如何藉由新增「零」字元直到符合字元總數，以填補使用者提供的參數值。 
@@ -916,25 +1047,23 @@ JSON 物件。
         "testString": {
             "type": "string",
             "defaultValue": "123"
-        },
-        "totalCharacters": {
-            "type": "int",
-            "defaultValue": 10
         }
     },
     "resources": [],
     "outputs": {
         "stringOutput": {
             "type": "string",
-            "value": "[padLeft(parameters('testString'),parameters('totalCharacters'),'0')]"
+            "value": "[padLeft(parameters('testString'),10,'0')]"
         }
     }
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-至少含有指定字元數的字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| stringOutput | String | 0000000123 |
 
 <a id="replace" />
 
@@ -950,6 +1079,10 @@ JSON 物件。
 | originalString |是 |字串 |具備由另一個字串取代的一個字串之所有執行個體的值。 |
 | oldString |是 |字串 |要從原始字串中移除的字串。 |
 | newString |是 |字串 |要新增來取代移除之字串的字串。 |
+
+### <a name="return-value"></a>傳回值
+
+具有已取代字元的字串。
 
 ### <a name="examples"></a>範例
 
@@ -979,9 +1112,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-具有已取代字元的字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| firstOutput | String | 1231231234 |
+| secodeOutput | String | 123-123-xxxx |
 
 <a id="skip" />
 
@@ -996,6 +1132,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | originalValue |是 |陣列或字串 |要用於略過的陣列或字串。 |
 | numberToSkip |是 |int |要略過的元素或字元數。 如果此值為 0 或更小的值，則會傳回值內的所有元素或字元。 如果此值大於陣列或字串的長度，則會傳回空白陣列或字串。 |
+
+### <a name="return-value"></a>傳回值
+
+陣列或字串。
 
 ### <a name="examples"></a>範例
 
@@ -1041,9 +1181,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列或字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | 陣列 | ["three"] |
+| stringOutput | String | two three |
 
 <a id="split" />
 
@@ -1058,6 +1201,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | inputString |是 |string |要分割的字串。 |
 | 分隔符號 |是 |字串或字串陣列 |用於分割字串的分隔符號。 |
+
+### <a name="return-value"></a>傳回值
+
+字串的陣列。
 
 ### <a name="examples"></a>範例
 
@@ -1094,9 +1241,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-字串的陣列。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| firstOutput | 陣列 | ["one", "two", "three"] |
+| secondOutput | 陣列 | ["one", "two", "three"] |
 
 <a id="startswith" />
 
@@ -1111,6 +1261,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | stringToSearch |是 |字串 |其中包含要尋找之項目的值。 |
 | stringToFind |是 |string |要尋找的值。 |
+
+### <a name="return-value"></a>傳回值
+
+如果第一個字元或字串字元與該值相符，則傳回 **True**；否則傳回 **False**。
 
 ### <a name="examples"></a>範例
 
@@ -1150,14 +1304,20 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-如果第一個字元或字串字元與該值相符，則傳回 **True**；否則傳回 **False**。
-
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| startsTrue | Bool | True |
+| startsCapTrue | Bool | True |
+| startsFalse | Bool | False |
+| endsTrue | Bool | True |
+| endsCapTrue | Bool | True |
+| endsFalse | Bool | False |
 
 <a id="string" />
 
-## <a name="string"></a>string
+## <a name="string"></a>字串
 `string(valueToConvert)`
 
 將指定的值轉換成字串。
@@ -1167,6 +1327,10 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | valueToConvert |是 | 任意 |要轉換成字串的值。 任何類型的值均可轉換，包括物件和陣列。 |
+
+### <a name="return-value"></a>傳回值
+
+轉換值的字串。
 
 ### <a name="examples"></a>範例
 
@@ -1215,9 +1379,13 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| objectOutput | String | {"valueA":10,"valueB":"Example Text"} |
+| arrayOutput | String | ["a","b","c"] |
+| intOutput | String | 5 |
 
 <a id="substring" />
 
@@ -1233,6 +1401,23 @@ JSON 物件。
 | stringToParse |是 |string |要用來擷取子字串的原始字串。 |
 | startIndex |否 |int |起始字元位置為零的子字串。 |
 | length |否 |int |子字串的字元數。 必須參考字串內的位置。 |
+
+### <a name="return-value"></a>傳回值
+
+子字串。
+
+### <a name="remarks"></a>備註
+
+子字串延伸超過字串的結尾時，此函式會失敗。 下列範例會失敗，並出現錯誤「索引與長度參數必須參考字串內的位置。 索引參數: '0'，長度參數: '11'，字串參數的長度: '10'。」。
+
+```json
+"parameters": {
+    "inputString": { "type": "string", "value": "1234567890" }
+},
+"variables": { 
+    "prefix": "[substring(parameters('inputString'), 0, 11)]"
+}
+```
 
 ### <a name="examples"></a>範例
 
@@ -1258,16 +1443,12 @@ JSON 物件。
 }
 ```
 
-下列範例會失敗，並出現錯誤「索引與長度參數必須參考字串內的位置。 索引參數: '0'，長度參數: '11'，字串參數的長度: '10'。」。
+先前範例中具有預設值的輸出如下：
 
-```json
-"parameters": {
-    "inputString": { "type": "string", "value": "1234567890" }
-},
-"variables": { 
-    "prefix": "[substring(parameters('inputString'), 0, 11)]"
-}
-```
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| substringOutput | String | two |
+
 
 <a id="take" />
 
@@ -1282,6 +1463,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | originalValue |是 |陣列或字串 |要從其中擷取元素的陣列或字串。 |
 | numberToTake |是 |int |要擷取的元素或字元數。 如果此值為 0 或更小的值，則會傳回空白陣列或字串。 如果此值大於給定陣列或字串的長度，則會傳回陣列或字串中的所有元素。 |
+
+### <a name="return-value"></a>傳回值
+
+陣列或字串。
 
 ### <a name="examples"></a>範例
 
@@ -1327,9 +1512,12 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-陣列或字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | 陣列 | ["one", "two"] |
+| stringOutput | String | on |
 
 <a id="tolower" />
 
@@ -1344,6 +1532,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | stringToChange |是 |字串 |要轉換成小寫字母的值。 |
 
+### <a name="return-value"></a>傳回值
+
+字串已轉換成小寫。
+
 ### <a name="examples"></a>範例
 
 下列範例會將參數值轉換為小寫和大寫。
@@ -1371,6 +1563,13 @@ JSON 物件。
     }
 }
 ```
+
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| toLowerOutput | String | one two three |
+| toUpperOutput | String | ONE TWO THREE |
 
 <a id="toupper" />
 
@@ -1385,6 +1584,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | stringToChange |是 |字串 |要轉換成大寫字母的值。 |
 
+### <a name="return-value"></a>傳回值
+
+字串已轉換成大寫。
+
 ### <a name="examples"></a>範例
 
 下列範例會將參數值轉換為小寫和大寫。
@@ -1413,6 +1616,13 @@ JSON 物件。
 }
 ```
 
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| toLowerOutput | String | one two three |
+| toUpperOutput | String | ONE TWO THREE |
+
 <a id="trim" />
 
 ## <a name="trim"></a>修剪
@@ -1425,6 +1635,10 @@ JSON 物件。
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | stringToTrim |是 |string |要修剪的值。 |
+
+### <a name="return-value"></a>傳回值
+
+沒有開頭和尾端空白字元的字串。
 
 ### <a name="examples"></a>範例
 
@@ -1450,6 +1664,12 @@ JSON 物件。
 }
 ```
 
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| 傳回 | String | one two three |
+
 <a id="uniquestring" />
 
 ## <a name="uniquestring"></a>uniqueString
@@ -1471,8 +1691,6 @@ JSON 物件。
 傳回的值不是隨機字串，而是雜湊函式的結果。 傳回的值為 13 個字元長。 它不是全域唯一的。 建議您將值與來自命名慣例的前置詞結合，建立有意義的名稱。 下列範例顯示傳回值的格式。 依提供的參數而改變的實際值。
 
     tcvhiyu5h2o5o
-
-### <a name="examples"></a>範例
 
 下列範例顯示如何使用 uniqueString 來建立常用層級的唯一值。
 
@@ -1505,7 +1723,29 @@ JSON 物件。
 
 ### <a name="return-value"></a>傳回值
 
-字串，包含 13 個字元
+包含 13 個字元的字串。
+
+### <a name="examples"></a>範例
+
+下列範例會從 uniquestring 傳回結果：
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [],
+    "outputs": {
+        "uniqueRG": {
+            "value": "[uniqueString(resourceGroup().id)]",
+            "type" : "string"
+        },
+        "uniqueDeploy": {
+            "value": "[uniqueString(resourceGroup().id, deployment().name)]",
+            "type" : "string"
+        }
+    }
+}
+```
 
 <a id="uri" />
 
@@ -1522,6 +1762,10 @@ JSON 物件。
 | relativeUri |是 |字串 |要加入至基底 uri 字串的相對 uri 字串。 |
 
 **baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。 例如，將 `http://contoso.com/resources/azuredeploy.json` 作為 baseUri 參數傳遞時，會產生 `http://contoso.com/resources/` 的基底 URI。
+
+### <a name="return-value"></a>傳回值
+
+字串，代表基底和相對值的絕對 URI。
 
 ### <a name="examples"></a>範例
 
@@ -1560,9 +1804,13 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-字串，代表基底和相對值的絕對 URI。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| uriOutput | String | http://contoso.com/resources/nested/azuredeploy.json |
+| componentOutput | String | http%3A%2F%2Fcontoso.com%2Fresources%2Fnested%2Fazuredeploy.json |
+| toStringOutput | String | http://contoso.com/resources/nested/azuredeploy.json |
 
 <a id="uricomponent" />
 
@@ -1577,6 +1825,10 @@ JSON 物件。
 |:--- |:--- |:--- |:--- |
 | stringToEncode |是 |字串 |要編碼的值。 |
 
+### <a name="return-value"></a>傳回值
+
+URI 編碼值的字串。
+
 ### <a name="examples"></a>範例
 
 下列範例顯示如何使用 uri、uriComponent 和 uriComponentToString：
@@ -1608,9 +1860,14 @@ JSON 物件。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-URI 編碼值的字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| uriOutput | String | http://contoso.com/resources/nested/azuredeploy.json |
+| componentOutput | String | http%3A%2F%2Fcontoso.com%2Fresources%2Fnested%2Fazuredeploy.json |
+| toStringOutput | String | http://contoso.com/resources/nested/azuredeploy.json |
+
 
 <a id="uricomponenttostring" />
 
@@ -1625,6 +1882,10 @@ URI 編碼值的字串。
 |:--- |:--- |:--- |:--- |
 | uriEncodedString |是 |string |要轉換為字串的 URI 編碼值。 |
 
+### <a name="return-value"></a>傳回值
+
+URI 編碼值的解碼字串。
+
 ### <a name="examples"></a>範例
 
 下列範例顯示如何使用 uri、uriComponent 和 uriComponentToString：
@@ -1656,9 +1917,14 @@ URI 編碼值的字串。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-URI 編碼值的解碼字串。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| uriOutput | String | http://contoso.com/resources/nested/azuredeploy.json |
+| componentOutput | String | http%3A%2F%2Fcontoso.com%2Fresources%2Fnested%2Fazuredeploy.json |
+| toStringOutput | String | http://contoso.com/resources/nested/azuredeploy.json |
+
 
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 Azure Resource Manager 範本中各區段的說明，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。

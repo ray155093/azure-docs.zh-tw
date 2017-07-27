@@ -1,8 +1,8 @@
 ---
 title: "Azure 監視器自動調整的常用度量 | Microsoft Docs"
 description: "了解哪些度量常用於自動調整您的雲端服務、虛擬機器和 Web Apps。"
-author: kamathashwin
-manager: carolz
+author: anirudhcavale
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -13,13 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 12/6/2016
-ms.author: ashwink
+ms.author: ancav
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
 ms.openlocfilehash: 7f9fb67a28560f8cc48ba8be8011bc1991d09024
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/10/2017
-
 
 ---
 # <a name="azure-monitor-autoscaling-common-metrics"></a>Azure 監視器自動調整的常用度量

@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 24ccafb4df95e0010416485199e19f81e1ae31aa
-ms.openlocfilehash: 11017c7c0a761569892aebcd085d5d3fb2d67a69
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: 02c51e6a576b5a91044eae784c72d7529497b814
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/14/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -84,8 +84,38 @@ ms.lasthandoff: 02/14/2017
     ![選取視覺效果](./media/app-insights-export-power-bi/publish-power-bi.png)
 4. 不時手動重新整理報表，或在選項頁面上設定排定的重新整理。
 
+## <a name="troubleshooting"></a>疑難排解
+
+### <a name="401-or-403-unauthorized"></a>401 或 403 未經授權 
+如果您的重新整理權杖尚未更新，可能會發生這種情況。 請嘗試下列步驟以確保您仍然具有存取權。 如果您沒有存取權且重新整理認證沒有作用，請開啟支援票證。
+
+1. 登入 Azure 入口網站，並確定您可以存取資源
+2. 嘗試重新整理儀表板的認證
+
+### <a name="502-bad-gateway"></a>502 錯誤的閘道
+這通常是傳回太多資料的分析查詢所導致。 您應該嘗試使用較小的時間範圍，或使用 [ago](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-analytics-reference#ago) 或 [startofweek/startofmonth](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-analytics-reference#startofweek)僅限函式[專案](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-analytics-reference#project-operator)需要的欄位。
+
+如果減少來自分析查詢的資料集不符合您的需求，您應該考慮使用 [API](https://dev.applicationinsights.io/documentation/overview) 以提取較大的資料集。 以下是如何將 M-Query 匯出轉換為使用 API 的指示。
+
+1. 建立 [API 金鑰](https://dev.applicationinsights.io/documentation/Authorization/API-key-and-App-ID)
+2. 更新您從分析匯出的 Power BI M 指令碼，方法是將 ARM URL 取代為 AI API (請參閱以下範例)
+   * 將 **https://management.azure.com/subscriptions/...**
+   * 取代為 **https://api.applicationinsights.io/beta/apps/...**
+3. 最後，將認證更新為基本，並且使用您的 API 金鑰
+  
+
+**現有的指令碼**
+ ```
+ Source = Json.Document(Web.Contents("https://management.azure.com/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups//providers/microsoft.insights/components//api/query?api-version=2014-12-01-preview",[Query=[#"csl"="requests",#"x-ms-app"="AAPBI"],Timeout=#duration(0,0,4,0)]))
+ ```
+**更新的指令碼**
+ ```
+ Source = Json.Document(Web.Contents("https://api.applicationinsights.io/beta/apps/<APPLICATION_ID>/query?api-version=2014-12-01-preview",[Query=[#"csl"="requests",#"x-ms-app"="AAPBI"],Timeout=#duration(0,0,4,0)]))
+ ```
+
 ## <a name="about-sampling"></a>關於取樣
 如果應用程式會傳送大量資料，調適性取樣功能或許會運作，並只傳送一定百分比的遙測。 如果您已經在 SDK 中或在擷取上手動設定取樣，也是如此。 [深入了解取樣。](app-insights-sampling.md)
+
 
 ## <a name="next-steps"></a>後續步驟
 * [Power BI - 了解](http://www.powerbi.com/learning/)

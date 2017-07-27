@@ -15,16 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/31/2016
 ms.author: anandy
-translationtype: Human Translation
-ms.sourcegitcommit: e1b909f419c8c04a9332a29669148321ab3dbd2d
-ms.openlocfilehash: 2afd8e04ac325f1c9f2dee8aed867b0d0a6b558d
-ms.lasthandoff: 02/09/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
+ms.openlocfilehash: c581b1468630a9f28204592c936360b72f42f0d8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/21/2017
 
 
 ---
 # <a name="change-signature-hash-algorithm-for-office-365-relying-party-trust"></a>變更 Office 365 信賴憑證者信任的簽章雜湊演算法
 ## <a name="overview"></a>概觀
 Active Directory 同盟服務 (AD FS) 會將其權杖簽署到 Microsoft Azure Active Directory 以確保它們無法被竄改。 此簽章可以是以 SHA1 或 SHA256 為基礎。 Azure Active Directory 現在支援以 SHA256 演算法簽署的權杖，建議您將權杖簽署演算法設定為 SHA256 以獲得最高層級的安全性。 本文說明將權杖簽署演算法設定為更安全 SHA256 層級所需的步驟。
+
+>[!NOTE]
+>Microsoft 建議使用 SHA256 作為簽署權杖的演算法，因為它比 SHA1 安全，但 SHA1 仍保留為支援的選項。
 
 ## <a name="change-the-token-signing-algorithm"></a>變更權杖簽署演算法
 使用下列兩個程序之一設定簽章演算法之後，AD FS 會使用 SHA256 簽署 Office 365 信賴憑證者信任的權杖。 您不需要另外進行任何組態變更，而且這項變更不會影響您對 Office 365 或其他 Azure AD 應用程式的存取能力。

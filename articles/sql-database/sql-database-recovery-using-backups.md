@@ -13,13 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 04/10/2017
+ms.date: 06/15/2017
 ms.author: carlrab
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 1d0167744e3068f6b52ae71f3433a383d607d07e
+ms.sourcegitcommit: 8be2bcb9179e9af0957fcee69680ac803fd3d918
+ms.openlocfilehash: be44db002fc2491be9fc4428c6429ef8b4036147
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/23/2017
 
 
 ---
@@ -29,6 +29,10 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 * 同一部邏輯伺服器上的新資料庫，復原到保留期限內指定的時間點。 
 * 同一部邏輯伺服器上的資料庫，復原到已刪除資料庫的刪除時間。
 * 任何區域中任何邏輯伺服器上的新資料庫，其中資料庫會復原到異地複寫 Blob 儲存體 (RA-GRS) 中最新每日備份的時間點。
+
+> [!IMPORTANT]
+> 在還原期間，您無法覆寫現有的資料庫。
+>
 
 您也可以使用[自動資料庫備份](sql-database-automated-backups.md)，在任何區域中的任一邏輯伺服器上建立[資料庫複本](sql-database-copy.md)。 
 
@@ -44,7 +48,7 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
   
   針對非常大型及/或作用中的資料庫，還原可能需要數小時。 如果某區域中的中斷延長，其他區域可能要處理大量的異地還原要求。 如果有許多要求，則該區域中資料庫的復原時間可能會增加。 大多數資料庫還原會在 12 小時內完成。
   
-  沒有可執行大量還原的內建功能。 [Azure SQL Database: Full Server Recovery](https://gallery.technet.microsoft.com/Azure-SQL-Database-Full-82941666) 指令碼是其中一種完成這項工作的範例。
+沒有可執行大量還原的內建功能。 [Azure SQL Database: Full Server Recovery](https://gallery.technet.microsoft.com/Azure-SQL-Database-Full-82941666) 指令碼是其中一種完成這項工作的範例。
 
 > [!IMPORTANT]
 > 若要使用自動備份復原，您必須是訂用帳戶中 SQL Server 參與者角色的成員或訂用帳戶擁有者。 您可以使用 Azure 入口網站、PowerShell 或 REST API 來進行復原。 您無法使用 Transact-SQL。 
@@ -52,10 +56,10 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 
 ## <a name="point-in-time-restore"></a>還原時間點
 
-您可以使用 Azure 入口網站、PowerShell 或 [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx)，將現有的資料庫還原到先前的時間點，以做為相同邏輯伺服器上的新資料庫。 
+您可以使用 Azure 入口網站、[PowerShell](https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/restore-azurermsqldatabase) 或 [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx)，將現有的資料庫還原到先前的時間點，以做為相同邏輯伺服器上的新資料庫。 
 
-> [!IMPORTANT]
-> 在還原期間，您無法覆寫現有的資料庫。
+> [!TIP]
+> 如需示範如何執行資料庫還原時間點的 PowerShell 指令碼範例，請參閱[使用 PowerShell 還原 SQL 資料庫](scripts/sql-database-restore-database-powershell.md)。
 >
 
 資料庫可以還原到任何服務層或效能層級，以及以單一資料庫的形式還原或還原到彈性集區中。 請確定在作為您資料庫還原目的地的邏輯伺服器上或彈性集區中有足夠的資源。 完成之後，還原的資料庫會是一般、完全可供存取的線上資料庫。 還原的資料庫會根據其服務層和效能層級依一般費率計費。 在完成資料庫還原之前，不會產生任何費用。
@@ -72,7 +76,11 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 ![point-in-time-restore](./media/sql-database-recovery-using-backups/point-in-time-recovery.png)
 
 ## <a name="deleted-database-restore"></a>還原已刪除的資料庫
-您可以使用 Azure 入口網站、[PowerShell](scripts/sql-database-restore-database-powershell.md) 或 [REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)，將已刪除的資料庫還原到相同邏輯伺服器上已刪除資料庫的刪除時間。 
+您可以使用 Azure 入口網站、[PowerShell](https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/restore-azurermsqldatabase) 或 [REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)，將已刪除的資料庫還原到相同邏輯伺服器上已刪除資料庫的刪除時間。 
+
+> [!TIP]
+> 如需示範如何還原已刪除資料庫的 PowerShell 指令碼範例，請參閱[使用 PowerShell 還原 SQL 資料庫](scripts/sql-database-restore-database-powershell.md)。
+>
 
 > [!IMPORTANT]
 > 如果您刪除 Azure SQL Database 伺服器執行個體，其所有資料庫也會一併刪除且無法加以復原。 目前不支援還原已刪除的伺服器。
@@ -93,6 +101,10 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 當您的資料庫因為裝載資料庫區域中的事件而無法使用時，異地還原就是預設的復原選項。 如果區域中的大規模意外導致您無法使用資料庫應用程式，則您可以從異地複寫備份，將資料庫還原到任何其他區域中的伺服器。 在建立差異備份與將它以異地方式複寫至不同區域中的 Azure Blob 之間會有延遲。 此延遲可能最長達一小時，因此當發生災害時，最多可能會遺失最長達一小時的資料。 下圖顯示從另一個區域中的上次可用備份來還原資料庫。
 
 ![異地還原](./media/sql-database-geo-restore/geo-restore-2.png)
+
+> [!TIP]
+> 如需示範如何執行異地還原的 PowerShell 指令碼範例，請參閱[使用 PowerShell 還原 SQL 資料庫](scripts/sql-database-restore-database-powershell.md)。
+> 
 
 如需使用異地還原來從中斷復原的詳細資訊，請參閱[從中斷復原](sql-database-disaster-recovery.md)。
 

@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 7d82c86662467979b11b87434707946c30cd8cfa
+ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
+ms.openlocfilehash: 7e48c60eb7305a1044db88489cad1f1b7fb3d522
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -32,9 +32,9 @@ ms.lasthandoff: 05/17/2017
 
 您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
-## <a name="view-the-swagger"></a>檢視 Swagger
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-請參閱 [Swagger 詳細資料](/connectors/box/)。
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/box/)的所有限制。
 
 ## <a name="more-connectors"></a>其他連接器
 返回 [API 清單](apis-list.md)。

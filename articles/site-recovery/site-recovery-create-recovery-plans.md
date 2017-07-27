@@ -1,10 +1,10 @@
 ---
 title: "在 Azure Site Recovery 中建立容錯移轉和復原的復原計劃 | Microsoft Docs"
-description: "描述如何建立及自訂復原計畫以容錯移轉和復原 VM 與 Azure Site Recovery 中的實體伺服器"
+description: "描述如何建立及自訂 Azure Site Recovery 中的復原方案，以容錯移轉和復原 VM 與實體伺服器"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: 72408c62-fcb6-4ee2-8ff5-cab1218773f2
 ms.service: site-recovery
@@ -12,27 +12,27 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 02/14/2017
+ms.date: 07/23/2017
 ms.author: raynew
-translationtype: Human Translation
-ms.sourcegitcommit: 9ab51cb8e11df43ba2157b11e25a1f29b19e4da9
-ms.openlocfilehash: e36f19e9c429c0e4b42e96b28b1ba995bd1bf167
-ms.lasthandoff: 02/15/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: 618c6fead3dbad385c4ded39352eea0cfcf1b134
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 ---
 # <a name="create-recovery-plans"></a>建立復原方案
 
 
-本文章提供在 [Azure Site Recovery？](site-recovery-overview.md)中建立和自訂復原計畫的相關資訊。
+本文提供在 [Azure Site Recovery](site-recovery-overview.md) 中建立和自訂復原方案的相關資訊。
 
-在這篇文章下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
+在這篇文章下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
 
- 復原方案可執行下列作業：
+ 建立復原方案可執行下列作業：
 
 * 定義會一起容錯移轉並啟動的機器群組。
 * 將機器分到同一個復原計畫群組，藉以建立機器間的相依性。 例如，若要執行容錯移轉，並帶出特定的應用程式，應將該應用程式的所有 VM 分到相同的復原計畫群組。
-* 容錯移轉。 您可以透過復原方案執行測試，以及執行規劃或未規劃的容錯移轉。
+* 執行容錯移轉。 您可以透過復原方案執行測試，以及執行規劃或未規劃的容錯移轉。
 
 
 ## <a name="create-a-recovery-plan"></a>建立復原計畫
@@ -71,12 +71,12 @@ ms.lasthandoff: 02/15/2017
 如果您在部署中使用 VMM：
 
 * 復原方案中的指令碼會依據 VMM 服務帳戶中的內容執行。 請確定此帳戶具有指令碼所在的遠端共用讀取權限。 測試指令碼執行 VMM 服務帳戶權限層級。
-* 會在 Windows PowerShell 模組中傳遞 VMM Cmdlet。 安裝 VMM 主控台時，會一併安裝模組。 它可以使用下列指令碼中的命令載入到您的指令碼︰ 
+* 會在 Windows PowerShell 模組中傳遞 VMM Cmdlet。 安裝 VMM 主控台時，會一併安裝模組。 它可以使用下列指令碼中的命令載入到您的指令碼︰
    - Import-Module -Name virtualmachinemanager。 [深入了解](https://technet.microsoft.com/library/hh875013.aspx)。
 * 確認您的 VMM 部署中至少有一部程式庫伺服器。 根據預設，VMM 伺服器的程式庫共用路徑位於本機的 VMM 伺服器上，資料夾名稱為 MSCVMMLibrary。
     * 如果您的程式庫共用路徑位於遠端 (或是位於本機上，但未與 MSCVMMLibrary 共用)，請依以下所示設為共用 (以 \\libserver2.contoso.com\share\ 為例)：
       * 開啟登錄編輯程式，並瀏覽至 **HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\Azure Site Recovery\Registration**。
-      * 編輯值 **ScriptLibraryPath**，並將其設為 \\libserver2.contoso.com\share\. 指定完整 FQDN。 提供共用位置的權限。
+      * 編輯值 **ScriptLibraryPath**，並將其設為 \\libserver2.contoso.com\share\. 指定完整的 FQDN。 提供共用位置的權限。
       * 請確定您使用與 VMM 服務帳戶具有相同權限的使用者帳戶來測試指令碼。 這會檢查該獨立測試指令碼以它們在復原計畫中的相同方式執行。 在 VMM 伺服器上，設定要略過的執行原則，如下所示：
         * 以較高的權限開啟 64 位元 Windows PowerShell 主控台。
         * 類型： **Set-executionpolicy bypass**。 [深入了解](https://technet.microsoft.com/library/ee176961.aspx)。
@@ -93,7 +93,7 @@ ms.lasthandoff: 02/15/2017
 6. 執行復原方案容錯移轉，以確保指令碼可以正常運作。
 
 
-### <a name="vmm-script"></a>VMM 指令碼
+### <a name="add-a-vmm-script"></a>新增 VMM 指令碼
 
 如果您有 VMM 來源站台，可在 VMM 伺服器上建立指令碼，並將其納入您的復原方案。
 

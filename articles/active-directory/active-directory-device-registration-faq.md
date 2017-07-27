@@ -13,16 +13,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
+ms.reviewer: jairoc
 ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 91a4e54b3dd2e1f44a6b52c548a243ae98e3ba3f
 ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
-
 ---
-<a id="azure-active-directory-automatic-device-registration-faq" class="xliff"></a>
-# Azure Active Directory 自動裝置註冊常見問題集
+# <a name="azure-active-directory-automatic-device-registration-faq"></a>Azure Active Directory 自動裝置註冊常見問題集
 
 **問：我最近註冊了裝置。為什麼在 Azure 入口網站中我的使用者資訊底下看不到該裝置？**
 

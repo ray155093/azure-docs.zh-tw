@@ -16,8 +16,8 @@ ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
-ms.openlocfilehash: 12c89a6fcbb6d299b64e6b0ec9d1dba29bb41d16
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1dfaa7ade664e43dcb9aa788b0197ca17e6ec4cc
 ms.contentlocale: zh-tw
 
 
@@ -35,7 +35,7 @@ ms.contentlocale: zh-tw
 1. 前往 [Microsoft 應用程式註冊入口網站 (英文)](https://apps.dev.microsoft.com/portal/register-app) 註冊應用程式
 2. 輸入應用程式的名稱和您的電子郵件 
 3. 確定已取消選取 [Guided Setup (引導式設定)] 選項
-4. 按一下 `Add Platforms`，然後選取 `Native Application` 並按下 [儲存]
+4. 按一下 `Add Platform`，然後選取 `Native Application` 並按下 [儲存]
 5. 複製應用程式識別碼中的 GUID，接著返回 Visual Studio 並開啟 `App.xaml.cs`，然後用您剛註冊的應用程式識別碼取代 `your_client_id_here`：
 
 ```csharp

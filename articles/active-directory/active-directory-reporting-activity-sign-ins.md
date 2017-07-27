@@ -12,18 +12,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/15/2017
+ms.date: 07/19/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: 0e8ae05b5f8644d4dfd0e6205224cabfb0919531
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: b9e61950654ba427b09dd608d354589a0804aaa5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 07/20/2017
 
 ---
-# Azure Active Directory 入口網站中的登入活動報告
-<a id="sign-in-activity-reports-in-the-azure-active-directory-portal" class="xliff"></a>
+# <a name="sign-in-activity-reports-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中的登入活動報告
 
 透過 [Azure 入口網站](https://portal.azure.com)中的 Azure Active Directory (Azure AD) 報告，您可以取得判斷您的環境執行狀況所需的資訊。
 
@@ -38,22 +37,18 @@ Azure Active Directory 中的報告架構包含下列元件：
 
 本主題提供登入活動的概觀。
 
-## 必要條件
-<a id="pre-requisite" class="xliff"></a>
+## <a name="pre-requisite"></a>必要條件
 
-### 誰可以存取資料？
-<a id="who-can-access-the-data" class="xliff"></a>
+### <a name="who-can-access-the-data"></a>誰可以存取資料？
 * 具有安全性系統管理員或安全性讀取器角色的使用者
 * 全域管理員
 * 任何使用者 (非系統管理員) 都可以存取自己的登入 
 
-### 您需要哪項 Azure AD 授權才能存取登入活動？
-<a id="what-azure-ad-license-do-you-need-to-access-sign-in-activity" class="xliff"></a>
+### <a name="what-azure-ad-license-do-you-need-to-access-sign-in-activity"></a>您需要哪項 Azure AD 授權才能存取登入活動？
 * 租用戶必須要有相關聯的 Azure AD Premium 授權，才能查看活動報告中的所有登入
 
 
-## 登入活動
-<a id="signs-in-activities" class="xliff"></a>
+## <a name="signs-in-activities"></a>登入活動
 
 利用使用者登入報告所提供的資訊，您可以找到下列問題的解答︰
 
@@ -89,8 +84,7 @@ Azure Active Directory 中的報告架構包含下列元件：
 ![登入活動](./media/active-directory-reporting-activity-sign-ins/43.png "登入活動")
 
 
-## 篩選登入活動
-<a id="filtering-sign-in-activities" class="xliff"></a>
+## <a name="filtering-sign-in-activities"></a>篩選登入活動
 
 若要將報告的資料縮小至您適用的層級，您可以使用下列欄位篩選登入資料︰
 
@@ -126,8 +120,7 @@ Azure Active Directory 中的報告架構包含下列元件：
 - 失敗
 
 
-## 登入活動捷徑
-<a id="sign-in-activities-shortcuts" class="xliff"></a>
+## <a name="sign-in-activities-shortcuts"></a>登入活動捷徑
 
 除了 Azure Active Directory 之外，Azure 入口網站可提供您登入活動資料的兩個額外進入點︰
 
@@ -135,8 +128,7 @@ Azure Active Directory 中的報告架構包含下列元件：
 - 企業應用程式
 
 
-### 使用者和群組登入活動
-<a id="users-and-groups-sign-ins-activities" class="xliff"></a>
+### <a name="users-and-groups-sign-ins-activities"></a>使用者和群組登入活動
 
 利用使用者登入報告所提供的資訊，您可以找到下列問題的解答︰
 
@@ -172,8 +164,7 @@ Azure Active Directory 中的報告架構包含下列元件：
 
 
 
-## 受管理應用程式的使用情況
-<a id="usage-of-managed-applications" class="xliff"></a>
+## <a name="usage-of-managed-applications"></a>受管理應用程式的使用情況
 
 利用登入資料以應用程式為主的檢視，您可以回答下列問題︰
 
@@ -206,8 +197,8 @@ Azure Active Directory 中的報告架構包含下列元件：
 
 
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
-請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。
+## <a name="next-steps"></a>後續步驟
+
+如果您想深入了解登入活動錯誤碼，請參閱 [Azure Active Directory 入口網站中的登入活動報告錯誤碼](active-directory-reporting-activity-sign-ins-errors.md)。
 
 

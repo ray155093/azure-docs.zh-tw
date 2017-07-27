@@ -16,17 +16,17 @@ ms.date: 05/10/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: cd3b13b9988f51fd3755ced48714fdc18cf1ea3c
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 5f501bdb0a3c478a436d729dfe045ad8e39bd3bb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
 
 # <a name="how-to-partition-and-scale-in-azure-cosmos-db"></a>如何在 Azure Cosmos DB 中進行資料分割和調整
 
-[Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) 是全域分散的多重模型資料庫服務，其設計可協助您達成快速且可預測的效能，並順暢地隨著應用程式的成長而調整規模。 本文概述 Azure Cosmos DB 中所有資料模型的資料分割運作方式的概觀，並描述可如何設定 Azure Cosmos DB 容器以有效地調整應用程式規模。
+[Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 是全域分散的多重模型資料庫服務，其設計可協助您達成快速且可預測的效能，並順暢地隨著應用程式的成長而調整規模。 本文概述 Azure Cosmos DB 中所有資料模型的資料分割運作方式的概觀，並描述可如何設定 Azure Cosmos DB 容器以有效地調整應用程式規模。
 
 Scott Hanselman 和 Azure Cosmos DB 工程總經理 Shireesh Thota 也會在這段 Azure Friday 影片中說明資料分割和資料分割索引鍵。
 
@@ -104,7 +104,7 @@ DeviceReading document = await client.ReadDocumentAsync<DeviceReading>(
 ```
 
 ### <a name="mongodb-api"></a>MongoDB API
-使用 MongoDB API，您可以透過您喜愛的工具、驅動程式或 SDK 建立分區化集合。 在此範例中，我們使用 Mongo 殼層建立集合。
+您可以使用 MongoDB API，透過您喜愛的工具、驅動程式或 SDK 建立分區化集合。 在此範例中，我們使用 Mongo 殼層建立集合。
 
 在 Mongo 殼層中︰
 

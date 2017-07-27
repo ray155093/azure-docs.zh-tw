@@ -12,17 +12,17 @@ ms.devlang: cpp
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/18/2017
+ms.date: 06/12/2017
 ms.author: andbuc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 63545f007a2696714d21ab7d778a6e78e6183806
+ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
+ms.openlocfilehash: 02962a91c739a53dfcf947bcc736e5c293b9384f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/26/2017
 
 
 ---
-# <a name="use-azure-iot-edge-to-send-device-to-cloud-messages-with-a-physical-device-linux"></a>使用 Azure IoT Edge 搭配實體裝置來傳送裝置到雲端訊息 (Linux)
+# <a name="use-azure-iot-edge-on-a-raspberry-pi-to-forward-device-to-cloud-messages-to-iot-hub"></a>在 Raspberry Pi 上使用 Azure IoT Edge 將裝置到雲端訊息轉送到 IoT 中樞
 
 本逐步解說的[藍牙低功耗範例][lnk-ble-samplecode]示範如何使用 [Azure IoT Edge][lnk-sdk] 以便：
 
@@ -48,7 +48,7 @@ ms.lasthandoff: 05/18/2017
 閘道包含下列 IoT Edge 模組︰
 
 * 「BLE 模組」  ，可與 BLE 裝置接合，以接收來自裝置的溫度資料，並將命令傳送到裝置。
-* 「BLE 雲端至裝置模組」，可將來自雲端的 JSON 訊息轉譯為「BLE 模組」所用的 BLE 指示。
+* 「BLE 雲端至裝置模組」，可將從 IoT 中樞傳送的 JSON 訊息轉譯為「BLE 模組」所用的 BLE 指示。
 * 「記錄器模組」，可將所有閘道訊息記錄到本機檔案。
 * 「身分識別對應模組」  ，可在 BLE 裝置 MAC 位址與 Azure IoT 中樞裝置身分識別之間進行轉譯。
 * 「IoT 中樞模組」  ，將遙測資料上傳到 IoT 中樞，並從 IoT 中樞接收裝置命令。
@@ -64,7 +64,8 @@ ms.lasthandoff: 05/18/2017
 
 1. BLE 裝置會產生溫度範例，並透過藍牙將它傳送到閘道中的 BLE 模組。
 1. BLE 模組會接收範例，並將其發佈到訊息代理程式以及裝置的 MAC 位址。
-1. 身分識別對應模組會挑選出這個訊息，並使用內部資料表來將裝置的 MAC 位址轉譯為 IoT 中樞裝置身分識別。 IoT 中樞裝置身分識別是由裝置識別碼及裝置金鑰所組成。 接著模組將發佈包含溫度範例資料、裝置的 MAC 位址、裝置識別碼及裝置金鑰的新訊息。
+1. 身分識別對應模組會挑選出這個訊息，並使用內部資料表來將裝置的 MAC 位址轉譯為 IoT 中樞裝置身分識別。 IoT 中樞裝置身分識別是由裝置識別碼及裝置金鑰所組成。
+1. 識別對應模組會發佈新訊息，其中包含溫度取樣資料、裝置的 MAC 位址、裝置識別碼及裝置金鑰。
 1. IoT 中樞模組會接收這個新訊息 (由身分識別對應模組所產生)，並將其發佈到 IoT 中樞。
 1. 記錄器模組會將所有來自訊息代理程式的所有訊息記錄到本機檔案。
 
@@ -79,6 +80,18 @@ ms.lasthandoff: 05/18/2017
 1. BLE 模組會挑選出這個訊息，然後藉由與 BLE 裝置通訊來執行 I/O 指令。
 1. 記錄器模組會將所有來自訊息代理程式的所有訊息記錄到磁碟檔案。
 
+## <a name="prerequisites"></a>必要條件
+
+若要完成此教學課程，您需要一個有效的 Azure 訂用帳戶。
+
+> [!NOTE]
+> 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
+
+您需要透過桌上型電腦上的 SSH 用戶端，才能從遠端存取 Raspberry Pi 上的命令列。
+
+- Windows 不包含 SSH 用戶端。 我們建議使用 [PuTTY](http://www.putty.org/)。
+- 大部分的 Linux 散發套件和 Mac OS 都包含命令列 SSH 公用程式。 如需詳細資訊，請參閱[使用 Linux 或 Mac OS 的 SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md)。
+
 ## <a name="prepare-your-hardware"></a>準備硬體
 
 本教學課程假設您正在使用 [Texas Instruments SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html) 裝置連接到執行 Raspbian 的 Raspberry Pi 3。
@@ -90,85 +103,123 @@ ms.lasthandoff: 05/18/2017
 * 若要安裝最新版的 Raspbian，請使用 [NOOBS][lnk-noobs] 圖形化使用者介面。
 * 手動[下載][lnk-raspbian]最新的 Raspbian 作業系統映像並寫入到 SD 記憶卡。
 
+### <a name="sign-in-and-access-the-terminal"></a>登入及存取終端機
+
+您有兩個選項可存取 Raspberry Pi 上的終端機環境︰
+
+* 如果您的 Raspberry Pi 已連接鍵盤與監視器，您可以使用 Raspbian GUI 來存取終端機視窗。
+
+* 使用 SSH 從您的桌上型電腦存取 Raspberry Pi 上的命令列。
+
+#### <a name="use-a-terminal-window-in-the-gui"></a>在 GUI 中使用終端機視窗
+
+Raspbian 的預設認證是使用者名稱 **pi** 和密碼 **raspberry**。 在 GUI 的工作列中，您可以使用看似監視器的圖示來啟動 **Terminal** 公用程式。
+
+#### <a name="sign-in-with-ssh"></a>使用 SSH 登入
+
+您可以使用命令列的 SSH 存取 Raspberry Pi。 [SSH (安全殼層)][lnk-pi-ssh] 一文說明如何在 Raspberry Pi 上設定 SSH，以及如何從 [Windows][lnk-ssh-windows] 或 [Linux 和 Mac OS][lnk-ssh-linux] 連接。
+
+以使用者名稱 **pi** 和密碼 **raspberry** 登入。
+
 ### <a name="install-bluez-537"></a>安裝 BlueZ 5.37
 
 BLE 模組會透過 BlueZ 堆疊與藍牙硬體通訊。 您需要 5.37 版的 BlueZ 才能讓模組正常運作。 下列指示可確保所安裝的 BlueZ 版本不會錯誤。
 
 1. 停止目前的藍牙精靈：
 
-    `sudo systemctl stop bluetooth`
+    ```sh
+    sudo systemctl stop bluetooth
+    ```
 
 1. 安裝 BlueZ 相依項目：
 
-    `sudo apt-get update`
-
-    `sudo apt-get install bluetooth bluez-tools build-essential autoconf glib2.0 libglib2.0-dev libdbus-1-dev libudev-dev libical-dev libreadline-dev`
+    ```sh
+    sudo apt-get update
+    sudo apt-get install bluetooth bluez-tools build-essential autoconf glib2.0 libglib2.0-dev libdbus-1-dev libudev-dev libical-dev libreadline-dev
+    ```
 
 1. 從 bluez.org 下載 BlueZ 原始程式碼：
 
-    `wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.37.tar.xz`
+    ```sh
+    wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.37.tar.xz
+    ```
 
 1. 將原始程式碼解壓縮：
 
-    `tar -xvf bluez-5.37.tar.xz`
+    ```sh
+    tar -xvf bluez-5.37.tar.xz
+    ```
 
 1. 將目錄變更為新建立的資料夾：
 
-    `cd bluez-5.37`
+    ```sh
+    cd bluez-5.37
+    ```
 
 1. 設定要建置的 BlueZ 程式碼：
 
-    `./configure --disable-udev --disable-systemd --enable-experimental`
+    ```sh
+    ./configure --disable-udev --disable-systemd --enable-experimental
+    ```
 
 1. 建置 BlueZ：
 
-    `make`
+    ```sh
+    make
+    ```
 
 1. 完成建置後安裝 BlueZ：
 
-    `sudo make install`
+    ```sh
+    sudo make install
+    ```
 
 1. 變更藍牙的 systemd 服務組態，讓它指向`/lib/systemd/system/bluetooth.service` 檔案中的新藍牙精靈。 使用下列文字來取代「ExecStart」程式碼行：
 
-    `ExecStart=/usr/local/libexec/bluetooth/bluetoothd -E`
+    ```conf
+    ExecStart=/usr/local/libexec/bluetooth/bluetoothd -E
+    ```
 
 ### <a name="enable-connectivity-to-the-sensortag-device-from-your-raspberry-pi-3-device"></a>從 Raspberry Pi 3 裝置上啟用與 SensorTag 裝置的連線
 
 執行範例之前，您需要確認 Raspberry Pi 3 可連接到 SensorTag 裝置。
 
-
 1. 確定已安裝 `rfkill` 公用程式：
 
-    `sudo apt-get install rfkill`
+    ```sh
+    sudo apt-get install rfkill
+    ```
 
 1. 將 Raspberry Pi 3 上的藍牙解除封鎖，並檢查版本號碼為 **5.37**：
 
-    `sudo rfkill unblock bluetooth`
-
-    `bluetoothctl --version`
-
-1. 啟動藍牙服務並執行 **bluetoothctl** 命令來輸入互動式藍牙殼層：
-
-    `sudo systemctl start bluetooth`
-
-    `bluetoothctl`
-
-1. 輸入 **power on** 命令來開啟藍牙控制器電源。 您會看到類似以下的輸出：
-
+    ```sh
+    sudo rfkill unblock bluetooth
+    bluetoothctl --version
     ```
+
+1. 若要進入互動式藍牙殼層，請啟動藍牙服務並執行 **bluetoothctl** 命令：
+
+    ```sh
+    sudo systemctl start bluetooth
+    bluetoothctl
+    ```
+
+1. 輸入 **power on** 命令來開啟藍牙控制器電源。 命令會傳回類似下列內容的輸出：
+
+    ```sh
     [NEW] Controller 98:4F:EE:04:1F:DF C3 raspberrypi [default]
     ```
 
-1. 在互動式藍牙殼層中的狀態下，輸入 **scan on** 命令以掃描藍牙裝置。 您會看到類似以下的輸出：
+1. 在互動式藍牙殼層中的狀態下，輸入 **scan on** 命令以掃描藍牙裝置。 命令會傳回類似下列內容的輸出：
 
-    ```
+    ```sh
     Discovery started
     [CHG] Controller 98:4F:EE:04:1F:DF Discovering: yes
     ```
 
 1. 按下小按鈕 (綠色 LED 應該會閃爍)，以使 SensorTag 裝置變成可探索的。 Raspberry Pi 3 應該會探索 SensorTag 裝置︰
 
-    ```
+    ```sh
     [NEW] Device A0:E6:F8:B5:F6:00 CC2650 SensorTag
     [CHG] Device A0:E6:F8:B5:F6:00 TxPower: 0
     [CHG] Device A0:E6:F8:B5:F6:00 RSSI: -43
@@ -178,14 +229,14 @@ BLE 模組會透過 BlueZ 堆疊與藍牙硬體通訊。 您需要 5.37 版的 B
 
 1. 輸入 **scan off** 命令來關閉掃描：
 
-    ```
+    ```sh
     [CHG] Controller 98:4F:EE:04:1F:DF Discovering: no
     Discovery stopped
     ```
 
 1. 透過輸入 **connect \<MAC 位址\>**，使用裝置的 MAC 位址來連接到 SensorTag 裝置。 下列範例輸出為了清楚起見已縮減：
 
-    ```
+    ```sh
     Attempting to connect to A0:E6:F8:B5:F6:00
     [CHG] Device A0:E6:F8:B5:F6:00 Connected: yes
     Connection successful
@@ -206,7 +257,7 @@ BLE 模組會透過 BlueZ 堆疊與藍牙硬體通訊。 您需要 5.37 版的 B
 
 1. 您現在可以使用 **disconnect** 命令來中斷連接，然後使用 **quit** 命令來從藍牙介面結束︰
 
-    ```
+    ```sh
     Attempting to disconnect from A0:E6:F8:B5:F6:00
     Successful disconnected
     [CHG] Device A0:E6:F8:B5:F6:00 Connected: no
@@ -222,7 +273,7 @@ BLE 模組會透過 BlueZ 堆疊與藍牙硬體通訊。 您需要 5.37 版的 B
 * 在 Raspberry Pi 3 裝置上建置 IoT Edge。
 * 在 Raspberry Pi 3 裝置上設定和執行 BLE 範例。
 
-在撰寫本文時，IoT Edge 只支援在 Linux 上使用 BLE 模組的閘道。
+在撰寫本文之際，IoT Edge 只支援 Linux 上所執行閘道中的 BLE 模組。
 
 ### <a name="configure-two-sample-devices-in-your-iot-hub"></a>在您的 IoT 中樞上設定兩個範例裝置
 
@@ -233,21 +284,23 @@ BLE 模組會透過 BlueZ 堆疊與藍牙硬體通訊。 您需要 5.37 版的 B
 
 安裝 Azure IoT Edge 的相依項目：
 
-`sudo apt-get install cmake uuid-dev curl libcurl4-openssl-dev libssl-dev`
+```sh
+sudo apt-get install cmake uuid-dev curl libcurl4-openssl-dev libssl-dev
+```
 
 使用下列命令將 IoT Edge 及其所有子模組複製到主目錄︰
 
-`cd ~`
-
-`git clone --recursive https://github.com/Azure/iot-edge.git`
-
-`cd iot-edge`
-
-`git submodule update --init --recursive`
+```sh
+cd ~
+git clone https://github.com/Azure/iot-edge.git
+```
 
 當您的 Raspberry Pi 3 上擁有 IoT Edge 存放庫的完整複本時，您就可以使用下列命令，從包含該 SDK 的資料夾建置它：
 
-`./tools/build.sh`
+```sh
+cd ~/iot-edge
+./tools/build.sh  --disable-native-remote-modules
+```
 
 ### <a name="configure-and-run-the-ble-sample-on-your-raspberry-pi-3"></a>在 Raspberry Pi 3 上設定和執行 BLE 範例
 
@@ -277,7 +330,7 @@ BLE 模組會透過 BlueZ 堆疊與藍牙硬體通訊。 您需要 5.37 版的 B
 
 #### <a name="ble-module-configuration"></a>BLE 模組組態
 
-BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何可作為 GATT 週邊操作的標準 BLE 裝置應該可以運作，但您需要更新 GATT 特性識別碼和資料 (適用於寫入指示)。 新增 SensorTag 裝置的 MAC 位址︰
+BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何可作為 GATT 週邊操作的標準 BLE 裝置應該都可以運作，但您可能需要更新 GATT 特性識別碼和資料。 新增 SensorTag 裝置的 MAC 位址︰
 
 ```json
 {
@@ -335,6 +388,8 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何�
   }
 }
 ```
+
+如果您不是使用 SensorTag 裝置，請檢閱 BLE 裝置的文件，以判斷是否需要更新 GATT 特性識別碼和資料值。
 
 #### <a name="iot-hub-module"></a>IoT 中樞模組
 
@@ -435,13 +490,17 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何�
 
 若要執行範例，請將 JSON 組態檔的路徑傳遞到 **ble\_gateway** 二進位檔。 下列命令假設您正在使用 **gateway_sample.json** 組態檔。 在 Raspberry Pi 上從 **iot-edge** 資料夾執行此命令：
 
-```
+```sh
 ./build/samples/ble_gateway/ble_gateway ./samples/ble_gateway/src/gateway_sample.json
 ```
 
 執行範例之前，您可能需要按下 SensorTag 上的小按鈕，以使其變成可探索的項目。
 
-當您執行範例時，可以使用 [Device Explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) 或 [iothub-explorer](https://github.com/Azure/iothub-explorer) 工具，監視 IoT Edge 閘道從 SensorTag 裝置轉送的訊息。
+當您執行範例時，可以使用 [Device Explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) 或 [iothub-explorer](https://github.com/Azure/iothub-explorer) 工具，監視 IoT Edge 閘道從 SensorTag 裝置轉送的訊息。 例如，您可以使用 iothub-explorer，然後使用以下命令 監控裝置到雲端訊息：
+
+```sh
+iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={Your IoT Hub key}"
+```
 
 ## <a name="send-cloud-to-device-messages"></a>傳送雲端到裝置訊息
 
@@ -518,8 +577,9 @@ BLE 模組也支援從 IoT 中樞傳送命令至裝置。 您可以使用[裝置
 [lnk-sdk]: https://github.com/Azure/iot-edge/
 [lnk-noobs]: https://www.raspberrypi.org/documentation/installation/noobs.md
 [lnk-raspbian]: https://www.raspberrypi.org/downloads/raspbian/
-
-
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-create-hub]: iot-hub-create-through-portal.md 
+[lnk-pi-ssh]: https://www.raspberrypi.org/documentation/remote-access/ssh/README.md
+[lnk-ssh-windows]: https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md
+[lnk-ssh-linux]: https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md
 

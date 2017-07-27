@@ -20,6 +20,7 @@
 ### [使用診斷 VM 擴充功能 v2.x 監視 VM](diagnostic-extension-v2.md)
 ### [插入自訂資料](inject-custom-data.md)
 ### [重設 Linux 的密碼或金鑰、修正 SSH 並檢查磁碟](reset-access.md)
+### [維護](planned-maintenance-schedule.md)
 ### [使用 CLI 建立 Docker 主機](cli-use-docker.md)
 ### [使用入口網站建立 Docker 主機](portal-use-docker.md)
 ### [如何搭配swarm 使用 Docker](../../virtual-machines-linux-docker-swarm.md)
@@ -65,6 +66,7 @@
 ## 疑難排解
 ### [VM 部署](troubleshoot-deployment-new-vm.md)
 ### [重新啟動 VM 或調整 VM 的大小](restart-resize-error-troubleshooting.md)
+### [將虛擬硬碟附加至進行疑難排解的 VM](troubleshoot-recovery-disks-portal.md)
 
 # 參考
 ## [PowerShell](/powershell/azure/overview)
@@ -78,7 +80,7 @@
 
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=compute)
 ## [價格](https://azure.microsoft.com/pricing/details/virtual-machines/#Linux)
 ## [區域可用性](https://azure.microsoft.com/regions/services)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-machine)

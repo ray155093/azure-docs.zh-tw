@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 04/12/2017
 ms.author: xshi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 2cdfbadfc4cc28afe34b4d558f40bba6451f7388
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: bf45f4c80c73ab47698a39e310324e34a3e21e67
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/25/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -145,6 +145,7 @@ Azure Logic Apps 可用來以一連串的步驟使程序自動進行。 邏輯�
    1. 選取您建立的佇列，並對於 [最大訊息計數] 輸入 `175`
 
       ![對於邏輯應用程式中的服務匯流排連接指定最大訊息計數](media/iot-hub-monitoring-notifications-with-azure-logic-apps/8_specify-maximum-message-count-for-service-bus-connection-logic-app-azure-portal.png)
+   1. 按一下 [儲存] 按鈕可儲存變更。
 
 1. 建立 SMTP 服務連接。
    1. 按一下 [新增步驟] > [新增動作]。
@@ -176,3 +177,4 @@ Azure Logic Apps 可用來以一連串的步驟使程序自動進行。 邏輯�
 您已成功建立連接 IoT 中樞的邏輯應用程式，以及溫度監視和通知的信箱。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
+

@@ -5,18 +5,20 @@ services: active-directory
 documentationcenter: 
 author: asmalser-msft
 writer: asmalser-msft
-manager: stevenpo
+manager: sakula
 ms.assetid: d4ca2365-6729-48f7-bb7f-c0f5ffe740a3
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 07/20/2017
 ms.author: asmalser-msft
-translationtype: Human Translation
+ms.reviewer: asmalser
+ms.translationtype: Human Translation
 ms.sourcegitcommit: a3c339de98250f43c71f7dd9706888c6715ca2ef
 ms.openlocfilehash: e39f2202e83cdf66b85f1cc02a9320ec9e31472e
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/08/2017
 
 ---
@@ -46,9 +48,9 @@ Azure Active Directory 會使用稱為「指派」的概念，來判斷哪些使
 
 ### <a name="important-tips-for-assigning-users-to-slack"></a>將使用者指派給 Slack 的重要秘訣
 
-*    建議將單一 Azure AD 使用者指派給 Slack，以測試佈建的組態。 其他使用者及/或群組可能會稍後再指派。
+*   建議將單一 Azure AD 使用者指派給 Slack，以測試佈建的組態。 其他使用者及/或群組可能會稍後再指派。
 
-*    將使用者指派給 Slack 時，您必須在指派對話方塊中選取**使用者**或「群組」角色。 「預設存取」角色不適用於佈建。
+*   將使用者指派給 Slack 時，您必須在指派對話方塊中選取**使用者**或「群組」角色。 「預設存取」角色不適用於佈建。
 
 
 ## <a name="configuring-user-provisioning-to-slack"></a>設定使用者佈建至 Slack 
@@ -61,17 +63,17 @@ Azure Active Directory 會使用稱為「指派」的概念，來判斷哪些使
 ### <a name="to-configure-automatic-user-account-provisioning-to-slack-in-azure-ad"></a>若要在 Azure AD 中設定自動使用者帳戶佈建至 Slack︰
 
 
-1)    在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至 [Azure Active Directory > 企業應用程式 > 所有應用程式] 區段。
+1)  在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至 [Azure Active Directory > 企業應用程式 > 所有應用程式] 區段。
 
 2) 如果您已經設定單一登入的 Slack，使用 [搜尋] 欄位搜尋您的 Slack 執行個體。 否則，請選取 [新增]，並在應用程式庫中搜尋 [Slack]。 從搜尋結果中選取 Slack，並將它新增至您的應用程式清單。
 
-3)    選取您的 Slack 執行個體，然後選取 [佈建] 索引標籤。
+3)  選取您的 Slack 執行個體，然後選取 [佈建] 索引標籤。
 
-4)    將 [佈建模式] 設定為 [自動]。
+4)  將 [佈建模式] 設定為 [自動]。
 
 ![Slack 佈建](./media/active-directory-saas-slack-provisioning-tutorial/Slack1.PNG)
 
-5)    在 [系統管理員認證] 區段下，按一下 [授權]。 這會在新的瀏覽器視窗中開啟 Slack 授權對話方塊。 
+5)  在 [系統管理員認證] 區段下，按一下 [授權]。 這會在新的瀏覽器視窗中開啟 Slack 授權對話方塊。 
 
 6) 在新視窗中，使用您的小組系統管理帳戶登入 Slack。 在產生的授權對話方塊中，選取您想要啟用佈建的 Slack 小組，然後選取 [授權]。 一旦完成後，回到 Azure 入口網站以完成佈建組態。
 

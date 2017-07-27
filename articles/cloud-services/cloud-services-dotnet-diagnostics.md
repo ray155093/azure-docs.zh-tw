@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 01/25/2016
+ms.date: 05/22/2017
 ms.author: robb
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 226e86703843b026d20123543cf5311a5355aad4
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be747170a0d8a7a6defd790a3f8a122c4d397671
+ms.openlocfilehash: 333d2f26ce043a167fb84858c8327cb39e868ffa
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/23/2017
 
 
 ---
@@ -25,17 +26,17 @@ ms.lasthandoff: 03/25/2017
 如需有關 Azure 診斷的背景資訊，請參閱 [Azure 診斷概觀](../azure-diagnostics.md) 。
 
 ## <a name="how-to-enable-diagnostics-in-a-worker-role"></a>如何在背景工作角色中啟用診斷
-本逐步解說說明如何實作 Azure 背景工作角色，該角色使用 .NET EventSource 類別發出遙測資料。 Azure 診斷可用來收集遙測資料，並將資料儲存在 Azure 儲存體帳戶。 建立背景工作角色時，Visual Studio 會自動啟用診斷 1.0 來做為 Azure SDK for.NET 2.4 及更早版本中解決方案的一部分。 下列指示說明建立背景工作角色、從解決方案停用診斷 1.0，以及將診斷 1.2 或 1.3 部署至背景工作角色的程序。
+本逐步解說說明如何實作 Azure 背景工作角色，該角色使用 .NET EventSource 類別發出遙測資料。 Azure 診斷可用來收集遙測資料，並將資料儲存在 Azure 儲存體帳戶。 建立背景工作角色時，Visual Studio 會自動啟用診斷 1.0 來作為 Azure SDK for .NET 2.4 及更早版本中解決方案的一部分。 下列指示說明建立背景工作角色、從解決方案停用診斷 1.0，以及將診斷 1.2 或 1.3 部署至背景工作角色的程序。
 
 ### <a name="prerequisites"></a>必要條件
 本文假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio。 如果您沒有 Azure 訂用帳戶，可以註冊[免費試用版][Free Trial]。 請務必[安裝並設定 Azure PowerShell 0.8.7 版或更新版本][Install and configure Azure PowerShell version 0.8.7 or later]。
 
 ### <a name="step-1-create-a-worker-role"></a>步驟 1：建立背景工作角色
 1. 啟動 **Visual Studio**。
-2. 從以 .NET Framework 4.5 為目標的**雲端**範本，建立新的 **Azure 雲端服務**專案。  將專案命名為 "WadExample" 並按一下 [確定]。
+2. 從以 .NET Framework 4.5 為目標的**雲端**範本，建立 **Azure 雲端服務**專案。  將專案命名為 "WadExample" 並按一下 [確定]。
 3. 選取 [ **背景工作角色** ] 並按一下 [確定]。 將會建立專案。
-4. 在 [方案總管] 中，按兩下 [WorkerRole1] 屬性檔。
-5. 在 [組態] 索引標籤中取消勾選 [啟用診斷] 以停用診斷 1.0 (Azure SDK 2.4 和更早版本)。
+4. 在**方案總管**中，按兩下 [WorkerRole1] 屬性檔。
+5. 在 [設定] 索引標籤中取消核取 [啟用診斷] 以停用診斷 1.0 (Azure SDK 2.4 和更早版本)。
 6. 建置您的解決方案以確認無誤。
 
 ### <a name="step-2-instrument-your-code"></a>步驟 2：實作您的程式碼
@@ -128,11 +129,11 @@ namespace WorkerRole1
 
 1. 在 [方案總管] 中選取 **WadExample** 專案，然後從 [建置] 功能表選取 [發佈]，以從 Visual Studio 將背景工作角色部署至 Azure。
 2. 選擇您的訂用帳戶。
-3. 在 [Microsoft Azure 發佈設定] 對話方塊中，選取 [建立新的]。
-4. 在 [建立雲端服務和儲存體帳戶] 對話方塊中，輸入 [名稱] \(例如 "WadExample") 並選取區域或同質群組。
+3. 在 [Microsoft Azure 發行設定] 對話方塊中，選取 [新建...]。
+4. 在 [建立雲端服務和儲存體帳戶] 對話方塊中，輸入**名稱** (例如 "WadExample") 並選取區域或同質群組。
 5. 將 [環境] 設為 [預備]。
 6. 適當地修改其他任何 [設定]，然後按一下 [發佈]。
-7. 部署完成之後，請在 Azure 傳統入口網站中確認您的雲端服務是否處於 [執行中]  狀態。
+7. 部署完成之後，請在 Azure 入口網站中確認您的雲端服務是否處於**執行中**狀態。
 
 ### <a name="step-4-create-your-diagnostics-configuration-file-and-install-the-extension"></a>步驟 4：建立您的診斷組態檔並安裝擴充功能
 1. 執行下列 PowerShell 命令，以下載公用組態檔結構描述定義：
@@ -186,7 +187,7 @@ Set-AzureServiceDiagnosticsExtension -StorageContext $storageContext -Diagnostic
 ```
 
 ### <a name="step-6-look-at-your-telemetry-data"></a>步驟 6：查看您的遙測資料
-在 Visual Studio 的 [伺服器總管] 中，瀏覽至 wadexample 儲存體帳戶。 在雲端服務執行約 5 分鐘之後，您應該會看到資料表 **WADEnumsTable**、**WADHighFreqTable**、**WADMessageTable**、**WADPerformanceCountersTable** 和 **WADSetOtherTable**。 按兩下其中一個資料表以檢視收集的遙測資料。
+在 Visual Studio 的 [伺服器總管] 中，巡覽至 wadexample 儲存體帳戶。 在雲端服務執行約 5 分鐘之後，您應該會看到資料表 **WADEnumsTable**、**WADHighFreqTable**、**WADMessageTable**、**WADPerformanceCountersTable** 和 **WADSetOtherTable**。 按兩下其中一份資料表以檢視收集的遙測資料。
 
 ![CloudServices_diag_tables](./media/cloud-services-dotnet-diagnostics/WadExampleTables.png)
 
@@ -197,7 +198,7 @@ Set-AzureServiceDiagnosticsExtension -StorageContext $storageContext -Diagnostic
 如果您遇到困難，請參閱 [Azure 診斷的疑難排解](../azure-diagnostics-troubleshooting.md) ，以解決常見的問題。
 
 ## <a name="next-steps"></a>後續步驟
-[請參閱虛擬機器相關的 Azure 診斷文章清單](../monitoring-and-diagnostics/azure-diagnostics.md#cloud-services-using-azure-diagnostics) ，以變更您收集的資料、進行問題疑難排解，或深入了解一般的診斷。
+[請參閱相關的 Azure 虛擬機器診斷文章清單](../monitoring-and-diagnostics/azure-diagnostics.md#cloud-services-using-azure-diagnostics)，以變更您收集的資料、為問題進行疑難排解，或深入了解一般的診斷。
 
 [EventSource Class]: http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource(v=vs.110).aspx
 

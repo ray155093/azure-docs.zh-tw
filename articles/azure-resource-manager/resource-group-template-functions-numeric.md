@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/08/2017
+ms.date: 06/13/2017
 ms.author: tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 66984bef9e82df80818eea31bd37de524b567b33
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: ae0261134b8d4a934048f58d6c679a48a904950b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
-
+ms.lasthandoff: 07/21/2017
 
 ---
 # <a name="numeric-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 範本的數值函式
@@ -51,7 +50,11 @@ ms.lasthandoff: 05/11/2017
 |operand1 |是 |int |要新增的第一個數字。 |
 |operand2 |是 |int |要新增的第二個數字。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+整數，其中包含參數的總和。
+
+### <a name="example"></a>範例
 
 下列範例會新增兩個參數。
 
@@ -62,12 +65,14 @@ ms.lasthandoff: 05/11/2017
     "parameters": {
         "first": {
             "type": "int",
+            "defaultValue": 5,
             "metadata": {
                 "description": "First integer to add"
             }
         },
         "second": {
             "type": "int",
+            "defaultValue": 3,
             "metadata": {
                 "description": "Second integer to add"
             }
@@ -84,9 +89,11 @@ ms.lasthandoff: 05/11/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-整數，其中包含參數的總和。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| addResult | int | 8 |
 
 <a id="copyindex" />
 
@@ -110,7 +117,7 @@ ms.lasthandoff: 05/11/2017
  
 如需如何使用 **copyIndex**的完整範例，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)。
 
-### <a name="examples"></a>範例
+### <a name="example"></a>範例
 
 下列範例顯示複製迴圈以及名稱中所包含的索引值。 
 
@@ -146,7 +153,11 @@ ms.lasthandoff: 05/11/2017
 | operand1 |是 |int |被除數。 |
 | operand2 |是 |int |除數。 不能為 0。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+代表除法的整數。
+
+### <a name="example"></a>範例
 
 下列範例會使用一個參數除以另一個參數。
 
@@ -157,12 +168,14 @@ ms.lasthandoff: 05/11/2017
     "parameters": {
         "first": {
             "type": "int",
+            "defaultValue": 8,
             "metadata": {
                 "description": "Integer being divided"
             }
         },
         "second": {
             "type": "int",
+            "defaultValue": 3,
             "metadata": {
                 "description": "Integer used to divide"
             }
@@ -179,9 +192,11 @@ ms.lasthandoff: 05/11/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-代表除法的整數。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| divResult | int | 2 |
 
 <a id="float" />
 
@@ -196,7 +211,10 @@ ms.lasthandoff: 05/11/2017
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |字串或整數 |要轉換為浮點數的值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+浮點數。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何使用 float 將參數傳遞給邏輯應用程式：
 
@@ -214,9 +232,6 @@ ms.lasthandoff: 05/11/2017
         },
 ```
 
-### <a name="return-value"></a>傳回值
-浮點數。
-
 <a id="int" />
 
 ## <a name="int"></a>int
@@ -230,7 +245,11 @@ ms.lasthandoff: 05/11/2017
 |:--- |:--- |:--- |:--- |
 | valueToConvert |是 |字串或整數 |要轉換成整數的值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+轉換值的整數。
+
+### <a name="example"></a>範例
 
 下列範例會將使用者提供的參數值轉換為整數。
 
@@ -239,25 +258,28 @@ ms.lasthandoff: 05/11/2017
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "appId": { "type": "string" }
-    },
-    "variables": { 
-        "intValue": "[int(parameters('appId'))]"
+        "stringToConvert": { 
+            "type": "string",
+            "defaultValue": "4"
+        }
     },
     "resources": [
     ],
     "outputs": {
-        "divResult": {
+        "intResult": {
             "type": "int",
-            "value": "[variables('intValue')]"
+            "value": "[int(parameters('stringToConvert'))]"
         }
     }
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-整數。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| intResult | int | 4 |
+
 
 <a id="min" />
 
@@ -272,7 +294,11 @@ ms.lasthandoff: 05/11/2017
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |整數的陣列，或以逗號分隔的整數清單 |要用來取得最小值的集合。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+整數，代表集合中的最小值。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 min 與陣列和整數清單：
 
@@ -300,9 +326,12 @@ ms.lasthandoff: 05/11/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-整數，代表集合中的最小值。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | int | 0 |
+| intOutput | int | 0 |
 
 <a id="max" />
 
@@ -317,7 +346,11 @@ ms.lasthandoff: 05/11/2017
 |:--- |:--- |:--- |:--- |
 | arg1 |是 |整數的陣列，或以逗號分隔的整數清單 |要用來取得最大值的集合。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+整數，代表集合中的最大值。
+
+### <a name="example"></a>範例
 
 下列範例顯示如何搭配使用 max 與陣列和整數清單：
 
@@ -345,9 +378,12 @@ ms.lasthandoff: 05/11/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
+上述範例中具有預設值的輸出如下：
 
-整數，代表集合中的最大值。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| arrayOutput | int | 5 |
+| intOutput | int | 5 |
 
 <a id="mod" />
 
@@ -363,7 +399,10 @@ ms.lasthandoff: 05/11/2017
 | operand1 |是 |int |被除數。 |
 | operand2 |是 |int |除數，不能為 0。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+代表餘數的整數。
+
+### <a name="example"></a>範例
 
 下列範例傳回的是一個參數除以另一個參數的餘數。
 
@@ -374,12 +413,14 @@ ms.lasthandoff: 05/11/2017
     "parameters": {
         "first": {
             "type": "int",
+            "defaultValue": 7,
             "metadata": {
                 "description": "Integer being divided"
             }
         },
         "second": {
             "type": "int",
+            "defaultValue": 3,
             "metadata": {
                 "description": "Integer used to divide"
             }
@@ -396,8 +437,11 @@ ms.lasthandoff: 05/11/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
-代表餘數的整數。
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| modResult | int | 1 |
 
 <a id="mul" />
 
@@ -413,7 +457,11 @@ ms.lasthandoff: 05/11/2017
 | operand1 |是 |int |要相乘的第一個數字。 |
 | operand2 |是 |int |要相乘的第二個數字。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+代表乘法的整數。
+
+### <a name="example"></a>範例
 
 下列範例會使用一個參數乘以另一個參數。
 
@@ -424,12 +472,14 @@ ms.lasthandoff: 05/11/2017
     "parameters": {
         "first": {
             "type": "int",
+            "defaultValue": 5,
             "metadata": {
                 "description": "First integer to multiply"
             }
         },
         "second": {
             "type": "int",
+            "defaultValue": 3,
             "metadata": {
                 "description": "Second integer to multiply"
             }
@@ -446,9 +496,11 @@ ms.lasthandoff: 05/11/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-代表乘法的整數。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| mulResult | int | 15 |
 
 <a id="sub" />
 
@@ -464,7 +516,10 @@ ms.lasthandoff: 05/11/2017
 | operand1 |是 |int |減數。 |
 | operand2 |是 |int |被減數。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+代表減法的整數。
+
+### <a name="example"></a>範例
 
 下列範例會對一個參數減去另一個參數。
 
@@ -475,12 +530,14 @@ ms.lasthandoff: 05/11/2017
     "parameters": {
         "first": {
             "type": "int",
+            "defaultValue": 7,
             "metadata": {
                 "description": "Integer subtracted from"
             }
         },
         "second": {
             "type": "int",
+            "defaultValue": 3,
             "metadata": {
                 "description": "Integer to subtract"
             }
@@ -497,8 +554,11 @@ ms.lasthandoff: 05/11/2017
 }
 ```
 
-### <a name="return-value"></a>傳回值
-代表減法的整數。
+先前範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| subResult | int | 4 |
 
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 Azure Resource Manager 範本中各區段的說明，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。

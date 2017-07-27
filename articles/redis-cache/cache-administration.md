@@ -12,22 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
-ms.date: 02/14/2017
+ms.date: 07/05/2017
 ms.author: sdanie
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 0355c8a943947f5d53d7cd6892db3567c3bf0cce
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: 3352fec59d7dfbfab9b0416992a60f11d0ec2402
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
 # <a name="how-to-administer-azure-redis-cache"></a>如何管理 Azure Redis 快取
 本主題說明如何執行管理工作，例如為 Azure Redis 快取執行個體進行[重新啟動](#reboot)並[排程更新](#schedule-updates)。
-
-> [!IMPORTANT]
-> 本文所述的設定和功能只適用於進階層快取。
-> 
-> 
 
 ## <a name="reboot"></a>重新啟動
 [重新啟動]  刀鋒視窗可讓您重新啟動快取的一或多個節點。 這個重新啟動的能力可讓您測試應用程式在快取節點失敗時的恢復功能。
@@ -52,7 +48,7 @@ ms.lasthandoff: 04/27/2017
 * **已啟用叢集的進階快取節點** - 當您重新啟動一或多個已啟用叢集的進階快取節點時，所選節點的行為與您重新啟動回應節點或非叢集快取的節點時相同。
 
 > [!IMPORTANT]
-> 重新啟動僅適用於進階層快取。
+> 重新啟動現在適用於所有定價層。
 > 
 > 
 
@@ -83,10 +79,10 @@ ms.lasthandoff: 04/27/2017
 是，如需 PowerShell 指示，請參閱 [重新啟動 Redis 快取](cache-howto-manage-redis-cache-powershell.md#to-reboot-a-redis-cache)。
 
 ### <a name="what-pricing-tiers-can-use-the-reboot-functionality"></a>哪些定價層可以使用重新啟動功能？
-重新啟動僅適用於進階定價層。
+重新啟動適用於所有定價層。
 
-## <a name="schedule-updates"></a>排程更新
-[排程更新]  刀鋒視窗可讓您指定適用於快取的維護期間。 若指定了維護期間，即會在此期間進行任何 Redis 伺服器更新。 
+## <a name="schedule-updates"></a>更新排程
+[排程更新]  刀鋒視窗可讓您指定適用於進階層快取的維護期間。 若指定了維護期間，即會在此期間進行任何 Redis 伺服器更新。 
 
 > [!NOTE] 
 > 維護期間僅適用於 Redis 伺服器更新，不適用於任何 Azure 更新，或是在裝載快取的 VM 上更新作業系統。

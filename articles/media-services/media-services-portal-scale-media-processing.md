@@ -1,5 +1,5 @@
 ---
-title: " 使用 Azure 入口網站調整媒體處理 | Microsoft Docss"
+title: "使用 Azure 入口網站調整媒體處理 | Microsoft Docs"
 description: "本教學課程將逐步引導您完成使用 Azure 入口網站調整媒體處理的步驟。"
 services: media-services
 documentationcenter: 
@@ -12,12 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 07/04/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 3f9134fdff56e0ee5146cb7ccf08d168ebf84281
-ms.lasthandoff: 01/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: e6ef52f7aee8b2a0d0dd6ebc99ad7a8c5c11f525
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -32,6 +33,14 @@ ms.lasthandoff: 01/13/2017
 > 
 
 ## <a name="overview"></a>Overview
+
+媒體服務帳戶是與保留單元類型相關聯，後者決定媒體處理工作的速度。 您可以選擇下列的保留單元類型：**S1**、**S2** 或 **S3**。 例如，在執行相同編碼作業的前提下，使用 **S2** 保留單元類型的速度會比 **S1** 類型快。
+
+除了指定保留單元類型之外，您還可以指定使用**保留單元** (RU) 來佈建帳戶。 佈建的 RU 數目可決定指定帳戶中可同時處理的媒體工作數目。
+
+>[!NOTE]
+>RU 用於平行化所有媒體處理，包括使用 Azure 媒體索引器的索引工作。 不過，與編碼不同，索引工作的處理速度不會因為使用較快的保留單元而變快。
+
 > [!IMPORTANT]
 > 請務必檢閱 [概觀](media-services-scale-media-processing-overview.md) 主題，以取得調整媒體處理主題的詳細資訊。
 > 

@@ -12,13 +12,14 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 03/02/2017
+ms.date: 05/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 12b121783f6d95a952441f1a570d58af9ec1eb7a
-ms.lasthandoff: 03/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 465306d2de8d1dbe6ba1f0cd74be720b78a50de3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -153,10 +154,11 @@ new CloudTask("4", "cmd.exe /c echo 4")
 
 相依性動作是以父系工作的結束情況為基礎。 您可以指定下列任何一種結束情況的相依性動作；若為 .NET，請參閱 [ExitConditions][net_exitconditions] 類別，以取得詳細資訊︰
 
-- 發生排程錯誤時
-- 工作結束但出現 **ExitCodes** 屬性所定義的結束代碼時
-- 工作結束但出現 **ExitCodeRanges** 屬性所指定之範圍內的結束代碼時
-- 預設情況：如果工作結束時出現並非由 **ExitCodes** 或 **ExitCodeRanges** 定義的結束代碼，或如果工作結束時出現排程錯誤且未設定 **SchedulingError** 屬性 
+- 發生前置處理錯誤時。
+- 發生檔案上傳錯誤時。 如果工作結束時的結束代碼是透過 **exitCodes** 或 **exitCodeRanges** 所指定，又發生檔案上傳錯誤，則優先執行結束代碼指定的動作。
+- 工作結束時的結束代碼是由 **ExitCodes** 屬性所定義。
+- 工作結束時的結束代碼落在 **ExitCodeRanges** 屬性所指定的範圍內。
+- 預設的情況是，如果工作結束時的結束代碼不是由 **ExitCodes** 或 **ExitCodeRanges** 所定義，或如果工作結束時發生前置處理錯誤且未設定 **PreProcessingError** 屬性，或如果工作失敗並發生檔案上傳錯誤且未設定 **FileUploadError** 屬性。 
 
 若要在 .NET 中指定相依性動作，請設定結束情況的 [ExitOptions][net_exitoptions].[DependencyAction][net_dependencyaction] 屬性。 **DependencyAction** 屬性會採用兩個值之一︰
 
@@ -165,29 +167,29 @@ new CloudTask("4", "cmd.exe /c echo 4")
 
 結束代碼 0 的**DependencyAction** 屬性預設設定為 [符合]，而所有其他結束情況的預設設定則為 [封鎖]。
 
-下列程式碼片段可設定父系工作的 **DependencyAction** 屬性。 如果父系工作結束時發生排程錯誤，或出現指定的錯誤碼，則會封鎖相依工作。 如果父系工作結束時出現任何其他非零的錯誤，相依工作就有資格執行。
+下列程式碼片段可設定父系工作的 **DependencyAction** 屬性。 如果父系工作結束時發生前置處理錯誤，或出現指定的錯誤碼，則會封鎖相依工作。 如果父系工作結束時出現任何其他非零的錯誤，相依工作就有資格執行。
 
 ```csharp
 // Task A is the parent task.
 new CloudTask("A", "cmd.exe /c echo A")
 {
     // Specify exit conditions for task A and their dependency actions.
-    ExitConditions = new ExitConditions()
+    ExitConditions = new ExitConditions
     {
-        // If task A exits with a scheduling error, block any downstream tasks (in this example, task B).
-        SchedulingError = new ExitOptions()
+        // If task A exits with a pre-processing error, block any downstream tasks (in this example, task B).
+        PreProcessingError = new ExitOptions
         {
             DependencyAction = DependencyAction.Block
         },
         // If task A exits with the specified error codes, block any downstream tasks (in this example, task B).
-        ExitCodes = new List<ExitCodeMapping>()
+        ExitCodes = new List<ExitCodeMapping>
         {
             new ExitCodeMapping(10, new ExitOptions() { DependencyAction = DependencyAction.Block }),
             new ExitCodeMapping(20, new ExitOptions() { DependencyAction = DependencyAction.Block })
         },
         // If task A succeeds or fails with any other error, any downstream tasks become eligible to run 
         // (in this example, task B).
-        Default = new ExitOptions()
+        Default = new ExitOptions
         {
             DependencyAction = DependencyAction.Satisfy
         }

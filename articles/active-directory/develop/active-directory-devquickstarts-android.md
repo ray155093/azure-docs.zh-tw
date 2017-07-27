@@ -15,12 +15,11 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dadobali
 ms.custom: aaddev
-ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 590e2bc759567cf3d679e261592dff1e699ba295
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 746cad19093fd2a1ad23ddd9412394f8d9da331c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="integrate-azure-ad-into-an-android-app"></a>將 Azure AD 整合至 Android 應用程式
@@ -174,7 +173,7 @@ dependencies {
             ....
         <application/>
 
-4. 在您的主要活動建立 AuthenticationContext 的執行個體。 此呼叫的詳細資料超出本主題的範圍，但您可以查看 [Android 原生用戶端範例](https://github.com/AzureADSamples/NativeClient-Android)，由此開始也很不錯。 在以下範例中，SharedPreferences 是預設快取，Authority 格式為 `https://login.windows.net/yourtenant.onmicrosoft.com`：
+4. 在您的主要活動建立 AuthenticationContext 的執行個體。 此呼叫的詳細資料超出本主題的範圍，但您可以查看 [Android 原生用戶端範例](https://github.com/AzureADSamples/NativeClient-Android)，由此開始也很不錯。 在以下範例中，SharedPreferences 是預設快取，Authority 格式為 `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`：
 
     `mContext = new AuthenticationContext(MainActivity.this, authority, true); // mContext is a field in your activity`
 
@@ -264,7 +263,7 @@ Microsoft Intune 公司入口網站應用程式提供「訊息代理程式」元
 ### <a name="authority-url-and-ad-fs"></a>授權單位 URL 和 AD FS
 Active Directory 同盟服務 (AD FS) 不視為正式的 STS，因此您需要開啟執行個體探索，並在 AuthenticationContext 建構函式上傳遞 false。
 
-授權單位 URL 需要 STS 執行個體和[租用戶名稱](https://login.windows.net/yourtenant.onmicrosoft.com)。
+授權單位 URL 需要 STS 執行個體和[租用戶名稱](https://login.microsoftonline.com/yourtenant.onmicrosoft.com)。
 
 ### <a name="querying-cache-items"></a>查詢快取項目
 ADAL 在 SharedPreferences 中提供預設快取與一些簡單的快取查詢函式。 您可以使用以下方法從 AuthenticationContext 取得目前的快取︰

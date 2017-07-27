@@ -29,7 +29,7 @@
 ## <a name="sap-netweaver-on-azure"></a>Azure 上的 SAP NetWeaver
 標題：SAP NetWeaver - 建置 Azure 災害復原解決方案
 
-摘要：本文件提供的逐步指引可用來建置適用於 SAP NetWeaver 的 Azure 災害復原解決方案。 所描述的解決方案假設 SAP 環境正在執行以 Hyper-V 為基礎的虛擬化內部部署。 本文件的第一個部分會在 Azure Site Recovery (ASR) 元件中導入其服務。 本文件的第二個部分描述 SAP NetWeaver 架構環境的細節， 本文件的第二個部分描述 SAP NetWeaver 架構環境的細節，另外也會探討並描述搭配使用 ASR 與 SAP NetWeaver 應用程式執行個體及 SAP Central Services 的可能性。 第二個部分的重點是將 ASR 用於受 Windows Server 容錯移轉叢集組態所保護的 SAP Central Services。
+摘要：本文件提供的逐步指引可用來建置適用於 SAP NetWeaver 的 Azure 災害復原解決方案。 所描述的解決方案假設 SAP 環境是執行以 Hyper-V 為基礎的虛擬化內部部署。 本文件的第一個部分會在 Azure Site Recovery (ASR) 元件中導入其服務。 本文件的第二個部分描述 SAP NetWeaver 架構環境的細節， 本文件的第二個部分描述 SAP NetWeaver 架構環境的細節，另外也會探討並描述搭配使用 ASR 與 SAP NetWeaver 應用程式執行個體及 SAP Central Services 的可能性。 第二個部分的重點是將 ASR 用於受 Windows Server 容錯移轉叢集組態所保護的 SAP Central Services。
 
 更新時間：2015 年 9 月
 

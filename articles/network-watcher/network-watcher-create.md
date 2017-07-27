@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: 7d8eb5972d35eac6cb55fc393090cfcc21ec341c
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 2aeaffdd5ab552e18677cbd1a24a748dd14bf172
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 ---
 
@@ -33,6 +34,12 @@ ms.lasthandoff: 03/31/2017
 瀏覽至 [更多服務] > [網路] > [網路監看員]。 您可以選取要啟用網路監看員的所有訂用帳戶。 此動作會在每個可用區域建立網路監看員。
 
 ![建立網路監看員][1]
+
+當您使用入口網站啟用網路監看員時，網路監看員執行個體的名稱將會自動設定為 NetworkWatcher_region_name，其中 region_name 對應至啟用該執行個體的 Azure 區域。  例如，在美國中西部區域啟用的網路監看員，名稱將會是 NetworkWatcher_westcentralus
+
+此外，網路監看員執行個體會自動加入至名稱為 NetworkWatcherRG 的資源群組。  如果該資源群組不存在，系統將會建立它。
+
+如果您想要自訂網路監看員執行個體名稱，以及放置該執行個體的資源群組名稱，可以使用下述的 Powershell、REST API 或 ARMClient 方法。  在每個選項中，都必須先存在資源群組，才能將網路監看員放入。  
 
 ## <a name="create-a-network-watcher-with-powershell"></a>使用 PowerShell 建立網路監看員
 

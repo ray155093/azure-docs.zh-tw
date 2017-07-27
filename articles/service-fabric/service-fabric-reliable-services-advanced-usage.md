@@ -12,12 +12,13 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/10/2017
+ms.date: 06/29/2017
 ms.author: vturecek
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 71a4ccb1914c147b1504068a09ef957a51067c08
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: a87924faaf5c6c43716b06b6d70ab5100c61f097
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -36,12 +37,9 @@ Azure Service Fabric 可簡化撰寫和管理可靠的無狀態與具狀態服�
 
 雖然 `RunAsync` 應該足以應付幾乎所有情況，但也可使用無狀態服務中的開啟、關閉和中止事件︰
 
-* `Task OnOpenAsync(IStatelessServicePartition, CancellationToken) - C# / CompletableFuture<String> onOpenAsync(CancellationToken) - Java`
-    準備使用無狀態服務執行個體時，會呼叫 OnOpenAsync。 這個階段可以啟動擴充服務的初始化作業。
-* `Task OnCloseAsync(CancellationToken) - C# / CompletableFuture onCloseAsync(CancellationToken) - Java`
-   無狀態服務執行個體準備正常關閉時，會呼叫 OnCloseAsync。 這可能在升級服務程式碼、因負載平衡而移動服務執行個體或偵測到暫時性失敗的時侯發生。 OnCloseAsync 可以用來安全地關閉任何資源、停止任何背景處理、完成外部狀態儲存或關閉現有的連接。
-* `void OnAbort() - C# / void onAbort() - Java`
-   強制關閉無狀態服務執行個體時，會呼叫 OnAbort。 這個一般會在於節點上偵測到永久錯誤，或因內部失敗而 Service Fabric 無法可靠地管理服務執行個體生命週期時呼叫。
+* `Task OnOpenAsync(IStatelessServicePartition, CancellationToken) - C# / CompletableFuture<String> onOpenAsync(CancellationToken) - Java` 即將使用無狀態服務執行個體時，會呼叫 OnOpenAsync。 這個階段可以啟動擴充服務的初始化作業。
+* `Task OnCloseAsync(CancellationToken) - C# / CompletableFuture onCloseAsync(CancellationToken) - Java` 無狀態服務執行個體即將正常關閉時，會呼叫 OnCloseAsync。 這可能在升級服務程式碼、因負載平衡而移動服務執行個體或偵測到暫時性失敗的時侯發生。 OnCloseAsync 可以用來安全地關閉任何資源、停止任何背景處理、完成外部狀態儲存或關閉現有的連接。
+* `void OnAbort() - C# / void onAbort() - Java` 正要強制關閉無狀態服務執行個體時，會呼叫 OnAbort。 這個一般會在於節點上偵測到永久錯誤，或因內部失敗而 Service Fabric 無法可靠地管理服務執行個體生命週期時呼叫。
 
 ## <a name="stateful-service-replica-lifecycle"></a>具狀態服務複本生命週期
 
@@ -52,8 +50,7 @@ Azure Service Fabric 可簡化撰寫和管理可靠的無狀態與具狀態服�
 
 具狀態服務複本的生命週期比無狀態服務執行個體更為複雜。 除了開啟、關閉和中止事件，具狀態服務複本會在其生命週期內經歷角色變更。 當具狀態服務複本變更角色時，會觸發 `OnChangeRoleAsync` 事件︰
 
-* `Task OnChangeRoleAsync(ReplicaRole, CancellationToken)`
-    具狀態服務複本變更角色 (例如變更為主要或次要角色) 時，會呼叫 OnChangeRoleAsync。 主要複本會獲得寫入狀態 (可建立並寫入可靠的集合)。 次要複本則會獲得讀取狀態 (只能從現有的可靠集合讀取)。 具狀態服務中的大部分工作會在主要複本執行。 次要複本可以執行唯讀驗證、產生報表、資料採礦或其他唯讀作業。
+* `Task OnChangeRoleAsync(ReplicaRole, CancellationToken)` OnChangeRoleAsync。 主要複本會獲得寫入狀態 (可建立並寫入可靠的集合)。 次要複本則會獲得讀取狀態 (只能從現有的可靠集合讀取)。 具狀態服務中的大部分工作會在主要複本執行。 次要複本可以執行唯讀驗證、產生報表、資料採礦或其他唯讀作業。
 
 在具狀態服務中，只有主要複本具有狀態的寫入權限，因此通常在服務正在執行實際工作時。 只有在具狀態服務複本為主要複本時，才會執行具狀態服務中的 `RunAsync` 方法。 `RunAsync` 方法會在主要複本的角色變成非主要時，以及在關閉和中止事件期間取消。
 

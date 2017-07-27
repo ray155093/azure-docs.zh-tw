@@ -6,22 +6,21 @@ keywords:
 documentationcenter: 
 author: MicrosoftGuyJFlo
 manager: femila
-editor: gahug
+ms.reviewer: gahug
 ms.assetid: bde8799f-0b42-446a-ad95-7ebb374c3bec
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/12/2017
+ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: 5a338029cea5f448fc4d84a1a9c01c867ecd5028
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 52f89520fef8fc9ddb6e8e10a59ec35600affb2a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
-
+ms.lasthandoff: 07/06/2017
 
 ---
 # <a name="quick-start-azure-ad-self-service-password-reset"></a>快速入門︰Azure AD 自助式密碼重設
@@ -46,17 +45,17 @@ ms.lasthandoff: 05/12/2017
         * **行動電話**可讓使用者選擇使用其設定的行動電話號碼代碼來接收電話或簡訊
         * **辦公室電話**可透過使用者設定的辦公室電話號碼代碼打電話給使用者
         * **安全性問題**會要求您選擇：
-            * [註冊所需的問題數] 是註冊成功的最低限度，這表示使用者可以選擇回答更多問題來建立可提取的問題集區。 這個選項可以設定為 3 到 5 個問題，而且必須大於或等於重設所需的問題數目。
-            * [重設所需的問題數] 可以設定為在允許重設或解除鎖定使用者密碼之前，需正確回答的 3 到 5 個問題。
+            * 註冊所需的問題數 - 註冊成功的最低限度，這表示使用者可以選擇回答更多問題來建立可提取的問題集區。 這個選項可以設定為 3 到 5 個問題，而且必須大於或等於重設所需的問題數目。
                 * 選取安全性問題時按一下 [自訂] 按鈕，即可新增自訂問題
+            * 重設所需的問題數 - 可以設定為在允許重設或解除鎖定使用者密碼之前，需正確回答的 3 到 5 個問題。
 
 4. 建議︰[自訂] 可讓您變更「連絡系統管理員」連結，以指向您定義的網頁或電子郵件地址
 
 5. 選擇性︰[註冊] 畫面會提供系統管理員下列選項︰
-    * 要求使用者在登入時註冊
+    * 登入時要求使用者註冊
     * 要求使用者重新確認其驗證資訊的等候天數
 
-6. 選擇性︰[通知] 會提供系統管理員下列選項︰
+6. 選擇性︰[通知] 畫面會提供系統管理員下列選項︰
     * 通知使用者密碼重設
     * 當其他系統管理員重設其密碼時通知所有系統管理員
 
@@ -67,7 +66,7 @@ ms.lasthandoff: 05/12/2017
 
 ## <a name="configure-synchronization-to-existing-identity-source"></a>設定現有身分識別來源的同步處理
 
-若要啟用內部部署身分識別同步處理至 Azure AD，您必須在您組織中的伺服器上安裝及設定 [Azure AD Connect](./connect/active-directory-aadconnect.md)。 此應用程式會現有身分識別來源的使用者和群組同步處理至您的 Azure AD 網域。
+若要啟用內部部署身分識別同步處理至 Azure AD，您必須在您組織中的伺服器上安裝及設定 [Azure AD Connect](./connect/active-directory-aadconnect.md)。 此應用程式會將您現有身分識別來源的使用者和群組同步到您的 Azure AD 租用戶。
 
 * [從 DirSync 或 Azure AD Sync 升級至 Azure AD Connect](./connect/active-directory-aadconnect-dirsync-deprecated.md)
 * [使用快速設定開始使用 Azure AD Connect](./connect/active-directory-aadconnect-get-started-express.md)
@@ -75,7 +74,7 @@ ms.lasthandoff: 05/12/2017
 
 ## <a name="disabling-self-service-password-reset"></a>停用自助式密碼重設
 
-停用自助式密碼重設很簡單，只要開啟 Azure AD 租用戶並移至 [密碼重設]、[屬性]，然後選擇 [已啟用自助式密碼重設]之下的 [沒有人]。
+停用自助式密碼重設很簡單，只要開啟 Azure AD 租用戶並移至 [密碼重設]、[屬性] > 選擇 [已啟用自助式密碼重設] 之下的 [沒有人]。
 
 ## <a name="next-steps"></a>後續步驟
 下列連結提供有關使用 Azure AD 重設密碼的其他資訊

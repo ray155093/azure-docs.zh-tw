@@ -14,10 +14,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 06/06/2016
 ms.author: ranjithr;wadeh
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 79e5329332c457c738c082277ee7b79eb8ead049
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 656c5b3e363bd2eaa7550ffc673606d26f7d06de
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -114,7 +115,7 @@ ms.lasthandoff: 04/06/2017
 ### <a name="my-node-application-is-making-too-many-outbound-calls"></a>我的節點應用程式進行太多的輸出呼叫。
 許多應用程式想要在其定期作業中進行輸出連線。 例如，當要求傳入時，節點應用程式會想連絡別處的 REST API，並取得一些資訊來處理要求。 您想要在進行 http 或 https 呼叫時使用保持連線代理程式。 例如，您可以在進行這些輸出呼叫時，使用 agentkeepalive 模組做為您的保持連線代理程式。 這可確保在您的 Azure Web App VM 上重複使用通訊端，並減少為每個輸出要求建立新通訊端的額外負荷。 此外，這可確保您使用較少的通訊端來進行許多輸出要求，因此您不會超過每個 VM 配置的 maxSockets。 對於 Azure Web Apps 的建議是將 agentKeepAlive maxSockets 值設為每個 VM 總計有 160 個通訊端。 這表示如果您有 4 個 node.exe 在 VM 上執行，您可以將每個 node.exe 的 agentKeepAlive maxSockets 設定為 40，也就是每個 VM 總計有 160 個。
 
-範例 agentKeepALive 組態︰
+範例 [agentKeepALive](https://www.npmjs.com/package/agentkeepalive) 設定：
 
 ```
 var keepaliveAgent = new Agent({    

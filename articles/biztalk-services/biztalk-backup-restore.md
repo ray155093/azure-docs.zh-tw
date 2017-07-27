@@ -14,22 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: 589b95fdd05478305fa8ef629fc6758bdd716da6
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: c55d1ab124441c42101b4ad60924a9ea28231408
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/01/2017
 
 
 ---
 # <a name="biztalk-services-backup-and-restore"></a>BizTalk 服務：備份與還原
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 Azure BizTalk 服務包含備份與還原功能。 本主題說明如何使用 Azure 傳統入口網站來備份和還原 BizTalk 服務。
 
 您也可以使用 [BizTalk 服務 REST API](http://go.microsoft.com/fwlink/p/?LinkID=325584)來備份 BizTalk 服務。 
 
 > [!NOTE]
 > 混合式連接無法備份，與版本無關。 您必須重新建立混合式連接。
-> 
-> 
+
 
 ## <a name="before-you-begin"></a>開始之前
 * 備份與還原可能不適用於部分版本。 請參閱「 [BizTalk 服務：版本圖表](biztalk-editions-feature-chart.md)」(英文)。
@@ -187,7 +190,7 @@ BizTalk 服務永遠還原成 **暫止** 狀態。 在此狀態下，您可以�
 <td>追蹤資料庫</td> 
 <td>建立 BizTalk 服務時需要輸入追蹤資料庫詳細資料，包括 Azure SQL Database 伺服器和追蹤資料庫名稱。 不會自動備份追蹤資料庫。
 <br/><br/>
-<strong>重要事項</strong><br/>
+<strong>重要</strong><br/>
 如果刪除了追蹤資料庫，且需要復原資料庫，先前的備份必須存在。 如果備份不存在，則無法復原追蹤資料庫及其資料。 在此情況下，請以相同的資料庫名稱建立新的追蹤資料庫。 建議採用地理複寫。</td>
 </tr> 
 </table>

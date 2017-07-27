@@ -12,12 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 07/04/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
-ms.openlocfilehash: 9bed9392502dae01724c4ca86b8c735ab60a2882
-ms.lasthandoff: 01/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
+ms.openlocfilehash: 76de1d40e8c24abda33e99a137f4a6c263f60a8b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 
 ---
@@ -25,26 +26,29 @@ ms.lasthandoff: 01/11/2017
 ## <a name="overview"></a>概觀
 
 > [!NOTE]
-> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
+> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
 > 
 > 
 
-本主題適用於具有 [進階] 類型「串流端點」的客戶。 如需有關串流端點類型和 CDN 組態的詳細資訊，請參閱[串流端點概觀](media-services-portal-manage-streaming-endpoints.md)主題。
+**進階**串流端點適合進階工作，提供專用並能靈活調整的頻寬容量。 擁有**進階**串流端點的客戶預設會取得一個串流單位 (SU)。 藉由新增 SU 可以調整串流端點。 每個 SU 可為應用程式提供額外的頻寬容量。 如需有關串流端點類型和 CDN 組態的詳細資訊，請參閱[串流端點概觀](media-services-portal-manage-streaming-endpoints.md)主題。
  
-當您的類型為 [進階] 時，您預設會得到 1 個資料流處理單位 (SU)。 如您需要調整串流端點，請依照本主題中的步驟操作。
+本主題說明如何調整串流端點。
 
 如需定價詳細資料的相關資訊，請參閱＜ [媒體服務定價詳細資料](http://go.microsoft.com/fwlink/?LinkId=275107)＞。
 
 ## <a name="scale-streaming-endpoints"></a>調整串流端點
 
-若要建立和變更資料流處理單位的數目，請執行下列操作：
+若要變更串流端點的數目，請執行下列操作：
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取您的 Azure 媒體服務帳戶。
 2. 在 [設定] 視窗中，選取 [串流端點]。
 3. 按一下您要調整的串流端點。 
+
+    [!NOTE] 您只能調整 [Premium] \(進階\) 串流端點。
+
 4. 移動滑桿以指定資料流處理單位的數目。
 
-![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints3.png)
+    ![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints3.png)
 
 ## <a name="next-steps"></a>後續步驟
 檢閱媒體服務學習路徑。

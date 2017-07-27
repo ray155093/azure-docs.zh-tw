@@ -12,13 +12,13 @@ ms.workload: integration
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/27/2017
+ms.date: 06/08/2017
 ms.author: LADocs; mandia
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 09a2373585f49a39192a841072d86e395ff311db
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: 91b2f16611b88aa4b9395ca301d88042065ad9dd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/10/2017
 
 
 ---
@@ -40,9 +40,9 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="create-an-as2-agreement"></a>建立 AS2 合約
 
-1.    登入 [Azure 入口網站](http://portal.azure.com "Azure 入口網站")。  
+1.  登入 [Azure 入口網站](http://portal.azure.com "Azure 入口網站")。  
 
-2.    從左側功能表中選取 [更多服務]。 在搜尋方塊中，輸入**整合**做為篩選條件。 在結果清單中選取 [整合帳戶]。
+2.  從左側功能表中選取 [更多服務]。 在搜尋方塊中，輸入**整合**做為篩選條件。 在結果清單中選取 [整合帳戶]。
 
     > [!TIP]
     > 如果沒有看到 [更多服務]，您可能必須先展開功能表。 在摺疊功能表的頂端，選取 [顯示功能表]。
@@ -81,7 +81,7 @@ ms.lasthandoff: 05/10/2017
 
 您現在已經設定合約屬性，您可以設定此合約如何識別及處理您透過此合約從夥伴接收的內送訊息。
 
-1.    在 [新增] 之下，選取 [接收設定]。
+1.  在 [新增] 之下，選取 [接收設定]。
 根據您與其交換訊息之夥伴所簽署的合約，設定這些屬性。 如需屬性說明，請參閱本節中的資料表。
 
     ![設定 [接收設定]](./media/logic-apps-enterprise-integration-agreements/agreement-4.png)
@@ -90,7 +90,7 @@ ms.lasthandoff: 05/10/2017
 
 3. 若要要求所有內送訊息都必須經過簽署，請選取 [訊息必須經過簽署]。 從 [憑證] 清單中選取現有的[來賓夥伴公開憑證](../logic-apps/logic-apps-enterprise-integration-certificates.md)，以便驗證訊息上的簽章。 如果您沒有憑證，請建立一個。
 
-4.    若要要求加密所有內送訊息，請選取 [訊息必須加密]。 從 [憑證] 清單，選取現有[主機夥伴私人憑證](../logic-apps/logic-apps-enterprise-integration-certificates.md)，以便將內送訊息解密。 如果您沒有憑證，請建立一個。
+4.  若要要求加密所有內送訊息，請選取 [訊息必須加密]。 從 [憑證] 清單，選取現有[主機夥伴私人憑證](../logic-apps/logic-apps-enterprise-integration-certificates.md)，以便將內送訊息解密。 如果您沒有憑證，請建立一個。
 
 5. 若要要求訊息必須壓縮，請選取 [訊息必須壓縮]。
 
@@ -121,10 +121,10 @@ ms.lasthandoff: 05/10/2017
 
 您可以設定此合約如何識別及處理您透過此合約傳送給夥伴的外寄訊息。
 
-1.    在 [新增] 之下，選取 [傳送設定]。
+1.  在 [新增] 之下，選取 [傳送設定]。
 根據您與其交換訊息之夥伴所簽署的合約，設定這些屬性。 如需屬性說明，請參閱本節中的資料表。
 
-    ![設定 [傳送設定] 屬性](./media/logic-apps-enterprise-integration-agreements/agreement-5.png)
+    ![設定 [傳送設定] 屬性](./media/logic-apps-enterprise-integration-agreements/agreement-51.png)
 
 2. 若要將經過簽署的訊息傳送給夥伴，請選取 [啟用訊息簽署]。 若要簽署訊息，請在 [MIC 演算法] 清單中，選取「主機夥伴私人憑證 MIC 演算法」。 並且在 [憑證] 清單中，選取現有[主機夥伴私人憑證](../logic-apps/logic-apps-enterprise-integration-certificates.md)。
 
@@ -141,9 +141,11 @@ ms.lasthandoff: 05/10/2017
 
 8. 若要接收所傳送訊息的同步 MDN，請選取 [要求非同步 MDN]。 若選取此選項，請輸入 MDN 傳送目標的 URL。
 
-9. 若要要求接收的不可否認性，請選取 [啟用 NRR]。
+9. 若要要求接收的不可否認性，請選取 [啟用 NRR]。  
 
-10. 完成後，請務必選擇 [確定] 以儲存設定。
+10. 若要指定要用於 MIC 或簽署外寄 AS2 訊息或 MDN 的標題中之演算法格式，選取 **SHA2 演算法格式**。  
+
+11. 完成後，請務必選擇 [確定] 以儲存設定。
 
 您的合約現在已準備好處理符合您所選設定的外寄訊息。
 
@@ -162,14 +164,15 @@ ms.lasthandoff: 05/10/2017
 | 要求非同步 MDN |要求將非同步 MDN 傳送到此合約。 |
 | URL |指定要傳送 MDN 的 URL。 |
 | 啟用 NRR |要求接收的不可否認性 (NRR)，這是一種通訊屬性，它會提供資料已由預訂收件者接收的證據。 |
+| SHA2 演算法格式 |選取要用於 MIC 或簽署外寄 AS2 訊息或 MDN 的標題中之演算法格式 |
 
 ## <a name="find-your-created-agreement"></a>尋找您建立的合約
 
-1.    完成所有合約屬性的設定之後，請在 [新增] 刀鋒視窗中選擇 [確定]，以完成合約建立並回到整合帳戶刀鋒視窗。
+1.  完成所有合約屬性的設定之後，請在 [新增] 刀鋒視窗中選擇 [確定]，以完成合約建立並回到整合帳戶刀鋒視窗。
 
     您新增的合約現在顯示於您的 [合約] 清單中。
 
-2.    您也可以在整合帳戶概觀中檢視您的合約。 在整合帳戶刀鋒視窗上，選擇 [概觀]，然後選取 [合約] 圖格。 
+2.  您也可以在整合帳戶概觀中檢視您的合約。 在整合帳戶刀鋒視窗上，選擇 [概觀]，然後選取 [合約] 圖格。 
 
     ![選擇 [合約] 圖格來檢視所有合約](./media/logic-apps-enterprise-integration-agreements/agreement-6.png)
 

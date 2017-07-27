@@ -13,14 +13,14 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 1/23/2017
+ms.date: 05/31/2017
 ms.author: saurabh
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 52d83b21f2f2346bfeb8d469a9bfb1b64dd4ba23
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: e9bb11645a0f45449bfc102e1d0cefd6fbf3ffd9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -74,7 +74,7 @@ Azure 診斷延伸模組提供以 Windows 為基礎的 Azure 虛擬機器上的�
 
 *publisher* 屬性具有值 **Microsoft.Azure.Diagnostics**，*type* 屬性具有值 **IaaSDiagnostics**，唯一識別 Azure 診斷延伸模組。
 
-*name* 屬性的值可用來參考資源群組中的延伸模組。 特別將其設為 **Microsoft.Insights.VMDiagnosticsSettings** ，可以讓它輕易地由 Azure 傳統入口網站識別，確保監視圖表會在 Azure 傳統入口網站中正確顯示。
+*name* 屬性的值可用來參考資源群組中的延伸模組。 特別將其設為 **Microsoft.Insights.VMDiagnosticsSettings**，可以讓它輕易地由 Azure 入口網站識別，確保監視圖表會在 Azure 入口網站中正確顯示。
 
 *TypeHandlerVersion* 會指定您想要使用的延伸模組的版本。 將 *autoUpgradeMinorVersion* 次要版本設為 **true** 可確保您獲得可用的最新延伸模組次要版本。 強烈建議您一律將 *autoUpgradeMinorVersion* 設為永遠為 **true** ，讓您永遠可以使用具有所有新功能和錯誤修正的可用最新診斷延伸模組。 
 

@@ -14,11 +14,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: b5ed7853c696d9e8477a31aba8a9cc9ab8558fa8
-ms.lasthandoff: 04/06/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 38c3fd3cd271c3f9d60c44fff17715062b4979ae
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="how-to-use-blob-storage-from-nodejs"></a>如何使用 Node.js 的 Blob 儲存體
@@ -40,7 +40,7 @@ ms.lasthandoff: 04/06/2017
 若要使用 Azure 儲存體，您需要 Azure Storage SDK for Node.js，這包含一組便利程式庫，能與儲存體 REST 服務通訊。
 
 ### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>使用 Node Package Manager (NPM) 取得封裝
-1. 使用命令列介面，例如 **PowerShell** (Windows)、[終端機] (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
+1. 使用命令列介面，例如 **PowerShell** (Windows)、**[終端機]** \(Mac) 或 **Bash** \(Unix)，瀏覽到您建立範例應用程式的資料夾。
 2. 在命令視窗中輸入 **npm install azure-storage** 。 此命令的輸出類似下列程式碼範例。
 
         azure-storage@0.5.0 node_modules\azure-storage
@@ -418,7 +418,7 @@ blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', { Id: 'user2' });
 * [Azure Storage SDK for Node API 參考][Azure Storage SDK for Node API Reference]
 * [Azure 儲存體團隊部落格][Azure Storage Team Blog]
 * GitHub 上的 [Azure Storage SDK for Node][Azure Storage SDK for Node] 儲存機制
-* [Node.js 開發人員中心](/develop/nodejs/)
+* [Node.js 開發人員中心](https://azure.microsoft.com/develop/nodejs/)
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
 [Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node

@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/13/2017
+ms.date: 05/12/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: bb58d485a7ae805489b468cfffd72654914f63f1
+ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
+ms.openlocfilehash: fe804cc01925cee58a1d694bdb94b85a8f994cef
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/19/2017
 
 
 ---
@@ -62,7 +62,7 @@ ms.lasthandoff: 05/02/2017
     <dependency>
       <groupId>com.microsoft.azure.sdk.iot</groupId>
       <artifactId>iot-device-client</artifactId>
-      <version>1.1.24</version>
+      <version>1.3.30</version>
     </dependency>
     ```
 
@@ -209,7 +209,7 @@ ms.lasthandoff: 05/02/2017
     <dependency>
       <groupId>com.microsoft.azure.sdk.iot</groupId>
       <artifactId>iot-service-client</artifactId>
-      <version>1.2.17</version>
+      <version>1.5.22</version>
       <type>jar</type>
     </dependency>
     ```
@@ -250,10 +250,10 @@ ms.lasthandoff: 05/02/2017
     import java.util.concurrent.TimeUnit;
     ```
 
-1. 將下列類別層級變數新增到 **App** 類別中。 將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為您在「建立裝置識別」一節中產生的裝置金鑰值：
+1. 將下列類別層級變數新增到 **App** 類別中。 將 **{youriothubconnectionstring}** 取代為您在＜建立 IoT 中樞＞一節中所記下的 IoT 中樞連接字串：
 
     ```java
-    public static final String iotHubConnectionString = "HostName={youriothubname}.azure-devices.net;SharedAccessKeyName=owner;SharedAccessKey={yourhubkey}";
+    public static final String iotHubConnectionString = "{youriothubconnectionstring}";
     public static final String deviceId = "myDeviceId";
 
     public static final String methodName = "writeLine";
@@ -288,11 +288,15 @@ ms.lasthandoff: 05/02/2017
     System.out.println("Shutting down sample...");
     ```
 
+1. 儲存並關閉 invoke-direct-method\src\main\java\com\mycompany\app\App.java 檔案
+
+1. 建置 **invoke-direct-method** 應用程式，並更正所有錯誤。 在命令提示字元中，巡覽至 invoke-direct-method 資料夾，並執行下列命令：
+
+    `mvn clean package -DskipTests`
+
 ## <a name="run-the-apps"></a>執行應用程式
 
 您現在已經準備好執行主控台應用程式。
-
-您現在可以開始執行應用程式。
 
 1. 在 simulated-device 資料夾的命令提示字元中，執行下列命令以開始接聽來自您 IoT 中樞的方法呼叫：
 
@@ -325,7 +329,7 @@ ms.lasthandoff: 05/02/2017
 
 <!-- Links -->
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-java/blob/master/doc/java-devbox-setup.md
-
+[lnk-maven]: https://maven.apache.org/what-is-maven.html
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md
 
 [lnk-devguide-jobs]: iot-hub-devguide-jobs.md

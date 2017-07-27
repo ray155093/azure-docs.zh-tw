@@ -1,5 +1,6 @@
 # [概觀](azure-security.md)
 ## [網路安全性](security-network-overview.md)
+## [資料庫安全性](azure-database-security-overview.md)
 ## [儲存體安全性](security-storage-overview.md)
 ## [計算安全性](security-virtual-machines-overview.md)
 ## [安全性管理和監視](security-management-and-monitoring-overview.md)
@@ -12,6 +13,7 @@
 ### [公用雲端中的隔離](azure-isolation.md)
 ### [安全性技術功能](azure-security-technical-capabilities.md)
 ### [在 Azure 中控管](governance-in-azure.md)
+### [待用資料加密](azure-security-encryption-atrest.md)
 
 # 開始使用
 ## [開始使用 Azure 資訊安全](azure-security-getting-started.md)
@@ -51,6 +53,7 @@
 ## PaaS 服務
 ### [保護 PaaS 部署](security-paas-deployments.md)
 #### [使用 SQL 來保護 PaaS Web 和行動應用程式](security-paas-applications-using-sql.md)
+#### [SQL Database 最佳做法](azure-database-security-best-practices.md)
 #### [使用應用程式服務來保護 PaaS Web 和行動應用程式](security-paas-applications-using-app-services.md)
 
 ## 物聯網
@@ -73,7 +76,7 @@
 ## [Operations Management Suite](../operations-management-suite/oms-security-getting-started.md)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=monitoring-management)
 ## [Azure 安全性 MVP 計畫](azure-security-mvp.md)
 ## [網路安全性諮詢](azure-security-cyber-services.md)
 ## [安全性與法務遵循部落格](http://blogs.msdn.com/b/azuresecurity/)

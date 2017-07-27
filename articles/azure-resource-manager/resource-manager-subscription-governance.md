@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/31/2017
 ms.author: rodend;karlku;tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: c46ea77c591b9c5914f83b9d5c1498b4f397a617
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: ce4e19738a66629c7dd587da50f71f6675c159e8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -48,7 +49,7 @@ Scaffold 是以我們經由與各種規模的用戶端合作而蒐集到的實�
 > 
 > 
 
-下圖描述 Scaffold 的元件。 其基礎依賴於部門、帳戶和訂用帳戶的可靠計畫。 其要件是由 Resource Manager 原則和強大的命名標準所組成。 Scaffold 的其餘部分來自 Azure 核心功能，而這些功能可打造出安全且易於管理的環境。
+下圖描述 Scaffold 的元件。 其基礎依賴於部門、帳戶和訂用帳戶的可靠計畫。 其要件是由 Resource Manager 原則和強大的命名標準所組成。 Scaffold 的其餘部分是來自 Azure 核心功能，而這些功能可打造出安全且易於管理的環境。
 
 ![scaffold 元件](./media/resource-manager-subscription-governance/components.png)
 

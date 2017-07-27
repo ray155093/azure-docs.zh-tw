@@ -34,6 +34,8 @@
         }
    
     這個方法會建立具有識別碼 **myFirstDevice**的裝置識別。 (如果該裝置識別碼已經存在身分識別登錄中，程式碼就只會擷取現有的裝置資訊)。接著，應用程式會顯示該身分識別的主要金鑰。 您會在模擬裝置應用程式中使用此金鑰來連線到您的 IoT 中樞。
+[!INCLUDE [iot-hub-pii-note-naming-device](iot-hub-pii-note-naming-device.md)]
+
 7. 最後，將下列幾行新增至 **Main** 方法：
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);

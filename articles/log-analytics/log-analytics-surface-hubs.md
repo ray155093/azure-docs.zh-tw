@@ -12,17 +12,20 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 06/07/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
-ms.openlocfilehash: d568c52a7cbbe593658fb95203bfa98af13a1554
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: b6ecd0d09589fec85c1633f528afc1165c346b7f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 
 ---
 # <a name="monitor-surface-hubs-with-log-analytics-to-track-their-health"></a>使用 Log Analytics 監視 Surface Hub 來追蹤其健全狀況
+
+![Surface Hub 符號](./media/log-analytics-surface-hubs/surface-hub-symbol.png)
 
 本文說明如何使用 Log Analytics 中的 Surface Hub 解決方案來監視 Microsoft Operations Management Suite (OMS) 搭配使用的 Microsoft Surface Hub 裝置。 Log Analytics 可幫助您追蹤您的 Surface Hub 健康狀態，以及了解其使用狀況。
 
@@ -36,32 +39,32 @@ ms.lasthandoff: 02/28/2017
 
 接下來，您要將 OMS 訂用帳戶新增至現有的 Microsoft Azure 訂用帳戶，或直接透過 OMS 入口網站建立新的工作區。 使用哪一種方法的詳細指示請參閱[開始使用 Log Analytics](log-analytics-get-started.md)。 OMS 訂用帳戶設定完畢後，有兩種方式可以註冊您的 Surface Hub 裝置︰
 
-* 自動透過 InTune 註冊
+* 自動透過 Intune 註冊
 * 在 Surface Hub 裝置上手動透過 [設定] 註冊
 
 ## <a name="set-up-monitoring"></a>設定監視
-您可以使用 OMS 中的 Log Analytics 監視 Surface Hub 的健康狀態和活動。 您可以在 OMS 中使用 InTune 註冊 Surface Hub，或使用 Surface Hub 上的 [設定] 在本機註冊。
+您可以使用 OMS 中的 Log Analytics 監視 Surface Hub 的健康狀態和活動。 您可以在 OMS 中使用 Intune 註冊 Surface Hub，或使用 Surface Hub 上的 [設定] 在本機註冊。
 
-## <a name="connect-surface-hubs-to-oms-through-intune"></a>透過 InTune 將 Surface Hubs 連接至 OMS
+## <a name="connect-surface-hubs-to-oms-through-intune"></a>透過 Intune 將 Surface Hub 連接至 OMS
 您會需要即將管理 Surface Hub 的 OMS 工作區的工作區識別碼和工作區金鑰。 您可以從 OMS 入口網站取得這些資訊。
 
-InTune 是一項 Microsoft 產品，可讓您集中管理套用到一或多個裝置的 OMS 組態設定。 請依照下列步驟透過 InTune 設定您的裝置：
+Intune 是一項 Microsoft 產品，可讓您集中管理套用到一或多個裝置的 OMS 組態設定。 請依照下列步驟透過 Intune 設定您的裝置：
 
-1. 登入 InTune。
+1. 登入 Intune。
 2. 瀏覽至 [設定]  >  [連接的來源]。
 3. 以 Surface Hub 範本為基礎建立或編輯原則。
 4. 瀏覽至原則的 OMS (Azure Operational Insights) 區段，將 [工作區識別碼] 和 [工作區金鑰] 新增至原則。
 5. 儲存原則。
 6. 將原則與適當的裝置群組關聯。
 
-   ![InTune 原則](./media/log-analytics-surface-hubs/intune.png)
+   ![Intune 原則](./media/log-analytics-surface-hubs/intune.png)
 
-InTune 接著將 OMS 設定與目標群組中的裝置同步處理，將它們註冊到 OMS 工作區。
+Intune 接著將 OMS 設定與目標群組中的裝置同步處理，將它們註冊到 OMS 工作區。
 
 ## <a name="connect-surface-hubs-to-oms-using-the-settings-app"></a>使用設定應用程式將 Surface Hub 連接至 OMS
 您會需要即將管理 Surface Hub 的 OMS 工作區的工作區識別碼和工作區金鑰。 您可以從 OMS 入口網站取得這些資訊。
 
-如果您不使用 InTune 來管理您的環境，可以透過每個 Surface Hub 上的 [設定] 以手動方式註冊裝置︰
+如果您不使用 Intune 來管理您的環境，可以透過每個 Surface Hub 上的 [設定] 以手動方式註冊裝置︰
 
 1. 從您的 Surface Hub 開啟 [設定]。
 2. 出現提示時，輸入裝置的系統管理員認證。

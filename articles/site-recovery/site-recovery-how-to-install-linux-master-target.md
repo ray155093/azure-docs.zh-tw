@@ -12,18 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: 
-ms.date: 06/05/2017
+ms.date: 02/13/2017
 ms.author: ruturajd
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 60102ebb43efc8710f102450df5b98edcb1d4b39
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: c7c50c539149a929b15f50e4b52dc48d92534640
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 07/06/2017
 
 
 ---
 # <a name="how-to-install-a-linux-master-target-server"></a>如何安裝 Linux 主要目標伺服器
 您可以在容錯移轉虛擬機器之後，將虛擬機器容錯回復至內部部署網站。 若要進行容錯回復，您需要在從 Azure 到內部部署網站的過程中重新保護虛擬機器。 針對此程序，您需要內部部署的主要目標伺服器以接收流量。 如果受保護的虛擬機器是 Windows 虛擬機器，您需要 Windows 主要目標。 若是 Linux 虛擬機器，您需要 Linux 主要目標。 請參閱下列步驟，以了解如何建立和安裝 Linux 主要目標。
+
+> [!IMPORTANT]
+> 從主要目標伺服器的 9.10.0 版本開始，最新的主要目標伺服器只能安裝在 Ubuntu 16.04 伺服器上。 CentOS6.6 伺服器上不允許新的安裝。 不過，您可以使用 9.10.0 版本繼續升級舊的主要目標伺服器。
 
 ## <a name="overview"></a>概觀
 本文提供安裝 Linux 主要目標的資訊和指示。
@@ -50,99 +53,115 @@ ms.lasthandoff: 05/08/2017
 
 ## <a name="steps-to-deploy-the-master-target-server"></a>主要目標伺服器的部署步驟
 
-### <a name="install-centos-66-minimal"></a>安裝 CentOS 6.6 minimal
+**安裝 Ubuntu 16.04.2 極簡版**
 
-使用下列步驟以安裝 64 位元 CentOS 6.6 作業系統︰
+請遵循下面所述步驟來安裝 Ubuntu 16.04.2 64 位元作業系統。
 
-1. 從下列連結選擇最近的鏡像來下載 CentOS 6.6 minimal 64 位元 ISO。
+**步驟 1：**從下列連結選取最近的鏡像來下載 Ubuntu 16.04.2 極簡版 64 位元 ISO
 
-    <http://archive.kernel.org/centos-vault/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso>
+<https://www.ubuntu.com/download/server/thank-you?version=16.04.2&architecture=amd64>
 
-    <http://mirror.symnds.com/distributions/CentOS-vault/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso>
+將 Ubuntu 16.04.2 極簡版 64 位元 ISO 放在 DVD 光碟機中，並啟動系統。
 
-    <http://bay.uchicago.edu/centos-vault/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso>
+**步驟 2：**選取 [English] \(英文\) 作為慣用語言，然後按 Enter 鍵。
 
-    <http://mirror.nsc.liu.se/centos-store/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso>
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image1.png)
 
-    將 CentOS 6.6 minimal 64 位元 ISO 放在 DVD 光碟機中，並啟動系統。
+**步驟 3：**選取 [Install Ubuntu Server] \(安裝 Ubuntu 伺服器\)，然後按 Enter 鍵
 
-    ![[Welcome to CentoOS 6.6] 對話方塊](./media/site-recovery-how-to-install-linux-master-target/media/image1.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image2.png)
 
-2. 按一下 [Skip] 來忽略媒體測試程序。
+**步驟 4：**選取 [English] \(英文\) 作為慣用語言，然後按 Enter 鍵
 
-    ![選取 [Skip] 來忽略媒體測試程序](./media/site-recovery-how-to-install-linux-master-target/media/image2.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image3.png)
 
-3. 在安裝歡迎畫面上按一下 [Next] 按鈕。
+**步驟 5：**從 [Time Zone] \(時區\) 選項清單中選取適當的選項，然後按 Enter 鍵
 
-    ![安裝歡迎畫面上的 [Next] 按鈕](./media/site-recovery-how-to-install-linux-master-target/media/image3.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image4.png)
 
-4. 選取 [English] 作為慣用語言，然後按一下 [Next]。
+**步驟 6：**選取預設選項 [NO] \(否\)，然後按 Enter 鍵
 
-    ![選取語言](./media/site-recovery-how-to-install-linux-master-target/media/image4.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image5.png)
 
-5. 選取 [US English] 作為鍵盤配置，然後按一下 [Next]。
+**步驟 7：**選取 [English (US)] \(英文 (美國)\) 作為鍵盤的國家/地區，然後按 Enter 鍵
 
-    ![選取 [English] 鍵盤配置](./media/site-recovery-how-to-install-linux-master-target/media/image5.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image6.png)
 
-6. 選取 [Basic storage Devices]，然後按一下 [Next]。
+**步驟 8：**選取 [English (US)] \(英文 (美國)\) 作為鍵盤配置，然後按 Enter 鍵
 
-    ![選取存放裝置](./media/site-recovery-how-to-install-linux-master-target/media/image6.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image7.png)
 
-7. 出現的警告訊息指出將會刪除硬碟中的現有資料。 請確定硬碟內沒有任何重要資料，然後按一下 [Yes, discard any data]。
+**步驟 9：**在 [Hostname] \(主機名稱\) 文字方塊中輸入伺服器的主機名稱，按一下 [Continue] \(繼續\) 按鈕
 
-    ![若繼續將會刪除資料的相關警告](./media/site-recovery-how-to-install-linux-master-target/media/image7.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image8.png)
 
-8. 在 [Hostname] 方塊中輸入伺服器的主機名稱，然後按一下 [Configure Network]。 在 [Network Connection] 對話方塊中選取您的網路介面，然後按一下 [Edit] 按鈕以進行 IPV4 設定。
+**步驟 10：**在文字方塊中輸入 [使用者名稱] 以建立使用者帳戶，按一下 [Continue] \(繼續\) 按鈕
 
-    ![選取主機名稱並設定 IPV4](./media/site-recovery-how-to-install-linux-master-target/media/image8.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image9.png)
 
-9. 在 [Editing System eth0] 對話方塊中核取 [Connect automatically] 核取方塊。 在 [IPv4 Settings] 索引標籤上，針對 [Method] 選擇 [Manual]，然後按一下 [Add] 按鈕。 提供 [Static IP]、[Netmask]、[Gateway] 和 [DNS 伺服器] 的詳細資料。 按一下 [Apply] 儲存詳細資料。
+**步驟 11：**在文字方塊中輸入新使用者帳戶的密碼，按一下 [Continue] \(繼續\) 按鈕
 
-    ![網路組態的設定](./media/site-recovery-how-to-install-linux-master-target/media/image9.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image10.png)
 
-10. 選取時區，然後按一下 [Next]。
+**步驟 12：**在文字方塊中確認新使用者的密碼，按一下 [Continue] \(繼續\) 按鈕
 
-    ![選取時區](./media/site-recovery-how-to-install-linux-master-target/media/image10.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image11.png)
 
-11. 輸入 [Root Password]、確認密碼，然後按一下 [Next]。
+**步驟 13：**選取預設選項 [NO] \(否\)，按 Enter 鍵
 
-    ![新增密碼](./media/site-recovery-how-to-install-linux-master-target/media/image11.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image12.png)
 
-12. 選取 [Create Custom Layout]，然後按一下 [Next]。
+**步驟 14：**如果顯示的時區正確，請選取預設選項 [YES] \(是\) 並按 Enter 鍵。
 
-    ![選取安裝類型](./media/site-recovery-how-to-install-linux-master-target/media/image12.png)
+您可以選取 [No] \(否\) 選項，以重新設定您的時區。
 
-13. 選取 [Free] 資料分割，然後按一下 [Create] 以建立 **/**、**/var/crash** 和 **/home** 資料分割，並以 **ext4** 作為檔案系統類型。 以 **swap** 作為檔案系統類型來建立**交換資料分割**。 若要配置資料分割大小，請遵循下表中的大小配置公式。
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image13.png)
 
-    > [!NOTE]
-    > Linux 主要目標伺服器不應針對根或保留儲存空間使用邏輯磁碟區管理員 (LVM)。 預設會設定 Linux 主要目標，以避免 LVM 資料分割和磁碟探索。
+**步驟 15：**從磁碟分割方法選項中選取 [Guided - Use entire disk] \(引導式 - 使用整個磁碟\) 選項，然後按 Enter 鍵。
 
-    ![資料分割名稱、資料分割大小和檔案系統類型的資料表](./media/site-recovery-how-to-install-linux-master-target/media/image13.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image14.png)
 
-14. 建立資料分割之後，按一下 [Next]。
+**步驟 16：**從 [select disk to partition] \(選取要分割的磁碟\) 選項中選擇適當的磁碟，然後按 Enter 鍵。
 
-    ![顯示所選資料分割值的對話方塊](./media/site-recovery-how-to-install-linux-master-target/media/image14.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image15.png)
 
-15. 如果找到任何早已存在的裝置，就會出現格式化的警告訊息。 按一下 [Format] 以最新的資料分割資料表將硬碟格式化。
+**步驟 17：**選擇 [YES] \(是\) 將變更寫入磁碟，然後按 Enter 鍵。
 
-    ![按一下 [Format] 按鈕以將磁碟格式化](./media/site-recovery-how-to-install-linux-master-target/media/image15.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image16.png)
 
-16. 按一下 [Write changes to disk]，對磁碟套用資料分割變更。
+**步驟 18：**選取預設選項，選取 [Continue] \(繼續\)，然後按 Enter 鍵。
 
-    ![按一下 [Write changes to disk]](./media/site-recovery-how-to-install-linux-master-target/media/image16.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image17.png)
 
-17. 勾選 [Install boot loader] 選項，然後按一下 [Next] 將開機載入器安裝在根資料分割上。
+**步驟 19：**選取適當選項以管理系統上的升級，然後按 Enter 鍵
 
-    ![將開機載入器安裝在根資料分割上](./media/site-recovery-how-to-install-linux-master-target/media/image17.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image18.png)
+
+> [!WARNING]
+> 由於 Azure Site Recovery 主要目標伺服器需要非常特定版本的 Ubuntu，因此您需要確認已停用虛擬機器核心升級。 如果啟用，任何一般升級都將導致主要目標伺服器故障。 請確定您選取 [No automatic updates] \(不自動更新\) 選項。
 
 
-18. 安裝程序隨即開始。 您可以監視進度。
+**步驟 20：**您可以預設選項繼續執行。 如果您想要使用 openSSH 進行 SSH 連線，請選取 [OpenSSH server] \(OpenSSH 伺服器\) 選項，然後選取 [Continue] \(繼續\)。
 
-    ![顯示安裝進度的對話方塊](./media/site-recovery-how-to-install-linux-master-target/media/image18.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image19.png)
 
-19. 下列畫面會顯示安裝已成功完成。 按一下 [Reboot]。
+**步驟 21：**選取選項 [YES] \(是\) 並按 Enter 鍵
 
-    ![安裝成功畫面](./media/site-recovery-how-to-install-linux-master-target/media/image19.png)
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image20.png)
+
+**步驟 22：**選擇適當的裝置 (建議是 /dev/sda) 以供開機載入器安裝，然後按 Enter 鍵。
+
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image21.png)
+
+**步驟 23：**選取 [Continue] \(繼續\) 按鈕，然後按 Enter 鍵以完成安裝。
+
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image22.png)
+
+安裝完成後， 使用新的使用者認證登入 VM (請參閱**步驟 10**)。
+
+請依照下列螢幕擷取畫面中說明的步驟設定 ROOT 使用者密碼，並以 ROOT 使用者身分登入，以進行進一步的操作。
+
+![](./media/site-recovery-how-to-install-linux-master-target/ubuntu/image23.png)
 
 
 ### <a name="post-installation-steps"></a>後續安裝步驟
@@ -176,83 +195,20 @@ ms.lasthandoff: 05/08/2017
 
     ![檢查 disk.EnableUUID 是否已存在](./media/site-recovery-how-to-install-linux-master-target/media/image21.png)
 
+#### <a name="disable-kernel-upgrades"></a>**停用核心升級**
+
+由於 Azure Site Recovery 主要目標伺服器需要非常特定版本的 Ubuntu，因此您需要確認已停用虛擬機器核心升級。 如果啟用，任何一般升級都將導致主要目標伺服器故障。 使用下列步驟停用核心升級。
+> [!IMPORTANT]
+> 要在此處置入指令碼步驟
+
 #### <a name="download-and-install-additional-packages"></a>下載並安裝其他套件
 
 > [!NOTE]
 > 請確定您有網際網路連線以便下載並安裝其他套件。 若沒有網際網路連線，則必須以手動方式尋找這些 RPM 套件並加以安裝。
 
 ```
-yum install -y xfsprogs perl lsscsi rsync wget kexec-tools
+apt-get install -y multipath-tools lsscsi python-pyasn1 lvm2 kpartx
 ```
-
-前面的命令會從 CentOS 6.6 儲存機制下載以下 15 個套件並進行安裝。 如果您無法存取網際網路，則必須下載下列 RPM 套件：
-
-
-bc-1.06.95-1.el6.x86\_64.rpm
-
-busybox-1.15.1-20.el6.x86\_64.rpm
-
-elfutils-libs-0.158-3.2.el6.x86\_64.rpm
-
-kexec-tools-2.0.0-280.el6.x86\_64.rpm
-
-lsscsi-0.23-2.el6.x86\_64.rpm
-
-lzo-2.03-3.1.el6\_5.1.x86\_64.rpm
-
-perl-5.10.1-136.el6\_6.1.x86\_64.rpm
-
-perl-Module-Pluggable-3.90-136.el6\_6.1.x86\_64.rpm
-
-perl-Pod-Escapes-1.04-136.el6\_6.1.x86\_64.rpm
-
-perl-Pod-Simple-3.13-136.el6\_6.1.x86\_64.rpm
-
-perl-libs-5.10.1-136.el6\_6.1.x86\_64.rpm
-
-perl-version-0.77-136.el6\_6.1.x86\_64.rpm
-
-rsync-3.0.6-12.el6.x86\_64.rpm
-
-snappy-1.1.0-1.el6.x86\_64.rpm
-
-wget-1.12-5.el6\_6.1.x86\_64.rpm
-
-
-#### <a name="install-additional-packages-for-specific-operating-systems"></a>針對特定作業系統安裝其他套件
-
-> [!NOTE]
-> 如果來源所保護的機器針對根目錄或開機裝置使用 ReiserFS 或 XFS 檔案系統，請下載以下額外套件並將其安裝在 Linux 主要目標上，才能提供保護。
-
-
-ReiserFS (如果在 Suse11SP3 使用。ReiserFS 不是 Suse11SP3 中的預設檔案系統)
-
-```
-cd /usr/local
-
-wget
-<http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm>
-
-wget
-<http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/reiserfs-utils-3.6.21-1.el6.elrepo.x86_64.rpm>
-
-rpm -ivh kmod-reiserfs-0.0-1.el6.elrepo.x86\_64.rpm
-reiserfs-utils-3.6.21-1.el6.elrepo.x86\_64.rpm
-```
-
-XFS (RHEL、CentOS 7 (含) 更新版本)
-
-```
-cd /usr/local
-
-wget
-<http://archive.kernel.org/centos-vault/6.6/os/x86_64/Packages/xfsprogs-3.1.1-16.el6.x86_64.rpm>
-
-rpm -ivh xfsprogs-3.1.1-16.el6.x86\_64.rpm
-
-yum install device-mapper-multipath
-```
-這是在主要目標上啟用多重路徑套件的必要做法。
 
 ### <a name="get-the-installer-for-setup"></a>取得安裝程式
 
@@ -361,12 +317,14 @@ wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz
 3. 執行下列命令來安裝主要目標伺服器，並向組態伺服器註冊伺服器。
 
     ```
-    ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i <Configuration Server IP Address> -p 443 -s y -c https -P passphrase.txt
+    ./install -q -d /usr/local/ASR -r MT -v VmWare
+    /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i <ConfigurationServer IP Address> -P passphrase.txt
     ```
 
-    範例：./install -t both -a host -R MasterTarget -d /usr/local/ASR -i 104.40.75.37 -p 443 -s y -c https -P passphrase.txt
+    範例：/usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i 104.40.75.37 -P passphrase.txt
 
     等候指令碼完成。 如果主要目標註冊成功，主要目標會列在入口網站的 [Site Recovery 基礎結構] 頁面上。
+
 
 #### <a name="install-the-master-target-by-using-interactive-install"></a>使用互動式安裝來安裝主要目標
 
@@ -380,22 +338,31 @@ wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz
 
     ![選擇主要目標的預設安裝位置](./media/site-recovery-how-to-install-linux-master-target/image17.png)
 
+安裝完成之後，您需要使用命令列來註冊組態伺服器。
 
-3. 選擇 [Global] 設定來進行設定。
+1. 記下組態伺服器的 IP 位址。 您在下一步需要用到它。
 
-    ![設定 Global 設定](./media/site-recovery-how-to-install-linux-master-target/image18.png)
+2. 執行下列命令來安裝主要目標伺服器，並向組態伺服器註冊伺服器。
 
-4. 指定組態伺服器的 IP 位址。
+    ```
+    ./install -q -d /usr/local/ASR -r MT -v VmWare
+    /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i <ConfigurationServer IP Address> -P passphrase.txt
+    ```
 
-5. 將組態伺服器的連接埠指定為 443。
+    範例：/usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i 104.40.75.37 -P passphrase.txt
 
-    ![指定組態伺服器的 IP 位址和連接埠](./media/site-recovery-how-to-install-linux-master-target/image19.png)
+    等候指令碼完成。 如果主要目標註冊成功，主要目標會列在入口網站的 [Site Recovery 基礎結構] 頁面上。
 
-6. 從組態伺服器的 C:\ProgramData\Microsoft Azure Site Recovery\private\connection.passphrase 複製組態伺服器複雜密碼，並將它貼到 [Passphrase] 方塊中。 即使在貼上文字後，該方塊仍會是空白的。
 
-7. 移至功能表中的 [Quit]。
+### <a name="upgrade-the-master-target"></a>升級主要目標
 
-8. 讓安裝和註冊完成。
+執行安裝程式。 它會自動偵測主要目標上是否已安裝代理程式。 選取 [Y] \(是\) 進行升級。 安裝程式完成之後，您可以使用下列命令來檢查所安裝的主要目標版本。
+
+    ```
+        cat /usr/local/.vx_version
+    ```
+
+您可以看到 [VERSION] \(版本\) 欄位中提供主要目標版本號碼。
 
 ### <a name="install-vmware-tools-on-the-master-target-server"></a>在主要目標伺服器上安裝 VMware 工具
 

@@ -9,7 +9,7 @@ editor: monicar
 tags: 
 ms.assetid: 
 ms.service: sql-database
-ms.custom: tutorial-develop, mvc
+ms.custom: mvc,scale out apps
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -17,10 +17,10 @@ ms.workload:
 ms.date: 05/08/2017
 ms.author: AyoOlubek
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 80df7b504d13fe1b3be9806eb95e3980d7790970
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 0aea69d86a51c38c99a72f46737de1eea27bef83
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -42,18 +42,21 @@ ms.lasthandoff: 05/10/2017
 
 如果您沒有 Azure 訂用帳戶，請在開始之前先[建立免費帳戶](https://azure.microsoft.com/free/)。
 
+## <a name="prerequisites"></a>必要條件
+
 若要完成本教學課程，請確定您具有下列項目︰
-* 在電腦上安裝 PowerShell，以及有[最新的 Azure PowerShell SDK](http://azure.microsoft.com/downloads/)。
 
-* 最新版本的 [SQL Server Management Studio (英文)](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)。 安裝 SQL Server Management Studio 時亦會安裝最新版本的 SQLPackage，此命令列公用程式可用於自動化處理資料庫開發工作的範圍。
+* 已安裝最新版本的 PowerShell 和[最新的 Azure PowerShell SDK](http://azure.microsoft.com/downloads/)
 
-* 在電腦上安裝 [Java Runtime Environment (JRE) 8 (英文)](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)，以及[最新的 JAVA Development Kit (JDK) (英文)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。 
+* 已安裝最新版本的 [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)。 安裝 SQL Server Management Studio 時亦會安裝最新版本的 SQLPackage，此命令列公用程式可用於自動化處理資料庫開發工作的範圍。
 
-* 在電腦上安裝 [Apache Maven (英文)](https://maven.apache.org/download.cgi)。 Maven 將用來協助管理相依性、建置、測試及執行範例 Java 專案。
+* 已在電腦上安裝 [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) \(英文\)，以及[最新的 JAVA Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) \(英文\)。 
+
+* 已安裝 [Apache Maven](https://maven.apache.org/download.cgi) \(英文\)。 Maven 將用來協助管理相依性、建置、測試及執行範例 Java 專案。
 
 ## <a name="set-up-data-environment"></a>設定資料環境
 
-您將為每個租用戶佈建一個資料庫。 每個租用戶一個資料庫的模型，只需一點 DevOps 成本，即可提供租用戶之間最高程度的隔離。 若要最佳化雲端資源的成本，您也要將租用戶資料庫佈建到彈性集區，讓您能最佳化一組資料庫的價格效能。 若要了解其他資料庫佈建模型，請[參閱此處](sql-database-design-patterns-multi-tenancy-saas-applications.md#multitenant-data-models)。 
+您將為每個租用戶佈建一個資料庫。 每個租用戶一個資料庫的模型，只需一點 DevOps 成本，即可提供租用戶之間最高程度的隔離。 若要最佳化雲端資源的成本，您也要將租用戶資料庫佈建到彈性集區，讓您能最佳化一組資料庫的價格效能。 若要了解其他資料庫佈建模型，請[參閱此處](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models)。
 
 遵循下列步驟來建立 SQL 伺服器和裝載所有租用戶資料庫的彈性集區。 
 
@@ -71,7 +74,7 @@ ms.lasthandoff: 05/10/2017
    
    # Store current client IP address (modify to include your IP address)
    $startIpAddress = 0.0.0.0 
-   $endIpAddress = 0.0.0.1
+   $endIpAddress = 0.0.0.0
    ```
    
 2. 登入 Azure 並建立 SQL 伺服器和彈性集區 
@@ -505,6 +508,7 @@ Remove-AzureRmSqlDatabase -ResourceGroupName "myResourceGroup" `
 使用 Java 應用程式嘗試連線到 'tenant1'。 您會收到租用戶不存在的錯誤訊息。
 
 ## <a name="next-steps"></a>後續步驟 
+
 在本教學課程中，您了解：
 > [!div class="checklist"]
 > * 使用每個租用戶一個資料庫的模式設定資料庫環境來支援多租用戶 SaaS 應用程式

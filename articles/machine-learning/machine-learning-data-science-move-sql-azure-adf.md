@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Data Factory 從內部部署 SQL Server 移動資料至 SQL Azure | Microsoft Docs"
+title: "使用 Azure Data Factory 從內部部署 SQL Server 將資料移至 SQL Azure | Microsoft Docs"
 description: "請設定 ADF 管線來編寫兩個資料移轉活動，這兩個活動會每天在內部部署及雲端中的資料庫之間一同移動資料。"
 services: machine-learning
 documentationcenter: 
@@ -14,15 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: b34362203984a368bb74395e3e9f466b086b7521
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 5d887e20a03e160df70ac4f3484da1ada4b592d2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
-# <a name="move-data-from-an-on-premise-sql-server-to-sql-azure-with-azure-data-factory"></a>使用 Azure Data Factory 從內部部署的 SQL Server 移動資料至 SQL Azure
-本主題說明如何使用 Azure Data Factory (ADF)，透過 Azure Blob 儲存體，將資料從內部部署的 SQL Server 資料庫移動至 SQL Azure Database。
+# <a name="move-data-from-an-on-premises-sql-server-to-sql-azure-with-azure-data-factory"></a>使用 Azure Data Factory 從內部部署 SQL Server 將資料移至 SQL Azure
+本主題說明如何使用 Azure Data Factory (ADF)，透過 Azure Blob 儲存體，將資料從內部部署的 SQL Server 資料庫移動至 SQL Azure 資料庫。
 
 針對將資料移至 Azure SQL Database 的各種選項，如需摘要說明的資料表，請參閱[將資料移至 Azure Machine Learning 的 Azure SQL Database](machine-learning-data-science-move-sql-azure.md)。
 
@@ -33,13 +34,13 @@ Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來�
 
 請考慮使用 ADF：
 
-* 當同時存取內部部署和雲端資源的混合式案例需要持續移轉資料時
+* 若同時存取內部部署和雲端資源的混合式案例需要持續移轉資料
 * 當資料進行交易、需要加以修改，或是在移轉期間新增了商務邏輯時。
 
 ADF 允許使用定期管理資料移動的簡易 JSON 指令碼，來進行排程和監視的工作。 ADF 也有其他功能，例如支援複雜作業。 如需 ADF 的詳細資訊，請參閱 [Azure Data Factory (ADF)](https://azure.microsoft.com/services/data-factory/)上的文件。
 
 ## <a name="scenario"></a>案例
-我們設定了 ADF 管線來組成兩個資料移轉活動。 它們每天都會一起在內部部署 SQL Database 和雲端 Azure SQL Database 之間移動資料。 這兩個活動為：
+我們設定了 ADF 管線來組成兩個資料移轉活動。 它們每天都會一起在內部部署 SQL 資料庫和雲端 Azure SQL Database 之間移動資料。 這兩個活動為：
 
 * 將資料從內部部署 SQL Server 資料庫複製到 Azure Blob 儲存體帳戶
 * 將資料從 Azure Blob 儲存體帳戶複製至 Azure SQL Database
@@ -65,13 +66,13 @@ ADF 允許使用定期管理資料移動的簡易 JSON 指令碼，來進行排�
 ## <a name="upload-data"></a> 將資料上傳至您的內部部署 SQL Server
 我們會使用 [NYC 計程車資料集](http://chriswhong.com/open-data/foil_nyc_taxi/) 示範移轉程序。 NYC 計程車資料集可在 Azure Blob 儲存體 [NYC 計程車資料](http://www.andresmh.com/nyctaxitrips/)中取得 (如該文章所述)。 該資料有兩個檔案：包含路線詳細資料的 trip_data.csv 檔案，以及包含每次車程支付車資之詳細資料的 trip_far.csv 檔案。 這些檔案的範例和說明都會在 [NYC 計程車車程資料集說明](machine-learning-data-science-process-sql-walkthrough.md#dataset)中提供。
 
-您可以將這裡提供的程序調整為自己的資料集，或者遵循上述步驟使用 NYC 計程車資料集。 若要將 NYC 計程車資料集上傳至您的內部部署 SQL Server 資料庫，請遵循 [大量匯入資料到 SQL Server 資料庫](machine-learning-data-science-process-sql-walkthrough.md#dbload)中概述的程序進行。 這些指示適用於 Azure 虛擬機器上的 SQL Server，但將資料上傳至內部部署 SQL Server 的程序是相同的。
+您可以將這裡提供的程序調整為自己的資料集，或者遵循上述步驟使用 NYC 計程車資料集。 若要將 NYC 計程車資料集上傳至您的內部部署 SQL Server 資料庫，請遵循[大量匯入資料至 SQL Server 資料庫](machine-learning-data-science-process-sql-walkthrough.md#dbload)中概述的程序進行。 這些指示適用於 Azure 虛擬機器上的 SQL Server，但將資料上傳至內部部署 SQL Server 的程序是相同的。
 
 ## <a name="create-adf"></a> 建立 Azure Data Factory
 用於建立新 Azure Data Factory 的指示及 [Azure 入口網站](https://portal.azure.com/)中的資源群組，已在[建立 Azure Data Factory](../data-factory/data-factory-build-your-first-pipeline-using-editor.md#create-data-factory) 提供。 將新的 ADF 執行個體命名為 *adfdsp*，並將建立的資源群組命名為 *adfdsprg*。
 
 ## <a name="install-and-configure-up-the-data-management-gateway"></a>安裝和設定資料管理閘道
-若要在 Azure Data Factory 中啟用管線以使用內部部署的 SQL Server，您必須將其以連結服務形式新增至 Data Factory。 若要建立內部部署 SQL Server 的連結服務，您必須︰
+若要在 Azure 資料處理站中啟用管線以使用內部部署的 SQL Server，您必須將其以連結服務形式新增至資料處理站。 若要建立內部部署 SQL Server 的連結服務，您必須︰
 
 * 將 Microsoft 資料管理閘道下載並安裝到內部部署電腦。
 * 設定內部部署資料來源的連結服務以使用閘道。
@@ -118,7 +119,7 @@ ADF 允許使用定期管理資料移動的簡易 JSON 指令碼，來進行排�
 
 資料表中的 JSON 型定義使用下列名稱：
 
-* 內部部署的 SQL Server 中的**資料表名稱**為 *nyctaxi_data*
+* 內部部署 SQL Server 中的**資料表名稱**為 *nyctaxi_data*
 * Azure Blob 儲存體帳戶中的「容器名稱」  為 *containername*  
 
 此 ADF 管線所需的三個資料表定義為：
@@ -245,12 +246,12 @@ SQL Azure 輸出的資料表定義如下 (此結構描述會對應來自 Blob �
             "name": "AMLDSProcessPipeline",
             "properties":
             {
-                "description" : "This pipeline has one Copy activity that copies data from an on-premise SQL to Azure blob",
+                "description" : "This pipeline has one Copy activity that copies data from an on-premises SQL to Azure blob",
                  "activities":
                 [
                     {
                         "name": "CopyFromSQLtoBlob",
-                        "description": "Copy data from on-premise SQL server to blob",     
+                        "description": "Copy data from on-premises SQL server to blob",     
                         "type": "CopyActivity",
                         "inputs": [ {"name": "OnPremSQLTable"} ],
                         "outputs": [ {"name": "OutputBlobTable"} ],

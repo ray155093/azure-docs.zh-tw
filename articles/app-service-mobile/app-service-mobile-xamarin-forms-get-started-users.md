@@ -3,8 +3,8 @@ title: "開始在 Xamarin.Forms 應用程式中使用 Mobile Apps 的驗證 | Mi
 description: "了解如何使用 Mobile Apps 透過眾多識別提供者驗證 Xamarin Forms 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。"
 services: app-service\mobile
 documentationcenter: xamarin
-author: adrianhall
-manager: adrianha
+author: ggailey777
+manager: syntaxc4
 editor: 
 ms.assetid: 9c55e192-c761-4ff2-8d88-72260e9f6179
 ms.service: app-service-mobile
@@ -13,12 +13,12 @@ ms.tgt_pltfrm: mobile-xamarin
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
-ms.author: adrianha
-translationtype: Human Translation
+ms.author: glenga
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 06e16033435ed0a37d5688055743875827d3aec2
 ms.openlocfilehash: 30fac48cbacb26b03ce430987997c38c68368385
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/01/2017
-
 
 ---
 # <a name="add-authentication-to-your-xamarin-forms-app"></a>將驗證新增至 Xamarin Forms 應用程式
@@ -46,58 +46,58 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
 為應用程式支援的每個平台實作 **IAuthenticate** 介面。
 
 1. 在 Visual Studio 或 Xamarin Studio 中，從名稱中有 **Portable** 的專案中開啟 App.cs，也就是可攜式類別庫專案，然後新增下列 `using` 陳述式︰
-   
+
         using System.Threading.Tasks;
 2. 在 App.cs 中，在 `App` 類別定義之前緊接著加入下列 `IAuthenticate` 介面定義。
-   
+
         public interface IAuthenticate
         {
             Task<bool> Authenticate();
         }
 3. 將下列靜態成員新增至 **App** 類別，以使用平台特定實作來初始化介面。
-   
+
         public static IAuthenticate Authenticator { get; private set; }
-   
+
         public static void Init(IAuthenticate authenticator)
         {
             Authenticator = authenticator;
         }
 4. 從可攜式類別庫專案中開啟 TodoList.xaml，在 buttonsPanel  配置項目中，將下列 *Button* 項目新增至現有按鈕後面︰
-   
+
           <Button x:Name="loginButton" Text="Sign-in" MinimumHeightRequest="30"
             Clicked="loginButton_Clicked"/>
-   
+
     此按鈕會向行動應用程式後端觸發伺服器管理的驗證。
 5. 從可攜式類別庫專案中開啟 TodoList.xaml.cs，然後將下列欄位加入至 `TodoList` 類別︰
-   
+
         // Track whether the user has authenticated.
         bool authenticated = false;
 6. 使用下列程式碼取代 **OnAppearing** 方法：
-   
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-   
+
             // Refresh items only when authenticated.
             if (authenticated == true)
             {
                 // Set syncItems to true in order to synchronize the data
                 // on startup when running in offline mode.
                 await RefreshItems(true, syncItems: false);
-   
+
                 // Hide the Sign-in button.
                 this.loginButton.IsVisible = false;
             }
         }
-   
+
     此程式碼可確保只有在您通過驗證之後，才會從服務重新整理資料。
 7. 將下列有關 **Clicked** 事件的處理常式新增至 **TodoList** 類別︰
-   
+
         async void loginButton_Clicked(object sender, EventArgs e)
         {
             if (App.Authenticator != null)
                 authenticated = await App.Authenticator.Authenticate();
-   
+
             // Set syncItems to true to synchronize the data on startup when offline is enabled.
             if (authenticated == true)
                 await RefreshItems(true, syncItems: false);
@@ -110,17 +110,17 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
 1. 在 Visual Studio 或 Xamarin Studio 中，以滑鼠右鍵按一下 **droid** 專案，然後按一下 [設定為啟始專案]。
 2. 按下 F5 在偵錯工具中啟動專案，然後確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。 產生 401 代碼是因為只有獲授權的使用者才能存取後端。
 3. 開啟 Android 專案中的 MainActivity.cs，然後加入下列 `using` 陳述式：
-   
+
         using Microsoft.WindowsAzure.MobileServices;
         using System.Threading.Tasks;
 4. 更新 **MainActivity** 類別來實作 **IAuthenticate** 介面，如下所示︰
-   
+
         public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity, IAuthenticate
 5. 更新 **MainActivity** 類別，新增 **IAuthenticate** 介面所需的 **MobileServiceUser** 欄位和 **Authenticate** 方法，如下所示︰
-   
+
         // Define a authenticated user.
         private MobileServiceUser user;
-   
+
         public async Task<bool> Authenticate()
         {
             var success = false;
@@ -141,23 +141,23 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
             {
                 message = ex.Message;
             }
-   
+
             // Display the success or failure message.
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.SetMessage(message);
             builder.SetTitle("Sign-in result");
             builder.Create().Show();
-   
+
             return success;
         }
 
     如果您使用 Facebook 以外的識別提供者，請為 [MobileServiceAuthenticationProvider][7]選擇不同的值。
 
 1. 在 **MainActivity** 類別的 **OnCreate** 方法中，在呼叫 `LoadApplication()` 之前新增下列程式碼：
-   
+
         // Initialize the authenticator before loading the app.
         App.Init((IAuthenticate)this);
-   
+
     此程式碼可確保在應用程式載入之前初始化驗證器。
 2. 重新建置應用程式，執行它，然後以您選擇的驗證提供者登入，並確認您能夠以已驗證的使用者身分存取資料表。
 
@@ -167,17 +167,17 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
 1. 在 Visual Studio 或 Xamarin Studio 中，以滑鼠右鍵按一下 **iOS** 專案，然後按一下 [設定為啟始專案]。
 2. 按下 F5 在偵錯工具中啟動專案，然後確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。 產生 401 回應是因為只有獲授權的使用者才能存取後端。
 3. 開啟 iOS 專案中的 AppDelegate.cs，然後加入下列 `using` 陳述式：
-   
+
         using Microsoft.WindowsAzure.MobileServices;
         using System.Threading.Tasks;
 4. 更新 **AppDelegate** 類別來實作 **IAuthenticate** 介面，如下所示︰
-   
+
         public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, IAuthenticate
 5. 更新 **AppDelegate** 類別，新增 **IAuthenticate** 介面所需的 **MobileServiceUser** 欄位和 **Authenticate** 方法，如下所示︰
-   
+
         // Define a authenticated user.
         private MobileServiceUser user;
-   
+
         public async Task<bool> Authenticate()
         {
             var success = false;
@@ -201,19 +201,19 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
             {
                message = ex.Message;
             }
-   
+
             // Display the success or failure message.
             UIAlertView avAlert = new UIAlertView("Sign-in result", message, null, "OK", null);
             avAlert.Show();
-   
+
             return success;
         }
-   
+
     如果您使用 Facebook 以外的識別提供者，請為 [MobileServiceAuthenticationProvider] 選擇不同的值。
 6. 在 **FinishedLaunching** 方法中，在呼叫 `LoadApplication()` 之前新增下面這行程式碼：
-   
+
         App.Init(this);
-   
+
     此程式碼可確保在應用程式載入之前初始化驗證器。
 7. 重新建置應用程式，執行它，然後以您選擇的驗證提供者登入，並確認您能夠以已驗證的使用者身分存取資料表。
 
@@ -223,26 +223,26 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
 1. 在 Visual Studio 中，以滑鼠右鍵按一下 **WinApp** 或 **WinPhone81** 專案，然後按一下 [設定為啟始專案]。
 2. 按下 F5 在偵錯工具中啟動專案，然後確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。 發生 401 回應是因為只有獲授權的使用者才能存取後端。
 3. 開啟 Windows 應用程式專案的 MainPage.xaml.cs，然後加入下列 `using` 陳述式：
-   
+
         using Microsoft.WindowsAzure.MobileServices;
         using System.Threading.Tasks;
         using Windows.UI.Popups;
         using <your_Portable_Class_Library_namespace>;
-   
+
     以您的可攜式類別庫的命名空間取代 `<your_Portable_Class_Library_namespace>` 。
 4. 更新 **MainPage** 類別來實作 **IAuthenticate** 介面，如下所示︰
-   
+
         public sealed partial class MainPage : IAuthenticate
 5. 更新 **MainPage** 類別，新增 **IAuthenticate** 介面所需的 **MobileServiceUser** 欄位和 **Authenticate** 方法，如下所示︰
-   
+
         // Define a authenticated user.
         private MobileServiceUser user;
-   
+
         public async Task<bool> Authenticate()
         {
             string message = string.Empty;
             var success = false;
-   
+
             try
             {
                 // Sign in with Facebook login using a server-managed flow.
@@ -256,41 +256,41 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
                         message = string.Format("You are now signed-in as {0}.", user.UserId);
                     }
                 }
-   
+
             }
             catch (Exception ex)
             {
                 message = string.Format("Authentication Failed: {0}", ex.Message);
             }
-   
+
             // Display the success or failure message.
             await new MessageDialog(message, "Sign-in result").ShowAsync();
-   
+
             return success;
         }
 
     如果您使用 Facebook 以外的識別提供者，請為 [MobileServiceAuthenticationProvider] 選擇不同的值。
 
 1. 在 **MainPage** 類別的建構函式中，在呼叫 `LoadApplication()` 之前新增下面這行程式碼：
-   
+
         // Initialize the authenticator before loading the app.
         <your_Portable_Class_Library_namespace>.App.Init(this);
-   
+
     以您的可攜式類別庫的命名空間取代 `<your_Portable_Class_Library_namespace>` 。
-   
+
     如果您要修改 WinApp 專案，請跳到步驟 8。 下一個步驟只適用於 WinPhone81 專案，其中，您需要完成登入回呼。
 2. (選擇性) 在 **WinPhone81** 專案中，開啟 App.xaml.cs，然後新增下列 `using` 陳述式：
-   
+
         using Microsoft.WindowsAzure.MobileServices;
         using <your_Portable_Class_Library_namespace>;
-   
+
     以您的可攜式類別庫的命名空間取代 `<your_Portable_Class_Library_namespace>` 。
 3. 如果您使用 **WinPhone81** 或 **WinApp**，請將下列 **OnActivated** 方法覆寫新增至 **App** 類別：
-   
+
        protected override void OnActivated(IActivatedEventArgs args)
        {
            base.OnActivated(args);
-   
+
            // We just need to handle activation that occurs after web authentication.
            if (args.Kind == ActivationKind.WebAuthenticationBrokerContinuation)
            {
@@ -299,7 +299,7 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
                client.LoginComplete(args as WebAuthenticationBrokerContinuationEventArgs);
            }
        }
-   
+
    當此方法覆寫已存在時，請新增上述程式碼片段中的條件式程式碼。  通用 Windows 專案不需要此程式碼。
 4. 重新建置應用程式，執行它，然後以您選擇的驗證提供者登入，並確認您能夠以已驗證的使用者身分存取資料表。
 
@@ -307,10 +307,10 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
 現在您已經完成了這個基本驗證的教學課程，可以考慮繼續進行下列其中一個教學課程：
 
 * [將推播通知新增至應用程式](app-service-mobile-xamarin-forms-get-started-push.md)
-  
+
   了解如何將推播通知支援新增至應用程式，並設定行動應用程式後端以使用 Azure 通知中樞傳送推播通知。
 * [啟用應用程式的離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md)
-  
+
   了解如何使用行動應用程式後端，將離線支援新增至應用程式。 離線同步處理可讓使用者與行動應用程式進行互動 (檢視、新增或修改資料)，即使沒有網路連接也可以。
 
 <!-- Images. -->

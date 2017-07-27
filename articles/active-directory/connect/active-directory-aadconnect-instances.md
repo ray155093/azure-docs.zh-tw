@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 07/12/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: ce4d51c4ed38645ee81325404ff7214f845d5bf0
-ms.openlocfilehash: 317f3be6cb39da7c7c57f7f368c750672609726e
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 37df8d66d0a3ce738db2960d4283bdc672fb0fc4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/04/2017
 
 ---
 # <a name="azure-ad-connect-special-considerations-for-instances"></a>Azure AD Connect：執行個體的特殊考量
@@ -38,7 +39,7 @@ Microsoft Cloud Germany 目前沒有的功能︰
 
 * 無法使用 **Azure AD Connect Health**。
 * 無法使用「自動更新」。
-* 無法使用「密碼回寫」。
+* **密碼回寫**適用於 Azure AD Connect 1.1.570.0 預覽版本和更新的版本。
 * 無法使用其他 Azure AD Premium 服務。
 
 ## <a name="microsoft-azure-government-cloud"></a>Microsoft Azure Government 雲端
@@ -49,6 +50,7 @@ Microsoft Cloud Germany 目前沒有的功能︰
 | 要在 Proxy 伺服器中開啟的 URL |
 | --- |
 | \*.microsoftonline.com |
+| \*.microsoftonline.us |
 | \*.gov.us.microsoftonline.com |
 | +憑證撤銷清單 |
 
@@ -63,14 +65,9 @@ Microsoft Azure Government 雲端目前沒有的功能︰
 
 * 無法使用 **Azure AD Connect Health**。
 * 無法使用「自動更新」。
-* 無法使用「密碼回寫」。
+* **密碼回寫**適用於 Azure AD Connect 1.1.570.0 預覽版本和更新的版本。
 * 無法使用其他 Azure AD Premium 服務。
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2017
 ms.author: 
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 08da5407cc5ddceeba21a558dc0de1008a566bab
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
+ms.openlocfilehash: 09fc9021e8dfb910d1a81178434ca2e27c0bacf7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/23/2017
 
 
 ---
@@ -37,4 +38,4 @@ ms.lasthandoff: 04/03/2017
 
 多重執行個體更新 (可用性設定組中的 VM) 一次只會套用到一個更新網域。
 
-在虛擬機器中執行的應用程式，可以透過呼叫中繼資料服務排定的事件，來了解即將發行的更新。 如需排定的事件的詳細資訊，請參閱 [Azure 中繼資料服務 - 排定的事件](../virtual-machines-scheduled-events.md)。
+這些更新對某些應用程式的影響可能比對其他應用程式更大。 例如，執行即時事件處理、媒體串流處理或轉碼，或是高輸送量網路服務案例的應用程式，其設計可能不會容許暫停 30 秒。 在虛擬機器中執行的應用程式，可以透過呼叫 [Azure 中繼資料服務](../virtual-machines-instancemetadataservice-overview.md)的[排程的事件](../virtual-machines-scheduled-events.md) API，來了解即將發行的更新。

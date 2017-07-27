@@ -12,13 +12,14 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 10/31/2016
+ms.date: 6/5/2016
 ms.custom: loading
 ms.author: cakarst;barbkess
-translationtype: Human Translation
-ms.sourcegitcommit: 1a82f9f1de27c9197bf61d63dd27c5191fec1544
-ms.openlocfilehash: 3e1bf2372762de474310c78d512a6a073c7a01b6
-ms.lasthandoff: 01/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 6938b92d8e5b46d908dc5b2155bdfdc89bb1dc8c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 
@@ -119,60 +120,19 @@ WHERE
     AND DateRequested > '12/31/2013'
     AND DateRequested < '01/01/2015';
 ```
+## <a name="isolate-loading-users"></a>隔離載入使用者
+通常會需要多個使用者可將資料載入 SQL DW 中。 因為 [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] 需要資料庫的 CONTROL 權限，您將得到具有所有結構描述之控制存取的多個使用者。 若要限制這種情況，您可以使用 DENY CONTROL 陳述式。
 
+範例：考慮將資料庫結構描述 schema_A 用於 dept A 以及 schema_B 用於 dept B，讓資料庫使用者 user_A 和 user_B 個別成為 dept A 及 B 中載入的 PolyBase 之使用者。 這兩個使用者皆已獲得 CONTROL 資料庫權限。
+結構描述 A 和 B 的建立者現在是使用 DENY 鎖定其結構描述：
 
-## <a name="working-around-the-polybase-utf-8-requirement"></a>解決 PolyBase UTF-8 需求
-現在 PolyBase 支援載入以 UTF-8 編碼的資料檔案。 因為 UTF-8 使用與 ASCII 相同的字元編碼，PolyBase 也支援載入 ASCII 編碼的資料。 不過，PolyBase 不支援其他字元編碼，例如 UTF-16 / Unicode 或延伸的 ASCII 字元。 延伸的 ASCII 包括具有重音符號的字元，例如德文常見的母音變化。
+```sql
+   DENY CONTROL ON SCHEMA :: schema_A TO user_B;
+   DENY CONTROL ON SCHEMA :: schema_B TO user_A;
+```   
+ 在此情況下，user_A 和 user_B 現在應該從其他部門的結構描述加以鎖定。
+ 
 
-若要解決這項需求的最佳解答是重新撰寫為 UTF-8 編碼。
-
-有數種方法能完成這項操作： 以下是使用 Powershell 的兩種方法：
-
-### <a name="simple-example-for-small-files"></a>簡單的小檔案範例
-以下是一行會建立檔案的簡單 Powershell 指令碼。
-
-```PowerShell
-Get-Content <input_file_name> -Encoding Unicode | Set-Content <output_file_name> -Encoding utf8
-```
-
-不過，儘管將資料重新編碼的方法非常簡單，但絕非最有效率的作法。 下列的 io 資料流範例快得多很多，並可達到相同的結果。
-
-### <a name="io-streaming-example-for-larger-files"></a>較大檔案的 IO 資料流處理範例
-下列程式碼範例更為複雜，但在資料流處理來自來源的資料至目標的資料列時更具效率。 應用此方法在較大的檔案上。
-
-```PowerShell
-#Static variables
-$ascii = [System.Text.Encoding]::ASCII
-$utf16le = [System.Text.Encoding]::Unicode
-$utf8 = [System.Text.Encoding]::UTF8
-$ansi = [System.Text.Encoding]::Default
-$append = $False
-
-#Set source file path and file name
-$src = [System.IO.Path]::Combine("C:\input_file_path\","input_file_name.txt")
-
-#Set source file encoding (using list above)
-$src_enc = $ansi
-
-#Set target file path and file name
-$tgt = [System.IO.Path]::Combine("C:\output_file_path\","output_file_name.txt")
-
-#Set target file encoding (using list above)
-$tgt_enc = $utf8
-
-$read = New-Object System.IO.StreamReader($src,$src_enc)
-$write = New-Object System.IO.StreamWriter($tgt,$append,$tgt_enc)
-
-while ($read.Peek() -ne -1)
-{
-    $line = $read.ReadLine();
-    $write.WriteLine($line);
-}
-$read.Close()
-$read.Dispose()
-$write.Close()
-$write.Dispose()
-```
 
 ## <a name="next-steps"></a>後續步驟
 若要了解將資料移到 SQL 資料倉儲的詳細資訊，請參閱 [資料移轉概觀][data migration overview]。

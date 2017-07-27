@@ -28,5 +28,5 @@
 ## [Azure 串流分析](/azure/stream-analytics/)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=internet-of-things)
 ## [價格](https://azure.microsoft.com/pricing/details/time-series-insights/)

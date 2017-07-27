@@ -14,11 +14,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: 91b138ee9590a66c63e2055eaeace82b4e719ae5
-ms.lasthandoff: 01/24/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 0425da20f3f0abcfa3ed5c04cec32184210546bb
+ms.openlocfilehash: 0aeb02c8a07728cd17aa937614c5c20dd0bf102b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="amqp-10-support-in-service-bus"></a>服務匯流排中的 AMQP 1.0 支援
@@ -90,16 +90,12 @@ Azure 服務匯流排中的 AMQP 1.0 支援代表您現在能夠從一組平台�
 
 * [搭配使用 .NET 的服務匯流排與 AMQP]
 * [搭配使用 Java 的服務匯流排與 AMQP]
-* [搭配使用 Python 的服務匯流排與 AMQP]
-* [搭配使用 PHP 的服務匯流排與 AMQP]
 * [在 Azure Linux VM 上安裝 Apache Qpid Proton-C]
 * [Windows Server 服務匯流排中的 AMQP]
 
 [0]: ./media/service-bus-amqp-overview/service-bus-amqp-1.png
 [搭配使用 .NET 的服務匯流排與 AMQP]: service-bus-amqp-dotnet.md
 [搭配使用 Java 的服務匯流排與 AMQP]: service-bus-amqp-java.md
-[搭配使用 Python 的服務匯流排與 AMQP]: service-bus-amqp-python.md
-[搭配使用 PHP 的服務匯流排與 AMQP]: service-bus-amqp-php.md
 [在 Azure Linux VM 上安裝 Apache Qpid Proton-C]: service-bus-amqp-apache.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 

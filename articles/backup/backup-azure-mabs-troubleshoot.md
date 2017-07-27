@@ -12,12 +12,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 3/24/2017
+ms.date: 06/08/2017
 ms.author: pullabhk;markgal;
-translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: a42488d618c58b36fa8105c1b22fd32ca615d1b1
-ms.lasthandoff: 03/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: a8df63821af039b7a5ad34f065423701485ee7d8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/08/2017
 
 
 ---
@@ -26,13 +27,18 @@ ms.lasthandoff: 03/27/2017
 
 您可以針對使用 Azure 備份伺服器搭配下表列出的資訊時所發生的錯誤進行疑難排解。
 
->
->
+
+## <a name="installation-issues"></a>安裝問題
+
+| 作業 | 錯誤詳細資料 | 因應措施 |
+|-----------|---------------|------------|
+|安裝 | 安裝程式無法更新登錄中繼資料。 此更新失敗會導致儲存體過度耗用。 若要避免此問題，請更新 ReFS Trimming 登錄項目。 | 調整登錄機碼 SYSTEM\CurrentControlSet\Control\FileSystem\RefsEnableInlineTrim。 將 Dword 值設為 1。 |
+|安裝 | 安裝程式無法更新登錄中繼資料。 此更新失敗會導致儲存體過度耗用。 若要避免此問題，請更新 Volume SnapOptimization 登錄項目。 | 使用空白字串值建立登錄機碼 SOFTWARE\Microsoft Data Protection Manager\Configuration\VolSnapOptimization\WriteIds。 |
 
 ## <a name="registration-and-agent-related-issues"></a>註冊與代理程式相關問題
 | 作業 | 錯誤詳細資料 | 因應措施 |
 | --- | --- | --- |
-| 註冊至保存庫 | 提供的保存庫認證無效。 檔案可能損毀或沒有復原服務所關聯的最新認證 | 若要修正此錯誤： <ol><li> 從保存庫下載最新的認證檔案，然後再試一次 <br>(或)</li> <li> 如果上述動作沒有用，請嘗試將認證下載至不同的本機目錄，或建立新的保存庫 <br>(或)</li> <li> 如[這個部落格](https://azure.microsoft.com/blog/troubleshooting-common-configuration-issues-with-azure-backup/)所述嘗試更新日期和時間設定 <br>(或)</li> <li> 檢查 c:\windows\temp 是否有超過 65000 個檔案。 將過時檔案移至另一個位置，或刪除暫存資料夾中的項目 <br>(或)</li> <li> 檢查憑證的狀態 <br> a. 開啟 [管理電腦憑證] (在控制台中) <br> b. 展開 [個人] 節點和它的子節點 [憑證] <br> c.  移除 [Windows Azure 工具] 憑證 <br> d. 在 Azure 備份用戶端中重試註冊 <br> (或) </li> <li> 檢查是否已備有任何群組原則 </li></ol> |
+| 註冊至保存庫 | 提供的保存庫認證無效。 檔案可能損毀或沒有復原服務所關聯的最新認證 | 若要修正此錯誤： <ol><li> 從保存庫下載最新的認證檔案，然後再試一次 <br>(或)</li> <li> 如果上述動作沒有用，請嘗試將認證下載至不同的本機目錄，或建立新的保存庫 <br>(或)</li> <li> 如[這個部落格](https://azure.microsoft.com/blog/troubleshooting-common-configuration-issues-with-azure-backup/)所述嘗試更新日期和時間設定 <br>(或)</li> <li> 檢查 c:\windows\temp 是否有超過 65000 個檔案。 將過時檔案移至另一個位置，或刪除暫存資料夾中的項目 <br>(或)</li> <li> 檢查憑證的狀態 <br> a. 開啟 [管理電腦憑證] \(在控制台中) <br> b. 展開 [個人] 節點和它的子節點 [憑證] <br> c.  移除 [Windows Azure 工具] 憑證 <br> d. 在 Azure 備份用戶端中重試註冊 <br> (或) </li> <li> 檢查是否已備有任何群組原則 </li></ol> |
 | 將代理程式推送至受保護的伺服器 | 代理程式作業因為 \<ServerName> 上的 DPM 代理程式協調員服務發生通訊錯誤而失敗 | **如果產品所示的建議動作沒有用**， <ol><li> 如果您要連結來自不受信任網域的電腦，請遵循[這些](https://technet.microsoft.com/library/hh757801(v=sc.12).aspx)步驟 <br> (或) </li><li> 如果您要連結來自受信任網域的電腦，請使用[這個部落格](https://blogs.technet.microsoft.com/dpm/2012/02/06/data-protection-manager-agent-network-troubleshooting/)中概述的步驟進行疑難排解 <br>(或)</li><li> 嘗試停用防毒來作為疑難排解步驟。 如果這能解決問題，請修改 [這篇文章] (https://technet.microsoft.com/library/hh757911.aspx) 中建議的防毒設定</li></ol> |
 | 將代理程式推送至受保護的伺服器 | 為伺服器指定的認證無效 | **如果產品所示的建議動作沒有用**， <br> 嘗試手動將保護代理程式安裝在[這篇文章](https://technet.microsoft.com/library/hh758186(v=sc.12).aspx#BKMK_Manual)所指定的生產伺服器上|
 
@@ -43,6 +49,7 @@ ms.lasthandoff: 03/27/2017
 | 設定保護群組 | DPM 無法列舉受保護電腦 (受保護的電腦名稱) 上的應用程式元件 | 在相關的資料來源/元件層級按一下設定保護群組 UI 畫面上的 [重新整理] |
 | 設定保護群組 | 無法設定保護 | 如果受保護的伺服器是 SQL Server，請檢查是否以將 sysadmin 角色權限提供給[這篇文章](https://technet.microsoft.com/library/hh757977(v=sc.12).aspx)中所述之受保護電腦上的系統帳戶 (NTAuthority\System)
 | 設定保護群組 | 此保護群組在儲存體集區中沒有足夠的可用空間 | 新增至儲存體集區的磁碟[不應包含磁碟分割](https://technet.microsoft.com/library/hh758075(v=sc.12).aspx)。 刪除磁碟上的任何現有磁碟區，然後將它新增到儲存體集區|
+| 原則變更 |無法修改備份原則。 錯誤：由於發生內部服務錯誤 [0x29834]，導致目前的作業失敗。 請稍後再重試操作。 如果問題持續發生， 請連絡 Microsoft 支援服務。 |**原因：**<br/>當安全性設定已啟用，而您嘗試將保留範圍縮減至低於上面指定的最小值，且您使用不受支援的版本 (低於 MAB 2.0.9052 版和 Azure 備份伺服器更新 1) 時，就會出現此錯誤。 <br/>**建議的動作：**<br/> 在此情況下，您應該將保留期限設定為高於指定的最小保留期限 (若是每日則 7 天、若是每週則 4 週、若是每月則 3 個月，若是每年則 1 年)，以繼續進行與原則有關的更新。 (選擇性) 較好的方法是更新備份代理程式和 Azure 備份伺服器，以利用所有安全性更新。 |
 
 ## <a name="backup"></a>備份
 | 作業 | 錯誤詳細資料 | 因應措施 |
@@ -54,4 +61,10 @@ ms.lasthandoff: 03/27/2017
 | 備份 | 線上復原點建立失敗 | 如果錯誤訊息指出「未設定此伺服器的加密複雜密碼。 請設定加密複雜密碼」，請嘗試設定加密複雜密碼。 如果作業失敗， <br> <ol><li>請檢查暫存位置是否存在。 名稱為 “ScratchLocation” 之登錄 HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Azure Backup\Config 中所提到的位置應該要存在。</li><li> 如果暫存位置存在，請嘗試使用舊的複雜密碼重新註冊。 **每當您設定加密複雜密碼時，請將它儲存在安全的位置**</li><ol>
 | 備份 | BMR 的備份失敗 | 如果 BMR 大小很大，請將一些應用程式檔案移到作業系統磁碟機後再重試 |
 | 備份 | 存取檔案/共用資料夾時發生錯誤 | 請嘗試依[這裡](https://technet.microsoft.com/library/hh757911.aspx)的建議修改防毒設定|
+
+## <a name="change-passphrase"></a>變更複雜密碼
+| 作業 | 錯誤詳細資料 | 因應措施 |
+| --- | --- | --- |
+| 變更複雜密碼 |輸入的安全性 PIN 碼不正確。 請提供正確的安全性 PIN 碼以完成此作業。 |**原因：**<br/> 當您在執行重要作業 (例如變更複雜密碼) 時輸入無效或已到期的安全性 PIN 碼時，就會出現此錯誤。 <br/>**建議的動作：**<br/> 若要完成作業，您必須輸入有效的安全性 PIN 碼。 若要取得 PIN 碼，請登入 Azure 入口網站，並瀏覽至 [復原服務保存庫] > [設定] > [屬性] > [產生安全性 PIN 碼]。 請使用這個 PIN 碼來變更複雜密碼。 |
+| 變更複雜密碼 |作業失敗。 識別碼：120002 |**原因：**<br/>當安全性設定已啟用，而您嘗試變更複雜密碼，且您使用不受支援的版本時，就會出現此錯誤。<br/>**建議的動作：**<br/> 若要變更複雜密碼，您必須先將備份代理程式至少更新為最低版本 2.0.9052，並將 Azure 備份伺服器至少更新為更新 1，然後輸入有效的安全性 PIN 碼。 若要取得 PIN 碼，請登入 Azure 入口網站，並瀏覽至 [復原服務保存庫] > [設定] > [屬性] > [產生安全性 PIN 碼]。 請使用這個 PIN 碼來變更複雜密碼。 |
 

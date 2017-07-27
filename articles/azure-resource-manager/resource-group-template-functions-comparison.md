@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/26/2017
+ms.date: 06/13/2017
 ms.author: tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 7f19efa7e09b0dce43851019f94285b2887c46d5
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: d993bd5cae5fa2f0a6eda999c95b10bd1c268be2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
-
+ms.lasthandoff: 07/21/2017
 
 ---
 # <a name="comparison-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 範本的比較函式
@@ -46,7 +45,30 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 | arg1 |是 |整數、字串、陣列或物件 |要檢查是否相等的第一個值。 |
 | arg2 |是 |整數、字串、陣列或物件 |要檢查是否相等的第二個值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+如果值相等則傳回 **True**，否則會傳回 **False**。
+
+### <a name="remarks"></a>備註
+
+equals 函式通常會搭配 `condition` 元素，用來測試是否已部署資源。
+
+```json
+{
+    "condition": "[equals(parameters('newOrExisting'),'new')]",
+    "type": "Microsoft.Storage/storageAccounts",
+    "name": "[variables('storageAccountName')]",
+    "apiVersion": "2017-06-01",
+    "location": "[resourceGroup().location]",
+    "sku": {
+        "name": "[variables('storageAccountType')]"
+    },
+    "kind": "Storage",
+    "properties": {}
+}
+```
+
+### <a name="example"></a>範例
 
 範本範例會檢查不同類型的值是否相等。 所有預設值都會傳回 True。
 
@@ -111,9 +133,14 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-如果值相等則傳回 **True**，否則會傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| checkInts | Bool | True |
+| checkStrings | Bool | True |
+| checkArrays | Bool | True |
+| checkObjects | Bool | True |
 
 <a id="less" />
 
@@ -129,7 +156,11 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 | arg1 |是 |整數或字串 |用於小於比較的第一個值。 |
 | arg2 |是 |整數或字串 |用於小於比較的第二個值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+如果第一個值小於第二個值則傳回 **True**，否則傳回 **False**。
+
+### <a name="example"></a>範例
 
 範本範例會檢查某個值是否小於另一個值。
 
@@ -139,16 +170,20 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
     "contentVersion": "1.0.0.0",
     "parameters": {
         "firstInt": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 1
         },
         "secondInt": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 2
         },
         "firstString": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "A"
         },
         "secondString": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "a"
         }
     },
     "resources": [
@@ -166,9 +201,12 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-如果第一個值小於第二個值則傳回 **True**，否則傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| checkInts | Bool | True |
+| checkStrings | Bool | False |
 
 <a id="lessorequals" />
 
@@ -184,7 +222,11 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 | arg1 |是 |整數或字串 |用於小於或等於比較的第一個值。 |
 | arg2 |是 |整數或字串 |用於小於或等於比較的第二個值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+如果第一個值小於或等於第二個值則傳回 **True**，否則傳回 **False**。
+
+### <a name="example"></a>範例
 
 範本範例會檢查某個值是否小於或等於另一個值。
 
@@ -194,16 +236,20 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
     "contentVersion": "1.0.0.0",
     "parameters": {
         "firstInt": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 1
         },
         "secondInt": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 2
         },
         "firstString": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "A"
         },
         "secondString": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "a"
         }
     },
     "resources": [
@@ -221,9 +267,12 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-如果第一個值小於或等於第二個值則傳回 **True**，否則傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| checkInts | Bool | True |
+| checkStrings | Bool | False |
 
 <a id="greater" />
 
@@ -239,7 +288,11 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 | arg1 |是 |整數或字串 |用於大於比較的第一個值。 |
 | arg2 |是 |整數或字串 |用於大於比較的第二個值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+如果第一個值大於第二個值則傳回 **True**，否則傳回 **False**。
+
+### <a name="example"></a>範例
 
 範本範例會檢查某個值是否大於另一個值。
 
@@ -249,16 +302,20 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
     "contentVersion": "1.0.0.0",
     "parameters": {
         "firstInt": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 1
         },
         "secondInt": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 2
         },
         "firstString": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "A"
         },
         "secondString": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "a"
         }
     },
     "resources": [
@@ -276,9 +333,12 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-如果第一個值大於第二個值則傳回 **True**，否則傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| checkInts | Bool | False |
+| checkStrings | Bool | True |
 
 <a id="greaterorequals" />
 
@@ -294,7 +354,11 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 | arg1 |是 |整數或字串 |用於大於或等於比較的第一個值。 |
 | arg2 |是 |整數或字串 |用於大於或等於比較的第二個值。 |
 
-### <a name="examples"></a>範例
+### <a name="return-value"></a>傳回值
+
+如果第一個值大於或等於第二個值則傳回 **True**，否則傳回 **False**。
+
+### <a name="example"></a>範例
 
 範本範例會檢查某個值是否大於或等於另一個值。
 
@@ -304,16 +368,20 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
     "contentVersion": "1.0.0.0",
     "parameters": {
         "firstInt": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 1
         },
         "secondInt": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 2
         },
         "firstString": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "A"
         },
         "secondString": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "a"
         }
     },
     "resources": [
@@ -331,9 +399,13 @@ Resource Manager 提供了幾個用來在範本中進行比較的函式。
 }
 ```
 
-### <a name="return-value"></a>傳回值
+先前範例中具有預設值的輸出如下：
 
-如果第一個值大於或等於第二個值則傳回 **True**，否則傳回 **False**。
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| checkInts | Bool | False |
+| checkStrings | Bool | True |
+
 
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 Azure Resource Manager 範本中各區段的說明，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。

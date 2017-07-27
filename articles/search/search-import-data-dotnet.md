@@ -1,5 +1,5 @@
 ---
-title: "使用 .NET SDK 在 Azure 搜尋服務中上傳資料 | Microsoft Docs"
+title: "上傳資料 (.NET - Azure 搜尋服務) | Microsoft Docs"
 description: "了解如何使用 .NET SDK 將資料上傳至 Azure 搜尋服務中的索引。"
 services: search
 documentationcenter: 
@@ -15,10 +15,11 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 01/13/2017
 ms.author: brjohnst
-translationtype: Human Translation
-ms.sourcegitcommit: 1f06a7197cc1a6dcf7a39c91183a4317bef126bb
-ms.openlocfilehash: 3c8f30583ebcb5b4e4182bd2770079882c088c50
-
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: bdd952869143c6ca6374bb9264db5bcba1f32b50
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="upload-data-to-azure-search-using-the-net-sdk"></a>使用 .NET SDK 將資料上傳到 Azure 搜尋服務
@@ -33,7 +34,8 @@ ms.openlocfilehash: 3c8f30583ebcb5b4e4182bd2770079882c088c50
 
 在開始閱讀本逐步解說前，請先 [建立好 Azure 搜尋服務索引](search-what-is-an-index.md)。 本文也假設您已建立 `SearchServiceClient` 物件，如 [使用 .NET SDK 建立 Azure 搜尋服務索引](search-create-index-dotnet.md#CreateSearchServiceClient)中所示。
 
-請注意，本文中的所有範例程式碼均以 C# 撰寫。 您可以 [在 GitHub](http://aka.ms/search-dotnet-howto)找到完整的原始程式碼。
+> [!NOTE]
+> 本文中的所有範例程式碼均以 C# 撰寫。 您可以 [在 GitHub](http://aka.ms/search-dotnet-howto)找到完整的原始程式碼。 您也可以閱讀 [Azure 搜尋服務 .NET SDK](search-howto-dotnet-sdk.md)，以取得更詳細的範例程式碼逐步說明。
 
 若要使用 .NET SDK 將文件發送到您的索引中，您必須：
 
@@ -236,10 +238,5 @@ public partial class Hotel
 
 ## <a name="next-steps"></a>後續步驟
 在填入 Azure 搜尋服務索引後，您就可以開始發出查詢來搜尋文件。 如需詳細資料，請參閱 [查詢 Azure 搜尋服務索引](search-query-overview.md) 。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

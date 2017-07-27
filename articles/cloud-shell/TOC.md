@@ -15,4 +15,4 @@
 # 參考
 ## [Azure CLI 2.0](/cli/azure) 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=monitoring-management)

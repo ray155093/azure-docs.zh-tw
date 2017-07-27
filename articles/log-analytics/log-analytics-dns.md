@@ -12,18 +12,20 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/18/2017
+ms.date: 06/07/2017
 ms.author: banders
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: e15ac73051297665a2880a7818273e304d539624
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: 1b2f9c3fc59a83b384a63db00d2d039cab8679e8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
 
 # <a name="gather-insights-about-your-dns-infrastructure-with-the-dns-analytics-preview-solution"></a>收集搭配 DNS 分析預覽版解決方案使用 DNS 基礎結構的深入解析
+
+![DNS 分析符號](./media/log-analytics-dns/dns-analytics-symbol.png)
 
 本文描述如何在 Log Analytics 中設定並使用 Azure DNS 分析解決方案，以收集關於 Azure DNS 基礎結構在安全性、效能及作業方面的深入解析。
 
@@ -155,7 +157,7 @@ DNS 分析可協助您︰
 - **未使用的資源記錄**。 顯示所有未使用/過時資源記錄的清單。 此清單包含資源記錄名稱、資源記錄類型、相關聯的 DNS 伺服器、記錄產生時間和區域名稱。 您可以使用此清單來找出不再使用的 DNS 資源記錄。 根據這項資訊，您可以接著從 DNS 伺服器將這些項目移除。
 - **DNS 伺服器查詢負載**。 可顯示資訊，以便您能在 DNS 伺服器上取得 DNS 負載的檢視方塊。 這項資訊可協助您規劃伺服器的容量。 您可以移至 [計量] 索引標籤，將檢視變更為圖形化視覺效果。 此檢視可協助您了解您的 DNS 伺服器的 DNS 負載分佈狀況。 它會顯示每部伺服器的 DNS 查詢速率趨勢。
 
-    ![DNS 伺服器查詢記錄搜尋結果](./media/log-analytics-dns/dns-servers-query-load.png) 
+    ![DNS 伺服器查詢記錄搜尋結果](./media/log-analytics-dns/dns-servers-query-load.png)
 
 - **DNS 區域的查詢負載**。 顯示受解決方案管理的 DNS 伺服器上所有區域的 DNS 區域每秒查詢統計資料。 按一下 [計量] 索引標籤，以將檢視從詳細記錄變更為圖形化的視覺效果結果。
 - **設定事件**。 顯示所有的 DNS 設定變更事件和相關聯的訊息。 您可以根據事件的時間、事件識別碼、DNS 伺服器或工作類別進一步篩選這些事件。 這些資料可協助您稽核 DNS 伺服器在特定時間發生的變更。

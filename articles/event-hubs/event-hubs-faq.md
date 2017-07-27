@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/13/2017
+ms.date: 06/28/2017
 ms.author: sethm;shvija
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 7bae4ae6d41e6dc6515a3fcdf574ffd193ae1aa3
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: e0e33882acc90130ef93cd66c3d57bb90f78ccee
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/14/2017
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -28,15 +28,17 @@ ms.lasthandoff: 03/14/2017
 ## <a name="general"></a>一般
 
 ### <a name="what-is-the-difference-between-event-hubs-basic-and-standard-tiers"></a>事件中樞基本層和標準層之間的差異為何？
+
 Azure 事件中樞的標準層提供比基本層更多的功能。 標準層包含下列功能︰
 * 較長的事件保留期
 * 其他代理連線，超過包含的數目時支付超額費用
 * 超過單一消費者群組
-* [封存](https://docs.microsoft.com/azure/event-hubs/event-hubs-archive-overview)
+* [擷取](https://docs.microsoft.com/azure/event-hubs/event-hubs-archive-overview)
 
 如需有關定價層的詳細資訊，包括專用事件中樞，請參閱[事件中樞定價詳細資料](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
 ### <a name="what-are-event-hubs-throughput-units"></a>事件中樞輸送量單位是什麼？
+
 您明確選取事件中樞輸送量單位，可以者透過 Azure 入口網站或事件中樞 Resource Manager 範本。 輸送量單位會套用到事件中樞命名空間內的所有事件中樞，以及賦予命名空間下列功能的每個輸送量單位：
 
 * 最高每秒 1MB 的輸入事件 (傳送到事件中樞的事件)，但不超過每秒 1000 個輸入事件、管理作業或控制 API 呼叫。
@@ -46,9 +48,9 @@ Azure 事件中樞的標準層提供比基本層更多的功能。 標準層包�
 事件中樞輸送量單位以小時計費，基準為在指定時段內選取之單位的最大數目。
 
 ### <a name="how-are-event-hubs-throughput-unit-limits-enforced"></a>事件中樞的輸送量單位限制如何實施？
-如果命名空間內所有事件中樞的輸入輸送量總計或輸入事件率總計超過彙總輸送量單位額度，傳送者將遭受節流處置並將收到錯誤，指出已超過輸入配額。
+如果命名空間內所有事件中樞的輸入輸送量總計或輸入事件率總計超過彙總輸送量單位額度，傳送者將遭受節流處置並會收到錯誤，指出已超過輸入配額。
 
-如果命名空間內所有事件中樞的輸出輸送量總計或輸出事件率總計超過彙總輸送量單位額度，接收者將遭受節流處置並將收到錯誤，指出已超過輸出配額。 輸入和輸出配額採單獨實施，如此一來，傳送者無法使事件取用速率變慢，接收者也不能阻止事件傳送到事件中樞。
+如果命名空間內所有事件中樞的輸出輸送量總計或輸出事件率總計超過彙總輸送量單位額度，接收者將遭受節流處置並會收到錯誤，指出已超過輸出配額。 輸入和輸出配額採單獨實施，如此一來，傳送者無法使事件取用速率變慢，接收者也不能阻止事件傳送到事件中樞。
 
 ### <a name="is-there-a-limit-on-the-number-of-throughput-units-that-can-be-selected"></a>可供選取的輸送量單位數目是否有限制？
 每個命名空間的預設配額為 20 個輸送量單位。 您可以藉由提出支援票證來要求較大的輸送量單位配額。 除了 20 個輸送量單位的限制之外，還有 20 和 100 個輸送量單位的組合。 請注意，使用 20 個以上的輸送量單位會排除不需要提出支援票證即可變更輸送量單位數目的能力。
@@ -57,7 +59,7 @@ Azure 事件中樞的標準層提供比基本層更多的功能。 標準層包�
 是。只要所有事件中樞都位於相同的命名空間內即可。
 
 ### <a name="what-is-the-maximum-retention-period-for-events"></a>事件的最大保留期間是多少？
-事件中樞標準層目前支援的最大保留期間為 7 天。 請注意，事件中樞的立意並非做為永久的資料存放區。 大於 24 小時的保留期間乃專為方便地在同一系統上重新執行事件串流的案例而設計。例如，根據現有資料來訓練或驗證新機器學習模型。 如果您需要將訊息保留超過 7 天，請在事件中樞上啟用[封存](https://docs.microsoft.com/azure/event-hubs/event-hubs-archive-overview)，這會將資料從事件中樞提取到您選擇的儲存體。 啟用封存將會產生費用，費用根據您購買的輸送量單位而定。
+事件中樞標準層目前支援的最大保留期間為 7 天。 請注意，事件中樞的立意並非作為永久的資料存放區。 大於 24 小時的保留期間乃專為方便地在同一系統上重新執行事件串流的案例而設計。例如，根據現有資料來訓練或驗證新機器學習模型。 如果您需要將訊息保留超過 7 天，請在事件中樞上啟用[事件中樞擷取](https://docs.microsoft.com/azure/event-hubs/event-hubs-archive-overview)，這會將資料從事件中樞提取到您選擇的儲存體。 啟用擷取將會產生費用，費用根據您購買的輸送量單位而定。
 
 ### <a name="where-is-azure-event-hubs-available"></a>哪裡可以取得 Azure 事件中樞？
 在所有支援的 Azure 區域皆提供 Azure 事件中樞。 如需清單，請瀏覽 [Azure 區域](https://azure.microsoft.com/regions/)頁面。  
@@ -88,14 +90,13 @@ Azure 事件中樞的標準層提供比基本層更多的功能。 標準層包�
 自事件中樞取用的事件，以及管理作業和控制呼叫 (如檢查點)，不會計入可計費輸入事件，但會累積在輸送量單位額度內。
 
 ### <a name="do-brokered-connection-charges-apply-to-event-hubs"></a>代理連線費用適用於事件中樞嗎？
-只有在使用 AMQP 通訊協定時才需要支付連線費用。 不論傳送系統或裝置的數目多寡，使用 HTTP 來傳送事件不需要支付連線費用。 如果您打算使用 AMQP (例如，為了實現更有效率的事件串流，或針對 IoT 命令和控制案例啟用雙向通訊)，請參閱[事件中樞定價資訊](https://azure.microsoft.com/pricing/details/event-hubs/)頁面，以取得關於每個服務層中包含多少個連線的詳細資訊。
+只有在使用 AMQP 通訊協定時才需要支付連線費用。 不論傳送系統或裝置的數目多寡，使用 HTTP 來傳送事件不需要支付連線費用。 如果您打算使用 AMQP (例如，為了實現更有效率的事件串流，或針對 IoT 命令和控制案例啟用雙向通訊)，請參閱[事件中樞定價資訊](https://azure.microsoft.com/pricing/details/event-hubs/)分頁，以取得關於每個服務層中包含多少個連線的詳細資訊。
 
-### <a name="how-is-event-hubs-archive-billed"></a>事件中樞封存如何計費？
-當命名空間中的任何事件中樞啟用封存功能時，即會啟用封存。 封存是依據購買的輸送量單位每小時計費。 事件中樞封存計費會隨著輸送量單位計數的增減，以一小時為增加量反映這些變更。
-如需有關事件中樞封存計費的詳細資料，請參閱[事件中樞定價資訊](https://azure.microsoft.com/pricing/details/event-hubs/)頁面。
+### <a name="how-is-event-hubs-capture-billed"></a>事件中樞擷取如何計費？
+當命名空間中的任何事件中樞有啟用擷取選項時，即會啟用擷取。 事件中樞擷取依據購買的輸送量單位每小時計費。 事件中樞擷取計費會隨著輸送量單位計數的增減，以一小時為增加量反映這些變更。 如需事件中樞擷取計費的詳細資訊，請參閱[事件中樞定價資訊](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
-### <a name="will-i-be-billed-for-the-storage-account-i-select-for-event-hubs-archive"></a>我是否需要針對我為事件中樞封存所選取的儲存體帳戶付費？
-當在事件中樞上啟用封存時，會使用您提供的儲存體帳戶。 因為這是您的儲存體帳戶，所以針對此儲存體帳戶的任何變更都將由您的 Azure 訂用帳戶支付相關費用。
+### <a name="will-i-be-billed-for-the-storage-account-i-select-for-event-hubs-capture"></a>我是否需要針對我為事件中樞擷取所選取的儲存體帳戶付費？
+當在事件中樞上啟用擷取時，會使用您提供的儲存體帳戶。 因為這是您的儲存體帳戶，所以針對此設定的任何變更都將由您的 Azure 訂用帳戶支付相關費用。
 
 ## <a name="quotas"></a>配額
 
@@ -108,7 +109,7 @@ Azure 事件中樞的標準層提供比基本層更多的功能。 標準層包�
 如需可能的事件中樞例外狀況清單，請參閱[例外狀況概觀](event-hubs-messaging-exceptions.md)。
 
 ### <a name="diagnostic-logs"></a>診斷記錄檔
-事件中樞支援兩種類型的[診斷記錄](event-hubs-diagnostic-logs.md) - 封存錯誤記錄和作業記錄 - 兩種記錄都是以 JSON 格式代表，且可以透過 Azure 入口網站開啟。
+事件中樞支援兩種類型的[診斷記錄](event-hubs-diagnostic-logs.md) - 擷取錯誤記錄和作業記錄 - 兩種記錄都是以 JSON 格式代表，且可以透過 Azure 入口網站開啟。
 
 ### <a name="support-and-sla"></a>支援與 SLA
 事件中樞的技術支援可透過[社群論壇](https://social.msdn.microsoft.com/forums/azure/home)取得。 計費及訂用帳戶管理支援均為免費提供。

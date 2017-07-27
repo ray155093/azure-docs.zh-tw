@@ -1,6 +1,6 @@
 ---
-title: "建立並匯出點對站的憑證：makecert：Azure | Microsoft Docs"
-description: "本文包含的步驟可用來建立自我簽署的根憑證、匯出公開金鑰，以及使用 makecert 來產生用戶端憑證。"
+title: "產生並匯出點對站的憑證：MakeCert：Azure | Microsoft Docs"
+description: "本文包含的步驟可用來建立自我簽署的根憑證、匯出公開金鑰，以及使用 MakeCert 來產生用戶端憑證。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -13,43 +13,44 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/03/2017
+ms.date: 06/19/2017
 ms.author: cherylmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: 0800a7754241eb409dbd86db82b586a3e19a29fc
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: bb61222ae01d1613ec27bb016ff1f94bcdaf8935
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
-# <a name="generate-and-export-certificates-for-point-to-site-connections-using-makecert"></a>使用 makecert 來產生並匯出點對站連線的憑證
+# <a name="generate-and-export-certificates-for-point-to-site-connections-using-makecert"></a>使用 MakeCert 來產生並匯出點對站連線的憑證
 
 > [!NOTE]
-> 請只在您無法存取 Windows 10 電腦來為點對站連線產生自我簽署憑證時，才使用這些指示進行操作。 Makecert 已被取代。 此外，makecert 無法建立 SHA-2 憑證，只能建立 SHA-1 憑證 (這對 P2S 仍然有效)。 基於這些理由，建議您儘可能使用 [PowerShell 步驟](vpn-gateway-certificates-point-to-site.md)。 您使用 PowerShell 或 makecert 來建立的憑證可以安裝在任何[支援的用戶端作業系統](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq)上，而不僅僅是安裝在您用來建立這些憑證的作業系統上。
->
+> 只有在您無法存取執行 Windows 10 的電腦時，才使用本文中的指示來產生憑證。 否則，建議您改用[使用 Windows 10 PowerShell 產生自我簽署憑證](vpn-gateway-certificates-point-to-site.md)文章。
 >
 
-
-本文說明如何建立自我簽署的根憑證、匯出公開金鑰，以及產生用戶端憑證。 本文不包含點對站組態指示或點對站常見問題集。 您可以從下列清單中選取其中一篇「設定點對站」文章來尋找該資訊：
+點對站連線使用憑證進行驗證。 本文說明如何建立自我簽署的根憑證，以及使用 MakeCert 來產生用戶端憑證。 如果您要尋找點對站設定步驟 (例如如何上傳根憑證)，請從下列清單中選取其中一篇＜設定點對站＞文章：
 
 > [!div class="op_single_selector"]
 > * [建立自我簽署憑證 - PowerShell](vpn-gateway-certificates-point-to-site.md)
-> * [建立自我簽署憑證 - Makecert](vpn-gateway-certificates-point-to-site-makecert.md)
+> * [建立自我簽署憑證 - MakeCert](vpn-gateway-certificates-point-to-site-makecert.md)
 > * [設定點對站 - Resource Manager - Azure 入口網站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
 > * [設定點對站 - Resource Manager - PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
 > * [設定點對站 - 傳統 - Azure 入口網站](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
 > 
 > 
 
-點對站連線使用憑證進行驗證。 當您設定點對站連線時時，您需要將根憑證的公開金鑰 (.cer 檔案) 上傳至 Azure。 此外，用戶端憑證必須從根憑證產生，並安裝在與 VNet 連接的每部用戶端電腦上。 用戶端憑證可讓用戶端進行驗證。
+雖然建議您使用 [Windows 10 PowerShell 步驟](vpn-gateway-certificates-point-to-site.md)建立您的憑證，但是提供這些 MakeCert 指示作為選擇性方法。 您使用任一種方法所產生的憑證可以安裝於[任何支援的用戶端作業系統](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq)。 不過，MakeCert 具有下列限制：
+
+* MakeCert 無法產生 SHA-2 憑證，只能產生 SHA-1。 SHA-1 憑證仍然適用於點對站連線，但 SHA-1 使用的加密雜湊不如 SHA-2 嚴密。
+* MakeCert 已被取代。 這表示無法在任何時間點移除這項工具。 如果無法再使用 MakeCert，則任何您已經使用 MakeCert 所產生的憑證不會受到影響。 MakeCert 只用來產生憑證，而不是驗證機制。
 
 ## <a name="rootcert"></a>建立自我簽署根憑證
 
-下列步驟說明如何使用 makecert 來建立自我簽署憑證。 這些並非部署模型特定的步驟。 它們同樣適用於資源管理員和傳統部署模型。
+下列步驟說明如何使用 MakeCert 來建立自我簽署憑證。 這些並非部署模型特定的步驟。 它們同樣適用於資源管理員和傳統部署模型。
 
-1. 下載並安裝 [makecert](https://msdn.microsoft.com/en-us/library/windows/desktop/aa386968(v=vs.85).aspx)。
-2. 安裝之後，您可以在下列路徑中找到 makecert.exe 公用程式：'C:\Program Files (x86)\Windows Kits\10\bin\<arch>'。 以系統管理員身分開啟命令提示字元，然後瀏覽至 makecert 公用程式的位置。 您可以使用下列範例：
+1. 下載並安裝 [MakeCert](https://msdn.microsoft.com/library/windows/desktop/aa386968(v=vs.85).aspx)。
+2. 安裝之後，您通常可以在下列路徑中找到 makecert.exe 公用程式：'C:\Program Files (x86)\Windows Kits\10\bin\<arch>'。 雖然，它有可能已安裝到另一個位置。 以系統管理員身分開啟命令提示字元，然後瀏覽至 MakeCert 公用程式的位置。 您可以使用下列範例，並針對適當的位置進行調整：
 
   ```cmd
   cd C:\Program Files (x86)\Windows Kits\10\bin\x64
@@ -57,14 +58,14 @@ ms.lasthandoff: 05/10/2017
 3. 在您電腦上的 [個人] 憑證存放區中建立並安裝憑證。 下列範例會建立對應的 .cer 檔案，您在設定 P2S 時會將此檔案上傳至 Azure。 將 'P2SRootCert' 和 'P2SRootCert.cer' 取代為您想使用的憑證名稱。 憑證會位於您的 '[憑證 - 目前的使用者]\[個人]\[憑證]' 中。
 
   ```cmd
-  makecert -sky exchange -r -n "CN=P2SRootCert" -pe -a sha1 -len 2048 -ss My "P2SRootCert.cer"
+  makecert -sky exchange -r -n "CN=P2SRootCert" -pe -a sha1 -len 2048 -ss My
   ```
 
 ## <a name="cer"></a>匯出公開金鑰 (.cer)
 
 [!INCLUDE [Export public key](../../includes/vpn-gateway-certificates-export-public-key-include.md)]
 
-匯出的 .cer 檔案必須上傳到 Azure。 如需相關指示，請參閱[設定點對站連線](vpn-gateway-howto-point-to-site-rm-ps.md#upload)。
+匯出的 .cer 檔案必須上傳到 Azure。 如需相關指示，請參閱[設定點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md#uploadfile)。 若要新增其他可信任的根憑證，請參閱這篇文章的[本節](vpn-gateway-howto-point-to-site-resource-manager-portal.md#add)。
 
 ### <a name="export-the-self-signed-certificate-and-private-key-to-store-it-optional"></a>匯出自我簽署憑證和私密金鑰來儲存它 (選擇性)
 
@@ -105,3 +106,4 @@ ms.lasthandoff: 05/10/2017
 
 * 如需 **Resource Manager** 部署模型步驟，請參閱[設定 VNet 的點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md)。
 * 如需**傳統**部署模型步驟，請參閱[設定 VNet 的點對站 VPN 連線 (傳統)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)。
+

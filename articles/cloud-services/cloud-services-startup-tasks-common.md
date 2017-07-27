@@ -12,13 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/04/2017
+ms.date: 07/18/2017
 ms.author: adegeo
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 3219df0e45d516ea332725b3e1955026cc1db231
 ms.openlocfilehash: 88fb93b8f3e196121b635d5ce7a21bf8f8c46be5
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/17/2017
-
 
 ---
 # <a name="common-cloud-service-startup-tasks"></a>常見的雲端服務啟動工作
@@ -188,7 +188,7 @@ powershell -ExecutionPolicy Unrestricted -command "Install-WindowsFeature Web-IP
 
 最後，修改 Web 角色 [web.config](http://www.iis.net/configreference/system.webserver/security/ipsecurity#005) 檔案中的 **system.webServer** 區段，新增具有存取權的 IP 位址清單，如以下範例所示：
 
-此範例組態 **允許** 所有 IP 存取伺服器 (另外定義的&2; 個 IP 除外)。
+此範例組態 **允許** 所有 IP 存取伺服器 (另外定義的 2 個 IP 除外)。
 
 ```xml
 <system.webServer>
@@ -203,7 +203,7 @@ powershell -ExecutionPolicy Unrestricted -command "Install-WindowsFeature Web-IP
 </system.webServer>
 ```
 
-此範例組態 **拒絕** 所有 IP 存取伺服器 (另外定義的&2; 個 IP 除外)。
+此範例組態 **拒絕** 所有 IP 存取伺服器 (另外定義的 2 個 IP 除外)。
 
 ```xml
 <system.webServer>

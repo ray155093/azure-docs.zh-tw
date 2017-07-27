@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 424889a00a20c8daf770098a43576783b813340c
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 633b88761de4d2c99cfd196cfac8e664fc83c546
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
 # <a name="deploy-azure-cosmos-db-and-azure-app-service-web-apps-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本部署 Azure Cosmos DB 和 Azure App Service Web Apps
-本教學課程示範如何使用 Azure Resource Manager 範本，來部署和整合 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/)、[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web 應用程式及範例 Web 應用程式。
+本教學課程示範如何使用 Azure Resource Manager 範本，來部署和整合 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)、[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web 應用程式及範例 Web 應用程式。
 
 使用 Azure Resource Manager 範本，您可以輕鬆自動化 Azure 資源的部署和設定。  本教學課程示範如何部署 Web 應用程式，以及自動設定 Azure Cosmos DB 帳戶連接資訊。
 
@@ -85,7 +85,7 @@ ms.lasthandoff: 05/31/2017
    
    ![範例待辦事項應用程式](./media/create-website/image2.png)
 9. 請繼續在 Web 應用程式中建立幾個工作，然後回到 Azure 入口網站的資源群組刀鋒視窗。 按一下 [資源] 清單中的 Azure Cosmos DB 帳戶資源，然後按一下 [查詢總管]。
-    ![包含反白顯示 myotherdocumentdbwebapp Web 應用程式的 [摘要] 功能濾鏡的螢幕擷取畫面](./media/create-website/TemplateDeployment8.png)  
+    ![包含反白顯示 Web 應用程式的 [摘要] 功能濾鏡的螢幕擷取畫面](./media/create-website/TemplateDeployment8.png)  
 10. 執行預設查詢 "SELECT * FROM c"，然後檢查結果。  請注意查詢已擷取您在步驟 7 所建立待辦事項的 JSON 表示法。  任意嘗試查詢；例如，嘗試執行 SELECT * FROM c WHERE c.isComplete = true，以傳回所有已標示為完成的待辦事項。
     
     ![顯示查詢結果的 [查詢總管] 和 [結果] 刀鋒視窗的螢幕擷取畫面](./media/create-website/image5.png)

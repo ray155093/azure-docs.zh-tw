@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/22/2017
 ms.author: bbenz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
-ms.openlocfilehash: e3a8bc6b11cccf7f6b277e800dbcedcd90e87006
+ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
+ms.openlocfilehash: 5a6e4431ef25c66e1863a679f0db1363a83f4769
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/03/2017
+ms.lasthandoff: 06/20/2017
 
 ---
 
@@ -44,11 +44,12 @@ ms.lasthandoff: 06/03/2017
 1. [下載並安裝 Git](https://git-scm.com/)
 1. [下載並安裝 Java 7 JDK 或更高版本](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 1. [下載、安裝並啟動 MySQL](https://dev.mysql.com/doc/refman/5.7/en/installing.html) 
-1. [安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
+
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
+如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 ## <a name="prepare-local-mysql"></a>準備本機 MySQL 
 
@@ -56,7 +57,7 @@ ms.lasthandoff: 06/03/2017
 
 ### <a name="connect-to-mysql-server"></a>連線至 MySQL 伺服器
 
-從命令列連線至您的本機 MySQL 伺服器︰
+在終端機視窗中，連線到您的本機 MySQL 伺服器。 您可使用這個終端機視窗來執行本教學課程中的所有命令。
 
 ```bash
 mysql -u root -p
@@ -86,7 +87,7 @@ quit
 
 ### <a name="clone-the-sample"></a>複製範例
 
-從命令提示字元中，瀏覽到工作目錄並複製範例存放庫。 
+在終端機視窗中，瀏覽到工作目錄並複製範例存放庫。 
 
 ```bash
 git clone https://github.com/azure-samples/mysql-spring-boot-todo
@@ -109,14 +110,14 @@ cd spring-boot-mysql-todo
 mvnw package spring-boot:run
 ```
 
-開啟瀏覽器至 http://localhost:8080，查看範例如何運作。 在清單中新增工作時，請使用 MySQL 命令提示字元中的下列 SQL 命令，以檢視 MySQL 中儲存的資料。
+開啟瀏覽器至 http://localhost:8080 ，查看範例如何運作。 在清單中新增工作時，請使用 MySQL 命令提示字元中的下列 SQL 命令，以檢視 MySQL 中儲存的資料。
 
 ```SQL
 use testdb;
 select * from todo_item;
 ```
 
-按下命令提示字元中的 `Ctrl`+`C` 以停止應用程式。 
+按下終端機中的 `Ctrl`+`C` 以停止應用程式。 
 
 ## <a name="create-an-azure-mysql-database"></a>建立 Azure MySQL 資料庫
 

@@ -3,7 +3,7 @@ title: "在 Azure 上建立 Linux VM 之 SSH 金鑰組的詳細步驟 | Microsof
 description: "了解其他步驟，以在 Azure 中為 Linux VM 建立 SSH 公開和私密金鑰組，以及為不同使用案例建立特定憑證。"
 services: virtual-machines-linux
 documentationcenter: 
-author: vlivech
+author: dlepow
 manager: timlt
 editor: 
 tags: 
@@ -13,18 +13,18 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 2/6/2016
-ms.author: rasquill
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: f452e8b3802bef5dc61bff64a8ac9ec5bb2a5bd9
-ms.lasthandoff: 04/03/2017
-
+ms.date: 6/28/2017
+ms.author: danlep
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 0cb70d36bd6e8d4cf5fcd5ed4a3e85c42f3cf81d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 ---
 
 # <a name="detailed-walk-through-to-create-an-ssh-key-pair-and-additional-certificates-for-a-linux-vm-in-azure"></a>在 Azure 中為 Linux VM 建立 SSH 金鑰組和其他憑證的詳細逐步解說
-您可以利用 SSH 金鑰組，在預設使用 SSH 金鑰進行驗證的 Azure 上建立虛擬機器，進而免除登入密碼的需求。 密碼有可能被猜到，讓您的 VM 遭到持續不斷的暴力密碼破解嘗試來猜測您的密碼。 使用 Azure CLI 或 Resource Manager 範本建立的 VM，可以將 SSH 公開金鑰納入部署中，進而免於對 SSH 停用密碼登入進行後置部署設定。 本文提供產生憑證 (例如用於傳統入口網站) 的詳細步驟和其他範例。 如果您想要快速建立和使用 SSH 金鑰組，請參閱[如何在 Azure 中建立 Linux VM 的 SSH 公開和私密金鑰組](mac-create-ssh-keys.md)。
+您可以利用 SSH 金鑰組，在預設使用 SSH 金鑰進行驗證的 Azure 上建立虛擬機器，進而免除登入密碼的需求。 密碼有可能被猜到，讓您的 VM 遭到持續不斷的暴力密碼破解嘗試來猜測您的密碼。 使用 Azure CLI 或 Resource Manager 範本建立的 VM，可以將 SSH 公開金鑰納入部署中，進而免於對 SSH 停用密碼登入進行後置部署設定。 針對用於 Linux 虛擬機器之類的憑證，本文提供產生憑證的詳細步驟和其他範例。 如果您想要快速建立和使用 SSH 金鑰組，請參閱[如何在 Azure 中建立 Linux VM 的 SSH 公開和私密金鑰組](mac-create-ssh-keys.md)。
 
 ## <a name="understanding-ssh-keys"></a>了解 SSH 金鑰
 
@@ -36,7 +36,7 @@ ms.lasthandoff: 04/03/2017
 
 ## <a name="ssh-keys-use-and-benefits"></a>SSH 金鑰的使用和好處
 
-Azure 需要至少 2048 位元、SSH 通訊協定第 2 版 RSA 格式的公開和私密金鑰；公開金鑰檔具有 `.pub` 容器格式  (傳統入口網站使用 `.pem` 檔案格式。 請參閱) 若要建立金鑰，請使用 `ssh-keygen`，在詢問一系列問題後，它便會編寫私密金鑰和對應的公開金鑰。 建立 Azure VM 時，Azure 會將公開金鑰複製到 VM 上的 `~/.ssh/authorized_keys` 資料夾。 `~/.ssh/authorized_keys` 中的 SSH 金鑰用於挑戰用戶端，以符合 SSH 登入連線上的對應私密金鑰。  使用用於驗證的 SSH 金鑰進行建立 Azure Linux VM 時，Azure 會將 SSHD 伺服器設定為不允許密碼登入，僅允許以 SSH 金鑰登入。  因此，建立具 SSH 金鑰的 Azure Linux VM，即可協助保護 VM 部署的安全，並免除在 **sshd_config** 檔中停用密碼的標準部署後設定步驟。
+Azure 需要至少 2048 位元、SSH 通訊協定第 2 版 RSA 格式的公開和私密金鑰；公開金鑰檔具有 `.pub` 容器格式  若要建立金鑰，請使用 `ssh-keygen`，在詢問一系列問題後，它便會編寫私密金鑰和對應的公開金鑰。 建立 Azure VM 時，Azure 會將公開金鑰複製到 VM 上的 `~/.ssh/authorized_keys` 資料夾。 `~/.ssh/authorized_keys` 中的 SSH 金鑰用於挑戰用戶端，以符合 SSH 登入連線上的對應私密金鑰。  使用用於驗證的 SSH 金鑰進行建立 Azure Linux VM 時，Azure 會將 SSHD 伺服器設定為不允許密碼登入，僅允許以 SSH 金鑰登入。  因此，建立具 SSH 金鑰的 Azure Linux VM，即可協助保護 VM 部署的安全，並免除在 **sshd_config** 檔中停用密碼的標準部署後設定步驟。
 
 ## <a name="using-ssh-keygen"></a>使用 ssh-keygen
 
@@ -63,24 +63,9 @@ ssh-keygen \
 
 `-C "azureuser@myserver"` = 附加至公開金鑰檔案結尾以便輕鬆識別的註解。  通常會以一封電子郵件做為註解，但您可以使用任何最適合您的基礎結構的事物。
 
-## <a name="classic-portal-and-x509-certs"></a>傳統入口網站和 X.509 憑證
-
-如果您使用 Azure [傳統入口網站](https://manage.windowsazure.com/)，則需要適用於 SSH 金鑰的 X.509 憑證 .pem 檔案。  不允許任何其他類型的 SSH 公開金鑰，而「必須」是 X.509 憑證。
-
-若要從現有的 SSH-RSA 私密金鑰建立 X.509 憑證︰
-
-```bash
-openssl req -x509 \
--key ~/.ssh/id_rsa \
--nodes \
--days 365 \
--newkey rsa:2048 \
--out ~/.ssh/id_rsa.pem
-```
-
 ## <a name="classic-deploy-using-asm"></a>使用 `asm` 進行傳統部署
 
-如果您使用傳統部署模型 (CLI 中的 `asm` 模式)，您可以在 pem 容器中使用 SSH-RSA 公開金鑰或 RFC4716 格式化的金鑰。  SSH-RSA 公開金鑰是稍早在本文中使用 `ssh-keygen` 建立的金鑰。
+如果您使用傳統部署模型 (CLI 中的 `asm` 模式)，則可以在 pem 容器中使用 SSH-RSA 公開金鑰或 RFC4716 格式的金鑰。  SSH-RSA 公開金鑰是稍早在本文中使用 `ssh-keygen` 建立的金鑰。
 
 若要從現有的 SSH 公開金鑰建立 RFC4716 格式的金鑰︰
 
@@ -96,7 +81,7 @@ ssh-keygen \
 ```bash
 ssh-keygen -t rsa -b 2048 -C "azureuser@myserver"
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/azureuser/.ssh/id_rsa): 
+Enter file in which to save the key (/home/azureuser/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /home/azureuser/.ssh/id_rsa.

@@ -3,7 +3,7 @@ title: "在 Azure CDN 端點上預先載入資產 | Microsoft Docs"
 description: "了解如何預先載入 Azure CDN 端點上的快取內容。"
 services: cdn
 documentationcenter: 
-author: zhangmanling
+author: smcevoy
 manager: erikre
 editor: 
 ms.assetid: 5ea3eba5-1335-413e-9af3-3918ce608a83
@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 242c3a6bf656da9b029a780e8b80667405b7b92f
-ms.lasthandoff: 03/04/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 1f2dcd9a91bb6e883cbef06373c1acd98bf8d45f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -64,7 +65,7 @@ ms.lasthandoff: 03/04/2017
     ![載入按鈕](./media/cdn-preload-endpoint/cdn-load-button.png)
 
 > [!NOTE]
-> 每個 CDN 設定檔都有每分鐘 10 個載入要求的限制。
+> 每個 CDN 設定檔都有每分鐘 10 個載入要求的限制。 每個要求允許 50 個路徑。 每個路徑都有 1024 個字元的路徑長度限制。
 > 
 > 
 

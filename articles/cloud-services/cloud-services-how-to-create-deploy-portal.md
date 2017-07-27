@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/19/2017
+ms.date: 05/18/2017
 ms.author: adegeo
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 542817c562e10ff32c62afd186cf012abbe82ac5
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
+ms.openlocfilehash: e5ce666f1d826c7901c9fd5e7fafe6171139c3ad
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/22/2017
 
 
 ---
@@ -55,33 +56,27 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 三個雲端服務功能需要特別組態，您才能匯出服務封裝：
 
 * 如果您要部署使用安全通訊端層 (SSL) 進行資料加密的雲端服務，請針對 SSL [設定應用程式](cloud-services-configure-ssl-certificate-portal.md#modify) 。
-* 如果您要設定角色執行個體的遠端桌面連線，請 [設定遠端桌面的角色](cloud-services-role-enable-remote-desktop.md) 。 這只能在傳統入口網站中完成。
+* 如果您要設定角色執行個體的遠端桌面連線，請 [設定遠端桌面的角色](cloud-services-role-enable-remote-desktop-new-portal.md) 。
 * 如果您要設定雲端服務的詳細資訊監視，請啟用雲端服務的 Azure 診斷。 *最小監視* (預設監視層級) 使用從角色執行個體 (虛擬機器) 的主機作業系統收集的效能計數器。 *詳細資訊監視* 會按照角色執行個體內的效能資料來收集其他度量，以便進一步分析應用程式處理期間發生的問題。 若要了解如何啟用 Azure 診斷，請參閱 [在 Azure 中啟用診斷](cloud-services-dotnet-diagnostics.md)。
 
 若要使用 Web 角色或背景工作角色的部署來建立雲端服務，您必須 [建立服務封裝](cloud-services-model-and-package.md#servicepackagecspkg)。
 
 ## <a name="before-you-begin"></a>開始之前
 * 如果您尚未安裝 Azure SDK，請按一下 [安裝 Azure SDK] 開啟 [Azure 下載頁面](https://azure.microsoft.com/downloads/)，然後依照您偏好使用的程式碼開發語言下載 SDK。 (您稍後將有機會這麼做。)
-* 如果任何角色執行個體需要憑證，請建立憑證。 雲端服務需要含有私密金鑰的 .pfx 檔。 [您建立並部署雲端服務時，可以將憑證上傳至 Azure]() 。
-* 如果您計劃將雲端服務部署至同質群組，請建立同質群組。 您可以使用同質群組，將雲端服務和其他 Azure 服務部署到區域中的同一個位置。 在 Azure 傳統入口網站的 [網路] 區域中，您可以在 [同質群組] 頁面上建立同質群組。
+* 如果任何角色執行個體需要憑證，請建立憑證。 雲端服務需要含有私密金鑰的 .pfx 檔。 您建立並部署雲端服務時，可以將憑證上傳至 Azure。
 
 ## <a name="create-and-deploy"></a>建立和部署
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下 [新增] > [計算]，然後向下捲動至 [雲端服務] 並按一下。
 
     ![發佈您的雲端服務](media/cloud-services-how-to-create-deploy-portal/create-cloud-service.png)
-3. 在 [資訊] 頁面底部，按一下 [建立] 。
-4. 在新的 [雲端服務] 刀鋒視窗中，輸入 [DNS 名稱] 的值。
-5. 建立新的 [資源群組]  或選取現有的資源群組。
-6. 選取 [位置] 。
-7. 按一下 [封裝] 。 這會開啟 [上傳封裝]  刀鋒視窗。 填寫必要欄位。 如果您的任一個角色包含單一執行個體，請確定核取 [即使一個或多個角色包含單一執行個體，也要部署]  。
-
-    > [!IMPORTANT]
-    > 雲端服務只能與[傳統儲存體帳戶](../azure-resource-manager/resource-manager-deployment-model.md)產生關聯。 如果看到訊息指出在您的訂用帳戶和位置中找不到儲存體帳戶，請確定您已在該位置為雲端服務建立傳統儲存體帳戶。
-
-8. 請確定已選取 [開始部署]  。
-9. 按一下 [確定] 以關閉 [上傳套件] 刀鋒視窗。
-10. 如果您沒有任何憑證可新增，請按一下 [建立] 。
+3. 在新的 [雲端服務] 刀鋒視窗中，輸入 [DNS 名稱] 的值。
+4. 建立新的 [資源群組]  或選取現有的資源群組。
+5. 選取 [位置] 。
+6. 按一下 [封裝] 。 這會開啟 [上傳封裝]  刀鋒視窗。 填寫必要欄位。 如果您的任一個角色包含單一執行個體，請確定核取 [即使一個或多個角色包含單一執行個體，也要部署]  。
+7. 請確定已選取 [開始部署]  。
+8. 按一下 [確定] 以關閉 [上傳套件] 刀鋒視窗。
+9. 如果您沒有任何憑證可新增，請按一下 [建立] 。
 
     ![發佈您的雲端服務](media/cloud-services-how-to-create-deploy-portal/select-package.png)
 

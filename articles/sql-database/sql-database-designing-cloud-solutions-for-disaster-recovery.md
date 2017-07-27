@@ -17,8 +17,8 @@ ms.workload: data-management
 ms.date: 04/21/2017
 ms.author: sashan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: b1b67a83a25159414a80382030903d300aad71f7
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 40fe0ae04eb94322356ed19773512e3bc383639c
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/18/2017
 
@@ -58,7 +58,7 @@ ms.lasthandoff: 05/18/2017
 如果次要地區發生運作中斷，主要與次要資料庫之間的複寫連結會暫停，但是不會觸發容錯移轉，因為主要資料庫未受到影響。 在此案例中，應用程式的可用性不會改變，但應用程式會在曝露的情況下運作，因此，萬一這兩個區域連續失敗，將帶來較高的風險。
 
 > [!NOTE]
-> 我們只建議使用具有單一 DR 區域的部署組態。 這是因為大部分 Azure 地理位置有兩個區域。 這些組態無法保護應用程式免於遭受兩個區域同時發生的重大失敗。 在這種罕見的失敗情況下，您可以使用[異地復原作業](sql-database-disaster-recovery.md#recover-using-geo-restore)，在第三個區域復原資料庫。
+> 災害復原的應用程式部署設定，建議限制在兩個區域。 這是因為大部分的 Azure 地理位置只有兩個區域。 這些設定不會保護應用程式免於遭受兩個區域同時發生的重大失敗。  在這種罕見的失敗情況下，您可以使用[異地復原作業](sql-database-disaster-recovery.md#recover-using-geo-restore)，在第三個區域復原資料庫。
 >
 
 一旦運作中斷情況趨緩，次要資料庫將會自動與主要資料庫重新同步處理。 在同步處理期間，視需要同步處理的資料量而定，主要資料庫的效能可能會稍微受到影響。 下圖說明次要地區發生運作中斷的情形。

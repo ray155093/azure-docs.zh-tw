@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/08/2017
+ms.date: 06/16/2017
 ms.author: terrylan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9c20ace9112c62e733b7b679e3f0be717144f3c2
-ms.openlocfilehash: 933a485e36b3cf0f514f28fc069d49161605af3a
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 367b8f38cb9fcf3dc36db83641cb1696710608ef
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/23/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -33,11 +33,6 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 如需詳細資訊，請參閱資訊安全中心[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
 
-> [!NOTE]
-> 資訊安全中心使用 Azure 儲存體來儲存產生自受保護節點的安全性資料。 與此儲存體相關的費用不包含在服務價格中，而將以一般 [Azure 儲存體費率](https://azure.microsoft.com/pricing/details/storage/blobs/)分別計費。 即使在 60 天免費試用期間，也會收取儲存體費用。
->
->
-
 ## <a name="try-standard-free-for-60-days"></a>免費試用「標準」60 天
 標準層的前 60 天免費。 在 60 天結束時，如果您選擇繼續使用服務，我們將自動開始針對使用量計費。
 
@@ -49,7 +44,6 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 4. 在 [選擇定價層] 刀鋒視窗中，選取 [標準]。
 5. 按一下 [選取] 。
 
-![標準層][1]
 
 ## <a name="why-upgrade-to-standard"></a>為何要升級至標準？
 「標準」層的資訊安全中心提供「免費」層的所有功能，再加上進階威脅偵測。 進階威脅偵測可協助識別以您的 Azure 資源為目標的作用中威脅，並提供您迅速回應所需的深入資訊。
@@ -79,11 +73,17 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 2. 選取一個訂用帳戶。
 3. 如果 [資料收集] 關閉，請將它變更為開啟並儲存變更。
 
+> [!NOTE]
+> 如果您是使用免費版的 Azure 資訊安全中心，可以在安全性原則中，從虛擬機器停用資料收集。 標準層上的訂用帳戶需要資料收集。
+>
+>
+
 如需詳細資訊，請參閱[在 Azure 資訊安全中心啟用資料收集](security-center-enable-data-collection.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * 在本文件中，已向您介紹資訊安全中心的價格。 如需價格的詳細資訊，請參閱資訊安全中心[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
 * 若要深入了解資訊安全中心的進階偵測功能，請參閱 [Azure 資訊安全中心的偵測功能](security-center-detection-capabilities.md)。
+* 若要了解 Azure 資訊安全中心如何管理及保護其中的資料，請參閱 [Azure 資訊安全中心資料安全性](security-center-data-security.md)。
 * 如果您對使用資訊安全中心有問題，請參閱 [Azure 資訊安全中心常見問題集](security-center-faq.md)。
 * 如果您仍然有關於使用資訊安全中心或 Azure 方面的問題，請造訪 [Azure 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureSecurityCenter&filter=alltypes&sort=lastpostdesc)。
 

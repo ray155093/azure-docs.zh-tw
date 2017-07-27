@@ -2,7 +2,7 @@
 title: "開始使用 Azure 監視器 | Microsoft Docs"
 description: "開始使用 Azure 監視器，深入了解資源的作業，並以資料為基礎採取動作。"
 author: johnkemnetz
-manager: rboucher
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/19/2016
 ms.author: johnkem
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
 ms.openlocfilehash: 6e1a1f522b9632c7d162d36ad5baa23d6130f8b6
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/31/2017
-
 
 ---
 # <a name="get-started-with-azure-monitor"></a>開始使用 Azure 監視器

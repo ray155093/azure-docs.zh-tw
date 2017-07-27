@@ -12,14 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/20/2017
+ms.date: 06/13/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
-ms.openlocfilehash: 47fb74c608315b256e88dd774af7cb5260529607
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 90706434eb78009bc56fc390cfa5a30e53827c19
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/29/2017
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -692,7 +692,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
 
 ### <a name="extend"></a>Extend
-可讓您在查詢中建立執行階段欄位。 如果您想要執行彙總，也可以在 extend 命令之後使用 measure 命令。
+可讓您在查詢中建立執行階段欄位。 請注意，執行階段欄位不能使用量值命令執行彙總。
 
 **範例 1**
 

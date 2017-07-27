@@ -1,5 +1,5 @@
 ---
-title: "搭配 Azure HDInsight (HBase) 使用 Apache Phoenix 和 SQuirreL | Microsoft Docs"
+title: "搭配 HBase 使用 Apache Phoenix 和 SQuirreL - Azure HDInsight | Microsoft Docs"
 description: "了解如何使用 HDinsight 中的 Apache Phoenix，以及如何在您的工作站上安裝與設定 SQuirreL 以連線到 HDInsight 中的 HBase 叢集。"
 services: hdinsight
 documentationcenter: 
@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/06/2017
+ms.date: 05/26/2017
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 04e078d662c861d5c587c571a42478603e291587
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: 13d17083bbe26fa9745ce4c5fef9f56859243c2e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/10/2017
 
 
 ---
@@ -31,21 +32,21 @@ ms.lasthandoff: 03/25/2017
 >
 
 ## <a name="use-sqlline"></a>使用 SQLLine
-[SQLLine](http://sqlline.sourceforge.net/) 是執行 SQL 的命令列公用程式。
+[SQLLine](http://sqlline.sourceforge.net/) \(英文\) 是執行 SQL 的命令列公用程式。
 
 ### <a name="prerequisites"></a>必要條件
 開始使用 SQLLine 之前，您必須具備下列項目：
 
 * **HDInsight 中的 HBase 叢集**。 如需有關佈建 HBase 叢集的資訊，請參閱[開始使用 HDInsight 中的 Apache HBase][hdinsight-hbase-get-started]。
-* **透過遠端桌面通訊協定連接到 HBase 叢集**。 如需相關指示，請參閱[使用 Azure 傳統入口網站管理 HDInsight 中的 Hadoop 叢集][hdinsight-manage-portal]。
+* **透過遠端桌面通訊協定連接到 HBase 叢集**。 如需指示，請參閱[使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集][hdinsight-manage-portal]。
 
-當您連接到 HBase 叢集時，您必須連接到其中一個 Zookeeper。 每個 HDInsight 叢集有 3 個 Zookeeper。
+連線到 HBase 叢集時，您必須連線到其中一個 Zookeeper。 每個 HDInsight 叢集有三個 Zookeeper。
 
 **找出 Zookeeper 主機名稱**
 
 1. 瀏覽至 **https://<ClusterName>.azurehdinsight.net** 來開啟 Ambari。
 2. 輸入 HTTP (叢集) 使用者名稱和密碼來登入。
-3. 在左側功能表中，按一下 [ZooKeeper]  。 您應該會看到列出了 3 台「ZooKeeper 伺服器」  。
+3. 在左側功能表中，按一下 [ZooKeeper]  。 您會看到列出三個「ZooKeeper 伺服器」。
 4. 按一下其中一台列出的「ZooKeeper 伺服器」  。 在 [摘要] 窗格中，找到 [主機名稱] 。 它類似 *zk1-jdolehb.3lnng4rcvp5uzokyktxs4a5dhd.bx.internal.cloudapp.net*。
 
 **使用 SQLLine**

@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 應用程式部署 | Microsoft Docs"
-description: "如何部署和移除 Service Fabric 中的應用程式"
+title: "Azure Service Fabric 應用程式部署 | Microsoft Docs"
+description: "如何使用 PowerShell 部署和移除 Service Fabric 中的應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -12,13 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/23/2017
+ms.date: 06/01/2017
 ms.author: ryanwi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: ae79f305e22095f560f4d97aaa4300b4a8ba20d3
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 00b19fdb0a4cac44fc1d338a580fe4500ac50463
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/02/2017
 
 
 ---

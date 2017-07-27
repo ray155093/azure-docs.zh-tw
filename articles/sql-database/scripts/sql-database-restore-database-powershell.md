@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼 - 還原 SQL Database | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 使用 PowerShell 還原 SQL Database"
+title: "PowerShell 範例 - 備份 - 還原 - Azure SQL Database | Microsoft Docs"
+description: "從異地備援備份還原 Azure SQL Database 的 Azure PowerShell 範例指令碼"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -14,19 +14,19 @@ ms.devlang: PowerShell
 ms.topic: sample
 ms.tgt_pltfrm: sql-database
 ms.workload: database
-ms.date: 05/23/2017
+ms.date: 06/23/2017
 ms.author: janeng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 751c1ff5c8cd76885b91c16d2372d1cd9b0c4c39
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 2be93bd623ae3960c61d54d4219cc4b60257f88d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/28/2017
 
 ---
 
-# <a name="restore-a-sql-database-using-powershell"></a>使用 PowerShell 還原 SQL Database
+# <a name="use-powershell-to-restore-an-azure-sql-database-from-backups"></a>使用 PowerShell 從備份還原 Azure SQL Database
 
-此 PowerShell 指令碼範例會從異地備援備份還原 Azure SQL Database，並將已刪除的資料庫還原為最新的備份。  
+此 PowerShell 指令碼範例會從異地備援備份還原 Azure SQL Database、將已刪除的 Azure SQL Database 還原為最新的備份，以及將 Azure SQL Database 還原到特定時間點。  
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 

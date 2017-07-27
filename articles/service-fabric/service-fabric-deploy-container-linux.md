@@ -12,13 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 5/16/2017
+ms.date: 6/29/2017
 ms.author: msfussell
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: fb73507ed596a65607d60f59d6834cc8bf5734f7
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 9dcec753e5f999a1bac07276373c0c25f89ec58d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/26/2017
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -57,44 +57,50 @@ Service Fabric 應用程式可以包含一或多個容器，而每個容器在�
 ```
 
 ## <a name="create-the-application"></a>建立應用程式
-1. 在終端機中，輸入 `yo azuresfguest`。
-2. 針對架構選擇 [容器]。
-3. 為應用程式命名，例如 SimpleContainerApp
-4. 從 DockerHub 儲存機制提供容器映像的 URL。 映像參數的格式為 [儲存機制]/[映像名稱]
+1. 在終端機中，輸入 `yo azuresfcontainer`。
+2. 為應用程式命名，例如 mycontainerap
+3. 從 DockerHub 儲存機制提供容器映像的 URL。 映像參數的格式為 [儲存機制]/[映像名稱]
+4. 如果映像沒有已定義的工作負載進入點，您就必須使用一組要在容器內執行的命令 (以逗號分隔) 來明確指定輸入命令，這會讓容器在啟動後繼續執行。
 
 ![容器的 Service Fabric Yeoman 產生器][sf-yeoman]
 
 ## <a name="deploy-the-application"></a>部署應用程式
+
+### <a name="using-xplat-cli"></a>使用 XPlat CLI
 建置應用程式後，可以使用 Azure CLI 將它部署到本機叢集。
 
 1. 連接到本機 Service Fabric 叢集。
 
-```bash
+    ```bash
     azure servicefabric cluster connect
-```
+    ```
 
 2. 使用範本中所提供的安裝指令碼，將應用程式套件複製到叢集的映像存放區、註冊應用程式類型，以及建立應用程式的執行個體。
 
-```bash
+    ```bash
     ./install.sh
-```
+    ```
 
 3. 開啟瀏覽器並瀏覽至位於 http://localhost:19080/Explorer 的 Service Fabric Explorer (如果在 Mac OS X 上使用 Vagrant，請以 VM 的私人 IP 取代 localhost)。
 4. 展開 [應用程式] 節點，請注意，您的應用程式類型現在有一個項目，而另一個則是該類型的第一個執行個體。
 5. 使用範本中提供的解除安裝指令碼，刪除應用程式執行個體並取消註冊應用程式類型。
 
-```bash
+    ```bash
     ./uninstall.sh
-```
+    ```
+
+### <a name="using-azure-cli-20"></a>使用 Azure CLI 2.0
+
+請參閱有關[使用 Azure CLI 2.0 來管理應用程式生命週期](service-fabric-application-lifecycle-azure-cli-2-0.md)的參考文件。
 
 如需範例應用程式，請[查看 GitHub 上的 Service Fabric 容器程式碼範例 (英文)](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
 ## <a name="adding-more-services-to-an-existing-application"></a>將更多服務新增至現有的應用程式
 
-若要將其他容器服務新增至已使用 `yo` 建立的應用程式，請執行下列步驟︰ 
+若要將其他容器服務新增至已使用 `yo` 建立的應用程式，請執行下列步驟︰
 
 1. 將目錄變更為現有應用程式的根目錄。  例如，如果 `MyApplication` 是 Yeoman 所建立的應用程式，則為 `cd ~/YeomanSamples/MyApplication`。
-2. 執行 `yo azuresfguest:AddService`
+2. 執行 `yo azuresfcontainer:AddService`
 
 <a id="manually"></a>
 
@@ -124,6 +130,9 @@ Service Fabric 應用程式可以包含一或多個容器，而每個容器在�
 
 您可以指定選擇性 `Commands` 元素，以及一組要在容器內執行的命令 (以逗號分隔)，以提供輸入命令。
 
+> [!NOTE]
+> 如果映像沒有已定義的工作負載進入點，您就必須在 `Commands` 元素內使用一組要在容器內執行的命令 (以逗號分隔) 來明確指定輸入命令，這會讓容器在啟動後繼續執行。
+
 ## <a name="understand-resource-governance"></a>了解資源管理
 資源管理是容器的功能，可限制容器在主機上可使用的資源。 應用程式資訊清單中指定的 `ResourceGovernancePolicy` 是用於宣告服務程式碼套件的資源限制。 可為以下資源設定限制：
 
@@ -135,8 +144,8 @@ Service Fabric 應用程式可以包含一或多個容器，而每個容器在�
 
 > [!NOTE]
 > 在未來版本中，會加入支援指定特定的區塊 IO 限制，例如 IOP、讀取/寫入 BPS 及其他限制。
-> 
-> 
+>
+>
 
 ```xml
     <ServiceManifestImport>
@@ -209,7 +218,7 @@ Service Fabric 應用程式可以包含一或多個容器，而每個容器在�
     </ServiceManifestImport>
 ```
 
-向命名服務註冊，可讓您輕易地在容器內的程式碼中，利用[反向 Proxy](service-fabric-reverseproxy.md) 執行容器對容器的通訊。 將 http 接聽連接埠和您想要與之通訊的服務名稱提供給反向 Proxy，並將這些都設為環境變數，便可進行通訊。 如需詳細資訊，請參閱下一節。 
+向命名服務註冊，可讓您輕易地在容器內的程式碼中，利用[反向 Proxy](service-fabric-reverseproxy.md) 執行容器對容器的通訊。 將 http 接聽連接埠和您想要與之通訊的服務名稱提供給反向 Proxy，並將這些都設為環境變數，便可進行通訊。 如需詳細資訊，請參閱下一節。
 
 ## <a name="configure-and-set-environment-variables"></a>設定環境變數
 針對部署在容器中的服務，或部署為程序/來賓執行檔的服務，您可以在服務資訊清單中為每個程式碼套件指定環境變數。 這些環境變數的值可以在應用程式資訊清單中明確覆寫，或在部署期間指定為應用程式參數。
@@ -317,4 +326,9 @@ Service Fabric 應用程式可以包含一或多個容器，而每個容器在�
 
 <!-- Images -->
 [sf-yeoman]: ./media/service-fabric-deploy-container-linux/sf-container-yeoman1.png
+
+## <a name="related-articles"></a>相關文章
+
+* [開始使用 Service Fabric 和 Azure CLI 2.0](service-fabric-azure-cli-2-0.md)
+* [開始使用 Service Fabric XPlat CLI](service-fabric-azure-cli.md)
 

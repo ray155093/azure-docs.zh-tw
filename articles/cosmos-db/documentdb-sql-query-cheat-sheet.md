@@ -13,18 +13,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/03/2017
+ms.date: 06/05/2017
 ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: e714d3585b78d28aba069464a444162103739657
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 04810ffa33d90d31003d0919c3edb2710fed453c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
-# <a name="azure-cosmos-db-sql-query-cheat-sheet-pdf"></a>Azure Cosmos DB SQL 查詢速查表 PDF
-「Azure Cosmos DB SQL 查詢速查表」透過將常見的資料庫查詢、關鍵字、內建函式及運算子顯示成容易列印的 PDF 參考表，協助您快速撰寫適用於 Azure Cosmos DB 資料的查詢。 
+# <a name="azure-cosmos-db-documentdb-api-sql-query-cheat-sheet-pdf"></a>Azure Cosmos DB：DocumentDB API SQL 查詢速查表 PDF
+**Azure Cosmos DB：DocumentDB API SQL 查詢速查表**中顯示常用的資料庫查詢、關鍵字、內建函式和運算子，可協助您快速撰寫 DocumentDB API 資料查詢，且其格式適合列印成 PDF 檔參考表格。 
 
 Cosmos DB 可使用 [SQL](documentdb-sql-query.md) 來支援 JSON 文件的關聯式、階層式及空間查詢，而不需指定結構描述或次要索引。 除了標準的 ANSI-SQL 關鍵字和運算子之外，Cosmos DB 也支援 JavaScript 使用者定義函數 (UDF)、JavaScript 運算子及許多內建函數。
 

@@ -3,7 +3,7 @@ title: "建立獨立 Azure Service Fabric 叢集 | Microsoft Docs"
 description: "在執行 Windows Server (無論是在內部部署或任何雲端) 的任何電腦 (實體或虛擬) 上建立 Azure Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: .net
-author: ChackDan
+author: dkkapur
 manager: timlt
 editor: 
 ms.assetid: 31349169-de19-4be6-8742-ca20ac41eb9e
@@ -12,13 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/24/2017
-ms.author: chackdan;maburlik
-translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 3389684dca62a1b3c8297600c7c09ffef642c854
-ms.lasthandoff: 03/29/2017
-
+ms.date: 06/24/2017
+ms.author: chackdan;maburlik;dekapur
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 7543d98030ea143d537e0028801fd3efe3e4ff32
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 ---
 # <a name="create-a-standalone-cluster-running-on-windows-server"></a>建立在 Windows Server 上執行的獨立叢集
@@ -33,17 +33,17 @@ ms.lasthandoff: 03/29/2017
 
 <a id="getsupport"></a>
 
-## <a name="get-support-for-the-service-fabric-standalone-package"></a>取得 Service Fabric 獨立封裝的支援
+## <a name="get-support-for-the-service-fabric-for-windows-server-package"></a>取得 Windows Server 套件的 Service Fabric 支援
 * 請至 [Azure Service Fabric 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=AzureServiceFabric?)，向社群發問有關 Windows Server 的 Service Fabric 獨立封裝。
 * 向 [Service Fabric 的專業支援](http://support.microsoft.com/oas/default.aspx?prid=16146)開立票證。  [在這裡](https://support.microsoft.com/en-us/gp/offerprophone?wa=wsignin1.0)深入了解 Microsoft 的專業支援。
 * 您也可以取得此封裝的支援做為 [Microsoft 頂級支援](https://support.microsoft.com/en-us/premier)的一部分。
 * 如需詳細資訊，請參閱 [Azure Service Fabric 支援選項](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support)。
-* 若要針對支援用途收集記錄檔，請執行 [Service Fabric 獨立記錄收集器](https://go.microsoft.com/fwlink/?linkid=842487)。
+* 若要針對支援用途收集記錄，請執行 [Service Fabric 獨立記錄收集器](service-fabric-cluster-standalone-package-contents.md)。
 
 <a id="downloadpackage"></a>
 
-## <a name="download-the-service-fabric-standalone-package"></a>下載 Service Fabric 獨立封裝
-若要建立叢集，請使用適用於 Windows Server (2012 R2 及更新版本) 的 Service Fabric 獨立封裝，可在這裡找到︰ <br>
+## <a name="download-the-service-fabric-for-windows-server-package"></a>下載 Windows Server 套件的 Service Fabric
+若要建立叢集，請使用適用於 Windows Server 套件 (Windows Server 2012 R2 及更新版本) 的 Service Fabric，可在這裡找到︰ <br>
 [下載連結 - Service Fabric 獨立封裝 - Windows Server](http://go.microsoft.com/fwlink/?LinkId=730690)
 
 可在[這裡](service-fabric-cluster-standalone-package-contents.md)找到封裝內容的詳細資訊。
@@ -67,7 +67,7 @@ Service Fabric 可以使用[範例](https://github.com/Azure-Samples/service-fab
 
 如需疑難排解的詳細資料，請參閱[規劃及準備叢集部署](service-fabric-cluster-standalone-deployment-preparation.md)的「環境設定」一節。
 
-如果您完成執行開發案例，您可以參閱下面「[移除叢集](#removecluster_anchor)」一節中的步驟，從電腦中移除 Service Fabric 叢集。 
+如果您完成執行開發案例，您可以參閱「[移除叢集](#removecluster_anchor)」一節中的步驟，從電腦中移除 Service Fabric 叢集。 
 
 ### <a name="step-1b-create-a-multi-machine-cluster"></a>步驟 1B︰ 建立多部電腦的叢集
 在您完成規劃和準備下面連結詳細列出的步驟之後，就可以開始使用您的叢集組態檔，建立生產叢集。 <br>
@@ -75,39 +75,48 @@ Service Fabric 可以使用[範例](https://github.com/Azure-Samples/service-fab
 
 1. 從獨立封裝資料夾執行 *TestConfiguration.ps1* 指令碼，驗證您所撰寫的組態檔︰  
 
-```powershell
-.\TestConfiguration.ps1 -ClusterConfigFilePath .\ClusterConfig.json
-```
+    ```powershell
+    .\TestConfiguration.ps1 -ClusterConfigFilePath .\ClusterConfig.json
+    ```
 
-您應該會看到如下的輸出： 如果底層欄位 "Passed" 傳回為 "True"，表示已通過例行性檢查，並可根據輸入組態來部署該叢集。
+    您應該會看到如下的輸出： 如果底層欄位 "Passed" 傳回為 "True"，表示已通過例行性檢查，並可根據輸入組態來部署該叢集。
 
-```
-Trace folder already exists. Traces will be written to existing trace folder: C:\temp\Microsoft.Azure.ServiceFabric.WindowsServer\DeploymentTraces
-Running Best Practices Analyzer...
-Best Practices Analyzer completed successfully.
+    ```
+    Trace folder already exists. Traces will be written to existing trace folder: C:\temp\Microsoft.Azure.ServiceFabric.WindowsServer\DeploymentTraces
+    Running Best Practices Analyzer...
+    Best Practices Analyzer completed successfully.
+    
+    LocalAdminPrivilege        : True
+    IsJsonValid                : True
+    IsCabValid                 : True
+    RequiredPortsOpen          : True
+    RemoteRegistryAvailable    : True
+    FirewallAvailable          : True
+    RpcCheckPassed             : True
+    NoConflictingInstallations : True
+    FabricInstallable          : True
+    Passed                     : True
+    ```
 
-
-LocalAdminPrivilege        : True
-IsJsonValid                : True
-IsCabValid                 : True
-RequiredPortsOpen          : True
-RemoteRegistryAvailable    : True
-FirewallAvailable          : True
-RpcCheckPassed             : True
-NoConflictingInstallations : True
-FabricInstallable          : True
-Passed                     : True
-```
-
-2. 建立叢集︰ 執行 *CreateServiceFabricCluster.ps1* 指令碼，以跨組態中的每一部機器部署 Service Fabric 叢集。 
-```powershell
-.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.json -AcceptEULA
-```
+2. 建立叢集︰執行 *CreateServiceFabricCluster.ps1* 指令碼，以跨組態中的每一部機器部署 Service Fabric 叢集。 
+    ```powershell
+    .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.json -AcceptEULA
+    ```
 
 > [!NOTE]
 > 部署追蹤會寫入您可以執行 CreateServiceFabricCluster.ps1 PowerShell 指令碼的 VM/電腦。 這些可以根據指令碼執行的目錄，在其子資料夾 DeploymentTraces 中找到。 若要查看是否已正確將 Service Fabric 部署到電腦，請在 FabricDataRoot 目錄中找到安裝的檔案，如叢集組態檔的 FabricSettings 區段 (預設為 c:\ProgramData\SF) 中所述。 同時，也要能在 [工作管理員] 看到 FabricHost.exe 和 Fabric.exe 處理序正在執行中。
 > 
 > 
+
+### <a name="step-1c-create-an-offline-internet-disconnected-cluster"></a>步驟 1 C：建立離線 (網際網路中斷連線的) 叢集
+叢集建立時會自動下載 Service Fabric 執行階段套件。 將叢集部署到未連線到網際網路的電腦時，您必須另外下載 Service Fabric 執行階段套件，並在建立叢集時提供指向它的路徑。
+可以從另一部有連線到網際網路電腦，到[下載連結 - Service Fabric 執行階段 - Windows Server](https://go.microsoft.com/fwlink/?linkid=839354) 另外下載執行階段套件。 將執行階段套件複製到您要部署離線叢集之處，然後執行 `CreateServiceFabricCluster.ps1` 搭配 `-FabricRuntimePackagePath` 參數建立叢集，如下所示： 
+
+```powershell
+CreateServiceFabricCluster.ps1 -ClusterConfigurationFilePath <path to ClusterConfig.json> -FabricRuntimePackagePath <path to MicrosoftAzureServiceFabric.cab>
+```
+其中 `<path to ClusterConfig.json>` 和 `<path to MicrosoftAzureServiceFabric.cab>` 分別為叢集設定與執行階段 .cab 檔案的路徑。
+
 
 ### <a name="step-2-connect-to-the-cluster"></a>步驟 2：連接到叢集
 若要連接至安全的叢集，請參閱 [Service Fabric 連線到安全的叢集](service-fabric-connect-to-secure-cluster.md)。

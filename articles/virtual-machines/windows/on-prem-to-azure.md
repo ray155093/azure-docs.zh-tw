@@ -17,10 +17,10 @@ ms.date: 02/07/2017
 ms.author: cynthn
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 098904d8b5262d8a19d1c10003e0bcaa668ef2dc
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 24ee84bdd1c795d6354bb5cb8fe397b078e7c51f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -30,8 +30,8 @@ ms.lasthandoff: 05/26/2017
 您可以將 VHD 檔案從 AWS 或內部部署虛擬化解決方案上傳至 Azure，以建立利用受控磁碟的 VM。 使用 Azure 受控磁碟就不需要為 Azure IaaS VM 管理儲存體帳戶。 您只需要指定類型 (進階或標準)，還有您需要的磁碟大小，Azure 就會替您建立及管理磁碟。 
 
 您可以上傳一般化和特製化 VHD。 
-**一般化 VHD** - 一般化 VHD 已使用 Sysprep 移除您所有的個人帳戶資訊。 
-**特製化 VHD** - 特製化的 VHD 會從原始的 VM 維護使用者帳戶、應用程式和其他狀態資料。 
+- **一般化 VHD** - 已使用 Sysprep 將您所有的個人帳戶資訊移除。 
+- **特製化 VHD** - 會從原始的 VM 維護使用者帳戶、應用程式和其他狀態資料。 
 
 > [!IMPORTANT]
 > 將任何 VHD 上傳至 Azure 之前，您應該遵循[準備 Windows VHD 或 VHDX 以上傳至 Azure](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -41,9 +41,9 @@ ms.lasthandoff: 05/26/2017
 
 | 案例                                                                                                                         | 文件                                                                                                                       |
 |----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| 您可能想要將現有的 AWS EC2 執行個體移轉至 Azure 受控磁碟                                     | [從 Amazon Web Services (AWS) 移轉至 Azure 受控磁碟](aws-to-azure.md)                           |
-| 您想要將來自 AWS 和其他虛擬化平台的 VM 做為映像來建立多個 Azure VM。 | [將一般化 VHD 上傳至 Azure，並使用受控磁碟建立新的 VM](upload-generalized-managed.md) |
-| 您想要在 Azure 中重新建立唯一自訂的 VM。                                                      | [將特製化 VHD 上傳至 Azure，並使用受控磁碟建立新的 VM](create-vm-specialized.md)         |
+| 您可能想要將現有的 AWS EC2 執行個體移轉至 Azure 受控磁碟                                     | [從 Amazon Web Services (AWS) 將 VM 移至 Azure](aws-to-azure.md)                           |
+| 您想要將來自 AWS 和其他虛擬化平台的 VM 做為映像來建立多個 Azure VM。 | [將一般化 VHD 上傳，並使用它在 Azure 中建立新的 VM](upload-generalized-managed.md) |
+| 您想要在 Azure 中重新建立唯一自訂的 VM。                                                      | [將特製化 VHD 上傳至 Azure，並建立新的 VM](create-vm-specialized.md)         |
 
 
 ## <a name="overview-of-managed-disks"></a>受控磁碟概觀

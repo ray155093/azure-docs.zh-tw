@@ -1,5 +1,5 @@
 ---
-title: "使用 Hadoop 沙箱來了解 Hadoop | Microsoft Docs"
+title: "了解使用 Hadoop 沙箱 - 模擬器 - Azure HDInsight | Microsoft Docs"
 description: "若要開始了解 Hadoop 生態系統，您可以在 Azure 虛擬機器上從 Hortonworks 設定 Hadoop 沙箱。 "
 keywords: "hadoop 模擬器, hadoop 沙箱"
 editor: cgronlun
@@ -10,21 +10,22 @@ documentationcenter:
 tags: azure-portal
 ms.assetid: 6ad5bb58-8215-4e3d-a07f-07fcd8839cc6
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 06/29/2017
 ms.author: nitinme
-translationtype: Human Translation
-ms.sourcegitcommit: 1618ed7971ffef0eae55b73b4bdd04f3f14195ba
-ms.openlocfilehash: a070df78bf95173aa48da60d24d14d08d9be8d9a
-ms.lasthandoff: 01/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: b701879464205860edd1c097651b532f87bae388
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
-# <a name="get-started-in-the-hadoop-ecosystem-with-a-hadoop-sandbox-on-a-virtual-machine"></a>透過虛擬機器上的 Hadoop 沙箱開始使用 Hadoop 生態系統
+# <a name="get-started-with-a-hadoop-sandbox-an-emulator-on-a-virtual-machine"></a>開始使用 Hadoop 沙箱，它是虛擬機器上的模擬器
 
 了解如何在虛擬機器上從 Hortonworks 安裝 Hadoop 沙箱，以了解 Hadoop 生態系統。 沙箱提供本機開發環境，讓您了解 Hadoop、Hadoop 分散式檔案系統 (HDFS)，以及作業提交。 熟悉 Hadoop 之後，您就可以開始在 Azure 中使用 Hadoop 建立 HDInsight 叢集。 有關如何開始使用的詳細資訊，請參閱 [開始在 HDInsight 中使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
 
@@ -35,7 +36,8 @@ ms.lasthandoff: 01/07/2017
 
 ## <a name="download-and-install-the-virtual-machine"></a>下載並安裝虛擬機器
 1. 瀏覽至 [Hortonworks 下載](http://hortonworks.com/downloads/#sandbox)。
-2. 按一下 [DOWNLOAD FOR VIRTUALBOX] \(適用於 VIRTUALBOX 的下載項目)，以下載最新的 VM 上「Hrotonworks 沙箱」。 系統會提示您向 Hortonworks 註冊，然後才能開始下載。 下載需要一到兩個小時的時間，視您的網路速度而定。
+
+2. 按一下 [DOWNLOAD FOR VIRTUALBOX]\(適用於 VIRTUALBOX 的下載項目\)，以下載最新的 VM 上「Hortonworks 沙箱」。 系統會提示您向 Hortonworks 註冊，然後才能開始下載。 下載需要一到兩個小時的時間，視您的網路速度而定。
    
     ![用於下載 VirtualBox 之 Hortonworks 沙箱的連結影像](./media/hdinsight-hadoop-emulator-get-started/download-sandbox.png)
 3. 從相同網頁中，按一下 [Import on Virtual Box] \(在 Virtual Box 上匯入) 連結，以下載包含虛擬機器安裝指示的 PDF。
@@ -62,7 +64,8 @@ ms.lasthandoff: 01/07/2017
    > 如果您未安裝 SSH 用戶端，您可以使用虛擬機器在 **http://localhost:4200/** 所提供的網頁型 SSH。
    > 
    
-    第一次使用 SSH 連線時，系統會提示您變更根帳戶的密碼。 請輸入新密碼，以供日後使用 SSH 登入時使用。
+    第一次使用 SSH 連線時，系統會提示您變更根帳戶的密碼。 輸入新密碼，這是您在使用 SSH 登入時使用的密碼。
+
 2. 登入之後，輸入下列命令：
    
         ambari-admin-password-reset

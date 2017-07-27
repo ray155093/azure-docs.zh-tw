@@ -1,5 +1,5 @@
 ---
-title: "新增條件式邏輯和啟動工作流程 - Azure Logic Apps | Microsoft Docs"
+title: "新增條件和啟動工作流程 - Azure Logic Apps | Microsoft Docs"
 description: "新增條件式邏輯、觸發程序、動作和參數，以控制 Azure Logic Apps 中工作流程的執行方式。"
 author: stepsic-microsoft-com
 manager: anneta
@@ -15,55 +15,75 @@ ms.topic: article
 ms.date: 01/28/2017
 ms.author: LADocs; stepsic
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9f7d623ec213de6d46f59547aff9d4417ac95ede
-ms.openlocfilehash: 41aafe94d24f0e22fe2256ab213c7668b670764c
+ms.sourcegitcommit: 7c69630688e4bcd68ab3b4ee6d9fdb0e0c46d04b
+ms.openlocfilehash: e632c48ed31e82536db55a9c54438bece0c38fd4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/15/2017
+ms.lasthandoff: 06/24/2017
 
 
 ---
 # <a name="use-logic-apps-features"></a>使用 Logic Apps 功能
-在 [上一個主題](../logic-apps/logic-apps-create-a-logic-app.md)中，您已建立第一個邏輯應用程式。 現在，您將使用 Azure Logic Apps來建置更完整的程序。 本主題將介紹下列新的 Azure Logic Apps 概念：
 
-* 條件式邏輯，只有在符合特定條件時，才會執行動作。
-* 用以編輯現有邏輯應用程式的程式碼檢視。
-* 啟動工作流程的選項。
+在[前面的主題](../logic-apps/logic-apps-create-a-logic-app.md)中，您已建立第一個邏輯應用程式。 若要控制邏輯應用程式的工作流程，您可以指定不同的路徑以供邏輯應用程式執行，以及指定如何處理陣列、集合和批次中的資料。 您可以將下列元素包含在邏輯應用程式的工作流程中：
 
-在完成本主題之前，您應先完成 [建立新的邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)中的步驟。 在 [Azure 入口網站]中，瀏覽至您的邏輯應用程式，然後按一下摘要中的 [觸發程序和動作]，以編輯邏輯應用程式定義。
+* 條件和 [Switch 陳述式](../logic-apps/logic-apps-switch-case.md)可讓邏輯應用程式根據符合的特定條件來執行不同動作。
 
-## <a name="reference-material"></a>參考資料
-您可能會發現下列文件很有用：
+* [迴圈](../logic-apps/logic-apps-loops-and-scopes.md)可讓邏輯應用程式重複執行步驟。 例如，使用 **For_each** 迴圈時，可以對陣列重複動作。 或者使用 **Until** 迴圈，可以在符合條件之後重複動作。
 
-* [管理和執行階段 REST API](https://msdn.microsoft.com/library/azure/mt643787.aspx) - 包括如何直接叫用邏輯應用程式
-* [語言參考](https://msdn.microsoft.com/library/azure/mt643789.aspx) - 所有支援的函式/運算式完整清單
-* [觸發程序和動作類型](https://msdn.microsoft.com/library/azure/mt643939.aspx) - 不同類型的動作及其採用的輸入
-* [App Service 概觀](../app-service/app-service-value-prop-what-is.md) - 說明建置方案時可選擇哪些元件
+* [Scope](../logic-apps/logic-apps-loops-and-scopes.md) 可讓您將一系列動作組成群組，例如用以進行例外狀況處理實作。
 
-## <a name="add-conditional-logic-to-your-logic-app"></a>將條件式邏輯新增至邏輯應用程式
+* 使用 **SplitOn** 命令時，[Debatching](../logic-apps/logic-apps-loops-and-scopes.md) 可讓邏輯應用程式啟動陣列中項目的個別工作流程。
 
-雖然您的邏輯應用程式原始流程能夠運作，但我們可在某些方面予以改善。
+本主題將介紹建置邏輯應用程式的其他概念：
 
-### <a name="conditional"></a>條件式
+* 用以編輯現有邏輯應用程式的程式碼檢視
+* 啟動工作流程的選項
 
-您的第一個邏輯應用程式可能會導致您收到太多電子郵件。 下列步驟會新增條件式邏輯，如此您就只有在推文是來自有特定數量粉絲的某人時，才會收到電子郵件。
+## <a name="conditions-run-steps-only-after-meeting-a-condition"></a>條件：只有在符合條件後才執行步驟
 
-0. 在邏輯應用程式設計工具中，選擇 [新步驟 (+)] > [新增動作]。
-0.    尋找並新增適用於 Twitter 的 [取得使用者] 動作。
-0. 若要取得 Twitter 使用者的相關資訊，從觸發程序尋找並新增 [推文者] 欄位。
+若要在資料符合特定準則時，才讓邏輯應用程式執行步驟，您可以新增條件，針對特定欄位或值比較工作流程中的資料。
 
-    ![取得使用者](media/logic-apps-use-logic-app-features/getuser.png)
+例如，假設您的邏輯應用程式傳送過多的網站 RSS 摘要文章的電子郵件給您。 您可以新增條件，讓邏輯應用程式只有在新文章屬於特定類別時，才會傳送電子郵件。
 
-0. 選擇 [新步驟 (+)] > [新增條件]。
-0. 若要篩選使用者擁有的粉絲數量，在 [物件名稱] 下方，選擇 [新增動態內容]。 
-0.    在 [搜尋] 方塊中，尋找並新增 [粉絲計數] 欄位。
-0. 在 [關聯性] 下方，選取 [大於]。
-0. 在 [值] 方塊中，輸入您希望使用者擁有的粉絲數量。
+1. 在 [Azure 入口網站](https://portal.azure.com)的邏輯應用程式設計工具中，尋找並開啟邏輯應用程式。
 
-    ![條件式](media/logic-apps-use-logic-app-features/conditional.png)
+2. 將條件新增至您想要的工作流程位置。 
 
-0. 最後，將 [傳送電子郵件] 方塊拖放到 [如果是] 方塊中。 
+   若要在邏輯應用程式工作流程中的現有步驟之間新增條件，將指標移動至您要新增條件的箭頭處。 
+   選擇 **加號** \(**+**)， 然後選擇 **新增條件**。 例如：
 
-現在您只有在粉絲計數符合您的條件時，才會收到電子郵件。
+   ![將條件新增至邏輯應用程式](./media/logic-apps-use-logic-app-features/add-condition.png)
+
+   > [!NOTE]
+   > 如果想要在目前的工作流程結尾處新增條件，請移至邏輯應用程式底部，然後選擇 **+ 新增步驟**。
+
+3. 現在定義條件。 指定您想要評估的來源欄位、要執行的作業，以及目標值或欄位。 若要將現有欄位新增至條件，請從**新增動態內容清單**中選擇。
+
+   例如：
+
+   ![在基本模式中編輯條件](./media/logic-apps-use-logic-app-features/edit-condition-basic-mode.png)
+
+   以下是完整的條件：
+
+   ![完整條件](./media/logic-apps-use-logic-app-features/edit-condition-basic-mode-2.png)
+
+   > [!TIP]
+   > 若要在程式碼中定義條件，請選擇**在進階模式中編輯**。 例如：
+   > 
+   > ![在程式碼中編輯條件](./media/logic-apps-use-logic-app-features/edit-condition-advanced-mode.png)
+
+4. 在 **IF YES** 和 **IF NO** 之下，以是否符合條件為基礎，新增要執行的步驟。
+
+   例如：
+
+   ![具 YES 和 NO 路徑的條件](./media/logic-apps-use-logic-app-features/condition-yes-no-path.png)
+
+   > [!TIP]
+   > 您可以將現有動作拖曳到 **IF YES** 和 **IF NO** 路徑。
+
+5. 完成後，儲存邏輯應用程式。
+
+現在您只有在文章符合條件時，才會收到電子郵件。
 
 ## <a name="repeat-actions-over-a-list-with-foreach"></a>使用 forEach 對清單重複執行動作
 
@@ -84,31 +104,32 @@ forEach 迴圈會指定要用來重複執行某動作的陣列。 如果它不�
 
 2. 若要儲存您的編輯，請選擇 [儲存]。
 
-### <a name="parameters"></a>參數
+## <a name="parameters"></a>參數
 
 某些 Logic Apps 功能只能在程式碼檢視中取得，例如參數。 參數可讓您輕鬆地在整個邏輯應用程式中重複使用值。 例如，如果您想要在數個動作中使用同一個電子郵件地址，您應將該電子郵件地址定義為參數。
 
-參數很適合用來提取您很可能經常變更的值。 當您需要在不同環境中覆寫參數時，參數特別有用。 如需如何根據環境覆寫參數的詳細資訊，請參閱我們的 [REST API 文件](https://docs.microsoft.com/rest/api/logic)。
+參數很適合用來提取您很可能經常變更的值。 當您需要在不同環境中覆寫參數時，參數特別有用。 如需如何根據環境覆寫參數的詳細資訊，請參閱[撰寫邏輯應用程式定義](../logic-apps/logic-apps-author-definitions.md)以及 [REST API 文件](https://docs.microsoft.com/rest/api/logic)。
 
 這個範例示範如何更新現有的邏輯應用程式，讓您可以針對查詢字詞使用參數。
 
-1. 在程式碼檢視中，尋找 `parameters : {}` 物件，並新增主題物件：
+1. 在程式碼檢視中，尋找 `parameters : {}` 物件，並新增 `currentFeedUrl` 物件：
 
-        "topic" : {
+        "currentFeedUrl" : {
             "type" : "string",
-            "defaultValue" : "MicrosoftAzure"
+            "defaultValue" : "http://rss.cnn.com/rss/cnn_topstories.rss"
         }
 
-2. 移至 `twitterconnector` 動作、尋找查詢值，然後使用 `#@{parameters('topic')}` 取代該值。 
+2. 移至 `When_a_feed-item_is_published` 動作、尋找 `queries` 區段，然後以 `"feedUrl": "#@{parameters('currentFeedUrl')}"` 取代查詢值 
 
     若要加入兩或多個字串，您也可以使用 `concat` 函式。 
-    例如，`@concat('#',parameters('topic'))` 的運作方式與上述相同。
+    例如，`"@concat('#',parameters('currentFeedUrl'))"` 
+    的運作方式與上述相同。
 
-3.    完成之後，請選擇 [儲存]。 
+3.  完成之後，請選擇 [儲存]。 
 
-    現在，每小時都會有回推數超過五個的新推文傳遞到您 Dropbox 中名為 [推文] 的資料夾。
+    現在您可以透過 `currentFeedURL` 物件傳遞不同的 URL，藉以變更網站的 RSS 摘要。
 
-若要深入了解邏輯應用程式定義，請參閱 [撰寫邏輯應用程式定義](../logic-apps/logic-apps-author-definitions.md)。
+深入了解[如何撰寫邏輯應用程式定義](../logic-apps/logic-apps-author-definitions.md)。
 
 ## <a name="start-logic-app-workflows"></a>啟動邏輯應用程式工作流程
 
@@ -125,3 +146,8 @@ forEach 迴圈會指定要用來重複執行某動作的陣列。 如果它不�
 <!-- Shared links -->
 [Azure 入口網站]: https://portal.azure.com
 
+## <a name="next-steps"></a>後續步驟
+
+* [Switch 陳述式](../logic-apps/logic-apps-switch-case.md) 
+* [迴圈、範圍和解除批次處理](../logic-apps/logic-apps-loops-and-scopes.md)
+* [撰寫邏輯應用程式定義](../logic-apps/logic-apps-author-definitions.md)

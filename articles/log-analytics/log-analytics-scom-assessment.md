@@ -12,18 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/12/2017
+ms.date: 06/07/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 97ae17912eaa7508e3ae1315800408664a340837
-ms.lasthandoff: 03/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: 6754505e7f58a8e7305987db9204271ca9b93870
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 
 ---
 
 # <a name="optimize-your-environment-with-the-system-center-operations-manager-assessment-preview-solution"></a>使用 System Center Operations Manager 評定 (預覽) 解決方案進行環境最佳化
+
+![System Center Operations Manager 評定符號](./media/log-analytics-scom-assessment/scom-assessment-symbol.png)
 
 您可以使用 System Center Operations Manager 評定解決方案，定期評估 System Center Operations Manager 伺服器環境的風險和健康狀態。 本文協助您安裝、設定和使用此解決方案，讓您可以針對潛在問題採取修正動作。
 
@@ -57,7 +60,7 @@ ms.lasthandoff: 03/11/2017
 1. [設定 System Center Operations Manager 評定的執行身分帳戶](#operations-manager-run-as-accounts-for-oms)  
 2. [設定 System Center Operations Manager 評定規則](#configure-the-assessment-rule)
 
-# <a name="system-center-operations-manager-assessment-data-collection-details"></a>收集 System Center Operations Manager 評定資料的詳細資料
+## <a name="system-center-operations-manager-assessment-data-collection-details"></a>收集 System Center Operations Manager 評定資料的詳細資料
 
 System Center Operations Manager 評定會使用您已啟用的伺服器，透過 Windows PowerShell、SQL 查詢和檔案資訊收集器，以收集 WMI 資料、登錄資料、事件記錄檔資料和 Operations Manager 資料。
 
@@ -155,8 +158,8 @@ System Center Operations Manager 評定解決方案的管理套件包含名為�
 1. 在 Operations Manager 主控台的 [撰寫] 工作區中，在 [規則] 窗格中搜尋規則「Microsoft System Center Advisor SCOM 評定執行評定規則」。
 2. 在搜尋結果中，選取包含文字「類型︰管理伺服器」的規則。
 3. 以滑鼠右鍵按一下規則，然後按一下 [覆寫] > [針對以下類別的特定物件: 管理伺服器]。
-4.    在可用的管理伺服器清單中，選取應該執行此規則的管理伺服器。
-5.    針對 [已啟用] 參數值，務必將覆寫值變更為 [True]。  
+4.  在可用的管理伺服器清單中，選取應該執行此規則的管理伺服器。
+5.  針對 [已啟用] 參數值，務必將覆寫值變更為 [True]。  
     ![override parameter](./media/log-analytics-scom-assessment/rule.png)
 
 仍在此視窗中，使用下一個程序來設定執行頻率。

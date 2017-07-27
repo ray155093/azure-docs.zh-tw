@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: backup-recovery
-ms.date: 5/11/2017
+ms.date: 06/29/2017
 ms.author: anoopkv
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 6e91a8b21fe7bfe2c6944cfa1c10d835a75ddd13
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 848284f37ae2470a169d8f8a8c9c0bb5b926abe3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 06/30/2017
 
 ---
 
@@ -64,8 +64,7 @@ Azure Site Recovery 行動服務會擷取電腦上的資料寫入，然後將它
 ## <a name="install-mobility-service-manually-by-using-the-gui"></a>使用 GUI 手動安裝行動服務
 
 >[!IMPORTANT]
-> 以 GUI 為基礎的安裝只適用於 Windows 作業系統。
-> 如果您是使用設定伺服器從一個 Azure 訂用帳戶/區域將 Azure IaaS 虛擬機器複寫到另一個 Azure 訂用帳戶/區域，請使用以命令列為基礎的安裝方法
+> 如果您是使用**設定伺服器**從一個 Azure 訂用帳戶/區域將 **Azure IaaS 虛擬機器**複寫到另一個 Azure 訂用帳戶/區域，請**使用以命令列為基礎的安裝方法**
 
 [!INCLUDE [site-recovery-install-mob-svc-gui](../../includes/site-recovery-install-mob-svc-gui.md)]
 

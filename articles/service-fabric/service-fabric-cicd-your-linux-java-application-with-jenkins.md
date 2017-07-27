@@ -12,12 +12,13 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/27/2017
+ms.date: 06/29/2017
 ms.author: saysa
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 71e3d130f22515d22dc7f486f3dede936b874049
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 32d39e2c19348bc4a1ba218cfc411a70f9f212e3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -30,7 +31,7 @@ Jenkins 是連續整合和部署應用程式的熱門工具。 以下是使用 J
 
 ## <a name="set-up-jenkins-inside-a-service-fabric-cluster"></a>在 Service Fabric 叢集內設定 Jenkins
 
-您可以在 Service Fabric 叢集內部或外部設定 Jenkins。 下列各節顯示如何在叢集內設定。
+您可以在 Service Fabric 叢集內部或外部設定 Jenkins。 下列小節說明如何在叢集內設定它，同時又使用 Azure 儲存體帳戶來儲存容器執行個體的狀態。
 
 ### <a name="prerequisites"></a>必要條件
 1. 讓 Service Fabric Linux 叢集準備就緒。 從 Azure 入口網站建立的 Service Fabric 叢集已安裝 Docker。 如果您在本機執行叢集，請使用命令 ``docker info``來檢查是否已安裝 Docker。 如果未安裝，使用下列命令據以安裝︰
@@ -42,8 +43,24 @@ Jenkins 是連續整合和部署應用程式的熱門工具。 以下是使用 J
 2. 使用下列步驟將 Service Fabric 容器應用程式部署至叢集：
 
   ```sh
-git clone https://github.com/Azure-Samples/service-fabric-java-getting-started.git -b JenkinsDocker
+git clone https://github.com/Azure-Samples/service-fabric-java-getting-started.git
 cd service-fabric-java-getting-started/Services/JenkinsDocker/
+```
+
+3. 您需要 Azure 儲存體檔案共用的連線選項詳細資料，這是您要保存 Jenkins 容器執行個體狀態的位置。 如果您使用 Microsoft Azure 入口網站來進行相同的操作，請依照步驟來建立 Azure 儲存體帳戶 (例如 ``sfjenkinsstorage1``)。 在該儲存體帳戶底下建立一個「檔案共用」(例如 ``sfjenkins``)。 針對該檔案共用按一下 [連接]，並記下 [正在從 Linux 連線] 底下顯示的值，例如這會看起來如下：
+```sh
+sudo mount -t cifs //sfjenkinsstorage1.file.core.windows.net/sfjenkins [mount point] -o vers=3.0,username=sfjenkinsstorage1,password=GB2NPUCQY9LDGeG9Bci5dJV91T6SrA7OxrYBUsFHyueR62viMrC6NIzyQLCKNz0o7pepGfGY+vTa9gxzEtfZHw==,dir_mode=0777,file_mode=0777
+```
+
+4. 將 ```setupentrypoint.sh``` 指令碼中的預留位置值更新成對應的 Azure 儲存體詳細資料。
+```sh
+vi JenkinsSF/JenkinsOnSF/Code/setupentrypoint.sh
+```
+以來自上述第 3 點中連線輸出的 ``//sfjenkinsstorage1.file.core.windows.net/sfjenkins`` 值取代 ``[REMOTE_FILE_SHARE_LOCATION]``。
+以來自上述第 3 點的 ``vers=3.0,username=sfjenkinsstorage1,password=GB2NPUCQY9LDGeG9Bci5dJV91T6SrA7OxrYBUsFHyueR62viMrC6NIzyQLCKNz0o7pepGfGY+vTa9gxzEtfZHw==,dir_mode=0777,file_mode=0777`` 值取代 ``[FILE_SHARE_CONNECT_OPTIONS_STRING]``。
+
+5. 連線至叢集並安裝容器應用程式。
+```sh
 azure servicefabric cluster connect http://PublicIPorFQDN:19080   # Azure CLI cluster connect command
 bash Scripts/install.sh
 ```
@@ -102,7 +119,7 @@ bash Scripts/install.sh
   5. 設定 GitHub 以 Jenkins，方法為使用[產生新的 SSH 金鑰，並將它新增至 SSH 代理程式](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)中提到的步驟。
         * 使用 GitHub 所提供的指示產生 SSH 金鑰，並將 SSH 金鑰新增至裝載存放庫的 GitHub 帳戶。
         * 在 Jenkins Docker 殼層 (而非在主機上) 執行上述連結內所提到的命令。
-        * 若要從主機登入 Jenkins 殼層，請使用下列命令：
+      * 若要從主機登入 Jenkins 殼層，請使用下列命令：
 
       ```sh
       docker exec -t -i [first-four-digits-of-container-ID] /bin/bash

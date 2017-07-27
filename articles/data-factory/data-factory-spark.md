@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/31/2017
+ms.date: 06/19/2017
 ms.author: spelluru
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: 124f04eb39296899af501d506476ad966442fc3d
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: dbee3f1d0aae885325ef9efe9c2f48961495e8b9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
@@ -299,7 +299,7 @@ Spark 活動是 Azure Data Factory 所支援的其中一個[資料轉換活動](
 | className | 應用程式的 Java/Spark 主要類別 | 否 |
 | arguments | Spark 程式的命令列引數清單。 | 否 |
 | proxyUser | 模擬來執行 Spark 程式的使用者帳戶 | 否 |
-| sparkConfig | Spark 組態屬性。 | 否 |
+| sparkConfig | 指定下列主題中所列的 Spark 組態屬性值：[Spark 組態 - 應用程式屬性](https://spark.apache.org/docs/latest/configuration.html#available-properties) (英文)。 | 否 |
 | getDebugInfo | 指定何時將 Spark 記錄檔複製到 HDInsight 叢集所使用 (或) sparkJobLinkedService 所指定的 Azure 儲存體。 允許的值︰None、Always 或 Failure。 預設值：None。 | 否 |
 | sparkJobLinkedService | 存放 Spark 作業檔案、相依性和記錄的 Azure 儲存體連結服務。  如果您未指定此屬性的值，則會使用與 HDInsight 叢集相關聯的儲存體。 | 否 |
 
@@ -310,7 +310,7 @@ Spark 活動是 Azure Data Factory 所支援的其中一個[資料轉換活動](
 
 | 路徑 | 說明 | 必要 | 類型 |
 | ---- | ----------- | -------- | ---- |
-| 。    | Spark 作業在儲存體連結服務中的根路徑    | 是 | 資料夾 |
+| 。 | Spark 作業在儲存體連結服務中的根路徑  | 是 | 資料夾 |
 | &lt;使用者定義&gt; | 指向 Spark 作業輸入檔案的路徑 | 是 | 檔案 |
 | ./jars | 此資料夾下的所有檔案會上傳並放在叢集的 java 類別路徑 | 否 | 資料夾 |
 | ./pyFiles | 此資料夾下的所有檔案會上傳並放在叢集的 PYTHONPATH | 否 | 資料夾 |

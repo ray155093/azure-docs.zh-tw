@@ -13,12 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2016
-ms.author: cephalin
+ms.author: cephalin;aelnably
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 673ea14ff534f237e06dd1d00586dad5736792d5
+ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
+ms.openlocfilehash: 891359514e776e169bf05df7b84d2b99306f98bf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -59,32 +59,35 @@ App Service 可以將下列資訊備份到您已設定讓應用程式使用的 A
 <a name="manualbackup"></a>
 
 ## <a name="create-a-manual-backup"></a>建立手動備份
-1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至您應用程式的刀鋒視窗，選取 [設定]，然後選取 [備份]。 [備份] 刀鋒視窗隨即顯示。
+1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至您應用程式的刀鋒視窗，並選取 [備份]。 [備份]  刀鋒視窗隨即顯示。
    
-    ![備份頁面][ChooseBackupsPage]
+    ![Backups page][ChooseBackupsPage]
    
    > [!NOTE]
-   > 如果您看到下列訊息，必須先按一下該訊息來升級 App Service 方案，才能繼續進行備份。
-   > 如需詳細資訊，請參閱[在 Azure 中為應用程式進行相應增加](web-sites-scale.md)。  
-   > ![Choose storage account](./media/web-sites-backup/01UpgradePlan.png)
+   > 如果您看到下列訊息，請按一下訊息升級您的 App Service 方案，才可以繼續進行備份。
+   > 如需詳細資訊，請參閱 [在 Azure 中調整應用程式規模](web-sites-scale.md) 。  
+   > ![Choose storage account](./media/web-sites-backup/01UpgradePlan1.png)
    > 
    > 
-2. 在 [備份] 刀鋒視窗中，按一下 [儲存體: 未設定] 以設定儲存體帳戶。
+
+2. 在 [備份]**** 刀鋒視窗中，按一下 [設定]****
+![按一下 [設定]](./media/web-sites-backup/ClickConfigure1.png)
+3. 在 [備份設定] 刀鋒視窗中，按一下 [儲存體: 未設定] 以設定儲存體帳戶。
    
     ![Choose storage account][ChooseStorageAccount]
-3. 選取 [儲存體帳戶] 和 [容器]，以選擇您的備份目的地。 此儲存體帳戶必須與您要備份之應用程式隸屬於相同的訂用帳戶。 如果您希望的話，也可以在個別的刀鋒視窗中，建立儲存體帳戶或新的容器。 完成後，按一下 [選取] 。
+4. 選取 [儲存體帳戶] 和 [容器]，以選擇您的備份目的地。 此儲存體帳戶必須與您要備份之應用程式隸屬於相同的訂用帳戶。 如果您希望的話，也可以在個別的刀鋒視窗中，建立新的儲存體帳戶或新的容器。 完成後，按一下 [選取] 。
    
-    ![Choose storage account](./media/web-sites-backup/02ChooseStorageAccount1.png)
-4. 在仍開啟的 [設定備份設定] 刀鋒視窗中，按一下 [資料庫設定]，然後選取您想要包含在備份中的資料庫 (SQL Database、MySQL 或 PostgreSQL)，然後按一下 [確定]。  
+    ![Choose storage account](./media/web-sites-backup/02ChooseStorageAccount1-1.png)
+5. 在仍處於開啟狀態的 [備份設定] 刀鋒視窗中，您可以設定 [備份資料庫]，然後選取您想要包含在備份中的資料庫 (SQL Database 或 MySQL)，然後按一下 [確定]。  
    
-    ![Choose storage account](./media/web-sites-backup/03ConfigureDatabase.png)
+    ![Choose storage account](./media/web-sites-backup/03ConfigureDatabase1.png)
    
    > [!NOTE]
    > 若要讓資料庫出現在此清單中，其連接字串必須存在於您的應用程式之 [應用程式設定] 刀鋒視窗的 [連接字串] 區段中。
    > 
    > 
-5. 在 [設定備份設定] 刀鋒視窗中，按一下 [儲存]。    
-6. 在 [備份] 刀鋒視窗的命令列中，按一下 [立即備份]。
+6. 在 [備份設定] 刀鋒視窗中，按一下 [儲存]。    
+7. 在 [備份] 刀鋒視窗中，按一下 [備份]。
    
     ![BackUpNow button][BackUpNow]
    
@@ -95,24 +98,12 @@ App Service 可以將下列資訊備份到您已設定讓應用程式使用的 A
 <a name="automatedbackups"></a>
 
 ## <a name="configure-automated-backups"></a>設定自動備份
-1. 在 [備份] 刀鋒視窗中，按一下 [排程: 未設定]。 
+1. 在 [備份設定] 刀鋒視窗中，將 [排定的備份] 設定為 [開啟]。 
    
-    ![Choose storage account](./media/web-sites-backup/05ScheduleBackup.png)
-2. 在 [備份排程設定] 刀鋒視窗中，將 [排定的備份] 設定為 [開啟]，然後視需要設定備份排程並按一下 [確定]。
+    ![Choose storage account](./media/web-sites-backup/05ScheduleBackup1.png)
+2. 將會顯示備份排程選項，請將 [排定的備份] 設定為 [開啟]，然後視需要設定備份排程，並按一下 [確定]。
    
     ![Enable automated backups][SetAutomatedBackupOn]
-3. 在仍處於開啟狀態的 [設定備份設定] 刀鋒視窗中，按一下 [儲存體設定]，然後選取「儲存體帳戶」和「容器」來選擇您的備份目的地。 此儲存體帳戶必須與您要備份之應用程式隸屬於相同的訂用帳戶。 如果您希望的話，也可以在個別的刀鋒視窗中，建立儲存體帳戶或新的容器。 完成後，按一下 [選取] 。
-   
-    ![Choose storage account](./media/web-sites-backup/02ChooseStorageAccount1.png)
-4. 在 [設定備份設定] 刀鋒視窗中，按一下 [資料庫設定]，然後選取您想要包含在備份中的資料庫 (SQL Database、MySQL 或 PostgreSQL)，然後按一下 [確定]。 
-   
-    ![Choose storage account](./media/web-sites-backup/03ConfigureDatabase.png)
-   
-   > [!NOTE]
-   > 若要讓資料庫出現在此清單中，其連接字串必須存在於您的應用程式之 [應用程式設定] 刀鋒視窗的 [連接字串] 區段中。
-   >  如果您使用[應用程式內 MySQL](https://blogs.msdn.microsoft.com/appserviceteam/2017/03/06/announcing-general-availability-for-mysql-in-app)，將不會看到列出任何資料庫，因為入口網站的 [應用程式設定] 底下不會顯示連接字串
-   > 
-5. 在 [設定備份設定] 刀鋒視窗中，按一下 [儲存]。    
 
 <a name="partialbackups"></a>
 
@@ -173,19 +164,19 @@ App Service 可以將下列資訊備份到您已設定讓應用程式使用的 A
 
 
 <!-- IMAGES -->
-[ChooseBackupsPage]:./media/web-sites-backup/01ChooseBackupsPage.png
-[ChooseStorageAccount]:./media/web-sites-backup/02ChooseStorageAccount.png
-[IncludedDatabases]:./media/web-sites-backup/03IncludedDatabases.png
-[BackUpNow]:./media/web-sites-backup/04BackUpNow.png
-[BackupProgress]:./media/web-sites-backup/05BackupProgress.png
-[SetAutomatedBackupOn]:./media/web-sites-backup/06SetAutomatedBackupOn.png
-[Frequency]:./media/web-sites-backup/07Frequency.png
-[StartDate]:./media/web-sites-backup/08StartDate.png
-[StartTime]:./media/web-sites-backup/09StartTime.png
-[SaveIcon]:./media/web-sites-backup/10SaveIcon.png
-[ImagesFolder]:./media/web-sites-backup/11Images.png
-[LogsFolder]:./media/web-sites-backup/12Logs.png
-[GhostUpgradeWarning]:./media/web-sites-backup/13GhostUpgradeWarning.png
+[ChooseBackupsPage]: ./media/web-sites-backup/01ChooseBackupsPage1.png
+[ChooseStorageAccount]: ./media/web-sites-backup/02ChooseStorageAccount-1.png
+[IncludedDatabases]: ./media/web-sites-backup/03IncludedDatabases.png
+[BackUpNow]: ./media/web-sites-backup/04BackUpNow1.png
+[BackupProgress]: ./media/web-sites-backup/05BackupProgress.png
+[SetAutomatedBackupOn]: ./media/web-sites-backup/06SetAutomatedBackupOn1.png
+[Frequency]: ./media/web-sites-backup/07Frequency.png
+[StartDate]: ./media/web-sites-backup/08StartDate.png
+[StartTime]: ./media/web-sites-backup/09StartTime.png
+[SaveIcon]: ./media/web-sites-backup/10SaveIcon.png
+[ImagesFolder]: ./media/web-sites-backup/11Images.png
+[LogsFolder]: ./media/web-sites-backup/12Logs.png
+[GhostUpgradeWarning]: ./media/web-sites-backup/13GhostUpgradeWarning.png
 [kudu-portal]:./media/web-sites-backup/kudu-portal.PNG
 
 

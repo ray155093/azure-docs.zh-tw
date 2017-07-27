@@ -23,9 +23,7 @@ ms.lasthandoff: 05/08/2017
 
 ---
 
-<a id="manage-storage-accounts-by-using-the-azure-explorer-for-eclipse" class="xliff"></a>
-
-# 使用適用於 Eclipse 的 Azure Explorer 來管理儲存體帳戶
+# <a name="manage-storage-accounts-by-using-the-azure-explorer-for-eclipse"></a>使用適用於 Eclipse 的 Azure Explorer 來管理儲存體帳戶
 
 Azure Explorer 是 Azure Toolkit for Eclipse 的一部分，提供易於使用的解決方案，讓 Java 開發人員從 Eclipse 整合式開發環境 (IDE) 內管理其 Azure 帳戶中的儲存體帳戶。
 
@@ -33,9 +31,7 @@ Azure Explorer 是 Azure Toolkit for Eclipse 的一部分，提供易於使用�
 
 [!INCLUDE [azure-toolkit-for-eclipse-show-azure-explorer](../includes/azure-toolkit-for-eclipse-show-azure-explorer.md)]
 
-<a id="create-a-storage-account-in-eclipse" class="xliff"></a>
-
-## 在 Eclipse 中建立儲存體帳戶
+## <a name="create-a-storage-account-in-eclipse"></a>在 Eclipse 中建立儲存體帳戶
 
 若要使用 Azure Explorer 來建立儲存體帳戶，請執行下列作業︰
 
@@ -67,9 +63,7 @@ Azure Explorer 是 Azure Toolkit for Eclipse 的一部分，提供易於使用�
 
 4. 當您指定好上述所有選項時，按一下 [建立]。
 
-<a id="create-a-storage-container-in-eclipse" class="xliff"></a>
-
-## 在 Eclipse 中建立儲存體容器
+## <a name="create-a-storage-container-in-eclipse"></a>在 Eclipse 中建立儲存體容器
 
 若要使用 Azure Explorer 來建立儲存體容器，請執行下列作業︰
 
@@ -81,9 +75,7 @@ Azure Explorer 是 Azure Toolkit for Eclipse 的一部分，提供易於使用�
 
    ![[建立 Blob 容器] 對話方塊][CC02]
 
-<a id="delete-a-storage-container-in-eclipse" class="xliff"></a>
-
-## 在 Eclipse 中刪除儲存體容器
+## <a name="delete-a-storage-container-in-eclipse"></a>在 Eclipse 中刪除儲存體容器
 
 若要使用 Azure Explorer 來刪除儲存體容器，請執行下列作業︰
 
@@ -95,9 +87,7 @@ Azure Explorer 是 Azure Toolkit for Eclipse 的一部分，提供易於使用�
 
    ![刪除儲存體容器的確認視窗][DC02]
 
-<a id="delete-a-storage-account-in-eclipse" class="xliff"></a>
-
-## 在 Eclipse 中刪除儲存體帳戶
+## <a name="delete-a-storage-account-in-eclipse"></a>在 Eclipse 中刪除儲存體帳戶
 
 若要使用 Azure Explorer 來刪除儲存體帳戶，請執行下列作業︰
 
@@ -109,9 +99,7 @@ Azure Explorer 是 Azure Toolkit for Eclipse 的一部分，提供易於使用�
 
    ![刪除儲存體帳戶的確認視窗][DS02]
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 如需 Azure 儲存體帳戶、大小與定價的詳細資訊，請參閱下列資源︰
 
 * [Microsoft Azure 儲存體簡介]
@@ -157,7 +145,7 @@ Azure Explorer 是 Azure Toolkit for Eclipse 的一部分，提供易於使用�
 [Microsoft Azure 儲存體簡介]: /azure/storage/storage-introduction
 [關於 Azure 儲存體帳戶]: /azure/storage/storage-create-storage-account
 [Azure 儲存體複寫]: /azure/storage/storage-redundancy
-[Azure 儲存體的延展性與效能目標]: /azure/storage/storage-scalability-targets
+[Azure 儲存體延展性和效能目標]: /azure/storage/storage-scalability-targets
 [命名和參考容器、Blob 及中繼資料]: http://go.microsoft.com/fwlink/?LinkId=255555
 
 [Azure 中的 Windows 儲存體帳戶大小]: /azure/virtual-machines/virtual-machines-windows-sizes

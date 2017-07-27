@@ -1,5 +1,5 @@
 ---
-title: "疑難排解應用程式閘道閘道不正確 (502) 的錯誤 |Microsoft Docs"
+title: "疑難排解 Azure 應用程式閘道閘道不正確 (502) 的錯誤 | Microsoft Docs"
 description: "了解如何對應用程式閘道 502 錯誤進行疑難排解"
 services: application-gateway
 documentationcenter: na
@@ -13,27 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/16/2016
+ms.date: 05/09/2017
 ms.author: amsriva
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 178cd0e1c20947c952a2abb4bad253272da9fcd4
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: cbf9c552c4818b3925f449081539f1db6d61918e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
 
 # <a name="troubleshooting-bad-gateway-errors-in-application-gateway"></a>疑難排解應用程式閘道中閘道不正確的錯誤
 
-## <a name="overview"></a>Overview
+了解使用應用程式閘道時如何針對收到的閘道不正確 (502) 錯誤進行疑難排解。
 
-設定 Azure 應用程式閘道之後，使用者可能遇到的其中一個錯誤是「伺服器錯誤︰502 - 網頁伺服器做為閘道器或 Proxy 伺服器時收到無效的回應」。 此錯誤可能是由於下列主要原因所導致：
+## <a name="overview"></a>概觀
 
-* Azure 應用程式閘道的後端集區並未設定或空白。
-* VM 擴展集中沒有任何狀況良好的 VM 或執行個體。
-* VM 擴展集的後端 VM 或執行個體都沒有回應預設的健全狀況探查。
-* 無效或不適當的自訂健全狀況探查組態。
-* 要求逾期，或使用者要求的連線問題。
+設定應用程式閘道之後，使用者可能遇到的其中一個錯誤是「伺服器錯誤︰502 - 網頁伺服器作為閘道器或 Proxy 伺服器時收到無效的回應」。 此錯誤可能是由於下列主要原因所導致：
+
+* Azure 應用程式閘道的[後端集區未設定或空白](#empty-backendaddresspool)。
+* VM 擴展集中[沒有狀況良好的 VM 或執行個體](#unhealthy-instances-in-backendaddresspool)。
+* VM 擴展集的後端 VM 或執行個體都[沒有回應預設的健康情況探查](#problems-with-default-health-probe.md)。
+* 無效或不適當的[自訂健康情況探查設定](#problems-with-custom-health-probe.md)。
+* 使用者要求的[要求逾期或連線問題](#request-time-out)。
 
 ## <a name="empty-backendaddresspool"></a>空白的 BackendAddressPool
 

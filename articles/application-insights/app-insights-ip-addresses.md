@@ -3,7 +3,7 @@ title: "Application Insights 使用的 IP 位址 | Microsoft Docs"
 description: "Application Insights 所需的伺服器防火牆例外狀況"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 44d989f8-bae9-40ff-bfd5-8343d3e59358
 ms.service: application-insights
@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 11/01/2016
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 135f95457eae073efc9ce08117fb082be2c47468
+ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
+ms.openlocfilehash: eec83ceb6edbc1aaa68d51a85d2a913063677530
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/29/2017
 
 
 ---
@@ -36,6 +36,7 @@ ms.lasthandoff: 05/16/2017
 | --- | --- | --- | --- |
 | 遙測 |dc.services.visualstudio.com<br/>dc.applicationinsights.microsoft.com |40.114.241.141<br/>104.45.136.42<br/>40.84.189.107<br/>168.63.242.221<br/>52.167.221.184<br/>52.169.64.244 |443 |
 | 即時計量串流 |rt.services.visualstudio.com<br/>rt.applicationinsights.microsoft.com |23.96.28.38<br/>13.92.40.198 |443 |
+| 內部遙測 |breeze.aimon.applicationinsights.io |52.161.11.71 |443 |
 
 ## <a name="status-monitor"></a>狀態監視器
 狀態監視器組態 - 只有在進行變更時才需要。
@@ -204,12 +205,37 @@ US : VA-Ashburn
 | --- | --- | --- | --- |
 | API |api.applicationinsights.io<br/>api1.applicationinsights.io<br/>api2.applicationinsights.io<br/>api3.applicationinsights.io<br/>api4.applicationinsights.io<br/>api5.applicationinsights.io |13.82.26.252<br/>40.76.213.73 |80,443 |
 | API 文件 |dev.applicationinsights.io<br/>dev.applicationinsights.microsoft.com<br/>dev.aisvc.visualstudio.com<br/>www.applicationinsights.io<br/>www.applicationinsights.microsoft.com<br/>www.aisvc.visualstudio.com |13.82.24.149<br/>40.114.82.10 |80,443 |
+| 內部 API |aigs.aisvc.visualstudio.com<br/>aigs1.aisvc.visualstudio.com<br/>aigs2.aisvc.visualstudio.com<br/>aigs3.aisvc.visualstudio.com<br/>aigs4.aisvc.visualstudio.com<br/>aigs5.aisvc.visualstudio.com<br/>aigs6.aisvc.visualstudio.com |動態|443 |
+
+## <a name="application-insights-analytics"></a>Application Insights 分析
+
+| 目的 | URI | IP | 連接埠 |
+| --- | --- | --- | --- |
+| Analytics 入口網站 | analytics.applicationinsights.io | 動態 | 80,443 |
+| CDN | applicationanalytics.azureedge.net | 動態 | 80,443 |
+| 媒體 CDN | applicationanalyticsmedia.azureedge.net | 動態 | 80,443 |
+
+注意：*.applicationinsights.io 網域由 Application Insights 團隊所擁有。
+
+## <a name="application-insights-azure-portal-extension"></a>Application Insights Azure 入口網站擴充功能
+
+| 目的 | URI | IP | 連接埠 |
+| --- | --- | --- | --- |
+| Application Insights 擴充功能 | stamp2.app.insightsportal.visualstudio.com | 動態 | 80,443 |
+| Application Insights 擴充功能 CDN | insightsportal-prod2-cdn.aisvc.visualstudio.com<br/>insightsportal-prod2-asiae-cdn.aisvc.visualstudio.com<br/>insightsportal-cdn-aimon.applicationinsights.io | 動態 | 80,443 |
+
+## <a name="application-insights-sdks"></a>Application Insights SDK
+
+| 目的 | URI | IP | 連接埠 |
+| --- | --- | --- | --- |
+| Application Insights JS SDK CDN | az416426.vo.msecnd.net | 動態 | 80,443 |
+| Application Insights Java SDK | aijavasdk.blob.core.windows.net | 動態 | 80,443 |
 
 ## <a name="profiler"></a>分析工具
 
 | 目的 | URI | IP | 連接埠 |
 | --- | --- | --- | --- |
-| 代理程式 | agent.azureserviceprofiler.net | 動態 | 443
+| 代理程式 | agent.azureserviceprofiler.net<br/>*.agent.azureserviceprofiler.net | 動態 | 443
 | 入口網站 | gateway.azureserviceprofiler.net | 動態 | 443
 | 儲存體 | *.core.windows.net | 動態 | 443
 
@@ -217,7 +243,7 @@ US : VA-Ashburn
 
 | 目的 | URI | IP | 連接埠 |
 | --- | --- | --- | --- |
-| 代理程式 | ppe.azureserviceprofiler.net | 動態 | 443
+| 代理程式 | ppe.azureserviceprofiler.net<br/>*.ppe.azureserviceprofiler.net | 動態 | 443
 | 入口網站 | ppe.gateway.azureserviceprofiler.net | 動態 | 443
 | 儲存體 | *.core.windows.net | 動態 | 443
 

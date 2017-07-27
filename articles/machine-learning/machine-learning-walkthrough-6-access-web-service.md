@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: garye
-translationtype: Human Translation
-ms.sourcegitcommit: 1029c7e4c6a17ad2a290ff0783fc88692555b255
-ms.openlocfilehash: 89bec0e3af42b03ef21e3e8c4059f6aad86db4c0
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: d309f6c4749a80c81859b693a2bd5927e8fe0e54
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -48,6 +49,6 @@ ms.lasthandoff: 03/02/2017
 
 您也可以使用以 R、C# 和 Python 程式語言為您提供的起始程式碼來開發自訂應用程式以存取 Web 服務。
 
-您可以在[如何使用已從機器學習實驗發佈的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)中找到完整詳細資料。
+您可以在[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)中找到完整詳細資料。
 
 

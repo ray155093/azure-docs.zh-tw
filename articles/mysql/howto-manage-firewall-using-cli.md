@@ -1,22 +1,20 @@
 ---
 title: "使用 Azure CLI 建立和管理適用於 MySQL 的 Azure 資料庫防火牆規則 | Microsoft Docs"
-description: "描述如何使用 Azure CLI 建立和管理適用於 MySQL 的 Azure 資料庫防火牆規則。"
+description: "本文描述如何使用 Azure CLI 命令列，建立和管理適用於 MySQL 的 Azure 資料庫防火牆規則。"
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
 manager: jhubbard
-editor: jasonh
-ms.assetid: 
+editor: jasonwhowell
 ms.service: mysql-database
-ms.tgt_pltfrm: portal
-ms.devlang: azurecli
+ms.devlang: azure-cli
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 06/13/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: d7ff4ae8dbf9610b843c8b48d83b0f3c23ac72d5
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 9a03722e9f71be307bdbf0b846a4cbf7b34cd7ff
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/17/2017
 
 ---
 
@@ -52,37 +50,39 @@ az login
 
 3. 出現提示時，使用您的 Azure 認證登入。
 
-4. 您的登入獲得授權之後，主控台就會列印訂用帳戶清單。
+4. 您的登入獲得授權之後，主控台就會列印訂用帳戶清單。 複製所需訂用帳戶的識別碼，以設定目前的訂用帳戶供未來使用。
+   ```azurecli-interactive
+   az account set --subscription {your subscription id}
+   ```
 
-複製所需訂用帳戶的識別碼，以設定目前的訂用帳戶供未來使用。
-```azurecli
-az account set --subscription {your subscription id}
-```
 5. 如果您不確定名稱，請列出您的訂用帳戶和資源群組的「適用於 MySQL 的 Azure 資料庫」伺服器。
-```azurecli
-az mysql server list --resource-group myResourceGroup
-```
-請注意清單中的名稱屬性，這將用來指定要使用的 MySQL 伺服器。 如有需要，請確認該伺服器的詳細資料，使用名稱屬性確認名稱正確︰
-```azurecli
-az mysql server show --resource-group myResourceGroup --name mysqlserver4demo
-```
+
+   ```azurecli-interactive
+   az mysql server list --resource-group myResourceGroup
+   ```
+
+   請注意清單中的名稱屬性，這將用來指定要使用的 MySQL 伺服器。 如有需要，請確認該伺服器的詳細資料，使用名稱屬性確認名稱正確︰
+
+   ```azurecli-interactive
+   az mysql server show --resource-group myResourceGroup --name mysqlserver4demo
+   ```
 
 ## <a name="list-firewall-rules-on-azure-database-for-mysql-server"></a>在「適用於 MySQL 的 Azure 資料庫」伺服器上列出防火牆規則 
 使用伺服器名稱和資源群組名稱，列出伺服器上現有的伺服器防火牆規則。 請注意，伺服器名稱屬性是在 **--server** 參數中指定，而不是 **--name** 參數。
-```azurecli
+```azurecli-interactive
 az mysql server firewall-rule list --resource-group myResourceGroup --server mysqlserver4demo
 ```
 根據預設，輸出會以 JSON 格式列出規則 (若有的話)。 您可以使用參數 **--output table**，以更容易閱讀的資料表格式呈現輸出。
-```azurecli
+```azurecli-interactive
 az mysql server firewall-rule list --resource-group myResourceGroup --server mysqlserver4demo --output table
 ```
 ## <a name="create-firewall-rule-on-azure-database-for-mysql-server"></a>在「適用於 MySQL 的 Azure 資料庫」伺服器上建立防火牆規則
 使用 Azure MySQL 伺服器名稱和資源群組名稱，在伺服器上建立新的防火牆規則。 提供規則的名稱、規則的起始 IP 和結束 IP，以涵蓋允許存取的 IP 位址範圍。
-```azurecli
+```azurecli-interactive
 az mysql server firewall-rule create --resource-group myResourceGroup  --server mysqlserver4demo --name "Firewall Rule 1" --start-ip-address 13.83.152.0 --end-ip-address 13.83.152.15
 ```
 若要允許存取單一 IP 位址，請在 [起始 IP] 和 [結束 IP] 中提供相同的位址，如這個範例所示。
-```azurecli
+```azurecli-interactive
 az mysql server firewall-rule create --resource-group myResourceGroup  
 --server mysql --name "Firewall Rule with a Single Address" --start-ip-address 1.1.1.1 --end-ip-address 1.1.1.1
 ```
@@ -90,7 +90,7 @@ az mysql server firewall-rule create --resource-group myResourceGroup
 
 ## <a name="update-firewall-rule-on-azure-database-for-mysql-server"></a>在「適用於 MySQL 的 Azure 資料庫」伺服器上更新防火牆規則 
 使用 Azure MySQL 伺服器名稱和資源群組名稱，在伺服器上更新現有的防火牆規則。 提供現有防火牆規則的名稱作為輸入，以及要更新的起始 IP 和結束 IP 屬性。
-```azurecli
+```azurecli-interactive
 az mysql server firewall-rule update --resource-group myResourceGroup --server mysqlserver4demo --name "Firewall Rule 1" --start-ip-address 13.83.152.0 --end-ip-address 13.83.152.1
 ```
 成功時，命令輸出會列出您已更新之防火牆規則的詳細資料，預設為 JSON 格式。 如果失敗，輸出就會改為顯示錯誤訊息文字。
@@ -100,14 +100,14 @@ az mysql server firewall-rule update --resource-group myResourceGroup --server m
 
 ## <a name="show-firewall-rule-details-on-azure-database-for-mysql-server"></a>在「適用於 MySQL 的 Azure 資料庫」伺服器上顯示防火牆規則詳細資料
 使用 Azure MySQL 伺服器名稱和資源群組名稱，顯示伺服器上現有的防火牆規則詳細資料。 提供現有防火牆規則的名稱作為輸入。
-```azurecli
+```azurecli-interactive
 az mysql server firewall-rule show --resource-group myResourceGroup --server mysqlserver4demo --name "Firewall Rule 1"
 ```
 成功時，命令輸出會列出您已指定之防火牆規則的詳細資料，預設為 JSON 格式。 如果失敗，輸出就會改為顯示錯誤訊息文字。
 
 ## <a name="delete-firewall-rule-on-azure-database-for-mysql-server"></a>在「適用於 MySQL 的 Azure 資料庫」伺服器上刪除防火牆規則
 使用 Azure MySQL 伺服器名稱和資源群組名稱，從伺服器上移除現有的防火牆規則。 提供現有防火牆規則的名稱。
-```azurecli
+```azurecli-interactive
 az mysql server firewall-rule delete --resource-group myResourceGroup --server mysqlserver4demo --name "Firewall Rule 1"
 ```
 成功時，沒有任何輸出。 發生錯誤時，就會傳回錯誤訊息文字。
@@ -115,3 +115,4 @@ az mysql server firewall-rule delete --resource-group myResourceGroup --server m
 ## <a name="next-steps"></a>後續步驟
 - 進一步了解[適用於 MySQL 的 Azure 資料庫伺服器防火牆規則](./concepts-firewall-rules.md)
 - [使用 Azure 入口網站建立和管理適用於 MySQL 的 Azure 資料庫防火牆規則](./howto-manage-firewall-using-portal.md)
+

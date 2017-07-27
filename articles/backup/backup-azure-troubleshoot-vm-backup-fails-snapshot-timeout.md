@@ -1,34 +1,36 @@
 ---
-title: "對 Azure 備份失敗進行疑難排解︰快照 VM 子工作逾時 | Microsoft Docs"
-description: "與錯誤相關的 Azure 備份失敗的徵狀、原因及解決方案：無法與 VM 代理程式通訊以取得快照狀態 - 快照 VM 子工作逾時"
+title: "針對 Azure 備份失敗：無法使用客體代理程式狀態進行疑難排解 | Microsoft Docs"
+description: "與「無法與 VM 代理程式通訊」錯誤相關之 Azure 備份失敗的徵狀、原因和解決方案"
 services: backup
 documentationcenter: 
 author: genlin
 manager: cshepard
 editor: 
+keywords: "Azure 備份; VM 代理程式; 網路連線;"
 ms.assetid: 4b02ffa4-c48e-45f6-8363-73d536be4639
 ms.service: backup
 ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 06/13/2017
 ms.author: genli;markgal;
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: d7924d8aade1ea582faa0f319f8c1d16d5461fbc
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: dd4ac14a703663175bb477de587da8f4ad510c7c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/14/2017
 
 ---
 
-# <a name="troubleshoot-azure-backup-failure-snapshot-vm-sub-task-timed-out"></a>對 Azure 備份失敗進行疑難排解︰快照 VM 子工作逾時
+# <a name="troubleshoot-azure-backup-failure-vm-agent-unable-to-communicate-with-azure-backup"></a>針對 Azure 備份失敗：VM 代理程式無法與 Azure 備份通訊進行疑難排解
 ## <a name="summary"></a>摘要
-在註冊及排程 Azure 備份服務的 VM 之後，備份就會藉由與 VM 備份擴充功能通訊以取得時間點快照，來起始作業。 四種狀況的任一種都可能會阻止觸發快照，接著導致備份失敗。 本文提供疑難排解步驟，協助您解決與快照逾時錯誤相關的備份失敗。
+在註冊及排程 Azure 備份服務的 VM 之後，備份就會藉由與 VM 備份擴充功能通訊以取得時間點快照，來起始作業。 四種狀況的任一種都可能會阻止觸發快照，接著導致備份失敗。 本文提供疑難排解步驟，協助您解決與 VM 代理程式和擴充功能通訊問題相關的備份失敗。
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ## <a name="symptom"></a>徵狀
-適用於基礎結構即服務 (IaaS) VM 的 Azure 備份失敗，會在 [Azure 入口網站](https://portal.azure.com/)的作業錯誤詳細資料中傳回下列錯誤訊息：「無法與 VM 代理程式通訊以取得快照狀態 - 快照 VM 子工作逾時」。
+適用於基礎結構即服務 (IaaS) VM 的 Azure 備份失敗，並且會在 [Azure 入口網站](https://portal.azure.com/)的作業錯誤詳細資料中傳回下列錯誤訊息：「VM 代理程式無法與 Azure 備份服務通訊」、「因為虛擬機器沒有網路連線，所以快照集作業失敗」。
 
 ## <a name="cause-1-the-vm-has-no-internet-access"></a>原因 1：VM 沒有網際網路存取權
 根據部署需求，VM 沒有網際網路存取權，或是有既有限制，防止存取 Azure 基礎結構。
@@ -49,6 +51,8 @@ ms.lasthandoff: 04/03/2017
 2. 若要允許從 HTTP Proxy 存取網際網路，可將規則新增到網路安全性群組 (如果您有一個)。
 
 若要了解如何設定 VM 備份的 HTTP Proxy，請參閱[準備環境以備份 Azure 虛擬機器](backup-azure-vms-prepare.md#using-an-http-proxy-for-vm-backups)。
+
+如果您要使用受控磁碟，您可能必須在防火牆上開啟其他連接埠 (8443)。
 
 ## <a name="cause-2-the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>原因 2︰VM 中安裝的代理程式已過時 (針對 Linux VM)
 
@@ -77,10 +81,24 @@ ms.lasthandoff: 04/03/2017
 如果我們需要 waagent 的詳細資訊記錄，請遵循下列步驟：
 
 1. 在 /etc/waagent.conf 檔案中，找出下一行︰**Enable verbose logging (y|n)**
-2. 將 **Logs.Verbose** 值從 *n* 變更為 *y*。
+2. 將 **Logs.Verbose** 值從 n 變更為 y。
 3. 儲存變更，然後遵循本節前面的步驟，重新啟動 waagent。
 
-## <a name="cause-3-the-backup-extension-fails-to-update-or-load"></a>原因 3︰備份擴充功能無法更新或載入
+## <a name="cause-3-the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>原因 3：代理程式已安裝到 VM 中，但沒有回應 (適用於 Windows VM)
+
+### <a name="solution"></a>方案
+VM 代理程式可能已損毀，或服務可能已停止。 重新安裝 VM 代理程式有助於取得最新版本並重新啟動通訊。
+
+1. 確認是否可以在電腦的服務中看到 Windows 客體代理程式服務 (services.msc)
+2. 如果看不到，請在 [程式和功能] 中確認您是否已安裝 Windows 客體代理程式服務。
+3. 如果您可以在 [程式和功能] 中看到，請將 Windows 客體代理程式解除安裝。
+4. 下載並安裝 [代理程式 MSI](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。 您需要有系統管理員權限，才能完成安裝。
+5. 然後，您應該就能在服務中看到 Windows 客體代理程式服務
+6. 在入口網站中按一下 [立即備份]，以嘗試執行隨選備份或臨機操作備份。
+
+也請確認您是否**已在系統中安裝 .NET 4.5**。 您必須安裝此程式，VM 代理程式才能與服務通訊
+
+## <a name="cause-4-the-backup-extension-fails-to-update-or-load"></a>原因 4︰備份擴充功能無法更新或載入
 如果無法載入擴充功能，備份就會因為無法取得快照而失敗。
 
 ### <a name="solution"></a>方案
@@ -106,7 +124,7 @@ VMSnapshot for Linux (備份所使用的擴充功能) 的最新版本是 1.0.91.
 
 此程序會導致在下一次備份期間重新安裝擴充功能。
 
-## <a name="cause-4-the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>原因 4︰無法擷取快照狀態或無法取得快照
+## <a name="cause-5-the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>原因 5︰無法擷取快照狀態或無法取得快照
 VM 備份仰賴發給底層儲存體帳戶的快照命令。 備份可能會失敗，因為它無權存取儲存體帳戶，或是因為快照工作延遲執行。
 
 ### <a name="solution"></a>方案

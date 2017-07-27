@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: LADocs; jehollan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 859f9a1ca9dbe166fd514c8eba868b466dbc4d2c
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 41fcccae7b3d306c25f4429d47e81884d88cd83e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -101,6 +101,8 @@ ms.lasthandoff: 05/18/2017
 |允許的動作巢狀深度|5|您可以視需要新增巢狀工作流程以擴充此項目|
 |每個訂用帳戶每個區域的工作流程數目|1000||
 |每個工作流程的觸發程序數目|10||
+|參數範圍案例限制|25||
+|每個工作流程的變數數目|250||
 |每個運算式的字元數上限|8,192||
 |`trackedProperties` 大小上限 (以字元為單位)|16,000|
 |`action`/`trigger` 名稱限制|80||

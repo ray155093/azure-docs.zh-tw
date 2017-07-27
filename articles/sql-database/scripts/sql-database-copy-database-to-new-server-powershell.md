@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼 - 將 SQL Database 複製到新伺服器 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 使用 PowerShell 將 SQL Database 複製到新伺服器"
+title: "PowerShell 範例 - 複製 - Azure SQL Database - 新伺服器 | Microsoft Docs"
+description: "將 SQL Database 複製到新伺服器的 Azure PowerShell 範例指令碼"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -14,19 +14,19 @@ ms.devlang: PowerShell
 ms.topic: sample
 ms.tgt_pltfrm: sql-database
 ms.workload: database
-ms.date: 05/23/2017
+ms.date: 06/23/2017
 ms.author: janeng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: cb3412398e566cc16dadc8348241a603e78a098c
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 7b57e37a1bc9391c88c8170f59a39654bf895d47
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/28/2017
 
 ---
 
-# <a name="copy-a-sql-database-to-a-new-server-using-powershell"></a>使用 PowerShell 將 SQL Database 複製到新伺服器
+# <a name="use-powershell-to-copy-a-sql-database-to-a-new-server"></a>使用 PowerShell 將 SQL Database 複製到新伺服器
 
-此範例 PowerShell 指令碼會在新伺服器中建立現有資料庫的複本。 
+此 PowerShell 指令碼範例會在新伺服器中建立現有資料庫的複本。 
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 

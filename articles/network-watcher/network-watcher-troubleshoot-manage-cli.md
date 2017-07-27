@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure 虛擬網路閘道和連線進行疑難排解 - Azure CLI | Microsoft Docs"
-description: "此頁面說明如何使用 Azure 網路監看員來針對 Azure CLI 進行疑難排解"
+title: "針對 Azure 虛擬網路閘道和連線進行疑難排解 - Azure CLI 2.0 | Microsoft Docs"
+description: "此頁面說明如何使用 Azure 網路監看員來針對 Azure CLI 2.0 進行疑難排解"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -12,30 +12,37 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/22/2017
+ms.date: 06/19/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: a213c146a9ea1bb6c23bbcbfb6353372f2e4cbfc
-ms.lasthandoff: 04/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 09270cf3181476f3ed2c1720b497e707edff880e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
 
-# <a name="troubleshoot-virtual-network-gateway-and-connections-using-azure-network-watcher-azure-cli"></a>使用 Azure 網路監看員 Azure CLI 來針對虛擬網路閘道和連線進行疑難排解
+# <a name="troubleshoot-virtual-network-gateway-and-connections-using-azure-network-watcher-azure-cli-20"></a>使用 Azure 網路監看員 Azure CLI 2.0 來針對虛擬網路閘道和連線進行疑難排解
 
 > [!div class="op_single_selector"]
+> - [入口網站](network-watcher-troubleshoot-manage-portal.md)
 > - [PowerShell](network-watcher-troubleshoot-manage-powershell.md)
-> - [CLI](network-watcher-troubleshoot-manage-cli.md)
+> - [CLI 1.0](network-watcher-troubleshoot-manage-cli-nodejs.md)
+> - [CLI 2.0](network-watcher-troubleshoot-manage-cli.md)
 > - [REST API](network-watcher-troubleshoot-manage-rest.md)
 
-網路監看員提供了許多功能，因為它的作用就是為了讓您了解您在 Azure 中的網路資源。 這些功能的其中之一便是資源疑難排解。 資源疑難排解可透過 PowerShell、CLI 或 REST API 來呼叫。 一經呼叫，網路監看員就會檢查虛擬網路閘道或連線的健全狀況，並傳回其調查結果。
+網路監看員提供了許多功能，因為它的作用就是為了讓您了解您在 Azure 中的網路資源。 這些功能的其中之一便是資源疑難排解。 您可以透過入口網站、PowerShell、CLI 或 REST API 呼叫資源疑難排解。 一經呼叫，網路監看員就會檢查虛擬網路閘道或連線的健全狀況，並傳回其調查結果。
 
-本文使用跨平台 Azure CLI 1.0，這適用於 Windows、Mac 和 Linux。 網路監看員目前使用 Azure CLI 1.0 提供 CLI 支援。
+本文使用 Azure CLI 2.0 (針對資源管理部署模型的新一代 CLI)，它適用於 Windows、Mac 和 Linux。
+
+若要執行本文的步驟，您需要[安裝適用於 Mac、Linux 和 Windows 的 Azure 命令列介面 (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)。
 
 ## <a name="before-you-begin"></a>開始之前
 
 此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。
+
+如需支援的閘道類型清單，請瀏覽[支援的閘道類型](network-watcher-troubleshoot-overview.md#supported-gateway-types)。
 
 ## <a name="overview"></a>概觀
 
@@ -46,19 +53,13 @@ ms.lasthandoff: 04/10/2017
 在此範例中，系統會對連線執行資源疑難排解。 您也可以將它傳遞給虛擬網路閘道。 下列 Cmdlet 會列出資源群組中的 VPN 連線。
 
 ```azurecli
-azure network vpn-connection list -g resourceGroupName
-```
-
-您也可以執行命令來查看訂用帳戶中的連線。
-
-```azurecli
-azure network vpn-connection list -s subscription
+az network vpn-connection list --resource-group resourceGroupName
 ```
 
 在取得連線的名稱之後，您可以執行此命令來取得其資源識別碼︰
 
 ```azurecli
-azure network vpn-connection show -g resourceGroupName -n connectionName
+az network vpn-connection show --resource-group resourceGroupName --ids vpnConnectionIds
 ```
 
 ## <a name="create-a-storage-account"></a>建立儲存體帳戶
@@ -68,27 +69,27 @@ azure network vpn-connection show -g resourceGroupName -n connectionName
 1. 建立儲存體帳戶
 
     ```azurecli
-    azure storage account create -n storageAccountName -l location -g resourceGroupName
+    az storage account create --name storageAccountName --location westcentralus --resource-group resourceGroupName --sku Standard_LRS
     ```
 
 1. 取得儲存體帳戶金鑰
 
     ```azurecli
-    azure storage account keys list storageAccountName -g resourcegroupName
+    az storage account keys list --resource-group resourcegroupName --account-name storageAccountName
     ```
 
 1. 建立容器
 
     ```azurecli
-    azure storage container create --account-name storageAccountName -g resourcegroupName --acount-key {storageAccountKey} --container logs
+    az storage container create --account-name storageAccountName --account-key {storageAccountKey} --name logs
     ```
 
 ## <a name="run-network-watcher-resource-troubleshooting"></a>執行網路監看員資源疑難排解
 
-您可以使用 `network watcher troubleshoot` Cmdlet 對資源進行疑難排解。 我們會將資源群組、網路監看員名稱、連線識別碼、儲存體帳戶識別碼，以及用以儲存疑難排解結果之 Blob 的路徑傳遞給此 Cmdlet。
+您可以使用 `az network watcher troubleshooting` Cmdlet 對資源進行疑難排解。 我們會將資源群組、網路監看員名稱、連線識別碼、儲存體帳戶識別碼，以及用以儲存疑難排解結果之 Blob 的路徑傳遞給此 Cmdlet。
 
 ```azurecli
-azure network watcher -g resourceGroupName -n networkWatcherName -t connectionId -i storageId -p storagePath
+az network watcher troubleshooting start --resource-group resourceGroupName --resource resourceName --resource-type {vnetGateway/vpnConnection} --storage-account storageAccountName  --storage-path https://{storageAccountName}.blob.core.windows.net/{containerName}
 ```
 
 在執行此 Cmdlet 後，網路監看員會檢閱資源以驗證其健康狀態。 它會將結果傳回殼層，並將結果的記錄儲存在指定的儲存體帳戶中。

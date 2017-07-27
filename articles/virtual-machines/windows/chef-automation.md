@@ -13,12 +13,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-multiple
 ms.devlang: na
 ms.topic: article
-ms.date: 05/19/2015
+ms.date: 05/30/2017
 ms.author: diviso
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: aed46cbf5a57d73f4ce5bab42fdd20ae11d86373
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: b6db0fbb4e0de896994954974ddcc39daad9c125
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -59,7 +60,8 @@ Chef 工作站是我們的系統管理工作站，我們可以在這裡建立原
 
 我們現在必須下載 Azure 設定檔，以便 Chef 與 Azure 訂閱進行通訊。
 
-從 [這裡](https://manage.windowsazure.com/publishsettings/)下載您的發行設定。
+<!--Download your publish settings from [here](https://manage.windowsazure.com/publishsettings/).-->
+使用 PowerShell Azure [Get-AzurePublishSettingsFile](https://docs.microsoft.com/en-us/powershell/module/azure/get-azurepublishsettingsfile?view=azuresmps-4.0.0) 命令來下載您的發佈設定。 
 
 將發行設定檔儲存在 C:\chef 中。
 
@@ -221,7 +223,7 @@ Chef 會使用 Cookbook 來定義一組您想在受管理的用戶端上執行�
 
 如您所見，我的 HTML 程式碼開始有點意思。
 
-別忘了我們也可以透過連接埠 3389，從 Azure 傳統入口網站的 RDP 工作階段進行連線。
+別忘了我們也可以透過連接埠 3389，從 Azure 入口網站的 RDP 工作階段進行連線。
 
 我希望這對您有所幫助！ 現在就開始使用 Azure 來體驗基礎結構即程式碼！
 

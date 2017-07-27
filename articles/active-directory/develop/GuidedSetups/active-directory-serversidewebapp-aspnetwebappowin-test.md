@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
+ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 77030e3e6375682c416d99ef22d754b908ad484d
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: 00cb963e85111274c36c3a84489894811ad2dabd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -48,7 +49,7 @@ ms.lasthandoff: 05/10/2017
 | 主體| {主體}|用來跨網站唯一識別使用者登入的字串|
 | 租用戶識別碼| {Guid}| 唯一代表使用者之 Azure Active Directory 組織的 *guid*。|
 
-此外，您也會看到一個表格，其中包含驗證要求中包括的所有使用者宣告。 如需識別碼權杖中所有宣告的清單和說明，請參閱這篇[文章](https://docs.microsoft.com/azure/active-directory/develop/active-directory-token-and-claims)。
+此外，您也會看到一個表格，其中包含驗證要求中包括的所有使用者宣告。 如需識別碼權杖中所有宣告的清單和說明，請參閱這篇[文章]：(https://docs.microsoft.com/azure/active-directory/develop/active-directory-token-and-claims "識別碼權杖的宣告清單")。
 
 
 ### <a name="test-accessing-a-method-that-has-an-authorize-attribute-optional"></a>對具有 *[Authorize]* 屬性 (選用) 的方法進行存取測試
@@ -82,6 +83,6 @@ GlobalFilters.Filters.Add(new AuthorizeAttribute());
 
 > 若只要允許來自某一特定組織清單的使用者登入，請將 `ValidateIssuer` 設定為 true 並使用 `ValidIssuers` 參數指定組織清單。
 
-> 另一個選項是實作自訂方法，使用 IssuerValidator 參數驗證簽發者。 如需 `TokenValidationParameters` 的相關詳細資訊，請參閱[這篇](https://msdn.microsoft.com/en-us/library/system.identitymodel.tokens.tokenvalidationparameters.aspx) MSDN 文章。
+> 另一個選項是實作自訂方法，使用 IssuerValidator 參數驗證簽發者。 如需 `TokenValidationParameters` 的詳細資訊，請參閱[這篇 ](https://msdn.microsoft.com/library/system.identitymodel.tokens.tokenvalidationparameters.aspx "TokenValidationParameters MSDN 文章") MSDN 文章。
 
 

@@ -4,7 +4,7 @@ description: "這是如何監視內部部署 AD FS 基礎結構的 Azure AD Conn
 services: active-directory
 documentationcenter: 
 author: karavar
-manager: samueld
+manager: femila
 editor: curtand
 ms.assetid: dc0e53d8-403e-462a-9543-164eaa7dd8b3
 ms.service: active-directory
@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 2/27/2017
-ms.author: vakarand
+ms.date: 07/18/2017
+ms.author: billmath
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b9a3b64d9de48f17a295ca7a9ea58cf26e8f83ed
 ms.openlocfilehash: 0ae3f2ddfa37d617c02df2628411a877381412d5
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/28/2017
 
 ---
@@ -115,7 +116,7 @@ Azure AD Connect Health for ADFS 會提供一份報告，內容有關因為使�
 | 上次失敗 IP |顯示最後一個不正確要求的用戶端 IP 位址。 |
 
 > [!NOTE]
-> 此報告會每隔&2; 小時以該段時間內收集的新資訊自動進行更新。 因此，報告中不包含過去&2; 小時內的登入嘗試。
+> 此報告會每隔 2 小時以該段時間內收集的新資訊自動進行更新。 因此，報告中不包含過去 2 小時內的登入嘗試。
 >
 >
 

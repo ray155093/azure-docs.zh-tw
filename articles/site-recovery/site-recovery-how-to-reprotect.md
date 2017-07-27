@@ -11,18 +11,20 @@ ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.workload: 
-ms.date: 02/13/2017
+ms.workload: storage-backup-recovery
+ms.date: 06/05/2017
 ms.author: ruturajd
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 3156ca5b2b8ba836e94d79a97b28bf591c799b48
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: d77f9c4e6365c95b0ea1bf4d00b9f2e9c35eefde
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
 # <a name="reprotect-from-azure-to-an-on-premises-site"></a>從 Azure 重新保護至內部部署網站
+
+
 
 ## <a name="overview"></a>概觀
 此文章說明如何將 Azure 虛擬機器從 Azure 重新保護到內部部署網站。 當您準備好使用此[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-failover.md)，將已從內部部署網站容錯移轉至 Azure 的 VMware 虛擬機器或 Windows/Linux 實體伺服器容錯回復時，請依照此文章中的指示執行。
@@ -44,7 +46,7 @@ ms.lasthandoff: 04/27/2017
 
 * 如果您想要容錯回復到的目標虛擬機器是由 vCenter 伺服器進行管理，您必須確定已擁有在 vCenter 伺服器上探索虛擬機器的必要權限。 [閱讀更多資訊](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access)。
 
-> [!WARNING] 
+> [!WARNING]
 > 如果內部部署的主要目標或虛擬機器上有快照集，重新保護程序將會失敗。 您可以先刪除主要目標上的快照集，再進行重新保護。 虛擬機器上的快照集會在重新保護作業期間自動合併。
 
 * 在容錯回復之前，您將需要先建立兩個其他元件：
@@ -103,6 +105,10 @@ ms.lasthandoff: 04/27/2017
 * [如何安裝 Linux 主要目標伺服器](site-recovery-how-to-install-linux-master-target.md)
 
 
+### <a name="what-datastore-types-are-supported-on-the-on-premises-esxi-host-during-failback"></a>在容錯回復期間，內部部署 ESXi 主機支援哪些資料存放區類型？
+
+目前 ASR 僅支援容錯回復到 VMFS 資料存放區。 不支援 vSAN 或 NFS 資料存放區。 請注意，您可以保護 vSAN 或 NFS 資料存放區上執行的虛擬機器。 由於這項限制，重新保護畫面的資料存放區選取範圍輸入在 NFS 資料存放區中將找不到任何資料，或是仍會顯示 vSAN 資料存放區但在工作期間卻不會顯示。 如果您想要容錯回復，可建立內部部署的 VMFS 資料存放區，也可容錯回復到 VMFS 資料存放區。 此容錯回復會導致完整下載 VMDK。 我們將在日後發行的版本中，加入對 NFS 和 vSAN 資料存放區的支援。
+
 #### <a name="common-things-to-check-after-completing-installation-of-the-master-target-server"></a>完成主要目標伺服器安裝後必須檢查的常見項目
 
 * 若虛擬機器存在於內部部署 vCenter 伺服器上，主要目標伺服器必須能夠存取內部部署虛擬機器的 VMDK。 需要存取才可將複寫的資料寫入虛擬機器的磁碟。 請確定內部部署內部部署的資料存放區已掛接在主要目標的主機上並已設定讀寫權限。
@@ -129,7 +135,7 @@ ms.lasthandoff: 04/27/2017
    * Windows 的預設保留磁碟區為 R 磁碟區。
 
    * Linux 的預設保留磁碟區為 /mnt/retention。
-   
+
    > [!IMPORTANT]
    > 如果您使用現有的 CS+PS 機器或 PS+MT 機器，則必須新增磁碟機。 新的磁碟機應該符合上述需求。 如果保留磁碟機不存在，則入口網站上的選取項目下拉式清單中不會列出任何項目。 將磁碟機新增至內部部署主要目標之後，磁碟機最多需要 15 分鐘才會反映在入口網站上的選取項目中。 如果磁碟機未在 15 分鐘之後出現，您也可以重新整理設定伺服器。
 

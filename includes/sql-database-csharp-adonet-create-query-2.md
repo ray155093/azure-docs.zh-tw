@@ -1,9 +1,7 @@
 
 <a name="cs_0_csharpprogramexample_h2"/>
 
-<a id="c-program-example" class="xliff"></a>
-
-## C# 程式範例
+## <a name="c-program-example"></a>C# 程式範例
 
 本文的下一節會呈現使用 ADO.NET 將 TRANSACT-SQL 陳述式傳送到 SQL 資料庫的 C# 程式。 C# 程式會執行下列動作：
 
@@ -21,9 +19,7 @@ C# 程式包含：
 - 可傳回 T-SQL 原始程式碼的方法。
 - 將 T-SQL 提交至資料庫的兩種方法。
 
-<a id="to-compile-and-run" class="xliff"></a>
-
-#### 編譯和執行
+#### <a name="to-compile-and-run"></a>編譯和執行
 
 這個 C# 程式邏輯上是一個 .cs 檔案。 但是，程式在此會實際分成數個程式碼區塊，讓您更容易查看和了解每個區塊。 若要編譯及執行此程式，請執行下列作業：
 
@@ -47,11 +43,9 @@ C# 程式包含：
 >
 
 <a name="cs_1_connect"/>
-<a id="c-block-1-connect-by-using-adonet" class="xliff"></a>
+### <a name="c-block-1-connect-by-using-adonet"></a>C# 區塊 1：使用 ADO.NET 連線
 
-### C# 區塊 1：使用 ADO.NET 連線
-
-- [](#cs_2_createtables)
+- [下一頁](#cs_2_createtables)
 
 
 ```csharp
@@ -105,9 +99,7 @@ namespace csharp_db_test
 
 
 <a name="cs_2_createtables"/>
-<a id="c-block-2-t-sql-to-create-tables" class="xliff"></a>
-
-### C# 區塊 2：T-SQL 用以建立資料表
+### <a name="c-block-2-t-sql-to-create-tables"></a>C# 區塊 2：T-SQL 用以建立資料表
 
 - [上一個](#cs_1_connect) &nbsp; / &nbsp; [下一個](#cs_3_insert)
 
@@ -139,9 +131,7 @@ CREATE TABLE tabEmployee
       }
 ```
 
-<a id="entity-relationship-diagram-erd" class="xliff"></a>
-
-#### 實體關聯圖 (ERD)
+#### <a name="entity-relationship-diagram-erd"></a>實體關聯圖 (ERD)
 
 先前的 CREATE TABLE 陳述式包含 **REFERENCES** 關鍵字，可建立兩個資料表之間的「外部索引鍵」(FK) 關聯性。  如果您使用 tempdb，請使用一對前置破折號將 `--REFERENCES` 關鍵字註解化。
 
@@ -151,9 +141,7 @@ CREATE TABLE tabEmployee
 
 
 <a name="cs_3_insert"/>
-<a id="c-block-3-t-sql-to-insert-data" class="xliff"></a>
-
-### C# 區塊 3：T-SQL 用以插入資料
+### <a name="c-block-3-t-sql-to-insert-data"></a>C# 區塊 3：T-SQL 用以插入資料
 
 - [上一個](#cs_2_createtables) &nbsp; / &nbsp; [下一個](#cs_4_updatejoin)
 
@@ -185,9 +173,7 @@ INSERT INTO tabEmployee
 
 
 <a name="cs_4_updatejoin"/>
-<a id="c-block-4-t-sql-to-update-join" class="xliff"></a>
-
-### C# 區塊 4：T-SQL 用以更新聯結
+### <a name="c-block-4-t-sql-to-update-join"></a>C# 區塊 4：T-SQL 用以更新聯結
 
 - [上一個](#cs_3_insert) &nbsp; / &nbsp; [下一個](#cs_5_deletejoin)
 
@@ -215,9 +201,7 @@ UPDATE empl
 
 
 <a name="cs_5_deletejoin"/>
-<a id="c-block-5-t-sql-to-delete-join" class="xliff"></a>
-
-### C# 區塊 5：T-SQL 用以刪除聯結
+### <a name="c-block-5-t-sql-to-delete-join"></a>C# 區塊 5：T-SQL 用以刪除聯結
 
 - [上一個](#cs_4_updatejoin) &nbsp; / &nbsp; [下一個](#cs_6_selectrows)
 
@@ -249,9 +233,7 @@ DELETE tabDepartment
 
 
 <a name="cs_6_selectrows"/>
-<a id="c-block-6-t-sql-to-select-rows" class="xliff"></a>
-
-### C# 區塊 6：T-SQL 用以選取資料列
+### <a name="c-block-6-t-sql-to-select-rows"></a>C# 區塊 6：T-SQL 用以選取資料列
 
 - [上一個](#cs_5_deletejoin) &nbsp; / &nbsp; [下一個](#cs_6b_datareader)
 
@@ -279,9 +261,7 @@ SELECT
 
 
 <a name="cs_6b_datareader"/>
-<a id="c-block-6b-executereader" class="xliff"></a>
-
-### C# 區塊 6b：ExecuteReader
+### <a name="c-block-6b-executereader"></a>C# 區塊 6b：ExecuteReader
 
 - [上一個](#cs_6_selectrows) &nbsp; / &nbsp; [下一個](#cs_7_executenonquery)
 
@@ -317,9 +297,7 @@ SELECT
 
 
 <a name="cs_7_executenonquery"/>
-<a id="c-block-7-executenonquery" class="xliff"></a>
-
-### C# 區塊 7：ExecuteNonQuery
+### <a name="c-block-7-executenonquery"></a>C# 區塊 7：ExecuteNonQuery
 
 - [上一個](#cs_6b_datareader) &nbsp; / &nbsp; [下一個](#cs_8_output)
 
@@ -357,9 +335,7 @@ SELECT
 
 
 <a name="cs_8_output"/>
-<a id="c-block-8-actual-test-output-to-the-console" class="xliff"></a>
-
-### C# 區塊 8：實際測試輸出到主控台
+### <a name="c-block-8-actual-test-output-to-the-console"></a>C# 區塊 8：實際測試輸出到主控台
 
 - [上一個](#cs_7_executenonquery)
 

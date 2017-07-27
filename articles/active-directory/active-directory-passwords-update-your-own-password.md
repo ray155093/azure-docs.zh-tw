@@ -1,41 +1,46 @@
 ---
 title: "Azure AD：密碼重設 |Microsoft Docs"
-description: "使用自助式密碼重設來重新取得您工作或學校帳戶的存取權"
+description: "使用自助式密碼重設來重新取得您工作或學校使用者帳戶的存取權"
 services: active-directory
 keywords: 
 documentationcenter: 
 author: MicrosoftGuyJFlo
 manager: femila
+ms.reviewer: gahug
 ms.assetid: 7ba69b18-317a-4a62-afa3-924c4ea8fb49
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: end-user
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 19a17951b40dcad26c846a45ee786ab5339e59b8
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 6ee3d1319e7727b1134472a1b62a3de7a3571997
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
-
+ms.lasthandoff: 07/06/2017
 
 ---
 # <a name="help-i-forgot-my-azure-ad-password"></a>忘記 Azure AD 密碼的說明
 
-如果您忘記密碼、未曾收到 IT 人員給予的密碼、系統鎖定了您帳戶的密碼或您想要變更密碼，我們都可以提供協助。
+如果您忘記密碼、未曾收到 IT 人員給予的密碼、系統鎖定了您帳戶的密碼或您想要變更密碼，我們都可以提供協助。 如果您知道密碼，而且只是需要加以變更，請逕行前往下面的[變更我的密碼](#change-my-password)一節。
+
+   > [!NOTE]
+   > 如果您想要回到個人帳戶 (例如，Xbox、hotmail.com 或 outlook.com)，請嘗試[這篇文章所提供的建議](https://support.microsoft.com/help/12429/microsoft-account-sign-in-cant)
+   >
 
 ## <a name="reset-or-unlock-my-password-for-a-work-or-school-account"></a>重設公司或學校帳戶的密碼或將密碼解除鎖定
 
-若要進入公司或學校帳戶，請遵循下列步驟來存取 Azure AD 自助式密碼重設 (我們喜歡將它簡稱為 SSPR)。
+如果您因為下列其中一個原因而無法存取帳戶：
+
+* 密碼沒有作用，所以您想要予以重設。
+* 您知道密碼，但您的帳戶已遭鎖定，因此想要將帳戶解除鎖定。
+
+請遵循下列步驟來存取 Azure AD 自助式密碼重設 (我們喜歡將它簡稱為 SSPR)，以取回您的帳戶。
 
 1. 從公司或學校的任何登入頁面按一下 [無法存取您的帳戶嗎?] 連結，然後按一下 [公司或學校帳戶]，或直接移至[密碼重設頁面](https://passwordreset.microsoftonline.com/)。
-
-   > [!NOTE]
-   > 如果您想要回到個人帳戶 (例如，hotmail.com 或 outlook.com)，請嘗試[這篇文章所提供的建議](https://support.microsoft.com/help/12429/microsoft-account-sign-in-cant)
-   >
 
     ![無法存取您的帳戶嗎？][Login]
 
@@ -43,7 +48,9 @@ ms.lasthandoff: 05/03/2017
 
    > [!NOTE]
    > 如果您的 IT 人員尚未啟用這項功能，畫面上便會出現「連絡系統管理員」連結，以供 IT 人員透過其本身的電子郵件或 Web 入口網站來提供協助。
-   >
+   > 
+   > 如果您需要將帳戶解除鎖定，請在此時選擇 [我知道密碼，但卻無法登入] 選項。
+   > 
 
 3. 根據 IT 人員所使用的 SSPR 設定方式而定，您會看到下列一或多個項目。 您或您的 IT 人員之前已使用[註冊自助式密碼重設](active-directory-passwords-reset-register.md)一文來填入下列某幾項資訊。
 
@@ -59,11 +66,6 @@ ms.lasthandoff: 05/03/2017
 
 4. 您的 IT 人員可能需要更多的驗證，因此您可能必須使用不同的選項來重複執行步驟 3。
 5. 在 [選擇新密碼] 頁面上輸入新的密碼，確認您的密碼，然後按一下 [完成]。 我們建議的密碼是 8-16 個字元，並具有大小寫字母、數字和特殊字元。
-
-   > [!NOTE]
-   > 如果您需要將帳戶解除鎖定，請在此時選擇僅解除鎖定的選項，或是選擇變更密碼並解除鎖定的選項。
-   >
-
 6. 當您看到**您的密碼已經重設**時，可以使用您的新密碼登入。
 
     ![您的密碼已經重設][Complete]
@@ -100,8 +102,8 @@ ms.lasthandoff: 05/03/2017
 
 | 錯誤案例| 您看到什麼錯誤訊息？| 方案 |
 | --- | --- | --- |
-| 在輸入我的使用者 ID 後，出現了「請連絡您的系統管理員」頁面 | 請連絡您的系統管理員 <br> <br> 我們偵測到您的使用者帳戶密碼未受到 Microsoft 管理。 因此，我們無法自動重設您的密碼。 <br> <br> 您必須連絡 IT 人員以尋求進一步的協助。 | 您之所以看到此訊息，是因為 IT 人員在內部部署環境中管理您的密碼，而不允許您從 [無法存取您的帳戶] 連結重設您的密碼。 <br> <br> 若要重設密碼，請直接向 IT 人員尋求協助，讓他們了解您想要從 Office 365 重設密碼，而為您啟用這項功能。|
-| 在輸入我的使用者 ID 後，出現了「您的帳戶未啟用密碼重設」錯誤 | 您的帳戶未啟用密碼重設功能 <br> <br> 很抱歉，IT 人員還沒將您的帳戶設定用於此服務。 <br> <br> 如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。 | 您之所以看到此訊息，是因為 IT 人員尚未針對您的組織啟用從 [無法存取您的帳戶] 連結重設密碼的功能，或尚未授權您使用該功能。 <br> <br> 若要重設密碼，請按一下 [連絡系統管理員] 連結以傳送電子郵件給公司的 IT 人員，讓他們了解您想要從 Office 365 重設密碼，而為您啟用這項功能。 |
+| 在輸入我的使用者 ID 後，出現了「請連絡您的系統管理員」頁面 | 請連絡您的系統管理員 <br> <br> 我們偵測到您的使用者帳戶密碼未受到 Microsoft 管理。 因此，我們無法自動重設您的密碼。 <br> <br> 您必須連絡 IT 人員以尋求進一步的協助。 | 您之所以看到此訊息，是因為 IT 人員在內部部署環境中管理您的密碼，而不允許您從 [無法存取您的帳戶] 連結重設您的密碼。 <br> <br> 若要重設密碼，請直接向 IT 人員尋求協助，讓他們了解您想要重設密碼，而為您啟用這項功能。|
+| 在輸入我的使用者 ID 後，出現了「您的帳戶未啟用密碼重設」錯誤 | 您的帳戶未啟用密碼重設功能 <br> <br> 很抱歉，IT 人員還沒將您的帳戶設定用於此服務。 <br> <br> 如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。 | 您之所以看到此訊息，是因為 IT 人員尚未針對您的組織啟用從 [無法存取您的帳戶] 連結重設密碼的功能，或尚未授權您使用該功能。 <br> <br> 若要重設密碼，請按一下 [連絡系統管理員] 連結以傳送電子郵件給公司的 IT 人員，讓他們了解您想要重設密碼，而為您啟用這項功能。 |
 | 在輸入我的使用者 ID 後，出現了「我們無法驗證您的帳戶」錯誤 | 我們無法驗證您的帳戶 <br> <br> 如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。 | 您之所以看到此訊息，是因為您已啟用密碼重設，但並未註冊使用此服務。 若要註冊密碼重設，請在重新取得帳戶存取權後移至 http://aka.ms/ssprsetup。 <br> <br> 若要重設密碼，請按一下 [連絡系統管理員] 連結，以傳送電子郵件給公司的 IT 人員。 |
 
 ## <a name="next-steps"></a>後續步驟

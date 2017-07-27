@@ -1,5 +1,5 @@
 ---
-title: "發佈 HDInsight 應用程式 | Microsoft Docs"
+title: "發行 HDInsight 應用程式 - Azure | Microsoft Docs"
 description: "了解如何建立和發佈 HDInsight 應用程式。"
 services: hdinsight
 documentationcenter: 
@@ -14,19 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/06/2017
+ms.date: 05/25/2017
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 1a7dabcbfdc1977e747fd30cfc0383d6c5f7f5a0
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 6aa66cac35bc317fc87003e6c3d824544c53de88
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 
 ---
 # <a name="publish-hdinsight-applications-into-the-azure-marketplace"></a>將 HDInsight 應用程式發佈到 Azure Marketplace
-HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢集上安裝的應用程式。 Microsoft 獨立軟體廠商 (ISV) 或您可以自己開發這些應用程式。 在本文中，您將學習如何將 HDInsight 應用程式發佈到 Azure Marketplace。  如需發佈到 Azure Marketplace 的一般資訊，請參閱 [將提供項目發佈到 Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md)。
+HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢集上安裝的應用程式。 Microsoft 獨立軟體廠商 (ISV) 或您可以自己開發這些應用程式。 在此文章中，您會學習如何將 HDInsight 應用程式發佈到 Azure Marketplace。  如需發佈到 Azure Marketplace 的一般資訊，請參閱[將提供項目發佈到 Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md)。
 
-HDInsight 應用程式採用「自備授權 (BYOL)」  模型，其中的應用程式提供者負責將應用程式授權給一般使用者，而 Azure 只會向一般使用者收取其所建資源的費用，例如 HDInsight 叢集與其 VM/節點。 此時，Azure 不經手應用程式本身的計費。
+HDInsight 應用程式採用「自備授權 (BYOL)」模型，其中的應用程式提供者負責將應用程式授權給一般使用者，而 Azure 只會向一般使用者收取其所建資源的費用，例如 HDInsight 叢集與其 VM/節點。 目前，Azure 不經手應用程式本身的計費。
 
 其他 HDInsight 應用程式相關文章︰
 
@@ -41,7 +42,7 @@ HDInsight 應用程式採用「自備授權 (BYOL)」  模型，其中的應用�
 您還必須註冊開發人員帳戶。 請參閱[將提供項目發佈到 Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md) 和[建立 Microsoft 開發人員帳戶](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md)。
 
 ## <a name="define-application"></a>定義應用程式
-將應用程式發佈至 Azure Marketplace 涉及兩個步驟。  首先，定義 **createUiDef.json** 檔，以指出與您的應用程式相容的叢集，然後從 Azure 入口網站發佈範本。 以下是範例 createUiDef.json 檔案。
+將應用程式發佈至 Azure Marketplace 涉及兩個步驟。  首先，定義 **createUiDef.json** 檔，以指出與您的應用程式相容的叢集，然後從 Azure 入口網站發佈範本。 下一節是範例 createUiDef.json 檔案。
 
     {
         "handler": "Microsoft.HDInsight",
@@ -54,7 +55,7 @@ HDInsight 應用程式採用「自備授權 (BYOL)」  模型，其中的應用�
     }
 
 
-| 欄位 | 說明 | 可能的值 |
+| 欄位 | 描述 | 可能的值 |
 | --- | --- | --- |
 | types |與應用程式相容的叢集類型。 |Hadoop、HBase、Storm、Spark (或這些類型的任意組合) |
 | tiers |與應用程式相容的叢集層。 |Standard、Premium (或兩者) |
@@ -83,10 +84,10 @@ HDInsight 應用程式採用「自備授權 (BYOL)」  模型，其中的應用�
 5. 如果您的指令碼在節點上啟動服務，請確定服務受到監視並設定為在節點重新開機時自動啟動。
 
 ## <a name="package-application"></a>封裝應用程式
-建立 zip 檔案，其中包含安裝 HDInsight 應用程式時的所有必要檔案。 您需要 [發佈應用程式](#publish-application)中的 zip 檔案。
+建立 zip 檔案，其中包含安裝 HDInsight 應用程式時的所有必要檔案。 您需要[發佈應用程式](#publish-application)中的 zip 檔案。
 
 * [createUiDefinition.json](#define-application)。
-* mainTemplate.json。 請參閱 [安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)中的範例。
+* mainTemplate.json。 請參閱[安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)中的範例。
 * 所有必要的指令碼。
 
 > [!NOTE]
@@ -100,11 +101,11 @@ HDInsight 應用程式採用「自備授權 (BYOL)」  模型，其中的應用�
 2. 按一下左邊的 [方案範本]  來建立新的方案範本。
 3. 輸入標題，然後按一下 [建立新的方案範本]。
 4. 按一下 [建立開發人員中心帳戶並加入 Azure 方案]  以註冊您的公司 (如果尚未這麼做)。  請參閱 [建立 Microsoft 開發人員帳戶](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md)。
-5. 按一下 [定義一些拓撲以便開始使用] 。 解決方案範本是所有其拓撲的「父項」。 您可以在一個供應項目/解決方案範本中定義多個拓撲。 當供應項目進入預備環境時，它的所有拓撲也會一起進入。 
+5. 按一下 [定義一些拓撲以便開始使用] 。 方案範本是所有其拓撲的「父項」。 您可以在一個供應項目/解決方案範本中定義多個拓撲。 當供應項目推送到預備環境時，它的所有拓撲也會一起推入。 
 6. 輸入拓撲名稱，然後按一下加號。
 7. 輸入新的版本，然後按一下加號。
-8. 上傳在 [封裝應用程式](#package-application)中準備的 zip 檔案。  
-9. 按一下 [要求認證] 。 Microsoft 認證團隊會檢閱檔案並認證拓撲。
+8. 上傳在[封裝應用程式](#package-application)中準備的 zip 檔案。  
+9. 按一下 [要求認證]。 Microsoft 認證團隊會檢閱檔案並認證拓撲。
 
 ## <a name="next-steps"></a>後續步驟
 * [安裝 HDInsight 應用程式](hdinsight-apps-install-applications.md)︰了解如何將 HDInsight 應用程式安裝到您的叢集。

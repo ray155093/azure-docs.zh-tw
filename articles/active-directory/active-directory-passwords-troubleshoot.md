@@ -6,22 +6,21 @@ keywords:
 documentationcenter: 
 author: MicrosoftGuyJFlo
 manager: femila
-editor: gahug
+ms.reviewer: gahug
 ms.assetid: 
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 6d1cfd588ad60cbdf69a432b4f4baa0b13fed0d3
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 963749bce0a84a97a0938f5531ebf7d694a3ca58
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
-
+ms.lasthandoff: 07/06/2017
 
 ---
 
@@ -144,7 +143,7 @@ ms.lasthandoff: 05/11/2017
 
 如果 Azure AD Connect 的密碼回寫元件發生服務中斷，以下是可供用來解決此問題的一些快速步驟：
 
-* [重新啟動 Azure AD Connect 同步處理服務](#restart-the-azure-AD-Connect-sync-service)
+* [重新啟動 Azure AD Connect 同步處理服務](#restart-the-azure-ad-connect-sync-service)
 * [停用再重新啟用密碼回寫功能](#disable-and-re-enable-the-password-writeback-feature)
 * [安裝最新版的 Azure AD Connect](#install-the-latest-azure-ad-connect-release)
 * [疑難排解密碼回寫](#troubleshoot-password-writeback)
@@ -200,6 +199,27 @@ ms.lasthandoff: 05/11/2017
 
 如果安裝最新版的 Azure AD Connect 伺服器無法解決您的問題，建議您最後在安裝最新版本後試著停用再重新啟用密碼回寫。
 
+## <a name="verify-whether-azure-ad-connect-has-the-required-permission-for-password-writeback"></a>確認 Azure AD Connect 是否有執行密碼回寫所需的權限 
+Azure AD Connect 需要 AD **重設密碼**權限才能執行密碼回寫。 若要了解 Azure AD Connect 是否有給定內部部署 AD 使用者帳戶的權限，您可以使用 Windows 有效權限功能：
+
+1. 登入 Azure AD Connect 伺服器，並啟動**同步處理服務管理員** (開始 → 同步處理服務)。
+2. 在 [連接器] 索引標籤下，選取內部部署的 **AD 連接器**，然後按一下 [屬性]。  
+![有效權限 - 步驟 2](./media/active-directory-passwords-troubleshoot/checkpermission01.png)  
+3. 在快顯對話方塊中，選取 [連線到 Active Directory 樹系] 索引標籤，然後記下 [使用者名稱] 屬性。 Azure AD Connect 會使用這個 AD DS 帳戶來執行目錄同步作業。 若要讓 Azure AD Connect 能夠執行密碼回寫，AD DS 帳戶必須有「重設密碼」權限。  
+![有效權限 - 步驟 3](./media/active-directory-passwords-troubleshoot/checkpermission02.png)  
+4. 登入內部部署網域控制站，然後啟動 **Active Directory 使用者和電腦**應用程式。
+5. 按一下 [檢視]，並確定 [進階功能] 選項已啟用。  
+![有效權限 - 步驟 5](./media/active-directory-passwords-troubleshoot/checkpermission03.png)  
+6. 尋找您想要確認的 AD 使用者帳戶。 以滑鼠右鍵按一下該帳戶，然後選取 [屬性]。  
+![有效權限 - 步驟 6](./media/active-directory-passwords-troubleshoot/checkpermission04.png)  
+7. 在快顯對話方塊中，移至 [安全性] 索引標籤，然後按一下 [進階]。  
+![有效權限 - 步驟 7](./media/active-directory-passwords-troubleshoot/checkpermission05.png)  
+8. 在 [進階安全性設定] 快顯對話方塊中，移至 [有效存取權] 索引標籤。
+9. 按一下 [選取使用者]，然後選取 Azure AD Connect 所使用的 AD DS 帳戶 (請參閱步驟 3)。 然後按一下 [檢視有效存取權]。  
+![有效權限 - 步驟 9](./media/active-directory-passwords-troubleshoot/checkpermission06.png)  
+10. 向下捲動並尋找 [重設密碼]。 如果該項目是勾選狀態，則表示 AD DS 帳戶有權重設選定 AD 使用者帳戶的密碼。  
+![有效權限 - 步驟 10](./media/active-directory-passwords-troubleshoot/checkpermission07.png)  
+
 ## <a name="azure-ad-forums"></a>Azure AD 論壇
 
 如果您有關於 Azure AD 和自助式密碼重設的一般問題，您可以在 [Azure AD 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WindowsAzureAD)尋求社群協助。 社群的成員包括工程師、產品經理、MVP 和 IT 專業人員。
@@ -236,8 +256,8 @@ ms.lasthandoff: 05/11/2017
 * [**快速入門**](active-directory-passwords-getting-started.md) - 開始執行 Azure AD 自助式密碼管理 
 * [**授權**](active-directory-passwords-licensing.md) - 設定 Azure AD 授權
 * [**資料**](active-directory-passwords-data.md) -了解所需的資料以及如何將它使用於密碼管理
-* [**推出**](active-directory-passwords-best-practices.md) - 使用此處提供的指引來規劃 SSPR 並部署給使用者
-* [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀與風格。
+* [**推出**](active-directory-passwords-best-practices.md) - 使用此處提供的指引來規劃 SSPR 並將它部署至使用者
+* [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀及操作方式。
 * [**原則**](active-directory-passwords-policy.md) - 了解並設定 Azure AD 密碼原則
 * [**密碼回寫**](active-directory-passwords-writeback.md) - 密碼回寫如何使用您的內部部署目錄
 * [**報告**](active-directory-passwords-reporting.md) - 探索您的使用者是否、何時、何地存取 SSPR 功能

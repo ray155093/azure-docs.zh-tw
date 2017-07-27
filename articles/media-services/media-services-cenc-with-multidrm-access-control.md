@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/11/2016
 ms.author: willzhan;kilroyh;yanmf;juliako
-translationtype: Human Translation
-ms.sourcegitcommit: e65393c9582056f84530a32804e0d82fd451b688
-ms.openlocfilehash: 1ea286a04c84d031fcefa8dc771cbdef9d8a9b72
-ms.lasthandoff: 02/16/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 63f2638cd0d50d1aa9a3b6864daba0b8854768d7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="cenc-with-multi-drm-and-access-control-a-reference-design-and-implementation-on-azure-and-azure-media-services"></a>具有多重 DRM 及存取控制的 CENC：Azure 與 Azure 媒體服務的參考設計和實作
@@ -116,9 +116,9 @@ DRM 子系統可能包含下列元件：
 
 | **ContentKey–to-Asset** | **案例** |
 | --- | --- |
-| 1 對&1; |最簡單的案例。 它提供最佳的控制。 但是，通常會產生最高的授權傳遞成本。 每個受保護的資產需要至少一個授權要求。 |
+| 1 對 1 |最簡單的案例。 它提供最佳的控制。 但是，通常會產生最高的授權傳遞成本。 每個受保護的資產需要至少一個授權要求。 |
 | 1 對多 |您可以對多個資產使用相同的內容金鑰。 例如，對於如內容類型或內容類型子集 (或 Movie Gene) 的邏輯群組中的所有資產，您可以使用單一內容金鑰。 |
-| 多對&1; |每個資產需要有多個內容金鑰。 <br/><br/>舉例來說，如果您需要針對 MPEG-DASH 套用具有多重 DRM 的 動態 CENC 保護，且針對 HLS 套用動態 AES-128 加密，您需要兩個不同的內容金鑰，兩者分別有自己的 ContentKeyType。 (針對用於動態 CENC 保護的內容金鑰，應使用 ContentKeyType.CommonEncryption，而用於動態 AES&128; 加密的內容金鑰，應使用 ContentKeyType.EnvelopeEncryption。)<br/><br/>另一個範例中，理論上，在 DASH 內容的 CENC 保護中，可以使用一個內容金鑰來保護視訊串流，並使用其他內容金鑰來保護音訊串流。 |
+| 多對 1 |每個資產需要有多個內容金鑰。 <br/><br/>舉例來說，如果您需要針對 MPEG-DASH 套用具有多重 DRM 的 動態 CENC 保護，且針對 HLS 套用動態 AES-128 加密，您需要兩個不同的內容金鑰，兩者分別有自己的 ContentKeyType。 (針對用於動態 CENC 保護的內容金鑰，應使用 ContentKeyType.CommonEncryption，而用於動態 AES 128 加密的內容金鑰，應使用 ContentKeyType.EnvelopeEncryption。)<br/><br/>另一個範例中，理論上，在 DASH 內容的 CENC 保護中，可以使用一個內容金鑰來保護視訊串流，並使用其他內容金鑰來保護音訊串流。 |
 | 多對多 |結合上述兩種案例：對於相同資料「群組」中的每個多重資產，使用一組內容金鑰。 |
 
 另一個需要考慮的重要因素是持續性和非持續性授權的使用。
@@ -227,10 +227,10 @@ George 也撰寫了一篇相關的部落格文章： [JWT token Authentication i
 
     在 [JWT 解碼器](http://jwt.calebb.net/)中，您應該會在 JWT 權杖裡看到 **aud** 和 **iss**，如下所示：
 
-    ![第&1; 個錯誤](./media/media-services-cenc-with-multidrm-access-control/media-services-1st-gotcha.png)
+    ![第 1 個錯誤](./media/media-services-cenc-with-multidrm-access-control/media-services-1st-gotcha.png)
 2. 將權限新增至應用程式的 AAD 中 (在應用程式的 [設定] 索引標籤)。 對於每個應用程式這是必要的 (本機和已部署版本)。
 
-    ![第&2; 個錯誤](./media/media-services-cenc-with-multidrm-access-control/media-services-perms-to-other-apps.png)
+    ![第 2 個錯誤](./media/media-services-cenc-with-multidrm-access-control/media-services-perms-to-other-apps.png)
 3. 使用正確的發行者設定動態 CENC 保護：
 
         <add key="ida:issuer" value="https://sts.windows.net/[AAD Tenant ID]/"/>
@@ -274,7 +274,7 @@ Azure AD 使用業界標準，使用 Azure AD 在本身和應用程式之間建�
 
 下列文件中提供 Azure AD 金鑰變換的詳細資訊： [Azure AD 中簽署金鑰變換的相關重要資訊](../active-directory/active-directory-signing-key-rollover.md)。
 
-在 [公開/私密金鑰組](https://login.windows.net/common/discovery/keys/)之間，
+在 [公開/私密金鑰組](https://login.microsoftonline.com/common/discovery/keys/)之間，
 
 * 私密金鑰是由 Azure Active Directory 用來產生 JWT 權杖；
 * 公開金鑰是由如 AMS 中的 DRM 授權傳遞服務的應用程式用來驗證 JWT 權杖；

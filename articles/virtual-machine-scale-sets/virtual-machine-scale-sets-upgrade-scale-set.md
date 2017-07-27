@@ -13,40 +13,39 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/15/2017
+ms.date: 05/30/2017
 ms.author: guybo
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: bbc04cfb1145f3be2957d11f2ed6253428c4b9c3
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: c7093e221ff8fe69ded1cfbce4f3ddeb1a195666
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 06/01/2017
 
 
 ---
 # <a name="upgrade-a-virtual-machine-scale-set"></a>升級虛擬機器擴展集
 本文說明如何在不需停機的情況下，對 Azure 虛擬機器擴展集推出 OS 更新。 在此背景環境下，OS 更新包括變更 OS 的版本或 SKU，或是變更自訂映像的 URI。 在不需停機的情況下進行更新意謂著一次更新一部虛擬機器，或依群組 (例如一次一個容錯網域) 更新虛擬機器，而不是全部一起更新。 透過這種方式，任何非升級中的虛擬機器都可繼續執行。
 
-為了避免混淆不清，讓我們區分您可能會想要執行的三種 OS 更新：
+為了避免混淆不清，讓我們區分您可能會想要執行的四種 OS 更新：
 
 * 變更平台映像的版本或 SKU。 例如，將 Ubuntu 14.04.2-LTS 版本從 14.04.201506100 變更為 14.04.201507060，或將 Ubuntu 15.10/最新 SKU 變更為 16.04.0-LTS/最新 SKU。 本文涵蓋此案例。
 * 變更指向您所建立的新版本自訂映像的 URI (**properties** > **virtualMachineProfile** > **storageProfile** > **osDisk** > **image** > **uri**)。 本文涵蓋此案例。
+* 變更使用 Azure 受控磁碟所建立之擴展集的映像參考。
 * 從虛擬機器內修補 OS (範例包括安裝安全性修補程式並執行 Windows Update)。 支援此案例，但本文並未涵蓋此案例。
 
-前兩個選項為本文所涵蓋的支援需求。 您必須建立新擴展集以執行第三個選項。
-
-這裡未涵蓋隨 [Azure Service Fabric](https://azure.microsoft.com/services/service-fabric/) 一起部署的虛擬機器擴展集。
+這裡未涵蓋隨 [Azure Service Fabric](https://azure.microsoft.com/services/service-fabric/) 一起部署的虛擬機器擴展集。 如需修補 Service Fabric 的詳細資訊，請參閱[在 Service Fabric 叢集中修補 Windows OS](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-patch-orchestration-application)。
 
 變更平台映像 OS 版本/SKU 或自訂映像 URI 的基本順序看起來如下：
 
 1. 取得虛擬機器擴展集模型。
-2. 變更模型中的版本、SKU 或 URI 值。
+2. 變更模型中的版本、SKU、映像參考或 URI 值。
 3. 更新模型。
 4. 對擴展集中的虛擬機器進行 *manualUpgrade* 呼叫。 只有當您擴展集中的 *upgradePolicy* 設定為 [手動] 時，此步驟才相關。 如果它是設定為 [自動] ，則會同時升級所有虛擬機器，因而造成停機。
 
-將此背景資訊謹記在心，讓我們看看如何在 PowerShell 中使用 REST API 來更新擴展集的版本。 這些範例涵蓋平台映像的案例，但本文所提供的資訊已足以讓您將此程序應用在自訂映像上。
+將這項資訊謹記在心，讓我們看看如何在 PowerShell 中使用 REST API 來更新擴展集的版本。 這些範例涵蓋平台映像的案例，但本文所提供的資訊已足以讓您將此程序應用在自訂映像上。
 
 ## <a name="powershell"></a>PowerShell
-此範例會將 Windows 虛擬機器擴展集更新成新版本 4.0.20160229。 更新完模型之後，它會一次更新一個虛擬機器執行個體。
+此範例會將 Windows 虛擬機器擴展集更新 (建立) 成新版本 4.0.20160229。 更新完模型之後，它會一次更新一個虛擬機器執行個體。
 
 ```powershell
 $rgname = "myrg"
@@ -67,13 +66,19 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 Update-AzureRmVmssInstance -ResourceGroupName $rgname -VMScaleSetName $vmssname -InstanceId $instanceId
 ```
 
-如果您更新的是自訂映像的 URI，而不是變更平台映像版本，請以類似以下的內容取代 “set the new version” 行：
+如果您更新的是自訂映像的 URI，而不是變更平台映像版本，請以更新來源映像 URI 的命令取代 “set the new version” 行。 例如，如果擴展集不是使用 Azure 受控磁碟所建立，更新會如下所示：
 
 ```powershell
 # set the new version in the model data
 $vmss.virtualMachineProfile.storageProfile.osDisk.image.uri= $newURI
 ```
 
+如果使用 Azure 受控磁碟建立了以自訂映像為基礎的擴展集，則會更新映像參考。 例如：
+
+```powershell
+# set the new version in the model data
+$vmss.virtualMachineProfile.storageProfile.imageReference.id = $newImageReference
+```
 
 ## <a name="the-rest-api"></a>REST API
 以下是幾個使用 Azure REST API 來推出 OS 版本更新的 Python 範例。 兩者都使用 Azure REST API 包裝函式的輕量型 [azurerm](https://pypi.python.org/pypi/azurerm) 程式庫對擴展集模型執行 GET，然後搭配更新的模型執行 PUT。 它們也會查看虛擬機器執行個體檢視，以依據更新網域識別虛擬機器。

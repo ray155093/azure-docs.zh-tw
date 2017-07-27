@@ -1,6 +1,6 @@
 ---
-title: "使用 Data Factory 對 Oracle 往返移動資料 | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory 從內部部署 Oracle 資料庫來回移動資料。"
+title: "使用 Data Factory 從 Oracle 來回複製資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 從內部部署 Oracle 資料庫來回複製資料。"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 06/04/2017
 ms.author: jingwang
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 18fffb6cae9107b9301ff702d483b598836ac180
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: bb6af719fe6f1a30c5933ce4342a4c0c072f3ff4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
+ms.lasthandoff: 06/10/2017
 
 
 ---
-# <a name="move-data-tofrom-on-premises-oracle-using-azure-data-factory"></a>使用 Azure Data Factory 對內部部署的 Oracle 往返移動資料
+# <a name="copy-data-tofrom-on-premises-oracle-using-azure-data-factory"></a>使用 Azure Data Factory 從內部部署 Oracle 來回複製資料
 本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出內部部署的 Oracle 資料庫。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。
 
 ## <a name="supported-scenarios"></a>支援的案例
@@ -73,7 +73,7 @@ Data Factory 支援使用資料管理閘道連接至內部部署 Oracle 來源�
 
 不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線：
 
-1. 建立 **Data Factory**。 資料處理站可以包含一或多個管線。 
+1. 建立 **Data Factory**。 資料處理站可包含一或多個管線。 
 2. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。 例如，如果您從 Oralce 資料庫將資料複製到 Azure Blob 儲存體，您會建立兩個連結服務，將 Oracle 資料庫和 Azure 儲存體帳戶連結至資料處理站。 針對 Oracle 專屬的連結服務屬性，請參閱[連結服務屬性](#linked-service-properties)一節。
 3. 建立**資料集**，代表複製作業的輸入和輸出資料。 在上一個步驟所述的範例中，您可以建立資料集來指定包含輸入資料之 Oracle 資料庫中的資料表。 同時建立另一個資料集來指定 blob 容器和資料夾，該資料夾會保存從 Oracle 資料庫複製的資料。 針對 Oracle 專屬的資料集屬性，請參閱[資料集屬性](#dataset-properties)一節。
 4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在稍早所述的範例中，您使用 OracleSource 作為來源，以及使用 BlobSink 作為複製活動的接收器。 同樣地，如果您是從 Azure Blob 儲存體複製到 Oracle 資料庫，則在複製活動中使用 BlobSource 和 OracleSink。 針對 Oracle 資料庫專屬的複製活動屬性，請參閱[複製活動屬性](#copy-activity-properties)一節。 如需有關如何使用資料存放區作為來源或接收器的詳細資訊，按一下上一節中資料存放區的連結。 
@@ -570,15 +570,15 @@ User Id=<username>;Password=<password>;",
 | CHAR |String |
 | CLOB |String |
 | 日期 |DateTime |
-| FLOAT |十進位 |
-| INTEGER |十進位 |
+| FLOAT |Decimal，字串 (如果精確度 > 28) |
+| INTEGER |Decimal，字串 (如果精確度 > 28) |
 | 間隔年至月 |Int32 |
 | 間隔日至秒鐘 |時間範圍 |
 | 長 |String |
 | 長 RAW |Byte[] |
 | NCHAR |String |
 | NCLOB |String |
-| 數字 |十進位 |
+| 數字 |Decimal，字串 (如果精確度 > 28) |
 | NVARCHAR2 |String |
 | RAW |Byte[] |
 | ROWID |String |

@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 04/25/2017
 ms.author: wesmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: c1fdd9835992559c985426855a45c09849d54af2
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 6da663ea282e09b01ce380827fa7e31505712516
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/04/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 05/10/2017
 
 [安全殼層 (SSH)](https://en.wikipedia.org/wiki/Secure_Shell) 是密碼編譯網路通訊協定，可保護網絡服務的使用安全。 它最常用於從命令列遠端安全地登入系統，以及從遠端執行系統管理命令。
 
-Linux 上的 Web 應用程式會利用每個用於新 Web Apps 的執行階段堆疊的內建 Docker 映像來提供 SSH 支援。 
+Linux 上的 Web 應用程式會利用每個用於新 Web Apps 的「執行階段堆疊」的內建 Docker 映像來提供應用程式容器內的 SSH 支援。 
 
 ![執行階段堆疊](./media/app-service-linux-ssh-support/app-service-linux-runtime-stack.png)
 
@@ -72,7 +72,7 @@ Linux 上的 Web 應用程式會利用每個用於新 Web Apps 的執行階段�
       && echo "root:Docker!" | chpasswd
     ``` 
 
-2. 將 [`COPY` 指示](https://docs.docker.com/engine/reference/builder/#copy)新增至 Dockerfile，以將 [sshd_config](http://man.openbsd.org/sshd_config) 檔案複製到 */etc/ssh/* 目錄。 組態檔需根據我們[這裡](https://github.com/Azure-App-Service/node/blob/master/6.9.3-1/sshd_config)的 Azure-App-Service GitHub 存放庫中的 sshd_config 檔案。
+2. 將 [`COPY` 指示](https://docs.docker.com/engine/reference/builder/#copy)新增至 Dockerfile，以將 [sshd_config](http://man.openbsd.org/sshd_config) 檔案複製到 */etc/ssh/* 目錄。 組態檔需根據我們[這裡](https://github.com/Azure-App-Service/node/blob/master/6.11/sshd_config)的 Azure-App-Service GitHub 存放庫中的 sshd_config 檔案。
 
     > [!NOTE] 
     > sshd_config 檔案必須包含下列項目，否則無法連線︰ 
@@ -103,7 +103,7 @@ Linux 上的 Web 應用程式會利用每個用於新 Web Apps 的執行階段�
     COPY init_container.sh /bin/
       ...
     RUN chmod 755 /bin/init_container.sh 
-      ...        
+      ...       
     CMD ["/bin/init_container.sh"]
     ```
 

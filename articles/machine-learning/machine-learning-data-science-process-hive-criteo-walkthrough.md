@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-translationtype: Human Translation
-ms.sourcegitcommit: e29c26a7fbd25d01f2d58dc29a7fd2f34c91307b
-ms.openlocfilehash: 5e4bf617d80d3b0f4b88a819257bf4226db0ab7a
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
+ms.openlocfilehash: 8af9c566a267e6e9d332805c5b3e82503c092d22
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/19/2017
 
 
 ---
@@ -26,7 +28,7 @@ ms.openlocfilehash: 5e4bf617d80d3b0f4b88a819257bf4226db0ab7a
 
 此外，也可以使用 IPython Notebook 來完成此逐步解說中說明的工作。 想要嘗試這種方法的使用者，應該查閱 [使用 Hive ODBC 連線的 Criteo 逐步解說](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-hive-walkthrough-criteo.ipynb) 主題。
 
-## <a name="a-namedatasetacriteo-dataset-description"></a><a name="dataset"></a>Criteo 資料集說明
+## <a name="dataset"></a>Criteo 資料集說明
 Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 檔案 (~1.3 TB 未壓縮)，包含超過 43 億筆記錄。 它取自 [Criteo](http://labs.criteo.com/downloads/download-terabyte-click-logs/)提供的 24 天點選資料。 為了方便資料科學家，我們已將可供試驗的資料解壓縮。
 
 在此資料集中的每一筆記錄包含 40 個資料行：
@@ -48,7 +50,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 **定義：** *點選率 (CTR)：* 這是資料中點選的百分比。 在此 Criteo 資料集中，CTR 是大約 3.3%或 0.033。
 
-## <a name="a-namemltasksaexamples-of-prediction-tasks"></a><a name="mltasks"></a>預測工作的範例
+## <a name="mltasks"></a>預測工作的範例
 本逐步解說將討論兩個範例預測問題：
 
 1. **二進位分類**：預測使用者是否按下加入：
@@ -57,7 +59,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
    * 類別 1：按一下
 2. **迴歸**：預測使用者按一下廣告機率的功能。
 
-## <a name="a-namesetupaset-up-an-hdinsight-hadoop-cluster-for-data-science"></a><a name="setup"></a>為資料科學設定 HDInsight Hadoop 叢集
+## <a name="setup"></a>為資料科學設定 HDInsight Hadoop 叢集
 **附註：**這通常是**管理**工作。
 
 設定 Azure 資料科學環境，用於使用 HDInsight 叢集以三個步驟建置預測性的分析解決方案：
@@ -69,7 +71,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
    * 建立後，您必須對叢集的前端節點啟用遠端存取。 請記住您在此處指定的遠端存取認證 (與建立時指定叢集的不同)：您需要認證以完成下列程序。
 3. [建立 Azure ML 工作區](machine-learning-create-workspace.md)：此 Azure Machine Learning 工作區用來在初始資料瀏覽之後建置機器學習模型，並且在 HDInsight 叢集上下載取樣。
 
-## <a name="a-namegetdataaget-and-consume-data-from-a-public-source"></a><a name="getdata"></a>取得並從公用來源取用資料
+## <a name="getdata"></a>取得並從公用來源取用資料
 [Criteo](http://labs.criteo.com/downloads/download-terabyte-click-logs/) 資料集可以透過按一下連結、接受使用條款並提供名稱來存取。 其外觀的快照如下所示：
 
 ![接受 Criteo 條款](./media/machine-learning-data-science-process-hive-criteo-walkthrough/hLxfI2E.png)
@@ -87,7 +89,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 本逐步解說中稍後會在我們建立 Hive 資料表時說明存取、瀏覽和模型化此資料而不需要任何本機下載的另一種方法。
 
-## <a name="a-nameloginalog-in-to-the-cluster-headnode"></a><a name="login"></a>登入到叢集前端節點
+## <a name="login"></a>登入到叢集前端節點
 若要登入叢集的前端節點，請使用 [Azure 入口網站](https://ms.portal.azure.com) 來找出叢集。 在左側按一下 HDInsight 大象圖示，然後按兩下叢集的名稱。 瀏覽至 [組態]  索引標籤上，在頁面底部的 [連接] 圖示上連按兩下，然後在提示時輸入您的遠端存取認證。 這會帶您前往叢集的前端節點。
 
 以下是典型的第一次登入叢集前端節點時看起來的外觀：
@@ -98,7 +100,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 我們現在已設定，並已準備好開始逐步解說的第一個部分：使用 Hive 的資料瀏覽和為 Azure Machine Learning 備妥資料。
 
-## <a name="a-namehive-db-tablesa-create-hive-database-and-tables"></a><a name="hive-db-tables"></a> 建立 Hive 資料庫和資料表
+## <a name="hive-db-tables"></a> 建立 Hive 資料庫和資料表
 若要為我們的 Criteo 資料集建立 Hive 資料表，請在前端節點的桌面上開啟 [Hadoop 命令列]，然後輸入以下命令來進入 Hive 目錄
 
     cd %hive_home%\bin
@@ -194,7 +196,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
         criteo_train
         Time taken: 1.437 seconds, Fetched: 4 row(s)
 
-## <a name="a-nameexplorationa-data-exploration-in-hive"></a><a name="exploration"></a> 在 Hive 中的資料瀏覽
+## <a name="exploration"></a> 在 Hive 中的資料瀏覽
 現在我們已準備好在 Hive 中執行一些基本的資料瀏覽。 我們從計算訓練中的範例數目和測試資料的資料表開始。
 
 ### <a name="number-of-train-examples"></a>訓練範例的數目
@@ -323,8 +325,9 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 我們看到，除了 Col20 以外，所有其他資料行都有許多唯一值。
 
-### <a name="co-occurence-counts-of-pairs-of-categorical-variables-in-the-train-dataset"></a>訓練資料集中成對類別變數的共生計數
-訓練資料集中成對類別變數的共生計數也很有趣。 這可以使用 [sample&#95;hive&#95;criteo&#95;paired&#95;categorical&#95;counts.hql](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_criteo_paired_categorical_counts.hql) 中的程式碼來判斷：
+### <a name="co-occurrence-counts-of-pairs-of-categorical-variables-in-the-train-dataset"></a>定型資料集中成對類別變數的共生計數
+
+定型資料集中成對類別變數的共生計數也很有趣。 這可以使用 [sample&#95;hive&#95;criteo&#95;paired&#95;categorical&#95;counts.hql](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_criteo_paired_categorical_counts.hql) 中的程式碼來判斷：
 
         SELECT Col15, Col16, COUNT(*) AS paired_count FROM criteo.criteo_train GROUP BY Col15, Col16 ORDER BY paired_count DESC LIMIT 15;
 
@@ -347,7 +350,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
         265366bf        6f5c7c41        782142
         Time taken: 560.22 seconds, Fetched: 15 row(s)
 
-## <a name="a-namedownsamplea-down-sample-the-datasets-for-azure-machine-learning"></a><a name="downsample"></a> 對 Azure Machine Learning 的資料集縮減取樣
+## <a name="downsample"></a> 對 Azure Machine Learning 的資料集縮減取樣
 探索資料集並示範了我們如何可對任何變數 (包括組合) 的這類探索進行的動作之後，我們現在要對資料集縮減取樣，讓我們可以在 Azure Machine Learning 中建置模型。 回顧一下我們著重的問題在於：提供一組範例屬性 (從 Col2 到 Col40 的功能值)，我們預測 Col1 是否為 0 (未按一下) 或 1 (按一下)。
 
 為了對我們的訓練和測試資料集縮減取樣至原始大小的 1%，我們使用 Hive 的原生 RAND() 函式。 下一個指令碼 ([sample&#95;hive&#95;criteo&#95;downsample&#95;train&#95;dataset.hql](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_criteo_downsample_train_dataset.hql)) 會為訓練資料集執行此動作：
@@ -405,7 +408,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 在我們繼續 Azure Machine Learning 之前，還有最後一個重要元件是考量計數資料表。 在下一個子節中，我們將就此討論一些細節。
 
-## <a name="a-namecounta-a-brief-discussion-on-the-count-table"></a><a name="count"></a> 計數資料表的簡短討論
+## <a name="count"></a> 計數資料表的簡短討論
 如我們所見，數個類別變數有極高的維度性。 在我們的逐步解說中，我們會提供稱為 [以計數學習](http://blogs.technet.com/b/machinelearning/archive/2015/02/17/big-learning-made-easy-with-counts.aspx) 的強大技術，以便利用有效率且穩健的方式編碼這些變數。 提供的連結中說明此技術的詳細資訊。
 
 [!NOTE]
@@ -414,7 +417,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 為了對計數資料建置計數資料表，我們使用 raw/count 資料夾中的資料。 在模型建構區段中，我們告訴使用者如何從頭建置類別功能的這些計數資料表，或是可以為其瀏覽使用預先建置的計數資料表。 在下面，我們提到「預先建置的計數資料表」時，表示使用我們提供的計數資料表。 有關如何存取這些資料表的詳細指示會在下一節提供。
 
-## <a name="a-nameamla-build-a-model-with-azure-machine-learning"></a><a name="aml"></a> 使用 Azure Machine Learning 建置模型
+## <a name="aml"></a> 使用 Azure Machine Learning 建置模型
 在 Azure Machine Learning 建置模型的程序遵循下列步驟：
 
 1. [從 Hive 資料表取得資料到 Azure Machine Learning](#step1)
@@ -425,7 +428,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 現在我們已經準備好在 Azure Machine Learning Studio 中建置模型。 我們縮減取樣的資料會在叢集中儲存為 Hive 資料表。 我們使用 Azure Machine Learning **匯入資料** 模組來讀取此資料。 可存取此叢集之儲存體帳戶的認證會在下面提供。
 
-### <a name="a-namestep1a-step-1-get-data-from-hive-tables-into-azure-machine-learning-using-the-import-data-module-and-select-it-for-a-machine-learning-experiment"></a><a name="step1"></a> 步驟 1：使用「匯入資料」模組從 Hive 資料表取得資料並匯入到 Azure Machine Learning，然後選取它來進行機器學習實驗
+### <a name="step1"></a> 步驟 1：使用「匯入資料」模組從 Hive 資料表取得資料並匯入到 Azure Machine Learning，然後選取它來進行機器學習實驗
 藉由選取 [+ 新增] -> [實驗] -> [空白實驗] 開始。 接著，從左上方的 [搜尋]  方塊，搜尋「匯入資料」。 將 [匯入資料]  模組拖放到實驗畫布 (螢幕的中間部分) 上，以將模組用於資料存取。
 
 這是從 Hive 資料表取得資料時 **匯入資料** 看起來的樣子：
@@ -459,7 +462,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 > 
 > 
 
-### <a name="a-namestep2a-step-2-create-a-simple-experiment-in-azure-machine-learning-to-predict-clicks--no-clicks"></a><a name="step2"></a> 步驟 2：在 Azure Machine Learning 中建立簡單的實驗來預測按一下/未按一下
+### <a name="step2"></a> 步驟 2：在 Azure Machine Learning 中建立簡單的實驗來預測按一下/未按一下
 我們的 Azure ML 實驗看起來如下所示：
 
 ![Machine Learning 實驗](./media/machine-learning-data-science-process-hive-criteo-walkthrough/xRpVfrY.png)
@@ -536,7 +539,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 現在，我們已準備好使用這些已轉換的資料集建置 Azure Machine Learning 模型。 在下一節中，我們會說明如何完成此作業。
 
-### <a name="a-namestep3a-step-3-build-train-and-score-the-model"></a><a name="step3"></a> 步驟 3：建立、訓練和評分模型
+### <a name="step3"></a> 步驟 3：建立、訓練和評分模型
 
 #### <a name="choice-of-learner"></a>選擇學習者
 首先，我們必須選擇學習者。 我們要使用兩個類別推進式決策樹做為我們的學習者。 以下是這個學習者的預設選項：
@@ -555,7 +558,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 ![Score Model module](./media/machine-learning-data-science-process-hive-criteo-walkthrough/fydcv6u.png)
 
-### <a name="a-namestep4a-step-4-evaluate-the-model"></a><a name="step4"></a> 步驟 4：評估模型
+### <a name="step4"></a> 步驟 4：評估模型
 最後，我們想要分析模型的效能。 通常，針對兩個類別 (二進位) 分類的問題，AUC 是良好的測量方式。 為了將此情況視覺化，我們為此將**評分模型**模組連接至**評估模型**模組。 在 [評估模型] 模組上按一下 [視覺化] 會產生類似如下的圖形：
 
 ![評估模組 BDT 模型](./media/machine-learning-data-science-process-hive-criteo-walkthrough/0Tl0cdg.png)
@@ -564,7 +567,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 ![視覺化評估模型模組](./media/machine-learning-data-science-process-hive-criteo-walkthrough/IRfc7fH.png)
 
-### <a name="a-namestep5a-step-5-publish-the-model-as-a-web-service"></a><a name="step5"></a> 步驟 5：將模型發佈為 Web 服務
+### <a name="step5"></a> 步驟 5：將模型發佈為 Web 服務
 發佈 Azure Machine Learning 做為引起最少抱怨之 web 服務的功能，乃是使其可廣泛使用的寶貴功能。 完成作業後，任何人都可以利用他們需要預測的輸入資料來呼叫 web 服務，而 web 服務可使用模型傳回這些預測。
 
 若要執行此動作，我們先將我們的訓練模型儲存為訓練的模型物件。 做法是以滑鼠右鍵按一下 [訓練模型] 模組，並使用 [儲存為訓練模型] 選項。
@@ -626,13 +629,8 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 ![IPython 回應](./media/machine-learning-data-science-process-hive-criteo-walkthrough/KSxmia2.png)
 
-我們會看到對我們要求的兩個測試範例 (在 python 指令碼的 JSON 架構中)，我們會以 "Scored Labels, Scored Probabilities" 形式獲得解答。 請注意，在此情況下，我們選擇預先定義的程式碼提供的預設值 (所有數值資料行為&0;，所有類別資料行為字串 "value")。
+我們會看到對我們要求的兩個測試範例 (在 python 指令碼的 JSON 架構中)，我們會以 "Scored Labels, Scored Probabilities" 形式獲得解答。 請注意，在此情況下，我們選擇預先定義的程式碼提供的預設值 (所有數值資料行為 0，所有類別資料行為字串 "value")。
 
-這包含我們的端對端逐步解說，示範如何使用 Azure Machine Learning 處理大型資料集。 我們開始使用&1; TB 的資料、建構預測模型，並將其部署為雲端中的 Web 服務。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
+這包含我們的端對端逐步解說，示範如何使用 Azure Machine Learning 處理大型資料集。 我們開始使用 1 TB 的資料、建構預測模型，並將其部署為雲端中的 Web 服務。
 
 

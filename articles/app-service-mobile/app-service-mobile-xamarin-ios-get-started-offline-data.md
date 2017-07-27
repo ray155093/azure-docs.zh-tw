@@ -2,8 +2,8 @@
 title: "啟用 Azure 行動應用程式 (Xamarin iOS) 的離線同步處理"
 description: "了解如何在 Xamarin iOS 應用程式中使用應用程式服務行動應用程式快取和同步離線資料"
 documentationcenter: xamarin
-author: adrianhall
-manager: adrianha
+author: ggailey777
+manager: cfowler
 editor: 
 services: app-service\mobile
 ms.assetid: 828a287c-5d58-4540-9527-1309ebb0f32b
@@ -13,12 +13,12 @@ ms.tgt_pltfrm: mobile-xamarin-ios
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
-ms.author: adrianha
-translationtype: Human Translation
+ms.author: glenga
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 06e16033435ed0a37d5688055743875827d3aec2
 ms.openlocfilehash: d609231d6d9913b0f40b6e311aeedeb9a2391c7c
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/01/2017
-
 
 ---
 # <a name="enable-offline-sync-for-your-xamarinios-mobile-app"></a>啟用 Xamarin iOS 行動應用程式的離線同步處理
@@ -42,9 +42,9 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 在本節中，您將中斷與行動應用程式後端的連線，以模擬離線狀態。 當您新增資料項目時，您的例外狀況處理常式會指出應用程式處於離線模式。 處於此狀態時，新項目會新增到本機存放區，並且會在推送接下來於連線狀態執行時，同步處理至行動應用程式後端。
 
 1. 編輯共用專案中的 QSToDoService.cs。 變更 **applicationURL** 以指向無效的 URL：
-   
+
          const string applicationURL = @"https://your-service.azurewebsites.fail";
-   
+
     您也可以透過停用裝置的 WiFi 和行動電話通訊網路，或使用飛航模式來示範離線行為。
 2. 建置並執行應用程式。 請注意，應用程式啟動後同步處理無法重新整理。
 3. 輸入新項目，並注意每次您按一下 [儲存]  時，推送都會失敗並具有 [CancelledByNetworkError] 狀態。 不過，新的 todo 項目在可推送至行動應用程式後端之前，都會存留在本機存放區中。  在生產應用程式中，如果您隱藏這些例外狀況，用戶端應用程式的行為會如同它仍連線到行動應用程式後端。
@@ -60,7 +60,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 2. 重新建置並執行應用程式。 該應用程式會在 `OnRefreshItemsSelected` 方法執行時使用推送與提取作業，同步處理您的本機變更與 Azure 行動應用程式後端。
 3. (選擇性) 使用 SQL Server 物件總管或 REST 工具 (例如 Fiddler) 檢視已更新的資料。 請注意，Azure 行動應用程式後端資料庫與本機存放區之間的資料已同步處理。
 4. 在應用程式中，按一下幾個項目旁邊的核取方塊，以在本機存放區中完成它們。
-   
+
    `CompleteItemAsync` 會呼叫 `SyncAsync`，以便與行動應用程式後端同步處理每個已完成的項目。 `SyncAsync` 會同時呼叫推送與提取。
    **每當您針對用戶端進行變更的資料表執行提取時，用戶端同步處理內容上的推送一律會先自動執行**。 隱含推送可確保本機存放區中的所有資料表和關聯性都保持一致。 如需此行為的詳細資訊，請參閱 [Azure 行動應用程式中的離線資料同步處理]。
 
@@ -68,27 +68,27 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 您完成 [建立 Xamarin iOS 應用程式] 教學課程時所下載的 Xamarin 用戶端專案，已經包含了使用本機 SQLite 資料庫支援離線同步處理的程式碼。 以下是已經包含在教學課程程式碼中之內容的簡要概觀。 如需此功能的概念性概觀，請參閱 [Azure 行動應用程式中的離線資料同步處理]。
 
 * 必須先初始化本機存放區，才可以執行資料表作業。 當 `QSTodoListViewController.ViewDidLoad()` 執行 `QSTodoService.InitializeStoreAsync()` 時會初始化本機存放區資料庫。 這個方法會使用 Azure 行動應用程式用戶端 SDK 所提供的 `MobileServiceSQLiteStore` 類別，建立新的本機 SQLite 資料庫。
-  
+
     `DefineTable` 方法會在本機存放區中建立與給定類型中的欄位相符的資料表，在此案例中為 `ToDoItem`。 該類型不必包含遠端資料庫中的所有資料行。 可以只儲存資料行的子集。
-  
+
         // QSTodoService.cs
-  
+
         public async Task InitializeStoreAsync()
         {
             var store = new MobileServiceSQLiteStore(localDbPath);
             store.DefineTable<ToDoItem>();
-  
+
             // Uses the default conflict handler, which fails on conflict
             await client.SyncContext.InitializeAsync(store);
         }
 * `QSTodoService` 的 `todoTable` 成員屬於 `IMobileServiceSyncTable` 類型而非 `IMobileServiceTable`。 IMobileServiceSyncTable 會將所有建立、讀取、更新和刪除 (CRUD) 資料表作業導向至本機存放區資料庫。
-  
+
     您可以呼叫 `IMobileServiceSyncContext.PushAsync()`，以決定何時將那些變更推送至 Azure 行動應用程式後端。 當呼叫 `PushAsync` 時，透過追蹤和推送所有用戶端應用程式修改之資料表中的變更，同步處理內容可協助保存資料表關聯性。
-  
+
     每當重新整理 todoitem 清單或是已新增或完成 todoitem 時，提供的程式碼會呼叫 `QSTodoService.SyncAsync()` 來進行同步處理。 每次本機變更之後，應用程式會同步處理。 如果針對具有內容追蹤之擱置中本機更新的資料表執行提取，該提取作業會先自動觸發內容推送。
-  
+
     在提供的程式碼中，遠端 `TodoItem` 資料表中的所有記錄都會進行查詢，但是也可能透過將查詢識別碼與查詢傳遞至 `PushAsync` 來篩選記錄。 如需詳細資訊，請參閱 [Azure 行動應用程式中的離線資料同步處理]中的*增量同步處理*一節。
-  
+
         // QSTodoService.cs
         public async Task SyncAsync()
         {
@@ -97,7 +97,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
                 await client.SyncContext.PushAsync();
                 await todoTable.PullAsync("allTodoItems", todoTable.CreateQuery()); // query ID is used for incremental sync
             }
-  
+
             catch (MobileServiceInvalidOperationException e)
             {
                 Console.Error.WriteLine(@"Sync Failed: {0}", e.Message);

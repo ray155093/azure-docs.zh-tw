@@ -15,10 +15,10 @@ ms.workload: web
 ms.date: 09/01/2016
 ms.author: cephalin
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
-ms.openlocfilehash: a00e3c5ed41aff48a6845c2f07ea3e43580045ee
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 2576b658eaf1df95aa9700e06559edf6066cc534
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/01/2017
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -62,12 +62,12 @@ ms.lasthandoff: 03/01/2017
 5. 登入後，請設定 Web 應用程式。 建立資源群組和新的 App Service 方案，方法是按一下各自的 [新增]  按鈕。 按一下 [瀏覽其他 Azure 服務]  以繼續。
    
     ![](./media/web-sites-dotnet-lob-application-azure-ad/2-create-app-service.png)
-6. 在 [服務] 索引標籤上，按一下 [+] 來為應用程式新增 SQL Database。 
+6. 在 [服務] 索引標籤上，按一下 **[+]** 來為應用程式新增 SQL Database。 
    
     ![](./media/web-sites-dotnet-lob-application-azure-ad/3-add-sql-database.png)
 7. 在 [設定 SQL Database] 中，按一下 [新增] 以建立 SQL Server 執行個體。
 8. 在 [設定 SQL Server] 中，設定 SQL Server 執行個體。 然後依序按一下 [確定]、[確定] 和 [建立]，開始在 Azure 中建立應用程式。
-9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。 按一下**[立即將&lt;*應用程式名稱*> 發佈至此 Web 應用程式]**，然後按一下**[發佈]**。 
+9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。 按一下 **[立即將&lt;應用程式名稱**> 發佈至此 Web 應用程式]，然後按一下[發佈]。 
    
     當 Visual Studio 完成後，它會在瀏覽器中開啟發佈應用程式。 
    
@@ -77,7 +77,7 @@ ms.lasthandoff: 03/01/2017
 
 ## <a name="configure-authentication-and-directory-access"></a>設定驗證和目錄存取
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 從左側功能表中，按一下 **[應用程式服務]** > **&lt;*應用程式名稱*>** > **[驗證/授權]**。
+2. 從左側功能表中，按一下 [應用程式服務] > **&lt;*應用程式名稱*>** > [驗證/授權]。
    
     ![](./media/web-sites-dotnet-lob-application-azure-ad/5-app-service-authentication.png)
 3. 按一下 [於] > [Azure Active Directory] > [Express] > [確定] 以開啟 Azure Active Directory 驗證。
@@ -114,7 +114,7 @@ ms.lasthandoff: 03/01/2017
 12. 在頁面頂端按一下 [讀取/寫入]  以在 Azure 資源總管中進行變更。
     
     ![](./media/web-sites-dotnet-lob-application-azure-ad/12-resource-manager-writable.png)
-13. 尋找應用程式的驗證設定，其位置在訂用帳戶 > **&lt;*subscriptionname*>** > **[resourceGroups]** > **&lt;*resourcegroupname*>** > **[提供者]** > **[Microsoft.Web]** > **[網站]** > **&lt;*appname*>** > **config** > **[authsettings]**。
+13. 尋找應用程式的驗證設定，位置在 subscriptions > **&lt;*subscriptionname*>** > **resourceGroups** > **&lt;*resourcegroupname*>** > **providers** > **Microsoft.Web** > **sites** > **&lt;*appname*>** > **config** > **authsettings**。
 14. 按一下 [ **編輯**]。
     
     ![](./media/web-sites-dotnet-lob-application-azure-ad/13-edit-authsettings.png)
@@ -168,7 +168,7 @@ ms.lasthandoff: 03/01/2017
 2. 建置專案，讓 Visual Studio 中的建構邏輯可存取新的模型。
 3. 將新的建構項目 `WorkItemsController` 新增至 ~\Controllers 資料夾 (以滑鼠右鍵按一下 [控制器]、指向 [新增]，然後選取 [新增建構項目])。 
 4. 選取 [使用 Entity Framework，包含檢視的 MVC 5 控制器]，再按一下 [新增]。
-5. 選取您建立的模型，接著依序按一下 [+] 和 [新增] 來新增資料內容，然後按一下 [新增]。
+5. 選取您建立的模型，接著依序按一下 **[+]** 和 [新增] 來新增資料內容，然後按一下 [新增]。
    
    ![](./media/web-sites-dotnet-lob-application-azure-ad/16-add-scaffolded-controller.png)
 6. 在 ~\Views\WorkItems\Create.cshtml (自動建構的項目) 中尋找 `Html.BeginForm` Helper 方法，並進行下列醒目提示的變更︰  
@@ -176,18 +176,26 @@ ms.lasthandoff: 03/01/2017
    <pre class="prettyprint">
    @model WebApplication1.Models.WorkItem
    
-   @{  ViewBag.Title = &quot;Create&quot;; }
+   @{
+    ViewBag.Title = &quot;Create&quot;;
+   }
    
    &lt;h2&gt;Create&lt;/h2&gt;
    
-   @using (Html.BeginForm(<mark>&quot;Create&quot;, &quot;WorkItems&quot;, FormMethod.Post, new { id = &quot;main-form&quot; }</mark>)) {  @Html.AntiForgeryToken()
+   @using (Html.BeginForm(<mark>&quot;Create&quot;, &quot;WorkItems&quot;, FormMethod.Post, new { id = &quot;main-form&quot; }</mark>)) 
+   {
+    @Html.AntiForgeryToken()
    
     &lt;div class=&quot;form-horizontal&quot;&gt;
         &lt;h4&gt;WorkItem&lt;/h4&gt;
         &lt;hr /&gt;
-        @Html.ValidationSummary(true, &quot;&quot;, new { @class = &quot;text-danger&quot; })      &lt;div class=&quot;form-group&quot;&gt;
-            @Html.LabelFor(model =&gt; model.AssignedToID, htmlAttributes: new { @class = &quot;control-label col-md-2&quot; })          &lt;div class=&quot;col-md-10&quot;&gt;
-                @Html.EditorFor(model =&gt; model.AssignedToID, new { htmlAttributes = new { @class = &quot;form-control&quot;<mark>, @type = &quot;hidden&quot;</mark> } })              @Html.ValidationMessageFor(model =&gt; model.AssignedToID, &quot;&quot;, new { @class = &quot;text-danger&quot; })          &lt;/div&gt;
+        @Html.ValidationSummary(true, &quot;&quot;, new { @class = &quot;text-danger&quot; })
+        &lt;div class=&quot;form-group&quot;&gt;
+            @Html.LabelFor(model =&gt; model.AssignedToID, htmlAttributes: new { @class = &quot;control-label col-md-2&quot; })
+            &lt;div class=&quot;col-md-10&quot;&gt;
+                @Html.EditorFor(model =&gt; model.AssignedToID, new { htmlAttributes = new { @class = &quot;form-control&quot;<mark>, @type = &quot;hidden&quot;</mark> } })
+                @Html.ValidationMessageFor(model =&gt; model.AssignedToID, &quot;&quot;, new { @class = &quot;text-danger&quot; })
+            &lt;/div&gt;
         &lt;/div&gt;
    
         &lt;div class=&quot;form-group&quot;&gt;
@@ -223,10 +231,15 @@ ms.lasthandoff: 03/01/2017
    }
    
    &lt;div&gt;
-    @Html.ActionLink(&quot;回到清單&quot;、&quot;索引&quot;) &lt;/div&gt;
+    @Html.ActionLink(&quot;Back to List&quot;, &quot;Index&quot;)
+   &lt;/div&gt;
    
-   @section 指令碼 {  @Scripts.Render(&quot;~/bundles/jqueryval&quot;)  <mark>&lt;script&gt;
-        // People/Group Picker Code      var maxResultsPerPage = 14;      var input = document.getElementById(&quot;AssignedToName&quot;);
+   @section Scripts {
+    @Scripts.Render(&quot;~/bundles/jqueryval&quot;)
+    <mark>&lt;script&gt;
+        // People/Group Picker Code
+        var maxResultsPerPage = 14;
+        var input = document.getElementById(&quot;AssignedToName&quot;);
    
         // Access token from request header, and tenantID from claims identity
         var token = &quot;@Request.Headers[&quot;X-MS-TOKEN-AAD-ACCESS-TOKEN&quot;]&quot;;
@@ -242,7 +255,8 @@ ms.lasthandoff: 03/01/2017
                 return;
             $(&quot;#main-form&quot;).get()[0].elements[&quot;AssignedToID&quot;].value = picker.Selected().objectId;
         });
-    &lt;/script&gt;</mark> }
+    &lt;/script&gt;</mark>
+   }
    </pre>
    
    請注意，`AadPicker` 物件會使用 `token` 和 `tenant` 來進行 Azure Active Directory 圖形 API 呼叫。 您稍後會新增 `AadPicker` 。     
@@ -266,7 +280,12 @@ ms.lasthandoff: 03/01/2017
 13. 開啟 ~\App_Start\BundleConfig.cs，然後進行下列醒目提示的變更︰  
     
     <pre class="prettyprint">
-    public static void RegisterBundles(BundleCollection bundles) { bundles.Add(new ScriptBundle(&quot;~/bundles/jquery&quot;).Include( &quot;~/Scripts/jquery-{version}.js&quot;<mark>, &quot;~/Scripts/jquery-ui-{version}.js&quot;, &quot;~/Scripts/AadPickerLibrary.js&quot;</mark>));
+    public static void RegisterBundles(BundleCollection bundles)
+    {
+        bundles.Add(new ScriptBundle(&quot;~/bundles/jquery&quot;).Include(
+                    &quot;~/Scripts/jquery-{version}.js&quot;<mark>,
+                    &quot;~/Scripts/jquery-ui-{version}.js&quot;,
+                    &quot;~/Scripts/AadPickerLibrary.js&quot;</mark>));
     
         bundles.Add(new ScriptBundle(&quot;~/bundles/jqueryval&quot;).Include(
                     &quot;~/Scripts/jquery.validate*&quot;));
@@ -329,6 +348,4 @@ ms.lasthandoff: 03/01/2017
 * [App Service 驗證和 Azure AD 圖形 API](https://cgillum.tech/2016/03/25/app-service-auth-aad-graph-api/)
 * [Microsoft Azure Active Directory 範例與文件](https://github.com/AzureADSamples)
 * [Azure Active Directory 支援的權杖和宣告類型](http://msdn.microsoft.com/library/azure/dn195587.aspx)
-
-[Protect the Application with SSL and the Authorize Attribute]: web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md#protect-the-application-with-ssl-and-the-authorize-attribute
 

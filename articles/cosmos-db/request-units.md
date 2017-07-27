@@ -2,24 +2,23 @@
 title: "要求單位和預估輸送量 - Azure Cosmos DB | Microsoft Docs"
 description: "了解如何在 Azure Cosmos DB 中了解、指定及預估要求單位需求。"
 services: cosmos-db
-author: syamkmsft
+author: mimig1
 manager: jhubbard
 editor: mimig
 documentationcenter: 
 ms.assetid: d0a3c310-eb63-4e45-8122-b7724095c32f
-ms.service: Azure Cosmos DB
+ms.service: cosmos-db
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
-ms.author: syamk
+ms.author: mimig
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: f263aaad1ba2a902401d8210727f146cb92f4ea8
+ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
+ms.openlocfilehash: 95adddc01ee2814515c20f36e8503de30454a8f4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 07/04/2017
 
 ---
 # <a name="request-units-in-azure-cosmos-db"></a>Azure Cosmos DB 中的要求單位
@@ -28,11 +27,11 @@ ms.lasthandoff: 05/31/2017
 ![輸送量計算機][5]
 
 ## <a name="introduction"></a>簡介
-[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 是 Microsoft 的全域分散式多模型資料庫。 有了 Azure Cosmos DB，您就不需要租用虛擬機器、部署軟體或監視資料庫。 Microsoft 頂尖工程師會負責操作並持續監視 Azure Cosmos DB，提供世界級的可用性、效能和資料保護能力。 您可以使用選擇的 API 來存取資料，因為 [DocumentDB SQL](documentdb-sql-query.md) (文件)、MongoDB (文件)、[Azure 資料表儲存體](https://azure.microsoft.com/services/storage/tables/) (索引鍵值) 和 [Gremlin (英文)](https://tinkerpop.apache.org/gremlin.html) (圖表) 皆受到原 生支援。 Azure Cosmos DB 的貨幣是要求單位 (RU)。 使用 RU，您不需要保留讀取、寫入容量或佈建 CPU、記憶體和 IOPS。
+[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 是 Microsoft 的全域分散式多模型資料庫。 有了 Azure Cosmos DB，您就不需要租用虛擬機器、部署軟體或監視資料庫。 Microsoft 頂尖工程師會負責操作並持續監視 Azure Cosmos DB，提供世界級的可用性、效能和資料保護能力。 您可以使用選擇的 API 來存取資料，因為 [DocumentDB SQL](documentdb-sql-query.md) (文件)、MongoDB (文件)、[Azure 資料表儲存體](https://azure.microsoft.com/services/storage/tables/) (索引鍵值) 和 [Gremlin (英文)](https://tinkerpop.apache.org/gremlin.html) (圖表) 皆受到原 生支援。 Azure Cosmos DB 的貨幣是要求單位 (RU)。 使用 RU，您就不需要保留讀取、寫入容量或佈建 CPU、記憶體和 IOPS。
 
-Azure Cosmos DB 支援具有從讀取、寫入至複雜的圖表查詢等不同作業的數種 API。 因為並非所有的要求都相等，所以系統會根據處理要求所需的計算量，指派標準化的**要求單位**數量。 作業的要求單位數具決定性，您可以在 Azure Cosmos DB 中透過回應標頭追蹤任何作業所取用的要求單位數。 
+Azure Cosmos DB 支援數種 API 以執行各種不同的作業，從簡單地讀取及寫入，到複雜的圖表查詢等等。 因為並非所有的要求都相等，所以系統會根據處理要求所需的計算量，指派標準化的**要求單位**數量。 作業的要求單位數具決定性，您可以在 Azure Cosmos DB 中透過回應標頭追蹤任何作業所取用的要求單位數。 
 
-若要提供可預測的效能，您需要保留每秒 100 RU 的輸送量單位。 對於每秒 100 RU 的每個區塊，您每分鐘可以附加 1000 RU 的區塊。 結合每秒與每分鐘佈建的成效非常強大，因為和只能使用每秒佈建的任何服務相比，您不需要尖峰佈建，並能節省高達 75% 的成本。
+若要提供可預測的效能，您需要保留每秒 100 RU 的輸送量單位。 對於每秒 100 RU 的每個區塊，您每分鐘可以附加 1000 RU 的區塊。 結合每秒與每分鐘佈建的成效非常強大，因為和只能使用每秒佈建的任何服務相比，您不需要尖峰負載佈建，並能節省高達 75% 的成本。
 
 閱讀本文後，您將能夠回答下列問題：  
 
@@ -41,7 +40,7 @@ Azure Cosmos DB 支援具有從讀取、寫入至複雜的圖表查詢等不同�
 * 如何估計應用程式的要求單位需求？
 * 如果超過集合的要求單位容量，會發生什麼事？
 
-由於 Azure Cosmos DB 是多模型資料庫，所以必須注意的是我們將參考文件 API 的集合/文件、圖表 API 的圖表/節點和資料表 API 的資料表/實體。 我們將在本文中概述容器/項目的概念。
+由於 Azure Cosmos DB 是多模型資料庫，請務必注意我們將參考文件 API 的集合/文件、圖形 API 的圖形/節點，以及資料表 API 的資料表/實體。 我們將在本文中概述容器/項目的概念。
 
 ## <a name="request-units-and-request-charges"></a>要求單位和要求費用
 Azure Cosmos DB 藉由「保留」資源以滿足應用程式的輸送量需求，來提供快速且可預測的效能。  因為應用程式會隨著時間載入和存取模式變化，所以 Azure Cosmos DB 可讓您輕鬆地增加或減少應用程式可用的保留輸送量。

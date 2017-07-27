@@ -12,18 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/22/2017
+ms.date: 06/19/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 9c7ce71674a851d598ef48eb430127c9a6bddb84
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 3ae4701914fb759efe7a890d5906f231c1def2e2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 ---
 
 # <a name="introduction-to-resource-troubleshooting-in-azure-network-watcher"></a>Azure 網路監看員中的資源疑難排解簡介
 
-虛擬網路閘道可提供 Azure 中內部部署資源與其他虛擬網路之間的連線。 監視這些閘道器及其連線，對於確保通訊不中斷至關重要。 網路監看員可提供針對虛擬網路閘道和連線進行疑難排解的功能。 此功能可透過 PowerShell、CLI 或 REST API 呼叫。 一經呼叫，網路監看員就會診斷虛擬網路閘道或連線的健全狀況，並傳回相關結果。 此要求是長時間執行的交易，一旦完成診斷就會傳回結果。
+虛擬網路閘道可提供 Azure 中內部部署資源與其他虛擬網路之間的連線。 監視這些閘道器及其連線，對於確保通訊不中斷至關重要。 網路監看員可提供針對虛擬網路閘道和連線進行疑難排解的功能。 此功能可透過入口網站、PowerShell、CLI 或 REST API 呼叫。 一經呼叫，網路監看員就會診斷虛擬網路閘道或連線的健全狀況，並傳回相關結果。 此要求是長時間執行的交易，一旦完成診斷就會傳回結果。
+
+![入口網站][2]
 
 ## <a name="results"></a>結果
 
@@ -78,6 +81,24 @@ ms.lasthandoff: 04/25/2017
 | IkePolicyMismatch | 對等閘道的 IKE 原則不受 Azure 支援。 | 是|
 | WfpParse 錯誤 | 剖析 WFP 記錄時發生錯誤。 |是|
 
+## <a name="supported-gateway-types"></a>支援的閘道類型
+
+下列清單顯示網路監看員疑難排解所支援的閘道和連線。
+|  |  |
+|---------|---------|
+|**閘道類型**   |         |
+|VPN      | 支援        |
+|ExpressRoute | 不支援 |
+|Hypernet | 不支援|
+|**VPN 類型** | |
+|路由式 | 支援|
+|原則式 | 不支援|
+|**連線類型**||
+|IPsec| 支援|
+|VNet2Vnet| 支援|
+|ExpressRoute| 不支援|
+|Hypernet| 不支援|
+|VPNClient| 不支援|
 
 ## <a name="log-files"></a>記錄檔
 
@@ -193,8 +214,9 @@ Elapsed Time            330 sec
 
 ## <a name="next-steps"></a>後續步驟
 
-瀏覽[閘道疑難排解 - PowerShell](network-watcher-troubleshoot-manage-powershell.md)，了解如何使用 PowerShell 診斷 VPN 閘道與連線。
+瀏覽[閘道疑難排解 - Azure 入口網站](network-watcher-troubleshoot-manage-portal.md)，了解如何透過入口網站診斷 VPN 閘道與連線。
 <!--Image references-->
 
 [1]: ./media/network-watcher-troubleshoot-overview/GatewayTenantWorkerLogs.png
+[2]: ./media/network-watcher-troubleshoot-overview/portal.png
 

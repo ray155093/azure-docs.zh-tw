@@ -12,14 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/05/2017
+ms.date: 05/29/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 00fb88afe9ee107543aa7557ff0953d066d05bfd
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: cbc7461d36e444a106a3ae556fc69f4c91edd4dd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -74,41 +74,42 @@ Azure Marketplace 包含 [Log Analytics 的管理解決方案](https://azuremark
 此表格也會列出適用於每個管理解決方案的定價層。
 下表中的所有解決方案都可從 Azure 入口網站以及 Log Analytics 入口網站的解決方案庫中取得。
 
-| 管理解決方案                                                                        | 提供項目                                                                     | 定價層<sup>1</sup>                                                    | 注意事項 |
-| ---                                                                                        | ---                                                                       | ---                                                                                                       | ---   |
-| [活動 Log Analytics](log-analytics-activity.md)                                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 可免費使用資料 90 天<br>資料不受免費層限制 |
-| [AD 評估](log-analytics-ad-assessment.md)                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| [AD 複寫狀態](log-analytics-ad-replication-status.md)                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| 代理程式健康狀態                                                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 資料不受免費層限制<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| [警示管理](log-analytics-solution-alert-management.md)                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| Application Insights 連接器 <br>(預覽)                                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>    | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| 自動化混合式背景工作角色                                                                     | <ul><li>自動化和控制</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| [Azure 應用程式閘道分析](log-analytics-azure-networking-analytics.md)      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| [Azure 網路安全性群組分析](log-analytics-azure-networking-analytics.md)      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| [Azure SQL Analytics (預覽)](log-analytics-azure-sql.md)                                                          | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br>每個&nbsp;節點&nbsp;(OMS)                                                                             | 要求您將 Log Analytics 工作區連結到自動化帳戶|
-| 備份                                                                                    | <ul><li>深入解析與分析</li></ul>                                     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 需要傳統的備份保存庫。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| 容量和效能 <br>(預覽)                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| [變更追蹤](log-analytics-change-tracking.md)                                         | <ul><li>自動化和控制</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| [容器](log-analytics-containers.md)                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| HDInsight HBase 監視 <br>(預覽)                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| [金鑰保存庫分析](log-analytics-azure-key-vault.md)                      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| Logic Apps B2B                      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| [惡意程式碼評估](log-analytics-malware.md)                                             | <ul><li>安全性與法規遵循</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                               | |
-| [網路效能監視器](log-analytics-network-performance-monitor.md) <br>(預覽)    | <ul><li>深入解析與分析</li></ul>                                     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
-| Office 365 分析 <br>(預覽)                                                        | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| [安全性和稽核](../operations-management-suite/oms-security-getting-started.md)        | <ul><li>安全性&nbsp;和&nbsp;合規性</li></ul>                        | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                               | 收集安全性事件記錄檔需要此解決方案 |
-| [Service Fabric 分析](log-analytics-service-fabric.md) <br>(預覽)                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| [服務對應](../operations-management-suite/operations-management-suite-service-map.md) <br>(預覽)| <ul><li>深入解析與分析</li></ul>                         | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部和西歐     |
-| 站台復原                                                                                | <ul><li>深入解析與分析</li></ul>                                     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 需要傳統的 Site Recovery 保存庫。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| [SQL 評估](log-analytics-sql-assessment.md)                                            | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| 於下班時間開始/停止 VM<br>(預覽)                                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| [SurfaceHub](log-analytics-surface-hubs.md)                                                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| [System Center Operations Manager Assessment](log-analytics-scom-assessment.md) <br>(預覽) | <ul><li>深入解析與分析</li><li>Log Analytics</li></ul>         | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| 更新管理                                                                               | <ul><li>自動化和控制</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| [更新合規性](https://technet.microsoft.com/en-us/itpro/windows/manage/update-compliance-get-started) <br>(預覽)                                                             | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 免費的資料或節點<br>資料不受免費層限制。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| [升級整備程度](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-readiness)                                                             | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 免費的資料或節點<br>資料不受免費層限制。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| [VMware 監視](log-analytics-vmware.md) <br>(預覽)                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
-| Wire Data 2.0<br>(預覽)                                                                   | <ul><li>深入解析與分析</li></ul>                                      | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部和西歐 |
+| 管理解決方案                                                                       | 提供項目                                                                     | 定價層<sup>1</sup>                                                 | 注意事項 |
+| ---                                                                                       | ---                                                                       | ---                                                                                                       | ---   |
+| [活動 Log Analytics](log-analytics-activity.md)                                                                   | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 可免費使用資料 90 天<br>資料不受免費層限制 |
+| [AD 評估](log-analytics-ad-assessment.md)                                           | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| [AD 複寫狀態](log-analytics-ad-replication-status.md)                           | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| 代理程式健康狀態                                                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 資料不受免費層限制<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| [警示管理](log-analytics-solution-alert-management.md)                            | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| Application Insights 連接器 <br>(預覽)                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| 自動化混合式背景工作角色                                                                  | <ul><li>自動化和控制</li></ul>                                  | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| [Azure 應用程式閘道分析](log-analytics-azure-networking-analytics.md)    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| [Azure 網路安全性群組分析](log-analytics-azure-networking-analytics.md)     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| [Azure SQL Analytics (預覽)](log-analytics-azure-sql.md)                                                       | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br>每個&nbsp;節點&nbsp;(OMS)                                                                          | 要求您將 Log Analytics 工作區連結到自動化帳戶|
+| 備份                                                                                    | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)                                                                       | 需要傳統的備份保存庫。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| 容量和效能 <br>(預覽)                                                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| [變更追蹤](log-analytics-change-tracking.md)                                       | <ul><li>自動化和控制</li></ul>                                  | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| [容器](log-analytics-containers.md)                                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| [IT 服務管理連接器](log-analytics-itsmc-overview.md)<br>(預覽)                                               | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| HDInsight HBase 監視 <br>(預覽)                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| [金鑰保存庫分析](log-analytics-azure-key-vault.md)                   | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| Logic Apps B2B                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| [惡意程式碼評估](log-analytics-malware.md)                                            | <ul><li>安全性與法規遵循</li></ul>                                 | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
+| [網路效能監視器](log-analytics-network-performance-monitor.md) <br>  | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
+| Office 365 分析 <br>(預覽)                                                        | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| [安全性和稽核](../operations-management-suite/oms-security-getting-started.md)      | <ul><li>安全性&nbsp;和&nbsp;合規性</li></ul>                       | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 收集安全性事件記錄檔需要此解決方案 |
+| [Service Fabric 分析](log-analytics-service-fabric.md) <br>(預覽)                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| [服務對應](../operations-management-suite/operations-management-suite-service-map.md) <br>(預覽)| <ul><li>深入解析與分析</li></ul>                       | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部、西歐和美國中西部    |
+| Site Recovery                                                                             | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)                                                                       | 需要傳統的 Site Recovery 保存庫。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| [SQL 評估](log-analytics-sql-assessment.md)                                         | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| 於下班時間開始/停止 VM<br>(預覽)                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| [SurfaceHub](log-analytics-surface-hubs.md)                                               | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| [System Center Operations Manager Assessment](log-analytics-scom-assessment.md) <br>(預覽) | <ul><li>深入解析與分析</li><li>Log Analytics</li></ul>         | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| 更新管理                                                                         | <ul><li>自動化和控制</li></ul>                                  | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| [更新合規性](https://technet.microsoft.com/en-us/itpro/windows/manage/update-compliance-get-started) <br>(預覽)                                                             | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 免費的資料或節點<br>資料不受免費層限制。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| [升級整備程度](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-readiness)                                                            | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 免費的資料或節點<br>資料不受免費層限制。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
+| [VMware 監視](log-analytics-vmware.md) <br>(預覽)                                | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
+| Wire Data 2.0<br>(預覽)                                                                | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部、西歐和美國中西部 |
 
 <sup>1</sup> *標準*和*進階 (OMS)* 定價層只適用於已在 2016 年 9 月 21 日之前建立 Log Analytics 工作區的客戶。
 
@@ -116,9 +117,9 @@ Azure Marketplace 包含 [Log Analytics 的管理解決方案](https://azuremark
 
 社群提供的解決方案都是來自 [Azure 範本庫](https://azure.microsoft.com/resources/templates/?term=Per&nbsp;Node&nbsp;(OMS))或直接由作者提供。
 
-| 管理解決方案                 | 提供項目                                                                     | 定價層                         | 注意事項 |
-| ---                                 | ---                                                                       | ---                                   | ---   |
-| 所有社群提供的解決方案  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)     |    要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| 管理解決方案               | 提供項目                                                                     | 定價層                         | 注意事項 |
+| ---                               | ---                                                                       | ---                                   | ---   |
+| 所有社群提供的解決方案  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)     |   要求您將 Log Analytics 工作區連結到自動化帳戶 |
 
 
 

@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye;raymondl
-translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 5d587618dd885ec30e35b13c5fd543c1a8853200
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
+ms.openlocfilehash: 95aa1fa23d83ec0dcd00870179167e803bafbd16
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
@@ -122,7 +123,7 @@ Web 應用程式將會顯示具有工作狀態的頁面。
 
 * 使用 Machine Learning Studio 建立機器學習服務實驗，請參閱 [在 Azure Machine Learning Studio 中建立您的第一個實驗](machine-learning-create-experiment.md)
 * 如何將您的機器學習服務實驗部署為 Web 服務，請參閱 [部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)
-* 關於存取您 Web 服務的其他方式，請參閱 [如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)
+* 關於存取 Web 服務的其他方式，請參閱[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)
 
 [image1]: media/machine-learning-consume-web-service-with-web-app-template/rrs-web-template-flow.png
 [image2]: media/machine-learning-consume-web-service-with-web-app-template/bes-web-template-flow.png

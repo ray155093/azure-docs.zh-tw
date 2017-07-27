@@ -7,6 +7,7 @@
 ## [URL 路由](application-gateway-url-route-overview.md)
 ## [多網站](application-gateway-multi-site-overview.md)
 ## [端對端 SSL](application-gateway-backend-ssl.md)
+## [重新導向](application-gateway-redirect-overview.md)
 ## [WebSocket](application-gateway-websocket.md)
 ## [服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#application-gateway-limits)
 # 開始使用
@@ -37,6 +38,8 @@
 ## 設定多網站主控
 ### [入口網站](application-gateway-create-multisite-portal.md)
 ### [PowerShell](application-gateway-create-multisite-azureresourcemanager-powershell.md)
+## 設定重新導向
+### [PowerShell](application-gateway-configure-redirect-powershell.md)
 ## 設定健全狀態探查
 ### [入口網站](application-gateway-create-probe-portal.md)
 ### [PowerShell](application-gateway-create-probe-ps.md)
@@ -64,7 +67,7 @@
 ## [負載平衡器](/azure/load-balancer/)
 ## [流量管理員](/azure/traffic-manager/)
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=networking)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
 ## [價格](https://azure.microsoft.com/pricing/details/application-gateway/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=application-gateway)

@@ -13,24 +13,25 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 04/11/2017
+ms.date: 05/24/2017
 ms.author: sasubram
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: f629eeb6f12c8785cab2585190f70e98b02fa5b4
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
+ms.openlocfilehash: 307373c75bbb87cec683f7a3097f8f159c9d5e61
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 
 ---
 
 
-# <a name="self-service-sign-up-portal-for-azure-ad-b2b-collaboration"></a>Azure AD B2B 共同作業的自助式註冊入口網站
+# <a name="self-service-portal-for-azure-ad-b2b-collaboration-sign-up"></a>Azure AD B2B 共同作業註冊的自助入口網站
 
-客戶可以使用內建產品功能進行許多工作，這些功能是透過我們在 [Azure 入口網站](https://portal.azure.com)的 IT 系統管理員經驗所公開，至於非系統管理員，則是透過我們的[應用程式存取面板](https://myapps.microsoft.com)來公開。 但是我們也知道，企業需要自訂適用於 B2B 使用者的登入工作流程，以符合其組織的需求。 透過[我們的 API](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)，企業就可以達成這個目的。
+客戶可以使用內建功能進行許多工作，這些功能是透過我們的 IT 系統管理員 [Azure 入口網站](https://portal.azure.com)所公開，至於終端使用者，則是透過我們的[應用程式存取面板](https://myapps.microsoft.com)來公開。 但是我們也知道，企業需要自訂適用於 B2B 使用者的登入工作流程，以符合其組織的需求。 透過[我們的 API](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)，企業就可以達成這個目的。
 
-在和許多客戶討論過這個問題後，我們發現，企業有一項明顯的常見需求。 這項需求就是，提出邀請的組織可能事先不知道 (或想要知道) 需要存取其資源的外部共同作業者分別有誰。 他們想要讓合作夥伴公司的使用者有方法可以自行註冊，並以提出邀請的組織所能控制的一組原則來加以規範。 透過我們的 API 就能實現這一點，因此我們在 GitHub 上發佈了專門針對此需求的專案：[Github 專案範例](https://github.com/Azure/active-directory-dotnet-graphapi-b2bportal-web)。
+在與客戶討論過後，我們發現，企業有一項明顯的常見需求。 提出邀請的組織可能事先不知道需要存取其資源的外部共同作業者分別有誰。 他們想要讓合作夥伴公司的使用者有方法可以自行註冊，並以提出邀請的組織所能控制的一組原則來加以規範。 透過我們的 API 就能實現此案例，因此我們在 GitHub 上發佈了專門針對此需求的專案：[GitHub 專案範例](https://github.com/Azure/active-directory-dotnet-graphapi-b2bportal-web)。
 
-我們的 GitHub 專案會示範組織可以如何使用我們的 API，並為他們信任的合作夥伴提供以原則為基礎的自助式註冊功能，而且這些功能會有規則可以判斷合作夥伴能存取哪些應用程式。 如此一來，合作夥伴的使用者就能在需要時安全地存取正確資源，而提出邀請的組織則不必有人來負責手動讓使用者上線。 只要按一下按鈕，您就可以輕鬆地將專案部署到您選擇的 Azure 訂用帳戶中。 您不妨試試！
+我們的 GitHub 專案會示範組織可以如何使用我們的 API，並為他們信任的合作夥伴提供以原則為基礎的自助式註冊功能，而且這些功能會有規則可以判斷合作夥伴能存取的應用程式。 合作夥伴使用者可以在需要時安全地存取資源，而不需要提出邀請的組織手動讓使用者上線。 您可以輕鬆地將專案部署到您選擇的 Azure 訂用帳戶中。
 
 ## <a name="as-is-code"></a>現狀程式碼
 

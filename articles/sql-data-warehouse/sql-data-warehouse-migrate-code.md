@@ -13,21 +13,21 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: migrate
-ms.date: 01/30/2017
+ms.date: 06/23/2017
 ms.author: joeyong;barbkess
 ms.translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 3fd5224983c723faefb8001888ae20e78acdb8ce
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: c6e6b890f5e2d0e31b10bbb6803adad02bf60248
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/03/2017
+ms.lasthandoff: 06/30/2017
 
 
 ---
 # <a name="migrate-your-sql-code-to-sql-data-warehouse"></a>將您的 SQL 程式碼移轉至 SQL 資料倉儲
-將您的程式碼從另一個資料庫移轉到 SQL 資料倉儲時，您很可能需要變更您的程式碼基底。 某些 SQL 資料倉儲功能設計為以分散式方式運作，可以大幅改善效能。 不過，為了維持效能和延展性，某些功能也無法使用。
+本文說明將您的程式碼從另一個資料庫移轉到 SQL 資料倉儲時，可能需要進行的程式碼變更。 某些 SQL 資料倉儲功能設計為以分散式方式運作，可以大幅改善效能。 不過，為了維持效能和延展性，某些功能也無法使用。
 
 ## <a name="common-t-sql-limitations"></a>常見 T-SQL 限制
-下列清單摘要說明 Azure SQL 資料倉儲中不支援的最常見功能。 此連結會帶您前往不支援功能的因應措施：
+下列清單摘要說明 SQL 資料倉儲不支援的最常見功能。 此連結會帶您前往不支援功能的因應措施：
 
 * [更新時的 ANSI 聯結][ANSI joins on updates]
 * [刪除時的 ANSI 聯結][ANSI joins on deletes]
@@ -80,7 +80,7 @@ SQL 資料倉儲針對通用資料表運算式 (CTE) 提供部分支援。  目�
 * 在用於 sp_prepare 所準備的陳述式時，CTE 的行為會與 PDW 中的其他 SELECT 陳述式相同。 不過，如果 CTE 是做為 sp_prepare 所準備之 CETAS 中的一部分時，就會因為針對 sp_prepare 實作繫結的方式而導致其行為與 SQL Server 和其他 PDW 陳述式不同。 如果參考 CTE 的 SELECT 使用不存在於 CTE 的錯誤資料行，sp_prepare 將會通過而不會偵測到錯誤，但在 sp_execute 期間則會擲回錯誤。
 
 ## <a name="recursive-ctes"></a>遞迴 CTE
-SQL 資料倉儲並不支援遞迴 CTE。  針對遞迴 CTE 的移轉可以取得某種程度的完成度，而最佳做法便是細分成多個步驟。 一般來說，您可以使用迴圈，並在逐一執行遞迴中間的查詢時填入暫存資料表。 一旦暫存資料表填完之後，您可以將資料傳回做為單一結果集。 [group by 子句搭配 rollup / cube / grouping sets 選項][group by clause with rollup / cube / grouping sets options]一文中使用類似的方法來解決 `GROUP BY WITH CUBE`。
+SQL 資料倉儲並不支援遞迴 CTE。  遞迴 CTE 的移轉可能會有點複雜，而最佳做法便是將它細分成多個步驟。 一般來說，您可以使用迴圈，並在逐一執行遞迴中間的查詢時填入暫存資料表。 一旦暫存資料表填完之後，您可以將資料傳回做為單一結果集。 [group by 子句搭配 rollup / cube / grouping sets 選項][group by clause with rollup / cube / grouping sets options]一文中使用類似的方法來解決 `GROUP BY WITH CUBE`。
 
 ## <a name="unsupported-system-functions"></a>不支援的系統函式
 另外還有一些不支援的系統函式。 您通常可能會發現資料倉儲中使用的主要函式包括：

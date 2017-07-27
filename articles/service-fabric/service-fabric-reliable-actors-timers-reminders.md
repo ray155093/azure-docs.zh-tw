@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/10/2017
+ms.date: 06/29/2017
 ms.author: vturecek
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 9d22438c6ca14ddb8843f4b72cae40e3b622e849
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 06b026ce06e0f16a77ac238de0af2263f272933c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -228,10 +229,7 @@ CompletableFuture reminderUnregistration = unregisterReminderAsync(reminder);
 如上所示，`UnregisterReminderAsync`(C#) 或 `unregisterReminderAsync`(Java) 方法會接受 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。 動作項目基底類別支援 `GetReminder`(C#) 或 `getReminder`(Java) 方法，在傳遞進提醒名稱時可以用來擷取 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。 這很方便，因為動作項目不需保存從 `RegisterReminder`(C#) 或 `registerReminder`(Java) 方法呼叫傳回的 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。
 
 ## <a name="next-steps"></a>後續步驟
+深入了解 Reliable Actor 事件和重新進入：
 * [動作項目事件](service-fabric-reliable-actors-events.md)
 * [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
-* [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
-* [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
-* [C# 範例程式碼 (英文)](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
-* [Java 範例程式碼 (英文)](http://github.com/Azure-Samples/service-fabric-java-getting-started)
 

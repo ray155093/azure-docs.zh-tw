@@ -17,7 +17,7 @@ Azure 提供下列 Docker 值︰
 [Linux 容器](http://en.wikipedia.org/wiki/LXC)和使用 docker 工具建立及裝載的容器，不會使用 Hypervisor 來加以隔離。 使用容器時，容器主機會使用 Linux 核心的程序和檔案系統隔離功能，來對容器、其應用程式、某些核心功能及其本身的隔離檔案系統公開。 從容器內執行的應用程式觀點來看，容器就像是唯一的作業系統執行個體。 包含在其中的應用程式看不見處理程序或其容器以外的任何其他資源。
 
 Docker 容器中使用的資源遠少於 VM 中使用的資源。 Docker 容器採用不會與 Docker 主機核心共用的應用程式隔離和執行模型。 容器的磁碟使用量更低，因為它不包含整個作業系統。 啟動時間和所需磁碟空間大幅低於 VM。
-Windows 容器對於在 Windows 執行的應用程式提供與 Linux 容器相同的優點。 Windows 容器支援 Docker 映像格式和 Docker API，但它們也可以使用 PowerShell 管理。 Windows 容器可以使用二種容器執行階段：Windows 伺服器容器和 Hyper-V 容器。 Hyper-V 容器將每個容器裝載在高度最佳化的 VM，以提供額外的隔離。 若要深入了解 Windows 容器，請參閱 [關於 Windows 容器](https://msdn.microsoft.com/virtualization/windowscontainers/about/about_overview)。 若要開始在 Azure 中使用 Windows Containers，請了解如何[部署 Azure Container Service 叢集](/articles/container-service/container-service-deployment.md)。
+Windows 容器對於在 Windows 執行的應用程式提供與 Linux 容器相同的優點。 Windows 容器支援 Docker 映像格式和 Docker API，但它們也可以使用 PowerShell 管理。 Windows 容器可以使用二種容器執行階段：Windows 伺服器容器和 Hyper-V 容器。 Hyper-V 容器將每個容器裝載在高度最佳化的 VM，以提供額外的隔離。 若要深入了解 Windows 容器，請參閱 [關於 Windows 容器](https://msdn.microsoft.com/virtualization/windowscontainers/about/about_overview)。 若要開始在 Azure 中使用 Windows Containers，請了解如何[部署 Azure Container Service 叢集](../articles/container-service/dcos-swarm/container-service-deployment.md)。
 
 ## <a name="what-are-containers-good-for"></a>容器適用的情況？
 

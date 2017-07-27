@@ -14,58 +14,117 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 2/02/2017
 ms.author: chackdan
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: fa59bae2b824e6b75e120ab2b61027746ee1ea78
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: 42b7ea3ec1efa6eb7f3ac31ecefa615c29f7d495
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/07/2017
 
 
 ---
 # <a name="add-or-remove-nodes-to-a-standalone-service-fabric-cluster-running-on-windows-server"></a>在執行於 Windows Server 上的獨立 Service Fabric 叢集中新增或移除節點
-[在 Windows Server 電腦上建立了獨立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)後，您的業務需求可能會改變，因此您可能需要在叢集中新增或移除多個節點。 本文提供用以達成此目標的詳細步驟。
+[在 Windows Server 機器上建立獨立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)之後，您的業務需求可能會改變，因此您可能需要在叢集中新增或移除節點。 本文提供可達成此目的的詳細步驟。 請注意，在本機開發叢集中，不支援新增/移除節點功能。
 
 ## <a name="add-nodes-to-your-cluster"></a>將節點新增至叢集
-1. 按照 [準備電腦以符合叢集部署的必要條件](service-fabric-cluster-creation-for-windows-server.md) 一節所提到的步驟進行，以準備要在叢集中新增的 VM/電腦。
-2. 規劃要用來新增此 VM/電腦的容錯網域和升級網域。
-3. 以遠端桌面 (RDP) 登入到要在叢集中新增的 VM/電腦。
-4. 複製或 [下載適用於 Windows Server 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690) 到此 VM/電腦，然後解壓縮封裝。
-5. 以系統管理員身分執行 PowerShell，然後瀏覽至解壓縮封裝的位置。
-6. 使用描述要新增之新節點的參數執行「AddNode.ps1」  Powershell。 下列範例會將稱為 VM5 的新節點 (類型 NodeType0、IP 位址 182.17.34.52) 新增至 UD1 和 fd:/dc1/r0。 「ExistingClusterConnectionEndPoint」  是已在現有叢集中之節點的 Connect Endpoint。 對於此端點，您可以選擇叢集中「任何」  節點的 IP 位址。
+1. 依照[準備機器以符合叢集部署的必要條件](service-fabric-cluster-creation-for-windows-server.md)一節所提到的步驟操作，來準備要新增至叢集的 VM/機器
+2. 識別要用來新增此 VM/機器的容錯網域和升級網域
+3. 透過遠端桌面 (RDP) 登入到要新增至叢集的 VM/機器
+4. 複製或[下載適用於 Windows Server 之 Service Fabric 的獨立套件](http://go.microsoft.com/fwlink/?LinkId=730690)到此 VM/機器，然後將套件解壓縮
+5. 以較高的權限 PowerShell，然後瀏覽至解壓縮套件的位置
+6. 使用描述要新增之新節點的參數來執行 *AddNode.ps1* 指令碼。 下列範例會將名為 VM5 的新節點 (類型為 NodeType0 且 IP 位址為 182.17.34.52) 新增至 UD1 和 fd:/dc1/r0。 *ExistingClusterConnectionEndPoint* 是已在現有叢集中之節點的連線端點，這可以是叢集中「任何」節點的 IP 位址。
 
-```
-.\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -AcceptEULA
+    ```
+    .\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -AcceptEULA
+    ```
+    指令碼執行完成之後，您可以執行 [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) Cmdlet，來檢查是否已新增新節點。
 
-```
-您可以檢查新的節點是否藉由執行 Cmdlet [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps)而新增。
+7. 為了確保叢集中不同節點間的一致性，您必須起始組態升級。 請執行 [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) 來取得最新的組態檔，然後將剛新增的節點新增到 "Nodes" 區段。 此外，建議您一律備妥最新的叢集組態，以因應您需要以相同組態重新部署叢集的情況。
 
+    ```
+        {
+            "nodeName": "vm5",
+            "iPAddress": "182.17.34.52",
+            "nodeTypeRef": "NodeType0",
+            "faultDomain": "fd:/dc1/r0",
+            "upgradeDomain": "UD1"
+        }
+    ```
+8. 執行 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始升級。
+
+    ```
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
+
+    ```
+    您可以在 Service Fabric Explorer 中監視升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
+
+### <a name="add-nodes-to-clusters-configured-with-windows-security-using-gmsa"></a>使用 gMSA 將節點新增至已設定 Windows 安全性的叢集
+針對已設定「群組受管理的服務帳戶」(gMSA)(https://technet.microsoft.com/library/hh831782.aspx) 的叢集，可以使用組態升級來新增新的節點：
+1. 在任何現有的節點上執行 [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) 來取得最新的組態檔，然後在 "Nodes" 區段中新增有關所要新增之新節點的詳細資料。 請確定新節點屬於相同的群組受管理帳戶。 此帳戶應該是所有機器上的「系統管理員」。
+
+    ```
+        {
+            "nodeName": "vm5",
+            "iPAddress": "182.17.34.52",
+            "nodeTypeRef": "NodeType0",
+            "faultDomain": "fd:/dc1/r0",
+            "upgradeDomain": "UD1"
+        }
+    ```
+2. 執行 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始升級。
+
+    ```
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
+    ```
+    您可以在 Service Fabric Explorer 中監視升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
+
+### <a name="add-node-types-to-your-cluster"></a>將節點類型新增至叢集
+若要新增新的節點類型，請修改您的組態以在 "Properties" 底下的 "NodeTypes" 區段中包含新節點類型，然後使用 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始組態升級。 升級完成之後，您便可以將此節點類型的新節點新增到您的叢集。
 
 ## <a name="remove-nodes-from-your-cluster"></a>從叢集移除節點
-根據為叢集選擇的「可靠性」等級而定，您無法移除主要節點類型的前 n 個 (3/5/7/9) 節點。 同時請注意，不支援在 dev 叢集上執行 RemoveNode 命令。
+您可以使用組態升級，以下列方式將節點自叢集中移除：
 
-1. 以遠端桌面 (RDP) 登入到您想要從叢集移除的 VM/電腦。
-2. 複製或 [下載適用於 Windows Server 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690) ，然後將此封裝解壓縮到此 VM/電腦。
-3. 以系統管理員身分執行 PowerShell，然後瀏覽至解壓縮封裝的位置。
-4. 在 PowerShell 中執行 *RemoveNode.ps1*。 下列範例會從叢集移除目前的節點。 ExistingClientConnectionEndpoint 是將會留在叢集中之任何節點的用戶端連接端點。 選擇叢集中「任何」**其他節點**的 IP 位址和端點連接埠。 此**其他節點**會接著更新所移除節點的叢集組態。 
+1. 執行 [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) 來取得最新的組態檔，然後將節點從 "Nodes" 區段中「移除」。
+將 "NodesToBeRemoved" 參數新增至 "FabricSettings" 區段內的 "Setup" 區段。 "value" 應該是需要移除之節點的節點名稱清單 (以逗號分隔)。
 
-```
+    ```
+         "fabricSettings": [
+            {
+            "name": "Setup",
+            "parameters": [
+                {
+                "name": "FabricDataRoot",
+                "value": "C:\\ProgramData\\SF"
+                },
+                {
+                "name": "FabricLogRoot",
+                "value": "C:\\ProgramData\\SF\\Log"
+                },
+                {
+                "name": "NodesToBeRemoved",
+                "value": "vm0, vm1"
+                }
+            ]
+            }
+        ]
+    ```
+2. 執行 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始升級。
 
-.\RemoveNode.ps1 -ExistingClientConnectionEndpoint 182.17.34.50:19000
+    ```
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
 
-```
+    ```
+    您可以在 Service Fabric Explorer 中監視升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
 
 > [!NOTE]
-> 某些節點可能不會因為系統服務相依性移除。 這些節點是主要節點，而且可以藉由使用 `Get-ServiceFabricClusterManifest` 查詢叢集資訊清單，以及尋找標示為 `IsSeedNode=”true”` 的節點項目加以識別。 
+> 移除節點可能會起始多個升級作業。 有些節點帶有 `IsSeedNode=”true”` 標記標示，透過使用 `Get-ServiceFabricClusterManifest` 來查詢叢集資訊清單即可識別這些節點。 移除這類節點所需的時間可能比移除其他節點長，因為在這類案例中，需要將種子節點四處移動。 叢集必須至少維持 3 個主要節點類型節點。
 > 
 > 
 
-即使在移除節點之後，查詢和 SFX 中仍可能會顯示為已關閉，請注意這是已知的缺失。 這個問題將於即將推出的版本中獲得修正。 
+### <a name="remove-node-types-from-your-cluster"></a>從叢集移除節點類型
+移除節點之前，請仔細檢查是否有任何節點參考該節點類型。 請先移除這些節點，然後才移除對應的節點類型。 移除所有對應的節點之後，您便可以將該 NodeType 自叢集組態中移除，然後使用 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始組態升級。
 
 
-## <a name="remove-node-types-from-your-cluster"></a>從叢集移除節點類型
-移除節點類型時，請格外小心。 請再次檢查是否有任何參考該節點類型的節點，然後再移除節點類型。
-
-
-## <a name="replace-primary-nodes-of-your-cluster"></a>取代您叢集的主要節點
+### <a name="replace-primary-nodes-of-your-cluster"></a>取代您叢集的主要節點
 應以逐一取代主要節點的方式來執行，而不是以批次方式移除後再加入。
 
 

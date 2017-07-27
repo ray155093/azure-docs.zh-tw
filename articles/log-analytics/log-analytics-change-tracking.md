@@ -12,17 +12,19 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/11/2017
+ms.date: 06/07/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: a3d958e1a37ddf6821d41afe7427faec1b8259b2
-ms.lasthandoff: 04/12/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
+ms.openlocfilehash: 7e0fa9a83c3c83145a4813422bf73a0e711d0ecc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/06/2017
 
 ---
 # <a name="track-software-changes-in-your-environment-with-the-change-tracking-solution"></a>使用變更追蹤解決方案來追蹤環境中的軟體變更
+
+![變更追蹤符號](./media/log-analytics-change-tracking/change-tracking-symbol.png)
 
 本文將協助您使用 Log Analytics 中的變更追蹤解決方案，輕鬆地找出您環境中的變更。 這個解決方案會追蹤 Windows 與 Linux 軟體、Windows 檔案和登錄機碼、Windows 服務以及 Linux 精靈的變更。 識別組態變更可協助您找出操作問題。
 
@@ -33,6 +35,17 @@ ms.lasthandoff: 04/12/2017
 
 * 您要監視變更的每部電腦上都必須有 [Windows](log-analytics-windows-agents.md)、[Operations Manager](log-analytics-om-agents.md) 或 [Linux](log-analytics-linux-agents.md)代理程式。
 * 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.ChangeTrackingOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將「變更追蹤」解決方案新增至您的 OMS 工作區。  不需要進一步的組態。
+
+### <a name="configure-linux-files-to-track"></a>設定要追蹤的 Linux 檔案
+使用下列步驟，設定要在 Linux 電腦上追蹤的檔案。
+
+1. 在 OMS 入口網站中，按一下 **[設定]** \(齒輪符號)。
+2. 在 [設定] 頁面上，按一下 [資料]，然後按一下 [Linux 檔案追蹤]。
+3. 在 [Linux 檔案變更追蹤] 下，輸入整個路徑 (包含您要追蹤之檔案的檔案名稱)，然後按一下 [新增] 符號。 例如："/etc/*.conf"
+4. 按一下 [儲存] 。  
+  
+> [!NOTE]
+> Linux 檔案追蹤具有其他功能，包括目錄追蹤、透過目錄遞迴以及萬用字元追蹤。
 
 ### <a name="configure-windows-files-to-track"></a>設定要追蹤的 Windows 檔案
 使用下列步驟，設定要在 Windows 電腦上追蹤的檔案。
@@ -52,14 +65,30 @@ ms.lasthandoff: 04/12/2017
 4. 按一下 [儲存] 。  
    ![Windows 登錄變更追蹤](./media/log-analytics-change-tracking/windows-registry-change-tracking.png)
 
+### <a name="explanation-of-linux-file-collection-properties"></a>Linux 檔案收集屬性的說明
+1. **類型**
+   * **檔案** (報告檔案中繼資料 - 大小、修改日期、雜湊等)
+   * **目錄** (報告目錄中繼資料 -大小、修改日期等)
+2. **連結** (處理其他檔案或目錄的 Linux 符號連結參考)
+   * **忽略** (忽略遞迴期間的符號連結，而不包含參考的檔案/目錄)
+   * **遵循** (遵循遞迴期間的符號連結，以同時包含參考的檔案/目錄)
+   * **管理** (遵循符號連結並變更所傳回內容的處理方式) 
+   
+   > [!NOTE]   
+   > 不建議使用 [管理] 連結選項，因為目前不支援擷取檔案內容。
+   
+3. **遞迴** (遞迴所有資料夾層級及追蹤符合路徑陳述式的所有檔案)
+4. **Sudo** (能夠存取需要 sudo 權限的檔案或目錄)
+
 ### <a name="limitations"></a>限制
 變更追蹤解決方案目前不支援下列項目︰
 
-* 資料夾 (目錄)
-* 遞迴
-* 萬用字元
+* Windows 檔案追蹤的資料夾 (目錄)
+* Windows 檔案追蹤的遞迴
+* Windows 檔案追蹤的萬用字元
 * 路徑變數
 * 網路檔案系統
+* 檔案內容
 
 其他限制：
 

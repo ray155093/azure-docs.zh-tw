@@ -11,21 +11,21 @@ ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.workload: backup-recovery
-ms.date: 06/05/2017
+ms.workload: storage-backup-recovery
+ms.date: 06/29/2017
 ms.author: anoopkv
-ms.translationtype: Human Translation
-ms.sourcegitcommit: eccc927550aef4c9cd71ffad64d2eddedb74326e
-ms.openlocfilehash: 18627223bdb4f0986f07f17233ce7daf29cb7dd9
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: a2fabc56463c8cbf0b8a76b7a84369ed8e535486
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/13/2017
+ms.lasthandoff: 07/14/2017
 
 ---
 
 # <a name="set-up-the-source-environment-vmware-to-azure"></a>設定來源環境 (從 VMware 到 Azure)
 > [!div class="op_single_selector"]
-> * [VMware 虛擬機器](./site-recovery-set-up-vmware-to-azure.md)
-> * [實體伺服器](./site-recovery-set-up-physical-to-azure.md)
+> * [VMware 至 Azure](./site-recovery-set-up-vmware-to-azure.md)
+> * [實體至 Azure](./site-recovery-set-up-physical-to-azure.md)
 
 此文章說明如何設定您的內部部署環境，以開始將在 VMware 上執行的虛擬機器複寫到 Azure。
 
@@ -33,7 +33,7 @@ ms.lasthandoff: 02/13/2017
 
 此文章假設您已經建立：
 - [Azure 入口網站](http://portal.azure.com "Azure 入口網站")中的復原服務保存庫。
-- 您 VMware vCenter 中可用來進行[自動探索](./site-recovery-vmware-to-azure.md#vmware-account-permissions)的專用帳戶。
+- 您 VMware vCenter 中可用來進行[自動探索](./site-recovery-vmware-to-azure.md)的專用帳戶。
 - 可供安裝組態伺服器的虛擬機器。
 
 ## <a name="configuration-server-minimum-requirements"></a>組態伺服器最低需求

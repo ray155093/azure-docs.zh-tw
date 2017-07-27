@@ -2,8 +2,8 @@
 title: "啟用 Azure 行動應用程式的離線同步處理 (Android)"
 description: "了解如何使用 App Service Mobile Apps 來快取和同步處理離線資料"
 documentationcenter: android
-author: ysxu
-manager: adrianha
+author: ggailey777
+manager: syntaxc4
 services: app-service\mobile
 ms.assetid: 32a8a079-9b3c-4faf-8588-ccff02097224
 ms.service: app-service-mobile
@@ -12,12 +12,12 @@ ms.tgt_pltfrm: mobile-android
 ms.devlang: java
 ms.topic: article
 ms.date: 10/01/2016
-ms.author: yuaxu
-translationtype: Human Translation
+ms.author: glenga
+ms.translationtype: Human Translation
 ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
 ms.openlocfilehash: 6135c042010147270e06740038afe80efc738f2d
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/09/2017
-
 
 ---
 # <a name="enable-offline-sync-for-your-android-mobile-app"></a>啟用 Android 行動應用程式的離線同步處理

@@ -3,8 +3,8 @@ title: "使用 Mobile Apps 在 Apache Cordova 上新增驗證 | Microsoft Docs"
 description: "了解如何在 Azure App Service 中使用 Mobile Apps，透過眾多識別提供者驗證 Apache Cordova 應用程式使用者，包括 Google、Facebook、Twitter 和 Microsoft。"
 services: app-service\mobile
 documentationcenter: javascript
-author: adrianhall
-manager: adrianha
+author: ggailey777
+manager: syntaxc4
 editor: 
 ms.assetid: 10dd6dc9-ddf5-423d-8205-00ad74929f0d
 ms.service: app-service-mobile
@@ -13,12 +13,12 @@ ms.tgt_pltfrm: mobile-html
 ms.devlang: javascript
 ms.topic: article
 ms.date: 10/30/2016
-ms.author: adrianha
-translationtype: Human Translation
-ms.sourcegitcommit: 15a3f9f40bdb84b939b30e33e5f2033411adc3cc
-ms.openlocfilehash: a637422b704e1dc4e8c0e4ce81183de8b4ffb9a7
-ms.lasthandoff: 12/01/2016
-
+ms.author: glenga
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: f2073819fe60aa51b88feeaf3b0ff0e8d052b4c7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="add-authentication-to-your-apache-cordova-app"></a>新增驗證至您的 Apache Cordova 應用程式
@@ -49,7 +49,7 @@ ms.lasthandoff: 12/01/2016
 
    | 提供者 | SDK 提供者名稱 | OAuth 主機 |
    |:--- |:--- |:--- |
-   | Azure Active Directory | aad | https://login.windows.net |
+   | Azure Active Directory | aad | https://login.microsoftonline.com |
    | Facebook | Facebook | https://www.facebook.com |
    | Google | Google | https://accounts.google.com |
    | Microsoft | microsoftaccount | https://login.live.com |
@@ -58,9 +58,9 @@ ms.lasthandoff: 12/01/2016
     content-security-policy (針對 Azure Active Directory 實作) 的範例如下所示：
 
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'
-            data: gap: https://login.windows.net https://yourapp.azurewebsites.net; style-src 'self'">
+            data: gap: https://login.microsoftonline.com https://yourapp.azurewebsites.net; style-src 'self'">
 
-    使用上表中的 OAuth 主機取代 `https://login.windows.net`。  如需 content-security-policy 中繼標籤的詳細資訊，請參閱 [Content-Security-Policy 文件]。
+    使用上表中的 OAuth 主機取代 `https://login.microsoftonline.com`。  如需 content-security-policy 中繼標籤的詳細資訊，請參閱 [Content-Security-Policy 文件]。
 
     在適當的行動裝置上使用時，某些驗證提供者不需要變更 Content-Security-Policy。  例如，在 Android 裝置上使用 Google 驗證時不需要 Content-Security-Policy 變更。
 

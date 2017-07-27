@@ -15,10 +15,10 @@ ms.workload: tbd
 ms.date: 05/17/2017
 ms.author: sethm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 6d0a1501b97ddb2c819361b00a85ebec12f7b50e
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: f65b992297c429eda2090f744b9b88b1ede39533
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -59,7 +59,7 @@ var description = manager.CreateEventHubIfNotExists("MyEventHub");
 [EventHubDescription](/dotnet/api/microsoft.servicebus.messaging.eventhubdescription) 類別含有事件中樞的相關詳細資料，包括授權規則、訊息保留間隔、資料分割識別碼、狀態及路徑。 您可以使用這個類別來更新事件中樞上的中繼資料。
 
 ## <a name="create-an-event-hubs-client"></a>建立事件中樞用戶端
-與事件中樞互動的主要類別是 [Microsoft.ServiceBus.Messaging.EventHubClient][]。 這個類別提供傳送者和接收者功能。 您可以使用 [Create](/dotnet/api/microsoft.servicebus.messaging.eventhubclient.create) 方法來具現化這個類別，如以下範例所示。
+與事件中樞互動的主要類別是 [Microsoft.ServiceBus.Messaging.EventHubClient][EventHubClient]。 這個類別提供傳送者和接收者功能。 您可以使用 [Create](/dotnet/api/microsoft.servicebus.messaging.eventhubclient.create) 方法來具現化這個類別，如以下範例所示。
 
 ```csharp
 var client = EventHubClient.Create(description.Path);
@@ -109,6 +109,8 @@ var client = factory.CreateEventHubClient("MyEventHub");
 - 捨棄 (訊息並不重要，將其卸除)
 - 重試 (視情況重試訊息)
 - [無效信件](../service-bus-messaging/service-bus-dead-letter-queues.md) (使用佇列或另一個事件中樞，以只將您無法處理的訊息設為無效)
+
+如需可用性和一致性之間利弊得失的詳細資訊與討論，請參閱[事件中樞的可用性和一致性](event-hubs-availability-and-consistency.md)。 
 
 ## <a name="batch-event-send-operations"></a>批次事件傳送作業
 分批傳送事件能大幅增加輸送量。 [SendBatch](/dotnet/api/microsoft.servicebus.messaging.eventhubclient#Microsoft_ServiceBus_Messaging_EventHubClient_SendBatch_System_Collections_Generic_IEnumerable_Microsoft_ServiceBus_Messaging_EventData__) 方法會採用 [EventData][] 類型的 **IEnumerable** 參數，並將整個批次以不可部分完成的作業形式傳送到事件中樞。
@@ -187,6 +189,7 @@ while(receive)
 
 * [事件中樞 API 概觀](event-hubs-api-overview.md)
 * [何謂事件中樞](event-hubs-what-is-event-hubs.md)
+* [事件中樞的可用性和一致性](event-hubs-availability-and-consistency.md)
 * [事件處理器主機 API 參考](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost)
 
 [NamespaceManager]: /dotnet/api/microsoft.servicebus.namespacemanager

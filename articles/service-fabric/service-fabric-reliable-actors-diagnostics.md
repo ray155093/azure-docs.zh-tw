@@ -12,11 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 01/04/2017
+ms.date: 06/29/2017
 ms.author: abhisram
-translationtype: Human Translation
-ms.sourcegitcommit: 3ed67788fbbe0c4fb820cfd1525d8c9ee5154446
-ms.openlocfilehash: 1a8a36d3b6f14c75965afca970be808015059dbb
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: 1c53a6bbe0152f6f2b9666e6059af7c6d02e481f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
@@ -116,7 +118,7 @@ Reliable Actor 執行階段會發佈下列與並行相關的效能計數器。
 
 | 類別名稱 | 計數器名稱 | 說明 |
 | --- | --- | --- |
-| Service Fabric 動作項目 |# 等待動作項目鎖定的動作項目呼叫數 |擱置中的動作項目呼叫數目，這些呼叫正等待取得強制執行回合式並行的各動作項目鎖定 |
+| Service Fabric 動作項目 |# of actor calls waiting for actor lock |擱置中的動作項目呼叫數目，這些呼叫正等待取得強制執行回合式並行的各動作項目鎖定 |
 | Service Fabric 動作項目 |每個 Lock Wait 的平均毫秒數 |取得強制執行回合式並行的各動作項目鎖定所虛的時間 (單位為毫秒) |
 | Service Fabric 動作項目 |保留動作項目鎖定的平均毫秒數 |保留每個動作項目鎖定的時間 (單位為毫秒) |
 
@@ -162,7 +164,7 @@ Reliable Actor 執行階段會發佈下列與動作項目啟用和停用相關�
 
 | 類別名稱 | 計數器名稱 | 說明 |
 | --- | --- | --- |
-| Service Fabric 動作項目 |# 未處理的要求數目 |服務中正在處理的要求數目 |
+| Service Fabric 動作項目 |# of outstanding requests |服務中正在處理的要求數目 |
 | Service Fabric 動作項目 |每個要求的平均毫秒數 |服務處理要求所花費的時間 (單位為毫秒) |
 | Service Fabric 動作項目 |要求還原序列化的平均毫秒數 |當服務收到動作項目要求訊息時，將它還原序列化所花費的時間 (單位為毫秒) |
 | Service Fabric 動作項目 |要求序列化的平均毫秒數 |在回應傳送至用戶端之前，序列化動作項目回應訊息所花費的時間 (單位為毫秒) |
@@ -172,9 +174,4 @@ Reliable Actor 執行階段會發佈下列與動作項目啟用和停用相關�
 * [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
 * [範例程式碼](https://github.com/Azure/servicefabric-samples)
 * [PerfView 中的 EventSource 提供者](https://blogs.msdn.microsoft.com/vancem/2012/07/09/introduction-tutorial-logging-etw-events-in-c-system-diagnostics-tracing-eventsource/)
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

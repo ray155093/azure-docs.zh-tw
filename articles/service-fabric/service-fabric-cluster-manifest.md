@@ -1,6 +1,6 @@
 ---
-title: "設定獨立叢集 |Microsoft Docs"
-description: "本文說明如何設定獨立或私人的 Service Fabric 叢集。"
+title: "設定 Azure Service Fabric 獨立叢集 | Microsoft Docs"
+description: "了解如何設定獨立或私人的 Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 2/17/2017
+ms.date: 06/02/2017
 ms.author: ryanwi
-translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 8192f9e36ebadd41d93ec3c2fa61b05e342d5bc1
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: 3b65f9391a4ff5a641546f8d0048f36386a7efe8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/08/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.lasthandoff: 03/29/2017
 
     "name": "SampleCluster",
     "clusterConfigurationVersion": "1.0.0",
-    "apiVersion": "2016-09-26",
+    "apiVersion": "01-2017",
 
 若要為 Service Fabric 叢集提供任何易記名稱，您可以將它指派給 **name** 變數。 **ClusterConfigurationVersion** 是叢集的版本號碼，您應該在每次升級 Service Fabric 叢集時上調此號碼。 不過，您應該讓 **apiVersion** 保持使用預設值。
 
@@ -87,6 +88,10 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
     "reliabilityLevel": "Bronze",
 
 請注意，由於主要節點執行的是系統服務的單一複本，所以 *Bronze* 可靠性層級至少要有 3 個主要節點、*Silver* 可靠性層級至少要有 5 個主要節點、*Gold* 可靠性層級至少要有 7 個主要節點，*Platinum* 可靠性層級至少要有 9 個主要節點。
+
+如果您沒有在 clusterConfig.json 中指定 reliabilityLevel 屬性，我們的系統會根據您擁有的 "Primary NodeType" 節點數目為您計算出最佳的 reliabilityLevel。 例如，如果您有 4 個主要節點，reliabilityLevel 將設為銅級，如果您有 5 個這類節點，reliabilityLevel 將設為銀級。 在不久的將來，我們會移除設定可靠性層級的選項，因為叢集會自動偵測並使用最佳的可靠性層級。
+
+ReliabilityLevel 可升級。 您可以建立 clusterConfig.json v2，並藉由[獨立叢集設定升級](service-fabric-cluster-upgrade-windows-server.md)將其相應增加和減少。 您也可以升級為 clusterConfig.json v2，它不會指定 reliabilityLevel，因此會自動計算 reliabilityLevel。 
 
 ### <a name="diagnostics"></a>診斷
 **diagnosticsStore** 區段可讓您設定參數，以啟用診斷以及疑難排解節點或叢集的失敗，如下列程式碼片段所示。 
@@ -183,6 +188,21 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
             "value": "4096"
         }]
     }]
+
+### <a name="add-on-features"></a>附加元件功能
+若要設定附加元件的功能，應將 apiVersion 設定為 ' 04-2017' 或更高版本，而且 addonFeatures 必須設定為：
+
+    "apiVersion": "04-2017",
+    "properties": {
+      "addOnFeatures": [
+          "DnsService",
+          "RepairManager"
+      ]
+    }
+
+### <a name="container-support"></a>容器支援
+若要啟用獨立叢集的 Windows Server 容器和 Hyper-V 容器的容器支援，必須啟用 'DnsService' 附加元件功能。
+
 
 ## <a name="next-steps"></a>後續步驟
 當您根據獨立叢集安裝程式設定完整的 ClusterConfig.JSON 檔案之後，就可以遵循[建立獨立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)一文來部署叢集，然後繼續[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。

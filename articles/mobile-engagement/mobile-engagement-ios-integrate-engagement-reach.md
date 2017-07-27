@@ -14,10 +14,11 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 12/13/2016
 ms.author: piyushjo
-translationtype: Human Translation
-ms.sourcegitcommit: c8bb1161e874a3adda4a71ee889ca833db881e20
-ms.openlocfilehash: 7e24bbc1832c6a85181c943e4e1c705785358527
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: ba74e0c442ac10f096d465f989e03d2ceae8cd88
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="how-to-integrate-engagement-reach-on-ios"></a>如何在 iOS 上整合 Engagement Reach
@@ -33,8 +34,8 @@ ms.openlocfilehash: 7e24bbc1832c6a85181c943e4e1c705785358527
 
 > [!IMPORTANT]
 > **我們不建議此因應措施** ，因為此 iOS API 已被取代，此行為在任何即將推出的 (甚至次要的) iOS 版本升級中會有所變更。 您應盡快改用 XCode 8。
-> 
-> 
+>
+>
 
 ### <a name="enable-your-app-to-receive-silent-push-notifications"></a>啟用應用程式接收無聲推播通知
 [!INCLUDE [mobile-engagement-ios-silent-push](../../includes/mobile-engagement-ios-silent-push.md)]
@@ -45,33 +46,33 @@ ms.openlocfilehash: 7e24bbc1832c6a85181c943e4e1c705785358527
 
 ### <a name="modify-your-application-delegate"></a>修改您的應用程式代理人
 * 在您的實作檔案頂端，匯入 Engagement Reach 模組：
-  
+
       [...]
       #import "AEReachModule.h"
 * 在 `applicationDidFinishLaunching:` 或 `application:didFinishLaunchingWithOptions:` 方法內建立觸達模組，並將它傳遞到您現有的 Engagement 初始化行：
-  
+
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         AEReachModule* reach = [AEReachModule moduleWithNotificationIcon:[UIImage imageNamed:@"icon.png"]];
         [EngagementAgent init:@"Endpoint={YOUR_APP_COLLECTION.DOMAIN};SdkKey={YOUR_SDK_KEY};AppId={YOUR_APPID}" modules:reach, nil];
         [...]
-  
+
         return YES;
       }
 * 使用您想做為通知圖示的影像名稱修改 **'icon.png'** 字串。
 * 如果您想在觸達活動中使用 [更新徽章值] 選項，或想使用原生推送 \</SaaS/Reach API/Campaign format/Native Push\> 活動，必須讓觸達模組自行管理徽章圖示 (它會自動清除應用程式徽章，也會重設每一次應用程式啟動或於前景執行時，由 Engagement 所儲存的值)。 做法是在觸達模組初始化之後加入以下這一行：
-  
+
       [reach setAutoBadgeEnabled:YES];
 * 如果您想要處理觸達資料推送，必須讓您的應用程式委派符合 `AEReachDataPushDelegate` 通訊協定。 觸達模組初始化之後請加入以下這一行：
-  
+
       [reach setDataPushDelegate:self];
 * 然後您就可以在應用程式委派中實作 `onDataPushStringReceived:` 與 `onDataPushBase64ReceivedWithDecodedBody:andEncodedBody:` 方法：
-  
+
       -(BOOL)didReceiveStringDataPushWithCategory:(NSString*)category body:(NSString*)body
       {
          NSLog(@"String data push message with category <%@> received: %@", category, body);
          return YES;
       }
-  
+
       -(BOOL)didReceiveBase64DataPushWithCategory:(NSString*)category decodedBody:(NSData *)decodedBody encodedBody:(NSString *)encodedBody
       {
          NSLog(@"Base64 data push message with category <%@> received: %@", category, encodedBody);
@@ -98,10 +99,10 @@ ms.openlocfilehash: 7e24bbc1832c6a85181c943e4e1c705785358527
 如果尚未這麼做，必須註冊應用程式以接收推送通知。
 
 * 匯入 `User Notification` 架構：
-  
+
         #import <UserNotifications/UserNotifications.h>
 * 啟動您的應用程式時，請新增以下這一行 (通常在 `application:didFinishLaunchingWithOptions:`中)：
-  
+
         if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0)
         {
             if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_x_Max)
@@ -132,21 +133,10 @@ ms.openlocfilehash: 7e24bbc1832c6a85181c943e4e1c705785358527
         [[EngagementAgent shared] applicationDidReceiveRemoteNotification:userInfo fetchCompletionHandler:handler];
     }
 
-> [!NOTE]
-> 上述的方法是在 iOS 7 中推出。 如果您的目標是 iOS 7 以下，請務必傳遞 nil (而非 `handler` 引數)，以在您的應用程式委派中實作方法 `application:didReceiveRemoteNotification:`，並在 EngagementAgent 上呼叫 `applicationDidReceiveRemoteNotification`。
-> 
-> 
-
-    - (void)application:(UIApplication*)application
-    didReceiveRemoteNotification:(NSDictionary*)userInfo
-    {
-        [[EngagementAgent shared] applicationDidReceiveRemoteNotification:userInfo fetchCompletionHandler:nil];
-    }
-
 > [!IMPORTANT]
 > 根據預設，Engagement Reach 控制 completionHandler。 如果您想以手動方式回應您程式碼中的 `handler` 區塊，可以針對 `handler` 引數傳遞 nil並自行控制 completion 區塊。 請參閱 `UIBackgroundFetchResult` 類型，查看可能值清單。
-> 
-> 
+>
+>
 
 ### <a name="full-example"></a>完整範例
 以下是整合的完整範例：
@@ -251,7 +241,7 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         // Any other code
-  
+
         [UNUserNotificationCenter currentNotificationCenter].delegate = self;
         return YES;
       }
@@ -308,8 +298,8 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 
 > [!TIP]
 > 複製提供的 nib 檔案 (名稱為 `AENotificationView.xib`)，並從該處開始工作。 但請小心，此 nib 檔案內的檢視與 `AENotificationView`類別相關聯。 這個類別重新定義了 `layoutSubViews` 方法，藉此根據內容來移動並重新調整其子檢視的大小。 您可以用 `UIView` 取代它，或是自訂檢視類別。
-> 
-> 
+>
+>
 
 如果您需要更深入地自訂通知 (如果要讓執行個體直接從程式碼載入檢視)，建議您查看所提供之 `Protocol ReferencesDefaultNotifier` 與 `AENotifier` 的原始程式碼與類別文件。
 
@@ -334,8 +324,8 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 
 > [!WARNING]
 > 如果 `handleNotification:` 擲回例外狀況，則會刪除內容且會呼叫 `drop`，這會在統計資料中報告，且可以立即處理下一個活動。
-> 
-> 
+>
+>
 
 #### <a name="include-notification-as-part-of-an-existing-view"></a>將通知併入現有的檢視
 重疊最適合用於快速整合，但有些時候不太方便，或是造成不想要的副作用。
@@ -345,12 +335,12 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 您可以決定在現有的檢視中包含我們的通知版面配置。 若要這樣做，有兩種實作樣式可用：
 
 1. 使用介面產生器加入通知檢視
-   
+
    * 開啟 [介面產生器] 
    * 放置您想要在其中顯示通知的 `UIView` (大小為 320x60，如果在 iPad 上則為 768x60)
    * 將此檢視的標記值設定為： **36822491**
 2. 以程式設計方式新增通知檢視。 在您已經將檢視初始化時加入以下程式碼：
-   
+
        UIView* notificationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)]; //Replace x and y coordinate values to your needs.
        notificationView.tag = NOTIFICATION_AREA_VIEW_TAG;
        [self.view addSubview:notificationView];
@@ -359,8 +349,8 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 
 > [!NOTE]
 > 預設通知程式會自動偵測此檢視中是否已包含通知版面配置，而且不會為它新增重疊。
-> 
-> 
+>
+>
 
 ### <a name="announcements-and-polls"></a>宣告和輪詢
 #### <a name="layouts"></a>版面配置
@@ -377,8 +367,8 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 
 > [!NOTE]
 > 每次使用者按一下通知以取得 "my\_category" 類別的宣告時，會將您已經註冊的檢視控制器 (在此情況下為 `initWithAnnouncement:`) 透過呼叫 `MyCustomAnnouncementViewController` 方法來初始化，而且會將檢視新增到目前的應用程式視窗。
-> 
-> 
+>
+>
 
 在 `AEAnnouncementViewController` 類別的實作中，您必須讀取 `announcement` 屬性來初始化您的子檢視。 請考量以下範例，其中的兩個標籤會使用屬於 `AEReachAnnouncement` 類別的 `title` 和 `body` 屬性來初始化：
 
@@ -413,8 +403,8 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 
 > [!IMPORTANT]
 > 請記得在關閉檢視控制器之前呼叫 `action` (若是自訂輪詢檢視控制器，則為 `submitAnswers:`)，或是呼叫 `exit` 方法。 否則，將不會傳送統計資料 (亦即無法分析活動)，更重要的是將不會通知下一個活動，直到應用程式處理程序重新啟動為止。
-> 
-> 
+>
+>
 
 ##### <a name="implementation-example"></a>實作範例
 在此實作中，是從外部 xib 檔案載入自訂宣告檢視。
@@ -512,9 +502,4 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
     }
 
     @end
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

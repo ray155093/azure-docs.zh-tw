@@ -11,13 +11,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/23/2017
+ms.date: 07/15/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: 4a70001f22b47546674c365705554ab30e05f53d
-ms.lasthandoff: 03/24/2017
-
+ms.reviewer: dhanyahk
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: cb36fdd0032d6d3c47e68a782d3bba427fe9fcd5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/14/2017
 
 ---
 # <a name="azure-active-directory-risk-events"></a>Azure Active Directory 風險事件
@@ -64,7 +65,7 @@ Microsoft 安全性研究人員發現外洩的認證公開張貼於黑暗網路 
 
 ### <a name="sign-in-from-unfamiliar-locations"></a>從不熟悉的位置登入
 
-此風險事件類型會考量過去的登入位置 (IP、經緯度和 ASN) 以判斷新的 / 不熟悉的位置。 系統會儲存有關使用者先前所用位置的資訊，並考量這些「熟悉的」位置。 從不在熟悉位置清單中的位置登入時，甚至會觸發此風險。 系統有為期 14 天的初始學習期間，在這段期間內，它不會將任何新位置標示為不熟悉的位置。 系統也會忽略從熟悉的裝置以及地理上靠近熟悉位置的位置進行的登入。 
+此風險事件類型會考量過去的登入位置 (IP、經緯度和 ASN) 以判斷新的 / 不熟悉的位置。 系統會儲存有關使用者先前所用位置的資訊，並考量這些「熟悉的」位置。 從不在熟悉位置清單中的位置登入時，會觸發此風險事件。 系統有為期 30 天的初始學習期間，在這段期間內，它不會將任何新位置標示為不熟悉的位置。 系統也會忽略從熟悉的裝置以及地理上靠近熟悉位置的位置進行的登入。 
 
 ### <a name="sign-ins-from-infected-devices"></a>從受感染的裝置登入
 
@@ -131,11 +132,11 @@ Microsoft 安全性研究人員發現外洩的認證公開張貼於黑暗網路 
 不可能的移動通常會明顯指出駭客已能夠成功登入。 不過，當使用者使用新裝置或使用組織中其他使用者通常不會使用的 VPN 進行移動時，可能會發生誤判。 另一個誤判來源是誤將伺服器 IP 當作用戶端 IP 傳遞的應用程式，其可能會導致從裝載應用程式後端的資料中心進行登入 (這些通常是 Microsoft 資料中心，其可能導致從 Microsoft 擁有的 IP 位址進行登入)。 由於這些誤判，以致此風險事件的風險層級為**中**。
 
 > [!TIP]
-> 您可以藉由設定[具名網路](active-directory-known-networks-azure-portal.md)，來降低針對此風險事件類型所報告的誤判數量。 
+> 您可以藉由設定[具名位置](active-directory-named-locations.md)，來降低針對此風險事件類型所報告的誤判數量。 
 
 ### <a name="sign-in-from-unfamiliar-locations"></a>從不熟悉的位置登入
 
-不熟悉的位置可以強烈指出攻擊者可能使用遭竊的身分識別。 當使用者正在移動，並試用新裝置或使用新的 VPN 時，可能會發生誤判。 由於這些誤判，以致此事件類型的風險層級為**中**。
+不熟悉的位置可以強烈指出攻擊者可能使用遭竊的身分識別。 當使用者正在移動、試用新裝置或使用新的 VPN 時，可能會發生誤判。 由於這些誤判，以致此事件類型的風險層級為**中**。
 
 ### <a name="sign-ins-from-infected-devices"></a>從受感染的裝置登入
 
@@ -176,3 +177,4 @@ Microsoft 安全性研究人員發現外洩的認證公開張貼於黑暗網路 
 
 儘管偵測風險事件已經代表保護您身分識別的重要層面，但您還是可以選擇手動處理它們，或甚至可藉由設定條件式存取原則來實作自動化回應。 如需詳細資料，請參閱 [Azure Active Directory Identity Protection](active-directory-identityprotection.md)。
  
+

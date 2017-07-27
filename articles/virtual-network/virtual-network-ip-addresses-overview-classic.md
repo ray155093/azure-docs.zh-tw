@@ -15,9 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/11/2016
 ms.author: jdial
-translationtype: Human Translation
-ms.sourcegitcommit: 54277a39601cd7f986a8ff8f517ab02eac77309b
-ms.openlocfilehash: dfc34435ad6e8982c0298301bdefe489c37db8f1
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8be2bcb9179e9af0957fcee69680ac803fd3d918
+ms.openlocfilehash: c9eb4bad1c0069b3f8ed2df30ef72b2c530ffab3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/23/2017
 
 
 ---
@@ -167,21 +169,16 @@ Azure [應用程式閘道](../application-gateway/application-gateway-introducti
 
 |  | 資源 | 傳統 | Resource Manager |
 | --- | --- | --- | --- |
-| **公用 IP 位址** |VM |稱為 ILPIP (僅動態) |稱為公用 IP (動態或靜態) |
-|  |指派給 IaaS VM 或 PaaS 角色執行個體 |關連到 VM 的 NIC | |
-| 網際網路面向的負載平衡器 |稱為 VIP (動態) 或保留的 IP (靜態) |稱為公用 IP (動態或靜態) | |
-|  |指派給雲端服務 |關連到負載平衡器的前端設定 | |
+| **公用 IP 位址** |***VM*** |稱為 ILPIP (僅動態) |稱為公用 IP (動態或靜態) |
+|  ||指派給 IaaS VM 或 PaaS 角色執行個體 |關連到 VM 的 NIC | |
+|  |***網際網路對向負載平衡器*** |稱為 VIP (動態) 或保留的 IP (靜態) |稱為公用 IP (動態或靜態) | |
+|  ||指派給雲端服務 |關連到負載平衡器的前端設定 | |
 |  | | | |
-| **私人 IP 位址** |VM |稱為 DIP |稱為私人 IP 位址 |
-|  |指派給 IaaS VM 或 PaaS 角色執行個體 |指派給 VM 的 NIC | |
-| 內部負載平衡器 (ILB) |指派給 ILB (動態或靜態) |指派給 ILB 的前端設定 (動態或靜態) | |
+| **私人 IP 位址** |***VM*** |稱為 DIP |稱為私人 IP 位址 |
+|  ||指派給 IaaS VM 或 PaaS 角色執行個體 |指派給 VM 的 NIC | |
+|  |***內部負載平衡器 (ILB)*** |指派給 ILB (動態或靜態) |指派給 ILB 的前端設定 (動態或靜態) | |
 
 ## <a name="next-steps"></a>後續步驟
-* [部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-classic-pportal.md) 。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
+* 使用 Azure 入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-classic-pportal.md)。
 
 

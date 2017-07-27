@@ -12,10 +12,11 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 04/06/2017
 ms.author: jlembicz
-translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: 9e09425b0143c1907d1af167782d1e4b1457d626
-ms.lasthandoff: 04/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
+ms.openlocfilehash: 9b7adf78271407963ed1d4b34a7760d707b5fc3a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/08/2017
 
 ---
 
@@ -73,7 +74,7 @@ POST /indexes/hotels/docs/search?api-version=2016-09-01
 2. 執行查詢。 在此範例中，搜尋查詢是由片語和詞彙所組成︰`"Spacious, air-condition* +\"Ocean view\""` (使用者通常不會輸入標點符號，但將它包含在範例中，可讓我們解釋分析器如何處理它)。 對於此查詢，搜尋引擎會掃描 `searchFields` 中指定的描述和標題欄位，以找出包含 "Ocean view"的文件，並額外掃描 "spacious" 這個詞彙或以 "air-condition" 這個前置詞開頭的詞彙。 `searchMode` 參數是在並非明確需要詞彙的案例 (`+`) 中，用來比對任何詞彙 (預設值) 或所有這些詞彙。
 3. 依特定地理位置之鄰近性將旅館的結果集進行排序，然後傳回給呼叫應用程式。 
 
-本文大部分內容是關於處理搜尋查詢：`"Spacious, air-condition* +\"Ocean view\""`。 篩選和排序不在範圍內。 如需詳細資訊，請參閱[搜尋服務 API 參考文件](https://docs.microsoft.com/rest/api/searchservice/search-documents)。
+本文大部分內容是關於處理「搜尋查詢」：`"Spacious, air-condition* +\"Ocean view\""`。 篩選和排序不在範圍內。 如需詳細資訊，請參閱[搜尋服務 API 參考文件](https://docs.microsoft.com/rest/api/searchservice/search-documents)。
 
 <a name="stage1"></a>
 ## <a name="stage-1-query-parsing"></a>第 1 階段︰查詢剖析 
@@ -262,28 +263,28 @@ Spacious,||air-condition*+"Ocean view"
 
 | 詞彙 | 文件清單 |
 |------|---------------|
-| air |    3
-| 和 |    4
+| air | 3
+| 和 | 4
 | beach | 1
-| conditioned |    3
-| comfortable |    3
+| conditioned | 3
+| comfortable | 3
 | distance | 1
 | island | 2
 | kauaʻi | 2
-| located |    2
+| located | 2
 | north | 2
 | ocean | 1, 2, 3
 | of | 2
 | on |2
 | quiet | 4
-| rooms     | 1, 3
+| rooms  | 1, 3
 | secluded | 4
-| shore    | 2
+| shore | 2
 | spacious | 1
 | the | 1、2
 | to | 1
 | view | 1, 2, 3
-| walking |    1
+| walking | 1
 | 取代為 | 3
 
 
@@ -385,6 +386,8 @@ Azure 搜尋服務中的所有索引會自動分成多個分區，讓我們可�
 + 了解如何套用[特定語言的語彙分析器](https://docs.microsoft.com/rest/api/searchservice/language-support)。
 
 + [設定自訂分析器](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search)以進行最少的處理，或是在特定欄位上進行特殊的處理。
+
++ 在這個示範網站上同時[比較標準和英文分析器](http://alice.unearth.ai/) \(英文\)。 
 
 ## <a name="see-also"></a>另請參閱
 

@@ -22,7 +22,7 @@
 ### [在 Azure 入口網站中設定警示](insights-alerts-portal.md)
 ### [使用 CLI 設定警示](insights-alerts-command-line-interface.md)
 ### [使用 PowerShell 設定警示](insights-alerts-powershell.md)
-### [讓計量警示呼叫 webhook](insights-webhooks-alerts.md)
+### [讓計量警示呼叫 Webhook](insights-webhooks-alerts.md)
 ### [使用 Resource Manager 範本建立度量警示](monitoring-enable-alerts-using-template.md)
 ## 使用自動調整
 ### [最佳做法](insights-autoscale-best-practices.md)
@@ -59,8 +59,9 @@
 ### [疑難排解](azure-diagnostics-troubleshooting.md)
 
 # 參考
-## [支援的計量清單](monitoring-supported-metrics.md)
 ## [監視資料的來源](monitoring-data-sources.md)
+## [支援的計量清單](monitoring-supported-metrics.md)
+## [活動記錄檔事件結構描述](monitoring-activity-log-schema.md)
 ## [PowerShell](/powershell/module/azurerm.insights)
 ## [.NET](https://msdn.microsoft.com/library/azure/dn802153)
 ## [REST](/rest/api/monitor/)
@@ -71,6 +72,7 @@
 
 # 資源
 ## [Azure CLI 1.0 範例](insights-cli-samples.md)
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=monitoring-management)
 ## [PowerShell 範例](insights-powershell-samples.md)
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=monitor)
+## [快速入門範本](https://azure.microsoft.com/en-us/resources/templates/?resourceType=Microsoft.Insights)

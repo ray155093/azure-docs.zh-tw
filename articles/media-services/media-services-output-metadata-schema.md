@@ -12,12 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/26/2016
+ms.date: 07/19/2017
 ms.author: juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: c3c5a3ee123fe021444370583c7f37737a03edce
 ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 ---
 # <a name="output-metadata"></a>輸出中繼資料
@@ -33,7 +34,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 >
 >
 
-## <a name="a-nameassetfiles-a-assetfiles-root-element"></a><a name="AssetFiles "></a> AssetFiles 根元素
+## <a name="AssetFiles "></a> AssetFiles 根元素
 編碼作業的 AssetFile 項目集合。  
 
 ### <a name="child-elements"></a>子元素
@@ -41,7 +42,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 | --- | --- |
 | **AssetFile**<br/><br/> minOccurs="0" maxOccurs="1" |屬於 AssetFiles 集合的 [AssetFile 元素](media-services-output-metadata-schema.md)。 |
 
-## <a name="a-nameassetfile-a-assetfile-element"></a><a name="AssetFile "></a> AssetFile 元素
+## <a name="AssetFile "></a> AssetFile 元素
 您可以找到 XML 範例 [XML 範例](media-services-output-metadata-schema.md#xml)。  
 
 ### <a name="attributes"></a>屬性
@@ -58,7 +59,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 | **VideoTracks**<br/><br/> minOccurs="0" maxOccurs="1" |每個實體資產檔案可以內含零個或多個交錯形成適當容器格式的視訊播放軌。 這是所有視訊播放軌的集合。 如需詳細資訊，請參閱 [VideoTracks 元素](media-services-output-metadata-schema.md)。 |
 | **AudioTracks**<br/><br/> minOccurs="0" maxOccurs="1" |每個實體資產檔案可以內含零個或多個交錯形成適當容器格式的音訊播放軌。 這是所有音訊播放軌的集合。 如需詳細資訊，請參閱 [AudioTracks 元素](media-services-output-metadata-schema.md)。 |
 
-## <a name="a-namesources-a-sources-element"></a><a name="Sources "></a> 來源元素
+## <a name="Sources "></a> 來源元素
 為了產生此 AssetFile 所處理之輸入/來源媒體檔案的集合。  
 
 您可以找到 XML 範例 [XML 範例](media-services-output-metadata-schema.md#xml)。  
@@ -68,7 +69,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 | --- | --- |
 | **來源**<br/><br/> minOccurs="1" maxOccurs="unbounded" |產生此資產時所使用的輸入/來源檔案。 如需詳細資訊，請參閱[來源元素](media-services-output-metadata-schema.md)。 |
 
-## <a name="a-namesource-a-source-element"></a><a name="Source "></a> 來源元素
+## <a name="Source "></a> 來源元素
 產生此資產時所使用的輸入/來源檔案。  
 
 您可以找到 XML 範例 [XML 範例](media-services-output-metadata-schema.md#xml)。  
@@ -78,7 +79,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 | --- | --- | --- |
 | **名稱**<br/><br/> 必要 |**xs:string** |輸入的來源檔案名稱。 |
 
-## <a name="a-namevideotracks-a-videotracks-element"></a><a name="VideoTracks "></a> VideoTracks 元素
+## <a name="VideoTracks "></a> VideoTracks 元素
 每個實體資產檔案可以內含零個或多個交錯形成適當容器格式的視訊播放軌。 這是所有視訊播放軌的集合。  
 
 您可以找到 XML 範例 [XML 範例](media-services-output-metadata-schema.md#xml)。  
@@ -88,7 +89,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 | --- | --- |
 | **VideoTrack**<br/><br/> minOccurs="1" maxOccurs="unbounded" |父系 AssetFile 中的特定視訊播放軌。 如需詳細資訊，請參閱 [VideoTrack 元素](media-services-output-metadata-schema.md#VideoTrack)。 |
 
-## <a name="a-namevideotracka-videotrack-element"></a><a name="VideoTrack"></a> VideoTrack 元素
+## <a name="VideoTrack"></a> VideoTrack 元素
 父系 AssetFile 中的特定視訊播放軌。  
 
 您可以找到 XML 範例 [XML 範例](media-services-output-metadata-schema.md#xml)。  
@@ -110,7 +111,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 | **TargetBitrate**<br/><br/> minInclusive ="0"<br/><br/> 必要 |**xs:int** |此視訊播放軌依透過編碼預設值所要求的目標平均位元速率 (Kbps)。 |
 | **MaxGOPBitrate**<br/><br/> minInclusive ="0" |**xs:int** |此視訊播放軌的最大 GOP 平均位元速率 (千位元 / 秒)。 |
 
-## <a name="a-nameaudiotracks-a-audiotracks-element"></a><a name="AudioTracks "></a> AudioTracks 元素
+## <a name="AudioTracks "></a> AudioTracks 元素
 每個實體資產檔案可以內含零個或多個交錯形成適當容器格式的音訊播放軌。 這是所有音訊播放軌的集合。  
 
 您可以找到 XML 範例 [XML 範例](media-services-output-metadata-schema.md#xml)。  
@@ -120,7 +121,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 | --- | --- |
 | **AudioTrack**<br/><br/> minOccurs="1" maxOccurs="unbounded" |父系 AssetFile 中的特定音訊播放軌。 如需詳細資訊，請參閱 [AudioTrack 元素](media-services-output-metadata-schema.md)。 |
 
-## <a name="a-nameaudiotrack-a-audiotrack-element"></a><a name="AudioTrack "></a> AudioTrack 元素
+## <a name="AudioTrack "></a> AudioTrack 元素
 父系 AssetFile 中的特定音訊播放軌。  
 
 您可以找到 XML 範例 [XML 範例](media-services-output-metadata-schema.md#xml)。  
@@ -141,7 +142,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 | --- | --- |
 | **LoudnessMeteringResultParameters**<br/><br/> minOccurs="0" maxOccurs="1" |音量計量結果參數。 如需詳細資訊，請參閱 [LoudnessMeteringResultParameters 元素](media-services-output-metadata-schema.md)。 |
 
-## <a name="a-nameloudnessmeteringresultparameters-a-loudnessmeteringresultparameters-element"></a><a name="LoudnessMeteringResultParameters "></a> LoudnessMeteringResultParameters 元素
+## <a name="LoudnessMeteringResultParameters "></a> LoudnessMeteringResultParameters 元素
 音量計量結果參數。  
 
 您可以找到 XML 範例 [XML 範例](media-services-output-metadata-schema.md#xml)。  
@@ -509,7 +510,7 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 
 
 
-## <a name="a-namexmla-xml-example"></a><a name="xml"></a> XML 範例
+## <a name="xml"></a> XML 範例
  以下是輸出中繼資料檔案的範例。  
 
     <AssetFiles xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"   
@@ -603,9 +604,4 @@ ms.openlocfilehash: 2e21c8df29a78da77505b6f67434d97698f7a212
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

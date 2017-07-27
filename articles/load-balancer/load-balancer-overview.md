@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 2f0b7a04f4b732277abc65dd5fe0844d6e906496
-ms.lasthandoff: 03/30/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 78025789fd03d3c3a6cfb170329d9d51ac282034
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 ---
 
@@ -118,6 +119,10 @@ Azure Load Balancer 可以設定為：
 您可以將多個負載平衡的公用 IP 位址指派給一組虛擬機器。 運用這項功能，您可以在同一組虛擬機器上裝載多個 SSL 網站和/或多個 SQL Server AlwaysOn 可用性群組接聽程式。 如需詳細資訊，請參閱[每一雲端服務有多重 VIP](load-balancer-multivip.md)。
 
 [!INCLUDE [load-balancer-compare-tm-ag-lb-include.md](../../includes/load-balancer-compare-tm-ag-lb-include.md)]
+
+## <a name="limitations"></a>限制
+
+負載平衡器後端集區可以包含任何 VM SKU (基本層除外)。
 
 ## <a name="next-steps"></a>後續步驟
 

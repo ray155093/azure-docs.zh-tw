@@ -4,7 +4,7 @@ description: "這是 Azure AD Connect Health 頁面，其中討論如何監視 A
 services: active-directory
 documentationcenter: 
 author: arluca
-manager: samueld
+manager: femila
 editor: curtand
 ms.assetid: 19e3cf15-f150-46a3-a10c-2990702cd700
 ms.service: active-directory
@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/06/2017
+ms.date: 07/18/2017
 ms.author: billmath
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 9d7640577eedcc9221f6346b650aed85f1d31a65
 ms.openlocfilehash: 26ebdbc6f568dd3d9bbcaa3250aae70d80af2d35
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/18/2017
 
 ---
 # <a name="using-azure-ad-connect-health-with-ad-ds"></a>在 AD DS 使用 Azure AD Connect Health
@@ -61,10 +62,5 @@ ms.openlocfilehash: 26ebdbc6f568dd3d9bbcaa3250aae70d80af2d35
 * [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

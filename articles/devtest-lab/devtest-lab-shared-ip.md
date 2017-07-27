@@ -14,16 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/16/2017
 ms.author: casoper
-translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 905357b9e2262b86cde31874287cc0b89eef4815
-ms.lasthandoff: 03/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 9f6e1980bf5ea5b41da98a135d89f1c5159921a7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 ---
 
 # <a name="understand-shared-ip-addresses-in-azure-devtest-labs"></a>了解 Azure DevTest Labs 中的共用 IP 位址
 
-Azure DevTest Labs 使用共用 IP 位址，將需要存取您的個人實驗室 VM 的公用 IP 位址數目減到最少。  本文說明共用 IP 的運作方式和其相關的組態選項。
+Azure DevTest Labs 讓實驗室 VM 共用相同公用 IP 位址，將需要存取您的個人實驗室 VM 的公用 IP 位址數目減到最少。  本文說明共用 IP 的運作方式和其相關的組態選項。
 
 ## <a name="shared-ip-setting"></a>共用 IP 設定
 
@@ -31,17 +32,25 @@ Azure DevTest Labs 使用共用 IP 位址，將需要存取您的個人實驗室
 
 ![新的實驗室子網路](media/devtest-lab-shared-ip/lab-subnet.png)
 
+針對現有的實驗室，您可以藉由選取 [設定和原則 > 虛擬網路] 來啟用這個選項。 然後，從清單中選取虛擬網路，並且針對選取的子網路選擇 [啟用共用公用 IP]。 如果您不想要在實驗室 VM 之間共用公用 IP 位址，您也可以在任何實驗室中停用這個選項。
+
 此實驗室中建立任何 VM 會預設為使用共用 IP。  建立 VM 時，此設定會出現在 [進階設定] 刀鋒視窗的 [IP 位址組態] 之下。
 
 ![新的 VM](media/devtest-lab-shared-ip/new-vm.png)
 
-每當已啟用共用 IP 的 VM 新增至子網路時，就會在公用 IP 位址上指派 TCP 通訊埠，以轉送至 VM 上的 RDP 連接埠。  
+- **共用：**建立為**共用**的所有 VM 歸類到一個資源群組 (RG)。 針對該 RG 指派單一 IP 位址，RG 中的所有 VM 將會使用該 IP 位址。
+- **公用：**您建立的每個 VM 有它自己的 IP 位址，而且建立在它自己的資源群組。
+- **私人：**您建立的每個 VM 使用私人 IP 位址。 您無法使用遠端桌面直接從網際網路連線到此 VM。
+
+每當已啟用共用 IP 的 VM 新增至子網路時，DevTest Labs 就會自動將 VM 新增至負載平衡器，並且在公用 IP 位址上指派 TCP 通訊埠號碼，以轉送至 VM 上的 RDP 連接埠。  
 
 ## <a name="using-the-shared-ip"></a>使用共用 IP
 
-在 RDP 用戶端中，您可以使用 IP 位址或完整網域名稱，後面緊接冒號，再接著連接埠，以連線至 VM 上的遠端桌面。  例如，在下圖中，連線至 VM 的 RDP 位址是 `doclab-lab13998814308000.centralus.cloudapp.azure.com:51686`。  或者，從 Azure 入口網站中，選取 [連線] 按鈕，下載預先設定的 RDP 檔案。
+- **Linux 使用者**：您可以使用 IP 位址或完整網域名稱，後面緊接冒號，再接著連接埠，以 SSH 至 VM。 例如，在下圖中，連線至 VM 的 RDP 位址是 `doclab-lab13998814308000.centralus.cloudapp.azure.com:51686`。
 
-![VM 範例](media/devtest-lab-shared-ip/vm-info.png)
+  ![VM 範例](media/devtest-lab-shared-ip/vm-info.png)
+
+- **Windows 使用者**：選取 Azure 入口網站中的 [連線] 按鈕，下載預先設定的 RDP 檔案，並且存取 VM。
 
 ## <a name="next-steps"></a>後續步驟
 

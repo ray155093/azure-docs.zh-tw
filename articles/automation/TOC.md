@@ -60,6 +60,7 @@
 ### [搭配 GitHub Enterprise 的原始檔控制整合](automation-scenario-source-control-integration-with-github-ent.md)
 ### [搭配 VSTS 的原始檔控制整合](automation-scenario-source-control-integration-with-VSTS.md)
 ### [從 Log Analytics 警示呼叫 Azure 自動化 Runbook](automation-invoke-runbook-from-omsla-alert.md)
+### [在 Azure 自動化 PowerShell Runbook 中部署 Azure Resource Manager 範本](automation-deploy-template-runbook.md)
 ## 解決方案
 ### [變更追蹤](../log-analytics/log-analytics-change-tracking.md)
 ### [更新管理](../operations-management-suite/oms-solution-update-management.md)
@@ -82,7 +83,7 @@
 # 資源
 ## [自動化簡介影片](https://azure.microsoft.com/documentation/videos/azure-automation-101-with-powershell-and-eamon-o-reilly/)
 ## [Azure 自動化訓練](https://mva.microsoft.com/en-US/training-courses/automating-the-cloud-with-azure-automation-8323?l=C6mIpCay_4804984382)
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=monitoring-management)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/automation/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureautomation)  
 ## [價格](https://azure.microsoft.com/pricing/details/automation/)  

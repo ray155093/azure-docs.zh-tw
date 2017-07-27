@@ -18,6 +18,7 @@
 ### [Java SDK](data-lake-analytics-manage-use-java-sdk.md)
 ### [Node.js](data-lake-analytics-manage-use-nodejs.md)
 ### [存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)
+### [調整配額限制](data-lake-analytics-quota-limits.md)
 
 ## 開發 U-SQL 程式
 ### [U-SQL 基本概念](data-lake-analytics-u-sql-get-started.md)
@@ -28,12 +29,15 @@
 ### [U-SQL R 擴充功能](data-lake-analytics-u-sql-r-extensions.md)
 ### [U-SQL 辨識擴充功能](data-lake-analytics-u-sql-cognitive.md)
 ### [分析網站記錄](data-lake-analytics-analyze-weblogs.md)
+### [適用於 Visual Studio Code 的 U-SQL](data-lake-analytics-data-lake-tools-for-vscode.md)
 
 ## 偵錯 U-SQL 程式
 ### [工作的監視和疑難排解](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 ### [在 U-SQL 中進行 C# 程式碼偵錯](data-lake-analytics-debug-u-sql-jobs.md)
 ### [使用作業瀏覽器和作業檢視](data-lake-analytics-data-lake-tools-view-jobs.md)
 ### [使用頂點執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)
+### [在 VSCode 中進行本機執行及本機偵錯](data-lake-tools-for-vscode-local-run-and-debug.md)
+### [U-SQL 程式設計指南](data-lake-analytics-u-sql-programmability-guide.md)
 
 # 參考
 ## [PowerShell](/powershell/module/azurerm.datalakeanalytics)
@@ -45,7 +49,7 @@
 
 # 資源
 ## [Azure Data Lake 部落格](https://blogs.msdn.microsoft.com/azuredatalake/)
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=intelligence-analytics)
 ## [在 UserVoice 上提供意見反應](https://feedback.azure.com/forums/327234-data-lake)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureDataLake)
 ## [價格](https://azure.microsoft.com/pricing/details/data-lake-analytics/)

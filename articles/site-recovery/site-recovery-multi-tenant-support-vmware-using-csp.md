@@ -4,7 +4,7 @@ description: "描述如何使用 Azure 入口網站在多租用戶環境中部�
 services: site-recovery
 documentationcenter: 
 author: mayanknayar
-manager: jwhit
+manager: rochakm
 editor: 
 ms.assetid: 
 ms.service: site-recovery
@@ -12,13 +12,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/21/2017
+ms.date: 06/23/2017
 ms.author: manayar
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
-ms.openlocfilehash: ed484afc59bbf48490e3ff4389e8e28c71a5e471
+ms.sourcegitcommit: 31ecec607c78da2253fcf16b3638cc716ba3ab89
+ms.openlocfilehash: 801eb19a2c1601653f229a5175fc71d6551ebe08
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/17/2017
+ms.lasthandoff: 06/23/2017
 
 
 ---
@@ -46,7 +46,7 @@ Azure Site Recovery 支援租用戶訂用帳戶的多租用戶環境。 透過 C
 
 **圖 1：含一個 vCenter 的共用主機案例**
 
-如上圖可見，每個客戶將擁有個別的「管理伺服器」。 這樣做是為了將租用戶限制於只能存取租用戶特定 VM，以達到租用戶隔離的目的。 VMware 虛擬機器複寫案例會使用組態伺服器來管理帳戶以探索 VM 及安裝代理程式。 我們會針對多租用戶環境遵循相同的原則，但是另外透過 vCenter 存取控制來限制 VM 探索。
+如上圖可見，每個客戶將擁有個別的「管理伺服器」。 這可以將租用戶限制於只能存取租用戶特定 VM，以達到租用戶隔離的目的。 VMware 虛擬機器複寫案例會使用組態伺服器來管理帳戶以探索 VM 及安裝代理程式。 我們會針對多租用戶環境遵循相同的原則，但是另外透過 vCenter 存取控制來限制 VM 探索。
 
 資料隔離的需求會迫使租用戶的基礎結構機密資訊 (如存取認證) 保持公開。 因此，我們建議管理伺服器的所有元件 (組態伺服器 (CS)、處理伺服器 (PS) 和主要目標伺服器 (MT)) 都保持由合作夥伴全權控制。 其中包含相應放大 PS。
 
@@ -57,7 +57,7 @@ Azure Site Recovery 支援租用戶訂用帳戶的多租用戶環境。 透過 C
 
 ### <a name="requirements-for-vcenter-access-account"></a>vCenter 存取帳戶的需求
 
-如先前章節中所述，必須使用已獲指派特殊角色的帳戶來設定 CS。 請務必注意，必須針對每個 vCenter 物件將此角色指派給 vCenter 存取帳戶，而且不要傳播到子物件。 這也是為了確保租用戶隔離，因為存取傳播可能會導致意外地也存取其他物件
+如先前章節中所述，必須使用已獲指派特殊角色的帳戶來設定 CS。 請務必注意，必須針對每個 vCenter 物件將此角色指派給 vCenter 存取帳戶，而且不要傳播到子物件。 這也可以確保租用戶隔離，因為存取傳播可能會導致意外地也存取其他物件
 
 ![permissions-without-propagation](./media/site-recovery-multi-tenant-support-vmware-using-csp/assign-permissions-without-propagation.png)
 
@@ -91,9 +91,9 @@ vCenter 帳戶存取程序如下：
 | 管理伺服器 | Azure_Site_Recovery | 如果有任何元件在 CS 機器以外，這就會包括所有元件 (CS、PS 及 MT) 的存取權。 |
 | 租用戶 VM | Azure_Site_Recovery | 確保特定租用戶的任何新租用戶 VM 也會有此存取權，否則將無法透過 Azure 入口網站探索它們。 |
 
-現在已經完成 vCenter 帳戶存取權。 這可以滿足完成容錯回復作業的最小權限需求。 請注意，這些存取權限也可以和您現有的原則搭配使用。 只要將現有的權限集修改成包含上面第 2 點詳述的角色權限即可。
+現在已經完成 vCenter 帳戶存取權。 這可以滿足完成容錯回復作業的最小權限需求。 這些存取權限也可以和您現有的原則搭配使用。 只要將現有的權限集修改成包含上面第 2 點詳述的角色權限即可。
 
-若要限制 DR 作業僅進行到容錯移轉狀態，而沒有容錯回復的功能，請遵循上述程序，但是不要指派「Azure_Site_Recovery」給 vCenter 存取帳戶，而是改為只指派「唯讀」角色。 這個權限集合會允許 VM 複寫和容錯移轉，而不允許容錯回復。 請注意，以上程序的其餘部分都保持原狀。 所有權限仍僅指派到物件層級而未傳播到子物件，以確保租用戶隔離及限制 VM 探索。
+若要限制 DR 作業僅進行到容錯移轉狀態，而沒有容錯回復的功能，請遵循上述程序，但是不要指派「Azure_Site_Recovery」給 vCenter 存取帳戶，而是改為只指派「唯讀」角色。 這個權限集合會允許 VM 複寫和容錯移轉，而不允許容錯回復。 以上程序的其餘部分都保持原狀。 所有權限仍僅指派到物件層級而未傳播到子物件，以確保租用戶隔離及限制 VM 探索。
 
 ## <a name="other-multi-tenant-environments"></a>其他多租用戶環境
 
@@ -119,7 +119,7 @@ vCenter 帳戶存取程序如下：
 ## <a name="csp-program-overview"></a>CSP 計畫概觀
 Microsoft 的雲端解決方案提供者 (CSP) [計畫](https://partner.microsoft.com/en-US/cloud-solution-provider)致力於和合作夥伴合作提供所有 Microsoft 雲端服務 (包括 O365、EMS 和 Microsoft Azure) 來達到雙贏。 該計畫能使我們的合作夥伴全面掌握與客戶的端對端關係，並且成為主要的關係連絡窗口。 透過 CSP，合作夥伴可以為客戶部署 Azure 訂用帳戶，並將這些訂用帳戶與他們自己的加值自訂優惠結合。
 
-在 Azure Site Recovery 的情況下，合作夥伴可以直接透過 CSP 為客戶管理整個「災害復原」解決方案，或者使用 CSP 來設定 Azure Site Recovery 環境，並且讓客戶以自助方式管理自己的 DR 需求。 在這兩種情況下，合作夥伴是 Azure Site Recovery 和最終客戶之間的連絡窗口，且合作夥伴負責維護客戶關係，以及向客戶收取 Azure Site Recovery 使用量的費用。
+在使用 Azure Site Recovery 的情況下，合作夥伴可以直接透過 CSP 為客戶管理整個「災害復原」解決方案，或者使用 CSP 來設定 Azure Site Recovery 環境，並且讓客戶以自助方式管理自己的 DR 需求。 在這兩種情況下，合作夥伴是 Azure Site Recovery 和最終客戶之間的連絡窗口，且合作夥伴負責維護客戶關係，以及向客戶收取 Azure Site Recovery 使用量的費用。
 
 ## <a name="creating-and-managing-tenant-accounts"></a>建立及管理租用戶帳戶
 
@@ -137,7 +137,7 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
 
     ![add-customer](./media/site-recovery-multi-tenant-support-vmware-using-csp/add-new-customer.png)
 
-3.  在 [新客戶] 頁面上，填入租用戶的所有帳戶資訊詳細資訊，然後按一下 [下一步: 訂閱]。
+3.  在 [新客戶] 頁面上，填入租用戶的所有帳戶資訊詳細資料，然後按一下 [下一步: 訂閱]。
 
     ![fill-details](./media/site-recovery-multi-tenant-support-vmware-using-csp/customer-add-filled.png)
 
@@ -153,7 +153,7 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
 
 ### <a name="step-2-access-tenant-account"></a>步驟 2︰存取租用戶帳戶
 
-1.  您可以透過儀表板從 [客戶] 頁面存取租用戶的訂用帳戶，如步驟 1 中所述。 在此頁面瀏覽，然後按一下剛才建立的租用戶帳戶的名稱。
+1.  您可以透過儀表板從 [客戶] 頁面存取租用戶的訂用帳戶，如步驟 1 中所述。 在此頁面瀏覽，然後按一下建立的租用戶帳戶的名稱。
 2.  這會開啟租用戶帳戶的 [訂用帳戶] 區段，您可以在此監視該帳戶現有的訂用帳戶，並且視需要新增更多訂用帳戶。 若要管理租用戶的 DR 作業，請選取頁面右側的 [所有資源] \(Azure 入口網站) 選項。
 
     ![all-resources](./media/site-recovery-multi-tenant-support-vmware-using-csp/all-resources-select.png)
@@ -171,7 +171,7 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
 
     ![config-accounts](./media/site-recovery-multi-tenant-support-vmware-using-csp/config-server-account-display.png)
 
-### <a name="step-4-register-site-recovery-infrastructure-to-recovery-services-vault"></a>步驟 4：向復原服務保存庫註冊站台復原基礎結構
+### <a name="step-4-register-site-recovery-infrastructure-to-recovery-services-vault"></a>步驟 4：向復原服務保存庫註冊 Site Recovery 基礎結構
 1.  開啟 Azure 入口網站並在之前建立的保存庫上，向在上一步中註冊的 CS 註冊 vCenter 伺服器。 將 vCenter 存取帳戶用於此目的。
 2.  針對每個一般程序的 Site Recovery 完成「準備基礎結構」程序。
 3.  現在可以開始複寫 VM。 確認在 [複寫] 選項下的 VM 選取刀鋒視窗上，只有顯示該租用戶的 VM。
@@ -180,7 +180,7 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
 
 ### <a name="step-5-assign-tenant-access-to-subscription"></a>步驟 5︰將對訂用帳戶的存取權指派給租用戶
 
-在自助 DR 的情況下，必須向租用戶提供在步驟 1 之項目 6 中所提的帳戶詳細資料。 此動作應在合作夥伴設定 DR 基礎結構之後完成。 不論是何種 DR 類型 (受管理或自助)，都會要求合作夥伴只能透過 CSP 入口網站來存取租用戶訂用帳戶，並設定保存庫，以及向租用戶訂用帳戶註冊合作夥伴所擁有的基礎結構。
+對於自助 DR，必須向租用戶提供在步驟 1 之項目 6 中所提的帳戶詳細資料。 此動作應在合作夥伴設定 DR 基礎結構之後完成。 不論是何種 DR 類型 (受管理或自助)，都會要求合作夥伴只能透過 CSP 入口網站來存取租用戶訂用帳戶，並設定保存庫，以及向租用戶訂用帳戶註冊合作夥伴所擁有的基礎結構。
 
 合作夥伴也可以透過 CSP 入口網站將新的使用者加入租用戶訂用帳戶，方法如下：
 

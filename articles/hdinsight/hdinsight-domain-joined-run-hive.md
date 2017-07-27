@@ -1,5 +1,5 @@
 ---
-title: "在已加入網域的 HDInsight 中設定 Hive 原則 | Microsoft Docs"
+title: "在已加入網域的 HDInsight 中設定 Hive 原則 - Azure | Microsoft Docs"
 description: "了解 ..."
 services: hdinsight
 documentationcenter: 
@@ -16,24 +16,25 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 213b6b5274ebde8cc460829ff1edc96a66eef994
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: de537d5e39dd0d3f75ff802948c7372e4d65d127
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 
 ---
 # <a name="configure-hive-policies-in-domain-joined-hdinsight-preview"></a>在已加入網域的 HDInsight (預覽) 中設定 Hive 原則
 了解如何針對 Hive 設定 Apache Ranger 原則。 在本文中，您會建立兩個 Ranger 原則來限制 hivesampletable 的存取權。 HDInsight 叢集隨附 hivesampletable。 設定原則之後，您可以使用 Excel 和 ODBC 驅動程式連接到 HDInsight 中的 Hive 資料表。
 
-## <a name="prerequisites"></a>必要條件
+## <a name="prerequisites"></a>先決條件
 * 已加入網域的 HDInsight 叢集。 請參閱[設定已加入網域的 HDInsight 叢集](hdinsight-domain-joined-configure.md)。
 * 安裝 Office 2016、Office 2013 Professional Plus、Office 365 Pro Plus、Excel 2013 Standalone 或 Office 2010 Professional Plus 的工作站。
 
-## <a name="connect-to-apache-ranger-admin-ui"></a>連接到 Apache Ranger 系統管理 UI
-**連接到 Ranger 系統管理 UI**
+## <a name="connect-to-apache-ranger-admin-ui"></a>連線到 Apache Ranger 系統管理 UI
+**到 Ranger 系統管理 UI**
 
-1. 從瀏覽器連接到 Ranger 系統管理 UI。 URL 是 https://&lt;ClusterName>.azurehdinsight.net/Ranger/。
+1. 從瀏覽器連線到 Ranger 系統管理 UI。 URL 是 https://&lt;ClusterName>.azurehdinsight.net/Ranger/。
 
    > [!NOTE]
    > Ranger 會使用與 Hadoop 叢集不同的認證。 若要避免瀏覽器使用快取的 Hadoop 認證，請使用新的 InPrivate 瀏覽器視窗連接至 Ranger 系統管理 UI。
@@ -54,7 +55,7 @@ ms.lasthandoff: 03/25/2017
 **建立 Ranger 原則**
 
 1. 開啟 Ranger 系統管理 UI。 請參閱[連接到 Apache Ranger 系統管理 UI](#connect-to-apache-ranager-admin-ui)。
-2. 按一下 **Hive** 下的 **&lt;ClusterName>_hive**。 您會看到兩個預先設定的原則。
+2. 按一下 [Hive] 下的 **&lt;ClusterName>_hive**。 您會看到兩個預先設定的原則。
 3. 按一下 [新增原則]，然後輸入下列值︰
 
    * 原則名稱︰read-hivesampletable-all
@@ -83,11 +84,11 @@ ms.lasthandoff: 03/25/2017
 ## <a name="create-hive-odbc-data-source"></a>建立 Hive ODBC 資料來源
 在[建立 Hive ODBC 資料來源](hdinsight-connect-excel-hive-odbc-driver.md)中可找到相關指示。  
 
-    屬性|說明
+    屬性|描述
     ---|---
     資料來源名稱|為資料來源指定名稱
     Host|輸入 &lt;HDInsightClusterName>.azurehdinsight.net。 例如，myHDICluster.azurehdinsight.net
-    連接埠|使用 <strong>443</strong>。 (此連接埠已從 563 變更為 443。)
+    連接埠|使用 <strong>443</strong> (此連接埠已從 563 變更為 443)。
     資料庫|使用<strong>預設值</strong>
     Hive 伺服器類型|選取 [Hive Server 2]<strong></strong>
     機制|選取 [Azure HDInsight 服務]<strong></strong>

@@ -12,19 +12,21 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/10/2017
+ms.date: 06/29/2017
 ms.author: vturecek
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d8cc770e863381bcc9dc4417bd2b1f91ac0a34e9
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 6aa3ac7842df4657fca7f6b4264e1c6fe52dc0c6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
 # <a name="how-data-serialization-affects-an-application-upgrade"></a>資料序列化如何影響應用程式升級
-在 [輪流應用程式升級](service-fabric-application-upgrade.md)中，升級會套用至節點的子集，一次一個升級網域。 在此過程中，某些升級網域會比您的應用程式版本新，而某些升級網域會比您的應用程式的版本舊。 在首度發行期間，新版的應用程式必須能夠讀取舊版的資料，而舊版的應用程式必須能夠讀取新版的資料。 如果資料格式沒有向前及向後相容，升級便可能會失敗，或是發生更糟糕的狀況，像是資料可能會遺失或損毀。 本文將討論您資料格式的構成項目並提供最佳作法，以確保您的資料向前及向後相容。
+在 [輪流應用程式升級](service-fabric-application-upgrade.md)中，升級會套用至節點的子集，一次一個升級網域。 在此過程中，有些升級網域會有您應用程式的新版本，有些升級網域則有您應用程式的舊版本。 在首度發行期間，新版的應用程式必須能夠讀取舊版的資料，而舊版的應用程式必須能夠讀取新版的資料。 如果資料格式沒有向前及向後相容，升級便可能會失敗，或是發生更糟糕的狀況，像是資料可能會遺失或損毀。 本文將討論您資料格式的構成項目並提供最佳作法，以確保您的資料向前及向後相容。
 
 ## <a name="what-makes-up-your-data-format"></a>資料格式的構成項目？
-在 Azure Service Fabric 中，保留及複寫的資料來自您的 C# 類別。 對於使用 [可靠集合](service-fabric-reliable-services-reliable-collections.md)的應用程式，也就是可靠的字典和佇列中的物件。 對於使用 [Reliable Actors](service-fabric-reliable-actors-introduction.md)的應用程式，也就是動作項目的備份狀態。 這些 C# 類別必須是可序列化，以便保存和複寫。 因此，資料格式是由已序列化的欄位和屬性，以及其序列化方式來定義。 例如，在 `IReliableDictionary<int, MyClass>` 中，資料是序列化 `int` 和序列化 `MyClass`。
+在 Azure Service Fabric 中，保留及複寫的資料來自您的 C# 類別。 針對使用[可靠集合](service-fabric-reliable-services-reliable-collections.md)的應用程式，該資料就是可靠的字典和佇列中的物件。 對於使用 [Reliable Actors](service-fabric-reliable-actors-introduction.md)的應用程式，也就是動作項目的備份狀態。 這些 C# 類別必須是可序列化，以便保存和複寫。 因此，資料格式是由已序列化的欄位和屬性，以及其序列化方式來定義。 例如，在 `IReliableDictionary<int, MyClass>` 中，資料是序列化 `int` 和序列化 `MyClass`。
 
 ### <a name="code-changes-that-result-in-a-data-format-change"></a>程式碼變更造成資料格式變更
 由於資料格式是由 C# 類別決定，所以類別的變更可能會導致資料格式變更。 請小心確保輪流升級能夠處理資料格式變更。 可能會造成資料格式變更的範例：
@@ -62,10 +64,5 @@ ms.openlocfilehash: d8cc770e863381bcc9dc4417bd2b1f91ac0a34e9
 參考 [進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
 
 參考 [疑難排解應用程式升級 ](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -14,17 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: raynew
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: d686d411b0877d2e4aef992e6b28da2a6f03b66e
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: d50a4bdbafccd645ca339b2dd1ab97456704e3ae
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
-<a id="replicate-vmware-virtual-machines-and-physical-servers-to-azure-with-azure-site-recovery-using-the-classic-portal-legacy" class="xliff"></a>
-
-# 在傳統入口網站 (舊版) 中使用 Azure Site Recovery 將 VMware 虛擬機器和實體伺服器複寫至 Azure
+# <a name="replicate-vmware-virtual-machines-and-physical-servers-to-azure-with-azure-site-recovery-using-the-classic-portal-legacy"></a>在傳統入口網站 (舊版) 中使用 Azure Site Recovery 將 VMware 虛擬機器和實體伺服器複寫至 Azure
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](site-recovery-vmware-to-azure.md)
 > * [傳統入口網站](site-recovery-vmware-to-azure-classic.md)
@@ -34,9 +31,7 @@ ms.lasthandoff: 07/06/2017
 
 歡迎使用 Azure Site Recovery！ 本文針對舊版部署，描述在 Azure 入口網站中使用 Azure Site Recovery，將內部部署 VMware 虛擬機器或 Windows/Linux 實體伺服器複寫至 Azure。
 
-<a id="overview" class="xliff"></a>
-
-## 概觀
+## <a name="overview"></a>概觀
 組織需要 BCDR 策略，以決定應用程式、工作負載和資料如何在規劃與未規劃停機期間維持運作，並儘速復原到正常運作的情況。 BCDR 策略應保護商務資料安全且可復原，並確保發生災害時工作負載仍持續可用。
 
 Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器和虛擬機器的複寫協調至雲端 (Azure) 或次要資料中心，協助您的 BCDR 策略。 當您的主要位置發生故障時，您容錯移轉至次要位置，讓應用程式和工作負載保持可用。 當它恢復正常作業時，容錯回復至您的主要位置。 如需深入了解，請參閱 [什麼是 Azure Site Recovery？](site-recovery-overview.md)
@@ -46,9 +41,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 >
 >
 
-<a id="migrate-to-the-enhanced-deployment" class="xliff"></a>
-
-## 移轉至增強部署
+## <a name="migrate-to-the-enhanced-deployment"></a>移轉至增強部署
 只有在您已使用本文中的指示部署 Site Recovery 時，本節才有關。
 
 若要移轉現有的部署，您必須：
@@ -66,12 +59,12 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 移轉如下所示：
 
-1. 閱讀 [傳統入口網站中的增強部署](site-recovery-vmware-to-azure-classic.md#enhanced-deployment)的相關資訊。 檢閱增強[架構](site-recovery-vmware-to-azure-classic.md#scenario-architecture)和[必要條件](site-recovery-vmware-to-azure-classic.md#before-you-start-deployment)。
+1. 閱讀 [傳統入口網站中的增強部署](site-recovery-vmware-to-azure-classic.md)的相關資訊。 檢閱增強[架構](site-recovery-vmware-to-azure-classic.md)和[必要條件](site-recovery-vmware-to-azure-classic.md)。
 2. 從您目前複寫的機器解除安裝行動服務。 當您將機器加入至新的保護群組時，機器上將安裝新版本的服務。
-3. 下載[保存庫註冊金鑰](site-recovery-vmware-to-azure-classic.md#step-4-download-a-vault-registration-key)，並[執行整合安裝精靈](site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server)，以安裝組態伺服器、處理序伺服器和主要目標伺服器元件。 深入了解 [容量規劃](site-recovery-vmware-to-azure-classic.md#capacity-planning)。
-4. [設定認證](site-recovery-vmware-to-azure-classic.md#step-6-set-up-credentials-for-the-vcenter-server) 供 Site Recovery 用來存取 VMware 伺服器，以自動探索 VMware VM。 閱讀 [需要的權限](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access)的相關資訊。
-5. 加入 [vCenter 伺服器或 vSphere 主機](site-recovery-vmware-to-azure-classic.md#step-7-add-vcenter-servers-and-esxi-hosts)。 可能需要 15 分鐘以上，伺服器才會出現在 Site Recovery 入口網站中。
-6. 建立 [新的保護群組](site-recovery-vmware-to-azure-classic.md#step-8-create-a-protection-group)。 可能需要 15 分鐘讓入口網站重新整理，以便探索和顯示虛擬機器。 如果您不想等待，可以反白顯示管理伺服器名稱 (不要按它) > [重新整理]。
+3. 下載[保存庫註冊金鑰](site-recovery-vmware-to-azure-classic.md)，並[執行整合安裝精靈](site-recovery-vmware-to-azure-classic.md)，以安裝組態伺服器、處理序伺服器和主要目標伺服器元件。 深入了解 [容量規劃](site-recovery-vmware-to-azure-classic.md)。
+4. [設定認證](site-recovery-vmware-to-azure-classic.md) 供 Site Recovery 用來存取 VMware 伺服器，以自動探索 VMware VM。 閱讀 [需要的權限](site-recovery-vmware-to-azure-classic.md)的相關資訊。
+5. 加入 [vCenter 伺服器或 vSphere 主機](site-recovery-vmware-to-azure-classic.md)。 可能需要 15 分鐘以上，伺服器才會出現在 Site Recovery 入口網站中。
+6. 建立 [新的保護群組](site-recovery-vmware-to-azure-classic.md)。 可能需要 15 分鐘讓入口網站重新整理，以便探索和顯示虛擬機器。 如果您不想等待，可以反白顯示管理伺服器名稱 (不要按它) > [重新整理]。
 7. 在新的保護群組底下按一下 [移轉機器] 。
 
     ![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration1.png)
@@ -100,9 +93,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 >
 >
 
-<a id="what-do-i-need" class="xliff"></a>
-
-## 我需要什麼？
+## <a name="what-do-i-need"></a>我需要什麼？
 此圖表顯示部署元件。
 
 ![新增保存庫](./media/site-recovery-vmware-to-azure-classic-legacy/architecture.png)
@@ -119,17 +110,13 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 | **Azure Site Recovery 保存庫** |您使用 Azure 訂用帳戶來建立 Site Recovery 保存庫，並在保存庫中註冊伺服器。 |保存庫可在您的內部部署網站與 Azure 之間協調資料複寫、容錯移轉及復原等作業。 |
 | **複寫機制** |**透過網際網路** - 透過網際網路使用安全 SSL/TLS 通道，從受保護的內部部署伺服器到 Azure 進行通訊和資料複寫。 這是預設選項。<br/><br/> **VPN/ExpressRoute** - 透過 VPN 連線，在內部部署伺服器與 Azure 之間進行通訊和資料複寫。 您將必須在內部部署站台與 Azure 網路之間設定站對站 VPN 或 ExpressRoute 連接。<br/><br/> 您將選擇在 Site Recovery 部署期間想要如何複寫。 設定此機制之後，如果變更機制，一定會影響現有機器的複寫。 |這些選項都不需要在受保護機器上開啟任何輸入網路連接埠。 所有的網路通訊是從內部部署站台起始。 |
 
-<a id="capacity-planning" class="xliff"></a>
-
-## 容量規劃
+## <a name="capacity-planning"></a>容量規劃
 您需要考量的主要方面︰
 
 * **來源環境**—VMware 基礎結構、來源機器設定和需求。
 * **元件伺服器**—處理序伺服器、設定伺服器和主要目標伺服器
 
-<a id="considerations-for-the-source-environment" class="xliff"></a>
-
-### 來源環境的考量
+### <a name="considerations-for-the-source-environment"></a>來源環境的考量
 * **磁碟最大大小**—可以連接至虛擬機器的磁碟的目前大小上限為 1 TB。 因此，可以複寫的來源磁碟的最大大小也是限制為 1 TB。
 * **每一來源的最大大小**—單一來源機器的最大大小是 31 TB (含 31 個磁碟)，以及對主要目標伺服器佈建一個 D14 執行個體。
 * **每一主要目標伺服器的來源數目**—可以使用單一主要目標伺服器保護的多個來源機器。 不過，無法跨多個主要目標伺服器保護單一來源機器，因為在磁碟複寫時，會在 Azure Blob 儲存體上建立可反映磁碟大小的 VHD，並將其附加至主要目標伺服器做為資料磁碟。  
@@ -138,9 +125,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
   * **目標磁碟支援的最大輸送量**—每一來源磁碟的最大變換不能超過 144 GB/天 (以 8K 寫入大小)。 請參閱主要目標小節中的資料表，以取得各種寫入大小的目標的輸送量和 IOP。 必須將此數字除以 2，因為每個來源 IOP 會在目標磁碟上產生 2 個 IOP。 設定進階儲存體帳戶的目標時，請參閱 [Azure 延展性和效能目標](../storage/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) 。
   * **儲存體帳戶支援的最大輸送量**—來源不能跨越多個儲存體帳戶。 假設某個儲存體帳戶每秒可接受最多 20,000 個要求，並且每個來源 IOP 會在主要目標伺服器上產生 2 個 IOP，建議您將來源的 IOP 數目保留為 10,000。 設定進階儲存體帳戶的來源時，請參閱 [Azure 延展性和效能目標](../storage/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) 。
 
-<a id="considerations-for-component-servers" class="xliff"></a>
-
-### 元件伺服器的考量
+### <a name="considerations-for-component-servers"></a>元件伺服器的考量
 表 1 摘要說明設定和主要目標伺服器的虛擬機器大小。
 
 | **元件** | **部署的 Azure 執行個體** | **核心** | **記憶體** | **最大磁碟** | **磁碟大小** |
@@ -152,9 +137,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **表 1**
 
-<a id="process-server-considerations" class="xliff"></a>
-
-#### 處理序伺服器考量
+#### <a name="process-server-considerations"></a>處理序伺服器考量
 通常處理序伺服器的大小取決於跨所有受保護的工作負載的每日變更率。
 
 * 您需要足夠的計算才能執行內嵌壓縮和加密之類的工作。
@@ -179,14 +162,10 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 * 針對快取磁碟，建議所有的處理序伺服器的個別作業系統磁碟最少有 128 GB。
 * 針對快取磁碟輸送量，使用了下列儲存體進行基準測試：採用 RAID 10 配置的 8 個 10000 轉 RPM 的 SAS 磁碟機。
 
-<a id="configuration-server-considerations" class="xliff"></a>
-
-#### 設定伺服器考量
+#### <a name="configuration-server-considerations"></a>設定伺服器考量
 每個設定伺服器可以利用 3 到 4 個磁碟區支援多達 100 個來源機器。 如果部署較大，建議您部署另一個組態伺服器。 請參閱表 1 以取得設定伺服器的預設虛擬機器屬性。
 
-<a id="master-target-server-and-storage-account-considerations" class="xliff"></a>
-
-#### 主要目標伺服器與儲存體帳戶的考量
+#### <a name="master-target-server-and-storage-account-considerations"></a>主要目標伺服器與儲存體帳戶的考量
 每個主要目標伺服器的儲存體包括作業系統磁碟、保留磁碟區和資料磁碟。 在 Site Recovery 入口網站中所定義的保留時段持續時間中，保留磁碟機會維護磁碟變更的日誌。  如需虛擬機器伺服器屬性的主要目標，請參閱表 1。 表 3 顯示如何使用 A4 的磁碟。
 
 | **執行個體** | **作業系統磁碟** | **保留** | **資料磁碟** |
@@ -216,9 +195,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
     * 每日來自來源環境的變換總計 (未壓縮) / 287 GB。 287 GB 是每日的目標磁碟支援的最大輸送量。 此度量會隨著寫入大小 8K 的因數而異，因為在此情況下，8K 是假設的寫入大小。 例如，如果寫入大小是 4K，則輸送量會是 287/2。 而且如果寫入大小為 16K，那麼輸送量會是 287*2。
 * 儲存體帳戶所需的數目 = 來源 IOP 總計 / 10000。
 
-<a id="before-you-start" class="xliff"></a>
-
-## 開始之前
+## <a name="before-you-start"></a>開始之前
 | **元件** | **需求** | **詳細資料** |
 | --- | --- | --- |
 | **Azure 帳戶** |您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。 您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。 | |
@@ -234,9 +211,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 | **Linux 機器** |支援的 64 位元作業系統：**Centos 6.4、6.5、6.6**；**Oracle Enterprise Linux 6.4、6.5 (執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3))**、**SUSE Linux Enterprise Server 11 SP3**。<br/><br/> 受保護機器上的防火牆規則應該允許它們連線到 Azure 中的設定和主要目標伺服器。<br/><br/> 受保護機器上的 /etc/hosts 檔案應該包含將本機主機名稱對應到所有 NIC 相關聯之 IP 位址的項目 <br/><br/> 如果您想要在容錯轉移之後使用安全殼層用戶端 (ssh) 連線到執行 Linux 的 Azure 虛擬機器，請確認受保護機器上的安全殼層服務已設為在系統開機時自動啟動，且防火牆規則允許 ssh 與其連線。<br/><br/> 主機名稱、掛接點、裝置名稱和 Linux 系統路徑和檔案名稱 (eg /etc/; /usr) 僅可使用英文。<br/><br/> 可以利用下列儲存體啟用內部部署機器的保護：<br>檔案系統：EXT3、ETX4、ReiserFS、XFS<br>多重路徑軟體裝置對應程式 (多重路徑)<br>磁碟區管理員：LVM2<br>不支援使用 HP CCISS 控制站儲存體的實體伺服器。 | |
 | **第三方** |在這個案例中某些部署元件取決於第三方廠商軟體才能正常運作。 如需完整清單，請參閱 [第三方廠商軟體注意事項和資訊](#third-party) | |
 
-<a id="network-connectivity" class="xliff"></a>
-
-### 網路連線
+### <a name="network-connectivity"></a>網路連線
 有兩個選項可設定您的內部部署網站與部署您的基礎結構元件 (設定伺服器、主要目標伺服器) 所在的 Azure 虛擬網路之間的網路連線。 您必須決定要使用的網路連線選項，之後才能部署組態伺服器。 您必須在部署時選擇這個設定。 稍後無法變更。
 
 **網際網路：**內部部署伺服器 (處理伺服器、受保護的機器) 與 Azure 基礎結構元件伺服器 (組態伺服器、主要目標伺服器) 之間的通訊和資料複寫會透過安全 SSL/TLS 連線，以從內部部署環境到組態伺服器及主要目標伺服器上的公用端點方向進行。 (唯一的例外狀況是 TCP 連接埠 9080 上處理序伺服器與主要目標伺服器之間的連線未加密。 在此連接上只有與用來設定複寫相關的複寫通訊協定相關的控制資訊會加以交換。)
@@ -247,9 +222,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 ![部署圖表 VPN](./media/site-recovery-vmware-to-azure-classic-legacy/vpn-deployment.png)
 
-<a id="step-1-create-a-vault" class="xliff"></a>
-
-## 步驟 1：建立保存庫
+## <a name="step-1-create-a-vault"></a>步驟 1：建立保存庫
 1. 登入 [管理入口網站](https://portal.azure.com)。
 2. 展開 [資料服務]  >  [復原服務]，然後按一下 [Site Recovery 保存庫]。
 3. 按一下 [新建]  >  [快速建立]。
@@ -261,12 +234,8 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 檢查狀態列，以確認是否順利建立保存庫。 保存庫在主要 [復原服務] 頁面上會列為 [使用中]。
 
-<a id="step-2-deploy-a-configuration-server" class="xliff"></a>
-
-## 步驟 2：部署設定伺服器
-<a id="configure-server-settings" class="xliff"></a>
-
-### 設定伺服器設定
+## <a name="step-2-deploy-a-configuration-server"></a>步驟 2：部署設定伺服器
+### <a name="configure-server-settings"></a>設定伺服器設定
 1. 在 [復原服務]  頁面中，按一下保存庫以開啟 [快速啟動] 頁面。 您也可以使用圖示隨時開啟 [快速入門]。
 
     ![快速啟動圖示](./media/site-recovery-vmware-to-azure-classic-legacy/quick-start-icon.png)
@@ -301,9 +270,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 設定伺服器使用保留的 IP 位址部署在自動建立的 Azure 雲端服務。 需要此保留位址，才能確保雲端服務上的虛擬機器 (包括組態伺服器) 重新開機後，組態伺服器雲端服務 IP 位址仍是相同的。 當解除委任設定伺服器時，將必須手動將保留的公用 IP 位址取消保留，否貝它仍將維持保留。 每一訂用帳戶預設的保留公用 IP 位址數目限制為 20 個。 [深入了解](../virtual-network/virtual-networks-reserved-private-ip.md) 保留的 IP 位址。
 
-<a id="register-the-configuration-server-in-the-vault" class="xliff"></a>
-
-### 在保存庫中註冊設定伺服器
+### <a name="register-the-configuration-server-in-the-vault"></a>在保存庫中註冊設定伺服器
 1. 在 [快速入門] 頁面中，按一下 [準備目標資源]  >  [下載註冊金鑰]。 金鑰檔案會隨即自動產生。 該金鑰在產生後會維持 5 天有效。 將它複製到設定伺服器。
 2. 在 [虛擬機器]  中，從虛擬機器清單選取組態伺服器。 開啟 [儀表板] 索引標籤，然後按一下 [連接]。  下載的 RDP 檔案以使用遠端桌面登入組態伺服器。 如果您使用 VPN，請使用內部 IP 位址 (您部署組態伺服器時所指定的位址) 從內部部署網站進行遠端桌面連線。 當您第一次登入時，Azure Site Recovery 設定伺服器安裝精靈會自動執行。
 
@@ -346,9 +313,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 註冊完成後，組態伺服器會列在保存庫的 [組態伺服器]  頁面上。
 
-<a id="set-up-and-manage-accounts" class="xliff"></a>
-
-### 設定和管理帳戶
+### <a name="set-up-and-manage-accounts"></a>設定和管理帳戶
 在部署期間，Site Recovery 會對下列動作要求認證：
 
 * VMware 帳戶，讓 Site Recovery 可自動探索 vCenter 伺服器或 vSphere 主機上的 VM。
@@ -366,9 +331,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
     ![管理帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/account-details.png)
 
-<a id="connect-to-the-configuration-server" class="xliff"></a>
-
-### 連線到設定伺服器
+### <a name="connect-to-the-configuration-server"></a>連線到設定伺服器
 有兩種方式可以連線到設定伺服器：
 
 * 透過 VPN 站對站或 ExpressRoute 連線
@@ -380,9 +343,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 * VPN 連線會使用伺服器的內部 IP 位址與端點私人連接埠。
 * 它是一次性的決策，決定是否要從您的內部部署伺服器透過 VPN 連線或網際網路連接 (控制和複寫資料) 到在 Azure 中執行的各種元件伺服器 (設定伺服器、主要目標伺服器)。 您之後無法變更此設定。 如果您這樣做，將需要重新部署案例並重新保護您的機器。  
 
-<a id="step-3-deploy-the-master-target-server" class="xliff"></a>
-
-## 步驟 3：部署主要目標伺服器
+## <a name="step-3-deploy-the-master-target-server"></a>步驟 3：部署主要目標伺服器
 1. 按一下 [準備目標 (Azure) 資源]  >  [部署主要目標伺服器]。
 2. 指定主要目標伺服器的詳細資料和認證。 伺服器將部署在與組態伺服器相同的 Azure 網路中。 當您按一下以完成動作時，隨即會建立附帶 Windows 或 Linux 資源庫映像的 Azure 虛擬機器。
 
@@ -444,9 +405,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 >
 >
 
-<a id="step-4-deploy-the-on-premises-process-server" class="xliff"></a>
-
-## 步驟 4：部署內部部署處理序伺服器
+## <a name="step-4-deploy-the-on-premises-process-server"></a>步驟 4：部署內部部署處理序伺服器
 開始之前，建議您在處理序伺服器上設定靜態 IP 位址，以保障在重新開機後可持續使用相同位址。
 
 1. 按一下 [快速啟動] > [安裝處理序伺服器內部部署]  >  [下載與安裝處理序伺服器]。
@@ -498,9 +457,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 1. 以系統管理員身分登入處理序伺服器，並開啟 C:\pushinstallsvc\pushinstaller.conf 檔案進行編輯。 在 [PushInstaller.transport] 區段下加入下面這行：**SignatureVerificationChecks ="0"**。 儲存並關閉檔案。
 2. 重新啟動 InMage PushInstall 服務。
 
-<a id="step-5-update-site-recovery-components" class="xliff"></a>
-
-## 步驟 5：更新 Site Recovery 元件
+## <a name="step-5-update-site-recovery-components"></a>步驟 5：更新 Site Recovery 元件
 Site Recovery 元件會不定時更新。 當有新的更新可用時，您應該依下列順序安裝更新︰
 
 1. 組態伺服器
@@ -508,9 +465,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 3. 主要目標伺服器
 4. 容錯回復工具 (vContinuum)
 
-<a id="obtain-and-install-the-updates" class="xliff"></a>
-
-### 取得並安裝更新
+### <a name="obtain-and-install-the-updates"></a>取得並安裝更新
 1. 您可以從 Site Recovery [儀表板] 取得組態伺服器、處理伺服器及主要目標伺服器的更新。 針對 Linux 安裝，請從 Gzip 安裝程式解壓縮檔案，並執行命令 “sudo ./install” 來安裝更新。
 2. [下載](http://go.microsoft.com/fwlink/?LinkID=533813) 容錯回復工具 (vContinuum) 的最新更新。
 3. 如果是執行已安裝行動服務的虛擬機器或實體伺服器，您可以取得服務的更新，如下所示：
@@ -531,9 +486,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 
 在 [選取帳戶] 中，指定用來更新受保護的伺服器上的行動服務的系統管理員帳戶。 按一下 [確定] 並等待觸發的工作完成。
 
-<a id="step-6-add-vcenter-servers-or-vsphere-hosts" class="xliff"></a>
-
-## 步驟 6：新增 vCenter 伺服器或 vSphere 主機
+## <a name="step-6-add-vcenter-servers-or-vsphere-hosts"></a>步驟 6：新增 vCenter 伺服器或 vSphere 主機
 1. 按一下 [伺服器]  >  [組態伺服器] > 選取組態伺服器 > [新增 vCenter Server]，以新增 vCenter 伺服器或 vSphere 主機。
 
     ![選取 vCenter 伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter.png)
@@ -551,9 +504,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
    * vCenter 帳戶應該已啟用資料中心、資料存放區、資料夾、主機、網路、資源、儲存體檢視、虛擬機器和 vSphere 分散式切換權限。
    * vSphere 主機帳戶應該已啟用資料中心、資料存放區、資料夾、主機、網路、資源、虛擬機器和 vSphere 分散式交換器權限
 
-<a id="step-7-create-a-protection-group" class="xliff"></a>
-
-## 步驟 7：建立保護群組
+## <a name="step-7-create-a-protection-group"></a>步驟 7：建立保護群組
 1. 開啟 [受保護的項目]  >  [保護群組]  >  [建立保護群組]。
 
     ![建立保護群組](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg1.png)
@@ -572,17 +523,13 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 
 您可以監視保護群組，因為它們是建立在 [受保護項目]  頁面上。
 
-<a id="step-8-set-up-machines-you-want-to-protect" class="xliff"></a>
-
-## 步驟 8：設定您想要保護的電腦
+## <a name="step-8-set-up-machines-you-want-to-protect"></a>步驟 8：設定您想要保護的電腦
 您必須在您想要保護的虛擬機器和實體伺服器上安裝行動服務。 您可以使用兩種方式執行此動作：
 
 * 從處理序伺服器自動推入並在每一部機器上安裝服務。
 * 手動安裝服務。
 
-<a id="install-the-mobility-service-automatically" class="xliff"></a>
-
-### 自動安裝行動服務
+### <a name="install-the-mobility-service-automatically"></a>自動安裝行動服務
 當您將機器加入保護群組時，行動服務會自動由處理序伺服器推入並安裝於每部機器上。
 
 **自動推入會在 Windows 伺服器上安裝行動服務：**
@@ -615,9 +562,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
        ![Linux 推播行動性](./media/site-recovery-vmware-to-azure-classic-legacy/linux-push2.png)    
 8. 確定支援來源機器 Linux 變異。
 
-<a id="install-the-mobility-service-manually" class="xliff"></a>
-
-### 手動安裝行動服務
+### <a name="install-the-mobility-service-manually"></a>手動安裝行動服務
 用來安裝行動服務使用的軟體套件位於處理序伺服器上的 C:\pushinstallsvc\repository 中。 登入處理序伺服器，並將適當的安裝套件複製到來源電腦，根據下表：
 
 | 來源作業系統 | 處理序伺服器上的行動服務封裝 |
@@ -678,9 +623,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 >
 >
 
-<a id="step-9-enable-protection" class="xliff"></a>
-
-## 步驟 9：啟用保護
+## <a name="step-9-enable-protection"></a>步驟 9：啟用保護
 若要啟用保護，您會將虛擬機器和實體伺服器加入至保護群組。 開始之前，請注意：
 
 * 系統會每隔 15 分鐘探索虛擬機器一次，而且在探索之後，需要最多 15 分鐘的時間，虛擬機器才會會出現在 Azure Site Recovery 中。
@@ -718,9 +661,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 
     ![虛擬機器作業](./media/site-recovery-vmware-to-azure-classic-legacy/pg-jobs.png)
 
-<a id="set-protected-machine-properties" class="xliff"></a>
-
-### 設定受保護機器屬性
+### <a name="set-protected-machine-properties"></a>設定受保護機器屬性
 1. 在機器具有 **受保護** 狀態之後，您可以設定其容錯移轉屬性。 在保護群組詳細資料中，選取機器並開啟 [設定]  索引標籤。
 2. 在容錯移轉和 Azure 虛擬機器大小調整之後，您可以修改要提供給 Azure 中機器的名稱。 您也可以選取機器要在容錯移轉之後要連結的 Azure 網路。
 
@@ -744,9 +685,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
       ![設定虛擬機器屬性](./media/site-recovery-vmware-to-azure-classic-legacy/remove-vm.png)
   * d) 重新啟用虛擬機器的保護。 當您重新啟用保護時，重新調整過大小的磁碟區資料會傳輸至 Azure。
 
-<a id="step-10-run-a-failover" class="xliff"></a>
-
-## 步驟 10：執行容錯移轉
+## <a name="step-10-run-a-failover"></a>步驟 10：執行容錯移轉
 目前您只能為受保護的 VMware 虛擬機器和實體伺服器執行非計劃的容錯移轉。 請注意：
 
 * 起始容錯移轉之前，請確保設定和主要目標伺服器執行中且狀況良好。 否則容錯移轉將會失敗。
@@ -764,14 +703,10 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 5. 在 [確認容錯移轉]  中，確認容錯移轉方向 (朝向 Azure)，然後選取容錯移轉的目標復原點。
 6. 等候容錯移轉工作完成，然後確認容錯移轉如預期般運作，且複寫的虛擬機器在 Azure 中成功啟動。
 
-<a id="step-11-fail-back-failed-over-machines-from-azure" class="xliff"></a>
-
-## 步驟 11：來自 Azure 機器的容錯移轉失敗
+## <a name="step-11-fail-back-failed-over-machines-from-azure"></a>步驟 11：來自 Azure 機器的容錯移轉失敗
 [進一步了解](site-recovery-failback-azure-to-vmware-classic-legacy.md) 有關如何在 Azure 中將執行失敗的機器還原到您的內部部署環境。
 
-<a id="manage-your-process-servers" class="xliff"></a>
-
-## 管理您的處理序伺服器
+## <a name="manage-your-process-servers"></a>管理您的處理序伺服器
 處理序伺服器會傳送複寫資料至 Azure 中的主要目標伺服器，並探索加入至 vCenter 伺服器的新 VMware 虛擬機器。 在下列情況下，您可能要變更在您的部署中的處理序伺服器：
 
 * 如果目前的處理序伺服器關閉
@@ -782,14 +717,10 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 * **失敗**—如果處理序伺服器失敗或無法使用，您可以將受保護的機器複寫移至另一個處理序伺服器。 來源機器和複本機器的中繼資料將會移至新的處理序伺服器，並重新同步處理資料。 新的處理序伺服器將自動連接至 vCenter 伺服器來執行自動探索。 您可以在 Site Recovery 儀表板上監視處理序伺服器的狀態。
 * **負載平衡以調整 RPO**—如要獲得改善的負載平衡，您可以在 Site Recovery 入口網站中選取不同的處理序伺服器，並將一或多部機器的複寫移到它，以手動進行負載平衡。 在此情況下，選取的來源和複本機器的中繼資料會移至新的處理序伺服器。 原始的處理序伺服器仍然連接至 vCenter 伺服器。
 
-<a id="monitor-the-process-server" class="xliff"></a>
-
-### 監視處理序伺服器
+### <a name="monitor-the-process-server"></a>監視處理序伺服器
 如果處理序伺服器處於嚴重狀態，Site Recovery 儀表板上將顯示狀態警告。 您可以按一下狀態以開啟 [事件] 索引標籤，然後向下鑽研至 [工作] 索引標籤上的特定工作。
 
-<a id="modify-the-process-server-used-for-replication" class="xliff"></a>
-
-### 修改用於複寫的處理序伺服器
+### <a name="modify-the-process-server-used-for-replication"></a>修改用於複寫的處理序伺服器
 1. 開啟 [伺服器]  >  [組態伺服器] > 選取組態伺服器 > [伺服器詳細資料]。
 2. 按一下 [處理伺服器] > 您想要修改的伺服器旁邊的 [變更處理伺服器]。
 
@@ -799,9 +730,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
     ![變更處理序伺服器 2](./media/site-recovery-vmware-to-azure-classic-legacy/change-ps2.png)
 4. 按一下核取記號以開始複寫到新處理序伺服器。 請注意，如果從重要的處理序伺服器中移除所有虛擬機器，儀表板中應該不會再顯示重大警告。
 
-<a id="third-party-software-notices-and-information" class="xliff"></a>
-
-## 第三方廠商軟體注意事項和資訊
+## <a name="third-party-software-notices-and-information"></a>第三方廠商軟體注意事項和資訊
 Do Not Translate or Localize
 
 The software and firmware running in the Microsoft product or service is based on or incorporates material from the projects listed below (collectively, “Third Party Code”).  Microsoft is the not original author of the Third Party Code.  The original copyright notice and license, under which Microsoft received such Third Party Code, are set forth below.

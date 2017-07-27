@@ -13,6 +13,5 @@
 ### [開始使用應用程式](microsoft-authenticator-app-how-to.md)
 ### [使用您的電話登入](microsoft-authenticator-app-phone-signin-faq.md)
 ### [常見問題集](microsoft-authenticator-app-faq.md)
-
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=security-identity)

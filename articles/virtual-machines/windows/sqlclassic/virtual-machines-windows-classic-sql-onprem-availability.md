@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 04/03/2017
+ms.date: 05/31/2017
 ms.author: mikeray
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 59ca9514c4cac97e8dd6dafc7a59406925b7b2df
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
+ms.openlocfilehash: 50326a093adaf3558c56dfd0b38544f0e60be460
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/02/2017
 
 
 ---
@@ -31,7 +32,7 @@ Always On 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 * 有效的 Azure 訂用帳戶。 您可以 [註冊免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * 現有的 Always On 可用性群組內部部署。 如需可用性群組的詳細資訊，請參閱 [Always On 可用性群組](https://msdn.microsoft.com/library/hh510230.aspx)。
-* 內部部署網路與 Azure 虛擬網路之間的連線 如需關於建立此虛擬網路的詳細資訊，請參閱[在 Azure 傳統入口網站中設定站對站 VPN](../../../vpn-gateway/vpn-gateway-site-to-site-create.md)。
+* 內部部署網路與 Azure 虛擬網路之間的連線 如需關於建立此虛擬網路的詳細資訊，請參閱[使用 Azure 入口網站 (傳統) 建立站對站連線](../../../vpn-gateway/vpn-gateway-howto-site-to-site-classic-portal.md)。
 
 > [!IMPORTANT] 
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
@@ -44,7 +45,7 @@ Always On 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 1. 在 SQL Server Management Studio 中，依序展開 [Always On 高可用性] > [可用性群組] > [您的可用性群組名稱]。
 2. 以滑鼠右鍵按一下 [可用性複本]，然後按一下 [新增複本]。
-3. 根據預設，[將複本加入至可用性群組精靈]  會隨即顯示。 按 [下一步] 。  如果您先前啟動此精靈時曾選取頁面底部的 [不要再顯示此頁面]  選項，此畫面將不會顯示。
+3. 根據預設，[將複本加入至可用性群組精靈]  會隨即顯示。 按一下 [下一步] 。  如果您先前啟動此精靈時曾選取頁面底部的 [不要再顯示此頁面]  選項，此畫面將不會顯示。
    
     ![SQL](./media/virtual-machines-windows-classic-sql-onprem-availability/IC742861.png)
 4. 您必須連線到所有現有的次要複本。 您可以按一下 [連接...] 位於每個複本旁，或可以按一下 [全部連接...] 。 在驗證之後，按 [下一步]  ，前進到下一個畫面。
@@ -74,9 +75,9 @@ Always On 可用性群組可透過新增次要複本，為資料庫群組提供�
 10. [指定複本] 頁面會再次顯示。 確認 [複本]、[端點] 和 [備份偏好設定]。 修改設定以符合您的業務需求。  如需這些索引標籤上所含參數的詳細資訊，請參閱 [指定複本頁面 (新增可用性群組精靈/加入複本精靈)](https://msdn.microsoft.com/library/hh213088.aspx)。請注意，您無法使用包含 Azure 複本之可用性群組的 [接聽程式] 索引標籤來建立接聽程式。 此外，如果接聽程式已在精靈啟動之前建立，您將會收到一則訊息指出在 Azure 中不支援該精靈。 在**建立可用性群組接聽程式**一節中，我們將介紹如何建立接聽程式。
     
      ![SQL](./media/virtual-machines-windows-classic-sql-onprem-availability/IC742865.png)
-11. 按 [下一步] 。
+11. 按一下 [下一步] 。
 12. 在 [選取初始資料同步處理] 頁面中，選取您要使用的資料同步處理方法，然後按 [下一步]。 在大部分的情況下，請選取 [完整資料同步處理] 。 如需資料同步處理方法的詳細資訊，請參閱 [選取初始資料同步處理頁面 (Always On 可用性群組精靈)](https://msdn.microsoft.com/library/hh231021.aspx)。
-13. 檢閱 [驗證]  頁面中的結果。 修正未解決的問題，並視需要重新執行驗證。 按 [下一步] 。
+13. 檢閱 [驗證]  頁面中的結果。 修正未解決的問題，並視需要重新執行驗證。 按一下 [下一步] 。
     
      ![SQL](./media/virtual-machines-windows-classic-sql-onprem-availability/IC742866.png)
 14. 在 [摘要] 頁面中檢閱設定，然後按一下 [完成]。

@@ -99,7 +99,7 @@ ms.lasthandoff: 06/15/2017
 ## <a name="step-4-access-cdn-content"></a>步驟 4：存取 CDN 內容
 若要存取 CDN 上快取的內容，請使用入口網站中提供的 CDN URL。 所快取 Blob 的位址將類似如下：
 
-http://<EndpointName*\>.azureedge.net/<**myPublicContainer\>/<**BlobName*\>
+http://<*EndpointName*\>.azureedge.net/<*myPublicContainer*\>/<*BlobName*\>
 
 > [!NOTE]
 > 啟用 CDN 存取儲存體帳戶後，所有公開可用的物件皆適用於 CDN 邊緣快取。 如果您修改的物件目前是 CDN 中的快取物件，在快取內容的有效存留期已滿，且 CDN 重新整理內容之前，都無法透過 CDN 取得新的內容。

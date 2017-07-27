@@ -12,17 +12,19 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/27/2017
+ms.date: 06/19/2017
 ms.author: v-jysur
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 0aa41bbc0e0135737d352553607f48a39757bcc3
+ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
+ms.openlocfilehash: 54974ef06efdae69ddbfa12b1ba9278b48b113d3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
 # <a name="centrally-manage-itsm-work-items-using-it-service-management-connector-preview"></a>使用 IT 服務管理連接器 (預覽) 將 ITSM 工作項目集中管理
+
+![IT 服務管理連接器符號](./media/log-analytics-itsmc/itsmc-symbol.png)
 
 您可以使用 OMS Log Analytics 中的 IT 服務管理連接器 (ITSMC)，將 ITSM 產品/服務之間的工作項目集中監視及管理。
 
@@ -56,6 +58,12 @@ IT 服務管理連接器會將您現有的 IT 服務管理 (ITSM) 產品和服�
 
 ![ITSMC 已連線](./media/log-analytics-itsmc/itsmc-overview-solution-in-connected-sources.png)
 
+> [!NOTE]
+
+> 根據預設，IT 服務管理連接器每 24 小時會重新整理一次連線的資料。 若要針對所做的任何編輯或範本更新立即重新整理連線的資料，按一下連線旁顯示的重新整理按鈕。
+
+ ![ITSMC 重新整理](./media/log-analytics-itsmc/itsmc-connection-refresh.png)
+
 ## <a name="management-packs"></a>管理組件
 此解決方案不需要任何管理組件。
 
@@ -73,11 +81,14 @@ IT 服務管理連接器支援下列 ITSM 產品/服務︰
 
 ## <a name="using-the-solution"></a>使用解決方案
 
-一旦您將 OMS IT 服務管理連接器與 ITSM 服務連線時，Log Analytics 服務就會開始從連線的 ITSM 產品/服務收集資料。
+一旦將 OMS IT 服務管理連接器與 ITSM 服務連線，Log Analytics 服務就會開始從連線的 ITSM 產品/服務收集資料。
 
 > [!NOTE]
 > - IT 服務管理連接器解決方案所匯入的資料會出現在 Log Analytics 中，作為名為 **ServiceDesk_CL** 的事件。
 - 事件會包含一個名為 **ServiceDeskWorkItemType_s** 的欄位。 根據 **ServiceDesk_CL** 事件中所包含的工作項目資料，可採用其值作為事件或變更要求。
+
+## <a name="input-data"></a>輸入資料
+從 ITSM 產品/服務匯入的工作項目。
 
 下列資訊說明 IT 服務管理連接器所收集之資料的範例︰
 
@@ -144,7 +155,54 @@ ServiceDeskWorkItemType_s="ChangeRequest"
 - 說明
 - 電腦
 
-ITSM 資料的範例 Log Analytics 畫面︰
+## <a name="output-data-for-a-servicenow-incident"></a>ServiceNow 事件的輸出資料
+
+| OMS 欄位 | ITSM 欄位 |
+|:--- |:--- |
+| ServiceDeskId_s| 數字 |
+| IncidentState_s | State |
+| Urgency_s |急迫性 |
+| Impact_s |影響|
+| Priority_s | 優先順序 |
+| CreatedBy_s | 開啟者 |
+| ResolvedBy_s | 解決者|
+| ClosedBy_s  | 關閉者 |
+| Source_s| 連絡人型別 |
+| AssignedTo_s | 指派對象  |
+| Category_s | 類別 |
+| Title_s|  簡短說明 |
+| Description_s|  注意事項 |
+| CreatedDate_t|  已開啟 |
+| ClosedDate_t| 關閉|
+| ResolvedDate_t|已解決|
+| 電腦  | 設定項目 |
+
+## <a name="output-data-for-a-servicenow-change-request"></a>ServiceNow 變更要求的輸出資料
+
+| OMS 欄位 | ITSM 欄位 |
+|:--- |:--- |
+| ServiceDeskId_s| 數字 |
+| CreatedBy_s | 要求者 |
+| ClosedBy_s | 關閉者 |
+| AssignedTo_s | 指派對象  |
+| Title_s|  簡短說明 |
+| Type_s|  類型 |
+| Category_s|  類別 |
+| CRState_s|  State|
+| Urgency_s|  急迫性 |
+| Priority_s| 優先順序|
+| Risk_s| 風險|
+| Impact_s| 影響|
+| RequestedDate_t  | 要求的日期 |
+| ClosedDate_t | 關閉日期 |
+| PlannedStartDate_t  |     計劃開始日期 |
+| PlannedEndDate_t  |   計劃結束日期 |
+| WorkStartDate_t  | 實際開始日期 |
+| WorkEndDate_t | 實際結束日期|
+| Description_s | 說明 |
+| 電腦  | 設定項目 |
+
+**ITSM 資料的範例 Log Analytics 畫面︰**
 
 ![Log Analytics 畫面](./media/log-analytics-itsmc/itsmc-overview-sample-log-analytics.png)
 
@@ -207,6 +265,22 @@ IT 服務管理連接器，目前支援與服務對應解決方案整合。
 4. 在 [連絡人類型]、[影響]、[急迫性]、[類別] 和 [子類別] 文字方塊中提供適當的值，然後按一下 [建立]。
 
 會在 ITSM 中建立工作項目，您也可以在 OMS 中加以檢視。
+
+## <a name="troubleshoot-itsm-connections-in-oms"></a>針對 OMS 中的 ITSM 連線進行疑難排解
+1.  如果從已連線的來源 UI 連線失敗，且收到**儲存連線時發生錯誤**訊息，請執行下列動作：
+ - 在 ServiceNow、Cherwell 和 Provance 連線的情況下，請確定您已正確輸入每個連線的使用者名稱/密碼與用戶端識別碼/用戶端祕密。 如果錯誤持續發生，請檢查您在對應的 ITSM 產品中是否擁有足夠權限來進行連線。
+ - 若問題發生在 Service Manager 中，請確定已成功部署 Web 應用程式，且已建立混合式連線。 若要確認是否已成功與內部部署 Service Manager 機器建立連線，請瀏覽 Web 應用程式 URL，如文件中針對建立[混合式連線](log-analytics-itsmc-connections.md#configure-the-hybrid-connection)所述。
+
+2.  如果 ServiceNow 的資料在 OMS 中未進行同步，請確定 ServiceNow 執行個體並非處在睡眠中。 這有時可能會發生在 ServiceNow 開發人員執行個體閒置時。 否則，請回報問題。
+3.  如果警示正從 OMS 引發，但工作項目在 ITSM 產品中並未進行建立，或設定項目並未進行建立/連結至工作項目，或需任何一般資訊，請執行下列：
+ -  OMS 入口網站中的 IT 服務管理連接器解決方案可用於取得連線/工作項目/電腦等的摘要。按一下 [狀態] 刀鋒視窗中的錯誤訊息，瀏覽至 [記錄搜尋]，並使用錯誤訊息中的詳細資料來檢視發生錯誤的連線。
+ - 您可以使用 [Type=ServiceDeskLog_CL] 直接檢視 [記錄搜尋] 頁面中的錯誤/相關資訊。
+
+## <a name="troubleshoot-service-manager-web-app-deployment"></a>針對 Service Manager Web 應用程式部署進行疑難排解
+1.  如果是有關 Web 應用程式部署的任何問題，請確定您在所述的訂用帳戶中擁有足夠權限來建立/部署資源。
+2.  如果在執行[指令碼](log-analytics-itsmc-service-manager-script.md)時，出現**物件參考未設定為物件的執行個體**錯誤訊息，請確定您在**使用者設定**一節中是否輸入有效值。
+3.  如果您無法建立服務匯流排轉送命名空間，請確定所需的資源提供者已在訂用帳戶中註冊。 如果未註冊，以手動方式從 Azure 入口網站建立。 您也可以在建立它時，同時從 Azure 入口網站[建立混合式連線](log-analytics-itsmc-connections.md#configure-the-hybrid-connection)。
+
 
 ## <a name="contact-us"></a>與我們連絡
 

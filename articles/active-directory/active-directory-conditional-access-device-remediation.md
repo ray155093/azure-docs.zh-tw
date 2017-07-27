@@ -14,16 +14,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/05/2017
 ms.author: markvi
+ms.reviewer: jairoc
 ms.translationtype: Human Translation
 ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.openlocfilehash: 4d7704c03bece51957efa2a56577b8808cc62c79
 ms.contentlocale: zh-tw
 ms.lasthandoff: 07/08/2017
 
-
 ---
-# 您無法在 Windows 裝置上從這裡前往該處
-<a id="you-cant-get-there-from-here-on-a-windows-device" class="xliff"></a>
+# <a name="you-cant-get-there-from-here-on-a-windows-device"></a>您無法在 Windows 裝置上從這裡前往該處
 
 例如，在嘗試存取貴組織的 SharePoint Online 內部網路期間，您可能會碰到一個頁面指出「您無法從這裡前往該處」。 您會看到此頁面，因為您的系統管理員已設定條件式存取原則，以防止在某些情況下存取貴組織的資源。 雖然可能需要連絡技術支援或系統管理員才能解決此問題，但您可以先自行嘗試幾件事。
 
@@ -40,8 +39,7 @@ ms.lasthandoff: 07/08/2017
 
 
 
-## 支援的瀏覽器
-<a id="supported-browser" class="xliff"></a>
+## <a name="supported-browser"></a>支援的瀏覽器
 
 如果您的系統管理員已設定條件式存取原則，您只可以使用支援的瀏覽器來存取貴組織的資源。 在 Windows 裝置上，只支援 **Internet Explorer** 和 **Edge**。
 
@@ -52,8 +50,7 @@ ms.lasthandoff: 07/08/2017
 唯一的補救方式是根據您的裝置平台來使用應用程式所支援的瀏覽器。 如需支援的瀏覽器完整清單，請參閱[支援的瀏覽器](active-directory-conditional-access-supported-apps.md#supported-browsers-for-device-based-policies)。  
 
 
-## 支援的 Windows 版本
-<a id="supported-versions-of-windows" class="xliff"></a>
+## <a name="supported-versions-of-windows"></a>支援的 Windows 版本
 
 您裝置上的 Windows 作業系統必須符合下列敘述： 
 
@@ -61,8 +58,7 @@ ms.lasthandoff: 07/08/2017
 - 如果您在裝置上執行 Windows Server 作業系統，它必須是 Windows Server 2008 R2 或更新版本。 
 
 
-## 符合規範的裝置
-<a id="compliant-device" class="xliff"></a>
+## <a name="compliant-device"></a>符合規範的裝置
 
 您的系統管理員可能已設定條件式存取原則，其只允許您從符合規範的裝置存取貴組織的資源。 為了符合規範，您的裝置必須加入內部部署 Active Directory 或加入您的 Azure Active Directory。
 
@@ -71,8 +67,7 @@ ms.lasthandoff: 07/08/2017
 ![未註冊的裝置會收到「您無法從這裡前往該處」訊息](./media/active-directory-conditional-access-device-remediation/01.png "案例")
 
 
-### 您的裝置已加入內部部署 Active Directory？
-<a id="is-your-device-joined-to-an-on-premises-active-directory" class="xliff"></a>
+### <a name="is-your-device-joined-to-an-on-premises-active-directory"></a>您的裝置已加入內部部署 Active Directory？
 
 **如果您的裝置已加入組織中的內部部署 Active Directory︰**
 
@@ -84,8 +79,7 @@ ms.lasthandoff: 07/08/2017
 6. 如果您看到相同的頁面，請按一下 [更多詳細資料] 連結，然後備妥詳細資料來連絡您的系統管理員。
 
 
-### 您的裝置未加入內部部署 Active Directory？
-<a id="is-your-device-not-joined-to-an-on-premises-active-directory" class="xliff"></a>
+### <a name="is-your-device-not-joined-to-an-on-premises-active-directory"></a>您的裝置未加入內部部署 Active Directory？
 
 如果您的裝置未加入內部部署 Active Directory 且執行的是 Windows 10，您有兩個選項︰
 
@@ -100,8 +94,7 @@ ms.lasthandoff: 07/08/2017
 
 
 
-#### Windows 10 上的 Azure AD Join
-<a id="azure-ad-join-on-windows-10" class="xliff"></a>
+#### <a name="azure-ad-join-on-windows-10"></a>Windows 10 上的 Azure AD Join
 
 將裝置加入至 Azure AD 的步驟會繫結您執行的 Windows 10 版本。 若要判斷 Windows 10 作業系統的版本，請執行 **winver** 命令︰ 
 
@@ -128,8 +121,7 @@ ms.lasthandoff: 07/08/2017
 6. 再次嘗試存取應用程式。
 
 
-#### 在 Windows 8.1 上的 Workplace Join
-<a id="workplace-join-on-windows-81" class="xliff"></a>
+#### <a name="workplace-join-on-windows-81"></a>在 Windows 8.1 上的 Workplace Join
 
 如果您的裝置未加入網域且執行的是 Windows 8.1，若要執行 [加入工作場所] 並在 Microsoft Intune 中註冊，請執行下列步驟：
 
@@ -142,8 +134,7 @@ ms.lasthandoff: 07/08/2017
 
 
 
-#### 將您的工作帳戶或學校帳戶新增至 Windows
-<a id="add-your-work-or-school-account-to-windows" class="xliff"></a> 
+#### <a name="add-your-work-or-school-account-to-windows"></a>將您的工作帳戶或學校帳戶新增至 Windows 
 
 
 **Windows 10 年度更新 (版本 1607)：**
@@ -167,8 +158,7 @@ ms.lasthandoff: 07/08/2017
 
 
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 [Azure Active Directory 條件式存取](active-directory-conditional-access.md)
 
 

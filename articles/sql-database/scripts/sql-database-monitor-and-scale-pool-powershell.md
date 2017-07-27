@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 指令碼 - 監視和調整 SQL 彈性集區 | Microsoft Docs"
-description: "Azure PowerShell 指令碼範例 - 使用 PowerShell 監視和調整 SQL Database 彈性集區"
+title: "PowerShell 範例 - 監視 - 調整 SQL 彈性集區 - Azure SQL Database | Microsoft Docs"
+description: "在 Azure SQL Database 中監視和調整 SQL 彈性集區的 Azure PowerShell 範例指令碼"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -14,19 +14,19 @@ ms.devlang: PowerShell
 ms.topic: sample
 ms.tgt_pltfrm: sql-database
 ms.workload: database
-ms.date: 05/23/2017
+ms.date: 06/23/2017
 ms.author: janeng
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 5231f5b13c3502a5a45ceea0b329f30a2e1c311c
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 6536158d4fc2e2c8fbb4e78305d28d063eb12696
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/28/2017
 
 ---
 
-# <a name="monitor-and-scale-a-sql-database-elastic-pool-using-powershell"></a>使用 PowerShell 監視和調整 SQL Database 彈性集區
+# <a name="use-powershell-to-monitor-and-scale-a-sql-elastic-pool-in-azure-sql-database"></a>使用 PowerShell 在 Azure SQL Database 中監視和調整 SQL 彈性集區
 
-此範例 PowerShell 指令碼會監視彈性集區的效能度量、將其調整為較高的效能等級，並對其中一個效能度量建立警示規則。 
+此 PowerShell 指令碼範例會監視彈性集區的效能計量、將其調整為較高的效能等級，並對其中一個效能計量建立警示規則。 
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 

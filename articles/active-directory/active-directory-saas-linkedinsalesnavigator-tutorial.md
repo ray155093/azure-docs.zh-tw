@@ -11,13 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/20/2017
+ms.date: 06/14/2017
 ms.author: jeedes
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: ddf4affe72c6413501ffa00747c110f8761ed70e
+ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
+ms.openlocfilehash: ef26a16e79d9c9b0654634960b57dc59827b2c24
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 06/16/2017
 
 
 ---
@@ -118,7 +118,7 @@ LinkedIn Sales Navigator 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedin_admin_031.png)
 
-6. 如果您想要以 **IDP** 起始模式設定應用程式，請在 Azure 入口網站的 [LinkedIn Sales Navigator 網域和 URL] 區段底下執行下列步驟。
+6. 如果您想要在 [IDP 起始] 模式下設定應用程式，請在 Azure 入口網站的 [LinkedIn Sales Navigator 網域和 URL] 區段下方執行下列步驟。
 
     ![設定單一登入](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_url1.png)
 
@@ -136,17 +136,22 @@ LinkedIn Sales Navigator 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-linkedinsalesnavigator-tutorial/updateusermail.png)
     
-9. 在 [使用者屬性] 區段中，按一下 [檢視及編輯所有其他使用者屬性]，然後設定屬性。 使用者必須新增名為**部門**的另一個宣告，且值要對應至 **user.department**。
+9. 在 [使用者屬性] 區段中，按一下 [檢視及編輯所有其他使用者屬性]，然後設定屬性。 使用者需要新增名稱為 **email**、**department**、**firstname** 和 **lastname** 的四個宣告，而且值必須分別與 **user.mail**、**user.department**、**user.givenname** 和 **user.surname** 對應
 
     | 屬性名稱 | 屬性值 |
     | --- | --- |    
+    | 電子郵件| user.mail |
     | department| user.department |
-
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinsalesnavigator-tutorial/userattribute.png)
-
-    a. 按一下 [新增屬性] 來開啟屬性對話方塊
-
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinsalesnavigator-tutorial/adduserattribute.png)
+    | firstname| user.givenname |
+    | lastname| user.surname |
+    
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinsalesnavigator-tutorial/userattribute.png)
+    
+    a. 按一下 [新增屬性] 以開啟 [屬性] 對話方塊。
+    
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_attribute_04.png)
+    
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_attribute_05.png)
    
     b.這是另一個 C# 主控台應用程式。 在 [名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
     
@@ -154,19 +159,29 @@ LinkedIn Sales Navigator 與 Azure AD 整合提供下列優點：
     
     d. 按一下 [確定]。
 
-10. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將 XML 檔案儲存在您的電腦上。
+10. 針對 **name** 屬性執行下列步驟：
+
+    a. 按一下該屬性，以開啟 [編輯屬性] 視窗。
+
+    ![設定單一登入](./media/active-directory-saas-linkedinsalesnavigator-tutorial/url_update.png)
+
+    b.這是另一個 C# 主控台應用程式。 刪除**命名空間**中的 URL 值。
+    
+    c. 按一下 [確定] 以儲存設定。
+
+11. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將 XML 檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedinsalesnavigator_certificate.png) 
 
-11. 按一下 [儲存]  按鈕。
+12. 按一下 [儲存]  按鈕。
 
     ![設定單一登入](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_general_400.png)
 
-12. 移至 [LinkedIn 系統管理員設定] 區段。 按一下 [上傳 XML 檔案] 以上傳您從 Azure 入口網站下載的中繼資料 XML 檔案。
+13. 移至 [LinkedIn 系統管理員設定] 區段。 按一下 [上傳 XML 檔案] 以上傳您從 Azure 入口網站下載的中繼資料 XML 檔案。
 
     ![設定單一登入](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedin_metadata_03.png)
 
-13. 按一下 [開啟] 以啟用 SSO。 SSO 狀態會從 [未連線] 變更為 [已連線]
+14. 按一下 [開啟] 以啟用 SSO。 SSO 狀態會從 [未連線] 變更為 [已連線]
 
     ![設定單一登入](./media/active-directory-saas-linkedinsalesnavigator-tutorial/tutorial_linkedin_admin_05.png)
 

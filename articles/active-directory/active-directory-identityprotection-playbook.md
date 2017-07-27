@@ -14,6 +14,7 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
+ms.reviewer: nigu
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 77031b3bbe2372bf2cac34bac45368ac40911641
 ms.openlocfilehash: 87070d7680a6d48e94099b47f9dc336a75332f6c
@@ -21,17 +22,13 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 12/29/2016
 
 ---
-<a id="azure-active-directory-identity-protection-playbook" class="xliff"></a>
-
-# Azure Active Directory Identity Protection 腳本
+# <a name="azure-active-directory-identity-protection-playbook"></a>Azure Active Directory Identity Protection 腳本
 這個腳本可協助您︰
 
 * 藉由模擬風險事件和弱點，在 Identity Protection 環境中填入資料
 * 設定以風險為基礎的條件式存取原則，並測試這些原則的影響
 
-<a id="simulating-risk-events" class="xliff"></a>
-
-## 模擬風險事件
+## <a name="simulating-risk-events"></a>模擬風險事件
 本節將為您提供模擬下列風險事件類型的步驟：
 
 * 從匿名 IP 位址登入 (容易)
@@ -40,9 +37,7 @@ ms.lasthandoff: 12/29/2016
 
 無法以安全的方式模擬其他風險事件。
 
-<a id="sign-ins-from-anonymous-ip-addresses" class="xliff"></a>
-
-### 從匿名 IP 位址登入
+### <a name="sign-ins-from-anonymous-ip-addresses"></a>從匿名 IP 位址登入
 此風險事件類型會識別從被視為匿名 Proxy IP 位址的 IP 位址成功登入的使用者。 這些 Proxy 通常由想要隱藏其裝置 IP 位址的人員使用，而且可能用於惡意意圖。
 
 **若要模擬從匿名 IP 登入，請執行下列步驟**：
@@ -53,9 +48,7 @@ ms.lasthandoff: 12/29/2016
 
 登入將會在 5 分鐘內顯示於 Identity Protection 儀表板上。 
 
-<a id="sign-ins-from-unfamiliar-locations" class="xliff"></a>
-
-### 從不熟悉的位置登入
+### <a name="sign-ins-from-unfamiliar-locations"></a>從不熟悉的位置登入
 不熟悉的位置風險是一種即時登入評估機制，它會考量過去的登入位置 (IP、經緯度和 ASN) 以判斷新的 / 不熟悉的位置。 系統會儲存使用者先前的 IP、經緯度和 ASN，並將這些視為熟悉的位置。 如果登入位置不符合任何現有的熟悉位置，此登入位置會被視為不熟悉。
 
 Azure Active Directory Identity Protection：  
@@ -76,9 +69,7 @@ Azure Active Directory Identity Protection：
 
 登入將會在 5 分鐘內顯示於 Identity Protection 儀表板上。
 
-<a id="impossible-travel-to-atypical-location" class="xliff"></a>
-
-### 不可能到達非典型位置的移動
+### <a name="impossible-travel-to-atypical-location"></a>不可能到達非典型位置的移動
 模擬不可能的移動情況相當困難，因為此演算法會使用機器學習服務來剔除誤判，例如，不可能來自熟悉裝置的移動，或從目錄中其他使用者所用的 VPN 登入。 此外，此演算法在開始產生風險事件之前，需要使用者 3 到 14 天的登入歷程記錄。
 
 **若要模擬不可能到達非典型位置的移動，請執行下列步驟**：
@@ -92,18 +83,14 @@ Azure Active Directory Identity Protection：
 登入將會在 2-4 小時內顯示於 Identity Protection 儀表板上。<br>
 因為牽涉到複雜的機器學習服務模型，所以可能達不到。<br> 您可能想要針對多個 Azure AD 帳戶複製這些步驟。
 
-<a id="simulating-vulnerabilities" class="xliff"></a>
-
-## 模擬弱點
+## <a name="simulating-vulnerabilities"></a>模擬弱點
 弱點是 Azure AD 環境中不良執行者可以利用的弱點。 Azure AD Identity Protection 中目前顯示 3 種會運用其他 Azure AD 功能的弱點。 一旦設定好這些功能，這些弱點就會自動顯示在 Identity Protection 儀表板上。
 
 * Azure AD [Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 * Azure AD [Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md)。
 * Azure AD [Privileged Identity Management](active-directory-privileged-identity-management-configure.md)。 
 
-<a id="user-compromise-risk" class="xliff"></a>
-
-## 使用者入侵風險
+## <a name="user-compromise-risk"></a>使用者入侵風險
 **若要測試使用者入侵風險，請執行下列步驟**：
 
 1. 使用租用戶的全域管理員認證來登入 [https://portal.azure.com](https://portal.azure.com) 。
@@ -126,9 +113,7 @@ Azure Active Directory Identity Protection：
     ![腳本](./media/active-directory-identityprotection-playbook/201.png "Playbook")
     <br>
 
-<a id="sign-in-risk" class="xliff"></a>
-
-## 登入風險
+## <a name="sign-in-risk"></a>登入風險
 **若要測試登入風險，請執行下列步驟：**
 
 1. 使用租用戶的全域管理員認證來登入 [https://portal.azure.com ](https://portal.azure.com) 。
@@ -150,9 +135,7 @@ Azure Active Directory Identity Protection：
 ![腳本](./media/active-directory-identityprotection-playbook/200.png "腳本")
 
 
-<a id="see-also" class="xliff"></a>
-
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
 

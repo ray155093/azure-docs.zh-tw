@@ -12,35 +12,74 @@ Version
 3.5.0
 ```
 
-每當您將標籤套用到資源或資源群組時，即會覆寫該資源或資源群組上現有的標籤。 因此，您必須視該資源或資源群組是否有想要保留的現有標籤，來使用不同的方法。 若要將標籤加入至以下項目：
+若要查看**資源群組**的現有標籤，請使用：
 
-* 沒有現有標籤的資源群組。
+```powershell
+(Get-AzureRmResourceGroup -Name examplegroup).Tags
+```
 
-  ```powershell
-  Set-AzureRmResourceGroup -Name TagTestGroup -Tag @{ Dept="IT"; Environment="Test" }
-  ```
+它會傳回下列格式︰
 
-* 擁有現有標籤的資源群組。
+```powershell
+Name                           Value
+----                           -----
+Dept                           IT
+Environment                    Test
+```
 
-  ```powershell
-  $tags = (Get-AzureRmResourceGroup -Name TagTestGroup).Tags
-  $tags += @{Status="Approved"}
-  Set-AzureRmResourceGroup -Tag $tags -Name TagTestGroup
-  ```
+若要查看**包含指定資源識別碼之資源群組**的現有標籤，請使用：
 
-* 沒有現有標籤的資源。
+```powershell
+(Get-AzureRmResource -ResourceId {resource-id}).Tags
+```
 
-  ```powershell
-  Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceName storageexample -ResourceGroupName TagTestGroup -ResourceType Microsoft.Storage/storageAccounts
-  ```
+或者，若要查看**具有指定名稱之資源和資源群組**的現有標籤，請使用：
 
-* 擁有現有標籤的資源。
+```powershell
+(Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup).Tags
+```
 
-  ```powershell
-  $tags = (Get-AzureRmResource -ResourceName storageexample -ResourceGroupName TagTestGroup).Tags
-  $tags += @{Status="Approved"}
-  Set-AzureRmResource -Tag $tags -ResourceName storageexample -ResourceGroupName TagTestGroup -ResourceType Microsoft.Storage/storageAccounts
-  ```
+若要取得**具有特定標籤的資源群組**，請使用：
+
+```powershell
+(Find-AzureRmResourceGroup -Tag @{ Dept="Finance" }).Name 
+```
+
+若要取得**具有特定標籤的資源**，請使用：
+
+```powershell
+(Find-AzureRmResource -TagName Dept -TagValue Finance).Name
+```
+
+每當您將標籤套用到資源或資源群組時，即會覆寫該資源或資源群組上現有的標籤。 因此，您必須視該資源或資源群組是否具備現有標籤來使用不同的方法。 
+
+若要將標籤新增至**沒有現有標籤的資源群組**，請使用：
+
+```powershell
+Set-AzureRmResourceGroup -Name examplegroup -Tag @{ Dept="IT"; Environment="Test" }
+```
+
+若要將標籤新增至**具備現有標籤的資源群組**，請擷取現有標籤、新增標籤，以及重新套用標籤：
+
+```powershell
+$tags = (Get-AzureRmResourceGroup -Name examplegroup).Tags
+$tags += @{Status="Approved"}
+Set-AzureRmResourceGroup -Tag $tags -Name examplegroup
+```
+
+若要將標籤新增至**沒有現有標籤的資源**，請使用：
+
+```powershell
+Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceName examplevnet -ResourceGroupName exampleroup
+```
+
+若要將標籤新增至**擁有現有標籤的資源**。
+
+```powershell
+$tags = (Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup).Tags
+$tags += @{Status="Approved"}
+Set-AzureRmResource -Tag $tags -ResourceName examplevnet -ResourceGroupName examplegroup
+```
 
 若要將所有標籤從資源群組套用至其資源，而**不在資源上保留現有的標籤**，請使用下列指令碼︰
 
@@ -77,18 +116,8 @@ foreach ($g in $groups)
 若要移除所有標籤，請傳遞空的雜湊表。
 
 ```powershell
-Set-AzureRmResourceGroup -Tag @{} -Name TagTestGgroup
+Set-AzureRmResourceGroup -Tag @{} -Name examplegroup
 ```
 
-若要取得含有特定標籤的資源群組，請使用 `Find-AzureRmResourceGroup` Cmdlet。
 
-```powershell
-(Find-AzureRmResourceGroup -Tag @{ Dept="Finance" }).Name 
-```
-
-若要取得具有特定標籤和值的所有資源，請使用 `Find-AzureRmResource` Cmdlet。
-
-```powershell
-(Find-AzureRmResource -TagName Dept -TagValue Finance).Name
-```
 

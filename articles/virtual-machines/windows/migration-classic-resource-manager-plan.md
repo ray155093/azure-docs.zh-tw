@@ -15,18 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/01/2017
 ms.author: kasing
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 19ae04785d78eae43795b92e808ee835b9047229
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: db23eba9ff8debd5268cd02bc4f37c4e6501bfac
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
 
 # <a name="planning-for-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>將 IaaS 資源從傳統移轉至 Azure Resource Manager 的規劃
-雖然 Azure Resource Manager 提供了許多令人讚嘆的功能，但請務必詳加規劃您的移轉作業，以確保一切順利進行。 詳細規劃可確保您在執行移轉活動期間不會遇到問題。 
+雖然 Azure Resource Manager 提供了許多令人讚嘆的功能，但請務必詳加規劃您的移轉作業，以確保一切順利進行。 詳細規劃可確保您在執行移轉活動期間不會遇到問題。
 
-> [!NOTE] 
+> [!NOTE]
 > 下列方針中，絕大多數是由與客戶合作移轉大型環境的 Azure 客戶諮詢團隊和雲端方案架構設計人員所提供。 因此，本文件將隨著出現成功的新模式而繼續更新，請不定時回來查看，以了解是否有任何新的建議。
 
 移轉旅程有四個一般階段：<br>
@@ -71,13 +72,13 @@ ms.lasthandoff: 04/06/2017
 - 未針對使用者規劃潛在的應用程式中斷。  規劃足夠的緩衝時間，來警告使用者可能無法使用應用程式的時間。
 
 
-## <a name="lab-test"></a>實驗室測試 
+## <a name="lab-test"></a>實驗室測試
 
 **複寫您的環境並執行測試移轉**
   > [!NOTE]
   > 現有環境的確切複寫是使用 Microsoft 支援服務未正式支援的社群貢獻工具來執行。 因此，這是**選擇性**步驟，但它是找出問題，而不需接觸生產環境的最佳方式。 如果無法使用社群提供的工具，則請閱讀以下的驗證/準備/中止試執行相關建議。
   >
-  
+
   確保順利移轉的最佳方式，是以實際會進行的方式 (計算、網路和儲存體) 來進行您的實驗室測試。 這將有助於確保：
 
   - 完全獨立的實驗室或要測試的現有非生產環境。 我們建議使用可以重複移轉且可透過破壞性方式修改的完全獨立實驗室。  從實際的訂用帳戶收集/水合中繼資料的指令碼如下所示。
@@ -96,20 +97,28 @@ ms.lasthandoff: 04/06/2017
 - **ExpressRoute 線路和 VPN**。 目前具有授權連結的 ExpressRoute 閘道，無法在沒有停機時間的情況下進行移轉。 如需因應措施，請參閱[將 ExpressRoute 線路和相關聯的虛擬網路從傳統部署模型移轉至 Resource Manager 部署模型](../../expressroute/expressroute-migration-classic-resource-manager.md)。
 
 - **VM 擴充功能** - 虛擬機器擴充功能可能是移轉執行中 VM 其中一個最大的障礙。 VM 擴充功能的修復可能需要多達 1-2 天，因此請適當地進行規劃。  需要使用中的 Azure 代理程式，才能向 VM 擴充功能回報執行中 VM 的狀態。 如果執行中 VM 的狀態恢復為已損毀，這種情況將會中止移轉。 代理程式本身不需要採用工作順序即可啟用移轉，但如果 VM 上存在擴充功能，則將需要工作代理程式與輸出網際網路連線 (具有 DNS)，移轉才能繼續進行。
-  - 如果在移轉期間，對 DNS 伺服器的連線遺失，則在準備移轉之前，必須先從每個 VM 移除 BGInfo v1.\* 以外的所有 VM 擴充功能，並後續在 Azure Resource Manager 移轉之後，重新新增回 VM。  **這僅適用於執行中的 VM。**  如果 VM 已停止 (解除配置)，則不需要移除 VM 擴充功能。 **注意：**許多擴充功能 (例如 Azure 診斷和資訊安全中心監視) 在移轉之後將會自行重新安裝，因此移除這些功能不是問題。
-  - 此外，請確定網路安全性群組不會限制輸出網際網路存取。 某些網路安全性群組組態可能會發生此情況。 需要輸出網際網路存取 (和 DNS)，才能將 VM 擴充功能移轉至 Azure Resource Manager。 
-  - BGInfo 擴充功能有兩個版本：v1 和 v2。  如果 VM 是使用傳統入口網站或 PowerShell 建立，VM 上可能會有 v1 擴充功能。 不需要移除此擴充功能，且移轉 API 將會略過它 (不移轉)。 不過，如果傳統 VM 是使用新的 Azure 入口網站建立，在代理程式運作中，且具有輸出網際網路存取 (DNS) 的前提下，可能會有以 JSON 為基礎，且可以移轉至 Azure Resource Manager 的 BGInfo v2 版本。 
-  - **修復選項 1**。 如果您知道您的 VM 在不會有輸出網際網路存取、使用中 DNS 服務，和使用中 Azure 代理程式，則請在準備移轉之前解除安裝所有 VM 擴充功能，然後在移轉之後重新安裝 VM 擴充功能。 
+  - 如果在移轉期間遺失對 DNS 伺服器的連線，則在準備移轉之前，必須先從每個 VM 中移除 BGInfo 第 1 版\*以外的所有 VM 擴充功能，並在 Azure Resource Manager 移轉之後，陸續重新新增回 VM。  **這僅適用於執行中的 VM。**  如果 VM 已停止 (解除配置)，則不需要移除 VM 擴充功能。
+
+  > [!NOTE]
+  > 許多擴充功能 (例如 Azure 診斷和資訊安全中心監視) 在移轉之後將會自行重新安裝，因此移除這些功能不是問題。
+
+  - 此外，請確定網路安全性群組不會限制輸出網際網路存取。 某些網路安全性群組組態可能會發生此情況。 需要輸出網際網路存取 (和 DNS)，才能將 VM 擴充功能移轉至 Azure Resource Manager。
+  - BGInfo 擴充功能有兩個版本，稱為第 1 版和第 2 版。  
+
+      - 如果 VM 使用 BGInfo 第 1 版擴充功能，您可以將此擴充功能保留原狀。 移轉 API 會略過此擴充功能。 移轉之後，可以加入 BGInfo 擴充功能。
+      - 如果 VM 使用以 JSON 為基礎的 BGInfo 第 2 版擴充功能，則會使用 Azure 入口網站建立 VM。 若代理程式正在運作，並擁有對外的網際網路存取 (和 DNS)，移轉 API 在移轉至 Azure Resource Manager 時會包含此擴充功能。
+
+  - **修復選項 1**。 如果您知道您的 VM 在不會有輸出網際網路存取、使用中 DNS 服務，和使用中 Azure 代理程式，則請在準備移轉之前解除安裝所有 VM 擴充功能，然後在移轉之後重新安裝 VM 擴充功能。
   - **修復選項 2**。 如果 VM 擴充功能會造成太大的問題，另一個選擇是在移轉前將所有 VM 關閉/解除配置。 移轉已取消配置的 VM，然後在 Azure Resource Manager 端重新啟動。 優點是 VM 擴充功能也會一併移轉。 缺點是會遺失所有對外公開的虛擬 IP (可能是非入門者)；很明顯地 VM 將會關閉，對工作應用程式造成更大的影響。
 
-    > [!NOTE] 
+    > [!NOTE]
     > 如果已針對要移轉的執行中 VM 設定 Azure 資訊安全中心原則，必須先停止安全性原則再移除擴充功能，否則會在移除擴充功能之後，自動在 VM 上重新安裝安全性監視擴充功能。
-  
-- **可用性設定組** - 若要將虛擬網路 (vNet) 移轉到 Azure Resource Manager，傳統部署 (也就是雲端服務) 所包含的 VM 必須全部位在一個可用性設定組中，或是所有 VM 均不能在任何可用性設定組中。 雲端服務中有一個以上的可用性設定組與 Azure Resource Manager 不相容，將會中止移轉。  此外，不能有一些 VM 在可用性設定組中，而一些 VM 則不在可用性設定組中。 若要解決此問題，您必須修復或重新改組雲端服務。  因為這可能會耗費大量時間，請詳細規劃。 
+
+- **可用性設定組** - 若要將虛擬網路 (vNet) 移轉到 Azure Resource Manager，傳統部署 (也就是雲端服務) 所包含的 VM 必須全部位在一個可用性設定組中，或是所有 VM 均不能在任何可用性設定組中。 雲端服務中有一個以上的可用性設定組與 Azure Resource Manager 不相容，將會中止移轉。  此外，不能有一些 VM 在可用性設定組中，而一些 VM 則不在可用性設定組中。 若要解決此問題，您必須修復或重新改組雲端服務。  因為這可能會耗費大量時間，請詳細規劃。
 
 - **Web/背景工作角色部署** - 無法將包含 Web 和背景工作角色的雲端服務移轉至 Azure Resource Manager。 開始移轉之前，必須先從虛擬網路移除 Web/背景工作角色。  典型的解決方案是只將 Web/背景工作角色執行個體移至也與 ExpressRoute 線路連結的不同傳統虛擬網路，或是將程式碼移轉至較新的 PaaS 應用程式服務 (此討論已超出本文件的範圍)。 在先前的重新部署案例中，建立新的傳統虛擬網路、將 Web/背景工作角色移動/重新部署至該新虛擬網路，然後從要移動的虛擬網路中刪除部署。 不需要變更程式碼。 新的[虛擬網路對等互連](../../virtual-network/virtual-network-peering-overview.md)功能可用來將包含 Web/背景工作角色的傳統虛擬網路與在相同 Azure 區域中的其他虛擬網路 (例如要移轉的虛擬網路) 形成對等互連 (**在虛擬網路移轉完成之後，因為不能移轉已形成對等互連的虛擬網路**)，因此可提供相同功能，而不會損失效能且沒有延遲/頻寬罰則。 由於新增了[虛擬網路對等互連](../../virtual-network/virtual-network-peering-overview.md)，現在可輕鬆地移轉Web/背景工作角色部署，而不會封鎖對 Azure Resource Manager 的移轉。
 
-- **Azure Resource Manager 配額** - Azure 區域對於傳統和 Azure Resource Manager 有個別的配額/限制。 即使在未取用新硬體的移轉案例中 *(我們正在將現有的 VM 從傳統交換至 Azure Resource Manager)*，Azure Resource Manager 配額仍必須具有足夠的容量，才可開始進行移轉。 下列是我們發現會造成問題的主要限制。  開啟配額支援票證來提高限制。 
+- **Azure Resource Manager 配額** - Azure 區域對於傳統和 Azure Resource Manager 有個別的配額/限制。 即使在未取用新硬體的移轉案例中 *(我們正在將現有的 VM 從傳統交換至 Azure Resource Manager)*，Azure Resource Manager 配額仍必須具有足夠的容量，才可開始進行移轉。 下列是我們發現會造成問題的主要限制。  開啟配額支援票證來提高限制。
 
     > [!NOTE]
     > 必須在與您要移轉的目前環境相同的區域中提高這些限制。
@@ -132,23 +141,23 @@ ms.lasthandoff: 04/06/2017
     ```
 
     **網路** *(虛擬網路、靜態公用 IP、公用 IP、網路安全性群組、網路介面、負載平衡器、路由表)*
-    
+
     ```powershell
     Get-AzureRmUsage /subscriptions/<subscription-id>/providers/Microsoft.Network/locations/<azure-region> -ApiVersion 2016-03-30 | Format-Table
     ```
 
     **儲存體** *(儲存體帳戶)*
-    
+
     ```powershell
     Get-AzureRmStorageUsage
     ```
 
-- **Azure Resource Manager API 節流限制** - 如果您有一個夠大的環境 (例如 VNET 中 > 400 個 VM)，可能會達到 Azure Resource Manager 中的預設 API 寫入節流限制 (目前為 `1200 writes/hour`)。 開始之前移轉，您應該提出支援票證來為您的訂用帳戶提高此限制。
+- **Azure Resource Manager API 節流限制** - 如果您有一個夠大的環境 (例如， VNET 中 > 400 個 VM)，您在 Azure Resource Manager 中可能會達到寫入時預設的 API 節流限制 (目前為 `1200 writes/hour`)。 開始之前移轉，您應該提出支援票證來為您的訂用帳戶提高此限制。
 
 
-- **佈建逾時 VM 狀態** - 如果任何 VM 的狀態為 `provisioning timed out`，這個問題必須在移轉前解決。 您只能利用停機時間解除佈建/重新佈 VM (刪除、保留磁碟，並重新建立 VM)。 
+- **佈建逾時 VM 狀態** - 如果任何 VM 的狀態為 `provisioning timed out`，這個問題必須在移轉前解決。 您只能利用停機時間解除佈建/重新佈 VM (刪除、保留磁碟，並重新建立 VM)。
 
-- **RoleStateUnknown VM 狀態** - 如果因為 `role state unknown` 錯誤訊息使得移轉中止，請使用入口網站檢查 VM，並確定它正在執行中。 此錯誤一般會在幾分鐘之後自行消失 (不需補救)，並且是虛擬機器 `start`、`stop`、`restart` 作業期間經常會看到的暫時性類型。 **建議做法：**幾分鐘後再重試移轉。 
+- **RoleStateUnknown VM 狀態** - 如果因為 `role state unknown` 錯誤訊息使得移轉中止，請使用入口網站檢查 VM，並確定它正在執行中。 此錯誤一般會在幾分鐘之後自行消失 (不需補救)，並且是虛擬機器 `start`、`stop`、`restart` 作業期間經常會看到的暫時性類型。 **建議做法：**幾分鐘後再重試移轉。
 
 - **Fabric 叢集不存在** - 在某些情況下，某些 VM 由於各種奇怪的原因而無法移轉。 其中一種已知的情況為，如果是最近才建立 VM (在過去一個星期內左右)，然後在尚無法因應 Azure Resource Manager 工作負載的 Azure 叢集登陸時會發生此情況。  您會收到錯誤，指出 `fabric cluster does not exist` 而無法移轉 VM。 通常等候幾天就可解決此特定問題，因為叢集很快就會啟用 Azure Resource Manager。 不過，有一個立即的解決方法是對 VM `stop-deallocate`，然後再繼續進行移轉，並且在移轉之後，於 Azure Resource Manager 中啟動 VM 備份。
 
@@ -172,7 +181,7 @@ ms.lasthandoff: 04/06/2017
 
 ### <a name="patterns-of-success"></a>成功的模式
 
-應該考慮來自以上實驗室測試一節的技術指引，並在實際移轉之前改善狀況。  經過足夠測試後，實際上無需太擔心移轉作業。  對於生產環境而言，有類似受信任的 Microsoft 合作夥伴或 Microsoft Premier 服務等額外支援會有所幫助。
+應該考慮來自_實驗室測試_一節的技術指引，並在實際移轉之前改善狀況。  經過足夠測試後，實際上無需太擔心移轉作業。  對於生產環境而言，有類似受信任的 Microsoft 合作夥伴或 Microsoft Premier 服務等額外支援會有所幫助。
 
 ### <a name="pitfalls-to-avoid"></a>要避免的陷阱
 

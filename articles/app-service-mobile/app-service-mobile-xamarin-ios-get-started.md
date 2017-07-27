@@ -3,8 +3,8 @@ title: "在 Xamarin.iOS 應用程式中開始使用 Azure App Service Mobile App
 description: "遵循本教學課程，開始使用 Mobile Apps 進行 Xamarin.iOS 開發。"
 services: app-service\mobile
 documentationcenter: xamarin
-author: adrianhall
-manager: adrianha
+author: ggailey777
+manager: syntaxc4
 editor: 
 ms.assetid: 14428794-52ad-4b51-956c-deb296cafa34
 ms.service: app-service-mobile
@@ -13,12 +13,12 @@ ms.tgt_pltfrm: mobile-xamarin-ios
 ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/01/2016
-ms.author: adrianha
-translationtype: Human Translation
+ms.author: syntaxc4
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: ed289d0755bbad08de01b0f311d14f5514ce0631
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/16/2017
-
 
 ---
 # <a name="create-a-xamarinios-app"></a>建立 Xamarin.iOS 應用程式
@@ -38,8 +38,8 @@ ms.lasthandoff: 02/16/2017
 
 > [!NOTE]
 > 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/mobile/)。 您可以在 App Service 中立即建立短期的入門行動應用程式 - 不需信用卡，不需任何承諾。
-> 
-> 
+>
+>
 
 ## <a name="create-an-azure-mobile-app-backend"></a>建立 Azure 行動應用程式後端
 依照下列步驟建立行動應用程式後端。
@@ -56,24 +56,24 @@ ms.lasthandoff: 02/16/2017
 ## <a name="download-and-run-the-xamarinios-app"></a>下載並執行 Xamarin.iOS 應用程式
 1. 在瀏覽器視窗中開啟 [Azure 入口網站] 。
 2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用]  >  [Xamarin.iOS]。 在步驟 3 中，按一下 [建立新的應用程式]  \(如果尚未選取的話)。  接著按一下 [下載]  按鈕。
-   
+
       已下載連接到您的行動後端的用戶端應用程式。 將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
 3. 將您下載的專案解壓縮，並在 Xamarin Studio (或 Visual Studio) 中開啟。
-   
+
     ![][9]
-   
+
     ![][8]
 4. 按 F5 鍵，以建置專案並在 iPhone 模擬器中啟動 app。
 5. 在應用程式中，輸入有意義的文字 (例如「了解 Xamarin」)，然後按一下 **+** 按鈕。
-   
+
     ![][10]
-   
+
     要求中的資料會插入 TodoItem 資料表中。 行動應用程式後端會傳回資料表中儲存的項目，而該資料會顯示在清單中。
 
 > [!NOTE]
 > 您可以在 QSTodoService.cs C# 檔案中檢閱用來存取行動應用程式後端以查詢和插入資料的程式碼。
-> 
-> 
+>
+>
 
 ## <a name="next-steps"></a>後續步驟
 * [將離線同步處理新增至您的應用程式](app-service-mobile-xamarin-ios-get-started-offline-data.md)

@@ -3,7 +3,7 @@ title: "使用圖形 API 來建置 Azure Cosmos DB Node.js 應用程式 | Micros
 description: "提供可用來連線及查詢 Azure Cosmos DB 的 Node.js 程式碼範例。"
 services: cosmos-db
 documentationcenter: 
-author: mimig1
+author: dennyglee
 manager: jhubbard
 editor: 
 ms.assetid: daacbabf-1bb5-497f-92db-079910703046
@@ -13,14 +13,13 @@ ms.workload:
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 05/21/2017
-ms.author: arramac
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
-ms.openlocfilehash: b9e8c46ba2f029f8dae2b357f05a806d769d0920
+ms.date: 07/14/2017
+ms.author: denlee
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: 153b4cc668fdebd28cec5f3d95093a595064202a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 07/17/2017
 
 ---
 # <a name="azure-cosmos-db-build-a-nodejs-application-by-using-graph-api"></a>Azure Cosmos DB：使用圖形 API 來建置 Node.js 應用程式
@@ -96,19 +95,23 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="update-your-connection-string"></a>更新您的連接字串
 
-現在，返回 Azure 入口網站以取得連接字串資訊，並將它複製到應用程式中。
+1. 更新 config.js 檔案。 
 
-1. 在 [Azure 入口網站](http://portal.azure.com/)中，於您 Azure Cosmos DB 帳戶的左側導覽功能表中，按一下 [金鑰]，然後按一下 [讀寫金鑰]。 在下一個步驟中，您會使用右側的複製按鈕，將 URI 和主索引鍵複製到 `app.js` 檔案。
-
-    ![[Azure 入口網站索引鍵] 刀鋒視窗](./media/create-graph-nodejs/keys.png)
-
-2. 從入口網站複製您的 Gremlin URI 值 (使用 [複製] 按鈕)，並使它成為 config.js 中的 `config.endpoint` 金鑰值。 Gremlin 端點必須是沒有通訊協定/連接埠號碼的主機名稱，像是 `mygraphdb.graphs.azure.com` (而不是 `https://mygraphdb.graphs.azure.com` 或 `mygraphdb.graphs.azure.com:433`)。
+2. 在 config.js 中，使用 Azure 入口網站的 [概觀] 頁面中的 [Gremlin URI] 值填入 config.endpoint 金鑰。 
 
     `config.endpoint = "GRAPHENDPOINT";`
 
-3. 從入口網站複製您的主索引鍵，並使它成為 config.js 中的 config.primaryKey 值。 您現已更新應用程式，使其具有與 Azure Cosmos DB 通訊所需的所有資訊。 
+    ![在 Azure 入口網站的 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/create-graph-nodejs/gremlin-uri.png)
+
+   如果 [Gremlin URI] 值空白，您可以從入口網站的 [金鑰] 頁面產生此值，方法是使用 [URI]，移除 https://，然後將文件變更為圖形。
+
+   Gremlin 端點必須是沒有通訊協定/連接埠號碼的主機名稱，像是 `mygraphdb.graphs.azure.com` (而不是 `https://mygraphdb.graphs.azure.com` 或 `mygraphdb.graphs.azure.com:433`)。
+
+3. 在 config.js 中，使用 Azure 入口網站的 [金鑰] 頁面中的 [主要金鑰] 值填入 config.primaryKey 值。 
 
     `config.primaryKey = "PRIMARYKEY";`
+
+   ![[Azure 入口網站索引鍵] 刀鋒視窗](./media/create-graph-nodejs/keys.png)
 
 4. 針對 config.database 和 config.collection 的值，輸入資料庫名稱和圖形 (容器) 名稱。 
 
@@ -118,8 +121,8 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 var config = {}
 
 // Note that this must not have HTTPS or the port number
-config.endpoint = "mygraphdb.graphs.azure.com";
-config.primaryKey = "OjlhK6tjxfSXyKtrmCiM9O6gQQgu5DmgAoauzD1PdPIq1LZJmILTarHvrolyUYOB0whGQ4j21rdAFwoYep7Kkw==";
+config.endpoint = "testgraphacct.graphs.azure.com";
+config.primaryKey = "Pams6e7LEUS7LJ2Qk0fjZf3eGo65JdMWHmyn65i52w8ozPX2oxY3iP0yu05t9v1WymAHNcMwPIqNAEv3XDFsEg==";
 config.database = "graphdb"
 config.collection = "Persons"
 

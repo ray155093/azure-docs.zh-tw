@@ -3,7 +3,7 @@ title: "分析 - 強大的 Azure Application Insights 搜尋工具 | Microsoft D
 description: "分析概觀，強大的 Application Insights 診斷搜尋工具。 "
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 0a2f6011-5bcf-47b7-8450-40f284274b24
 ms.service: application-insights
@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 717269a2c0e0b1a3d332e627154eacd2d2c5001e
+ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
+ms.openlocfilehash: 969d4f5c76c0f91c13622cb91d137c7be8007505
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/12/2017
+ms.lasthandoff: 05/19/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 04/12/2017
 
 
 ## <a name="queries-in-analytics"></a>分析中的查詢功能
-標準的查詢是一個「來源」資料表，後面接著一系列由 `|` 隔開的「運算子」**。 
+標準的查詢是一個「來源」資料表，後面接著一系列由 `|` 隔開的「運算子」。 
 
 例如，讓我們來了解海德拉巴的市民在一天當中的哪些時間試用我們的 Web 應用程式。 同時我們要看看針對他們的 HTTP 要求傳回哪些結果碼。 
 
@@ -46,6 +46,10 @@ ms.lasthandoff: 04/12/2017
 
 我們會計算不同的用戶端 IP 位址，並以過去 7 天每天的小時為單位將它們群組。 
 
+> [!NOTE]
+> 若要取得過去 24 小時之外的結果，請在查詢中明確包含 'timestamp'，或使用時間範圍下拉式功能表。
+>
+
 使用橫條圖展示來顯示結果，選擇以不同的回應碼來堆疊結果：
 
 ![選擇橫條圖、X 和 Y 軸，然後分割](./media/app-insights-analytics/020.png)
@@ -54,7 +58,7 @@ ms.lasthandoff: 04/12/2017
 
 也有強大的統計運算功能︰
 
-![](./media/app-insights-analytics/025.png)
+![統計查詢的結果](./media/app-insights-analytics/025.png)
 
 這個語言具有許多吸引人的功能︰
 
@@ -83,21 +87,24 @@ ms.lasthandoff: 04/12/2017
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
 
+
+## <a name="query-examples"></a>查詢範例
+
+請嘗試下列逐步解說，以了解 Analytics 的強大功能：
+
+ *    [自動診斷要求持續時間中的突增和步驟跳躍 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/results/chart?title=Automatic%20diagnostics%20of%20sudden%20spikes%20or%20step%20jumps%20in%20requests%20duration&shared=true)
+ *    [以時間序列分析對效能降低進行分析 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Analyzing%20performance%20degradations%20with%20time%20series%20analysis&shared=true)
+ *    [以 autocluster 和 diffpatterns 分析應用程式失敗 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Analyzing%20application%20failures%20with%20autocluster%20and%20diffpatterns&shared=true)
+ *    [搭配時間序列分析的進階圖形偵測 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Advanced%20shape%20detection%20with%20time%20series%20analysis&shared=true)
+ *    [使用滑動視窗作業分析應用程式使用情況 (累積的 MAU/DAU 等等) (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Using%20sliding%20window%20calculations%20to%20analyze%20usage%20metrics:%20rolling%20MAU~2FDAU%20and%20cohorts&shared=true)
+ *    [根據偵錯記錄檔的分析來偵測服務中斷 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Detection%20of%20service%20disruptions%20based%20on%20regression%20analysis%20of%20trace%20logs&shared=true)，以及[這篇 (英文)](https://maximshklar.wordpress.com/2017/02/16/finding-trends-in-traces-with-smart-data-analytics) 相對應的部落格文章。
+ *    [使用簡單的偵錯記錄檔來分析應用程式的效能 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Profiling%20applications'%20performance%20with%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/13/first-blog-post/) 相對應的部落格文章
+ *    [使用簡單的偵錯記錄檔來測量程式碼流程中每個步驟的持續時間 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Measuring%20the%20duration%20of%20each%20step%20in%20your%20code%20flow%20using%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/14/measuring-the-duration-of-each-step-in-your-code-flow-using-simple-debug-logs/) 相對應的部落格文章
+ *    [使用簡單的偵錯記錄檔來分析並行 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/results/chart?title=Analyzing%20concurrency%20with%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/23/analyzing-concurrency-using-simple-debug-logs/) 相對應的部落格文章
+
+
+
 ## <a name="next-steps"></a>後續步驟
 * 我們建議您從 [語言教學](app-insights-analytics-tour.md)開始。 
-
-### <a name="query-examples"></a>查詢範例
-
-* 請嘗試下列逐步解說，以了解 Analytics 的強大功能：
- 1.    [自動診斷要求持續時間中的突增和步驟跳躍 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/results/chart?title=Automatic%20diagnostics%20of%20sudden%20spikes%20or%20step%20jumps%20in%20requests%20duration&shared=true)
- 2.    [以時間序列分析對效能降低進行分析 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Analyzing%20performance%20degradations%20with%20time%20series%20analysis&shared=true)
- 3.    [以 autocluster 和 diffpatterns 分析應用程式失敗 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Analyzing%20application%20failures%20with%20autocluster%20and%20diffpatterns&shared=true)
- 4.    [搭配時間序列分析的進階圖形偵測 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Advanced%20shape%20detection%20with%20time%20series%20analysis&shared=true)
- 5.    [使用滑動視窗作業分析應用程式使用情況 (累積的 MAU/DAU 等等) (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Using%20sliding%20window%20calculations%20to%20analyze%20usage%20metrics:%20rolling%20MAU~2FDAU%20and%20cohorts&shared=true)
- 6.    [根據偵錯記錄檔的分析來偵測服務中斷 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Detection%20of%20service%20disruptions%20based%20on%20regression%20analysis%20of%20trace%20logs&shared=true)，以及[這篇 (英文)](https://maximshklar.wordpress.com/2017/02/16/finding-trends-in-traces-with-smart-data-analytics) 相對應的部落格文章。
- 7.    [使用簡單的偵錯記錄檔來分析應用程式的效能 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Profiling%20applications'%20performance%20with%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/13/first-blog-post/) 相對應的部落格文章
- 8.    [使用簡單的偵錯記錄檔來測量程式碼流程中每個步驟的持續時間 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Measuring%20the%20duration%20of%20each%20step%20in%20your%20code%20flow%20using%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/14/measuring-the-duration-of-each-step-in-your-code-flow-using-simple-debug-logs/) 相對應的部落格文章
- 9.    [使用簡單的偵錯記錄檔來分析並行 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/results/chart?title=Analyzing%20concurrency%20with%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/23/analyzing-concurrency-using-simple-debug-logs/) 相對應的部落格文章
-
-
-
+* 深入了解如何[使用分析](app-insights-analytics-using.md)。 
+* [語言參考](app-insights-analytics-reference.md)。 

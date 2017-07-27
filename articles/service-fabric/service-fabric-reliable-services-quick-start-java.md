@@ -12,12 +12,13 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/10/2017
+ms.date: 06/29/2017
 ms.author: vturecek
-translationtype: Human Translation
-ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
-ms.openlocfilehash: 5a29d6838af7f3952ad96158e5962b17c0f4cb6b
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
+ms.openlocfilehash: 35d7f6d655f53891c00ca6c736c8c12b99fdc5ef
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/01/2017
 
 
 ---
@@ -158,15 +159,29 @@ public static void main(String[] args) throws Exception {
 ```
 
 ## <a name="run-the-application"></a>執行應用程式
-Yeoman 樣板包含可建置應用程式的 gradle 指令碼，以及可部署應用程式和取消應用程式部署的 bash 指令碼。 若要執行應用程式，先建置含 gradle的應用程式︰
+
+Yeoman 樣板包含可建置應用程式的 gradle 指令碼，以及可部署和移除應用程式的 bash 指令碼。 若要執行應用程式，先建置含 gradle的應用程式︰
 
 ```bash
 $ gradle
 ```
 
-這會產生可使用 Service Fabric Azure CLI 來部署的 Service Fabric 應用程式封裝。 Install.sh 指令碼包含部署應用程式封裝所需的 Azure CLI 命令。 請執行 install.sh 指令碼來部署︰
+這會產生可使用 Service Fabric Azure CLI 來部署的 Service Fabric 應用程式封裝。
+
+### <a name="deploy-with-xplat-cli"></a>使用 XPlat CLI 進行部署
+
+如果使用 XPlat CLI，install.sh 指令碼會包含部署應用程式套件所需的 Azure CLI 命令。 請執行 install.sh 指令碼來部署應用程式。
 
 ```bash
 $ ./install.sh
 ```
+
+### <a name="deploy-with-azure-cli-20"></a>使用 Azure CLI 2.0 進行部署
+
+如果使用 Azure CLI 2.0，請參閱有關[使用 Azure CLI 2.0 來管理應用程式生命週期](service-fabric-application-lifecycle-azure-cli-2-0.md)的參考文件。
+
+## <a name="related-articles"></a>相關文章
+
+* [開始使用 Service Fabric 和 Azure CLI 2.0](service-fabric-azure-cli-2-0.md)
+* [開始使用 Service Fabric XPlat CLI](service-fabric-azure-cli.md)
 

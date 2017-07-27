@@ -12,24 +12,26 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/01/2017
+ms.date: 07/11/2017
 ms.author: kdotchko
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 94389b06fda751716e1d593a85232ce37dae0b57
+ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
+ms.openlocfilehash: 886bf3ce3979b7ef52ca29b7731562c5768596a2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
-
+ms.lasthandoff: 06/01/2017
 
 ---
 # <a name="communicate-with-your-iot-hub-using-the-mqtt-protocol"></a>使用 MQTT 通訊協定來與 IoT 中樞通訊
+
 「IoT 中樞」可讓裝置在連接埠 8883 使用 [MQTT v3.1.1][lnk-mqtt-org] 通訊協定，或在連接埠 443 使用「透過 WebSocket 的 MQTT v3.1.1」通訊協定，來與「IoT 中樞」裝置端點進行通訊。 「IoT 中樞」要求使用 TLS/SSL 保護所有裝置通訊的安全 (因此，「IoT 中樞」並不支援透過連接埠 1883 的非安全連線)。
 
 ## <a name="connecting-to-iot-hub"></a>連接到 IoT 中樞
+
 裝置可以使用 MQTT 通訊協定連接到 IoT 中樞，方法是使用 [Azure IoT SDK][lnk-device-sdks] 中的程式庫或直接使用 MQTT 通訊協定。
 
 ## <a name="using-the-device-sdks"></a>使用裝置 SDK
+
 支援 MQTT 通訊協定的[裝置 SDK][lnk-device-sdks] 有提供 Java、Node.js、C、C# 和 Python 等版本。 裝置 SDK 會使用標準的 IoT 中樞連接字串來連接到 IoT 中樞。 若要使用 MQTT 通訊協定，用戶端通訊協定參數必須設定為 **MQTT**。 根據預設，裝置 SDK 會連接到 **CleanSession** 旗標設為 **0** 的 IoT 中樞，並使用 **QoS 1** 來與 IoT 中樞交換訊息。
 
 當裝置連接到 IoT 中樞時，裝置 SDK 會提供方法讓裝置在 IoT 中樞傳送和接收訊息。
@@ -45,7 +47,8 @@ ms.lasthandoff: 05/16/2017
 | [Python][lnk-sample-python] |IoTHubTransportProvider.MQTT |
 
 ### <a name="migrating-a-device-app-from-amqp-to-mqtt"></a>將裝置應用程式從 AMQP 移轉至 MQTT
-如果您使用[裝置 SDK][lnk-device-sdks]，則需要在用戶端初始化中變更通訊協定參數，如上所述，才能從 AMQP 切換為使用 MQTT。
+
+如果您使用[裝置 SDK][lnk-device-sdks]，則需要在用戶端初始化中變更通訊協定參數 (如上所述)，才能從 AMQP 切換為使用 MQTT。
 
 這麼做時，請務必檢查下列項目︰
 
@@ -53,7 +56,7 @@ ms.lasthandoff: 05/16/2017
 * MQTT 在接收[雲端到裝置訊息][lnk-messaging]時不支援「拒絕」作業。 如果您的後端應用程式需要接收來自裝置應用程式的回應，請考慮使用[直接方法][lnk-methods]。
 
 ## <a name="using-the-mqtt-protocol-directly"></a>直接使用 MQTT 通訊協定
-如果裝置無法使用裝置 SDK，它仍可使用 MQTT 通訊協定連接到公用裝置端點。 在 **CONNECT** 封包中，裝置應使用下列值：
+如果裝置無法使用裝置 SDK，它仍可使用連接埠 8883 上的 MQTT 通訊協定連線到公用裝置端點。 在 **CONNECT** 封包中，裝置應使用下列值：
 
 * 在 [ClientId] 欄位中，使用 **deviceId**。
 * 在 [Username] 欄位中，使用 `{iothubhostname}/{device_id}/api-version=2016-11-14`，其中 {iothubhostname} 是 IoT 中樞的完整 CName。
@@ -77,6 +80,7 @@ ms.lasthandoff: 05/16/2017
 針對 MQTT 的連接和中斷連接封包，「IoT 中樞」會在「作業監視」通道發出事件，其中包含可協助您對連線問題進行疑難排解的額外資訊。
 
 ### <a name="sending-device-to-cloud-messages"></a>傳送裝置到雲端訊息
+
 成功連線之後，裝置可以使用 `devices/{device_id}/messages/events/` 或 `devices/{device_id}/messages/events/{property_bag}` 作為**主題名稱**，將訊息傳送至 IoT 中樞。 `{property_bag}` 項目可讓裝置以 URL 編碼格式傳送具有其他屬性的訊息。 例如：
 
 ```
@@ -97,20 +101,21 @@ RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-en
 如需詳細資訊，請參閱[傳訊開發人員指南][lnk-messaging]。
 
 ### <a name="receiving-cloud-to-device-messages"></a>接收雲端到裝置訊息
+
 若要從 IoT 中樞接收訊息，裝置應該使用 `devices/{device_id}/messages/devicebound/#` 做為**主題篩選**來進行訂閱。 「主題篩選」中的多層級萬用字元 **#** 僅供用來允許裝置接收主題名稱中的額外屬性。 「IoT 中樞」並不允許使用 **#** 或 **?** 萬用字元來篩選副主題。 由於「IoT 中樞」不是一般用途的發行/訂閱傳訊訊息代理程式，因此它只支援已記載的主題名稱和主題篩選。
 
-請注意，裝置在成功訂閱 IoT 中樞的裝置特定端點 (由 `devices/{device_id}/messages/devicebound/#` 主題篩選代表) 之後，才會收到來自 IoT 中樞的訊息。 建立成功的訂閱之後，裝置將會開始接收訊息，但僅限在訂閱之後傳送給它的雲端到裝置訊息。 如果裝置是在 **CleanSession** 旗標設定為 **0** 的情況下連線，訂閱將會跨不同的工作階段持續保留。 在此情況下，下次裝置以 **CleanSession 0** 進行連線時，就會收到在其中斷連線時傳送給它的未送訊息。 如果裝置使用設定為 **1** 的 **CleanSession** 旗標，則必須等到訂閱「IoT 中樞」的裝置端點之後，才會收到來自「IoT 中樞」的訊息。
+裝置在成功訂閱 IoT 中樞的裝置特定端點 (由 `devices/{device_id}/messages/devicebound/#` 主題篩選代表) 之後，才會收到來自 IoT 中樞的訊息。 建立成功的訂閱之後，裝置將會開始接收訊息，但僅限在訂閱之後傳送給它的雲端到裝置訊息。 如果裝置是在 **CleanSession** 旗標設定為 **0** 的情況下連線，訂閱將會跨不同的工作階段持續保留。 在此情況下，下次裝置以 **CleanSession 0** 進行連線時，就會收到在其中斷連線時傳送給它的未送訊息。 如果裝置使用設定為 **1** 的 **CleanSession** 旗標，則必須等到訂閱 IoT 中樞的裝置端點之後，才會收到來自 IoT 中樞的訊息。
 
 IoT 中樞會附上**主題名稱** `devices/{device_id}/messages/devicebound/` 或 `devices/{device_id}/messages/devicebound/{property_bag}` (如果有任何訊息屬性) 來傳遞訊息。 `{property_bag}` 包含訊息屬性的 url 編碼索引鍵/值組。 屬性包中只會包含應用程式屬性和使用者可設定的系統屬性 (例如 **messageId** 或 **correlationId**)。 系統屬性名稱具有前置詞 **$**，但應用程式屬性則會使用沒有前置詞的原始屬性名稱。
 
-當裝置應用程式訂閱具有 **QoS 2** 的主題時，IoT 中樞會在 **SUBACK** 封包中授與最大 QoS 層級 1。 之後，「IoT 中樞」將會使用 QoS 1 將訊息傳遞給裝置。
+當裝置應用程式訂閱具有 **QoS 2** 的主題時，IoT 中樞會在 **SUBACK** 封包中授與最大 QoS 層級 1。 之後，IoT 中樞會使用 QoS 1 將訊息傳遞給裝置。
 
 ### <a name="retrieving-a-device-twins-properties"></a>擷取裝置對應項屬性
 
-首先，裝置會訂閱 `$iothub/twin/res/#`，以接收作業的回應。 然後，它會傳送空白訊息給主題 `$iothub/twin/GET/?$rid={request id}`，其中已填入**要求識別碼**的值。 服務接著將使用和要求相同的**要求識別碼**，傳送內含關於 `$iothub/twin/res/{status}/?$rid={request id}` 主題之裝置對應項資料的回應訊息。
+首先，裝置會訂閱 `$iothub/twin/res/#`，以接收作業的回應。 然後，它會傳送空白訊息給主題 `$iothub/twin/GET/?$rid={request id}`，其中已填入**要求識別碼**的值。 服務接著會使用和要求相同的**要求識別碼**，傳送內含關於 `$iothub/twin/res/{status}/?$rid={request id}` 主題之裝置對應項資料的回應訊息。
 
 根據 [IoT 中樞傳訊開發人員指南][lnk-messaging]，要求識別碼可以是任何有效的訊息屬性值，而狀態會驗證為整數。
-回應本文將包含裝置對應項的屬性區段：
+回應本文包含裝置對應項的屬性區段：
 
 身分識別登錄項目的本文僅限於 “properties” 成員，例如：
 
@@ -193,10 +198,10 @@ JSON 文件中的每個成員會在裝置對應項的文件中更新或新增對
 如需詳細資訊，請參閱[直接方法開發人員指南][lnk-methods]。
 
 ### <a name="additional-considerations"></a>其他考量
+
 最後，如果您需要自訂雲端的 MQTT 通訊協定行為，則應該檢閱 [Azure IoT 通訊協定閘道][lnk-azure-protocol-gateway]，這可讓您部署能與「IoT 中樞」直接互動的高效能自訂通訊協定閘道。 Azure IoT 通訊協定閘道器可讓您自訂裝置通訊協定，以順應要重建的 MQTT 部署或其他自訂通訊協定。 不過，這種方法會要求您執行及操作自訂通訊協定閘道。
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱 IoT 中樞開發人員指南中的 [MQTT 支援的注意事項][lnk-mqtt-devguide]。
 
 若要深入了解 MQTT 通訊協定，請參閱 [MQTT 文件][lnk-mqtt-docs]。
 
@@ -222,7 +227,6 @@ JSON 文件中的每個成員會在裝置對應項的文件中更新或新增對
 [lnk-sample-python]: https://github.com/Azure/azure-iot-sdk-python/tree/master/device/samples
 [lnk-device-explorer]: https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer
 [lnk-sas-tokens]: iot-hub-devguide-security.md#use-sas-tokens-in-a-device-app
-[lnk-mqtt-devguide]: iot-hub-devguide-messaging.md#notes-on-mqtt-support
 [lnk-azure-protocol-gateway]: iot-hub-protocol-gateway.md
 
 [lnk-devices]: https://catalog.azureiotsuite.com/

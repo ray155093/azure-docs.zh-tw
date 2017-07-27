@@ -1,9 +1,9 @@
 ---
 title: "收集與分析 OMS Log Analytics 中的 Syslog 訊息 | Microsoft Docs"
-description: "Syslog 是通用於 Linux 的事件記錄通訊協定。   本文說明如何在 Log Analytics 中設定收集 Syslog 訊息，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
+description: "Syslog 是通用於 Linux 的事件記錄通訊協定。 本文說明如何在 Log Analytics 中設定收集 Syslog 訊息，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
 services: log-analytics
 documentationcenter: 
-author: bwren
+author: mgoedtel
 manager: carmonm
 editor: tysonn
 ms.assetid: f1d5bde4-6b86-4b8e-b5c1-3ecbaba76198
@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/23/2017
-ms.author: bwren
+ms.date: 06/12/2017
+ms.author: magoedte;bwren
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
-ms.openlocfilehash: 6e92a79c0b7ea35f110c779922255d6ddc93ed7c
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 783b9b48251c5f092121288af8834e2caf31f5d7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/24/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 01/24/2017
 Syslog 是通用於 Linux 的事件記錄通訊協定。  應用程式將傳送的訊息可能會儲存在本機電腦上，或傳遞到 Syslog 收集器。  安裝 OMS Agent for Linux 時，它會設定本機 Syslog 精靈來將訊息轉送到代理程式。  接著，代理程式會將訊息傳送到 Log Analytics，其中對應的記錄會建立於 OMS 儲存機制中。  
 
 > [!NOTE]
-> Log Analytics 支援收集由 rsyslog 或 syslog-ng 所傳送的訊息。 Red Hat Enterprise Linux 第 5 版、CentOS 和 Oracle Linux 版本 (sysklog) 不支援預設 syslog 精靈，進行 syslog 事件收集。 若要從這些散發套件的這個版本收集 syslog 資料，應該安裝並設定 [rsyslog 精靈](http://rsyslog.com) 來取代 sysklog。
+> Log Analytics 支援收集由 rsyslog 或 syslog-ng 所傳送的訊息，其中 rsyslog 是預設精靈。 Red Hat Enterprise Linux 第 5 版、CentOS 和 Oracle Linux 版本 (sysklog) 不支援預設 syslog 精靈，進行 syslog 事件收集。 若要從這些散發套件的這個版本收集 syslog 資料，應該安裝並設定 [rsyslog 精靈](http://rsyslog.com) 來取代 sysklog。
 > 
 > 
 
@@ -137,20 +137,50 @@ Syslog-ng 的組態檔位於 **/etc/syslog-ng/syslog-ng.conf**。  其預設內�
     log { source(src); filter(f_user_oms); destination(d_oms); };
 
 
-### <a name="changing-the-syslog-port"></a>變更 Syslog 連接埠
-OMS 代理程式會在本機用戶端的連接埠 25224 上接聽 Syslog 訊息。  您可以將下列區段加入至 OMS 代理程式組態檔 (位於 **/etc/opt/microsoft/omsagent/conf/omsagent.conf**) 來變更此連接埠。  使用您想要的連接埠號碼來取代 **連接埠** 項目中的 25224。  請注意，您也必須針對 Syslog 精靈修改組態檔，以便將訊息傳送到這個連接埠。
+### <a name="collecting-data-from-additional-syslog-ports"></a>從其他 Syslog 連接埠收集資料
+OMS 代理程式會在本機用戶端的連接埠 25224 上接聽 Syslog 訊息。  安裝代理程式時，會套用預設 syslog 組態，並可在下列位置找到： 
 
-    <source>
-      type syslog
-      port 25224
-      bind 127.0.0.1
-      protocol_type udp
-      tag oms.syslog
-    </source>
+* Rsyslog：`/etc/rsyslog.d/95-omsagent.conf`
+* Syslog-ng：`/etc/syslog-ng/syslog-ng.conf`
 
+您可以變更連接埠號碼，方法是建立兩個組態檔：FluentD 組態檔和 rsyslog-or-syslog-ng 檔案，依您已安裝的 Syslog 精靈而定。  
 
-## <a name="data-collection"></a>資料收集
-OMS 代理程式會在本機用戶端的連接埠 25224 上接聽 Syslog 訊息。 適用於 Syslog 精靈的組態檔會將從應用程式傳送的 Syslog 訊息轉送到這個連接埠，它們在其中是由 Log Analytics 所收集。
+* FluentD 組態檔應該是新的檔案，位於：`/etc/opt/microsoft/omsagent/conf/omsagent.d`，且會將**連接埠**項目中的值取代為自訂連接埠號碼。
+
+        <source>
+          type syslog
+          port %SYSLOG_PORT%
+          bind 127.0.0.1
+          protocol_type udp
+          tag oms.syslog
+        </source>
+        <filter oms.syslog.**>
+          type filter_syslog
+        </filter>
+
+* 針對 rsyslog，您應建立新的組態檔，位於：`/etc/rsyslog.d/`，並將 %SYSLOG_PORT% 值取代為您的自訂連接埠號碼。  
+
+    > [!NOTE]
+    > 如果您在 `95-omsagent.conf` 組態檔中修改這個值，就會在代理程式套用預設組態時將它覆寫。
+    > 
+
+        # OMS Syslog collection for workspace %WORKSPACE_ID%
+        kern.warning              @127.0.0.1:%SYSLOG_PORT%
+        user.warning              @127.0.0.1:%SYSLOG_PORT%
+        daemon.warning            @127.0.0.1:%SYSLOG_PORT%
+        auth.warning              @127.0.0.1:%SYSLOG_PORT%
+
+* 應修改 syslog ng 組態，方法是複製如下所示的範例組態，並將自訂修改的設定新增至位於 `/etc/syslog-ng/` 之 syslog ng.conf 組態檔的結尾。  請**勿**使用預設標籤 **%workspace_id%_oms** 或 **%workspace_id_oms**，定義自訂標籤可協助您辨別變更。  
+
+    > [!NOTE]
+    > 如果您在組態檔中修改預設值，就會在代理程式套用預設組態時將它覆寫。
+    > 
+
+        filter f_custom_filter { level(warning) and facility(auth; };
+        destination d_custom_dest { udp("127.0.0.1" port(%SYSLOG_PORT%)); };
+        log { source(s_src); filter(f_custom_filter); destination(d_custom_dest); };
+
+完成變更後，必須將 Syslog 和 OMS 代理程式服務重新啟動，才能確保組態變更生效。   
 
 ## <a name="syslog-record-properties"></a>Syslog 記錄屬性
 Syslog 記錄具有 **Syslog** 類型，以及下表中的屬性。

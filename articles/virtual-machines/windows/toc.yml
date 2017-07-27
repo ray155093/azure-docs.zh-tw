@@ -85,8 +85,6 @@
           href: preserving-maintenance.md
         - name: 重新啟動維修
           href: impactful-maintenance.md
-        - name: 排程
-          href: planned-maintenance-schedule.md
     - name: VM 大小
       href: sizes.md
       items:
@@ -368,6 +366,8 @@
               href: migration-classic-resource-manager-faq.md
     - name: 疑難排解
       items:
+        - name: 在現有的可用性設定組中新增 Azure VM 的可支援性
+          href: ../virtual-machines-availability-set-supportability.md
         - name: 了解系統重新開機
           href: understand-vm-reboot.md
         - name: 遠端桌面連線
@@ -405,6 +405,8 @@
               href: troubleshoot-recovery-disks.md
             - name: Azure 入口網站
               href: troubleshoot-recovery-disks-portal.md
+        - name: 使用 PerfInsights 針對效能問題進行疑難排解
+          href: how-to-use-perfInsights.md
 - name: 參考
   items:
     - name: Azure CLI

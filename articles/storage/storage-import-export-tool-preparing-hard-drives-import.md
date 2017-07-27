@@ -12,18 +12,19 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/21/2017
+ms.date: 06/29/2017
 ms.author: muralikk
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 04ac94a1c07c3ad2a9384f5cf5fca1341ebfa0d8
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 5b894dac8fdc26999b6f3cbffaf7e6a98e68d000
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/30/2017
 
 
 ---
 # <a name="preparing-hard-drives-for-an-import-job"></a>準備匯入工作的硬碟
 
-WAImportExport 工具是磁碟機準備及修復工具，可搭配 [Microsoft Azure 匯入/匯出服務](storage-import-export-service.md)使用。 您可以使用此工具，將資料複製到要寄送至 Azure 資料中心的硬碟。 匯入工作完成後，您可以使用此工具來修復損毀、遺漏或與其他 Blob 衝突的任何 Blob。 當您收到已完成的匯出工作中的磁碟機後，您可以使用此工具來修復磁碟機上損毀或遺漏的任何檔案。 在本文中，我們將介紹這項工具的使用。
+WAImportExport 工具是磁碟機準備及修復工具，可搭配 [Microsoft Azure 匯入/匯出服務](storage-import-export-service.md)使用。 您可以使用此工具，將資料複製到要寄送至 Azure 資料中心的硬碟。 匯入工作完成後，您可以使用此工具來修復損毀、遺漏或與其他 Blob 衝突的任何 Blob。 當您收到已完成的匯出工作中的磁碟機後，您可以使用此工具來修復磁碟機上損毀或遺漏的任何檔案。 我們會在本文中介紹此工具的使用方式。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -36,7 +37,7 @@ WAImportExport 工具是磁碟機準備及修復工具，可搭配 [Microsoft Az
 
 ### <a name="preparing-disk-for-import-job"></a>準備匯入工作的磁碟
 
-- **BitLocker -** 執行 WAImportExport 工具的電腦上必須啟用 BitLocker。 如需如何啟用 BitLocker 的詳細資訊，請參閱[常見問題集](#faq)
+- **BitLocker -** 執行 WAImportExport 工具的電腦上必須啟用 BitLocker。 如需如何啟用 BitLocker 的詳細資訊，請參閱[常見問題集](#faq)。
 - **磁碟**必須可從執行 WAImportExport 工具的電腦上存取。 如需磁碟規格的詳細資訊，請參閱[常見問題集](#faq)。
 - **來源檔案** - 您想匯入的檔案必須可從複製電腦上存取，無論它們是在網路共用或本機硬碟上。
 
@@ -51,7 +52,7 @@ WAImportExport 工具是磁碟機準備及修復工具，可搭配 [Microsoft Az
 
 ## <a name="download-and-install-waimportexport"></a>下載和安裝 WAImportExport
 
-下載[最新版的 WAImportExport.exe](https://www.microsoft.com/download/details.aspx?id=42659)。 將壓縮的內容解壓縮至您電腦上的目錄。
+下載[最新版的 WAImportExport.exe](https://www.microsoft.com/download/details.aspx?id=55280)。 將壓縮的內容解壓縮至您電腦上的目錄。
 
 您的下一個工作是建立 CSV 檔案。
 
@@ -59,9 +60,9 @@ WAImportExport 工具是磁碟機準備及修復工具，可搭配 [Microsoft Az
 
 ### <a name="what-is-dataset-csv"></a>什麼是資料集 CSV
 
-資料集 CSV 檔案是 /dataset 旗標的值，此 CSV 檔案包含要複製到目標磁碟機的目錄清單和/或清單檔案。 建立匯入工作的第一步是判斷您要匯入哪些目錄和檔案。 可以是目錄清單、唯一檔案的清單或兩者的組合。 包含目錄時，目錄及其子目錄中的所有檔案都是匯入工作的一部分。
+資料集 CSV 檔案是 /dataset 旗標的值，此 CSV 檔案包含要複製到目標磁碟機的目錄清單和/或檔案清單。 建立匯入工作的第一步是判斷您要匯入哪些目錄和檔案。 可以是目錄清單、唯一檔案的清單或兩者的組合。 包含目錄時，目錄及其子目錄中的所有檔案都是匯入工作的一部分。
 
-針對要匯入的每個目錄或檔案，您需要指定目的地虛擬目錄或 Azure Blob 服務中的 Blob。 您將使用這些目標做為 WAImportExport 工具的輸入。 請注意，目錄應使用正斜線字元 "/" 分隔。
+針對要匯入的每個目錄或檔案，您必須指定目的地虛擬目錄或 Azure Blob 服務中的 Blob。 您將使用這些目標做為 WAImportExport 工具的輸入。 目錄應使用斜線字元 "/" 分隔。
 
 下表顯示一些 Blob 目標範例：
 
@@ -84,10 +85,10 @@ BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
 
 | 欄位 | 說明 |
 | --- | --- |
-| 基本路徑 | **[必要]**<br/>此參數的值代表要匯入的資料所在的來源。工具會以遞迴方式複製位於這個路徑下的所有資料。<br><br/>**允許值**︰這必須是本機電腦上的有效路徑或有效的共用路徑，而且應可供使用者存取。 目錄路徑必須是絕對路徑 (而非相對路徑)。如果路徑的結尾是 "\\" 則其代表目錄，若路徑的結尾不是 "\\" 則代表檔案。<br/>此欄位中不允許 Regex。 如果路徑包含空格，請使用 "" 括住。<br><br/>**範例**："c:\Directory\c\Directory\File.txt"<br>"\\\\FBaseFilesharePath.domain.net\sharename\directory\"  |
-| DstBlobPathOrPrefix | **[必要]**<br/> Microsoft Azure 儲存體帳戶中的目的地虛擬目錄路徑。 虛擬目錄可能已存在或可能不存在。 如果不存在，匯入/匯出服務將會建立一個。<br/><br/>指定目的地虛擬目錄或 blob 時，請確定使用有效的容器名稱。 請記住容器名稱必須是小寫。 如需容器命名規則的詳細資訊，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata)。如果只指定根目錄，則會在目的地 Blob 容器中複製來源的目錄結構。如果想要與來源不同的目錄結構，CSV 中多個對應的資料列<br/><br/>您可以指定容器或 blob 首碼，如 music/70s/。 目的地目錄必須以容器名稱開頭，後面接著正斜線 "/"，並可選擇性地包含結尾是 "/" 的虛擬 Blob 目錄。<br/><br/>目的地容器為根容器時，您必須明確指定根容器 (包括正斜線)，例如 $root /。 由於根容器下的 Blob 名稱中不能包含 "/"，當目的地目錄是根容器時，將不會複製來源目錄中的任何子目錄。<br/><br/>**範例**<br/>如果目的地 Blob 路徑是 https://mystorageaccount.blob.core.windows.net/video，這個欄位的值可以是 video/  |
+| 基本路徑 | **[必要]**<br/>此參數的值代表要匯入資料所在的來源。 此工具將以遞迴方式複製位於此路徑下的所有資料。<br><br/>**允許值**︰這必須是本機電腦上的有效路徑或有效的共用路徑，而且應可供使用者存取。 目錄路徑必須是絕對路徑 (而非相對路徑)。 如果路徑的結尾為 "\\"，即代表目錄，而結尾不是 "\\" 的路徑則代表檔案。<br/>此欄位中不允許 Regex。 如果路徑包含空格，請使用 "" 括住。<br><br/>**範例**："c:\Directory\c\Directory\File.txt"<br>"\\\\FBaseFilesharePath.domain.net\sharename\directory\"  |
+| DstBlobPathOrPrefix | **[必要]**<br/> Microsoft Azure 儲存體帳戶中的目的地虛擬目錄路徑。 虛擬目錄可能已存在或可能不存在。 如果不存在，匯入/匯出服務將會建立一個。<br/><br/>指定目的地虛擬目錄或 blob 時，請確定使用有效的容器名稱。 請記住容器名稱必須是小寫。 關於容器命名規則，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata)。 如果只指定根，即會在目的地 Blob 容器中複寫來源的目錄結構。 如果所需的目錄結構不在來源中，CSV 中的多個對應資料列<br/><br/>您可以指定容器或 blob 首碼，如 music/70s/。 目的地目錄必須以容器名稱開頭，後面接著正斜線 "/"，並可選擇性地包含結尾是 "/" 的虛擬 Blob 目錄。<br/><br/>目的地容器為根容器時，您必須明確指定根容器 (包括正斜線)，例如 $root /。 由於根容器下的 Blob 名稱中不能包含 "/"，當目的地目錄是根容器時，將不會複製來源目錄中的任何子目錄。<br/><br/>**範例**<br/>如果目的地 Blob 路徑是 https://mystorageaccount.blob.core.windows.net/video，這個欄位的值可以是 video/  |
 | BlobType | **[選用]** block &#124; page<br/>目前匯入/匯出服務支援兩種 Blob。 分頁 blob 和區塊 Blob，所有檔案預設會匯入為區塊 Blob。 \*.vhd 和 \*.vhdx 會匯入為分頁 Blob。區塊 Blob 和分頁 Blob 允許的大小有限。 如需詳細資訊，請參閱[儲存體延展性目標](storage-scalability-targets.md#scalability-targets-for-blobs-queues-tables-and-files) (英文)。  |
-| Disposition | **[選用]** rename &#124; no-overwrite &#124; overwrite <br/> 此欄位會指定匯入期間的複製行為，也就是說 當資料從磁碟上傳至儲存體帳戶時，可用的選項有︰rename&#124;overwite&#124;no-overwrite。如未指定，預設值為「重新命名」。 <br/><br/>**重新命名**︰如果已經有同名的物件，會在目的地建立複本。<br/>覆寫︰以較新的檔案覆寫檔案。 上次修改 wins 的檔案。<br/>**不要覆寫**︰如已存在則略過覆寫檔案。|
+| Disposition | **[選用]** rename &#124; no-overwrite &#124; overwrite <br/> 此欄位會指定匯入期間的複製行為，也就是說 正在從磁碟將資料上傳至儲存體帳戶時。 可用的選項為：rename&#124;overwite&#124;no-overwrite。若未指定任何項目，預設值為 "rename"。 <br/><br/>**Rename**︰如果已經有同名的物件，則在目的地建立複本。<br/>覆寫︰以較新的檔案覆寫檔案。 上次修改 wins 的檔案。<br/>**不要覆寫**︰如已存在則略過覆寫檔案。|
 | MetadataFile | **[選用]** <br/>此欄位的值為中繼資料檔案，如果需要保留物件的中繼資料或提供自訂中繼資料，則可提供這個欄位的值。 目的地 Blob 的中繼資料檔案路徑。 如需詳細資訊，請參閱[匯入/匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)。 |
 | PropertiesFile | **[選用]** <br/>目的地 Blob 的屬性檔案路徑。 如需詳細資訊，請參閱[匯入/匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)。 |
 
@@ -97,7 +98,7 @@ BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
 
 /InitialDriveSet 或 /AdditionalDriveSet 旗標的值為 CSV 檔案，其中包含磁碟機代號對應的磁碟清單，使工具可以正確挑選要準備的磁碟清單。 如果資料大小超過單一磁碟大小，WAImportExport 工具會將資料以最佳化方式分散在此 CSV 檔案中列示的多個磁碟。
 
-單一工作階段中可寫入資料的磁碟數目沒有限制。 此工具會根據磁碟大小和資料夾大小來分配資料。 它會選取最適合物件大小的磁碟。 資料上傳至儲存體帳戶時將併回資料集檔案中指定的目錄結構。 若要建立磁碟機集 CSV，請遵循下列步驟。
+單一工作階段中可寫入資料的磁碟數目沒有限制。 此工具會根據磁碟大小和資料夾大小來分配資料。 它將選取最適合物件大小的磁碟。 資料上傳至儲存體帳戶時將併回資料集檔案中指定的目錄結構。 若要建立磁碟機集 CSV，請遵循下列步驟。
 
 ### <a name="create-basic-volume-and-assign-drive-letter"></a>建立基本磁碟區並指派磁碟機代號
 
@@ -117,8 +118,8 @@ H,Format,SilentMode,Encrypt,
 | --- | --- |
 | DriveLetter | **[必要]**<br/> 每個提供給工具做為目的地的磁碟機上都必須有一個簡單的 NTFS 磁碟區，並已指派磁碟機代號。<br/> <br/>**範例**R 或 r |
 | FormatOption | **[必要]** Format &#124; AlreadyFormatted<br/><br/> **Format**︰指定這個將格式化磁碟上的所有資料。 <br/>**AlreadyFormatted**︰指定此值時，工具會略過格式化。 |
-| SilentOrPromptOnFormat | **[必要]** SilentMode &#124; PromptOnFormat<br/><br/>**SilentMode**︰提供這個值可讓使用者以無訊息模式執行工具。 <br/>**PromptOnFormat**︰工具會提示使用者確認針對每種格式的動作是否是想要的。<br/><br/>如果未設定，命令會中止並提示錯誤訊息：「SilentOrPromptOnFormat 的值不正確：無」 |
-| 加密 | **[必要]** Encrypt &#124; AlreadyEncrypted<br/> 這個欄位的值決定要加密和不加密的磁碟。 <br/><br/>**Encrypt**︰工具將會格式化磁碟機。 如果 "FormatOption" 欄位的值是 "Format"，則此值需為 "Encrypt"。 如果在此情況下指定 "AlreadyEncrypted"，則會造成下列錯誤：「指定 Format 時，也必須指定 Encrypt」。<br/>**AlreadyEncrypted**︰工具會使用 "ExistingBitLockerKey" 欄位中提供的 BitLockerKey 解密磁碟機。 如果 "FormatOption" 欄位的值是 "AlreadyFormatted"，這個值可以是 "Encrypt" 或 "AlreadyEncrypted" |
+| SilentOrPromptOnFormat | **[必要]** SilentMode &#124; PromptOnFormat<br/><br/>**SilentMode**︰提供這個值可讓使用者以無訊息模式執行工具。 <br/>**PromptOnFormat**︰工具會提示使用者確認針對每種格式的動作是否是想要的。<br/><br/>如果未設定，命令將會中止並顯示錯誤訊息："Incorrect value for SilentOrPromptOnFormat: none" \(SilentOrPromptOnFormat 的值不正確：無\) |
+| 加密 | **[必要]** Encrypt &#124; AlreadyEncrypted<br/> 這個欄位的值決定要加密和不加密的磁碟。 <br/><br/>**Encrypt**︰工具將格式化磁碟機。 如果 "FormatOption" 欄位的值是 "Format"，則此值需為 "Encrypt"。 如果在此情況下指定 "AlreadyEncrypted"，則會造成下列錯誤：「指定 Format 時，也必須指定 Encrypt」。<br/>**AlreadyEncrypted**︰工具將使用 "ExistingBitLockerKey" 欄位中提供的 BitLockerKey 解密磁碟機。 如果 "FormatOption" 欄位的值是 "AlreadyFormatted"，這個值可以是 "Encrypt" 或 "AlreadyEncrypted" |
 | ExistingBitLockerKey | **[必要]** 如果 "Encryption" 欄位的值是 "AlreadyEncrypted"<br/> 這個欄位的值是與特定磁碟相關聯的 BitLocker 金鑰。 <br/><br/>如果 "Encryption" 欄位的值為 "Encrypt"，此欄位應保留空白。  如果在此情況下指定 BitLocker 金鑰，則會造成下列錯誤：「不應指定 Bitlocker 金鑰」。<br/>  **範例**：060456-014509-132033-080300-252615-584177-672089-411631|
 
 ##  <a name="preparing-disk-for-import-job"></a>準備匯入工作的磁碟
@@ -222,8 +223,8 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /ResumeSession
 |     /ManifestFile:&lt;DriveManifestFile&gt; | **必要** 僅適用於 RepairExport。<br/> 磁碟機資訊清單檔案的路徑。  |
 |     /PathMapFile:&lt;DrivePathMapFile&gt; | **選用**。 僅適用於 RepairImport。<br/> 包含檔案路徑對應 (相對於實際檔案位置的磁碟機根目錄) 之檔案的路徑 (以 tab 分隔)。 第一次指定時，它會填入空白目標的檔案路徑，表示在 TargetDirectories 中找不到它們、存取被拒、具有無效名稱，或它們存在多個目錄中。 路徑對應檔案可以手動編輯以包含正確的目標路徑，並可再次指定，使工具可以正確解析檔案路徑。  |
 |     /ExportBlobListFile:&lt;ExportBlobListFile&gt; | **必要**。 僅適用於 PreviewExport。<br/> XML 檔案的路徑，此檔案包含要匯出的 Blob 的Blob 路徑清單或 Blob 路徑前置詞。 此檔案格式與匯入/匯出服務 REST API 的 Put Job 作業中的 Blob 清單 Blob 格式相同。  |
-|     /DriveSize:&lt;DriveSize&gt; | **必要**。 僅適用於 PreviewExport。<br/>  要用於匯出的磁碟機大小。 例如，500 GB、1.5 TB。注意︰1 GB = 1,000,000,000 個位元組 1 TB = 1,000,000,000,000 個位元組  |
-|     /DataSet:&lt;dataset.csv&gt; | **必要**<br/> CSV 檔案，包含要複製到目標磁碟機的目錄和/或清單檔案的清單。  |
+|     /DriveSize:&lt;DriveSize&gt; | **必要**。 僅適用於 PreviewExport。<br/>  要用於匯出的磁碟機大小。 例如，500 GB、1.5 TB。 注意：1 GB = 1,000,000,000 個位元組 1 TB = 1,000,000,000,000 個位元組  |
+|     /DataSet:&lt;dataset.csv&gt; | **必要**<br/> CSV 檔案，包含要複製到目標磁碟機的目錄清單和/或檔案清單。  |
 |     /silentmode  | **選用**。<br/> 如未指定，它會提醒您磁碟機的需求，並需要您確認才能繼續。  |
 
 ## <a name="tool-output"></a>工具輸出
@@ -285,7 +286,7 @@ SaveCommandOutput: Completed
 [EndUpdateRecord]
 ```
 
-### <a name="sample-journal-file-jrn-for-session-which-records-the-trail-of-sessions"></a>工作階段的範例日誌檔案 (JRN)，此檔案會記錄工作階段的線索
+### <a name="sample-journal-file-jrn-for-session-that-records-the-trail-of-sessions"></a>工作階段的範例日誌檔案 (JRN)，此檔案會記錄工作階段的軌跡
 
 ```
 [BeginUpdateRecord][2016/11/02 18:24:14.735][Type:NewJournalFile]
@@ -309,13 +310,13 @@ StorageAccountKey: *******
 
 WAImportExport 工具是磁碟機準備及修復工具，可搭配 Microsoft Azure 匯入/匯出服務使用。 您可以使用此工具，將資料複製到要寄送至 Azure 資料中心的硬碟。 匯入工作完成後，您可以使用此工具來修復損毀、遺漏或與其他 Blob 衝突的任何 Blob。 當您收到已完成的匯出工作中的磁碟機後，您可以使用此工具來修復磁碟機上損毀或遺漏的任何檔案。
 
-#### <a name="how-does-the-waimportexport-tool-work-on-multiple-sorce-dir-and-disks"></a>WAImportExport 工具如何運用在多個來源目錄和磁碟？
+#### <a name="how-does-the-waimportexport-tool-work-on-multiple-source-dir-and-disks"></a>WAImportExport 工具如何在多個來源目錄和磁碟上運作？
 
-如果資料大小超過磁碟大小，WAImportExport 工具會將資料以最佳化方式分散在多個磁碟。 資料可以平行或循序方式複製到多個磁碟。 同時寫入資料的磁碟數目沒有限制。 此工具會根據磁碟大小和資料夾大小來分配資料。 它會選取最適合物件大小的磁碟。 資料上傳至儲存體帳戶時將併回指定的目錄結構。
+如果資料大小超過磁碟大小，WAImportExport 工具會將資料以最佳化方式分散在多個磁碟。 資料可以平行或循序方式複製到多個磁碟。 同時寫入資料的磁碟數目沒有限制。 此工具會根據磁碟大小和資料夾大小來分配資料。 它將選取最適合物件大小的磁碟。 資料上傳至儲存體帳戶時將併回指定的目錄結構。
 
 #### <a name="where-can-i-find-previous-version-of-waimportexport-tool"></a>哪裡可以找到舊版的 WAImportExport 工具？
 
-WAImportExport 工具擁有 WAImportExport V1 工具的所有功能。 WAImportExport 工具可讓使用者指定多個來源和寫入多個磁碟機。 此外，使用者可以輕鬆地管理多個來源位置 (資料必須從這些來源位置複製到單一 CSV 檔案)。 不過，萬一您需要 SAS 支援或想要將單一來源複製到單一磁碟，您可以 [下載 WAImportExport V1 工具] (http://go.microsoft.com/fwlink/?LinkID=301900&amp;clcid=0x409)，並參閱 [WAImportExport V1 參考](storage-import-export-tool-how-to-v1.md) 以取得 WAImportExport V1 使用方式的說明。
+WAImportExport 工具擁有 WAImportExport V1 工具的所有功能。 WAImportExport 工具可讓使用者指定多個來源並寫入多個磁碟機。 此外，使用者可以輕鬆地管理多個來源位置 (資料必須從這些來源位置複製到單一 CSV 檔案)。 不過，萬一您需要 SAS 支援或想要將單一來源複製到單一磁碟，您可以 [下載 WAImportExport V1 工具] (http://go.microsoft.com/fwlink/?LinkID=301900&amp;clcid=0x409)，並參閱 [WAImportExport V1 參考](storage-import-export-tool-how-to-v1.md) 以取得 WAImportExport V1 使用方式的說明。
 
 #### <a name="what-is-a-session-id"></a>什麼是工作階段識別碼？
 
@@ -337,27 +338,27 @@ WAImportExport 工具擁有 WAImportExport V1 工具的所有功能。 WAImportE
 
 #### <a name="what-is-a-log-directory"></a>什麼是記錄檔目錄？
 
-記錄檔目錄指定要用來儲存詳細資訊記錄檔和暫存資訊清單檔案的目錄。 如未指定，將使用目前的目錄做為記錄檔目錄。 記錄檔是詳細資訊記錄檔。
+記錄檔目錄指定要用來儲存詳細資訊記錄檔和暫存資訊清單檔案的目錄。 如未指定，將使用目前的目錄做為記錄檔目錄。 記錄是詳細資訊記錄。
 
 ### <a name="prerequisites"></a>必要條件
 
 #### <a name="what-are-the-specifications-of-my-disk"></a>什麼是磁碟的規格？
 
-一或多個連接至複製電腦的空白 2.5 或 3.5 英吋 SATAII 或 III 或 SSD 硬碟。
+一或多個連接至複製電腦的空白 2.5 英吋或 3.5 英吋 SATAII 或 III 或 SSD 硬碟。
 
 #### <a name="how-can-i-enable-bitlocker-on-my-machine"></a>如何啟用我電腦上的 BitLocker？
 
-簡易的檢查方式是以滑鼠右鍵按一下系統磁碟機上。 它會顯示 Bitlocker 的選項 (如果此功能已開啟)。 如果此功能已關閉，就不會看到它。
+簡易的檢查方式是以滑鼠右鍵按一下系統磁碟機上。 它會顯示 Bitlocker 的選項 (如果此功能已開啟)。 如果此功能已關閉，您就不會看到它。
 
 ![檢查 BitLocker](./media/storage-import-export-tool-preparing-hard-drives-import/BitLocker.png)
 
 這裡有關於[如何啟用 BitLocker](https://technet.microsoft.com/library/cc766295.aspx)的文章
 
-您的電腦很可能沒有 tpm 晶片。 如果您使用 tpm.msc 並未取得輸出，請查看下一個常見問題集。
+您的電腦很可能沒有 TPM 晶片。 如果您使用 tpm.msc 並未取得輸出，請查看下一個常見問題集。
 
 #### <a name="how-to-disable-trusted-platform-module-tpm-in-bitlocker"></a>如何停用 BitLocker 中受信任的平台模組 (TPM)？
 > [!NOTE]
-> 只有當伺服器中沒有 TPM 時，您才需要停用 TPM 原則。如果使用者的伺服器中有受信任的 TPM，就不需要停用 TPM。 
+> 只有當他們的伺服器中沒有 TPM 時，您才需要停用 TPM 原則。 如果使用者的伺服器中具有受信任的 TPM，就不需要停用 TPM。 
 > 
 
 若要停用 BitLocker 中的 TPM，請遵循下列步驟︰<br/>
@@ -394,11 +395,11 @@ WAImportExport 工具擁有 WAImportExport V1 工具的所有功能。 WAImportE
 
 #### <a name="how-many-of-the-input-disks-will-have-active-io-in-parallel-when-copy-is-in-progress"></a>當複製進行時，將有多少輸入磁碟會平行擁有作用中 IO？
 
-工具會依據輸入檔案的大小，將資料分散到多個輸入磁碟。 也就是說，平行的作用中磁碟數完全取決於輸入資料的性質。 根據輸入資料集中個別檔案的大小，一或多個磁碟可能會平行顯示作用中 IO。 如需詳細資料，請參閱下一個常見問題集。
+工具會依據輸入檔案的大小，將資料分散到多個輸入磁碟。 也就是說，平行的作用中磁碟數完全取決於輸入資料的性質。 根據輸入資料集中個別檔案的大小，一或多個磁碟可能會平行顯示作用中 IO。 如需詳細資料，請參閱下一個問題。
 
 #### <a name="how-does-the-tool-distribute-the-files-across-the-disks"></a>工具如何將檔案分散於多個磁碟？
 
-WAImportExport 工具會以批次方式讀取和寫入檔案，一個批次最多包含 100000 個檔案。 這表示最多可以平行寫入 100000 個檔案。 如果這 100000 個檔案分散到多個磁碟機，則會同時寫入到多個磁碟。 不過，工具會同時寫入到多個磁碟或單一磁碟，取決於批次的累計大小。 例如，當檔案較小時，如果這 10,0000 個檔案可以全部容納於單一磁碟機，工具在此批次的處理期間將只會寫入一個磁碟。
+WAImportExport 工具會以批次方式讀取和寫入檔案，一個批次最多包含 100000 個檔案。 這表示最多可以平行寫入 100000 個檔案。 如果將這 100000 個檔案分散到多個磁碟機，即會同時寫入到多個磁碟。 不過，工具要同時寫入到多個磁碟或單一磁碟，取決於批次的累計大小。 例如，當檔案較小時，如果這 10,0000 個檔案可以全部容納於單一磁碟機，工具在此批次的處理期間將只會寫入一個磁碟。
 
 ### <a name="waimportexport-output"></a>WAImportExport 輸出
 

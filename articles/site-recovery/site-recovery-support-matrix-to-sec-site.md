@@ -4,7 +4,7 @@ description: "摘要說明 Azure Site Recovery 支援的作業系統和元件"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: 
 ms.service: site-recovery
@@ -12,28 +12,25 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 02/08/2017
+ms.date: 05/24/2017
 ms.author: raynew
-translationtype: Human Translation
-ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
-ms.openlocfilehash: d53d4cfdc7b673d2816fa9372dedbed540380cce
-ms.lasthandoff: 04/04/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: db7ee5251f2e2016081e55ca4b295e284c8b08cf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/15/2017
 
 
 ---
 # <a name="support-matrix-for-replication-to-a-secondary-site-with-azure-site-recovery"></a>使用 Azure Site Recovery 複寫至次要網站的支援矩陣
 
-> [!div class="op_single_selector"]
-> * [複寫至 Azure](site-recovery-support-matrix-to-azure.md)
-> * [複寫至內部部署位置](site-recovery-support-matrix-to-sec-site.md)
-
 本文將摘要說明使用 Azure Site Recovery 複寫至次要內部部署網站所支援的項目。
 
 ## <a name="deployment-options"></a>部署選項
 
-**部署** | **VMware/實體伺服器** | **Hyper-V (含/不含 SCVMM)
+**部署** | **VMware/實體伺服器** | **Hyper-V (含/不含 SCVMM)**
 --- | --- | --- | ---
-**Azure 入口網站** | 內部部署 VMware VM 至次要 VMware 網站。<br/><br/> 下載 [InMage Scout 使用者指南](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (Azure 入口網站不提供)。 | VMM 雲端中的內部部署 Hyper-V VM 至次要 VMM 雲端。<br></br> 不支援沒有 SCVMM 的情況  <br/><br/> 僅限標準 Hyper-V 複寫。 不支援 SAN。
+**Azure 入口網站** | 內部部署 VMware VM 至次要 VMware 網站。<br/><br/> 下載 [InMage Scout 使用者指南](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (Azure 入口網站不提供)。 | VMM 雲端中的內部部署 Hyper-V VM 至次要 VMM 雲端。<br></br> 不支援沒有 VMM 的情況  <br/><br/> 僅限標準 Hyper-V 複寫。 不支援 SAN。
 **傳統入口網站** | 僅限使用維護模式。 無法建立新的保存庫。 | 僅限使用維護模式<br></br> 不支援沒有 SCVMM 的情況
 **PowerShell** | 不支援 | 支援<br></br> 不支援沒有 SCVMM 的情況
 
@@ -140,5 +137,6 @@ RDM | 是 | N/A
 
 ## <a name="next-steps"></a>後續步驟
 
-深入了解[部署必要條件](site-recovery-prereq.md)。
+- [將 VMM 雲端中的 Hyper-V VM 複寫至次要網站](site-recovery-vmm-to-vmm.md)
+- [將 VMware VM 和實體伺服器複寫至次要網站](site-recovery-vmware-to-vmware.md)
 

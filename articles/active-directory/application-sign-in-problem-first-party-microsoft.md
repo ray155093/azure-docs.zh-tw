@@ -11,14 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: c3594b292a5b548bcb1e0df5959775d139576597
+ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
+ms.openlocfilehash: 77f8f10c764013e539480138fb1479d0326b5eef
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/17/2017
-
+ms.lasthandoff: 06/30/2017
 
 ---
 
@@ -505,7 +504,7 @@ Microsoft 應用程式 (如 Office 365 Exchange、SharePoint、Yammer 等) 在�
 
 ### <a name="perform-a-user-level-consent-operation"></a>執行使用者層級同意作業
 
--   對於任何應用程式，若瀏覽至應用程式的登入畫面，會為登入的使用者執行對該應用程式的使用者層級同意。
+-   對於任何已啟用 Open ID Connect 且要求權限的應用程式，若瀏覽至應用程式的登入畫面，會為登入的使用者執行對該應用程式的使用者層級同意。
 
 -   如果您想要以程式設計方式執行這項作業，請參閱[要求個別使用者同意](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes#requesting-individual-user-consent)。
 

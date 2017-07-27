@@ -1,6 +1,6 @@
 ---
 title: "了解 Azure Service Fabric 支援選項 | Microsoft Docs"
-description: "支援的 Azure Service Fabric 叢集版本和檔案支援票證連結。"
+description: "支援的 Azure Service Fabric 叢集版本和檔案支援票證連結"
 services: service-fabric
 documentationcenter: .net
 author: pkc
@@ -12,13 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 05/05/2017
+ms.date: 06/15/2017
 ms.author: pkc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: f87aec3698addae135d4c934bb7217d9fae0e571
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: de5795d4781d8c01bce7313ae53ad801a0e48149
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -78,13 +78,13 @@ ms.lasthandoff: 05/09/2017
  
 以下是支援的 Service Fabric 版本清單以及其支援結束日期。
 
-| **Service Fabric 執行階段叢集** | **結束支援日期** |
-| --- | --- |
-| 5.3.121 之前的所有叢集版本 |2017 年 1 月 20 日 |
-| 5.3.* |2017 年 2 月 24 日 |
-| 5.4.* |2017 年 5 月 10 日     |
-| 5.5.* |2017 年 7 月 10 日    |
-| 5.6.* |目前版本，沒有結束日期
+| **Service Fabric 執行階段叢集** | **相容的 SDK / NuGet 套件版本** | **結束支援日期** |
+| --- | --- | --- |
+| 5.3.121 之前的所有叢集版本 |小於或等於 2.3 版本 |2017 年 1 月 20 日 |
+| 5.3.* |小於或等於 2.3 版本 |2017 年 2 月 24 日 |
+| 5.4.* |小於或等於 2.4 版本 |2017 年 5 月 10 日     |
+| 5.5.* |小於或等於 2.5 版本 |2017 年 8 月 10 日    |
+| 5.6.* |小於或等於 2.6 版本 |目前版本，沒有結束日期
 
 <a id="previewversion"></a>
 ## <a name="service-fabric-preview-versions---unsupported-for-production-use"></a>Service Fabric 預覽版本 - 不支援用於生產環境。

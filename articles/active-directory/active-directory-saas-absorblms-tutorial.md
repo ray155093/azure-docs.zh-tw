@@ -13,10 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: e42c541ce15b2e025c7019e91ae3c6c74483b6c2
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 5119772dd7c3d55ed4e0ad44e71bd67b2e923409
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -24,7 +25,7 @@ ms.lasthandoff: 04/21/2017
 
 在本教學課程中，您將了解如何整合 Absorb LMS 與 Azure Active Directory (Azure AD)。
 
-Absorb LMS 與 Azure AD 整合提供下列優點：
+將 Absorb LMS 與 Azure AD 整合可提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 Absorb LMS 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Absorb LMS (單一登入)
@@ -37,7 +38,7 @@ Absorb LMS 與 Azure AD 整合提供下列優點：
 若要設定與 Absorb LMS 的 Azure AD 整合，您需要下列項目：
 
 - Azure AD 訂用帳戶
-- 啟用 Absorb LMS 單一登入的訂用帳戶
+- 已啟用 Absorb LMS 單一登入功能的訂用帳戶
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -74,7 +75,7 @@ Absorb LMS 與 Azure AD 整合提供下列優點：
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_search.png)
 
-5. 在結果窗格中，選取 [Absorb LMS]，然後按一下 [新增] 按鈕以新增應用程式。
+5. 在結果面板中，選取 [Absorb LMS]，然後按一下 [新增] 按鈕以新增該應用程式。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_addfromgallery.png)
 
@@ -83,13 +84,13 @@ Absorb LMS 與 Azure AD 整合提供下列優點：
 
 若要讓單一登入能夠運作，Azure AD 必須知道 Absorb LMS 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 Absorb LMS 中的相關使用者之間建立連結關聯性。
 
-建立此連結關聯性的方法，就是將 Azure AD 中**使用者名稱**的值指派為 Absorb LMS 中 **Username** 的值。
+建立此連結關聯性的方法，就是將 Absorb LMS 中 [Username] 的值指派為 Azure AD 中 [使用者名稱] 的值。
 
-若要使用 Absorb LMS 來設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：
+若要設定及測試與 Absorb LMS 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 Absorb LMS 測試使用者](#creating-an-absorb-lms-test-user)** - 在 Absorb LMS 中建立一個與 Azure AD 中代表 Britta Simon 的項目連結的 Britta Simon 對應項目。
+3. **[建立 Absorb LMS 測試使用者](#creating-an-absorb-lms-test-user)** - 在 Absorb LMS 中建立一個與 Azure AD 中代表 Britta Simon 之項目連結的 Britta Simon 對應項目。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
@@ -97,7 +98,7 @@ Absorb LMS 與 Azure AD 整合提供下列優點：
 
 在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，然後在您的 Absorb LMS 應用程式中設定單一登入。
 
-**若要使用 Absorb LMS 設定 Azure AD 單一登入，請執行下列步驟：**
+**若要設定與 Absorb LMS 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
 1. 在 Azure 入口網站的 [Absorb LMS] 應用程式整合頁面上，按一下 [單一登入]。
 
@@ -107,7 +108,7 @@ Absorb LMS 與 Azure AD 整合提供下列優點：
  
     ![設定單一登入](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_samlbase.png)
 
-3. 如果您想要以「IDP 起始模式」設定應用程式，請在 [Absorb LMS 網域和 URL] 區段上執行下列步驟：
+3. 如果您想要以 **IDP** 起始模式設定應用程式，請在 [Absorb LMS 網域及 URL] 區段上：
 
     ![設定單一登入](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_url.png)
 
@@ -209,8 +210,8 @@ Absorb LMS 與 Azure AD 整合提供下列優點：
 
 ### <a name="creating-an-absorb-lms-test-user"></a>建立 Absorb LMS 測試使用者
 
-若要讓 Azure AD 使用者可以登入 Absorb LMS，則必須將他們佈建到 Absorb LMS。  
-在 Absorb LMS 中，佈建是手動工作。
+若要讓 Azure AD 使用者能夠登入 Absorb LMS，必須將他們佈建到 Absorb LMS。  
+就 Absorb LMS 而言，需以手動方式佈建。
 
 **若要佈建使用者帳戶，請執行下列步驟：**
 
@@ -240,7 +241,7 @@ Absorb LMS 與 Azure AD 整合提供下列優點：
 
     d. 在 [密碼] 文字方塊中，輸入 Britta Simon 的密碼。
 
-    e. 在 [確認密碼] 下拉式清單中，選取 Britta Simon 的確認密碼。
+    e. 在 [確認密碼] 文字方塊中，輸入相同的密碼。
     
     f. 使其 [啟用]。    
 
@@ -248,11 +249,11 @@ Absorb LMS 與 Azure AD 整合提供下列優點：
  
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
-在本節中，您會把 Absorb LMS 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+在本節中，您會將 Absorb LMS 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
 
-**若要將 Britta Simon 指派到 Absorb LMS，請執行以下步驟：**
+**若要將 Britta Simon 指派給 Absorb LMS，請執行以下步驟：**
 
 1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
 

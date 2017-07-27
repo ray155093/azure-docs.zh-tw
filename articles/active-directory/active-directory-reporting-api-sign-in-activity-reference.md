@@ -3,7 +3,7 @@ title: "Azure Active Directory 登入活動報告 API 參考 | Microsoft Docs"
 description: "Azure Active Directory 登入活動報告 API 的參考"
 services: active-directory
 documentationcenter: 
-author: dhanyahk
+author: MarkusVi
 manager: femila
 editor: 
 ms.assetid: ddcd9ae0-f6b7-4f13-a5e1-6cbf51a25634
@@ -12,14 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 05/16/2017
+ms.date: 07/15/2017
 ms.author: dhanyahk;markvi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 077c39d1a6f61aba7b184ee616a93f30cdb7d12c
+ms.reviewer: dhanyahk
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: d83f1a899ba38dab2c1c1661adede87db6f88c20
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
-
+ms.lasthandoff: 07/17/2017
 
 ---
 # <a name="azure-active-directory-sign-in-activity-report-api-reference"></a>Azure Active Directory 登入活動報告 API 參考
@@ -29,10 +29,9 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 
 請參閱：
 
-* [登入活動](active-directory-reporting-azure-portal.md#sign-in-activities) 以取得詳細概念資訊
+* [登入活動](active-directory-reporting-azure-portal.md#activity-reports) 以取得詳細概念資訊
 * [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md) 以取得報告 API 的詳細資訊。
 
-如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
 
 ## <a name="who-can-access-the-api-data"></a>誰可以存取 API 資料？
 * 具有安全性系統管理員或安全性讀取者角色的使用者和服務主體

@@ -13,10 +13,11 @@ ums.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 3/13/2017
 ms.author: rclaus
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 587a8e225b18ae2a07d766f1a0d75623e44aec9f
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: e3952c6be537e28f7f2cde8f33750b1894fde8e4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -36,7 +37,7 @@ SAP HANA 提供備份 API，可讓第三方備份工具直接與 SAP HANA 整合
 
 GS5 類型的 Azure VM 正式支援 SAP HANA，以 SAP HANA 作為單一執行個體，具有額外的 OLAP 工作負載限制 (請參閱 SAP 網站上的[尋找認證 IaaS 平台](https://global.sap.com/community/ebook/2014-09-02-hana-hardware/enEN/iaas.html) (英文))。 這篇文章將會更新為新的供應項目，您就可以使用 Azure 上的 SAP HANA。
 
-Azure 上另外還有一個 SAP HANA 的混合式解決方案，其中的 SAP HANA 是在實體伺服器上非虛擬化的執行。 不過，此 SAP HANA Azure 備份指南涵蓋純 Azure 環境，即 SAP HANA 在 Azure VM 中執行，而不是 SAP HANA 在「大型執行個體」&quot;&quot;上執行。 針對此備份解決方案在「大型執行個體」&quot;&quot;上執行以儲存體快照集為基礎的備份，如需詳細資訊請參閱 [Azure 上的 SAP HANA (大型執行個體) 概觀和架構](hana-overview-architecture.md)。
+Azure 上另外還有一個 SAP HANA 的混合式解決方案，其中的 SAP HANA 是在實體伺服器上非虛擬化的執行。 不過，此 SAP HANA Azure 備份指南涵蓋純 Azure 環境，即 SAP HANA 在 Azure VM 中執行，而不是 SAP HANA 在「大型執行個體」&quot;&quot;上執行。針對此備份解決方案在「大型執行個體」&quot;&quot;上執行以儲存體快照集為基礎的備份，如需詳細資訊請參閱 [Azure 上的 SAP HANA (大型執行個體) 概觀和架構](hana-overview-architecture.md)。
 
 Azure 上支援的 SAP 產品資訊可在 [SAP Note 1928533](https://launchpad.support.sap.com/#/notes/1928533) 之中找到。
 
@@ -122,7 +123,7 @@ Azure Backup 服務使用 Azure VM 的擴充功能來處理檔案系統的一致
 SAP HANA 文章[規劃備份和復原策略](https://help.sap.com/saphelp_hanaplatform/helpdata/en/ef/085cd5949c40b788bba8fd3c65743e/content.htm)說明執行備份的基本規劃︰
 
 - 儲存體快照集 (每天)
-- 以檔案或支援進行完整的資料備份 (每週一次)
+- 使用檔案或 bacint 格式進行完整的資料備份 (每週一次)
 - 自動記錄備份
 
 您可以選擇完全不進行儲存體快照集；可利用 HANA 差別備份來準備它們，例如增量或差異備份 (請參閱[差別備份](https://help.sap.com/saphelp_hanaplatform/helpdata/en/c3/bb7e33bb571014a03eeabba4e37541/content.htm))。

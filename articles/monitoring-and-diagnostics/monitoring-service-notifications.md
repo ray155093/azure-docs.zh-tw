@@ -2,7 +2,7 @@
 title: "什麼是服務健康狀態通知 | Microsoft Docs"
 description: "藉由服務健康狀態通知，您可以檢視由 Microsoft Azure 發佈的服務健康狀態訊息。"
 author: anirudhcavale
-manager: carmonm
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
 ms.openlocfilehash: c7ea129346c5fddcff9f824dc69478cf6fb1c67a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/31/2017
-
 
 ---
 # <a name="service-health-notifications"></a>服務健康狀態通知
@@ -50,7 +50,7 @@ resourceProviderName | 受影響資源的資源提供者的名稱。
 resourceType| 受影響資源的資源類型
 子狀態 | 通常包含對應 REST 呼叫的 HTTP 狀態碼，但也可以包含其他描述子狀態的字串，常見的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503)、閘道逾時 (HTTP 狀態碼︰504)。
 eventTimestamp | 處理與事件對應之要求的Azure 服務產生事件時的時間戳記。
-submissionTimestamp |     當事件變成可供查詢時的時間戳記。
+submissionTimestamp |   當事件變成可供查詢時的時間戳記。
 subscriptionId | 記錄此事件的 Azure 訂用帳戶
 status | 字串，描述作業的狀態。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。
 operationName | 作業名稱。
@@ -68,15 +68,15 @@ Properties.communicationId | 與此事件相關聯的通訊。
 
 
 ## <a name="viewing-your-service-health-notifications-in-the-azure-portal"></a>在 Azure 入口網站中檢視您的服務健康狀態通知
-1.    在[入口網站](https://portal.azure.com)中，瀏覽至 [監視] 服務
+1.  在[入口網站](https://portal.azure.com)中，瀏覽至 [監視] 服務
 
     ![監視](./media/monitoring-service-notifications/home-monitor.png)
-2.    按一下 [監視] 選項來開啟 [監視] 刀鋒視窗。 此刀鋒視窗會將您所有的監視設定和資料結合成一個彙總檢視。 它會先開啟 [活動記錄檔]  區段。
+2.  按一下 [監視] 選項來開啟 [監視] 刀鋒視窗。 此刀鋒視窗會將您所有的監視設定和資料結合成一個彙總檢視。 它會先開啟 [活動記錄檔]  區段。
 
-3.    此時按一下 [服務通知] 區段
+3.  此時按一下 [服務通知] 區段
 
     ![監視](./media/monitoring-service-notifications/service-health-summary.png)
-4.    按一下任何明細項目以檢視其他詳細資訊
+4.  按一下任何明細項目以檢視其他詳細資訊
 
 5. 按一下 [+ 加入活動記錄警示] 作業以接收通知，確保您會在未來收到此類型的服務通知。 若要深入了解服務通知上的警示設定，[請按一下這裡](monitoring-activity-log-alerts-on-service-notifications.md)
 

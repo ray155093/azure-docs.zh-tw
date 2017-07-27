@@ -56,7 +56,7 @@
 ## [配額](event-hubs-quotas.md)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=internet-of-things)
 ## [程式碼範例](event-hubs-samples.md)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/event-hubs/)
 ## [價格](https://azure.microsoft.com/pricing/details/event-hubs/)

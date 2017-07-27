@@ -17,10 +17,10 @@ ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4421506f516e6a65b7ff9207ce13dfb86e7c3540
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: a49be9d5037af120e429a9cc7ae77ceda5e03236
 ms.contentlocale: zh-tw
-ms.lasthandoff: 11/17/2016
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 11/17/2016
    * 選擇要將事件的輸出傳送給信號緩衝區類型的目標，名稱為 **package0.ring_buffer**。
 3. 啟動事件工作階段。
 4. 發出幾個簡單的 SQL UPDATE 陳述式。
-5. 發出 SQL SELECT 擷取信號緩衝區的事件輸出。
+5. 發出 SQL SELECT 陳述式擷取信號緩衝區的事件輸出。
    
    * **sys.dm_xe_database_session_targets** 和其他動態管理檢視 (DMV) 會聯結在一起。
 6. 停止事件工作階段。

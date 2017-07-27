@@ -67,7 +67,7 @@ cd nodejs-docs-hello-world
 npm start
 ```
 
-開啟網頁瀏覽器，然後瀏覽至範例應用程式 (位於 http://localhost:1337)。
+開啟網頁瀏覽器，然後瀏覽至範例應用程式 (位於 http://localhost:1337 )。
 
 您會看到來自範例應用程式的 **Hello World** 訊息顯示在網頁中。
 

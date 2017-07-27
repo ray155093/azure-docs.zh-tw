@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 04/12/2017
+ms.date: 05/25/2017
 ms.author: sasubram
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 4ae08f16db8c0b8cd2e918d25aa546f1da615af1
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
+ms.openlocfilehash: 42229b338063634480551f26896963d8add5e071
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/26/2017
 
 
 ---
@@ -34,12 +35,13 @@ ms.lasthandoff: 04/27/2017
 
 ## <a name="a-b2b-guest-user-is-not-showing-up-in-sharepoint-onlineonedrive-people-picker"></a>B2B 來賓使用者不會顯示在 SharePoint Online/OneDrive 人員選擇器中 
  
-在 SharePoint Online 人員選擇器中搜尋現有來賓使用者的功能預設為關閉，以符合舊版的行為。
+在 SharePoint Online (SPO) 人員選擇器中搜尋現有來賓使用者的功能預設為關閉，以符合舊版的行為。
+
 您可以使用租用戶和網站集合層級中的 'ShowPeoplePickerSuggestionsForGuestUsers' 設定來啟用此功能。 您可以使用 Set-SPOTenant 和 Set-SPOSite Cmdlet 來設定此功能，讓成員搜尋目錄中所有的現有來賓使用者。 租用戶範圍中的變更不會影響已佈建的 SPO 網站。
 
 ## <a name="invitations-have-been-disabled-for-directory"></a>已針對目錄停用邀請
 
-若看到錯誤訊息指出您沒有邀請使用者的權限，請確認您的使用者帳戶已獲邀請外部使用者的授權。 這可以在 [使用者設定] 下完成：
+若收到通知指出您沒有邀請使用者的權限，請在 [使用者設定] 下，確認您的使用者帳戶已獲邀請外部使用者的授權：
 
 ![](media/active-directory-b2b-troubleshooting/external-user-settings.png)
 
@@ -57,13 +59,13 @@ ms.lasthandoff: 04/27/2017
 
 ### <a name="external-user-does-not-exist-already-in-a-federated-domain"></a>外部使用者不存在於同盟網域中
 
-若外部使用者使用同盟解決方案，其中驗證是在內部部署環境中執行且該使用者尚未存在於 Azure Active Directory 中，則無法邀請該使用者。
+如果您使用同盟驗證，而使用者目前不在 Azure Active Directory 中，則無法邀請使用者。
 
 若要解決此問題，外部使用者的系統管理員必須將該使用者的帳戶同步到 Azure Active Directory。
 
 ## <a name="how-does--which-is-not-normally-a-valid-character-sync-with-azure-ad"></a>‘\#’ (通常是無效的字元) 如何與 Azure AD 同步？
 
-“\#” 是 Azure AD B2B 共同作業或外部使用者之 UPN 中的保留字元 (亦即，若邀請 user@contoso.com，它會變成 user_contoso.com#EXT@fabrikam.onmicrosoft.com)，因此來自內部部署之 UPN 中的 \# 不被允許登入 Azure 入口網站。
+因為受邀帳戶 user@contoso.com 會成為 user_contoso.com#EXT@fabrikam.onmicrosoft.com，所以 “\#” 是 Azure AD B2B 共同作業或外部使用者之 UPN 中的保留字元。 因此，來自內部部署之 UPN 中的 \# 不可登入 Azure 入口網站。 
 
 ## <a name="i-receive-an-error-when-adding-external-users-to-a-synchronized-group"></a>我在將外部使用者新增到已同步的群組時遇到錯誤
 
@@ -75,7 +77,12 @@ ms.lasthandoff: 04/27/2017
 
 ## <a name="i-notice-that-the-custom-message-does-not-get-included-with-invitation-messages-at-times"></a>我注意到自訂訊息有時候不會包含在邀請訊息中
 
-為了符合隱私權法律，當邀請者在資源組織 (也稱為邀請租用) 中沒有電子郵件地址時，或在邀請是由應用程式服務主體傳送時，我們的 API 將不會在電子郵件邀請中包含自訂訊息。 如果此案例對您很重要，您可以抑制我們的 API 以使它無法傳送邀請電子郵件，然後透過您偏好的電子郵件機制傳送邀請電子郵件。 請務必諮詢貴組織的法律顧問，以確定透過此方式傳送的電子郵件能符合隱私權法律。
+為了符合隱私權法律，在下列情況下，我們的 API 不會在電子郵件邀請中包含自訂訊息：
+
+- 邀請者在提出邀請的租用戶中沒有電子郵件地址
+- 應用程式服務主體傳送邀請時
+
+如果此案例對您很重要，您可以隱藏我們的 API 邀請電子郵件，然後透過您選擇的電子郵件機制傳送邀請電子郵件。 請諮詢貴組織的法律顧問，以確定透過此方式傳送的任何電子郵件也符合隱私權法律。
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -87,7 +94,7 @@ ms.lasthandoff: 04/27/2017
 * [B2B 共同作業邀請電子郵件的元素](active-directory-b2b-invitation-email.md)
 * [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
 * [Azure AD B2B 共同作業授權](active-directory-b2b-licensing.md)
-* [Azure Active Directory B2B 共同作業常見問題集 (FAQ)](active-directory-b2b-faq.md)
+* [Azure Active Directory B2B 共同作業常見問題 (FAQ)](active-directory-b2b-faq.md)
 * [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
 * [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
 * [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)

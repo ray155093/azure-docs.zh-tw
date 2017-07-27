@@ -13,12 +13,13 @@ ms.devlang: arduino
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 3/21/2017
+ms.date: 6/17/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: e2d44f821635ce9d91b67ecdc0653e2ba9c99b01
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
+ms.openlocfilehash: 2f770a8f088754e63aec40d3f670f6ae0543d6e0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/28/2017
 
 
 ---
@@ -54,6 +55,7 @@ ms.lasthandoff: 04/13/2017
 
 您的開發環境還需要下列事項：
 
+* 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，請花幾分鐘的時間建立[免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。
 * 執行 Windows 或 Ubuntu 的 Mac 或 PC。
 * 供 Feather M0 WiFi 連線到的無線網路。
 * 用來下載組態工具的網際網路連線。
@@ -130,7 +132,7 @@ ms.lasthandoff: 04/13/2017
 
    `<group-owner-name>` 是您在上一個步驟中取得的群組擁有者名稱。 `<username>` 是 Ubuntu 使用者名稱。
 
-1. 登出 Ubuntu，然後再次登入，變更隨即出現。
+1. 登出 Ubuntu，然後再次登入，以顯示變更。
 
 ## <a name="collect-sensor-data-and-send-it-to-your-iot-hub"></a>收集感應器資料，並將它傳送至 IoT 中樞
 
@@ -155,9 +157,9 @@ ms.lasthandoff: 04/13/2017
 
    ![在 Arduino IDE 中開啟範例應用程式](media/iot-hub-adafruit-feather-m0-wifi-get-started/6_arduino-ide-open-sample-app.png)
 
-1. 按一下 [工具] > [電路板] > [電路板管理員]，然後安裝 `Arduino SAMD Boards` 版本 `1.6.2` 或更新版本 
+1. 按一下 [工具] > [面板] > [面板管理員]，然後安裝 `Arduino SAMD Boards` 版本 `1.6.2` 或更新版本。 然後安裝 `Adafruit SAMD` 套件來新增面板檔案定義。
 
-   [電路板管理員] 指出已安裝的 `Arduino SAMD Boards` 版本為 `1.6.2` 版或更新版本。
+   [電路板管理員] 指出已安裝的 `Arduino SAMD Boards` 版本為 `1.6.2` 版或更新版本。 
 
    ![已安裝 esp8266 套件](media/iot-hub-adafruit-feather-m0-wifi-get-started/7_arduino-ide-package-url.png)
 
@@ -170,7 +172,6 @@ ms.lasthandoff: 04/13/2017
 
 1. 在 Arduino IDE 中，按一下 [草圖] > [包含程式庫] > [管理程式庫]。
 1. 逐一搜尋下列程式庫名稱。 對於找到的每個程式庫，按一下 [安裝]。
-   * `Adafruit_WINC1500`
    * `RTCZero`
    * `NTPClient`
    * `AzureIoTHub`
@@ -179,6 +180,7 @@ ms.lasthandoff: 04/13/2017
    * `ArduinoJson`
    * `Adafruit BME280 Library`
    * `Adafruit Unified Sensor`
+1. 手動安裝 `Adafruit_WINC1500`。 請造訪[此連結](https://github.com/adafruit/Adafruit_WINC1500)，按一下 [複製或下載] 按鈕，然後按 [下載 ZIP]。 然後在 Arduino IDE 中，移至 [草圖] -> [包含程式庫] -> [新增 .zip 程式庫]，然後新增您剛才下載的 zip 檔案。
 
 ### <a name="dont-have-a-real-bme280-sensor"></a>找不到真正的 BME280 感應器？
 
@@ -200,7 +202,7 @@ ms.lasthandoff: 04/13/2017
 
 ### <a name="enter-your-credentials"></a>輸入認證
 
-上傳程序成功完成後，請遵循這些步驟來輸入認證︰
+上傳程序成功完成後，請遵循這些步驟來輸入認證：
 
 1. 在 Arduino IDE 中，按一下 [工具] > [序列監視器]。
 1. 在 [序列監視器] 視窗中，請注意右下角的兩個下拉式清單。

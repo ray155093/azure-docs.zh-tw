@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: yushwang
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: d1f1852d720ebf51df9ec3207b070510b08a6483
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 5a6cc2db67bb60c84c9d9c08346074e9e05345f8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
+ms.lasthandoff: 06/13/2017
 
 
 ---
@@ -42,7 +42,7 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 ![BGP 拓樸](./media/vpn-gateway-bgp-resource-manager-ps/bgp-crosspremv2v.png)
 
-您可以將這些結合起來，以建立符合您的需求的更複雜、多點跳躍、過境網路。
+您可以將這些結合起來，以根據您的需求建立更複雜的多重躍點傳輸網路。
 
 ## <a name ="enablebgp"></a>第 1 部分 - 在 Azure VPN 閘道上設定 BGP
 下列設定步驟將會設定 Azure VPN 閘道的 BGP 參數，如下圖所示︰

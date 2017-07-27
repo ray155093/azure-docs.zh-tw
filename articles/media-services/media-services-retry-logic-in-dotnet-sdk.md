@@ -12,12 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
+ms.date: 07/21/2017
 ms.author: juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: e22a16c0929b28c475aa4caa0465651603713112
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 ---
 # <a name="retry-logic-in-the-media-services-sdk-for-net"></a>Media Services SDK for .NET 中的重試邏輯
@@ -47,7 +48,7 @@ ms.openlocfilehash: e22a16c0929b28c475aa4caa0465651603713112
 | StorageException |否 |是 |否 |否 |
 | IOException |否 |是 |否 |否 |
 
-### <a name="a-namewebexceptionstatusa-webexception-status-codes"></a><a name="WebExceptionStatus"></a> WebException 狀態碼
+### <a name="WebExceptionStatus"></a> WebException 狀態碼
 下表顯示重試邏輯實作的 WebException 錯誤碼。 [WebExceptionStatus](http://msdn.microsoft.com/library/system.net.webexceptionstatus.aspx) 列舉定義狀態碼。  
 
 | 狀態 | Web 要求 | 儲存體 | 查詢 | SaveChanges |
@@ -65,7 +66,7 @@ ms.openlocfilehash: e22a16c0929b28c475aa4caa0465651603713112
 | 逾時 |是 |是 |是 |否 |
 | ProtocolError <br/>ProtocolError 重試是由 HTTP 狀態碼處理所控制。 如需詳細資訊，請參閱 [HTTP 錯誤狀態碼](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode)。 |是 |是 |是 |是 |
 
-### <a name="a-namehttpstatuscodea-http-error-status-codes"></a><a name="HTTPStatusCode"></a> HTTP 錯誤狀態碼
+### <a name="HTTPStatusCode"></a> HTTP 錯誤狀態碼
 當查詢和 SaveChanges 作業擲回 DataServiceClientException、DataServiceQueryException 或 DataServiceQueryException 時，StatusCode 屬性中會傳回 HTTP 錯誤狀態碼。  下表顯示重試邏輯實作的錯誤碼。  
 
 | 狀態 | Web 要求 | 儲存體 | 查詢 | SaveChanges |
@@ -86,10 +87,5 @@ ms.openlocfilehash: e22a16c0929b28c475aa4caa0465651603713112
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

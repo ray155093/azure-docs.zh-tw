@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/21/2017
+ms.date: 07/12/2017
 ms.author: billmath
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: a78679782f538121c2451a6e2d1519f457ad057c
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 635affebf9130c2bfb38e84cc144ee4838504777
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 05/25/2017
 
 ---
 
@@ -254,7 +254,7 @@ Azure AD Connect 安裝精靈一律會建立此設定。
 1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
 2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
 3. 在 [規則類型] 下方按一下 [輸出]。
-4. 尋找名為 **Out to AAD – User Join SOAInAD** 的規則，然後按一下 [編輯]。
+4. 尋找名為 **Out to AAD – User Join** 的規則，然後按一下 [編輯]。
 5. 在快顯視窗中，回答 [是]  來建立規則的複本。
 6. 在 [描述] 頁面上，將 [優先順序] 變更為一個未使用的值，例如 50。
 7. 按一下左邊導覽列上的 [範圍設定篩選]，然後按一下 [新增子句]。 在 [屬性] 中，選取 [郵件]。 在 [運算子] 中，選取 [ENDSWITH]。 在 [值] 中，輸入 **@contoso.com**，然後按一下 [新增子句]。 在 [屬性] 中，選取 [userPrincipalName]。 在 [運算子] 中，選取 [ENDSWITH]。 在 [值] 中，輸入 **@contoso.com**。

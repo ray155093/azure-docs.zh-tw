@@ -1,27 +1,31 @@
 ---
-title: "將內容傳遞網路 (CDN) 新增至 Azure App Service | Microsoft Docs"
+title: "將 CDN 新增至 Azure App Service | Microsoft Docs"
 description: "將內容傳遞網路 (CDN) 新增至 Azure App Service，以從您在世界各地的客戶附近的伺服器快取和傳遞靜態檔案。"
 services: app-service\web
 author: syntaxc4
 ms.author: cfowler
-ms.date: 05/01/2017
+ms.date: 05/31/2017
 ms.topic: article
 ms.service: app-service-web
 manager: erikre
 ms.workload: web
 ms.custom: mvc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 7208abc0e6eaa9067c5bb36a09e1bfd276fe0b0c
+ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
+ms.openlocfilehash: a4f5113c4cc0ffb5fdd072e9a59743c83154c38c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 06/07/2017
 
 ---
 # <a name="add-a-content-delivery-network-cdn-to-an-azure-app-service"></a>將內容傳遞網路 (CDN) 新增至 Azure App Service
 
 [Azure 內容傳遞網路 (CDN)](../cdn/cdn-overview.md) 會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。 CDN 也可降低您的 Web 應用程式的伺服器負載。 本教學課程說明如何將 Azure CDN 新增至 [Azure App Service 中的 Web 應用程式](app-service-web-overview.md)。 
 
-在本教學課程中，您了解如何：
+以下是您將使用的範例靜態 HTML 網站首頁︰
+
+![範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page.png)
+
+您將學到什麼：
 
 > [!div class="checklist"]
 > * 建立 CDN 端點。
@@ -29,19 +33,22 @@ ms.lasthandoff: 05/09/2017
 > * 使用查詢字串來控制快取的版本。
 > * 使用 CDN 端點的自訂網域。
 
-以下是您將使用的範例靜態 HTML 網站首頁︰
+## <a name="prerequisites"></a>必要條件
 
-![範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page.png)
+若要完成本教學課程：
+
+- [安裝 Git](https://git-scm.com/)
+- [安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
+
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="create-the-web-app"></a>建立 Web 應用程式
 
-若要建立您將使用的 Web 應用程式，請遵循[靜態 HTML 快速入門](app-service-web-get-started-html.md)，但不進行**清除資源**步驟。
-
-當您完成本教學課程時，讓命令提示字元保持開啟狀態，以便稍後在本教學課程中部署 Web 應用程式部署的其他變更。
+若要建立您將使用的 Web 應用程式，請遵循[靜態 HTML 快速入門](app-service-web-get-started-html.md)的**瀏覽至應用程式**步驟。
 
 ### <a name="have-a-custom-domain-ready"></a>備妥自訂網域
 
-若要完成本教學課程的自訂網域步驟，您需要網域提供者 (例如 GoDaddy) 的 DNS 登錄存取權。 例如，若要為 `contoso.com` 和 `www.contoso.com` 新增 DNS 項目，您必須有權設定 `contoso.com` 根網域的 DNS 設定。
+若要完成本教學課程的自訂網域步驟，您需要擁有自訂網域並且具有網域提供者 (例如 GoDaddy) 的 DNS 登錄存取權。 例如，若要為 `contoso.com` 和 `www.contoso.com` 新增 DNS 項目，您必須有權設定 `contoso.com` 根網域的 DNS 設定。
 
 如果您還沒有網域名稱，請考慮遵循 [App Service 網域教學課程](custom-dns-web-site-buydomains-web-app.md)的作法，使用 Azure 入口網站來購買網域。 
 
@@ -65,7 +72,7 @@ ms.lasthandoff: 05/09/2017
 
 | 設定 | 建議的值 | 說明 |
 | ------- | --------------- | ----------- |
-| **CDN 設定檔** | myCDNProfile | 選取 [建立新的] 以建立新的 CDN 設定檔。 CDN 設定檔是定價層相同的 CDN 端點集合。 |
+| **CDN 設定檔** | myCDNProfile | 選取 [新建] 以建立 CDN 設定檔。 CDN 設定檔是定價層相同的 CDN 端點集合。 |
 | **定價層** | 標準 Akamai | [定價層](../cdn/cdn-overview.md#azure-cdn-features)指定提供者和可用的功能。 在本教學課程中，我們會使用標準 Akamai。 |
 | **CDN 端點名稱** | azureedge.net 網域中任何唯一的名稱 | 您可在網域 *\<endpointname>.azureedge.net* 存取快取的資源。
 
@@ -89,7 +96,7 @@ http://<appname>.azurewebsites.net/css/bootstrap.css
 http://<endpointname>.azureedge.net/css/bootstrap.css
 ```
 
-讓瀏覽器瀏覽至下列 URL，您會看到稍早在 Azure Web 應用程式中執行的相同頁面，但現在由 CDN 提供。
+在瀏覽器中瀏覽至下列 URL：
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -97,7 +104,7 @@ http://<endpointname>.azureedge.net/index.html
 
 ![CDN 提供的範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page-cdn.png)
 
-這會顯示 Azure CDN 已擷取原始 Web 應用程式的資產，並從 CDN 端點提供這些資產。 
+ 您會看到與您稍早在 Azure Web 應用程式中執行的相同分頁。 Azure CDN 已擷取原始 Web 應用程式的資產，並從 CDN 端點提供這些資產
 
 若要確保此頁面已在 CDN 中快取，請重新整理此頁面。 CDN 有時需要相同資產的兩個要求，才能快取所要求的內容。
 
@@ -188,7 +195,7 @@ Azure CDN 提供下列快取行為選項︰
 * 略過查詢字串的快取
 * 快取每個唯一的 URL 
 
-上述第一個選項是預設值，這表示不管 URL 中用於存取資產的查詢字串為何，資產都只有一個快取的版本。 
+上述第一個選項是預設值，這表示不管 URL 中的查詢字串為何，資產都只有一個快取的版本。 
 
 在本節的教學課程中，您可將快取行為變更為快取每個唯一 URL。
 
@@ -235,7 +242,10 @@ http://<endpointname>.azureedge.net/index.html?q=1
 
 ![CDN 標題中的 V2，查詢字串 1](media/app-service-web-tutorial-content-delivery-network/v2-in-cdn-title-qs1.png)
 
-此輸出顯示每個查詢字串是以不同的方式處理︰之前使用 q=1，所以傳回快取的內容 (V2)，而 q=2 是新查詢字串，所以會擷取並傳回最新的 Web 應用程式內容 (V3)。
+此輸出會顯示每個查詢字串是以不同方式處理：
+
+* 以前使用 q=1，因此會傳回快取內容 (V2)。
+* q=2 是新的，因此會擷取及傳回最新的 Web 應用程式內容 (V3)。
 
 如需詳細資訊，請參閱[使用查詢字串控制 Azure CDN 快取行為](../cdn/cdn-query-string.md)。
 
@@ -261,7 +271,7 @@ http://<endpointname>.azureedge.net/index.html?q=1
 
 尋找管理 CNAME 的區段。 您可能需要移至進階設定頁面，並尋找 CNAME、Alias 或 Subdomains 單字。
 
-建立新的 CNAME 記錄，將您選擇的子網域 (例如 **static** 或 **cdn**) 對應到入口網站中稍早顯示的 [端點主機名稱]。 
+建立 CNAME 記錄，將您選擇的子網域 (例如 **static** 或 **cdn**) 對應到入口網站中稍早顯示的 [端點主機名稱]。 
 
 ### <a name="enter-the-custom-domain-in-azure"></a>在 Azure 中輸入自訂網域
 
@@ -269,7 +279,7 @@ http://<endpointname>.azureedge.net/index.html?q=1
    
 Azure 會確認您所輸入的網域名稱存在 CNAME 記錄。 如果 CNAME 正確，您的自訂網域就會驗證。
 
-可能需要時間讓 CNAME 記錄傳播到網際網路上的名稱伺服器。 如果未立即驗證您的網域，但您確信 CNAME 記錄正確，請等待數分鐘的時間，然後再試一次。
+可能需要時間讓 CNAME 記錄傳播到網際網路上的名稱伺服器。 如果您的網域不會立即驗證，請稍候幾分鐘，然後再試一次。
 
 ### <a name="test-the-custom-domain"></a>測試自訂網域
 
@@ -283,7 +293,7 @@ Azure 會確認您所輸入的網域名稱存在 CNAME 記錄。 如果 CNAME �
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何：
+您已了解如何︰
 
 > [!div class="checklist"]
 > * 建立 CDN 端點。
@@ -291,12 +301,11 @@ Azure 會確認您所輸入的網域名稱存在 CNAME 記錄。 如果 CNAME �
 > * 使用查詢字串來控制快取的版本。
 > * 使用 CDN 端點的自訂網域。
 
-了解在下列文章中如何將 CDN 效能最佳化。
+在下列文章中了解如何將 CDN 效能最佳化：
 
 > [!div class="nextstepaction"]
 > [在 Azure CDN 中壓縮檔案以改善效能](../cdn/cdn-improve-performance.md)
 
 > [!div class="nextstepaction"]
 > [在 Azure CDN 端點上預先載入資產](../cdn/cdn-preload-endpoint.md)
-
 

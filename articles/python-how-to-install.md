@@ -14,10 +14,11 @@ ms.devlang: python
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: lmazuel
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: be8fed81757d3a7467707e4e0fdf1fd5734e0f07
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: 90c8c6d91de667f2d234b1d4e89ce7336813fb62
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -92,7 +93,7 @@ Azure SDK for Python 內含的元件可讓您開發、部署及管理適用於 A
 [Python 封裝索引][Python Package Index] (PyPI) 具有選擇性豐富的 Python 程式庫。  如果您選擇了安裝散發版本，則您將已擁有從 Web 開發到「工程運算」的各種案例中大多數令人關注的部分。
 
 ## <a name="python-tools-for-visual-studio"></a>Python Tools for Visual Studio
-[Python Tools for Visual Studio][Python Tools for Visual Studio] (PTVS) 是 Microsoft 提供的免費/OSS 外掛程式，它能將 VS 轉變為成熟的 Python IDE：
+[適用於 Visual Studio 的 Python 工具][適用於 Visual Studio 的 Python 工具] (PTVS) 是 Microsoft 提供的免費/OSS 外掛程式，它能將 VS 轉變為成熟的 Python IDE：
 
 ![how-to-install-python-ptvs](./media/python-how-to-install/how-to-install-python-ptvs.png)
 
@@ -100,7 +101,7 @@ Azure SDK for Python 內含的元件可讓您開發、部署及管理適用於 A
 
 PTVS 也能讓您使用部署至[雲端服務](cloud-services/cloud-services-python-ptvs.md)和[網站](app-service-web/web-sites-python-ptvs-django-mysql.md)的支援，輕鬆部署至 Microsoft Azure。
 
-PTVS 可以和您現有的 Visual Studio 2013 或 2015 安裝一同運作。  如需文件、下載項目和相關討論，請參閱 [Python Tools for Visual Studio]。  
+PTVS 可以和您現有的 Visual Studio 2013、2015 或 2017 安裝一同運作。  如需文件、下載項目和相關討論，請參閱[適用於 Visual Studio 的 Python 工具]。  
 
 ## <a name="python-azure-scenarios-for-linux-and-macos"></a>適用於 Linux 和 MacOS 的 Python Azure 案例
 就 Linux 或 MacOS 而言，支援的 Azure 案例包括：
@@ -149,7 +150,7 @@ PTVS 可以和您現有的 Visual Studio 2013 或 2015 安裝一同運作。  �
 [IPython Notebook on Azure]: virtual-machines-linux-jupyter-notebook.md
 [Cloud Services]: cloud-services-python-ptvs.md
 [Websites]: web-sites-python-ptvs-django-mysql.md
-[Python Tools for Visual Studio]: http://aka.ms/ptvs
+[適用於 Visual Studio 的 Python 工具]: http://aka.ms/ptvs
 [Python Tools for Visual Studio on GitHub]: https://github.com/microsoft/ptvs
 [Python Package Index]: http://pypi.python.org/pypi
 [Microsoft Azure SDK for Python 2.7]: http://go.microsoft.com/fwlink/?LinkId=254281

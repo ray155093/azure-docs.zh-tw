@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/08/2016
 ms.author: jucoriol
-translationtype: Human Translation
-ms.sourcegitcommit: c5e05a8693bd000010013922ed6f2a127e998efe
-ms.openlocfilehash: db58703f573c09ba45abed87547c5e80ef58638b
-ms.lasthandoff: 12/14/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
+ms.openlocfilehash: 86472a523b457d6fe06940accba0794e2d37395e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/19/2017
 
 
 ---
@@ -166,7 +167,7 @@ Microsoft 提供 VSTS 擴充以在建置與發行程序中搭配 Docker 使用�
 
 4. 針對這五個映像個別設定好建置和推送步驟之後，請在建置工作流程中再新增兩個步驟。
 
-    a. 一個命令列工作，會使用 bash 指令碼以目前的組建識別碼取代 docker-compose.yml 檔案中出現的 *BuildNumber*。 請參閱以下畫面了解詳細資料。
+    a. 命令列工作會使用 bash 指令碼以目前的組建識別碼取代 docker-compose.yml 檔案中的 *BuildNumber*。 請參閱以下畫面了解詳細資料。
 
     ![Visual Studio Team Services - 更新 Compose 檔案](./media/container-service-docker-swarm-setup-ci-cd/vsts-build-replace-build-number.png)
 
@@ -230,3 +231,4 @@ Visual Studio Team Services 可讓您[跨環境管理發行 (英文)](https://ww
 ## <a name="next-steps"></a>後續步驟
 
 * 如需 CI/CD 與 Visual Studio Team Services 的相關詳細資訊，請參閱 [VSTS 建置概觀](https://www.visualstudio.com/docs/build/overview)。
+

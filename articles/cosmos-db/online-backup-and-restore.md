@@ -13,13 +13,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
-ms.date: 05/24/2017
+ms.date: 06/23/2017
 ms.author: raprasa
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 11e60ab8dfada4b8b0e1cd73ca60dc428364dc68
+ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
+ms.openlocfilehash: a438b5079ae48c82fb2dbd5ce4547302364e0ef5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 06/26/2017
 
 
 ---
@@ -51,8 +51,9 @@ Cosmos DB 設計為[全域分散](distribute-data-globally.md) – 可讓您調�
 ![GRS Azure 儲存體中所有 Cosmos DB 實體的定期完整備份](./media/online-backup-and-restore/automatic-backup.png)
 
 ## <a name="retention-period-for-a-given-snapshot"></a>指定快照的保留期
-如上所述，我們會依據我們的法規定期擷取您的資料快照，最新快照被清除之前我們會保留最多 90 天。 如果容器或帳戶遭到刪除，Cosmos DB 會儲存最新備份 90 天。
+如上所述，我們每隔 4 小時會為您的資料建立快照集，並將最後兩個快照集保留 30 天。 依我們的合規性規定，會在 90 天後清除快照集。
 
+如果您想要維護自己的快照集，可以使用 Azure Cosmos DB [資料移轉工具](import-data.md#export-to-json-file)中的 [匯出至 JSON] 選項，來排程其他備份。 
 
 ## <a name="restore-database-from-the-online-backup"></a>從線上備份還原資料庫
 如果您不小心刪除資料，可以[提出支援票證](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)或[連絡 Azure 支援](https://azure.microsoft.com/support/options/)，要求從最新的自動備份還原資料。 如果要還原特定的備份快照集，Cosmos DB 會需要該資料至少是在該快照的備份週期持續時間之內。

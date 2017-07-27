@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: 858769130eed5c996bca151855bfc09d4832a314
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: 33390532cc4fc1129a4f960d589f41bc95e5a1ff
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/15/2017
 
 ---
 
@@ -88,7 +88,7 @@ ms.lasthandoff: 05/26/2017
 - **本機檔案路徑** - 要儲存封包擷取的虛擬機器上之本機路徑。 (只在選取**檔案**時才會啟用)。 必須提供有效的路徑
 - **每個封包的最大位元組** - 來自每個封包所擷取的位元組，如果保留空白，會擷取所有位元組。
 - **每個工作階段的位元組數上限** - 已擷取的位元組總數，一旦達到此值，封包擷取便會停止。
-- **時間限制 (秒)** - 設定要停止擷取封包的時間限制。 預設值為 1800 秒。
+- **時間限制 (秒)** - 設定要停止擷取封包的時間限制。 預設值為 18000 秒。
 
 > [!NOTE]
 > 儲存封包擷取目前不支援進階儲存體帳戶。

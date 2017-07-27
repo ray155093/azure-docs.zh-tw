@@ -13,13 +13,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/15/2017
+ms.date: 05/15/2017
 ms.author: kgremban
 ms.custom: end-user
-translationtype: Human Translation
-ms.sourcegitcommit: 4ff028f88e984f28bc0f4a228aabed1fabc90560
-ms.openlocfilehash: 6dafec65b2e8091954cae39994d0013d9fd06558
-ms.lasthandoff: 12/22/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 58ddf3913a5d00ee9a89a1fa112f3d55d9a815ed
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/25/2017
 
 ---
 # <a name="set-up-my-account-for-two-step-verification"></a>對我的帳戶進行雙步驟驗證設定
@@ -27,12 +28,17 @@ ms.lasthandoff: 12/22/2016
 
 本文將協助您設定您的**工作或學校帳戶**。 如果您想要對您自己的個人 Microsoft 帳戶啟用雙步驟驗證，請參閱 [雙步驟驗證](https://support.microsoft.com/help/12408/microsoft-account-about-two-step-verification)。
 
-## <a name="determine-how-you-will-use-multi-factor-authentication"></a>決定您使用 Multi-Factor Authentication 的方式
-雙步驟驗證的運作方式，是在您登入時提示您輸入兩個識別項。 首先，我們會像往常一樣要求您輸入使用者名稱和密碼。 接著，我們會以我們所知屬於您的電話連絡您，由您確認登入嘗試為合法。  
+## <a name="set-up-your-account"></a>設定帳戶
 
-若要開始安裝程序，請像平常一樣嘗試登入您的帳戶。 如果您的系統管理員已將您的帳戶設定為雙步驟驗證，系統會提示您開始進行自動註冊程序。 按一下 [立即設定] 以開始此程序。
+當您的 IT 部門要求您開始使用雙步驟驗證時，您會看到一個畫面，指出 [系統管理員已要求您為這個帳戶設定額外的安全性驗證]：
 
 ![設定](./media/multi-factor-authentication-end-user-first-time/first.png)
+
+若要開始使用，請選取 [立即設定]。
+
+如果登入時未看到類似畫面，請遵循[管理您的雙步驟驗證設定](multi-factor-authentication-end-user-manage-settings.md#where-to-find-the-settings-page)中的指示，以尋找您可以在其中管理驗證選項的設定頁面。 
+
+## <a name="decide-how-you-want-to-verify-your-sign-ins"></a>決定您要如何驗證登入
 
 註冊程序中的第一個問題是您要我們連絡您的方式。 看看資料表中的選項，並使用連結移至每個方法的設定步驟。
 
@@ -48,16 +54,19 @@ ms.lasthandoff: 12/22/2016
 1. 從下拉式清單中選取**行動應用程式**。
 2. 選取 [接收驗證的通知] 或 [使用驗證碼]，然後選取 [設定]。
 
-    ![[其他安全性驗證] 畫面](./media/multi-factor-authentication-end-user-first-time/mobileapp.png)
+   ![[其他安全性驗證] 畫面](./media/multi-factor-authentication-end-user-first-time/mobileapp.png)
+
 3. 在您的手機或平板電腦上，開啟應用程式並選取 **+** 以新增帳戶。 (在 Android 裝置上，選取三個點，然後**新增帳戶**。)
 4. 指定您想要新增的是工作帳戶還是學校帳戶。 隨即開啟您手機上的 QR 代碼掃描器。 如果您的相機未正常運作，您可以選取手動輸入公司資訊。 如需詳細資訊，請參閱 [手動新增帳戶](#add-an-account-manually)。  
 5. 掃描隨畫面顯示的 QR 代碼圖片來設定行動裝置應用程式。  按一下 [完成]  以關閉 QR 代碼畫面。  
 
-    ![QR 代碼畫面](./media/multi-factor-authentication-end-user-first-time/scan2.png)
+   ![QR 代碼畫面](./media/multi-factor-authentication-end-user-first-time/scan2.png)
+
 6. 在手機上完成啟動時，選取 [連絡我] 。  此步驟會將通知或驗證碼傳送到您的手機。 選取 [驗證] 。  
 7. 如果貴公司需要 PIN 來核准登入驗證，請輸入它。
 
-    ![輸入 PIN 的方塊](./media/multi-factor-authentication-end-user-first-time/scan3.png)
+   ![輸入 PIN 的方塊](./media/multi-factor-authentication-end-user-first-time/scan3.png)
+
 8. 輸入完 PIN 之後，請選取 [關閉] 。 此時，您的驗證應會成功。
 9. 建議您輸入您的行動電話號碼，以防萬一您無法存取行動裝置應用程式。 請從下拉式清單中指定您的國家/地區，然後在國家/地區名稱旁邊的方塊中輸入您的行動電話號碼。 選取 [下一步] 。
 10. 此時，系統會提示您設定非瀏覽器應用程式的應用程式密碼，例如 Outlook 2010 或更舊版本，或是 Apple 裝置上的原生電子郵件應用程式。 這是因為某些應用程式不支援雙步驟驗證。 如果您不使用這些應用程式，按一下 [完成]，並略過其餘的步驟。

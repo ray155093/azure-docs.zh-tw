@@ -12,14 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/12/2017
+ms.date: 07/19/2017
 ms.author: juliako
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: b35390c6eb912db966648bff4efb59cece2837b3
+ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
+ms.openlocfilehash: f8e6e1da776d680d48737ecb5ac7b9319901f121
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
-
+ms.lasthandoff: 06/30/2017
 
 ---
 # <a name="media-encoder-standard-schema"></a>媒體編碼器標準結構描述
@@ -56,13 +55,21 @@ ms.lasthandoff: 05/16/2017
 | 名稱 | 類型 | 說明 |
 | --- | --- | --- |
 | **TwoPass**<br/><br/> minOccurs="0" |**xs:boolean** |目前，只支援 One-pass 編碼。 |
-| **KeyFrameInterval**<br/><br/> minOccurs="0"<br/><br/> **default="00:00:02"** |**xs:time** |決定 IDR 畫面格之間的 (預設值) 間距。 |
+| **KeyFrameInterval**<br/><br/> minOccurs="0"<br/><br/> **default="00:00:02"** |**xs:time** |決定 IDR 框架之間的固定間距 (以秒為單位)。 也稱為 GOP 持續時間。 若要控制編碼器是否可脫離此值，請參閱 **SceneChangeDetection** (下方)。 |
 | **SceneChangeDetection**<br/><br/> minOccurs="0"<br/><br/> 預設值=”false” |**xs:boolean** |如果設為 true，編碼器會嘗試偵測視訊中的場景變更並插入 IDR 畫面格。 |
 | **Complexity**<br/><br/> minOccurs="0"<br/><br/> 預設值="Balanced" |**xs:string** |控制編碼速度和視訊品質之間的取捨。 可能是下列值之一︰**Speed**、**Balanced** 或 **Quality**<br/><br/> 預設值：**Balanced** |
 | **SyncMode**<br/><br/> minOccurs="0" | |此功能將在未來的版本中公開。 |
 | **H264Layers**<br/><br/> minOccurs="0" |[H264Layers](media-services-mes-schema.md#H264Layers) |輸出視訊圖層的集合。 |
 
+### <a name="attributes"></a>屬性
+| 名稱 | 類型 | 說明 |
+| --- | --- | --- |
+| **Condition** |**xs:string** | 當輸入沒有視訊時，您可能需要強制編碼器插入單色視訊播放軌。 若要這樣做，請使用 Condition="InsertBlackIfNoVideoBottomLayerOnly" (只以最低位元速率插入視訊) 或 Condition="InsertBlackIfNoVideo" (以所有輸出位元速率插入視訊)。 如需詳細資訊，請參閱 [這個](media-services-advanced-encoding-with-mes.md#a-idnovideoainsert-a-video-track-when-input-has-no-video) 主題。|
+
 ## <a name="H264Layers"></a> H264Layers
+
+依照預設，如果您傳送僅包含音訊訊不含視訊的輸入到編碼器，輸出資產將包含僅含音訊資料的檔案。 某些播放器可能無法處理此類型輸出資料流。 您可以在該案例中使用 H264Video 的 **InsertBlackIfNoVideo** 屬性設定來強制編碼器將視訊播放軌新增至輸出。 如需詳細資訊，請參閱 [這個](media-services-advanced-encoding-with-mes.md#a-idnovideoainsert-a-video-track-when-input-has-no-video) 主題。
+              
 ### <a name="elements"></a>元素
 | 名稱 | 類型 | 說明 |
 | --- | --- | --- |

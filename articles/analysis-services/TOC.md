@@ -1,14 +1,10 @@
 # 概觀
 ## [什麼是 Azure Analysis Services？](analysis-services-overview.md)
 ## [支援的資料來源](analysis-services-datasource.md)
-## [驗證和使用者權限](analysis-services-manage-users.md)
 
 # 快速入門
 ## [建立伺服器 - 入口網站](analysis-services-create-server.md)
 ## [部署模型 - SSDT](analysis-services-deploy.md)
-
-# 範例
-## [GitHub 上的 Analysis Services 範例](https://github.com/Microsoft/Analysis-Services)
 
 # 教學課程
 ## 建立和部署模型
@@ -30,16 +26,20 @@
 ### [補充課程 - 動態安全性](tutorials/aas-supplemental-lesson-dynamic-security.md)
 ### [補充課程 - 不完全階層](tutorials/aas-supplemental-lesson-ragged-hierarchies.md)
 
+# 概念
+## [驗證和使用者權限](analysis-services-manage-users.md)
+## [高可用性](analysis-services-bcdr.md)
+
 # 作法 
+## [在 Azure 入口網站 (預覽) 中建立模型](analysis-services-create-model-portal.md)
 ## [管理伺服器](analysis-services-manage.md)
 ## [管理資料庫使用者](analysis-services-database-users.md)
 ## [管理伺服器管理員](analysis-services-server-admins.md)
-## [整合內部部署資料閘道](analysis-services-gateway.md)
+## [安裝內部部署資料閘道](analysis-services-gateway.md)
 ## [與 Excel 連線](analysis-services-connect-excel.md)
 ## [與 Power BI 連線](analysis-services-connect-pbi.md)
 ## [取得用戶端程式庫](analysis-services-data-providers.md)
 ## [備份與還原](analysis-services-backup.md)
-## [高可用性](analysis-services-bcdr.md)
 ## [建立 .odc 檔案](analysis-services-odc.md)
 
 # 參考
@@ -50,9 +50,10 @@
 ## [表格式模型指令碼語言 (TMSL)](https://docs.microsoft.com/sql/analysis-services/tabular-model-scripting-language-tmsl-reference)
 
 # 資源
+## [GitHub 上的 Analysis Services 程式碼範例](https://github.com/Microsoft/Analysis-Services)
 ## [分析服務團隊部落格](https://blogs.msdn.microsoft.com/analysisservices/)
 ## [Azure Analysis Services 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureAnalysisServices)
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=intelligence-analytics)
 ## [Azure 狀態](https://azure.microsoft.com/status/)
 ## [意見反應](https://feedback.azure.com/forums/556165-azure-analysis-services)
 ## [價格](https://azure.microsoft.com/pricing/details/analysis-services/)
