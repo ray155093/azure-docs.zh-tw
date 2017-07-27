@@ -18,6 +18,7 @@
 ### [Java SDK](data-lake-analytics-manage-use-java-sdk.md)
 ### [Node.js](data-lake-analytics-manage-use-nodejs.md)
 ### [存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)
+### [調整配額限制](data-lake-analytics-quota-limits.md)
 
 ## 開發 U-SQL 程式
 ### [U-SQL 基本概念](data-lake-analytics-u-sql-get-started.md)
@@ -48,7 +49,7 @@
 
 # 資源
 ## [Azure Data Lake 部落格](https://blogs.msdn.microsoft.com/azuredatalake/)
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=intelligence-analytics)
 ## [在 UserVoice 上提供意見反應](https://feedback.azure.com/forums/327234-data-lake)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureDataLake)
 ## [價格](https://azure.microsoft.com/pricing/details/data-lake-analytics/)

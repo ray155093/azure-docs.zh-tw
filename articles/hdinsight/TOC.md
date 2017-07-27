@@ -13,7 +13,12 @@
 
 # 開始使用
 ## [開始使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)
-## [開始使用 Spark](hdinsight-apache-spark-jupyter-spark-sql.md)
+## 開始使用 Spark
+### [建立 Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)
+### [在 Spark 叢集上執行查詢](hdinsight-apache-spark-load-data-run-query.md)
+### [使用 BI 工具分析資料](hdinsight-apache-spark-use-bi-tools.md)
+### [管理叢集資源](hdinsight-apache-spark-resource-manager.md)
+### [為 Spark 工作偵錯](hdinsight-apache-spark-job-debugging.md)
 ## [以 R 伺服器開始](hdinsight-hadoop-r-server-get-started.md)
 ## [開始使用 HBase 與 NoSQL](hdinsight-hbase-tutorial-get-started-linux.md)
 ## [開始使用 Storm](hdinsight-apache-storm-tutorial-get-started-linux.md)
@@ -59,7 +64,6 @@
 ### [ScaleR 和 SparkR](hdinsight-hadoop-r-scaler-sparkr.md)
 ## 使用 Spark 進行記憶體中的處理
 ### [搭配 Data Lake Store](hdinsight-apache-spark-use-with-data-lake-store.md)
-### [並用 BI 工具](hdinsight-apache-spark-use-bi-tools.md)
 ### [建立獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
 ### [使用 Eclipse 建立應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
 ### [使用 IntelliJ 建立應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
@@ -76,8 +80,6 @@
 ### [使用本機 Jupyter Notebook](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 ### [使用 Livy 的遠端工作](hdinsight-apache-spark-livy-rest-interface.md)
 ### [使用 IntelliJ 透過 VPN 進行遠端偵錯作業](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
-### [管理資源](hdinsight-apache-spark-resource-manager.md)
-### [追蹤和偵錯作業](hdinsight-apache-spark-job-debugging.md)
 ### [已知問題](hdinsight-apache-spark-known-issues.md)
 ## 使用 HBase
 ### [使用 Phoenix 和 SQLLine](hdinsight-hbase-phoenix-squirrel-linux.md)
@@ -234,7 +236,7 @@
 ### [使用 Ambari API 監視叢集](hdinsight-monitor-use-ambari-api.md)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=intelligence-analytics)
 ## [在論壇上取得協助](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=hdinsight)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
 ## [Microsoft 專業巨量資料方案](https://academy.microsoft.com/en-us/professional-program/big-data/)

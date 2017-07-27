@@ -17,7 +17,7 @@
 ### 備份 VM
 #### [將 Azure 虛擬機器備份到復原服務保存庫](backup-azure-arm-vms.md)
 #### [備份加密的虛擬機器](backup-azure-vms-encryption.md)
-#### [將 Azure 虛擬機器備份至備份保存庫](backup-azure-vms.md)
+#### [備份 Azure 虛擬機器](backup-azure-vms.md)
 ### 管理和監視 VM
 #### [在 Azure 入口網站中管理 Azure VM 備份](backup-azure-manage-vms.md)
 #### [在 Azure 入口網站中監視 Azure VM 備份的警示](backup-azure-monitor-vms.md)
@@ -57,7 +57,7 @@
 ### [在 Azure 入口網站中準備 DPM 工作負載](backup-azure-dpm-introduction.md)
 ### [在傳統入口網站中準備 DPM 工作負載](backup-azure-dpm-introduction-classic.md)
 ### [使用 System Center DPM 備份 Exchange Server](backup-azure-backup-exchange-server.md)
-### [將備份保存庫中的資料還原至替代的 DPM 伺服器](backup-azure-alternate-dpm-server.md)
+### [將資料復原至替代的 DPM 伺服器中](backup-azure-alternate-dpm-server.md)
 ### [使用 DPM 備份 SQL Server 工作負載](backup-azure-backup-sql.md)
 ### [使用 DPM 備份 SharePoint 伺服器陣列](backup-azure-backup-sharepoint.md)
 
@@ -90,11 +90,12 @@
 # 概念
 ## [復原服務保存庫概觀](backup-azure-recovery-services-vault-overview.md)
 ## [將備份保存庫升級為復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)
-## [刪除 Azure 備份保存庫](backup-azure-delete-vault.md)
+## [刪除復原服務保存庫](backup-azure-delete-vault.md)
 ## [角色型存取控制](backup-rbac-rs-vault.md)
 ## [混合式備份的安全性](backup-azure-security-feature.md)
 ## [設定 Azure 備份報告](backup-azure-configure-reports.md)
 ## [適用於 Azure 備份報告的資料模型](backup-azure-reports-data-model.md)
+## [適用於 Azure 備份的 Log Analytics 資料模型](backup-azure-log-analytics-data-model.md)
 ## [設定離線備份](backup-azure-backup-import-export.md)
 ## [取代您的磁帶程式庫](backup-azure-backup-cloud-as-tape.md)
 ## [Linux VM 的應用程式一致備份](backup-azure-linux-app-consistent.md)

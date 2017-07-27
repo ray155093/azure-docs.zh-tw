@@ -40,6 +40,7 @@
 ## [保護 DNS 區域和記錄](dns-protect-zones-recordsets.md)
 ## [使用 .NET SDK 自動執行 DNS 作業](dns-sdk.md)
 
+## [將 Azure DNS 與 Azure 資源整合](dns-custom-domain.md)
 ## 疑難排解
 ### [疑難排解指南](dns-troubleshoot.md)
 
@@ -62,7 +63,7 @@
 ## [Web Apps](/azure/app-service-web/)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=networking)
 ## [功能要求](https://feedback.azure.com/forums/217313-networking/category/77466-domain-name-service-dns-traffic-manager)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
 ## [網路部落格](http://azure.microsoft.com/blog/topics/networking)

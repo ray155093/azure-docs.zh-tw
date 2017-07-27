@@ -135,9 +135,7 @@
 #### [啟用和檢視計量](storage-enable-and-view-metrics.md)
 #### [監控、診斷及疑難排解](storage-monitoring-diagnosing-troubleshooting.md)
 #### [疑難排解教學課程](storage-e2e-troubleshooting.md)
-### 針對磁碟刪除錯誤進行疑難排解
-#### [在 Resource Manager 中](storage-resource-manager-cannot-delete-storage-account-container-vhd.md)
-#### [在傳統部署中](storage-cannot-delete-storage-account-container-vhd.md)
+### [針對磁碟刪除錯誤進行疑難排解](storage-resource-manager-cannot-delete-storage-account-container-vhd.md)
 ### [針對檔案儲存體進行疑難排解](storage-troubleshoot-file-connection-problems.md)
 ## 傳送資料
 ### [將資料移入和移出儲存體](storage-moving-data.md)
@@ -208,7 +206,7 @@
 ### [疑難排解教學課程](storage-e2e-troubleshooting-classic-portal.md)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=storage)
 ## [Azure 儲存體用戶端工具](storage-explorers.md)
 ## [論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)
 ## [價格](https://azure.microsoft.com/pricing/details/storage/blobs/)
