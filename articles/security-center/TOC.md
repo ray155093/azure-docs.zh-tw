@@ -72,7 +72,7 @@
 ## [Azure 安全性](/azure/security/)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=security-identity)
 ## [Azure 安全性、隱私權和合規性部落格](http://blogs.msdn.com/b/azuresecurity/)
 ## [價格](security-center-pricing.md)
 ## [服務概觀](https://azure.microsoft.com/services/security-center/)
