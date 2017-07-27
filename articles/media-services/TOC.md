@@ -222,7 +222,7 @@
 
 # 資源
 ## [Azure 媒體服務社群](media-services-community.md)
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=web-mobile)
 ## [價格](https://azure.microsoft.com/pricing/details/media-services/)
 ## [版本資訊](media-services-release-notes.md)
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=media-services)

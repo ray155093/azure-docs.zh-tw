@@ -52,7 +52,7 @@
 ## [REST](/rest/api/virtualmachinescalesets/)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=compute)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-vm-scale-set)
 ## 價格 
 ### [Linux](https://azure.microsoft.com/pricing/details/virtual-machine-scale-sets/linux/)

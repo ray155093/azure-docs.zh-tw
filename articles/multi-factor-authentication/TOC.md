@@ -50,4 +50,4 @@
 ### [詢問問題](https://social.msdn.microsoft.com/Forums/newthread?category=windowsazureplatform&forum=windowsazureactiveauthentication&prof=required)
 ### [NPS 擴充功能錯誤](multi-factor-authentication-nps-errors.md)
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=security-identity)

@@ -112,7 +112,7 @@
 ## [REST](https://msdn.microsoft.com/library/azure/ee460812)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=compute)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/cloud-services/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-us/home?forum=windowsazuredevelopment)
 ## [價格](https://azure.microsoft.com/pricing/details/cloud-services/)

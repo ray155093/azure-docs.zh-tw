@@ -67,7 +67,7 @@
 ## [負載平衡器](/azure/load-balancer/)
 ## [流量管理員](/azure/traffic-manager/)
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=networking)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
 ## [價格](https://azure.microsoft.com/pricing/details/application-gateway/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=application-gateway)

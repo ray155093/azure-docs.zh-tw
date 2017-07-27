@@ -66,6 +66,7 @@
 ## 疑難排解
 ### [VM 部署](troubleshoot-deployment-new-vm.md)
 ### [重新啟動 VM 或調整 VM 的大小](restart-resize-error-troubleshooting.md)
+### [將虛擬硬碟附加至進行疑難排解的 VM](troubleshoot-recovery-disks-portal.md)
 
 # 參考
 ## [PowerShell](/powershell/azure/overview)
@@ -79,7 +80,7 @@
 
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=compute)
 ## [價格](https://azure.microsoft.com/pricing/details/virtual-machines/#Linux)
 ## [區域可用性](https://azure.microsoft.com/regions/services)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-machine)

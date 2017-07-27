@@ -16,7 +16,8 @@
 ### [2- 使用 Docker Compose 部署 .NET 應用程式](service-fabric-host-app-in-a-container.md)
 
 # 範例
-## [PowerShell](service-fabric-powershell-samples.md) 
+## [PowerShell](service-fabric-powershell-samples.md)
+## [Azure CLI](samples-cli.md)
 # 概念
 ## [了解微服務](service-fabric-overview-microservices.md)
 ## [概觀](service-fabric-content-roadmap.md)

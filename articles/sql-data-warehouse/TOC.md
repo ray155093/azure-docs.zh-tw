@@ -141,7 +141,7 @@
 ## [PowerShell Cmdlet](sql-data-warehouse-reference-powershell-cmdlets.md)
 
 # 資源
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=databases)
 ## [論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse)
 ## [價格](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=sql-data-warehouse)

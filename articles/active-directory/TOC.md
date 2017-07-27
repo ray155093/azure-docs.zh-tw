@@ -384,7 +384,7 @@
 
 # 資源
 ## [Azure 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory)
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=security-identity)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=WindowsAzureAD)
 ## [價格](https://azure.microsoft.com/pricing/details/active-directory/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=active-directory)

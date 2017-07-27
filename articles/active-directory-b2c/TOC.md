@@ -89,7 +89,7 @@
 
 # 資源
 ## [Azure AD B2C 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c)
-## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=security-identity)
 ## [常見問題集](active-directory-b2c-faqs.md)
 ## [價格](https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=active-directory-b2c)
