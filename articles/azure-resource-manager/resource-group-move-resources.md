@@ -1,4 +1,4 @@
----
+﻿---
 title: "將 Azure 資源移至新的訂用帳戶或資源群組 | Microsoft Docs"
 description: "使用 Azure Resource Manager 將資源移到新的資源群組或訂用帳戶。"
 services: azure-resource-manager
@@ -150,7 +150,7 @@ ms.lasthandoff: 06/30/2017
 * 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。 這項需求意謂著您甚至必須移動與 App Service 方案沒有關聯的 App Service 資源。
 * 將應用程式移到不同的資源群組，但在原始資源群組中保留所有 App Service 方案。
 
-App Service 方案不需要位於與應用程式相同的資源群組，應用程式就能正確運作。
+App Service 方案不需要與應用程式位於相同的資源群組，應用程式就能正確運作。
 
 例如，如果您的資源群組包含︰
 
