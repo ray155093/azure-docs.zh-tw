@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/14/2017
+ms.date: 07/21/2017
 ms.author: magoedte
 ms.translationtype: HT
-ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
-ms.openlocfilehash: 46766e29287ca130e68aa0f027cbb1ded2526af3
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: 5f57cbdb1678dd61eda449d2103125d8db83892e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/17/2017
+ms.lasthandoff: 07/21/2017
 
 ---
 # <a name="analyze-data-usage-in-log-analytics"></a>在 Log Analytics 中分析資料使用量
@@ -110,30 +110,47 @@ Log Analytics [警示](log-analytics-alerts-creating.md)會使用搜尋查詢。
 
 「依方案分類的資料量」圖表可顯示每個解決方案所傳送的資料量，以及傳送最多資料的解決方案。 頂端的圖表會顯示每個解決方案在一段時間內傳送的資料總量。 此資訊可讓您識別解決方案在一段時間內傳送更多資料、大約相同數量的資料或較少的資料。 解決方案清單會顯示 10 個傳送大部分資料的解決方案。 
 
+這兩個圖表顯示了所有資料。 某些資料已可計費，其他資料則為免費。 若要僅顯示可計費的資料，請將搜尋頁面上的查詢修改為包括 `IsBillable=true`。  
+
 ![資料量圖表](./media/log-analytics-usage/log-analytics-usage-data-volume.png)
 
 查看「一段時間的資料量」圖表。 若要查看針對特定電腦傳送最多資料的解決方案和資料類型，請按一下電腦的名稱。 按一下清單中第一部電腦的名稱。
 
 在下列螢幕擷取畫面中，「記錄管理/效能」資料類型針對此電腦傳送最多資料。 
-![電腦的資料量](./media/log-analytics-usage/log-analytics-usage-data-volume-computer.png)
 
+![電腦的資料磁碟區](./media/log-analytics-usage/log-analytics-usage-data-volume-computer.png)
 
-接下來，回到「使用量」儀表板並查看「依方案分類的資料量」圖表。 若要查看針對某個解決方案傳送最多資料的電腦，請按一下清單中的解決方案名稱。 按一下清單中第一個解決方案的名稱。 
+接下來，回到「使用量」儀表板並查看「依解決方案的資料磁碟區」圖表。 若要查看針對某個解決方案傳送最多資料的電腦，請按一下清單中的解決方案名稱。 按一下清單中第一個解決方案的名稱。 
 
 在下列螢幕擷取畫面中，它會確認 acmetomcat 電腦針對記錄管理解決方案傳送最多資料。
 
 ![解決方案的資料量](./media/log-analytics-usage/log-analytics-usage-data-volume-solution.png)
 
+如有需要，請執行其他分析，找出解決方案或資料類型中的大型磁碟區。 查詢範例包括：
+
++ **安全性**解決方案**記錄管理**解決方案
+  - `Type=SecurityEvent | measure count() by EventID`
++ **Log Management** solution
+  - `Type=Usage Solution=LogManagement IsBillable=true | measure count() by DataType`
++ **Perf** 資料類型
+  - `Type=Perf | measure count() by CounterPath`
+  - `Type=Perf | measure count() by CounterName`
++ **Event** 資料類型
+  - `Type=Event | measure count() by EventID`
+  - `Type=Event | measure count() by EventLog, EventLevelName`
++ **Syslog** 資料類型
+  - `Type=Syslog | measure count() by Facility, SeverityLevel`
+  - `Type=Syslog | measure count() by ProcessName`
 
 使用下列步驟來減少所收集的記錄數量：
 
 | 高資料量的來源 | 如何縮減資料量 |
 | -------------------------- | ------------------------- |
-| 安全性事件            | 選取[一般或最小安全性事件](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/) <br> 變更安全性稽核原則。 例如，關閉[稽核篩選平台](https://technet.microsoft.com/library/dd772749(WS.10).aspx)事件。 |
+| 安全性事件            | 選取[一般或最小安全性事件](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/) <br> 變更安全性稽核原則為只收集所需事件。 特別檢閱下列原則是否需要收集事件： <br> - [a稽核篩選平台](https://technet.microsoft.com/library/dd772749(WS.10).aspx) <br> - [稽核登錄](https://docs.microsoft.com/windows/device-security/auditing/audit-registry)<br> - [稽核檔案系統](https://docs.microsoft.com/windows/device-security/auditing/audit-file-system)<br> - [稽核核心物件](https://docs.microsoft.com/windows/device-security/auditing/audit-kernel-object)<br> - [稽核控制代碼操作](https://docs.microsoft.com/windows/device-security/auditing/audit-handle-manipulation)<br> - [稽核抽取式存放裝置 ](https://docs.microsoft.com/windows/device-security/auditing/audit-removable-storage) |
 | 效能計數器       | 變更[效能計數器組態](log-analytics-data-sources-performance-counters.md)以： <br> - 減少收集頻率 <br> - 減少效能計數器的數目 |
 | 事件記錄檔                 | 變更[事件記錄組態](log-analytics-data-sources-windows-events.md)以： <br> - 減少所收集的事件記錄數目 <br> - 只收集必要的事件層級。 例如，不要收集「資訊」層級事件 |
 | syslog                     | 變更 [Syslog 組態](log-analytics-data-sources-syslog.md)以： <br> - 減少所收集的設施數目 <br> - 只收集必要的事件層級。 例如，不要收集「資訊」和「偵錯」層級事件 |
-| 電腦中不需要解決方案的方案資料 | 使用[方案目標](../operations-management-suite/operations-management-suite-solution-targeting.md)，只從必要的電腦群組收集資料。
+| 電腦中不需要解決方案的方案資料 | 使用[方案目標](../operations-management-suite/operations-management-suite-solution-targeting.md)，只從必要的電腦群組收集資料。 |
 
 ### <a name="check-if-there-are-more-nodes-than-expected"></a>檢查是否有比預期更多的節點
 如果您是在「每節點 (OMS)」定價層上，系統便會根據您使用的節點和解決方案數目來向您收費。 您可以在使用量儀表板的 [供應項目] 區段中，查看每個供應項目目前使用的節點數。
@@ -148,4 +165,9 @@ Log Analytics [警示](log-analytics-alerts-creating.md)會使用搜尋查詢。
 ## <a name="next-steps"></a>後續步驟
 * 請參閱 [Log Analytics 中的記錄搜尋](log-analytics-log-searches.md)，以了解如何使用搜尋語言。 您可以使用搜尋查詢，對使用量資料執行額外的分析。
 * 使用[建立警示規則](log-analytics-alerts-creating.md#create-an-alert-rule)中所述的步驟，可在符合搜尋條件時收到通知
+* 使用[解決方案目標](../operations-management-suite/operations-management-suite-solution-targeting.md)，只從必要的電腦群組收集資料
+* 選取[一般或最小安全性事件](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/)
+* 變更[效能計數器組態](log-analytics-data-sources-performance-counters.md)
+* 變更[事件記錄組態](log-analytics-data-sources-windows-events.md)
+* 變更 [Syslog 組態](log-analytics-data-sources-syslog.md)
 
