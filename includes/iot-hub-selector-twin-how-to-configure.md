@@ -5,8 +5,7 @@
 > 
 > 
 
-## 簡介
-<a id="introduction" class="xliff"></a>
+## <a name="introduction"></a>簡介
 
 在[開始使用 IoT 中樞裝置對應項][lnk-twin-tutorial]中，您會學到如何使用「標籤」從解決方案後端設定裝置中繼資料，使用「報告屬性」從裝置應用程式報告裝置條件，以及使用類似 SQL 的語言查詢此資訊。
 

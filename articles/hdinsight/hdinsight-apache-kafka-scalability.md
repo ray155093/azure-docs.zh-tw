@@ -22,8 +22,7 @@ ms.lasthandoff: 07/13/2017
 
 ---
 
-# 在 HDInsight 上設定 Apache Kafka 的儲存體和延展性
-<a id="configure-storage-and-scalability-for-apache-kafka-on-hdinsight" class="xliff"></a>
+# <a name="configure-storage-and-scalability-for-apache-kafka-on-hdinsight"></a>在 HDInsight 上設定 Apache Kafka 的儲存體和延展性
 
 了解如何設定 Apache Kafka 在 HDInsight 上所使用的受控磁碟數目。
 
@@ -33,8 +32,7 @@ HDInsight 上的 Kafka 會在 HDInsight 叢集中使用虛擬機器的本機磁�
 
 ![圖表顯示 HDInsight 上的 Kafka 每個 VM 使用單一 VHD 與每個 VM 使用多個受控磁碟](./media/hdinsight-apache-kafka-scalability/kafka-with-managed-disks-architecture.png)
 
-## 設定受控磁碟：Azure 入口網站
-<a id="configure-managed-disks-azure-portal" class="xliff"></a>
+## <a name="configure-managed-disks-azure-portal"></a>設定受控磁碟：Azure 入口網站
 
 1. 請遵循[建立 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-portal.md)中的步驟，了解使用入口網站建立叢集的一般步驟。 請勿完成入口網站建立程序。
 
@@ -45,8 +43,7 @@ HDInsight 上的 Kafka 會在 HDInsight 叢集中使用虛擬機器的本機磁�
 
     ![叢集大小刀鋒視窗中的映像，每個背景工作角色節點的磁碟以反白顯示](./media/hdinsight-apache-kafka-scalability/set-managed-disks-portal.png)
 
-## 設定受控磁碟：Resource Manager 範本
-<a id="configure-managed-disks-resource-manager-template" class="xliff"></a>
+## <a name="configure-managed-disks-resource-manager-template"></a>設定受控磁碟：Resource Manager 範本
 
 若要控制背景工作角色節點在 Kafka 叢集中所使用的磁碟數目，請使用下列區段的範本：
 
@@ -60,8 +57,7 @@ HDInsight 上的 Kafka 會在 HDInsight 叢集中使用虛擬機器的本機磁�
 
 您可以在 [https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json](https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json) 找到示範如何設定受控磁碟的完整範本。
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 
 如需使用 HDInsight 上 Kafka 的詳細資訊，請參閱下列文件：
 
