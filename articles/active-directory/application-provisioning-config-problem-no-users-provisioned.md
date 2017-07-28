@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: asteen
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 0b63c7d15ca7570033a889dc1b57ebd202f4627b
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 30db71c0706de1dcc0d48fb72fa5d62475a14ba7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 05/08/2017
 
 # <a name="no-users-are-being-provisioned-to-an-azure-ad-gallery-application"></a>未將任何使用者佈建至 Azure AD 資源庫應用程式
 
-為應用程式設定自動佈建 (包括驗證供給 Azure AD 以連接至應用程式的應用程式認證提是有效的) 之後。 接著，透過下列各項來判斷是否要將使用者和/或群組佈建至應用程式：
+為應用程式設定自動佈建 (包括驗證供給 Azure AD 以連接至應用程式的應用程式認證提是有效的) 之後。 接著，將使用者和 (或) 群組佈建至應用程式，並透過下列各項進行判斷：
 
 -   已將哪些使用者和群組**指派**給應用程式。 如需指派的詳細資訊，請參閱[在 Azure Active Directory 中將使用者或群組指派給企業應用程式](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)。
 

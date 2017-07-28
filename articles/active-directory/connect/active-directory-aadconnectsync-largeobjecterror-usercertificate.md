@@ -12,14 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/27/2017
+ms.date: 07/13/2017
 ms.author: billmath
 ms.translationtype: Human Translation
-ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
-ms.openlocfilehash: 9c3adf589fe0c18ff4072dfcd57653ab2fef8df2
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: d15855bb05666961da56ff2dd5e0e473e7f7b123
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/29/2017
-
+ms.lasthandoff: 06/20/2017
 
 ---
 
@@ -40,6 +39,8 @@ Azure AD 會在 **userCertificate** 屬性上強制執行最大限制 **15** 個
  
 ## <a name="mitigation-options"></a>緩和選項
 在解決 LargeObject 錯誤之前，同一個物件的其他屬性變更無法匯出至 Azure AD。 若要解決錯誤，您可以考慮下列選項︰
+
+ * 將 Azure AD Connect 升級至 1.1.524.0 組建版本或更新版本。 在 Azure AD Connect 1.1.524.0 組建版本中，現成的同步處理規則已更新成如果屬性有 15 個以上的值，則不匯出屬性 userCertificate 和 userSMIMECertificate。 如需如何升級 Azure AD Connect 的詳細資訊，請參閱 [Azure AD Connect：從舊版升級到最新版本](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-upgrade-previous-version)一文。
 
  * 在 Azure AD Connect 中實作**輸出同步規則**，以匯出 **Null 值，而不是有 15 個以上憑證值之物件的實際值**。 對於有 15 個值以上的物件，如果您不需要將任何憑證值匯出至 Azure AD，此選項就很適合。 如需有關如何實作此同步規則的詳細資訊，請參閱下一節：[實作同步規則以限制 userCertificate 屬性的匯出](#implementing-sync-rule-to-limit-export-of-usercertificate-attribute)。
 
@@ -67,7 +68,7 @@ Azure AD 會在 **userCertificate** 屬性上強制執行最大限制 **15** 個
 8. 將變更匯出至 Azure AD。
 9. 重新啟用同步排程器。
 
-### <a name="step-1----disable-sync-scheduler-and-verify-there-is-no-synchronization-in-progress"></a>步驟 1.    停用同步排程器，並確認沒有任何同步處理在進行中
+### <a name="step-1-disable-sync-scheduler-and-verify-there-is-no-synchronization-in-progress"></a>步驟 1. 停用同步排程器，並確認沒有任何同步處理在進行中
 請確定您在實作新的同步規則時不會發生同步處理，以避免非預期的變更匯出至 Azure AD。 若要停用內建的同步排程器︰
 1. 在 Azure AD Connect 伺服器上啟動 PowerShell 工作階段。
 
@@ -80,7 +81,7 @@ Azure AD 會在 **userCertificate** 屬性上強制執行最大限制 **15** 個
 
 4. 移至 [作業] 索引標籤，確認沒有任何作業是「進行中」狀態。
 
-### <a name="step-2----find-the-existing-outbound-sync-rule-for-usercertificate-attribute"></a>步驟 2.    尋找 userCertificate 屬性的現有輸出同步規則
+### <a name="step-2-find-the-existing-outbound-sync-rule-for-usercertificate-attribute"></a>步驟 2. 尋找 userCertificate 屬性的現有輸出同步規則
 應該有一個現有的同步規則已啟用，且設定為將 User 物件的 userCertificate 屬性匯出至 Azure AD。 找出此同步規則，查明其**優先順序**和**範圍設定篩選**設定︰
 
 1. 移至 [開始] → [同步處理規則編輯器] 來啟動**同步處理規則編輯器**。
@@ -134,11 +135,11 @@ Azure AD 會在 **userCertificate** 屬性上強制執行最大限制 **15** 個
     
 6. 按一下 [新增] 按鈕建立同步規則。
 
-### <a name="step-4----verify-the-new-sync-rule-on-an-existing-object-with-largeobject-error"></a>步驟 4.    在發生 LargeObject 錯誤的現有物件上驗證新的同步規則
+### <a name="step-4-verify-the-new-sync-rule-on-an-existing-object-with-largeobject-error"></a>步驟 4. 在發生 LargeObject 錯誤的現有物件上驗證新的同步規則
 這是為了先在發生 LargeObject 錯誤的現有 AD 物件上，確認同步規則可以正確運作，然後再套用至其他物件︰
 1. 移至 Synchronization Service Manager 中的 [作業] 索引標籤。
 2. 選取最新的「匯出至 Azure AD」作業，然後按一下其中一個發生 LargeObject 錯誤的物件。
-3.    在 [連接器空間物件屬性] 快顯畫面中，按一下 [預覽] 按鈕。
+3.  在 [連接器空間物件屬性] 快顯畫面中，按一下 [預覽] 按鈕。
 4. 在 [預覽] 快顯畫面中，選取 [完整同步處理]，然後按一下 [認可預覽]。
 5. 關閉 [預覽] 畫面和 [連接器空間物件屬性] 畫面。
 6. 移至 Synchronization Service Manager 中的 [連接器] 索引標籤。
@@ -146,7 +147,7 @@ Azure AD 會在 **userCertificate** 屬性上強制執行最大限制 **15** 個
 8. 在 [執行連接器] 快顯視窗中，選取 [匯出] 步驟，然後按一下 [確定]。
 9. 等候「匯出至 Azure AD」完成，並確認此特定物件不再發生 LargeObject 錯誤。
 
-### <a name="step-5----apply-the-new-sync-rule-to-remaining-objects-with-largeobject-error"></a>步驟 5。    將新的同步規則套用至發生 LargeObject 錯誤的其餘物件
+### <a name="step-5-apply-the-new-sync-rule-to-remaining-objects-with-largeobject-error"></a>步驟 5。 將新的同步規則套用至發生 LargeObject 錯誤的其餘物件
 新增同步規則之後，您需要在 AD 連接器上執行完整同步處理步驟︰
 1. 移至 Synchronization Service Manager 中的 [連接器] 索引標籤。
 2. 以滑鼠右鍵按一下 [AD 連接器]，然後選取 [執行...]。
@@ -154,7 +155,7 @@ Azure AD 會在 **userCertificate** 屬性上強制執行最大限制 **15** 個
 4. 等候「完整同步處理」步驟完成。
 5. 如果您有多個 AD 連接器，請對剩餘的 AD 連接器重複上述步驟。 通常，如果您有多個內部部署目錄，則需要多個連接器。
 
-### <a name="step-6----verify-there-are-no-unexpected-changes-waiting-to-be-exported-to-azure-ad"></a>步驟 6.    確認沒有非預期的變更在等候匯出至 Azure AD
+### <a name="step-6-verify-there-are-no-unexpected-changes-waiting-to-be-exported-to-azure-ad"></a>步驟 6. 確認沒有非預期的變更在等候匯出至 Azure AD
 1. 移至 Synchronization Service Manager 中的 [連接器] 索引標籤。
 2. 以滑鼠右鍵按一下 [Azure AD 連接器]，然後選取 [搜尋連接器空間]。
 3. 在 [搜尋連接器空間] 快顯視窗中：
@@ -163,14 +164,14 @@ Azure AD 會在 **userCertificate** 屬性上強制執行最大限制 **15** 個
     3. 按一下 [搜尋] 按鈕，以傳回所有在等候將變更匯出至 Azure AD 的物件。
     4. 請確認沒有任何非預期的變更。 若要檢查給定物件的變更，請按兩下物件。
 
-### <a name="step-7----export-the-changes-to-azure-ad"></a>步驟 7.    將變更匯出至 Azure AD
+### <a name="step-7-export-the-changes-to-azure-ad"></a>步驟 7. 將變更匯出至 Azure AD
 若要將變更匯出至 Azure AD：
 1. 移至 Synchronization Service Manager 中的 [連接器] 索引標籤。
 2. 以滑鼠右鍵按一下 [Azure AD 連接器]，然後選取 [執行...]。
 4. 在 [執行連接器] 快顯視窗中，選取 [匯出] 步驟，然後按一下 [確定]。
 5. 等候「匯出至 Azure AD」完成，並確認不再有 LargeObject 錯誤。
 
-### <a name="step-8----re-enable-sync-scheduler"></a>步驟 8。    重新啟用同步排程器
+### <a name="step-8-re-enable-sync-scheduler"></a>步驟 8。 重新啟用同步排程器
 現在已解決問題，請重新啟用內建的同步排程器︰
 1. 啟動 PowerShell 工作階段。
 2. 執行 Cmdlet 以重新啟用排定的同步處理︰`Set-ADSyncScheduler -SyncCycleEnabled $true`

@@ -11,13 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: d08db952bcfb6af3b5f175f9bedd8811543cff7d
-ms.lasthandoff: 04/17/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 76078566c93f2b0359c1157cdcdb5b15a1402996
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 ---
 
@@ -90,7 +90,7 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
    1. 若要將應用程式設定為 SP 啟始的 SSO，則登入 URL 為必要值。 對於某些應用程式，識別碼也是必要值。
 
-   2. 若要將應用程式設定為 IdP 啟始的 SSO，則回覆 URL 為必要值。 對於某些應用程式，識別碼也是必要值。
+   2. 若要將應用程式設定為 IdP 啟始的單一登入，則 [登入 URL] 為必要值。 對於某些應用程式，識別碼也是必要值。
 
 10. **選擇性：**如果您想要看到非必要值，請按一下 [顯示進階 URL 設定]。
 
@@ -100,7 +100,7 @@ Azure AD 資源庫中所有透過企業單一登入功能啟用的應用程式�
 
   新增屬性：
    
-   1. 按一下 [新增屬性]。 輸入**名稱**，然後從下拉式清單選取**值**。
+   1. 按一下 [新增屬性]。 輸入 [名稱]，然後從下拉式清單選取 [值]。
 
    1. 按一下 [儲存]。 您會在資料表中看到新屬性。
 
@@ -173,7 +173,7 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行：
 
-1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**身分登入。
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
 2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
@@ -199,7 +199,7 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 12. **選擇性︰**如果您想要**新增多位使用者**，請在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入另一個**全名**或**電子郵件地址**，然後按一下核取方塊，將此使用者新增至 [已選取] 清單。
 
-13. 當您完成選取使用者時，按一下 [選取] 按鈕，將他們新增到要指派給應用程式的使用者和群組清單。
+13. 當您完成選取使用者時，按一下 [選取] 按鈕，將他們新增到要指派至應用程式的使用者和群組清單。
 
 14. **選擇性︰**按一下 [新增指派] 刀鋒視窗中的 [選取角色] 選取器，以選取要指派給您已選取使用者的角色。
 
@@ -207,8 +207,12 @@ Azure AD 不提供取得中繼資料的 URL。 只能將中繼資料擷取為 XM
 
 稍待片刻，您已選取的使用者就能夠使用解決方案描述一節所述的方法，啟動這些應用程式。
 
+## <a name="customizing-the-saml-claims-sent-to-an-application"></a>自訂傳送至應用程式的 SAML 宣告
+
+若要了解如何自訂傳送至應用程式的 SAML 屬性宣告，請參閱 [Azure Active Directory 中的宣告對應](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping)以取得詳細資訊。
+
 ## <a name="next-steps"></a>後續步驟
-[使用應用程式 Proxy 提供應用程式的單一登入](active-directory-application-proxy-sso-using-kcd.md)
+[使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
 
 
 

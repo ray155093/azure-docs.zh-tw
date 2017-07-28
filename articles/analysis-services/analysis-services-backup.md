@@ -12,13 +12,13 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 06/01/2017
 ms.author: owend
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: ba842028ecda47b8011cba948d7c92417214c2d0
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: db04507d50b6dfe767ede4479fe0b02af2461576
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/03/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 05/05/2017
 > 
 > 
 
-備份會以 .abf 副檔名儲存。 針對記憶體內表格式模型，會同時儲存模型資料和中繼資料。 針對 Direct Query 表格式模型，則只會儲存模型中繼資料。 視您選擇的選項而定，可以將備份壓縮和加密。 
+備份會以 .abf 副檔名儲存。 針對記憶體內表格式模型，會同時儲存模型資料和中繼資料。 針對 DirectQuery 表格式模型，則只會儲存模型中繼資料。 視您選擇的選項而定，可以將備份壓縮和加密。 
 
 
 
@@ -55,7 +55,7 @@ ms.lasthandoff: 05/05/2017
 
     ![選取容器](./media/analysis-services-backup/aas-backup-container.png)
 
-5. 儲存您的備份設定。 每當您變更儲存體設定，或是啟用或停用備份，都必須儲存變更。
+5. 儲存您的備份設定。
 
     ![儲存備份設定](./media/analysis-services-backup/aas-backup-save.png)
 
@@ -67,7 +67,7 @@ ms.lasthandoff: 05/05/2017
 
 2. 在 [備份資料庫] > [備份檔案] 中，按一下 [瀏覽]。
 
-3. 在 [另存新檔] 對話方塊中，確認資料夾路徑，然後輸入備份檔案的名稱。 檔案名稱的副檔名預設為 .abf。 
+3. 在 [另存新檔] 對話方塊中，確認資料夾路徑，然後輸入備份檔案的名稱。 
 
 4. 在 [備份資料庫] 對話方塊中，選取選項。
 
@@ -89,7 +89,7 @@ ms.lasthandoff: 05/05/2017
 
 
 > [!NOTE]
-> 如果您要從內部部署 SQL Server Analysis Services 伺服器來還原表格式模型資料庫，您必須先從該模型的角色中移除所有網域使用者，再將他們新增回角色中成為 Azure Active Directory 使用者。 這些角色將會相同。
+> 如果您要從內部部署伺服器進行還原，則必須先從該模型的角色中移除所有網域使用者，再將他們新增回角色中成為 Azure Active Directory 使用者。
 > 
 > 
 

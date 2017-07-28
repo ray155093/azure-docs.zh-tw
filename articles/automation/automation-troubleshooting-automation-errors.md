@@ -14,12 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/24/2017
+ms.date: 06/26/2017
 ms.author: sngun; v-reagie
-translationtype: Human Translation
-ms.sourcegitcommit: a8ecffbc5f9c7e2408708d59459a0d39e59d6e1e
-ms.openlocfilehash: 3e4a4b431e26e58a0af1eee182fded51b6618fac
-ms.lasthandoff: 01/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
+ms.openlocfilehash: 64548d91e98754210cc5185d9d759141cc0621d3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/26/2017
 
 
 ---
@@ -65,8 +66,24 @@ ms.lasthandoff: 01/25/2017
 **疑難排解秘訣：**如要搭配 Azure 服務管理的 Cmdlet 來使用憑證，請參閱[建立及新增憑證來管理 Azure 服務](http://blogs.technet.com/b/orchestrator/archive/2014/04/11/managing-azure-services-with-the-microsoft-azure-automation-preview-service.aspx) 若要搭配 Azure Resource Manager Cmdlet 來使用服務主體，請參閱[使用 Azure 入口網站來建立服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)和[使用 Azure Resource Manager 驗證服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)
 
 ## <a name="common-errors-when-working-with-runbooks"></a>使用 Runbook 時的常見錯誤
+### <a name="scenario-the-runbook-job-start-was-attempted-three-times-but-it-failed-to-start-each-time"></a>案例：已嘗試啟動 Runbook 作業三次，但無法每次都能啟動
+**錯誤：**Runbook 失敗，錯誤為「作業已嘗試三次但失敗」。
+
+**錯誤原因：**這個錯誤可能是下列原因所造成：  
+
+1. 記憶體限制。  我們已記載配置給沙箱[自動化服務限制](../azure-subscription-service-limits.md#automation-limits)的記憶體數量限制；因此，如果使用的記憶體超過 400 MB 記憶體，則作業可能會失敗。 
+
+2. 模組不相容。  如果模組相依性不正確，可能會發生這個錯誤；而且不正確時，您的 Runbook 通常會傳回「找不到命令」或「無法繫結參數」訊息。 
+
+**疑難排解秘訣：** 下列任何一個解決方案都可以修正此問題：  
+
+* 在記憶體限制內運作的建議方法是分割多個 Runbook 之間的工作負載、不要處理記憶體中的太多資料、不要寫入來自 Runbook 的不必要輸出，或考慮您寫入 PowerShell 工作流程 Runbook 的檢查點數目。  
+
+* 您需要遵循[如何更新 Azure 自動化中的 Azure PowerShell 模組](automation-update-azure-modules.md)步驟來更新 Azure 模組。  
+
+
 ### <a name="scenario-runbook-fails-because-of-deserialized-object"></a>案例：Runbook 因還原序列化物件而失敗
-**錯誤：``<ParameterName>``您的 Runbook 失敗且具有錯誤「無法繫結參數**。 無法將類型還原序列化 ``<ParameterType>`` 的 ``<ParameterType>`` 值轉換為類型 ``<ParameterType>``」。
+**錯誤：``<ParameterName>``您的 Runbook 失敗且具有錯誤「無法繫結參數** 。 無法將類型還原序列化 ``<ParameterType>`` 的 ``<ParameterType>`` 值轉換為類型 ``<ParameterType>``」。
 
 **錯誤的原因：** 如果您的 Runbook 是 PowerShell 工作流程，它會以還原序列化格式儲存複雜物件，以在暫止工作流程時保存 Runbook 狀態。  
 
@@ -158,7 +175,7 @@ ms.lasthandoff: 01/25/2017
 **疑難排解秘訣：**請依照 [DSC known issues and limitations (DSC 已知問題和限制)](https://msdn.microsoft.com/powershell/wmf/5.0/limitation_dsc) 中的指示來修正問題。
 
 ### <a name="scenario--unable-to-use-a-credential-in-a-dsc-configuration"></a>案例：無法在 DSC 組態中使用認證
-**錯誤：``<some resource name>``您的 DSC 編譯作業已暫停，錯誤訊息：「System.InvalidOperationException 處理** 類型的屬性 'Credential' 時發生錯誤：只有在 PSDscAllowPlainTextPassword 設為 True 時，才允許轉換加密密碼並儲存為純文字」。
+**錯誤：``<some resource name>``您的 DSC 編譯作業已暫停，錯誤訊息：「System.InvalidOperationException 處理**  類型的屬性 'Credential' 時發生錯誤：只有在 PSDscAllowPlainTextPassword 設為 True 時，才允許轉換加密密碼並儲存為純文字」。
 
 **錯誤的原因：**您已在組態中使用認證，但沒有提供適當的 **ConfigurationData**，以便把每個節點組態的 **PSDscAllowPlainTextPassword** 設定為 True。  
 

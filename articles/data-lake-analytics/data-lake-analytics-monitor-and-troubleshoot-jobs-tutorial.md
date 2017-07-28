@@ -3,8 +3,8 @@ title: "使用 Azure 入口網站疑難排解 Azure Data Lake Analytics作業 | 
 description: "了解如何使用 Azure 入口網站疑難排解資料湖分析作業。 "
 services: data-lake-analytics
 documentationcenter: 
-author: edmacauley
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: b7066d81-3142-474f-8a34-32b0b39656dc
 ms.service: data-lake-analytics
@@ -15,10 +15,10 @@ ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: b2b19a6f2ea20c414119e9dfbf84fda92dd93402
+ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
+ms.openlocfilehash: b9c7453cc0a94f70d0098ed83e5f127832065a62
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/15/2017
 
 
 ---
@@ -27,50 +27,31 @@ ms.lasthandoff: 05/26/2017
 
 在本教學課程中，將會建立一個來源檔案遺失的問題，並使用 Azure 入口網站疑難排解問題。
 
-**必要條件**
-
-開始進行本教學課程之前，您必須具備下列條件：
-
-* **資料湖分析工作程序基本知識**。 請參閱 [使用 Azure 入口網站開始使用 Azure 資料湖分析](data-lake-analytics-get-started-portal.md)。
-* **資料湖分析帳戶**。 請參閱[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md#create-data-lake-analytics-account)。
-* **將範例資料複製到預設的資料湖存放區帳戶**。  請參閱 [準備來源資料](data-lake-analytics-get-started-portal.md)
-
 ## <a name="submit-a-data-lake-analytics-job"></a>提交資料湖分析作業
-現在您將使用一個不正確的來源檔案名稱建立 U-SQL 工作。  
 
-**提交工作**
+提交下列 U-SQL 作業：
 
-1. 在 Azure 入口網站中，按一下左上角的 [ **Microsoft Azure** ]。
-2. 按一下具有您資料湖分析帳戶名稱的磚。  該建立帳戶時它便已釘選在此處。
-   如果帳戶尚未釘選於此處，請參閱 [從入口網站開啟分析帳戶](data-lake-analytics-manage-use-portal.md#manage-data-sources)。
-3. 從頂端功能表按一下 [ **新增作業** ]。
-4. 輸入工作名稱與下列 U SQL 指令碼：
+```
+@searchlog =
+   EXTRACT UserId          int,
+           Start           DateTime,
+           Region          string,
+           Query           string,
+           Duration        int?,
+           Urls            string,
+           ClickedUrls     string
+   FROM "/Samples/Data/SearchLog.tsv1"
+   USING Extractors.Tsv();
 
-        @searchlog =
-            EXTRACT UserId          int,
-                    Start           DateTime,
-                    Region          string,
-                    Query           string,
-                    Duration        int?,
-                    Urls            string,
-                    ClickedUrls     string
-            FROM "/Samples/Data/SearchLog.tsv1"
-            USING Extractors.Tsv();
+OUTPUT @searchlog   
+   TO "/output/SearchLog-from-adls.csv"
+   USING Outputters.Csv();
+```
+    
+指令碼中定義的來源檔案是 **/Samples/Data/SearchLog.tsv1**，此處應為 **/Samples/Data/SearchLog.tsv**。
 
-        OUTPUT @searchlog   
-            TO "/output/SearchLog-from-adls.csv"
-        USING Outputters.Csv();
-
-    指令碼中定義的來源檔案是 **/Samples/Data/SearchLog.tsv1**，此處應為 **/Samples/Data/SearchLog.tsv**。
-5. 按一下最上方的 [ **提交作業** ]。 新的 [工作詳細資料] 窗格隨即開啟。 窗格的標題列會顯示工作狀態。 需花費數分鐘的時間完成。 您可以按一下 [ **重新整理** ] 取得最新狀態。
-6. 等待直到工作狀態變為 [ **失敗**]。  如果工作為 [ **成功**]，這是因為您沒有移除 /Samples 資料夾。 請參閱本教學課程開頭的＜ **必要條件** ＞一節。
-
-您可能會懷疑，這麼小的工作為什麼要花費如此長的時間。  請記住資料湖分析是為了處理巨量資料所設計。  使用其分散式系統處理大量資料時則會有出色的表現。
-
-讓我們假設您已提交工作並關閉入口網站。  在下一節中，您將學習如何疑難排解工作。
 
 ## <a name="troubleshoot-the-job"></a>疑難排解作業
-在上一節中，您已經提交工作，但工作失敗。  
 
 **查看所有工作**
 

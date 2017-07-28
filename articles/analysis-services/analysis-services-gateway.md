@@ -13,17 +13,22 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 04/18/2017
+ms.date: 05/26/2017
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: e47fa44d87ad29054b833ee4bf201ac4d72e1e6e
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: f8c9e9ab8b8728202ec3f049b309d96d883022f4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 
 ---
 # <a name="on-premises-data-gateway"></a>內部部署資料閘道
 內部部署資料閘道的角色如同橋接器，在內部部署資料來源和雲端中的 Azure Analysis Services 伺服器之間提供安全的資料傳輸。
+
+最新版的閘道可透過使用 SSDT 的 [取得資料] 和 M 查詢來支援表格式 1400 模型連線到內部部署資料來源。 
+
+若要深入了解所支援的資料來源，請參閱 [Azure Analysis Services 中支援的資料來源](analysis-services-datasource.md)。
 
 閘道安裝於您網路的電腦上。 您必須為您的 Azure 訂用帳戶中的每部 Azure Analysis Services 伺服器各安裝一個閘道。 例如，如果您的 Azure 訂用帳戶中有兩部伺服器連接到內部部署資料來源，則閘道必須安裝在您網路中不同的兩部電腦上。
 
@@ -48,14 +53,6 @@ ms.lasthandoff: 04/20/2017
 * 若要變更已設定閘道的伺服器名稱，必須重新安裝並設定新的閘道。
 * 在某些情況下，使用原生提供者 (例如 SQL Server Native Client (SQLNCLI11)) 連接到資料來源的表格式模型可能會傳回錯誤。 若要深入了解，請參閱[資料來源連接](analysis-services-datasource.md)。
 
-## <a name="supported-on-premises-data-sources"></a>支援的內部部署資料來源
-閘道支援 Azure Analysis Services 伺服器與下列內部部署資料來源之間的連線︰
-
-* SQL Server
-* SQL 資料倉儲
-* APS
-* Oracle
-* Teradata
 
 ## <a name="download"></a>下載
  [下載閘道](https://aka.ms/azureasgateway)
@@ -128,7 +125,7 @@ ms.lasthandoff: 04/20/2017
 
 如果您有閘道安裝和設定的問題，請務必參閱 [Power BI 閘道的疑難排解](https://powerbi.microsoft.com/documentation/powerbi-gateway-onprem-tshoot/)。 如果您認為您的防火牆有問題，請參閱防火牆或 Proxy 章節。
 
-如果您認為閘道有 Proxy 相關問題，請參閱[設定 Power BI 閘道的 Proxy 設定](https://powerbi.microsoft.com/documentation/powerbi-gateway-proxy.md)。
+如果您認為閘道有 Proxy 相關問題，請參閱[設定 Power BI 閘道的 Proxy 設定](https://powerbi.microsoft.com/documentation/powerbi-gateway-proxy)。
 
 ### <a name="telemetry"></a>遙測
 遙測可應用在監視和疑難排解上。 

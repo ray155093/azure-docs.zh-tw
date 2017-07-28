@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/21/2017
 ms.author: bburns
-translationtype: Human Translation
-ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
-ms.openlocfilehash: 5987b1034fc9c52b13606c469683adff06729984
-ms.lasthandoff: 02/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
+ms.openlocfilehash: 5cc5860025e8f6fb3eaf7ab213e4655e9519ae0c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/14/2017
 
 
 ---
@@ -61,7 +62,7 @@ $ az acs kubernetes install-cli
 $ az acs kubernetes browse -g [Resource Group] -n [Container service instance name]
 ```
 
-這應該會開啟網頁瀏覽器，設定與安全 proxy (將您的本機電腦連接至 Kubernetes Web UI) 通訊。
+這應該會開啟網頁瀏覽器，設定與安全 Proxy (將您的本機電腦連接至 Kubernetes Web UI) 通訊。
 
 ### <a name="create-and-expose-a-service"></a>建立和公開服務
 1. 在 Kubernetes Web UI 中，按一下右上方視窗中的 [建立] 按鈕。

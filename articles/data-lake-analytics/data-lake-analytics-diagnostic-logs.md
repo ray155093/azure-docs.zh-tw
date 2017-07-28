@@ -15,18 +15,16 @@ ms.workload: big-data
 ms.date: 05/03/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 71a839d9c076d33c404a56bf0544666dc86eaa4d
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 2bfd7d8a4c06b1b40a9852d21908e7c1c785b91d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
 # <a name="accessing-diagnostic-logs-for-azure-data-lake-analytics"></a>存取 Azure Data Lake Analytics 的診斷記錄
 
-了解如何啟用 Data Lake Analytics 帳戶的診斷記錄，以及如何檢視針對帳戶收集的記錄。
-
-組織可以啟用其 Azure Data Lake Analytics 帳戶的診斷記錄以收集資料存取稽核線索。 這些記錄檔可提供如下資訊︰
+診斷記錄可讓您收集資料存取稽核線索。 這些記錄檔可提供如下資訊︰
 
 * 資料的存取使用者清單。
 * 資料的存取頻率。
@@ -34,7 +32,7 @@ ms.lasthandoff: 05/26/2017
 
 ## <a name="enable-logging"></a>啟用記錄
 
-1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
 2. 開啟 Data Lake Analytics 帳戶，然後從 [監視] 區段選取 [診斷記錄]。 接下來，選取 [開啟診斷]。
 
@@ -46,34 +44,29 @@ ms.lasthandoff: 05/26/2017
 
    * 將 [狀態] 設定為 [開啟] 以啟用診斷記錄。
 
-   * 您可以選擇兩種不同的資料儲存/處理方法。
+   * 您可以選擇三種不同的資料儲存/處理方法。
 
      * 選取 [封存至儲存體帳戶] 可將記錄儲存到 Azure 儲存體帳戶。 如果您想要封存資料，請使用此選項。 如果您選取此選項，必須提供用來儲存記錄的 Azure 儲存體帳戶。
 
      * 選取 [串流至事件中樞] 可將記錄資料串流到 Azure 事件中樞。 如果您有即時分析內送記錄的下游處理管線，請使用此選項。 如果您選取此選項，必須提供要使用的 Azure 事件中樞詳細資料。
 
      * 選取 [傳送至 Log Analytics] 可將資料傳送至 Log Analytics 服務。 如果您想要使用 Log Analytics 來收集和分析記錄，請使用此選項。
-   * 指定要取得稽核記錄、要求記錄或兩者。
+   * 指定要取得稽核記錄、要求記錄或兩者。  要求記錄會擷取每個 API 要求，而稽核記錄則會記錄該 API 要求觸發的所有作業。
 
-   * 指定的資料的保留天數。
+   * 對於 [封存至儲存體帳戶]，指定資料將保留的天數。
 
-   * 按一下 [儲存] 。
+   * 按一下 [檔案] 。
 
         > [!NOTE]
-        > 您必須先選取 [封存至儲存體帳戶]、[串流至事件中樞] 或 [傳送至 Log Analytics]，再使用 [儲存] 按鈕。
+        > 您必須先選取 [封存至儲存體帳戶]、[串流至事件中樞] 或 [傳送至 Log Analytics]，再按一下 [儲存] 按鈕。
 
 一旦您啟用了診斷設定，即可返回 [診斷記錄] 刀鋒視窗來檢視記錄。
 
 ## <a name="view-logs"></a>檢視記錄檔
 
-檢視 Data Lake Analytics 帳戶的記錄資料有兩種方式。
+### <a name="use-the-data-lake-analytics-view"></a>使用 Data Lake Analytics 檢視
 
-* 從 Data Lake Analytics 帳戶設定
-* 從儲存資料的 Azure 儲存體帳戶
-
-### <a name="using-the-data-lake-analytics-settings-view"></a>使用 Data Lake Analytics 設定檢視
-
-1. 從 [Data Lake Analytics 帳戶] 刀鋒視窗中，選取 [診斷記錄]，然後選取要顯示記錄的項目。
+1. 從 [Data Lake Analytics 帳戶] 刀鋒視窗的 [監視] 下，選取 [診斷記錄]，然後選取要顯示記錄的項目。
 
     ![檢視診斷記錄](./media/data-lake-analytics-diagnostic-logs/view-diagnostic-logs.png "檢視診斷記錄")
 
@@ -82,13 +75,13 @@ ms.lasthandoff: 05/26/2017
     ![記錄項目](./media/data-lake-analytics-diagnostic-logs/diagnostic-log-entries.png)
 
    * 要求記錄能擷取所有以 Data Lake Analytics 帳戶提出的 API 要求。
-   * 稽核記錄與要求記錄相似，不過能針對以 Data Lake Analytics 帳戶執行之作業提供更詳細的明細。 例如，要求記錄中的一個上傳 API 呼叫可能會致使稽核記錄出現多個「附加」作業。
+   * 稽核記錄與要求記錄相似，不過能針對以 Data Lake Analytics 帳戶執行之作業提供更詳細的明細。 例如，要求記錄中的一個上傳 API 呼叫可能會致使其稽核記錄出現多個「附加」作業。
 
-3. 針對記錄項目按一下 [下載]  連結來下載記錄。
+3. 針對記錄項目按一下 [下載]  連結來下載該記錄。
 
-### <a name="from-the-azure-storage-account-that-contains-log-data"></a>從包含記錄資料的 Azure 儲存體帳戶
+### <a name="use-the-azure-data-lake-storage-account-that-contains-log-data"></a>使用包含記錄資料的 Azure Data Lake 儲存體帳戶
 
-1. 開啟與與用於記錄的 Data Lake Analytics 關聯的Azure 儲存體帳戶刀鋒視窗，然後按一下 [Blob]。 [Blob 服務]  刀鋒視窗會列出兩個容器。
+1. 開啟與用於記錄的 Data Lake Analytics 建立關聯的 Azure Data Lake 儲存體帳戶刀鋒視窗，然後按一下 [Blob]。 [Blob 服務]  刀鋒視窗會列出兩個容器。
 
     ![檢視診斷記錄](./media/data-lake-analytics-diagnostic-logs/view-diagnostic-logs-storage-account.png "檢視診斷記錄")
 
@@ -125,7 +118,7 @@ ms.lasthandoff: 05/26/2017
 
 ## <a name="log-structure"></a>記錄檔結構
 
-稽核和要求記錄採用 JSON 格式。 在本節中，我們要探討要求和稽核記錄的 JSON 結構。
+稽核和要求記錄採用結構化 JSON 格式。
 
 ### <a name="request-logs"></a>要求記錄
 
@@ -164,12 +157,12 @@ ms.lasthandoff: 05/26/2017
 | Name | 類型 | 說明 |
 | --- | --- | --- |
 | 分析 |String |記錄的時間戳記 (UTC 時間) |
-| resourceId |String |作業發生之資源的識別碼 |
+| resourceId |String |執行作業所在資源的識別碼 |
 | category |String |記錄類別。 例如， **要求**。 |
 | operationName |String |記錄的作業名稱。 例如，GetAggregatedJobHistory。 |
 | resultType |String |作業的狀態。例如，200。 |
 | callerIpAddress |String |提出要求之用戶端的 IP 位址 |
-| correlationId |String |記錄檔的識別碼。 此值可用來群組一組相關的記錄檔項目 |
+| correlationId |String |角色的識別碼。 此值可用來群組一組相關的記錄項目。 |
 | 身分識別 |Object |產生記錄的身分識別 |
 | properties |JSON |請參閱下一節 (要求記錄檔屬性結構描述) 以取得詳細資訊 |
 
@@ -180,13 +173,13 @@ ms.lasthandoff: 05/26/2017
 | HttpMethod |String |作業使用的 HTTP 方法。 例如，GET。 |
 | Path |String |執行作業的所在路徑 |
 | RequestContentLength |int |HTTP 要求的內容長度 |
-| ClientRequestId |String |可唯一識別要求的識別碼 |
+| ClientRequestId |String |可唯一識別此要求的識別碼 |
 | StartTime |String |伺服器接收到要求的時間 |
 | EndTime |String |伺服器傳送回應的時間 |
 
 ### <a name="audit-logs"></a>稽核記錄檔
 
-以下是採用 JSON 格式之稽核記錄中的範例項目。 每個 Blob 會一個名為 **記錄** 的根物件，其中包含記錄檔物件的陣列
+以下是採用 JSON 格式之稽核記錄中的範例項目。 每個 Blob 會一個名為 **記錄** 的根物件，其中包含記錄檔物件的陣列。
 
     {
     "records":
@@ -216,7 +209,7 @@ ms.lasthandoff: 05/26/2017
 | Name | 類型 | 說明 |
 | --- | --- | --- |
 | 分析 |String |記錄的時間戳記 (UTC 時間) |
-| resourceId |String |作業發生之資源的識別碼 |
+| resourceId |String |執行作業所在資源的識別碼 |
 | category |String |記錄類別。 例如， **稽核**。 |
 | operationName |String |記錄的作業名稱。 例如，JobSubmitted。 |
 | resultType |String |作業狀態 (operationName) 的子狀態。 |
@@ -225,7 +218,7 @@ ms.lasthandoff: 05/26/2017
 | properties |JSON |請參閱下一節 (稽核記錄檔屬性結構描述) 以取得詳細資訊 |
 
 > [!NOTE]
-> **resultType** 和 **resultSignature** 會提供作業結果的相關資訊，並且只會在作業完成時才包含值。 例如，當 **operationName** 包含 **JobStarted** 或 **JobEnded** 的值時，它們便會包含值。
+> **resultType** 和 **resultSignature** 會提供作業結果的相關資訊，並且只會在作業完成時才包含值。 例如，只有當 **operationName** 包含 **JobStarted** 或 **JobEnded** 的值時，它們才會包含值。
 >
 >
 
@@ -237,12 +230,12 @@ ms.lasthandoff: 05/26/2017
 | JobName |String |為作業提供的名稱 |
 | JobRunTime |String |用來處理作業的執行階段 |
 | SubmitTime |String |作業提交時間 (UTC 格式) |
-| StartTime |String |作業在提交後開始執行的時間 (UTC 格式)。 |
-| EndTime |String |作業結束時間。 |
-| 平行處理原則 |String |在提交期間為此作業要求的 Data Lake Analytics 單位數目。 |
+| StartTime |String |作業在提交後開始執行的時間 (UTC 格式) |
+| EndTime |String |作業結束時間 |
+| 平行處理原則 |String |在提交期間為此作業要求的 Data Lake Analytics 單位數目 |
 
 > [!NOTE]
-> **SubmitTime**、**StartTime**、**EndTime** 和 **Parallelism** 會提供作業的相關資訊，並且只會在作業啟動或完成時才包含值。 例如，**SubmitTime** 會在 **operationName** 指出 **JobSubmitted** 之後包含值。
+> **SubmitTime**、**StartTime**、**EndTime** 和 **Parallelism** 會提供作業的相關資訊，並且只會在該作業啟動或完成時才包含值。 例如，**SubmitTime** 只會在 **operationName** 具有 **JobSubmitted** 值之後包含值。
 
 ## <a name="process-the-log-data"></a>處理記錄資料
 

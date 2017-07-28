@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: saveenr
-translationtype: Human Translation
-ms.sourcegitcommit: 21b4d574705d589406f50cac106a47ada71d24cd
-ms.openlocfilehash: 596459e25f8ad072a55ad45a2f444c71b27fd60c
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: f77329f9838d6e824afa7234de90f62257a004de
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 
 ---
@@ -26,11 +28,11 @@ ms.openlocfilehash: 596459e25f8ad072a55ad45a2f444c71b27fd60c
 U-SQL 的辨識功能讓開發人員可以在其公司的巨量資料程式中使用 put 智慧。 整個程序簡述如下︰
 
 * 使用 REFERENCE ASSEMBLY 陳述式啟用 U-SQL 指令碼的辨識功能
-* 以 PROCESS 作業使用辨識功能 
+* 呼叫 PROCESS 作業來使用辨識功能 
 
 ## <a name="imaging-scenarios"></a>影像案例
 
-### <a name="a-simple-example-image-tagging"></a>簡單的範例：影像標記
+### <a name="example-image-tagging"></a>範例：影像標記
 
 下列範例顯示以端對端使用影像功能來偵測影像中的物件。
 
@@ -150,10 +152,5 @@ U-SQL 的辨識功能讓開發人員可以在其公司的巨量資料程式中�
                 Chapter,
                 Text
         USING new Cognition.Text.SentimentAnalyzer(true);
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

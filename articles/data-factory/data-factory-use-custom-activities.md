@@ -120,7 +120,7 @@ public IDictionary<string, string> Execute(
      <li>在 [位置]<b></b> 選取 <b>C:\ADFGetStarted</b>。</li>
      <li>按一下 [確定] <b></b> 以建立專案。</li>
    </ol>
-2. 按一下 [工具]****，指向 [NuGet 封裝管理員]****，然後按一下 [封裝管理員主控台]****。
+2. 按一下 **[工具]** ，指向 **[NuGet 封裝管理員]** ，然後按一下 **[封裝管理員主控台]** 。
 3. 在 [封裝管理員主控台] 中，執行下列命令以匯入 **Microsoft.Azure.Management.DataFactories**。
 
     ```PowerShell
