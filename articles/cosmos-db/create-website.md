@@ -62,7 +62,7 @@ ms.lasthandoff: 06/07/2017
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)，按一下 [新增]，並搜尋「範本部署」。
     ![範本部署 UI 的螢幕擷取畫面](./media/create-website/TemplateDeployment1.png)
-2. 選取範本部署項目，然後按一下 [建立]****
+2. 選取範本部署項目，然後按一下 [建立]
     ![範本部署 UI 的螢幕擷取畫面](./media/create-website/TemplateDeployment2.png)
 3. 按一下 [編輯範本]，貼上 DocDBWebsiteTodo.json 範本檔案的內容，然後按一下 [儲存]。
    ![範本部署 UI 的螢幕擷取畫面](./media/create-website/TemplateDeployment3.png)
@@ -103,7 +103,7 @@ ms.lasthandoff: 06/07/2017
 
 1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [新增]，並搜尋「範本部署」。
     ![範本部署 UI 的螢幕擷取畫面](./media/create-website/TemplateDeployment1.png)
-2. 選取範本部署項目，然後按一下 [建立]****
+2. 選取範本部署項目，然後按一下 [建立]
     ![範本部署 UI 的螢幕擷取畫面](./media/create-website/TemplateDeployment2.png)
 3. 按一下 [編輯範本]，貼上 DocDBWebSite.json 範本檔案的內容，然後按一下 [儲存]。
    ![範本部署 UI 的螢幕擷取畫面](./media/create-website/TemplateDeployment3.png)
@@ -122,7 +122,7 @@ ms.lasthandoff: 06/07/2017
    ![範本部署 UI 的螢幕擷取畫面](./media/create-website/TemplateDeployment6.png)
 7. 部署完成時，就會開啟資源群組的刀鋒視窗。
    ![資源群組刀鋒視窗的螢幕擷取畫面](./media/create-website/TemplateDeployment7.png)  
-8. 按一下 [資源] 清單中的 Web 應用程式資源，然後按一下 [應用程式設定]****
+8. 按一下 [資源] 清單中的 Web 應用程式資源，然後按一下 [應用程式設定]
     ![資源群組的螢幕擷取畫面](./media/create-website/TemplateDeployment9.png)  
 9. 請注意出現的 Azure Cosmos DB 端點以及每個 Azure Cosmos DB 主要金鑰的應用程式設定。
 

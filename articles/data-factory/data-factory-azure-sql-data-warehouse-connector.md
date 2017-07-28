@@ -189,8 +189,8 @@ SQL 資料倉儲 PolyBase 直接支援 Azure Blob 和 Azure Data Lake Store (使
 
 如果不符合需求，Azure Data Factory 會檢查設定，並自動切換回適用於資料移動的 BULKINSERT 機制。
 
-1. 「來源已連結服務」的類型為：AzureStorage 或具備服務主題驗證的 AzureDataLakeStore****。  
-2. 「輸入資料集」的類型為：**AzureBlob** 或 **AzureDataLakeStore**，而 `type` 屬性底下的格式類型為 **OrcFormat** 或 **TextFormat** 並具備下列組態：
+1. 「來源已連結服務」的類型為：AzureStorage 或具備服務主題驗證的 AzureDataLakeStore。  
+2. 「輸入資料集」**的類型為**：**AzureBlob** 或 **AzureDataLakeStore**，而 `type` 屬性底下的格式類型為 **OrcFormat** 或 **TextFormat** 並具備下列組態：
 
    1. `rowDelimiter` 必須是 **\n**。
    2. `nullValue` 設定為「空字串」 ("") 或將 `treatEmptyAsNull` 設定為 **true**。
