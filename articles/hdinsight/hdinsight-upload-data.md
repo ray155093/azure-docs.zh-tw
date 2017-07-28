@@ -23,7 +23,6 @@ ms.openlocfilehash: 134afd3495c555f85e8838cbe0344a3a48534950
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/10/2017
 
-
 ---
 # <a name="upload-data-for-hadoop-jobs-in-hdinsight"></a>在 HDInsight 上將 Hadoop 工作的資料上傳
 Azure HDInsight 在 Azure Blob 儲存體上提供了全功能的 Hadoop 分散式檔案系統 (HDFS)。 此儲存體是設計為 HDFS 的延伸，以便為使用者提供流暢的體驗。 此儲存體可讓 Hadoop 生態系統中的完整元件集直接在它管理的資料上運作。 Azure Blob 儲存體和 HDFS 是不同的檔案系統，但經過最佳化後，都非常適合儲存資料以及計算儲存的資料。 如需關於使用 Azure Blob 儲存體有哪些優點的資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
@@ -154,11 +153,11 @@ Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資�
 
 因為 HDInsight 的預設檔案系統是位於 Azure Blob 儲存體中，所以 /example/data.txt 實際上是在 Azure Blob 儲存體中。 您也可以用下列語法來參考此檔案：
 
-    wasbs:///example/data/data.txt
+    wasb:///example/data/data.txt
 
 或
 
-    wasbs://<ContainerName>@<StorageAccountName>.blob.core.windows.net/example/data/davinci.txt
+    wasb://<ContainerName>@<StorageAccountName>.blob.core.windows.net/example/data/davinci.txt
 
 如需其他可用來處理檔案的 Hadoop 命令清單，請參閱 [http://hadoop.apache.org/docs/r2.7.0/hadoop-project-dist/hadoop-common/FileSystemShell.html](http://hadoop.apache.org/docs/r2.7.0/hadoop-project-dist/hadoop-common/FileSystemShell.html)
 

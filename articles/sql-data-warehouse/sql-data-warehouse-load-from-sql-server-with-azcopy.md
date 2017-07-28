@@ -3,8 +3,8 @@ title: "將資料從 SQL Server 載入 Azure SQL 資料倉儲 (PolyBase) | Micro
 description: "使用 bcp 將資料從 SQL Server 匯出到一般檔案、使用 AZCopy 將資料匯入至 Azure Blob 儲存體，以及使用 PolyBase 將資料擷取到 Azure SQL 資料倉儲中。"
 services: sql-data-warehouse
 documentationcenter: NA
-author: ckarst
-manager: barbkess
+author: barbkess
+manager: jhubbard
 editor: 
 ms.assetid: 4d42786a-fb28-43c9-9c3b-72d19c0ecc11
 ms.service: sql-data-warehouse
@@ -15,12 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
 ms.openlocfilehash: 21b4cc704e271ac220fd606305f8f97c9b2593bb
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/22/2017
-
-
 
 ---
 # <a name="load-data-from-sql-server-into-azure-sql-data-warehouse-azcopy"></a>將資料從 SQL Server 載入 Azure SQL 資料倉儲 (AZCopy)

@@ -21,7 +21,6 @@ ms.openlocfilehash: 9a588a28312388a524d91df7363234e0f609660e
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/07/2017
 
-
 ---
 # <a name="use-zeppelin-notebooks-with-apache-spark-cluster-on-azure-hdinsight"></a>在 Azure HDInsight 上搭配使用 Zeppelin Notebook 和 Apache Spark 叢集
 
@@ -61,7 +60,7 @@ HDInsight Spark 叢集包含可用來執行 Spark 作業的 Zeppelin Notebook。
         //The above magic instructs Zeppelin to use the Livy Scala interpreter
    
         // Create an RDD using the default Spark context, sc
-        val hvacText = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
+        val hvacText = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
    
         // Define a schema
         case class Hvac(date: String, time: String, targettemp: Integer, actualtemp: Integer, buildingID: String)
