@@ -4,7 +4,7 @@ description: "了解您可以用來建立原型及測試 Azure 分析服務和�
 services: sql-database
 documentationcenter: 
 author: douglaslMS
-manager: jhubbard
+manager: craigg
 editor: 
 tags: 
 ms.custom: reference
@@ -21,7 +21,6 @@ ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
 ms.openlocfilehash: 53ae23dba61cf835c6a4826b528772b1cd2e1622
 ms.contentlocale: zh-tw
 ms.lasthandoff: 03/29/2017
-
 
 ---
 # <a name="public-data-sets-for-testing-and-prototyping"></a>用於測試和建立原型的公用資料集

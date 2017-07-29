@@ -20,7 +20,6 @@ ms.openlocfilehash: 90d0b7e3f49daa33ab8c617d07ba9098cdda751f
 ms.contentlocale: zh-tw
 ms.lasthandoff: 05/12/2017
 
-
 ---
 
 # <a name="view-analytic-data-for-metrics-across-all-your-azure-web-app-resources"></a>檢視所有 Azure Web 應用程式資源之間的計量分析資料
@@ -92,6 +91,8 @@ Azure Web Apps 分析解決方案會從 Azure 收集兩組計量：
 ### <a name="view-azure-web-apps-analytics-information"></a>檢視 Azure Web Apps 分析資訊
 
 按一下 [Azure Web Apps 分析] 圖格開啟 [Azure Web Apps 分析] 儀表板。 此儀表板包含下表中的刀鋒視窗。 每個刀鋒視窗會針對所指定的範圍與時間範圍，列出最多 10 個符合該刀鋒視窗準則的項目。 您可以按一下刀鋒視窗底部的 [查看全部]，或按一下刀鋒視窗標頭，以執行記錄搜尋來傳回所有記錄。
+
+[!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 | 資料欄 | 說明 |
 | --- | --- |
