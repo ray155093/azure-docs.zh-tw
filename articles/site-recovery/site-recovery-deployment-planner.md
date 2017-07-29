@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/29/2017
 ms.author: nisoneji
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
-ms.openlocfilehash: a6fdab66a6a41e352d07e3b6f3c58eb331c0d93f
+ms.translationtype: HT
+ms.sourcegitcommit: 2812039649f7d2fb0705220854e4d8d0a031d31e
+ms.openlocfilehash: 4d96483a971d5c4a0c2cc240620e7a9b289f597d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
-
+ms.lasthandoff: 07/22/2017
 
 ---
 # <a name="azure-site-recovery-deployment-planner"></a>Azure Site Recovery Deployment Planner
@@ -456,7 +455,9 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 **VM 相容性**：值為 [是] 和 [是\*]。 **[是\*]** 適用於 VM 適合於 [Azure 進階儲存體](https://aka.ms/premium-storage-workload)的情況。 在此情況下，剖析的高變換 / IOPS 磁碟符合 P20 或 P30 類別，但磁碟大小會導致它向下對應至 P10 或 P20。 儲存體帳戶會根據磁碟大小，決定磁碟所要對應至的進階儲存體大小類型。 例如：
 * <128 GB 為 P10。
 * 128 GB 至 512 GB 為 P20。
-* 512 GB 至 1023 GB 為 P30。
+* 512 GB 至 1024 GB 為 P30。
+* 1025 GB 至 2048 GB 為 P40。
+* 2049 GB 至 4095 GB 為 P50。
 
 如果磁碟的工作負載特性讓它放在 P20 或 P30 類別中，但大小會將它對應到較低的進階儲存體磁碟類型，此工具會將該 VM 標示為 [是\*]。 此工具也建議您變更來源磁碟大小，以符合建議的進階儲存體磁碟類型，或變更容錯移轉後的目標磁碟類型。
 
@@ -494,7 +495,8 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 **VM 相容性**：指出為何指定的 VM 不適合與 Site Recovery 搭配使用。 相關原因會針對 VM 的每個不相容磁碟進行說明，且根據發佈的[儲存體限制](https://aka.ms/azure-storage-scalbility-performance)，原因可能是下列其中一項：
 
-* 磁碟大小 > 1023 GB。 Azure 儲存體目前不支援大於 1 TB 的磁碟大小。
+* 磁碟大小 >4095 GB。 Azure 儲存體目前不支援大於 4095 GB 的資料磁碟大小。
+* OS 磁碟 >2048 GB。 Azure 儲存體目前不支援大於 2048 GB 的 OS 磁碟大小。
 * 啟動類型為 EFI。 Azure Site Recovery 目前僅支援 BIOS 開機類型虛擬機器。
 
 * VM 大小總計 (複寫 + TFO) 超過支援的儲存體帳戶大小限制 (35 TB)。 當 VM 中單一磁碟的效能特性超過標準儲存體支援的最大 Azure 或 Site Recovery 限制，通常會發生此不相容情況。 這類情況會將 VM 推送到進階儲存體區域中。 不過，進階儲存體帳戶支援的大小上限為 35 TB，而單一的受保護 VM 無法跨多個儲存體帳戶受到保護。 也請注意，在受保護的 VM 上執行測試容錯移轉時，它會在正在進行複寫的相同儲存體帳戶中執行。 在此例中，設定 2 倍的磁碟大小，以便進行複寫並以平行方式繼續進行測試容錯移轉。
@@ -560,6 +562,15 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 
 ## <a name="version-history"></a>版本歷程記錄
+
+### <a name="131"></a>1.3.1
+更新日期：2017 年 7 月 19 日
+
+已新增下列新功能︰
+
+* 在報告產生階段新增了大型磁碟 (> 1TB) 的支援。 您現在可以使用部署規劃工具，規劃磁碟大小大於 1 TB (最多 4095 GB) 之虛擬機器的複寫。
+深入了解 [Azure Site Recovery 中的大型磁碟支援](https://azure.microsoft.com/en-us/blog/azure-site-recovery-large-disks/)
+
 
 ### <a name="13"></a>1.3
 更新日期：2017 年 5 月 9 日

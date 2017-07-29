@@ -14,16 +14,14 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: d3908e2984889656a70b5295eab19164ad3bfa95
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: eea78b6616248aaf24053081ec99701c187111cc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
-
+ms.lasthandoff: 07/21/2017
 
 ---
-<a id="tutorial-build-your-first-azure-data-factory-using-azure-powershell" class="xliff"></a>
-# 教學課程：使用 Azure PowerShell 建置您的第一個 Azure Data Factory
+# <a name="tutorial-build-your-first-azure-data-factory-using-azure-powershell"></a>教學課程：使用 Azure PowerShell 建置您的第一個 Azure Data Factory
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-build-your-first-pipeline.md)
 > * [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
@@ -43,14 +41,12 @@ ms.lasthandoff: 06/14/2017
 > 
 > 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
 
-<a id="prerequisites" class="xliff"></a>
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 * 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。
 * 按照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
 * (選用) 這篇文章並未涵蓋所有的 Data Factory Cmdlet。 如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory Cmdlet 參考](/powershell/module/azurerm.datafactories) 。
 
-<a id="create-data-factory" class="xliff"></a>
-## 建立 Data Factory
+## <a name="create-data-factory"></a>建立 Data Factory
 在此步驟中，您會使用 Azure PowerShell 建立名為 **FirstDataFactoryPSH**的 Azure Data Factory。 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源將資料複製到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。 讓我們在這個步驟中開始建立 Data Factory。
 
 1. 啟動 Azure PowerShell 並執行下列命令。 將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。 如果您關閉並重新開啟，則需要再次執行這些命令。
@@ -98,12 +94,10 @@ ms.lasthandoff: 06/14/2017
 
 建立管線之前，您必須先建立一些 Data Factory 項目。 首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示位於連結的資料存放區中的輸入/輸出資料，然後建立具有使用這些資料集的活動之管線。
 
-<a id="create-linked-services" class="xliff"></a>
-## 建立連結服務
+## <a name="create-linked-services"></a>建立連結服務
 在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。 Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。 HDInsight 連結服務是用來執行此範例中管線活動所指定的 Hive 指令碼。 識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
 
-<a id="create-azure-storage-linked-service" class="xliff"></a>
-### 建立 Azure 儲存體連結服務
+### <a name="create-azure-storage-linked-service"></a>建立 Azure 儲存體連結服務
 在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。 您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。
 
 1. 在 C:\ADFGetStarted 資料夾中，使用以下內容建立名為 StorageLinkedService.json 的 JSON 檔案。 如果不存在，請建立 ADFGetStarted 資料夾。
@@ -139,23 +133,24 @@ ms.lasthandoff: 06/14/2017
     ```
     如果您在教學課程途中關閉 Azure PowerShell，則下次啟動 Azure PowerShell 時必須執行 **Get-AzureRmDataFactory** Cmdlet，才能完成教學課程。
 
-<a id="create-azure-hdinsight-linked-service" class="xliff"></a>
-### 建立 Azure HDInsight 連結服務
+### <a name="create-azure-hdinsight-linked-service"></a>建立 Azure HDInsight 連結服務
 在此步驟中，您可將隨選 HDInsight 叢集連結至 Data Factory。 HDInsight 叢集會在執行階段自動建立，並在處理完成之後刪除，且會閒置一段時間。 您可以使用自己的 HDInsight 叢集，不必使用隨選的 HDInsight 叢集。 請參閱 [計算連結服務](data-factory-compute-linked-services.md) 以取得詳細資料。
 
 1. 在 **C:\ADFGetStarted** 資料夾中，使用以下內容建立名為 **HDInsightOnDemandLinkedService**.json 的 JSON 檔案。
 
     ```json
     {
-      "name": "HDInsightOnDemandLinkedService",
-      "properties": {
-        "type": "HDInsightOnDemand",
-        "typeProperties": {
-          "clusterSize": 1,
-          "timeToLive": "00:30:00",
-          "linkedServiceName": "StorageLinkedService"
+        "name": "HDInsightOnDemandLinkedService",
+        "properties": {
+            "type": "HDInsightOnDemand",
+            "typeProperties": {
+                "version": "3.5",
+                "clusterSize": 1,
+                "timeToLive": "00:05:00",
+                "osType": "Linux",
+                "linkedServiceName": "StorageLinkedService"
+            }
         }
-      }
     }
     ```
     下表提供程式碼片段中所使用之 JSON 屬性的描述：
@@ -168,7 +163,7 @@ ms.lasthandoff: 06/14/2017
 
     請注意下列幾點：
 
-   * Data Factory 會使用 JSON 為您建立**以 Windows 為基礎的**HDInsight 叢集。 您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。 如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) 。
+   * Data Factory 會使用 JSON，為您建立**以 Linux 為基礎的** HDInsight 叢集。 如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) 。
    * 您可以使用 **自己的 HDInsight 叢集** ，不必使用隨選的 HDInsight 叢集。 如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) 。
    * HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。 HDInsight 不會在刪除叢集時刪除此容器。 這是設計的行為。 在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每次處理配量時，就會建立 HDInsight 叢集。 此叢集會在處理完成時自動刪除。
 
@@ -181,12 +176,10 @@ ms.lasthandoff: 06/14/2017
     New-AzureRmDataFactoryLinkedService $df -File .\HDInsightOnDemandLinkedService.json
     ```
 
-<a id="create-datasets" class="xliff"></a>
-## 建立資料集
+## <a name="create-datasets"></a>建立資料集
 在此步驟中，您會建立資料集來代表 Hive 處理的輸入和輸出資料。 這些資料集是您稍早在本教學課程中建立的 **StorageLinkedService** 。 連結的服務會指向 Azure 儲存體帳戶，而資料集則會指定保留輸入和輸出資料儲存體中的容器、資料夾和檔案名稱。
 
-<a id="create-input-dataset" class="xliff"></a>
-### 建立輸入資料集
+### <a name="create-input-dataset"></a>建立輸入資料集
 1. 在 **C:\ADFGetStarted** 資料夾中，使用下列內容建立名為 **InputTable.json** 的 JSON 檔案：
 
     ```json
@@ -231,8 +224,7 @@ ms.lasthandoff: 06/14/2017
     New-AzureRmDataFactoryDataset $df -File .\InputTable.json
     ```
 
-<a id="create-output-dataset" class="xliff"></a>
-### 建立輸出資料集
+### <a name="create-output-dataset"></a>建立輸出資料集
 現在，您會建立輸出資料集來代表 Azure Blob 儲存體中儲存的輸出資料。
 
 1. 在 **C:\ADFGetStarted** 資料夾中，使用下列內容建立名為 **OutputTable.json** 的 JSON 檔案：
@@ -264,8 +256,7 @@ ms.lasthandoff: 06/14/2017
     New-AzureRmDataFactoryDataset $df -File .\OutputTable.json
     ```
 
-<a id="create-pipeline" class="xliff"></a>
-## 建立管線
+## <a name="create-pipeline"></a>建立管線
 在此步驟中，您會建立第一個具有 **HDInsightHive** 活動的管線。 您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每月。 輸出資料集設定及活動排程器必須相符。 目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。 如果活動沒有任何輸入，您可以略過建立輸入資料集。 本節結尾會說明下列 JSON 中使用的屬性。
 
 1. 在 C:\ADFGetStarted 資料夾中，使用下列內容建立名為 MyFirstPipelinePSH.json 的 JSON 檔案：
@@ -313,8 +304,8 @@ ms.lasthandoff: 06/14/2017
                     "linkedServiceName": "HDInsightOnDemandLinkedService"
                 }
             ],
-            "start": "2016-04-01T00:00:00Z",
-            "end": "2016-04-02T00:00:00Z",
+            "start": "2017-07-01T00:00:00Z",
+            "end": "2017-07-02T00:00:00Z",
             "isPaused": false
         }
     }
@@ -339,8 +330,7 @@ ms.lasthandoff: 06/14/2017
     ```
 3. 恭喜，您已經成功使用 Azure PowerShell 建立您的第一個管線！
 
-<a id="monitor-pipeline" class="xliff"></a>
-## 監視管線
+## <a name="monitor-pipeline"></a>監視管線
 在此步驟中，您會使用 Azure PowerShell 來監視 Azure Data Factory 的運作情形。
 
 1. 執行 **Get-AzureRmDataFactory** 並指派輸出給 **$df** 變數。
@@ -351,7 +341,7 @@ ms.lasthandoff: 06/14/2017
 2. 執行 **Get-AzureRmDataFactorySlice**，以取得 **EmpSQLTable** (管線的輸出資料表) 所有配量的詳細資料。
 
     ```PowerShell
-    Get-AzureRmDataFactorySlice $df -DatasetName AzureBlobOutput -StartDateTime 2016-04-01
+    Get-AzureRmDataFactorySlice $df -DatasetName AzureBlobOutput -StartDateTime 2017-07-01
     ```
     請注意，您在此處指定的 StartDateTime 與在管線 JSON 中指定的開始時間是相同的。 以下是範例輸出：
 
@@ -359,8 +349,8 @@ ms.lasthandoff: 06/14/2017
     ResourceGroupName : ADFTutorialResourceGroup
     DataFactoryName   : FirstDataFactoryPSH
     DatasetName       : AzureBlobOutput
-    Start             : 4/1/2016 12:00:00 AM
-    End               : 4/2/2016 12:00:00 AM
+    Start             : 7/1/2017 12:00:00 AM
+    End               : 7/2/2017 12:00:00 AM
     RetryCount        : 0
     State             : InProgress
     SubState          :
@@ -370,7 +360,7 @@ ms.lasthandoff: 06/14/2017
 3. 執行 **Get-AzureRmDataFactoryRun** ，以取得特定配量的活動執行詳細資料。
 
     ```PowerShell
-    Get-AzureRmDataFactoryRun $df -DatasetName AzureBlobOutput -StartDateTime 2016-04-01
+    Get-AzureRmDataFactoryRun $df -DatasetName AzureBlobOutput -StartDateTime 2017-07-01
     ```
 
     以下是範例輸出： 
@@ -383,8 +373,8 @@ ms.lasthandoff: 06/14/2017
     ProcessingStartTime : 12/18/2015 4:50:33 AM
     ProcessingEndTime   : 12/31/9999 11:59:59 PM
     PercentComplete     : 0
-    DataSliceStart      : 4/1/2016 12:00:00 AM
-    DataSliceEnd        : 4/2/2016 12:00:00 AM
+    DataSliceStart      : 7/1/2017 12:00:00 AM
+    DataSliceEnd        : 7/2/2017 12:00:00 AM
     Status              : AllocatingResources
     Timestamp           : 12/18/2015 4:50:33 AM
     RetryAttempt        : 0
@@ -405,8 +395,7 @@ ms.lasthandoff: 06/14/2017
 >
 >
 
-<a id="summary" class="xliff"></a>
-## 摘要
+## <a name="summary"></a>摘要
 在本教學課程中，您會在 HDInsight hadoop 叢集上執行 Hive 指令碼，以建立 Azure Data Factory 來處理資料。 您會在使用 Azure 入口網站中使用 Data Factory 編輯器來執行下列步驟︰
 
 1. 建立 Azure **Data Factory**。
@@ -416,12 +405,10 @@ ms.lasthandoff: 06/14/2017
 3. 建立兩個 **資料集**，以說明管線中 HDInsight Hive 活動的輸入和輸出資料。
 4. 建立具有 **HDInsight Hive** 活動的**管線**。
 
-<a id="next-steps" class="xliff"></a>
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 在本文中，您已經建立可在隨選 Azure HDInsight 叢集上執行 Hive 指令碼，含有轉換活動 (HDInsight 活動) 的管線。 若要了解如何使用「複製活動」從 Azure Blob 將資料複製到 Azure SQL，請參閱 [教學課程：從 Azure Blob 將資料複製到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
-<a id="see-also" class="xliff"></a>
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 | 主題 | 說明 |
 |:--- |:--- |
 | [Data Factory Cmdlet 參考](/powershell/module/azurerm.datafactories) |請參閱 Data Factory Cmdlet 中的完整文件 |

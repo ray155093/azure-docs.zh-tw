@@ -4,7 +4,6 @@ description: "說明 Azure AD 租用戶是什麼，以及如何透過 Azure Acti
 services: active-directory
 documentationcenter: 
 author: curtand
-writer: markvi
 manager: femila
 ms.assetid: d4ca2365-6729-48f7-bb7f-c0f5ffe740a3
 ms.service: active-directory
@@ -12,13 +11,15 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/06/2017
+ms.date: 07/20/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 001ffc0f9c7465552392a9848ef1487a4c0eafce
-ms.lasthandoff: 12/08/2016
-
+ms.reviewer: jeffsta
+ms.custom: it-pro;oldportal
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: 07b9f4626e9129c7eeb94d43883417f324da5292
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/21/2017
 
 ---
 # <a name="administer-your-azure-ad-directory"></a>管理 Azure AD 目錄
@@ -55,7 +56,7 @@ Azure AD 提供大部分 Microsoft 雲端服務的核心目錄和身分識別管
 如需整合內部部署目錄與 Azure AD 的詳細資訊，請參閱 [目錄整合](active-directory-aadconnect.md)。
 
 ### <a name="associate-an-azure-ad-directory-with-a-new-azure-subscription"></a>關聯 Azure AD 目錄與新的 Azure 訂用帳戶
-您可以關聯新的 Azure 訂用帳戶與驗證現有 Office 365 或 Microsoft Intune 訂用帳戶登入的相同目錄。 使用您的工作或學校帳戶，登入 Azure 管理入口網站。 管理入口網站會傳回一則訊息，指出找不到該帳戶的任何訂用帳戶。 選取 [ **註冊 Azure**]，而且您的目錄將可在入口網站內進行系統管理。 如需詳細資訊，請參閱 [在 Azure 中管理 Office 365 訂用帳戶的目錄](active-directory-how-subscriptions-associated-directory.md#manage-the-directory-for-your-office-365-subscription-in-azure)。
+您可以關聯新的 Azure 訂用帳戶與驗證現有 Office 365 或 Microsoft Intune 訂用帳戶登入的相同目錄。 使用您的公司或學校帳戶，登入 Azure 入口網站。 入口網站會傳回一則訊息，指出找不到該帳戶的任何訂用帳戶。 選取 [ **註冊 Azure**]，而且您的目錄將可在入口網站內進行系統管理。 如需詳細資訊，請參閱 [在 Azure 中管理 Office 365 訂用帳戶的目錄](active-directory-how-subscriptions-associated-directory.md#manage-the-directory-for-your-office-365-subscription-in-azure)。
 
 如需 Azure AD 常見使用問題的影片，請參閱 [Azure Active Directory - 常見註冊、登入和使用問題](http://channel9.msdn.com/Series/Windows-Azure-Active-Directory/WAADCommonSignupsigninquestions)。
 
@@ -76,7 +77,7 @@ Azure AD 沒有任何使用成本。 目錄是一個免費的資源。 還有一
 若要變更目錄的顯示名稱，請按一下入口網站中的目錄，然後按一下 [ **設定**]。 如本主題稍後所說明，您可以新增目錄，或刪除您不再需要的目錄。 若要將您的訂用帳戶與不同的目錄產生關聯，按一下左側導覽中的 [設定] 延伸目錄，然後在 [訂用帳戶] 頁面底部按一下 [編輯目錄]。 您也可以建立使用 DNS 名稱並註冊的自訂網域，而非預設 *.onmicrosoft.com 網域，但服務 (例如 SharePoint Online) 可能偏好使用後者。
 
 ## <a name="how-can-i-manage-directory-data"></a>如何管理目錄資料
-身為一或多個 Microsoft 雲端服務訂用帳戶的系統管理員，您可以使用 Azure 管理入口網站、Microsoft Intune 帳戶入口網站或 Office 365 系統管理中心來管理組織的目錄資料。 您也可以下載並執行 [ [適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx) ] Cmdlet，協助您管理 Azure AD 中所儲存的資料。
+身為一或多個 Microsoft 雲端服務訂用帳戶的系統管理員，您可以使用 [Azure AD 系統管理中心](https://aad.portal.azure.com)、Microsoft Intune 帳戶入口網站或 Office 365 系統管理中心來管理組織的目錄資料。 您也可以下載並執行 [ [適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx) ] Cmdlet，協助您管理 Azure AD 中所儲存的資料。
 
 從上述其中一個入口網站 (或 Cmdlet)，您可以：
 
@@ -84,7 +85,7 @@ Azure AD 沒有任何使用成本。 目錄是一個免費的資源。 還有一
 * 管理您組織所訂閱的相關雲端服務
 * 設定內部部署與目錄服務的整合
 
-Azure 管理入口網站、Office 365 系統管理中心、Microsoft Intune 帳戶入口網站和 Azure AD Cmdlet 全都會讀取和寫入與您組織的目錄相關聯的單一 Azure AD 共用執行個體 (如下圖所示)。 因此，入口網站 (或 Cmdlet) 可做為提取和 (或) 修改您目錄資料的前端介面。
+[Azure AD 系統管理中心](https://aad.portal.azure.com)、Office 365 系統管理中心、Microsoft Intune 帳戶入口網站和 Azure AD Cmdlet 都會讀取和寫入與您組織的目錄相關聯的單一 Azure AD 共用執行個體 (如下圖所示)。 因此，入口網站 (或 Cmdlet) 可作為提取或修改您目錄資料的前端介面。
 
 ![][2]
 
@@ -94,7 +95,7 @@ Azure 管理入口網站、Office 365 系統管理中心、Microsoft Intune 帳�
 例如，如果您已使用 Office 365 系統管理中心封鎖使用者登入，該動作將封鎖使用者登入您組織目前所訂閱的任何其他服務。 如果您是使用 Microsoft Intune 帳戶入口網站身分提取該相同使用者的帳戶，則會封鎖該使用者。
 
 ## <a name="how-can-i-add-and-manage-multiple-directories"></a>如何新增和管理多個目錄？
-您可以在 Azure 管理入口網站中新增 Azure AD 目錄。 選取左方的 [Active Directory] 延伸模組，然後按一下 [新增]。
+您可以在 [Azure AD 傳統入口網站](https://manage.windowsazure.com)中新增 Azure AD 目錄。 在 [概觀] 窗格中，選取左方的 [Active Directory] 擴充功能，然後按一下 [新增]。
 
 您可以管理每個目錄當做完全獨立的資源：每個目錄都是對等、全功能且邏輯上與您所管理的其他目錄無關；目錄之間沒有任何父子關聯性。 目錄之間的這項獨立性包括資源獨立性、系統管理獨立性和同步處理獨立性。
 
@@ -116,7 +117,7 @@ Azure 管理入口網站、Office 365 系統管理中心、Microsoft Intune 帳�
 全域管理員可以從入口網站刪除 Azure AD 目錄。 刪除目錄時，也會一併刪除目錄中所含的所有資源；因此，您應該確定不需要該目錄之後再予以刪除。
 
 > [!NOTE]
-> 如果使用者以工作或學校帳戶登入，則使用者不得嘗試刪除其主目錄。 例如，如果使用者以 joe@contoso.onmicrosoft.com, 身分登入，則該使用者無法刪除預設網域為 contoso.onmicrosoft.com 的目錄。
+> 如果使用者以工作或學校帳戶登入，則使用者不得嘗試刪除其主目錄。 例如，如果使用者以 joe@contoso.onmicrosoft.com 身分登入，則該使用者無法刪除預設網域為 contoso.onmicrosoft.com 的目錄。
 > 
 > 
 
@@ -130,7 +131,7 @@ Azure AD 需要符合特定條件才能刪除目錄。 這可降低刪除目錄�
 * 任何 Microsoft Online Service 都沒有任何訂用帳戶 (例如與目錄相關聯 Microsoft Azure、Office 365 或 Azure AD Premium)。 例如，在 Azure 中建立預設目錄時，如果您的 Azure 訂用帳戶仍然依賴此目錄來進行驗證，則無法刪除此目錄。 同樣地，如果另一位使用者擁有與目錄相關聯的訂用帳戶，則您無法刪除目錄。 若要關聯您的訂用帳戶與不同的目錄，請登入 Azure 管理入口網站，然後按一下左導覽中的 [ **設定** ]。 然後在 [訂用帳戶] 頁面底部，按一下 [編輯目錄]。 如需 Azure 訂用帳戶的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure AD 產生關聯](active-directory-how-subscriptions-associated-directory.md)。
 
 > [!NOTE]
-> 如果使用者以工作或學校帳戶登入，則使用者不得嘗試刪除其主目錄。 例如，如果使用者以 joe@contoso.onmicrosoft.com, 身分登入，則該使用者無法刪除預設網域為 contoso.onmicrosoft.com 的目錄。
+> 如果使用者以工作或學校帳戶登入，則使用者不得嘗試刪除其主目錄。 例如，如果使用者以 joe@contoso.onmicrosoft.com 身分登入，則該使用者無法刪除預設網域為 contoso.onmicrosoft.com 的目錄。
 > 
 > 
 
