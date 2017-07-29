@@ -106,7 +106,7 @@ ms.lasthandoff: 06/16/2017
 2. 按一下 [復原資料]  初始化工作流程。
 
     ![復原資料](./media/backup-azure-restore-windows-server-classic/recover.png)
-3. 選取 [這台伺服器 (yourmachinename)]** 選項，在同一部電腦上還原備份的檔案。
+3. 選取 **這台伺服器 (*yourmachinename*)** 選項，在同一部電腦上還原備份的檔案。
 
     ![相同電腦](./media/backup-azure-restore-windows-server-classic/samemachine.png)
 4. 選擇 [瀏覽檔案] 或 [搜尋檔案]。
