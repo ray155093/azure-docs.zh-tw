@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/04/2017
+ms.date: 05/26/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: 37211b961644fdc5567147cde946f86afb9b1aa9
+ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
+ms.openlocfilehash: b9a659e88d7cd73077bfa5f5f3264eb33b4e2661
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 06/09/2017
 
 
 ---
@@ -31,136 +31,137 @@ ms.lasthandoff: 05/05/2017
 >
 >
 
-本文討論如何使用 Azure 入口網站建立可存取 Azure Data Lake Store 的 HDInsight 叢集。 對於支援的叢集類型，您可以使用 Data Lake Store 做為預設儲存體或額外儲存體帳戶。
-
-當您使用 Data Lake Store 做為額外儲存體時，叢集的預設儲存體帳戶仍然是 Azure Blob 儲存體，而叢集相關的檔案 (例如記錄) 仍會寫入預設儲存體。 不過，您想要處理的資料可以儲存於 Data Lake Store 帳戶中。 使用 Data Lake Store 做為額外儲存體帳戶，並不會影響效能或從叢集讀取或寫入至儲存體的能力。
-
-以下是使用 HDInsight 搭配 Data Lake Store 的一些重要考量：
-
-* HDInsight 3.5 版提供建立可存取 Data Lake Store 做為預設儲存體之 HDInsight 叢集的選項。
-
-* HDInsight Premium 叢集「不提供」建立可存取 Data Lake Store 做為預設儲存體之 HDInsight 叢集的選項。
-
-* HDInsight 3.2、3.4 和 3.5 版提供建立可存取 Data Lake Store 做為額外儲存體之 HDInsight 叢集的選項。
-
-* 對於 HBase 叢集 (Windows 和 Linux)，「不支援」使用 Data Lake Store 做為儲存體選項，無論是預設或額外儲存體。
-
-* 對於 Storm 叢集 (Windows 和 Linux)，您可以使用 Data Lake Store 從 Storm 拓撲寫入資料。 您也可以使用 Data Lake Store 做為參考資料，該資料稍後可以由 Storm 拓撲讀取。 如需詳細資訊，請參閱 [在 Storm 拓撲中使用 Data Lake Store](#use-data-lake-store-in-a-storm-topology)。
-
+了解如何利用 Azure 入口網站，建立使用 Azure Data Lake Store 帳戶作為預設儲存體或其他儲存體的 HDInsight 叢集。 即使其他儲存體是 HDInsight 叢集的選用項目，還是建議將您的商務資料儲存在其他儲存體帳戶中。
 
 ## <a name="prerequisites"></a>必要條件
 開始本教學課程之前，確保您已符合下列需求：
 
 * **Azure 訂用帳戶**。 請移至[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-
-* **Azure Data Lake Store 帳戶**。 遵循[使用 Azure 入口網站開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md) 的指示操作。
-
+* **Azure Data Lake Store 帳戶**。 遵循[使用 Azure 入口網站開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md) 的指示操作。 您也必須在此帳戶上建立根資料夾。  在本教學課程中，會使用名為 __/clusters__ 的根資料夾。
 * **Azure Active Directory 服務主體**。 本教學課程提供有關如何在 Azure Active Directory (Azure AD) 中建立服務主體的指示。 不過，您必須是 Azure AD 系統管理員，才能建立服務主體。 如果您是系統管理員，就可以略過這項先決條件並繼續進行本教學課程。
 
     >[!NOTE]
     >唯有您是 Azure AD 系統管理員，才可以建立服務主體。 您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 此外，必須使用憑證來建立服務主體，如[使用憑證來建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority)所述。
     >
 
-## <a name="create-an-hdinsight-cluster-with-access-to-a-data-lake-store"></a>建立可存取 Data Lake Store 的 HDInsight 叢集
-在本節中，您會建立使用 Data Lake Store 做為預設儲存體或額外儲存體的 HDInsight Hadoop 叢集。
+## <a name="create-an-hdinsight-cluster"></a>建立 HDInsight 叢集
+
+在本節中，您會建立一個使用 Data Lake Store 帳戶作為預設或其他儲存體的 HDInsight 叢集。 本文僅著重於設定 Data Lake Store 帳戶的部分。  如需一般叢集建立資訊和程序，請參閱 [在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。
 
 ### <a name="create-a-cluster-with-data-lake-store-as-default-storage"></a>建立以 Data Lake Store 做為預設儲存體的叢集
 
->[!NOTE]
->此選項只適用於 HDInsight 3.5 叢集 (Standard Edition)。 在 HDInsight 3.5 叢集中，此選項不適用於 HBase 叢集類型。
+**建立使用 Data Lake Store 作為預設儲存體帳戶的 HDInsight 叢集**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-
-2. 若要開始佈建 HDInsight 叢集，請依照[在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md)中的指示操作。
-
-3. 在 [儲存體] 刀鋒視窗的 [主要儲存體類型] 之下，按一下 [Data Lake Store]。
-
-4. 選取現有的 Data Lake Store 帳戶，並輸入將儲存叢集特定檔案的根資料夾路徑。
-
-    在上方的螢幕擷取畫面中，根資料夾路徑是 /clusters/myhdiadlcluster，其中 *myhdiadlcluster* 是要建立的叢集名稱。 在此情況下，請確定 Data Lake Store 帳戶中存在 /cluster 資料夾。 建立叢集時，會建立 *myhdiadlcluster* 資料夾。 同樣地，如果根路徑設為 /hdinsight/clusters/data/myhdiadlcluster，確保 Data Lake Store 帳戶中存在 /hdinsight/clusters/data/。
+2. 請遵循[建立叢集](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md#create-clusters)，以取得建立 HDInsight 叢集的一般資訊。
+3. 在 [儲存體] 刀鋒視窗的 [主要儲存體類型] 下，選取 [Data Lake Store]，然後輸入下列資訊：
 
     ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.adls.storage.png "將服務主體新增至 HDInsight 叢集")
 
-5. 按一下 [Data Lake Store 存取] 以設定 Data Lake Store 帳戶和 HDInsight 叢集之間的存取。 如需指示，請參閱[設定 HDInsight 叢集和 Data Lake Store 之間的存取](#configure-access-between-hdinsight-cluster-and-data-lake-store)。
+    - **選取 Data Lake Store 帳戶**： 選取現有的 Data Lake Store 帳戶。 需要現有的 Data Lake Store 帳戶。  請參閱[必要條件](#prereuisites)。
+    - **根路徑**：輸入要儲存叢集特定檔案的路徑。 在螢幕擷取畫面上，它是 __/clusters/myhdiadlcluster/__，其中 __/clusters__ 資料夾必須已存在，而入口網站會建立 *myhdicluster* 資料夾。  *myhdicluster* 是叢集名稱。
+    - **Data Lake Store 存取**：設定 Data Lake Store 帳戶與 HDInsight 叢集之間的存取。 如需指示，請參閱[設定 Data Lake Store 存取](#configure-data-lake-store-access)。
+    - **其他儲存體帳戶**：新增 Azure 儲存體帳戶作為叢集的其他儲存體帳戶。 若要新增其他 Data Lake Store，做法是設定某個 Data Lake Store 帳戶作為主要儲存體類型，同時授與叢集存取其他 Data Lake Store 帳戶資料的權限。 請參閱[設定 Data Lake Store 存取](#configure-data-lake-store-access)。
+
+4. 在 [Data Lake Store 存取權] 上按一下 [選取]，然後繼續進行叢集建立作業，如[在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md)所述。
 
 
 ### <a name="create-a-cluster-with-data-lake-store-as-additional-storage"></a>建立以 Data Lake Store 做為額外儲存體的叢集
 
+下列指示說明如何建立使用 Azure 儲存體帳戶作為預設儲存體，並使用 Data Lake Store 帳戶作為其他儲存體的 HDInsight 叢集。
+**建立使用 Data Lake Store 作為預設儲存體帳戶的 HDInsight 叢集**
+
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-
-2. 若要開始佈建 HDInsight 叢集，請依照[在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md)中的指示操作。
-
-3. 在 [儲存體] 刀鋒視窗的 [主要儲存體類型] 之下，選取 [Azure 儲存體]。
-
-4. 在 [選取方法] 之下，執行下列其中一個動作：
-
-    * 若要指定屬於 Azure 訂用帳戶的儲存體帳戶，請選取 [我的訂用帳戶]，然後選取儲存體帳戶。
-
-    * 若要指定 Azure 訂用帳戶外部的儲存體帳戶，請選取 [存取金鑰]，然後提供外部儲存體帳戶資訊。
-
-5. 在 [預設容器] 之下，保留入口網站所建議的預設容器名稱，或是自行指定名稱。
+2. 請遵循[建立叢集](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md#create-clusters)，以取得建立 HDInsight 叢集的一般資訊。
+3. 在 [儲存體] 刀鋒視窗的 [主要儲存體類型] 下，選取 [Azure 儲存體]，然後輸入下列資訊：
 
     ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.png "將服務主體新增至 HDInsight 叢集")
 
-6. 當您使用 Blob 儲存體做為預設儲存體時，您仍然可以使用 Data Lake Store 做為叢集的額外儲存體。 若要這麼做，請按一下 [Data Lake Store 存取] 以設定 Data Lake Store 帳戶和 HDInsight 叢集之間的存取。 如需指示，請參閱[設定 HDInsight 叢集和 Data Lake Store 之間的存取](#configure-access-between-hdinsight-cluster-and-data-lake-store)。
+    - **選取方法**：使用下列其中一個選項：
 
-## <a name="configure-access-between-hdinsight-cluster-and-data-lake-store"></a>設定 HDInsight 叢集和 Data Lake Store 之間的存取
+        * 若要指定屬於 Azure 訂用帳戶的儲存體帳戶，請選取 [我的訂用帳戶]，然後選取儲存體帳戶。
+        * 若要指定 Azure 訂用帳戶外部的儲存體帳戶，請選取 [存取金鑰]，然後提供外部儲存體帳戶資訊。
 
-在本節中，您將會使用 Azure Active Directory 服務主體設定 HDInsight 叢集和 Data Lake Store 之間的存取
+    - **預設容器**：使用預設值或指定您自己的名稱。
 
-1. 在 [Data Lake Store 存取] 刀鋒視窗上，指定您想要使用新的服務主體或是現有的服務主體。 此步驟會建立新的服務主體。 若要使用現有的服務主體，請跳至下一個步驟。
+    - 其他儲存體帳戶：新增其他 Azure 儲存體帳戶作為其他儲存體。
+    - Data Lake Store 存取：設定 Data Lake Store 帳戶與 HDInsight 叢集之間的存取。 如需指示，請參閱[設定 Data Lake Store 存取](#configure-data-lake-store-access)。
 
-    a. 在 [Data Lake Store 存取權] 刀鋒視窗，按一下 [新建]，然後按一下 [服務主體]。
+## <a name="configure-data-lake-store-access"></a>設定 Data Lake Store 存取 
 
-    b. 在 [建立服務主體]刀鋒視窗，輸入必要的值。  
+在本節中，您將會使用 Azure Active Directory 服務主體設定 Data Lake Store 與 HDInsight 叢集之間的存取。 
 
-    c. 按一下 [建立] 。 系統會自動建立憑證和 Azure AD 應用程式。
+### <a name="specify-a-service-principal"></a>指定服務主體
+
+從 Azure 入口網站中，您可以使用現有的服務主體或建立一個新的服務主體。
+
+**從 Azure 入口網站中建立服務主體**
+
+1. 從 [存放區] 刀鋒視窗中，按一下 [Data Lake Store 存取]。
+2. 在 [Data Lake Store 存取] 刀鋒視窗中，按一下 [新建]。
+3. 按一下 [服務主體]，然後遵循指示建立服務主體。
+4. 如果您決定要在未來再次使用它，請下載憑證。 如果您想要在建立其他 HDInsight 叢集時使用相同的服務主體，下載憑證非常實用。
 
     ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.2.png "將服務主體新增至 HDInsight 叢集")
 
-    您也可以按一下 [下載憑證]，以下載與您所建立服務主體關聯的憑證。 如果您想要在建立其他 HDInsight 叢集時使用相同的服務主體，下載憑證非常實用。 按一下 [選取] 。
+4. 按一下 [存取] 來設定資料夾存取。  請參閱[設定檔案權限](#configure-file-permissions)。
 
-2. 若要使用現有的服務主體，請執行下方提供的步驟。
 
-    a. 在 [Data Lake Store 存取權] 刀鋒視窗，按一下 [使用現有的]，然後按一下 [服務主體]。
+**使用 Azure 入口網站中現有的服務主體**
 
-    b. 在 [選取服務主體] 刀鋒視窗中，搜尋現有的服務主體。 按一下您想使用的服務主體，然後按一下 [選取]。
-
-    c. 在 [Data Lake Store 存取權] 刀鋒視窗中，上傳與您所選取服務主體相關聯的憑證 (.pfx 檔案)，然後輸入憑證密碼。
+1. 按一下 [Data Lake Store 存取]。
+1. 在 [Data Lake Store 存取] 刀鋒視窗中，按一下 [Use existing] (使用現有)。
+2. 按一下 [服務主體]，然後選取一個服務主體。 
+3. 上傳與您所選取服務主體建立關聯的憑證 (.pfx 檔案)，然後輸入憑證密碼。
 
     ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.5.png "將服務主體新增至 HDInsight 叢集")
 
-7. 在 [Data Lake Store 存取權] 刀鋒視窗中，按一下 [存取]。 預設會開啟 [選取檔案權限] 刀鋒視窗。 其中列出您訂用帳戶中的所有 Data Lake Store 帳戶。
+4. 按一下 [存取] 來設定資料夾存取。  請參閱[設定檔案權限](#configure-file-permissions)。
 
-8. 選取您想要與叢集相關聯的 Data Lake Store 帳戶。
 
-    「如果您使用 Data Lake Store 做為預設儲存體」，您應該指派兩個層級的權限。
+### <a name="configure-file-permissions"></a>設定檔案權限
 
-    a. 首先，您應該於 Data Lake Store 帳戶的根層級指派權限。 若要這麼做，請將滑鼠游標暫留 (請勿按一下) 在 Data Lake Store 帳戶的名稱上，以顯示核取方塊。 選取核取方塊。
+這些設定會視帳戶是作為預設儲存體帳戶還是其他儲存體帳戶而不同：
+
+- 作為預設儲存體
+
+    - Data Lake Store 帳戶根層級的權限
+    - HDInsight 叢集儲存體根層級的權限。 例如，稍早在教學課程中使用的 __/clusters__ 資料夾。
+- 作為其他儲存體
+
+    - 您需要其檔案存取權之資料夾的權限。
+
+**指派 Data Lake Store 帳戶根層級的權限**
+
+1. 在 [Data Lake Store 存取權] 刀鋒視窗中，按一下 [存取]。 隨即會開啟 [選取檔案權限] 刀鋒視窗。 其中列出您訂用帳戶中的所有 Data Lake Store 帳戶。
+2. 請將滑鼠游標暫留 (請勿按一下) 在 Data Lake Store 帳戶的名稱上，以顯示核取方塊，然後選取此核取方塊。
 
     ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3.png "將服務主體新增至 HDInsight 叢集")
 
-    b. 然後，您應該將權限指派至 HDInsight 叢集儲存體根。 根據先前的螢幕擷取畫面，叢集儲存體根為您在選取 Data Lake Store 做為預設儲存體時所指定的 **/clusters** 資料夾。
+  根據預設，__READ__、__WRITE__ 和 __EXECUTE__ 會全部選取。
 
-    ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3.add.png "將服務主體新增至 HDInsight 叢集")
+3. 按一下頁面底部的 [選取]。
+4. 按一下 [執行] 來指派權限。
+5. 按一下 [完成] 。
 
-    「如果您使用 Data Lake Store 做為額外儲存體」，您必須僅針對您想要從 HDInsight 叢集存取的資料夾指派權限。 例如，在下方的螢幕擷取畫面中，您僅會將存取提供給 Data Lake Store 帳戶中的 **hdiaddonstorage** 資料夾。
+**指派 HDInsight 叢集根層級的權限**
 
-    ![將服務主體權限指派給 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3-1.png "將服務主體權限指派給 HDInsight 叢集")
+1. 在 [Data Lake Store 存取權] 刀鋒視窗中，按一下 [存取]。 隨即會開啟 [選取檔案權限] 刀鋒視窗。 其中列出您訂用帳戶中的所有 Data Lake Store 帳戶。
+1. 從 [選取檔案權限] 刀鋒視窗中，按一下要顯示其內容的 Data Lake Store 名稱。
+2. 選取 HDInsight 叢集儲存體根目錄左邊的核取方塊，即可選取該資料夾。 根據先前的螢幕擷取畫面，叢集儲存體根目錄為您在選取 Data Lake Store 作為預設儲存體時所指定的 __/clusters__ 資料夾。
+3. 設定資料夾的權限。  根據預設，讀取、寫入和執行會全部選取。
+4. 按一下頁面底部的 [選取]。
+5. 按一下 **[執行]**。
+6. 按一下 [完成] 。
 
-9. 針對所有選取的帳戶和路徑，請選取權限 (讀取、寫入或執行)，並指定權限是否同時要以遞迴方式套用到子項目，然後按一下 [選取]。
+如果您使用 Data Lake Store 作為其他儲存體，則必須僅針對您想要從 HDInsight 叢集存取的資料夾指派權限。 例如，在下方的螢幕擷取畫面中，您僅會將存取提供給 Data Lake Store 帳戶中的 **hdiaddonstorage** 資料夾。
 
-11. 在 [指派選取的權限] 視窗中，若要針對 Azure Active Directory 服務主體指派所選帳戶、檔案、資料夾的權限，請按一下 [執行]。
+![將服務主體權限指派給 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3-1.png "將服務主體權限指派給 HDInsight 叢集")
 
-    ![將服務主體權限指派給 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3-2.png "將服務主體權限指派給 HDInsight 叢集")
-
-12. 順利指派權限之後，請在每個開啟的刀鋒視窗上按一下 [完成]，以返回 [Data Lake Store 存取權] 刀鋒視窗。
-
-13. 在 [Data Lake Store 存取權] 上按一下 [選取]，然後繼續進行叢集建立作業，如[在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md)所述。
 
 ## <a name="verify-cluster-set-up"></a>確認叢集設定
 
-叢集設定完成之後，在叢集刀鋒視窗上執行下列任何一個動作來驗證結果︰
+叢集設定完成之後，在叢集刀鋒視窗上執行下列任一或這兩個步驟來驗證結果：
 
 * 若要驗證叢集的相關儲存體是否為您指定的 Data Lake Store 帳戶，請按一下左窗格中的 [儲存體帳戶]。
 
@@ -181,7 +182,7 @@ ms.lasthandoff: 05/05/2017
 
 當您使用 Data Lake Store 中的資料時，有幾個字串需要變更。
 
-如果您使用以 Data Lake Store 做為主要儲存體而建立的叢集，則資料路徑為︰adl://<data_lake_store_account_name>/azuredatalakestore.net/path/to/file。 從 Data Lake Store 帳戶中儲存的範例資料建立資料表的 Hive 查詢類似於︰
+如果您使用以 Data Lake Store 做為主要儲存體而建立的叢集，則資料路徑為︰adl://<data_lake_store_account_name>/azuredatalakestore.net/path/to/file。 從 Data Lake Store 帳戶中儲存的範例資料建立資料表的 Hive 查詢，類似於下列陳述式：
 
     CREATE EXTERNAL TABLE websitelog (str string) LOCATION 'adl://hdiadlsstorage.azuredatalakestore.net/clusters/myhdiadlcluster/HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/'
 

@@ -12,93 +12,116 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/09/2017
+ms.date: 07/12/2017
 ms.author: billmath
 ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: aceba2cfeac03eae78e89ef46926b2a388663f09
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: 05d7c50aaa1209220b6cff3305fdb05dd2c421f8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 06/17/2017
 
 ---
 
-# <a name="how-to-troubleshoot-azure-active-directory-pass-through-authentication"></a>如何針對 Azure Active Directory 傳遞驗證進行疑難排解
+# <a name="troubleshoot-azure-active-directory-pass-through-authentication"></a>針對 Azure Active Directory 傳遞驗證進行疑難排解
 
-本文可幫助您尋找在安裝、註冊或解除安裝傳遞驗證連接器 (透過 Azure AD Connect 或獨立連接器) 期間所遇到之常見問題的疑難排解資訊。 以及在租用戶上啟用和操作 Azure Active Directory (Azure AD) 傳遞驗證功能期間。
+這篇文章可協助您尋找有關 Azure AD 傳遞驗證常見問題的疑難排解資訊。
 
-## <a name="issues-during-installation-of-connectors-either-via-azure-ad-connect-or-standalone"></a>安裝連接器 (透過 Azure AD Connect 或獨立連接器) 期間的問題
+>[!IMPORTANT]
+>如果傳遞驗證發生使用者登入的問題，請不要在沒有可切換的僅限雲端全域管理員帳戶的情況下，停用此功能或解除安裝傳遞驗證代理程式。 了解如何[新增僅限雲端管理員帳戶 (英文)](../active-directory-users-create-azure-portal.md)。 這是確保您不會被租用戶封鎖的關鍵步驟。
 
-### <a name="an-azure-ad-application-proxy-connector-already-exists"></a>Azure AD 應用程式 Proxy 連接器已經存在
+## <a name="general-issues"></a>一般問題
 
-傳遞驗證連接器無法和 [Azure AD 應用程式 Proxy](../../active-directory/active-directory-application-proxy-get-started.md) 連接器安裝在同一部伺服器上。 您必須在不同的伺服器上安裝傳遞驗證連接器。
+### <a name="user-facing-sign-in-error-messages"></a>使用者看到的登入錯誤訊息
 
-### <a name="an-unexpected-error-occured"></a>發生意外的錯誤
-
-從伺服器[收集連接器記錄檔](#collecting-pass-through-authentication-connector-logs)，並連絡 Microsoft 支援服務解決您的問題。
-
-## <a name="issues-during-registration-of-connectors"></a>註冊連接器期間發生的問題
-
-### <a name="registration-of-the-connecter-failed-due-to-blocked-ports"></a>由於連接埠遭到封鎖，而使註冊連接器連線失敗
-
-確認已安裝連接器的伺服器能與我們的服務 URL 和連接埠通訊，如[這裡](active-directory-aadconnect-pass-through-authentication.md#prerequisites)所列。
-
-### <a name="registration-of-the-connector-failed-due-to-token-or-account-authorization-errors"></a>因為權杖或帳戶授權錯誤，註冊連接器失敗
-
-請確定您在所有 Azure AD Connect 或獨立連接器安裝和註冊作業中，使用僅限雲端的全域管理員帳戶。 啟用 MFA 的全域管理員帳戶有一個已知的問題，請暫時關閉 MFA (只是為了完成作業) 作為因應措施。
-
-### <a name="an-unexpected-error-occurred"></a>發生意外的錯誤
-
-從伺服器[收集連接器記錄檔](#collecting-pass-through-authentication-connector-logs)，並連絡 Microsoft 支援服務解決您的問題。
-
-## <a name="issues-during-uninstallation-of-connectors"></a>解除安裝連接器期間發生的問題
-
-### <a name="warning-message-when-uninstalling-azure-ad-connect"></a>解除安裝 Azure AD Connect 時出現的警告訊息
-
-如果您已在租用戶上啟用傳遞驗證，但您嘗試解除安裝 Azure AD Connect，其將會顯示下列警告訊息：「除非您在其他伺服器上有安裝其他傳遞驗證代理程式，否則使用者將無法登入 Azure AD」。
-
-在您解除安裝 Azure AD Connect 之前，您必須完成[高可用性](active-directory-aadconnect-pass-through-authentication.md)設定以避免中斷使用者登入。
-
-## <a name="issues-with-enabling-the-pass-through-authentication-feature"></a>啟用傳遞驗證功能時發生的問題
-
-### <a name="the-enabling-of-the-feature-failed-because-there-were-no-connectors-available"></a>因為沒有任何可用的連接器，而使啟用功能失敗
-
-您必須至少有一個使用中的連接器，才能在租用戶上啟用傳遞驗證。 您可以安裝 Azure AD Connect 或獨立連接器來安裝連接器。
-
-### <a name="the-enabling-of-the-feature-failed-due-to-blocked-ports"></a>因為連接埠遭到封鎖，而使功能啟用失敗
-
-確認已安裝 Azure AD Connect 的伺服器能與我們的服務 URL 和連接埠通訊，如[這裡](active-directory-aadconnect-pass-through-authentication.md#prerequisites)所列。
-
-### <a name="the-enabling-of-the-feature-failed-due-to-token-or-account-authorization-errors"></a>因為權杖或帳戶授權錯誤，啟用功能失敗
-
-請確定您使用僅限雲端的全域管理員帳戶來啟用此功能。 啟用 Multi-Factor Authentication (MFA) 的全域管理員帳戶有一個已知的問題，請暫時關閉 MFA (只是為了完成作業) 作為因應措施。
-
-## <a name="issues-while-operating-the-pass-through-authentication-feature"></a>操作傳遞驗證功能時發生的問題
-
-### <a name="user-facing-sign-in-errors"></a>使用者對應登入錯誤
-
-功能在 Azure AD 登入畫面上報告下列使用者對應錯誤。 其連同適當的解決步驟詳述如下。
+如果使用者無法登入使用傳遞驗證，他們可能會在 Azure AD 登入畫面中看到下列其中之一的使用者錯誤： 
 
 |錯誤|說明|解決方案
 | --- | --- | ---
-|AADSTS80001|無法連線至 Active Directory|確定連接器伺服器和必須驗證其密碼的使用者都是相同 AD 樹系的成員，而且都能連線到 Active Directory。  
-|AADSTS8002|連線至 Active Directory 時發生逾時|請檢查以確定 Active Directory 可用，並且會回應來自連接器的要求。
-|AADSTS80004|傳遞給連接器的使用者名稱無效|請確定使用者嘗試用來登入的使用者名稱正確無誤。
-|AADSTS80005|驗證發生無法預期的 WebException|這可能是暫時性的錯誤。 重試要求。 如果持續發生失敗，請連絡 Microsoft 支援服務。
-|AADSTS80007|和 Active Directory 通訊時發生錯誤|請檢查連接器記錄檔以了解詳細資訊，並確認 Active Directory 如預期般運作。
+|AADSTS80001|無法連線至 Active Directory|確定代理程式伺服器和必須驗證其密碼的使用者都是相同 AD 樹系的成員，而且都能連線到 Active Directory。  
+|AADSTS8002|連線至 Active Directory 時發生逾時|請檢查以確定 Active Directory 可用，並且會回應來自代理程式的要求。
+|AADSTS80004|傳遞給代理程式的使用者名稱無效|請確定使用者嘗試用來登入的使用者名稱正確無誤。
+|AADSTS80005|驗證發生無法預期的 WebException|暫時性錯誤。 重試要求。 如果持續發生失敗，請連絡 Microsoft 支援服務。
+|AADSTS80007|和 Active Directory 通訊時發生錯誤|請檢查代理程式記錄檔以了解詳細資訊，並確認 Active Directory 如預期般運作。
 
-## <a name="collecting-pass-through-authentication-connector-logs"></a>收集傳遞驗證連接器記錄
+### <a name="sign-in-failure-reasons-on-the-azure-active-directory-admin-center"></a>Azure Active Directory 管理中心上的登入失敗原因
 
-根據發生的問題類型，您必須在不同位置中查看傳遞驗證連接器記錄。
+[Azure Active Directory 管理中心](https://aad.portal.azure.com/)的[登入活動報表](../active-directory-reporting-activity-sign-ins.md)是開始針對傳遞驗證使用者登入問題進行疑難排解的好地方。
 
-### <a name="connector-event-logs"></a>連接器事件記錄檔
+![登入報告](./media/active-directory-aadconnect-pass-through-authentication/pta4.png)
 
-如需與連接器有關的錯誤，可開啟伺服器上的 [事件檢視器] 應用程式，並查看 [應用程式及服務記錄檔\Microsoft\AadApplicationProxy\Connector\Admin] 底下。
+巡覽至位在 [Azure Active Directory 管理中心](https://aad.portal.azure.com/)的 **Azure Active Directory** -> [登入]，按一下特定使用者的登入活動。 尋找 [登入錯誤碼] 欄位。 使用下表，將該欄位的值對應至失敗的原因和解決方式：
 
-如需詳細的分析和偵錯記錄檔，您可以啟用「工作階段」記錄檔。 在正常作業期間，請勿在此記錄檔啟用時執行連接器。這只適用於進行疑難排解。 請注意，只有再次停用此記錄檔之後，才能看見記錄檔的內容。
+|登入錯誤碼|登入失敗原因|解決方案
+| --- | --- | ---
+| 50144 | 使用者的 Active Directory 密碼已到期。 | 在您的內部部署 Active Directory 中重設使用者密碼。
+| 80001 | 沒有可用的驗證代理程式。 | 安裝並註冊驗證代理程式。
+| 80002 | 驗證代理程式的密碼驗證要求已逾時。 | 檢查是否可以從驗證代理程式連線到您的 Active Directory。
+| 80003 | 驗證代理程式收到無效的回應。 | 如果有多位使用者發生一樣的問題，請檢查您的 Active Directory 設定。
+| 80004 | 登入要求中使用的使用者主體名稱 (UPN) 不正確。 | 要求使用者以正確的使用者名稱登入。
+| 80005 | 驗證代理程式：發生錯誤。 | 暫時性錯誤。 請稍後再試。
+| 80007 | 驗證代理程式無法連線至 Active Directory。 | 檢查是否可以從驗證代理程式連線到您的 Active Directory。
+| 80010 | 驗證代理程式無法連線將密碼解密。 | 如果問題一再出現，請安裝並註冊新的驗證代理程式。 然後解除安裝目前的代理程式。 
+| 80011 | 驗證代理程式無法擷取解密金鑰。 | 如果問題一再出現，請安裝並註冊新的驗證代理程式。 然後解除安裝目前的代理程式。
+
+## <a name="authentication-agent-installation-issues"></a>驗證代理程式安裝問題
+
+### <a name="an-azure-ad-application-proxy-connector-already-exists"></a>Azure AD 應用程式 Proxy 連接器已經存在
+
+傳遞驗證代理程式無法和 [Azure AD 應用程式 Proxy](../../active-directory/active-directory-application-proxy-get-started.md) 連接器安裝在同一部伺服器上。 請將傳遞驗證代理程式安裝在不同的伺服器上。
+
+### <a name="an-unexpected-error-occurred"></a>發生意外的錯誤
+
+從伺服器[收集代理程式記錄](#collecting-pass-through-authentication-agent-logs)，並連絡 Microsoft 支援服務解決您的問題。
+
+## <a name="authentication-agent-registration-issues"></a>驗證代理程式註冊問題
+
+### <a name="registration-of-the-authentication-agent-failed-due-to-blocked-ports"></a>由於連接埠遭到封鎖，所以驗證代理程式註冊失敗。
+
+確認已安裝驗證代理程式的伺服器，能與我們列在[這裡](active-directory-aadconnect-pass-through-authentication-quick-start.md#step-1-check-prerequisites)的服務 URL 和連接埠通訊。
+
+### <a name="registration-of-the-authentication-agent-failed-due-to-token-or-account-authorization-errors"></a>因為權杖或帳戶授權錯誤，所以驗證代理程式註冊失敗。
+
+請確定您在所有 Azure AD Connect 或獨立驗證代理程式安裝和註冊作業中，使用僅限雲端的全域管理員帳戶。 啟用 MFA 的全域管理員帳戶有一個已知的問題，請暫時關閉 MFA (只是為了完成作業) 作為因應措施。
+
+### <a name="an-unexpected-error-occurred"></a>發生意外的錯誤
+
+從伺服器[收集代理程式記錄](#collecting-pass-through-authentication-agent-logs)，並連絡 Microsoft 支援服務解決您的問題。
+
+## <a name="authentication-agent-uninstallation-issues"></a>驗證代理程式解除安裝問題
+
+### <a name="warning-message-when-uninstalling-azure-ad-connect"></a>解除安裝 Azure AD Connect 時出現的警告訊息
+
+如果您已在租用戶上啟用傳遞驗證，但您嘗試解除安裝 Azure AD Connect，它會顯示下列警告訊息：「除非您在其他伺服器上有安裝其他傳遞驗證代理程式，否則使用者將無法登入 Azure AD。」
+
+在您解除安裝 Azure AD Connect 之前，請確認您的設定為[高可用性](active-directory-aadconnect-pass-through-authentication-quick-start.md#step-4-ensure-high-availability)，以避免中斷使用者登入。
+
+## <a name="issues-with-enabling-the-feature"></a>啟用此功能的問題
+
+### <a name="enabling-the-feature-failed-because-there-were-no-authentication-agents-available"></a>因為沒有任何可用的驗證代理程式，所以啟用此功能失敗。
+
+您至少必須有一個使用中的驗證代理程式，才能在租用戶上啟用傳遞驗證。 您可以安裝 Azure AD Connect 或獨立的驗證代理程式，來安裝驗證代理程式。
+
+### <a name="enabling-the-feature-failed-due-to-blocked-ports"></a>因為連接埠遭到封鎖，所以啟用功能失敗。
+
+確認已安裝 Azure AD Connect 的伺服器能與我們的服務 URL 和連接埠通訊，如[這裡](active-directory-aadconnect-pass-through-authentication-quick-start.md#step-1-check-prerequisites)所列。
+
+### <a name="enabling-the-feature-failed-due-to-token-or-account-authorization-errors"></a>因為權杖或帳戶授權錯誤，所以啟用功能失敗。
+
+請確定您使用僅限雲端的全域管理員帳戶來啟用此功能。 啟用 Multi-Factor Authentication (MFA) 的全域管理員帳戶有一個已知的問題，請暫時關閉 MFA (只是為了完成作業) 作為因應措施。
+
+## <a name="collecting-pass-through-authentication-agent-logs"></a>收集傳遞驗證代理程式記錄
+
+根據發生的問題類型，您需要在不同的位置尋找傳遞驗證代理程式記錄。
+
+### <a name="authentication-agent-event-logs"></a>驗證代理程式事件記錄檔
+
+如需與驗證代理程式相關的錯誤，請開啟伺服器上的事件檢視器應用程式，並於 **Application and Service Logs\Microsoft\AadApplicationProxy\Connector\Admin** 下查看。
+
+如需詳細分析，請啟用「工作階段」記錄。 不要使用正常作業期間啟用的記錄檔執行驗證代理程式，此記錄檔只適用於進行疑難排解。 只有再次停用此記錄檔之後，才能看見記錄檔的內容。
 
 ### <a name="detailed-trace-logs"></a>詳細的追蹤記錄檔
 
-若要對使用者登入失敗進行疑難排解，請查看追蹤記錄檔，位於：**C:\Programdata\Microsoft\Microsoft AAD Application Proxy Connector\Trace**。 這些記錄包含使用傳遞驗證功能的特定使用者為什麼會登入失敗的原因。 以下是範例記錄檔項目︰
+若要對使用者登入失敗進行疑難排解，請查看追蹤記錄檔，位於：**C:\ProgramData\Microsoft\Microsoft AAD Application Proxy Connector\Trace**。 這些記錄包含使用傳遞驗證功能的特定使用者為什麼會登入失敗的原因。 這些錯誤也對應到先前[資料表](#sign-in-failure-reasons-on-the-Azure-portal)中所示的登入失敗原因。 以下是記錄項目範例：
 
 ```
     ApplicationProxyConnectorService.exe Error: 0 : Passthrough Authentication request failed. RequestId: 'df63f4a4-68b9-44ae-8d81-6ad2d844d84e'. Reason: '1328'.
@@ -106,17 +129,15 @@ ms.lasthandoff: 05/12/2017
         DateTime=xxxx-xx-xxTxx:xx:xx.xxxxxxZ
 ```
 
-您可以開啟命令提示字元並執行下列命令，以取得錯誤 (上述範例為 '1328') 的描述性詳細資料。 注意︰您必須使用您在記錄檔中看到的實際錯誤號碼取代 '1328'。
+您可以開啟命令提示字元並執行下列命令 (注意：請以您在記錄中看到的實際錯誤編號取代 '1328')，以取得錯誤 (前例中為 '1328') 的描述性詳細資料：
 
 `Net helpmsg 1328`
-
-結果應該會看起來像這樣：
 
 ![傳遞驗證](./media/active-directory-aadconnect-pass-through-authentication/pta3.png)
 
 ### <a name="domain-controller-logs"></a>網域控制站記錄檔
 
-如果已經啟用稽核記錄，您可以在網域控制站的安全性記錄檔中找到其他資訊。 查詢傳遞驗證連接器所傳送登入要求的簡單方式如下所示︰
+如果已經啟用稽核記錄，您可以在網域控制站的安全性記錄檔中找到其他資訊。 查詢傳遞驗證代理程式所傳送之登入要求的簡單方式如下︰
 
 ```
     <QueryList>

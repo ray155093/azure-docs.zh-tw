@@ -20,7 +20,6 @@ ms.openlocfilehash: 6f864581fe1d1771371d6805407cb881fedb4187
 ms.contentlocale: zh-tw
 ms.lasthandoff: 07/06/2017
 
-
 ---
 # <a name="assess-service-fabric-applications-and-micro-services-with-the-azure-portal"></a>使用 Azure 入口網站評估 Service Fabric 應用程式和微服務
 
@@ -78,6 +77,8 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 ### <a name="viewing-performance-data"></a>檢視效能資料
 若要從您的節點檢視效能資料︰
 </br>
+
+[!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 * 啟動 Azure 入口網站中的 Log Analytics 工作區。
 

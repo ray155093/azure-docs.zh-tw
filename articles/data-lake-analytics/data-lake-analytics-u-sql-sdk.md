@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: yanacai
-translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: c40d7107e407a089ea1515357cf9f47d5833edc9
-ms.lasthandoff: 03/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 55242bcf644ca0e7f30cfe7eada2130451c36e64
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/20/2017
 
 
 ---
@@ -39,7 +40,7 @@ Data Lake U-SQL SDK 需要下列相依性︰
 - [Microsoft .NET Framework 4.6 或更新版本](https://www.microsoft.com/download/details.aspx?id=17851)。
 - Microsoft Visual C++ 14 和 Windows SDK 10.0.10240.0 或更新版本 (在本文中稱為 CppSDK)。 有兩種方式可取得 CppSDK：
 
-    - 安裝 [Visual Studio Community 版本](https://developer.microsoft.com/downloads/vs-thankyou)。 在 Program Files 資料夾下應該會有 \Windows Kits\10 資料夾，例如 C:\Program Files (x86)\Windows Kits\10\.。您也會在 \Windows Kits\10\Lib 下找到 Windows 10 SDK 版本。 如果您看不見這些資料夾，請重新安裝 Visual Studio，並務必在安裝期間選取 Windows 10 SDK。 如果您已經隨 Visual Studio 一起安裝此項目，U-SQL 本機編譯器會自動尋找它。
+    - 安裝 [Visual Studio Community 版本](https://developer.microsoft.com/downloads/vs-thankyou)。 在 Program Files 資料夾下應該會有 \Windows Kits\10 資料夾，例如 C:\Program Files (x86)\Windows Kits\10。 您也會在 \Windows Kits\10\Lib 下找到 Windows 10 SDK 版本。 如果您看不見這些資料夾，請重新安裝 Visual Studio，並務必在安裝期間選取 Windows 10 SDK。 如果您已經隨 Visual Studio 一起安裝此項目，U-SQL 本機編譯器會自動尋找它。
 
     ![Data Lake Tools for Visual Studio 本機執行的 Windows 10 SDK](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-windows-10-sdk.png)
 
@@ -144,21 +145,21 @@ U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及�
 下列為 **run** 的選擇性引數：
 
 
-|引數|說明|
-|--------|-----------|
-|-CodeBehind [預設值 'False']|指令碼具有.cs 程式碼後置|
-|-CppSDK [預設值 '']|CppSDK 目錄|
-|-DataRoot [預設值 'DataRoot environment variable']|本機執行的 DataRoot，預設為 'LOCALRUN_DATAROOT' 環境變數|
-|-MessageOut [預設值 '']|將主控台上的訊息傾印成檔案|
-|-Parallel [預設值 '1']|使用指定的平行處理原則執行計畫|
-|-References [預設值 '']|列出程式碼後置額外的參考組件或資料檔案的路徑，以 ';' 分隔|
-|-UdoRedirect [預設值 'False']|產生 Udo 組件重新導向設定|
-|-UseDatabase [預設值 'master']|供程式碼後置暫時註冊組件使用的資料庫|
-|-Verbose [預設值 'False']|顯示詳細的執行階段輸出|
-|-WorkDir [預設值 'Current Directory']|編譯器使用方式和輸出的目錄|
-|-RunScopeCEP [預設值 '0']|要使用的 ScopeCEP 模式|
-|-ScopeCEPTempPath [預設值 'temp']|用於串流資料的暫存路徑|
-|-OptFlags [預設值 '']|最佳化工具旗標的逗號分隔清單|
+|引數|預設值|說明|
+|--------|-------------|-----------|
+|-CodeBehind|False|指令碼具有.cs 程式碼後置|
+|-CppSDK| |CppSDK 目錄|
+|-DataRoot| DataRoot 環境變數|本機執行的 DataRoot，預設為 'LOCALRUN_DATAROOT' 環境變數|
+|-MessageOut| |將主控台上的訊息傾印成檔案|
+|-Parallel|1|使用指定的平行處理原則執行計畫|
+|-References| |列出程式碼後置額外的參考組件或資料檔案的路徑，以 ';' 分隔|
+|-UdoRedirect|False|產生 Udo 組件重新導向設定|
+|-UseDatabase|master|供程式碼後置暫時註冊組件使用的資料庫|
+|-Verbose|False|顯示詳細的執行階段輸出|
+|-WorkDir|目前的目錄|編譯器使用方式和輸出的目錄|
+|-RunScopeCEP|0|要使用的 ScopeCEP 模式|
+|-ScopeCEPTempPath|temp|用於串流資料的暫存路徑|
+|-OptFlags| |最佳化工具旗標的逗號分隔清單|
 
 
 以下是範例：
@@ -392,10 +393,7 @@ E_CSC_SYSTEM_INTERNAL: 內部錯誤! 無法載入檔案或組件 'ScopeEngineMan
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
-* 若要開始開發 U-SQL 應用程式，請參閱 [使用 Data Lake Tools for Visual Studio 開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake 分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
-* 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
+* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 * 若要記錄診斷資訊，請參閱 [為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)。
 * 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
 * 若要檢視作業詳細資料，請參閱[針對 Azure Data Lake Analytics 作業使用作業瀏覽器和作業檢視](data-lake-analytics-data-lake-tools-view-jobs.md)。

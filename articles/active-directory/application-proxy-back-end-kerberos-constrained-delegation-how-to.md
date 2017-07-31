@@ -11,13 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 209d4f3874123b3f630d3648264e9afc438da184
-ms.lasthandoff: 04/17/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: 0651f497de446bd6b66f8eaccd7114d262925afd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/03/2017
 
 ---
 
@@ -47,7 +47,7 @@ Azure 應用程式 Proxy 可以部署到幾乎所有類型的基礎結構或環�
 
 特別是在 2012R2 上設定 KCD 的小節，因為這會採用與在舊版 Windows 上設定 KCD 完全不同的方式。但同時您也應留意其他數個考量：
 
--   由於網域成員伺服器與特定的網域控制站開啟安全通道對話， 並於稍後隨時變更至另一個的情況並不罕見，因此連接器主機通常並不應該限制為僅能與特定本機網站 DC 通訊。
+-   由於網域成員伺服器開啟與特定網域控制站的安全通道對話， 然後隨時變更至另一個對話的情況並不罕見，因此連接器主機通常並不應該限制為僅能與特定本機網站 DC 通訊。
 
 -   類似於上一點，跨網域案例依賴將連接器主機導向至 DC 的轉介，且該 DC 可能位於本機網路周邊之外。 在此案例中，請同樣務必確定您也允許流向代表其他個別網域之 DC 的流量，否則委派會失敗。
 

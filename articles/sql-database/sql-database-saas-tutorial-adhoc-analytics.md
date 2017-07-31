@@ -119,7 +119,7 @@ Wingtip SaaS 應用程式是使用 tenant-per-database 模型建置，因此會�
 此練習將結構描述 (外部資料來源和外部資料表定義) 新增至臨機操作分析資料庫，讓您能跨所有租用戶資料庫進行查詢。
 
 1. 開啟 SQL Server Management Studio，並連線到您在上一個步驟中建立的臨機操作分析資料庫。 資料庫的名稱會是 adhocanalytics。
-2. 在 SSMS 中開啟 ...\Learning Modules\Operational Analytics\Adhoc Analytics\*Initialize-AdhocAnalyticsDB.sql*。
+2. 在 SSMS 中開啟 ...\Learning Modules\Operational Analytics\Adhoc Analytics\ *Initialize-AdhocAnalyticsDB.sql*。
 3. 檢閱 SQL 指令碼並注意下列事項︰
 
    彈性查詢會使用資料庫範圍的認證來存取每個租用戶資料庫。 此認證必須可用於所有資料庫，且通常應獲得啟用這些臨機操作查詢所需的最小權限。

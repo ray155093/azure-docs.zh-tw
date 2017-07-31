@@ -20,7 +20,6 @@ ms.openlocfilehash: 1b2f9c3fc59a83b384a63db00d2d039cab8679e8
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/09/2017
 
-
 ---
 
 # <a name="gather-insights-about-your-dns-infrastructure-with-the-dns-analytics-preview-solution"></a>收集搭配 DNS 分析預覽版解決方案使用 DNS 基礎結構的深入解析
@@ -147,6 +146,8 @@ DNS 分析可協助您︰
 ![[名稱註冊要求] 刀鋒視窗 ](./media/log-analytics-dns/name-reg-req-blade.png)
 
 **範例 DDI 分析查詢**。 包含最常見的搜尋查詢清單，會直接擷取未經處理的分析資料。
+
+[!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 ![範例查詢](./media/log-analytics-dns/queries.png)
 

@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 04/18/2017
+ms.date: 06/14/2017
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 9a298a5869d449c974267483eb779f45bc6b7abc
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8be2bcb9179e9af0957fcee69680ac803fd3d918
+ms.openlocfilehash: d41dc3c05d0d0cd0d9466c43bbebadcffd21e0dd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/23/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.lasthandoff: 04/20/2017
 在 Azure 中建立 Analysis Services 伺服器之後，會有一些您必須立即或稍後執行的管理工作。 例如：執行資料重新整理處理作業、控制誰能夠存取您伺服器上的模型，或監視伺服器的健康狀態。 有些管理工作只能在 Azure 入口網站中執行，有些只能在 SQL Server Management Studio (SSMS) 中執行，也有些工作可以在這兩個位置中執行。
 
 ## <a name="azure-portal"></a>Azure 入口網站
-[Azure 入口網站](http://portal.azure.com/) 可讓您建立與刪除伺服器、監視伺服器資源、變更大小，以及管理誰能夠存取您的伺服器。  如果您有一些問題，也可以提交支援要求。
+[Azure 入口網站](http://portal.azure.com/)可讓您建立與刪除伺服器、監視伺服器資源、變更大小，以及管理誰能夠存取您的伺服器。  如果您有一些問題，也可以提交支援要求。
 
 ![在 Azure 中取得伺服器名稱](./media/analysis-services-manage/aas-manage-portal.png)
 
@@ -48,7 +49,7 @@ ms.lasthandoff: 04/20/2017
    
     ![在 Azure 中取得伺服器名稱](./media/analysis-services-deploy/aas-deploy-get-server-name.png)
 2. 在 SSMS > [物件總管] 中，按一下 [連線]  > [分析服務] 。
-3. 在 [連線到伺服器] 對話方塊中，貼上伺服器名稱，然後在 [驗證] 中，選擇下列其中一項：
+3. 在 [連線至伺服器] 對話方塊中，貼上伺服器名稱，然後在 [驗證] 中，選擇下列其中一種驗證類型：
    
     [Windows 驗證] 以使用您的 Windows 網域\使用者名稱和密碼認證。
 
@@ -59,7 +60,7 @@ ms.lasthandoff: 04/20/2017
     ![在 SSMS 中連線](./media/analysis-services-manage/aas-manage-connect-ssms.png)
 
 ## <a name="server-administrators-and-database-users"></a>伺服器管理員和資料庫使用者
-在 Azure Analysis Services 中，有兩種類型的使用者：伺服器管理員和資料庫使用者。 這兩種類型的使用者都必須位於 Azure Active Directory 中，而且必須由組織的電子郵件地址或 UPN 指定。 這與內部部署表格式模型資料庫不同，這些資料庫可藉由 Windows 網域使用者名稱來支援伺服器管理員和資料庫使用者。 若要深入了解，請參閱[管理 Azure Analysis Services 中的使用者](analysis-services-manage-users.md)。
+在 Azure Analysis Services 中，有兩種類型的使用者：伺服器管理員和資料庫使用者。 這兩種類型的使用者都必須位於 Azure Active Directory 中，而且必須由組織的電子郵件地址或 UPN 指定。 若要深入了解，請參閱[驗證和使用者權限](analysis-services-manage-users.md)。
 
 
 ## <a name="troubleshooting-connection-problems"></a>連接問題的疑難排解
