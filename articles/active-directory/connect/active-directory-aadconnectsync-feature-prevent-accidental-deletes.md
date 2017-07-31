@@ -21,16 +21,12 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 03/24/2017
 
 ---
-<a id="azure-ad-connect-sync-prevent-accidental-deletes" class="xliff"></a>
-
-# Azure AD Connect 同步處理：防止意外刪除
+# <a name="azure-ad-connect-sync-prevent-accidental-deletes"></a>Azure AD Connect 同步處理：防止意外刪除
 本主題說明 Azure AD Connect 中的防止意外刪除 (可防止意外刪除) 功能。
 
 安裝 Azure AD Connect 時，依預設會啟用防止意外刪除的功能，並設定為不允許超過 500 個刪除項目的匯出。 這項功能是專門用來保護您免於意外的組態變更及內部部署目錄的變更，因為這會影響許多使用者和其他物件。
 
-<a id="what-is-prevent-accidental-deletes" class="xliff"></a>
-
-## 防止意外刪除是什麼
+## <a name="what-is-prevent-accidental-deletes"></a>防止意外刪除是什麼
 會看到多項刪除的常見案例包括：
 
 * 變更未選取整個 [OU](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) 或[網域](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)的[篩選](active-directory-aadconnectsync-configure-filtering.md)。
@@ -68,9 +64,7 @@ ms.lasthandoff: 03/24/2017
 3. 如果 Azure Active Directory Connector 仍處於選取狀態，請選取 [執行] 動作，再選取 [匯出]。
 4. 若要重新啟用此保護功能，請執行 PowerShell Cmdlet： `Enable-ADSyncExportDeletionThreshold -DeletionThreshold 500`。 使用您在擷取目前刪除閾值時記下的值來取代 500。 提供 Azure AD 全域系統管理員帳戶與密碼。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 **概觀主題**
 
 * [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)

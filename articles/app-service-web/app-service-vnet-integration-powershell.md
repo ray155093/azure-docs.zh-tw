@@ -21,10 +21,8 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 12/08/2016
 
 ---
-# 使用 PowerShell 將應用程式連接到虛擬網路
-<a id="connect-your-app-to-your-virtual-network-by-using-powershell" class="xliff"></a>
-## Overview
-<a id="overview" class="xliff"></a>
+# <a name="connect-your-app-to-your-virtual-network-by-using-powershell"></a>使用 PowerShell 將應用程式連接到虛擬網路
+## <a name="overview"></a>Overview
 在 Azure App Service 中，您可以將應用程式 (Web、行動或 API) 連接到您訂用帳戶中的虛擬網路 (VNet)。 這項功能稱為 VNet 整合。 VNet 整合功能不應該與 App Service 環境功能混淆，後者可讓您在虛擬網路中執行 Azure App Service 的執行個體。
 
 VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與使用傳統部署模型或 Azure Resource Manager 部署模型所部署的虛擬網路整合。 如果您想要深入了解此功能，請參閱 [將您的應用程式與 Azure 虛擬網路整合](web-sites-integrate-with-vnet.md)。
@@ -36,16 +34,14 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 * 安裝最新版的 Azure PowerShell SDK。 您可以使用 Web Platform Installer 來安裝。
 * 在標準或進階 SKU 執行的 Azure App Service 中的應用程式。
 
-## 傳統虛擬網路
-<a id="classic-virtual-networks" class="xliff"></a>
+## <a name="classic-virtual-networks"></a>傳統虛擬網路
 本節將針對使用傳統部署模型的虛擬網路說明三項工作︰
 
 1. 將應用程式連接到具有閘道器並已針對點對站連接進行設定的既存虛擬網路
 2. 更新應用程式的虛擬網路整合資訊。
 3. 中斷連接您的應用程式與虛擬網路。
 
-### 將應用程式連接到傳統 VNet
-<a id="connect-an-app-to-a-classic-vnet" class="xliff"></a>
+### <a name="connect-an-app-to-a-classic-vnet"></a>將應用程式連接到傳統 VNet
 若要將應用程式連接到虛擬網路，請遵循下列三個步驟：
 
 1. 向 Web 應用程式宣告它將加入特定的虛擬網路。 應用程式會產生憑證，該憑證會提供給虛擬網路以進行點對站連接。
@@ -56,8 +52,7 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 
 傳統虛擬網路必須與 App Service 方案位於的相同訂用帳戶中，其中保留您整合的應用程式。
 
-##### 設定 Azure PowerShell SDK
-<a id="set-up-azure-powershell-sdk" class="xliff"></a>
+##### <a name="set-up-azure-powershell-sdk"></a>設定 Azure PowerShell SDK
 使用下列方式，開啟 PowerShell 視窗，並設定您的 Azure 帳戶和訂用帳戶︰
 
     Login-AzureRmAccount
@@ -70,8 +65,7 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 
     Select-AzureRmSubscription –SubscriptionId [WebAppSubscriptionId]
 
-##### 本文中使用的變數
-<a id="variables-used-in-this-article" class="xliff"></a>
+##### <a name="variables-used-in-this-article"></a>本文中使用的變數
 為了簡化命令，我們會以特定組態設定 **$Configuration** PowerShell 變數。
 
 在 PowerShell 中使用下列參數設定變數，如下所示：
@@ -107,16 +101,14 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 
 這一節的其餘部分假設您已如上所述建立變數。
 
-##### 向應用程式宣告虛擬網路
-<a id="declare-the-virtual-network-to-the-app" class="xliff"></a>
+##### <a name="declare-the-virtual-network-to-the-app"></a>向應用程式宣告虛擬網路
 使用下列命令告訴應用程式，它會使用此特定虛擬網路。 這會導致應用程式產生所需的憑證︰
 
     $vnet = New-AzureRmResource -Name "$($Configuration.WebAppName)/$($Configuration.VnetName)" -ResourceGroupName $Configuration.WebAppResourceGroup -ResourceType "Microsoft.Web/sites/virtualNetworkConnections" -PropertyObject @{"VnetResourceId" = "/subscriptions/$($Configuration.VnetSubscriptionId)/resourceGroups/$($Configuration.VnetResourceGroup)/providers/Microsoft.ClassicNetwork/virtualNetworks/$($Configuration.VnetName)"} -Location $Configuration.WebAppLocation -ApiVersion 2015-07-01
 
 如果此命令成功，**$vnet** 中應該有 **Properties** 變數。 **Properties** 變數應該包含憑證指紋和憑證資料。
 
-##### 將 Web 應用程式憑證上傳至虛擬網路
-<a id="upload-the-web-app-certificate-to-the-virtual-network" class="xliff"></a>
+##### <a name="upload-the-web-app-certificate-to-the-virtual-network"></a>將 Web 應用程式憑證上傳至虛擬網路
 每個訂用帳戶和虛擬網路組合都需要執行手動一次性步驟。 也就是說，如果您將訂用帳戶 A 中的應用程式連接到虛擬網路 A，您只需要執行此步驟一次，無論您設定多少應用程式。 如果您將新的應用程式新增至另一個虛擬網路，需要再進行一次這個步驟。 原因是因為憑證集是在 Azure App Service 的訂用帳戶層級產生，而且會針對應用程式將會連接的每個虛擬網路產生一次。
 
 如果您遵循這些步驟，或者如果您使用入口網站與相同的虛擬網路整合，則憑證已設定。
@@ -130,8 +122,7 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 
 若要手動上傳憑證，請使用 [Azure 入口網站][azureportal]，並按一下 [瀏覽虛擬網路 (傳統)] > [VPN 連接] > [點對站] > [管理憑證]。 從這裡上傳您的憑證。
 
-##### 取得點對站封裝
-<a id="get-the-point-to-site-package" class="xliff"></a>
+##### <a name="get-the-point-to-site-package"></a>取得點對站封裝
 設定 Web 應用程式上的虛擬網路連接的下一步是取得點對站封裝，並將其提供給您的 Web 應用程式。
 
 將下列範本儲存至您的電腦上某個位置中稱為 GetNetworkPackageUri.json 的檔案，例如：C:\Azure\Templates\GetNetworkPackageUri.json。
@@ -177,8 +168,7 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 
 變數 **$output.Outputs.packageUri** 現在會包含要提供給您的 Web 應用程式的封裝 URI。
 
-##### 將點對站封裝上傳至您的應用程式
-<a id="upload-the-point-to-site-package-to-your-app" class="xliff"></a>
+##### <a name="upload-the-point-to-site-package-to-your-app"></a>將點對站封裝上傳至您的應用程式
 最後一個步驟是將此封裝提供給應用程式。 只要執行下一個命令︰
 
     $vnet = New-AzureRmResource -Name "$($Configuration.WebAppName)/$($Configuration.VnetName)/primary" -ResourceGroupName $Configuration.WebAppResourceGroup -ResourceType "Microsoft.Web/sites/virtualNetworkConnections/gateways" -ApiVersion 2015-07-01 -PropertyObject @{"VnetName" = $Configuration.VnetName ; "VpnPackageUri" = $($output.Outputs.packageUri).Value } -Location $Configuration.WebAppLocation
@@ -191,8 +181,7 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 
 如果有名為 WEBSITE_VNETNAME 的環境變數，其值符合目標虛擬網路名稱的值，則所有組態皆已成功。
 
-### 更新傳統 VNet 整合資訊
-<a id="update-classic-vnet-integration-information" class="xliff"></a>
+### <a name="update-classic-vnet-integration-information"></a>更新傳統 VNet 整合資訊
 若要更新或重新同步處理您的資訊，只需要重複您一開始建立整合時所遵循的步驟。 這些步驟如下︰
 
 1. 定義您的組態資訊。
@@ -200,14 +189,12 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 3. 取得點對站封裝。
 4. 將點對站封裝上傳至您的應用程式。
 
-### 中斷連接您的應用程式與傳統 VNet
-<a id="disconnect-your-app-from-a-classic-vnet" class="xliff"></a>
+### <a name="disconnect-your-app-from-a-classic-vnet"></a>中斷連接您的應用程式與傳統 VNet
 若要中斷連接應用程式，您需要在虛擬網路整合期間設定的組態資訊。 使用該資訊，則只有一個命令可中斷連接您的應用程式與虛擬網路。
 
     $vnet = Remove-AzureRmResource -Name "$($Configuration.WebAppName)/$($Configuration.VnetName)" -ResourceGroupName $Configuration.WebAppResourceGroup -ResourceType "Microsoft.Web/sites/virtualNetworkConnections" -ApiVersion 2015-07-01
 
-## Resource Manager 虛擬網路
-<a id="resource-manager-virtual-networks" class="xliff"></a>
+## <a name="resource-manager-virtual-networks"></a>Resource Manager 虛擬網路
 Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處理程序 (相較於傳統虛擬網路)。 我們有指令碼可協助您完成下列工作︰
 
 * 建立 Resource Manager 虛擬網路並您的應用程式整合。
@@ -215,8 +202,7 @@ Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處
 * 將您的應用程式與已啟用閘道器和點對站連接的既存 Resource Manager 虛擬網路整合。
 * 中斷連接您的應用程式與虛擬網路。
 
-### Resource Manager VNet App Service 整合指令碼
-<a id="resource-manager-vnet-app-service-integration-script" class="xliff"></a>
+### <a name="resource-manager-vnet-app-service-integration-script"></a>Resource Manager VNet App Service 整合指令碼
 複製下列指令碼並儲存至檔案。 如果您不想使用該指令碼，您可以從該指令碼學習，了解如何對 Resource Manager 虛擬網路進行設定。
 
     function ReadHostWithDefault($message, $default)
@@ -654,8 +640,7 @@ Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處
 
 本節的其餘部分將說明每個選項。
 
-### 建立 Resource Manager VNet 並與其整合
-<a id="create-a-resource-manager-vnet-and-integrate-with-it" class="xliff"></a>
+### <a name="create-a-resource-manager-vnet-and-integrate-with-it"></a>建立 Resource Manager VNet 並與其整合
 若要建立採用 Resource Manager 部署模型的新虛擬網路，並且與您的應用程式整合，請選取 **1) 將新的虛擬網路新增至應用程式**。 這將會提示您輸入虛擬網路的名稱。 在我的案例中，如您在下列設定中所見，我使用了 v2pshell 這個名稱。
 
 指令碼會提供有關所建立的虛擬網路的詳細資料。 如果我想要，我可以變更任何值。 在此範例執行中，我建立的虛擬網路具有下列設定︰
@@ -676,8 +661,7 @@ Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處
 
 指令碼完成時，它會顯示 [完成] 。 此時，您會有一個 Resource Manager 虛擬網路，其具有您所選取的名稱和設定。 這個新的虛擬網路也會與您的應用程式整合。
 
-### 將您的應用程式與既存的 Resource Manager VNet 整合
-<a id="integrate-your-app-with-a-preexisting-resource-manager-vnet" class="xliff"></a>
+### <a name="integrate-your-app-with-a-preexisting-resource-manager-vnet"></a>將您的應用程式與既存的 Resource Manager VNet 整合
 與既存的虛擬網路整合時，如果您提供的 Resource Manager 虛擬網路沒有閘道器或點對站連接，則指令碼會加以設定。 如果 VNET 已設定這些項目，指令碼就會直接進入應用程式整合。 若要啟動此程序，只需選取 **2) 將現有的虛擬網路新增至應用程式**。
 
 此選項僅適用於您有既存的 Resource Manager 虛擬網路，其位於與您的應用程式相同的訂用帳戶中。 選取此選項之後，將看到一份 Resource Manager 虛擬網路清單。   
@@ -716,8 +700,7 @@ Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處
 
 如果您想要變更上述任何設定，可以這麼做。 否則按下 Enter 鍵，指令碼會建立您的閘道器，並將您的應用程式附加至虛擬網路。 閘道器建立時間仍然是一小時，請謹記在心。 一切完成後，指令碼會顯示 [完成] 。
 
-### 中斷連接您的應用程式與 Resource Manager VNet
-<a id="disconnect-your-app-from-a-resource-manager-vnet" class="xliff"></a>
+### <a name="disconnect-your-app-from-a-resource-manager-vnet"></a>中斷連接您的應用程式與 Resource Manager VNet
 中斷連接您的應用程式與虛擬網路不會關閉閘道器或停用點對站連接。 畢竟，您可能將它使用於其他項目。 也不會中斷連接它與您提供的應用程式以外的任何其他應用程式。 若要執行此動作，請選取 **3) 從應用程式移除虛擬網路**。 在您這麼做時，您會看到如下的畫面：
 
     Currently connected to VNET v2pshell

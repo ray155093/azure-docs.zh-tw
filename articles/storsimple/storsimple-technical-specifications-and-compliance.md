@@ -22,17 +22,11 @@ ms.lasthandoff: 07/06/2017
 
 
 ---
-<a id="technical-specifications-and-compliance-for-the-storsimple-device" class="xliff"></a>
-
-# 適用於 StorSimple 裝置的技術規格和相容性
-<a id="overview" class="xliff"></a>
-
-## 概觀
+# <a name="technical-specifications-and-compliance-for-the-storsimple-device"></a>適用於 StorSimple 裝置的技術規格和相容性
+## <a name="overview"></a>概觀
 Microsoft Azure StorSimple 裝置的硬體元件會遵循本文中概述的技術規格與法規標準。 技術規格描述電源與冷卻模組 (PCM)、磁碟機、儲存體容量及機箱。 相容性資訊則涵蓋國際標準、安全性和排放量，以及連接纜線等資訊。
 
-<a id="power-and-cooling-module-specifications" class="xliff"></a>
-
-## 電源和冷卻模組規格
+## <a name="power-and-cooling-module-specifications"></a>電源和冷卻模組規格
 StorSimple 裝置配置兩個 100-240V 雙風扇、SBB 相容的電源和冷卻模組 (PCM)。 這提供了備援電源設定。 如果 PCM 故障，裝置會繼續在其他 PCM 上正常運作，直到更換故障的模組為止。  
 
 EBOD 機箱使用 580 W PCM，而主要機箱會使用 764 W PCM。 下表列出與 PCM 相關聯的技術規格。
@@ -52,9 +46,7 @@ EBOD 機箱使用 580 W PCM，而主要機箱會使用 764 W PCM。 下表列出
 | 開關和 LED |AC ON/OFF 開關和四個狀態指示器 LED |AC ON/OFF 開關和六個狀態指示器 LED |
 | 機箱冷卻 |具有變動風扇速度控制的軸流散熱風扇 |具有變動風扇速度控制的軸流散熱風扇 |
 
-<a id="power-consumption-statistics" class="xliff"></a>
-
-## 耗電量統計資料
+## <a name="power-consumption-statistics"></a>耗電量統計資料
 下表列出各種 StorSimple 裝置機型的一般耗電量資料 (實際值與發佈資料可能不盡相同)。 
 
 | 條件 | 240 V AC | 240 V AC | 240 V AC | 110 V AC | 110 V AC | 110 V AC |
@@ -66,14 +58,10 @@ EBOD 機箱使用 580 W PCM，而主要機箱會使用 764 W PCM。 下表列出
 |  風扇快速，磁碟機存取中，兩個 PSU 已運轉 |2.26 A |0.51 kW |1740.19 BTU/時 |4.95 A |0.54 kW |1842.56 BTU/時 |
 |  風扇快速，磁碟機存取中，一個 PSU 已運轉、一個 PSU 閒置 |2.14 A |0.49 kW |1671.95 BTU/時 |4.81 A |0.53 kW |1808.44 BTU/時 |
 
-<a id="disk-drive-specifications" class="xliff"></a>
-
-## 磁碟機規格
+## <a name="disk-drive-specifications"></a>磁碟機規格
 您的 StorSimple 裝置最大可支援 12 3.5" 規格的序列連接 SCSI (SAS) 磁碟機。 視產品設定而定，實際的磁碟機可以是固態磁碟 (SSD) 或硬碟 (HDD)。 機箱正面有 12 個磁碟機插槽 (採用 3 x 4 設定)。 EBOD 機箱允許另外 12 個磁碟機提供額外的儲存空間。 這些磁碟機一律為 HDD。  
 
-<a id="storage-specifications" class="xliff"></a>
-
-## 儲存體規格
+## <a name="storage-specifications"></a>儲存體規格
 StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。 8100 與 8600 的可用容量總計各約 15 TB 及 38 TB。 下表列出 StorSimple 解決方案的容量內容中，HDD、SSD 及雲端的容量詳細資料。
 
 | 裝置型號/容量 | 8100 | 8600 |
@@ -90,14 +78,10 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。 8100 
 
 <sup>*  </sup>- *可用的容量總計包括可供資料、中繼資料及緩衝區使用的容量。*
 
-<a id="enclosure-dimensions-and-weight-specifications" class="xliff"></a>
-
-## 機箱尺寸和重量規格
+## <a name="enclosure-dimensions-and-weight-specifications"></a>機箱尺寸和重量規格
 下表列出各種機箱的尺寸和重量規格。  
 
-<a id="enclosure-dimensions" class="xliff"></a>
-
-### 機箱尺寸
+### <a name="enclosure-dimensions"></a>機箱尺寸
 下表列出機箱尺寸 (以公釐和英吋為單位)。
 
 | 機箱 | 公釐 | 英吋 |
@@ -109,9 +93,7 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。 8100 
 | 從操作面板至機箱最末端的深度 |630.5 |24.82 |
 | 從法蘭座至機箱最末端的深度 |603 |23.74 |
 
-<a id="enclosure-weight" class="xliff"></a>
-
-### 機箱重量
+### <a name="enclosure-weight"></a>機箱重量
 視設定而定，完全裝載的主要機箱重量從 21 至 33 公斤，需要兩個人才能搬動。 
 
 | 機箱 | 重量 |
@@ -119,22 +101,16 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。 8100 
 | 最大重量 (取決於設定) |30 kg - 33 kg |
 | 空的 (未裝入磁碟機) |21 - 23 kg |
 
-<a id="enclosure-environment-specifications" class="xliff"></a>
-
-## 機箱環境規格
+## <a name="enclosure-environment-specifications"></a>機箱環境規格
 本節將列出機箱環境的相關規格。 溫度、溼度、海拔高度、震盪、振動、方向、安全和電磁相容性 (EMC) 均納入此類別中。  
 
-<a id="temperature-and-humidity" class="xliff"></a>
-
-### 溫度和溼度
+### <a name="temperature-and-humidity"></a>溫度和溼度
 | 機箱 | 周圍溫度範圍 | 周圍相對溼度 | 最大濕球 |
 | --- | --- | --- | --- |
 | 運作 |5°C - 35°C(41°F - 95°F) |20% - 80% 無凝結- |28°C (82°F) |
 | 無法運作 |-40°C - 70°C(40°F - 158°F) |5% - 100% 無凝結 |29°C (84°F) |
 
-<a id="airflow-altitude-shock-vibration-orientation-safety-and-emc" class="xliff"></a>
-
-### 氣流、海拔高度、震盪、振動、方向、安全和 EMC
+### <a name="airflow-altitude-shock-vibration-orientation-safety-and-emc"></a>氣流、海拔高度、震盪、振動、方向、安全和 EMC
 | 機箱 | 運作規格 |
 | --- | --- |
 | 氣流 |系統氣流是從前面到後面。 系統必須以低壓、尾段排氣安裝操作。 機架門和障礙物所產生的背壓不得超出 5 帕斯卡 (0.5 mm 水位標尺)。 |
@@ -150,76 +126,54 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。 8100 
 | 安全與核可 |CE 和 UL EN 61000-3、IEC 61000-3、UL 61000-3 |
 | EMC |EN55022 (CISPR - A)，FCC A |
 
-<a id="international-standards-compliance" class="xliff"></a>
-
-## 國際標準相容性
+## <a name="international-standards-compliance"></a>國際標準相容性
 您的 Microsoft Azure StorSimple 裝置符合下列國際標準：  
 
 * CE - EN 60950 - 1  
 * IEC 60950 - 1 的 CB 報告  
 * UL 60950 - 1 的 UL 和 cUL  
 
-<a id="safety-compliance" class="xliff"></a>
-
-## 安全法規遵循
+## <a name="safety-compliance"></a>安全法規遵循
 您的 Microsoft Azure StorSimple 裝置符合下列安全分級：  
 
 * 系統產品類型核可：UL、cUL、CE  
 * 安全法規遵循：UL 60950、IEC 60950、EN 60950  
 
-<a id="emc-compliance" class="xliff"></a>
-
-## EMC 法規遵循
+## <a name="emc-compliance"></a>EMC 法規遵循
 您的 Microsoft Azure StorSimple 裝置符合下列 EMC 分級：  
 
-<a id="emissions" class="xliff"></a>
-
-### 放射性規格
+### <a name="emissions"></a>放射性規格
 此裝置符合傳導和輻射放射性層級的 EMC 標準。  
 
 * 傳導放射性限制層級：CFR 47 Part 15B Class A EN55022 Class A CISPR Class A  
 * 輻射放射性限制層級：CFR 47 Part 15B Class A EN55022 Class A CISPR Class A   
 
-<a id="harmonics-and-flicker" class="xliff"></a>
-
-### 諧波和變動
+### <a name="harmonics-and-flicker"></a>諧波和變動
 此裝置符合 EN61000-3-2/3。  
 
-<a id="immunity-limit-levels" class="xliff"></a>
-
-### 免疫限制層級
+### <a name="immunity-limit-levels"></a>免疫限制層級
 此裝置符合 EN55024。  
 
-<a id="ac-power-cord-compliance" class="xliff"></a>
-
-## AC 電源線相容性
+## <a name="ac-power-cord-compliance"></a>AC 電源線相容性
 插頭和完整電源線組件必須符合適用於使用裝置之國家或地區的標準，而且必須具有該國家或地區可接受的安全核可。 下表列出適用於美國和歐洲的標準。  
 
-<a id="ac-power-cords---usa-must-be-nrtl-listed" class="xliff"></a>
-
-### AC 電源線 - 美國 (必須由 NRTL 列名)
+### <a name="ac-power-cords---usa-must-be-nrtl-listed"></a>AC 電源線 - 美國 (必須由 NRTL 列名)
 | 元件 | 規格 |
 | --- | --- |
 | 電源線類型 |SV 或 SVT、最少 18 AWG、3 導體、最大長度為 2.0 公尺 |
 | 插頭 |NEMA 5-15P 接地式插塞插頭，額定電壓 120 V、10 A 或 IEC 320 C14、250 V、10 A |
 | 插座 |IEC 320 C-13、250 V、10 A |
 
-<a id="ac-power-cords---europe" class="xliff"></a>
-
-### AC 電源線 - 歐洲
+### <a name="ac-power-cords---europe"></a>AC 電源線 - 歐洲
 | 元件 | 規格 |
 | --- | --- |
 | 電源線類型 |諧波，H05-VVF-3G1.0 |
 | 插座 |IEC 320 C-13、250 V、10 A |
 
-<a id="supported-network-cables" class="xliff"></a>
-
-## 支援的網路纜線
+## <a name="supported-network-cables"></a>支援的網路纜線
 針對 10 GbE 的網路介面 DATA 2 和 DATA 3，請參閱 [支援的網路纜線和模組清單](storsimple-supported-hardware-for-10-gbe-network-interfaces.md)。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 您現在已可在您的資料中心內部署 StorSimple 裝置。 如需詳細資訊，請參閱 [部署您的內部部署裝置](storsimple-deployment-walkthrough-u2.md)。  
 
 
