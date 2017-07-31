@@ -25,18 +25,14 @@ ms.lasthandoff: 05/08/2017
 
 
 ---
-<a id="reset-the-password-for-a-user-in-azure-active-directory" class="xliff"></a>
-
-# 在 Azure Active Directory 中重設使用者的密碼
+# <a name="reset-the-password-for-a-user-in-azure-active-directory"></a>在 Azure Active Directory 中重設使用者的密碼
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-users-reset-password-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-create-users-reset-password.md)
 >
 >
 
-<a id="how-to-reset-the-password-for-a-user" class="xliff"></a>
-
-## 如何重設使用者的密碼
+## <a name="how-to-reset-the-password-for-a-user"></a>如何重設使用者的密碼
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
@@ -50,9 +46,7 @@ ms.lasthandoff: 05/08/2017
     ![選取 [重設密碼] 命令](./media/active-directory-users-reset-password-azure-portal/create-users-reset-password-command.png)
 6. 在 [重設密碼] 刀鋒視窗上，選取 [重設密碼]。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * [新增使用者](active-directory-users-create-azure-portal.md)
 * [在 Azure AD 中將使用者指派給角色](active-directory-users-assign-role-azure-portal.md)
 * [變更使用者的工作資訊](active-directory-users-work-info-azure-portal.md)

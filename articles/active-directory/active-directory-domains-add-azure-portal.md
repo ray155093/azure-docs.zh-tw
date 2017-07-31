@@ -21,8 +21,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 05/08/2017
 
 ---
-# 將自訂網域名稱新增至 Azure Active Directory
-<a id="add-a-custom-domain-name-to-azure-active-directory" class="xliff"></a>
+# <a name="add-a-custom-domain-name-to-azure-active-directory"></a>將自訂網域名稱新增至 Azure Active Directory
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-domains-add-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-add-domain.md)
@@ -34,8 +33,7 @@ ms.lasthandoff: 05/08/2017
 2. 在網域名稱註冊機構中新增網域名稱的 DNS 項目
 3. 驗證 Azure AD 中的自訂網域名稱
 
-## 如何新增網域名稱？
-<a id="how-do-i-add-a-domain-name" class="xliff"></a>
+## <a name="how-do-i-add-a-domain-name"></a>如何新增網域名稱？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入 **Azure Active Directory**，然後選取 **Enter**。
    
@@ -51,8 +49,7 @@ ms.lasthandoff: 05/08/2017
 
 既然您已新增網域名稱，Azure AD 必須確認您的組織擁有該網域名稱。 您必須先在 DNS 區域檔案中新增該網域名稱的 DNS 項目，Azure AD 才可以進行此確認。 這項工作是在該網域名稱的網域名稱註冊機構網站上進行。
 
-## 在網域名稱註冊機構中新增網域的 DNS 項目
-<a id="add-the-dns-entry-at-the-domain-name-registrar-for-the-domain" class="xliff"></a>
+## <a name="add-the-dns-entry-at-the-domain-name-registrar-for-the-domain"></a>在網域名稱註冊機構中新增網域的 DNS 項目
 利用 Azure AD 使用您自訂網域名稱的下一個步驟，就是更新網域的 DNS 區域檔案。 這可讓 Azure AD 確認您的組織擁有該自訂網域名稱。
 
 1. 登入網域的網域名稱註冊機構。 如果您無法存取以更新 DNS 項目，請要求具有此存取權的人員或小組完成步驟 2 並在完成時通知您。
@@ -60,8 +57,7 @@ ms.lasthandoff: 05/08/2017
 
 如需新增此 DNS 項目的說明，請參閱 [在常用 DNS 註冊機構新增 DNS 項目的指示](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)
 
-## 使用 Azure AD 確認網域名稱
-<a id="verify-the-domain-name-with-azure-ad" class="xliff"></a>
+## <a name="verify-the-domain-name-with-azure-ad"></a>使用 Azure AD 確認網域名稱
 一旦新增了 DNS 項目，您就可以使用 Azure AD 確認網域名稱。
 
 只有在 DNS 記錄傳播完成之後，才能驗證網域名稱。 通常此傳播只需要幾秒鐘，但有時可能需要一個小時以上。 如果驗證第一次不成功，請稍後再試。
@@ -75,20 +71,17 @@ ms.lasthandoff: 05/08/2017
 
 現在您可以[指派包含自訂網域名稱的使用者名稱](active-directory-users-create-azure-portal.md)。
 
-## 疑難排解
-<a id="troubleshooting" class="xliff"></a>
+## <a name="troubleshooting"></a>疑難排解
 如果無法確認自訂網域名稱，請嘗試下列方法。 我們會從最常見的原因來開始逐一介紹到最不常見的原因。
 
 1. **等候一小時**。 DNS 記錄必須在 Azure AD 確認網域之後傳播。 這可能需要一個小時以上。
 2. **確定已輸入正確的 DNS 記錄**。 請在該網域的網域名稱註冊機構網站上完成這個步驟。 如果 DNS 項目不在 DNS 區域檔案中，或如果與 Azure AD 提供您的 DNS 項目不完全相符，則 Azure AD 無法確認網域名稱。 如果您無法在網域名稱註冊機構上存取以更新網域的 DNS 記錄，請與組織內具有此存取權的個人或團隊共用 DNS 項目，並請他們新增 DNS 項目。
 3. **從 Azure AD 中的另一個目錄刪除網域名稱**。 網域名稱只能在單一目錄中確認。 如果網域名稱先前在另一個目錄中確認過，則必須先在那裡將其刪除後，才可在新的目錄中確認。 若要了解如何刪除網域名稱，請參閱 [管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)。    
 
-## 新增更多的自訂網域名稱
-<a id="add-more-custom-domain-names" class="xliff"></a>
+## <a name="add-more-custom-domain-names"></a>新增更多的自訂網域名稱
 如果您的組織使用多個自訂網域名稱，例如 ‘contoso.com’ 和 ‘contosobank.com’，您最多可以新增 900 個網域名稱。 請使用本文中的相同步驟來新增每個網域名稱。
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 [管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)
 
 

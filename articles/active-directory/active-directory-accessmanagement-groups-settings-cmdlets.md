@@ -21,8 +21,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 05/05/2017
 
 ---
-# 設定群組設定的 Azure Active Directory Cmdlet
-<a id="azure-active-directory-cmdlets-for-configuring-group-settings" class="xliff"></a>
+# <a name="azure-active-directory-cmdlets-for-configuring-group-settings"></a>設定群組設定的 Azure Active Directory Cmdlet
 
 > [!IMPORTANT]
 > 本內容僅適用於整合群組 (又稱為 Office 365 群組)。 
@@ -31,16 +30,14 @@ Office 365 群組設定是使用 Settings 物件和 SettingsTemplate 物件所�
 
 Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有關此模組的詳細資訊，以及如何在電腦上下載及安裝模組的指示，請參閱 [Azure Active Directory PowerShell 第 2 版](https://docs.microsoft.com/powershell/azuread/)。 您可以從[這裡](https://www.powershellgallery.com/packages/AzureAD/)安裝第 2 版的模組。
 
-## 擷取一個特定設定值
-<a id="retrieve-a-specific-settings-value" class="xliff"></a>
+## <a name="retrieve-a-specific-settings-value"></a>擷取一個特定設定值
 如果您知道您想要擷取的設定名稱，您可以使用以下 Cmdlet 來擷取目前的設定值。 在此範例中，我們會擷取名為 "UsageGuidelinesUrl" 的設定值。 您可以在本文中深入了解目錄設定及其名稱。
 
 ```powershell
 (Get-AzureADDirectorySetting).Values | Where-Object -Property Name -Value UsageGuidelinesUrl -EQ
 ```
 
-## 建立目錄層級的設定
-<a id="create-settings-at-the-directory-level" class="xliff"></a>
+## <a name="create-settings-at-the-directory-level"></a>建立目錄層級的設定
 這些步驟會建立目錄層級的設定，其會套用至目錄中的所有整合群組。
 
 1. 在 DirectorySettings Cmdlet 中，您必須指定想要使用的 SettingsTemplate 識別碼。 如果您不知道此識別碼，這個 Cmdlet 會傳回所有設定範本的清單：
@@ -105,8 +102,7 @@ Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有�
 |  <ul><li>EnableGroupCreation<li>類型：布林值<li>預設值︰True | 布林值，表示非系統管理使用者是否可以建立新的整合群組。 |
 
 
-## 讀取目錄層級的設定
-<a id="read-settings-at-the-directory-level" class="xliff"></a>
+## <a name="read-settings-at-the-directory-level"></a>讀取目錄層級的設定
 這些步驟會讀取目錄層級的設定，其會套用至目錄中的所有 Office 群組。
 
 1. 讀取所有現有的目錄設定：
@@ -146,8 +142,7 @@ Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有�
   EnableGroupCreation           True
   ```
 
-## 更新特定群組的設定
-<a id="update-settings-for-a-specific-group" class="xliff"></a>
+## <a name="update-settings-for-a-specific-group"></a>更新特定群組的設定
 
 1. 搜尋名為「Groups.Unified.Guest」的設定範本
   ```
@@ -183,8 +178,7 @@ Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有�
   25651479-a26e-4181-afce-ce24111b2cb5             08d542b9-071f-4e16-94b0-74abb372e3d9 {class SettingValue {...
   ```
 
-## 更新目錄層級的設定
-<a id="update-settings-at-the-directory-level" class="xliff"></a>
+## <a name="update-settings-at-the-directory-level"></a>更新目錄層級的設定
 
 這些步驟會更新目錄層級的設定，其會套用至目錄中的所有整合群組。 這些範例假設您的目錄中已經有 Settings 物件。
 
@@ -209,19 +203,16 @@ Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有�
   Set-AzureADDirectorySetting -Id c391b57d-5783-4c53-9236-cefb5c6ef323 -DirectorySetting $Setting
   ```
 
-## 移除目錄層級的設定
-<a id="remove-settings-at-the-directory-level" class="xliff"></a>
+## <a name="remove-settings-at-the-directory-level"></a>移除目錄層級的設定
 這個步驟會移除目錄層級的設定，其會套用至目錄中的所有 Office 群組。
   ```
   Remove-AzureADDirectorySetting –Id c391b57d-5783-4c53-9236-cefb5c6ef323c
   ```
 
-## Cmdlet 語法參考
-<a id="cmdlet-syntax-reference" class="xliff"></a>
+## <a name="cmdlet-syntax-reference"></a>Cmdlet 語法參考
 您可以在 [Azure Active Directory Cmdlet](/powershell/azure/install-adv2?view=azureadps-2.0)中找到更多 Azure Active Directory PowerShell 文件。
 
-## 其他閱讀資料
-<a id="additional-reading" class="xliff"></a>
+## <a name="additional-reading"></a>其他閱讀資料
 
 * [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)

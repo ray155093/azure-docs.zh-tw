@@ -22,9 +22,7 @@ ms.lasthandoff: 05/09/2017
 
 
 ---
-<a id="use-desired-properties-to-configure-devices-node" class="xliff"></a>
-
-# 使用所需屬性來設定裝置 (Node)
+# <a name="use-desired-properties-to-configure-devices-node"></a>使用所需屬性來設定裝置 (Node)
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
 在本教學課程結尾端，您將會有兩個 Node.js 主控台應用程式：
@@ -48,9 +46,7 @@ ms.lasthandoff: 05/09/2017
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-<a id="create-the-simulated-device-app" class="xliff"></a>
-
-## 建立模擬裝置應用程式
+## <a name="create-the-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您將建立 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 連接到您的中樞、等候所需的組態更新，然後報告模擬組態更新程序上的更新。
 
 1. 建立稱為 **simulatedeviceconfiguration** 的新空白資料夾。 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值：
@@ -161,9 +157,7 @@ ms.lasthandoff: 05/09/2017
    
     您應該會看見訊息 `retrieved device twin`。 保持應用程式執行。
 
-<a id="create-the-service-app" class="xliff"></a>
-
-## 建立服務應用程式
+## <a name="create-the-service-app"></a>建立服務應用程式
 在本節中，您將建立 Node.js 主控台應用程式，在與 **myDeviceId** 相關聯的裝置對應項上，以新的遙測組態物件來更新「所需屬性」。 然後，它會查詢儲存在 IoT 中樞的裝置對應項，並顯示裝置的所需和所報告組態之間的差異。
 
 1. 建立稱為 **setdesiredandqueryapp** 的新空白資料夾。 在 **setdesiredandqueryapp** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值：
@@ -253,9 +247,7 @@ ms.lasthandoff: 05/09/2017
    > 
    > 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 在本教學課程中，您將會從後端應用程式將所需的組態設為「所需屬性」，還會撰寫模擬裝置應用程式來偵測該變更，並模擬多步驟更新程序，以「所報告屬性」將其狀態回報給裝置對應項。
 
 使用下列資源來了解如何：

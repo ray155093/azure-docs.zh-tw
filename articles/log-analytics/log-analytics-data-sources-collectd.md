@@ -22,9 +22,7 @@ ms.lasthandoff: 05/09/2017
 
 
 ---
-<a id="collect-data-from-collectd-on-linux-agents-in-log-analytics" class="xliff"></a>
-
-# 在 Log Analytics 中，從 Linux 代理程式上的 CollectD 收集資料
+# <a name="collect-data-from-collectd-on-linux-agents-in-log-analytics"></a>在 Log Analytics 中，從 Linux 代理程式上的 CollectD 收集資料
 [CollectD](https://collectd.org/) 是開放原始碼 Linux 精靈，可定期收集來自應用程式的效能計量和系統等級資訊。 範例應用程式包括 Java 虛擬機器 (JVM)、MySQL 伺服器和 Nginx。 本文提供如何在 Log Analytics 中從 CollectD 收集效能資料的相關資訊。
 
 您可以在[外掛程式表](https://collectd.org/wiki/index.php/Table_of_Plugins)中找到可用之外掛程式的完整清單。
@@ -72,25 +70,19 @@ OMS Agent for Linux 也會在連接埠 26000 接聽 CollectD 計量，然後將�
     </filter>
 
 
-<a id="versions-supported" class="xliff"></a>
-
-## 支援的版本
+## <a name="versions-supported"></a>支援的版本
 - Log Analytics 目前支援 CollectD 4.8 版和更新版本。
 - 需要有 OMS Agent for Linux v1.1.0-217 或以上才能收集 CollectD 計量。
 
 
-<a id="configuration" class="xliff"></a>
-
-## 組態
+## <a name="configuration"></a>組態
 以下是在 Log Analytics 中設定收集 CollectD 資料的基本步驟。
 
 1. 使用 write_http 外掛程式，設定 CollectD 將資料傳送至 OMS Agent for Linux。  
 2. 設定 OMS Agent for Linux 在適當的連接埠上接聽 CollectD 資料。
 3. 重新啟動 CollectD 和 OMS Agent for Linux。
 
-<a id="configure-collectd-to-forward-data" class="xliff"></a>
-
-### 設定 CollectD 來轉送資料 
+### <a name="configure-collectd-to-forward-data"></a>設定 CollectD 來轉送資料 
 
 1. 若要將 CollectD 資料傳遞至 OMS Agent for Linux，需要將 `oms.conf` 新增至 CollectD 的設定目錄。 這個檔案的目的地取決於您電腦的 Linux 散發版本。
 
@@ -115,9 +107,7 @@ OMS Agent for Linux 也會在連接埠 26000 接聽 CollectD 計量，然後將�
 
     sudo service collectd restart  sudo /opt/microsoft/omsagent/bin/service_control restart
 
-<a id="collectd-metrics-to-log-analytics-schema-conversion" class="xliff"></a>
-
-## CollectD 計量至 Log Analytics 的結構描述轉換
+## <a name="collectd-metrics-to-log-analytics-schema-conversion"></a>CollectD 計量至 Log Analytics 的結構描述轉換
 在 OMS Agent for Linux 已收集的基礎結構計量和 CollectD 所收集的新計量之間，為了維持一種熟悉的模型，我們使用下列結構描述對應：
 
 | CollectD 計量欄位 | Log Analytics 欄位 |
@@ -131,9 +121,7 @@ OMS Agent for Linux 也會在連接埠 26000 接聽 CollectD 計量，然後將�
 | dstypes | None |
 | values[] | CounterValue |
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，以分析從資料來源和解決方案所收集的資料。 
 * 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將來自 syslog 記錄的資料剖析至個別欄位。
 
