@@ -21,9 +21,7 @@ ms.lasthandoff: 05/09/2017
 
 
 ---
-<a id="understanding-resource-access-in-azure" class="xliff"></a>
-
-# 了解 Azure 中的資源存取
+# <a name="understanding-resource-access-in-azure"></a>了解 Azure 中的資源存取
 > [!NOTE]
 > 本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。 此外，Azure 預覽入口網站提供 [以角色為基礎的存取控制](role-based-access-control-configure.md) ，因此可以更精確地管理 Azure 資源。
 > 
@@ -59,9 +57,7 @@ Azure 傳統入口網站內的功能可讓使用 Microsoft 帳戶登入的 SA �
 
 在訂用帳戶之間移動資源等作業，可能會因為訂用帳戶的這個單一目錄檢視而變得更加困難。 若要執行資源移轉，可能需要先在 [設定] 中的 [訂用帳戶] 頁面使用 [編輯目錄] 命令，將訂用帳戶關聯到相同的目錄。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 若要深入了解如何變更 Azure 訂用帳戶的管理員，請參閱 [如何新增或變更 Azure 管理員角色](../billing/billing-add-change-azure-subscription-administrator.md)
 * 如需有關 Azure Active Directory 與您的 Azure 訂用帳戶產生關聯之方式的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 * 如需有關如何在 Azure AD 中指派角色的詳細資訊，請參閱 [在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles.md)

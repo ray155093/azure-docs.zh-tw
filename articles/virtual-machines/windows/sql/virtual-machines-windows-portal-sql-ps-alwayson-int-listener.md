@@ -22,9 +22,7 @@ ms.lasthandoff: 05/05/2017
 
 
 ---
-<a id="configure-one-or-more-always-on-availability-group-listeners---resource-manager" class="xliff"></a>
-
-# 設定一或多個 Always On 可用性群組接聽程式 - Resource Manager
+# <a name="configure-one-or-more-always-on-availability-group-listeners---resource-manager"></a>設定一或多個 Always On 可用性群組接聽程式 - Resource Manager
 本主題說明如何：
 
 * 使用 PowerShell Cmdlet 為 SQL Server 可用性群組建立內部負載平衡器。
@@ -43,14 +41,10 @@ ms.lasthandoff: 05/05/2017
 
 [!INCLUDE [Start your PowerShell session](../../../../includes/sql-vm-powershell.md)]
 
-<a id="configure-the-windows-firewall" class="xliff"></a>
-
-## 設定 Windows 防火牆
+## <a name="configure-the-windows-firewall"></a>設定 Windows 防火牆
 設定 Windows 防火牆以允許 SQL Server 存取。 防火牆規則可允許透過 TCP 連線至 SQL Server 執行個體及接聽程式探查所使用的連接埠。 如需詳細的指示，請參閱[設定用於 Database Engine 存取的 Windows 防火牆](http://msdn.microsoft.com/library/ms175043.aspx#Anchor_1)。 為 SQL Server 連接埠和探查連接埠建立輸入規則。
 
-<a id="example-script-create-an-internal-load-balancer-with-powershell" class="xliff"></a>
-
-## 範例指令碼：使用 PowerShell 來建立內部負載平衡器
+## <a name="example-script-create-an-internal-load-balancer-with-powershell"></a>範例指令碼：使用 PowerShell 來建立內部負載平衡器
 > [!NOTE]
 > 如果您使用了 [Microsoft 範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)來建立可用性群組，則已經建立內部負載平衡器。 
 > 
@@ -158,15 +152,11 @@ $BEConfig = Get-AzureRmLoadBalancerBackendAddressPoolConfig -Name $ILB.BackendAd
 $ILB | Add-AzureRmLoadBalancerRuleConfig -Name $LBConfigRuleName -FrontendIpConfiguration $FEConfig  -BackendAddressPool $BEConfig -Probe $SQLHealthProbe -Protocol tcp -FrontendPort  $ListenerPort -BackendPort $ListenerPort -LoadDistribution Default -EnableFloatingIP | Set-AzureRmLoadBalancer   
 ```
 
-<a id="configure-the-listener" class="xliff"></a>
-
-## 設定接聽程式
+## <a name="configure-the-listener"></a>設定接聽程式
 
 [!INCLUDE [ag-listener-configure](../../../../includes/virtual-machines-ag-listener-configure.md)]
 
-<a id="set-the-listener-port-in-sql-server-management-studio" class="xliff"></a>
-
-## 在 SQL Server Management Studio 中設定接聽程式連接埠
+## <a name="set-the-listener-port-in-sql-server-management-studio"></a>在 SQL Server Management Studio 中設定接聽程式連接埠
 
 1. 啟動 SQL Server Management Studio，然後連接到主要複本。
 
@@ -176,9 +166,7 @@ $ILB | Add-AzureRmLoadBalancerRuleConfig -Name $LBConfigRuleName -FrontendIpConf
 
 1. 在 [連接埠] 方塊中，使用您稍早所用的 $EndpointPort (預設值是 1433) 來指定可用性群組接聽程式的連接埠號碼，然後按一下 [確定]。
 
-<a id="test-the-connection-to-the-listener" class="xliff"></a>
-
-## 測試接聽程式的連線
+## <a name="test-the-connection-to-the-listener"></a>測試接聽程式的連線
 
 若要測試連線︰
 
@@ -203,22 +191,16 @@ SQLCMD 連線會自動連線到任何一個裝載主要複本的 SQL Server 執�
 > 
 > 
 
-<a id="guidelines-and-limitations" class="xliff"></a>
-
-## 指導方針和限制
+## <a name="guidelines-and-limitations"></a>指導方針和限制
 請注意，下列關於 Azure 中使用內部負載平衡器之可用性群組接聽程式的指導方針：
 
 * 使用內部負載平衡器時，您只會從相同的虛擬網路內存取接聽程式。
 
 
-<a id="for-more-information" class="xliff"></a>
-
-## 如需 Blob 的詳細資訊，
+## <a name="for-more-information"></a>如需 Blob 的詳細資訊，
 如需詳細資訊，請參閱[在 Azure VM 中手動設定 Always On 可用性群組](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)。
 
-<a id="powershell-cmdlets" class="xliff"></a>
-
-## PowerShell Cmdlet
+## <a name="powershell-cmdlets"></a>PowerShell Cmdlet
 請使用下列 PowerShell Cmdlet 為 Azure 虛擬機器建立內部負載平衡器。
 
 * [New-AzureRmLoadBalancer](http://msdn.microsoft.com/library/mt619450.aspx) 會建立負載平衡器。 

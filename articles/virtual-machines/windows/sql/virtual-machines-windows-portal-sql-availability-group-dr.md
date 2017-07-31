@@ -25,9 +25,7 @@ ms.lasthandoff: 05/05/2017
 
 ---
 
-<a id="configure-an-always-on-availability-group-on-azure-virtual-machines-in-different-regions" class="xliff"></a>
-
-# 在不同區域的 Azure 虛擬機器上設定 Always On 可用性群組
+# <a name="configure-an-always-on-availability-group-on-azure-virtual-machines-in-different-regions"></a>在不同區域的 Azure 虛擬機器上設定 Always On 可用性群組
 
 本文說明如何在遠端 Azure 位置的「Azure 虛擬機器」上設定「SQL Server Always On 可用性群組」複本。 您可以使用此組態來支援災害復原。
 
@@ -62,9 +60,7 @@ ms.lasthandoff: 05/05/2017
 >[!IMPORTANT]
 >此架構會針對 Azure 區域之間複寫的資料產生輸出資料費用。 請參閱[頻寬定價](http://azure.microsoft.com/pricing/details/bandwidth/)。  
 
-<a id="create-remote-replica" class="xliff"></a>
-
-## 建立遠端複本
+## <a name="create-remote-replica"></a>建立遠端複本
 
 若要在遠端資料中心建立複本，請執行下列步驟：
 
@@ -144,9 +140,7 @@ ms.lasthandoff: 05/05/2017
    Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ILBIP";"ProbePort"=$ProbePort;"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
    ```
 
-<a id="set-connection-for-multiple-subnets" class="xliff"></a>
-
-## 設定多個子網路的連線
+## <a name="set-connection-for-multiple-subnets"></a>設定多個子網路的連線
 
 遠端資料中心內的複本是可用性群組的一部份，但是位於不同的子網路。 如果此複本變成主要複本，可能會發生應用程式連線逾時。 此行為與多子網路部署中的內部部署可用性群組相同。 若要允許來自用戶端應用程式的連線，請更新用戶端連線，或在叢集網路名稱資源上設定名稱解析快取功能。
 
@@ -154,9 +148,7 @@ ms.lasthandoff: 05/05/2017
 
 如果您無法修改連接字串，您可以設定名稱解析快取功能。 請參閱[多子網路可用性群組中的連線逾時 (英文)](http://blogs.msdn.microsoft.com/alwaysonpro/2014/06/03/connection-timeouts-in-multi-subnet-availability-group/)。
 
-<a id="fail-over-to-remote-region" class="xliff"></a>
-
-## 容錯移轉至遠端區域
+## <a name="fail-over-to-remote-region"></a>容錯移轉至遠端區域
 
 若要測試對遠端區域的接聽程式連線能力，您可以將複本容錯移轉至遠端區域。 當複本是非同步複本時，容錯移轉容易導致潛在的資料遺失。 若要容錯移轉又不遺失資料，請將可用性模式變更為同步，並將容錯移轉模式設定為自動。 請使用下列步驟：
 
@@ -181,18 +173,14 @@ ms.lasthandoff: 05/05/2017
 | 次要或遠端資料中心 | SQL-3 | 次要 | 非同步 | 手動
 
 
-<a id="more-information-about-planned-and-forced-manual-failover" class="xliff"></a>
-
-### 有關計劃性和強制性容錯移轉的更多詳細資訊
+### <a name="more-information-about-planned-and-forced-manual-failover"></a>有關計劃性和強制性容錯移轉的更多詳細資訊
 
 如需詳細資訊，請參閱下列主題：
 
 - [執行可用性群組的已規劃手動容錯移轉 (SQL Server)](http://msdn.microsoft.com/library/hh231018.aspx)
 - [執行可用性群組的強制手動容錯移轉 (SQL Server)](http://msdn.microsoft.com/library/ff877957.aspx)
 
-<a id="additional-links" class="xliff"></a>
-
-## 其他連結
+## <a name="additional-links"></a>其他連結
 
 * [Always On 可用性群組](http://msdn.microsoft.com/library/hh510230.aspx)
 * [Azure 虛擬機器](http://docs.microsoft.com/azure/virtual-machines/windows/)

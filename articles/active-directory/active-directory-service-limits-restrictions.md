@@ -23,16 +23,12 @@ ms.lasthandoff: 05/09/2017
 
 
 ---
-<a id="azure-ad-service-limits-and-restrictions" class="xliff"></a>
-
-# Azure Active Directory 服務限制
+# <a name="azure-ad-service-limits-and-restrictions"></a>Azure Active Directory 服務限制
 本文包含 Azure Active Directory (Azure AD) 服務的使用條件約束和其他服務限制。 如需完整的 Microsoft Azure 服務限制，請參閱 [Azure 訂用帳戶及服務限制、配額與條件約束](../azure-subscription-service-limits.md)。
 
 [!INCLUDE [AAD-service-limits](../../includes/active-directory-service-limits-include.md)]
 
-<a id="whats-next" class="xliff"></a>
-
-## 後續步驟
+## <a name="whats-next"></a>後續步驟
 * [以組織方式註冊 Azure](sign-up-organization.md)
 * [Azure 訂用帳戶如何與 Azure AD 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 

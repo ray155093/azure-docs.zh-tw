@@ -24,14 +24,10 @@ ms.lasthandoff: 05/08/2017
 
 
 ---
-<a id="assign-a-user-to-administrator-roles-in-azure-active-directory" class="xliff"></a>
-
-# 在 Azure Active Directory 中將使用者指派給系統管理員角色
+# <a name="assign-a-user-to-administrator-roles-in-azure-active-directory"></a>在 Azure Active Directory 中將使用者指派給系統管理員角色
 本文說明如何在 Azure Active Directory (Azure AD) 中將系統管理角色指派給使用者。 如需有關在您組織中新增新使用者的資訊，請參閱[將新的使用者新增到 Azure Active Directory](active-directory-users-create-azure-portal.md)。 新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
 
-<a id="assign-a-role-to-a-user" class="xliff"></a>
-
-## 將角色指派給使用者
+## <a name="assign-a-role-to-a-user"></a>將角色指派給使用者
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
@@ -45,9 +41,7 @@ ms.lasthandoff: 05/08/2017
       ![將使用者指派給角色](./media/active-directory-users-assign-role-azure-portal/create-users-assign-role.png)
 6. 選取 [ **儲存**]。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * [新增使用者](active-directory-users-create-azure-portal.md)
 * [在新 Azure 入口網站中重設使用者的密碼](active-directory-users-reset-password-azure-portal.md)
 * [變更使用者的工作資訊](active-directory-users-work-info-azure-portal.md)

@@ -25,14 +25,10 @@ ms.lasthandoff: 05/08/2017
 
 ---
 
-<a id="delete-a-user-from-a-directory-in-azure-active-directory" class="xliff"></a>
-
-# 在 Azure Active Directory 中將使用者從目錄中刪除
+# <a name="delete-a-user-from-a-directory-in-azure-active-directory"></a>在 Azure Active Directory 中將使用者從目錄中刪除
 本文說明如何在 Azure Active Directory (Azure AD) 中將使用者從目錄中刪除。 如需有關將新的使用者新增至組織的資訊，請參閱[將新的使用者新增至 Azure Active Directory](active-directory-users-create-azure-portal.md)。
 
-<a id="to-delete-a-user" class="xliff"></a>
-
-## 刪除使用者
+## <a name="to-delete-a-user"></a>刪除使用者
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
@@ -45,9 +41,7 @@ ms.lasthandoff: 05/08/2017
 
     ![選取 [刪除] 命令](./media/active-directory-users-delete-user-azure-portal/create-users-delete-command.png)
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * [將新的使用者加入 Azure Active Directory](active-directory-users-create-azure-portal.md)
 * [在 Azure Active Directory 中重設使用者的密碼](active-directory-users-reset-password-azure-portal.md)
 * [在 Azure Active Directory 中將使用者指派給系統管理員角色](active-directory-users-assign-role-azure-portal.md)

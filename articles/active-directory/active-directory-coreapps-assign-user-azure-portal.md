@@ -22,14 +22,10 @@ ms.lasthandoff: 05/05/2017
 
 
 ---
-<a id="assign-a-user-or-group-to-an-enterprise-app-in-azure-active-directory" class="xliff"></a>
-
-# 在 Azure Active Directory 中將使用者或群組指派給企業應用程式
+# <a name="assign-a-user-or-group-to-an-enterprise-app-in-azure-active-directory"></a>在 Azure Active Directory 中將使用者或群組指派給企業應用程式
 在 Azure Active Directory (Azure AD) 中，您可以輕鬆將使用者或群組指派給您的企業應用程式。 您必須具備適當的權限，才能管理企業應用程式，而且必須是目錄的全域管理員。
 
-<a id="how-do-i-assign-user-access-to-an-enterprise-app" class="xliff"></a>
-
-## 如何將企業應用程式的存取權指派給使用者？
+## <a name="how-do-i-assign-user-access-to-an-enterprise-app"></a>如何將企業應用程式的存取權指派給使用者？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入 Azure Active Directory，然後選取 **Enter**。
 3. 在 [Azure Active Directory - directoryname] 刀鋒視窗 (也就是您所管理目錄的 Azure AD 刀鋒視窗) 上，選取 [企業應用程式]。
@@ -48,9 +44,7 @@ ms.lasthandoff: 05/05/2017
 10. 在 [新增指派] 刀鋒視窗上，選取 [角色]。 然後，在 [選取角色] 刀鋒視窗上，選取要套用到所選使用者或群組的角色，然後選取刀鋒視窗底部的 [確定] 按鈕。
 11. 在 [新增指派] 刀鋒視窗上，選取刀鋒視窗底部的 [指派] 按鈕。 受指派的使用者或群組將會具備此企業應用程式的所選角色所定義的權限。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * [查看我的所有群組](active-directory-groups-view-azure-portal.md)
 * [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-azure-portal.md)
 * [停用企業應用程式的使用者登入](active-directory-coreapps-disable-app-azure-portal.md)

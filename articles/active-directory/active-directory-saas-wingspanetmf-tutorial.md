@@ -21,9 +21,7 @@ ms.lasthandoff: 05/04/2017
 
 
 ---
-<a id="tutorial-azure-active-directory-integration-with-wingspan-etmf" class="xliff"></a>
-
-# 教學課程：Azure Active Directory 與 Wingspan eTMF 整合
+# <a name="tutorial-azure-active-directory-integration-with-wingspan-etmf"></a>教學課程：Azure Active Directory 與 Wingspan eTMF 整合
 
 在本教學課程中，您將了解如何將 Wingspan eTMF 與 Azure Active Directory (Azure AD) 整合。
 
@@ -35,9 +33,7 @@ Wingspan eTMF 與 Azure AD 整合提供下列優點：
 
 如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 若要設定 Azure AD 與 Wingspan eTMF 整合，您需要下列項目：
 
@@ -52,17 +48,13 @@ Wingspan eTMF 與 Azure AD 整合提供下列優點：
 - 除非必要，否則請勿使用生產環境。
 - 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
-<a id="scenario-description" class="xliff"></a>
-
-## 案例描述
+## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Wingspan eTMF
 2. 設定並測試 Azure AD 單一登入
 
-<a id="adding-wingspan-etmf-from-the-gallery" class="xliff"></a>
-
-## 從資源庫新增 Wingspan eTMF
+## <a name="adding-wingspan-etmf-from-the-gallery"></a>從資源庫新增 Wingspan eTMF
 若要設定將 Wingspan eTMF 整合到 Azure AD 中，您需要從資源庫將 Wingspan eTMF 新增至受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 Wingspan eTMF，請執行下列步驟：**
@@ -87,9 +79,7 @@ Wingspan eTMF 與 Azure AD 整合提供下列優點：
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-wingspanetmf-tutorial/tutorial_wingspanetmf_addfromgallery.png)
 
-<a id="configuring-and-testing-azure-ad-single-sign-on" class="xliff"></a>
-
-##  設定並測試 Azure AD 單一登入
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Wingspan eTMF 搭配運作的 Azure AD 單一登入。
 
 若要讓單一登入能夠運作，Azure AD 必須知道 Wingspan eTMF 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Wingspan eTMF 中的相關使用者之間建立連結關聯性。
@@ -104,9 +94,7 @@ Wingspan eTMF 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-<a id="configuring-azure-ad-single-sign-on" class="xliff"></a>
-
-### 設定 Azure AD 單一登入
+### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
 在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，並在您的 Wingspan eTMF 應用程式中設定單一登入。
 
@@ -147,9 +135,7 @@ Wingspan eTMF 與 Azure AD 整合提供下列優點：
 > 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
  
 
-<a id="creating-an-azure-ad-test-user" class="xliff"></a>
-
-### 建立 Azure AD 測試使用者
+### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][100]
@@ -180,15 +166,11 @@ Wingspan eTMF 與 Azure AD 整合提供下列優點：
 
     d. 按一下 [建立] 。
  
-<a id="creating-a-wingspan-etmf-test-user" class="xliff"></a>
-
-### 建立 Wingspan eTMF 測試使用者
+### <a name="creating-a-wingspan-etmf-test-user"></a>建立 Wingspan eTMF 測試使用者
 
 在本節中，您會在 Wingspan eTMF 中建立名為 Britta Simon 的使用者。 根據 [Wingspan eTMF 支援](http://www.wingspan.com/contact-us/) 的指示，在 Wingspan eTMF 應用程式中新增使用者。 您必須先建立和啟動使用者，然後才能使用單一登入。
 
-<a id="assigning-the-azure-ad-test-user" class="xliff"></a>
-
-### 指派 Azure AD 測試使用者
+### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
 在本節中，您會將 Wingspan eTMF 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
@@ -218,17 +200,13 @@ Wingspan eTMF 與 Azure AD 整合提供下列優點：
 
 7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
-<a id="testing-single-sign-on" class="xliff"></a>
-
-### 測試單一登入
+### <a name="testing-single-sign-on"></a>測試單一登入
 
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。 
 
 在存取面板中按一下 [Wingspan eTMF] 圖格，系統會將您重新導向至組織登入頁面。 成功登入之後，系統會將您登入 Wingspan eTMF 應用程式。 如需「存取面板」的詳細資訊，請參閱[存取面板簡介](https://msdn.microsoft.com/library/dn308586)。
 
-<a id="additional-resources" class="xliff"></a>
-
-## 其他資源
+## <a name="additional-resources"></a>其他資源
 
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)

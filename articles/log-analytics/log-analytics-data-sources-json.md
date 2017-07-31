@@ -22,21 +22,15 @@ ms.lasthandoff: 05/09/2017
 
 
 ---
-<a id="collecting-custom-json-data-sources-with-the-oms-agent-for-linux-in-log-analytics" class="xliff"></a>
-
-# 在 Log Analytics 中使用 OMS Agent for Linux 收集自訂 JSON 資料來源
+# <a name="collecting-custom-json-data-sources-with-the-oms-agent-for-linux-in-log-analytics"></a>在 Log Analytics 中使用 OMS Agent for Linux 收集自訂 JSON 資料來源
 您可以使用 OMS Agent for Linux 將自訂 JSON 資料來源收集到 Log Analytics 中。  這些自訂資料來源可以是會傳回 JSON 的簡單指令碼，例如 [curl](https://curl.haxx.se/) 或 [FluentD 的 300 個以上的外掛程式](http://www.fluentd.org/plugins/all)之一。 本文說明此資料收集所需的設定。
 
 > [!NOTE]
 > 需要有 OMS Agent for Linux v1.1.0-217+ 才能收集自訂 JSON 資料
 
-<a id="configuration" class="xliff"></a>
+## <a name="configuration"></a>組態
 
-## 組態
-
-<a id="configure-input-plugin" class="xliff"></a>
-
-### 設定輸入外掛程式
+### <a name="configure-input-plugin"></a>設定輸入外掛程式
 
 若要在 Log Analytics 中收集 JSON 資料，請將 `oms.api.` 新增至輸入外掛程式中的 FluentD 標記開頭。
 
@@ -68,9 +62,7 @@ ms.lasthandoff: 05/09/2017
 
 `sudo chown omsagent:omiusers /etc/opt/microsoft/omsagent/conf/omsagent.d/exec-json.conf`
 
-<a id="configure-output-plugin" class="xliff"></a>
-
-### 設定輸出外掛程式 
+### <a name="configure-output-plugin"></a>設定輸出外掛程式 
 將下列輸出外掛程式設定新增至 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` 中的主要設定，或新增為個別的設定檔再放入 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` 中
 
 ```
@@ -88,16 +80,12 @@ ms.lasthandoff: 05/09/2017
 </match>
 ```
 
-<a id="restart-oms-agent-for-linux" class="xliff"></a>
-
-### 重新啟動 OMS Agent for Linux
+### <a name="restart-oms-agent-for-linux"></a>重新啟動 OMS Agent for Linux
 使用下列命令重新啟動 OMS Agent for Linux 服務。
 
     sudo /opt/microsoft/omsagent/bin/service_control restart 
 
-<a id="output" class="xliff"></a>
-
-## 輸出
+## <a name="output"></a>輸出
 Log Analytics 中將會收集資料，記錄類型為 `<FLUENTD_TAG>_CL`。
 
 例如，Log Analytics 中的自訂標記 `tag oms.api.tomcat`，記錄類型為 `tomcat_CL`。  您可以使用下列記錄搜尋來擷取此類型的所有記錄。
@@ -116,8 +104,6 @@ Log Analytics 中將會收集資料，記錄類型為 `<FLUENTD_TAG>_CL`。
 ```
 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。 
  

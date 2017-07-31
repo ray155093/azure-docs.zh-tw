@@ -22,15 +22,11 @@ ms.lasthandoff: 05/09/2017
 
 
 ---
-<a id="manage-key-vault-using-cli" class="xliff"></a>
-
-# 使用 CLI 管理金鑰保存庫
+# <a name="manage-key-vault-using-cli"></a>使用 CLI 管理金鑰保存庫
 
 大部分地區均提供 Azure 金鑰保存庫。 如需詳細資訊，請參閱 [金鑰保存庫價格頁面](https://azure.microsoft.com/pricing/details/key-vault/)。
 
-<a id="introduction" class="xliff"></a>
-
-## 簡介
+## <a name="introduction"></a>簡介
 
 使用本教學課程可協助您開始使用 Azure 金鑰保存庫，進而在 Azure 中建立強化的容器 (保存庫)，以儲存及管理 Azure 中的密碼編譯金鑰和密碼。 本教學課程將逐步引導您使用 Azure 跨平台命令列介面，來建立一個包含金鑰或密碼的保存庫，而稍後您可以在 Azure 應用程式中使用此金鑰或密碼。 接著，它會說明應用程式後續可以如何使用該金鑰或密碼。
 
@@ -45,9 +41,7 @@ ms.lasthandoff: 05/09/2017
 
 如需 Azure 金鑰保存庫的概觀資訊，請參閱 [什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您必須具備下列項目：
 
@@ -55,9 +49,7 @@ ms.lasthandoff: 05/09/2017
 * 命令列介面 0.9.1 版或更新版本。 若要安裝最新版本，並連接至 Azure 訂用帳戶，請參閱 [安裝與設定 Azure 跨平台命令列介面](../cli-install-nodejs.md)。
 * 可設定使用您在本教學課程中所建立之金鑰或密碼的應用程式。 您可以在 [Microsoft 下載中心](http://www.microsoft.com/download/details.aspx?id=45343)找到範例應用程式。 如需相關指示，請參閱隨附的讀我檔案。
 
-<a id="getting-help-with-azure-cross-platform-command-line-interface" class="xliff"></a>
-
-## 取得使用 Azure 跨平台命令列介面的說明
+## <a name="getting-help-with-azure-cross-platform-command-line-interface"></a>取得使用 Azure 跨平台命令列介面的說明
 
 本教學課程假設您熟悉命令列介面 (Bash、終端機、命令提示字元)
 
@@ -76,9 +68,7 @@ ms.lasthandoff: 05/09/2017
 * [如何安裝與設定 Azure 跨平台命令列介面](../cli-install-nodejs.md)
 * [搭配 Azure 資源管理員使用 Azure 跨平台命令列介面](../xplat-cli-azure-resource-manager.md)
 
-<a id="connect-to-your-subscriptions" class="xliff"></a>
-
-## 連線到您的訂閱
+## <a name="connect-to-your-subscriptions"></a>連線到您的訂閱
 
 若要使用組織帳戶登入，請使用下列命令：
 
@@ -113,34 +103,26 @@ ms.lasthandoff: 05/09/2017
 
 如需關於設定 Azure 跨平台命令列介面的詳細資訊，請參閱 [如何安裝與設定 Azure 跨平台命令列介面](../cli-install-nodejs.md)。
 
-<a id="switch-to-using-azure-resource-manager" class="xliff"></a>
-
-## 切換成使用 Azure 資源管理員
+## <a name="switch-to-using-azure-resource-manager"></a>切換成使用 Azure 資源管理員
 金鑰保存庫需有 Azure 資源管理員，因此請輸入下列內容以切換至 Azure 資源管理員模式：
 
     azure config mode arm
 
-<a id="create-a-new-resource-group" class="xliff"></a>
-
-## 建立新的資源群組
+## <a name="create-a-new-resource-group"></a>建立新的資源群組
 使用 Azure 資源管理員時，會在資源群組內建立所有相關資源。 在本教學課程中，我們將建立新的資源群組 'ContosoResourceGroup'。
 
     azure group create 'ContosoResourceGroup' 'East Asia'
 
 第一個參數是資源群組名稱，而第二個參數是位置。 請針對位置使用 `azure location list` 命令，以了解如何指定一個位置替代本範例中的位置。 如果您需要更多資訊，請輸入： `azure help location`
 
-<a id="register-the-key-vault-resource-provider" class="xliff"></a>
-
-## 註冊金鑰保存庫資源提供者
+## <a name="register-the-key-vault-resource-provider"></a>註冊金鑰保存庫資源提供者
 請確定已在訂用帳戶中註冊金鑰保存庫資源提供者：
 
 `azure provider register Microsoft.KeyVault`
 
 每個訂用帳戶只需要執行這項作業一次。
 
-<a id="create-a-key-vault" class="xliff"></a>
-
-## 建立金鑰保存庫
+## <a name="create-a-key-vault"></a>建立金鑰保存庫
 
 使用 `azure keyvault create` 命令來建立金鑰保存庫。 這個指令碼包含三個必要參數：資源群組名稱、金鑰保存庫名稱和地理位置。
 
@@ -155,9 +137,7 @@ ms.lasthandoff: 05/09/2017
 
 您的 Azure 帳戶現已取得在此金鑰保存庫上執行任何作業的授權。 而且，沒有其他人有此授權。
 
-<a id="add-a-key-or-secret-to-the-key-vault" class="xliff"></a>
-
-## 將金鑰或密碼加入至金鑰保存庫
+## <a name="add-a-key-or-secret-to-the-key-vault"></a>將金鑰或密碼加入至金鑰保存庫
 
 如果您想讓 Azure 金鑰保存庫為您建立一個軟體防護金鑰，請使用 `azure key create` 命令，並輸入下列內容：
 
@@ -180,9 +160,7 @@ ms.lasthandoff: 05/09/2017
 * 若要檢視您的金鑰，請輸入： `azure keyvault key list --vault-name 'ContosoKeyVault'`
 * 若要檢視您的密碼，請輸入： `azure keyvault secret list --vault-name 'ContosoKeyVault'`
 
-<a id="register-an-application-with-azure-active-directory" class="xliff"></a>
-
-## 向 Azure Active Directory 註冊應用程式
+## <a name="register-an-application-with-azure-active-directory"></a>向 Azure Active Directory 註冊應用程式
 
 這步驟通常會由開發人員在個別電腦上完成。 這並非 Azure 金鑰保存庫的特有狀況，在此列出是為了讓程式完整。
 
@@ -212,9 +190,7 @@ ms.lasthandoff: 05/09/2017
 9. 捲動到 [金鑰] 區段，選取持續時間，然後按一下 [儲存]。 頁面會重新整理，並顯示金鑰值。 您必須使用此金鑰值和 [用戶端識別碼] 值來設定您的應用程式。 (有關此設定的指示僅適用於特定應用程式。)
 10. 複製此頁面的用戶端識別碼，您將在後續步驟中使用此識別碼來設定保存庫上的權限。
 
-<a id="authorize-the-application-to-use-the-key-or-secret" class="xliff"></a>
-
-## 授權應用程式使用金鑰或密碼
+## <a name="authorize-the-application-to-use-the-key-or-secret"></a>授權應用程式使用金鑰或密碼
 若要授權應用程式存取保存庫中的金鑰或密碼，請使用 `azure keyvault set-policy` 命令。
 
 例如，如果您的保存庫名稱是 ContosoKeyVault，且您要授權的應用程式具有 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed 的用戶端識別碼，您想要授權應用程式使用保存庫中的金鑰來進行解密並簽署，則請執行下列作業：
@@ -230,9 +206,7 @@ ms.lasthandoff: 05/09/2017
 
     azure keyvault set-policy --vault-name 'ContosoKeyVault' --spn 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed --perms-to-secrets '[\"get\"]'
 
-<a id="if-you-want-to-use-a-hardware-security-module-hsm" class="xliff"></a>
-
-## 如果想要使用硬體安全模組 (HSM)
+## <a name="if-you-want-to-use-a-hardware-security-module-hsm"></a>如果想要使用硬體安全模組 (HSM)
 為了加強保證，您可以在硬體安全模組 (HSM) 中匯入或產生無需離開 HSM 界限的金鑰。 HSM 已通過 FIPS 140-2 Level 2 驗證。 如果此需求對您不適用，請略過本節並移至 [刪除金鑰保存庫及相關聯的金鑰和密碼](#delete-the-key-vault-and-associated-keys-and-secrets)。
 
 若要建立這些受 HSM 保護的金鑰，您必須具備支援受 HSM 保護之金鑰的保存庫訂閱。
@@ -255,9 +229,7 @@ ms.lasthandoff: 05/09/2017
 
 如需有關如何產生此 BYOK 封包的詳細指示，請參閱 [如何使用 Azure 金鑰保存庫中受 HSM 保護的金鑰](key-vault-hsm-protected-keys.md)。
 
-<a id="delete-the-key-vault-and-associated-keys-and-secrets" class="xliff"></a>
-
-## 刪除金鑰保存庫及相關聯的金鑰和密碼
+## <a name="delete-the-key-vault-and-associated-keys-and-secrets"></a>刪除金鑰保存庫及相關聯的金鑰和密碼
 如果您不再需要金鑰保存庫及其所包含的金鑰或密碼，可以使用 Azure 金鑰保存庫刪除命令來刪除金鑰保存庫：
 
     azure keyvault delete --vault-name 'ContosoKeyVault'
@@ -267,9 +239,7 @@ ms.lasthandoff: 05/09/2017
     azure group delete --name 'ContosoResourceGroup'
 
 
-<a id="other-azure-cross-platform-command-line-interface-commands" class="xliff"></a>
-
-## 其他 Azure 跨平台命令列介面命令
+## <a name="other-azure-cross-platform-command-line-interface-commands"></a>其他 Azure 跨平台命令列介面命令
 可能有助於管理 Azure 金鑰保存庫的其他命令。
 
 此命令會列出以表格形式顯示的所有金鑰和所選屬性：
@@ -293,9 +263,7 @@ ms.lasthandoff: 05/09/2017
     azure keyvault secret delete --vault-name 'ContosoKeyVault' --secret-name 'SQLPassword'
 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
 
 
