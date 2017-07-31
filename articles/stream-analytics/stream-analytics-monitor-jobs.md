@@ -22,15 +22,11 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 07/04/2017
 
 ---
-<a id="programmatically-create-a-stream-analytics-job-monitor" class="xliff"></a>
-
-# 以程式設計方式來建立串流分析工作監視
+# <a name="programmatically-create-a-stream-analytics-job-monitor"></a>以程式設計方式來建立串流分析工作監視
 
 本文示範如何為串流分析工作啟用監視。 透過 REST API、Azure SDK 或 PowerShell 建立的串流分析作業預設不會啟用監視。 您可以在 Azure 入口網站中前往該作業的 [監視] 頁面，然後按一下 [啟用] 按鈕來手動啟用，或是按照本文中的步驟執行，將此程序自動化。 串流分析工作的監視資料將會顯示在 Azure 入口網站的 [計量] 區域中。
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 開始此程序之前，您必須有下列項目：
 
@@ -38,9 +34,7 @@ ms.lasthandoff: 07/04/2017
 * 已下載並安裝 [Azure .NET SDK](https://azure.microsoft.com/downloads/)
 * 一項已啟用監視的現有串流分析作業
 
-<a id="create-a-project" class="xliff"></a>
-
-## 建立專案
+## <a name="create-a-project"></a>建立專案
 
 1. 建立 Visual Studio C# .NET 主控台應用程式。
 2. 在 Package Manager Console 中，執行下列命令以安裝 NuGet 封裝。 第一個是 Azure 串流分析管理 .NET SDK。 第二個是將用來啟用監視功能的 Azure 監視器 SDK。 最後一個是驗證要使用的 Azure Active Directory 用戶端。
@@ -124,9 +118,7 @@ ms.lasthandoff: 07/04/2017
              throw new InvalidOperationException("Failed to acquire token");
      }
 
-<a id="create-management-clients" class="xliff"></a>
-
-## 建立管理用戶端
+## <a name="create-management-clients"></a>建立管理用戶端
 
 下列程式碼將設定必要的變數與管理用戶端。
 
@@ -148,9 +140,7 @@ ms.lasthandoff: 07/04/2017
     InsightsManagementClient insightsClient = new
     InsightsManagementClient(aadTokenCredentials, resourceManagerUri);
 
-<a id="enable-monitoring-for-an-existing-stream-analytics-job" class="xliff"></a>
-
-## 為現有串流分析作業啟用監視
+## <a name="enable-monitoring-for-an-existing-stream-analytics-job"></a>為現有串流分析作業啟用監視
 
 下列程式碼將為「現有」 串流分析作業啟用監視。 程式碼的第一部分會對串流分析服務執行 GET 要求，以擷取特定串流分析工作的相關資訊。 在程式碼的第二部分使用 *Id* 屬性 (擷取自 GET 要求) 當成 Put 方法的參數，將 PUT 要求傳送至 Insights 服務，來為串流分析作業啟用監視。
 
@@ -184,15 +174,11 @@ ms.lasthandoff: 07/04/2017
 
 
 
-<a id="get-support" class="xliff"></a>
-
-## 取得支援
+## <a name="get-support"></a>取得支援
 
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
