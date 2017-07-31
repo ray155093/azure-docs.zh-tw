@@ -1,6 +1,5 @@
 
-#### 在雲端設備上設定遠端管理
-<a id="to-configure-remote-management-on-cloud-appliance" class="xliff"></a>
+#### <a name="to-configure-remote-management-on-cloud-appliance"></a>在雲端設備上設定遠端管理
 
 1. 在 StorSimple 裝置管理員服務中，按一下 [裝置]。 選取並按一下連線到服務之裝置清單中的雲端設備。
     ![StorSimple 選取雲端設備](./media/storsimple-8000-configure-remote-management-http-device/sca-remote-manage1.png)

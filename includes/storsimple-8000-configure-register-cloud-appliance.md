@@ -1,5 +1,4 @@
-#### 設定和註冊雲端設備
-<a id="to-configure-and-register-the-cloud-appliance" class="xliff"></a>
+#### <a name="to-configure-and-register-the-cloud-appliance"></a>設定和註冊雲端設備
 
 1. 選取並按一下您在 [裝置] 刀鋒視窗中建立的 StorSimple 雲端設備。
 

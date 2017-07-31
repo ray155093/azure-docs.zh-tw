@@ -21,19 +21,16 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 07/12/2017
 
 ---
-# 使用 StorSimple 8000 系列裝置的 [服務摘要] 刀鋒視窗
-<a id="use-the-service-summary-blade-for-storsimple-8000-series-device" class="xliff"></a>
+# <a name="use-the-service-summary-blade-for-storsimple-8000-series-device"></a>使用 StorSimple 8000 系列裝置的 [服務摘要] 刀鋒視窗
 
-## 概觀
-<a id="overview" class="xliff"></a>
+## <a name="overview"></a>概觀
 
 StorSimple 裝置管理員的 [服務摘要] 刀鋒視窗提供連線至 StorSimple 裝置管理員服務之所有裝置的摘要檢視，並強調顯示需要系統管理員注意的裝置。 本教學課程介紹 [服務摘要] 刀鋒視窗、說明儀表板內容和功能，並描述您可以從這個頁面執行的工作。
 
 ![服務摘要](./media/storsimple-8000-service-dashboard/service-summary1.png)
 
 
-## 管理命令
-<a id="management-commands" class="xliff"></a>
+## <a name="management-commands"></a>管理命令
 
 在 StorSimple 的 [服務摘要] 刀鋒視窗中，您會看到可用來管理 StorSimple 裝置管理員服務，以及已向此服務註冊的 StorSimple 8000 系列裝置的選項。 您在刀鋒視窗的上方橫幅和左邊會看到管理命令。
 
@@ -42,15 +39,13 @@ StorSimple 裝置管理員的 [服務摘要] 刀鋒視窗提供連線至 StorSim
 使用這些選項來執行各種作業，例如新增共用或磁碟區，或監視 StorSimple 裝置上執行的各種作業。
 
 
-## 基本資訊
-<a id="essentials" class="xliff"></a>
+## <a name="essentials"></a>基本資訊
 
 基本資訊區域擷取一些重要屬性，例如原本建立 StorSimple 裝置管理員的資源群組、位置和訂用帳戶。
 
 ![基本資訊](./media/storsimple-8000-service-dashboard/service-summary3.png)
 
-## StorSimple 裝置管理員服務摘要
-<a id="storsimple-device-manager-service-summary" class="xliff"></a>
+## <a name="storsimple-device-manager-service-summary"></a>StorSimple 裝置管理員服務摘要
 
 * [警示] 圖格提供所有裝置上之所有作用中警示的快照集 (依警示嚴重性分組)。
 
@@ -85,14 +80,12 @@ StorSimple 裝置管理員的 [服務摘要] 刀鋒視窗提供連線至 StorSim
 
     ![按一下 [裝置] 圖格](./media/storsimple-8000-service-dashboard/service-summary9.png)
 
-## 檢視活動記錄檔
-<a id="view-the-activity-logs" class="xliff"></a>
+## <a name="view-the-activity-logs"></a>檢視活動記錄檔
 
 若要檢視 StorSimple 裝置管理員中執行的各種作業，請按一下 StorSimple 服務摘要刀鋒視窗左側的 [活動記錄檔] 連結。 這會帶您前往 [活動記錄檔] 刀鋒視窗，您可以在其中看到最近執行的作業摘要。
 
 ![活動記錄檔](./media/storsimple-8000-service-dashboard/activity-logs1.png)
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 
 * 深入了解如何[使用 StorSimple 裝置管理員服務管理 StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
 

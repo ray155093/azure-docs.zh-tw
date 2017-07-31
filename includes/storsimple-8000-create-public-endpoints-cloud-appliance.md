@@ -1,5 +1,4 @@
-#### 在雲端設備上建立公用端點
-<a id="to-create-public-endpoints-on-the-cloud-appliance" class="xliff"></a>
+#### <a name="to-create-public-endpoints-on-the-cloud-appliance"></a>在雲端設備上建立公用端點
 
 1. 登入 Azure 入口網站。
 2. 移至 [虛擬機器]，然後選取並按一下要用來作為雲端設備的虛擬機器。
