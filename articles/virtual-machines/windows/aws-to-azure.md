@@ -24,17 +24,13 @@ ms.lasthandoff: 07/06/2017
 
 ---
 
-<a id="move-a-windows-vm-from-amazon-web-services-aws-to-azure-using-powershell" class="xliff"></a>
-
-# 使用 PowerShell 將 Windows VM 從 Amazon Web Services (AWS) 移至 Azure
+# <a name="move-a-windows-vm-from-amazon-web-services-aws-to-azure-using-powershell"></a>使用 PowerShell 將 Windows VM 從 Amazon Web Services (AWS) 移至 Azure
 
 如果您正在評估 Azure 虛擬機器來裝載您的工作負載，您可以匯出現有的 Amazon Web Services (AWS) EC2 Windows VM 執行個體，然後將虛擬硬碟 (VHD) 上傳至 Azure。 上傳 VHD 後，您可以從 VHD 在 Azure 中建立新的 VM。 
 
 本主題涵蓋將單一 VM 從 AWS 移至 Azure 的說明。 如果您想要將 VM 大規模從 AWS 移至 Azure，[使用 Azure Site Recovery 將 Amazon Web Services (AWS) 中的虛擬機器移轉至 Azure](../../site-recovery/site-recovery-migrate-aws-to-azure.md)。
 
-<a id="prepare-the-vm" class="xliff"></a>
-
-## 準備 VM 
+## <a name="prepare-the-vm"></a>準備 VM 
  
 您可以將一般化或特製化的 VHD 上傳至 Azure。 每個類型都需要您在從 AWS 匯出之前準備 VM。 
 
@@ -50,9 +46,7 @@ ms.lasthandoff: 07/06/2017
     * 確認已透過 DHCP 設定 VM 提取其 IP 位址和 DNS 設定。 這可確保伺服器在啟動時取得 VNet 內的 IP 位址。  
 
 
-<a id="export-and-download-the-vhd" class="xliff"></a>
-
-## 匯出和下載 VHD 
+## <a name="export-and-download-the-vhd"></a>匯出和下載 VHD 
 
 將 EC2 執行個體匯出至 Amazon S3 貯體中的 VHD。 請依照 Amazon 文件主題 [Exporting an Instance as a VM Using VM Import/Export](http://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html)中所述的步驟，並執行 [create-instance-export-task](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-instance-export-task.html) 命令，將 EC2 執行個體匯出到 VHD 檔案。 
 
@@ -69,9 +63,7 @@ aws ec2 create-instance-export-task --instance-id <instanceID> --target-environm
 > AWS 會酌收下載 VHD 的資料傳輸費用。 如需詳細資訊，請參閱 [Amazon S3 價格](https://aws.amazon.com/s3/pricing/)。
 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 現在您可以將 VHD 上傳至 Azure 並建立新的 VM。 
 
