@@ -12,24 +12,25 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/14/2017
+ms.date: 07/25/2017
 ms.author: curtand
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: 661470454775d43ce88410a6c995bbcc5e06264c
+ms.custom: oldportal;it-pro;
+robots: NOINDEX
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 399230584d01986dd0f793a6ff8245ef2b4f8fb1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="add-users-from-other-directories-or-partner-companies-in-azure-active-directory"></a>新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](active-directory-users-create-external-azure-portal.md )
-> * [Azure 傳統入口網站](active-directory-create-users-external.md)
->
->
 
-本文說明如何新增 Azure Active Directory 中其他目錄的使用者或新增合作夥伴公司的使用者。 如需新增您的組織內之使用者以及新增具有 Microsoft 帳戶之使用者的相關資訊，請參閱 [將新的使用者新增到 Azure Active Directory](active-directory-create-users.md)。 新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
+本文說明如何新增 Azure Active Directory 中其他目錄的使用者或新增合作夥伴公司的使用者。 如需新增您的組織內之使用者以及新增具有 Microsoft 帳戶之使用者的相關資訊，請參閱 [將新的使用者新增到 Azure Active Directory](active-directory-create-users.md)。 
+
+> [!IMPORTANT]
+> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。 如需了解如何在 Azure AD 系統管理中心新增 B2B 共同作業來賓使用者，請參閱[什麼是 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
+
+新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
 
 ## <a name="add-a-user"></a>新增使用者
 1. 使用屬於目錄全域管理員的帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com) 。
