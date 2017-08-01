@@ -21,14 +21,12 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 ---
-# 混合式身分識別所需的連接埠和通訊協定
-<a id="hybrid-identity-required-ports-and-protocols" class="xliff"></a>
+# <a name="hybrid-identity-required-ports-and-protocols"></a>混合式身分識別所需的連接埠和通訊協定
 下列文件是關於實作混合式身分識別解決方案之連接埠和通訊協定的技術參考。 請使用下圖並參閱對應的資料表。
 
 ![何謂 Azure AD Connect](./media/active-directory-aadconnect-ports/required3.png)
 
-## 表 1 - Azure AD Connect 和內部部署 AD
-<a id="table-1---azure-ad-connect-and-on-premises-ad" class="xliff"></a>
+## <a name="table-1---azure-ad-connect-and-on-premises-ad"></a>表 1 - Azure AD Connect 和內部部署 AD
 此表說明 Azure AD Connect 伺服器與內部部署 AD 之間通訊所需的連接埠和通訊協定。
 
 | 通訊協定 | 連接埠 | 說明 |
@@ -40,8 +38,7 @@ ms.lasthandoff: 04/27/2017
 | LDAP/SSL |636 (TCP/UDP) |用於從 AD 匯入資料。 資料的傳輸經過簽署和加密。 只有使用 SSL 時才會使用。 |
 | RPC |49152- 65535 (隨機高 RPC 連接埠)(TCP/UDP) |繫結至 AD 樹系時，用於 Azure AD Connect 的初始設定期間，以及用於密碼同步處理期間。 如需詳細資訊，請參閱 [KB929851](https://support.microsoft.com/kb/929851)、[KB832017](https://support.microsoft.com/kb/832017) 和 [KB224196](https://support.microsoft.com/kb/224196)。 |
 
-## 表 2 - Azure AD Connect 和 Azure AD
-<a id="table-2---azure-ad-connect-and-azure-ad" class="xliff"></a>
+## <a name="table-2---azure-ad-connect-and-azure-ad"></a>表 2 - Azure AD Connect 和 Azure AD
 此表說明 Azure AD Connect 伺服器與 Azure AD 之間通訊所需的連接埠和通訊協定。
 
 | 通訊協定 | 連接埠 | 說明 |
@@ -51,8 +48,7 @@ ms.lasthandoff: 04/27/2017
 
 如需您必須在防火牆中開啟的 URL 和 IP 位址清單，請參閱 [Office 365 URL 和 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)。
 
-## 表 3 - Azure AD Connect 和 AD FS 同盟伺服器/WAP
-<a id="table-3---azure-ad-connect-and-ad-fs-federation-serverswap" class="xliff"></a>
+## <a name="table-3---azure-ad-connect-and-ad-fs-federation-serverswap"></a>表 3 - Azure AD Connect 和 AD FS 同盟伺服器/WAP
 此表說明 Azure AD Connect 伺服器與 AD FS 同盟/WAP 伺服器之間通訊所需的連接埠和通訊協定。  
 
 | 通訊協定 | 連接埠 | 說明 |
@@ -61,16 +57,14 @@ ms.lasthandoff: 04/27/2017
 | HTTPS |443(TCP/UDP) |用來與 Azure AD 同步處理。 |
 | WinRM |5985 |WinRM 接聽程式 |
 
-## 表 4 - WAP 和同盟伺服器
-<a id="table-4---wap-and-federation-servers" class="xliff"></a>
+## <a name="table-4---wap-and-federation-servers"></a>表 4 - WAP 和同盟伺服器
 此表說明同盟伺服器與 WAP 伺服器之間通訊所需的連接埠和通訊協定。
 
 | 通訊協定 | 連接埠 | 說明 |
 | --- | --- | --- |
 | HTTPS |443(TCP/UDP) |用於進行驗證。 |
 
-## 表 5 - WAP 和使用者
-<a id="table-5---wap-and-users" class="xliff"></a>
+## <a name="table-5---wap-and-users"></a>表 5 - WAP 和使用者
 此表說明使用者與 WAP 伺服器之間通訊所需的連接埠和通訊協定。
 
 | 通訊協定 | 連接埠 | 說明 |
@@ -78,12 +72,10 @@ ms.lasthandoff: 04/27/2017
 | HTTPS |443(TCP/UDP) |用於裝置驗證。 |
 | TCP |49443 (TCP) |用於憑證驗證。 |
 
-## 表 6a 和 6b - 傳遞驗證搭配單一登入 (SSO) 與密碼雜湊同步處理搭配單一登入 (SSO)
-<a id="table-6a--6b---pass-through-authentication-with-single-sign-on-sso-and-password-hash-sync-with-single-sign-on-sso" class="xliff"></a>
+## <a name="table-6a--6b---pass-through-authentication-with-single-sign-on-sso-and-password-hash-sync-with-single-sign-on-sso"></a>表 6a 和 6b - 傳遞驗證搭配單一登入 (SSO) 與密碼雜湊同步處理搭配單一登入 (SSO)
 下列表格說明 Azure AD Connect 與 Azure AD 之間通訊所需的連接埠和通訊協定。
 
-### 表 6a - 傳遞驗證搭配 SSO
-<a id="table-6a---pass-through-authentication-with-sso" class="xliff"></a>
+### <a name="table-6a---pass-through-authentication-with-sso"></a>表 6a - 傳遞驗證搭配 SSO
 |通訊協定|連接埠號碼|說明
 | --- | --- | ---
 |HTTP|80|為安全性驗證 (例如 SSL) 啟用輸出 HTTP 流量。 為了讓連接器自動更新功能正確運作，也需要如此。
@@ -91,8 +83,7 @@ ms.lasthandoff: 04/27/2017
 
 此外，Azure AD Connect 也必須能夠對 [Azure 資料中心 IP 範圍](https://www.microsoft.com/en-us/download/details.aspx?id=41653)直接建立 IP 連線。
 
-### 表 6b - 密碼雜湊同步處理搭配 SSO
-<a id="table-6b---password-hash-sync-with-sso" class="xliff"></a>
+### <a name="table-6b---password-hash-sync-with-sso"></a>表 6b - 密碼雜湊同步處理搭配 SSO
 
 |通訊協定|連接埠號碼|說明
 | --- | --- | ---
@@ -100,12 +91,10 @@ ms.lasthandoff: 04/27/2017
 
 此外，Azure AD Connect 也必須能夠對 [Azure 資料中心 IP 範圍](https://www.microsoft.com/en-us/download/details.aspx?id=41653)直接建立 IP 連線。 同樣地，這只在 SSO 註冊程序中才需要。
 
-## 表 7a 和 7b - 適用於 (AD FS/Sync) 和 Azure AD 的 Azure AD Connect Health 代理程式
-<a id="table-7a--7b---azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad" class="xliff"></a>
+## <a name="table-7a--7b---azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad"></a>表 7a 和 7b - 適用於 (AD FS/Sync) 和 Azure AD 的 Azure AD Connect Health 代理程式
 下表說明在 Azure AD Connect Health 代理程式與 Azure AD 之間通訊所需的端點、連接埠和通訊協定
 
-### 表 7a - 適用於 (AD FS/Sync) 和 Azure AD 的 Azure AD Connect Health 代理程式的連接埠和通訊協定
-<a id="table-7a---ports-and-protocols-for-azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad" class="xliff"></a>
+### <a name="table-7a---ports-and-protocols-for-azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad"></a>表 7a - 適用於 (AD FS/Sync) 和 Azure AD 的 Azure AD Connect Health 代理程式的連接埠和通訊協定
 此表說明 Azure AD Connect Health 代理程式與 Azure AD 之間通訊所需的下列輸出連接埠和通訊協定。  
 
 | 通訊協定 | 連接埠 | 說明 |
@@ -113,8 +102,7 @@ ms.lasthandoff: 04/27/2017
 | HTTPS |443(TCP/UDP) |輸出 |
 | Azure 服務匯流排 |5671 (TCP/UDP) |輸出 |
 
-### 7b - 適用於 (AD FS/Sync) 和 Azure AD 之 Azure AD Connect Health 代理程式的端點
-<a id="7b---endpoints-for-azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad" class="xliff"></a>
+### <a name="7b---endpoints-for-azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad"></a>7b - 適用於 (AD FS/Sync) 和 Azure AD 之 Azure AD Connect Health 代理程式的端點
 如需端點的清單，請參閱 [Azure AD Connect Health 代理程式的＜需求＞一節](../connect-health/active-directory-aadconnect-health-agent-install.md#requirements)。
 
 

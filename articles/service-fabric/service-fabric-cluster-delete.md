@@ -21,9 +21,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 ---
-<a id="delete-a-service-fabric-cluster-on-azure-and-the-resources-it-uses" class="xliff"></a>
-
-# 刪除 Azure 上的 Service Fabric 叢集和其使用的資源
+# <a name="delete-a-service-fabric-cluster-on-azure-and-the-resources-it-uses"></a>刪除 Azure 上的 Service Fabric 叢集和其使用的資源
 Service Fabric 叢集是由叢集資源本身和許多其他 Azure 資源所構成。 因此，若要完全刪除 Service Fabric 叢集，您也必須刪除組成叢集的所有資源。
 做法有兩種︰刪除叢集所在的資源群組 (這會刪除叢集資源和資源群組中的任何其他資源)，或明確刪除叢集資源和其相關聯資源 (而不是資源群組中的其他資源)。
 
@@ -32,14 +30,10 @@ Service Fabric 叢集是由叢集資源本身和許多其他 Azure 資源所構�
 > 
 > 
 
-<a id="delete-the-entire-resource-group-rg-that-the-service-fabric-cluster-is-in" class="xliff"></a>
-
-## 刪除 Service Fabric 叢集所在的整個資源群組 (RG)
+## <a name="delete-the-entire-resource-group-rg-that-the-service-fabric-cluster-is-in"></a>刪除 Service Fabric 叢集所在的整個資源群組 (RG)
 若要確保刪除所有與叢集相關聯的所有資源 (包括資源群組)，這是最簡單的方法。 您可以使用 PowerShell 或透過 Azure 入口網站來刪除資源群組。 如果您的資源群組具有與 Service Fabric 叢集無關的資源，則可以刪除特定資源。
 
-<a id="delete-the-resource-group-using-azure-powershell" class="xliff"></a>
-
-### 使用 Azure PowerShell 刪除資源群組
+### <a name="delete-the-resource-group-using-azure-powershell"></a>使用 Azure PowerShell 刪除資源群組
 您也可以執行下列 Azure PowerShell Cmdlet 來刪除資源群組。 請確定您的電腦已安裝 Azure PowerShell 1.0 或更新版本。 如果您從未安裝過，請遵循 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
 
 開啟 PowerShell 視窗，並執行下列 PS Cmdlet：
@@ -52,9 +46,7 @@ Remove-AzureRmResourceGroup -Name <name of ResouceGroup> -Force
 
 如果您未使用 *-Force* 選項，則系統會提示您確認刪除。 一旦確認，就會刪除 RG 和其所包含的所有資源。
 
-<a id="delete-a-resource-group-in-the-azure-portal" class="xliff"></a>
-
-### 在 Azure 入口網站中刪除資源群組
+### <a name="delete-a-resource-group-in-the-azure-portal"></a>在 Azure 入口網站中刪除資源群組
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 瀏覽至您想要刪除的 Service Fabric 叢集。
 3. 按一下叢集基本功能頁面上的 [資源群組] 名稱。
@@ -64,9 +56,7 @@ Remove-AzureRmResourceGroup -Name <name of ResouceGroup> -Force
 
 ![資源群組刪除][ResourceGroupDelete]
 
-<a id="delete-the-cluster-resource-and-the-resources-it-uses-but-not-other-resources-in-the-resource-group" class="xliff"></a>
-
-## 刪除叢集資源和其所使用的資源，而不是資源群組中的其他資源
+## <a name="delete-the-cluster-resource-and-the-resources-it-uses-but-not-other-resources-in-the-resource-group"></a>刪除叢集資源和其所使用的資源，而不是資源群組中的其他資源
 如果您的資源群組只有您想要刪除之 Service Fabric 叢集相關的資源，則很容易就可以刪除整個資源群組。 如果您想要選擇性地逐一刪除資源群組中的資源，請遵循這些步驟。
 
 如果您已使用入口網站或使用範本庫中的其中一個 Service Fabric Resource Manager 範本來部署叢集，則叢集所使用的所有資源都會標上下列兩個標記。 您可以使用它們來決定您想要刪除的資源。
@@ -75,9 +65,7 @@ Tag#1：索引鍵 = clusterName，值 = '叢集的名稱'
 
 Tag#2：索引鍵 = resourceName，值 = ServiceFabric
 
-<a id="delete-specific-resources-in-the-azure-portal" class="xliff"></a>
-
-### 在 Azure 入口網站中刪除特定資源
+### <a name="delete-specific-resources-in-the-azure-portal"></a>在 Azure 入口網站中刪除特定資源
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 瀏覽至您想要刪除的 Service Fabric 叢集。
 3. 在基本功能刀鋒視窗上，移至 [所有設定]  。
@@ -89,9 +77,7 @@ Tag#2：索引鍵 = resourceName，值 = ServiceFabric
    
     ![已加上標記的資源][TaggedResources]
 
-<a id="delete-the-resources-using-azure-powershell" class="xliff"></a>
-
-### 使用 Azure PowerShell 刪除資源
+### <a name="delete-the-resources-using-azure-powershell"></a>使用 Azure PowerShell 刪除資源
 您可以執行下列 Azure PowerShell Cmdlet 來逐一刪除資源。 請確定您的電腦已安裝 Azure PowerShell 1.0 或更新版本。 如果您從未安裝過，請遵循 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
 
 開啟 PowerShell 視窗，並執行下列 PS Cmdlet：
@@ -111,9 +97,7 @@ Remove-AzureRmResource -ResourceName "<name of the Resource>" -ResourceType "<Re
 Remove-AzureRmResource -ResourceName "<name of the Resource>" -ResourceType "Microsoft.ServiceFabric/clusters" -ResourceGroupName "<name of the resource group>" -Force
 ```
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 也請參閱下列文章，了解如何升級叢集以及分割服務︰
 
 * [了解叢集升級](service-fabric-cluster-upgrade.md)

@@ -23,9 +23,7 @@ ms.lasthandoff: 04/27/2017
 
 ---
 
-<a id="create-and-deploy-a-virtual-machine-scale-set" class="xliff"></a>
-
-# 建立和部署虛擬機器擴展集
+# <a name="create-and-deploy-a-virtual-machine-scale-set"></a>建立和部署虛擬機器擴展集
 虛擬機器擴展集可讓您將完全相同的虛擬機器以集合的方式進行部署和管理。 調整集可為超大規模的應用程式提供高度擴充和可自訂的計算層，並且可支援 Windows 平台映像、Linux 平台映像、自訂映像和擴充。 如需調整集的詳細資訊，請參閱[虛擬機器擴展集](virtual-machine-scale-sets-overview.md)。
 
 本教學課程示範如何**不**使用 Azure 入口網站而建立虛擬機器擴展集。 如需有關如何使用 Azure 入口網站的詳細資訊，請參閱[如何使用 Azure 入口網站建立虛擬機器擴展集](virtual-machine-scale-sets-portal-create.md)。
@@ -33,9 +31,7 @@ ms.lasthandoff: 04/27/2017
 >[!NOTE]
 >如需 Azure Resource Manager 資源的詳細資訊，請參閱 [Azure Resource Manager 與傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)。
 
-<a id="sign-in-to-azure" class="xliff"></a>
-
-## 登入 Azure
+## <a name="sign-in-to-azure"></a>登入 Azure
 
 如果您使用 Azure CLI 2.0 或 Azure PowerShell 建立擴展集，您必須先登入訂用帳戶。
 
@@ -49,9 +45,7 @@ az login
 Login-AzureRmAccount
 ```
 
-<a id="create-a-resource-group" class="xliff"></a>
-
-## 建立資源群組
+## <a name="create-a-resource-group"></a>建立資源群組
 
 您首先必須建立虛擬機器擴展集相關聯的資源群組。
 
@@ -63,9 +57,7 @@ az group create --location westus2 --name MyResourceGroup1
 New-AzureRmResourceGroup -Location westus2 -Name MyResourceGroup1
 ```
 
-<a id="create-from-azure-cli" class="xliff"></a>
-
-## 從 Azure CLI 建立
+## <a name="create-from-azure-cli"></a>從 Azure CLI 建立
 
 使用 Azure CLI 建立虛擬機器擴展集最輕鬆。 如果您省略預設值，系統會為您提供預設值。 例如，如果您未指定任何虛擬網路資訊，則會為您建立虛擬網路。 如果您省略下列部分，系統會為您建立它們︰ 
 - 負載平衡器
@@ -112,9 +104,7 @@ az vmss create --resource-group MyResourceGroup1 --name MyScaleSet --image Ubunt
 az vmss list-instance-connection-info --resource-group MyResourceGroup1 --name MyScaleSet
 ```
 
-<a id="create-from-powershell" class="xliff"></a>
-
-## 從 PowerShell 建立
+## <a name="create-from-powershell"></a>從 PowerShell 建立
 
 PowerShell 比使用 Azure CLI 更複雜。 Azure CLI 會提供網路相關資源 (例如，負載平衡器、IP 位址和虛擬網路) 的預設值，PowerShell 不會提供。 使用 PowerShell 參考映像也有點複雜。 您可以使用下列 Cmdlet 取得映像︰
 
@@ -191,9 +181,7 @@ Add-AzureRmVmssNetworkInterfaceConfiguration -VirtualMachineScaleSet $vmssConfig
 New-AzureRmVmss -ResourceGroupName $rg -Name "MyScaleSet1" -VirtualMachineScaleSet $vmssConfig
 ```
 
-<a id="create-from-a-template" class="xliff"></a>
-
-## 從範本建立
+## <a name="create-from-a-template"></a>從範本建立
 
 您可以使用 Azure Resource Manager 範本部署虛擬機器擴展集。 您可以建立自己的範本，或使用[範本存放庫](https://azure.microsoft.com/resources/templates/?term=vmss)中的範本。 這些範本可以直接部署至 Azure 訂用帳戶。
 
@@ -202,21 +190,15 @@ New-AzureRmVmss -ResourceGroupName $rg -Name "MyScaleSet1" -VirtualMachineScaleS
 
 您可以[在 GitHub 上](https://github.com/gatneil/mvss/tree/minimum-viable-scale-set)取得範本範例。 如需如何建立和使用該範例的詳細資訊，請參閱[最小可行的擴展集](.\virtual-machine-scale-sets-mvss-start.md)。
 
-<a id="create-from-visual-studio" class="xliff"></a>
-
-## 從 Visual Studio 建立
+## <a name="create-from-visual-studio"></a>從 Visual Studio 建立
 
 您可以使用 Visual Studio 建立 Azure 資源群組專案，然後在專案中新增虛擬機器擴展集範本。 您可以選擇要從 GitHub 或 Azure Web 應用程式庫匯入。 系統也會為您產生部署 PowerShell 指令碼。 如需詳細資訊，請參閱[如何使用 Visual Studio 建立虛擬機器擴展集](virtual-machine-scale-sets-vs-create.md)。
 
-<a id="create-from-the-azure-portal" class="xliff"></a>
-
-## 從 Azure 入口網站建立
+## <a name="create-from-the-azure-portal"></a>從 Azure 入口網站建立
 
 Azure 入口網站很方便快速建立擴展集。 如需詳細資訊，請參閱[如何使用 Azure 入口網站建立虛擬機器擴展集](virtual-machine-scale-sets-portal-create.md)。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 深入了解[資料磁碟](virtual-machine-scale-sets-attached-disks.md)。
 

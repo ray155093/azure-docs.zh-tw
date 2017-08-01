@@ -21,16 +21,12 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 ---
-<a id="create-a-copy-of-a-vhd-stored-as-an-azure-managed-disk-by-using-managed-snapshots" class="xliff"></a>
-
-# 使用受控快照集建立 VHD 的複本並儲存為 Azure 受控磁碟
+# <a name="create-a-copy-of-a-vhd-stored-as-an-azure-managed-disk-by-using-managed-snapshots"></a>使用受控快照集建立 VHD 的複本並儲存為 Azure 受控磁碟
 建立受控磁碟的快照集作為備份，或從快照集建立受控磁碟並將它附加至測試虛擬機器進行疑難排解。 受控快照集是 VM 受控磁碟的完整時間點複本。 它會建立 VHD 的唯讀複本，而且根據預設儲存為標準受控磁碟。 如需受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 如需價格的詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/managed-disks/)。 
 
-<a id="before-you-begin" class="xliff"></a>
-
-## 開始之前
+## <a name="before-you-begin"></a>開始之前
 如果您使用 PowerShell，請確定您擁有最新版的 AzureRM.Compute PowerShell 模組。 執行下列命令來安裝它。
 
 ```
@@ -38,14 +34,10 @@ Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 ```
 如需詳細資訊，請參閱 [Azure PowerShell 版本控制](/powershell/azure/overview)。
 
-<a id="copy-the-vhd-with-a-snapshot" class="xliff"></a>
-
-## 使用快照集複製 VHD
+## <a name="copy-the-vhd-with-a-snapshot"></a>使用快照集複製 VHD
 使用 Azure 入口網站或 PowerShell 建立受控磁碟的快照集。
 
-<a id="use-azure-portal-to-take-a-snapshot" class="xliff"></a>
-
-### 使用 Azure 入口網站建立快照集 
+### <a name="use-azure-portal-to-take-a-snapshot"></a>使用 Azure 入口網站建立快照集 
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 從左上方開始，按一下 [新增]，搜尋**快照集**。
@@ -57,9 +49,7 @@ Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 8. 選取用來儲存快照集的 [帳戶類型]。 除非需要儲存在高效能磁碟上，否則建議選取 **Standard_LRS**。
 9. 按一下 [建立] 。
 
-<a id="use-powershell-to-take-a-snapshot" class="xliff"></a>
-
-### 使用 PowerShell 建立快照集
+### <a name="use-powershell-to-take-a-snapshot"></a>使用 PowerShell 建立快照集
 下列步驟示範如何取得要複製的 VHD 磁碟、建立快照集設定，以及使用 New-AzureRmSnapshot Cmdlet<!--Add link to cmdlet when available--> 建立磁碟的快照集。 
 
 1. 設定部分參數。 

@@ -22,8 +22,7 @@ ms.lasthandoff: 01/06/2017
 
 
 ---
-<a id="stream-data-from-azure-storage-blob-into-data-lake-store-using-azure-stream-analytics" class="xliff"></a>
-# 使用 Azure 串流分析將來自 Azure 儲存體 Blob 的資料串流處理至 Data Lake Store
+# <a name="stream-data-from-azure-storage-blob-into-data-lake-store-using-azure-stream-analytics"></a>使用 Azure 串流分析將來自 Azure 儲存體 Blob 的資料串流處理至 Data Lake Store
 在這篇文章中，您將了解如何使用 Azure Data Lake Store 做為 Azure 串流分析作業的輸出。 這篇文章示範從 Azure 儲存體 Blob (輸入) 讀取資料以及將資料寫入至 Data Lake Store (輸出) 的簡單案例。
 
 > [!NOTE]
@@ -31,8 +30,7 @@ ms.lasthandoff: 01/06/2017
 >
 >
 
-<a id="prerequisites" class="xliff"></a>
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
@@ -41,8 +39,7 @@ ms.lasthandoff: 01/06/2017
   
 * **Azure Data Lake Store 帳戶**。 遵循 [使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。 假設您有名為 **asadatalakestore** 的 Data Lake Store 帳戶。 
 
-<a id="create-a-stream-analytics-job" class="xliff"></a>
-## 建立串流分析作業
+## <a name="create-a-stream-analytics-job"></a>建立串流分析作業
 您可以從建立包含輸入來源和輸出目的地的串流分析作業開始。 本教學課程中，來源是 Azure Blob 容器，而目的地則是 Data Lake Store。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
@@ -55,8 +52,7 @@ ms.lasthandoff: 01/06/2017
     > 請確定您所建立的作業位於和儲存體帳戶相同的區域，否則在區域之間移動資料，您會需要支付額外費用。
     >
 
-<a id="create-a-blob-input-for-the-job" class="xliff"></a>
-## 建立作業的 Blob 輸入
+## <a name="create-a-blob-input-for-the-job"></a>建立作業的 Blob 輸入
 
 1. 開啟「串流分析作業」頁面，在左窗格中按一下 [輸入] 索引標籤，然後按一下 [新增]。
 
@@ -79,8 +75,7 @@ ms.lasthandoff: 01/06/2017
     按一下 [建立] 。 入口網站現在會新增輸入並測試其連線。
 
 
-<a id="create-a-data-lake-store-output-for-the-job" class="xliff"></a>
-## 建立作業的 Data Lake Store 輸出
+## <a name="create-a-data-lake-store-output-for-the-job"></a>建立作業的 Data Lake Store 輸出
 
 1. 開啟「串流分析作業」頁面，按一下 [輸出] 索引標籤，然後按一下 [新增]。
 
@@ -108,8 +103,7 @@ ms.lasthandoff: 01/06/2017
     
     按一下頁面底部的 [新增] 。 入口網站現在會新增輸出並測試其連線。
     
-<a id="run-the-stream-analytics-job" class="xliff"></a>
-## 執行串流分析作業
+## <a name="run-the-stream-analytics-job"></a>執行串流分析作業
 
 1. 若要執行串流分析作業，您必須從 [查詢] 索引標籤來執行查詢。 本教學課程中，您可以藉由以作業輸入和輸出別名取代預留位置的方式執行範例查詢，如下方螢幕擷取畫面所示。
 
@@ -133,7 +127,6 @@ ms.lasthandoff: 01/06/2017
 
     請注意，在 [資料總管] 窗格中，輸出會寫入至 Data Lake Store 輸出設定中所指定的資料夾路徑 (`streamanalytics/job/output/{date}/{time}`)。  
 
-<a id="see-also" class="xliff"></a>
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [建立 HDInsight 叢集以使用 Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
 
