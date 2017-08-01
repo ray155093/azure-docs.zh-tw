@@ -22,17 +22,13 @@ ms.lasthandoff: 06/03/2017
 
 
 ---
-<a id="create-and-manage-hybrid-connections" class="xliff"></a>
-
-# 建立和管理混合式連線
+# <a name="create-and-manage-hybrid-connections"></a>建立和管理混合式連線
 
 > [!IMPORTANT]
 > BizTalk 混合式連線已停用，並以 App Service 混合式連線取代。 如需詳細資訊，包括如何管理您現有的 BizTalk 混合式連線，請參閱 [Azure App Service 混合式連線](../app-service/app-service-hybrid-connections.md)。
 
 
-<a id="overview-of-the-steps" class="xliff"></a>
-
-## 步驟概觀
+## <a name="overview-of-the-steps"></a>步驟概觀
 1. 輸入私人網路中內部部署資源的 **host name** 或 **FQDN** of the on-premises resource in your private netw或k.
 2. 將 Azure Web Apps 或 Azure Mobile Apps 連結至混合式連線。
 3. 安裝混合式連線管理員在內部部署資源上，並連接至特定的混合式連線。 Azure 入口網站提供按一下即可安裝和連接的體驗。
@@ -75,9 +71,7 @@ ms.lasthandoff: 06/03/2017
    | 連接埠 |輸入內部部署資源的連接埠號碼。 例如，如果您使用 Web Apps，請輸入連接埠 80 或 443。 如果您使用 SQL Server，請輸入連接埠 1433。 |
 5. 選取核取記號以完成設定。 
 
-<a id="additional" class="xliff"></a>
-
-#### 其他
+#### <a name="additional"></a>其他
 * 可建立多個混合式連線。 請參閱「 [BizTalk 服務：版本圖表](biztalk-editions-feature-chart.md) 」(英文) 瞭解允許的連接數量。 
 * 每個「混合式連線」都是由一對連接字串建立而成：分別是負責「傳送」的應用程式金鑰，以及負責「接聽」的內部部署金鑰。 每一對都有「主要」和「次要」金鑰。 
 
@@ -106,9 +100,7 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
 > Add-HybridConnection -ConnectionString “*Your On-Premises Connection String that you copied*” 
 --> 
 
-<a id="additional" class="xliff"></a>
-
-#### 其他
+#### <a name="additional"></a>其他
 * 混合式連線管理員可以安裝在以下作業系統上︰
   
   * Windows Server 2008 R2 (須有 .NET Framework 4.5+ 和 Windows Management Framework 4.0+)
@@ -127,9 +119,7 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
 * 使用 Azure 入口網站並移至您的 BizTalk 服務。 
 * 使用 [REST API](http://msdn.microsoft.com/library/azure/dn232347.aspx)。
 
-<a id="copyregenerate-the-hybrid-connection-strings" class="xliff"></a>
-
-#### 複製/重新產生混合式連線字串
+#### <a name="copyregenerate-the-hybrid-connection-strings"></a>複製/重新產生混合式連線字串
 1. 登入 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)。
 2. 在左側瀏覽窗格中，選取 [ **BizTalk 服務** ]，然後選取您的 BizTalk 服務。 
 3. 選取 [混合式連接] 索引標籤：  
@@ -144,9 +134,7 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
    * 在 Azure 傳統入口網站中，選取 Azure 應用程式中的 [同步金鑰]  。
    * 重新執行 [ **內部部署設定**]。 重新執行內部部署設定時，內部部署資源會自動設定為使用已更新的主要連接字串。
 
-<a id="use-group-policy-to-control-the-on-premises-resources-used-by-a-hybrid-connection" class="xliff"></a>
-
-#### 使用群組原則來控制混合式連線使用的內部部署資源
+#### <a name="use-group-policy-to-control-the-on-premises-resources-used-by-a-hybrid-connection"></a>使用群組原則來控制混合式連線使用的內部部署資源
 1. 下載 [混合式連線管理員的系統管理範本](http://www.microsoft.com/download/details.aspx?id=42963)。
 2. 將檔案解壓縮。
 3. 在修改群組原則的電腦上，執行下列動作：  
@@ -156,16 +144,12 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
 
 複製之後，您可以使用群組原則編輯器來變更原則。
 
-<a id="next" class="xliff"></a>
-
-## 下一步
+## <a name="next"></a>下一步
 [將 Azure Web Apps 連接到內部部署資源](../app-service-web/web-sites-hybrid-connection-get-started.md)  
 [從 Azure Web Apps 連接至內部部署 SQL Server](../app-service-web/web-sites-hybrid-connection-connect-on-premises-sql-server.md)   
 [混合式連線概觀](integration-hybrid-connection-overview.md)
 
-<a id="see-also" class="xliff"></a>
-
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 [用於管理 Microsoft Azure 上之 BizTalk 服務的 REST API](http://msdn.microsoft.com/library/azure/dn232347.aspx)  
 [BizTalk 服務：版本圖表](biztalk-editions-feature-chart.md)  
 [使用 Azure 傳統入口網站建立「BizTalk 服務」](biztalk-provision-services.md)  

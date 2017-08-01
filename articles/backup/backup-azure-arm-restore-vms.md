@@ -23,8 +23,7 @@ ms.lasthandoff: 06/16/2017
 
 
 ---
-# 使用 Azure 入口網站來還原虛擬機器
-<a id="use-azure-portal-to-restore-virtual-machines" class="xliff"></a>
+# <a name="use-azure-portal-to-restore-virtual-machines"></a>使用 Azure 入口網站來還原虛擬機器
 > [!div class="op_single_selector"]
 > * [在傳統入口網站中還原 VM](backup-azure-restore-vms.md)
 > * [在 Azure 入口網站中還原 VM](backup-azure-arm-restore-vms.md)
@@ -45,8 +44,7 @@ ms.lasthandoff: 06/16/2017
 1. 選取要還原的還原點
 2. 選取還原類型 - 建立新的 VM，或還原磁碟並指定必要的參數。 
 
-## 選取要還原的還原點
-<a id="select-restore-point-for-restore" class="xliff"></a>
+## <a name="select-restore-point-for-restore"></a>選取要還原的還原點
 1. 登入 [Azure 入口網站](http://portal.azure.com/)
 2. 在 Azure 功能表上按一下 [瀏覽]，然後在服務清單中輸入**復原服務**。 服務清單會調整成您輸入的內容。 當您看到 [復原服務保存庫] 時，請選取它。
 
@@ -95,8 +93,7 @@ ms.lasthandoff: 06/16/2017
     ![已設定還原點](./media/backup-azure-arm-restore-vms/recovery-point-set.png)
 9. 在 [還原] 刀鋒視窗中，[還原組態] 會在設定還原點後自動開啟。
 
-## 選擇 VM 還原組態
-<a id="choosing-a-vm-restore-configuration" class="xliff"></a>
+## <a name="choosing-a-vm-restore-configuration"></a>選擇 VM 還原組態
 既然您已選取還原點，請選擇還原 VM 的組態。 設定還原 VM 的選項包括使用︰Azure 入口網站或 PowerShell。
 
 1. 如果您尚未到達該位置，請移至 [還原]  刀鋒視窗。 確定[已選取還原點](#select-restore-point-for-restore)，然後按一下 [還原組態] 以開啟 [復原組態] 刀鋒視窗。
@@ -108,8 +105,7 @@ ms.lasthandoff: 06/16/2017
 
 入口網站提供還原 VM 專用的「快速建立」選項。 如果您想要自訂 VM 組態，或在建立新的 VM 選擇時所建立的資源名稱，請使用 PowerShell 或入口網站來還原備份的磁碟，並使用 PowerShell 命令，將它們連結至所選擇的 VM 組態，或使用還原磁碟隨附的範本來自訂還原的 VM。 有關如何還原具有多個 NIC 或在負載平衡器管理之下的 VM 的詳細資訊，請參閱[還原具有特殊網路組態的 VM](#restoring-vms-with-special-network-configurations)。 如果您的 Windows VM 使用[中樞授權](../virtual-machines/windows/hybrid-use-benefit-licensing.md)，您必須還原磁碟，並且使用以下所述的 PowerShell/範本以建立 VM，以及確定在建立 VM 以獲得已還原 VM 上的中樞優點時，將 LicenseType 指定為 "Windows_Server"。 
  
-## 從還原點建立新的 VM
-<a id="create-a-new-vm-from-restore-point" class="xliff"></a>
+## <a name="create-a-new-vm-from-restore-point"></a>從還原點建立新的 VM
 如果您還沒有[選取還原點](#restoring-vms-with-special-network-configurations)，請先選取，再繼續從還原點建立新的 VM。 選取還原點之後，在 [還原組態] 刀鋒視窗上，輸入或選取下列各欄位的值︰
 
 * **還原類型** - 建立虛擬機器。
@@ -130,8 +126,7 @@ ms.lasthandoff: 06/16/2017
 
 在 [還原組態] 刀鋒視窗上，按一下 [確定] 完成還原組態。 在 [還原] 刀鋒視窗上，按一下 [還原] 以觸發還原作業。
 
-## 還原備份的磁碟
-<a id="restore-backed-up-disks" class="xliff"></a>
+## <a name="restore-backed-up-disks"></a>還原備份的磁碟
 如果您想要自訂您從備份的磁碟 (而非還原組態刀鋒視窗中顯示的磁碟) 建立的虛擬機器，請選取 [還原磁碟] 做為 [還原類型] 值。 此選擇需要儲存體帳戶，以存放從備份複製的磁碟。 選擇儲存體帳戶時，請選取與「復原服務」保存庫共用相同位置的帳戶。 不支援區域備援的儲存體帳戶。 如果沒有與復原服務保存庫相同位置的儲存體帳戶，您必須在開始還原作業之前，建立一個儲存體帳戶。 儲存體帳戶的複寫類型會使用括號註明。
 
 還原作業完成之後，您可以︰
@@ -143,8 +138,7 @@ ms.lasthandoff: 06/16/2017
 
 ![已完成復原設定](./media/backup-azure-arm-restore-vms/trigger-restore-operation.png)
 
-## 追蹤還原作業
-<a id="track-the-restore-operation" class="xliff"></a>
+## <a name="track-the-restore-operation"></a>追蹤還原作業
 一旦觸發還原作業，備份服務會建立一個作業以便追蹤還原作業。 備份服務也會建立，並會在入口網站的 [通知] 區域暫時顯示通知。 如果看不到通知，您隨時可以按一下 [通知] 圖示來檢視您的通知。
 
 ![已觸發還原](./media/backup-azure-arm-restore-vms/restore-notification.png)
@@ -167,8 +161,7 @@ ms.lasthandoff: 06/16/2017
 
     ![保存庫中的 VM 清單](./media/backup-azure-arm-restore-vms/restore-job-in-progress.png)
     
-## 使用範本自訂還原的 VM
-<a id="use-templates-to-customize-restore-vm" class="xliff"></a>
+## <a name="use-templates-to-customize-restore-vm"></a>使用範本自訂還原的 VM
 [完成還原磁碟作業](#Track-the-restore-operation)之後，您可以使用還原作業過程所產生的範本，以不同於備份組態的組態來建立新的 VM，或自訂從還原點建立新的 VM 時所建立的資源名稱。 
 
 > [!NOTE]
@@ -199,42 +192,34 @@ ms.lasthandoff: 06/16/2017
 
    ![提交範本部署](./media/backup-azure-arm-restore-vms/submitting-template.png)
 
-## 還原後的步驟
-<a id="post-restore-steps" class="xliff"></a>
+## <a name="post-restore-steps"></a>還原後的步驟
 * 如果您使用 cloud-init 型 Linux 散發套件 (例如 Ubuntu)，基於安全理由，還原後會封鎖密碼。 請在還原的 VM 上使用 VMAccess 擴充功能 [重設密碼](../virtual-machines/linux/classic/reset-access.md)。 建議您在這些散發套件上使用 SSH 金鑰，以避免在還原後重設密碼。
 * 出現在備份組態期間的擴充功能，將會安裝但不會啟用。 如果您看到任何問題，請重新安裝擴充功能。 
 * 如果備份的 VM 具有靜態 IP，還原後，還原的 VM 將會有動態 IP，以避免在建立還原的 VM 時發生衝突。 深入了解如何[將靜態 IP 加入至還原的 VM](../virtual-network/virtual-networks-reserved-private-ip.md#how-to-add-a-static-internal-ip-to-an-existing-vm)
 * 還原的 VM 不會有可用性設定值組。 從 PowerShell 建立 VM 或使用還原的磁碟建立範本時，我們建議使用還原磁碟選項和[新增可用性設定組](../virtual-machines/windows/create-availability-set.md#use-powershell-to-create-an-availability-set)。 
 
 
-## 備份已還原的 VM
-<a id="backup-for-restored-vms" class="xliff"></a>
+## <a name="backup-for-restored-vms"></a>備份已還原的 VM
 如果您已將 VM 還原至相同的資源群組，並使用與原始備份 VM 相同的名稱，則會在還原後於 VM 上繼續進行備份。 如果您已將 VM 還原至不同的資源群組，或為還原的 VM 指定不同名稱，系統會將該 VM 視為新 VM，因此您需要為還原 VM 設定備份。
 
-## 在 Azure 資料中心發生災害時還原 VM
-<a id="restoring-a-vm-during-azure-datacenter-disaster" class="xliff"></a>
+## <a name="restoring-a-vm-during-azure-datacenter-disaster"></a>在 Azure 資料中心發生災害時還原 VM
 如果 VM 執行的主要資料中心發生災害，而您已將備份保存庫設定為異地備援，Azure 備份可讓您將備份 VM 還原至配對的資料中心。 在這種情況下，您需要選取配對之資料中心內的儲存體帳戶，其餘的還原程序則保持不變。 Azure 備份會使用配對之地理區域的計算服務來建立還原虛擬機器。 深入了解 [Azure 資料中心復原](../resiliency/resiliency-technical-guidance-recovery-loss-azure-region.md)
 
-## 還原網域控制站 VM
-<a id="restoring-domain-controller-vms" class="xliff"></a>
+## <a name="restoring-domain-controller-vms"></a>還原網域控制站 VM
 備份網域控制站 (DC) 虛擬機器是 Azure 備份支援的案例。 不過，在還原程序進行期間請務必小心。 正確的還原程序取決於網域結構。 最簡單的情況是您在單一網域中擁有單一 DC。 而在生產環境的負載中，較常見的情況是您擁有單一網域且內含多個 DC，其中有些 DC 可能位於內部部署環境。 最後，您也可能擁有內含多個網域的樹系。 
 
 從 Active Directory 的觀點來看，Azure VM 就像是位於新式的受支援 Hypervisor 上的其他 VM。 與內部部署 Hypervisor 的主要差異是，Azure 沒有提供 VM 主控台。 在某些情況下，您必須使用主控台，例如使用裸機復原 (BMR) 類型的備份進行復原。 不過，從備份保存庫來還原 VM 可完整取代 BMR。 我們也提供了 Active Directory 還原模式 (DSRM)，因此，您可以進行所有的 Active Directory 復原案例。 如需更多背景資訊，請參閱[虛擬網域控制站的備份和還原考量](https://technet.microsoft.com/en-us/library/virtual_active_directory_domain_controller_virtualization_hyperv(v=ws.10).aspx#backup_and_restore_considerations_for_virtualized_domain_controllers)以及[規劃 Active Directory 樹系復原](https://technet.microsoft.com/en-us/library/planning-active-directory-forest-recovery(v=ws.10).aspx)。
 
-### 單一網域中的單一 DC
-<a id="single-dc-in-a-single-domain" class="xliff"></a>
+### <a name="single-dc-in-a-single-domain"></a>單一網域中的單一 DC
 VM 可以從 Azure 入口網站或使用 PowerShell 還原 (就像任何其他 VM)。
 
-### 單一網域中的多個 DC
-<a id="multiple-dcs-in-a-single-domain" class="xliff"></a>
+### <a name="multiple-dcs-in-a-single-domain"></a>單一網域中的多個 DC
 如果您可以透過網路來連線到相同網域內的其他 DC，您就可以像 VM 一樣地還原 DC。 如果該 DC 是網域內剩餘的最後一個 DC，或者您是在隔離的網路中進行復原，則您必須遵循樹系的復原程序。
 
-### 單一樹系中的多個網域
-<a id="multiple-domains-in-one-forest" class="xliff"></a>
+### <a name="multiple-domains-in-one-forest"></a>單一樹系中的多個網域
 如果您可以透過網路來連線到相同網域內的其他 DC，您就可以像 VM 一樣地還原 DC。 不過，若是其他情況，則建議進行樹系復原。
 
-## 還原具有特殊網路組態的 VM
-<a id="restoring-vms-with-special-network-configurations" class="xliff"></a>
+## <a name="restoring-vms-with-special-network-configurations"></a>還原具有特殊網路組態的 VM
 可以備份和還原具有下列特殊網路組態的 VM。 不過，進行還原程序時，這些組態需要一些特殊的考量。
 
 * 負載平衡器底下的 VM (內部與外部)
@@ -256,8 +241,7 @@ VM 可以從 Azure 入口網站或使用 PowerShell 還原 (就像任何其他 V
    * 建立具有 [多個 NIC](https://azure.microsoft.com/documentation/articles/virtual-networks-multiple-nics/)
    * 建立具有 [多個保留的 IP](https://azure.microsoft.com/documentation/articles/virtual-networks-reserved-public-ip/)
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 您現在可以還原您的 VM，請參閱疑難排解文章中有關 VM 常見錯誤的資訊。 此外，請參閱有關您的 VM 管理工作的文章。
 
 * [針對錯誤進行疑難排解](backup-azure-vms-troubleshoot.md#restore)

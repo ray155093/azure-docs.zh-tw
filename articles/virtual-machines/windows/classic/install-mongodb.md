@@ -23,17 +23,13 @@ ms.lasthandoff: 06/26/2017
 
 
 ---
-<a id="install-mongodb-on-a-windows-vm-in-azure" class="xliff"></a>
-
-# 在 Azure 中的 Windows VM 上安裝 MongoDB
+# <a name="install-mongodb-on-a-windows-vm-in-azure"></a>在 Azure 中的 Windows VM 上安裝 MongoDB
 > [!IMPORTANT]
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 若要使用 Resource Manager 部署模型安裝及設定 MongoDB，請參閱[本文章](../install-mongodb.md)。
 
 [MongoDB][MongoDB] 是一個受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文會引導您使用 [Azure 入口網站][AzurePortal]來建立 Windows Server 虛擬機器 (VM)。 接著您會建立資料磁碟，並將其連接至 VM，然後安裝及設定 MongoDB。 如果您想要使用 Azure 中現有的 VM，您可以直接跳到[安裝並設定 MongoDB](#install-and-run-mongodb-on-the-virtual-machine)。
 
-<a id="create-a-virtual-machine-running-windows-server" class="xliff"></a>
-
-## 建立執行 Windows Server 的虛擬機器
+## <a name="create-a-virtual-machine-running-windows-server"></a>建立執行 Windows Server 的虛擬機器
 請遵循這些指示來建立虛擬機器。
 
 [!INCLUDE [virtual-machines-create-WindowsVM](../../../../includes/virtual-machines-create-windowsvm.md)]
@@ -43,23 +39,17 @@ ms.lasthandoff: 06/26/2017
 >
 >
 
-<a id="attach-a-data-disk" class="xliff"></a>
-
-## 連接資料磁碟
+## <a name="attach-a-data-disk"></a>連接資料磁碟
 若要為虛擬機器提供儲存體，請連接並初始化資料磁碟，這樣 Windows 才能使用該磁碟。 如果您已經有資料磁碟，您可以連接現有的磁碟，或可以連接空的磁碟。
 
 [!INCLUDE [howto-attach-disk-windows-linux](../../../../includes/howto-attach-disk-windows-linux.md)]
 
 如需初始化磁碟的指示，請參閱 [如何將資料磁碟連接至 Windows 虛擬機器](attach-disk.md)中的〈作法：在 Windows Server 中初始化新的資料磁碟〉。
 
-<a id="install-and-run-mongodb-on-the-virtual-machine" class="xliff"></a>
-
-## 在虛擬機器上安裝及執行 MongoDB
+## <a name="install-and-run-mongodb-on-the-virtual-machine"></a>在虛擬機器上安裝及執行 MongoDB
 [!INCLUDE [install-and-run-mongo-on-win2k8-vm](../../../../includes/install-and-run-mongo-on-win2k8-vm.md)]
 
-<a id="summary" class="xliff"></a>
-
-## 摘要
+## <a name="summary"></a>摘要
 在本教學課程中，您已了解如何建立執行 Windows Server 的虛擬機器、從遠端連線至此虛擬機器，以及連接資料磁碟。  同時也已了解如何在 Windows 虛擬機器上安裝及設定 MongoDB。 您現在可以依照 [MongoDB 文件][MongoDocs] 中的進階主題操作，來存取 Windows 型虛擬機器上的 MongoDB。
 
 [MongoDocs]: http://docs.mongodb.org/manual/

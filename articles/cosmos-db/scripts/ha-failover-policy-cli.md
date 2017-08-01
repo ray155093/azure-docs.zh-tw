@@ -24,9 +24,7 @@ ms.lasthandoff: 06/20/2017
 
 ---
 
-<a id="create-a-failover-policy-for-high-availability-using-the-azure-cli" class="xliff"></a>
-
-# 使用 Azure CLI 建立高可用性的容錯移轉原則
+# <a name="create-a-failover-policy-for-high-availability-using-the-azure-cli"></a>使用 Azure CLI 建立高可用性的容錯移轉原則
 
 此範例 CLI 指令碼會建立 Azure Cosmos DB 帳戶，然後將它設定為高可用性。
 
@@ -34,15 +32,11 @@ ms.lasthandoff: 06/20/2017
 
 如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-<a id="sample-script" class="xliff"></a>
-
-## 範例指令碼
+## <a name="sample-script"></a>範例指令碼
 
 [!code-azurecli-interactive[主要](../../../cli_scripts/cosmosdb/high-availability-cosmosdb-configure-failover/high-availability-cosmosdb-configure-failover.sh?highlight=23-27 "建立 Azure Cosmos DB 容錯移轉原則")]
 
-<a id="clean-up-deployment" class="xliff"></a>
-
-## 清除部署
+## <a name="clean-up-deployment"></a>清除部署
 
 在執行過指令碼範例之後，您可以使用下列命令來移除資源群組和所有與其相關聯的資源。
 
@@ -50,9 +44,7 @@ ms.lasthandoff: 06/20/2017
 az group delete --name myResourceGroup
 ```
 
-<a id="script-explanation" class="xliff"></a>
-
-## 指令碼說明
+## <a name="script-explanation"></a>指令碼說明
 
 此指令碼會使用下列命令。 下表中的每個命令都會連結至命令特定的文件。
 
@@ -63,9 +55,7 @@ az group delete --name myResourceGroup
 | [az cosmosdb update](/cli/azure/cosmosdb#update) | 更新 Azure Cosmos DB 帳戶。 |
 | [az group delete](/cli/azure/resource#delete) | 刪除資源群組，包括所有的巢狀資源。 |
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 

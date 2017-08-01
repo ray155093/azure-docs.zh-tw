@@ -23,9 +23,7 @@ ms.lasthandoff: 06/08/2017
 
 
 ---
-<a id="service-limits-in-azure-search" class="xliff"></a>
-
-# Azure 搜尋中的服務限制
+# <a name="service-limits-in-azure-search"></a>Azure 搜尋中的服務限制
 儲存體與工作負載的最大限制，以及索引、文件和其他物件的數量上限，皆取決於您是否在**免費**、**基本**，還是**標準**定價層中[佈建 Azure 搜尋服務](search-create-service-portal.md)。
 
 * **免費** 的是 Azure 訂用帳戶隨附的多租用戶共用服務。 此為針對現有訂用帳戶提供的免費選項，無須額外費用，可讓您試驗服務後再註冊專用資源。
@@ -36,19 +34,13 @@ ms.lasthandoff: 06/08/2017
 > 服務會佈建在特定層。 如果您需要跨層以取得更多容量，您必須佈建新服務 (未提供就地升級)。 如需詳細資訊，請參閱[選擇 SKU 或階層](search-sku-tier.md)。 若要深入了解如何在已佈建的服務內調整容量，請參閱[調整適用於查詢和編製索引工作負載的資源等級](search-capacity-planning.md)。
 >
 
-<a id="per-subscription-limits" class="xliff"></a>
-
-## 每一訂用帳戶限制
+## <a name="per-subscription-limits"></a>每一訂用帳戶限制
 [!INCLUDE [azure-search-limits-per-subscription](../../includes/azure-search-limits-per-subscription.md)]
 
-<a id="per-service-limits" class="xliff"></a>
-
-## 每一服務限制
+## <a name="per-service-limits"></a>每一服務限制
 [!INCLUDE [azure-search-limits-per-service](../../includes/azure-search-limits-per-service.md)]
 
-<a id="per-index-limits" class="xliff"></a>
-
-## 每一索引限制
+## <a name="per-index-limits"></a>每一索引限制
 索引限制與索引子限制之間有一對一的對應關係。 若限制 200 個索引，則在相同服務中，索引子的最大限制也是為 200 個。
 
 | 資源 | 免費 | 基本 | S1 | S2 | S3 | S3 HD |
@@ -65,9 +57,7 @@ ms.lasthandoff: 06/08/2017
 
 <sup>2</sup> S3 HD 目前不支援索引子。 如果您對此功能有迫切的需求，請連絡 Azure 支援。
 
-<a id="document-size-limits" class="xliff"></a>
-
-## 文件大小限制
+## <a name="document-size-limits"></a>文件大小限制
 | 資源 | 免費 | 基本 | S1 | S2 | S3 | S3 HD |
 | --- | --- | --- | --- | --- | --- | --- |
 | 每個索引 API 的文件大小 |<16 MB |<16 MB |<16 MB |<16 MB |<16 MB |<16 MB |
@@ -76,9 +66,7 @@ ms.lasthandoff: 06/08/2017
 
 為了降低文件大小，請記得從要求中排除不可查詢的資料。 影像和其他二進位資料無法執行查詢，而且不應該儲存於索引中。 若要將不可搜尋的資料整合到搜尋結果，請定義不可搜尋的欄位，將 URL 參考儲存於資源中。
 
-<a id="workload-limits-queries-per-second" class="xliff"></a>
-
-## 工作負載限制 (每秒查詢次數)
+## <a name="workload-limits-queries-per-second"></a>工作負載限制 (每秒查詢次數)
 | 資源 | 免費 | 基本 | S1 | S2 | S3 | S3 HD |
 | --- | --- | --- | --- | --- | --- | --- |
 | QPS |N/A  |~3/每個複本 |~15/每個複本 |~60/每個複本 |>60/每個複本 |>60/每個複本 |
@@ -89,9 +77,7 @@ ms.lasthandoff: 06/08/2017
 
 在標準層級中，由於可控制較多的參數，所以能更準確地估計 QPS。 如需有關如何計算您工作負載之 QPS 的指引，請參閱 [管理您的搜尋解決方案](search-manage.md) 。
 
-<a id="api-request-limits" class="xliff"></a>
-
-## API 要求限制
+## <a name="api-request-limits"></a>API 要求限制
 * 每個要求最多 16 MB <sup>1</sup>
 * 最長 8 KB 的 URL 長度
 * 每個索引上傳、合併、或刪除批次最多包含 1000 個文件
@@ -100,15 +86,11 @@ ms.lasthandoff: 06/08/2017
 
 <sup>1</sup> 在「Azure 搜尋服務」中，要求主體的上限是 16 MB，這會針對不受理論上限制約束之個別欄位或集合的內容強加實際限制 (如需有關欄位組合和限制的詳細資訊，請參閱[支援的資料類型](https://msdn.microsoft.com/library/azure/dn798938.aspx))。
 
-<a id="api-response-limits" class="xliff"></a>
-
-## API 回應限制
+## <a name="api-response-limits"></a>API 回應限制
 * 每一頁搜尋結果最多傳回 1000 個文件
 * 每個建議 API 要求最多傳回 100 個建議
 
-<a id="api-key-limits" class="xliff"></a>
-
-## API 金鑰限制
+## <a name="api-key-limits"></a>API 金鑰限制
 API 金鑰可用於服務驗證。 有兩種類型。 系統管理金鑰是在要求標頭中指定，並會授與完整的服務讀寫存取。 查詢金鑰為唯讀並在 URL 上指定，且通常會發佈到用戶端應用程式。
 
 * 每個服務最多 2 個系統管理金鑰

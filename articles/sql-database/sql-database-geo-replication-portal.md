@@ -23,9 +23,7 @@ ms.lasthandoff: 06/22/2017
 
 
 ---
-<a id="configure-active-geo-replication-for-azure-sql-database-in-the-azure-portal-and-initiate-failover" class="xliff"></a>
-
-# 在 Azure 入口網站中為 Azure SQL Database 設定主動式異地複寫，並起始容錯移轉
+# <a name="configure-active-geo-replication-for-azure-sql-database-in-the-azure-portal-and-initiate-failover"></a>在 Azure 入口網站中為 Azure SQL Database 設定主動式異地複寫，並起始容錯移轉
 
 本文說明如何在 [Azure 入口網站](http://portal.azure.com)中為 SQL Database 設定主動式異地複寫，並起始容錯移轉。
 
@@ -38,9 +36,7 @@ ms.lasthandoff: 06/22/2017
 > [!Note]
 主動式異地複寫必須是在相同訂用帳戶內的資料庫之間進行。
 
-<a id="add-a-secondary-database" class="xliff"></a>
-
-## 新增次要資料庫
+## <a name="add-a-secondary-database"></a>新增次要資料庫
 下列步驟會在異地複寫合作關係中建立新的次要資料庫。  
 
 若要新增次要資料庫，您必須是訂用帳戶擁有者或共同擁有者。
@@ -68,9 +64,7 @@ ms.lasthandoff: 06/22/2017
    
     ![植入完成](./media/sql-database-geo-replication-portal/seeding-complete.png)
 
-<a id="initiate-a-failover" class="xliff"></a>
-
-## 起始容錯移轉
+## <a name="initiate-a-failover"></a>起始容錯移轉
 
 次要資料庫可被切換成為主要資料庫。  
 
@@ -90,9 +84,7 @@ ms.lasthandoff: 06/22/2017
 > 
 > 
 
-<a id="remove-secondary-database" class="xliff"></a>
-
-## 移除次要資料庫
+## <a name="remove-secondary-database"></a>移除次要資料庫
 此作業會永久終止對次要資料庫的複寫，並將次要資料庫的角色變更為一般讀寫資料庫。 如果與次要資料庫的連線中斷，命令將會成功，但次要資料庫必須等到連線恢復後才會變成讀寫資料庫。  
 
 1. 在 [Azure 入口網站](http://portal.azure.com) 中，瀏覽至「異地複寫」合作關係中的主要資料庫。
@@ -103,9 +95,7 @@ ms.lasthandoff: 06/22/2017
     ![移除次要](./media/sql-database-geo-replication-portal/remove-secondary.png)
 5. 隨即開啟確認視窗。 按一下 [是] 以從異地複寫合作關係中移除資料庫。 (將它設定為讀寫資料庫不屬於任何複寫的一部分。)
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)。
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)。
 
