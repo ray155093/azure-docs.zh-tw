@@ -21,9 +21,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 07/04/2017
 
 ---
-<a id="create-a-service-fabric-cluster-by-using-azure-resource-manager" class="xliff"></a>
-
-# 使用 Azure Resource Manager 來建立 Service Fabric 叢集
+# <a name="create-a-service-fabric-cluster-by-using-azure-resource-manager"></a>使用 Azure Resource Manager 來建立 Service Fabric 叢集
 > [!div class="op_single_selector"]
 > * [Azure Resource Manager](service-fabric-cluster-creation-via-arm.md)
 > * [Azure 入口網站](service-fabric-cluster-creation-via-portal.md)
@@ -42,9 +40,7 @@ ms.lasthandoff: 07/04/2017
 
 不論是 Linux 叢集還是 Windows 叢集，建立安全叢集的概念都是相同的。 如需建立安全 Linux 叢集的詳細資訊和協助程式指令碼，請參閱[在 Linux 上建立安全叢集](#secure-linux-clusters)。
 
-<a id="sign-in-to-your-azure-account" class="xliff"></a>
-
-## 登入您的 Azure 帳戶
+## <a name="sign-in-to-your-azure-account"></a>登入您的 Azure 帳戶
 本指南使用 [Azure PowerShell][azure-powershell]。 開始新的 PowerShell 工作階段時，請先登入您的 Azure 帳戶並選取您的訂用帳戶，然後再執行 Azure 命令。
 
 登入您的 Azure 帳戶：
@@ -60,9 +56,7 @@ Get-AzureRmSubscription
 Set-AzureRmContext -SubscriptionId <guid>
 ```
 
-<a id="set-up-a-key-vault" class="xliff"></a>
-
-## 設定 Key Vault
+## <a name="set-up-a-key-vault"></a>設定 Key Vault
 本節說明如何為 Azure 中的 Service Fabric 叢集和為 Service Fabric 應用程式建立 Key Vault。 如需 Azure Key Vault 的完整指南，請參閱 [Key Vault 入門指南][key-vault-get-started]。
 
 Service Fabric 會使用 X.509 憑證來保護叢集，並提供應用程式的安全性功能。 您可以使用 Key Vault 來管理 Azure 中 Service Fabric 叢集的憑證。 在 Azure 中部署叢集時，負責建立 Service Fabric 叢集的 Azure 資源提供者會從 Key Vault 提取憑證，然後將它們安裝在叢集 VM 上。
@@ -71,9 +65,7 @@ Service Fabric 會使用 X.509 憑證來保護叢集，並提供應用程式的�
 
 ![憑證安裝圖][cluster-security-cert-installation]
 
-<a id="create-a-resource-group" class="xliff"></a>
-
-### 建立資源群組
+### <a name="create-a-resource-group"></a>建立資源群組
 第一個步驟是特別針對 Key Vault 建立資源群組。 建議您將 Key Vault 放入其自己的資源群組中。 此動作可讓您移除計算和儲存體資源群組 (包括含有 Service Fabric 叢集的資源群組)，而不會遺失您的金鑰和密碼。 含有您 Key Vault 的資源群組必須與正在使用它的叢集位於「相同區域」。
 
 如果您打算在多個區域中部署叢集，建議您在命名資源群組和 Key Vault 時，使用能指出其所屬區域的方式。  
@@ -97,9 +89,7 @@ Service Fabric 會使用 X.509 憑證來保護叢集，並提供應用程式的�
 ```
 <a id="new-key-vault"></a>
 
-<a id="create-a-key-vault-in-the-new-resource-group" class="xliff"></a>
-
-### 在新的資源群組中建立 Key Vault
+### <a name="create-a-key-vault-in-the-new-resource-group"></a>在新的資源群組中建立 Key Vault
 Key Vault 「必須經啟用為可供部署使用」，才能讓計算資源提供者從它取得憑證，然後將它安裝在虛擬機器執行個體上：
 
 ```powershell
@@ -135,9 +125,7 @@ Key Vault 「必須經啟用為可供部署使用」，才能讓計算資源提�
 ```
 <a id="existing-key-vault"></a>
 
-<a id="use-an-existing-key-vault" class="xliff"></a>
-
-## 使用現有的 Key Vault
+## <a name="use-an-existing-key-vault"></a>使用現有的 Key Vault
 
 若要使用現有的 Key Vault，您「必須將它啟用為可供部署使用」，才能讓計算資源提供者從它取得憑證，然後將它安裝在叢集節點上：
 
@@ -149,15 +137,11 @@ Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -EnabledForDeployme
 
 <a id="add-certificate-to-key-vault"></a>
 
-<a id="add-certificates-to-your-key-vault" class="xliff"></a>
-
-## 將憑證新增至 Key Vault
+## <a name="add-certificates-to-your-key-vault"></a>將憑證新增至 Key Vault
 
 憑證是在 Service Fabric 中用來提供驗證與加密，以保護叢集和其應用程式的各個層面。 如需如何在 Service Fabric 中使用憑證的詳細資訊，請參閱 [Service Fabric 叢集安全性案例][service-fabric-cluster-security]。
 
-<a id="cluster-and-server-certificate-required" class="xliff"></a>
-
-### 叢集和伺服器憑證 (必要)
+### <a name="cluster-and-server-certificate-required"></a>叢集和伺服器憑證 (必要)
 需要此憑證來保護叢集安全及防止未經授權存取叢集。 它會透過兩種方式提供叢集安全性：
 
 * 叢集驗證：驗證叢集同盟的節點對節點通訊。 只有可使用此憑證提供其身分識別的節點可以加入叢集。
@@ -169,17 +153,13 @@ Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -EnabledForDeployme
 * 憑證必須是為了進行金鑰交換而建立，且可匯出成個人資訊交換 (.pfx) 檔案。
 * 憑證的主體名稱必須與您用來存取 Service Fabric 叢集的網域相符。 必須如此相符，才能為叢集的 HTTPS 管理端點和 Service Fabric Explorer 提供 SSL。 您無法從憑證授權單位 (CA) 取得 .cloudapp.azure.com 網域的 SSL 憑證。 您必須為您的叢集取得自訂網域名稱。 當您向 CA 要求憑證時，憑證的主體名稱必須與用於您叢集的自訂網域名稱相符。
 
-<a id="application-certificates-optional" class="xliff"></a>
-
-### 應用程式憑證 (選用)
+### <a name="application-certificates-optional"></a>應用程式憑證 (選用)
 您可以針對應用程式安全性目的，在叢集上安裝任何數目的其他憑證。 在建立您的叢集之前，請考量需要在節點上安裝憑證的應用程式安全性案例，例如：
 
 * 將應用程式組態值加密和解密。
 * 在複寫期間將資料跨節點加密。
 
-<a id="formatting-certificates-for-azure-resource-provider-use" class="xliff"></a>
-
-### 格式化憑證以供 Azure 資源提供者使用
+### <a name="formatting-certificates-for-azure-resource-provider-use"></a>格式化憑證以供 Azure 資源提供者使用
 您可以透過 Key Vault 來直接新增和使用私密金鑰檔案 (.pfx)。 不過，Azure 計算資源提供者要求必須以特殊「JavaScript 物件標記法」(JSON) 格式儲存金鑰。 此格式包含 .pfx 檔案作為 Base-64 編碼字串和私密金鑰密碼。 為了符合這些要求，金鑰必須放在 JSON 字串中，然後在 Key Vault 中儲存為「密碼」。
 
 若要讓這個程序更容易，可使用 PowerShell 模組 ([GitHub 上有提供][service-fabric-rp-helpers])。 若要使用該模組，請執行下列操作：
@@ -196,9 +176,7 @@ Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -EnabledForDeployme
 
 此 PowerShell 模組中的 `Invoke-AddCertToKeyVault` 命令會自動將憑證私密金鑰的格式設定為 JSON 字串，並將它上傳到 Key Vault。 請使用此命令將叢集憑證及任何其他應用程式憑證新增到 Key Vault。 請為您想在叢集中安裝的任何其他憑證重複這個步驟。
 
-<a id="uploading-an-existing-certificate" class="xliff"></a>
-
-#### 上傳現有的憑證
+#### <a name="uploading-an-existing-certificate"></a>上傳現有的憑證
 
 ```powershell
 
@@ -246,9 +224,7 @@ Value : https://mywestusvault.vault.azure.net:443/secrets/mycert/4d087088df974e8
 
 <a id="add-self-signed-certificate-to-key-vault"></a>
 
-<a id="creating-a-self-signed-certificate-and-uploading-it-to-the-key-vault" class="xliff"></a>
-
-#### 建立自我簽署憑證並上傳到 Key Vault
+#### <a name="creating-a-self-signed-certificate-and-uploading-it-to-the-key-vault"></a>建立自我簽署憑證並上傳到 Key Vault
 
 如果您已將憑證上傳到 Key Vault，請略過此步驟。 此步驟是用來產生新的自我簽署憑證，並將其上傳到 Key Vault。 在變更下列指令碼中的參數並執行它之後，系統應該會提示您輸入憑證密碼。  
 
@@ -315,9 +291,7 @@ Value : https://westuskv1.vault.azure.net:443/secrets/chackonewcertificate1/ee24
 
 <a id="add-AAD-for-client"></a>
 
-<a id="set-up-azure-active-directory-for-client-authentication" class="xliff"></a>
-
-## 設定用戶端驗用的 Azure Active Directory
+## <a name="set-up-azure-active-directory-for-client-authentication"></a>設定用戶端驗用的 Azure Active Directory
 
 Azure AD 可讓組織 (稱為租用戶) 管理使用者對應用程式的存取。 應用程式分成具有 Web 型登入 UI 的應用程式，以及具有原生用戶端體驗的應用程式。 在本文中，我們假設您已經建立租用戶。 如果您尚未建立租用戶，請從閱讀[如何取得 Azure Active Directory 租用戶][active-directory-howto-tenant]開始進行。
 
@@ -360,26 +334,18 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 },
 ```
 
-<a id="create-a-service-fabric-cluster-resource-manager-template" class="xliff"></a>
-
-## 建立 Service Fabric 叢集 Resource Manager 範本
+## <a name="create-a-service-fabric-cluster-resource-manager-template"></a>建立 Service Fabric 叢集 Resource Manager 範本
 在本節中，Service Fabric 叢集 Resource Manager 範本中會使用上述 PowerShell 命令的輸出。
 
 您可以從 [GitHub 上的 Azure 快速啟動範本資源庫][azure-quickstart-templates]取得範例 Resource Manager 範本。 這些範本可以用作叢集範本的起點。
 
-<a id="create-the-resource-manager-template" class="xliff"></a>
-
-### 建立 Resource Manager 範本
+### <a name="create-the-resource-manager-template"></a>建立 Resource Manager 範本
 本指南使用[五節點安全叢集][service-fabric-secure-cluster-5-node-1-nodetype]範例範本和範本參數。 下載 `azuredeploy.json` 和 `azuredeploy.parameters.json` 到您的電腦並在您最愛的文字編輯器中開啟這兩個檔案。
 
-<a id="add-certificates" class="xliff"></a>
-
-### 新增憑證
+### <a name="add-certificates"></a>新增憑證
 您可以藉由參考包含憑證金鑰的 Key Vault，將憑證新增到叢集 Resource Manager 範本。 建議您將 Key Vault 值置於 Resource Manager 範本參數檔案中。 這麼做會讓 Resource Manager 範本檔案保持可重複使用，而不會含有某項部署特定的值。
 
-<a id="add-all-certificates-to-the-virtual-machine-scale-set-osprofile" class="xliff"></a>
-
-#### 將所有憑證都新增到虛擬機器擴展集 osProfile
+#### <a name="add-all-certificates-to-the-virtual-machine-scale-set-osprofile"></a>將所有憑證都新增到虛擬機器擴展集 osProfile
 安裝在叢集中的每個憑證都必須在擴展集資源 (Microsoft.Compute/virtualMachineScaleSets) 的 osProfile 區段中設定妥當。 此動作會指示資源提供者在 VM 上安裝憑證。 此安裝既包含叢集憑證，也包含任何您打算用於應用程式的應用程式安全性憑證︰
 
 ```json
@@ -414,14 +380,10 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 }
 ```
 
-<a id="configure-the-service-fabric-cluster-certificate" class="xliff"></a>
-
-#### 設定 Service Fabric 叢集憑證
+#### <a name="configure-the-service-fabric-cluster-certificate"></a>設定 Service Fabric 叢集憑證
 不論是在 Service Fabric 叢集資源 (Microsoft.ServiceFabric/clusters) 中，還是在虛擬機器擴展集資源中虛擬機器擴展集的 Service Fabric 延伸模組中，都必須設定叢集驗證憑證。 這個安排可讓 Service Fabric 資源提供者設定它，以用於管理端點的叢集驗證和伺服器驗證。
 
-<a id="virtual-machine-scale-set-resource" class="xliff"></a>
-
-##### 虛擬機器擴展集資源：
+##### <a name="virtual-machine-scale-set-resource"></a>虛擬機器擴展集資源：
 ```json
 {
   "apiVersion": "2016-03-30",
@@ -453,9 +415,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 }
 ```
 
-<a id="service-fabric-resource" class="xliff"></a>
-
-##### Service Fabric 資源︰
+##### <a name="service-fabric-resource"></a>Service Fabric 資源︰
 ```json
 {
   "apiVersion": "2016-03-01",
@@ -475,9 +435,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 }
 ```
 
-<a id="insert-azure-ad-configuration" class="xliff"></a>
-
-### 插入 Azure AD 組態
+### <a name="insert-azure-ad-configuration"></a>插入 Azure AD 組態
 您稍早建立的 Azure AD 組態可以直接插入到您的 Resource Manager 範本中。 不過，建議您先將值擷取到參數檔案中，以便讓 Resource Manager 範本保持可重複使用，而不會含有某項部署特定的值。
 
 ```json
@@ -560,23 +518,17 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 
 ![Resource Manager 相依性對應][cluster-security-arm-dependency-map]
 
-<a id="create-the-cluster" class="xliff"></a>
-
-## 建立叢集
+## <a name="create-the-cluster"></a>建立叢集
 您現在已準備好使用 [Azure 資源範本部署][resource-group-template-deploy]來建立叢集。
 
-<a id="test-it" class="xliff"></a>
-
-#### 進行測試
+#### <a name="test-it"></a>進行測試
 使用下列 PowerShell 命令，以參數檔案來測試 Resource Manager 範本︰
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -TemplateFile .\azuredeploy.json -TemplateParameterFile .\azuredeploy.parameters.json
 ```
 
-<a id="deploy-it" class="xliff"></a>
-
-#### 進行部署
+#### <a name="deploy-it"></a>進行部署
 如果 Resource Manager 範本測試通過，使用下列 PowerShell 命令，以參數檔案來部署 Resource Manager 範本︰
 
 ```powershell
@@ -585,9 +537,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -Templat
 
 <a name="assign-roles"></a>
 
-<a id="assign-users-to-roles" class="xliff"></a>
-
-## 將使用者指派給角色
+## <a name="assign-users-to-roles"></a>將使用者指派給角色
 建立應用程式來代表您的叢集之後，請將使用者指派給 Service Fabric 所支援的角色︰唯讀和系統管理員。 您可以使用 [Azure 傳統入口網站][azure-classic-portal]來指派角色。
 
 1. 在 Azure 入口網站中，移至您的租用戶，然後選取 [應用程式]。
@@ -607,9 +557,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -Templat
 
  <a name="secure-linux-cluster"></a>
 
-<a id="create-secure-clusters-on-linux" class="xliff"></a>
-
-## 在 Linux 上建立安全叢集
+## <a name="create-secure-clusters-on-linux"></a>在 Linux 上建立安全叢集
 為了簡化此程序，我們提供了一個[協助程式指令碼](http://github.com/ChackDan/Service-Fabric/tree/master/Scripts/CertUpload4Linux)。 在使用此協助程式指令碼之前，請確定您已安裝 Azure 命令列介面 (CLI)，而且它位於您的路徑中。 下載指令碼後，請執行 `chmod +x cert_helper.py` ，以確定指令碼有執行權限。 第一個步驟是使用 CLI 搭配 `azure login` 命令來登入您的 Azure 帳戶。 登入 Azure 帳戶之後，請使用協助程式搭配您 CA 簽署的憑證，如下列命令所示︰
 
 ```sh
@@ -654,74 +602,46 @@ CertificateThumbprint: 0xfffffffffffffffffffffffffffffffffffffffff
 
 您可以在 Azure 入口網站中從協助程式指令碼填入參數，如[在 Azure 入口網站中建立叢集](service-fabric-cluster-creation-via-portal.md#create-cluster-in-the-azure-portal)一節所述。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 此時，您已具有以 Azure Active Directory 提供管理驗證的安全叢集。 接下來，請[連線到您的叢集](service-fabric-connect-to-secure-cluster.md)並了解如何[管理應用程式密碼](service-fabric-application-secret-management.md)。
 
-<a id="troubleshoot-setting-up-azure-active-directory-for-client-authentication" class="xliff"></a>
-
-## 針對設定用戶端驗用的 Azure Active Directory 進行疑難排解
+## <a name="troubleshoot-setting-up-azure-active-directory-for-client-authentication"></a>針對設定用戶端驗用的 Azure Active Directory 進行疑難排解
 如果您在設定用於用戶端驗證的 Azure AD 時遇到問題，請檢閱本節中可能的解決方案。
 
-<a id="service-fabric-explorer-prompts-you-to-select-a-certificate" class="xliff"></a>
-
-### Service Fabric Explorer 會提示您選取憑證
-<a id="problem" class="xliff"></a>
-
-#### 問題
+### <a name="service-fabric-explorer-prompts-you-to-select-a-certificate"></a>Service Fabric Explorer 會提示您選取憑證
+#### <a name="problem"></a>問題
 在 Service Fabric Explorer 中順利登入 Azure AD 之後，瀏覽器會返回首頁，但是會出現提示您選取憑證的訊息。
 
 ![SFX 選取憑證對話方塊][sfx-select-certificate-dialog]
 
-<a id="reason" class="xliff"></a>
-
-#### 原因
+#### <a name="reason"></a>原因
 使用者未獲指派 Azure AD 叢集應用程式中的角色。 因此，Azure AD 驗證在 Service Fabric 叢集上發生失敗。 Service Fabric Explorer 會回復到憑證驗證。
 
-<a id="solution" class="xliff"></a>
-
-#### 方案
+#### <a name="solution"></a>方案
 請依照設定 Azure AD 的指示進行操作，然後指派使用者角色。 另外，建議您如 `SetupApplications.ps1` 所做的一樣，開啟 [存取應用程式需要使用者指派]。
 
-<a id="connection-with-powershell-fails-with-an-error-the-specified-credentials-are-invalid" class="xliff"></a>
-
-### 使用 PowerShell 進行連線時失敗，發生錯誤：「指定的認證無效」
-<a id="problem" class="xliff"></a>
-
-#### 問題
+### <a name="connection-with-powershell-fails-with-an-error-the-specified-credentials-are-invalid"></a>使用 PowerShell 進行連線時失敗，發生錯誤：「指定的認證無效」
+#### <a name="problem"></a>問題
 在您順利登入 Azure AD 之後，於使用 PowerShell 以 “AzureActiveDirectory” 安全性模式連接到叢集時連線失敗，發生錯誤：「指定的認證無效」。
 
-<a id="solution" class="xliff"></a>
-
-#### 方案
+#### <a name="solution"></a>方案
 此解決方案與前一個相同。
 
-<a id="service-fabric-explorer-returns-a-failure-when-you-sign-in-aadsts50011" class="xliff"></a>
-
-### Service Fabric Explorer 在您登入時傳回失敗："AADSTS50011"
-<a id="problem" class="xliff"></a>
-
-#### 問題
+### <a name="service-fabric-explorer-returns-a-failure-when-you-sign-in-aadsts50011"></a>Service Fabric Explorer 在您登入時傳回失敗："AADSTS50011"
+#### <a name="problem"></a>問題
 當您嘗試在 Service Fabric Explorer 中登入 Azure AD 時，頁面傳回失敗：「AADSTS50011：回覆地址 &lt;url&gt; 與針對應用程式設定的回覆地址不符：&lt;guid&gt;」。
 
 ![SFX 回覆地址不相符][sfx-reply-address-not-match]
 
-<a id="reason" class="xliff"></a>
-
-#### 原因
+#### <a name="reason"></a>原因
 代表 Service Fabric Explorer 的叢集 (Web) 應用程式嘗試對照 Azure AD 來進行驗證，而它在要求中提供重新導向傳回 URL。 但該 URL 並未列在 Azure AD 應用程式 [回覆 URL] 清單中。
 
-<a id="solution" class="xliff"></a>
-
-#### 方案
+#### <a name="solution"></a>方案
 在叢集 (Web) 應用程式的 [設定] 索引標籤上，將 Service Fabric Explorer 的 URL 新增到 [回覆 URL] 清單中，或取代清單內的其中一個項目。 完成時，請儲存變更。
 
 ![Web 應用程式回覆 url][web-application-reply-url]
 
-<a id="connect-the-cluster-by-using-azure-ad-authentication-via-powershell" class="xliff"></a>
-
-### 透過 PowerShell 使用 Azure AD 驗證來連接叢集
+### <a name="connect-the-cluster-by-using-azure-ad-authentication-via-powershell"></a>透過 PowerShell 使用 Azure AD 驗證來連接叢集
 若要連接 Service Fabric 叢集，請使用下列 PowerShell 命令範例︰
 
 ```powershell
@@ -730,14 +650,10 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <endpoint> -KeepAliveIntervalIn
 
 若要了解 Connect-ServiceFabricCluster Cmdlet，請參閱 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx)。
 
-<a id="can-i-reuse-the-same-azure-ad-tenant-in-multiple-clusters" class="xliff"></a>
-
-### 我是否可以在多個叢集中重複使用相同的 Azure AD 租用戶？
+### <a name="can-i-reuse-the-same-azure-ad-tenant-in-multiple-clusters"></a>我是否可以在多個叢集中重複使用相同的 Azure AD 租用戶？
 是。 但是請務必將 Service Fabric Explorer 的 URL 新增到叢集 (Web) 應用程式。 否則 Service Fabric Explorer 無法運作。
 
-<a id="why-do-i-still-need-a-server-certificate-while-azure-ad-is-enabled" class="xliff"></a>
-
-### 為什麼在已啟用 Azure AD 的情況下仍然需要伺服器憑證？
+### <a name="why-do-i-still-need-a-server-certificate-while-azure-ad-is-enabled"></a>為什麼在已啟用 Azure AD 的情況下仍然需要伺服器憑證？
 FabricClient 和 FabricGateway 會執行相互驗證。 在 Azure AD 驗證期間，Azure AD 整合會將用戶端身分識別提供給伺服器，而伺服器憑證則用來驗證伺服器身分識別。 如需有關 Service Fabric 憑證的詳細資訊，請參閱 [X.509 憑證和 Service Fabric][x509-certificates-and-service-fabric]。
 
 <!-- Links -->

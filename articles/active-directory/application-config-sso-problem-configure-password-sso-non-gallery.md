@@ -21,15 +21,11 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="problem-configuring-password-single-sign-on-for-a-non-gallery-application" class="xliff"></a>
-
-# 為不在資源庫內的應用程式設定密碼單一登入時遇到的問題
+# <a name="problem-configuring-password-single-sign-on-for-a-non-gallery-application"></a>為不在資源庫內的應用程式設定密碼單一登入時遇到的問題
 
 本文可協助您了解使用者在搭配不在資源庫內的應用程式設定**密碼單一登入**時所面臨的常見問題。
 
-<a id="how-to-capture-sign-in-fields-for-an-application" class="xliff"></a>
-
-## 如何擷取應用程式的登入欄位
+## <a name="how-to-capture-sign-in-fields-for-an-application"></a>如何擷取應用程式的登入欄位
 
 只有具備 HTML 功能的登入頁面支援登入欄位擷取，而**非標準的登入頁面並不支援**，例如，使用快閃記憶體或其他不具備 HTML 功能技術的頁面。
 
@@ -45,9 +41,7 @@ ms.lasthandoff: 04/17/2017
 
 一般而言，**如果自動登入欄位擷取無法運作，我們一律建議嘗試手動選項。**
 
-<a id="how-to-automatically-capture-sign-in-fields-for-an-application" class="xliff"></a>
-
-### 如何自動擷取應用程式的登入欄位
+### <a name="how-to-automatically-capture-sign-in-fields-for-an-application"></a>如何自動擷取應用程式的登入欄位
 
 若要為使用**自動登入欄位擷取**的應用程式設定**密碼單一登入**，請依照下列步驟執行：
 
@@ -75,9 +69,7 @@ ms.lasthandoff: 04/17/2017
 
 11. 這麼做之後，我們會自動擷取使用者名稱和密碼輸入方塊的該 URL，並可讓您使用 Azure AD 並利用存取面板瀏覽器擴充功能將密碼安全地傳輸到該應用程式。
 
-<a id="how-to-manually-capture-sign-in-fields-for-an-application" class="xliff"></a>
-
-## 如何手動擷取應用程式的登入欄位
+## <a name="how-to-manually-capture-sign-in-fields-for-an-application"></a>如何手動擷取應用程式的登入欄位
 
 若要手動擷取登入欄位，您必須先安裝存取面板的瀏覽器延伸模組，而且**不能在 InPrivate、incognito 或私人模式中執行**。 若要安裝瀏覽器延伸模組，請依照[如何安裝存取面板的瀏覽器延伸模組](#i-cannot-manually-detect-sign-in-fields-for-my-application)一節中的步驟執行。
 
@@ -117,23 +109,17 @@ ms.lasthandoff: 04/17/2017
 
 16. 依照畫面指示來使用存取面板。
 
-<a id="i-see-a-we-couldnt-find-any-sign-in-fields-at-that-url-error" class="xliff"></a>
-
-## 我看到「在該 URL 找不到任何登入欄位」的錯誤
+## <a name="i-see-a-we-couldnt-find-any-sign-in-fields-at-that-url-error"></a>我看到「在該 URL 找不到任何登入欄位」的錯誤
 
 當自動偵測登入欄位失敗時，您就會看到此錯誤。 若要解決此問題，請依照[如何手動擷取應用程式的登入欄位](#how-to-manually-capture-sign-in-fields-for-an-application)一節中的步驟，嘗試執行手動登入欄位偵測。
 
-<a id="i-see-an-unable-to-save-single-sign-on-configuration-error" class="xliff"></a>
-
-## 我看到「無法儲存單一登入設定」錯誤
+## <a name="i-see-an-unable-to-save-single-sign-on-configuration-error"></a>我看到「無法儲存單一登入設定」錯誤
 
 在某些罕見的情況下，更新單一登入設定可能會失敗。 若要解決此錯誤，請再次嘗試儲存單一登入設定。
 
 如果這持續不斷失敗，請開啟一個支援案例，並提供[如何查看入口網站通知的詳細資料](#i-cannot-manually-detect-sign-in-fields-for-my-application)和[如何將通知詳細資料傳送給支援工程師以取得協助](#how-to-get-help-by-sending-notification-details-to-a-support-engineer)小節中所收集的資訊。
 
-<a id="i-cannot-manually-detect-sign-in-fields-for-my-application" class="xliff"></a>
-
-## 我無法手動偵測應用程式的登入欄位
+## <a name="i-cannot-manually-detect-sign-in-fields-for-my-application"></a>我無法手動偵測應用程式的登入欄位
 
 當手動偵測無法運作時，您可能看到某些行為，包括：
 
@@ -159,9 +145,7 @@ ms.lasthandoff: 04/17/2017
 
 如果這其中沒有任何一種方式適合您，我們很樂意提供協助。 請開啟一個支援案例，並提供您所嘗試動作的詳細資料，以及[如何查看入口網站通知的詳細資料](#i-cannot-manually-detect-sign-in-fields-for-my-application)和[如何將通知詳細資料傳送給支援工程師以取得協助](#how-to-get-help-by-sending-notification-details-to-a-support-engineer)小節 (如果適用) 中所收集的資訊。
 
-<a id="how-to-install-the-access-panel-browser-extension" class="xliff"></a>
-
-## 如何安裝存取面板的瀏覽器延伸模組
+## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板的瀏覽器延伸模組
 
 若要安裝存取面板的瀏覽器延伸模組，請遵循下列步驟：
 
@@ -185,9 +169,7 @@ ms.lasthandoff: 04/17/2017
 
 -   [Firefox 存取面板延伸模組](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
-<a id="how-to-see-the-details-of-a-portal-notification" class="xliff"></a>
-
-## 如何查看入口網站通知的詳細資料
+## <a name="how-to-see-the-details-of-a-portal-notification"></a>如何查看入口網站通知的詳細資料
 
 您可以依照下列步驟來查看任何入口網站通知的詳細資料：
 
@@ -207,21 +189,15 @@ ms.lasthandoff: 04/17/2017
 
 6.  按一下 [複製錯誤] 文字方塊右邊的**複製****圖示**，以複製所有通知詳細資料來分享給支援工程師或產品群組工程師。
 
-<a id="how-to-get-help-by-sending-notification-details-to-a-support-engineer" class="xliff"></a>
-
-## 如何將通知詳細資料傳送給支援工程師以取得協助
+## <a name="how-to-get-help-by-sending-notification-details-to-a-support-engineer"></a>如何將通知詳細資料傳送給支援工程師以取得協助
 
 如果您需要協助，一定要與支援工程師分享**下列所有詳細資料**，好讓他們儘快幫助您。 只要**擷取螢幕畫面**，或按一下 [複製錯誤] 文字方塊右邊的**複製錯誤圖示**，輕鬆就能這樣做。
 
-<a id="notification-details-explained" class="xliff"></a>
-
-## 說明通知詳細資料
+## <a name="notification-details-explained"></a>說明通知詳細資料
 
 以下詳細說明每個通知項目的意義，並提供個別的範例。
 
-<a id="essential-notification-items" class="xliff"></a>
-
-### 必要通知項目
+### <a name="essential-notification-items"></a>必要通知項目
 
 -   **標題** - 通知的描述性標題
 
@@ -259,9 +235,7 @@ ms.lasthandoff: 04/17/2017
 
     -   範例 - **17f84be4-51f8-483a-b533-383791227a99**
 
-<a id="detailed-notification-items" class="xliff"></a>
-
-### 詳細通知項目
+### <a name="detailed-notification-items"></a>詳細通知項目
 
 -   **顯示名稱** - **(可以是空白)** 錯誤的更詳細顯示名稱
 
@@ -283,9 +257,7 @@ ms.lasthandoff: 04/17/2017
 
     -   範例 - ```{"errorCode":"InternalUrl\_Duplicate","localizedErrorDetails":{"errorDetail":"Internal url 'http://google.com/' is invalid since it is already in use"},"operationResults":\[{"objectId":null,"displayName":null,"status":0,"details":"Internal url 'http://bing.com/' is invalid since it is already in use"}\],"timeStampUtc":"2017-03-23T19:50:26.465743Z","clientRequestId":"302fd775-3329-4670-a9f3-bea37004f0bb","internalTransactionId":"ea5b5475-03b9-4f08-8e95-bbb11289ab65","upn":"tperkins@f128.info","tenantId":"7918d4b5-0442-4a97-be2d-36f9f9962ece","userObjectId":"17f84be4-51f8-483a-b533-383791227a99"}```
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [使用應用程式 Proxy 提供應用程式的單一登入](active-directory-application-proxy-sso-using-kcd.md)
 
 

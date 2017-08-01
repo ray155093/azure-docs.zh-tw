@@ -22,9 +22,7 @@ ms.lasthandoff: 03/22/2017
 
 
 ---
-<a id="configure-azure-cloud-service-roles-with-visual-studio" class="xliff"></a>
-
-# 使用 Visual Studio 設定 Azure 雲端服務角色
+# <a name="configure-azure-cloud-service-roles-with-visual-studio"></a>使用 Visual Studio 設定 Azure 雲端服務角色
 Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您必須為每個角色定義其設定方式，並設定該角色的執行方式。 若要深入了解雲端服務中的角色，請參閱視訊 [Azure 雲端服務簡介](https://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Introduction-to-Windows-Azure-Cloud-Services)。 
 
 您的雲端服務資訊儲存在下列檔案中：
@@ -39,9 +37,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
 - `ServiceConfiguration.Cloud.cscfg`
 - `ServiceConfiguration.Local.cscfg`
 
-<a id="configure-an-azure-cloud-service" class="xliff"></a>
-
-## 設定 Azure 雲端服務
+## <a name="configure-an-azure-cloud-service"></a>設定 Azure 雲端服務
 您可以從 Visual Studio 中的 [方案總管] 設定 Azure 雲端服務，如下列步驟所示：
 
 1. 在 Visual Studio 中建立或開啟 Azure 雲端服務專案。
@@ -63,9 +59,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
    
     ![Azure 雲端服務的服務組態清單](./media/vs-azure-tools-configure-roles-for-cloud-service/cloud-service-service-configuration-property.png)
 
-<a id="change-the-number-of-role-instances" class="xliff"></a>
-
-## 變更角色執行個體的數目
+## <a name="change-the-number-of-role-instances"></a>變更角色執行個體的數目
 若要改善雲端服務的效能，您可以根據使用者數目或特定角色的預期負載，變更正在執行之角色的執行個體數目。 雲端服務在 Azure 中執行時，會為角色的每個執行個體建立個別的虛擬機器。 這會影響這個雲端服務的部署計費。 如需計費的詳細資訊，請參閱[了解 Microsoft Azure 帳單](billing/billing-understand-your-bill.md)。
 
 1. 在 Visual Studio 中建立或開啟 Azure 雲端服務專案。
@@ -88,9 +82,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
 
 1. 從 Visual Studio 工具列，選取 [儲存]。
 
-<a id="manage-connection-strings-for-storage-accounts" class="xliff"></a>
-
-## 管理儲存體帳戶的連接字串
+## <a name="manage-connection-strings-for-storage-accounts"></a>管理儲存體帳戶的連接字串
 您可以新增、移除或修改服務組態的連接字串。 例如，針對具有 `UseDevelopmentStorage=true`值的本機服務組態，您可能想要本機連接字串。 您也能也會想要設定在 Azure 中使用儲存體帳戶的雲端服務組態。
 
 > [!WARNING]
@@ -136,9 +128,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
 
 1. 從 Visual Studio 工具列，選取 [儲存]。
 
-<a id="programmatically-access-a-connection-string" class="xliff"></a>
-
-## 以程式設計方式存取連接字串
+## <a name="programmatically-access-a-connection-string"></a>以程式設計方式存取連接字串
 
 下列步驟顯示如何使用 C# 以程式設計方式存取連接字串。
 
@@ -157,9 +147,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
     var storageAccount = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("<ConnectionStringName>"));
     ```
 
-<a id="add-custom-settings-to-use-in-your-azure-cloud-service" class="xliff"></a>
-
-## 新增要在 Azure 雲端服務中使用的自訂設定
+## <a name="add-custom-settings-to-use-in-your-azure-cloud-service"></a>新增要在 Azure 雲端服務中使用的自訂設定
 服務組態檔中的自訂設定可讓您為特定服務組態的字串新增名稱和值。 您可以藉由讀取設定的值並使用該值控制程式碼中的邏輯，即可選擇使用此設定在您的雲端服務中設定功能。 您可以變更這些服務組態值，而不需要重建服務封裝或在雲端服務執行時。 您的程式碼可以檢查設定變更時的通知。 請參閱 [RoleEnvironment.Changing 事件](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx)。
 
 您可以新增、移除或修改服務組態的自訂設定。 針對不同的服務組態，您可能會想要這些連接字串的不同值。
@@ -196,9 +184,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
 
 1. 從 Visual Studio 工具列，選取 [儲存]。
 
-<a id="programmatically-access-a-custom-settings-value" class="xliff"></a>
-
-## 以程式設計方式存取自訂設定的值
+## <a name="programmatically-access-a-custom-settings-value"></a>以程式設計方式存取自訂設定的值
  
 下列步驟顯示如何使用 C# 以程式設計方式存取自訂設定。
 
@@ -216,9 +202,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
     var settingValue = RoleEnvironment.GetConfigurationSettingValue("<SettingName>");
     ```
 
-<a id="manage-local-storage-for-each-role-instance" class="xliff"></a>
-
-## 管理每個角色執行個體的本機儲存體
+## <a name="manage-local-storage-for-each-role-instance"></a>管理每個角色執行個體的本機儲存體
 您可以為角色的每個執行個體新增本機檔案系統儲存體。 為其儲存資料之角色的其他執行個體，或其他角色無法存取儲存在該儲存體中的資料。  
 
 1. 在 Visual Studio 中建立或開啟 Azure 雲端服務專案。
@@ -251,15 +235,11 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
 
 1. 從 Visual Studio 工具列，選取 [儲存]。
 
-<a id="programmatically-accessing-local-storage" class="xliff"></a>
-
-## 以程式設計方式存取本機儲存體
+## <a name="programmatically-accessing-local-storage"></a>以程式設計方式存取本機儲存體
 
 本節說明如何藉由撰寫測試文字檔案 `MyLocalStorageTest.txt`，使用 C# 以程式設計方式存取本機儲存體。  
 
-<a id="write-a-text-file-to-local-storage" class="xliff"></a>
-
-### 將文字檔案寫入本機儲存體
+### <a name="write-a-text-file-to-local-storage"></a>將文字檔案寫入本機儲存體
 
 下列程式碼顯示如何將文字檔案寫入本機儲存體的範例。 使用適當的值來取代 &lt;LocalStorageName> 預留位置。 
 
@@ -279,9 +259,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
 
     ```
 
-<a id="find-a-file-written-to-local-storage" class="xliff"></a>
-
-### 尋找已寫入本機儲存體的檔案
+### <a name="find-a-file-written-to-local-storage"></a>尋找已寫入本機儲存體的檔案
 
 若要檢視上一節中的程式碼所建立的檔案，請遵循下列步驟︰
     
@@ -299,9 +277,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。 您�
 
 1. 當 [Windows 檔案總管] 視窗開啟時，請在 [搜尋] 文字方塊中輸入 `MyLocalStorageTest.txt`，然後選取 **Enter** 開始搜尋。 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 藉由參閱 [設定 Azure 專案](vs-azure-tools-configuring-an-azure-project.md)深入了解 Visual Studio 中的 Azure 專案。 藉由參閱 [結構描述參考](https://msdn.microsoft.com/library/azure/dd179398)深入了解雲端服務結構描述。
 
 

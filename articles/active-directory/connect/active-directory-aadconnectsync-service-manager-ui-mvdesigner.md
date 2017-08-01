@@ -22,15 +22,13 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 03/04/2017
 
 ---
-# Sync Service Manager Metaverse 設計工具
-<a id="sync-service-manager-metaverse-designer" class="xliff"></a>
+# <a name="sync-service-manager-metaverse-designer"></a>Sync Service Manager Metaverse 設計工具
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvdesigner.png)
 
 對於大多數的客戶，不需要在此處進行任何設定。
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。

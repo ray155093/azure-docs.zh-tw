@@ -20,9 +20,7 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="troubleshoot-azure-active-directory-application-management" class="xliff"></a>
-
-# 針對 Azure Active Directory 應用程式管理問題進行疑難排解
+# <a name="troubleshoot-azure-active-directory-application-management"></a>針對 Azure Active Directory 應用程式管理問題進行疑難排解
 下列連結會將您帶到一個內容對應表，此對應表可幫助您解決在 Azure Active Directory 中管理「企業應用程式」時，最常面臨的一些問題。
 
 * [應用程式設定的問題](active-directory-application-config-content-map.md)

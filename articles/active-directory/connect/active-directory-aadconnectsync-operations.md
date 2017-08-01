@@ -21,12 +21,10 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 04/18/2017
 
 ---
-# Azure AD Connect 同步處理：作業工作和考量
-<a id="azure-ad-connect-sync-operational-tasks-and-consideration" class="xliff"></a>
+# <a name="azure-ad-connect-sync-operational-tasks-and-consideration"></a>Azure AD Connect 同步處理：作業工作和考量
 本主題的目標在於描述 Azure AD Connect 同步處理的操作工作。
 
-## 預備模式
-<a id="staging-mode" class="xliff"></a>
+## <a name="staging-mode"></a>預備模式
 預備模式可以用於許多案例，包括：
 
 * 高可用性。
@@ -43,8 +41,7 @@ ms.lasthandoff: 04/18/2017
 
 對於具備較舊同步處理技術知識的人員，預備模式是不同的，因為伺服器有它自己的 SQL 資料庫。 此架構可讓預備模式伺服器位於不同的資料中心。
 
-### 驗證伺服器的組態
-<a id="verify-the-configuration-of-a-server" class="xliff"></a>
+### <a name="verify-the-configuration-of-a-server"></a>驗證伺服器的組態
 若要套用此方法，請遵循下列步驟：
 
 1. [準備](#prepare)
@@ -53,18 +50,15 @@ ms.lasthandoff: 04/18/2017
 4. [Verify](#verify)
 5. [切換作用中的伺服器](#switch-active-server)
 
-#### 準備
-<a id="prepare" class="xliff"></a>
+#### <a name="prepare"></a>準備
 1. 安裝 Azure AD Connect、選取**預備模式**，然後取消選取安裝精靈中最後一個頁面上的 [啟動同步處理]。 此模式可讓您手動執行同步處理引擎。
    ![ReadyToConfigure](./media/active-directory-aadconnectsync-operations/readytoconfigure.png)
 2. 登出/登入，並從 [開始] 功能表中選取 [同步處理服務] 。
 
-#### 組態
-<a id="configuration" class="xliff"></a>
+#### <a name="configuration"></a>組態
 如果您已對主要伺服器進行變更，並想要將組態與預備伺服器進行比較，則請使用 [Azure AD Connect 組態文件產生器](https://github.com/Microsoft/AADConnectConfigDocumenter)。
 
-#### 匯入和同步處理
-<a id="import-and-synchronize" class="xliff"></a>
+#### <a name="import-and-synchronize"></a>匯入和同步處理
 1. 選取 [連接器]，並選取第一個類型為 [Active Directory Domain Services] 的連接器。 按一下 [執行]，選取 [完整匯入] 和 [確定]。 對這種類型的所有連接器執行下列動作。
 2. 選取 [Azure Active Directory (Microsoft)] 類型的連接器。 按一下 [執行]，選取 [完整匯入] 和 [確定]。
 3. 確定仍然選取 [連接器] 索引標籤。 針對每一個 [Active Directory Domain Services] 類型的連接器按一下 [執行]、選取 [差異同步處理] 和 [確定]。
@@ -72,8 +66,7 @@ ms.lasthandoff: 04/18/2017
 
 您現在已預備匯出變更至 Azure AD 和內部部署 AD (如果您正在使用 Exchange 混合部署)。 接下來的步驟可讓您在實際開始匯出至目錄之前，檢查將要變更的項目。
 
-#### Verify
-<a id="verify" class="xliff"></a>
+#### <a name="verify"></a>Verify
 1. 啟動 CMD 命令提示字元並移至 `%ProgramFiles%\Microsoft Azure AD Sync\bin`
 2. 執行：`csexport "Name of Connector" %temp%\export.xml /f:x` 連接器名稱可以在同步處理服務中找到。 它的名稱類似 Azure AD 的 "contoso.com – AAD"。
 3. 從 [CSAnalyzer](#appendix-csanalyzer) 區段將 PowerShell 指令碼複製到名為 `csanalyzer.ps1` 的檔案。
@@ -82,14 +75,12 @@ ms.lasthandoff: 04/18/2017
 6. 您現在已有一個可在 Microsoft Excel 中檢查的名為 **processedusers1.csv** 的檔案。 您可以在此檔案中找到所有已暫存而要匯出到 Azure AD 的變更。
 7. 對資料或組態進行必要的變更並再次執行這些步驟 (匯入和同步處理和驗證)，直到要匯出的變更皆如預期進行。
 
-#### 切換作用中的伺服器
-<a id="switch-active-server" class="xliff"></a>
+#### <a name="switch-active-server"></a>切換作用中的伺服器
 1. 在目前作用中的伺服器上，關閉伺服器 (DirSync/FIM/Azure AD Sync) 讓它不會匯出至 Azure AD 或將它設為預備模式 (Azure AD Connect)。
 2. 在**預備模式**的伺服器上執行安裝精靈並停用**預備模式**。
    ![ReadyToConfigure](./media/active-directory-aadconnectsync-operations/additionaltasks.png)
 
-## 災害復原
-<a id="disaster-recovery" class="xliff"></a>
+## <a name="disaster-recovery"></a>災害復原
 實作設計的一部分是規劃您在失去同步處理伺服器的災害中應如何應對。 有不同的模型可供使用，要使用哪一個模組取決於許多因素，包括：
 
 * 您在 Azure AD 的停機期間無法變更物件的容錯能力如何？
@@ -104,28 +95,23 @@ ms.lasthandoff: 04/18/2017
 
 如果您未使用內建的 SQL Express 資料庫，您也應該檢閱 [SQL 高可用性](#sql-high-availability) 一節。
 
-### 必要時重建
-<a id="rebuild-when-needed" class="xliff"></a>
+### <a name="rebuild-when-needed"></a>必要時重建
 必要時規劃伺服器重建為可行的策略。 安裝同步處理引擎並執行初始匯入和同步處理，通常可以在幾個小時內完成。 如果沒有可用的備用伺服器，則可以暫時使用網域控制站裝載同步處理引擎。
 
 同步處理引擎伺服器不會儲存有關物件的任何狀態，因此可以從 Active Directory 與 Azure AD 中的資料重建資料庫。 **sourceAnchor** 屬性可用來聯結來自內部部署和雲端的物件。 如果您使用現有的內部部署與雲端物件重建伺服器，則同步處理引擎會在重新安裝時一起比對這些物件。 您需要記錄和儲存的項目是對伺服器進行的組態變更，例如篩選和同步處理規則。 這些自訂設定必須在您開始同步處理之前重新套用。
 
-### 具有備用的待命伺服器 - 預備模式
-<a id="have-a-spare-standby-server---staging-mode" class="xliff"></a>
+### <a name="have-a-spare-standby-server---staging-mode"></a>具有備用的待命伺服器 - 預備模式
 如果您有更複雜的環境，則建議使用一或多個待命伺服器。 您可以在安裝期間啟用狀態為「預備模式」 的伺服器。
 
 如需詳細資訊，請參閱[預備模式](#staging-mode)。
 
-### 使用虛擬機器
-<a id="use-virtual-machines" class="xliff"></a>
+### <a name="use-virtual-machines"></a>使用虛擬機器
 一般和受支援的方法是在虛擬機器中執行同步處理引擎。 如果主機有問題，可將內含同步處理引擎伺服器的映像移轉到另一部伺服器。
 
-### SQL 高可用性
-<a id="sql-high-availability" class="xliff"></a>
+### <a name="sql-high-availability"></a>SQL 高可用性
 如果您未使用 Azure AD Connect 隨附的 SQL Server Express，也應該考慮 SQL Server 的高可用性。 唯一受支援的高可用性解決方案是 SQL 叢集。 不支援的解決方案包括鏡像和永遠開啟。
 
-## 附錄 CSAnalyzer
-<a id="appendix-csanalyzer" class="xliff"></a>
+## <a name="appendix-csanalyzer"></a>附錄 CSAnalyzer
 請參閱[驗證](#verify)一節，以了解如何使用此指令碼。
 
 ```
@@ -267,8 +253,7 @@ Write-Host Writing processedusers${outputfilecount}.csv -ForegroundColor Yellow
 $objOutputUsers | Export-Csv -path processedusers${outputfilecount}.csv -NoTypeInformation
 ```
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 **概觀主題**  
 
 * [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)  

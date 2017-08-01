@@ -21,15 +21,11 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="problem-installing-the-application-proxy-agent-connector" class="xliff"></a>
-
-# 安裝應用程式 Proxy 代理程式連接器時遇到問題
+# <a name="problem-installing-the-application-proxy-agent-connector"></a>安裝應用程式 Proxy 代理程式連接器時遇到問題
 
 Microsoft AAD 應用程式 Proxy 連接器是內部網域元件，它會使用輸出連線來建立雲端可用端點至內部網域的連線。
 
-<a id="general-problem-areas-with-connector-installation" class="xliff"></a>
-
-## 連接器安裝的一般問題區域
+## <a name="general-problem-areas-with-connector-installation"></a>連接器安裝的一般問題區域
 
 連接器安裝失敗時，根本原因通常是下列其中一個區域：
 
@@ -39,9 +35,7 @@ Microsoft AAD 應用程式 Proxy 連接器是內部網域元件，它會使用�
 
 3.  **系統管理員的驗證**：在安裝期間，使用者必須提供系統管理員認證才能完成連接器安裝。
 
-<a id="verify-connectivity-to-the-cloud-application-proxy-service-and-microsoft-login-page" class="xliff"></a>
-
-## 確認與雲端應用程式 Proxy 服務和 Microsoft 登入頁面之間連線
+## <a name="verify-connectivity-to-the-cloud-application-proxy-service-and-microsoft-login-page"></a>確認與雲端應用程式 Proxy 服務和 Microsoft 登入頁面之間連線
 
 **目標：**確認連接器電腦可以連線到 AAD 應用程式 Proxy 註冊端點以及 Microsoft 登入頁面。
 
@@ -51,9 +45,7 @@ Microsoft AAD 應用程式 Proxy 連接器是內部網域元件，它會使用�
 
 3.  開啟瀏覽器 (其他索引標籤)，並移至下列網頁：<https://login.microsoftonline.com>，確定您可以登入該頁面。
 
-<a id="verify-machine-and-backend-components-support-for-application-proxy-trust-cert" class="xliff"></a>
-
-## 確認電腦和後端元件支援應用程式 Prxoy 信任憑證
+## <a name="verify-machine-and-backend-components-support-for-application-proxy-trust-cert"></a>確認電腦和後端元件支援應用程式 Prxoy 信任憑證
 
 **目標︰**確認連接器電腦、後端 Proxy 和防火牆可支援由連接器針對未來信任所建立的憑證。
 
@@ -68,9 +60,7 @@ Microsoft AAD 應用程式 Proxy 連接器是內部網域元件，它會使用�
 
 2.  連絡您的網路系統管理員，並要求確認後端 Proxy 和防火牆不會針對連出流量封鎖 SHA512。
 
-<a id="verify-admin-is-used-to-install-the-connector" class="xliff"></a>
-
-## 確認是以系統管理員身分安裝連接器
+## <a name="verify-admin-is-used-to-install-the-connector"></a>確認是以系統管理員身分安裝連接器
 
 **目標︰**確認嘗試安裝連接器的使用者是具有正確認證的系統管理員。 目前使用者必須是全域管理員，安裝才會成功。
 
@@ -80,8 +70,6 @@ Microsoft AAD 應用程式 Proxy 連接器是內部網域元件，它會使用�
 
 選取您的使用者帳戶，然後在產生的功能表中選取 [目錄角色]。 確認所選取的角色為 [全域管理員]。 如果您無法存取這些步驟上的任何頁面，您就不是全域管理員。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)
 

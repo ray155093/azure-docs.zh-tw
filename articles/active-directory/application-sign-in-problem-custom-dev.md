@@ -21,15 +21,11 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="problems-signing-in-to-an-custom-developed-application" class="xliff"></a>
-
-# 登入自訂開發應用程式的問題
+# <a name="problems-signing-in-to-an-custom-developed-application"></a>登入自訂開發應用程式的問題
 
 有數種錯誤會導致您無法登入應用程式。 會遇到此問題的最大原因是應用程式設定錯誤。
 
-<a id="errors-related-to--misconfigured-apps" class="xliff"></a>
-
-## 與應用程式設定錯誤相關的錯誤
+## <a name="errors-related-to--misconfigured-apps"></a>與應用程式設定錯誤相關的錯誤
 
 * 確認入口網站中的兩種組態符合您應用程式中的組態。 特別是，比較用戶端/應用程識別碼、回覆 URL、用戶端密碼/金鑰，及應用程式識別碼 URI。
 
@@ -37,9 +33,7 @@ ms.lasthandoff: 04/17/2017
 
 * 請參閱 [Azure AD StackOverflow](http://stackoverflow.com/questions/tagged/azure-active-directory) 中任何類似的錯誤或問題。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 [Azure AD 開發人員指南](https://docs.microsoft.com/azure/active-directory/develop/active-directory-developers-guide)<br>
 

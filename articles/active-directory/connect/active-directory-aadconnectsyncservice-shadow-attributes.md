@@ -21,12 +21,10 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 03/18/2017
 
 ---
-# Azure AD Connect 同步處理服務陰影屬性
-<a id="azure-ad-connect-sync-service-shadow-attributes" class="xliff"></a>
+# <a name="azure-ad-connect-sync-service-shadow-attributes"></a>Azure AD Connect 同步處理服務陰影屬性
 大部分屬性是以它們在內部部署 Active Directory 中的相同方式，在 Azure AD 中表示。 但是某些屬性有一些特殊處理，而且在 Azure AD 中的屬性值可能不同於 Azure AD Connect 同步處理。
 
-## 簡介陰影屬性
-<a id="introducing-shadow-attributes" class="xliff"></a>
+## <a name="introducing-shadow-attributes"></a>簡介陰影屬性
 某些屬性在 Azure AD 中有兩種表示法。 會儲存內部部署值和計算值。 這些額外的屬性稱為陰影屬性。 您會在其中看到此行為的兩個最常見屬性是 **userPrincipalName** 和 **proxyAddress**。 這些屬性中有值代表未驗證網域時，就會發生屬性值的變更。 但是，連接中的同步處理引擎會讀取陰影屬性中的值，所以從其角度來看，屬性已由 Azure AD 確認。
 
 您無法使用 Azure 入口網站或 PowerShell 看到陰影屬性。 但是，了解概念可協助您針對特定案例進行疑難排解，其中屬性在內部部署和雲端中有不同的值。
@@ -35,8 +33,7 @@ ms.lasthandoff: 03/18/2017
 ![網域](./media/active-directory-aadconnectsyncservice-shadow-attributes/domains.png)  
 它們在其內部部署 Active Directory 中有多個 UPN 尾碼，但是它們只驗證其中一個。
 
-### userPrincipalName
-<a id="userprincipalname" class="xliff"></a>
+### <a name="userprincipalname"></a>userPrincipalName
 使用者在未驗證網域中具有下列屬性值︰
 
 | 屬性 | 值 |
@@ -49,8 +46,7 @@ userPrincipalName 屬性是您使用 PowerShell 時看到的值。
 
 因為實際內部部署屬性值會儲存在 Azure AD 中，當您確認 fabrikam.com 網域時，Azure AD 會以 shadowUserPrincipalName 的值更新 userPrincipalName 屬性。 您不需要同步處理 Azure AD Connect 的任何變更，讓這些值進行更新。
 
-### proxyAddresses
-<a id="proxyaddresses" class="xliff"></a>
+### <a name="proxyaddresses"></a>proxyAddresses
 僅包含已驗證網域的相同程序也會針對 proxyAddresses 發生，但是具有某些額外邏輯。 針對已驗證網域的檢查只會對信箱使用者發生。 擁有郵件功能的使用者或連絡人代表另一個 Exchange 組織中的使用者，您可以將 proxyAddresses 中的任何值新增至這些物件。
 
 對於信箱使用者，內部部署或 Exchange Online，只會顯示已驗證網域的值。 它看起來如下所示：
@@ -73,12 +69,10 @@ ProxyCalc 可能需要一些時間來處理使用者的變更，並且與 Azure 
 > [!NOTE]
 > ProxyCalc 邏輯具有本主題中未提及之進階案例的一些額外行為。 本主題是讓您了解行為，而未記載所有內部邏輯。
 
-### 隔離的屬性值
-<a id="quarantined-attribute-values" class="xliff"></a>
+### <a name="quarantined-attribute-values"></a>隔離的屬性值
 有重複的屬性值時，也會使用陰影屬性。 如需詳細資訊，請參閱[重複屬性恢復功能](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md)。
 
-## 另請參閱
-<a id="see-also" class="xliff"></a>
+## <a name="see-also"></a>另請參閱
 * [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 

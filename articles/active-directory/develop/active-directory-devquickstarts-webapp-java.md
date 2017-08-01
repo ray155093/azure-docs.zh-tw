@@ -22,9 +22,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 03/18/2017
 
 ---
-<a id="java-web-app-sign-in-and-sign-out-with-azure-ad" class="xliff"></a>
-
-# 搭配 Azure AD 的 Java Web 應用程式登入和登出
+# <a name="java-web-app-sign-in-and-sign-out-with-azure-ad"></a>搭配 Azure AD 的 Java Web 應用程式登入和登出
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
 Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登入和登出，讓您外包 Web 應用程式的身分識別管理變得簡單。 您可以藉由使用社群導向 Azure Active Directory Authentication Library for Java (ADAL4J) 的 Microsoft 實作，將使用者登入和登出 Java Web 應用程式。
@@ -35,18 +33,14 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 * 顯示部分使用者資訊。
 * 將使用者登出應用程式。
 
-<a id="before-you-get-started" class="xliff"></a>
-
-## 開始之前
+## <a name="before-you-get-started"></a>開始之前
 
 * 下載[應用程式基本架構](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip)或下載[完整的範例](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip)。
 * 您還需要一個可以註冊應用程式的 Azure AD 租用戶。 如果您還沒有租用戶，請[了解如何取得租用戶](active-directory-howto-tenant.md)。
 
 當您準備就緒，請遵循接下來九個章節的程序。
 
-<a id="step-1-register-the-new-app-with-azure-ad" class="xliff"></a>
-
-## 步驟 1︰使用 Azure AD 註冊新的應用程式
+## <a name="step-1-register-the-new-app-with-azure-ad"></a>步驟 1︰使用 Azure AD 註冊新的應用程式
 若要設定應用程式以驗證使用者，請先藉由執行下列操作，在您的租用戶中註冊該應用程式︰
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
@@ -61,9 +55,7 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 
 當您在應用程式的入口網站中時，在 [設定] 頁面上建立和複製應用程式的金鑰。 稍後您將需要金鑰。
 
-<a id="step-2-set-up-the-app-to-use-the-adal4j-and-prerequisites-by-using-maven" class="xliff"></a>
-
-## 步驟 2︰藉由使用 Maven，設定應用程式以使用 ADAL4J 和必要條件
+## <a name="step-2-set-up-the-app-to-use-the-adal4j-and-prerequisites-by-using-maven"></a>步驟 2︰藉由使用 Maven，設定應用程式以使用 ADAL4J 和必要條件
 在這個步驟中，您會設定 ADAL4J 以使用 OpenID Connect 驗證通訊協定。 您會使用 ADAL4J 來發出登入和登出要求、管理使用者工作階段、取得使用者資訊等等。
 
 在您的專案根目錄中，開啟/建立 `pom.xml`、找到 `// TODO: provide dependencies for Maven`，然後以下列項目取代：
@@ -178,9 +170,7 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
     </project>
 ```
 
-<a id="step-3-create-the-java-web-app-files-web-inf" class="xliff"></a>
-
-## 步驟 3：建立 Java Web 應用程式檔案 (WEB-INF)
+## <a name="step-3-create-the-java-web-app-files-web-inf"></a>步驟 3：建立 Java Web 應用程式檔案 (WEB-INF)
 在這個步驟中，您會設定 Java Web 應用程式使用 OpenID Connect 驗證通訊協定。 使用 ADAL4J 來發出登入和登出要求、管理使用者的工作階段、取得使用者相關資訊等等。
 
 1. 開啟位於 \webapp\WEB-INF\, 底下的 web.xml 檔案，然後在 XML 中輸入應用程式組態值。 XML 檔案現在應該包含下列程式碼：
@@ -269,9 +259,7 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 
  此程式碼會告訴 Web 應用程式使用 Spring，並指出哪裡可以找到您在下一節中撰寫的 JSP 檔案。
 
-<a id="step-4-create-the-jsp-view-files-for-basicfilter-mvc" class="xliff"></a>
-
-## 步驟 4：建立 JSP 檢視檔案 (適用於 BasicFilter MVC)
+## <a name="step-4-create-the-jsp-view-files-for-basicfilter-mvc"></a>步驟 4：建立 JSP 檢視檔案 (適用於 BasicFilter MVC)
 您已經到達在 WEB-INF 中設定 Web 應用程式的一半。 接下來，您建立 BasicFilter 模型檢視控制器 (MVC) 的 JSP 檔案，該檔案由 Web 應用程式執行。 我們在組態期間已經提示建立檔案。
 
 您稍早告訴 XML 組態檔中的 Java，您有`/`資源載入 JSP 檔案，且您有資源`/secure`通過篩選器，您將其稱為 BasicFilter。
@@ -341,9 +329,7 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 
 您現在需要設定 Java 檔案，以便 Servlet 可以執行其工作。
 
-<a id="step-5-create-some-java-helper-files-for-basicfilter-mvc" class="xliff"></a>
-
-## 步驟 5：建立一些 Java 協助程式檔案 (適用於 BasicFilter MVC)
+## <a name="step-5-create-some-java-helper-files-for-basicfilter-mvc"></a>步驟 5：建立一些 Java 協助程式檔案 (適用於 BasicFilter MVC)
 我們在這個步驟的目標是要建立 Java 檔案，這些檔案能夠：
 
 * 允許使用者登入和登出。
@@ -738,9 +724,7 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 
     ```
 
-<a id="step-6-create-the-java-graph-api-model-files-for-basicfilter-mvc" class="xliff"></a>
-
-## 步驟 6：建立 Java 圖形 API 模型檔案 (適用於 BasicFilter MVC)
+## <a name="step-6-create-the-java-graph-api-model-files-for-basicfilter-mvc"></a>步驟 6：建立 Java 圖形 API 模型檔案 (適用於 BasicFilter MVC)
 如前所述，您會使用圖形 API 來取得登入使用者的相關資料。 為了讓處理順利進行，建立一個代表目錄物件的檔案以及一個代表使用者的檔案，如此便可以使用 Java 的 OO 模式。
 
 1. 建立名為 DirectoryObject.java 的檔案，用來儲存與任何目錄物件相關的基本資料。 稍後您可以對想要執行的任何其他圖形使用這個檔案。 若要建立檔案，貼上下列程式碼：
@@ -1311,9 +1295,7 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 
     ```
 
-<a id="step-7-create-the-authentication-model-and-controller-files-for-basicfilter" class="xliff"></a>
-
-## 步驟 7：建立驗證模型和控制器檔案 (適用於 BasicFilter)
+## <a name="step-7-create-the-authentication-model-and-controller-files-for-basicfilter"></a>步驟 7：建立驗證模型和控制器檔案 (適用於 BasicFilter)
 我們了解 Java 可能會非常繁複，但是您就快要完成了。 在您撰寫 BasicFilter Servlet 以處理要求之前，您必須撰寫更多 ADAL4J 需要的協助程式檔案。
 
 1. 建立名為 AuthHelper.java 的檔案，這可提供您用來判斷登入使用者狀態的方法。 方法包括︰
@@ -1465,9 +1447,7 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 
     ```
 
-<a id="step-8-create-the-basicfilter-file-for-basicfilter-mvc" class="xliff"></a>
-
-## 步驟 8：建立 BasicFilter 檔案 (適用於 BasicFilter MVC)
+## <a name="step-8-create-the-basicfilter-file-for-basicfilter-mvc"></a>步驟 8：建立 BasicFilter 檔案 (適用於 BasicFilter MVC)
 您現在可以建立 BasicFilter.java 檔案，處理來自 JSP 檢視檔案的要求。 若要建立檔案，貼上下列程式碼：
 
 ```Java
@@ -1719,9 +1699,7 @@ public class BasicFilter implements Filter {
 * **createSessionPrincipal()**：建立工作階段主體以用於圖形 API 存取。
 * **getRedirectUrl()**：取得 redirectURL 以與您在入口網站中輸入的值進行比較。
 
-<a id="step-9-compile-and-run-the-sample-in-tomcat" class="xliff"></a>
-
-## 步驟 9：在 Tomcat 中編譯和執行範例
+## <a name="step-9-compile-and-run-the-sample-in-tomcat"></a>步驟 9：在 Tomcat 中編譯和執行範例
 
 1. 變更至根目錄。
 2. 若要藉由使用 `maven` 建置您剛剛拼湊在一起的範例，請執行下列命令：
@@ -1736,9 +1714,7 @@ public class BasicFilter implements Filter {
 > 您可以使用最新的 Tomcat 伺服器，輕易地部署 .war 檔案。 移至 http://localhost:8080/manager/，然後遵循上傳 adal4jsample.war 檔案的指示。 它會為您自動部署正確的端點。
 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 您現在有一個可運作的 Java 應用程式，能夠驗證使用者、使用 OAuth 2.0 安全地呼叫 Web API，以及取得使用者的基本資訊。 如果您還沒有這麼做，現在是將使用者植入租用戶的好時機。
 
 如需其他參考，您可以使用兩種方式其中之一取得完整的範例 (不含您的組態值)︰

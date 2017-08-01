@@ -21,9 +21,7 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="problems-signing-in-to-an-application-using-a-deeplink" class="xliff"></a>
-
-# 使用深層連結登入應用程式的問題
+# <a name="problems-signing-in-to-an-application-using-a-deeplink"></a>使用深層連結登入應用程式的問題
 
 存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。 
 
@@ -31,9 +29,7 @@ ms.lasthandoff: 04/17/2017
 
 深層連結或使用者存取 URL 是一種連結，您的使用者可使用此種連結直接從其瀏覽器網址列存取其密碼 SSO 應用程式。 透過瀏覽到此連結，使用者不必先移至存取面板，便會自動登入應用程式。 這是使用者用來從 Office 365 應用程式啟動程式存取這些應用程式的相同連結。
 
-<a id="general-issues-to-check-first" class="xliff"></a>
-
-## 首先檢查的一般問題
+## <a name="general-issues-to-check-first"></a>首先檢查的一般問題
 
 -   請確定您使用的**瀏覽器**符合存取面板的最低需求。
 
@@ -55,9 +51,7 @@ ms.lasthandoff: 04/17/2017
 
 -   也要確定嘗試清除瀏覽器的 Cookie，然後嘗試再次登入。
 
-<a id="checking-the-deeplink" class="xliff"></a>
-
-## 檢查深層連結
+## <a name="checking-the-deeplink"></a>檢查深層連結
 
 若要檢查您是否擁有正確的深層連結，請依照下列步驟執行：
 
@@ -89,9 +83,7 @@ ms.lasthandoff: 04/17/2017
 
 12. 尋找 [使用者存取 URL] 標籤。 您的深層連結應符合此 URL。
 
-<a id="how-to-install-the-access-panel-browser-extension" class="xliff"></a>
-
-## 如何安裝存取面板瀏覽器延伸模組
+## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板瀏覽器延伸模組
 
 若要安裝存取面板瀏覽器延伸模組，請依照下列步驟執行：
 
@@ -115,9 +107,7 @@ ms.lasthandoff: 04/17/2017
 
 -   [Firefox 存取面板延伸模組](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
-<a id="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application" class="xliff"></a>
-
-## 如何為 Azure AD 資源庫應用程式設定密碼單一登入
+## <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定密碼單一登入
 
 若要從 Azure AD 資源庫設定應用程式，您必須：
 
@@ -125,9 +115,7 @@ ms.lasthandoff: 04/17/2017
 
 -   [設定應用程式使用密碼單一登入](#configure-the-application-for-password-single-sign-on)
 
-<a id="add-an-application-from-the-azure-ad-gallery" class="xliff"></a>
-
-### 從 Azure AD 資源庫新增應用程式
+### <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -151,9 +139,7 @@ ms.lasthandoff: 04/17/2017
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-<a id="configure-the-application-for-password-single-sign-on" class="xliff"></a>
-
-### 設定應用程式使用密碼單一登入
+### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -179,9 +165,7 @@ ms.lasthandoff: 04/17/2017
 
 10. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-<a id="how-to-configure-password-single-sign-on-for-a-non-gallery-application" class="xliff"></a>
-
-## 如何為不在資源庫內的應用程式設定密碼單一登入
+## <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>如何為不在資源庫內的應用程式設定密碼單一登入
 
 若要從 Azure AD 資源庫設定應用程式，您必須：
 
@@ -189,9 +173,7 @@ ms.lasthandoff: 04/17/2017
 
 -   [設定應用程式使用密碼單一登入](#configure-the-application-for-password-single-sign-on)
 
-<a id="add-a-non-gallery-application" class="xliff"></a>
-
-### 新增不在資源庫內的應用程式
+### <a name="add-a-non-gallery-application"></a>新增不在資源庫內的應用程式
 
 若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
@@ -211,9 +193,7 @@ ms.lasthandoff: 04/17/2017
 
 稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-<a id="configure-the-application-for-password-single-sign-on" class="xliff"></a>
-
-### 設定應用程式使用密碼單一登入
+### <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
 
 若要設定應用程式使用單一登入，請依照下列步驟執行：
 
@@ -241,9 +221,7 @@ ms.lasthandoff: 04/17/2017
 
 11. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-<a id="how-to-assign-a-user-to-an-application-directly" class="xliff"></a>
-
-## 如何將使用者直接指派至應用程式
+## <a name="how-to-assign-a-user-to-an-application-directly"></a>如何將使用者直接指派至應用程式
 
 若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行︰
 
@@ -281,9 +259,7 @@ ms.lasthandoff: 04/17/2017
 
 稍待片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。
 
-<a id="if-these-troubleshooting-steps-do-not-the-resolve-the-issue" class="xliff"></a>
-
-## 如果這些疑難排解步驟無法解決問題。 
+## <a name="if-these-troubleshooting-steps-do-not-the-resolve-the-issue"></a>如果這些疑難排解步驟無法解決問題。 
 
 使用下列資訊 (若有的話) 開啟支援票證︰
 
@@ -299,8 +275,6 @@ ms.lasthandoff: 04/17/2017
 
 -   Fiddler 追蹤
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
 
