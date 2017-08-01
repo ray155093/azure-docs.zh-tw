@@ -119,7 +119,7 @@ docker run -d -p 4000:80 --name my-web-site helloworldapp
 
 name - 提供執行中容器的名稱 (而不是容器識別碼)。
 
-連線到執行中的容器。  開啟 Web 瀏覽器並指向連接埠 4000 上傳回的 IP 位址，例如 "http://localhost:4000"。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
+連線到執行中的容器。  開啟 Web 瀏覽器並指向連接埠 4000 上傳回的 IP 位址，例如 http://localhost:4000 。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
 
 ![Hello World!][hello-world]
 
@@ -217,7 +217,7 @@ azure servicefabric cluster connect
 
 開啟瀏覽器並瀏覽至位於 http://localhost:19080/Explorer 的 Service Fabric Explorer (如果在 Mac OS X 上使用 Vagrant，請以 VM 的私人 IP 取代 localhost)。 展開 [應用程式] 節點，請注意，您的應用程式類型現在有一個項目，而另一個則是該類型的第一個執行個體。
 
-連線到執行中的容器。  開啟 Web 瀏覽器並指向連接埠 4000 上傳回的 IP 位址，例如 "http://localhost:4000"。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
+連線到執行中的容器。  開啟 Web 瀏覽器並指向連接埠 4000 上傳回的 IP 位址，例如 http://localhost:4000 。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
 
 ![Hello World!][hello-world]
 
