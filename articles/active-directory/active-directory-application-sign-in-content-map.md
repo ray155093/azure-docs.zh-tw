@@ -20,29 +20,21 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="problems-when-signing-in-to-applications" class="xliff"></a>
-
-# 登入應用程式時發生問題
+# <a name="problems-when-signing-in-to-applications"></a>登入應用程式時發生問題
 
 
 
-<a id="i-can-complete-azure-ad-sign-in-but-im-seeing-a-prompt-that-i-dont-expect" class="xliff"></a>
-
-## 我可以完成 Azure AD 登入，但卻看到非預期的提示
+## <a name="i-can-complete-azure-ad-sign-in-but-im-seeing-a-prompt-that-i-dont-expect"></a>我可以完成 Azure AD 登入，但卻看到非預期的提示
   下列文件可協助您解決此類別的一些最常見問題。
   * [使用者登入應用程式時看到非預期的同意提示](https://docs.microsoft.com/azure/active-directory/application-sign-in-unexpected-user-consent-prompt/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [使用者對應用程式執行同意時出現非預期的錯誤](https://docs.microsoft.com/azure/active-directory/application-sign-in-unexpected-user-consent-error/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-<a id="im-having-other-problems-signing-in" class="xliff"></a>
-
-## 我在登入時遇到其他問題
+## <a name="im-having-other-problems-signing-in"></a>我在登入時遇到其他問題
   下列文件可協助您解決此類別的一些最常見問題。
   * [我可以直接登入應用程式，但無法從自訂入口網站上的深層連結登入](https://docs.microsoft.com/azure/active-directory/application-sign-in-other-problem-deeplink/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [我可以直接登入應用程式，但無法從存取入口網站登入](https://docs.microsoft.com/azure/active-directory/application-sign-in-other-problem-access-panel/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-<a id="im-having-problems-signing-in-to-a-specific-application" class="xliff"></a>
-
-## 我在登入特定應用程式時遇到問題
+## <a name="im-having-problems-signing-in-to-a-specific-application"></a>我在登入特定應用程式時遇到問題
   下列文件可協助您解決此類別的一些最常見問題。
   * [我可以完成 Azure AD 登入，但之後在應用程式登入頁面上看到錯誤](https://docs.microsoft.com/azure/active-directory/application-sign-in-problem-application-error/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [我無法登入針對密碼單一登入而設定且不在資源庫內的應用程式](https://docs.microsoft.com/azure/active-directory/application-sign-in-problem-password-sso-non-gallery/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)

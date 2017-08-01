@@ -20,9 +20,7 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="troubleshoot-azure-active-directory-application-development" class="xliff"></a>
-
-# 針對 Azure Active Directory 應用程式開發問題進行疑難排解
+# <a name="troubleshoot-azure-active-directory-application-development"></a>針對 Azure Active Directory 應用程式開發問題進行疑難排解
 下列連結會將您帶到一個內容對應表，此對應表可幫助您解決在 Azure Active Directory 中使用 **Application Registry** 來開發應用程式時，最常見的一些問題。
 
 * [應用程式設定和註冊的問題](active-directory-application-dev-config-content-map.md)

@@ -23,8 +23,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 03/03/2017
 
 ---
-<a id="understand-your-azure-billing-for-external-service-charges" class="xliff"></a>
-# 了解外部服務費用的 Azure 計費方式
+# <a name="understand-your-azure-billing-for-external-service-charges"></a>了解外部服務費用的 Azure 計費方式
 外部服務先前稱為 Azure Marketplace。 一般而言，它們是由第三方發佈且適用於 Azure，但已完全整合於 Azure 內的服務。 例如，ClearDB 和 SendGrid 是可在 Azure 中購買的外部服務，然而它們並非由 Microsoft 所發行。
 
 當您佈建新的外部服務或資源時，系統會顯示警告︰
@@ -36,15 +35,13 @@ ms.lasthandoff: 03/03/2017
 > 
 > 
 
-<a id="how-external-services-are-billed" class="xliff"></a>
-## 如何對外部服務計費
+## <a name="how-external-services-are-billed"></a>如何對外部服務計費
 - 外部服務會分開計費。 系統會將這類服務視為 Azure 訂用帳戶內的個別訂單。 當您購買服務時，會設定每項服務的計費期間。 這樣做可避免與購買服務之訂用帳戶的計費期間混淆。 您還會收到獨立的帳單，而信用卡收費也會分開進行。
 - 每項外部服務都有各自的計費模式。 有些服務採用隨用隨付的方式計費，有些則使用按月付款模式。 您需要使用信用卡來支付 Azure 外部服務的費用，不能以發票付款的方式來購買。
 - 外部服務不適用於每個月的免費信用額度。 如果您使用含有[免費信用額度](https://azure.microsoft.com/pricing/spending-limits/)的 Azure 訂用帳戶，該信用額度將無法套用至外部服務帳單。 請使用信用卡來購買外部服務。
 
 
-<a id="view-external-service-spending-and-history-in-the-azure-portal" class="xliff"></a>
-## 在 Azure 入口網站檢視外部服務消費和歷程記錄
+## <a name="view-external-service-spending-and-history-in-the-azure-portal"></a>在 Azure 入口網站檢視外部服務消費和歷程記錄
 在 [Azure 入口網站](https://portal.azure.com/)內，您可以檢視每個訂用帳戶上的外部服務清單： 
 
 1. 以帳戶管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。
@@ -61,12 +58,10 @@ ms.lasthandoff: 03/03/2017
    
     ![檢視外部服務帳單記錄](./media/billing-understand-your-azure-marketplace-charges/billing-overview-blade.png)
 
-<a id="view-external-service-spending-for-enterprise-agreement-ea-customers" class="xliff"></a>
-## 檢視 Enterprise 合約 (EA) 客戶的外部服務消費
+## <a name="view-external-service-spending-for-enterprise-agreement-ea-customers"></a>檢視 Enterprise 合約 (EA) 客戶的外部服務消費
 EA 客戶可以在 EA 入口網站看到外部服務消費並下載報告。 請參閱 [EA 客戶的 Azure Marketplace](https://ea.azure.com/helpdocs/azureMarketplace) 以便開始使用。
 
-<a id="manage-payment-methods-for-external-service-orders" class="xliff"></a>
-## 管理外部服務訂單的付款方法
+## <a name="manage-payment-methods-for-external-service-orders"></a>管理外部服務訂單的付款方法
 從[帳戶中心](https://account.windowsazure.com/)更新外部服務訂單的付款方法。
 
 > [!NOTE]
@@ -87,14 +82,12 @@ EA 客戶可以在 EA 入口網站看到外部服務消費並下載報告。 請
    
     ![選取編輯資訊](./media/billing-understand-your-azure-marketplace-charges/edit-info.png)
 
-<a id="cancel-an-external-service-order" class="xliff"></a>
-## 取消外部服務訂單
+## <a name="cancel-an-external-service-order"></a>取消外部服務訂單
 如果想要取消外部服務訂單，請在 [Azure 入口網站](https://portal.azure.com)中刪除該資源。
 
 ![刪除資源](./media/billing-understand-your-azure-marketplace-charges/deleteMarketplaceOrder.PNG)
 
-<a id="need-help-contact-support" class="xliff"></a>
-## 需要協助嗎？ 請連絡支援人員。
+## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
 如果您仍有問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 

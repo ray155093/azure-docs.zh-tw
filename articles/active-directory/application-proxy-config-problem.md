@@ -21,23 +21,17 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="problem-creating-an-application-proxy-application" class="xliff"></a>
-
-# 建立應用程式 Proxy 應用程式時發生問題 
+# <a name="problem-creating-an-application-proxy-application"></a>建立應用程式 Proxy 應用程式時發生問題 
 
 以下是建立新的應用程式 Proxy 應用程式時會遇到的一些常見問題。
 
-<a id="recommended-documents" class="xliff"></a>
-
-## 建議的文件 
+## <a name="recommended-documents"></a>建議的文件 
 
 若要深入了解透過管理入口網站建立應用程式 Proxy 應用程式，請參閱[使用 Azure AD 應用程式 Proxy 發佈應用程式](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal)。
 
 如果您依照該文件中的步驟，並在建立應用程式時發生錯誤，請查看錯誤詳細資料，以取得修正應用程式的資訊及建議。 大部分的錯誤訊息都包含建議的修正。 
 
-<a id="specific-things-to-check" class="xliff"></a>
-
-## 要檢查的特定事項
+## <a name="specific-things-to-check"></a>要檢查的特定事項
 
 若要避免常見的錯誤，請確認：
 
@@ -55,8 +49,6 @@ ms.lasthandoff: 04/17/2017
 
    ![通知提示](./media/application-proxy-config-problem/error-message.png)
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [在 Azure 入口網站中啟用應用程式 Proxy](active-directory-application-proxy-enable.md)
 
