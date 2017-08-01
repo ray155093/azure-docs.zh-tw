@@ -21,9 +21,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 06/14/2017
 
 ---
-<a id="tutorial-create-a-pipeline-with-copy-activity-using-net-api" class="xliff"></a>
-
-# 教學課程：使用 .NET API 建立具有複製活動的管線
+# <a name="tutorial-create-a-pipeline-with-copy-activity-using-net-api"></a>教學課程：使用 .NET API 建立具有複製活動的管線
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -45,17 +43,13 @@ ms.lasthandoff: 06/14/2017
 > 
 > 本教學課程中的資料管線會將資料從來源資料存放區，複製到目的地資料存放區。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 * 請檢閱 [教學課程概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得本教學課程的概觀並完成 **必要** 步驟。
 * Visual Studio 2012、2013 或 2015
 * 下載並安裝 [Azure .NET SDK](http://azure.microsoft.com/downloads/)
 * Azure PowerShell。 按照 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示操作，在您的電腦上安裝 Azure PowerShell。 您可以使用 Azure PowerShell 建立 Azure Active Directory 應用程式。
 
-<a id="create-an-application-in-azure-active-directory" class="xliff"></a>
-
-### 在 Azure Active Directory 中建立應用程式
+### <a name="create-an-application-in-azure-active-directory"></a>在 Azure Active Directory 中建立應用程式
 建立 Azure Active Directory 應用程式、建立該應用程式的服務主體，然後將其指派給 **Data Factory 參與者** 角色。
 
 1. 啟動 **PowerShell**。
@@ -122,9 +116,7 @@ ms.lasthandoff: 06/14/2017
 * 應用程式識別碼
 * 密碼 (在第一個命令中指定)
 
-<a id="walkthrough" class="xliff"></a>
-
-## 逐步介紹
+## <a name="walkthrough"></a>逐步介紹
 1. 使用 Visual Studio 2012/2013/2015 建立 C# .NET 主控台應用程式。
    1. 啟動 **Visual Studio** 2012/2013/2015。
    2. 按一下 [檔案]，指向 [新增]，然後按一下 [專案]。
@@ -523,9 +515,7 @@ ms.lasthandoff: 06/14/2017
    * 管線： **PipelineBlobSample**
 20. 確認在指定 Azure SQL Database 的 **emp** 資料表中建立兩筆員工記錄。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 如需適用於 Data Factory 之 .NET API 的完整文件，請參閱 [Data Factory .NET API 參考](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1)。
 
 在本教學課程中，您可使用 Azure Blob 儲存體作為來源資料存放區以及使用 Azure SQL Database 作為複製作業的目的地資料存放區。 下表提供複製活動所支援作為來源或目的地的資料存放區清單： 

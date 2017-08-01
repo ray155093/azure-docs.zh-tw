@@ -22,14 +22,10 @@ ms.lasthandoff: 06/08/2017
 
 ---
 
-<a id="securing-cloud-resources-with-azure-multi-factor-authentication-and-ad-fs" class="xliff"></a>
-
-# 使用 Azure Multi-Factor Authentication 與 AD FS 保護雲端資源
+# <a name="securing-cloud-resources-with-azure-multi-factor-authentication-and-ad-fs"></a>使用 Azure Multi-Factor Authentication 與 AD FS 保護雲端資源
 如果您的組織與 Azure Active Directory 同盟，請使用 Azure Multi-factor Authentication 或 Active Directory Federation Services (AD FS) 來保護 Azure AD 存取的資源。 使用下列程序可利用 Azure Multi-Factor Authentication 或 Active Directory Federation Services 來保護 Azure Active Directory 資源。
 
-<a id="secure-azure-ad-resources-using-ad-fs" class="xliff"></a>
-
-## 使用 AD FS 保護 Azure AD 資源
+## <a name="secure-azure-ad-resources-using-ad-fs"></a>使用 AD FS 保護 Azure AD 資源
 若要保護雲端資源，請設定宣告規則，以便在使用者成功執行雙步驟驗證時，Active Directory Federation Services 會發出 multipleauthn 宣告。 此宣告會傳遞至 Azure AD。 遵循此程序來逐步執行各個步驟︰
 
 
@@ -53,16 +49,12 @@ ms.lasthandoff: 06/08/2017
     ![新增轉換宣告規則精靈](./media/multi-factor-authentication-get-started-adfs-cloud/configurewizard.png)
 9. 按一下 [完成]。 關閉 AD FS 管理主控台。
 
-<a id="trusted-ips-for-federated-users" class="xliff"></a>
-
-## 同盟使用者的可信任 IP
+## <a name="trusted-ips-for-federated-users"></a>同盟使用者的可信任 IP
 信任的 IP 可讓系統管理員針對特定的 IP 位址，或針對從他們自己的內部網路發出要求的同盟使用者，略過雙步驟驗證。 下列各節說明當要求是來自同盟使用者的內部網路時，如何設定同盟使用者的 Azure Multi-Factor Authentication 信任的 IP，以及略過雙步驟驗證。 這是藉由設定 AD FS 使用「通過或篩選傳入宣告」範本與「位於公司網路之內」宣告類別來達成。
 
 此範例使用 Office 365 做為信賴憑證者信任。
 
-<a id="configure-the-ad-fs-claims-rules" class="xliff"></a>
-
-### 設定 AD FS 宣告規則
+### <a name="configure-the-ad-fs-claims-rules"></a>設定 AD FS 宣告規則
 我們要做的第一件事是設定 AD FS 宣告。 建立兩個宣告規則，一個用於「位於公司網路之內」宣告類型，另一個用於保持使用者登入。
 
 1. 開啟 [AD FS 管理]。
@@ -90,9 +82,7 @@ ms.lasthandoff: 06/08/2017
 15. 按一下 [ **確定**]。
 16. 關閉 [AD FS 管理]。
 
-<a id="configure-azure-multi-factor-authentication-trusted-ips-with-federated-users" class="xliff"></a>
-
-### 搭配同盟使用者設定 Azure Multi-Factor Authentication 信任的 IP
+### <a name="configure-azure-multi-factor-authentication-trusted-ips-with-federated-users"></a>搭配同盟使用者設定 Azure Multi-Factor Authentication 信任的 IP
 既然已經有宣告，我們可以開始設定信任的 IP。
 
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
