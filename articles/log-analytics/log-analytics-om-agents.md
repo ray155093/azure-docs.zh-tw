@@ -22,9 +22,7 @@ ms.lasthandoff: 06/21/2017
 
 ---
 
-<a id="connect-operations-manager-to-log-analytics" class="xliff"></a>
-
-# 將 Operations Manager 連接到 Log Analytics
+# <a name="connect-operations-manager-to-log-analytics"></a>將 Operations Manager 連接到 Log Analytics
 若要維護 System Center Operations Manager 中的現有投資，並使用 Log Analytics 的延伸功能，您可以整合 Operations Manager 與 OMS 工作區。  這可讓您利用 OMS 的機會，同時繼續使用 Operations Manager：
 
 * 使用 Operations Manager 繼續監視 IT 服務的健全狀況
@@ -41,18 +39,14 @@ ms.lasthandoff: 06/21/2017
 
 如果 IT 安全性原則不允許您網路上的電腦連線到網際網路，則可以將管理伺服器設定為連線到 OMS 閘道，以根據您已啟用的解決方案來接收組態資訊和傳送收集到的資料。  如需如何設定 Operations Manager 管理群組以透過 OMS 閘道與 OMS 服務進行通訊的其他資訊和步驟，請參閱[使用 OMS 閘道將電腦連線到 OMS](log-analytics-oms-gateway.md)。  
 
-<a id="system-requirements" class="xliff"></a>
-
-## 系統需求
+## <a name="system-requirements"></a>系統需求
 開始之前，請檢閱下列詳細資料，以確認符合必要條件。
 
 * OMS 僅支援 Operations Manager 2016、Operations Manager 2012 SP1 UR6 和更新版本，以及 Operations Manager 2012 R2 UR2 和更新版本。  Operations Manager 2012 SP1 UR7 和 Operations Manager 2012 R2 UR3 中已加入 Proxy 支援。
 * 所有 Operations Manager 代理程式必須符合最低支援需求。 請確定代理程式已安裝最低更新版本，否則 Windows 代理程式流量會失敗，許多錯誤可能會填滿 Operations Manager 事件記錄。
 * OMS 訂用帳戶。  如需進一步資訊，請檢閱 [開始使用 Log Analytics](log-analytics-get-started.md)。
 
-<a id="network" class="xliff"></a>
-
-### 網路
+### <a name="network"></a>網路
 下列資訊列出 Operations Manager 代理程式、管理伺服器及 Operations 主控台與 OMS 通訊所需的 Proxy 和防火牆組態資訊。  每個元件的流量會從您的網路輸出至 OMS 服務。     
 
 |資源 | 連接埠號碼| 略過 HTTPS 檢查|  
@@ -77,9 +71,7 @@ ms.lasthandoff: 06/21/2017
 |login.windows.net| 80 和 443||  
 
 
-<a id="connecting-operations-manager-to-oms" class="xliff"></a>
-
-## 將 Operations Manager 連接到 OMS
+## <a name="connecting-operations-manager-to-oms"></a>將 Operations Manager 連接到 OMS
 執行下列一系列的步驟，設定 Operations Manager 管理群組來連接到其中一個 OMS 工作區。
 
 1. 在 Operations Manager 主控台中，選取 [管理]  工作區。
@@ -95,9 +87,7 @@ ms.lasthandoff: 06/21/2017
 6. 在 [Operations Management Suite 登入精靈：摘要] 頁面上，確認您的設定，如果正確無誤，請按一下 [建立]。
 7. 在 [Operations Management Suite 登入精靈：完成] 頁面上，按一下 [關閉]。
 
-<a id="add-agent-managed-computers" class="xliff"></a>
-
-### 加入代理程式所管理的電腦
+### <a name="add-agent-managed-computers"></a>加入代理程式所管理的電腦
 設定與 OMS 工作區的整合之後，這只會建立與 OMS 的連接，並不會從向管理群組回報的代理程式收集任何資料。 除非您設定特定代理程式管理的哪些電腦會收集 Log Analytics 的資料，否則不會發生這種情況。 您可以個別選取電腦物件，也可以選取包含 Windows 電腦物件的群組。 您無法選取包含另一個類別之執行個體 (例如邏輯磁碟或 SQL 資料庫) 的群組。
 
 1. 開啟 Operations Manager 主控台，然後選取 [ **管理** ] 工作區。
@@ -107,9 +97,7 @@ ms.lasthandoff: 06/21/2017
 
 在 Operations 主控台的 [管理]  工作區中，您可以檢視電腦和群組，這些電腦和群組設定成收集來自 Operations Management Suite 下方之 [受管理的電腦] 節點的資料。  您可以視需要在這裡新增或移除電腦和群組。
 
-<a id="configure-oms-proxy-settings-in-the-operations-console" class="xliff"></a>
-
-### 在 Operations 主控台中設定 OMS Proxy 設定
+### <a name="configure-oms-proxy-settings-in-the-operations-console"></a>在 Operations 主控台中設定 OMS Proxy 設定
 如果內部 Proxy 伺服器位在管理群組與 OMS Web 服務之間，請執行下列步驟。  這些設定是從管理群組進行集中管理，並且散發至範圍中所含的代理程式所管理系統，來收集 OMS 的資料。  特定解決方案略過管理伺服器並將資料直接傳送給 OMS Web 服務時，這十分有幫助。
 
 1. 開啟 Operations Manager 主控台，然後選取 [ **管理** ] 工作區。
@@ -134,9 +122,7 @@ ms.lasthandoff: 06/21/2017
 * 會建立兩個連接器。  第一個稱為 **Microsoft.SystemCenter.Advisor.DataConnector**，並自動以一個訂用帳戶設定，這個訂用帳戶會將管理群組中所有類別之執行個體產生的所有警示轉送給 OMS Log Analytics。 第二個連接器是 **Advisor 連接器**，負責與 OMS Web 服務進行通訊以及共用資料。
 * 您在管理群組中已選擇來收集資料的代理程式和群組，將會新增至 [Microsoft System Center Advisor 監控伺服器群組]。
 
-<a id="management-pack-updates" class="xliff"></a>
-
-## 管理組件更新
+## <a name="management-pack-updates"></a>管理組件更新
 組態完成之後，Operations Manager 管理群組就會建立與 OMS 服務的連接。  針對您已啟用且與 Operations Manager 整合的解決方案，管理伺服器會與 Web 服務同步處理，並以管理組件的形式接收更新的組態資訊。   Operations Manager 會檢查這些管理組件的更新，如果有更新，就會自動下載並匯入。  有兩個規則特別可控制這個行為︰
 
 * **Microsoft.SystemCenter.Advisor.MPUpdate** - 更新基底 OMS 管理組件。 預設會每 12 小時執行一次。
@@ -146,9 +132,7 @@ ms.lasthandoff: 06/21/2017
 
 如果您想要繼續遵循現有的變更控制程序來控制生產管理群組中的管理組件發行版本，則可以停用規則，並在允許更新時於特定期間啟用它們。 如果您的環境中有開發或 QA 管理群組，而且該管理群組連接到網際網路，則可以設定該管理群組與 OMS 工作區，以支援此案例。  這可讓您先檢閱和評估 OMS 管理組件的反覆版本，再發行到生產管理群組。
 
-<a id="switch-an-operations-manager-group-to-a-new-oms-workspace" class="xliff"></a>
-
-## 將 Operations Manager 群組切換到新的 OMS 工作區
+## <a name="switch-an-operations-manager-group-to-a-new-oms-workspace"></a>將 Operations Manager 群組切換到新的 OMS 工作區
 1. 登入 OMS 訂用帳戶，然後在 [Microsoft Operations Management Suite](http://oms.microsoft.com/) 中建立工作區。
 2. 使用身為 Operations Manager 系統管理員角色成員的帳戶開啟 Operations Manager 主控台，然後選取 [管理]  工作區。
 3. 展開 Operations Management Suite，選取 [連接] 。
@@ -160,14 +144,10 @@ ms.lasthandoff: 06/21/2017
    > 
    > 
 
-<a id="validate-operations-manager-integration-with-oms" class="xliff"></a>
-
-## 驗證 Operations Manager 與 OMS 的整合
+## <a name="validate-operations-manager-integration-with-oms"></a>驗證 Operations Manager 與 OMS 的整合
 您有幾種不同的方式可以確認 OMS 與 Operations Manager 的整合成功。
 
-<a id="to-confirm-integration-from-the-oms-portal" class="xliff"></a>
-
-### 從 OMS 入口網站確認整合
+### <a name="to-confirm-integration-from-the-oms-portal"></a>從 OMS 入口網站確認整合
 1. 在 OMS 入口網站中，按一下 [設定] 圖格
 2. 選取 [連接的來源]。
 3. 在 [System Center Operations Manager] 區段下方的表格中，您應該會看到管理群組名稱，還會列出上次收到資料時的代理程式數目和狀態。
@@ -175,9 +155,7 @@ ms.lasthandoff: 06/21/2017
    ![oms-settings-connectedsources](./media/log-analytics-om-agents/oms-settings-connectedsources.png)
 4. 請記下 [設定] 頁面左下方的 [工作區識別碼]  值。  以下您將根據 Operations Manager 管理群組來驗證此值。  
 
-<a id="to-confirm-integration-from-the-operations-console" class="xliff"></a>
-
-### 從 Operations 主控台確認整合
+### <a name="to-confirm-integration-from-the-operations-console"></a>從 Operations 主控台確認整合
 1. 開啟 Operations Manager 主控台，然後選取 [ **管理** ] 工作區。
 2. 選取 [管理組件]，並在 [尋找:] 文字方塊中輸入 **Advisor** 或 **Intelligence**。
 3. 根據您已啟用的解決方案，您會看到搜尋結果中列出對應的管理組件。  例如，如果您已啟用警示管理解決方案，則 [Microsoft System Center Advisor 警示管理] 管理組件會在清單中。
@@ -185,9 +163,7 @@ ms.lasthandoff: 06/21/2017
    
    ![oms-opsmgr-mg-authsvcuri-property-ms](./media/log-analytics-om-agents/oms-opsmgr-mg-authsvcuri-property-ms.png)
 
-<a id="remove-integration-with-oms" class="xliff"></a>
-
-## 移除與 OMS 的整合
+## <a name="remove-integration-with-oms"></a>移除與 OMS 的整合
 當您不再需要整合 Operations Manager 管理群組和 OMS 工作區時，需要執行幾個步驟，才能適當移除管理群組中的連接和組態。 下列程序可讓您刪除管理群組的參考來更新 OMS 工作區、刪除 OM 連接器，然後刪除支援 OMS 的管理組件。   
 
 已啟用且與 Operations Manager 整合之解決方案的管理組件，以及支援與 OMS 服務整合所需的管理組件，都無法輕易地從管理群組中刪除。  這是因為有些 OMS 管理組件與其他相關管理組件相依。  若要刪除與其他管理組件相依的管理組件，請從 TechNet 指令碼中心下載[移除具有相依性的管理組件](https://gallery.technet.microsoft.com/scriptcenter/Script-to-remove-a-84f6873e) (英文) 指令碼。  
@@ -321,9 +297,7 @@ ms.lasthandoff: 06/21/2017
 
 未來，如果您打算將管理群組重新連接至 OMS 工作區，您需要從套用到管理群組的最新更新彙總套件中，重新匯入 `Microsoft.SystemCenter.Advisor.Resources.\<Language>\.mpb` 管理組件檔案。  您可以在 `%ProgramFiles%\Microsoft System Center 2012` 或 `System Center 2012 R2\Operations Manager\Server\Management Packs for Update Rollups` 資料夾中找到此檔案。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 若要新增功能和收集資料，請參閱[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)。
 
 

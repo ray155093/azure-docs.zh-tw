@@ -23,9 +23,7 @@ ms.lasthandoff: 06/07/2017
 
 
 ---
-<a id="working-with-geospatial-and-geojson-location-data-in-azure-cosmos-db" class="xliff"></a>
-
-# 使用 Azure Cosmos DB 中的地理空間和 GeoJSON 位置資料
+# <a name="working-with-geospatial-and-geojson-location-data-in-azure-cosmos-db"></a>使用 Azure Cosmos DB 中的地理空間和 GeoJSON 位置資料
 本文將介紹 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 中的地理空間功能。 閱讀本文後，您將能夠回答下列問題：
 
 * 如何在 Azure Cosmos DB 中儲存空間資料？
@@ -34,19 +32,13 @@ ms.lasthandoff: 06/07/2017
 
 本文示範如何透過 DocumentDB API 使用空間資料。 請參閱此 [GitHub 專案](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Geospatial/Program.cs)中的程式碼範例。
 
-<a id="introduction-to-spatial-data" class="xliff"></a>
-
-## 空間資料簡介
+## <a name="introduction-to-spatial-data"></a>空間資料簡介
 空間資料可描述空間中物件的位置和形狀。 在大部分的應用程式中，這些會對應至地球上的物件，也就是地理空間資料。 空間資料可以用來代表人、感興趣的地方、城市邊界或湖泊。 常見使用案例通常涉及鄰近性查詢，例如「尋找我目前位置附近的所有咖啡廳」。 
 
-<a id="geojson" class="xliff"></a>
-
-### GeoJSON
+### <a name="geojson"></a>GeoJSON
 Azure Cosmos DB 支援對使用 [GeoJSON 規格 (英文)](https://tools.ietf.org/html/rfc7946) 表示的地理空間點資料執行編製索引和查詢。 GeoJSON 資料結構一律為有效的 JSON 物件，因此可透過 Azure Cosmos DB 來儲存及查詢，無須使用任何特殊的工具或程式庫。 Azure Cosmos DB SDK 提供協助程式類別和方法，以便更容易使用空間資料。 
 
-<a id="points-linestrings-and-polygons" class="xliff"></a>
-
-### 點、LineString 和多邊形
+### <a name="points-linestrings-and-polygons"></a>點、LineString 和多邊形
 **點** 代表空間中的單一位置。 在地理空間資料中，某個點所代表的確切位置可能是雜貨店的街道地址、電話亭、汽車或城市。  點會使用其座標組或經緯度，以 GeoJSON (和 Azure Cosmos DB) 來表示。 以下是點的 JSON 範例。
 
 **Azure Cosmos DB 中的點**
@@ -108,16 +100,12 @@ Azure Cosmos DB 支援對使用 [GeoJSON 規格 (英文)](https://tools.ietf.org
 
 除了點、LineString 和多邊形之外，GeoJSON 也會指定如何將多個地理空間位置的表示加以分組，以及如何將任意屬性與地理位置產生關聯成為 **特徵**的表示。 由於這些物件都是有效的 JSON，因此均可在 Azure Cosmos DB 中儲存及處理。 不過，Azure Cosmos DB 僅支援自動編製點的索引。
 
-<a id="coordinate-reference-systems" class="xliff"></a>
-
-### 座標參考系統
+### <a name="coordinate-reference-systems"></a>座標參考系統
 由於地球的形狀並不規則，地理空間資料的座標可以許多座標參考系統 (CRS) 來表示，而這些系統各有自己的參考框架和測量單位。 例如「英國國家格網參考系統」對英國而言是非常精確的參考系統，但對其他地區則不是。 
 
 現今最常使用的 CRS 是「全球大地座標系統」[WGS-84](http://earth-info.nga.mil/GandG/wgs84/)。 GPS 裝置和許多地圖服務，包括 Google 地圖與 Bing Maps API 均是使用 WGS-84。 Azure Cosmos DB 僅支援對使用 WGS-84 CRS 的地理空間資料執行編製索引和查詢。 
 
-<a id="creating-documents-with-spatial-data" class="xliff"></a>
-
-## 建立具有空間資料的文件
+## <a name="creating-documents-with-spatial-data"></a>建立具有空間資料的文件
 當您建立包含 GeoJSON 值的文件時，值會根據集合的索引編製原則，自動以空間索引進行索引編製。 如果您是以動態類型的語言 (如 Python 或 Node.js) 使用 Azure Cosmos DB SDK，則必須建立有效的 GeoJSON。
 
 **以 Node.js 建立具有地理空間資料的文件**
@@ -165,14 +153,10 @@ await client.CreateDocumentAsync(
 
 如果您沒有經緯度資訊，但有實體地址或位置名稱，如城市或國家/地區，您可以使用像是 Bing Maps REST 服務之類的地理編碼服務，來查閱實際的座標。 在 [這裡](https://msdn.microsoft.com/library/ff701713.aspx)深入了解 Bing Maps 地理編碼。
 
-<a id="querying-spatial-types" class="xliff"></a>
-
-## 查詢空間類型
+## <a name="querying-spatial-types"></a>查詢空間類型
 既然我們已經探討過如何插入地理空間資料，現在就來看看如何透過 SQL 和 LINQ 使用 Azure Cosmos DB 查詢此資料。
 
-<a id="spatial-sql-built-in-functions" class="xliff"></a>
-
-### 空間 SQL 內建函數
+### <a name="spatial-sql-built-in-functions"></a>空間 SQL 內建函數
 Azure Cosmos DB 支援下列開放地理空間協會 (OGC) 內建的地理空間查詢函式。 如需更多完整的 SQL 語言內建函式，請參閱[查詢 Azure Cosmos DB](documentdb-sql-query.md)。
 
 <table>
@@ -290,9 +274,7 @@ ST_ISVALID 和 ST_ISVALIDDETAILED 可用來檢查空間物件是否有效。 例
           }
     }]
 
-<a id="linq-querying-in-the-net-sdk" class="xliff"></a>
-
-### .NET SDK 中的 LINQ 查詢
+### <a name="linq-querying-in-the-net-sdk"></a>.NET SDK 中的 LINQ 查詢
 DocumentDB.NET SDK 也是虛設常式方法 `Distance()` 和 `Within()` 的提供者，供您在 LINQ 運算式中使用。 DocumentDB LINQ 提供者會將這些方法呼叫，轉譯為同等的 SQL 內建函數呼叫 (分別為 ST_DISTANCE 和 ST_WITHIN)。 
 
 以下是 LINQ 查詢的範例，該查詢會使用 LINQ 在 Azure Cosmos DB 集合中找出所有文件，而這些文件的「位置」值會在指定點的 30 公里半徑內。
@@ -330,9 +312,7 @@ DocumentDB.NET SDK 也是虛設常式方法 `Distance()` 和 `Within()` 的提�
 
 既然我們已經探討過如何使用 LINQ 和 SQL 查詢文件，現在來看一下如何針對空間編製索引設定 Azure Cosmos DB。
 
-<a id="indexing" class="xliff"></a>
-
-## 編製索引
+## <a name="indexing"></a>編製索引
 如我們在[使用 Azure Cosmos DB 進行無從驗證結構描述的編製索引 (英文)](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf) 文件中所述，我們設計的 Azure Cosmos DB 資料庫引擎真正是無從驗證結構描述的，並提供一流的 JSON 支援。 Azure Cosmos DB 的寫入最佳化資料庫引擎原生就能了解以 GeoJSON 標準表示的空間資料 (點、多邊形及線)。
 
 簡單來說，大地座標的幾何會投影在 2D 平面上，然後使用 **quadtree**以漸進方式分成格子。 這些格子會根據 **希伯特空間填滿曲線**(Hilbert space filling curve) 內的格子位置對應至 1D，並保留點的位置。 此外，在為位置資料編製索引之後，會經過稱為**鑲嵌式**的處理程序，也就是會將位置上相交的所有格子識別為索引鍵並儲存在 Azure Cosmos DB 索引中。 在查詢時，點和多邊形之類的引數也會經過鑲嵌，以擷取相關的格子 ID 範圍，然後用來從索引擷取資料。
@@ -413,9 +393,7 @@ DocumentDB.NET SDK 也是虛設常式方法 `Distance()` 和 `Within()` 的提�
 > 
 > 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 既然您已經學會如何開始使用 Azure Cosmos DB 中的地理空間支援，您可以：
 
 * 使用 [GitHub 上的地理空間 .NET 程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/blob/fcf23d134fc5019397dcf7ab97d8d6456cd94820/samples/code-samples/Geospatial/Program.cs)來開始轉寫程式碼
