@@ -12,25 +12,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/08/2017
+ms.date: 07/27/2017
 ms.author: curtand
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 4bab9f44d1c91f05618ea510b83beb06540429f2
-ms.openlocfilehash: be84686351255585c3484f5ab8dad37b92462e2b
+ms.reviewer: kairaz.contractor
+ms.custom: oldportal;it-pro;
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: 92681a42ff1eb7e9bfa834308833b96749cbd078
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/14/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="setting-up-azure-active-directory-for-self-service-group-management"></a>設定 Azure Active Directory 進行自助服務群組管理
 自助式群組管理可讓使用者在 Azure Active Directory 中建立及管理安全性群組或 Office 365 群組。 使用者也可以要求安全性群組或 Office 365 群組成員資格，然後群組擁有者可以管理或拒絕成員資格。 如此一來，可以將群組成員資格的日常控制權委派給了解該成員資格的商務內容的人員。 自助式群組管理功能僅供安全性群組和 Office 365 群組使用，但具備郵件功能的安全性群組或通訊群組清單無法使用此功能。
 
+> [!IMPORTANT]
+> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。
+
 自助式群組管理目前包含兩個重要案例：委派的群組管理和自助式群組管理。
 
-* **委派的群組管理**
-  ：例如，管理對系統管理員公司所使用之 SaaS 應用程式存取權的系統管理員。 管理這些存取權限會變得很麻煩，所以此系統管理員會要求企業業主建立新的群組。 系統管理員會將應用程式的存取權指派給新群組，並新增至所有人員已存取該應用程式的群組。 接著，企業業主可以新增更多使用者，而且這些使用者會自動佈建到應用程式。 企業業主不需要等待系統管理員管理使用者的存取權。 如果系統管理員將相同的權限授與不同業務群組中的管理員，則該人員也可以管理自己的使用者的存取權限。 企業業主或管理員都不可以檢視或管理彼此的使用者。 系統管理員仍然可以看到可以存取應用程式的所有使用者，並視需要封鎖存取權。
-* **自助式群組管理**
-  ：此案例的其中一個範例是都已獨立設定 SharePoint Online 網站的兩個使用者。 他們想要賦與彼此團隊各自網站的存取權。 為了達成此目的，他們可以在 Azure AD 中建立一個群組，並各自在 SharePoint Online 中選取該群組來提供對他們網站的存取權。 當有人想要存取權時，他們會從 [存取面板] 中要求，而且在核准之後，他們就可以自動取得這兩個 SharePoint Online 網站的存取權。 之後，其中一個人會決定存取網站的所有人員也可以存取特定的 SaaS 應用程式。 SaaS 應用程式的系統管理員可以將此應用程式的存取權限新增到 SharePoint Online 網站。 從那時起，任何獲得核准的要求都可以存取兩個 SharePoint Online 網站，也可以存取此 SaaS 應用程式。
+* **委派的群組管理** ：例如，管理對系統管理員公司所使用之 SaaS 應用程式存取權的系統管理員。 管理這些存取權限會變得很麻煩，所以此系統管理員會要求企業業主建立新的群組。 系統管理員會將應用程式的存取權指派給新群組，並新增至所有人員已存取該應用程式的群組。 接著，企業業主可以新增更多使用者，而且這些使用者會自動佈建到應用程式。 企業業主不需要等待系統管理員管理使用者的存取權。 如果系統管理員將相同的權限授與不同業務群組中的管理員，則該人員也可以管理自己的使用者的存取權限。 企業業主或管理員都不可以檢視或管理彼此的使用者。 系統管理員仍然可以看到可以存取應用程式的所有使用者，並視需要封鎖存取權。
+* **自助式群組管理** ：此案例的其中一個範例是都已獨立設定 SharePoint Online 網站的兩個使用者。 他們想要賦與彼此團隊各自網站的存取權。 為了達成此目的，他們可以在 Azure AD 中建立一個群組，並各自在 SharePoint Online 中選取該群組來提供對他們網站的存取權。 當有人想要存取權時，他們會從 [存取面板] 中要求，而且在核准之後，他們就可以自動取得這兩個 SharePoint Online 網站的存取權。 之後，其中一個人會決定存取網站的所有人員也可以存取特定的 SaaS 應用程式。 SaaS 應用程式的系統管理員可以將此應用程式的存取權限新增到 SharePoint Online 網站。 從那時起，任何獲得核准的要求都可以存取兩個 SharePoint Online 網站，也可以存取此 SaaS 應用程式。
 
 ## <a name="making-a-group-available-for-end-user-self-service"></a>提供可供一般使用者自助服務的群組
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，開啟 Azure AD 目錄。

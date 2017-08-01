@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 07/12/2017
 ms.author: magoedte
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 0e80e0a1c334bcca0bb15dd16c54306a60f2486e
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 7ef31d7d72844c0ed3be0701549e49e26aac9abf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/24/2017
 
 ---
 
@@ -35,9 +35,9 @@ Azure 自動化是一個軟體即服務 (SaaS) 應用程式，主要提供可調
 
 您在 Azure 中執行的 Runbook 會在自動化沙箱上執行，而這些沙箱裝載於 Azure 平台即服務 (PaaS) 虛擬機器中。  自動化沙箱可為 Runbook 執行的下列所有層面提供租用戶隔離 – 模組、儲存體、 憶體、網路通訊、作業串流等。此角色是由服務管理，且無法從 Azure 或 Azure 自動化帳戶存取供您控制。         
 
-若要讓本機資料中心或其他雲端服務中的資源部署和管理自動化，在建立自動化帳戶之後，您可以指定一或多部機器來執行[混合式 Runbook 背景工作 (HRW)](automation-hybrid-runbook-worker.md) 角色。  每個 HRW 都需要 Microsoft 管理代理程式 (MMA) 連線至 Log Analytics 工作區和自動化帳戶。  Log Analytics 用來啟動安裝程序、維護 MMA 代理程式及監視 HRW 的功能。  Runbook 的傳遞和執行的指示都是透過 Azure 自動化執行。
+若要讓本機資料中心或其他雲端服務中的資源部署和管理自動化，在建立自動化帳戶之後，您可以指定一或多部機器來執行[混合式 Runbook 背景工作 (HRW)](automation-hybrid-runbook-worker.md) 角色。  每個 HRW 都需要 Microsoft 管理代理程式連線至 Log Analytics 工作區和自動化帳戶。  Log Analytics 用來啟動安裝程序、維護 Microsoft 管理代理程式及監視 HRW 的功能。  Runbook 的傳遞和執行的指示都是透過 Azure 自動化執行。
 
-您可以部署多個 HRW 來為您的 Runbook 提供高可用性、平衡 Runbook 作業的負載，以及在某些情況下將它們專用於特定工作負載或環境。  HRW 會透過 TCP 輸出連接埠 443 來與自動化服務通訊。  一旦在您資料中心內的 HRW 上執行 Runbook，而且您希望 Runbook 對資料中心內的其他電腦或服務執行管理工作，則 Runbook 可能需要存取其他連接埠。  如果 IT 安全性原則不允許您網路上的電腦連線至網際網路，請檢閱 [OMS 閘道](../log-analytics/log-analytics-oms-gateway.md)一文，其可做為 Proxy，以便 HRW 收集作業狀態及接收來自自動化帳戶的組態資訊。
+您可以部署多個 HRW 來為您的 Runbook 提供高可用性、平衡 Runbook 作業的負載，以及在某些情況下將它們專用於特定工作負載或環境。  HRW 上的 Microsoft Monitoring Agent 會透過 TCP 通訊埠 443，起始與自動化服務的通訊，無需任何輸入防火牆。  一旦您在環境內的 HRW 上執行 Runbook，而且希望 Runbook 對該環境內的其他機器或服務執行管理工作，則 Runbook 可能需要存取其他連接埠。  如果 IT 安全性原則不允許您網路上的電腦連線至網際網路，請檢閱 [OMS 閘道](../log-analytics/log-analytics-oms-gateway.md)一文，其可做為 Proxy，以便 HRW 收集作業狀態及接收來自自動化帳戶的組態資訊。
 
 在 HRW 上執行的 Runbook 會在電腦上的本機系統帳戶環境中執行，這是在本機 Windows 電腦上執行系統管理動作時的建議安全性環境。 如果您希望 Runbook 對本機電腦外部的資源執行工作，您可能需要在自動化帳戶中定義可以從 Runbook 存取並用來驗證外部資源的安全認證資產。 您可以在您的 Runbook 中使用[認證](automation-credentials.md)、[憑證](automation-certificates.md)和[連線](automation-connections.md)資產，搭配可讓您指定認證的 Cmdlet，以便驗證這些資產。
 

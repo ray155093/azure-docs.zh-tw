@@ -15,18 +15,18 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/20/2017
+ms.date: 07/21/2017
 ms.author: nitinme
 ms.translationtype: HT
-ms.sourcegitcommit: 2812039649f7d2fb0705220854e4d8d0a031d31e
-ms.openlocfilehash: 0625984bf10588fe50a2632285f565eb79b66ab7
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: ad4330a1fc7f8de154d9aaa8df3acc2ab59b9dc1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/22/2017
+ms.lasthandoff: 07/24/2017
 
 ---
 # <a name="create-an-apache-spark-cluster-in-azure-hdinsight"></a>在 Azure HDInsight 中建立 Apache Spark 叢集
 
-本文說明如何在 Azure HDInsight 中建立 Apache Spark 叢集。
+本文說明如何在 Azure HDInsight 中建立 Apache Spark 叢集。 如需 Spark on HDInsight 相關資訊，請參閱[概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)。
 
    ![描述在 Azure HDInsight 上建立 Apache Spark 叢集之步驟的快速入門圖表](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-quickstart-interactive-spark-query-flow.png "在 HDInsight 中使用 Apache Spark 的 Spark 快速入門。說明的步驟︰建立叢集；執行 Spark 互動式查詢")
 
@@ -115,10 +115,17 @@ ms.lasthandoff: 07/22/2017
 
 7. 應用程式執行完畢之後，請關閉 Notebook 來釋放叢集資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。
 
-## <a name="next-step"></a>後續步驟
+8. 如果您打算稍後完成後續步驟，請務必刪除在本文中建立的 HDInsight 叢集。 
 
-在本文中，您已了解如何建立 HDInsight Spark 叢集和執行基本的 Spark SQL 查詢。 立即深入了解如何[在 HDInsight Spark 中載入資料和執行互動式查詢](hdinsight-apache-spark-load-data-run-query.md)。
+    [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-如果您打算稍後完成後續步驟，請務必刪除 HDInsight 叢集。 
+## <a name="next-step"></a>後續步驟 
 
-[!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
+在本文中，您已了解如何建立 HDInsight Spark 叢集和執行基本的 Spark SQL 查詢。 前往下篇文章，了解如何使用 HDInsight Spark 叢集執行簡單資料的互動查詢。
+
+> [!div class="nextstepaction"]
+>[在 HDInsight Spark 叢集上執行互動查詢](hdinsight-apache-spark-load-data-run-query.md)
+
+
+
+
