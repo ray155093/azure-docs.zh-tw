@@ -13,14 +13,13 @@ ms.devlang:
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
-ms.date: 06/9/2017
+ms.date: 07/13/2017
 ms.author: LADocs; dimazaid; estfan
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
-ms.openlocfilehash: 7122b970c2e4703df9771e8ace4e710399ca3e6c
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 34e68ae7d35019848b35c785a2715ec458dc6e73
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/13/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="install-the-on-premises-data-gateway-for-azure-logic-apps"></a>安裝 Azure Logic Apps 的內部部署資料閘道
@@ -29,7 +28,7 @@ ms.lasthandoff: 06/13/2017
 
 閘道可連線到下列內部部署資料來源︰
 
-*   BizTalk Server
+*   BizTalk Server 2016
 *   DB2  
 *   檔案系統
 *   Informix
@@ -39,18 +38,18 @@ ms.lasthandoff: 06/13/2017
 *   PostgreSQL
 *   SAP 應用程式伺服器 
 *   SAP 訊息伺服器
-*   僅限 SharePoint for HTTP，而非 SharePoint for HTTPS
+*   SharePoint
 *   SQL Server
 *   Teradata
 
 下列步驟會說明如何先安裝內部部署資料閘道，再[設定閘道與邏輯應用程式之間的連線](./logic-apps-gateway-connection.md)。 如需所支援連接器的詳細資訊，請參閱 [Azure Logic Apps 的連接器](https://docs.microsoft.com/azure/connectors/apis-list)。 
 
-如需其他 Microsoft 服務適用之資料閘道的詳細資訊，請參閱下列文章︰
+如需如何使用閘道與其他服務的資訊，請參閱下列文章：
 
-*   [Azure 應用程式閘道](https://azure.microsoft.com/services/application-gateway/)：[應用程式閘道概觀](../application-gateway/application-gateway-introduction.md)
 *   [Microsoft Power BI 內部部署資料閘道](https://powerbi.microsoft.com/documentation/powerbi-gateway-onprem/)
 *   [Azure Analysis Services 內部部署資料閘道](../analysis-services/analysis-services-gateway.md)
 *   [Microsoft Flow 內部部署資料閘道](https://flow.microsoft.com/documentation/gateway-manage/)
+*   [Microsoft PowerApps 內部部署資料閘道](https://powerapps.microsoft.com/tutorials/gateway-management/)
 
 <a name="requirements"></a>
 ## <a name="requirements"></a>需求

@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 5/9/2017
 ms.author: nachandr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
-ms.openlocfilehash: 3fc66d775f97333ad497cf3773643c188ec7c1d6
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: db6e654de074fc6651fd0d7479ee52038f944745
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/08/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -60,7 +60,7 @@ ms.lasthandoff: 06/08/2017
 #### <a name="azure-clusters"></a>Azure 叢集
 修補程式協調流程應用程式必須在具有 Service Fabric 執行階段 5.5 版或更新版本的 Azure 叢集上執行。
 
-#### <a name="standalone-on-premise-clusters"></a>獨立內部部署叢集
+#### <a name="standalone-on-premises-clusters"></a>獨立的內部部署叢集
 修補程式協調流程應用程式必須在具有 Service Fabric 執行階段 5.6 版或更新版本的獨立叢集上執行。
 
 ### <a name="enable-the-repair-manager-service-if-its-not-running-already"></a>啟用修復管理器服務 (如果尚未執行中)
@@ -149,10 +149,9 @@ ms.lasthandoff: 06/08/2017
 - 24afa313-0d3b-4c7c-b485-1047fd964b60
 - 05dc046c-60e9-4ef7-965e-91660adffa68
 
-在 Resource Manager 範本的 `WadCfg` 區段內，新增下列區段︰ 
+在 Resource Manager 範本中，移至 `WadCfg` 下的 `EtwEventSourceProviderConfiguration` 區段，並新增下列項目：
 
 ```json
-"PatchOrchestrationApplication": [
   {
     "provider": "e39b723c-590c-4090-abb0-11e3e6616346",
     "scheduledTransferPeriod": "PT5M",
@@ -180,8 +179,7 @@ ms.lasthandoff: 06/08/2017
     "DefaultEvents": {
     "eventDestination": " PatchOrchestrationApplicationTable"
     }
-  },
-]
+  }
 ```
 
 > [!NOTE]

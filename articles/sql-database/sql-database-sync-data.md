@@ -4,7 +4,7 @@ description: "本概觀介紹 Azure SQL 資料同步 (預覽)。"
 services: sql-database
 documentationcenter: 
 author: douglaslms
-manager: jhubbard
+manager: craigg
 editor: 
 ms.assetid: 
 ms.service: sql-database
@@ -15,12 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: douglasl
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
-ms.openlocfilehash: 075b5563688158289d51f2f0b5da4a3441ddd13a
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 94c8160464cd7355ac0e0733801d0b06fcdfab7c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/29/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="sync-data-across-multiple-cloud-and-on-premises-databases-with-sql-data-sync"></a>使用 SQL 資料同步，跨多個雲端和內部部署資料庫同步資料
@@ -29,7 +28,7 @@ ms.lasthandoff: 06/29/2017
 
 資料同步以「同步群組」的概念為基礎。 「同步群組」是您想要同步的資料庫群組。
 
-同步群組有下列幾個屬性：
+同步群組具有下列屬性：
 
 -   **同步結構描述**說明要同步的資料。
 
@@ -39,7 +38,7 @@ ms.lasthandoff: 06/29/2017
 
 -   **衝突解決原則**是群組層級原則，可以是*中樞獲勝*或*成員獲勝*。
 
-資料同步使用中樞和輪輻拓撲來同步資料。 您必須將群組中的其中一個資料庫定義為「中樞資料庫」。 其餘的資料庫則是成員資料庫。 只有中樞和個別成員之間才會進行同步。
+資料同步使用中樞和輪輻拓撲來同步資料。 您可以將群組中的其中一個資料庫定義為「中樞資料庫」。 其餘的資料庫則是成員資料庫。 只有中樞和個別成員之間才會進行同步。
 -   **中樞資料庫**必須是 Azure SQL Database。
 -   **成員資料庫**可以是 SQL 資料庫、內部部署 SQL Server 資料庫，或是在 Azure 虛擬機器上的 SQL Server 執行個體。
 -   **同步處理資料庫**包含「資料同步」的中繼資料和記錄。 「同步處理資料庫」必須是與「中樞資料庫」位於相同區域的 Azure SQL Database。 「同步處理資料庫」是由客戶建立，並由客戶擁有。
@@ -82,7 +81,7 @@ ms.lasthandoff: 06/29/2017
 ## <a name="limitations-and-considerations"></a>限制與注意事項
 
 ### <a name="performance-impact"></a>效能影響
-資料同步使用 insert、update 和 delete 觸發程序追蹤變更。 它會在使用者資料庫中建立資料表。 這些活動會影響您的資料庫工作負載，所以請評定您的服務層，如果必要則請升級。
+資料同步使用 insert、update 和 delete 觸發程序追蹤變更。 其會在使用者資料庫中建立側邊資料表，以便進行變更追蹤。 這些變更追蹤活動會影響您的資料庫工作負載。 請評估您的服務層，如有必要則請升級。
 
 ### <a name="eventual-consistency"></a>最終一致性
 由於資料同步是以觸發程序為基礎，所以並不保證交易一致性。 Microsoft 保證最終會進行所有變更，而且資料同步不會造成資料遺失。
@@ -101,9 +100,9 @@ ms.lasthandoff: 06/29/2017
 
 -   每個資料表都必須有主索引鍵。
 
--   資料表不能有不是主索引鍵的識別資料行。
+-   資料表不能有非主索引鍵的識別欄位。
 
--   資料庫名稱不能包含特殊字元。
+-   物件 (資料庫、資料表和資料行) 的名稱不能包含可列印的字元句點 (.)、左括弧 (\[\)，或右括弧 (\]\)。
 
 ### <a name="limitations-on-service-and-database-dimensions"></a>服務和資料庫維度的限制
 
@@ -119,6 +118,28 @@ ms.lasthandoff: 06/29/2017
 | 一個資料表上的資料列大小                                        | 24 Mb                  |                             |
 | 最小同步處理間隔                                           | 5 分鐘              |                             |
 
+## <a name="common-questions"></a>常見問題
+
+### <a name="how-frequently-can-data-sync-synchronize-my-data"></a>資料同步多久會同步我的資料一次？ 
+至少每隔五分鐘。
+
+### <a name="can-i-use-data-sync-to-sync-between-sql-server-on-premises-databases-only"></a>資料同步能否僅在 SQL Server 內部部署資料庫之間同步？ 
+無法直接進行。 您可以間接在 SQL Server 內部部署資料庫之間同步，不過，必須先在 Azure 建立中樞資料庫，然後將內部部署資料庫新增到同步群組。
+   
+### <a name="can-i-use-data-sync-to-seed-data-from-my-production-database-to-an-empty-database-and-then-keep-them-synchronized"></a>能否使用資料同步將生產環境資料庫的資料植入空白資料庫，然後讓資料保持同步？ 
+是。 請從原始結構描述編寫結構描述，藉此在新的資料庫中手動建立結構描述。 建立結構描述之後，請將資料表新增到同步群組，以複製資料並讓資料保持同步。
+
+### <a name="why-do-i-see-tables-that-i-did-not-create"></a>為什麼我會看到並非自己建立的資料表？  
+資料同步會在資料庫中建立側邊資料表，以便進行變更追蹤。 請勿刪除它們，否則資料同步無法正常運作。
+   
+### <a name="i-got-an-error-message-that-said-cannot-insert-the-value-null-into-the-column-column-column-does-not-allow-nulls-what-does-this-mean-and-how-can-i-fix-the-error"></a>我看見錯誤訊息顯示「無法將 NULL 值插入資料行\<資料行\>。 資料行不允許 Null。」 這是什麼意思，該如何修正錯誤？ 
+此錯誤訊息表示發生了下列兩種問題的其中之一：
+1.  資料表缺少主索引鍵。 若要修正此問題，請將主索引鍵新增至要同步的所有資料表。
+2.  在 CREATE INDEX 陳述式中可能有 WHERE 子句。 同步無法處理這種狀況。 若要修正此問題，請移除 WHERE 子句或手動變更所有資料庫。 
+ 
+### <a name="how-does-data-sync-handle-circular-references-that-is-when-the-same-data-is-synced-in-multiple-sync-groups-and-keeps-changing-as-a-result"></a>資料同步如何處理循環參考？ 也就是，相同的資料已在多個同步群組中同步，且因此持續變更？
+資料同步不會處理循環參考。 請務必避免。 
+
 ## <a name="next-steps"></a>後續步驟
 
 如需 SQL Database 和 SQL 資料同步的詳細資訊，請參閱：
@@ -132,6 +153,4 @@ ms.lasthandoff: 06/29/2017
 -   [SQL Database 概觀](sql-database-technical-overview.md)
 
 -   [資料庫生命週期管理](https://msdn.microsoft.com/library/jj907294.aspx)
-
-
 

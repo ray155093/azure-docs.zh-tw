@@ -1,6 +1,6 @@
 ---
 title: "可用於 Azure 儲存體的安全性功能 | Microsoft Docs"
-description: " 本文提供可用於 Azure 儲存體的核心 Azure 安全性功能概觀. "
+description: " 本文提供可用於 Azure 儲存體的核心 Azure 安全性功能概觀。 "
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/23/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: b5edb42f7fac6943a72e02a85a4cbc32300b9f38
-ms.openlocfilehash: 2db6effdaf2e23d00eefdde82d074dd5d47857d7
-ms.lasthandoff: 01/24/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 1386d16cf0e7f6fd324d0779e9ad54ecd88b3166
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="azure-storage-security-overview"></a>Azure 儲存體安全性概觀

@@ -1,5 +1,5 @@
 ---
-title: "詢問問題資料可以回答 - 資料科學問題 - Azure | Microsoft Docs"
+title: "詢問資料可回答的問題 - 資料科學問題 - Azure Machine Learning | Microsoft Docs"
 description: "了解如何在「適用於初學者的資料科學」影片 3 中制訂明確的資料科學問題。 包含分類和迴歸問題的比較。"
 keywords: "資料科學問題, 資料科學問題, 制訂問題, 迴歸問題, 分類問題, 明確的問題"
 services: machine-learning
@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/09/2017
+ms.date: 07/13/2017
 ms.author: cgronlun;garye
-translationtype: Human Translation
-ms.sourcegitcommit: b167b88d227bf239fd5d3676e48e04436f140c34
-ms.openlocfilehash: 3c476cf99ebfe78f5681019fc055d1a07b61ef02
-ms.lasthandoff: 02/10/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: 403c496d4f032d1f373dacc16868abb40f968b6f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="ask-a-question-you-can-answer-with-data"></a>詢問您可以使用資料回答的問題
@@ -27,6 +27,7 @@ ms.lasthandoff: 02/10/2017
 了解如何將在資料科學問題制訂至「適用於初學者的資料科學」影片 3 中的問題。 這個影片包含適用於分類和迴歸演算法的問題比較。
 
 若要充分運用這系列影片，請觀賞所有影片。 [瀏覽影片清單](#other-videos-in-this-series)
+<br>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Data-science-for-beginners-Ask-a-question-you-can-answer-with-data/player]
 >
@@ -66,7 +67,7 @@ ms.lasthandoff: 02/10/2017
 
 如果問題是「在我的車隊中，哪一部車會先故障？ 」，則我們必須確定資料包含先前故障的相關資訊。
 
-![目標資料 - 您的答案範例。 制訂資料科學問題。](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/machine-learning-data-science-target-data.png)
+![目標資料 - 您的答案範例。 制訂資料科學問題。](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/target-data.png)
 
 這些答案範例就稱為目標。 目標就是我們嘗試預測關於未來時間點的資訊，而不論它是類別或數字。
 
@@ -83,7 +84,7 @@ ms.lasthandoff: 02/10/2017
 
 但是，如果您將它重寫為「這位讀者對於此清單上每篇報導的感興趣程度有多少？」，則這個問題可能比較容易回答。 現在您可以為每篇文章提供一個數值的分數，然後很容易就能找出分數最高的文章。 這會將分類問題改換措辭，使用迴歸問題或「多少？」來表述。
 
-![重新制訂您的問題。 分類問題與迴歸問題。](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/machine-learning-data-science-classification-question-vs-regression-question.png)
+![重新制訂您的問題。 分類問題與迴歸問題。](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/classification-question-vs-regression-question.png)
 
 您詢問問題的方式就是哪一個演算法可為您提供答案的線索。
 

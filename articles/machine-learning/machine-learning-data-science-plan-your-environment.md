@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: a712baabf2674bda0a53de63e7c204b08ba9d105
-ms.lasthandoff: 04/27/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 9297b241c047bf9feb68ced8da467c62e7f5acca
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -47,7 +48,7 @@ ms.lasthandoff: 04/27/2017
    
    * [將資料載入至儲存體環境以便進行分析](machine-learning-data-science-ingest-data.md)
    * [從各種資料來源將定型資料匯入 Azure Machine Learning Studio](machine-learning-data-science-import-data.md)。
-4. **資料是否需要定期移動或在移轉期間修改？** 當資料需要持續移轉時，特別是在涉及同時存取內部部署和雲端資源的混合式案例中，或當資料為交易式或在移轉過程中需要修改或新增商務邏輯時，請考慮使用 Azure Data Factory (ADF)。 如需進一步資訊，請參閱 [使用 Azure Data Factory 從內部部署 SQL Server 移動資料至 SQL Azure](machine-learning-data-science-move-sql-azure-adf.md)
+4. **資料是否需要定期移動或在移轉期間修改？** 當資料需要持續移轉時，特別是在涉及同時存取內部部署和雲端資源的混合式案例中，或當資料為交易式或在移轉過程中需要修改或新增商務邏輯時，請考慮使用 Azure Data Factory (ADF)。 如需進一步資訊，請參閱[使用 Azure Data Factory 從內部部署 SQL Server 移動資料至 SQL Azure](machine-learning-data-science-move-sql-azure-adf.md)
 5. **有多少資料要移至 Azure？** 非常大的資料集可能會超過某些環境的儲存體容量。 如需相關範例，請參閱下一節關於 Machine Learning studio 大小限制的討論。 在這種情況下，分析期間可能使用資料樣本。 如需如何在各種 Azure 環境中縮減取樣資料集的詳細資訊，請參閱 [在 Team Data Science Process 中進行資料取樣](machine-learning-data-science-sample-data.md)。
 
 ## <a name="data-characteristics-questions-type-format-and-size"></a>資料特性問題：類型、格式和大小

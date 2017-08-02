@@ -12,14 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/24/2017
+ms.date: 07/11/2017
 ms.author: genli
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
-ms.openlocfilehash: 5c22c2d8c00882c45ecc2991916e389b2a00586d
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 62cd62ec3a2900f06acacc0852a48b5e3ff1c8cd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/17/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="troubleshoot-azure-file-storage-problems-in-linux"></a>針對 Linux 中的 Azure 檔案儲存體問題進行疑難排解
@@ -84,11 +83,11 @@ ms.lasthandoff: 06/17/2017
 
 ### <a name="cause"></a>原因
 
-Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套件中，如果使用者因為功能遺失而嘗試使用 SMB 3.0 來掛接 Azure 檔案儲存體，可能會收到「115」錯誤訊息。
+某些 Linux 散發套件尚未支援 SMB 3.0 的加密功能，如果使用者因為功能遺失而嘗試使用 SMB 3.0 來掛接 Azure 檔案儲存體，可能會收到「115」錯誤訊息。
 
 ### <a name="solution"></a>方案
 
-如果 Linux SMB 用戶端不支援加密，在與檔案儲存體帳戶相同的資料中心上，從 Azure Linux VM 使用 SMB 2.1 掛接 Azure 檔案儲存體。
+4.11 核心推出 Linux 的 SMB 3.0 適用的加密功能。 此功能讓您可從內部部署或不同 Azure 區域的 Azure 檔案共用進行掛接。 發佈時，這項功能已向前移植到 Ubuntu 17.04 和 Ubuntu 16.10。 如果您的 Linux SMB 用戶端不支援加密，在與檔案儲存體帳戶相同的資料中心上，從 Azure Linux VM 使用 SMB 2.1 掛接 Azure 檔案儲存體。
 
 <a id="slowperformance"></a>
 ## <a name="slow-performance-on-an-azure-file-share-mounted-on-a-linux-vm"></a>掛接在 Linux VM 上的 Azure 檔案共用效能變慢
@@ -111,18 +110,7 @@ Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套�
 
 `//mabiccacifs.file.core.windows.net/cifs on /cifs type cifs (rw,relatime,vers=3.0,sec=ntlmssp,cache=strict,username=xxx,domain=X,uid=0,noforceuid,gid=0,noforcegid,addr=192.168.10.1,file_mode=0777, dir_mode=0777,persistenthandles,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,actimeo=1)`
 
-如果沒有 **cache=strict** 或 **serverino** 選項，請執行[文件](storage-how-to-use-files-linux.md#mount-the-file-share)中的掛接命令，將 Azure 檔案儲存體卸載並再次掛接。 然後，重新檢查 **/etc/fstab** 項目是否有正確的選項。
-
-<a id="error11"></a>
-## <a name="mount-error11-resource-temporarily-unavailable-when-youre-mounting-to-an-ubuntu-48-kernel"></a>掛接到 Ubuntu 4.8+ 核心時，發生「掛接錯誤 (11)：資源暫時無法使用」
-
-### <a name="cause"></a>原因
-
-在 Ubuntu 16.10 核心 (4.8 版) 中，用戶端記錄為支援加密，但實際不然。
-
-### <a name="solution"></a>方案
-
-直到修正 Ubuntu 16.10 之前，請指定 `vers=2.1`掛接選項，或使用 Ubuntu 16.04。
+如果沒有 **cache=strict** 或 **serverino** 選項，請執行[文件](storage-how-to-use-files-linux.md)中的掛接命令，將 Azure 檔案儲存體卸載並再次掛接。 然後，重新檢查 **/etc/fstab** 項目是否有正確的選項。
 
 <a id="timestampslost"></a>
 ## <a name="time-stamps-were-lost-in-copying-files-from-windows-to-linux"></a>將檔案從 Windows 複製到 Linux 時，遺失時間戳記

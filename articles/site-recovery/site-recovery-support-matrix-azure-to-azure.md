@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/10/2017
 ms.author: sujayt
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: 7c30f5164b9fe7ff6044bbf23767a5db9a0f7c30
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 89b12ce7af1e810f72e14f67ec5b11390ac3e72f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -63,16 +63,35 @@ ms.lasthandoff: 06/15/2017
 
 #### <a name="windows"></a>Windows
 
-- Windows Server 2012 R2 (64 位元)
+- Windows Server 2016 (伺服器核心和含有桌面體驗的伺服器)*
+- Windows Server 2012 R2
 - Windows Server 2012
 - Windows Server 2008 R2 (至少加裝 SP1)
 
+>[!NOTE]
+>
+> 不支援 \* Windows Server 2016 Nano Server。
+
 #### <a name="linux"></a>Linux
 
-- Red Hat Enterprise Linux 6.7、6.8、7.1、7.2、7.3
+- Red Hat Enterprise Linux 6.7、6.8、7.0、7.1、7.2、7.3
 - CentOS 6.5、6.6、6.7、6.8、7.0、7.1、7.2、7.3
+- Ubuntu 14.04 LTS 伺服器 [(支援的核心版本)](#supported-ubuntu-kernel-versions-for-azure-virtual-machines)
+- Ubuntu 16.04 LTS 伺服器 [(支援的核心版本)](#supported-ubuntu-kernel-versions-for-azure-virtual-machines)
 - Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3)
 - SUSE Linux Enterprise Server 11 SP3
+
+>[!NOTE]
+>
+> 使用密碼型驗證和登入並使用雲端 init 封裝來設定雲端虛擬機器的 Ubuntu 伺服器，可能對容錯移轉停用密碼型登入 (取決於 cloudinit 組態)。從 Azure 入口網站上容錯移轉的虛擬機器本身的設定功能表 (在 [支援 + 疑難排解] 區段下) 重設密碼，即可重新啟用密碼型登入。
+
+### <a name="supported-ubuntu-kernel-versions-for-azure-virtual-machines"></a>Azure 虛擬機器支援的 Ubuntu 核心版本
+
+**版本** | **行動服務版本** | **核心版本** |
+--- | --- | --- |
+14.04 LTS | 9.9 | 3.13.0-24-generic 至 3.13.0-117-generic、<br/>3.16.0-25-generic 至 3.16.0-77-generic、<br/>3.19.0-18-generic 至 3.19.0-80-generic、<br/>4.2.0-18-generic 至 4.2.0-42-generic、<br/>4.4.0-21-generic 至 4.4.0-75-generic |
+14.04 LTS | 9.10 | 3.13.0-24-generic 至 3.13.0-121-generic、<br/>3.16.0-25-generic 至 3.16.0-77-generic、<br/>3.19.0-18-generic 至 3.19.0-80-generic、<br/>4.2.0-18-generic 至 4.2.0-42-generic、<br/>4.4.0-21-generic 至 4.4.0-81-generic |
+16.04 LTS | 9.10 | 4.4.0-21-generic 至 4.4.0-81-generic、<br/>4.8.0-34-generic 至 4.8.0-56-generic、<br/>4.10.0-14-generic 至 4.10.0-24-generic |
 
 ## <a name="supported-file-systems-and-guest-storage-configurations-on-azure-virtual-machines-running-linux-os"></a>Azure 虛擬機器 (執行 Linux OS) 上的支援檔案系統與客體儲存體組態
 
@@ -113,16 +132,16 @@ Azure 資源庫映像 - 第三方發行 | 支援 | 只要 VM 在 Site Recovery �
 
 **組態** | **支援/不支援** | **備註**
 --- | --- | ---
-最大的作業系統磁碟大小 | Azure 支援的最大作業系統磁碟大小| 請參閱 [VM 使用的磁碟](../storage/storage-about-disks-and-vhds-windows.md#disks-used-by-vms)。
-最大的資料磁碟大小 | Azure 支援的最大資料磁碟大小| 請參閱 [VM 使用的磁碟](../storage/storage-about-disks-and-vhds-windows.md#disks-used-by-vms)。
+最大的作業系統磁碟大小 | 1023 GB | 請參閱 [VM 使用的磁碟](../storage/storage-about-disks-and-vhds-windows.md#disks-used-by-vms)。
+最大的資料磁碟大小 | 1023 GB | 請參閱 [VM 使用的磁碟](../storage/storage-about-disks-and-vhds-windows.md#disks-used-by-vms)。
 資料磁碟數量 | 特定 Azure VM 大小支援多達 64 個 | 請參閱 [Azure 虛擬機器大小](../virtual-machines/windows/sizes.md)
 暫存磁碟 | 一律排除在複寫之外 | 暫存磁碟排除在複寫之外。 根據 Azure 指引，您不應該在暫存磁碟上放置任何持續性資料。 如需詳細資訊，請參閱 [Azure VM 上的暫存磁碟](../storage/storage-about-disks-and-vhds-windows.md#temporary-disk)。
-磁碟上的資料變更率 | 每個磁碟多達 6 Mbps | 如果磁碟的平均資料變更率持續超過 6 Mbps，複寫將趕不上進度。 不過，如果是偶爾出現的資料高載，而且資料變更率有時超過 6 Mbps 後便下降，則複寫會趕上進度。 在此情況下，您可能會發現復原點稍微延遲。
+磁碟上的資料變更率 | 各磁碟資料變更率最高達 6 MBps | 如果磁碟的平均資料變更率持續超過 6 MBps，複寫將趕不上進度。 不過，如果是偶爾出現的資料高載，而且資料變更率有時超過 6 MBps 後便下降，則複寫會趕上進度。 在此情況下，您可能會發現復原點稍微延遲。
 標準儲存體帳戶上的磁碟 | 支援 |
 進階儲存體帳戶上的磁碟 | 支援 | 如果 VM 的磁碟分散於進階和標準儲存體帳戶，您可以對於各個磁碟選取不同的目標儲存體帳戶，以確保目標區域有相同的儲存體設定
 標準受控磁碟 | 不支援 |  
 進階受控磁碟 | 不支援 |
-儲存體空間 | 不支援 |         
+儲存體空間 | 支援 |         
 待用加密 (SSE) | 支援 | 對於快取和目標儲存體帳戶，您可以選取 SSE 啟用的儲存體帳戶。     
 Azure 磁碟加密 (ADE) | 不支援 |
 熱新增/移除磁碟 | 不支援 | 如果您在 VM 上新增或移除資料磁碟，需要停用複寫，然後再次為 VM 啟用複寫。

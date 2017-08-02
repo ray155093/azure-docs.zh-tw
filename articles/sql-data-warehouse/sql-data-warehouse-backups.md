@@ -15,12 +15,11 @@ ms.workload: NA
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 43ab6a2f71ab51c50847b1ba5249f51c48e03fea
-ms.openlocfilehash: 94b92f05af30734de727a12fd99271aa9769723a
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: ef2e6e7a19c7ed1730fdec5eca73c941e1b319c4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/24/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="sql-data-warehouse-backups"></a>SQL 資料倉儲備份
@@ -54,6 +53,11 @@ SQL 資料倉儲會透過將您的資料儲存在本地備援 (LRS) Azure 進階
 > [!NOTE]
 > 在 Azure 儲存體中，「複寫」一詞指的是將檔案從某個位置複製到另一個位置。 SQL 的「資料庫複寫」  指的是保持多個次要資料庫與主要資料庫同步。 
 > 
+> 
+
+> [!NOTE]
+> 您無法選擇退出 DWU 9000 和 DWU 18000 的異地備援備份。 
+>
 > 
 
 若要深入了解：

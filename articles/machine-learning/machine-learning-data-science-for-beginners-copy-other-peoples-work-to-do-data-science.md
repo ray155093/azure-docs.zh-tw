@@ -1,5 +1,5 @@
 ---
-title: "複製其他人的資料科學範例 - 機器學習 - Azure | Microsoft Docs"
+title: "複製其他人的資料科學範例 - Azure Machine Learning | Microsoft Docs"
 description: "資料科學的商業秘密：讓其他人為您工作。 從 Cortana Analytics 資源庫取得機器學習服務範例。"
 keywords: "資料科學範例, 機器學習範例, 叢集演算法, 叢集演算法範例"
 services: machine-learning
@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/09/2017
+ms.date: 07/13/2017
 ms.author: cgronlun;garye
-translationtype: Human Translation
-ms.sourcegitcommit: 1e941778c194462b311e6347c56670d3e0193e90
-ms.openlocfilehash: ebc44a4190bac697697e0b651039a0e8ee8e4a95
-ms.lasthandoff: 02/10/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: 440a1ded1f1dc1b8fbe73e3bbcbbd68ec9422bf8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="copy-other-peoples-work-to-do-data-science"></a>複製其他人的工作進行資料科學
@@ -27,6 +27,7 @@ ms.lasthandoff: 02/10/2017
 有一個資料科學的商業機密是讓其他人為您工作。 在 Cortana Analytics 資源庫中找一個適合您自己的機器學習實驗使用的叢集演算法範例。
 
 若要充分運用這系列影片，請觀賞所有影片。 [瀏覽影片清單](#other-videos-in-this-series)
+<br>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/data-science-for-beginners-series-copy-other-peoples-work-to-do-data-science/player]
 >
@@ -37,7 +38,7 @@ ms.lasthandoff: 02/10/2017
 
 * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 分 14 秒)*
 * 影片 2： [您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 分 56 秒)*
-* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)*(4 分 17 秒)*
+* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) *(4 分 17 秒)*
 * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) *(7 分 42 秒)*
 * 影片 5：複製其他人的工作進行資料科學
 
@@ -51,7 +52,7 @@ ms.lasthandoff: 02/10/2017
 ## <a name="find-examples-in-the-cortana-intelligence-gallery"></a>在 Cortana Intelligence Gallery 中尋找範例
 Microsoft 提供一個稱為 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 的雲端服務，歡迎您免費試用。 其會提供您工作區，讓您可以試驗不同的機器學習演算法，當您制定您的解決方案時，您可以將其啟動為 Web 服務。
 
-此服務有一個部分稱為 **[Cortana Intelligence Gallery](http://aka.ms/CortanaIntelligenceGallery)**。 其包含各種資源，其中一個是 Azure Machine Learning 實驗或模型 (已由他人為其他用途而建置和貢獻) 的集合。 這些實驗是運用思考的好方法，以及是其他人的挑戰，他們會協助您開始您自己的解決方案。
+此服務有一個部分稱為 **[Cortana Intelligence Gallery](http://aka.ms/CortanaIntelligenceGallery)**。 其包含各種資源，包括一系列的 Azure Machine Learning 實驗或模型 (前人建置並貢獻予他人使用)。 這些實驗是運用思考的好方法，以及是其他人的挑戰，他們會協助您開始您自己的解決方案。
 
 您可以在 [aka.ms/CortanaIntelligenceGallery](http://aka.ms/CortanaIntelligenceGallery) 找到資源庫。 歡迎每個人前往瀏覽。
 
@@ -60,7 +61,7 @@ Microsoft 提供一個稱為 [Azure Machine Learning](https://azure.microsoft.co
 如果您按一下頂端的 [實驗]  ，會看到一些資源庫中最新且受歡迎的實驗。 您可以按一下畫面頂端的 [瀏覽全部]  ，來搜尋其餘的實驗，而且可以在此輸入搜尋詞彙，並選擇搜尋篩選器。
 
 ## <a name="find-and-use-a-clustering-algorithm-example"></a>尋找並使用叢集演算法範例
-因此，比方說，假設您想要查看叢集如何運作的範例，可以搜尋 **"clustering"** 實驗。
+舉例來說，您可能因為想要查看叢集運作方式的範例，以 **"clustering sweep"** 為關鍵字搜尋。
 
 ![搜尋叢集實驗](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/search-for-clustering-experiments.png)
 

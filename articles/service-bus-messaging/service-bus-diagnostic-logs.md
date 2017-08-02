@@ -16,10 +16,10 @@ ms.workload: data-services
 ms.date: 06/27/2017
 ms.author: babanisa;sethm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 775900fcae1b2832a5d0951e2a4053562c21455e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 72e18444c83b84c5191a0aab3dc6983517167dd1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -33,11 +33,11 @@ ms.lasthandoff: 06/28/2017
 
 診斷記錄預設為停用。 若要啟用診斷記錄，請執行下列步驟：
 
-1.  在 [Azure 入口網站](https://portal.azure.com)中，移至 [資料流處理工作] 刀鋒視窗。
+1.  在 [Azure 入口網站](https://portal.azure.com)的 [監視 + 管理] 下，按一下 [診斷記錄]。
 
-2.  在 [監視] 底下，移至 [診斷記錄] 刀鋒視窗。
+    ![瀏覽到診斷記錄的刀鋒視窗](./media/service-bus-diagnostic-logs/image1.png)
 
-    ![瀏覽到診斷記錄的刀鋒視窗](./media/service-bus-diagnostic-logs/image1.png)  
+2. 按一下您想要監視的資源。  
 
 3.  按一下 [開啟診斷]。
 
@@ -49,9 +49,7 @@ ms.lasthandoff: 06/28/2017
 
 5.  設定您要使用的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
 
-6.  選取您要收集的記錄類別，例如**執行**或**製作**。
-
-7.  儲存新的診斷設定。
+6.  儲存新的診斷設定。
 
 新的設定大約會在 10 分鐘內生效。 之後，記錄就會顯示在 [診斷記錄] 刀鋒視窗上已設定的封存目標中。
 
@@ -61,7 +59,7 @@ ms.lasthandoff: 06/28/2017
 
 所有的記錄檔都會以 JavaScript 物件標記法 (JSON) 格式儲存。 每個項目都具有字串欄位，這些欄位會使用下列小節所述的格式。
 
-## <a name="operation-logs-example"></a>作業記錄範例
+## <a name="operational-logs-schema"></a>作業記錄結構描述
 
 **OperationalLogs** 類別中的記錄會擷取「服務匯流排」作業期間發生的事項。 具體而言，這些記錄會擷取作業類型，包括建立佇列、使用的資源，以及作業狀態。
 

@@ -14,12 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6adaf7026d455210db4d7ce6e7111d13c2b75374
-ms.openlocfilehash: bee96774abacebe36e61a1f4d051f65dd20342f6
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 428dcaa8e842077936b7d9b9cb6ac639844c3961
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/22/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="azure-storage-security-guide"></a>Azure 儲存體安全性指南
@@ -271,7 +270,7 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
 ### <a name="using-encryption-during-transit-with-azure-file-shares"></a>傳輸期間透過 Azure 檔案共用使用加密
 使用 REST API 時，Azure 檔案儲存體支援 HTTPS，但較常用來做為連接到 VM 的 SMB 檔案共用。 SMB 2.1 不支援加密，因此只允許在 Azure 中的相同區域內連接。 不過，SMB 3.0 支援加密，而且可在 Windows Server 2012 R2、Windows 8、Windows 8.1 和 Windows 10 中使用，允許跨區域存取，甚至是電腦上的存取。
 
-請注意，雖然 Azure 檔案共用可以與 Unix 搭配使用，但 Linux SMB 用戶端尚未支援加密，因此只允許在 Azure 區域內存取。 適用於 Linux 的加密支援已列入開發藍圖中，負責 SMB 功能的 Linux 開發人員將著手開發。 當他們新增加密功能時，您必須具備存取 Linux 上 Azure 檔案共用的相同能力，就像您對於 Windows 所做的一樣。
+請注意，雖然 Azure 檔案共用可以與 Unix 搭配使用，但 Linux SMB 用戶端尚未支援加密，因此只允許在 Azure 區域內存取。 適用於 Linux 的加密支援已列入開發藍圖中，負責 SMB 功能的 Linux 開發人員將著手開發。 當他們新增加密功能時，您在 Linux 系統中存取 Azure 檔案共用的能力將與在 Windows 系統中相同。
 
 透過啟用儲存體帳戶[所需的安全傳輸](storage-require-secure-transfer.md)，您可以強制為 Azure 檔案服務使用加密。 如果使用 REST API，則需要 HTTPs。 針對 SMB，只有支援加密的 SMB 連線可以成功連線。
 
@@ -351,7 +350,7 @@ SSE 可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加
 * 在 Linux IaaS VM 的 OS 磁碟機上停用加密
 * 使用傳統 VM 建立方法所建立的 IaaS VM
 * 與您的內部部署金鑰管理服務整合
-* Azure 檔案 (共用檔案系統)、網路檔案系統 (NFS)、動態磁碟區和以軟體型 RAID 系統所設定的 Windows VM
+* Azure 檔案儲存體 (共用檔案系統)、網路檔案系統 (NFS)、動態磁碟區，以及使用軟體型 RAID 系統設定的 Windows VM
 
 
 > [!NOTE]

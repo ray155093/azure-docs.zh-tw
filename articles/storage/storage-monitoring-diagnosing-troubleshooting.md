@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: fhryo-msft
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 8598e18aeb0552455a6e5344f10eb48382e8c2f4
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: c6bf7cd3bd16d8af30fed09f7878a0e68748a971
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="monitor-diagnose-and-troubleshoot-microsoft-azure-storage"></a>監視、診斷與疑難排解 Microsoft Azure 儲存體
@@ -31,7 +30,7 @@ ms.lasthandoff: 05/16/2017
 若要成功管理這類應用程式，您除了需要主動監視它們之外，還需要了解如何為其各層面與相依技術進行診斷與疑難排解。 身為 Azure 儲存體服務的使用者，您應持續監視應用程式所使用的儲存體服務，以預防發生非預期的行為改變 (例如，回應速度明顯比平時慢)，並使用記錄功能來收集更多的詳細資料，同時深入分析問題的成因。 從監視與記錄手段中取得的診斷資訊，將在應用程式遭遇問題時，協助您判斷根本原因。 接著才能為問題進行疑難排解，並決定該採取哪些合宜的步驟來加以矯正。 Azure 儲存體是 Azure 的核心服務之一，更在客戶部署至 Azure 基礎結構的主要解決方案之中扮演著重要的環節。 Azure 儲存體會在您的雲端架構應用程式裡加入各項功能，從而簡化儲存體問題的監視、診斷與疑難排解程序。
 
 > [!NOTE]
-> Azure 檔案服務目前不支援記錄。
+> Azure 檔案儲存體目前不支援記錄。
 > 
 
 如需在 Azure 儲存體應用程式進行端對端疑難排解的實際操作指南，請參閱 [使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解](storage-e2e-troubleshooting.md)。
@@ -72,7 +71,7 @@ ms.lasthandoff: 05/16/2017
   * [您的問題起因於使用儲存體模擬器進行開發或測試]
   * [安裝 Azure SDK for .NET 時發生問題]
   * [您的儲存體服務出現其他問題]
-  * [使用 Windows 和 Linux 針對 Azure 檔案問題進行疑難排解](storage-troubleshoot-file-connection-problems.md)
+  * [使用 Windows 和 Linux 針對 Azure 檔案儲存體進行疑難排解](storage-troubleshoot-file-connection-problems.md)
 * [附錄]
   * [附錄 1：使用 Fiddler 擷取 HTTP 與 HTTPS 流量]
   * [附錄 2：使用 Wireshark 擷取網路流量]
@@ -570,11 +569,11 @@ queueServicePoint.UseNagleAlgorithm = false;
 | 要求開始時間 | 2014-05-30T06:17:48.4473697Z |
 | 作業類型     | GetBlobProperties            |
 | 要求狀態     | SASAuthorizationError        |
-| HTTP 狀態碼   | 404                            |
+| HTTP 狀態碼   | 404                          |
 | 驗證類型| Sas                          |
 | 服務類型       | Blob                         |
-| 要求 URL         | https://domemaildist.blob.core.windows.net/azureimblobcontainer/blobCreatedViaSAS.txt |
-| nbsp;                 |   ?sv=2014-02-14&sr=c&si=mypolicy&sig=XXXXX&;api-version=2014-02-14 |
+| 要求 URL        | https://domemaildist.blob.core.windows.net/azureimblobcontainer/blobCreatedViaSAS.txt |
+| nbsp;              |   ?sv=2014-02-14&sr=c&si=mypolicy&sig=XXXXX&;api-version=2014-02-14 |
 | 要求 ID 標頭  | a1f348d5-8032-4912-93ef-b393e5252a3b |
 | 用戶端要求 ID  | 2d064953-8436-4ee0-aa0c-65cb874f7929 |
 

@@ -1,32 +1,32 @@
 ---
 title: "使用 Azure 入口網站建立 SQL Database 警示 | Microsoft Docs"
 description: "使用 Azure 入口網站建立 SQL Database 的警示，在符合指定條件時觸發通知或自動化。"
-author: CarlRabeler
+author: aamalvea
 manager: jhubbard
 editor: 
 services: sql-database
 documentationcenter: 
 ms.assetid: f7457655-ced6-4102-a9dd-7ddf2265c0e2
 ms.service: sql-database
-ms.custom: monitor & tune
+ms.custom: monitor and tune
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/01/2017
-ms.author: carlrab
+ms.date: 06/06/2017
+ms.author: aamalvea
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2679681c77dd6a3410bbe6ddbcf562924b13bfe6
-ms.openlocfilehash: afa21052281200768db24ce35a94097f23f23efe
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bfbaa71dc5716fbbc23d04bbd62210193c990e8e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 11/17/2016
+ms.lasthandoff: 07/08/2017
 
 
 ---
-# <a name="use-azure-portal-to-create-alerts-for-azure-sql-database"></a>使用 Azure 入口網站建立 Azure SQL Database 警示
+# <a name="use-azure-portal-to-create-alerts-for-azure-sql-database-and-data-warehouse"></a>使用 Azure 入口網站建立 Azure SQL Database 和資料倉儲警示
 
 ## <a name="overview"></a>概觀
-本文說明如何使用 Azure 入口網站設定 Azure SQL Database 警示。 本文也提供值和臨界值的最佳做法。    
+本文說明如何使用 Azure 入口網站設定 Azure SQL Database 和資料倉儲警示。 本文也提供設定警示期間的最佳做法。    
 
 您可以收到以您 Azure 服務的監視計量或事件為基礎的警示。
 
@@ -38,7 +38,6 @@ ms.lasthandoff: 11/17/2016
 * 傳送電子郵件給服務管理員和共同管理員
 * 傳送電子郵件至您指定的其他電子郵件
 * 呼叫 webhook
-* 啟動執行 Azure Runbook (現階段只能從 Azure 入口網站啟動)
 
 您可以透過下列方式設定和取得有關警示規則的資訊
 
@@ -49,19 +48,25 @@ ms.lasthandoff: 11/17/2016
 
 ## <a name="create-an-alert-rule-on-a-metric-with-the-azure-portal"></a>使用 Azure 入口網站建立計量的警示規則
 1. 在 [入口網站](https://portal.azure.com/)中，找到您要監視的資源並選取。
-2. 選取 [監視] 區段底下的 [警示] 或 [警示規則]。 不同資源的文字和圖示會有些許不同。  
+2. SQL DB 和彈性集區的此這個步驟與 SQL DW 不相同： 
+
+   - **僅限 SQL DB 和彈性集區**：選取 [監視] 區段底下的 [警示] 或 [警示規則]。 不同資源的文字和圖示會有些許不同。  
    
-    ![監視](../monitoring-and-diagnostics/media/insights-alerts-portal/AlertRulesButton.png)
+     ![監視](../monitoring-and-diagnostics/media/insights-alerts-portal/AlertRulesButton.png)
+  
+   - **僅限 SQL DW**：選取 [一般工作] 區段下的 [監視]。 按一下 [DWU 使用量] 圖表。
+
+     ![一般工作](../monitoring-and-diagnostics/media/insights-alerts-portal/AlertRulesButtonDW.png)
+
 3. 選取 [新增警示]  命令，並填寫各欄位。
    
-    ![新增警示](../monitoring-and-diagnostics/media/insights-alerts-portal/AddAlertOnlyParamsPage.png)
+    ![新增警示](../monitoring-and-diagnostics/media/insights-alerts-portal/AddDBAlertPage.png)
 4. 為您的警示規則命名 ([名稱])，選擇將會顯示在電子郵件通知中的 [描述]。
 5. 選取您要監視的 [計量]，然後為計量選擇 [條件] 和 [臨界值]。 同時選擇警示觸發程序之前，計量規則必須滿足的 [期間]  。 例如，如果您使用「PT5M」期間，且您的警示會尋找高於 80% 的 CPU，當 CPU 已持續 5 分鐘高於 80%，警示就會觸發。 一旦發生第一次觸發，它會在 CPU 持續 5 分鐘低於 80 % 時再次觸發。 CPU 度量每隔 1 分鐘發生一次。   
 6. 如果您想要在警示引發時傳送電子郵件給系統管理員和共同管理員，請勾選 [電子郵件的擁有者...]  。
 7. 如果您想要讓其他電子郵件信箱在警示引發時收到通知，在 [其他系統管理員電子郵件]  欄位新增它們。 以分號分隔多個電子郵件 - *email@contoso.com;email2@contoso.com*
 8. 如果您想在警示引發時呼叫webhook，在[webhook]  欄位中放入有效的 URI。
-9. 如果您使用 Azure 自動化，可以選取警示引發時執行的 Runbook。
-10. 完成後選取 [確定]  建立警示。   
+9. 完成後選取 [確定]  建立警示。   
 
 在幾分鐘之內，警示會開始作用，且先前所述觸發。
 
@@ -73,7 +78,7 @@ ms.lasthandoff: 11/17/2016
 * 如果您想要暫時停止或恢復接收警示的通知，可以**停用**或**啟用**警示。
 
 
-## <a name="sql-database-alert-values-and-thresholds"></a>SQL Database 警示值和臨界值
+## <a name="sql-database-alert-values"></a>SQL Database 警示值
 
 | 資源類型 | 度量名稱 | 易記名稱 | 彙總類型 | 警示時間間隔下限|
 | --- | --- | --- | --- | --- |
@@ -92,7 +97,18 @@ ms.lasthandoff: 11/17/2016
 | SQL Database | sessions_percent | 工作階段百分比 | 平均值 | 5 分鐘 |
 | SQL Database | dtu_limit | DTU 限制 | 平均值 | 5 分鐘 |
 | SQL Database | dtu_used | 已使用 DTU | 平均值 | 5 分鐘 |
-||||||           
+||||||
+| 彈性集區 | cpu_percent | CPU 百分比 | 平均值 | 10 分鐘 |
+| 彈性集區 | physical_data_read_percent | 資料 IO 百分比 | 平均值 | 10 分鐘 |
+| 彈性集區 | log_write_percent | 記錄 IO 百分比 | 平均值 | 10 分鐘 |
+| 彈性集區 | dtu_consumption_percent | DTU 百分比 | 平均值 | 10 分鐘 |
+| 彈性集區 | storage_percent | 儲存體百分比 | 平均值 | 10 分鐘 |
+| 彈性集區 | workers_percent | 背景工作角色百分比 | 平均值 | 10 分鐘 |
+| 彈性集區 | eDTU_limit | eDTU 限制 | 平均值 | 10 分鐘 |
+| 彈性集區 | storage_limit | 儲存體限制 | 平均值 | 10 分鐘 |
+| 彈性集區 | eDTU_used | 已使用 eDTU | 平均值 | 10 分鐘 |
+| 彈性集區 | storage_used | 已使用儲存體 | 平均值 | 10 分鐘 |
+||||||               
 | SQL 資料倉儲 | cpu_percent | CPU 百分比 | 平均值 | 10 分鐘 |
 | SQL 資料倉儲 | physical_data_read_percent | 資料 IO 百分比 | 平均值 | 10 分鐘 |
 | SQL 資料倉儲 | 儲存體 | 資料庫大小總計 | 最大值 | 10 分鐘 |
@@ -103,25 +119,12 @@ ms.lasthandoff: 11/17/2016
 | SQL 資料倉儲 | dwu_limit | dwu 限制 | 最大值 | 10 分鐘 |
 | SQL 資料倉儲 | dwu_consumption_percent | DWU 百分比 | 平均值 | 10 分鐘 |
 | SQL 資料倉儲 | dwu_used | 已使用 DWU | 平均值 | 10 分鐘 |
-||||||               
-| 彈性集區 | cpu_percent | CPU 百分比 | 平均值 | 5 分鐘 |
-| 彈性集區 | physical_data_read_percent | 資料 IO 百分比 | 平均值 | 5 分鐘 |
-| 彈性集區 | log_write_percent | 記錄 IO 百分比 | 平均值 | 5 分鐘 |
-| 彈性集區 | dtu_consumption_percent | DTU 百分比 | 平均值 | 5 分鐘 |
-| 彈性集區 | storage_percent | 儲存體百分比 | 平均值 | 5 分鐘 |
-| 彈性集區 | workers_percent | 背景工作角色百分比 | 平均值 | 5 分鐘 |
-| 彈性集區 | eDTU_limit | eDTU 限制 | 平均值 | 5 分鐘 |
-| 彈性集區 | storage_limit | 儲存體限制 | 平均值 | 5 分鐘 |
-| 彈性集區 | eDTU_used | 已使用 eDTU | 平均值 | 5 分鐘 |
-| 彈性集區 | storage_used | 已使用儲存體 | 平均值 | 5 分鐘 |
 ||||||
 
 
 ## <a name="next-steps"></a>後續步驟
 * [取得 Azure 監視的概觀](../monitoring-and-diagnostics/monitoring-overview.md) 中說明您可以收集和監視的資訊類型。
 * 深入了解 [在警示中設定 webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md)。
-* 深入了解 [Azure 自動化 Runbook](../automation/automation-starting-a-runbook.md)。
 * 依照 [診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 中的做法，收集您服務中詳細的高頻率計量。
 * 依照 [計量集合概觀](../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md) 中的做法，確保您的服務可使用且有回應。
-
 
