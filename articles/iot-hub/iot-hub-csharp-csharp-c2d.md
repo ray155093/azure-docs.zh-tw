@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure IoT 中樞傳送雲端到裝置訊息 (.NET) | Microsoft Docs"
-description: "如何使用適用於 .NET 的 Azure IoT SDK，將雲端到裝置訊息從 Azure IoT 中樞傳送至裝置。 您可以修改模擬裝置應用程式，以接收雲端到裝置訊息，也可以修改後端應用程式，以傳送雲端到裝置訊息。"
+description: "如何使用適用於 .NET 的 Azure IoT SDK，將雲端到裝置訊息從 Azure IoT 中樞傳送至裝置。 您可以修改裝置應用程式，以接收雲端到裝置訊息，也可以修改後端應用程式，以傳送雲端到裝置訊息。"
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/08/2017
 ms.author: elioda
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 150e7a1b2f86594d91b044b1b697f035ed1d270b
-ms.lasthandoff: 03/10/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 6ae1dad67b34127aadcb5d093a5adeaa3394879c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
-# <a name="send-messages-from-the-cloud-to-your-simulated-device-with-iot-hub-net"></a>透過 IoT 中樞將訊息從雲端傳送至模擬裝置 (.NET)
+# <a name="send-messages-from-the-cloud-to-your-device-with-iot-hub-net"></a>使用 IoT 中樞將訊息從雲端傳送至裝置 (.NET)
 [!INCLUDE [iot-hub-selector-c2d](../../includes/iot-hub-selector-c2d.md)]
 
 ## <a name="introduction"></a>簡介
-Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個解決方案後端進行可靠且安全的雙向通訊。 [開始使用 IoT 中樞] 教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫模擬的裝置應用程式，以傳送裝置到雲端的訊息。
+Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個解決方案後端進行可靠且安全的雙向通訊。 [開始使用 IoT 中樞]教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫裝置應用程式，以傳送裝置到雲端的訊息。
 
 本教學課程是以 [開始使用 IoT 中樞]為基礎。 這會說明如何：
 
@@ -38,7 +38,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 在本教學課程結尾處，您會執行兩個 .NET 主控台應用程式：
 
 * **SimulatedDevice**， [開始使用 IoT 中樞]中建立之應用程式的修改版本，可連接到您的 IoT 中心，並接收雲端到裝置的訊息。
-* **SendCloudToDevice**：會透過 IoT 中樞，將雲端到裝置訊息傳送到模擬裝置應用程式，然後接收其傳遞通知。
+* **SendCloudToDevice**會透過 IoT 中樞，將雲端到裝置訊息傳送到裝置應用程式，然後接收其傳遞通知。
 
 > [!NOTE]
 > IoT 中樞會透過 [Azure IoT 裝置 SDK] 為許多裝置平台和語言 (包括 C、Java 及 Javascript) 提供 SDK 支援。 如需有關如何將您的裝置與本教學課程中的程式碼連接 (通常是連線至 Azure IoT 中樞) 的逐步指示，請參閱 [Azure IoT 中樞開發人員指南]。
@@ -50,8 +50,8 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 * Visual Studio 2015 或 Visual Studio 2017
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
-## <a name="receive-messages-in-the-simulated-device-app"></a>在模擬的裝置應用程式中接收訊息
-在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
+## <a name="receive-messages-in-the-device-app"></a>在裝置應用程式中接收訊息
+在本節中，您會修改在[開始使用 IoT 中樞]中建立的裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
 
 1. 在 Visual Studio 的 **SimulatedDevice** 專案中，將下列方法新增 [程式] 類別。
    
@@ -89,7 +89,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 > 
 
 ## <a name="send-a-cloud-to-device-message"></a>傳送雲端到裝置訊息
-在本節中，您會撰寫 .NET 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。
+在本節中，您會撰寫 .NET 主控台應用程式，將雲端到裝置訊息傳送至裝置應用程式。
 
 1. 在目前的 Visual Studio 方案中，使用 [主控台應用程式] 專案範本來建立「Visual C# 傳統型應用程式」專案。 將專案命名為 **SendCloudToDevice**。
    
@@ -127,7 +127,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
         SendCloudToDeviceMessageAsync().Wait();
         Console.ReadLine();
 8. 從 Visual Studio 中，在您的方案上按一下滑鼠右鍵，然後選取 [設定啟始專案...]。 選取 [多個啟始專案]，然後同時針對 **ReadDeviceToCloudMessages**、**SimulatedDevice** 以及 **SendCloudToDevice** 選取 [啟動] 動作。
-9. 按 **F5**。 三個應用程式應該全部都會啟動。 選取 [SendCloudToDevice] 視窗，然後按 **Enter**。 您應該會看到模擬裝置應用程式正在接收訊息。
+9. 按 **F5**。 三個應用程式應該全部都會啟動。 選取 [SendCloudToDevice] 視窗，然後按 **Enter**。 您應該會看到裝置應用程式正在接收訊息。
    
    ![正在接收訊息的應用程式][21]
 
@@ -163,7 +163,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 3. 為了要求雲端到裝置訊息傳遞狀況的意見反應，您必須在 **SendCloudToDeviceMessageAsync** 方法中指定屬性。 將以下行加入 `var commandMessage = new Message(...);` 行之後：
    
         commandMessage.Ack = DeliveryAcknowledgement.Full;
-4. 按 **F5**來執行應用程式。 您應該會看到三個應用程式全部都啟動。 選取 [SendCloudToDevice] 視窗，然後按 **Enter**。 您應該會看到模擬裝置應用程式正在接收訊息，而幾秒之後，則會看到您的 **SendCloudToDevice** 應用程式正在接收意見反應訊息。
+4. 按 **F5**來執行應用程式。 您應該會看到三個應用程式全部都啟動。 選取 [SendCloudToDevice] 視窗，然後按 **Enter**。 您應該會看到裝置應用程式正在接收訊息，而幾秒之後，則會看到您的 **SendCloudToDevice** 應用程式正在接收意見反應訊息。
    
    ![正在接收訊息的應用程式][22]
 

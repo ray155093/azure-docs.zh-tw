@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/29/2017
 ms.author: xshi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
-ms.openlocfilehash: 74f95d571da2e3066958cf3c5ab1938a5c631f7d
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: 4f30643926def3259e603a94c741b8f65427b8da
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="visualize-real-time-sensor-data-from-your-azure-iot-hub-by-using-the-web-apps-feature-of-azure-app-service"></a>使用 Azure App Service 的 Web Apps 功能將來自 Azure IoT 中樞的即時感應器資料視覺化
@@ -83,7 +83,7 @@ ms.lasthandoff: 07/06/2017
 
    ![設定 Web 應用程式 (web app) 部署以使用本機 Git 存放庫](media/iot-hub-live-data-visualization-in-web-apps/5_configure-web-app-deployment-local-git-repository-azure.png)
 
-2. 按一下 [部署認證]，建立要用來連線到 Azure 中 Git 存放庫的使用者名稱和密碼，然後按一下 [確定]。
+2. 按一下 [部署認證]，建立要用來連線到 Azure 中 Git 存放庫的使用者名稱和密碼，然後按一下 [儲存]。
 
 3. 按一下 [概觀]，並記下 [Git 複製 url] 的值。
 

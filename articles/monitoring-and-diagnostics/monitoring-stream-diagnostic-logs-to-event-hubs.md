@@ -2,7 +2,7 @@
 title: "將 Azure 診斷記錄檔串流至事件中樞 | Microsoft Docs"
 description: "了解如何將 Azure 診斷記錄檔串流至事件中樞。"
 author: johnkemnetz
-manager: rboucher
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/09/2016
 ms.author: johnkem
-translationtype: Human Translation
-ms.sourcegitcommit: c9063fcc59d83cb2a6a159cf3a69234417138a5c
-ms.openlocfilehash: 5cadc3ea77ba13d40876c7bc11d2aa1d6abe6b87
-ms.lasthandoff: 12/10/2016
-
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: d974d64dbafe15707a6ce86144b98bad334f7f00
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="stream-azure-diagnostic-logs-to-event-hubs"></a>將 Azure 診斷記錄檔串流至事件中樞
@@ -28,25 +28,25 @@ ms.lasthandoff: 12/10/2016
 這裡有一些您可以使用診斷日誌串流功能的方法：
 
 * **串流至協力廠商記錄與遙測系統** – 經過一段時間，事件中樞串流會成為將活動記錄檔輸送到協力廠商的 SIEM 與記錄分析解決方案的機制。
-* **透過將「最忙碌路徑」串流至 PowerBI 以檢視服務健全狀況** – 您可以使用事件中樞、串流分析和 PowerBI，輕鬆快速地將診斷資料轉換為 Azure 服務上的深入解析。 [此文件文章提供絕佳概觀，說明如何設定事件中樞、使用串流分析處理資料，以及使用 PowerBI 作為輸出](../stream-analytics/stream-analytics-power-bi-dashboard.md)。 以下是設定診斷記錄的一些秘訣︰
+* **透過將「最忙碌路徑」串流至 PowerBI 以檢視服務健全狀況** – 您可以使用事件中樞、串流分析和 PowerBI，輕鬆快速地將診斷資料轉換為 Azure 服務上的深入解析。 [此文件文章提供絕佳概觀，說明如何設定事件中樞、使用串流分析處理資料，以及使用 PowerBI 作為輸出](../stream-analytics/stream-analytics-power-bi-dashboard.md)。 以下是設定診斷記錄的一些祕訣︰
   
-  * 當您勾選入口網站中的選項，或透過 PowerShell 進行啟用時，即會自動建立診斷記錄類別的事件中樞，因此此您需要選取服務匯流排命名空間中名稱開頭為 “insights-” 的事件中樞
-  * 此處是您可以使用的範例串流分析查詢，以輕鬆將記錄資料剖析至 PowerBI 表格：
+  * 當您勾選入口網站中的選項，或透過 PowerShell 進行啟用時，即會自動建立診斷記錄類別的事件中樞，因此此您需要選取命名空間中名稱開頭為 **insights-** 的事件中樞。
+  * 下列 SQL 程式碼是您可以使用的範例串流分析查詢，以將所有記錄資料剖析至 PowerBI 表格：
 
-```
-SELECT
-records.ArrayValue.[Properties you want to track]
-INTO
-[OutputSourceName – the PowerBI source]
-FROM
-[InputSourceName] AS e
-CROSS APPLY GetArrayElements(e.records) AS records
-```
+    ```sql
+    SELECT
+    records.ArrayValue.[Properties you want to track]
+    INTO
+    [OutputSourceName – the PowerBI source]
+    FROM
+    [InputSourceName] AS e
+    CROSS APPLY GetArrayElements(e.records) AS records
+    ```
 
 * **建置自訂遙測及記錄平台** – 如果您已有自建遙測平台或正好在考慮建置一個，事件中樞所具備的高度可調整的發佈訂閱特質可讓您靈活擷取診斷記錄檔。 [請參閱此處的 Dan Rosanova 指南，以在全球級別的遙測平台中使用事件中樞](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/)。
 
 ## <a name="enable-streaming-of-diagnostic-logs"></a>啟用診斷記錄串流功能
-您可以透過入口網站，或使用 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx)，來啟用以程式控制的方式對診斷記錄進行串流的功能。 在這兩種方式的情況下，您會選取服務匯流排命名空間，且針對您所啟用的每個記錄檔分類，在命名空間中建立事件中樞。 診斷 **記錄檔分類** 是一種資源可以收集的記錄類型。 您可以在 Azure 入口網站的 [診斷] 刀鋒視窗中選取您想要收集的特定資源的記錄檔分類。
+您可以透過入口網站，或使用 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx)，來啟用以程式控制的方式對診斷記錄進行串流的功能。 在這兩種方式的情況下，您會選取事件中樞命名空間，且針對您所啟用的每個記錄檔分類，在命名空間中建立事件中樞。 診斷 **記錄檔分類** 是一種資源可以收集的記錄類型。 您可以在 Azure 入口網站的 [診斷] 刀鋒視窗中選取您想要收集的特定資源的記錄檔分類。
 
 ![入口網站中的記錄檔類別](./media/monitoring-stream-diagnostic-logs-to-event-hubs/log-categories.png)
 
@@ -55,37 +55,37 @@ CROSS APPLY GetArrayElements(e.records) AS records
 > 
 > 
 
-服務匯流排或事件中樞命名空間不一定要和資源發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
+服務匯流排或事件中樞命名空間不一定要和資源發出記錄檔屬於相同的訂用帳戶，只要進行設定的使用者有這兩個訂用帳戶的適當 RBAC 存取權。
 
 ### <a name="via-powershell-cmdlets"></a>透過 PowerShell Cmdlet
 若要透過 [Azure PowerShell Cmdlet](insights-powershell-samples.md) 啟用串流功能，您可以使用 `Set-AzureRmDiagnosticSetting` Cmdlet 搭配下列參數︰
 
-```
-Set-AzureRmDiagnosticSetting -ResourceId [your resource Id] -ServiceBusRuleId [your service bus rule id] -Enabled $true
+```powershell
+Set-AzureRmDiagnosticSetting -ResourceId [your resource Id] -ServiceBusRuleId [your Service Bus rule id] -Enabled $true
 ```
 
-服務匯流排規則識別碼是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`，例如，`/subscriptions/{subscription ID}/resourceGroups/Default-ServiceBus-WestUS/providers/Microsoft.ServiceBus/namespaces/{service bus namespace}/authorizationrules/RootManageSharedAccessKey`。
+服務匯流排規則識別碼是此格式的字串︰`{Service Bus resource ID}/authorizationrules/{key name}`，例如，`/subscriptions/{subscription ID}/resourceGroups/Default-ServiceBus-WestUS/providers/Microsoft.ServiceBus/namespaces/{Service Bus namespace}/authorizationrules/RootManageSharedAccessKey`。
 
 ### <a name="via-azure-cli"></a>透過 Azure CLI
 若要透過 [Azure CLI](insights-cli-samples.md) 啟用串流功能，您可以使用如下的 `insights diagnostic set` 命令︰
 
-```
+```azurecli
 azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serviceBusRuleId> --enabled true
 ```
 
 如 PowerShell Cmdlet 所述，對服務匯流排規則識別碼使用相同的格式。
 
 ### <a name="via-azure-portal"></a>透過 Azure 入口網站
-若要透過 Azure 入口網站啟用串流功能，瀏覽至資源的診斷設定並選取 [匯出至事件中樞]。
+若要透過 Azure 入口網站啟用串流功能，巡覽至資源的診斷設定並選取 [匯出至事件中樞]。
 
 ![在入口網站中匯出至事件中樞](./media/monitoring-stream-diagnostic-logs-to-event-hubs/portal-export.png)
 
-若要進行設定，請選取現有的服務匯流排命名空間。 選取的命名空間將會是事件中樞的建立所在 (如果這是您第一次的串流診斷記錄) 或串流處理的目的地 (如果已存在將該記錄檔分類串流至此命名空間的資源)，而原則會定義串流機制擁有的權限。 目前，將事件串流到中樞需要管理、傳送和接聽的權限。 您可以在傳統入口網站 [設定] 索引標籤下，為您的服務匯流排命名空間建立或修改服務匯流排命名空間共用存取原則。 若要更新其中一個診斷設定，用戶端必須擁有服務匯流排授權規則的 ListKey 權限。
+若要進行設定，請選取現有的事件中樞命名空間。 選取的命名空間將會是事件中樞的建立所在 (如果這是您第一次的串流診斷記錄) 或串流處理的目的地 (如果已存在將該記錄檔分類串流至此命名空間的資源)，而原則會定義串流機制擁有的權限。 目前，將事件串流到中樞需要管理、傳送和接聽的權限。 您可以在入口網站 [設定] 索引標籤下，為您的命名空間建立或修改事件中樞命名空間共用存取原則。 若要更新其中一個診斷設定，用戶端必須擁有事件中樞授權規則的 **ListKey** 權限。
 
 ## <a name="how-do-i-consume-the-log-data-from-event-hubs"></a>我要如何透過事件中樞取用記錄檔資料？
 此處是來自事件中樞的範例輸出資料：
 
-```
+```json
 {
     "records": [
         {
@@ -156,7 +156,7 @@ azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serv
 | 層級 |選用。 表示記錄事件層級。 |
 | properties |事件的屬性。 |
 
-您可以在 [這裡](monitoring-overview-of-diagnostic-logs.md)檢視支援串流至事件中樞的所有資源提供者清單。
+您可以在[這裡](monitoring-overview-of-diagnostic-logs.md)檢視支援串流至事件中樞的所有資源提供者清單。
 
 ## <a name="stream-data-from-compute-resources"></a>從計算資源中串流資料
 您也可以使用 Microsoft Azure 診斷代理程式，從計算資源中串流診斷記錄。 [請參閱本文章](../event-hubs/event-hubs-streaming-azure-diags-data.md)了解如何設定。

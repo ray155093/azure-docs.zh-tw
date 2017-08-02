@@ -13,13 +13,13 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: 
 ms.workload: infrastructure
-ms.date: 04/21/2017
+ms.date: 07/07/2017
 ms.author: kumud
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 5fc71943c2fdf1a6a64bf96176deb5f6bc4e26d7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 69a7753cc75b028e2bf093053d9a5fc0890562e8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/08/2017
 
 ---
 
@@ -33,7 +33,7 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli[主要](../../../cli_scripts/virtual-machine/create-vm-nlb/create-vm-nlb.sh "快速建立 VM")]
+[!code-azurecli-interactive[主要](../../../cli_scripts/virtual-machine/create-vm-nlb/create-vm-nlb.sh "快速建立 VM")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
@@ -52,10 +52,10 @@ az group delete --name myResourceGroup
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
 | [az network vnet create](https://docs.microsoft.com/cli/azure/network/vnet#create) | 建立 Azure 虛擬網路和子網路。 |
 | [az network public-ip create](https://docs.microsoft.com/cli/azure/network/public-ip#create) | 建立具有靜態 IP 位址和相關聯 DNS 名稱的公用 IP 位址。 |
-| [az network lb create](https://docs.microsoft.com/cli/azure/network/lb#create) | 建立 Azure 網路負載平衡器 (NLB)。 |
-| [az network lb probe create](https://docs.microsoft.com/cli/azure/network/lb/probe#create) | 建立 NLB 探查。 NLB 探查可用來監視 NLB 集合中的每部 VM。 如有任何 VM 變得無法存取，就不會將流量路由至該 VM。 |
-| [az network lb rule create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | 建立 NLB 規則。 在此範例中，會為連接埠 80 建立規則。 當 HTTP 流量抵達 NLB 時，就會經由連接埠 80 將其路由傳送至 NLB 集合的其中一部 VM。 |
-| [az network lb inbound-nat-rule create](https://docs.microsoft.com/cli/azure/network/lb/inbound-nat-rule#create) | 建立 NLB 網路位址轉譯 (NAT) 規則。  NAT 規則會將 NLB 的連接埠對應到 VM 上的連接埠。 在此範例中，會為 NLB 集合的每部 VM 所收到的 SSH 流量建立 NAT 規則。  |
+| [az network lb create](https://docs.microsoft.com/cli/azure/network/lb#create) | 建立 Azure 負載平衡器。 |
+| [az network lb probe create](https://docs.microsoft.com/cli/azure/network/lb/probe#create) | 建立負載平衡器探查。 負載平衡器探查是用來監視負載平衡器集合中的每部 VM。 如有任何 VM 變得無法存取，就不會將流量路由至該 VM。 |
+| [az network lb rule create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | 建立負載平衡器規則。 在此範例中，會為連接埠 80 建立規則。 HTTP 流量到達負載平衡器時，它會路由傳送至 LB 集內其中一部 VM 的連接埠 80。 |
+| [az network lb inbound-nat-rule create](https://docs.microsoft.com/cli/azure/network/lb/inbound-nat-rule#create) | 建立負載平衡器網路位址轉譯 (NAT) 規則。  NAT 規則會將負載平衡器的連接埠對應至 VM 上的連接埠。 在此範例中，會為傳送到負載平衡器集合中每部 VM 的 SSH 流量建立 NAT 規則。  |
 | [az network nsg create](https://docs.microsoft.com/cli/azure/network/nsg#create) | 建立網路安全性群組 (NSG)，做為網際網路和虛擬機器之間的安全性界限。 |
 | [az network nsg rule create](https://docs.microsoft.com/cli/azure/network/nsg/rule#create) | 建立允許輸入流量的 NSG 規則。 在此範例中，會開放連接埠 22 供 SSH 流量使用。 |
 | [az network nic create](https://docs.microsoft.com/cli/azure/network/nic#create) | 建立虛擬網路卡，並將它連接至虛擬網路、子網路及 NSG。 |

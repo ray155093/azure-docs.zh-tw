@@ -13,14 +13,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/03/2017
+ms.date: 07/13/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
-ms.openlocfilehash: ec20115e8316b96d740e1966494096964ec884b1
+ms.translationtype: HT
+ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
+ms.openlocfilehash: 2e8ebbdab2be7bed224a67facec798820615bb22
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/22/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="process-events-from-azure-event-hubs-with-storm-on-hdinsight-java"></a>使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)
@@ -31,10 +30,10 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 
 ## <a name="prerequisites"></a>必要條件
 
-* Apache Storm on HDInsight cluster 3.5 版。 如需詳細資訊，請參閱[開始使用 Storm on HDInsight cluster](hdinsight-apache-storm-tutorial-get-started-linux.md)。
+* Apache Storm on HDInsight 叢集 3.6 版。 如需詳細資訊，請參閱[開始使用 Storm on HDInsight cluster](hdinsight-apache-storm-tutorial-get-started-linux.md)。
 
     > [!IMPORTANT]
-    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 * [Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)。
 
@@ -49,15 +48,15 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 
     * SSH 用戶端。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-* SCP 用戶端。 所有 Linux、Unix、OS X 系統 (包括 Bash on Windows 10) 皆提供 `scp` 命令。針對沒有 `scp` 命令的 Windows 系統，我們建議使用 PSCP。 可從 [PuTTY 下載頁面](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 取得 PSCP。
+* `ssh` 和 `scp` 命令。 這些命令用來將檔案複製到 HDInsight 叢集。 在 Windows 上，您可以透過 Windows 10 的 Bash 執行這些命令。
 
 ## <a name="understanding-the-example"></a>了解範例
 
 [hdinsight-java-storm-eventhub](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub) 範例包含兩個拓撲：
 
-**com.microsoft.example.EventHubWriter** 將隨機資料寫入 Azure 事件中樞。 資料由 Spout 產生，而且是隨機裝置識別碼和裝置值。 所以它是模擬會發出字串識別碼和數值的部分硬體。
+`resources/writer.yaml` 拓撲會將隨機資料寫入 Azure 事件中樞。 資料由 `DeviceSpout` 產生，而且是隨機裝置識別碼和裝置值。 所以它是模擬會發出字串識別碼和數值的部分硬體。
 
-**com.microsoft.example.EventHubReader** 會從事件中樞讀取資料，並將其儲存至 /devicedata 目錄中的叢集預設儲存體。
+有三個 `resources/reader.yaml` 拓撲會從事件中樞讀取資料 (由 EventHubWriter 寫入的資料)、剖析 JSON 資料，然後記錄 `deviceId` 和 `deviceValue` 資料。
 
 資料會在寫入事件中樞之前格式化為 JSON 文件，當讀取器讀取時會從 JSON 剖析，並且進入 Tuple。 JSON 格式如下所示：
 
@@ -67,43 +66,15 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 
 `POM.xml` 檔案包含此 Maven 專案的組態資訊。 有趣的部分是：
 
-#### <a name="hortonworks-repository"></a>Hortonworks 存放庫
+#### <a name="event-hub-components"></a>事件中樞元件
 
-HDInsight 是以 Hortonworks Data Platform 為基礎。 為確定您的專案與搭配 HDInsight 3.5 使用的 Storm 和 Hadoop 版本相容，下一節會設定專案以使用來自 Hortonworks 的資料：
+讀取和寫入至 Azure 事件中樞的元件位於 [HDInsight 儲存機制](https://github.com/hdinsight/mvn-rep)。 `POM.xml` 檔案的下列各區段可從這個儲存機制載入元件
 
 ```xml
 <repositories>
     <repository>
-        <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-        </releases>
-        <snapshots>
-            <enabled>false</enabled>
-            <updatePolicy>never</updatePolicy>
-            <checksumPolicy>fail</checksumPolicy>
-        </snapshots>
-        <id>HDPReleases</id>
-        <name>HDP Releases</name>
-        <url>http://repo.hortonworks.com/content/repositories/releases/</url>
-        <layout>default</layout>
-    </repository>
-    <repository>
-        <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-        </releases>
-        <snapshots>
-            <enabled>false</enabled>
-            <updatePolicy>never</updatePolicy>
-            <checksumPolicy>fail</checksumPolicy>
-        </snapshots>
-        <id>HDPJetty</id>
-        <name>Hadoop Jetty</name>
-        <url>http://repo.hortonworks.com/content/repositories/jetty-hadoop/</url>
-        <layout>default</layout>
+        <id>hdinsight-examples</id>
+        <url>http://raw.github.com/hdinsight/mvn-repo/master</url>
     </repository>
 </repositories>
 ```
@@ -114,68 +85,20 @@ HDInsight 是以 Hortonworks Data Platform 為基礎。 為確定您的專案與
 <dependency>
     <groupId>com.microsoft</groupId>
     <artifactId>eventhubs</artifactId>
-    <version>1.0.2</version>
+    <version>${storm.eventhub.version}</version>
 </dependency>
 ```
 
 這個 xml 會定義 eventhubs 套件的相依性，當中包含用以從「事件中樞」讀取的 Spout 和寫入「事件中樞」的 Bolt。
 
-> [!NOTE]
-> 本文件稍後會安裝此套件。
-
-#### <a name="the-hdfsbolt-and-wasb-components"></a>HdfsBolt 和 WASB 元件
-
-HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 不過，HDInsight 叢集會使用 Azure 儲存體 (WASB) 做為預設的資料存放區，所以我們必須載入數個元件，讓 HdfsBolt 了解 WASB 檔案系統。
-
 ```xml
-<!--HdfsBolt stuff -->
-<dependency>
-    <groupId>org.apache.storm</groupId>
-    <artifactId>storm-hdfs</artifactId>
-    <!-- exclude these storm-hdfs dependencies since they are on the server -->
-    <exclusions>
-        <exclusion>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-client</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-hdfs</artifactId>
-        </exclusion>
-    </exclusions>
-    <version>${storm.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.hadoop</groupId>
-    <artifactId>hadoop-common</artifactId>
-    <version>${hadoop.version}</version>
-    <exclusions>
-    <exclusion>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-    </exclusion>
-    </exclusions>
-</dependency>
-```
-
-> [!NOTE]
-> 與舊版 HDInsight 搭配運作 (例如 3.2 版) 時，您必須手動註冊這些元件。 如需範例，請參閱範例儲存機制的 [Storm v0.9.3](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub/tree/Storm_v0.9.3) 分支。
-
-#### <a name="the-maven-compiler-plugin"></a>maven-compiler-plugin
-
-```xml
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>2.3.2</version>
-    <configuration>
-    <source>1.8</source>
+</source>
     <target>1.8</target>
     </configuration>
 </plugin>
 ```
 
-這會將專案設定為產生 Java 8 的輸出，輸出將由 HDInsight 3.5 使用。
+這個 XML 會將專案設定為產生 Java 8 的輸出，而輸出將由 HDInsight 3.5 或更新版本使用。
 
 #### <a name="the-maven-shade-plugin"></a>maven-shade-plugin
 
@@ -189,7 +112,6 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
     <transformers>
     <!-- Keep us from getting a can't overwrite file error -->
     <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"/>
-    <!-- Keep us from getting errors when trying to use WASB from the storm-hdfs bolt -->
     <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
     </transformers>
     <!-- Keep us from getting a bad signature error -->
@@ -215,7 +137,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 </plugin>
 ```
 
-這會將解決方案設定為把輸出封裝為 uber jar 。 jar 包含專案程式碼和必要的相依性。 它也用來：
+這個 XML 會將解決方案設定為把輸出封裝成 uber jar 。 jar 包含專案程式碼和必要的相依性。 它也用來：
 
 * 重新命名相依性的授權檔案。
 * 排除安全性/簽章。
@@ -223,52 +145,128 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 
 這些組態設定可防止執行階段錯誤。
 
-#### <a name="the-exec-maven-plugin"></a>exec-maven-plugin
+#### <a name="topology-definitions"></a>拓撲定義
 
-```xml
-<plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>exec-maven-plugin</artifactId>
-    <version>1.2.1</version>
-    <executions>
-    <execution>
-    <goals>
-        <goal>exec</goal>
-    </goals>
-    </execution>
-    </executions>
-    <configuration>
-    <executable>java</executable>
-    <includeProjectDependencies>true</includeProjectDependencies>
-    <includePluginDependencies>false</includePluginDependencies>
-    <classpathScope>compile</classpathScope>
-    <mainClass>${storm.topology}</mainClass>
-    <cleanupDaemonThreads>false</cleanupDaemonThreads>
-    </configuration>
-</plugin>
+這個範例會使用 [Flux](https://storm.apache.org/releases/1.1.0/flux.html) 架構。 此架構則使用 YAML 來定義拓撲。 主要優點為您不是將拓撲寫入 Java 程式碼。 由於定義是 YAML，因此您可以在提交拓撲之前變更它，而不必重新編譯所有項目。
+
+__writer.yaml__：
+
+```yaml
+---
+# Topology that reads from Event Hubs
+name: "eventhubwriter"
+
+components:
+  # Configure the Event Hub spout
+  - id: "eventhubbolt-config"
+    className: "org.apache.storm.eventhubs.bolt.EventHubBoltConfig"
+    constructorArgs:
+      # These are populated from the .properties file when the topology is started
+      - "${eventhub.write.policy.name}"
+      - "${eventhub.write.policy.key}"
+      - "${eventhub.namespace}"
+      - "servicebus.windows.net"
+      - "${eventhub.name}"
+
+spouts:
+  - id: "device-emulator-spout"
+    className: "com.microsoft.example.DeviceSpout"
+    parallelism: ${eventhub.partitions}
+
+bolts:
+  - id: "eventhub-bolt"
+    className: "org.apache.storm.eventhubs.bolt.EventHubBolt"
+    constructorArgs:
+      - ref: "eventhubbolt-config" # config declared in components section
+    # parallelism hint. This should be the same as the number of partitions for your Event Hub, so we read it from the dev.properties file passed at run time.
+    parallelism: ${eventhub.partitions}
+
+  # Log information
+  - id: "log-bolt"
+    className: "org.apache.storm.flux.wrappers.bolts.LogInfoBolt"
+    parallelism: 1
+
+# How data flows through the components
+streams:
+  - name: "spout -> eventhub" # just a string used for logging
+    from: "device-emulator-spout"
+    to: "eventhub-bolt"
+    grouping:
+        type: SHUFFLE
+
+  - name: "spout -> logger"
+    from: "device-emulator-spout"
+    to: "log-bolt"
+    grouping:
+        type: SHUFFLE
 ```
 
-這個設定讓您可以輕鬆地在開發環境上本機執行拓撲。 您可以使用下列語法在本機執行拓撲：
+__reader.yaml__：
 
-    mvn compile exec:java -Dstorm.topology=<CLASSNAME>
+```yaml
+---
+# Topology that reads from Event Hubs
+name: "eventhubreader"
 
-例如， `mvn compile exec:java -Dstorm.topology=com.microsoft.example.EventHubWriter`。
+components:
+  # Configure the Event Hub spout
+  - id: "eventhubspout-config"
+    className: "org.apache.storm.eventhubs.spout.EventHubSpoutConfig"
+    constructorArgs:
+      # These are populated from the .properties file when the topology is started
+      - "${eventhub.read.policy.name}"
+      - "${eventhub.read.policy.key}"
+      - "${eventhub.namespace}"
+      - "${eventhub.name}"
+      - ${eventhub.partitions}
 
-#### <a name="the-resources-section"></a>資源區段
+spouts:
+  - id: "eventhub-spout"
+    className: "org.apache.storm.eventhubs.spout.EventHubSpout"
+    constructorArgs:
+      - ref: "eventhubspout-config" # config declared in components section
+    # parallelism hint. This should be the same as the number of partitions for your Event Hub, so we read it from the dev.properties file passed at run time.
+    parallelism: ${eventhub.partitions}
 
-```xml
-<resources>
-    <resource>
-    <directory>${basedir}/conf</directory>
-    <filtering>false</filtering>
-    <includes>
-        <include>EventHubs.properties</include>
-    </includes>
-    </resource>
-</resources>
+bolts:
+  # Log information
+  - id: "log-bolt"
+    className: "org.apache.storm.flux.wrappers.bolts.LogInfoBolt"
+    parallelism: 1
+
+  # Parses from JSON into tuples
+  - id: "parser-bolt"
+    className: "com.microsoft.example.ParserBolt"
+    parallelism: ${eventhub.partitions}
+
+# How data flows through the components
+streams:
+  - name: "spout -> parser" # just a string used for logging
+    from: "eventhub-spout"
+    to: "parser-bolt"
+    grouping:
+        type: SHUFFLE
+
+  - name: "parser -> log-bolt"
+    from: "parser-bolt"
+    to: "log-bolt"
+    grouping:
+        type: SHUFFLE
 ```
 
-這個設定會定義專案中包含的非 Java 資源。 例如，**EventHubs.properties** 檔案包含用來連線到 Azure 事件中樞的資訊。
+#### <a name="tell-the-topology-about-event-hub"></a>分辨事件中樞的相關拓撲
+
+在執行階段，`dev.properties` 檔案用來將事件中樞設定傳遞至拓撲。 下列範例是檔案的預設內容：
+
+```yaml
+eventhub.write.policy.name: writer
+eventhub.write.policy.key: your_key_here
+eventhub.read.policy.name: reader
+eventhub.read.policy.key: your_key_here
+eventhub.namespace: your_namespace_here
+eventhub.name: storm
+eventhub.partitions: 2
+```
 
 ## <a name="configure-environment-variables"></a>設定環境變數
 
@@ -280,18 +278,6 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
   * **JAVA_HOME** (或對等的路徑)
   * **JAVA_HOME\bin** (或對等的路徑)
   * 已安裝 Maven 的目錄
-
-## <a name="download-and-register-the-eventhub-components"></a>下載並註冊 EventHub 元件
-
-1. 從 [https://000aarperiscus.blob.core.windows.net/certs/storm-eventhubs-1.0.2-jar-with-dependencies.jar](https://000aarperiscus.blob.core.windows.net/certs/storm-eventhubs-1.0.2-jar-with-dependencies.jar) 下載 `storm-eventhubs-1.0.2-jar-with-dependencies.jar`。 這個檔案包含從 EventHubs 讀取和寫入的 Spout 和 Bolt 元件。
-
-2. 在您的本機 Maven 儲存機制中使用下列命令註冊元件︰
-
-        mvn install:install-file -Dfile=storm-eventhubs-1.0.2-jar-with-dependencies.jar -DgroupId=com.microsoft -DartifactId=eventhubs -Dversion=1.0.2 -Dpackaging=jar
-
-    將 `-Dfile=` 參數修改為指向下載的檔案位置。
-
-    此命令會將檔案安裝在本機 Maven 儲存機制，Maven 可在編譯時期找到 它。
 
 ## <a name="configure-event-hub"></a>設定事件中樞
 
@@ -329,21 +315,40 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 
 1. 從 GitHub 下載專案： [hdinsight-java-storm-eventhub](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub)。 您可以將封裝下載為 zip 封存，或使用 [git](https://git-scm.com/) 以在本機複製專案。
 
-2. 使用下列項目建置和封裝專案：
+2. 使用事件中樞設定修改 `dev.properties` 檔案。
+
+3. 使用下列項目建置和封裝專案：
 
         mvn package
 
     這個命令會下載必要的相依性、進行建置，然後封裝專案。 輸出會在 **/target** 目錄儲存為 **EventHubExample-1.0-SNAPSHOT.jar**。
 
-## <a name="deploy-the-topologies"></a>部署拓撲
+## <a name="test-locally"></a>本機測試
 
-此專案所建立的 jar 包含兩種拓撲；**com.microsoft.example.EventHubWriter** 和 **com.microsoft.example.EventHubReader**。 應該先啟動 EventHubWriter 拓撲，因為它會將事件寫入事件中樞，然後由 EventHubReader 讀取。
+由於這些拓撲中只會讀取和寫入至事件中樞，因此如果您有 [Storm 開發環境](http://storm.apache.org/releases/current/Setting-up-development-environment.html)，則可以在本機測試它們。 使用下列步驟，以在開發環境的本機中執行：
+
+1. 執行寫入器：
+
+        storm jar EventHubExample-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --local -R /writer.yaml --filter dev.properties
+
+2. 執行讀取器：
+
+        storm jar EventHubExample-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --local -R /reader.yaml --filter dev.properties
+
+> [!TIP]
+> * `--local`：以本機模式執行拓撲 (非分散式)。
+> * `-R /writer.yaml`：從封裝在 Jar 中的 `resources` 載入拓撲定義。 如果拓撲為本機檔案系統上的檔案，請改為指定其路徑作為最後一個參數。
+> * `--filter dev.properties`：使用 `dev.properties` 的內容在拓撲定義中填入值。 例如， `${eventhub.read.policy.name}`。
+
+在本機執行時，輸出會記錄至主控台。 使用 __Ctrl+C__ 來停止拓撲。
+
+## <a name="deploy-the-topologies"></a>部署拓撲
 
 1. 使用 SCP 將 jar 封裝複製到您的 HDInsight 叢集。 將 USERNAME 取代為用於您的叢集的 SSH 使用者。 將 CLUSTERNAME 取代為 HDInsight 叢集的名稱：
 
         scp ./target/EventHubExample-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:.
 
-    如果您針對 SSH 帳戶使用密碼，系統會提示您輸入密碼。 如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。 例如， `scp -i ~/.ssh/id_rsa ./target/EventHubExample-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:.`。
+    如果您針對 SSH 帳戶使用密碼，系統會提示您輸入密碼。 如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。 例如， `scp -i ~/.ssh/id_rsa ./target/EventHubExample-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:.`
 
     此命令會將檔案複製到叢集上 SSH 使用者的主目錄中。
 
@@ -358,41 +363,13 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 
 3. 使用下列命令以啟動拓撲：
 
-        storm jar EventHubExample-1.0-SNAPSHOT.jar com.microsoft.example.EventHubWriter writer
-        storm jar EventHubExample-1.0-SNAPSHOT.jar com.microsoft.example.EventHubReader reader
+        storm jar EventHubExample-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /writer.yaml --filter dev.properties
+        storm jar EventHubExample-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /reader.yaml --filter dev.properties
 
-    這些命令會使用易記名稱 "reader" 和 "writer" 啟動拓撲。
+    > [!TIP]
+    > * `--remote`：將拓撲提交到 Nimbus 服務，該服務會在叢集中的背景工作節點上啟動拓撲。
 
-4. 等候一分鐘讓拓樸產生資料。 使用下列命令來確認資料是否已寫入 HDInsight 儲存體：
-
-        hdfs dfs fs -ls /devicedata
-
-    此命令會傳回檔案清單，類似以下文字：
-
-        -rw-r--r--   1 storm supergroup      10283 2015-08-11 19:35 /devicedata/wasbbolt-14-0-1439321744110.txt
-        -rw-r--r--   1 storm supergroup      10277 2015-08-11 19:35 /devicedata/wasbbolt-14-1-1439321748237.txt
-        -rw-r--r--   1 storm supergroup      10280 2015-08-11 19:36 /devicedata/wasbbolt-14-10-1439321760398.txt
-        -rw-r--r--   1 storm supergroup      10267 2015-08-11 19:36 /devicedata/wasbbolt-14-11-1439321761090.txt
-        -rw-r--r--   1 storm supergroup      10259 2015-08-11 19:36 /devicedata/wasbbolt-14-12-1439321762679.txt
-
-   > [!NOTE]
-   > 某些檔案可能會顯示大小為 0，因為它們是由 EventHubReader 建立，但是資料尚未儲存至該處。
-
-    您可以使用下列命令檢視這些檔案的內容：
-
-        hdfs dfs -text /devicedata/*.txt
-
-    這會傳回類似以下文字的資料︰
-
-        3409e622-c85d-4d64-8622-af45e30bf774,848981614
-        c3305f7e-6948-4cce-89b0-d9fbc2330c36,-1638780537
-        788b9796-e2ab-49c4-91e3-bc5b6af1f07e,-1662107246
-        6403df8a-6495-402f-bca0-3244be67f225,275738503
-        d7c7f96c-581a-45b1-b66c-e32de6d47fce,543829859
-        9a692795-e6aa-4946-98c1-2de381b37593,1857409996
-        3c8d199b-0003-4a79-8d03-24e13bde7086,-1271260574
-
-    第一個資料行包含裝置識別碼值，第二個資料行是裝置值。
+4. 若要檢視記錄的資料，請移至 https://CLUSTERNAME.azurehdinsight.net/stormui，其中 __CLUSTERNAME__ 是 HDInsight 叢集的名稱。 選取拓撲，然後向下切入至元件。 選取元件執行個體的 __port__ 項目來檢視記錄的資訊。
 
 5. 使用下列命令以停止拓撲：
 
@@ -402,16 +379,6 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 ## <a name="delete-your-cluster"></a>刪除叢集
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
-
-## <a name="troubleshooting"></a>疑難排解
-
-如果在 /devicedata 目錄找不到檔案，使用 Storm UI 尋找拓撲所傳回的任何錯誤。
-
-如需使用 Storm UI 的詳細資訊，請參閱下列主題：
-
-* 如果您是在 HDInsight 叢集上使用 **以 Linux 為基礎的** Storm，請參閱 [部署和管理以 Linux 為基礎的 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
-
-* 如果您是在 HDInsight 叢集上使用 **以 Windows 為基礎的** Storm，請參閱 [部署和管理以 Windows 為基礎的 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
 ## <a name="next-steps"></a>後續步驟
 

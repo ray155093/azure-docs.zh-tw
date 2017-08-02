@@ -2,20 +2,18 @@
 title: "Azure Key Vault 開發人員指南 | Microsoft Docs"
 description: "開發人員可以使用 Azure 金鑰保存庫來管理 Microsoft Azure 環境中的密碼編譯金鑰。"
 services: key-vault
-documentationcenter: 
 author: BrucePerlerMS
 manager: mbaldwin
 ms.service: key-vault
 ms.topic: article
 ms.workload: identity
-ms.date: 05/10/2017
+ms.date: 06/6/2017
 ms.author: bruceper
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: b046e95e2167009727f6ea8f3dd237619c61434f
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: a15b403166dad17790c75f6db874e4ed2640ca78
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="azure-key-vault-developers-guide"></a>Azure 金鑰保存庫開發人員指南
@@ -29,14 +27,18 @@ Key Vault 可讓您從應用程式內安全地存取機密資訊︰
 
 如需 Azure 金鑰保存庫的一般詳細資訊，請參閱 [什麼是金鑰保存庫？](key-vault-whatis.md)。
 
-## <a name="public-preview---may-10-2017"></a>公開預覽 - 2017 年 5 月 10 日
+## <a name="public-previews"></a>公開預覽
+
+我們會定期發行新 Key Vault 功能的公開預覽。 請試試看，然後透過我們的意見反應電子郵件地址 azurekeyvault@microsoft.com，讓我們知道您的想法。
+
+### <a name="storage-account-keys---july-10-2017"></a>儲存體帳戶金鑰 - 2017 年 7 月 10 日
 
 >[!NOTE]
->Azure Key Vault 的這個預覽版本，只有「虛刪除」功能處於預覽狀態。 整體而言，Azure Key Vault 是一個完整的生產服務。
+>在此 Azure Key Vault 更新中，只有 [儲存體帳戶金鑰] 功能處於預覽狀態。
 
-這個預覽版本包含新的虛刪除功能、可復原的 Key Vault 和 Key Vault 物件刪除，和更新的開發人員介面：[.NET/C#](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault/)、[REST](https://docs.microsoft.com/rest/api/keyvault/) 和 [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.keyvault/)。 
+此預覽版包含新的 [儲存體帳戶金鑰] 功能，可透過下列介面提供：[.NET/C#](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault/)、[REST](https://docs.microsoft.com/rest/api/keyvault/) 和 [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.keyvault/)。 
 
-如需有關新的虛刪除功能的詳細資訊，請參閱 [Azure Key Vault 虛刪除概觀](key-vault-ovw-soft-delete.md)。
+如需新 [儲存體帳戶金鑰] 功能的詳細資訊，請參閱 [Azure Key Vault 儲存體帳戶金鑰概觀](key-vault-ovw-storage-keys.md)。
 
 ## <a name="videos"></a>影片
 
@@ -63,7 +65,7 @@ Key Vault 可讓您從應用程式內安全地存取機密資訊︰
 
 ## <a name="coding-with-key-vault"></a>撰寫金鑰保存庫的程式碼
 
-程式設計人員的 Key Vault 管理系統由幾個介面組成，並以 REST 作為基礎。 透過 REST 介面，可存取所有的金鑰保存庫資源；包括金鑰、祕密和憑證。 [Key Vault REST API 參考](https://docs.microsoft.com/rest/api/keyvault/)。 
+程式設計人員的 Key Vault 管理系統由幾個介面組成，並以 REST 作為基礎。 透過 REST 介面，可存取所有 Key Vault 資源；包括金鑰、密碼和憑證。 [Key Vault REST API 參考](https://docs.microsoft.com/rest/api/keyvault/)。 
 
 ### <a name="supported-programming-languages"></a>支援的程式設計語言
 
@@ -78,6 +80,8 @@ Key Vault 可讓您從應用程式內安全地存取機密資訊︰
 - [Key Vault 的 Java SDK](https://docs.microsoft.com/java/api/com.microsoft.azure.keyvault)
 
 #### <a name="nodejs"></a>Node.js
+
+在 Node.js 中，保存庫管理 API 和保存庫物件 API 會分開。 Key Vault 管理可建立及更新您的 Key Vault。 Key Vault 作業 API 適用於金鑰、密碼和憑證等保存庫物件。 
 
 - [Key Vault 管理的 Node.js API 參考](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest/)
 - [Key Vault 作業的 Node.js API 參考](http://azure.github.io/azure-sdk-for-node/azure-keyvault/latest/) 
@@ -120,20 +124,20 @@ Key Vault 可讓您從應用程式內安全地存取機密資訊︰
 
 ## <a name="key-vault-overviews-and-concepts"></a>Key Vault 的概觀和概念
 
-- [Key Vault 安全世界](key-vault-ovw-security-worlds.md)
-- [Key Vault 虛刪除](key-vault-ovw-soft-delete.md)
+- [Key Vault 虛刪除行為](key-vault-ovw-soft-delete.md)描述一項功能，該功能可復原已刪除的物件，無論是無意或有意刪除的。
+- [Key Vault 用戶端節流](key-vault-ovw-throttling.md)可讓您了解節流的基本概念，並提供適用於您應用程式的方法。
+- [Key Vault 儲存體帳戶金鑰概觀](key-vault-ovw-storage-keys.md)描述 Key Vault 與 Azure 儲存體帳戶金鑰的整合。
+- [Key Vault 安全世界](key-vault-ovw-security-worlds.md)描述地區和安全區域之間的關聯性。
 
 ## <a name="social"></a>社交
 
 - [Key Vault Blog (金鑰保存庫部落格)](http://aka.ms/kvblog)
 - [Key Vault Forum (金鑰保存庫論壇)](http://aka.ms/kvforum)
 
-
 ## <a name="supporting-libraries"></a>支援程式庫
 
 - [Microsoft Azure Key Vault 核心程式庫](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core)提供 **IKey** 和 **IKeyResolver** 介面，以從識別碼找出金鑰和使用金鑰執行作業。
 - [Microsoft Azure 金鑰保存庫擴充](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions)提供 Azure 金鑰保存庫的擴充功能。
 
-## <a name="other-key-vault-resources"></a>其他金鑰保存庫資源
 
 

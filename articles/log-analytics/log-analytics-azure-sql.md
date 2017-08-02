@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/05/2017
+ms.date: 07/06/2017
 ms.author: banders
 ms.translationtype: Human Translation
-ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
-ms.openlocfilehash: f5f9aa186480926df1110928983566e05f79efb8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 165568731debf2cd81a88170833f95ca2e7080e5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -104,19 +104,28 @@ PS C:\> .\Enable-AzureRMDiagnostics.ps1 -WSID $WSID
 
 ### <a name="analyze-data-and-create-alerts"></a>分析資料並建立警示
 
-這個方案包含有用的查詢，可協助分析您的資料。 如果您向右捲動，儀表板會列出數個常見的查詢，按一下即可執行 Azure SQL 資料的[記錄搜尋](log-analytics-log-searches.md)。
+您可以使用來自 Azure SQL Database 資源的資料，輕鬆建立警示。 以下是您可用於警示的一些實用[記錄搜尋](log-analytics-log-searches.md)查詢：
 
-![查詢](./media/log-analytics-azure-sql/azure-sql-queries.png)
+Azure SQL Database 上的高 DTU
 
-解決方案包括一些警示型查詢，如上所示，可供您用於 Azure SQL Database 與彈性集區的特定臨界值警示。
+```
+Type=AzureMetrics ResourceProvider="MICROSOFT.SQL" ResourceId=*"/DATABASES/"* MetricName=dtu_consumption_percent | measure Avg(Average) by Resource interval 5minutes
+```
+
+Azure SQL Database 彈性集區上的高 DTU
+
+```
+Type=AzureMetrics ResourceProvider="MICROSOFT.SQL" ResourceId=*"/ELASTICPOOLS/"* MetricName=dtu_consumption_percent | measure avg(Average) by Resource interval 5minutes
+```
+
+您可以針對 Azure SQL Database 和彈性集區，使用這些警示型查詢發出特定閾值警示。 若要設定您 OMS 工作區的警示：
 
 #### <a name="to-configure-an-alert-for-your-workspace"></a>若要設定您工作區的警示
 
 1. 前往 [OMS 入口網站](http://mms.microsoft.com/)並登入。
 2. 開啟您針對解決方案所設定之工作區。
 3. 在 [概觀] 頁面上，按一下 [Azure SQL 分析 (預覽)] 圖格。
-4. 向右捲動然後按一下查詢，以開始建立警示。  
-![警示查詢](./media/log-analytics-azure-sql/alert-query.png)
+4. 執行其中一個範例查詢。
 5. 在記錄搜尋中，按一下 [警示]。  
 ![在搜尋中建立警示](./media/log-analytics-azure-sql/create-alert01.png)
 6. 在 [新增警示規則] 頁面上，設定您要的適當屬性和特定臨界值，然後按一下 [儲存]。  

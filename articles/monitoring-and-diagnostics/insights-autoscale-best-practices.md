@@ -1,8 +1,8 @@
 ---
 title: "自動調整的最佳做法 | Microsoft Docs"
-description: "了解有效地自動調整虛擬機器、虛擬機器擴展集和雲端服務的原則。"
-author: kamathashwin
-manager: carmonm
+description: "在 Azure 中自動調整 Web 應用程式、虛擬機器擴展集和雲端服務的規模模式。"
+author: anirudhcavale
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -12,14 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/20/2017
-ms.author: ashwink
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: f1e4a60cd98d40794c63dc334f242415445e0d6d
+ms.date: 07/07/2017
+ms.author: ancav
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: 54dad831287376db7fb2dc46e4591be1499dc072
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="best-practices-for-autoscale"></a>自動調整規模的最佳做法
@@ -151,4 +150,10 @@ ms.lasthandoff: 05/10/2017
 * 自動調整服務無法使用度量決定規模。
 * 度量恢復使用 (復原)，可用以決定規模。
   除了上述條件之外，您也可以設定電子郵件或 Webhook 通知，在調整動作成功時收到通知。
+  
+您也可以使用活動記錄警示來監視自動調整引擎的健康狀態。 以下範例為[建立活動記錄警示以監視訂用帳戶的所有自動調整引擎作業](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)，或[建立活動記錄警示以監視訂用帳戶中所有失敗的相應縮小/相應放大自動調整作業](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)。
+
+## <a name="next-steps"></a>後續步驟
+- [建立活動記錄警示以監視訂用帳戶的所有自動調整引擎作業。](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
+- [建立活動記錄警示以監視訂用帳戶中所有失敗的相應縮小/相應放大自動調整作業](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
 

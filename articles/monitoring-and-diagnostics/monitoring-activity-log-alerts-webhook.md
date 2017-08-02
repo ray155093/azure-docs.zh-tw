@@ -1,9 +1,32 @@
+---
+title: "接收 Azure 服務通知的活動記錄警示 | Microsoft Docs"
+description: "在 Azure 服務發生問題時透過 SMS、電子郵件或 Webhook 獲得通知。"
+author: johnkemnetz
+manager: orenr
+editor: 
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
+ms.assetid: 
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 03/31/2017
+ms.author: johnkem
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: c8339c08333aaa471b42f6468ca2a59ee4efacf9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
+
+---
 # <a name="webhooks-for-azure-activity-log-alerts"></a>Azure 活動記錄警示的 Webhook
 在定義動作群組的過程中，您可以設定 Webhook 端點以接收活動記錄警示通知。 Webhook 可讓您將這些通知路由到其他系統，以進行後置處理或自訂動作。 本文會說明 HTTP POST 至 Webhook 的承載資料樣貌。
 
-如需有關 Azure 活動記錄警示的設定和結構描述資訊，[請改為參閱本頁](monitoring-activity-log-alerts.md)。
+如需建立 Azure 活動記錄警示的詳細資訊，[請改為參閱本頁](monitoring-activity-log-alerts.md)。
 
-如需有關動作群組的設定和結構描述資訊，[請改為參閱本頁](monitoring-action-groups.md)
+如需建立動作群組的詳細資訊，[請改為參閱本頁](monitoring-action-groups.md)。
 
 ## <a name="authenticating-the-webhook"></a>驗證 Webhook
 Webhook 會使用權杖型授權進行驗證 - Webhook URI 會連同權杖識別碼一起儲存，例如 `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
@@ -90,7 +113,7 @@ POST 作業中所包含的 JSON 承載，會根據承載的 data.context.activit
                     "stage": "Active",
                     "communicationId": "...",
                     "version": "0.1"
-                },
+                }
             }
         },
         "properties": {}
@@ -136,3 +159,4 @@ POST 作業中所包含的 JSON 承載，會根據承載的 data.context.activit
 * [使用邏輯應用程式透過 Twilio 從 Azure 警示傳送簡訊](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)。 此範例適用於度量警示，但經過修改後即可用於活動記錄警示。
 * [使用邏輯應用程式從 Azure 警示傳送 Slack 訊息](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)。 此範例適用於度量警示，但經過修改後即可用於活動記錄警示。
 * [使用邏輯應用程式從 Azure 警示傳送訊息到 Azure 佇列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)。 此範例適用於度量警示，但經過修改後即可用於活動記錄警示。
+

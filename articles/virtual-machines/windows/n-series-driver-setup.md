@@ -13,53 +13,35 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 04/03/2017
+ms.date: 07/07/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
-ms.openlocfilehash: 96921f4be8aabb6d960ee4f66acd6c07d7ba7f95
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: aa2d4f671bab46929ccc4444f8fe9de98a3e0eb2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/04/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="set-up-gpu-drivers-for-n-series-vms-running-windows-server"></a>為執行 Windows Server 的 N 系列 VM 設定 GPU 驅動程式
-若要利用 Azure N 系列 VM (執行 Windows Server 2016 或 Windows Server 2012 R2) 的 GPU 功能，您必須在部署之後於每個 VM 上安裝 NVIDIA 圖形驅動程式。 驅動程式設定資訊也適用於 [ VM](../linux/n-series-driver-setup.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+若要利用 Azure N 系列 VM (執行 Windows Server 2016 或 Windows Server 2012 R2) 的 GPU 功能，請安裝支援的 NVIDIA 圖形驅動程式。 本文提供您在部署 N 系列 VM 後的驅動程式安裝步驟。 驅動程式設定資訊也適用於 [ VM](../linux/n-series-driver-setup.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-如需基本規格、儲存體容量與磁碟的詳細資料，請參閱[虛擬機器的大小](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 另請參閱 [N 系列 VM 的一般考量](#general-considerations-for-n-series-vms)。
+如需基本規格、儲存體容量與磁碟的詳細資料，請參閱 [GPU Windows VM 大小](sizes-gpu.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 
 
-
-## <a name="supported-gpu-drivers"></a>支援的 GPU 驅動程式
-
-由遠端桌面連接至每個 N 系列 VM。 下載、擷取及安裝 Windows 作業系統支援的驅動程式。 
-
-### <a name="nvidia-tesla-drivers-for-nc-vms-tesla-k80"></a>NC VM 的 NVIDIA Tesla 驅動程式 (Tesla K80)
+[!INCLUDE [virtual-machines-n-series-windows-support](../../../includes/virtual-machines-n-series-windows-support.md)]
 
 
 
-| 作業系統 | 驅動程式版本 |
-| -------- |------------- |
-| Windows Server 2016 | [376.84](http://us.download.nvidia.com/Windows/Quadro_Certified/376.84/376.84-tesla-desktop-winserver2016-international-whql.exe) (.exe) |
-| Windows Server 2012 R2 | [376.84](http://us.download.nvidia.com/Windows/Quadro_Certified/376.84/376.84-tesla-desktop-winserver2008-2012r2-64bit-international-whql.exe) (.exe) |
+## <a name="driver-installation"></a>驅動程式安裝
 
-> [!NOTE]
-> 以下提供發行當時的 Tesla 驅動程式下載連結。 如需最新的驅動程式，請瀏覽 [NVIDIA](http://www.nvidia.com/) 網站。
->
+1. 由遠端桌面連接至每個 N 系列 VM。
 
-### <a name="nvidia-grid-drivers-for-nv-vms-tesla-m60"></a>NV VM 的 NVIDIA GRID 驅動程式 (Tesla M60)
-
-| 作業系統 | 驅動程式版本 |
-| -------- |------------- |
-| Windows Server 2016 | [369.95](https://go.microsoft.com/fwlink/?linkid=836843) (.zip) |
-| Windows Server 2012 R2 | [369.95](https://go.microsoft.com/fwlink/?linkid=836844) (.zip)  |
-
-
-
-## <a name="verify-gpu-driver-installation"></a>確認 GPU 驅動程式安裝
+2. 下載、擷取及安裝 Windows 作業系統支援的驅動程式。
 
 在 Azure NV VM 上，安裝驅動程式之後必須重新啟動。 在 NC VM 上，則不需要重新啟動。
+
+## <a name="verify-driver-installation"></a>確認驅動程式安裝
 
 您可以在 [裝置管理員] 中確認驅動程式安裝。 下列範例會顯示 Azure NC VM 上成功的 Tesla K80 卡組態。
 
@@ -89,7 +71,6 @@ ms.lasthandoff: 07/04/2017
 
 RDMA 網路可針對使用 [Microsoft MPI](https://msdn.microsoft.com/library/bb524831(v=vs.85).aspx) 或 Intel MPI 5.x 執行的應用程式，支援訊息傳遞介面 (MPI) 流量。 
 
-[!INCLUDE [virtual-machines-n-series-considerations](../../../includes/virtual-machines-n-series-considerations.md)]
 
 ## <a name="next-steps"></a>後續步驟
 

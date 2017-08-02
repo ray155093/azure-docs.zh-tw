@@ -2,7 +2,7 @@
 title: "使用 Resource Manager 範本建立動作 | Microsoft Docs"
 description: "當發生特定事件時，動作群組可讓您通知電子郵件、SMS 或呼叫 webhook。"
 author: anirudhcavale
-manager: carmonm
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 2dd7b14f1466fa7244a2af2c030d8b794658aaad
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: 88e7b2e7781b80ea360531f4c3a45256de83b594
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/12/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 
@@ -28,10 +27,10 @@ ms.lasthandoff: 04/12/2017
 
 基本步驟如下：
 
-1.    建立一個描述如何建立動作群組的範本作為 JSON 檔案。
-2.    [使用任何部署方法部署範本。](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy)
+1.  建立一個描述如何建立動作群組的範本作為 JSON 檔案。
+2.  [使用任何部署方法部署範本。](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy)
 
-下面我們會先單獨針對動作群組，然後針對建立其他資源期間的動作群組，描述如何建立 Resource Manager 範本。
+以下我們說明如何先為動作定義已硬式編碼在範本中的動作群組，建立 Resource Manager 範本，然後為在部署範本時以 Webhook 設定資訊作為輸入參數的部署範本，建立 Resource Manager 範本。
 
 ## <a name="resource-manager-template-for-an-action-group"></a>動作群組的 Resource Manager 範本
 

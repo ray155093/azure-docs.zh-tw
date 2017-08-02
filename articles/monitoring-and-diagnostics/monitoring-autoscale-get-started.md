@@ -1,8 +1,8 @@
 ---
 title: "開始在 Azure 中自動調整規模 | Microsoft Docs"
 description: "了解如何在 Azure 中調整資源的規模。"
-author: rajram
-manager: rboucher
+author: anirudhcavale
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -12,22 +12,19 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/07/2017
-ms.author: rajram
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 4faccae708b5407d1eb64e746824a23688bc5834
+ms.date: 07/07/2017
+ms.author: ancav
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: ed6647979d33564afe68e46d52833f88ffa2fbda
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="get-started-with-auto-scale-in-azure"></a>開始 Azure 中自動調整規模
 本文說明如何在 Azure 入口網站中為您的資源設定自動調整規模。
 
 Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲端服務、App Service 方案及 App Service 環境。 
-
-# <a name="lets-get-started"></a>開始使用
 
 ## <a name="discover-the-auto-scale-settings-in-your-subscriptions"></a>在您的訂用帳戶中探索自動調整規模
 您可以在 Azure 監視器中探索適用於自動調整規模的所有資源。 請依照下列步驟進行逐步解說。
@@ -62,8 +59,8 @@ Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲�
 
 > 注意︰相同的步驟都適用於開始使用 VMSS 或雲端服務角色。
 
-# <a name="other-considerations"></a>其他考量
-## <a name="scale-based-on-a-schedule"></a>根據排程進行調整
+## <a name="other-considerations"></a>其他考量
+### <a name="scale-based-on-a-schedule"></a>根據排程進行調整
 除了一律根據 CPU 調整規模，您也可以根據一週內的特定天數設定不同的調整規模。
 
 - 按一下 [新增調整規模的條件]
@@ -72,7 +69,7 @@ Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲�
 - 選取天數，以及應針對選取的天數套用調整規模條件的開始/結束時間
 
 ![根據排程調整規模的條件][9]
-## <a name="scale-differently-on-specific-dates"></a>在特定日期以不同方式調整規模
+### <a name="scale-differently-on-specific-dates"></a>在特定日期以不同方式調整規模
 除了一律根據 CPU 調整規模，您也可以根據特定的日期設定不同的調整規模。
 
 - 按一下 [新增調整規模的條件]
@@ -82,21 +79,21 @@ Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲�
 
 ![根據日期調整規模的條件][10]
 
-## <a name="view-the-scale-history-of-your-resource"></a>檢視資源的調整規模歷程記錄
+### <a name="view-the-scale-history-of-your-resource"></a>檢視資源的調整規模歷程記錄
 每當相應增加/減少您的資源時，就會在活動記錄中記錄一個事件。 您可以藉由切換至 [執行歷程記錄] 索引標籤，來檢視過去 24 小時資源的調整規模歷程記錄。
 
 ![執行記錄][11]
 
 如果您想要檢視完整的調整規模歷程記錄 (最多 90 天)，可按一下 [按一下此處以查看詳細資料]。 這將會啟動活動記錄，其中含有您的資源且分類為預先選取的「自動調整規模」。
 
-## <a name="view-the-scale-definition-of-the-resource"></a>檢視資源的調整規模定義
+### <a name="view-the-scale-definition-of-the-resource"></a>檢視資源的調整規模定義
 自動調整規模設定是一個 ARM 資源。 您可以藉由切換至 [JSON] 索引標籤，在 JSON 中檢視調整規模定義。
 
 ![調整規模定義][12]
 
 您可以視需要直接在 JSON 中進行變更。 這些變更將會在儲存時反映出來。
 
-## <a name="disable-autoscale-and-manually-scale-your-instances"></a>停用自動調整規模並手動調整執行個體規模
+### <a name="disable-autoscale-and-manually-scale-your-instances"></a>停用自動調整規模並手動調整執行個體規模
 有時您可能想要停用目前的調整規模設定，並手動調整資源規模。
 
 按一下頂端的 [停用自動調整規模] 按鈕。
@@ -107,6 +104,10 @@ Azure 監視器自動調整規模僅適用於虛擬機器擴展集 (VMSS)、雲�
 ![設定手動調整規模][14]
 
 您隨時都能藉由依序按一下 [啟用自動調整規模] 和 [儲存]，來恢復自動調整規模。
+
+## <a name="next-steps"></a>後續步驟
+- [建立活動記錄警示以監視訂用帳戶的所有自動調整引擎作業。](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
+- [建立活動記錄警示以監視訂用帳戶中所有失敗的相應縮小/相應放大自動調整作業](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
 
 <!--Reference-->
 [1]:https://portal.azure.com

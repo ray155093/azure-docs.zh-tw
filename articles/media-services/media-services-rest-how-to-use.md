@@ -12,12 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 11/29/2016
+ms.date: 07/12/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 8b6e19e3c495eec4e16187524df0b13e4ffce9de
-
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: f4d2fe502e6b6a93c0e455a5369b63deb9074c82
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="media-services-operations-rest-api-overview"></a>媒體服務作業 REST API 概觀
@@ -27,8 +28,9 @@ ms.openlocfilehash: 8b6e19e3c495eec4e16187524df0b13e4ffce9de
 
 Microsoft Azure 媒體服務會接受以 OData 為基礎的 HTTP 要求，而且可以使用詳細資訊 JSON 或 atom+pub 回應。 由於媒體服務符合 Azure 設計指導方針，因此在連線到媒體服務時，每個用戶端都必須使用一組必要的 HTTP 標頭，以及一組可以使用的選擇性標頭。 下列章節描述建立要求及接收來自媒體服務的回應時可以使用的標頭和 HTTP 指令動詞。
 
+本主題提供如何使用 REST v2 搭配媒體服務的概觀。
 
-## <a name="considerations"></a>注意事項
+## <a name="considerations"></a>考量
 
 使用 REST 時須考量下列事項：
 
@@ -109,15 +111,14 @@ Microsoft Azure 媒體服務會接受以 OData 為基礎的 HTTP 要求，而且
 
 如果您想要在瀏覽器檢視中繼資料，或是未在要求中包含 x-ms-version 標頭，您應該將 "?api-version=2.x" 附加到 URI 的結尾。
 
+## <a name="next-steps"></a>後續步驟
+
+若要使用 REST 存取 AMS API，請參閱[使用 Azure AD 驗證搭配 REST 存取 Azure 媒體服務 API](media-services-rest-connect-with-aad.md)。
+
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

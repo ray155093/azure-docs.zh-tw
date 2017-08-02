@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/05/2017
 ms.author: juliako;anilmur
-translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 138598ce20459b7d4975c6640b28e9a999de30cd
-ms.lasthandoff: 03/06/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 2f052ea5ff50cf584f9116f2802eca1fd077dcbb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -36,11 +37,11 @@ ms.lasthandoff: 03/06/2017
 
 自媒體服務 2.10 版起，當您建立通道時，您可以指定您希望通道接收輸入串流的方式，以及您是否想要通道執行串流的即時編碼。 您有兩個選擇：
 
-* **無** – 如果您想要使用會輸出多位元速率串流 (傳遞串流) 的內部部署即時編碼器，請指定這個值。 在此情況下，連入的串流會傳遞至輸出，無須任何編碼。 這是在 2.10 版以前的通道行為。  如需使用此種通道類型的詳細資訊，請參閱 [使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
+* **無** – 如果您想要使用會輸出多位元速率串流 (傳遞串流) 的內部部署即時編碼器，請指定這個值。 在此情況下，連入的串流會傳遞至輸出，無須任何編碼。 這是在 2.10 版以前的通道行為。  如需使用此種通道類型的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 * **標準** – 如果您打算使用媒體服務將單一位元速率即時串流編碼成多位元速率串流，請選擇這個值。 請注意即時編碼有計費影響，而且您應該記住將即時編碼通道保持在「執行中」狀態會產生費用。  建議您在即時串流事件完成之後立即停止執行的通道，以避免額外的每小時費用。
 
 > [!NOTE]
-> 本主題討論通道的屬性，這些通道是啟用來執行即時編碼的 (**標準** 編碼類型)。 如需使用未啟用執行即時編碼之通道的相關資訊，請參閱 [使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
+> 本主題討論通道的屬性，這些通道是啟用來執行即時編碼的 (**標準** 編碼類型)。 如需使用未啟用執行即時編碼之通道的資訊，請參閱[使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 > 
 > 請務必閱讀 [考量](media-services-manage-live-encoder-enabled-channels.md#Considerations) 一節。
 > 
@@ -53,7 +54,7 @@ ms.lasthandoff: 03/06/2017
 若要停止通道進一步向您計費，您必須停止透過 API 或在 Azure 入口網站中的通道。
 您必須負責在完成即時編碼通道時停止您的通道。  無法停止編碼通道將會導致持續計費。
 
-### <a name="a-idstatesachannel-states-and-how-they-map-to-the-billing-mode"></a><a id="states"></a>通道狀態和狀態如何對應至計費模式
+### <a id="states"></a>通道狀態和狀態如何對應至計費模式
 通道的目前狀態。 可能的值包括：
 
 * **已停止**。 這是通道建立後的初始狀態 (除非在入口網站中選取自動啟動)。此狀態中不會計費。 在此狀態下，通道屬性可以更新，但是不允許串流。
@@ -81,7 +82,7 @@ ms.lasthandoff: 03/06/2017
 
 ![即時工作流程][live-overview]
 
-## <a name="a-idscenarioacommon-live-streaming-scenario"></a><a id="scenario"></a>常見即時串流案例
+## <a id="scenario"></a>常見即時串流案例
 下列是建立常見即時串流應用程式所含的一般步驟。
 
 > [!NOTE]
@@ -119,8 +120,8 @@ ms.lasthandoff: 03/06/2017
 > 
 > 
 
-## <a name="a-idchannelachannels-input-ingest-configurations"></a><a id="channel"></a>通道的輸入 (嵌入) 組態
-### <a name="a-idingestprotocolsaingest-streaming-protocol"></a><a id="Ingest_Protocols"></a>嵌入串流通訊協定
+## <a id="channel"></a>通道的輸入 (嵌入) 組態
+### <a id="Ingest_Protocols"></a>嵌入串流通訊協定
 如果**編碼器類型**設為**標準**，有效的選項如下：
 
 * **RTP** (MPEG-TS)：透過 RTP 的 MPEG-2 傳輸串流。  
@@ -166,7 +167,7 @@ ms.lasthandoff: 03/06/2017
   * Imagine Communications Selenio ENC 2
   * Elemental Live
 
-#### <a name="a-idsinglebitratertmpasingle-bitrate-rtmp"></a><a id="single_bitrate_RTMP"></a>單一位元速率 RTMP
+#### <a id="single_bitrate_RTMP"></a>單一位元速率 RTMP
 考量：
 
 * 連入串流不能包含多位元速率視訊
@@ -237,7 +238,7 @@ ms.lasthandoff: 03/06/2017
 ### <a name="ad-marker-source"></a>Ad 標記來源
 您可以指定 ad 標記信號的來源。 預設值為 **Api**，其指出通道內的即時編碼器應該接聽非同步 **Ad 標記 API**。
 
-另一個有效的選項是 **Scte35** (只有內嵌串流通訊協定設為 RTP (MPEG-TS) 時才允許。 指定 Scte35 時，即時編碼器將會剖析來自輸入 RTP (MPEG-TS) 串流的 SCTE&35; 信號。
+另一個有效的選項是 **Scte35** (只有內嵌串流通訊協定設為 RTP (MPEG-TS) 時才允許。 指定 Scte35 時，即時編碼器將會剖析來自輸入 RTP (MPEG-TS) 串流的 SCTE 35 信號。
 
 ### <a name="cea-708-closed-captions"></a>CEA 708 隱藏式輔助字幕
 選擇性旗標會通知即時編碼器略過任何內嵌於連入視訊的 CEA 708 字幕資料。 當旗標設為 false (預設值) 時，編碼器會偵測 CEA 708 資料並將其重新插入至輸出視訊串流。
@@ -261,7 +262,7 @@ ms.lasthandoff: 03/06/2017
 
 如果通道的輸入是透過 RTP 的 MPEG-2，則可指定高達 8 個音訊串流集。 不過，不會有具備相同索引值的兩個項目。
 
-### <a name="a-idpresetasystem-preset"></a><a id="preset"></a>系統預設
+### <a id="preset"></a>系統預設
 指定由此通道內之即時編碼器所使用的預設內容。 目前，唯一允許的值是 **Default720p** (預設值)。
 
 請注意如果您需要自訂的預設設定，您應該在 Microsoft.com 上連絡 amslived。
@@ -283,7 +284,7 @@ ms.lasthandoff: 03/06/2017
 音訊編碼為 64 kbps 的立體聲 AAC-LC，取樣率為 44.1 kHz。
 
 ## <a name="signaling-advertisements"></a>發出信號的廣告
-當您的通道啟用即時編碼時，您會在處理視訊的管線中具有元件，並可加以操作。 您可以發出信號給通道以將 Slate 及/或廣告插入連出的自動調整位元速率串流。 Slate 是靜止映像，您可以用來在某些情況下遮蓋輸入的即時摘要 (例如廣告插播期間)。 廣告信號是您嵌入連外串流的時間同步處理信號，告知視訊播放器採取特殊動作 – 例如在適當時機切換到廣告。 如需此用途的 SCTE&35; 信號發送機制的概觀，請參閱此 [部落格](https://codesequoia.wordpress.com/2014/02/24/understanding-scte-35/) 。 以下是您可以在即時事件中實作的典型案例。
+當您的通道啟用即時編碼時，您會在處理視訊的管線中具有元件，並可加以操作。 您可以發出信號給通道以將 Slate 及/或廣告插入連出的自動調整位元速率串流。 Slate 是靜止映像，您可以用來在某些情況下遮蓋輸入的即時摘要 (例如廣告插播期間)。 廣告信號是您嵌入連外串流的時間同步處理信號，告知視訊播放器採取特殊動作 – 例如在適當時機切換到廣告。 如需此用途的 SCTE 35 信號發送機制的概觀，請參閱此 [部落格](https://codesequoia.wordpress.com/2014/02/24/understanding-scte-35/) 。 以下是您可以在即時事件中實作的典型案例。
 
 1. 讓您的檢視器在事件開始前取得  PRE-EVENT 映像。
 2. 讓您的檢視器在事件開始前取得 POST-EVENT 映像。
@@ -314,7 +315,7 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 ### <a name="insert-slate-on-ad-marker"></a>插入 ad 標記上的 slate
 設為 true 時，此設定會將即時編碼器設為在廣告插播期間插入 slate 映像。 預設值為 true。 
 
-### <a name="a-iddefaultslateadefault-slate-asset-id"></a><a id="default_slate"></a>預設靜態圖像資產識別碼
+### <a id="default_slate"></a>預設靜態圖像資產識別碼
 
 選用。 指定包含 slate 映像之媒體服務資產的資產識別碼。 預設值為 null。 
 
@@ -352,7 +353,7 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 ## <a name="getting-a-thumbnail-preview-of-a-live-feed"></a>取得即時摘要的縮圖預覽
 啟用即時編碼時，您現在可以在即時摘要抵達通道時取得其預覽。 這是重要的工具，可檢查您的即時摘要是否真的抵達通道。 
 
-## <a name="a-idstatesachannel-states-and-how-states-map-to-the-billing-mode"></a><a id="states"></a>通道狀態和狀態如何對應至計費模式
+## <a id="states"></a>通道狀態和狀態如何對應至計費模式
 通道的目前狀態。 可能的值包括：
 
 * **已停止**。 這是通道建立後的初始狀態。 在此狀態下，通道屬性可以更新，但是不允許串流。
@@ -375,7 +376,7 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 > 
 > 
 
-## <a name="a-idconsiderationsaconsiderations"></a><a id="Considerations"></a>考量
+## <a id="Considerations"></a>考量
 * 當 **標準** 編碼類型的通道發生遺失輸入來源/發佈摘要時，它會透過取代含有錯誤靜態圖像與無聲的來源視訊/音訊來補償它。 通道將會繼續發出靜態圖像，直到輸入/發佈補償恢復為止。 我們建議不要讓即時通道停留在此狀態超過 2 個小時。 超過該時間點，就無法保證通道在輸入重新連線時的行為，也無法保證其回應重設命令的行為。 您將必須停止通道、將它刪除，以及建立新的通道。
 * 通道或其相關聯程式正在執行時，您無法變更輸入通訊協定。 如果您需要不同的通訊協定，則應該為每個輸入通訊協定建立個別的通道。
 * 每當您重新設定即時編碼器，請呼叫通道上的 **重設** 方法。 重設通道之前，您必須停止程式。 重設通道之後，請重新啟動程式。

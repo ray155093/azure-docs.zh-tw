@@ -1,8 +1,8 @@
 ---
-title: "Azure 監視器 CLI 快速入門範例  | Microsoft Docs"
-description: "Azure 監視器功能的範例 CLI 命令。 Azure 監視器是一項 Microsoft Azure 服務，可讓您根據設定的遙測資料值、自動調整雲端服務、虛擬機器和 Web Apps，傳送警示通知或呼叫 Web URL。"
+title: "Azure 監視器 CLI 1.0 快速入門範例。 | Microsoft Docs"
+description: "Azure 監視器功能的範例 CLI 1.0 命令。 Azure 監視器是一項 Microsoft Azure 服務，可讓您根據設定的遙測資料值、自動調整雲端服務、虛擬機器和 Web Apps，傳送警示通知或呼叫 Web URL。"
 author: kamathashwin
-manager: carolz
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/08/2016
 ms.author: ashwink
-translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 0e629dac553f576f2dd3059453b00d6b10e48fd7
-ms.lasthandoff: 03/21/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: 5a8362b52c06b1b41f8108926ba07bbe5901125a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
 
 ---
-# <a name="azure-monitor--cross-platform-cli-quick-start-samples"></a>Azure 監視器跨平台 CLI 快速入門範例
+# <a name="azure-monitor--cross-platform-cli-10-quick-start-samples"></a>Azure 監視器跨平台 CLI 1.0 快速入門範例
 本文說明可協助您存取 Azure 監視器 功能的命令列介面 (CLI) 命令範例。 Azure 監視器可讓您根據設定的遙測資料值、自動調整雲端服務、虛擬機器和 Web Apps，以及傳送警示通知，或呼叫 Web URL。
 
 > [!NOTE]

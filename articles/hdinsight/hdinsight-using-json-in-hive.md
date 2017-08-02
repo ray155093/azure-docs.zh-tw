@@ -16,10 +16,10 @@ ms.workload: big-data
 ms.date: 04/26/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 034b61fdeb34c03bb4b58145f04138410e0d6fc6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41ae560b6ab66860baa1a311bb8d14ed33a20b41
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -162,7 +162,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
       ![為 JDK 設定正確的組態值][image-hdi-hivejson-jdk]
 2. 安裝 [Maven 3.3.1](http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.1/binaries/apache-maven-3.3.1-bin.zip)
    
-    在您的路徑中新增 bin 資料夾，方法是移至 [控制台] --> [編輯系統變數] \(針對您帳戶的環境變數)。 下列螢幕擷取畫面會顯示如何執行此動作。
+    在您的路徑中新增 bin 資料夾，方法是移至 [控制台] --> 針對您帳戶的環境變數 [編輯系統變數]。 下列螢幕擷取畫面會顯示如何執行此動作。
    
     ![設定 Maven][image-hdi-hivejson-maven]
 3. 從 [Hive-JSON-SerDe](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) github 網站複製專案。 您按一下 [下載 Zip] 按鈕即可完成，如下列螢幕擷取畫面所示。

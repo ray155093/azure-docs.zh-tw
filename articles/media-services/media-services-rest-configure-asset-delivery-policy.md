@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 07/13/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
-ms.openlocfilehash: 255cc9f08862ff7babf8d8847c88a72a4c88582c
-ms.lasthandoff: 01/11/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 4bae6dabe5700c487cb3f98498729c9a27de8a44
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="configuring-asset-delivery-policies"></a>設定資產傳遞原則
@@ -72,7 +72,7 @@ MPEG DASH
 > 
 
 ## <a name="clear-asset-delivery-policy"></a>清除資產傳遞原則
-### <a name="a-idcreateassetdeliverypolicyacreate-asset-delivery-policy"></a><a id="create_asset_delivery_policy"></a>建立資產傳遞原則
+### <a id="create_asset_delivery_policy"></a>建立資產傳遞原則
 下列 HTTP 要求會建立資產傳遞原則，指定不要套用動態加密，並以下列任何通訊協定傳遞資料流：MPEG DASH、HLS 和 Smooth Streaming 通訊協定。 
 
 如需建立 AssetDeliveryPolicy 時可以指定之值的相關資訊，請參閱 [定義 AssetDeliveryPolicy 時使用的類型](#types) 一節。   
@@ -121,7 +121,7 @@ MPEG DASH
     "Created":"2015-02-08T06:21:27.6908329Z",
     "LastModified":"2015-02-08T06:21:27.6908329Z"}
 
-### <a name="a-idlinkassetwithassetdeliverypolicyalink-asset-with-asset-delivery-policy"></a><a id="link_asset_with_asset_delivery_policy"></a>連結資產與資產傳遞原則
+### <a id="link_asset_with_asset_delivery_policy"></a>連結資產與資產傳遞原則
 下列 HTTP 要求會將指定的資產連結至資產傳遞原則。
 
 要求：
@@ -148,7 +148,7 @@ MPEG DASH
 ### <a name="create-content-key-of-the-envelopeencryption-type-and-link-it-to-the-asset"></a>建立 EnvelopeEncryption 類型的內容金鑰，並將它連結到資產
 當指定 DynamicEnvelopeEncryption 傳遞原則時，您必須將資產連結到 EnvelopeEncryption 類型的內容金鑰。 如需詳細資訊，請參閱 [建立內容金鑰](media-services-rest-create-contentkey.md)。
 
-### <a name="a-idgetdeliveryurlaget-delivery-url"></a><a id="get_delivery_url"></a>取得傳遞 URL
+### <a id="get_delivery_url"></a>取得傳遞 URL
 針對前一個步驟中建立的內容金鑰的指定傳遞方法，取得傳遞 URL。 用戶端會使用傳回的 URL 要求 AES 金鑰或 PlayReady 授權，以便播放受保護的內容。
 
 指定要在 HTTP 要求主體中取得的 URL 類型。 如果您要使用 PlayReady 保護您的內容，請要求媒體服務 PlayReady 授權取得 URL，並針對 keyDeliveryType 使用 1：{"keyDeliveryType":1}。 如果您要使用信封加密保護您的內容，請針對 keyDeliveryType 指定 2，來要求金鑰取得 URL：{"keyDeliveryType":2}。
@@ -273,11 +273,12 @@ MPEG DASH
 ### <a name="link-asset-with-asset-delivery-policy"></a>連結資產與資產傳遞原則
 請參閱 [連結資產與資產傳遞原則](#link_asset_with_asset_delivery_policy)
 
-## <a name="a-idtypesatypes-used-when-defining-assetdeliverypolicy"></a><a id="types"></a>定義 AssetDeliveryPolicy 時使用的類型
+## <a id="types"></a>定義 AssetDeliveryPolicy 時使用的類型
+
 ### <a name="assetdeliveryprotocol"></a>AssetDeliveryProtocol
-    /// <summary>
-    /// Delivery protocol for an asset delivery policy.
-    /// </summary>
+
+下列列舉描述您可以針對資產傳遞通訊協定設定的值。
+
     [Flags]
     public enum AssetDeliveryProtocol
     {
@@ -301,6 +302,8 @@ MPEG DASH
         /// </summary>
         HLS = 0x4,
 
+        ProgressiveDownload = 0x10, 
+ 
         /// <summary>
         /// Include all protocols.
         /// </summary>
@@ -308,9 +311,9 @@ MPEG DASH
     }
 
 ### <a name="assetdeliverypolicytype"></a>AssetDeliveryPolicyType
-    /// <summary>
-    /// Policy type for dynamic encryption of assets.
-    /// </summary>
+
+下列列舉描述您可以針對資產傳遞原則類型設定的值。  
+
     public enum AssetDeliveryPolicyType
     {
         /// <summary>
@@ -341,10 +344,9 @@ MPEG DASH
         }
 
 ### <a name="contentkeydeliverytype"></a>ContentKeyDeliveryType
-    /// <summary>
-    /// Delivery method of the content key to the client.
-    ///
-    </summary>
+
+下列列舉描述您可用來設定將內容金鑰傳遞給用戶端之方法的值。
+    
     public enum ContentKeyDeliveryType
     {
         /// <summary>
@@ -375,9 +377,8 @@ MPEG DASH
 
 
 ### <a name="assetdeliverypolicyconfigurationkey"></a>AssetDeliveryPolicyConfigurationKey
-    /// <summary>
-    /// Keys used to get specific configuration for an asset delivery policy.
-    /// </summary>
+
+下列列舉描述您可以設定的值，以便設定用來取得資產傳遞原則特定設定的金鑰。
 
     public enum AssetDeliveryPolicyConfigurationKey
     {
@@ -421,7 +422,6 @@ MPEG DASH
         /// </summary>
         WidevineLicenseAcquisitionUrl
     }
-
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

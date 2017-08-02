@@ -17,10 +17,10 @@ ms.date: 07/05/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
-ms.openlocfilehash: da91ce0f14f904530a1a53af00485f5a2ac1757b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d5a555cd873222efcdb29e8eb3aaf128a24414b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 07/06/2017
 
 在 [Azure 入口網站](https://portal.azure.com) 中建立虛擬機器 (VM) 時，會自動建立虛擬機器的公用 IP 資源。 您可以使用此 IP 位址從遠端存取 VM。 雖然入口網站不會建立 [fully qualified domain name (完整網域名稱)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)(或稱 FQDN)，但是您可以在 VM 建立之後建立一個。 這篇文章示範建立 DNS 名稱或 FQDN 的步驟。
 
-## <a name="create-fqdn"></a>建立 FQDN
+## <a name="create-a-fqdn"></a>建立 FQDN
 此文章假設您已經建立一個 VM。 如果需要，您可以[在入口網站中建立一個 VM](quick-create-portal.md) 或[使用 Azure PowerShell](quick-create-powershell.md) 來建立。 在您的 VM 已啟動並執行之後，請遵循下列步驟：
 
 [!INCLUDE [virtual-machines-common-portal-create-fqdn](../../../includes/virtual-machines-common-portal-create-fqdn.md)]

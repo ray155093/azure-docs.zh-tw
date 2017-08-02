@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/12/2017
+ms.date: 07/17/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: 3a8f878502f6a7237212b467b2259fcbb48000ff
-ms.openlocfilehash: d0775971c76c5745f90cb6c5268fda5a2c905093
-ms.lasthandoff: 02/13/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: e3de7c26af5cbc930defe542727a1250825fb1f8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="managing-assets-and-related-entities-with-media-services-net-sdk"></a>使用媒體服務 .NET SDK 管理資產和相關的實體
@@ -34,7 +34,8 @@ ms.lasthandoff: 02/13/2017
 > 從 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 例如，在 2017 年 4 月 1 日，您帳戶中任何在 2016 年 12 月 31 日以前的作業記錄將會自動刪除。 如果您需要封存作業/工作資訊，您可以使用本主題中所述的程式碼。
 
 ## <a name="prerequisites"></a>必要條件
-請參閱 [設定環境](media-services-set-up-computer.md)
+
+設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
 
 ## <a name="get-an-asset-reference"></a>取得資產參考
 常見的工作是在媒體服務中取得現有資產的參考。 下列程式碼範例顯示如何根據資產識別碼，從伺服器內容物件的資產集合取得資產參考。

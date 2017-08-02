@@ -13,45 +13,180 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 06/08/2017
+ms.date: 07/25/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
-ms.openlocfilehash: b12505e21a97949c7df6ae1568f2244b5dbcd0fa
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 9cb7aa1e0b4e96a6f40620685b5505587b94ec66
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 
 # <a name="install-nvidia-gpu-drivers-on-n-series-vms-running-linux"></a>在執行 Linux 的 N 系列 VM 上安裝 NVIDIA GPU 驅動程式
 
-若要利用 Azure N 系列 VM (執行 Linux) 的 GPU 功能，您必須在每個 VM 上安裝 NVIDIA 圖形驅動程式。 本文提供您在部署 N 系列 VM 後的驅動程式安裝步驟。 驅動程式設定資訊也適用於 [Windows VM](../windows/n-series-driver-setup.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+若要利用 Azure N 系列 VM (執行 Linux) 的 GPU 功能，您必須安裝支援的 NVIDIA 圖形驅動程式。 本文提供您在部署 N 系列 VM 後的驅動程式安裝步驟。 驅動程式設定資訊也適用於 [Windows VM](../windows/n-series-driver-setup.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 
 如需 N 系列 VM 規格、儲存體容量與磁碟的詳細資料，請參閱 [GPU Linux VM 大小](sizes-gpu.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
 
 
 
-## <a name="supported-distributions-and-drivers"></a>支援的散發套件和驅動程式
+[!INCLUDE [virtual-machines-n-series-linux-support](../../../includes/virtual-machines-n-series-linux-support.md)]
+
+## <a name="install-grid-drivers-for-nv-vms"></a>安裝 NV VM 的 GRID 驅動程式
+
+若要在 NV VM 上安裝 NVIDIA GRID 驅動程式，請將 SSH 連線至每個 VM，並遵循您 Linux 散發套件的步驟。 
+
+### <a name="ubuntu-1604-lts"></a>Ubuntu 16.04 LTS
+
+1. 執行 `lspci` 命令。 請確認 NVIDIA M60 卡可以顯示為 PCI 裝置。
+
+2. 安裝更新。
+
+  ```bash
+  sudo apt-get update
+
+  sudo apt-get upgrade -y
+
+  sudo apt-get dist-upgrade -y
+
+  sudo apt-get install build-essential ubuntu-desktop -y
+  ```
+3. 停用與 NVIDIA 驅動程式不相容的 Nouveau 核心驅動程式。 (僅在 NV VM 上使用 NVIDIA 驅動程式。)若要這樣做，使用下列內容，在名為 `nouveau.conf` 的 `/etc/modprobe.d ` 中建立檔案︰
+
+  ```
+  blacklist nouveau
+
+  blacklist lbm-nouveau
+  ```
 
 
-N 系列 Linux VM 支援下列來自 Azure Marketplace 的散發套件，以及列出的 NVIDIA 驅動程式。
+4. 重新啟動 VM，並重新連線。 結束 X 伺服器：
+
+  ```bash
+  sudo systemctl stop lightdm.service
+  ```
+
+5. 下載並安裝 GRID 驅動程式：
+
+  ```bash
+  wget -O NVIDIA-Linux-x86_64-367.106-grid.run https://go.microsoft.com/fwlink/?linkid=849941  
+
+  chmod +x NVIDIA-Linux-x86_64-367.106-grid.run
+
+  sudo ./NVIDIA-Linux-x86_64-367.106-grid.run
+  ``` 
+
+6. 當系統詢問您是否要執行 nvidia-xconfig 公用程式來更新您的 X 組態檔時，選取 [是]。
+
+7. 安裝完成後，將下列內容新增至 `/etc/nvidia/gridd.conf.template`：
+ 
+  ```
+  IgnoreSP=TRUE
+  ```
+8. 重新啟動 VM 並繼續確認安裝。
 
 
-| VM 系列 | 支援的發行版 | 支援的驅動程式 |
-| --- | --- | --- |
-| **NC** (Tesla K80 卡) | Ubuntu 16.04 LTS<br/><br/> Red Hat Enterprise Linux 7.3<br/><br/> CentOS 型 7.3 | NVIDIA CUDA 8.0，驅動程式分支 R375<br/>[安裝步驟](#install-cuda-drivers-for-nc-vms) |
-| **NV** (Tesla M60 卡)| Ubuntu 16.04 LTS<br/><br/>Red Hat Enterprise Linux 7.3<br/><br/>CentOS 型 7.3 | NVIDIA GRID 4.2，驅動程式分支 R367<br/>[安裝步驟](#install-grid-drivers-for-nv-vms) |
+### <a name="centos-based-73-or-red-hat-enterprise-linux-73"></a>以 CentOS 作為基礎的 7.3 或 Red Hat Enterprise Linux 7.3
 
 
+1. 更新核心和 DKMS。
+ 
+  ```bash  
+  sudo yum update
+ 
+  sudo yum install kernel-devel
+ 
+  sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+ 
+  sudo yum install dkms
+  ```
 
-> [!WARNING] 
-> 在 Red Hat 產品上安裝第三方軟體可能會影響 Red Hat 支援條款。 請參閱 [Red Hat 知識庫文件 (英文)](https://access.redhat.com/articles/1067)。
->
+2. 停用與 NVIDIA 驅動程式不相容的 Nouveau 核心驅動程式。 (僅在 NV VM 上使用 NVIDIA 驅動程式。)若要這樣做，使用下列內容，在名為 `nouveau.conf` 的 `/etc/modprobe.d ` 中建立檔案︰
+
+  ```
+  blacklist nouveau
+
+  blacklist lbm-nouveau
+  ```
+ 
+3. 重新啟動 VM、重新連線，然後安裝最新的 Linux Integration Services for Hyper-V：
+ 
+  ```bash
+  wget http://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.2-2.tar.gz
+ 
+  tar xvzf lis-rpms-4.2.2-2.tar.gz
+ 
+  cd LISISO
+ 
+  sudo ./install.sh
+ 
+  sudo reboot
+  ```
+ 
+4. 重新連線至 VM 並執行 `lspci` 命令。 請確認 NVIDIA M60 卡可以顯示為 PCI 裝置。
+ 
+5. 下載並安裝 GRID 驅動程式：
+
+  ```bash
+  wget -O NVIDIA-Linux-x86_64-367.106-grid.run https://go.microsoft.com/fwlink/?linkid=849941  
+
+  chmod +x NVIDIA-Linux-x86_64-367.106-grid.run
+
+  sudo ./NVIDIA-Linux-x86_64-367.106-grid.run
+  ``` 
+6. 當系統詢問您是否要執行 nvidia-xconfig 公用程式來更新您的 X 組態檔時，選取 [是]。
+
+7. 安裝完成後，將下列內容新增至 `/etc/nvidia/gridd.conf.template`：
+ 
+  ```
+  IgnoreSP=TRUE
+  ```
+8. 重新啟動 VM 並繼續確認安裝。
+
+### <a name="verify-driver-installation"></a>確認驅動程式安裝
 
 
+若要查詢 GPU 裝置狀態，請透過 SSH 連線至 VM 並執行與驅動程式一起安裝的 [nvidia-smi](https://developer.nvidia.com/nvidia-system-management-interface) 命令列公用程式。 
+
+您會看到類似以下的輸出：
+
+![NVIDIA 裝置狀態](./media/n-series-driver-setup/smi-nv.png)
+ 
+
+### <a name="x11-server"></a>X11 伺服器
+如果您需要 X11 伺服器遠端連線到 NV VM，建議使用 [x11vnc](http://www.karlrunge.com/x11vnc/)，因為它可讓圖形進行硬體加速。 必須以手動方式將 M60 裝置的 BusID 新增至 xconfig 檔案 (Ubuntu 16.04 LTS 上的 `etc/X11/xorg.conf`、CentOS 7.3 或 Red Hat Enterprise Server 7.3 上的 `/etc/X11/XF86config`)。 新增類似下列的 `"Device"` 區段：
+ 
+```
+Section "Device"
+    Identifier     "Device0"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Tesla M60"
+    BusID          "your-BusID:0:0:0"
+EndSection
+```
+ 
+此外，更新您的 `"Screen"` 區段，即可使用此裝置。
+ 
+可以找到 BusID，方法為執行
+
+```bash
+/usr/bin/nvidia-smi --query-gpu=pci.bus_id --format=csv | tail -1 | cut -d ':' -f 1
+```
+ 
+重新配置或重新啟動 VM 時，可以變更 BusID。 因此，重新啟動 VM 時，建議您使用指令碼來更新 X11 設定中的 BusID。 例如：
+
+```bash 
+#!/bin/bash
+BUSID=$((16#`/usr/bin/nvidia-smi --query-gpu=pci.bus_id --format=csv | tail -1 | cut -d ':' -f 1`))
+
+if grep -Fxq "${BUSID}" /etc/X11/XF86Config; then     echo "BUSID is matching"; else   echo "BUSID changed to ${BUSID}" && sed -i '/BusID/c\    BusID          \"PCI:0@'${BUSID}':0:0:0\"' /etc/X11/XF86Config; fi
+```
+
+可以叫用這個檔案作為開機時的根目錄，方法是在 `/etc/rc.d/rc3.d` 中為其建立項目。
 
 
 ## <a name="install-cuda-drivers-for-nc-vms"></a>安裝適用於 NC VM 的 CUDA 驅動程式
@@ -74,7 +209,7 @@ lspci | grep -i NVIDIA
 
 ![lspci 命令輸出](./media/n-series-driver-setup/lspci.png)
 
-然後執行您的配送映像特有的命令。
+然後執行您的配送映像特有的安裝命令。
 
 ### <a name="ubuntu-1604-lts"></a>Ubuntu 16.04 LTS
 
@@ -106,7 +241,6 @@ lspci | grep -i NVIDIA
 
 ### <a name="centos-based-73-or-red-hat-enterprise-linux-73"></a>以 CentOS 作為基礎的 7.3 或 Red Hat Enterprise Linux 7.3
 
-
 1. 取得更新。 
 
   ```bash
@@ -114,8 +248,12 @@ lspci | grep -i NVIDIA
 
   sudo reboot
   ```
-2. 重新連線到 VM，然後安裝最新的 Linux Integration Services for Hyper-V：
- 
+2. 重新連線到 VM，然後安裝最新的 Linux Integration Services for Hyper-V。
+
+  > [!IMPORTANT]
+  > 如果您在 NC24r VM 上安裝了 CentOS 架構的 HPC 映像，請跳至步驟 3。 因為映像中預先安裝了 Azure RDMA 驅動程式和 Linux Integration Services，所以不應該升級 LIS，並且依預設會停用核心更新。
+  >
+
   ```bash
   wget http://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.1.tar.gz
  
@@ -196,163 +334,11 @@ sudo yum update
 sudo reboot
 ```
 
-## <a name="install-grid-drivers-for-nv-vms"></a>安裝 NV VM 的 GRID 驅動程式
-
-若要在 NV VM 上安裝 NVIDIA GRID 驅動程式，請將 SSH 連線至每個 VM，並遵循您 Linux 散發套件的步驟。 
-
-### <a name="ubuntu-1604-lts"></a>Ubuntu 16.04 LTS
-
-1. 執行 `lspci` 命令。 請確認 NVIDIA M60 卡可以顯示為 PCI 裝置。
-
-2. 安裝更新。
-
-  ```bash
-  sudo apt-get update
-
-  sudo apt-get upgrade -y
-
-  sudo apt-get dist-upgrade -y
-
-  sudo apt-get install build-essential ubuntu-desktop -y
-  ```
-3. 停用與 NVIDIA 驅動程式不相容的 Nouveau 核心驅動程式。 (僅在 NV VM 上使用 NVIDIA 驅動程式。)若要這樣做，使用下列內容，在名為 `nouveau.conf` 的 `/etc/modprobe.d ` 中建立檔案︰
-
-  ```
-  blacklist nouveau
-
-  blacklist lbm-nouveau
-  ```
-
-
-4. 重新啟動 VM，並重新連線。 結束 X 伺服器：
-
-  ```bash
-  sudo systemctl stop lightdm.service
-  ```
-
-5. 下載並安裝 GRID 驅動程式：
-
-  ```bash
-  wget -O NVIDIA-Linux-x86_64-367.92-grid.run https://go.microsoft.com/fwlink/?linkid=849941  
-
-  chmod +x NVIDIA-Linux-x86_64-367.92-grid.run
-
-  sudo ./NVIDIA-Linux-x86_64-367.92-grid.run
-  ``` 
-
-6. 當系統詢問您是否要執行 nvidia-xconfig 公用程式來更新您的 X 組態檔時，選取 [是]。
-
-7. 安裝完成後，將下列內容新增至 `/etc/nvidia/gridd.conf.template`：
- 
-  ```
-  IgnoreSP=TRUE
-  ```
-8. 重新啟動 VM 並繼續確認安裝。
-
-
-### <a name="centos-based-73-or-red-hat-enterprise-linux-73"></a>以 CentOS 作為基礎的 7.3 或 Red Hat Enterprise Linux 7.3
-
-
-1. 更新核心和 DKMS。
- 
-  ```bash  
-  sudo yum update
- 
-  sudo yum install kernel-devel
- 
-  sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
- 
-  sudo yum install dkms
-  ```
-
-2. 停用與 NVIDIA 驅動程式不相容的 Nouveau 核心驅動程式。 (僅在 NV VM 上使用 NVIDIA 驅動程式。)若要這樣做，使用下列內容，在名為 `nouveau.conf` 的 `/etc/modprobe.d ` 中建立檔案︰
-
-  ```
-  blacklist nouveau
-
-  blacklist lbm-nouveau
-  ```
- 
-3. 重新啟動 VM、重新連線，然後安裝最新的 Linux Integration Services for Hyper-V：
- 
-  ```bash
-  wget http://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.1.tar.gz
- 
-  tar xvzf lis-rpms-4.2.1.tar.gz
- 
-  cd LISISO
- 
-  sudo ./install.sh
- 
-  sudo reboot
-  ```
- 
-4. 重新連線至 VM 並執行 `lspci` 命令。 請確認 NVIDIA M60 卡可以顯示為 PCI 裝置。
- 
-5. 下載並安裝 GRID 驅動程式：
-
-  ```bash
-  wget -O NVIDIA-Linux-x86_64-367.92-grid.run https://go.microsoft.com/fwlink/?linkid=849941  
-
-  chmod +x NVIDIA-Linux-x86_64-367.92-grid.run
-
-  sudo ./NVIDIA-Linux-x86_64-367.92-grid.run
-  ``` 
-6. 當系統詢問您是否要執行 nvidia-xconfig 公用程式來更新您的 X 組態檔時，選取 [是]。
-
-7. 安裝完成後，將下列內容新增至 `/etc/nvidia/gridd.conf.template`：
- 
-  ```
-  IgnoreSP=TRUE
-  ```
-8. 重新啟動 VM 並繼續確認安裝。
-
-### <a name="verify-driver-installation"></a>確認驅動程式安裝
-
-
-若要查詢 GPU 裝置狀態，請透過 SSH 連線至 VM 並執行與驅動程式一起安裝的 [nvidia-smi](https://developer.nvidia.com/nvidia-system-management-interface) 命令列公用程式。 
-
-您會看到類似以下的輸出：
-
-![NVIDIA 裝置狀態](./media/n-series-driver-setup/smi-nv.png)
- 
-
-### <a name="x11-server"></a>X11 伺服器
-如果您需要 X11 伺服器遠端連線到 NV VM，建議使用 [x11vnc](http://www.karlrunge.com/x11vnc/)，因為它可讓圖形進行硬體加速。 必須以手動方式將 M60 裝置的 BusID 新增至 xconfig 檔案 (Ubuntu 16.04 LTS 上的 `etc/X11/xorg.conf`、CentOS 7.3 或 Red Hat Enterprise Server 7.3 上的 `/etc/X11/XF86config`)。 新增類似下列的 `"Device"` 區段：
- 
-```
-Section "Device"
-    Identifier     "Device0"
-    Driver         "nvidia"
-    VendorName     "NVIDIA Corporation"
-    BoardName      "Tesla M60"
-    BusID          "your-BusID:0:0:0"
-EndSection
-```
- 
-此外，更新您的 `"Screen"` 區段，即可使用此裝置。
- 
-可以找到 BusID，方法為執行
-
-```bash
-/usr/bin/nvidia-smi --query-gpu=pci.bus_id --format=csv | tail -1 | cut -d ':' -f 1
-```
- 
-重新配置或重新啟動 VM 時，可以變更 BusID。 因此，重新啟動 VM 時，建議您使用指令碼來更新 X11 設定中的 BusID。 例如：
-
-```bash 
-#!/bin/bash
-BUSID=$((16#`/usr/bin/nvidia-smi --query-gpu=pci.bus_id --format=csv | tail -1 | cut -d ':' -f 1`))
-
-if grep -Fxq "${BUSID}" /etc/X11/XF86Config; then     echo "BUSID is matching"; else   echo "BUSID changed to ${BUSID}" && sed -i '/BusID/c\    BusID          \"PCI:0@'${BUSID}':0:0:0\"' /etc/X11/XF86Config; fi
-```
-
-可以叫用這個檔案作為開機時的根目錄，方法是在 `/etc/rc.d/rc3.d` 中為其建立項目。
 
 
 ## <a name="troubleshooting"></a>疑難排解
 
-* 執行具有 4.4.0-75 Linux 核心之 Ubuntu 16.04 LTS 的 Azure N 系列 VM 具有和 CUDA 驅動程式相關的已知問題。 若要在升級核心時維持驅動程式功能，請至少升級至核心版本 4.4.0-77。 
+* 執行具有 4.4.0-75 Linux 核心之 Ubuntu 16.04 LTS 的 Azure N 系列 VM 具有和 CUDA 驅動程式相關的已知問題。 如果您要從較早的核心版本升級，請升級到最少核心版本 4.4.0-77。 
 
 
 

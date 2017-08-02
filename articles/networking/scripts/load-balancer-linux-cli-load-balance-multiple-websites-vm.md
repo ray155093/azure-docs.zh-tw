@@ -13,13 +13,13 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: 
 ms.workload: infrastructure
-ms.date: 04/19/2017
+ms.date: 07/07/2017
 ms.author: kumud
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: b4bfc65a4a32e33e6eaecf16e928484862100cd1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c5a584b33025122033b930822ae0a0864a7ec1cb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/08/2017
 
 ---
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 05/10/2017
 ## <a name="sample-script"></a>範例指令碼
 
 
-[!code-azurecli[主要](../../../cli_scripts/load-balancer/load-balance-multiple-web-sites-vm/load-balance-multiple-web-sites-vm.sh  "進行多個網站的負載平衡")]
+[!code-azurecli-interactive[主要](../../../cli_scripts/load-balancer/load-balance-multiple-web-sites-vm/load-balance-multiple-web-sites-vm.sh  "進行多個網站的負載平衡")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
@@ -53,9 +53,9 @@ az group delete --name myResourceGroup --yes
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
 | [az network vnet create](https://docs.microsoft.com/cli/azure/network/vnet#create) | 建立 Azure 虛擬網路和子網路。 |
 | [az network public-ip create](https://docs.microsoft.com/cli/azure/network/public-ip#create) | 建立具有靜態 IP 位址和相關聯 DNS 名稱的公用 IP 位址。 |
-| [az network lb create](https://docs.microsoft.com/cli/azure/network/lb#create) | 建立 Azure 網路負載平衡器 (NLB)。 |
-| [az network lb probe create](https://docs.microsoft.com/cli/azure/network/lb/probe#create) | 建立 NLB 探查。 NLB 探查可用來監視 NLB 集合中的每部 VM。 如有任何 VM 變得無法存取，就不會將流量路由至該 VM。 |
-| [az network lb rule create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | 建立 NLB 規則。 在此範例中，會為連接埠 80 建立規則。 當 HTTP 流量抵達 NLB 時，就會經由連接埠 80 將其路由傳送至 NLB 集合的其中一部 VM。 |
+| [az network lb create](https://docs.microsoft.com/cli/azure/network/lb#create) | 建立 Azure 負載平衡器。 |
+| [az network lb probe create](https://docs.microsoft.com/cli/azure/network/lb/probe#create) | 建立負載平衡器探查。 負載平衡器探查是用來監視負載平衡器集合中的每部 VM。 如有任何 VM 變得無法存取，就不會將流量路由至該 VM。 |
+| [az network lb rule create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | 建立負載平衡器規則。 在此範例中，會為連接埠 80 建立規則。 HTTP 流量到達負載平衡器時，它會路由傳送至負載平衡器集內其中一個 VM 的連接埠 80。 |
 | [az network lb frontend-ip create](https://docs.microsoft.com/cli/azure/network/lb/frontend-ip#create) | 建立負載平衡器的前端 IP 位址。 |
 | [az network lb address-pool create](https://docs.microsoft.com/cli/azure/network/lb/address-pool#create) | 建立後端位址集區。 |
 | [az network nic create](https://docs.microsoft.com/cli/azure/network/nic#create) | 建立虛擬網路卡，並將它連結至虛擬網路和子網路。 |

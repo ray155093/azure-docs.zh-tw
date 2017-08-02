@@ -12,15 +12,23 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-ios
 ms.devlang: objective-c
 ms.topic: article
-ms.date: 12/13/2016
+ms.date: 07/17/2017
 ms.author: piyushjo
-translationtype: Human Translation
-ms.sourcegitcommit: da3ef06433d2336159d0ae96f12019fd80dc5d07
-ms.openlocfilehash: 6b32e81bb6a714bd0c479c48d6982af4bcc0683d
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 9bdaa57f9902373ccf796ff109332b64c66bf9e7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="azure-mobile-engagement-ios-sdk-release-notes"></a>Azure Mobile Engagement iOS SDK 版本資訊
+
+## <a name="410-07172017"></a>4.1.0 (07/17/2017)
+* 修正在背景清除徽章。
+* 修正在 XCode 9 上關於 API 未在主要佇列呼叫的警告。
+* 修正觸達輪詢中的記憶體流失。
+* 停止支援 iOS 6.X。 從此版本開始，您的應用程式部署目標必須至少為 iOS 7。
+
 ## <a name="401-12132016"></a>4.0.1 (12/13/2016)
 * 改善在背景中的記錄傳送。
 
@@ -70,10 +78,4 @@ ms.openlocfilehash: 6b32e81bb6a714bd0c479c48d6982af4bcc0683d
 * 已移除在裝置之間傳送與接收訊息的 API。
 * 增強安全性。
 * 已移除 SmartAd 追蹤。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
