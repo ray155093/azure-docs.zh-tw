@@ -15,12 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 02/13/2017
 ms.author: danlep
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 11ffd3df669c805297eee5085145f4ce27a09e15
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 5c971ed2e09bd275dc34da3ea94b3ff4a6338c9a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="technical-articles-for-windows-vms-in-the-classic-deployment-model"></a>傳統部署模型中的 Windows VM 的技術文章
@@ -57,7 +56,7 @@ ms.lasthandoff: 05/10/2017
 
 [虛擬機器的大小](windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[關於 H 系列和計算密集型 A 系列 VM](windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[高效能運算 VM 大小](windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [Azure 虛擬機器的計劃性維護](windows/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 

@@ -12,14 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 03/28/2017
+ms.date: 07/12/2017
 ms.author: robb
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
-ms.openlocfilehash: 0764b9f3ac262b7c65944d6e2c82490daefa54c3
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: df53e92b877b4790bb700f176a1988d265ec4678
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/17/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="azure-diagnostics-troubleshooting"></a>Azure 診斷疑難排解
@@ -43,6 +42,7 @@ ms.lasthandoff: 06/17/2017
 | **監視代理程式組態檔** | C:\Resources\Directory\<CloudServiceDeploymentID>.\<RoleName>.DiagnosticStore\WAD0107\Configuration\MaConfig.xml |
 | **Azure 診斷擴充功能套件** | %SystemDrive%\Packages\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\<version> |
 | **記錄集合公用程式路徑** | %SystemDrive%\Packages\GuestAgent\ |
+| **MonAgentHost 記錄檔** | C:\Resources\Directory\<CloudServiceDeploymentID>.\<RoleName>.DiagnosticStore\WAD0107\Configuration\MonAgentHost.<seq_num>.log |
 
 ### <a name="virtual-machines"></a>虛擬機器
 | 構件 | 路徑 |
@@ -54,9 +54,12 @@ ms.lasthandoff: 06/17/2017
 | **狀態檔案** | C:\Packages\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<version>\Status |
 | **Azure 診斷擴充功能套件** | C:\Packages\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<DiagnosticsVersion>|
 | **記錄集合公用程式路徑** | C:\WindowsAzure\Packages |
+| **MonAgentHost 記錄檔** | C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<DiagnosticsVersion>\WAD0107\Configuration\MonAgentHost.<seq_num>.log |
 
 ## <a name="azure-diagnostics-is-not-starting"></a>Azure 診斷未啟動
-從上述提供的記錄檔位置查看 **DiagnosticsPluginLauncher.log** 和 **DiagnosticsPlugin.log** 檔案，以取得診斷為何無法啟動的相關資訊。  
+從上述提供的記錄檔位置查看 **DiagnosticsPluginLauncher.log** 和 **DiagnosticsPlugin.log** 檔案，以取得診斷為何無法啟動的相關資訊。 
+
+如果這些記錄指出 `Monitoring Agent not reporting success after launch`，則表示啟動 MonAgentHost.exe 失敗。 在針對上節中的 `MonAgentHost log file` 指示的位置，查看其記錄。
 
 記錄檔的最後一行包含結束代碼。  
 
@@ -86,7 +89,7 @@ DiagnosticsPluginLauncher.exe Information: 0 : [4/16/2016 6:24:15 AM] Diagnostic
 - **效能計數器**：開啟 Perfmon 並檢查計數器。
 - **追蹤記錄檔**：從遠端桌面連接到 VM，並將 TextWriterTraceListener 新增至應用程式的組態檔。  請參閱 http://msdn.microsoft.com/zh-tw/library/sk36c28t.aspx 設定文字接聽程式。  確定 `<trace>` 元素具有 `<trace autoflush="true">`。<br />
 如果您沒有看到系統正在產生追蹤記錄檔，請依照[關於遺漏追蹤記錄檔的詳細資訊](#more-about-trace-logs-missing)中的說明進行作業。
- - **ETW 追蹤**：從遠端桌面連接到 VM 並安裝 PerfView。  在 PerfView 中執行 [File] \(檔案\) -> [User Command] \(使用者命令\) -> Listen etwprovder1,etwprovider2,etc。請注意，Listen 命令區分大小寫，而且在 ETW 提供者清單中，以逗號區隔的 ETW 提供者之間不能有空格。  如果命令執行失敗，您可以按一下 Perfview 工具右下方的 [Log] \(記錄\) 按鈕，即可查看已嘗試執行哪些動作與執行結果。  假設輸入正確，就會顯示一個新的視窗，並且您會在幾秒鐘內開始看到 ETW 追蹤。
+- **ETW 追蹤**：從遠端桌面連接到 VM 並安裝 PerfView。  在 PerfView 中執行 [File] \(檔案\) -> [User Command] \(使用者命令\) -> Listen etwprovder1,etwprovider2,etc。請注意，Listen 命令區分大小寫，而且在 ETW 提供者清單中，以逗號區隔的 ETW 提供者之間不能有空格。  如果命令執行失敗，您可以按一下 Perfview 工具右下方的 [Log] \(記錄\) 按鈕，即可查看已嘗試執行哪些動作與執行結果。  假設輸入正確，就會顯示一個新的視窗，並且您會在幾秒鐘內開始看到 ETW 追蹤。
 - **事件記錄檔**：從遠端桌面連接到 VM。 開啟 `Event Viewer` 並確認事件存在。
 #### <a name="is-data-getting-captured-locally"></a>是否正在本機擷取資料：
 接下來請確定正在本機擷取資料。
@@ -241,4 +244,3 @@ System.IO.FileLoadException: Could not load file or assembly 'System.Threading.T
 - 如果您在效能計數器名稱中使用萬用字元 (\*)，入口網站將無法關聯設定和收集的計數器。
 
 **緩解方式**：針對系統帳戶，將電腦的語言變更為英文。 [控制台] -> [地區] -> [系統管理] -> [複製設定] -> 取消選取 [歡迎畫面及系統帳戶]，就能讓自訂語言不會套用至系統帳戶。 如果想要入口網站成為主要的使用體驗網站，也請確定沒有使用萬用字元。
-

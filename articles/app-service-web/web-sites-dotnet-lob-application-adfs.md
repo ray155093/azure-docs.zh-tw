@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: web
 ms.date: 08/31/2016
 ms.author: cephalin
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
-ms.openlocfilehash: 1895094b28d9596eec644078b6f9a877b526b89e
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: f9a8984400378d154a504af8a41609900128d052
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/02/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="create-a-line-of-business-azure-app-with-ad-fs-authentication"></a>使用 AD FS 驗證建立企業營運 Azure 應用程式
@@ -105,7 +104,7 @@ ms.lasthandoff: 06/02/2017
    &lt;add key="ClientValidationEnabled" value="true" /&gt;
    &lt;add key="UnobtrusiveJavaScriptEnabled" value="true" /&gt;
    <mark><del>&lt;add key="ida:Wtrealm" value="[Enter the App ID URI of WebApp-WSFederation-DotNet https://contoso.onmicrosoft.com/WebApp-WSFederation-DotNet]" /&gt;</del></mark>
-   <mark><del>&lt;add key="ida:AADInstance" value="https://login.windows.net" /&gt;</del></mark>
+   <mark><del>&lt;add key="ida:AADInstance" value="https://login.microsoftonline.com" /&gt;</del></mark>
    <mark><del>&lt;add key="ida:Tenant" value="[Enter tenant name, e.g. contoso.onmicrosoft.com]" /&gt;</del></mark>
    <mark>&lt;add key="ida:RPIdentifier" value="[Enter the relying party identifier as configured in AD FS, e.g. https://localhost:44320/]" /&gt;</mark>
    <mark>&lt;add key="ida:ADFS" value="[Enter the FQDN of AD FS service, e.g. adfs.contoso.com]" /&gt;</mark>
@@ -186,7 +185,7 @@ ms.lasthandoff: 06/02/2017
 9. 在 [設定識別碼] 頁面上，確認已列出專案 SSL URL，然後按 [下一步]。 按 [下一步]  並選取預設選取項目，一直到精靈結束。
    
    > [!NOTE]
-   > 在 Visual Studio 專案的 App_Start\Startup.Auth.cs，此識別碼會在同盟驗證期間比對 <code>WsFederationAuthenticationOptions.Wtrealm</code> 的值。 根據預設，會加入上一個步驟的應用程式 URL 做為 RP 識別碼。
+   > 在 Visual Studio 專案的 App_Start\Startup.Auth.cs 中，此識別碼會在同盟驗證期間比對 <code>WsFederationAuthenticationOptions.Wtrealm</code> 的值。 根據預設，會加入上一個步驟的應用程式 URL 做為 RP 識別碼。
    > 
    > 
 10. 您現在已經在 AD FS 中完成專案的 RP 應用程式設定。 接下來，您會設定此應用程式來傳送應用程式所需的宣告。 [編輯宣告規則]  對話方塊預設會在精靈結束時開啟，以便讓您立即啟動。 讓我們至少設定下列宣告 (使用括號括住結構描述)：
@@ -347,9 +346,9 @@ ms.lasthandoff: 06/02/2017
 <a name="bkmk_data"></a>
 
 ## <a name="connect-to-on-premises-data"></a>連線至內部部署資料
-您會想要使用 AD FS (而不是使用 Azure Active Directory) 來實作特定業務應用程式的原因是，遵守在外部部署保存組織資料的法規需求。 這也表示您的 Azure 網站必須存取內部部署資料庫，因為您不允許將 [SQL Database](/services/sql-database/) 做為您網站的資料層。
+您會想要使用 AD FS (而不是使用 Azure Active Directory) 來實作特定業務應用程式的原因是，遵守在外部部署保存組織資料的法規需求。 這也表示您在 Azure 中的 Web 應用程式必須存取內部部署資料庫，因為您無法使用 [SQL Database](/services/sql-database/) 作為您 Web 應用程式的資料層。
 
-Azure App Service Web Apps 可透過兩種方式支援存取在內部部署資料庫：[混合式連線](../biztalk-services/integration-hybrid-connection-overview.md)和[虛擬網路](web-sites-integrate-with-vnet.md)。 如需詳細資訊，請參閱 [使用 VNET 整合和混合式連線搭配 Azure App Service Web Apps](https://azure.microsoft.com/blog/2014/10/30/using-vnet-or-hybrid-conn-with-websites/)。
+Azure App Service Web Apps 可透過兩種方式支援存取內部部署資料庫：[混合式連線](../biztalk-services/integration-hybrid-connection-overview.md)和[虛擬網路](web-sites-integrate-with-vnet.md)。 如需詳細資訊，請參閱 [使用 VNET 整合和混合式連線搭配 Azure App Service Web Apps](https://azure.microsoft.com/blog/2014/10/30/using-vnet-or-hybrid-conn-with-websites/)。
 
 <a name="bkmk_resources"></a>
 

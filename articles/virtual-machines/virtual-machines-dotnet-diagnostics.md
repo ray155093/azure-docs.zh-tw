@@ -14,10 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/16/2016
 ms.author: davidmu
-translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 529c723a9e071b7cc388cf92423c1f74707cb831
-ms.lasthandoff: 03/22/2017
+ms.translationtype: HT
+ms.sourcegitcommit: d941879aee6042b38b7f5569cd4e31cb78b4ad33
+ms.openlocfilehash: 8ff6b9825212359617b748aba1c78ed789b130dd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/10/2017
 
 
 ---
@@ -28,20 +29,21 @@ ms.lasthandoff: 03/22/2017
 本逐步解說說明如何從遠端的開發電腦將診斷安裝至 Azure 虛擬機器。 您也將了解如何實作在該 Azure 虛擬機器上執行，並使用 .NET [EventSource 類別][EventSource Class]發出遙測資料的應用程式。 Azure 診斷可用來收集遙測資料，並將資料儲存在 Azure 儲存體帳戶。
 
 ### <a name="pre-requisites"></a>必要條件
-本逐步解說假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio 2013。 如果您沒有 Azure 訂用帳戶，可以註冊[免費試用版][Free Trial]。 請務必[安裝並設定 Azure PowerShell 0.8.7 版或更新版本][Install and configure Azure PowerShell version 0.8.7 or later]。
+本逐步解說假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio 2017。 如果您沒有 Azure 訂用帳戶，可以註冊[免費試用版][Free Trial]。 請務必[安裝並設定 Azure PowerShell 0.8.7 版或更新版本][Install and configure Azure PowerShell version 0.8.7 or later]。
 
 ### <a name="step-1-create-a-virtual-machine"></a>步驟 1：建立虛擬機器
-1. 在您的開發電腦上，啟動 Visual Studio 2013。
+1. 在您的開發電腦上，啟動 Visual Studio 2017。
 2. 在 Visual Studio [伺服器總管] 中展開 [Azure]，以滑鼠右鍵按一下 [虛擬機器]，然後選取 [建立虛擬機器]。
 3. 在 [選擇訂用帳戶] 對話方塊中選取您的 Azure 訂用帳戶，然後按 [下一步]。
-4. 在 [選取虛擬機器映像] 對話方塊中，選取 [Windows Server 2012 R2 Datacenter，2014 年 11 月]，然後按 [下一步]。
+4. 在 [選取虛擬機器映像] 對話方塊中，選取 [Windows Server 2012 R2 資料中心，2017 年 6 月]，然後按 [下一步]。
 5. 在 [ **虛擬機器基本設定**] 中，將虛擬機器名稱設為 "wadexample"。 設定您的系統管理員使用者名稱和密碼，然後按 [下一步] 。
 6. 在 [ **雲端服務設定** ] 對話方塊中，建立名為 "wadexampleVM" 的新雲端服務。 建立名為 "wadexample" 的新儲存體帳戶，然後按 [ **下一步**]。
 7. 按一下 [建立] 。
 
 ### <a name="step-2-create-your-application"></a>步驟 2：建立您的應用程式
-1. 在您的開發電腦上，啟動 Visual Studio 2013。
+1. 在您的開發電腦上，啟動 Visual Studio 2017。
 2. 建立以 .NET Framework 4.5 為目標的新 Visual C# 主控台應用程式。 將專案命名為 "WadExampleVM"。
+
    ![CloudServices_diag_new_project](./media/virtual-machines-dotnet-diagnostics/NewProject.png)
 3. 以下列程式碼取代 Program.cs 的內容。 **SampleEventSourceWriter** 類別實作四種記錄方法：**SendEnums**、**MessageMethod**、**SetOther** 和 **HighFreq**。 傳遞至 WriteEvent 方法的第一個參數定義個別事件的識別碼。 Run 方法實作一個無限迴圈，每 10 秒呼叫一次在 **SampleEventSourceWriter** 類別中實作的每種記錄方法。
 
@@ -116,7 +118,7 @@ ms.lasthandoff: 03/22/2017
 1. 執行下列 PowerShell 命令，將公用組態檔結構描述定義下載至您的開發電腦：
 
      (Get-AzureServiceAvailableExtension -ExtensionName 'PaaSDiagnostics' -ProviderNamespace 'Microsoft.Azure.Diagnostics').PublicConfigurationSchema | Out-File -Encoding utf8 -FilePath 'WadConfig.xsd'
-2. 在已開啟專案的 Visual Studio 中，或在未開啟專案的 Visual Studio 執行個體中，開啟新的 XML 檔。 在 Visual Studio 中，選取 [新增]  ->  [新增項目...]  ->  [Visual C# 項目]  ->  [資料]  ->  [XML 檔]。 將檔案命名為 "WadExample.xml"
+2. 在已開啟專案的 Visual Studio 中，或在未開啟專案的 Visual Studio 執行個體中，開啟新的 XML 檔。 在 Visual Studio 中，選取 [新增] -> [新項目...] -> [Visual C# 項目] -> [資料] -> [XML 檔案]。 將檔案命名為 "WadExample.xml"
 3. 將 WadConfig.xsd 與組態檔產生關聯。 確定 WadExample.xml 編輯器視窗是使用中視窗。 按 **F4** 鍵開啟 [屬性] 視窗。 在 [屬性] 視窗中，按一下 [結構描述] 屬性。 按一下 [...] 在 [結構描述] 屬性中。 按一下 [新增...] 按鈕並瀏覽至您儲存 XSD 檔的位置，然後選取檔案 WadConfig.xsd。 按一下 [確定] 。
 4. 以下列 XML 取代 WadExample.xml 組態檔的內容，然後儲存檔案。 此組態檔可定義兩個要收集的效能計數器：一個用於 CPU 使用率，一個用於記憶體使用率。 組態會接著定義四個事件，分別對應至 SampleEventSourceWriter 類別中的方法。
 
@@ -147,10 +149,18 @@ ms.lasthandoff: 03/22/2017
 用於管理 VM 上之診斷的 PowerShell Cmdlet 為：Set-AzureVMDiagnosticsExtension、Get-AzureVMDiagnosticsExtension 和 Remove-AzureVMDiagnosticsExtension。
 
 1. 在您的開發電腦上，開啟 Azure PowerShell。
-2. 執行指令碼，從遠端將診斷安裝至您的 VM (以 wadexamplevm 儲存體帳戶的儲存體帳戶金鑰取代 *StorageAccountKey* )：
-
-     $storage_name = "wadexamplevm"   $key = "<StorageAccountKey>"   $config_path="c:\users\<user>\documents\visual studio 2013\Projects\WadExampleVM\WadExampleVM\WadExample.xml"   $service_name="wadexamplevm"   $vm_name="WadExample"   $storageContext = New-AzureStorageContext -StorageAccountName $storage_name -StorageAccountKey $key   $VM1 = Get-AzureVM -ServiceName $service_name -Name $vm_name   $VM2 = Set-AzureVMDiagnosticsExtension -DiagnosticsConfigurationPath $config_path -Version "1.*" -VM $VM1 -StorageContext $storageContext   $VM3 = Update-AzureVM -ServiceName $service_name -Name $vm_name -VM $VM2.VM
-
+2. 執行指令碼，從遠端在您的 VM 上安裝「診斷」(使用您的使用者目錄名稱來取代 `<user>`)。 使用適用於您 wadexamplevm 儲存體帳戶的儲存體帳戶金鑰來取代 `<StorageAccountKey>`)：
+```
+     $storage_name = "wadexamplevm"
+     $key = "<StorageAccountKey>"
+     $config_path="c:\users\<user>\documents\visual studio 2017\Projects\WadExampleVM\WadExampleVM\WadExample.xml"
+     $service_name="wadexamplevm"
+     $vm_name="WadExample"
+     $storageContext = New-AzureStorageContext -StorageAccountName $storage_name -StorageAccountKey $key
+     $VM1 = Get-AzureVM -ServiceName $service_name -Name $vm_name
+     $VM2 = Set-AzureVMDiagnosticsExtension -DiagnosticsConfigurationPath $config_path -Version "1.*" -VM $VM1 -StorageContext $storageContext
+     $VM3 = Update-AzureVM -ServiceName $service_name -Name $vm_name -VM $VM2.VM
+```
 ### <a name="step-6-look-at-your-telemetry-data"></a>步驟 6：查看您的遙測資料
 在 Visual Studio 的 [伺服器總管] 中，瀏覽至 wadexample 儲存體帳戶。 在 VM 執行約 5 分鐘之後，您應該會看到資料表 **WADEnumsTable****WADHighFreqTable**、**WADMessageTable**、**WADPerformanceCountersTable** 和 **WADSetOtherTable**。 按兩下其中一個資料表以檢視收集的遙測資料。
 

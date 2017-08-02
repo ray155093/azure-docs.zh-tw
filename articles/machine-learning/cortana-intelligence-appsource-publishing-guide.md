@@ -11,13 +11,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/29/2017
+ms.date: 07/06/2017
 ms.author: anupams;v-bruham;garye
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
-ms.openlocfilehash: 67e2e7906df78ff3e57765e0a6706f98123c3428
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9f867641b77c8148c1d6cbf2913da9c1f5ce5b71
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/01/2017
+ms.lasthandoff: 07/08/2017
 
 --- 
 # <a name="cortana-intelligence-appsource-publishing-guide"></a>Cortana Intelligence AppSource 發佈指南
@@ -30,11 +30,13 @@ AppSource 是業務決策者 (BDM) 能探索及順利嘗試由合作夥伴所建
 - 您的解決方案或應用程式可解決特定業務問題。
 - 您所建置的模組或智慧財產，允許客戶以可預測的方式相對快速地重複使用。
 
+請查看 AppSource 上已經發佈的 [Cortana Intelligence 解決方案](https://appsource.microsoft.com/en-us/marketplace/apps?product=cortana-intelligence&page=1)。 
+
 本文將逐步說明將合作夥伴的 Cortana Intelligence 解決方案發佈至 AppSource 的所有步驟
 
 ## <a name="getting-started"></a>開始使用
 1. 在[合作夥伴社群優點指南](https://www.microsoftpartnerserverandcloud.com/_layouts/download.aspx?SourceUrl=Hosted%20Documents/Partner%20Community%20Benefits%20Guide%20-%20Cloud%20and%20Enterprise.pdf) \(PDF\) \(英文\) 中，請參閱第 9 頁以了解被列入進階分析合作夥伴的方式。
-1. 完成[提交您的應用程式](https://appsource.microsoft.com/en-us/)表單。
+1. 完成[提交您的應用程式](https://appsource.microsoft.com/en-us/partners/list-an-app)表單。
 
     針對「選擇您的應用程式為什麼產品打造」此問題，請選取 [其他] 核取方塊，並在編輯控制中列出「Cortana Intelligence」。
 1. 在 Cortana Intelligence 應用程式可以上線至 AppSource 之前，它必須先取得 Cortana Intelligence 的合作夥伴解決方案技術小組的認證。 若要開始該程序，請填寫[針對 AppSource 發佈的 Cortana Intelligence 解決方案評估](https://aka.ms/cisappsrceval) \(英文\) 問卷表單，分享關於您應用程式的詳細資料。 此網站有密碼保護，並且有如何取得密碼的指示。
@@ -63,7 +65,7 @@ AppSource 是業務決策者 (BDM) 能探索及順利嘗試由合作夥伴所建
 1. 在解決方案中使用 Power BI：選擇性，但極為建議，因為經證實可以產生更高數量的潛在客戶。
 
 ## <a name="devcenter-account-setup"></a>DevCenter 帳戶設定
-這是將您的公司註冊成為 Microsoft 發行者的程序。 如果您是已註冊的發行者且具有現有的 DevCenter 帳戶，請分享與您 DevCenter 帳戶相關聯的電子郵件識別碼。 
+這是將您的公司註冊成為 Microsoft 發行者的程序。 如果您是已註冊的發行者且具有現有的 DevCenter 帳戶，請分享與您 DevCenter 帳戶相關聯的電子郵件識別碼。 在您的應用程式獲得發行許可之後，您將可以存取有關[雲端入口網站管理發行者設定檔](https://cloudpartner.azure.com/#documentation/manage-publisher-profile)的完整文件
 
 如果您沒有帳戶，以下是設定 DevCenter 帳戶的重要步驟。
 1. 在[這裡](https://signup.live.com/signup.aspx)建立 Microsoft 帳戶。

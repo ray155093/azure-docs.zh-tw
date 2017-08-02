@@ -13,14 +13,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 06/22/2017
+ms.date: 07/12/2017
 ms.author: markvi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 61fd58063063d69e891d294e627ae40cb878d65b
-ms.openlocfilehash: 9cecbfd1fd5db8fffc9fbdfb2d6ca949b6ff385a
+ms.reviewer: calebb
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 3e524c116479c1af6eb6a601c9b57d27a697c5a2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/22/2017
-
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="best-practices-for-conditional-access-in-azure-active-directory"></a>Azure Active Directory 中條件式存取的最佳做法
@@ -29,11 +29,28 @@ ms.lasthandoff: 06/22/2017
 
 ## <a name="what-you-should-know"></a>您應該知道的事情
 
-### <a name="do-i-need-to-assign-a-user-to-my-policy"></a>我需要將使用者指派給我的原則嗎？
+### <a name="whats-required-to-make-a-policy-work"></a>讓原則運作的必要條件？
 
-在設定條件式存取原則時，您應該至少指派一個群組給它。 永遠不會觸發未指派使用者和群組的條件式存取原則。
+當您建立新的原則時，未選取任何使用者、群組、應用程式或存取控制項。
 
-當您打算將數個使用者和群組指派給某個原則時，您一開始應該僅指派一個使用者或群組，然後測試您的組態。 如果您的原則如預期般運作，您可以接著新增其他指派。  
+![雲端應用程式](./media/active-directory-conditional-access-best-practices/02.png)
+
+
+若要讓您的原則運作，您必須設定下列各項：
+
+
+|何事           | 方式                                  | 理由|
+|:--            | :--                                  | :-- |
+|**雲端應用程式** |您需要選取一或多個應用程式。  | 條件式存取原則的目標是要讓您微調授權的使用者如何存取您的應用程式。|
+| **使用者和群組** | 您需要選取至少一個使用者或群組，已獲授權存取您選取的雲端應用程式。 | 永遠不會觸發未指派使用者和群組的條件式存取原則。 |
+| **存取控制** | 您必須選取至少一個存取控制。 | 原則處理器需要知道滿足您的條件時該怎麼辦。|
+
+
+除了這些基本需求，在許多情況下，您也應該設定條件。 雖然沒有設定條件時原則也可以運作，但是條件是微調應用程式存取權的驅動因素。
+
+
+![雲端應用程式](./media/active-directory-conditional-access-best-practices/04.png)
+
 
 
 ### <a name="how-are-assignments-evaluated"></a>如何評估指派？

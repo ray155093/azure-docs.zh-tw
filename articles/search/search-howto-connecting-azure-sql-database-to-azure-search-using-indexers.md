@@ -12,52 +12,59 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 02/15/2017
+ms.date: 07/13/2017
 ms.author: eugenesh
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 54b8e16504e1170058dd021f7f7e2fba7b99bba7
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: 49f614fdf3ba84de238139387ea97ee62077b072
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/17/2017
 
 ---
 
 # <a name="connecting-azure-sql-database-to-azure-search-using-indexers"></a>使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務
-Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體驗變得更容易。 可以搜尋之前，您需要使用您的資料填入 Azure 搜尋服務索引。 如果 Azure SQL Database 中有您的資料，全新**適用於 Azure SQL Database 的 Azure 搜尋服務索引子** (或簡稱 **Azure SQL 索引子**) 可自動化編製索引的程序。 這表示您可以減少編寫程式碼的工作，並且減少需要處理的基礎結構。
 
-本文不僅介紹使用索引子的機制，也會說明只在 Azure SQL Database 上出現的功能 (例如，整合變更追蹤)。 Azure 搜尋服務也支援其他資料來源，例如 Azure Cosmos DB、Blob 儲存體和表格儲存體。 如果您想參閱其他資料來源的支援，請您在 [搜尋服務意見反應論壇](https://feedback.azure.com/forums/263029-azure-search/)上提供寶貴意見。
+您必須先填入資料，才能搜尋 [Azure 搜尋服務索引](search-what-is-an-index.md)。 如果資料已存在於 Azure SQL 資料庫中，**適用於 Azure SQL Database 的 Azure 搜尋服務索引子** (或簡稱 **Azure SQL 索引子**) 就能將編製索引的程序自動化，這表示可減少編寫程式碼的工作，並減少需要處理的基礎結構。
+
+本文不僅介紹使用[索引子](search-indexer-overview.md)的機制，也會說明只在 Azure SQL 資料庫上出現的功能 (例如，整合變更追蹤)。 
+
+除了 Azure SQL 資料庫，Azure 搜尋服務也會針對 [Azure Cosmos DB](search-howto-index-documentdb.md)、[Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md) 及 [Azure 表格儲存體](search-howto-indexing-azure-tables.md)提供索引子。 如需其他資料來源的支援，請在 [Azure 搜尋服務意見反應論壇](https://feedback.azure.com/forums/263029-azure-search/) \(英文\) 上提供您的寶貴意見。
 
 ## <a name="indexers-and-data-sources"></a>索引子和資料來源
-您可以使用下列方式安裝及設定 Azure SQL 索引子︰
 
-* [Azure 入口網站](https://portal.azure.com)中的匯入資料精靈
-* Azure 搜尋服務 [.NET SDK](https://msdn.microsoft.com/library/azure/dn951165.aspx)
-* Azure 搜尋服務 [REST API](http://go.microsoft.com/fwlink/p/?LinkID=528173)
+**資料來源**能指定要編製索引的資料、存取資料所需的認證，以及能有效識別資料變更 (新增、修改或刪除的資料列) 的原則。 資料來源會被定義為獨立的資源，因此可供多個索引子使用。
 
-在本文中，我們會使用 REST API 來示範如何建立和管理**索引子**與**資料來源**。
-
-**資料來源**能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些政策能有效識別資料變更 (新增、修改或刪除的資料列)。 資料來源會被定義為獨立的資源，因此可供多個索引子使用。
-
-**索引子** 是一種用來連接資料來源與目標搜尋索引的資源。 索引子的使用方式如下：
+**索引子**是一種用來將單一資料來源連線至目標搜尋索引的資源。 索引子的使用方式如下：
 
 * 執行資料的一次性複製以填入索引。
 * 依照排程使用資料來源中的變更來更新索引。
 * 視需要執行隨選作業更新索引。
 
+單一索引子只能取用一個資料表或檢視，但如果您想要填入多個搜尋索引，則可建立多個索引子。 如需概念的詳細資訊，請參閱[索引子作業：一般工作流程](https://docs.microsoft.com/rest/api/searchservice/Indexer-operations#typical-workflow)。
+
+您可以使用下列方式安裝及設定 Azure SQL 索引子︰
+
+* [Azure 入口網站](https://portal.azure.com)中的匯入資料精靈
+* Azure 搜尋服務 [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.indexer?view=azure-dotnet)
+* Azure 搜尋服務 [REST API](https://docs.microsoft.com/en-us/rest/api/searchservice/indexer-operations)
+
+在本文中，我們將使用 REST API 來建立**索引子**與**資料來源**。
+
 ## <a name="when-to-use-azure-sql-indexer"></a>使用 Azure SQL 索引子的時機
-使用 Azure SQL 索引子適當與否，取決於一些資料相關因素。 如果您的資料符合下列要求，您就可以使用 Azure SQL 索引子：
+使用 Azure SQL 索引子適當與否，取決於一些資料相關因素。 如果您的資料符合下列需求，就可以使用 Azure SQL 索引子。
 
-* 所有資料皆來自單一資料表或檢視
-  * 如果資料散布在多個資料表中，您可以建立一個檢視，並且將該檢視與索引子搭配使用。 但是，若您使用檢視，您將不能使用 SQL Server 的整合變更偵測。 如需詳細資訊，請參閱[本節](#CaptureChangedRows)。
-* 索引子支援資料來源中所使用的資料類型。 支援大部分但並非所有的 SQL 類型。 如需詳細資料，請參閱 [對應 Azure 搜尋服務內的資料來源](http://go.microsoft.com/fwlink/p/?LinkID=528105)。
-* 當資料列變更時，您不需要幾近即時索引更新。
-  * 索引子可以最多每隔 5 分鐘重新索引您的資料表。 若您經常變更資料，且變更需要在幾秒或幾分鐘內反映到索引中，我們建議您直接使用 [Azure 搜尋服務索引 API](https://msdn.microsoft.com/library/azure/dn798930.aspx) 。
-* 若您擁有大量資料集且計畫按照排程執行索引子，您的結構描述讓我們能夠有效識別已變更 (和已刪除 (若適用)) 的資料列。 如需更多詳細資料，請參閱下列的「擷取變更及刪除的資料列」。
-* 資料列中的索引欄位大小不得超過 Azure 搜尋服務索引要求的大小上限 (16 MB)。
+| 準則 | 詳細資料 |
+|----------|---------|
+| 資料來自單一資料表或檢視 | 如果資料散布在多個資料表中，您可以建立資料的單一檢視。 但是，如果您使用檢視，就不能使用 SQL Server 整合變更偵測，使用累加的變更來重新整理索引。 如需詳細資訊，請參閱下列的[擷取變更及刪除的資料列](#CaptureChangedRows)。 |
+| 資料類型是可相容的 | Azure 搜尋服務索引中支援大部分但並非所有的 SQL 類型。 如需清單，請參閱[對應資料類型](#TypeMapping)。 |
+| 不需要即時同步處理資料 | 索引子最多可以每隔五分鐘重新編製資料表的索引。 若您經常變更資料，且變更需要在幾秒或幾分鐘內反映到索引中，我們建議您使用 [REST API](https://docs.microsoft.com/rest/api/searchservice/AddUpdate-or-Delete-Documents) 或 [.NET SDK](search-import-data-dotnet.md)，直接推送更新的資料列。 |
+| 累加式編製索引是可行的 | 若您擁有大量資料集且計畫按照排程執行索引子，Azure 搜尋服務必須能夠有效識別新增、變更或刪除的資料列。 如果您會視需要 (而非排程) 編製索引，或要編製索引的資料列少於 100,000 個，則僅允許進行非累加的編製索引。 如需詳細資訊，請參閱下列的[擷取變更及刪除的資料列](#CaptureChangedRows)。 |
 
-## <a name="create-and-use-an-azure-sql-indexer"></a>建立和使用 Azure SQL 索引子
-首先，建立資料來源：
+## <a name="create-an-azure-sql-indexer"></a>建立 Azure SQL 索引子
 
+1. 建立資料來源：
+
+   ```
     POST https://myservice.search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
     api-key: admin-key
@@ -68,14 +75,15 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
         "credentials" : { "connectionString" : "Server=tcp:<your server>.database.windows.net,1433;Database=<your database>;User ID=<your user name>;Password=<your password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" },
         "container" : { "name" : "name of the table or view that you want to index" }
     }
+   ```
 
+   您可以從 [Azure 入口網站](https://portal.azure.com)取得連接字串；使用 `ADO.NET connection string` 選項。
 
-您可以從 [Azure 傳統入口網站](https://portal.azure.com)取得連接字串；使用 `ADO.NET connection string` 選項。
+2. 建立目標 Azure 搜尋服務索引 (如果您尚未建立)。 您可以使用[入口網站](https://portal.azure.com)或[建立索引 API](https://docs.microsoft.com/rest/api/searchservice/Create-Index) 來建立索引。 請確定目標索引的結構描述可與來源資料表的結構描述相容 - 請參閱 [SQL 和 Azure 搜尋服務資料類型之間的對應](#TypeMapping)。
 
-然後，建立目標 Azure 搜尋服務索引 (如果您尚未建立)。 您可以使用[入口網站 UI](https://portal.azure.com) 或[建立索引 API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 來建立索引。 請確定目標索引的結構描述可與來源資料表的結構描述相容 - 請參閱 [SQL 和 Azure 搜尋服務資料類型之間的對應](#TypeMapping)。
+3. 利用命名及參考資料來源和目標索引來建立索引子：
 
-最後，利用命名及參考資料來源和目標索引建立索引子。
-
+    ```
     POST https://myservice.search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
     api-key: admin-key
@@ -85,15 +93,16 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
         "dataSourceName" : "myazuresqldatasource",
         "targetIndexName" : "target index name"
     }
+    ```
 
 以這種方式建立索引子不需依照排程。 索引子一旦建立好就會自動執行。 您可以在任何時候使用 **執行索引子** 要求再執行一次：
 
     POST https://myservice.search.windows.net/indexers/myindexer/run?api-version=2016-09-01
     api-key: admin-key
 
-您可以自訂數個層面的索引子行為，例如，批次處理大小，以及在索引子執行失敗前可略過多少份文件。 如需詳細資訊，請參閱[建立索引子 API](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
+您可以自訂數個層面的索引子行為，例如，批次處理大小，以及在索引子執行失敗前可略過多少份文件。 如需詳細資訊，請參閱[建立索引子 API](https://docs.microsoft.com/rest/api/searchservice/Create-Indexer)。
 
-在您可能需要允許 Azure 服務以連線您的資料庫的時候。 如需瞭解如何執行連線的指示，請參閱 [從 Azure連線](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure) 。
+在您可能需要允許 Azure 服務以連線您的資料庫的時候。 如需瞭解如何執行連線的指示，請參閱 [從 Azure連線](https://docs.microsoft.com/azure/sql-database/sql-database-firewall-configure) 。
 
 若要監視索引子狀態及執行歷程紀錄 (項目索引編製數量、失敗等)，請使用 **索引子狀態** 要求：
 
@@ -171,20 +180,23 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 <a name="CaptureChangedRows"></a>
 
-## <a name="capturing-new-changed-and-deleted-rows"></a>擷取新增、變更和刪除的資料列
-如果資料表有許多資料列，您應該使用資料變更偵測原則。 變更偵測能夠僅擷取新增或變更的資料列，而不必重新建立整份資料表的索引，是極有效率的方式。
+## <a name="capture-new-changed-and-deleted-rows"></a>擷取新增、變更和刪除的資料列
+
+Azure 搜尋服務會使用**累加式編製索引**，以避免每次索引子執行時必須重新編製整個資料表或檢視的索引。 Azure 搜尋服務提供兩個變更偵測原則來支援累加式編製索引。 
 
 ### <a name="sql-integrated-change-tracking-policy"></a>SQL 整合變更追蹤原則
-如果您的 SQL 資料庫支援 [變更追蹤](https://msdn.microsoft.com/library/bb933875.aspx)，則建議您使用 **SQL 整合式變更追蹤原則**。 這是最有效率的原則。 此外，它可讓 Azure 搜尋服務識別出已刪除的資料列，而不需在資料表中加入明確的「虛刪除」資料行。
+如果您的 SQL 資料庫支援 [變更追蹤](https://docs.microsoft.com/sql/relational-databases/track-changes/about-change-tracking-sql-server)，則建議您使用 **SQL 整合式變更追蹤原則**。 這是最有效率的原則。 此外，它可讓 Azure 搜尋服務識別出已刪除的資料列，而不需在資料表中加入明確的「虛刪除」資料行。
 
-下列的 SQL Server 資料庫版本支援整合變更追蹤：
+#### <a name="requirements"></a>需求 
 
-* SQL Server 2008 R2 和更高版本 (若您使用 Azure VM 上 SQL Server )。
-* Azure SQL Database  V12 (若您使用 Azure SQL Database )。
++ 資料庫版本需求：
+  * SQL Server 2012 SP3 和更新版本 (若您在 Azure VM 上使用 SQL Server)。
+  * Azure SQL Database  V12 (若您使用 Azure SQL Database )。
++ 僅限資料表 (沒有檢視)。 
++ 在資料庫上，針對資料表[啟用變更追蹤](https://docs.microsoft.com/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server)。 
++ 資料表上沒有複合主索引鍵 (主索引鍵包含一個以上的資料行)。  
 
-使用 SQL 整合式變更追蹤原則時，請不要指定個別的資料刪除偵測原則，因為本原則已內建支援刪除資料列的識別。
-
-這項原則僅可用於資料表，無法用於檢視表。 您必須先啟用正在使用之資料表的變更追蹤，才能使用這項原則。 如需指示，請參閱 [啟用和停用變更追蹤](https://msdn.microsoft.com/library/bb964713.aspx) 。
+#### <a name="usage"></a>使用量
 
 若要使用此原則，請以下列方式建立或更新您的資料來源：
 
@@ -198,18 +210,25 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
       }
     }
 
+使用 SQL 整合式變更追蹤原則時，請不要指定個別的資料刪除偵測原則，因為本原則已內建支援刪除資料列的識別。 不過，針對要「自動」偵測的刪除，您搜尋索引中的文件索引鍵必須與 SQL 資料表中的主索引鍵一樣。 
+
 <a name="HighWaterMarkPolicy"></a>
 
 ### <a name="high-water-mark-change-detection-policy"></a>上限標準變更偵測原則
-雖然建議使用 SQL 整合變更追蹤原則，但它只能搭配資料表使用，不能搭配檢視。 若您使用檢視，請考慮使用上限標準原則。 您可以使用此原則，若您的資料表或檢視包含之資料行符合下列準則：
+
+這個變更偵測原則依賴在上次更新資料列時擷取版本或時間的「上限標準」資料行。 若您使用檢視，就必須使用上限標準原則。 上限標準資料行必須符合下列需求。
+
+#### <a name="requirements"></a>需求 
 
 * 所有插入都有指定資料行的值。
 * 所有項目更新變更資料行的值。
 * 每次插入或更新都會增加此資料行的值。
-* 具有下列 WHERE 和 ORDER BY 子句的查詢可以有效率地執行︰`WHERE [High Water Mark Column] > [Current High Water Mark Value] ORDER BY [High Water Mark Column]`。
+* 具有下列 WHERE 和 ORDER BY 子句的查詢可以有效率地執行︰`WHERE [High Water Mark Column] > [Current High Water Mark Value] ORDER BY [High Water Mark Column]`
 
 > [!IMPORTANT] 
-> 我們強烈建議使用 **rowversion** 資料行來變更追蹤。 如果使用其他任何資料類型，就無法保證變更追蹤會擷取與索引子查詢同時執行之交易中發生的所有變更。
+> 我們強烈建議針對上限標記資料行使用 [rowversion](https://docs.microsoft.com/sql/t-sql/data-types/rowversion-transact-sql) 資料類型。 如果使用其他任何資料類型，就無法保證變更追蹤會擷取與索引子查詢同時執行之交易中發生的所有變更。 在具備唯讀複本的設定中使用 **rowversion** 時，您必須指向主要複本上的索引子。 只有主要複本可用於資料同步處理案例。
+
+#### <a name="usage"></a>使用量
 
 若要使用高標原則，請以下列方式建立或更新您的資料來源：
 
@@ -265,7 +284,7 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 <a name="TypeMapping"></a>
 
-## <a name="mapping-between-sql-data-types-and-azure-search-data-types"></a>SQL 資料類型與 Azure 搜尋服務資料類型之間的對應
+## <a name="mapping-between-sql-and-azure-search-data-types"></a>SQL 與 Azure 搜尋服務資料類型之間的對應
 | SQL 資料類型 | 允許的目標索引欄位類型 | 注意事項 |
 | --- | --- | --- |
 | bit |Edm.Boolean、Edm.String | |
@@ -296,24 +315,47 @@ SQL 索引子公開數個組態設定︰
             "configuration" : { "queryTimeout" : "00:10:00" } }
     }
 
-## <a name="frequently-asked-questions"></a>常見問題集
-**問：** 在 Azure 服務的 IaaS 模擬器上執行 SQL 資料庫時，能夠使用 Azure SQL 索引子嗎？
+## <a name="faq"></a>常見問題集
 
-答： 會。 不過，您需要允許搜尋服務連接到資料庫。 如需詳細資訊，請參閱[在 Azure VM 上設定從 Azure 搜尋服務索引子到 SQL Server 的連線](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)。
+**問：我可以在 Azure 中搭配在 IaaS VM 上執行的 SQL 資料庫，使用 Azure SQL 索引子嗎？**
 
-**問：** 在內部部署執行 SQL 資料庫時，能夠使用 Azure SQL 索引子嗎？
+是。 不過，您需要允許搜尋服務連接到資料庫。 如需詳細資訊，請參閱[在 Azure VM 上設定從 Azure 搜尋服務索引子到 SQL Server 的連線](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)。
 
-答：我們不建議或不支援此功能，因為使用此功能時，需要您的網際網路流量開啟資料庫。
+**問：我可以搭配在內部部署執行的 SQL 資料庫，使用 Azure SQL 索引子嗎？**
 
-**問：** 若不使用 Azure 服務的 IaaS 模擬器執行 SQL Server ，能夠使用其他資料庫的 Azure SQL 索引子嗎？
+無法直接進行。 我們不建議或不支援直接連線，因為這樣做需要您開啟資料庫以接收網際網路流量。 客戶需要使用像是 Azure Data Factory 的橋接器技術，才能成功執行此案例。 如需詳細資訊，請參閱[使用 Azure Data Factory 將資料推送到 Azure 搜尋服務索引](https://docs.microsoft.com/azure/data-factory/data-factory-azure-search-connector)。
 
-答：我們並不支援這樣的案例，因為我們尚未測試 SQL Server 以外之資料庫的索引子。  
+**問：在 Azure 上，除了在 IaaS 中執行的 SQL Server，能夠搭配其他資料庫使用 Azure SQL 索引子嗎？**
 
-**問：** 可以建立多個依照排程執行的索引子嗎？
+否。 我們不支援這類案例，因為我們尚未使用 SQL Server 以外的資料庫來測試索引子。  
 
-答： 會。 但是一次只能在一個節點上執行一個索引子。 如果您需要多個同時執行的索引子，請考慮將搜尋服務調整大於一個搜尋單位。
+**問：可以建立多個依照排程執行的索引子嗎？**
 
-**問：** 執行一個索引子會影響我的查詢工作負載嗎？
+是。 但是一次只能在一個節點上執行一個索引子。 如果您需要多個同時執行的索引子，請考慮將搜尋服務調整大於一個搜尋單位。
 
-答： 會。 索引子會在您搜尋服務中的其中一個節點執行，且節點上的資源會在索引及服務查詢流量和其他 API 要求之間共用。 如果您密集執行索引及查詢工作負載，且經常遇到 503 錯誤或回應次數增加，請考慮調整您的搜尋服務。
+**問：執行索引子會影響我的查詢工作負載嗎？**
+
+是。 索引子會在您搜尋服務中的其中一個節點執行，且節點上的資源會在索引及服務查詢流量和其他 API 要求之間共用。 如果您密集執行索引及查詢工作負載，且經常遇到 503 錯誤或回應次數增加，請考慮[調整您的搜尋服務](search-capacity-planning.md)。
+
+**問：是否可以在[容錯移轉叢集](https://docs.microsoft.com/azure/sql-database/sql-database-geo-replication-overview)中使用次要複本作為資料來源？**
+
+這要看狀況。 針對完整編製索引的資料表或檢視，您可以使用次要複本。 
+
+針對累加式編製索引，Azure 搜尋服務支援兩個變更偵測原則：SQL 整合變更追蹤與上限標準。
+
+在唯讀複本中，SQL 資料庫不支援整合變更追蹤。 因此，您必須使用上限標準原則。 
+
+我們的標準建議是，針對上限標記資料行使用 rowversion 資料類型。 不過，使用 rowversion 依賴 SQL Database 的 `MIN_ACTIVE_ROWVERSION` 函式，但唯讀複本上不支援此函式。 因此，如果您使用 rowversion，就必須將索引子指向主要複本。
+
+如果您嘗試在唯讀複本上使用 rowversion，將會看到下列錯誤： 
+
+    "Using a rowversion column for change tracking is not supported on secondary (read-only) availability replicas. Please update the datasource and specify a connection to the primary availability replica.Current database 'Updateability' property is 'READ_ONLY'".
+
+**問：我是否可以針對上限標準變更追蹤使用替代的非 rowversion 資料行？**
+
+我們不建議這樣做。 僅允許使用 **rowversion** 進行可靠的資料同步處理。 不過，根據您的應用程式邏輯而定，如果符合下列情況，則它可能是安全：
+
++ 您可以確保在索引子執行時，已編製索引的資料表上沒有任何未完成的交易 (例如，所有資料表更新均會在排程中以批次形式執行，以及已設定 Azure 搜尋服務索引子排程以防止與資料表更新排程重疊)。  
+
++ 您會定期進行完整的重新編製索引，以挑選出任何遺失的資料列。 
 

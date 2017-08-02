@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: sethm
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 3979593a399ed701fb1985152379818a0417f122
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: 67cb42394a596f9e5c0a5d6a5042363e26ed0ac0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 
@@ -52,6 +51,10 @@ ms.lasthandoff: 05/17/2017
 ```
 
 您不需要事先建立發佈者名稱，不過這些名稱必須符合發佈事件時使用的 SAS 權杖，以確保發佈者身分識別是獨立的。 在使用發佈者原則時，系統會將 **PartitionKey** 值設定為發佈者名稱。 為了正常運作，這些值必須相符。
+
+## <a name="capture"></a>擷取
+
+[事件中樞擷取](event-hubs-capture-overview.md)可讓您自動擷取「事件中樞」中的串流資料，然後將它封存到您選擇的 Blob 儲存體帳戶。 您可以從 Azure 入口網站啟用「擷取」，然後指定執行擷取的大小下限和時間範圍。 使用「事件中樞擷取」時，您可以指定自己的「Azure Blob 儲存體」帳戶和容器，以用來儲存擷取的資料。 擷取的資料會以 Apache Avro 格式撰寫。
 
 ## <a name="partitions"></a>分割數
 
@@ -91,7 +94,7 @@ ms.lasthandoff: 05/17/2017
 
 事件中樞的發佈/訂閱機制可透過「取用者群組」啟用。 取用者群組是檢視整個事件中樞 (狀態、位置或位移) 的窗口。 取用者群組能讓多個取用應用程式擁有自己的事件串流檢視，以及按照自己的步調及運用自己的位移自行讀取串流。
 
-在串流處理架構中，每個下游應用程式等同於一個取用者群組。 如果您想要將事件資料寫入長期存放區，該存放裝置寫入器應用程式即是取用者群組。 複雜的事件處理可以由另一個獨立的取用者群組來執行。 您只能透過取用者群組來存取資料分割。 每個資料分割一次只能有**給定取用者群組**中的一個作用中讀取器。 每個事件中樞永遠有一個預設的取用者群組，而您可以為標準層事件中樞建立最多 20 個取用者群組。
+在串流處理架構中，每個下游應用程式等同於一個取用者群組。 如果您想要將事件資料寫入長期存放區，該存放裝置寫入器應用程式即是取用者群組。 複雜的事件處理可以由另一個獨立的取用者群組來執行。 您只能透過取用者群組來存取資料分割。 每一取用者群組的一個分割區上最多可以有 5 個並行讀取器；不過，**建議在每一取用者群組的一個分割區上只有一個作用中的接收器**。 每個事件中樞永遠有一個預設的取用者群組，而您可以為標準層事件中樞建立最多 20 個取用者群組。
 
 以下是取用者群組 URI 慣例的範例：
 
@@ -170,3 +173,4 @@ ms.lasthandoff: 05/17/2017
 
 [Event Hubs tutorial]: event-hubs-dotnet-standard-getstarted-send.md
 [使用事件中樞的完整範例應用程式]: https://github.com/Azure/azure-event-hubs/tree/master/samples
+

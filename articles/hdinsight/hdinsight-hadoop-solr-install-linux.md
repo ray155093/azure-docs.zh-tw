@@ -1,5 +1,5 @@
 ---
-title: "使用指令碼動作在以 Linux 為基礎的 HDInsight 上安裝 Solr | Microsoft Docs"
+title: "使用指令碼動作在以 Linux 為基礎的 HDInsight 上安裝 Solr - Azure | Microsoft Docs"
 description: "在本主題中，您將學習如何使用指令碼動作在以 Linux 為基礎的 HDInsight Hadoop 叢集上安裝 Solr。"
 services: hdinsight
 documentationcenter: 
@@ -14,14 +14,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/14/2017
+ms.date: 07/07/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 9035dd639433f1edc628db85f1663add4abfdbd3
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: ad930ca023a36fa5874483873c82fdba11d117c7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="install-and-use-solr-on-hdinsight-hadoop-clusters"></a>在 HDInsight Hadoop 叢集上安裝和使用 Solr
@@ -29,10 +28,10 @@ ms.lasthandoff: 05/18/2017
 了解如何使用指令碼動作，在 Azure HDInsight 上安裝 Solr。 Solr 是強大的搜尋平台，可對 Hadoop 管理的資料執行企業級搜尋功能。
 
 > [!IMPORTANT]
-    > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+    > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 > [!IMPORTANT]
-> 本文件中使用的範例指令碼會以特定組態建立 Solr 叢集。 如果您想要以不同的集合、分區、結構描述和複本等項目設定 Solr 叢集，則必須修改指令碼和 Solr 二進位檔。
+> 本文件中使用的範例指令碼會以特定組態安裝 Solr 4.9。 如果您想要以不同的集合、分區、結構描述和複本等項目設定 Solr 叢集，則必須修改指令碼和 Solr 二進位檔。
 
 ## <a name="whatis"></a>什麼是 Solr
 
@@ -47,7 +46,7 @@ ms.lasthandoff: 05/18/2017
 
 此指令碼可以對 HDInsight 叢集進行下列變更：
 
-* 將 Solr 安裝至 `/usr/hdp/current/solr`
+* 將 Solr 4.9 安裝至 `/usr/hdp/current/solr`
 * 建立用來執行 Solr 服務的使用者 **solrusr**
 * 將 **solruser** 設為 `/usr/hdp/current/solr` 的擁有者
 * 加入會自動啟動 Solr 的 [Upstart](http://upstart.ubuntu.com/) 組態。
@@ -321,7 +320,7 @@ sudo start solr
     hdfs dfs -put snapshot.20150806185338855.tgz /example/data
     ```
 
-如需有關使用 Solr 備份和還原的詳細資訊，請參閱 [製作和還原 SolrCores 的備份](https://cwiki.apache.org/confluence/display/solr/Making+and+Restoring+Backups+of+SolrCores)。
+如需有關使用 Solr 備份和還原的詳細資訊，請參閱 [https://cwiki.apache.org/confluence/display/solr/Making+and+Restoring+Backups](https://cwiki.apache.org/confluence/display/solr/Making+and+Restoring+Backups)。
 
 ## <a name="next-steps"></a>後續步驟
 

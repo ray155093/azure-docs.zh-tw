@@ -13,17 +13,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: bbd57547a0cc486a9cf7c8030dccaaf6f46c9860
+ms.reviwer: japere
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 28d91237adf745e591b02322de7881c8122827ac
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/11/2017
+ms.lasthandoff: 07/13/2017
 
 ---
 
-<a id="problem-signing-in-to-the-access-panel-website" class="xliff"></a>
-
-# 登入存取面板網站時遇到問題
+# <a name="problem-signing-in-to-the-access-panel-website"></a>登入存取面板網站時遇到問題
 
 存取面板是網頁型入口網站，可讓在 Azure Active Directory (Azure AD) 中具有公司或學校帳戶的使用者，檢視和啟動 Azure AD 系統管理員已授權他們存取的雲端式應用程式。 具有 Azure AD 版本的使用者也可以透過存取面板使用自助群組和應用程式管理功能。 存取面板與 Azure 入口網站分開，使用者不需要具備 Azure 訂用帳戶也能使用。
 
@@ -37,9 +36,7 @@ ms.lasthandoff: 04/11/2017
 
 如果使用者具備 Azure 或 Office 365 的訂用帳戶，而且已經在使用 Azure 入口網站或 Office 365 應用程式，他們就可以直接使用存取面板，而不需要再次登入。 對於未經過驗證的使用者，系統會提示他們輸入 Azure AD 中的帳戶使用者名稱和密碼來登入。 如果組織已設定同盟，則輸入使用者名稱已經足夠。
 
-<a id="general-issues-to-check-first" class="xliff"></a>
-
-## 首先檢查的一般問題 
+## <a name="general-issues-to-check-first"></a>首先檢查的一般問題 
 
 -   確定使用者登入**正確 URL**：<https://myapps.microsoft.com>
 
@@ -47,9 +44,9 @@ ms.lasthandoff: 04/11/2017
 
 -   確定使用者的帳戶**已啟用**登入。
 
--   確定使用者的帳戶是**未鎖定。**
+-   確定使用者的帳戶**未鎖定**。
 
--   確定使用者的**密碼未過期或忘記。**
+-   確定使用者的**密碼未過期或忘記**。
 
 -   確定 **Multi-Factor Authentication** 未封鎖使用者存取。
 
@@ -59,28 +56,22 @@ ms.lasthandoff: 04/11/2017
 
 -   也要確定嘗試清除瀏覽器的 Cookie，然後嘗試再次登入。
 
-<a id="meeting-browser-requirements-for-the-access-panel" class="xliff"></a>
+## <a name="meeting-browser-requirements-for-the-access-panel"></a>符合存取面板的瀏覽器需求
 
-## 符合存取面板的瀏覽器需求
-
-存取面板需要有支援 JavaScript 且啟用 CSS 的瀏覽器。 若要在存取面板中使用密碼單一登入 (SSO)，必須在使用者的瀏覽器中安裝存取面板擴充。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
+存取面板需要支援 JavaScript 且已啟用 CSS 的瀏覽器。 若要在存取面板中使用密碼單一登入 (SSO)，必須在使用者的瀏覽器中安裝存取面板延伸模組。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
 
 若是密碼 SSO，則使用者的瀏覽器可以是：
 
 -   Internet Explorer 8、9、10、11 -- 在 Windows 7 或更新版本上
 
+-   Windows 10 Anniversary Edition 或更新版本上的 Edge 
+
 -   Chrome - 在 Windows 7 或更新版本，和在 MacOS X 或更新版本上
 
 -   Firefox 26.0 或更新版本 - 在 Windows XP SP2 或更新版本，和在 Mac OS X 10.6 或更新版本上
 
->[!NOTE] 
->當瀏覽器擴充開始支援 Edge 時，Windows 10 中的 Edge 就能使用密碼 SSO 擴充。
->
->
 
-<a id="problems-with-the-users-account" class="xliff"></a>
-
-## 使用者帳戶的問題
+## <a name="problems-with-the-users-account"></a>使用者帳戶的問題
 
 使用者帳戶發生問題時可能會封鎖對存取面板的存取。 以下是針對使用者和其帳戶設定進行疑難排解的一些方法︰
 
@@ -100,17 +91,15 @@ ms.lasthandoff: 04/11/2017
 
 -   [檢查使用者獲指派的授權](#check-a-users-assigned-licenses)
 
--   [指派授權給使用者](#assign-a-user-a-license)
+-   [指派授權至使用者](#assign-a-user-a-license)
 
-<a id="check-if-a-user-account-exists-in-azure-active-directory" class="xliff"></a>
-
-### 檢查 Azure Active Directory 中是否存在使用者帳戶
+### <a name="check-if-a-user-account-exists-in-azure-active-directory"></a>檢查 Azure Active Directory 中是否存在使用者帳戶
 
 若要檢查使用者的帳戶是否存在，請依照下列步驟執行：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 擴充]。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
 3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
@@ -122,15 +111,13 @@ ms.lasthandoff: 04/11/2017
 
 7.  檢查使用者物件的屬性，確定符合您的預期，沒有遺失資料。
 
-<a id="check-a-users-account-status" class="xliff"></a>
-
-### 檢查使用者帳戶的狀態
+### <a name="check-a-users-account-status"></a>檢查使用者帳戶的狀態
 
 若要檢查使用者帳戶的狀態，請依照下列步驟執行：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 擴充]。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
 3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
@@ -144,15 +131,13 @@ ms.lasthandoff: 04/11/2017
 
 8.  在 [設定] 下，確定 [封鎖登入] 設為 [否]。
 
-<a id="reset-a-users-password" class="xliff"></a>
-
-### 重設使用者的密碼
+### <a name="reset-a-users-password"></a>重設使用者的密碼
 
 若要重設使用者的密碼，請依照下列步驟執行：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 擴充]。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
 3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
@@ -170,9 +155,7 @@ ms.lasthandoff: 04/11/2017
 
 10. 將這個新的密碼告知使用者，他們下次登入 Azure Active Directory 時必須變更此密碼。
 
-<a id="enable-self-service-password-reset" class="xliff"></a>
-
-### 啟用自助式密碼重設
+### <a name="enable-self-service-password-reset"></a>啟用自助式密碼重設
 
 若要啟用自助式密碼重設，請遵循下列部署步驟︰
 
@@ -180,15 +163,13 @@ ms.lasthandoff: 04/11/2017
 
 -   [讓使用者重設或變更其 Active Directory 內部部署密碼](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-getting-started#enable-users-to-reset-or-change-their-ad-passwords)
 
-<a id="check-a-users-multi-factor-authentication-status" class="xliff"></a>
-
-### 檢查使用者的多重要素驗證狀態
+### <a name="check-a-users-multi-factor-authentication-status"></a>檢查使用者的多重要素驗證狀態
 
 若要檢查使用者的多重要素驗證狀態，請依照下列步驟執行：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 擴充]。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
 3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
@@ -196,7 +177,7 @@ ms.lasthandoff: 04/11/2017
 
 5.  按一下 [所有使用者]。
 
-6.  按一下刀鋒視窗頂端的 [Multi-Factor Authentication] 按鈕
+6.  按一下刀鋒視窗頂端的 [Multi-Factor Authentication] 按鈕。
 
 7.  當 **Multi-Factor Authentication 管理網站**載入後，請確定您位於 [使用者] 索引標籤上。
 
@@ -209,15 +190,13 @@ ms.lasthandoff: 04/11/2017
    >
    >
 
-<a id="check-a-users-authentication-contact-info" class="xliff"></a>
-
-### 檢查使用者的驗證連絡資訊
+### <a name="check-a-users-authentication-contact-info"></a>檢查使用者的驗證連絡資訊
 
 若要檢查用於多重要素驗證、條件式存取、身分識別保護和密碼重設的使用者驗證連絡資訊，請依照下列步驟執行︰
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 擴充]。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
 3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
@@ -233,15 +212,13 @@ ms.lasthandoff: 04/11/2017
 
 9.  **檢閱**使用者註冊的資料，並視需要予以更新。
 
-<a id="check-a-users-group-memberships" class="xliff"></a>
-
-### 檢查使用者的群組成員資格
+### <a name="check-a-users-group-memberships"></a>檢查使用者的群組成員資格
 
 若要檢查使用者的群組成員資格，請依照下列步驟執行：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 擴充]。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
 3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
@@ -253,15 +230,13 @@ ms.lasthandoff: 04/11/2017
 
 7.  按一下 [群組]，查看使用者是哪些群組的成員。
 
-<a id="check-a-users-assigned-licenses" class="xliff"></a>
-
-### 檢查使用者獲指派的授權
+### <a name="check-a-users-assigned-licenses"></a>檢查使用者獲指派的授權
 
 若要檢查使用者獲指派的授權，請依照下列步驟執行：
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 擴充]。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
 3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
@@ -273,15 +248,13 @@ ms.lasthandoff: 04/11/2017
 
 7.  按一下 [授權]，查看使用者目前已指派的授權。
 
-<a id="assign-a-user-a-license" class="xliff"></a>
+### <a name="assign-a-user-a-license"></a>指派授權至使用者 
 
-### 指派授權給使用者 
+若要指派授權至使用者，請依照下列步驟執行︰
 
-若要指派授權給使用者，請依照下列步驟執行︰
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
-
-2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 擴充]。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
 3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
@@ -297,13 +270,11 @@ ms.lasthandoff: 04/11/2017
 
 9.  從可用產品清單中選取**一或多個產品**。
 
-10. **選擇性** 按一下 [指派選項] 項目，以更精細地指派產品。 完成時按一下 [確定]。
+10. (**選擇性**) 按一下 [指派選項] 項目，更細微地指派產品。 完成時按一下 [確定]。
 
 11. 按一下 [指派] 按鈕，將這些授權指派給這位使用者。
 
-<a id="if-these-troubleshooting-steps-do-not-resolve-the-issue" class="xliff"></a>
-
-## 如果這些疑難排解步驟無法解決問題
+## <a name="if-these-troubleshooting-steps-do-not-resolve-the-issue"></a>如果這些疑難排解步驟無法解決問題
 
 使用下列資訊 (若有的話) 開啟支援票證︰
 
@@ -319,8 +290,6 @@ ms.lasthandoff: 04/11/2017
 
 -   Fiddler 追蹤
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
-[使用應用程式 Proxy 提供應用程式的單一登入](active-directory-application-proxy-sso-using-kcd.md)
+## <a name="next-steps"></a>後續步驟
+[使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
 

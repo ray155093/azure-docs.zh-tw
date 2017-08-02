@@ -16,12 +16,11 @@ ms.devlang: na
 ms.topic: support-article
 ms.date: 05/31/2017
 ms.author: genli
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
-ms.openlocfilehash: bd832efd3902dd61be1a8b64396eaadf1cd76e24
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 05517573232f5b5234364865d92d5a2d1b7096e6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/02/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="detailed-troubleshooting-steps-for-remote-desktop-connection-issues-to-windows-vms-in-azure"></a>Azure 中 Windows VM 之遠端桌面連線問題的詳細疑難排解步驟
@@ -120,6 +119,8 @@ ms.lasthandoff: 06/02/2017
   * 確定已將動作設定為 [允許]  ，然後按一下 [確定] 以儲存新的輸入規則。
 
 如需詳細資訊，請參閱 [什麼是網路安全性群組 (NSG)？](../../virtual-network/virtual-networks-nsg.md)
+
+您也可以使用「IP 確認」來驗證 NSG 組態。 如需詳細資訊，請參閱 [Azure 網路監視概觀](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview)。 
 
 ## <a name="source-5-windows-based-azure-vm"></a>來源 5：以 Windows 為基礎的 Azure VM
 ![](./media/detailed-troubleshoot-rdp/tshootrdp_5.png)

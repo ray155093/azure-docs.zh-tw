@@ -14,13 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/28/2017
+ms.date: 06/05/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
-ms.openlocfilehash: 68155ebaa6af36500bfe856c9bcd49f5efb6cbc2
-ms.lasthandoff: 03/23/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bfa951a897c9b383072c0d29c9a4266c163fe753
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -33,7 +34,26 @@ Azure Active Directory (Azure AD) 中以群組為基礎的授權會介紹使用�
 
 當您使用以群組為基礎的授權時，可能會發生相同錯誤，但是當 Azure AD 服務指派授權時會在背景中發生。 基於這個原因，無法立即向您通知這些錯誤。 而是會記錄在使用者物件上，然後透過系統管理入口網站報告。 請注意，授權使用者的原始目的永遠不會遺失，但是會針對未來的調查和解決記錄於錯誤狀態。
 
-若要針對每個群組尋找處於錯誤狀態的使用者，請開啟每個群組的刀鋒視窗。 [授權] 底下會有一份通知，顯示是否有任何使用者處於錯誤狀態。 選取這份通知，以開啟所有受影響的使用者清單。 您可以個別檢視使用者，以了解根本問題。 在本文中，我們將說明每個潛在的問題和它的解決方法。
+## <a name="how-to-find-license-assignment-errors"></a>如何找出授權指派錯誤
+
+1. 若要在特定群組中尋找處於錯誤狀態的使用者，請開啟該群組的刀鋒視窗。 [授權] 底下會有一份通知，顯示是否有任何使用者處於錯誤狀態。
+
+![群組，錯誤通知](media/active-directory-licensing-group-problem-resolution-azure-portal/group-error-notification.png)
+
+2. 按一下這份通知，以開啟所有受影響的使用者清單。 您可以分別按一下每個使用者以查看詳細資料。
+
+![群組，處於錯誤狀態的使用者清單](media/active-directory-licensing-group-problem-resolution-azure-portal/list-of-users-with-errors.png)
+
+3. 若要尋找包含至少一個錯誤的所有群組，在 [Azure Active Directory] 刀鋒視窗上選取 [授權]，然後選取 [概觀]。 某些群組需要您注意時，會顯示資訊方塊。
+
+![概觀，處於錯誤狀態的群組相關資訊](media/active-directory-licensing-group-problem-resolution-azure-portal/group-errors-widget.png)
+
+4. 按一下方塊以查看具有錯誤的所有群組清單。 您可以按一下每個群組以取得詳細資訊。
+
+![概觀，具有錯誤的群組清單](media/active-directory-licensing-group-problem-resolution-azure-portal/list-of-groups-with-errors.png)
+
+
+以下是每個潛在問題及其解決方法的說明。
 
 ## <a name="not-enough-licenses"></a>沒有足夠的授權
 
@@ -88,6 +108,20 @@ Azure Active Directory (Azure AD) 中以群組為基礎的授權會介紹使用�
 Azure AD 會嘗試將群組中指定的所有授權指派給每位使用者。 如果 Azure AD 因為商務邏輯問題而無法指派其中一個產品 (例如，沒有足夠授權供所有人使用，或與使用者已啟用的其他服務衝突)，我們也無法在群組中指派其他授權。
 
 您可以查看哪些使用者的指派失敗，以及檢查哪些產品受到影響。
+
+## <a name="license-assignment-fails-silently-for-a-user-due-to-duplicate-proxy-addresses-in-exchange-online"></a>使用者的授權指派會因為 Exchange Online 中 Proxy 位址重複而無訊息的失敗
+
+如果您是使用 Exchange Online，租用戶中有些使用者可能會使用相同的 Proxy 位址值導致設定錯誤。 當群組型授權嘗試將授權指派給此類使用者時，它將會失敗且不會記錄錯誤 (不同於上述的其他錯誤情況) - 這是此功能預覽版本的限制，我們會在*上市*之前解決。
+
+> [!TIP]
+> 如果您發現某些使用者未收到授權，且未對這些使用者記錄錯誤，請先檢查他們是否有重複的 Proxy 位址。
+> 可以藉由針對 Exchange Online 執行下列 PowerShell Cmdlet 來完成這項操作：
+```
+Run Get-Recipient | where {$_.EmailAddresses -match "user@contoso.onmicrosoft.com"} | fL Name, RecipientType,emailaddresses
+```
+> [這篇文章](https://support.microsoft.com/help/3042584/-proxy-address-address-is-already-being-used-error-message-in-exchange-online)包含更多關於此問題的詳細資料，包括[如何使用遠端 PowerShell 連線至 Exchange Online](https://technet.microsoft.com/library/jj984289.aspx)。
+
+為受影響的使用者解決 Proxy 位址問題之後，請確定在群組上強制執行授權處理，以確保現在可以再次套用授權。
 
 ## <a name="how-do-you-force-license-processing-in-a-group-to-resolve-errors"></a>如何強制處理群組中的授權來解決錯誤？
 

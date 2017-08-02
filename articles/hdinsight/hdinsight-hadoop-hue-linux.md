@@ -1,6 +1,7 @@
 ---
-title: "在 HDInsight Linux 叢集上使用 Hue 與 Hadoop | Microsoft Docs"
-description: "了解如何在 HDInsight Linux 上安裝及使用 Hue 和 Hadoop 叢集。"
+title: "在 HDInsight Linux 叢集上使用 Hue 與 Hadoop - Azure | Microsoft Docs"
+description: "了解如何在 HDInsight 叢集上安裝 Hue，並且使用通道將要求路由至 Hue。 使用 Hue 瀏覽儲存體並執行 Hive 或 Pig。"
+keywords: Hue hadoop
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -8,7 +9,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 9e57fcca-e26c-479d-a745-7b80a9290447
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,10 +17,10 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 66884a73a8ea1cbf72a48f9a776fa45ae1976591
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9bccb28934415d3ff6d363d35b604056b28cb6b9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -28,10 +29,10 @@ ms.lasthandoff: 05/18/2017
 了解如何在 HDInsight 叢集上安裝 Hue，並且使用通道將要求路由至 Hue。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 ## <a name="what-is-hue"></a>何謂 Hue？
-Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。 您可以使用 Hue 以瀏覽與 Hadoop 叢集 (在 HDInsight 叢集的案例中為 WASB) 相關聯的儲存體、執行 Hive 工作和 Pig 指令碼等等。HDInsight Hadoop 叢集上的 Hue 安裝可使用下列元件。
+色調是一組 Web 應用程式，用來與 Hadoop 叢集互動。 您可以使用 Hue 以瀏覽與 Hadoop 叢集 (在 HDInsight 叢集的案例中為 WASB) 相關聯的儲存體、執行 Hive 工作和 Pig 指令碼等等。 HDInsight Hadoop 叢集上的 Hue 安裝可使用下列元件。
 
 * Beeswax Hive 編輯器
 * Pig
@@ -138,7 +139,7 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。 您可以使�
 2. 在安裝期間，會重新啟動多個 Hadoop 服務 (HDFS、YARN、MR2、Oozie) 以更新與設定。 指令碼完成安裝 Hue 之後，可能需要一些時間讓其他 Hadoop 服務啟動。 一開始可能會影響 Hue 的效能。 所有服務啟動之後，Hue 就可以完全正常運作。
 3. Hue 不了解 Tez 作業，這是 Hive 目前的預設值。 如果您想要使用 MapReduce 做為 Hive 執行引擎，請更新指令碼以在您的指令碼中使用下列命令：
 
-         set hive.execution.engine=mr;
+        set hive.execution.engine=mr;
 
 4. 使用 Linux 叢集，您就可以擁有在主要前端節點上執行服務，在次要前端節點上執行 Resource Manager 的案例。 使用 Hue 以檢視叢集上「執行中」工作的詳細資料時，此類案例可能會導致錯誤 (如下所示)。 不過，您可以在工作完成時檢視工作詳細資料。
 

@@ -12,13 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/04/2017
+ms.date: 07/18/2017
 ms.author: adegeo
-translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: 838be613a35ac4af988e089efb57e45365cc7636
-ms.lasthandoff: 11/17/2016
-
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 39bb294c96ce0c12d91cf8b3488ac3e1a7b2f7b2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="how-to-configure-cloud-services"></a>如何設定雲端服務
@@ -43,8 +43,7 @@ Azure 傳統入口網站也可讓您 [啟用 Azure 雲端服務中角色的遠�
 2. 在 [監視] 中，將監視層級設定為 [詳細資訊] 或 [最小]，並設定進行詳細資訊監視時所需的診斷連接字串。
 3. 針對服務角色 (依角色分組)，您可以更新下列設定：
    
-    * **設定** 
-        修改服務組態檔 (.cscfg) 之 ConfigurationSettings** 元素中所指定的其他組態設定值。
+    * **設定** 修改服務組態檔 (.cscfg) 之 *ConfigurationSettings* 元素中所指定的其他組態設定值。
 
     * **憑證**  
         變更要在角色之 SSL 加密中使用的憑證指紋。 若要變更憑證，您必須先上傳新的憑證 (在 [憑證]  頁面上)。 然後，更新角色設定中所顯示憑證字串中的指紋。

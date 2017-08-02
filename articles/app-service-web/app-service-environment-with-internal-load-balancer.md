@@ -14,16 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/17/2016
 ms.author: ccompy
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 21223eb0cfbff607e15713e4726761c1bdb01774
-
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: cfc9fb3ca26819999e10eff8df55d48468c7edef
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="using-an-internal-load-balancer-with-an-app-service-environment"></a>搭配 App Service 環境使用內部負載平衡器
-App Service 環境 (ASE) 功能是 Azure App Service 的進階服務選項，可提供多租用戶戳記中不提供的增強式設定功能。  ASE功能基本上會在您的 Azure 虛擬網路 (VNet) 中部署 Azure App Service。  若要更深入了解 App Service 環境所提供的功能，請閱讀[什麼是 App Service 環境][WhatisASE]文件。  如果您不了解在 VNet 中操作的優點，請閱讀 [Azure 虛擬網路常見問題集][virtualnetwork]。  
+App Service 環境 (ASE) 功能是 Azure App Service 的進階服務選項，可提供多租用戶戳記中不提供的增強式設定功能。  ASE功能基本上會在您的 Azure 虛擬網路 (VNet) 中部署 Azure App Service。  若要更深入了解 App Service Environment 所提供的功能，請閱讀[什麼是 App Service Environment][WhatisASE] 文件。  如果您不了解在 VNet 中操作的優點，請閱讀 [Azure 虛擬網路常見問題集][virtualnetwork]。  
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 ASE 可以使用網際網路可存取的端點或您 Vnet 中的 IP 位址加以部署。  為了將 IP 位址設定為 VNet 位址，您必須搭配內部負載平衡器 (ILB) 來部署您的 ASE。  當您的 ASE 是使用 ILB 設定時，您要提供：
 
 * 您自己的網域或子網域。  為了能順利進行，本文件假設是子網域，但是您還是可以設定。  
@@ -109,7 +110,7 @@ ILB ASE 可針對您的 app 啟用網路隔離，讓 app 無法透過網際網�
 
 如果您想要使用 NSG 來進一步限制存取，您需要確定您不會中斷 ASE 運作所需的通訊。  即使 HTTP/HTTPS 存取只會透過 ASE 所使用的 ILB 進行，ASE 仍需依賴 VNet 外部資源。  若要查看仍需要何種網路存取權，請查看[控制 App Service 環境的輸入流量][ControlInbound]和[使用 ExpressRoute 的 App Service 環境的網路組態詳細資料][ExpressRoute]中的文件所提供的資訊。  
 
-若要設定您的 NSG，您需要知道 Azure 所使用的 IP 位址，以管理您的 ASE。  如果該 IP 位址提出網際網路要求，它也會成為您 ASE 的輸出 IP 位址。  若要尋找此 IP 位址，請移至 [設定] -> [屬性] 並尋找 [輸出 IP 位址]。  
+若要設定您的 NSG，您需要知道 Azure 所使用的 IP 位址，以管理您的 ASE。  如果該 IP 位址提出網際網路要求，它也會成為您 ASE 的輸出 IP 位址。  在 ASE 的存留期內，ASE 的輸出 IP 位址仍維持不變。  如果您刪除並重建 ASE，您會收到新的 IP 位址。  若要尋找此 IP 位址，請移至 [設定] -> [屬性] 並尋找 [輸出 IP 位址]。  
 
 ![][5]
 
@@ -128,7 +129,7 @@ ILB ASE 可針對您的 app 啟用網路隔離，讓 app 無法透過網際網�
 ## <a name="getting-started"></a>開始使用
 您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
-若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][WhatisASE]
+若要開始使用 App Service Environment，請參閱 [App Service Environment 簡介][WhatisASE]
 
 如需有關 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][AzureAppService]。
 
@@ -155,9 +156,4 @@ ILB ASE 可針對您的 app 啟用網路隔離，讓 app 無法透過網際網�
 [ExpressRoute]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-network-configuration-expressroute/
 [vnetnsgs]: http://azure.microsoft.com/documentation/articles/virtual-networks-nsg/
 [ASEConfig]: http://azure.microsoft.com/documentation/articles/app-service-web-configure-an-app-service-environment/
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

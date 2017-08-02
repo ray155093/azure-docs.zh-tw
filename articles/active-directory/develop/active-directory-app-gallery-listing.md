@@ -15,12 +15,11 @@ ms.workload: identity
 ms.date: 04/27/2017
 ms.author: bryanla
 ms.custom: aaddev
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 28712a9898bf2449de53d21fd87f1ce53da71ff8
-ms.openlocfilehash: df60c4737954e79ff860601412dffa58d4dbb471
+ms.translationtype: HT
+ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
+ms.openlocfilehash: cf25772bd9d92b59401aa5da76e6bbd5fa5ee3e5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/11/2017
-
+ms.lasthandoff: 07/15/2017
 
 ---
 # <a name="listing-your-application-in-the-azure-active-directory-application-gallery"></a>在 Azure Active Directory 應用程式庫中列出您的應用程式
@@ -45,7 +44,7 @@ ms.lasthandoff: 02/11/2017
 > 
 > 應用程式名稱：
 > 
-> 應用程式描述 (256 個字元的限制)：
+> 應用程式描述 (200 個字元的限制)：
 > 
 > 應用程式網站 (資訊)：
 > 
@@ -79,7 +78,7 @@ ms.lasthandoff: 02/11/2017
 > 
 > 應用程式名稱：
 > 
-> 應用程式描述 (256 個字元的限制)：
+> 應用程式描述 (200 個字元的限制)：
 > 
 > 應用程式網站 (資訊)：
 > 

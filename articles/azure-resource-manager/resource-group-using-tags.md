@@ -12,13 +12,13 @@ ms.workload: multiple
 ms.tgt_pltfrm: AzurePortal
 ms.devlang: na
 ms.topic: article
-ms.date: 04/20/2017
+ms.date: 07/17/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: 0e1ee94504ebff235c1da9128e0ac68c2b28bc59
-ms.openlocfilehash: 2f56314769d90a1f0f9ebb5ece9c8e54b23b8936
-ms.lasthandoff: 02/21/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: 9345971b8dff683c7d079c29168437f601633eb1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="use-tags-to-organize-your-azure-resources"></a>使用標記來組織 Azure 資源
@@ -33,52 +33,37 @@ ms.lasthandoff: 02/21/2017
 
 資源原則可讓您建立組織適用的標準規則。 您可以建立原則，以確保會為資源標記適當的值。 如需詳細資訊，請參閱[套用標籤的資源原則](resource-manager-policy-tags.md)。
 
-## <a name="templates"></a>範本
-
-[!INCLUDE [resource-manager-tags-in-templates](../../includes/resource-manager-tags-in-templates.md)]
-
-## <a name="portal"></a>入口網站
-[!INCLUDE [resource-manager-tag-resource](../../includes/resource-manager-tag-resources.md)]
-
 ## <a name="powershell"></a>PowerShell
 [!INCLUDE [resource-manager-tag-resources-powershell](../../includes/resource-manager-tag-resources-powershell.md)]
 
-## <a name="azure-cli-20"></a>Azure CLI 2.0
+## <a name="azure-cli"></a>Azure CLI
 
-使用 Azure CLI 2.0，您可以將標籤新增到資源與資源群組，並依標籤值查詢資源。
-
-每當您將標籤套用到資源或資源群組時，即會覆寫該資源或資源群組上現有的標籤。 因此，您必須視該資源或資源群組是否有想要保留的現有標籤，來使用不同的方法。 若要將標籤加入至以下項目：
-
-* 沒有現有標籤的資源群組。
-
-  ```azurecli
-  az group update -n TagTestGroup --set tags.Environment=Test tags.Dept=IT
-  ```
-
-* 沒有現有標籤的資源。
-
-  ```azurecli
-  az resource tag --tags Dept=IT Environment=Test -g TagTestGroup -n storageexample --resource-type "Microsoft.Storage/storageAccounts"
-  ``` 
-
-若要對已經具有標籤的資源新增標籤，請先擷取現有標籤： 
+若要查看**資源群組**的現有標籤，請使用：
 
 ```azurecli
-az resource show --query tags --output list -g TagTestGroup -n storageexample --resource-type "Microsoft.Storage/storageAccounts"
+az group show -n examplegroup --query tags
 ```
 
 它會傳回下列格式︰
 
-```
-Dept        : Finance
-Environment : Test
+```json
+{
+  "Dept"        : "IT",
+  "Environment" : "Test"
+}
 ```
 
-將現有標籤重新套用到資源，並新增新標籤。
+若要查看**具有指定資源識別碼之資源**的現有標籤，請使用：
 
 ```azurecli
-az resource tag --tags Dept=Finance Environment=Test CostCenter=IT -g TagTestGroup -n storageexample --resource-type "Microsoft.Storage/storageAccounts"
-``` 
+az resource show --id {resource-id} --query tags
+```
+
+或者，若要查看**具有指定名稱、類型及資源群組之資源**的現有標籤，請使用：
+
+```azurecli
+az resource show -n examplevnet -g examplegroup --resource-type "Microsoft.Network/virtualNetworks" --query tags
+```
 
 若要取得具有特定標籤的資源群組，請使用 `az group list`。
 
@@ -92,8 +77,70 @@ az group list --tag Dept=IT
 az resource list --tag Dept=Finance
 ```
 
-## <a name="azure-cli-10"></a>Azure CLI 1.0
-[!INCLUDE [resource-manager-tag-resources-cli](../../includes/resource-manager-tag-resources-cli.md)]
+每當您將標籤套用到資源或資源群組時，即會覆寫該資源或資源群組上現有的標籤。 因此，您必須視該資源或資源群組是否具備現有標籤來使用不同的方法。 
+
+若要將標籤新增至**不具現有標籤的資源群組**，請使用：
+
+```azurecli
+az group update -n examplegroup --set tags.Environment=Test tags.Dept=IT
+```
+
+若要將標籤新增至**不具現有標籤的資源**，請使用：
+
+```azurecli
+az resource tag --tags Dept=IT Environment=Test -g examplegroup -n examplevnet --resource-type "Microsoft.Network/virtualNetworks"
+``` 
+
+若要將標籤新增至已經具有標籤的資源，請擷取現有的標籤、將該值重新格式化，然後使用新的標籤重新套用這些標籤： 
+
+```azurecli
+jsonrtag=$(az resource show -g examplegroup -n examplevnet --resource-type "Microsoft.Network/virtualNetworks" --query tags)
+rt=$(echo $jsonrtag | tr -d '"{},' | sed 's/: /=/g')
+az resource tag --tags $rt Project=Redesign -g examplegroup -n examplevnet --resource-type "Microsoft.Network/virtualNetworks"
+```
+
+若要將所有標籤從資源群組套用至其資源，而**不在資源上保留現有的標籤**，請使用下列指令碼︰
+
+```azurecli
+groups=$(az group list --query [].name --output tsv)
+for rg in $groups 
+do 
+  jsontag=$(az group show -n $rg --query tags)
+  t=$(echo $jsontag | tr -d '"{},' | sed 's/: /=/g')
+  r=$(az resource list -g $rg --query [].id --output tsv) 
+  for resid in $r 
+  do 
+    az resource tag --tags $t --id $resid
+  done 
+done
+```
+
+若要將所有標籤從資源群組套用至其資源，並**在資源上保留現有的標籤**，請使用下列指令碼：
+
+```azurecli
+groups=$(az group list --query [].name --output tsv)
+for rg in $groups 
+do 
+  jsontag=$(az group show -n $rg --query tags)
+  t=$(echo $jsontag | tr -d '"{},' | sed 's/: /=/g')
+  r=$(az resource list -g $rg --query [].id --output tsv) 
+  for resid in $r 
+  do 
+    jsonrtag=$(az resource show --id $resid --query tags)
+    rt=$(echo $jsonrtag | tr -d '"{},' | sed 's/: /=/g')
+    az resource tag --tags $t$rt --id $resid
+  done 
+done
+```
+
+
+## <a name="templates"></a>範本
+
+[!INCLUDE [resource-manager-tags-in-templates](../../includes/resource-manager-tags-in-templates.md)]
+
+## <a name="portal"></a>入口網站
+[!INCLUDE [resource-manager-tag-resource](../../includes/resource-manager-tag-resources.md)]
+
 
 ## <a name="rest-api"></a>REST API
 入口網站和 PowerShell 在幕後都使用 [資源管理員 REST API](https://docs.microsoft.com/rest/api/resources/) 。 如果您需要將標記整合到另一個環境中，您可以在資源識別碼上利用 GET 來取得標記，並使用 PATCH 呼叫來更新一組標記。

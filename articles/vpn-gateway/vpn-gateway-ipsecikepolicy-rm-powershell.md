@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: yushwang
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: 12502c91f7dff01651e3edcfd1dfa6a9d5ffe234
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: d645855e8edddee092d244e18c9937c19237a49a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="configure-ipsecike-policy-for-s2s-vpn-or-vnet-to-vnet-connections"></a>設定 S2S VPN 或 VNet 對 VNet 連線的 IPsec/IKE 原則
@@ -39,7 +38,9 @@ IPsec 和 IKE 通訊協定標準支援各種不同的密碼編譯演算法的各
 * [第 5 部分 - 管理 (建立、新增、移除) 連線的 IPsec/IKE 原則](#managepolicy)
 
 > [!IMPORTANT]
-> 1. 請注意，IPsec/IKE 原則只適用於 Standard 和 HighPerformance「以路由為基礎的」 VPN 閘道。
+> 1. 請注意，IPsec/IKE 原則僅適用於下列閘道 SKU：
+>     - ***VpnGw1、VpnGw2、VpnGw3*** (路由式)
+>     - ***Standard*** 和 ***HighPerformance*** (路由式)
 > 2. 每個給定的連線只能指定***一個***原則組合。
 > 3. 您必須同時對 IKE (主要模式) 和 IPsec (快速模式) 指定所有的演算法和參數。 系統不允許只指定一部分原則。
 > 4. 請確認 VPN 裝置廠商規格，確保內部部署 VPN 裝置支援原則。 如果原則不相容，則無法建立 S2S 或 VNet 對 VNet 連線。
@@ -64,23 +65,38 @@ IPsec 和 IKE 通訊協定標準支援各種不同的密碼編譯演算法的各
 | ---              | ---                                                                         |
 | IKEv2 加密 | AES256、AES192、AES128、DES3、DES                                           |
 | IKEv2 完整性  | SHA384、SHA256、SHA1、MD5                                                   |
-| DH 群組         | ECP384、ECP256、DHGroup24、DHGroup14、DHGroup2048、DHGroup2、DHGroup1、無 |
+| DH 群組         | DHGroup24、ECP384、ECP256、DHGroup14、DHGroup2048、DHGroup2、DHGroup1、無 |
 | IPsec 加密 | GCMAES256、GCMAES192、GCMAES128、AES256、AES192、AES128、DES3、DES、無    |
 | IPsec 完整性  | GCMASE256、GCMAES192、GCMAES128、SHA256、SHA1、MD5                          |
-| PFS 群組        | ECP384、ECP256、PFS24、PFS2048、PFS14、PFS2、PFS1、無                     |
-| QM SA 存留期*  | 秒數 (整數) 和 KB 數 (整數)                                      |
-| 流量選取器 | UsePolicyBasedTrafficSelectors** ($True/$False - 預設為 $False)            |
+| PFS 群組        | PFS24、ECP384、ECP256、PFS2048、PFS2、PFS1、無                            |
+| QM SA 存留期   | (**選擇性**：如果未指定，即會使用預設值)<br>秒 (整數；**最小 300**/預設值 27000 秒)<br>KB 數 (整數；**最小 1024**/預設值 102400000 KB 數)                                                                                |
+| 流量選取器 | UsePolicyBasedTrafficSelectors** ($True/$False；**選擇性**，如果未指定，即為預設的 $False)                                                                         |
 |                  |                                                                             |
 
-> [!NOTE]
-> * (*) Azure VPN 閘道的 IKEv2 主要模式 SA 存留期會固定為 28800 秒
-> * (**) 在連線上將 "UsePolicyBasedTrafficSelectors" 設定為 $True，將設定 Azure VPN 閘道連線至內部部署以原則為基礎的 VPN 防火牆。 如果您啟用 PolicyBasedTrafficSelectors，則必須確定 VPN 裝置的流量選取器已定義內部部署網路 (區域網路閘道) 前置詞往/返 Azure 虛擬網路前置詞的所有組合，而不是任意對任意的組合。 例如，如果內部部署網路的前置詞為 10.1.0.0/16 和 10.2.0.0/16，而虛擬網路的前置詞為 192.168.0.0/16 和 172.16.0.0/16，則需要指定下列流量選取器︰
->   * 10.1.0.0/16 <====> 192.168.0.0/16
->   * 10.1.0.0/16 <====> 172.16.0.0/16
->   * 10.2.0.0/16 <====> 192.168.0.0/16
->   * 10.2.0.0/16 <====> 172.16.0.0/16
+> [!IMPORTANT]
+> 1. **如果 GCMAES 會用於 IPsec 加密演算法，您必須基於 IPsec 完整性選取相同的 GCMAES 演算法和金鑰長度；例如，針對這兩者使用 GCMAES128**
+> 2. Azure VPN 閘道的 IKEv2 主要模式 SA 存留期會固定為 28,800 秒
+> 3. 在連線上將 "UsePolicyBasedTrafficSelectors" 設定為 $True，將設定 Azure VPN 閘道連線至內部部署的原則式 VPN 防火牆。 如果您啟用 PolicyBasedTrafficSelectors，則必須確定 VPN 裝置的流量選取器已定義內部部署網路 (區域網路閘道) 前置詞往/返 Azure 虛擬網路前置詞的所有組合，而不是任意對任意的組合。 例如，如果內部部署網路的前置詞為 10.1.0.0/16 和 10.2.0.0/16，而虛擬網路的前置詞為 192.168.0.0/16 和 172.16.0.0/16，則需要指定下列流量選取器︰
+>    * 10.1.0.0/16 <====> 192.168.0.0/16
+>    * 10.1.0.0/16 <====> 172.16.0.0/16
+>    * 10.2.0.0/16 <====> 192.168.0.0/16
+>    * 10.2.0.0/16 <====> 172.16.0.0/16
 
 如需以原則為基礎的流量選取器的詳細資訊，請參閱[連線多個內部部署以原則為基礎的 VPN 裝置](vpn-gateway-connect-multiple-policybased-rm-ps.md)。
+
+下表列出自訂原則所支援的對應 Diffie-Hellman 群組：
+
+| **Diffie-Hellman 群組**  | **DHGroup**              | **PFSGroup** | **金鑰長度** |
+| ---                       | ---                      | ---          | ---            |
+| 1                         | DHGroup1                 | PFS1         | 768 位元 MODP   |
+| 2                         | DHGroup2                 | PFS2         | 1024 位元 MODP  |
+| 14                        | DHGroup14<br>DHGroup2048 | PFS2048      | 2048 位元 MODP  |
+| 19                        | ECP256                   | ECP256       | 256 位元 ECP    |
+| 20                        | ECP384                   | ECP284       | 384 位元 ECP    |
+| 24                        | DHGroup24                | PFS24        | 2048 位元 MODP  |
+|                           |                          |              |                |
+
+如需詳細資訊，請參閱 [RFC3526](https://tools.ietf.org/html/rfc3526) 和 [RFC5114](https://tools.ietf.org/html/rfc5114)。
 
 ## <a name ="crossprem"></a>第 3 部分 - 使用 IPsec/IKE 原則建立新的 S2S VPN 連線
 
@@ -159,11 +175,21 @@ New-AzureRmLocalNetworkGateway -Name $LNGName6 -ResourceGroupName $RG1 -Location
 
 #### <a name="1-create-an-ipsecike-policy"></a>1.建立 IPsec/IKE 原則
 下列範例指令碼會使用下列演算法和參數來建立 IPsec/IKE 原則：
+
 * IKEv2：AES256、SHA384、DHGroup24
 * IPsec：AES256、SHA256、PFS24、SA 存留期 7200 秒和 2048KB
 
 ```powershell
 $ipsecpolicy6 = New-AzureRmIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup24 -IpsecEncryption AES256 -IpsecIntegrity SHA256 -PfsGroup PFS24 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 2048
+```
+
+如果您針對 IPsec 使用 GCMAES，就必須針對 IPsec 加密和完整性使用相同的 GCMAES 演算法和金鑰長度，例如：
+
+* IKEv2：AES256、SHA384、DHGroup24
+* IPsec：**GCMAES256、GCMAES256**、PFS24、SA 存留期 7200 秒和 2048KB
+
+```powershell
+$ipsecpolicy6 = New-AzureRmIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup24 -IpsecEncryption GCMAES256 -IpsecIntegrity GCMAES256 -PfsGroup PFS24 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 2048
 ```
 
 #### <a name="2-create-the-s2s-vpn-connection-with-the-ipsecike-policy"></a>2.使用 IPsec/IKE 原則建立 S2S VPN 連線

@@ -16,32 +16,26 @@ ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
-ms.openlocfilehash: 9071ab19844898abf7feb7fc0d84120298bb5eaf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a43d7e30a6f4176afba27f0de2c2c116df741080
 ms.contentlocale: zh-tw
 
 
 ---
 
-<a id="set-up-your-project" class="xliff"></a>
+## <a name="set-up-your-project"></a>設定專案
 
-## 設定專案
-
-> 想要改為下載此範例的 Android Studio 專案嗎？ [下載專案](https://github.com/Azure-Samples/active-directory-android-native-v2/archive/master.zip) 並跳至[設定](#create-an-application-express "設定步驟")步驟，以在執行之前先設定程式碼範例。
+> 想要改為下載此範例的 Android Studio 專案嗎？ [下載專案](https://github.com/Azure-Samples/active-directory-android-native-v2/archive/master.zip) 並跳至[設定步驟](#create-an-application-express)，以在執行之前先設定程式碼範例。
 
 
-<a id="create-a-new-project" class="xliff"></a>
-
-### 建立新專案 
+### <a name="create-a-new-project"></a>建立新專案 
 1.  開啟 Android Studio，移至：`File` > `New` > `New Project`
 2.  為您的應用程式命名並按一下 `Next`
 3.  確定已選取 [API 21 or newer (Android 5.0) (API 21 或更新版本 (Android 5.0))] 並按一下 `Next`
 4.  保留 `Empty Activity`，按一下 `Next`，然後按一下 `Finish`
 
 
-<a id="add-the-microsoft-authentication-library-msal-to-your-project" class="xliff"></a>
-
-### 將 Microsoft Authentication Library (MSAL) 新增至您的專案
+### <a name="add-the-microsoft-authentication-library-msal-to-your-project"></a>將 Microsoft Authentication Library (MSAL) 新增至您的專案
 1.  在 Android Studio 中，移至：`Gradle Scripts` > `build.gradle (Module: app)`
 2.  複製下列程式碼並貼到 `Dependencies` 底下：
 
@@ -53,16 +47,12 @@ compile 'com.android.volley:volley:1.0.0'
 ```
 
 <!--start-collapse-->
-<a id="about-this-package" class="xliff"></a>
-
-### 關於此套件
+### <a name="about-this-package"></a>關於此套件
 
 上面的套件會安裝 Microsoft Authentication Library (MSAL)。 MSAL 會處理使用者權杖的取得、快取及重新整理作業，這些權杖是用來存取受 Azure Active Directory v2 端點保護的 API。
 <!--end-collapse-->
 
-<a id="create-your-applications-ui" class="xliff"></a>
-
-## 建立您應用程式的 UI
+## <a name="create-your-applications-ui"></a>建立您應用程式的 UI
 
 1.  開啟：`activity_main.xml` (在 `res` > `layout` 底下)
 2.  將活動配置從 `android.support.constraint.ConstraintLayout` 或其他配置變更為 `LinearLayout`

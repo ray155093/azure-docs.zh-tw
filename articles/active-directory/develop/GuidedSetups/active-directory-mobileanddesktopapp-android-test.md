@@ -16,10 +16,10 @@ ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ef74361c7a15b0eb7dad1f6ee03f8df707a7c05e
-ms.openlocfilehash: 8523f46d6a352c9a6625ddeacc5abe2b4bbf977e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6df64f4820f8409bd8897d5ac24f81bffeeef102
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -43,8 +43,8 @@ ms.lasthandoff: 07/06/2017
 
 <!--start-collapse-->
 ### <a name="more-information-about-scopes-and-delegated-permissions"></a>與範圍和委派的權限有關的詳細資訊
-圖形 API 需要 `user.read` 範圍才能讀取使用者設定檔。 根據預設值，系統會將此範圍新增到透過我們的註冊入口網站註冊的每一個應用程式。 您後端伺服器的部分其他圖形 API 和自訂 API 也會需要其他範圍。 例如，對於圖形 API 而言，就需要 `Calendars.Read` 來列出使用者的行事曆。 為了在應用程式內容中存取使用者的行事曆，您需要新增這個委派應用程式註冊的資訊，然後將 `Calendars.Read` 新增至 `AcquireTokenAsync` 呼叫。 系統可能會在您增加範圍數目時，提示使用者同意其他事項。
 
-如果後端 API 不需要範圍 (不建議)，您可以在 `AcquireTokenAsync` 呼叫中使用 `ClientId` 作為範圍。
+Microsoft Graph API 需要 `user.read` 範圍以讀取使用者的設定檔。 根據預設值，在我們註冊入口網站上註冊的每個應用程式中都會自動新增此範圍。 Microsoft Graph 的某些其他 API 與您後端伺服器的自訂 API 一樣，需要其他範圍。 例如，針對 Microsoft Graph，需要範圍 `Calendars.Read` 才能列出使用者的行事曆。 為了在應用程式內容中存取使用者的行事曆，您需要將 `Calendars.Read` 委派權限新增至應用程式註冊的資訊，然後將 `Calendars.Read` 範圍新增至 `acquireTokenSilentAsync` 呼叫。 系統可能會在您增加範圍數目時，提示使用者同意其他事項。
+
 <!--end-collapse-->
 

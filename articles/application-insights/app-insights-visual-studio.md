@@ -1,5 +1,5 @@
 ---
-title: "在 Visual Studio 中使用 Azure Application Insights | Microsoft Docs"
+title: "在 Visual Studio 中使用 Azure Application Insights 進行應用程式偵錯 | Microsoft Docs"
 description: "偵錯期間和生產環境中的 Web 應用程式效能分析與診斷。"
 services: application-insights
 documentationcenter: .net
@@ -11,17 +11,17 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 03/17/2016
+ms.date: 07/7/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 7fe1b572104416fec62261c60228fa966d197dd9
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 93e97cbc5d9bf55334a481183f40083a6f3b99a4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/21/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
-# <a name="working-with-azure-application-insights-in-visual-studio"></a>在 Visual Studio 中使用 Azure Application Insights
+# <a name="debug-your-applications-with-azure-application-insights-in-visual-studio"></a>在 Visual Studio 中使用 Azure Application Insights 進行應用程式偵錯
 在 Visual Studio (2015 和更新版本) 中，您可以使用 [Azure Application Insights](app-insights-overview.md) 的遙測，在偵錯時和在生產環境中分析 ASP.NET Web 應用程式的效能並診斷問題。
 
 如果您使用 Visual Studio 2017 或更新版本建立 ASP.NET web 應用程式，它已經有 Application Insights SDK。 否則，如果您尚未這麼做，[將 Application Insights 新增至您的應用程式](app-insights-asp-net.md)。
@@ -38,7 +38,7 @@ ms.lasthandoff: 03/21/2017
 按一下此按鈕以搜尋遙測。 
 
 ## <a name="application-insights-search"></a>Application Insights 搜尋
-[Application Insights 搜尋] 視窗會顯示已記錄的事件。 (如果您在設定 Application Insights 時登入至 Azure，就能夠在 Azure 入口網站搜尋相同的事件。)
+[Application Insights 搜尋] 視窗會顯示已記錄的事件。 (如果您在設定 Application Insights 時登入至 Azure，即可在 Azure 入口網站搜尋相同的事件。)
 
 ![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[搜尋]](./media/app-insights-visual-studio/34.png)
 
@@ -58,14 +58,14 @@ ms.lasthandoff: 03/21/2017
 
 ![在 [要求詳細資料] 之下，向下捲動相關項目](./media/app-insights-visual-studio/41.png)
 
-## <a name="exceptions-and-failed-requests"></a>例外狀況和失敗的要求
+## <a name="view-exceptions-and-failed-requests"></a>檢視例外狀況和失敗的要求
 例外狀況報告會顯示在 [搜尋] 視窗中。 (在某些較舊的 ASP.NET 應用程式類型中，您必須[設定例外狀況監視](app-insights-asp-net-exceptions.md)，以查看架構所處理的例外狀況。)
 
 按一下例外狀況以取得堆疊追蹤。 如果應用程式的程式碼在 Visual Studio 中開啟，您可以從堆疊追蹤點選至程式碼的相關程式碼行。
 
 ![例外狀況堆疊追蹤](./media/app-insights-visual-studio/17.png)
 
-## <a name="request-and-exception-summaries-in-the-code"></a>程式碼中的要求和例外狀況摘要
+## <a name="view-request-and-exception-summaries-in-the-code"></a>檢視程式碼中的要求和例外狀況摘要
 在每個處理常式方法之上的 Code Lens 行中，您會看到過去 24 小時內由 Application Insights 記錄的要求和例外狀況計數。
 
 ![例外狀況堆疊追蹤](./media/app-insights-visual-studio/21.png)
@@ -100,10 +100,10 @@ ms.lasthandoff: 03/21/2017
   * 若要停止將遙測傳送至入口網站，請將 ApplicationInsights.config 中的 `<instrumentationkey>...` 程式行註解化。 當您準備再次將遙測傳送至入口網站時，請取消註解。
 
 
-## <a name="whats-next"></a>後續步驟
+## <a name="next-steps"></a>後續步驟
 |  |  |
 | --- | --- |
 | **[新增更多測試](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。 整合來自記錄架構的追蹤。 撰寫自訂遙測。 |![Visual Studio](./media/app-insights-visual-studio/64.png) |
-| **[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual Studio](./media/app-insights-visual-studio/62.png) |
+| **[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>檢視儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及匯出的遙測資料。 |![Visual Studio](./media/app-insights-visual-studio/62.png) |
 
 

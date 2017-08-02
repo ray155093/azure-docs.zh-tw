@@ -15,18 +15,18 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 06/14/2017
 ms.author: echuvyrov
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 4f68f90c3aea337d7b61b43e637bcfda3c98f3ea
-ms.openlocfilehash: 8b8b3b0b46f79058ee69b9a2014581df433f8d3f
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 3787151651767e594dae21f3cfbf79023fc6db40
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
+ms.lasthandoff: 07/20/2017
 
 ---
 
-# <a name="create-basic-infrastructure-in-azure-using-terraform"></a>在 Azure 中使用 Terraform 建立基本基礎結構
-本文詳細說明將虛擬機器和基礎結構佈建至 Azure 的必要步驟。 您將了解如何撰寫 Terraform 指令碼，以及如何在雲端基礎結構中進行變更前將其視覺化。 您也將了解如何在 Azure 中使用 Terraform 建立基礎結構。
+# <a name="create-basic-infrastructure-in-azure-by-using-terraform"></a>在 Azure 中使用 Terraform 建立基本基礎結構
+本文說明將虛擬機器和基礎結構佈建至 Azure 需進行的步驟。 您將了解如何撰寫 Terraform 指令碼，以及如何在雲端基礎結構中進行變更前將其視覺化。 您也將了解如何在 Azure 中使用 Terraform 建立基礎結構。
 
-首先，在您所選的文字編輯器 (Visual Studio Code/Sublime/Vim/等等) 中，建立名為 _terraform_azure101.tf_ 的檔案。 檔案的確切名稱並不重要，因為 Terraform 接受以資料夾名稱作為參數 - 執行資料夾中的所有指令碼。 將下列程式碼貼到該新檔案中：
+首先，在您所選的文字編輯器 (Visual Studio Code/Sublime/Vim/等等) 中，建立名為 \_terraform_azure101.tf_ 的檔案。 檔案的確切名稱並不重要，因為 Terraform 接受以資料夾名稱作為參數：資料夾中的所有指令碼都會執行。 將下列程式碼貼到新檔案中：
 
 ~~~~
 # Configure the Microsoft Azure Provider
@@ -44,34 +44,42 @@ resource "azurerm_resource_group" "helloterraform" {
     location = "West US"
 }
 ~~~~
-在指令碼的 "provider" 區段中，您可以告訴 Terraform 使用 Azure 提供者在指令碼中佈建資源。 請參閱[安裝和設定 Terraform](terraform-install-configure.md)指南，以取得 subscription_id、client_id、client_secret 和 tenant_id 值。 也請注意，如果您已為此區塊中的值建立環境變數，您就不需要將其納入。 
+在指令碼的 `provider` 區段中，您可以告訴 Terraform 使用 Azure 提供者在指令碼中佈建資源。 若要取得 subscription_id、client_id、client_secret 和 tenant_id 值，請參閱[安裝和設定 Terraform](terraform-install-configure.md) 指南。 如果您已為此區塊中的值建立環境變數，就不需要將其納入。 
 
-"azure_rm_resource_group" 資源指示 Terraform 建立新的資源群組。 您會在下面的 Terraform 中看到更多可用的資源類型。
+`azurerm_resource_group` 資源指示 Terraform 建立新的資源群組。 您可以在本文稍後看到更多在 Terraform 中可用的資源類型。
 
-## <a name="executing-the-script"></a>執行指令碼
-儲存指令碼後，結束並返回主控台/命令列並輸入
+## <a name="execute-the-script"></a>執行指令碼
+儲存指令碼之後，結束並返回主控台/命令列，然後輸入下列命令：
 ```
 terraform plan terraformscripts
 ```
-在上述命令中，我們假設 "terraformscripts" 是儲存指令碼的資料夾。 我們使用 "plan" Terraform 命令，該命令會查看指令碼中定義的資源，並將它們與 Terraform 所儲存的狀態資訊進行比較，然後輸出計劃性執行，而「不需」在 Azure 中實際建立資源。 
+我們假設 `terraformscripts` 是儲存指令碼的資料夾。 我們使用 `plan` Terraform 命令，該命令會查看指令碼中定義的資源。 它會將這些資源與 Terraform 所儲存的狀態資訊進行比較，然後輸出計劃性執行，而「不需」在 Azure 中實際建立資源。 
 
 執行上述命令之後，您應該會看到如下列畫面的內容：
 
-![Terraform 計劃的映像](linux/media/terraform/tf_plan2.png)
+![Terraform plan](linux/media/terraform/tf_plan2.png)
 
-一切看起來正確無誤，請執行下列命令，繼續並在 Azure 中佈建這個新的資源群組： 
+如果一切看起來正確無誤，請執行下列命令，在 Azure 中佈建這個新的資源群組： 
 ```
 terraform apply terraformscripts
 ```
-如果您立即在 Azure 入口網站中查看，您應該會看到名為 "terraformtest" 的新空白資源群組。 在下一節中，您會將虛擬機器以及該虛擬機器支援的基礎結構新增至該資源群組。
+在 Azure 入口網站中，您應該會看到名為 `terraformtest` 的新空白資源群組。 在下一節中，您要將虛擬機器以及該虛擬機器支援的所有基礎結構新增至資源群組。
 
-## <a name="provisioning-ubuntu-vm-with-terraform"></a>使用 Terraform 佈建 Ubuntu VM
-讓我們使用佈建執行 Ubuntu 之虛擬機器所需的詳細資料，擴充上面建立的 Terraform 指令碼。 您將在下列各節中佈建的資源清單如下：具有單一子網路的網路、網路介面卡、具有儲存體容器的儲存體帳戶、公用 IP，以及使用上述所有資源的虛擬機器。 如需每個 Azure Terraform 資源的完整文件，請參閱 [Terraform 文件](https://www.terraform.io/docs/providers/azurerm/index.html)。
+## <a name="provision-an-ubuntu-vm-with-terraform"></a>使用 Terraform 佈建 Ubuntu VM
+我們來使用佈建執行 Ubuntu 之虛擬機器所需的詳細資料，擴充已經建立的 Terraform 指令碼。 您在下列各節中佈建的資源包括：
+
+* 有單一子網路的網路
+* 網路介面卡 
+* 有儲存體容器的儲存體帳戶
+* 公用 IP
+* 使用先前所有資源的虛擬機器 
+
+如需每個 Azure Terraform 資源的完整文件，請參閱 [Terraform 文件](https://www.terraform.io/docs/providers/azurerm/index.html) \(英文\)。
 
 為了方便起見，也提供完整版的[佈建指令碼](#complete-terraform-script)。
 
-### <a name="extending-the-terraform-script"></a>擴充 Terraform 指令碼
-使用下列資源擴充上面建立的指令碼： 
+### <a name="extend-the-terraform-script"></a>擴充 Terraform 指令碼
+使用下列資源擴充建立的指令碼： 
 ~~~~
 # create a virtual network
 resource "azurerm_virtual_network" "helloterraformnetwork" {
@@ -89,7 +97,7 @@ resource "azurerm_subnet" "helloterraformsubnet" {
     address_prefix = "10.0.2.0/24"
 }
 ~~~~
-上述指令碼會建立虛擬網路與該虛擬網路中的子網路。 請注意，您已透過 "${azurerm_resource_group.helloterraform.name}" 在虛擬網路和子網路定義中建立之資源群組的參考。
+上述指令碼會建立虛擬網路與該虛擬網路中的子網路。 請注意您已透過 "${azurerm_resource_group.helloterraform.name}" 在虛擬網路和子網路定義中建立之資源群組的參考。
 
 ~~~~
 # create public IP
@@ -119,12 +127,17 @@ resource "azurerm_network_interface" "helloterraformnic" {
     }
 }
 ~~~~
-上述程式碼片段會建立公用 IP，以及建立會使用公用 IP 的網路介面。 請注意 subnet_id 和 public_ip_address_id 的參考。 Terraform 具有內建智慧，可了解網路介面相依於在網路介面建立之前所需建立的資源。
+上述指令碼的程式碼片段會建立公用 IP，以及建立使用該公用 IP 的網路介面。 請注意 subnet_id 和 public_ip_address_id 的參考。 Terraform 具有內建智慧，可了解網路介面相依於在網路介面建立之前所需建立的資源。
 
 ~~~~
+# create a random id
+resource "random_id" "randomId" {
+  byte_length = 4
+}
+
 # create storage account
 resource "azurerm_storage_account" "helloterraformstorage" {
-    name = "helloterraformstorage"
+    name                = "tfstorage${random_id.randomId.hex}"
     resource_group_name = "${azurerm_resource_group.helloterraform.name}"
     location = "westus"
     account_type = "Standard_LRS"
@@ -143,7 +156,7 @@ resource "azurerm_storage_container" "helloterraformstoragestoragecontainer" {
     depends_on = ["azurerm_storage_account.helloterraformstorage"]
 }
 ~~~~
-在此，您已建立儲存體帳戶並定義該儲存體帳戶內的儲存體容器 - 您可在其中儲存即將建立之虛擬機器的 VHD。
+現在，您建立了儲存體帳戶，並且在該儲存體帳戶內定義了儲存體容器。 此儲存體帳戶是您為要建立的虛擬機器存放虛擬硬碟 (VHD) 的位置。
 
 ~~~~
 # create virtual machine
@@ -183,16 +196,16 @@ resource "azurerm_virtual_machine" "helloterraformvm" {
     }
 }
 ~~~~
-最後，上述程式碼片段會建立一個虛擬機器，其利用我們已佈建的所有資源：儲存體帳戶和虛擬硬碟 (VHD) 的容器、已指定公用 IP 和子網路的網路介面，以及您已建立的資源群組。 請注意 vm_size 屬性，可供指令碼指定 Azure A0 SKU。
+最後，先前的程式碼片段會建立虛擬機器，使用已佈建的所有資源。 這些資源是儲存體帳戶和 VHD 的容器、指定公用 IP 與子網路的網路介面，以及您已建立的資源群組。 請注意 vm_size 屬性，可供指令碼指定 Azure A0 SKU。
 
-### <a name="executing-the-script"></a>執行指令碼
-儲存完整的指令碼後，結束並返回主控台/命令列並輸入
+### <a name="execute-the-script"></a>執行指令碼
+儲存完整的指令碼後，結束並返回主控台/命令列，然後輸入下列命令：
 ```
 terraform apply terraformscripts
 ```
-稍後，您應會看到一些資源 (包括虛擬機器) 出現在 Azure 入口網站的 "terraformtest" 資源群組中。
+稍後，資源 (包括虛擬機器) 就會出現在 Azure 入口網站的 `terraformtest` 資源群組中。
 
-## <a name="complete-terraform-script"></a>完成 Terraform 指令碼
+## <a name="complete-the-terraform-script"></a>完成 Terraform 指令碼
 
 ```
 variable "resourcesname" {
@@ -317,4 +330,5 @@ resource "azurerm_virtual_machine" "helloterraformvm" {
 ```
 
 ## <a name="next-steps"></a>後續步驟
-您已使用 Terraform 在 Azure 中建立基本基礎結構。 如需更多複雜案例 (包括使用負載平衡器、虛擬機器擴展集的範例)，請查看許多[適用於 Azure 的 Terraform 範例](https://github.com/hashicorp/terraform/tree/master/examples)。 [Terraform 文件](https://www.terraform.io/docs/providers/azurerm/index.html)有最新支援的完整 Azure 提供者清單。
+您已使用 Terraform 在 Azure 中建立基本基礎結構。 如需更多複雜案例 (包括使用負載平衡器、虛擬機器擴展集的範例)，請參閱許多[適用於 Azure 的 Terraform 範例](https://github.com/hashicorp/terraform/tree/master/examples)。 如需支援的 Azure 提供者最新清單，請參閱 [Terraform 文件](https://www.terraform.io/docs/providers/azurerm/index.html) \(英文\)。
+

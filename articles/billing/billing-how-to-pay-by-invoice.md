@@ -12,37 +12,41 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 07/14/2017
 ms.author: genli
-ms.translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 4452a4310f3b66ee2f27f43b0c48012c1a610b5b
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: edbeba95898a41e645b61aeaaec1fd897afadd61
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/21/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="submit-a-request-to-pay-azure-subscription-by-invoice"></a>提交按發票支付 Azure 訂用帳戶的要求
 
-您可以將要求提交給 Azure 支援，來變更您 Azure 訂用帳戶的發票付款方法。 您的要求獲准之後，將會收到說明如何設定您的訂用帳戶以使用發票付款方式的指示。 
+您可以將要求提交給 Azure 支援，來變更您 Azure 訂用帳戶的發票付款方法。 您的要求獲准之後，將會收到說明如何設定您的訂用帳戶以使用發票付款方式的指示。
 
-## <a name="request-pay-by-invoice"></a>按發票要求付款
+> [!IMPORTANT]
+> * 發票支付只適用於商務帳戶。
+> * [第三方和外部服務](billing-understand-your-azure-marketplace-charges.md)無法購買或使用發票支付來付費。 如果您的訂用帳戶包含外部服務的資源，例如 ClearDB 或 SendGrid，在變更為發票支付之前，必須先將它們刪除。 切換到發票支付之後若要購買外部服務，您將需要個別訂用帳戶與信用卡或轉帳卡。
+> * 一旦您切換到發票付款後，就無法切換回信用卡或轉帳卡付款。
+
+## <a name="request-pay-by-invoice"></a>依發票要求付款
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。 選取 [說明+支援] > [新增支援要求]。
 
     ![說明及支援按鈕](./media/billing-how-to-pay-by-invoice/helpandsupport.png)
-2. 依序選取 [計費] 作為問題類型、您想要按發票付款的 [訂用帳戶]、支援計劃，然後選取 [下一步]。
-3. 在 [問題]刀鋒視窗中，選取 [問題類型] 方塊中的 [按發票付款]。
-4. 在 [詳細資料] 方塊中輸入下列資訊，並選取 [下一步]。
+1. 依序選取 [計費] 作為問題類型、您想要依發票付款的 [訂用帳戶]、支援計劃，然後選取 [下一步]。
+1. 在 [問題]刀鋒視窗中，選取 [問題類型] 方塊中的 [按發票付款]。
+1. 在 [詳細資料] 方塊中輸入下列資訊，並選取 [下一步]。
 
-    - 公司名稱
-    - 帳單地址
-    - [帳戶管理員的電子郵件地址](billing-add-change-azure-subscription-administrator.md#check-the-account-administrator-of-the-subscription)
-    
+    * 公司名稱
+    * 帳單地址
+    * [帳戶管理員的電子郵件地址](billing-add-change-azure-subscription-administrator.md#check-the-account-administrator-of-the-subscription)
 
-5. 確認您的連絡資訊和慣用的連絡方法，然後按一下 [建立]。
+1. 確認您的連絡資訊和慣用的連絡方法，然後按一下 [建立]。
 
 如果我們因您所需要的信用額度而必須進行信用查核，我們會將信用查核應用程式傳送給您。 提交應用程式之後，可能需要 5-7 天來處理信用應用程式。
 
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
+
 如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。

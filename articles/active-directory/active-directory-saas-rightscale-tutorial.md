@@ -1,253 +1,250 @@
 ---
-title: "教學課程：Azure Active Directory 與 RightScale | Microsoft Docs"
-description: "了解如何設定 Azure Active Directory 與 RightScale 之間的單一登入。"
+title: "教學課程：Azure Active Directory 與 Rightscale 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Rightscale 之間的單一登入。"
 services: active-directory
-documentationcenter: 
+documentationCenter: na
 author: jeevansd
 manager: femila
-editor: 
 ms.assetid: 3a8d376d-95fb-4dd7-832a-4fdd4dd7c87c
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 3/10/2017
+ms.date: 07/08/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: adcc4e35f8febe1d0dc1bc093954dee56bf34652
-ms.lasthandoff: 03/28/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 222c4414a9f736a3589b4cdd0ed934696f6c31ef
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
-# <a name="tutorial-azure-active-directory-integration-with-rightscale"></a>教學課程：Azure Active Directory 與 RightScale 整合
-本教學課程旨在說明如何整合 RightScale 與 Azure Active Directory (Azure AD)。
+# <a name="tutorial-azure-active-directory-integration-with-rightscale"></a>教學課程：Azure Active Directory 與 Rightscale 整合
 
-將 RightScale 與 Azure AD 整合可提供下列優點：
+在本教學課程中，您會了解如何整合 Rightscale 與 Azure Active Directory (Azure AD)。
 
-* 您可以在 Azure AD 中控制可存取 RightScale 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 RightScale 單一登入 (SSO)
-* 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+Rightscale 與 Azure AD 整合提供下列優點：
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+- 您可以在 Azure AD 中控制可存取 Rightscale 的人員
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Rightscale (單一登入)
+- 您可以在 Azure 入口網站中集中管理您的帳戶
+
+如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 ## <a name="prerequisites"></a>必要條件
-若要設定 Azure AD 與 RightScale 整合，您需要下列項目：
 
-* Azure AD 訂用帳戶
-* 已啟用 RightScale 單一登入 (SSO) 的訂用帳戶
+若要設定 Azure AD 與 Rightscale 整合，您需要下列項目：
 
->[!NOTE]
->若要測試本教學課程中的步驟，我們不建議使用生產環境。
->  
+- Azure AD 訂用帳戶
+- 啟用 RightScale 單一登入的訂用帳戶
+
+> [!NOTE]
+> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-* 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
+- 除非必要，否則請勿使用生產環境。
+- 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 ## <a name="scenario-description"></a>案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD SSO。 
+在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
-本教學課程中說明的案例由二個主要建置組塊組成：
+1. 從資源庫新增 Rightscale
+2. 設定並測試 Azure AD 單一登入
 
-1. 從資源庫新增 RightScale
-2. 設定並測試 Azure AD 單一登入 (SSO)
+## <a name="adding-rightscale-from-the-gallery"></a>從資源庫新增 Rightscale
+若要設定將 Rightscale 整合到 Azure AD 中，您需要從資源庫將 Rightscale 新增到受管理的 SaaS 應用程式清單。
 
-## <a name="add-rightscale-from-the-gallery"></a>從資源庫新增 RightScale
-若要設定將 RightScale 整合到 Azure AD 中，您需要從資源庫將 RightScale 新增到受管理的 SaaS 應用程式清單中。
+**若要從資源庫新增 Rightscale，請執行下列步驟：**
 
-**若要從資源庫新增 RightScale，請執行下列步驟：**
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
-   
     ![Active Directory][1]
 
-2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
+2. 瀏覽至 [企業應用程式]。 然後移至 [所有應用程式]。
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
-   
     ![應用程式][2]
+    
+3. 若要新增新的應用程式，請按一下對話方塊頂端的 [新增應用程式] 按鈕。
 
-4. 按一下頁面底部的 [新增]  。
-   
     ![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
-   
-    ![應用程式][4]
+4. 在搜尋方塊中，輸入 **Rightscale**。
 
-6. 在搜尋方塊中，輸入 **RightScale**。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_01.png)
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_search.png)
 
-7. 在結果窗格中，選取 [RightScale]，然後按一下 [完成] 以新增應用程式。
-   
+5. 在結果面板中，選取 [Rightscale]，然後按一下 [新增] 按鈕以新增應用程式。
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
-本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 RightScale 搭配運作的 Azure AD SSO。
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_addfromgallery.png)
 
-若要讓 SSO 運作，Azure AD 必須知道 RightScale 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 RightScale 中的相關使用者之間建立連結關聯性。  
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，設定及測試與 Rightscale 搭配運作的 Azure AD 單一登入。
 
-若要設定及測試與 RightScale 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
+若要讓單一登入運作，Azure AD 必須知道 Rightscale 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Rightscale 中的相關使用者之間，建立連結關聯性。
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
+在 Rightscale 中，將 Azure AD 中**使用者名稱**的值指派為 **Username** 的值，以建立連結關聯性。
+
+若要設定及測試與 Rightscale 搭配運作的 Azure AD 單一登入，您需要完成下列建置組塊：
+
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 RightScale 測試使用者](#creating-a-rightscale-test-user)** - 在 RightScale 中建立一個與 Azure AD 中代表 Britta Simon 的項目連結的 Britta Simon 對應項目。
+3. **[建立 Rightscale 測試使用者](#creating-a-rightscale-test-user)** - 使 RightScale 中對應的 Britta Simon 連結到該該使用者在 Azure AD 中的代表項目。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-本節的目標是要在傳統入口網站中啟用 Azure AD SSO，並在您的 RightScale 應用程式中設定 SSO。
 
-**若要設定搭配 RightScale 運作的 Azure AD 單一登入，請執行下列步驟：**
+在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，並在您的 Rightscale 應用程式中設定單一登入。
 
-1. 在傳統入口網站中的 **RightScale** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
-   
-    ![設定單一登入][6] 
+**若要設定與 Rightscale 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
-2. 在 [要如何讓使用者登入 RightScale] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
-   
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_03.png) 
+1. 在 Azure 入口網站的 [Rightscale] 應用程式整合頁面上，按一下 [單一登入]。
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，如果您想要以 **IDP 起始模式**設定應用程式，請執行下列步驟，然後按 [下一步]：
-   
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_04.png) 
-  1. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://login.rightscale.com/login/saml2/consume`
-  2. 按 [下一步] 。
+    ![設定單一登入][4]
 
-1. 如果您想要在 [設定應用程式設定] 對話方塊頁面上以 **SP 起始模式**設定應用程式，則請按一下 [顯示進階設定 (選擇性)]，然後輸入**登入 URL** 並按 [下一步]。
-   
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_06.png) 
-  1. 在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 RightScale 應用程式的 URL：`https://login.rightscale.com/`
-  2. 按 [下一步] 。
+2. 在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。
+ 
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_samlbase.png)
 
-2. 在 [設定在 RightScale 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
-   
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_05.png) 
-  1. 按一下 [下載憑證]，然後將 Base-64 編碼的憑證檔案儲存在您的電腦上。
-  2. 按 [下一步] 。
+3. 如果您想要以 **IDP 起始模式**設定應用程式，則不需要在 [Rightscale 網域及 URL]**和 Url** 區段中執行任何步驟，因為應用程式已預先整合到 Azure。
 
-3. 若要取得為應用程式設定的 SSO，您必須以系統管理員身分登入 RightScale 租用戶。
-  1. 在頂端的功能表中，按一下 [設定] 索引標籤，然後選取 [單一登入]。
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_url.png)
+
+4. 如果您想要以 **SP 起始模式**設定應用程式，請在 [Rightscale 網域及 URL] 區段上執行下列步驟：
+    
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_url1.png)
+
+    a. 按一下 [顯示進階 URL 設定]。
+
+    b.這是另一個 C# 主控台應用程式。 在 [登入 URL] 文字方塊中，輸入 URL：`https://login.rightscale.com/`
+
+5. 在 [SAML 簽署憑證] 區段上，按一下 [憑證 (Base64)]，然後將憑證檔案儲存在您的電腦上。
+
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_certificate.png) 
+
+6. 按一下 [儲存]  按鈕。
+
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_general_400.png)
+
+7. 在 [Rightscale 組態] 區段上，按一下 [設定 Rightscale] 以開啟 [設定登入] 視窗。 從 [快速參考] 區段中複製 [SAML 實體識別碼] 和 [SAML 單一登入服務 URL]。
+
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_configure.png) 
+<CS>
+8. 若要取得為應用程式設定的 SSO，您必須以系統管理員身分登入 RightScale 租用戶。
+
+    a. 在頂端的功能表中，按一下 [設定] 索引標籤，然後選取 [單一登入]。
    
     ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_001.png) 
-  2. 按一下 [新增] 按鈕來新增**您的 SAML 身分識別提供者**。
+
+    b. 按一下 [新增] 按鈕來新增**您的 SAML 身分識別提供者**。
    
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_002.png)  
-  3. 在 [顯示名稱] 文字方塊中，輸入您的公司名稱。
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_002.png) 
+ 
+    c. 在 [顯示名稱] 文字方塊中，輸入您的公司名稱。
    
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_003.png) 
-  4. 選取 [Allow RightScale-initiated SSO using a discovery hint] \(允許使用 Discovery Hint 的 RightScale 起始 SSO)，然後在下方文字方塊中輸入您的**網域名稱**。
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_003.png)
+ 
+    d. 選取 [Allow RightScale-initiated SSO using a discovery hint] (允許使用 Discovery Hint 的 RightScale 起始 SSO)，然後在下方文字方塊中輸入您的**網域名稱**。
    
     ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_004.png)
-  5. 將 Azure AD 中的 SAML SSO URL 複製到 RightScale 中的 [SAML SSO 端點]。
-   
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_005.png)
+
+    e. 將您從 Azure 入口網站複製的 [SAML 單一登入服務 URL] 值，貼到 RightScale 的 [SAML SSO 端點] 文字方塊中。
    
     ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_006.png)
-  6. 將 Azure AD 中的「實體識別碼」複製到 RightScale 中的 [SAML EntityID]。
-   
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_007.png)
+
+    f. 將您從 Azure 入口網站複製的 [SAML 實體識別碼] 值，貼到 RightScale 中的 [SAML 實體識別碼]。
    
     ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_008.png)
-  7. 按一下 [瀏覽器] 按鈕來上傳您在步驟 4 中下載的憑證。
+
+    g. 按一下 [瀏覽器]  按鈕來上傳您從 Azure 入口網站下載的憑證。
    
     ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_009.png)
-  8. 按一下 [儲存] 。
 
-4. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
-   
-    ![Azure AD 單一登入][10]
+    h. 按一下 [儲存] 。
+<CE>
+> [!TIP]
+> 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
+> 
 
-5. 在 [單一登入確認] 頁面上，按一下 [完成]。  
-   
-    ![Azure AD 單一登入][11]
+### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
 
-### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-本節的目標是要在傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
-
-![建立 Azure AD 使用者][20]
+![建立 Azure AD 使用者][100]
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_09.png) 
+1. 在 **Azure 入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
 
-2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_01.png) 
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者] 。
-   
+2. 若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。
+    
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_02.png) 
+
+3. 若要開啟 [使用者] 對話方塊，按一下對話方塊頂端的 [新增]。
+ 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_03.png) 
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
-   
+4. 在 [使用者]  對話頁面上，執行下列步驟：
+ 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_04.png) 
 
-5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_05.png) 
-  1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-  2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-  3. 按 [下一步] 。
+    a. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
 
-6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_06.png) 
-  1. 在 [名字] 文字方塊中，輸入 **Britta**。  
-  2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-  3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-  4. 在 [角色] 清單中選取 [使用者]。
-  5. 按 [下一步] 。
+    b.這是另一個 C# 主控台應用程式。 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
 
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_07.png) 
+    c. 選取 [顯示密碼] 並記下 [密碼] 的值。
 
-8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-rightscale-tutorial/create_aaduser_08.png)  
-  1. 記下 [新密碼] 的值。
-  2. 按一下 [完成]。   
+    d. 按一下 [建立] 。
+ 
+### <a name="creating-a-rightscale-test-user"></a>建立 Rightscale 測試使用者
 
-### <a name="create-a-rightscale-test-user"></a>建立 RightScale 測試使用者
-在本節中，您會在 RightScale 中建立名為 Britta Simon 的使用者。 請透過 support@rightscale.com 與 RightScale 支援小組合作，在 RightScale 平台中新增使用者。
+在本節中，您會在 RightScale 中建立名為 Britta Simon 的使用者。 請與 [Rightscale 客戶支援小組](mailto:support@rightscale.com)合作，在 RightScale 平台中新增使用者。
 
-### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-本節的目標是授與 Britta Simon 對 RightScale 的存取權，使她能夠使用 Azure SSO。
+### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+
+在本節中，您會將 Rightscale 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
 
-**若要將 Britta Simon 指派給 RightScale，請執行以下步驟：**
+**若要將 Britta Simon 指派給 Rightscale，請執行以下步驟：**
 
-1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
-   
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
+
     ![指派使用者][201] 
 
-2. 在應用程式清單中，選取 [RightScale] 。
-   
-    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_50.png) 
+2. 在應用程式清單中，選取 [Rightscale]。
 
-3. 在頂端的功能表中，按一下 [使用者] 。
-   
-    ![指派使用者][203] 
+    ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_app.png) 
 
-4. 在 [使用者] 清單中，選取 [Britta Simon] 。
+3. 在左側功能表中，按一下 [使用者和群組]。
 
-5. 在底部的工具列中，按一下 [指派] 。
-   
-    ![指派使用者][205]
+    ![指派使用者][202] 
 
-### <a name="test-single-sign-on"></a>測試單一登入
+4. 按一下 [新增] 按鈕。 然後選取 [新增指派] 對話方塊上的 [使用者和群組]。
+
+    ![指派使用者][203]
+
+5. 在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。
+
+6. 按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。
+
+7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
+    
+### <a name="testing-single-sign-on"></a>測試單一登入
+
 本節的目標是要使用「存取面板」來測試您的 Azure AD SSO 組態。  
 
 當您在「存取面板」中按一下 [RightScale] 磚時，應該會自動登入您的 RightScale 應用程式。
 
 ## <a name="additional-resources"></a>其他資源
+
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+
+
 
 <!--Image references-->
 
@@ -256,14 +253,11 @@ ms.lasthandoff: 03/28/2017
 [3]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_03.png
 [4]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_04.png
 
-[6]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_05.png
-[10]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_06.png
-[11]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_07.png
-[20]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_100.png
+[100]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_100.png
 
 [200]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_200.png
 [201]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_201.png
+[202]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_202.png
 [203]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_203.png
-[204]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_204.png
-[205]: ./media/active-directory-saas-rightscale-tutorial/tutorial_general_205.png
+
 

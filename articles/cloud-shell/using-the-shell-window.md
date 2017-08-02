@@ -7,24 +7,24 @@ author: jluk
 manager: timlt
 tags: azure-resource-manager
 ms.assetid: 
-ms.service: 
+ms.service: azure
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 07/13/2017
 ms.author: juluk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 69316d271fc4847565d183293013580b61695731
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 17e5f98923345cdf88e6d3e2ef194f54dd1105c2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 07/14/2017
 
 ---
 
 # <a name="using-the-azure-cloud-shell-window"></a>使用 Azure Cloud Shell 視窗
 
-本文件說明如何使用 Azure Cloud Shell 視窗。
+本文件說明如何使用 Cloud Shell 視窗。
 
 ## <a name="concurrent-sessions"></a>並行工作階段
 Cloud Shell 可透過允許每個工作階段以個別 Bash 處理序的形式存在，來允許跨瀏覽器索引標籤進行多個並行工作階段。
@@ -32,9 +32,10 @@ Cloud Shell 可透過允許每個工作階段以個別 Bash 處理序的形式�
 
 ## <a name="restart-cloud-shell"></a>重新啟動 Cloud Shell
 ![](media/recycle.png)
-* 按一下工具列上的 [重新啟動] 圖示，即可重設 Cloud Shell 電腦。
+> [!WARNING]
+> 重新啟動 Cloud Shell 將會重設電腦狀態，而所有未由檔案共用保存的檔案都將遺失。
 
-> ![警告] 重新啟動 Cloud Shell 會重設電腦狀態，而所有未由 clouddrive 保存的檔案都將遺失。
+* 按一下工具列上的 [重新啟動] 圖示，即可接收新的 Cloud Shell 環境。
 
 ## <a name="minimize--maximize-cloud-shell-window"></a>將 Cloud Shell 視窗最大化和最小化
 ![](media/minmax.png)
@@ -42,18 +43,18 @@ Cloud Shell 可透過允許每個工作階段以個別 Bash 處理序的形式�
 * 按一下 [最大化] 圖示，即可將視窗設成最大高度。 若要將視窗還原到先前的大小，請按一下 [還原]。
 
 ## <a name="copy-and-paste"></a>複製和貼上
-* Windows：`Ctrl-insert` 和 `Shift-insert` 或在下拉式清單上按一下，即可複製/貼上
-  * FireFox/IE 可能無法正確支援剪貼簿權限
-* Mac OS：`Cmd-c` 和 `Cmd-v` 或在下拉式清單上按一下，即可複製/貼上
+* Windows：`Ctrl-insert` 進行複製，`Shift-insert` 即可貼上。 在下拉式清單上按一下滑鼠右鍵，也能進行複製/貼上。
+  * FireFox/IE 可能無法正確支援剪貼簿權限。
+* Mac 作業系統：`Cmd-c` 進行複製，`Cmd-v` 即可貼上。 在下拉式清單上按一下滑鼠右鍵，也能進行複製/貼上。
 
 ## <a name="resize-cloud-shell-window"></a>調整 Cloud Shell 視窗大小
 * 按一下工具列上邊緣並向上或向下拖曳，即可調整 Cloud Shell 視窗大小。
 
 ## <a name="scrolling-text-display"></a>捲動文字顯示
-* 使用您的滑鼠或觸控板來捲動
+* 使用您的滑鼠或觸控板來捲動終端機文字。
 
 ## <a name="exit-command"></a>結束命令
 執行 `exit` 可終止作用中的工作階段。 此行為預設會在 10 分鐘後發生，不須進行互動。
 
 ## <a name="next-steps"></a>後續步驟
-[Cloud Shell 快速入門](quickstart.md)  
+[Cloud Shell 快速入門](quickstart.md)

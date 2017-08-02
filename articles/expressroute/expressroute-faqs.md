@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/12/2017
+ms.date: 07/14/2017
 ms.author: cherylmc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 3f9fb86a5bf63d24432c1ba9945a4da6cf794f13
+ms.translationtype: HT
+ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
+ms.openlocfilehash: fc11bf194b648cefea32feada4fe9e7fb2119fff
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
-
+ms.lasthandoff: 07/15/2017
 
 ---
 # <a name="expressroute-faq"></a>ExpressRoute 常見問題集
@@ -104,7 +103,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 否。 我們不支援至 Azure 的第 2 層連線擴充程式。
 
 ### <a name="can-i-have-more-than-one-expressroute-circuit-in-my-subscription"></a>我的訂用帳戶是否可以有多個 ExpressRoute 電路？
-是。 您的訂用帳戶可以有多個 ExpressRoute 電路。 預設的專用電路數目限制已設為 10。 如需提高限制，您可以洽詢 Microsoft 支援。
+是。 您的訂用帳戶可以有多個 ExpressRoute 電路。 預設限制是設定為 10。 如需提高限制，您可以洽詢 Microsoft 支援。
 
 ### <a name="can-i-have-expressroute-circuits-from-different-service-providers"></a>我可以使用其他服務提供者的 ExpressRoute 電路嗎？
 是。 您可以使用許多服務提供者的 ExpressRoute 電路。 每個 ExpressRoute 電路只會與一個服務提供者產生關聯。 
@@ -185,7 +184,7 @@ BGP 工作階段將會被刪除。 當首碼計數降至限制以下時，系統
 是，您可以在 Azure 入口網站中，或使用 PowerShell，嘗試增加 ExpressRoute 線路的頻寬。 如果您建立線路的實體連接埠上有可用的容量，則變更會成功。 如果變更失敗，就表示目前的連接埠上沒有足夠的容量，您必須建立頻寬較高的新 ExpressRoute 線路，「或者」，該位置已無額外的容量，在此情況下您無法增加頻寬。 您也必須追蹤連線提供者的後續情形，以確保他們更新網路內的流速以支援增加頻寬。 不過，您無法減少 ExpressRoute 線路的頻寬。 您必須建立頻寬較低的新 ExpressRoute 電路，並刪除舊的線路。
 
 ### <a name="how-do-i-change-the-bandwidth-of-an-expressroute-circuit"></a>我如何變更 ExpressRoute 電路的頻寬？
-您可以使用更新的專用電路 API 和 PowerShell cmdlet，來更新 ExpressRoute 電路的頻寬。
+您可以使用 REST API 和 PowerShell Cmdlet 來更新 ExpressRoute 電路的頻寬。
 
 ## <a name="expressroute-premium"></a>ExpressRoute Premium
 ### <a name="what-is-expressroute-premium"></a>什麼是 ExpressRoute Premium？
@@ -202,10 +201,10 @@ ExpressRoute Premium 是下面所列功能的集合。
 [!INCLUDE [expressroute-limits](../../includes/expressroute-limits.md)]
 
 ### <a name="how-do-i-enable-expressroute-premium"></a>我要如何啟用 ExpressRoute Premium？
-當啟用功能時便可啟用 ExpressRoute Premium 功能，並可透過更新電路狀態將它關閉。 您可以在建立電路時啟用 ExpressRoute Premium，或呼叫更新專用電路 API / PowerShell cmdlet 以啟用 ExpressRoute Premium。
+當啟用功能時便可啟用 ExpressRoute Premium 功能，並可透過更新電路狀態將它關閉。 您可以在建立電路時啟用 ExpressRoute Premium，或呼叫 REST API / PowerShell Cmdlet 以啟用 ExpressRoute Premium。
 
 ### <a name="how-do-i-disable-expressroute-premium"></a>我要如何停用 ExpressRoute Premium？
-您可以透過呼叫更新專用電路 API / PowerShell Cmdlet 來停用 ExpressRoute Premium。 在您停用 ExpressRoute Premium 之前，您必須確定您已經調整連線需求以符合預設限制。 如果您的使用率擴充超越預設限制，我們將捨棄要求並停用 ExpressRoute Premium。
+您可以透過呼叫 REST API / PowerShell Cmdlet 來停用 ExpressRoute Premium。 在您停用 ExpressRoute Premium 之前，您必須確定您已經調整連線需求以符合預設限制。 如果您的使用率擴充超越預設限制，我們將捨棄要求並停用 ExpressRoute Premium。
 
 ### <a name="can-i-pick-and-choose-the-features-i-want-from-the-premium-feature-set"></a>我可以從進階功能集中挑選和選擇所需功能嗎？
 否。 您無法挑選所需功能。 當您開啟 ExpressRoute Premium 時，我們便會將所有功能啟用。
@@ -247,6 +246,9 @@ ExpressRoute Premium 是下面所列功能的集合。
 
 ### <a name="can-i-access-office-365-over-the-internet-even-if-expressroute-was-configured-for-my-organization"></a>即使 ExpressRoute 已設定供我的組織使用，我是否可以透過網際網路存取 Office 365？
 是。 即使 ExpressRoute 已設定供我的組織使用，您仍可以透過網際網路存取 Office 365 服務端點。 如果所處位置已設定透過 ExpressRoute 連線到 Office 365 服務，您將會透過 ExpressRoute 進行連線。
+
+### <a name="can-i-access-office-365-us-government-community-gcc-services-over-an-azure-us-government-expressroute-circuit"></a>我是否可以透過 Azure 美國政府 ExpressRoute 電路存取 Office 365 US Government Community (GCC) 服務？
+是。 Office 365 GCC 服務端點可以透過 Azure 美國政府 ExpressRoute 存取。 不過，您必須先在 Azure 入口網站上開啟支援票證，以提供您想要通告給 Microsoft 的首碼。 在解決該支援票證之後，您便可以連線至 Office 365 GCC 服務。 
 
 ### <a name="can-dynamics-365-for-operations-formerly-known-as-dynamics-ax-online-be-accessed-over-an-expressroute-connection"></a>是否可透過 ExpressRoute 連線存取 Dynamics 365 for Operations (先前稱為 Dynamics AX Online)？
 是。 [Dynamics 365 for Operations](https://www.microsoft.com/dynamics365/operations) 是裝載於 Azure 上。 您可以在您的 ExpressRoute 線路上啟用 Azure 公用對等來和它連線。 

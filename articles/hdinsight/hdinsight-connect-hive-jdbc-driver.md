@@ -1,6 +1,6 @@
 ---
-title: "透過 JDBC 查詢 Hive - Azure HDInsight | Microsoft Docs"
-description: "了解如何在 Azure HDInsight 中使用 JDBC 連線到 Hadoop 叢集上的 Hive。"
+title: "透過 JDBC 驅動程式查詢 Hive - Azure HDInsight | Microsoft Docs"
+description: "從 Java 應用程式使用 JDBC 驅動程式，將 Hive 查詢提交到 HDInsight 上的 Hadoop。 以程式設計方式連接和透過 SQuirrel SQL 用戶端連接。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -9,26 +9,26 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 928f8d2a-684d-48cb-894c-11c59a5599ae
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2017
+ms.date: 05/22/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: dd76e2450be2b05d011de7ded49bfa9630190e71
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14bfdd8554b075b0c19a75bb572f1214a45ff471
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
-# <a name="query-hive-through-jdbc"></a>透過 JDBC 查詢 Hive
+# <a name="query-hive-through-the-jdbc-driver-in-hdinsight"></a>在 HDInsight 中透過 JDBC 驅動程式查詢 Hive
 
 [!INCLUDE [ODBC-JDBC-selector](../../includes/hdinsight-selector-odbc-jdbc.md)]
 
-了解如何從 Java 應用程式使用 JDBC 將 Hive 查詢提交到 Azure HDInsight 中的 Hadoop。 本文件中的資訊會示範如何以程式設計方式以及如何從 SQuirrel SQL 用戶端連線。
+了解如何從 Java 應用程式使用 JDBC 驅動程式將 Hive 查詢提交到 Azure HDInsight 中的 Hadoop。 本文件中的資訊會示範如何以程式設計方式以及如何從 SQuirrel SQL 用戶端連線。
 
 如需有關 Hive JDBC 介面的詳細資訊，請參閱 [HiveJDBCInterface](https://cwiki.apache.org/confluence/display/Hive/HiveJDBCInterface)。
 
@@ -37,7 +37,7 @@ ms.lasthandoff: 05/17/2017
 * HDInsight 叢集上的 Hadoop。 以 Linux 或 Windows 為基礎的叢集都可運作。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 * [SQuirreL SQL](http://squirrel-sql.sourceforge.net/)。 SQuirreL 是 JDBC 用戶端應用程式。
 
@@ -49,7 +49,7 @@ ms.lasthandoff: 05/17/2017
 
 透過 443 在 Azure 上建立 HDInsight 叢集的 JDBC 連接，並使用 SSL 保護流量。 背後有叢集的公用閘道器會將流量重新導向至 HiveServer2 實際接聽的連接埠。 下列為範例連接字串：
 
-    jdbc:hive2://CLUSTERNAME.azurehdinsight.net:443/default;ssl=true?hive.server2.transport.mode=http;hive.server2.thrift.http.path=/hive2
+    jdbc:hive2://CLUSTERNAME.azurehdinsight.net:443/default;transportMode=http;ssl=true;httpPath=/hive2
 
 將 `CLUSTERNAME` 替換為 HDInsight 叢集的名稱。
 
@@ -117,7 +117,7 @@ SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC
 4. 在 [新增驅動程式] 對話方塊中，新增下列資訊：
 
     * **名稱**：Hive
-    * **範例 URL**：`jdbc:hive2://localhost:443/default;ssl=true?hive.server2.transport.mode=http;hive.server2.thrift.http.path=/hive2`
+    * **範例 URL**：`jdbc:hive2://localhost:443/default;transportMode=http;ssl=true;httpPath=/hive2`
     * **額外類別路徑**︰使用 [新增] 按鈕來新增稍早下載的 jar 檔案
     * **類別名稱**：org.apache.hive.jdbc.HiveDriver
 
@@ -135,7 +135,7 @@ SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC
 
     * **驅動程式**︰使用下拉式清單來選取 [Hive] 驅動程式
 
-    * **URL**：jdbc:hive2://CLUSTERNAME.azurehdinsight.net:443/default;ssl=true?hive.server2.transport.mode=http;hive.server2.thrift.http.path=/hive2
+    * **URL**： jdbc:hive2://CLUSTERNAME.azurehdinsight.net:443/default;transportMode=http;ssl=true;httpPath=/hive2
 
         將 **CLUSTERNAME** 取代為 HDInsight 叢集的名稱。
 

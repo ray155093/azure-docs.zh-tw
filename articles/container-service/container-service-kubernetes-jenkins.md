@@ -16,11 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/23/2017
 ms.author: briar
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 3d206ebb6deeaa40f8e792ec12304c99c0abe684
-ms.lasthandoff: 03/29/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: dfbf4d90bed4e60cc6c1663ee3743b320319a881
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 
@@ -58,9 +58,9 @@ CLUSTER_NAME=any-acs-cluster-name
 
 az acs create \
 --orchestrator-type=kubernetes \
---resource-group $RESOURCE_GROUP \ 
+--resource-group $RESOURCE_GROUP \
 --name=$CLUSTER_NAME \
---dns-prefix=$DNS_PREFIX \ 
+--dns-prefix=$DNS_PREFIX \
 --ssh-key-value ~/.ssh/id_rsa.pub \
 --admin-username=azureuser \
 --master-count=1 \
@@ -71,18 +71,17 @@ az acs create \
 ## <a name="set-up-jenkins-and-configure-access-to-container-service"></a>設定 Jenkins 和容器服務的存取權
 
 ### <a name="step-1-install-jenkins"></a>步驟 1：安裝 Jenkins
-1. 使用 Ubuntu 16.04 LTS 建立 Azure VM。 
-2. 透過這些[指示](https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu)安裝 Jenkins。
-3. 更詳細的教學課程在 [howtoforge.com](https://www.howtoforge.com/tutorial/how-to-install-jenkins-with-apache-on-ubuntu-16-04)。
-4. 更新 Azure 網路安全性群組以允許連接埠 8080，然後在連接埠 8080 瀏覽公用 IP 以在您的瀏覽器中管理 Jenkins。
-5. 初始 Jenkins 系統管理員密碼會儲存在 /var/lib/jenkins/secrets/initialAdminPassword。
-6. 透過這些[指示](https://docs.docker.com/cs-engine/1.13/#install-on-ubuntu-1404-lts-or-1604-lts)在 Jenkins 機器上安裝 Docker。 這可讓 Docker 命令在 Jenkins 工作中執行。
-7. 設定 Docker 權限以允許 Jenkins 存取端點。
+1. 使用 Ubuntu 16.04 LTS 建立 Azure VM。  因為在稍後的步驟中，您必須使用本機電腦上的 Bash 連線到這個 VM，請將「驗證類型」設定為「SSH 公開金鑰」，並貼上本機儲存在 ~/.ssh 資料夾中的 SSH 公開金鑰。  此外，記下您指定的「使用者名稱」，因為在稍後步驟中，將需要這個使用者名稱才能檢視 Jenkins 儀表板以及連線到 Jenkins VM。
+2. 透過這些[指示](https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu)安裝 Jenkins。 更詳細的教學課程在 [howtoforge.com](https://www.howtoforge.com/tutorial/how-to-install-jenkins-with-apache-on-ubuntu-16-04)。
+3. 若要在本機電腦上檢視 Jenkins 儀表板，可新增允許存取連接埠 8080 的輸入規則，從而更新可允許連接埠 8080 的 Azure 網路安全性群組。  或者，您將需要設定連接埠轉送，方法是執行此命令：`ssh -i ~/.ssh/id_rsa -L 8080:localhost:8080 <your_jenkins_user>@<your_jenkins_public_ip`
+4. 使用瀏覽器連線到您的 Jenkins 伺服器，方法是瀏覽至公用 IP (http://<your_jenkins_public_ip>:8080)，並在第一次使用時，使用初始管理密碼將 Jenkins 儀表板解除鎖定。  管理密碼會儲存在 Jenkins VM 上的 /var/lib/jenkins/secrets/initialAdminPassword。  取得此密碼的簡單方法是 SSH 至 Jenkins VM 中：`ssh <your_jenkins_user>@<your_jenkins_public_ip>`。  接下來，請執行：`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`。
+5. 透過這些[指示](https://docs.docker.com/cs-engine/1.13/#install-on-ubuntu-1404-lts-or-1604-lts)在 Jenkins 機器上安裝 Docker。 這可讓 Docker 命令在 Jenkins 工作中執行。
+6. 設定 Docker 權限以允許 Jenkins 存取 Docker 端點。
 
     ```bash
     sudo chmod 777 /run/docker.sock
     ```
-8. 在 Jenkins 上安裝 `kubectl` CLI。 更多詳細資料位於[安裝和設定 kubectl](https://kubernetes.io/docs/tasks/kubectl/install/)。
+8. 在 Jenkins 上安裝 `kubectl` CLI。 更多詳細資料位於[安裝和設定 kubectl](https://kubernetes.io/docs/tasks/kubectl/install/)。  Jenkins 作業將使用 'kubectl' 來管理及部署至 Kubernetes 叢集。
 
     ```bash
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -98,21 +97,19 @@ az acs create \
 > 有多個方式可以完成下列步驟。 使用對您最簡單的方法。
 >
 
-1. 將 `kubectl` 組態檔複製到 Jenkins 機器。
+1. 將 `kubectl` 組態檔複製到 Jenkins 電腦，讓 Jenkins 作業能夠存取 Kubernetes 叢集。 這些指示假設您是從 Jenkins VM 以外的電腦使用 Bash，且本機 SSH 公開金鑰是儲存在電腦的 ~/.ssh 資料夾。
 
-    ```bash
-    export KUBE_MASTER=<your_cluster_master_fqdn>
+```bash
+export KUBE_MASTER=<your_cluster_master_fqdn>
+export JENKINS_USER=<your_jenkins_user>
+export JENKINS_SERVER=<your_jenkins_public_ip>
+sudo ssh $JENKINS_USER@$JENKINS_SERVER sudo mkdir -m 777 /home/$JENKINS_USER/.kube/ \
+&& sudo ssh $JENKINS_USER@$JENKINS_SERVER sudo mkdir /var/lib/jenkins/.kube/ \
+&& sudo scp -3 -i ~/.ssh/id_rsa azureuser@$KUBE_MASTER:.kube/config $JENKINS_USER@$JENKINS_SERVER:~/.kube/config \
+&& sudo ssh -i ~/.ssh/id_rsa $JENKINS_USER@$JENKINS_SERVER sudo cp /home/$JENKINS_USER/.kube/config /var/lib/jenkins/.kube/config \
+```
         
-    sudo scp -3 -i ~/.ssh/id_rsa azureuser@$KUBE_MASTER:.kube/config user@<your_jenkins_server>:~/.kube/config
-        
-    sudo ssh user@<your_jenkins_server> sudo chmod 777 /home/user/.kube/config
-
-    sudo ssh -i ~/.ssh/id_rsa user@<your_jenkins_server> sudo chmod 777 /home/user/.kube/config
-        
-    sudo ssh -i ~/.ssh/id_rsa user@<your_jenkins_server> sudo cp /home/user/.kube/config /var/lib/jenkins/config
-    ```
-        
-2. 從 Jenkins 驗證 Kubernetes 叢集可存取。
+2. 從 Jenkins 驗證 Kubernetes 叢集可存取。  若要這樣做，請 SSH 至 Jenkins VM 中：`ssh <your_jenkins_user>@<your_jenkins_public_ip>`。  接下來，請確認 Jenkins 可以成功連線到您的叢集：`kubectl cluster-info`。
     
 
 ## <a name="create-a-jenkins-workflow"></a>建立 Jenkins 工作流程

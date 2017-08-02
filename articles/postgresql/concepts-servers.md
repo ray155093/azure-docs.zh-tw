@@ -8,20 +8,18 @@ manager: jhubbard
 editor: jasonwhowell
 ms.service: postgresql-database
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 07/06/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
-ms.openlocfilehash: 5197a3f44a085d25d964f355154d92b08e65560b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 43123486f21178a5ba657caa9d4b090922435913
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/17/2017
+ms.lasthandoff: 07/08/2017
 
 ---
 # <a name="azure-database-for-postgresql-servers"></a>適用於 PostgreSQL 的 Azure 資料庫伺服器
-
 本主題提供使用適用於 PostgreSQL 之 Azure 資料庫伺服器的考量和指導方針。
 
 ## <a name="what-is-an-azure-database-for-postgresql-server"></a>什麼是適用於 PostgreSQL 的 Azure 資料庫伺服器？
-
 適用於 PostgreSQL 的 Azure 資料庫伺服器是多個資料庫的中央管理點。 這與您可能已在內部部署領域中熟悉的 PostgreSQL 伺服器建構相同。 具體來說，適用於 PostgreSQL 的 Azure 資料庫服務會受到管理、提供效能保證、公開伺服器層級的存取和功能。
 
 適用於 PostgreSQL 的 Azure 資料庫伺服器：
@@ -36,8 +34,9 @@ ms.lasthandoff: 06/17/2017
 - 可在多個版本中使用。 如需詳細資訊，請參閱[支援的 PostgreSQL 資料庫版本](concepts-supported-versions.md)。
 - 可由使用者加以擴充。 如需詳細資訊，請參閱 [PostgreSQL 擴充功能](concepts-extensions.md)。
 
-## <a name="how-do-i-connect-and-authenticate-to-an-azure-database-for-postgresql-server"></a>如何連接及驗證適用於 PostgreSQL 的 Azure 資料庫伺服器？
+在適用於 PostgreSQL 的 Azure 資料庫內，您可以建立一個或多個資料庫。 您可以選擇在每個伺服器建立單一資料庫以利用所有資源，或建立多個資料庫來共用資源。 定價是根據伺服器，以定價層設定、計算單位、儲存體 (GB) 作為基礎進行結構化。 如需詳細資訊，請參閱[定價層](./concepts-service-tiers.md)。
 
+## <a name="how-do-i-connect-and-authenticate-to-an-azure-database-for-postgresql-server"></a>如何連接及驗證適用於 PostgreSQL 的 Azure 資料庫伺服器？
 下列項目有助於確保對資料庫的安全存取。
 
 |||
@@ -49,11 +48,9 @@ ms.lasthandoff: 06/17/2017
 |||
 
 ## <a name="how-do-i-manage-a-server"></a>如何管理伺服器？
-
 您可以使用 Azure 入口網站或 [Azure CLI](/cli/azure/postgres)，來管理適用於 PostgreSQL 的 Azure 資料庫伺服器。
 
 ## <a name="next-steps"></a>後續步驟
-
 - 如需服務的概觀，請參閱[適用於 PostgreSQL 的 Azure 資料庫概觀](overview.md)
 - 如需以您**服務層**為依據之特定資源配額和限制的相關資訊，請參閱[服務層](concepts-service-tiers.md)
 - 如需連接到服務的相關資訊，請參閱[適用於 PostgreSQL 的 Azure 資料庫的連線庫](concepts-connection-libraries.md)。

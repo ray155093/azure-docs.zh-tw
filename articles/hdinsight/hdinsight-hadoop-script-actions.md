@@ -1,5 +1,5 @@
 ---
-title: "使用 HDInsight 開發指令碼動作| Microsoft Docs"
+title: "使用 HDInsight 開發指令碼動作 - Azure | Microsoft Docs"
 description: "了解如何使用指令碼動作來自訂 Hadoop 叢集。 指令碼動作可用來安裝其他在 Hadoop 叢集上執行的軟體，或變更叢集上所安裝應用程式的組態。"
 services: hdinsight
 documentationcenter: 
@@ -13,14 +13,14 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 989f45eed033409b1ade183827719acdd9a4b0b4
-ms.lasthandoff: 04/12/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 04f79442b72a58abb0eba9c2162e0b7b9d390e41
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 ---
 # <a name="develop-script-action-scripts-for-hdinsight-windows-based-clusters"></a>開發 HDInsight Windows 型叢集指令碼動作指令碼
@@ -29,7 +29,7 @@ ms.lasthandoff: 04/12/2017
 
 
 > [!IMPORTANT]
-> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。 如需有關搭配 Linux 型叢集使用指令碼動作的詳細資訊，請參閱[使用 HDInsight 進行指令碼動作開發 (Linux)](hdinsight-hadoop-script-actions-linux.md)。
+> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 如需有關搭配 Linux 型叢集使用指令碼動作的詳細資訊，請參閱[使用 HDInsight 進行指令碼動作開發 (Linux)](hdinsight-hadoop-script-actions-linux.md)。
 >
 >
 
@@ -46,7 +46,7 @@ ms.lasthandoff: 04/12/2017
 >
 
 ## <a name="sample-scripts"></a>範例指令碼
-針對在 Windows 作業系統上建立 HDInsight 叢集，指令碼動作是 Azure PowerShell 指令碼。以下是設定網站組態檔的範例指令碼：
+為了在 Windows 作業系統上建立 HDInsight 叢集，指令碼動作是 Azure PowerShell 指令碼。 下列指令碼是設定站台設定檔的範例：
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
@@ -97,7 +97,7 @@ ms.lasthandoff: 04/12/2017
 
     hive-site.xml hive.metastore.client.socket.timeout 90
 
-這些參數會在 hive-site.xml 檔案中將 hive.metastore.client.socket.timeout 值設定為 90。  預設值為 60 秒。
+這些參數會將 hive-site.xml 檔案中的 hive.metastore.client.socket.timeout 值設為 90。  預設值為 60 秒。
 
 此範例指令碼位於 [https://hditutorialdata.blob.core.windows.net/customizecluster/editSiteConfig.ps1](https://hditutorialdata.blob.core.windows.net/customizecluster/editSiteConfig.ps1)。
 
@@ -118,7 +118,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 >
 
 ## <a name="helper-methods-for-custom-scripts"></a>自訂指令碼的協助程式方法
-指令碼動作協助程式方法是您在撰寫字訂指令碼時可以使用的公用程式。 這些協助程式方法是在 [https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1](https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1)中定義，並且可以使用以下指令碼包含至您的指令碼中：
+指令碼動作協助程式方法是您在撰寫字訂指令碼時可以使用的公用程式。 這些方法是在 [https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1](https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1) 中定義，並且可以使用以下範例包含至您的指令碼中：
 
     # Download config action module from a well-known directory.
     $CONFIGACTIONURI = "https://hdiconfigactions.blob.core.windows.net/configactionmodulev05/HDInsightUtilities-v05.psm1";
@@ -171,7 +171,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
     例如，在文件中所提供的 Spark 和 R 自訂叢集範例中，我們已經在本機複製一份此儲存體帳戶中的資源：https://hdiconfigactions.blob.core.windows.net/。
 * 確保叢集自訂指令碼具有等冪性
 
-    您必須預期在叢集存留期間將會為 HDInsight 叢集的節點重新製作映像。 每當重新製作叢集映像時，都會執行叢集自訂指令碼。 此指令碼必須設計成具有等冪性，意思就是在重新製作映像時，此指令碼應該確保叢集會回到與當初建立叢集時，指令碼剛剛第一次執行後相同的自訂狀態。 例如，如果自訂指令碼在第一次執行時，在 D:\AppLocation 中安裝了某個應用程式，則在後續每次的執行中，當重新製作映像時，此指令碼應該先檢查 D:\AppLocation 位置中是否有該應用程式，再繼續執行指令碼中的其他步驟。
+    您必須預期在叢集存留期間將為 HDInsight 叢集的節點重新製作映像。 每當重新製作叢集映像時，都會執行叢集自訂指令碼。 此指令碼必須設計成具有等冪性，意思就是在重新製作映像時，此指令碼應該確保叢集會回到與當初建立叢集時，指令碼剛剛第一次執行後相同的自訂狀態。 例如，如果自訂指令碼在第一次執行時，在 D:\AppLocation 中安裝了某個應用程式，則在後續每次的執行中，當重新製作映像時，此指令碼應該先檢查 D:\AppLocation 位置中是否有該應用程式，再繼續執行指令碼中的其他步驟。
 * 在最佳位置安裝自訂元件
 
     重新製作叢集節點映像時，C:\ 資源磁碟機和 D:\ 系統磁碟機可能被重新格式化，而導致資料及安裝在這些磁碟機上的應用程式遺失。 如果隸屬於叢集的 Azure 虛擬機器 (VM) 節點故障，而被新節點取代時，也可能發生這種情況。 您可以將元件安裝在 D:\ 磁碟機上，或叢集上的 C:\apps 位置中。 C:\ 磁碟機上的所有其他位置則已預留他用。 請在叢集自訂指令碼中指定要用來安裝應用程式或程式庫的位置。
@@ -200,12 +200,12 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
     Save-HDIFile -SrcUri 'https://somestorageaccount.blob.core.windows.net/somecontainer/some-file.jar' -DestFile 'C:\apps\dist\hadoop-2.4.0.2.1.9.0-2196\share\hadoop\mapreduce\some-file.jar'
 
-在此範例中，您必須確定儲存體帳戶 'somestorageaccount' 中的容器 'somecontainer' 可公開存取。 否則，指令碼將會擲回「找不到」例外狀況而且失敗。
+在此範例中，您必須確定儲存體帳戶 'somestorageaccount' 中的容器 'somecontainer' 可公開存取。 否則，指令碼會擲回「找不到」例外狀況而失敗。
 
 ### <a name="pass-parameters-to-the-add-azurermhdinsightscriptaction-cmdlet"></a>傳遞參數到 Add-AzureRmHDInsightScriptAction Cmdlet
 若要將多個參數傳遞至 Add-AzureRmHDInsightScriptAction cmdlet，您必須先格式化字串值以包含指令碼的所有參數。 例如：
 
-    "-CertifcateUri wasbs:///abc.pfx -CertificatePassword 123456 -InstallFolderName MyFolder"
+    "-CertifcateUri wasb:///abc.pfx -CertificatePassword 123456 -InstallFolderName MyFolder"
 
 或
 

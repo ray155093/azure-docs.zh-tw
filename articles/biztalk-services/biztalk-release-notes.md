@@ -14,13 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2016
 ms.author: deonhe
-translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: 84ad965ed6ef1711fda983220cf004fdd48d290d
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 18ed891a9bba2b4011d3492722a2366d96fb3c01
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
 # <a name="release-notes-for-azure-biztalk-services"></a>Azure BizTalk 服務的版本資訊
+
+> [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
+
 Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
 
 ## <a name="whats-new-in-the-november-update-of-biztalk-services"></a>BizTalk 服務 11 月份更新的新增功能
@@ -29,8 +34,8 @@ Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
 ## <a name="update-history"></a>更新歷程記錄
 ### <a name="october-update"></a>10 月更新
 * 支援組織帳戶：  
-  * **案例**︰您已使用 Microsoft 帳戶註冊 BizTalk 服務部署 (例如 user@live.com). 在此案例中，只有 Microsoft 帳戶使用者可以使用 BizTalk 服務入口網站來管理 BizTalk 服務。 無法使用組織帳戶。  
-  * **案例**：您已在 Azure Active Directory 中使用組織帳戶來註冊 BizTalk 服務部署 (例如 user@fabrikam.com 或 user@contoso.com). 在此案例中，只有相同組織內的 Azure Active Directory 使用者可以使用 BizTalk 服務入口網站來管理 BizTalk 服務。 無法使用 Microsoft 帳戶。  
+  * **情節**：您使用 Microsoft 帳戶註冊了 BizTalk 服務部署 (例如 user@live.com)。 在此情節中，只有 Microsoft 帳戶使用者可以使用 BizTalk 服務入口網站來管理 BizTalk 服務。 無法使用組織帳戶。  
+  * **情節**：您使用 Azure Active Directory 中的組織帳戶註冊了 BizTalk 服務部署 (例如 user@fabrikam.com 或 user@contoso.com)。 在此情節中，只有相同組織內的 Azure Active Directory 使用者可以使用 BizTalk 服務入口網站來管理 BizTalk 服務。 無法使用 Microsoft 帳戶。  
 * 當您在 Azure 傳統入口網站建立 BizTalk 服務時，您會自動在 BizTalk 服務入口網站中註冊。
   * **案例**：您第一次登入 Azure 傳統入口網站、建立 BizTalk 服務，然後選取 [管理]。 BizTalk 服務入口網站開啟時，BizTalk 服務自會動註冊，並且可用於您的部署。  
     請參閱 [在 BizTalk 服務入口網站註冊和更新 BizTalk 服務部署](https://msdn.microsoft.com/library/azure/hh689837.aspx)。  
@@ -134,7 +139,7 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 > 
 
 ### <a name="restarting-the-biztalk-adapter-service-web-site"></a>重新啟動 BizTalk Adapter Service 網站
-安裝 **BizTalk Adapter Service 執行階段***會在 IIS 中建立 **BizTalk Adapter Service** 網站，其中包含 **BAService** 應用程式。**BAService** 應用程式在內部使用轉送繫結，將內部部署服務端點的範圍延伸至雲端。 對於內部部署裝載的服務，只有當內部部署服務啟動時，對應的轉送端點才會註冊在服務匯流排上。  
+安裝 **BizTalk Adapter Service 執行階段*** 會在 IIS 中建立 **BizTalk Adapter Service** 網站，其中包含 **BAService** 應用程式。 **BAService** 應用程式在內部使用轉送繫結，將內部部署服務端點的範圍延伸至雲端。 對於內部部署裝載的服務，只有當內部部署服務啟動時，對應的轉送端點才會註冊在服務匯流排上。  
 
 如果您停止並啟動應用程式，自動啟動應用程式的設定不會有作用。 所以當 **BAService** 停止時，您一律必須改為重新啟動 **BizTalk Adapter Service** 網站。 請勿啟動或停止 **BAService** 應用程式。
 
@@ -170,7 +175,7 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 請考慮下列情況：  
 
 **案例 1：使用指紋型憑證來保護從橋接器到服務端點的訊息傳輸**  
- 假設您在 BizTalk 服務專案中使用指紋型憑證。 您在 BizTalk 服務入口網站中以相同名稱但不同指紋更新憑證，但未相應地更新 BizTalk 服務專案。 在這種情況下，橋接器可能會繼續處理訊息，因為較舊的憑證資料可能仍在通道快取中。 隨後，訊息處理就失敗。  
+假設您在 BizTalk 服務專案中使用指紋型憑證。 您在 BizTalk 服務入口網站中以相同名稱但不同指紋更新憑證，但未相應地更新 BizTalk 服務專案。 在這種情況下，橋接器可能會繼續處理訊息，因為較舊的憑證資料可能仍在通道快取中。 隨後，訊息處理就失敗。  
 
 **因應措施**：在 BizTalk 服務專案中更新憑證，並重新部署專案。  
 
@@ -218,10 +223,5 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 
 ### <a name="concepts"></a>概念
 [BizTalk 服務](https://msdn.microsoft.com/library/azure/hh689864.aspx)   
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

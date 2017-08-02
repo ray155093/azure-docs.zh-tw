@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 中搭配使用 Java 使用者定義函式 (UDF) 和 Hive | Microsoft Docs"
-description: "了解如何在 HDInsight 中從 Hive 建立及使用 Java 使用者定義函式 (UDF)。"
+title: "在 HDInsight 中搭配使用 Java 使用者定義函式 (UDF) 和 Hive - Azure | Microsoft Docs"
+description: "了解如何建立能配合 Hive 使用的以 Java 為基礎的使用者定義函式 (UDF)。 此範例 UDF 會將文字字串的資料表轉換成小寫。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -8,33 +8,33 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 8d4f8efe-2f01-4a61-8619-651e873c7982
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/04/2017
+ms.date: 06/26/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 229bebe16b619f61f2dd4acb73602b97e64cb294
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fe228ee8967c1d290e9bd515733d8207a721466
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
 # <a name="use-a-java-udf-with-hive-in-hdinsight"></a>在 HDInsight 中搭配使用 Java UDF 和 Hive
 
-了解如何建立能配合 Hive 使用的以 Java 為基礎的使用者定義函式 (UDF)。
+了解如何建立能配合 Hive 使用的以 Java 為基礎的使用者定義函式 (UDF)。 此範例中的 Java UDF 會將文字字串的資料表轉換成全部小寫。
 
 ## <a name="requirements"></a>需求
 
-* HDInsight 叢集 (Windows 或 Linux 型)。
+* HDInsight 叢集 
 
     > [!IMPORTANT]
-    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
-    本文件中的大部分步驟對這兩種叢集類型均有作用。 不過，用來將編譯之 UDF 上傳到叢集並予以執行的步驟僅供以 Linux 為基礎的叢集專用。 對於適用於 Windows 型叢集的資訊，本文件備有相關連結。
+    本文件中的大部分步驟適用於以 Windows 和 Linux 為基礎的叢集。 不過，用來將編譯之 UDF 上傳到叢集並予以執行的步驟僅供以 Linux 為基礎的叢集專用。 對於適用於 Windows 型叢集的資訊，本文件備有相關連結。
 
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/) 8 或更新版本 (或同等功能版本，例如 OpenJDK)
 
@@ -43,9 +43,9 @@ ms.lasthandoff: 05/18/2017
 * 文字編輯器或 Java IDE
 
     > [!IMPORTANT]
-    > 如果您使用 Linux 型 HDInsight 伺服器，但卻是在 Windows 用戶端上建立 Python 檔案，您就必須使用以 LF 做為行尾結束符號的編輯器。 如果您不確定編輯器是使用 LF 還是 CRLF，請參閱 [疑難排解](#troubleshooting) 一節，以了解有關使用公用程式來移除 HDInsight 叢集上 CR 字元的步驟。
+    > 如果您是在 Windows 用戶端上建立 Python 檔案，就必須使用以 LF 做為行尾結束符號的編輯器。 如果您不確定編輯器是使用 LF 或 CRLF，請參閱[疑難排解](#troubleshooting)一節，以了解有關移除 CR 字元的步驟。
 
-## <a name="create-an-example-udf"></a>建立範例 UDF
+## <a name="create-an-example-java-udf"></a>建立範例 Java UDF 
 
 1. 在命令列中，使用下列命令來建立新的 Maven 專案：
 
@@ -60,7 +60,7 @@ ms.lasthandoff: 05/18/2017
 
 2. 建立專案後，請刪除隨專案一同建立的 **exampleudf/src/test** 目錄。
 
-3. 開啟 **exampleudf/pom.xml**，以下文中的內容取代現有的 `<dependencies>` 項目︰
+3. 開啟 **exampleudf/pom.xml**，以下列 XML 取代現有的 `<dependencies>` 項目︰
 
     ```xml
     <dependencies>
@@ -81,7 +81,7 @@ ms.lasthandoff: 05/18/2017
 
     這些項目能指定 HDInsight 3.5 隨附之 Hadoop 和 Hive 的版本。 在 [HDInsight 元件版本設定](hdinsight-component-versioning.md) 文件中，您可以找到有關 HDInsight 隨附之 Hadoop 和 Hive 的版本資訊。
 
-    在檔案結尾處 `</project>` 之前新增 `<build>` 區段。 此區段應該包含下列項目：
+    在檔案結尾處 `</project>` 之前新增 `<build>` 區段。 此區段應該包含下列 XML：
 
     ```xml
     <build>
@@ -178,7 +178,7 @@ ms.lasthandoff: 05/18/2017
     mvn compile package
     ```
 
-    這會建置 UDF 並封裝成 **exampleudf/target/ExampleUDF-1.0-SNAPSHOT.jar**。
+    此命令會建置 UDF 並將它封裝到 `exampleudf/target/ExampleUDF-1.0-SNAPSHOT.jar` 檔案。
 
 2. 使用 `scp` 命令將檔案複製到 HDInsight 叢集。
 
@@ -186,7 +186,7 @@ ms.lasthandoff: 05/18/2017
     scp ./target/ExampleUDF-1.0-SNAPSHOT.jar myuser@mycluster-ssh.azurehdinsight
     ```
 
-    將 **myuser** 取代為叢集的 SSH 使用者帳戶。 將 **mycluster** 取代為叢集名稱。 如果您使用密碼來保護 SSH 帳戶，系統會提示您輸入密碼。 如果您使用憑證，可能需要使用 `-i` 參數來指定私密金鑰檔案。
+    將 `myuser` 取代為叢集的 SSH 使用者帳戶。 將 `mycluster` 取代為叢集名稱。 如果您使用密碼來保護 SSH 帳戶，系統會提示您輸入密碼。 如果您使用憑證，可能需要使用 `-i` 參數來指定私密金鑰檔案。
 
 3. 使用 SSH 連線到叢集。
 
@@ -228,7 +228,7 @@ ms.lasthandoff: 05/18/2017
     SELECT tolower(deviceplatform) FROM hivesampletable LIMIT 10;
     ```
 
-    此查詢會從資料表選取裝置平台 (Android、Windows、iOS 等)、將字串轉換為小寫，然後再加以顯示。 此輸出看起來類似下列。
+    此查詢會從資料表選取裝置平台 (Android、Windows、iOS 等)、將字串轉換為小寫，然後再加以顯示。 此輸出看起來類似下列文字：
 
         +----------+--+
         |   _c0    |

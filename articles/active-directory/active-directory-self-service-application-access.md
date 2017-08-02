@@ -3,7 +3,7 @@ title: "Azure Active Directory 的自助式應用程式存取和委派管理 | M
 description: "本文說明如何啟用 Azure Active Directory 的自助式應用程式存取和委派管理"
 services: active-directory
 documentationcenter: 
-author: asmalser-msft
+author: curtand
 manager: femila
 editor: 
 ms.assetid: 448a7fe8-a162-475e-9ba2-2e3ab59302bc
@@ -12,22 +12,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/23/2017
-ms.author: asmalser
-ms.translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 57093159c0b9c63b6e2dc0971e3aea645a33aa55
+ms.date: 07/13/2017
+ms.author: curtand
+ms.translationtype: HT
+ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
+ms.openlocfilehash: 1724376c55d196f1b2b0b82180e4f59432e506ed
 ms.contentlocale: zh-tw
-ms.lasthandoff: 12/08/2016
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="self-service-application-access-and-delegated-management-with-azure-active-directory"></a>Azure Active Directory 的自助式應用程式存取和委派管理
 為使用者啟用自助式功能是常見的企業 IT 案例。 許多使用者、許多應用程式，以及最有把握做出存取權授與決策的人員可能都不是目錄管理員。 通常決定誰可以存取應用程式的最佳人選是小組負責人或其他委派的系統管理員。 但是在一天結束時，這就是使用應用程式的使用者，而使用者知道他們需要什麼才能進行其作業。
 
-自助式應用程式存取是 [Azure Active Directory Premium](https://azure.microsoft.com/trial/get-started-active-directory/) 的一項功能，可讓目錄管理員：
+自助式應用程式存取是 [Azure Active Directory Premium](https://azure.microsoft.com/trial/get-started-active-directory/) P1 和 P2 授權的一項功能，可讓目錄管理員：
 
-* 使用 [Azure AD 存取面板](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)
+* 允許使用者使用 [Azure AD 存取面板](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)中的 [取得更多應用程式] 圖格來要求應用程式的存取權
 * 設定使用者可以要求存取哪些應用程式
 * 設定使用者是否需要竟過核准，才能夠自我分派應用程式的存取權
 * 設定誰應該核准要求及管理每個應用程式的存取權

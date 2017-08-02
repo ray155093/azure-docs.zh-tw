@@ -1,6 +1,6 @@
 ---
 title: "Team Data Science Process 逐步解說 | Microsoft Docs"
-description: "這些逐步解說示範如何將雲端和內部部署工具與服務組合成工作流程或管線，以建立智慧型應用程式。"
+description: "這些逐步解說示範如何將雲端和內部部署工具及服務組合成工作流程或管線，以建立智慧型應用程式。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2017
 ms.author: bradsev
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
-ms.openlocfilehash: 6df3fc533b0c375cd85743a971c778071629bb7e
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 53fbfec76b7370ca972e4d637705f5f5a5cb27c5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/01/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
 # <a name="team-data-science-process-walkthroughs"></a>Team Data Science Process 逐步解說
-此處分項列出的**端對端逐步解說**，每一個都會示範 Team Data Science Process 針對**特定案例**的步驟。 這些逐步解說也示範如何將雲端、內部部署工具及服務，組合成工作流程或管線，以建立**智慧型應用程式**。 逐步解說是依據它們使用的**平台**來群組：Spark、HDInsight (Hadoop)、Azure Data Lake 及 SQL Server。
+此處分項列出的**端對端逐步解說**，每一個都會示範 Team Data Science Process 針對**特定案例**的步驟。 這些逐步解說說明如何將雲端、內部部署工具及服務組合成工作流程或管線，以建立「智慧型應用程式」。 逐步解說是依據它們使用的**平台**來群組：Spark、HDInsight (Hadoop)、Azure Data Lake 及 SQL Server。
 
 
 ## <a name="hdinsight-spark-using-pyspark-and-scala"></a>使用 PySpark 和 Scala 的 HDInsight Spark

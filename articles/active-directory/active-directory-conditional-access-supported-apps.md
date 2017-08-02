@@ -12,14 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 04/11/2017
+ms.date: 07/13/2017
 ms.author: markvi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: 40eb1d80830818a492c78d5091aaa9cca8d48f16
+ms.reviewer: calebb
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 38c8cb00b21416add28eeb06187b89f64518dc92
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
-
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="applications-and-browsers-that-use-conditional-access-rules-in-azure-active-directory"></a>在 Azure Active Directory 中使用條件式存取規則的應用程式和瀏覽器
@@ -38,21 +38,30 @@ Azure Active Directory (Azure AD) 連線應用程式、預先整合的同盟軟�
 
 下列應用程式支援 Office 365 和其他 Azure AD 連線服務應用程式的條件式存取︰
 
-| 目標服務 | 平台 | 應用程式 |
+
+| 目標服務| 平台| 應用程式 |
 | --- | --- | --- |
-| Office 365 Exchange Online |Windows 10 |郵件/行事曆/連絡人應用程式、Outlook 2016、Outlook 2013 (已啟用新式驗證)、商務用 Skype (採用新式驗證) |
-| Office 365 Exchange Online |Windows 8.1、Windows 7 |Outlook 2016、Outlook 2013 (已啟用新式驗證)、商務用 Skype (採用新式驗證) |
-| Office 365 Exchange Online |iOS、Android |Outlook 行動應用程式 |
-| Office 365 Exchange Online |Mac OS X |僅限 Multi-Factor Authentication/位置的 Outlook 2016；未來規劃的裝置型原則支援、未來規劃的商業用 Skype 支援 |
-| Office 365 SharePoint Online |Windows 10 |Office 2016 應用程式、通用 Office 應用程式、Office 2013 (具備新式驗證)、OneDrive 同步處理用戶端 (請參閱[附註](https://support.office.com/en-US/article/Azure-Active-Directory-conditional-access-with-the-OneDrive-sync-client-on-Windows-028d73d7-4b86-4ee0-8fb7-9a209434b04e))、預計未來提供的 Office Groups 支援、預計未來提供的 SharePoint 應用程式支援 |
-| Office 365 SharePoint Online |Windows 8.1、Windows 7 |Office 2016 應用程式、Office 2013 (具備新式驗證)、OneDrive 同步處理用戶端 (請參閱[附註](https://support.office.com/en-US/article/Azure-Active-Directory-conditional-access-with-the-OneDrive-sync-client-on-Windows-028d73d7-4b86-4ee0-8fb7-9a209434b04e)) |
-| Office 365 SharePoint Online |iOS、Android |Office 行動應用程式 |
-| Office 365 SharePoint Online |Mac OS X |僅限 Multi-Factor Authentication 和位置的 Office 2016 應用程式；未來規劃的裝置型原則支援 |
-| Office 365 Yammer |;針對未來所規劃的 Windows 10、iOS、Android 支援 |Office Yammer 應用程式 |
-| Dynamics CRM |Windows 10、Windows 8.1、Windows 7、iOS 和 Android |Dynamics CRM 應用程式 |
-| PowerBI service |Windows 10、Windows 8.1、Windows 7、iOS 和 Android |PowerBI 應用程式 |
-| Azure 遠端應用程式服務 |Windows 10、Windows 8.1、Windows 7、iOS、Android 和 Mac OS X |Azure 遠端應用程式 |
-| 任何 My Apps 應用程式服務 |Android 和 iOS |任何 My Apps 應用程式服務 |
+| 任何 My Apps 應用程式服務| Android 和 iOS| 應用程式的 MFA 和位置原則。 不支援裝置型原則。 |
+| Azure 遠端應用程式服務| Windows 10、Windows 8.1、Windows 7、iOS、Android 和 Mac OS X| Azure 遠端應用程式|
+| Dynamics CRM| Windows 10、Windows 8.1、Windows 7、iOS 和 Android| Dynamics CRM 應用程式|
+| Microsoft Teams| Windows 10、Windows 8.1、Windows 7、iOS/Android 和 MAC OSX| Microsoft Teams Services - 這會控制支援 Microsoft Teams 及其所有用戶端應用程式的所有服務 - Windows 桌面、MAC OS X、iOS、Android、WP 和 Web 用戶端|
+| Office 365 Exchange Online| Windows 10| 郵件/行事曆/連絡人應用程式、Outlook 2016、Outlook 2013 (已啟用新式驗證)、商務用 Skype (採用新式驗證)|
+| Office 365 Exchange Online| Windows 8.1、Windows 7| Outlook 2016、Outlook 2013 (已啟用新式驗證)、商務用 Skype (採用新式驗證)|
+| Office 365 Exchange Online| iOS| Outlook 行動應用程式|
+| Office 365 Exchange Online| Mac OS X| 僅限 Multi-Factor Authentication/位置的 Outlook 2016；未來規劃的裝置型原則支援、未來規劃的商業用 Skype 支援|
+| Office 365 SharePoint Online| Windows 10| Office 2016 應用程式、通用 Office 應用程式、Office 2013 (具備新式驗證)、OneDrive 同步處理用戶端 (請參閱[附註](https://support.office.com/en-US/article/Azure-Active-Directory-conditional-access-with-the-OneDrive-sync-client-on-Windows-028d73d7-4b86-4ee0-8fb7-9a209434b04e))、預計未來提供的 Office Groups 支援、預計未來提供的 SharePoint 應用程式支援|
+| Office 365 SharePoint Online| Windows 8.1、Windows 7| Office 2016 應用程式、Office 2013 (具備新式驗證)、OneDrive 同步處理用戶端 (請參閱[附註](https://support.office.com/en-US/article/Azure-Active-Directory-conditional-access-with-the-OneDrive-sync-client-on-Windows-028d73d7-4b86-4ee0-8fb7-9a209434b04e))|
+| Office 365 SharePoint Online| iOS、Android| Office 行動應用程式|
+| Office 365 SharePoint Online| Mac OS X| 僅限 Multi-Factor Authentication 和位置的 Office 2016 應用程式；未來規劃的裝置型原則支援|
+| Office 365 Yammer| Windows 10、iOS、Android| Office Yammer 應用程式|
+| PowerBI service| Windows 10、Windows 8.1、Windows 7 及 iOS| PowerBI 應用程式。 適用於 Android 的 Power BI 應用程式目前不支援裝置型條件式存取。|
+| Visual Studio Team Services| Windows 10、Windows 8.1、Windows 7、iOS 和 Android| Visual Studio Team Services 應用程式|
+
+
+
+
+
+
 
 ## <a name="applications-that-do-not-use-modern-authentication"></a>未使用新式驗證的應用程式
 目前，您必須使用其他方法來阻止存取未使用新式驗證的應用程式。 條件式存取不會強制執行未使用新式驗證之應用程式的存取規則。 這主要是 Exchange 和 SharePoint 存取的考量。 大部分舊版應用程式使用較舊的存取控制通訊協定。
@@ -60,7 +69,7 @@ Azure Active Directory (Azure AD) 連線應用程式、預先整合的同盟軟�
 ### <a name="control-access-in-office-365-sharepoint-online"></a>Office 365 SharePoint Online 中的控制存取
 您可以使用 Set-SPOTenant Cmdlet，停用 SharePoint 存取的舊版通訊協定。 利用這個 Cmdlet，阻止未使用新式驗證通訊協定的 Office 用戶端存取 SharePoint Online 資源。
 
-**範例命令**：    `Set-SPOTenant -LegacyAuthProtocolsEnabled $false`
+**範例命令**：`Set-SPOTenant -LegacyAuthProtocolsEnabled $false`
 
 ### <a name="control-access-in-office-365-exchange-online"></a>Office 365 Exchange Online 中的控制存取
 Exchange 提供兩個主要的通訊協定類別。 檢閱下列選項，然後選取最適合貴組織的原則。
@@ -113,12 +122,14 @@ Exchange 提供兩個主要的通訊協定類別。 檢閱下列選項，然後�
     => issue(Type = "http://schemas.microsoft.com/authorization/claims/permit", Value = "true");
 
 
-## <a name="supported-browsers"></a>支援的瀏覽器
+## <a name="supported-browsers-for-device-based-policies"></a>裝置型原則的支援瀏覽器 
+
+您只能取得針對 Azure AD 可以識別及驗證裝置時檢查裝置相容性和網域加入之裝置型原則的存取權。 大部分的檢查 (例如位置和 MFA) 是在大部分裝置和瀏覽器上運作，所以裝置原則需要以下所列的 OS 版本和瀏覽器。 當裝置原則已就緒，則會封鎖不受支援之瀏覽器或作業系統上的使用者存取。 
 
 | 作業系統                     | 瀏覽器                 | 支援     |
 | :--                    | :--                      | :-:         |
 | Win 10                 | IE、Edge                 | ![勾選][1] |
-| Win 10                 | Chrome                   | 敬請期待 |
+| Win 10                 | Chrome                   | 預覽     |
 | Win 8 / 8.1            | IE、Chrome               | ![勾選][1] |
 | Win 7                  | IE、Chrome               | ![勾選][1] |
 | iOS                    | Safari                   | ![勾選][1] |
@@ -131,10 +142,15 @@ Exchange 提供兩個主要的通訊協定類別。 檢閱下列選項，然後�
 | Mac OS                 | Safari                   | ![勾選][1] |
 | Mac OS                 | Chrome                   | 敬請期待 |
 
+> [!NOTE]
+> 針對 Chrome 支援，您必須使用 Windows 10 建立者更新，而且安裝可以在[這裡](https://chrome.google.com/webstore/detail/windows-10-accounts/ppnbnpeolgkicgegkbkbjmhlideopiji)找到的擴充功能。
+>
+>
 
 ## <a name="next-steps"></a>後續步驟
 
 如需詳細資訊，請參閱 [Azure Active Directory 中的條件式存取](active-directory-conditional-access.md)
+
 
 
 

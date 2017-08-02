@@ -13,231 +13,36 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 03/07/2017
+ms.date: 07/06/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 6552d590786859829597614d4b984f7798e38c94
-ms.lasthandoff: 04/03/2017
+ms.translationtype: HT
+ms.sourcegitcommit: d941879aee6042b38b7f5569cd4e31cb78b4ad33
+ms.openlocfilehash: e5c4785428b2150e951923e98079e00808a82d87
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/10/2017
 
 
 ---
-# <a name="create-a-complete-linux-environment-with-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立完整的 Linux 環境
-在這篇文章中，我們將建立一個簡單的網路，當中包含一個負載平衡器，以及一組對開發和簡單運算而言相當實用的 VM。 我們將以逐個命令的方式逐步完成程序命令，直到您具備兩個可供您透過網際網路從任何地方連線的有效、安全 Linux VM 為止。 然後您便可以繼續著手更複雜的網路和環境。 本文詳述如何使用 Azure CLI 2.0 來建置環境。 您也可以使用 [Azure CLI 1.0](create-cli-complete-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
-
-在過程中，您將了解 Resource Manager 部署模型提供給您的相依性階層，以及它提供多少功能。 在您了解系統建置的方式之後，您就可以使用 [Azure Resource Manager 範本](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)更快地建置系統。 此外，在您了解環境的組件彼此如何搭配運作之後，就可以更輕鬆地建立範本來將它們自動化。
-
-此環境包含：
-
-* 兩個位於可用性設定組內的 VM。
-* 一個在連接埠 80 有負載平衡規則的負載平衡器。
-* 可保護 VM 防止不必要流量的網路安全性群組 (NSG) 規則。
-
-![基本環境概觀](./media/create-cli-complete/environment_overview.png)
-
-## <a name="quick-commands"></a>快速命令
-如果您需要快速完成工作，下列章節詳細說明上傳 VM 至 Azure 的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，從[這裡](#detailed-walkthrough)開始。
-
-在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `myVM`。
-
-若要建立此自訂環境，您需要安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
-
-首先，使用 [az group create](/cli/azure/group#create)建立資源群組。 下列範例會在 `westeurope` 位置建立名為 `myResourceGroup` 的資源群組：
-
-```azurecli
-az group create --name myResourceGroup --location westeurope
-```
-
-下一個步驟為選用步驟。 使用 Azure CLI 2.0 建立 VM 時的預設動作是使用 Azure 受控磁碟。 如需 Azure 受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../../storage/storage-managed-disks-overview.md)。 如果您想改為使用非受控磁碟，您需要使用 [az storage account create](/cli/azure/storage/account#create) 建立儲存體帳戶。 下列範例會建立名為 `mystorageaccount` 的儲存體帳戶。 (儲存體帳戶名稱必須是唯一的，因此請提供您自己的唯一名稱。)
-
-```azurecli
-az storage account create --resource-group myResourceGroup --location westeurope \
-  --name mystorageaccount --kind Storage --sku Standard_LRS
-```
-
-使用 [az network vnet create](/cli/azure/network/vnet#create) 建立虛擬網路。 下列範例會建立名為 `myVnet` 的虛擬網路和名為 `mySubnet` 的子網路：
-
-```azurecli
-az network vnet create --resource-group myResourceGroup --location westeurope --name myVnet \
-  --address-prefix 192.168.0.0/16 --subnet-name mySubnet --subnet-prefix 192.168.1.0/24
-```
-
-使用 [az network public-ip create](/cli/azure/network/public-ip#create) 建立公用 IP。 下列範例會建立名為 `myPublicIP` 的公用 IP，DNS 名稱為`mypublicdns`。 (DNS 名稱必須是唯一的，因此請提供您自己的唯一名稱。)
-
-```azurecli
-az network public-ip create --resource-group myResourceGroup --location westeurope \
-  --name myPublicIP --dns-name mypublicdns --allocation-method static --idle-timeout 4
-```
-
-使用 [az network lb create](/cli/azure/network/lb#create)建立負載平衡器。 下列範例：
-
-- 建立名為 `myLoadBalancer` 的負載平衡器
-- 關聯公用 IP `myPublicIP`
-- 建立名為 `mySubnetPool` 的前端 IP 集區
-- 建立名為 `myBackEndPool` 的後端 IP 集區
-
-```azurecli
-az network lb create --resource-group myResourceGroup --location westeurope \
-  --name myLoadBalancer --public-ip-address myPublicIP \
-  --frontend-ip-name myFrontEndPool --backend-pool-name myBackEndPool
-```
-
-使用 [az network lb inbound-nat-rule create](/cli/azure/network/lb/inbound-nat-rule#create) 建立負載平衡器的 SSH 輸入網路位址轉譯 (NAT) 規則。 下列範例會建立兩個負載平衡器，`myLoadBalancerRuleSSH1` 和 `myLoadBalancerRuleSSH2`：
-
-```azurecli
-az network lb inbound-nat-rule create --resource-group myResourceGroup \
-  --lb-name myLoadBalancer --name myLoadBalancerRuleSSH1 --protocol tcp \
-  --frontend-port 4222 --backend-port 22 --frontend-ip-name myFrontEndPool
-az network lb inbound-nat-rule create --resource-group myResourceGroup \
-  --lb-name myLoadBalancer --name myLoadBalancerRuleSSH2 --protocol tcp \
-  --frontend-port 4223 --backend-port 22 --frontend-ip-name myFrontEndPool
-```
-
-使用 [az network lb probe create](/cli/azure/network/lb/probe#create)建立負載平衡器健全狀況探查。 下列範例會建立名為 `myHealthProbe` 的 TCP 探查：
-
-```azurecli
-az network lb probe create --resource-group myResourceGroup --lb-name myLoadBalancer \
-  --name myHealthProbe --protocol tcp --port 80 --interval 15 --threshold 4
-```
-
-使用 [az network lb rule create](/cli/azure/network/lb/rule#create) 建立負載平衡器的 Web 輸入 NAT 規則。 下列範例會建立名為 `myLoadBalancerRuleWeb` 的負載平衡器規則，並將其與 `myHealthProbe` 探查相關聯：
-
-```azurecli
-az network lb rule create --resource-group myResourceGroup --lb-name myLoadBalancer \
-  --name myLoadBalancerRuleWeb --protocol tcp --frontend-port 80 --backend-port 80 \
-  --frontend-ip-name myFrontEndPool --backend-pool-name myBackEndPool \
-  --probe-name myHealthProbe
-```
-
-使用 [az network lb show](/cli/azure/network/lb#show) 確認負載平衡器、IP 集區，以及 NAT 規則：
-
-```azurecli
-az network lb show --resource-group myResourceGroup --name myLoadBalancer
-```
-
-使用 [az network nsg create](/cli/azure/network/nsg#create) 建立網路安全性群組。 下列範例會建立名為 `myNetworkSecurityGroup` 的網路安全性群組：
-
-```azurecli
-az network nsg create --resource-group myResourceGroup --location westeurope \
-  --name myNetworkSecurityGroup
-```
-
-使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create)新增兩個網路安全性群組的輸入規則。 下列範例會建立兩個規則，名為 `myNetworkSecurityGroupRuleSSH` 和 `myNetworkSecurityGroupRuleHTTP`：
-
-```azurecli
-az network nsg rule create --resource-group myResourceGroup \
-  --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRuleSSH \
-  --protocol tcp --direction inbound --priority 1000 --source-address-prefix '*' \
-  --source-port-range '*' --destination-address-prefix '*' --destination-port-range 22 \
-  --access allow
-az network nsg rule create --resource-group myResourceGroup \
-  --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRuleHTTP \
-  --protocol tcp --direction inbound --priority 1001 --source-address-prefix '*' \
-  --source-port-range '*' --destination-address-prefix '*' --destination-port-range 80 \
-  --access allow
-```
-
-使用 [az network nic create](/cli/azure/network/nic#create)建立第一個網路介面卡 (NIC)。 下列範例會建立名為`myNic1` 的 NIC，並將它附加至負載平衡器 `myLoadBalancer` 和適當集區，並也將其附加至 `myNetworkSecurityGroup`：
-
-```azurecli
-az network nic create --resource-group myResourceGroup --location westeurope --name myNic1 \
-  --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup \
-  --lb-name myLoadBalancer --lb-address-pools myBackEndPool \
-  --lb-inbound-nat-rules myLoadBalancerRuleSSH1
-```
-
-再次使用 **az network nic create**建立第二個 NIC。 下列範例會建立名為 `myNic2` 的 NIC：
-
-```azurecli
-az network nic create --resource-group myResourceGroup --location westeurope --name myNic2 \
-  --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup \
-  --lb-name myLoadBalancer --lb-address-pools myBackEndPool \
-  --lb-inbound-nat-rules myLoadBalancerRuleSSH2
-```
-
-使用 [az vm availability-set create](/cli/azure/vm/availability-set#create)建立可用性設定組。 下列範例會建立名為 `myAvailabilitySet` 的可用性設定組：
-
-```azurecli
-az vm availability-set create --resource-group myResourceGroup --location westeurope \
-  --name myAvailabilitySet \
-  --platform-fault-domain-count 3 --platform-update-domain-count 2
-```
-
-使用 [az vm create](/cli/azure/vm#create)建立第一個 Linux VM。 下列範例使用 Azure 受控磁碟建立名為 `myVM1` 的 VM。 如果您想要使用非受控磁碟，請參閱下列其他附註。
-
-```azurecli
-az vm create \
-    --resource-group myResourceGroup \
-    --name myVM1 \
-    --location westeurope \
-    --availability-set myAvailabilitySet \
-    --nics myNic1 \
-    --image UbuntuLTS \
-    --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username azureuser
-```
-
-如果您使用 Azure 受控磁碟，請略過此步驟。 如果您想使用非受控磁碟，且您已在先前步驟中建立儲存體帳戶，您必須將一些其他參數新增至後續命令。 將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟： 
-
-```azurecli
-  --use-unmanaged-disk \
-  --storage-account mystorageaccount
-```
-
-再次使用 **az vm create** 建立第二個 Linux VM。 下列範例會建立名為 `myVM2` 的 VM：
-
-```azurecli
-az vm create \
-    --resource-group myResourceGroup \
-    --name myVM2 \
-    --location westeurope \
-    --availability-set myAvailabilitySet \
-    --nics myNic2 \
-    --image UbuntuLTS \
-    --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username azureuser
-```
-
-此外，如果您未使用預設 Azure 受控磁碟，將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟：
-
-```azurecli
-  --use-unmanaged-disk \
-  --storage-account mystorageaccount
-``` 
-
-確認已使用 [az vm show](/cli/azure/vm#show)正確建置的一切：
-
-```azurecli
-az vm show --resource-group myResourceGroup --name myVM1
-az vm show --resource-group myResourceGroup --name myVM2
-```
-
-使用 [az group export](/cli/azure/group#export) 將您的新環境匯出成範本，以便快速重新建立新的執行個體：
-
-```azurecli
-az group export --name myResourceGroup > myResourceGroup.json
-```
-
-## <a name="detailed-walkthrough"></a>詳細的逐步解說
-接下來的詳細步驟將說明您建置環境時每個命令的功能。 當您建置自己的自訂開發環境或生產環境時，這些概念會相當有用。
+# <a name="create-a-complete-linux-virtual-machine-with-the-azure-cli"></a>使用 Azure CLI 來建立完整的 Linux 虛擬機器
+若要在 Azure 中快速建立虛擬機器 (VM)，您可以使用單一的 Azure CLI 命令，此命令會使用預設值來建立任何必要的支援資源。 系統會自動建立虛擬網路、公用 IP 位址及網路安全性群組規則等資源。 若要在生產環境使用案例中對您的環境進行更多控制，您可以預先建立這些資源，然後再將 VM 新增到這些資源中。 本文將引導您了解如何建立 VM 及逐一建立每個支援資源。
 
 請確定您已安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
-在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `myVM`。
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 *myResourceGroup*、*myVnet* 和 *myVM*。
 
-## <a name="create-resource-groups-and-choose-deployment-locations"></a>建立資源群組並選擇部署位置
-Azure 資源群組是邏輯部署實體，當中包含用來啟用資源部署邏輯管理的組態資訊和中繼資料。 使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 `westeurope` 位置建立名為 `myResourceGroup` 的資源群組：
+## <a name="create-resource-group"></a>建立資源群組
+Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 您必須在建立虛擬機器和支援虛擬網路支援之前，先建立資源群組。 使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組：
 
 ```azurecli
-az group create --name myResourceGroup --location westeurope
+az group create --name myResourceGroup --location eastus
 ```
 
-根據預設，輸出是 JSON (JavaScript 物件標記法)。 例如，若要輸出為清單或資料表，請使用 [az configure --output](/cli/azure/#configure)。 您也可以將 `--output` 新增到任何命令，以輸出格式進行一次變更。 下列範例顯示來自 **az group create** 命令的 JSON 輸出：
+Azure CLI 命令的輸出預設是採用 JSON (JavaScript 物件標記法) 格式。 舉例來說，若要將預設輸出變更為清單或資料表，請使用 [az configure --output](/cli/azure/#configure)。 您也可以將 `--output` 新增到任何命令，以輸出格式進行一次變更。 下列範例顯示來自 `az group create` 命令的 JSON 輸出：
 
 ```json                       
 {
   "id": "/subscriptions/guid/resourceGroups/myResourceGroup",
-  "location": "westeurope",
+  "location": "eastus",
   "name": "myResourceGroup",
   "properties": {
     "provisioningState": "Succeeded"
@@ -246,98 +51,19 @@ az group create --name myResourceGroup --location westeurope
 }
 ```
 
-## <a name="create-a-storage-account"></a>建立儲存體帳戶
-下一個步驟為選用步驟。 使用 Azure CLI 2.0 建立 VM 時的預設動作是使用 Azure 受控磁碟。 這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需 Azure 受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../../storage/storage-managed-disks-overview.md)。 如果您想要使用 Azure 受控磁碟，請跳至[建立虛擬網路和子網路](#create-a-virtual-network-and-subnet)。 
-
-如果您想使用非受控磁碟，您必須針對您的 VM 磁碟和任何您想要新增的其他資料磁碟，建立儲存體帳戶。
-
-在這裡，我們使用 [az storage account create](/cli/azure/storage/account#create) 命令，其中會傳遞帳戶的位置、控制它的資源群組，以及您想要的儲存體支援類型。 下列範例會建立名為 `mystorageaccount` 的儲存體帳戶：
-
-```azurecli
-az storage account create --resource-group myResourceGroup --location westeurope \
-  --name mystorageaccount --kind Storage --sku Standard_LRS
-```
-
-輸出：
-
-```json
-{
-  "accessTier": null,
-  "creationTime": "2016-12-07T17:59:50.090092+00:00",
-  "customDomain": null,
-  "encryption": null,
-  "id": "/subscriptions/guid/resourceGroups/myresourcegroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
-  "kind": "Storage",
-  "lastGeoFailoverTime": null,
-  "location": "westeurope",
-  "name": "mystorageaccount",
-  "primaryEndpoints": {
-    "blob": "https://mystorageaccount.blob.core.windows.net/",
-    "file": "https://mystorageaccount.file.core.windows.net/",
-    "queue": "https://mystorageaccount.queue.core.windows.net/",
-    "table": "https://mystorageaccount.table.core.windows.net/"
-  },
-  "primaryLocation": "westeurope",
-  "provisioningState": "Succeeded",
-  "resourceGroup": "myresourcegroup",
-  "secondaryEndpoints": null,
-  "secondaryLocation": null,
-  "sku": {
-    "name": "Standard_LRS",
-    "tier": "Standard"
-  },
-  "statusOfPrimary": "Available",
-  "statusOfSecondary": null,
-  "tags": {},
-  "type": "Microsoft.Storage/storageAccounts"
-}
-```
-
-若要使用 CLI 來調查儲存體帳戶，您必須先設定帳戶名稱和金鑰。 使用 [az storage account show-connection-string](/cli/azure/storage/account#show-connection-string)。 以您選擇的名稱取代下列範例中的儲存體帳戶名稱︰
-
-```bash
-export AZURE_STORAGE_CONNECTION_STRING="$(az storage account show-connection-string --resource-group myResourceGroup --name mystorageaccount --query connectionString)"
-```
-
-然後您可以使用 [az storage container list](/cli/azure/storage/container#list)檢視儲存體資訊：
-
-```azurecli
-az storage container list
-```
-
-輸出：
-
-```azurecli
-[
-  {
-    "metadata": null,
-    "name": "vhds",
-    "properties": {
-      "etag": "\"0x8D41F912D472F94\"",
-      "lastModified": "2016-12-08T17:39:35+00:00",
-      "lease": {
-        "duration": null,
-        "state": null,
-        "status": null
-      },
-      "leaseDuration": "infinite",
-      "leaseState": "leased",
-      "leaseStatus": "locked"
-    }
-  }
-]
-```
-
 ## <a name="create-a-virtual-network-and-subnet"></a>建立虛擬網路和子網路
-接著，您將需要建立一個在 Azure 中執行的虛擬網路，以及一個可供您建立 VM 的子網路。 下列範例會使用 [az network vnet create](/cli/azure/network/vnet#create) 建立名為 `myVnet` 與 `192.168.0.0/16` 位址首碼的虛擬網路，以及名為 `mySubnet` 與位址首碼為`192.168.1.0/24`的子網路：
+接著，您需在 Azure 中建立一個虛擬網路，以及一個可供您建立 VM 的子網路。 請使用 [az network vnet create](/cli/azure/network/vnet#create) 來建立一個名為 *myVnet* 且位址首碼為 *192.168.0.0/16* 的虛擬網路。 您還需新增一個名為 *mySubnet* 且位址首碼為 *192.168.1.0/24* 的子網路：
 
 ```azurecli
-az network vnet create --resource-group myResourceGroup --location westeurope \
-  --name myVnet --address-prefix 192.168.0.0/16 \
-  --subnet-name mySubnet --subnet-prefix 192.168.1.0/24
+az network vnet create \
+    --resource-group myResourceGroup \
+    --name myVnet \
+    --address-prefix 192.168.0.0/16 \
+    --subnet-name mySubnet \
+    --subnet-prefix 192.168.1.0/24
 ```
 
-輸出會將子網路顯示為在虛擬網路內邏輯建立︰
+輸出會將子網路顯示為以邏輯方式建立在虛擬網路內︰
 
 ```json
 {
@@ -351,7 +77,7 @@ az network vnet create --resource-group myResourceGroup --location westeurope \
   },
   "etag": "W/\"e95496fc-f417-426e-a4d8-c9e4d27fc2ee\"",
   "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet",
-  "location": "westeurope",
+  "location": "eastus",
   "name": "myVnet",
   "provisioningState": "Succeeded",
   "resourceGroup": "myResourceGroup",
@@ -378,11 +104,13 @@ az network vnet create --resource-group myResourceGroup --location westeurope \
 
 
 ## <a name="create-a-public-ip-address"></a>建立公用 IP 位址
-現在，讓我們建立將指派給您負載平衡器的公用 IP 位址 (PIP)。 它可讓您使用 [az network public-ip create](/cli/azure/network/public-ip#create) 命令從網際網路連線到您的 VM。 由於預設位址是動態位址，因此我們將使用 `--domain-name-label` 選項在 **cloudapp.azure.com** 網域中建立具名的 DNS 項目。 下列範例會建立名為 `myPublicIP` 的公用 IP，DNS 名稱為`mypublicdns`。 因為 DNS 名稱必須是唯一的，因此請提供您自己的唯一 DNS 名稱︰
+現在，讓我們使用 [az network public-ip create](/cli/azure/network/public-ip#create) 來建立公用 IP 位址。 此公用 IP 位址可讓您從網際網路連線至 VM。 由於預設位址是動態位址，因此我們也會使用 `--domain-name-label` 選項來建立具名的 DNS 項目。 下列範例會建立名為 *myPublicIP* 的公用 IP，其 DNS 名稱為 *mypublicdns*。 由於 DNS 名稱必須是唯一的，因此請提供您自己的唯一 DNS 名稱︰
 
 ```azurecli
-az network public-ip create --resource-group myResourceGroup --location westeurope \
-  --name myPublicIP --dns-name mypublicdns --allocation-method static --idle-timeout 4
+az network public-ip create \
+    --resource-group myResourceGroup \
+    --name myPublicIP \
+    --dns-name mypublicdns
 ```
 
 輸出：
@@ -392,367 +120,62 @@ az network public-ip create --resource-group myResourceGroup --location westeuro
   "publicIp": {
     "dnsSettings": {
       "domainNameLabel": "mypublicdns",
-      "fqdn": "mypublicdns.westeurope.cloudapp.azure.com",
-      "reverseFqdn": ""
+      "fqdn": "mypublicdns.eastus.cloudapp.azure.com",
+      "reverseFqdn": null
     },
+    "etag": "W/\"2632aa72-3d2d-4529-b38e-b622b4202925\"",
+    "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP",
     "idleTimeoutInMinutes": 4,
-    "ipAddress": "52.174.48.109",
+    "ipAddress": null,
+    "ipConfiguration": null,
+    "location": "eastus",
+    "name": "myPublicIP",
     "provisioningState": "Succeeded",
-    "publicIPAllocationMethod": "Static",
-    "resourceGuid": "78218510-ea54-42d7-b2c2-44773fc14af5"
+    "publicIpAddressVersion": "IPv4",
+    "publicIpAllocationMethod": "Dynamic",
+    "resourceGroup": "myResourceGroup",
+    "resourceGuid": "4c65de38-71f5-4684-be10-75e605b3e41f",
+    "tags": null,
+    "type": "Microsoft.Network/publicIPAddresses"
   }
 }
 ```
 
-公用 IP 位址資源已經以邏輯方式配置，但尚未指派特定位址。 若要取得 IP 位址，您將需要一個負載平衡器，而我們尚未建立此負載平衡器。
 
-## <a name="create-a-load-balancer-and-ip-pools"></a>建立負載平衡器和 IP 集區
-在建立負載平衡器的情況下，您將可以把流量分散到多個 VM。 它也會藉由執行多個 VM 以在進行維護或發生大量負載時回應使用者要求，為您的應用程式提供備援。 下列範例會使用 [az network lb create](/cli/azure/network/lb#create) 建立名為 `myLoadBalancer`的負載平衡器、名為 `myFrontEndPool`的前端 IP 集區，並連結 `myPublicIP` 資源：
-
-```azurecli
-az network lb create --resource-group myResourceGroup --location westeurope \
-  --name myLoadBalancer --public-ip-address myPublicIP --frontend-ip-name myFrontEndPool
-```
-
-輸出：
-
-```json
-{
-  "loadBalancer": {
-    "backendAddressPools": [
-      {
-        "etag": "W/\"7a05df7a-5ee2-4581-b411-4b6f048ab291\"",
-        "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/backendAddressPools/myLoadBalancerbepool",
-        "name": "myLoadBalancerbepool",
-        "properties": {
-          "provisioningState": "Succeeded"
-        },
-        "resourceGroup": "myResourceGroup"
-      }
-    ],
-    "frontendIPConfigurations": [
-      {
-        "etag": "W/\"7a05df7a-5ee2-4581-b411-4b6f048ab291\"",
-        "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/frontendIPConfigurations/myFrontEndPool",
-        "name": "myFrontEndPool",
-        "properties": {
-          "privateIPAllocationMethod": "Dynamic",
-          "provisioningState": "Succeeded",
-          "publicIPAddress": {
-            "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP",
-            "resourceGroup": "myResourceGroup"
-          }
-        },
-        "resourceGroup": "myResourceGroup"
-      }
-    ],
-    "inboundNatPools": [],
-    "inboundNatRules": [],
-    "loadBalancingRules": [],
-    "outboundNatRules": [],
-    "probes": [],
-    "provisioningState": "Succeeded",
-    "resourceGuid": "f4879d84-5ae8-4e06-8b9b-1419baa875d9"
-  }
-}
-```
-
-請注意我們如何使用 `--public-ip-address` 參數來傳入我們稍早建立的 `myPublicIP`。 將公用 IP 位址指派給負載平衡器可讓您透過網際網路連線到您的 VM。
-
-我們將使用後端集區作為我們 VM 要連接的位置。 這樣一來，流量便可以經由負載平衡器流向 VM。 讓我們使用 [az network lb address-pool create](/cli/azure/network/lb/address-pool#create) 建立後端流量的 IP 集區。 下列範例會建立名為 `myBackEndPool` 的後端集區：
+## <a name="create-a-network-security-group"></a>建立網路安全性群組
+若要控制進出 VM 的流量，請建立網路安全性群組。 網路安全性群組可以套用至 NIC 或子網路。 下列範例會使用 [az network nsg create](/cli/azure/network/nsg#create) 來建立名為 *myNetworkSecurityGroup* 的網路安全性群組：
 
 ```azurecli
-az network lb address-pool create --resource-group myResourceGroup \
-  --lb-name myLoadBalancer --name myBackEndPool
+az network nsg create \
+    --resource-group myResourceGroup \
+    --name myNetworkSecurityGroup
 ```
 
-摘錄的輸出︰
-
-```json
-  "backendAddressPools": [
-    {
-      "backendIpConfigurations": null,
-      "etag": "W/\"a61814bc-ce4c-4fb2-9d6a-5b1949078345\"",
-      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/backendAddressPools/myLoadBalancerbepool",
-      "loadBalancingRules": null,
-      "name": "myLoadBalancerbepool",
-      "outboundNatRule": null,
-      "provisioningState": "Succeeded",
-      "resourceGroup": "myResourceGroup"
-    },
-    {
-      "backendIpConfigurations": null,
-      "etag": "W/\"a61814bc-ce4c-4fb2-9d6a-5b1949078345\"",
-      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/backendAddressPools/myBackEndPool",
-      "loadBalancingRules": null,
-      "name": "myBackEndPool",
-      "outboundNatRule": null,
-      "provisioningState": "Succeeded",
-      "resourceGroup": "myResourceGroup"
-    }
-  ],
-  "etag": "W/\"a61814bc-ce4c-4fb2-9d6a-5b1949078345\"",
-```
-
-
-## <a name="create-load-balancer-nat-rules"></a>建立負載平衡器 NAT 規則
-若要讓流量流經負載平衡器，我們需要建立指定輸入或輸出動作的網路位址轉譯 (NAT) 規則。 您可以指定要使用的通訊協定，然後依需要將外部連接埠對應到內部連接埠。 在我們的環境中，使用 [az network lb inbound-nat-rule create](/cli/azure/network/lb/inbound-nat-rule#create) 建立一些規則以允許 SSH 透過負載平衡器流向 VM。 我們將設定 TCP 連接埠 4222 和 4223 以導向 VM 上的 TCP 連接埠 22 (我們會在稍後建立)。 下列範例會建立名為 `myLoadBalancerRuleSSH1` 的規則以將 TCP 連接埠 4222 對應至連接埠 22：
+您需定義允許或拒絕特定流量的規則。 若要允許連接埠 22 上的輸入連線 (以支援 SSH)，請使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 來建立網路安全性群組的輸入規則。 下列範例會建立名為 myNetworkSecurityGroupRuleSSH 的規則：
 
 ```azurecli
-az network lb inbound-nat-rule create --resource-group myResourceGroup \
-  --lb-name myLoadBalancer --name myLoadBalancerRuleSSH1 --protocol tcp \
-  --frontend-port 4222 --backend-port 22 --frontend-ip-name myFrontEndPool
+az network nsg rule create \
+    --resource-group myResourceGroup \
+    --nsg-name myNetworkSecurityGroup \
+    --name myNetworkSecurityGroupRuleSSH \
+    --protocol tcp \
+    --priority 1000 \
+    --destination-port-range 22 \
+    --access allow
 ```
 
-輸出：
-
-```json
-{
-  "backendIpConfiguration": null,
-  "backendPort": 22,
-  "enableFloatingIp": false,
-  "etag": "W/\"72843cf8-b5fb-4655-9ac8-9cbbbbf1205a\"",
-  "frontendIpConfiguration": {
-    "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/frontendIPConfigurations/myFrontEndPool",
-    "resourceGroup": "myResourceGroup"
-  },
-  "frontendPort": 4222,
-  "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/inboundNatRules/myLoadBalancerRuleSSH1",
-  "idleTimeoutInMinutes": 4,
-  "name": "myLoadBalancerRuleSSH1",
-  "protocol": "Tcp",
-  "provisioningState": "Succeeded",
-  "resourceGroup": "myResourceGroup"
-}
-```
-
-針對進行 SSH 的第二個 NAT 規則，重複此程序。 下列範例會建立名為 `myLoadBalancerRuleSSH2` 的規則以將 TCP 連接埠 4223 對應至連接埠 22：
+若要允許連接埠 80 上的輸入連線 (以支援 Web 流量)，請新增另一個網路安全性群組規則。 下列範例會建立一個名為 *myNetworkSecurityGroupRuleHTTP* 的規則：
 
 ```azurecli
-az network lb inbound-nat-rule create --resource-group myResourceGroup \
-  --lb-name myLoadBalancer --name myLoadBalancerRuleSSH2 --protocol tcp \
-  --frontend-port 4223 --backend-port 22 --frontend-ip-name myFrontEndPool
+az network nsg rule create \
+    --resource-group myResourceGroup \
+    --nsg-name myNetworkSecurityGroup \
+    --name myNetworkSecurityGroupRuleWeb \
+    --protocol tcp \
+    --priority 1001 \
+    --destination-port-range 80 \
+    --access allow
 ```
-
-## <a name="create-a-load-balancer-health-probe"></a>建立負載平衡器健全狀況探查
-健全狀況探查會定期檢查受負載平衡器保護的 VM，以確定它們依定義的方式運作及回應要求。 否則，就從將它們從作業中移除，以確保不會將使用者導向到它們。 您可以定義健全狀況探查的自訂檢查，以及間隔和逾時值。 如需有關健全狀況探查的詳細資訊，請參閱 [負載平衡器探查](../../load-balancer/load-balancer-custom-probe-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 下列範例會使用 [az network lb probe create](/cli/azure/network/lb/probe#create) 建立名為 `myHealthProbe` 的 TCP 健全狀況探查：
-
-```azurecli
-az network lb probe create --resource-group myResourceGroup --lb-name myLoadBalancer \
-  --name myHealthProbe --protocol tcp --port 80 --interval 15 --threshold 4
-```
-
-輸出：
-
-```json
-{
-  "etag": "W/\"757018f6-b70a-4651-b717-48b511d82ba0\"",
-  "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/probes/myHealthProbe",
-  "intervalInSeconds": 15,
-  "loadBalancingRules": null,
-  "name": "myHealthProbe",
-  "numberOfProbes": 4,
-  "port": 80,
-  "protocol": "Tcp",
-  "provisioningState": "Succeeded",
-  "requestPath": null,
-  "resourceGroup": "myResourceGroup"
-}
-```
-
-在這裡，我們指定了 15 秒的健全狀況檢查間隔。 最多可錯過 4 次探查 (1 分鐘)，負載平衡器才會將該主機視為已不再運作。
-
-讓我們繼續進行，並針對 web 流量建立 TCP 連接埠 80 的 NAT 規則，以將規則連結到我們的 IP 集區。 如果我們將規則連結到 IP 集區，而不是將規則個別連結到 VM，則我們可在 IP 集區中新增或移除 VM。 負載平衡器會自動調整流量的流動。 下列範例會使用 [az network lb rule create](/cli/azure/network/lb/rule#create) 來建立名為 `myLoadBalancerRuleWeb` 的規則，將 TCP 連接埠 80 對應至連接埠 80，並連結名為 `myHealthProbe` 的健全狀況探查：
-
-```azurecli
-az network lb rule create --resource-group myResourceGroup --lb-name myLoadBalancer \
-  --name myLoadBalancerRuleWeb --protocol tcp --frontend-port 80 --backend-port 80 \
-  --frontend-ip-name myFrontEndPool --backend-pool-name myBackEndPool \
-  --probe-name myHealthProbe
-```
-
-輸出：
-
-```json
-{
-  "backendAddressPool": {
-    "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/backendAddressPools/myBackEndPool",
-    "resourceGroup": "myResourceGroup"
-  },
-  "backendPort": 80,
-  "enableFloatingIp": false,
-  "etag": "W/\"f0d77680-bf42-4d11-bfab-5d2c541bee56\"",
-  "frontendIpConfiguration": {
-    "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/frontendIPConfigurations/myFrontEndPool",
-    "resourceGroup": "myResourceGroup"
-  },
-  "frontendPort": 80,
-  "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/loadBalancingRules/myLoadBalancerRuleWeb",
-  "idleTimeoutInMinutes": 4,
-  "loadDistribution": "Default",
-  "name": "myLoadBalancerRuleWeb",
-  "probe": {
-    "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/probes/myHealthProbe",
-    "resourceGroup": "myResourceGroup"
-  },
-  "protocol": "Tcp",
-  "provisioningState": "Succeeded",
-  "resourceGroup": "myResourceGroup"
-}
-```
-
-## <a name="verify-the-load-balancer"></a>確認負載平衡器
-現在，負載平衡器設定已完成。 以下是您所採取的步驟：
-
-1. 您建立了負載平衡器。
-2. 您建立了前端 IP 集區並為它指派公用 IP 位址。
-3. 您建立了 VM 可以連接的後端 IP 集區。
-4. 您建立了可允許透過 SSH 連接到 VM 以進行管理的 NAT 規則，以及可允許將 TCP 連接埠 80 用於 Web 應用程式的規則。
-5. 您新增了健全狀況探查來定期檢查 VM。 這個健全狀況探查可確保使用者不會嘗試存取已不再運作或提供內容的 VM。
-
-讓我們使用 [az network lb show](/cli/azure/network/lb#show) 檢閱您負載平衡器現在的樣子：
-
-```azurecli
-az network lb show --resource-group myResourceGroup --name myLoadBalancer
-```
-
-輸出：
-
-```json
-{
-  "backendAddressPools": [
-    {
-      "backendIpConfigurations": null,
-      "etag": "W/\"a0e313a1-6de1-48be-aeb6-df57188d708c\"",
-      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/backendAddressPools/myLoadBalancerbepool",
-      "loadBalancingRules": null,
-      "name": "myLoadBalancerbepool",
-      "outboundNatRule": null,
-      "provisioningState": "Succeeded",
-      "resourceGroup": "myResourceGroup"
-    },
-    {
-      "backendIpConfigurations": null,
-      "etag": "W/\"a0e313a1-6de1-48be-aeb6-df57188d708c\"",
-      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/backendAddressPools/myBackEndPool",
-      "loadBalancingRules": null,
-      "name": "myBackEndPool",
-      "outboundNatRule": null,
-      "provisioningState": "Succeeded",
-      "resourceGroup": "myResourceGroup"
-    }
-  ],
-  "etag": "W/\"a0e313a1-6de1-48be-aeb6-df57188d708c\"",
-  "frontendIpConfigurations": [
-    {
-      "etag": "W/\"a0e313a1-6de1-48be-aeb6-df57188d708c\"",
-      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/frontendIPConfigurations/LoadBalancerFrontEnd",
-      "inboundNatPools": null,
-      "inboundNatRules": null,
-      "loadBalancingRules": null,
-      "name": "LoadBalancerFrontEnd",
-      "outboundNatRules": null,
-      "privateIpAddress": null,
-      "privateIpAllocationMethod": "Dynamic",
-      "provisioningState": "Succeeded",
-      "publicIpAddress": {
-        "dnsSettings": null,
-        "etag": null,
-        "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/PublicIPmyLoadBalancer",
-        "idleTimeoutInMinutes": null,
-        "ipAddress": null,
-        "ipConfiguration": null,
-        "location": null,
-        "name": null,
-        "provisioningState": null,
-        "publicIpAddressVersion": null,
-        "publicIpAllocationMethod": null,
-        "resourceGroup": "myResourceGroup",
-        "resourceGuid": null,
-        "tags": null,
-        "type": null
-      },
-      "resourceGroup": "myResourceGroup",
-      "subnet": null
-    },
-    {
-      "etag": "W/\"a0e313a1-6de1-48be-aeb6-df57188d708c\"",
-      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/frontendIPConfigurations/myFrontEndPool",
-      "inboundNatPools": null,
-      "inboundNatRules": null,
-      "loadBalancingRules": null,
-      "name": "myFrontEndPool",
-      "outboundNatRules": null,
-      "privateIpAddress": null,
-      "privateIpAllocationMethod": "Dynamic",
-      "provisioningState": "Succeeded",
-      "publicIpAddress": {
-        "dnsSettings": null,
-        "etag": null,
-        "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP",
-        "idleTimeoutInMinutes": null,
-        "ipAddress": null,
-        "ipConfiguration": null,
-        "location": null,
-        "name": null,
-        "provisioningState": null,
-        "publicIpAddressVersion": null,
-        "publicIpAllocationMethod": null,
-        "resourceGroup": "myResourceGroup",
-        "resourceGuid": null,
-        "tags": null,
-        "type": null
-      },
-      "resourceGroup": "myResourceGroup",
-      "subnet": null
-    }
-  ],
-  "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer",
-  "inboundNatPools": [],
-  "inboundNatRules": [],
-  "loadBalancingRules": [],
-  "location": "westeurope",
-  "name": "myLoadBalancer",
-  "outboundNatRules": [],
-  "probes": [],
-  "provisioningState": "Succeeded",
-  "resourceGroup": "myResourceGroup",
-  "resourceGuid": "b5815801-b53d-4c22-aafc-2a9064f90f3c",
-  "tags": {},
-  "type": "Microsoft.Network/loadBalancers"
-}
-```
-
-## <a name="create-a-network-security-group-and-rules"></a>建立網路安全性群組和規則
-我們現在會建立網路安全性群組和管理 NIC 存取權的輸入規則。 網路安全性群組可以套用至 NIC 或子網路。 您要定義規則以控制進出 VM 的流量。 下列範例會使用 [az network nsg create](/cli/azure/network/nsg#create) 來建立名為 `myNetworkSecurityGroup` 的網路安全性群組：
-
-```azurecli
-az network nsg create --resource-group myResourceGroup --location westeurope \
-  --name myNetworkSecurityGroup
-```
-
-讓我們使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 新增 NSG 的輸入規則以允許連接埠 22 上的輸入連線 (以支援 SSH)。 下列範例會建立名為 `myNetworkSecurityGroupRuleSSH` 的規則以允許連接埠 22 上的 TCP︰
-
-```azurecli
-az network nsg rule create --resource-group myResourceGroup \
-  --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRuleSSH \
-  --protocol tcp --direction inbound --priority 1000 \
-  --source-address-prefix '*' --source-port-range '*' \
-  --destination-address-prefix '*' --destination-port-range 22 --access allow
-```
-
-現在讓我們加入 NSG 的輸入規則以允許連接埠 80 上的輸入連線 (以支援 web 流量)。 下列範例會建立名為 `myNetworkSecurityGroupRuleHTTP` 的規則以允許連接埠 80 上的 TCP︰
-
-```azurecli
-az network nsg rule create --resource-group myResourceGroup \
-  --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRuleHTTP \
-  --protocol tcp --direction inbound --priority 1001 \
-  --source-address-prefix '*' --source-port-range '*' \
-  --destination-address-prefix '*' --destination-port-range 80 --access allow
-```
-
-> [!NOTE]
-> 輸入規則是輸入網路連線的篩選器。 在此範例中，我們將 NSG 繫結至 VM 虛擬 NIC，這意謂著任何傳送給連接埠 22 的要求都會傳遞到 VM 上的 NIC。 這個輸入規則與網路連線相關，而不是與端點 (在傳統部署中會相關的對象) 相關。 若要開啟連接埠，您必須將 `--source-port-range` 保留設定為 '\*' (預設)，才能接受來自**「任何」**要求連接埠的輸入要求。 連接埠通常是動態的。
 
 使用 [az network nsg show](/cli/azure/network/nsg#show) 檢查網路安全性群組及規則：
 
@@ -771,7 +194,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "destinationAddressPrefix": "VirtualNetwork",
       "destinationPortRange": "*",
       "direction": "Inbound",
-      "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
+      "etag": "W/\"3371b313-ea9f-4687-a336-a8ebdfd80523\"",
       "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/defaultSecurityRules/AllowVnetInBound",
       "name": "AllowVnetInBound",
       "priority": 65000,
@@ -787,8 +210,8 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "destinationAddressPrefix": "*",
       "destinationPortRange": "*",
       "direction": "Inbound",
-      "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
-      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/defaultSecurityRules/AllowAzureLoadBalancerInBound",
+      "etag": "W/\"3371b313-ea9f-4687-a336-a8ebdfd80523\"",
+      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/defaultSecurityRules/AllowAzureLoadBalancerInBou
       "name": "AllowAzureLoadBalancerInBound",
       "priority": 65001,
       "protocol": "*",
@@ -803,7 +226,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "destinationAddressPrefix": "*",
       "destinationPortRange": "*",
       "direction": "Inbound",
-      "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
+      "etag": "W/\"3371b313-ea9f-4687-a336-a8ebdfd80523\"",
       "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/defaultSecurityRules/DenyAllInBound",
       "name": "DenyAllInBound",
       "priority": 65500,
@@ -819,7 +242,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "destinationAddressPrefix": "VirtualNetwork",
       "destinationPortRange": "*",
       "direction": "Outbound",
-      "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
+      "etag": "W/\"3371b313-ea9f-4687-a336-a8ebdfd80523\"",
       "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/defaultSecurityRules/AllowVnetOutBound",
       "name": "AllowVnetOutBound",
       "priority": 65000,
@@ -835,7 +258,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "destinationAddressPrefix": "Internet",
       "destinationPortRange": "*",
       "direction": "Outbound",
-      "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
+      "etag": "W/\"3371b313-ea9f-4687-a336-a8ebdfd80523\"",
       "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/defaultSecurityRules/AllowInternetOutBound",
       "name": "AllowInternetOutBound",
       "priority": 65001,
@@ -851,7 +274,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "destinationAddressPrefix": "*",
       "destinationPortRange": "*",
       "direction": "Outbound",
-      "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
+      "etag": "W/\"3371b313-ea9f-4687-a336-a8ebdfd80523\"",
       "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/defaultSecurityRules/DenyAllOutBound",
       "name": "DenyAllOutBound",
       "priority": 65500,
@@ -862,14 +285,14 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "sourcePortRange": "*"
     }
   ],
-  "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
+  "etag": "W/\"3371b313-ea9f-4687-a336-a8ebdfd80523\"",
   "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup",
-  "location": "westeurope",
+  "location": "eastus",
   "name": "myNetworkSecurityGroup",
   "networkInterfaces": null,
   "provisioningState": "Succeeded",
   "resourceGroup": "myResourceGroup",
-  "resourceGuid": "79c2c293-ee3e-4616-bf9c-4741ff1f708a",
+  "resourceGuid": "47a9964e-23a3-438a-a726-8d60ebbb1c3c",
   "securityRules": [
     {
       "access": "Allow",
@@ -877,11 +300,11 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "destinationAddressPrefix": "*",
       "destinationPortRange": "22",
       "direction": "Inbound",
-      "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
+      "etag": "W/\"9e344b60-0daa-40a6-84f9-0ebbe4a4b640\"",
       "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/securityRules/myNetworkSecurityGroupRuleSSH",
       "name": "myNetworkSecurityGroupRuleSSH",
       "priority": 1000,
-      "protocol": "tcp",
+      "protocol": "Tcp",
       "provisioningState": "Succeeded",
       "resourceGroup": "myResourceGroup",
       "sourceAddressPrefix": "*",
@@ -893,11 +316,11 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
       "destinationAddressPrefix": "*",
       "destinationPortRange": "80",
       "direction": "Inbound",
-      "etag": "W/\"2b656589-f332-4ba4-92f3-afb3be5c192c\"",
-      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/securityRules/myNetworkSecurityGroupRuleHTTP",
-      "name": "myNetworkSecurityGroupRuleHTTP",
+      "etag": "W/\"9e344b60-0daa-40a6-84f9-0ebbe4a4b640\"",
+      "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup/securityRules/myNetworkSecurityGroupRuleWeb",
+      "name": "myNetworkSecurityGroupRuleWeb",
       "priority": 1001,
-      "protocol": "tcp",
+      "protocol": "Tcp",
       "provisioningState": "Succeeded",
       "resourceGroup": "myResourceGroup",
       "sourceAddressPrefix": "*",
@@ -905,152 +328,202 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
     }
   ],
   "subnets": null,
-  "tags": {},
+  "tags": null,
   "type": "Microsoft.Network/networkSecurityGroups"
 }
 ```
 
-## <a name="create-an-nic-to-use-with-the-linux-vm"></a>建立要與 Linux VM 搭配使用的 NIC
-您可以透過程式設計方式提供 NIC，因為您可以將規則套用到 NIC 的使用上。 您也可以有多個 NIC。 在下列 [az network nic create](https://docs.microsoft.com/en-us/cli/azure/network/nic#create) 命令中，您會將 NIC 連結到負載後端 IP 集區，並將它與 NAT 規則建立關聯以允許 SSH 流量和網路安全性群組。
-
-下列範例會建立名為 `myNic1` 的 NIC：
+## <a name="create-a-virtual-nic"></a>建立虛擬 NIC
+虛擬網路介面卡 (NIC) 可透過程式設計方式供您使用，因為您可以將規則套用到 NIC 的使用上。 您也可以有多個 NIC。 在下列 [az network nic create](/cli/azure/network/nic#create) 命令中，您會建立一個名為 *myNic* 的 NIC，並將它與網路安全性群組建立關聯。 公用 IP 位址 *myPublicIP* 也會與虛擬 NIC 建立關聯。
 
 ```azurecli
-az network nic create --resource-group myResourceGroup --location westeurope --name myNic1 \
-  --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup \
-  --lb-name myLoadBalancer --lb-address-pools myBackEndPool \
-  --lb-inbound-nat-rules myLoadBalancerRuleSSH1
+az network nic create \
+    --resource-group myResourceGroup \
+    --name myNic \
+    --vnet-name myVnet \
+    --subnet mySubnet \
+    --public-ip-address myPublicIP \
+    --network-security-group myNetworkSecurityGroup
 ```
 
 輸出：
 
 ```json
 {
-  "newNIC": {
+  "NewNIC": {
     "dnsSettings": {
       "appliedDnsServers": [],
-      "dnsServers": []
+      "dnsServers": [],
+      "internalDnsNameLabel": null,
+      "internalDomainNameSuffix": "brqlt10lvoxedgkeuomc4pm5tb.bx.internal.cloudapp.net",
+      "internalFqdn": null
     },
-    "enableIPForwarding": false,
+    "enableAcceleratedNetworking": false,
+    "enableIpForwarding": false,
+    "etag": "W/\"04b5ab44-d8f4-422a-9541-e5ae7de8466d\"",
+    "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/myNic",
     "ipConfigurations": [
       {
-        "etag": "W/\"a76b5c0d-14e1-4a99-afd4-5cd8ac0465ca\"",
-        "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/myNic1/ipConfigurations/ipconfig1",
+        "applicationGatewayBackendAddressPools": null,
+        "etag": "W/\"04b5ab44-d8f4-422a-9541-e5ae7de8466d\"",
+        "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/myNic/ipConfigurations/ipconfig1",
+        "loadBalancerBackendAddressPools": null,
+        "loadBalancerInboundNatRules": null,
         "name": "ipconfig1",
-        "properties": {
-          "loadBalancerBackendAddressPools": [
-            {
-              "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/backendAddressPools/myBackEndPool",
-              "resourceGroup": "myResourceGroup"
-            }
-          ],
-          "loadBalancerInboundNatRules": [
-            {
-              "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/inboundNatRules/myLoadBalancerRuleSSH1",
-              "resourceGroup": "myResourceGroup"
-            }
-          ],
-          "primary": true,
-          "privateIPAddress": "192.168.1.4",
-          "privateIPAllocationMethod": "Dynamic",
-          "provisioningState": "Succeeded",
-          "subnet": {
-            "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet",
-            "resourceGroup": "myResourceGroup"
-          }
+        "primary": true,
+        "privateIpAddress": "192.168.1.4",
+        "privateIpAddressVersion": "IPv4",
+        "privateIpAllocationMethod": "Dynamic",
+        "provisioningState": "Succeeded",
+        "publicIpAddress": {
+          "dnsSettings": null,
+          "etag": null,
+          "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP",
+          "idleTimeoutInMinutes": null,
+          "ipAddress": null,
+          "ipConfiguration": null,
+          "location": null,
+          "name": null,
+          "provisioningState": null,
+          "publicIpAddressVersion": null,
+          "publicIpAllocationMethod": null,
+          "resourceGroup": "myResourceGroup",
+          "resourceGuid": null,
+          "tags": null,
+          "type": null
         },
-        "resourceGroup": "myResourceGroup"
+        "resourceGroup": "myResourceGroup",
+        "subnet": {
+          "addressPrefix": null,
+          "etag": null,
+          "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet",
+          "ipConfigurations": null,
+          "name": null,
+          "networkSecurityGroup": null,
+          "provisioningState": null,
+          "resourceGroup": "myResourceGroup",
+          "resourceNavigationLinks": null,
+          "routeTable": null
+        }
       }
     ],
+    "location": "eastus",
+    "macAddress": null,
+    "name": "myNic",
     "networkSecurityGroup": {
+      "defaultSecurityRules": null,
+      "etag": null,
       "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNetworkSecurityGroup",
-      "resourceGroup": "myResourceGroup"
+      "location": null,
+      "name": null,
+      "networkInterfaces": null,
+      "provisioningState": null,
+      "resourceGroup": "myResourceGroup",
+      "resourceGuid": null,
+      "securityRules": null,
+      "subnets": null,
+      "tags": null,
+      "type": null
     },
+    "primary": null,
     "provisioningState": "Succeeded",
-    "resourceGuid": "838977cb-cf4b-4c4a-9a32-0ddec7dc818b"
+    "resourceGroup": "myResourceGroup",
+    "resourceGuid": "b3dbaa0e-2cf2-43be-a814-5cc49fea3304",
+    "tags": null,
+    "type": "Microsoft.Network/networkInterfaces",
+    "virtualMachine": null
   }
 }
 ```
 
-現在，我們將建立的第二個 NIC，其中會再次將它連結到我們的後端 IP 集區。 這一次，第二個 NAT 規則將允許 SSH 流量。 下列範例會建立名為 `myNic2` 的 NIC：
-
-```azurecli
-az network nic create --resource-group myResourceGroup --location westeurope --name myNic2 \
-  --vnet-name myVnet --subnet mySubnet --network-security-group myNetworkSecurityGroup \
-  --lb-name myLoadBalancer --lb-address-pools myBackEndPool \
-  --lb-inbound-nat-rules myLoadBalancerRuleSSH2
-```
-
 
 ## <a name="create-an-availability-set"></a>建立可用性設定組
-可用性設定組可協助將 VM 分散到容錯網域和升級網域。 讓我們使用 [az vm availability-set create](/cli/azure/vm/availability-set#create) 來建立 VM 的可用性設定組。 下列範例會建立名為 `myAvailabilitySet` 的可用性設定組：
+可用性設定組可協助將 VM 分散到容錯網域和更新網域。 儘管您目前只建立一個 VM，但最佳做法是使用可用性設定組，這可讓您在未來更容易進行擴充。 
+
+容錯網域定義一個虛擬機器群組，且群組內的虛擬機器會共用通用電源和網路交換器。 根據預設，可用性設定組內設定的虛擬機器最多可分散到三個容錯網域。 其中一個容錯網域中的硬體問題並不會影響每個執行您應用程式的 VM。
+
+更新網域表示虛擬機器群組和可同時重新啟動的基礎實體硬體。 在計劃性維護期間，可能不會循序重新啟動更新網域，而只會一次重新啟動一個更新網域。
+
+將多個 VM 放在一個可用性設定組中時，Azure 會自動將它們分散到容錯和更新網域。 如需詳細資訊，請參閱[管理 VM 的可用性](manage-availability.md)。
+
+請使用 [az vm availability-set create](/cli/azure/vm/availability-set#create) 來建立 VM 的可用性設定組。 下列範例會建立名為 myAvailabilitySet 的可用性設定組：
 
 ```azurecli
-az vm availability-set create --resource-group myResourceGroup --location westeurope \
-  --name myAvailabilitySet \
-  --platform-fault-domain-count 3 --platform-update-domain-count 2
+az vm availability-set create \
+    --resource-group myResourceGroup \
+    --name myAvailabilitySet
 ```
 
-容錯網域定義一個虛擬機器群組，且群組內的虛擬機器會共用通用電源和網路交換器。 根據預設，可用性設定組內設定的虛擬機器最多可分散到三個容錯網域。 這裡的概念是，其中一個容錯網域中的硬體問題將不會影響每個執行您應用程式的 VM。 將多個 VM 放在一個可用性設定組中時，Azure 會自動將它們分散到容錯網域。
+輸出會指出容錯網域和更新網域：
 
-升級網域表示虛擬機器群組和可同時重新啟動的基礎實體硬體。 在計劃性維護期間，可能不會循序重新啟動升級網域，而只會一次重新啟動一個升級網域。 同樣地，將多個 VM 放在一個可用性設定網站中時，Azure 會自動將它們分散到升級網域。
-
-深入了解 [管理 VM 的可用性](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+```json
+{
+  "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Compute/availabilitySets/myAvailabilitySet",
+  "location": "eastus",
+  "managed": null,
+  "name": "myAvailabilitySet",
+  "platformFaultDomainCount": 2,
+  "platformUpdateDomainCount": 5,
+  "resourceGroup": "myResourceGroup",
+  "sku": {
+    "capacity": null,
+    "managed": true,
+    "tier": null
+  },
+  "statuses": null,
+  "tags": {},
+  "type": "Microsoft.Compute/availabilitySets",
+  "virtualMachines": []
+}
+```
 
 
 ## <a name="create-the-linux-vms"></a>建立 Linux VM
-您已建立網路資源來支援可存取網際網路的 VM。 現在，讓我們建立這些 VM，並利用沒有密碼的 SSH 金鑰來保障其安全。 在此情況下，我們要根據最新的 LTS 建立 Ubuntu VM。 我們會使用 [az vm image list](/cli/azure/vm/image#list)來找出該映像資訊 (如 [尋找 Azure VM 映像](cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)所述)。
+您已建立網路資源來支援可存取網際網路的 VM。 現在，請建立 VM 並使用 SSH 金鑰來保護它。 在此情況下，我們要根據最新的 LTS 建立 Ubuntu VM。 您可以使用 [az vm image list](/cli/azure/vm/image#list) 來找出其他映像，如[尋找 Azure VM 映像](cli-ps-findimage.md)所述。
 
-我們也會指定要用於驗證的 SSH 金鑰。 如果您沒有任何 SSH 金鑰，可以使用[這些指示](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來建立它們。 或者，您也可以使用 `--admin-password` 方法，在 VM 建立後驗證 SSH 連線。 這個方法通常較不安全。
+我們也會指定要用於驗證的 SSH 金鑰。 如果您沒有 SSH 公開金鑰組，則可以[建立 SSH 公開金鑰組](mac-create-ssh-keys.md)，或使用 `--generate-ssh-keys` 參數來為您建立這些金鑰組。 如果您已經有金鑰組，此參數就會使用 `~/.ssh` 中的現有金鑰。
 
-我們會使用 [az vm create](/cli/azure/vm#create) 命令將所有資源和資訊結合在一起來建立 VM。 下列範例使用 Azure 受控磁碟建立名為 `myVM1` 的 VM。 如果您想要使用非受控磁碟，請參閱下列其他附註。
+請使用 [az vm create](/cli/azure/vm#create) 命令將我們的所有資源和資訊結合在一起來建立 VM。 下列範例會建立名為 myVM 的 VM。
 
 ```azurecli
 az vm create \
     --resource-group myResourceGroup \
-    --name myVM1 \
-    --location westeurope \
+    --name myVM \
+    --location eastus \
     --availability-set myAvailabilitySet \
-    --nics myNic1 \
+    --nics myNic \
     --image UbuntuLTS \
-    --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username azureuser
+    --admin-username azureuser \
+    --generate-ssh-keys
 ```
 
-如果您使用 Azure 受控磁碟，請略過此步驟。 如果您想使用非受控磁碟，且您已在先前步驟中建立儲存體帳戶，您必須將一些其他參數新增至後續命令。 將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟： 
-
-```azurecli
-  --use-unmanaged-disk \
-  --storage-account mystorageaccount
-```
-
-輸出：
+請使用您在建立公用 IP 位址時所提供的 DNS 項目，透過 SSH 連線到 VM。 當您建立 VM 時，輸出中會顯示這個 `fqdn`：
 
 ```json
 {
-  "fqdn": "",
-  "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
-  "macAddress": "",
-  "privateIpAddress": "",
-  "publicIpAddress": "",
+  "fqdns": "mypublicdns.eastus.cloudapp.azure.com",
+  "id": "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
+  "location": "eastus",
+  "macAddress": "00-0D-3A-13-71-C8",
+  "powerState": "VM running",
+  "privateIpAddress": "192.168.1.5",
+  "publicIpAddress": "13.90.94.252",
   "resourceGroup": "myResourceGroup"
 }
 ```
 
-您可以使用預設 SSH 金鑰來立即連線到 VM。 請確定您指定的連接埠正確，因為我們要通過的是負載平衡器。 (針對第一個 VM，我們設定了將連接埠 4222 轉送到 VM 的 NAT 規則。)
-
 ```bash
-ssh ops@mypublicdns.westeurope.cloudapp.azure.com -p 4222 -i ~/.ssh/id_rsa.pub
+ssh azureuser@mypublicdns.eastus.cloudapp.azure.com
 ```
 
 輸出：
 
 ```bash
-The authenticity of host '[mypublicdns.westeurope.cloudapp.azure.com]:4222 ([xx.xx.xx.xx]:4222)' can't be established.
-ECDSA key fingerprint is 94:2d:d0:ce:6b:fb:7f:ad:5b:3c:78:93:75:82:12:f9.
+The authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
+ECDSA key fingerprint is SHA256:SylINP80Um6XRTvWiFaNz+H+1jcrKB1IiNgCDDJRj6A.
 Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '[mypublicdns.westeurope.cloudapp.azure.com]:4222,[xx.xx.xx.xx]:4222' (ECDSA) to the list of known hosts.
-Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
+Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
@@ -1062,47 +535,45 @@ Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
 0 packages can be updated.
 0 updates are security updates.
 
-ops@myVM1:~$
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+azureuser@myVM:~$
 ```
 
-繼續進行，並以相同方式建立第二個 VM：
+您可以安裝 NGINX，然後查看傳送到 VM 的流量。 請依下列方式安裝 NGINX：
 
-```azurecli
-az vm create \
-    --resource-group myResourceGroup \
-    --name myVM2 \
-    --location westeurope \
-    --availability-set myAvailabilitySet \
-    --nics myNic2 \
-    --image UbuntuLTS \
-    --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username azureuser
+```bash
+sudo apt-get install -y nginx
 ```
 
-此外，如果您未使用預設 Azure 受控磁碟，將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟：
+若要查看預設 NGINX 站台的實際運作情況，請開啟您的網頁瀏覽器，然後輸入 FQDN：
 
-```azurecli
-  --use-unmanaged-disk \
-  --storage-account mystorageaccount
-``` 
+![您 VM 上的預設 NGINX 站台](media/create-cli-complete/nginx.png)
 
-此時，您的 Ubuntu VM 是在 Azure 中的負載平衡器後方執行，您只能利用 SSH 金鑰組來登入 (因為密碼已被停用)。 您可以安裝 nginx 或 httpd、部署 Web 應用程式，然後查看經由負載平衡器流向兩個 VM 的流量。
-
-
-## <a name="export-the-environment-as-a-template"></a>將環境匯出為範本
-您現在已經建立這個環境，如果您想要使用相同的參數來建立其他開發環境，或想要建立與其相符的生產環境時，該怎麼辦？ Resource Manager 可使用定義了所有環境參數的 JSON 範本。 您可以藉由參考此 JSON 範本來建置整個環境。 您可以[手動建立 JSON 範本](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，或將現有的環境匯出來為您建立 JSON 範本。 使用 [az group export](/cli/azure/group#export) 來匯出您的資源群組，如下所示︰
+## <a name="export-as-a-template"></a>以範本形式匯出
+如果您現在想要使用相同的參數來建立其他開發環境，或想要建立與其相符的生產環境，該怎麼辦？ Resource Manager 可使用定義了所有環境參數的 JSON 範本。 您可以藉由參考此 JSON 範本來建置整個環境。 您可以[手動建立 JSON 範本](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，或將現有的環境匯出來為您建立 JSON 範本。 使用 [az group export](/cli/azure/group#export) 來匯出您的資源群組，如下所示︰
 
 ```azurecli
 az group export --name myResourceGroup > myResourceGroup.json
 ```
 
-此命令會在您目前的工作目錄中建立 `myResourceGroup.json` 檔案。 當您從這個範本建立環境時，系統會提示您輸入所有資源名稱，包括負載平衡器、網路介面或 VM 的名稱。 您可以藉由將 `--include-parameter-default-value` 參數新增至稍早所示的 **az group export** 命令中，在您的範本檔案中填入這些名稱。 請編輯您的 JSON 範本以指定資源名稱，或 [建立 parameters.json 檔案](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來指定資源名稱。
+此命令會在您目前的工作目錄中建立 `myResourceGroup.json` 檔案。 當您從這個範本建立環境時，系統會提示您輸入所有資源名稱。 您可以藉由將 `--include-parameter-default-value` 參數新增到 `az group export` 命令中，在您的範本檔案中填入這些名稱。 請編輯您的 JSON 範本以指定資源名稱，或 [建立 parameters.json 檔案](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來指定資源名稱。
 
 若要從您的範本建立環境，請使用 [az group deployment create](/cli/azure/group/deployment#create)，如下所示︰
 
 ```azurecli
-az group deployment create --resource-group myNewResourceGroup \
-  --template-file myResourceGroup.json
+az group deployment create \
+    --resource-group myNewResourceGroup \
+    --template-file myResourceGroup.json
 ```
 
 您可以 [深入了解如何從範本進行部署](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 請了解如何以累加方式更新環境、使用參數檔案，以及從單一儲存體位置存取範本。
