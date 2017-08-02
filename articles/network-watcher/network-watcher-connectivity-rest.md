@@ -1,0 +1,526 @@
+---
+title: "檢查與 Azure 網路監看員的連線 - Azure REST API | Microsoft Docs"
+description: "此頁面說明如何使用 Azure REST API 檢查與網路監看員的連線。"
+services: network-watcher
+documentationcenter: na
+author: georgewallace
+manager: timlt
+editor: 
+ms.service: network-watcher
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 07/11/2017
+ms.author: gwallace
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 9a900752dccfd82524951a01ebf70f882a35afd9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
+
+---
+
+# <a name="check-connectivity-with-azure-network-watcher-using-azure-rest-api"></a>使用 Azure REST API 檢查與 Azure 網路監看員的連線
+
+> [!div class="op_single_selector"]
+> - [PowerShell](network-watcher-connectivity-powershell.md)
+> - [CLI 2.0](network-watcher-connectivity-cli.md)
+> - [Azure REST API](network-watcher-connectivity-rest.md)
+
+了解如何使用連線，確認是否可以建立從虛擬機器到指定端點的直接 TCP 連線。
+
+本文引領您完成可使用連線執行之不同類型的檢查。
+
+* [檢查與虛擬機器的連線](#check-connectivity-to-a-virtual-machine)
+* [驗證路由問題](#validate-routing-issues)
+* [檢查網站延遲](#check-website-latency)
+* [檢查與儲存體端點的連線](#check-connectivity-to-a-storage-endpoint)
+
+## <a name="before-you-begin"></a>開始之前
+
+本文假設您具有下列資源：
+
+* 您想要檢查連線之區域中的網路監看員執行個體。
+
+* 要檢查與其連線的虛擬機器。
+
+使用 ARMclient 透過 PowerShell 呼叫 REST API。 您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient。
+
+此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。
+
+[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
+
+> [!IMPORTANT]
+> 連線檢查需要虛擬機器延伸模組 `AzureNetworkWatcherExtension`。 若要在 Windows VM 上安裝擴充功能，請瀏覽[適用於 Windows 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/windows/extensions-nwa.md)，若要在 Linux VM 上安裝，則請瀏覽[適用於 Linux 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/linux/extensions-nwa.md)。
+
+## <a name="register-the-preview-capability"></a>註冊預覽功能
+
+連線檢查目前為公開預覽版本，若要使用這項功能，必須先註冊它。 若要這麼做，請執行下列 PowerShell 範例：
+
+```powershell
+Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
+Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
+```
+
+若要確認註冊是否成功，請執行下列 Powershell 範例︰
+
+```powershell
+Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
+```
+
+如果已正確註冊該功能，輸出應該會與以下相符︰
+
+```
+FeatureName                             ProviderName      RegistrationState
+-----------                             ------------      -----------------
+AllowNetworkWatcherConnectivityCheck    Microsoft.Network Registered
+```
+
+## <a name="log-in-with-armclient"></a>使用 ARMClient 登入
+
+使用 Azure 認證登入 Armclient。
+
+```PowerShell
+armclient login
+```
+
+## <a name="retrieve-a-virtual-machine"></a>擷取虛擬機器
+
+執行下列指令碼，以傳回虛擬機器。 執行連線時需要這項資訊。 
+
+下列程式碼需要下列變數的值︰
+
+- **subscriptionId** - 要使用的訂用帳戶識別碼。
+- **resourceGroupName** - 包含虛擬機器的資源群組名稱。
+
+```powershell
+$subscriptionId = '<subscription id>'
+$resourceGroupName = '<resource group name>'
+
+armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
+```
+
+從下列的輸出，會在下列範例中使用虛擬機器的識別碼︰
+
+```json
+...
+,
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "westcentralus",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoExampleRG/providers/Microsoft.Compute
+/virtualMachines/ContosoVM",
+      "name": "ContosoVM"
+    }
+  ]
+}
+```
+
+## <a name="check-connectivity-to-a-virtual-machine"></a>檢查與虛擬機器的連線
+
+這個範例會檢查透過連接埠 80 的目的地虛擬機器連線。
+
+### <a name="example"></a>範例
+
+```powershell
+$subscriptionId = "00000000-0000-0000-0000-000000000000"
+$resourceGroupName = "NetworkWatcherRG"
+$networkWatcherName = "NetworkWatcher_westcentralus"
+$sourceResourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Compute/virtualMachines/MultiTierApp0"
+$destinationAddress = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Compute/virtualMachines/Database0"
+$destinationPort = "0"
+$requestBody = @"
+{
+  'source': {
+    'resourceId': '${sourceResourceId}',
+    'port': 0
+  },
+  'destination': {
+    'resourceId': '${destinationAddress}',
+    'port': ${destinationPort}
+  }
+}
+"@
+
+$response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
+```
+
+因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：
+
+**重要的值**
+
+* **Location** - 此屬性包含作業完成時結果所在的 URI
+
+```
+HTTP/1.1 202 Accepted
+Pragma: no-cache
+Retry-After: 10
+x-ms-request-id: f09b55fe-1d3a-4df7-817f-bceb8d2a94c8
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Cache-Control: no-cache
+Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operationResults/f09b55fe-1d3a-4df7-817f-bceb8d2a94c8?api-version=2017-03-01
+Server: Microsoft-HTTPAPI/2.0; Microsoft-HTTPAPI/2.0
+x-ms-ratelimit-remaining-subscription-writes: 1199
+x-ms-correlation-request-id: 367a91aa-7142-436a-867d-d3a36f80bc54
+x-ms-routing-request-id: WESTUS2:20170602T202117Z:367a91aa-7142-436a-867d-d3a36f80bc54
+Date: Fri, 02 Jun 2017 20:21:16 GMT
+
+null
+```
+
+### <a name="response"></a>Response
+
+下列回應是來自上一個範例。  在此回應中，`ConnectionStatus` 為 [無法連線]。 您可以看到傳送的所有探查都失敗。 因為名為 **UserRule_Port80** 的使用者設定 `NetworkSecurityRule` 設定成封鎖連接埠 80 的連入流量，所以虛擬設備的連線失敗。 這項資訊可以用來研究連線問題。
+
+```json
+{
+  "hops": [
+    {
+      "type": "Source",
+      "id": "0cb75c91-7ebf-4df8-8424-15594d6fb51c",
+      "address": "10.1.1.4",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Network/networkInterfaces/appNic0/ipConfigurations/ipconfig1",
+      "nextHopIds": [
+        "06dee00a-9c4a-4fb1-b2ea-fa0a539ca684"
+      ],
+      "issues": []
+    },
+    {
+      "type": "VirtualAppliance",
+      "id": "06dee00a-9c4a-4fb1-b2ea-fa0a539ca684",
+      "address": "10.1.2.4",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Network/networkInterfaces/fwNic/ipConfigurations/ipconfig1",
+      "nextHopIds": [
+        "75e0cfa5-f9d2-48d8-b705-2c7016f81570"
+      ],
+      "issues": []
+    },
+    {
+      "type": "VirtualAppliance",
+      "id": "75e0cfa5-f9d2-48d8-b705-2c7016f81570",
+      "address": "10.1.3.4",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Network/networkInterfaces/auNic/ipConfigurations/ipconfig1",
+      "nextHopIds": [
+        "86caf6aa-33b0-48a1-b4da-f3c9ce785072"
+      ],
+      "issues": [
+        {
+          "origin": "Outbound",
+          "severity": "Error",
+          "type": "NetworkSecurityRule",
+          "context": [
+            {
+              "key": "RuleName",
+              "value": "UserRule_Port80"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "VnetLocal",
+      "id": "86caf6aa-33b0-48a1-b4da-f3c9ce785072",
+      "address": "10.1.4.4",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Network/networkInterfaces/dbNic0/ipConfigurations/ipconfig1",
+      "nextHopIds": [],
+      "issues": []
+    }
+  ],
+  "connectionStatus": "Unreachable",
+  "probesSent": 100,
+  "probesFailed": 100
+}
+```
+
+## <a name="validate-routing-issues"></a>驗證路由問題
+
+此範例會檢查虛擬機器與遠端端點之間的連線。
+
+### <a name="example"></a>範例
+
+```powershell
+$subscriptionId = "00000000-0000-0000-0000-000000000000"
+$resourceGroupName = "NetworkWatcherRG"
+$networkWatcherName = "NetworkWatcher_westcentralus"
+$sourceResourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Compute/virtualMachines/MultiTierApp0"
+$destinationAddress = "13.107.21.200"
+$destinationPort = "80"
+$requestBody = @"
+{
+  'source': {
+    'resourceId': '${sourceResourceId}',
+    'port': 0
+  },
+  'destination': {
+    'address': '${destinationAddress}',
+    'port': ${destinationPort}
+  }
+}
+"@
+
+$response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
+```
+
+因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：
+
+**重要的值**
+
+* **Location** - 此屬性包含作業完成時結果所在的 URI
+
+```
+HTTP/1.1 202 Accepted
+Pragma: no-cache
+Retry-After: 10
+x-ms-request-id: 15eeeb69-fcef-41db-bc4a-e2adcf2658e0
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Cache-Control: no-cache
+Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operationResults/15eeeb69-fcef-41db-bc4a-e2adcf2658e0?api-version=2017-03-01
+Server: Microsoft-HTTPAPI/2.0; Microsoft-HTTPAPI/2.0
+x-ms-ratelimit-remaining-subscription-writes: 1199
+x-ms-correlation-request-id: 4370b798-cd8b-4d3e-ba28-22232bc81dc5
+x-ms-routing-request-id: WESTUS:20170602T202606Z:4370b798-cd8b-4d3e-ba28-22232bc81dc5
+Date: Fri, 02 Jun 2017 20:26:05 GMT
+
+null
+```
+
+### <a name="response"></a>Response
+
+在下列範例中，`connectionStatus` 會顯示為 [無法連線]。 在 `hops` 詳細資料中，您可以在 `issues` 下看到已因 `UserDefinedRoute` 而封鎖流量。
+
+```json
+{
+  "hops": [
+    {
+      "type": "Source",
+      "id": "5528055a-b393-4751-97bc-353d8c0aaeff",
+      "address": "10.1.1.4",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Network/networkInterfaces/appNic0/ipConfigurations/ipconfig1",
+      "nextHopIds": [
+        "66eefa79-5bfe-48b2-b6ca-eec8247457a3"
+      ],
+      "issues": [
+        {
+          "origin": "Outbound",
+          "severity": "Error",
+          "type": "UserDefinedRoute",
+          "context": [
+            {
+              "key": "RouteType",
+              "value": "User"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Destination",
+      "id": "66eefa79-5bfe-48b2-b6ca-eec8247457a3",
+      "address": "13.107.21.200",
+      "resourceId": "Unknown",
+      "nextHopIds": [],
+      "issues": []
+    }
+  ],
+  "connectionStatus": "Unreachable",
+  "probesSent": 100,
+  "probesFailed": 100
+}
+```
+
+## <a name="check-website-latency"></a>檢查網站延遲
+
+下列範例會檢查網站連線。
+
+### <a name="example"></a>範例
+
+```powershell
+$subscriptionId = "00000000-0000-0000-0000-000000000000"
+$resourceGroupName = "NetworkWatcherRG"
+$networkWatcherName = "NetworkWatcher_westcentralus"
+$sourceResourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Compute/virtualMachines/MultiTierApp0"
+$destinationAddress = "http://bing.com"
+$destinationPort = "0"
+$requestBody = @"
+{
+  'source': {
+    'resourceId': '${sourceResourceId}',
+    'port': 0
+  },
+  'destination': {
+    'address': '${destinationAddress}',
+    'port': ${destinationPort}
+  }
+}
+"@
+
+$response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
+```
+
+因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：
+
+**重要的值**
+
+* **Location** - 此屬性包含作業完成時結果所在的 URI
+
+```
+HTTP/1.1 202 Accepted
+Pragma: no-cache
+Retry-After: 10
+x-ms-request-id: e49b12c7-c232-472c-b6d2-6c257ce80fa5
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Cache-Control: no-cache
+Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operationResults/e49b12c7-c232-472c-b6d2-6c257ce80fa5?api-version=2017-03-01
+Server: Microsoft-HTTPAPI/2.0; Microsoft-HTTPAPI/2.0
+x-ms-ratelimit-remaining-subscription-writes: 1199
+x-ms-correlation-request-id: c3d9744f-5683-427d-bdd1-636b68ab01b6
+x-ms-routing-request-id: WESTUS:20170602T203101Z:c3d9744f-5683-427d-bdd1-636b68ab01b6
+Date: Fri, 02 Jun 2017 20:31:00 GMT
+
+null
+```
+
+### <a name="response"></a>Response
+
+在下列回應中，您可以看到 `connectionStatus` 顯示為 [可以連線]。 連線成功時，會提供延遲值。
+
+```json
+{
+  "hops": [
+    {
+      "type": "Source",
+      "id": "6adc0fe1-e384-4220-b1b1-f0d181220072",
+      "address": "10.1.1.4",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Network/networkInterfaces/appNic0/ipConfigurations/ipconfig1",
+      "nextHopIds": [
+        "b50b7076-9ff2-4782-b40e-0b89cf758f74"
+      ],
+      "issues": []
+    },
+    {
+      "type": "Internet",
+      "id": "b50b7076-9ff2-4782-b40e-0b89cf758f74",
+      "address": "204.79.197.200",
+      "resourceId": "Internet",
+      "nextHopIds": [],
+      "issues": []
+    }
+  ],
+  "connectionStatus": "Reachable",
+  "avgLatencyInMs": 1,
+  "minLatencyInMs": 0,
+  "maxLatencyInMs": 7,
+  "probesSent": 100,
+  "probesFailed": 0
+}
+```
+
+## <a name="check-connectivity-to-a-storage-endpoint"></a>檢查與儲存體端點的連線
+
+下列範例會檢查從虛擬機器到部落格儲存體帳戶的連線。
+
+### <a name="example"></a>範例
+
+```powershell
+$subscriptionId = "00000000-0000-0000-0000-000000000000"
+$resourceGroupName = "NetworkWatcherRG"
+$networkWatcherName = "NetworkWatcher_westcentralus"
+$sourceResourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Compute/virtualMachines/MultiTierApp0"
+$destinationAddress = "https://build2017nwdiag360.blob.core.windows.net/"
+$destinationPort = "0"
+$requestBody = @"
+{
+  'source': {
+    'resourceId': '${sourceResourceId}',
+    'port': 0
+  },
+  'destination': {
+    'address': '${destinationAddress}',
+    'port': ${destinationPort}
+  }
+}
+"@
+
+$response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
+```
+
+因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：
+
+**重要的值**
+
+* **Location** - 此屬性包含作業完成時結果所在的 URI
+
+```
+HTTP/1.1 202 Accepted
+Pragma: no-cache
+Retry-After: 10
+x-ms-request-id: c4ed3806-61ea-4a6b-abc1-9d6f2afc79c2
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Cache-Control: no-cache
+Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operationResults/c4ed3806-61ea-4a6b-abc1-9d6f2afc79c2?api-version=2017-03-01
+Server: Microsoft-HTTPAPI/2.0; Microsoft-HTTPAPI/2.0
+x-ms-ratelimit-remaining-subscription-writes: 1199
+x-ms-correlation-request-id: 93bf5af0-fef5-4b7a-bb9e-9976ba5cdb95
+x-ms-routing-request-id: WESTUS2:20170602T200504Z:93bf5af0-fef5-4b7a-bb9e-9976ba5cdb95
+Date: Fri, 02 Jun 2017 20:05:03 GMT
+
+null
+```
+
+### <a name="response"></a>Response
+
+下列是執行前一個 API 呼叫的範例回應。 因為檢查成功，所以 `connectionStatus` 屬性會顯示為 [可以連線]。  系統會向您提供連線儲存體 Blob 和延遲所需躍點數目的詳細資料。
+
+```json
+{
+  "hops": [
+    {
+      "type": "Source",
+      "id": "6adc0fe1-e384-4220-b1b1-f0d181220072",
+      "address": "10.1.1.4",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ContosoRG/providers/Microsoft.Network/networkInterfaces/appNic0/ipConfigurations/ipconfig1",
+      "nextHopIds": [
+        "b50b7076-9ff2-4782-b40e-0b89cf758f74"
+      ],
+      "issues": []
+    },
+    {
+      "type": "Internet",
+      "id": "b50b7076-9ff2-4782-b40e-0b89cf758f74",
+      "address": "13.71.200.248",
+      "resourceId": "Internet",
+      "nextHopIds": [],
+      "issues": []
+    }
+  ],
+  "connectionStatus": "Reachable",
+  "avgLatencyInMs": 1,
+  "minLatencyInMs": 0,
+  "maxLatencyInMs": 7,
+  "probesSent": 100,
+  "probesFailed": 0
+}
+```
+
+## <a name="next-steps"></a>後續步驟
+
+檢視[建立由警示觸發的封包擷取](network-watcher-alert-triggered-packet-capture.md)來了解如何透過虛擬機器警示自動化封包擷取
+
+造訪[檢查 IP 流量驗證](network-watcher-check-ip-flow-verify-portal.md)來得知 VM 是否允許特定流量流入或流出
+
+<!-- Image references -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

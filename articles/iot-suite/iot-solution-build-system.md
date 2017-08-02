@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 03/25/2016
+ms.date: 06/30/2017
 ms.author: harikm
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 012bfc7d8431e2edb2b1056fb465421fad58193a
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c4b19cc76ca11f606ca8af6b0f3277b5aa46ac5a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -28,7 +29,7 @@ MyDriving 是物聯網 (IoT) 方案，它會收集您的行車資料、使用機
 
 如果您尚未試用過此應用程式，請參閱 [快速入門指南](iot-solution-get-started.md)。
 
-[MyDriving 參考指南](http://aka.ms/mydrivingdocs)詳細說明此架構。 簡而言之，我們會設定幾個組件，您可以進行設定以建立類似的專案︰
+[MyDriving 參考指南](http://aka.ms/mydrivingdocs)詳細說明此架構。 簡而言之，我們會設定幾個組件來建立類似的專案：
 
 * **用戶端應用程式** 會在 Android、iOS 和 Windows 10 手機上執行。 我們使用 Xamarin 平台以共用儲存在 GitHub 上 `src/MobileApp`下的大部分程式碼。 此應用程式實際上會執行兩個不同的功能︰
   * 從車載診斷系統 (OBD) 裝置及其本身的位置服務轉送遙測至系統的雲端後端。
@@ -42,7 +43,12 @@ MyDriving 是物聯網 (IoT) 方案，它會收集您的行車資料、使用機
 * **HockeyApp** 可用來散發各種裝置程式碼版本。 還會收集當機和使用狀況報告以及使用者意見反應。
 * **Visual Studio Application Insights** 可監視 Web 服務。
 
-以下示範如何設定上述所有項目。 請注意，您可以省略其中許多步驟。
+以下示範如何設定上述所有項目。 
+
+> [!NOTE] 
+> 您可以省略下列許多步驟。
+>
+>
 
 ## <a name="sign-up-for-accounts"></a>註冊帳戶
 * [Visual Studio Dev Essentials](https://www.visualstudio.com/products/visual-studio-dev-essentials-vs.aspx)。 這個免費程式可讓您輕鬆地存取許多開發人員工具和服務，包括 Visual Studio、Visual Studio Team Services 和 Azure。 它會提供給您 12 個月每月美金 $25 元的 Azure 點數。 它也包括 Pluralsight 訓練和 Xamarin University 的訂用帳戶。 您也可以另外註冊 [Azure](https://azure.com) 和 [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) 的免費層，但這不會提供 Azure 點數。
@@ -70,12 +76,12 @@ Xamarin、Git、模擬器及其他實用元件已全部與 Visual Studio 整合�
 
 安裝：
 
-* [Visual Studio 2015 和 Xamarin](https://www.visualstudio.com/products/visual-studio-community-vs) (任何版本 - Community 版免費)。
+* [Visual Studio 和 Xamarin](https://www.visualstudio.com/products/visual-studio-community-vs) (任何版本 - Community 版免費)。
 * [適用於通用 Windows 平台的 SQLite](https://visualstudiogallery.msdn.microsoft.com/4913e7d5-96c9-4dde-a1a1-69820d615936)。 必須具備才能建置 Windows 10 Mobile 程式碼。
-* [Azure SDK for Visual Studio 2015](https://go.microsoft.com/fwlink/?linkid=518003&clcid=0x409)。 提供您可在 Azure 中執行應用程式的 SDK，以及用於管理 Azure 的命令列工具。
+* [Azure SDK for Visual Studio](https://www.visualstudio.com/vs/azure-tools/)。 提供您可在 Azure 中執行應用程式的 SDK，以及用於管理 Azure 的命令列工具。
 * [Azure Service Fabric SDK](http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric)。 必須具備才能建置 [微服務](../service-fabric/service-fabric-get-started.md) 擴充功能。
 
-此外，請確定您有適當的 Visual Studio 擴充功能。 確認在 [工具] 下會看到 **Android、iOS、Xamarin…**。 如果看不到，請開啟 [控制台]，然後選取 [程式和功能] > [Microsoft] > [Visual Studio 2015] > [修改]。 在 [跨平台開發] 下，選取 [C/\#.Net (Xamarin)]。 在此檢查是否已安裝 **Git for Windows**。
+請確定您有適當的 Visual Studio 延伸模組。 確認在 [工具] 下會看到 **Android、iOS、Xamarin…**。 如果看不到，請開啟 Visual Studio，搜尋 Xamarin，然後遵循提示加以安裝。 此外，請檢查是否已安裝 **Git for Windows**。 如果未安裝，請在 Visual Studio 中進行搜尋，然後遵循提示加以安裝。 
 
 ### <a name="mac-development-machine"></a>Mac 開發電腦
 如果您要開發 iOS，則需要 Mac (Yosemite 或更新版本)。 雖然我們在 Windows 上使用 Visual Studio 和 Xamarin 來開發及管理所有程式碼，但是 Xamarin 會使用 Mac 上安裝的代理程式，以便建置及簽署 iOS 程式碼。
@@ -127,7 +133,7 @@ Xamarin、Git、模擬器及其他實用元件已全部與 Visual Studio 整合�
 
 如果無法順利建置，請對我們找到的突發事件試用解決方案︰
 
-* ：請確定已安裝 [Azure SDK for Visual Studio 2015](https://go.microsoft.com/fwlink/?linkid=518003&clcid=0x409)。
+* *VINLookupApplication 專案未載入*：請確定已安裝 [Azure SDK for Visual Studio](https://www.visualstudio.com/vs/azure-tools/)。
 * *Service Fabric 專案未建置*︰請先建置介面專案，再確定已安裝 Service Fabric SDK。
 * Android 應用程式未建置︰
   
@@ -164,9 +170,9 @@ Xamarin、Git、模擬器及其他實用元件已全部與 Visual Studio 整合�
 ## <a name="upload-the-mobile-app-to-hockeyapp"></a>將行動應用程式上傳至 HockeyApp
 HockeyApp 可管理 Android、iOS 或 Windows 應用程式散發以測試使用者，並在有新版本時通知使用者。 它也會收集實用的當機報告、含螢幕擷取畫面的使用者意見反應及使用計量。
 
-[開始上傳](http://support.hockeyapp.net/kb/app-management-2/how-to-create-a-new-app) 您的組建應用程式。 然後從您的開發電腦登入 [HockeyApp](https://rink.hockeyapp.net) 。 在開發人員儀表板上，按一下 [新增應用程式] ，然後將建置的檔案拖曳至視窗。 (之後，您可以將組建服務自動化來執行這項作業)。
+[開始上傳](http://support.hockeyapp.net/kb/app-management-2/how-to-create-a-new-app) 您的組建應用程式。 然後從您的開發電腦登入 [HockeyApp](https://rink.hockeyapp.net)。 在開發人員儀表板上，按一下 [新增應用程式] ，然後將建置的檔案拖曳至視窗。 (之後，您可以將組建服務自動化來執行這項作業)。
 
-現在移至您的應用程式儀表板。
+現在，移至您的應用程式儀表板。
 
 ![應用程式儀表板上的概觀索引標籤](./media/iot-solution-build-system/image2.png)
 
@@ -349,9 +355,9 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 
 我們假設︰
 
-* 一個不到&5; 人 (加上觀察專案關係人) 的小組。
+* 一個不到 5 人 (加上觀察專案關係人) 的小組。
 * 執行約一個月。
-* 100 位使用者，每天&4; 趟行程。
+* 100 位使用者，每天 4 趟行程。
 
 > [!NOTE]
 > 如果您不熟悉 Azure，這裡有 [免費帳戶](https://azure.microsoft.com/free/)。

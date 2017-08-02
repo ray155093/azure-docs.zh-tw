@@ -12,13 +12,13 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
 ms.devlang: Java
 ms.topic: article
-ms.date: 03/30/2017
+ms.date: 07/17/2017
 ms.author: piyushjo;ricksal
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: 1438b9479b3bbb8b7599d7d05b48e4cd6d981e0c
-ms.lasthandoff: 03/31/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: 35935e911f1f17989beb71978396c6d1b7d601d6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="android-sdk-integration-for-azure-mobile-engagement"></a>Azure Mobile Engagement 的 Android SDK 整合
@@ -53,8 +53,16 @@ ms.lasthandoff: 03/31/2017
 [如何在 Android 應用程式中使用進階 Mobile Engagement 標記 API](mobile-engagement-android-use-engagement-api.md)
 
 ## <a name="release-notes"></a>版本資訊
-### <a name="424-03302017"></a>4.2.4 (03/30/2017)
-* 修正 Android 7 上的應用程式內通知文字色彩，使其與舊版 Android 上的色彩相同。
+
+### <a name="431-07172017"></a>4.3.1 (07/17/2017)
+* 修正在呼叫 `EngagementAgentUtils.isInDedicatedEngagementProcess` (也由 `EngagementApplication` 類別使用) 時可能罕見發生的損毀。
+
+### <a name="430-06272017"></a>4.3.0 (06/27/2017)
+* Android 8 支援 (舊版 SDK 不適用於 Android 8)。
+* 不再依賴支援程式庫。
+* 移除 `EngagementFragmentActivity` 類別。
+* 由於 Android 8 上的[背景執行限制](https://developer.android.com/preview/features/background.html)，在背景中的記錄檔可能會延遲，直到使用者與裝置互動之時，這會影響推送活動**已傳遞**和**系統通知顯示**統計資料延遲，如果裝置已進入休眠狀態的話 (通知仍會顯示、且仍會即時響鈴和震動)。
+* 由於[背景位置限制](https://developer.android.com/preview/features/background-location-limits.html)，背景的即時位置將不會在 Android 8 上經常更新。
 
 如需所有版本，請參閱 [完整版本資訊](mobile-engagement-android-release-notes.md)。
 

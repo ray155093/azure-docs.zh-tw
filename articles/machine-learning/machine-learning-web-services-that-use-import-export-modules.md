@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: v-donglo
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 20e2c9edc4729015f65fbe72649e32effe7f8a3a
-ms.lasthandoff: 03/29/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 123c8c2b1c5bae268b2a61c185743f2c3920175e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="deploying-azure-ml-web-services-that-use-data-import-and-data-export-modules"></a>部署使用資料匯入和資料匯出模組的 Azure ML Web 服務
 
 當您建立預測性實驗時，通常會新增 Web 服務輸入和輸出。 當您部署實驗時，取用者可以透過輸入和輸出傳送和接收 Web 服務的資料。 對於某些應用程式，取用者的資料可能可以從資料摘要獲得，或者資料已經位於外部資料來源 (例如 Azure Blob 儲存體)。 在這些情況下，應用程式就不需要使用 Web 服務的輸入和輸出讀取和寫入資料。 而是可以改用「批次執行服務 (BES)」使用「匯入資料」模組從資料來源讀取資料，然後使用「匯出資料」模組將評分結果寫入不同的資料位置。
 
-「匯入資料」和「匯出資料」模組可以讀取和寫入各種資料位置，例如，透過 HTTP 的 Web URL、Hive 查詢、Azure SQL Database、Azure 資料表儲存體、Azure Blob 儲存體、資料摘要提供或內部部署的 SQL 資料庫。
+「匯入資料」和「匯出資料」模組可以讀取和寫入各種資料位置，例如，透過 HTTP 的 Web URL、Hive 查詢、Azure SQL Database、Azure 表格儲存體、Azure Blob 儲存體、資料摘要提供或內部部署的 SQL 資料庫。
 
 本主題使用「範例 5︰二進位分類的訓練、測試、評估︰成人資料集」範例，並假設資料集已載入名為 censusdata 的 Azure SQL 資料表。
 
@@ -102,14 +102,14 @@ ms.lasthandoff: 03/29/2017
 2. 執行完成時，按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]]。
 3. 在 Web 服務儀表板上，找出您的 API 金鑰。 複製並儲存起來供日後使用。
 4. 在 [預設端點] 資料表中，按一下 [批次執行] 連結以開啟 [API 說明頁面]。
-5. 在 Visual Studio 中，建立 C# 主控台應用程式。
+5. 在 Visual Studio 中建立 C# 主控台應用程式：[新增] > [專案] > [Visual C#] > [Windows 傳統桌面] > [主控台應用程式 (.NET Framework)]。
 6. 在 [API 說明頁面] 的頁面底部找到 [範例程式碼]  區段。
 7. 將 C# 範例程式碼複製並貼入 Program.cs 檔案，然後移除 Blob 儲存體的所有參考。
 8. 使用先前儲存的 API 金鑰更新 *apiKey* 變數的值。
 9. 找出要求宣告並更新傳入「匯入資料」和「匯出資料」模組的 Web 服務參數值。 在此情況下，您會使用原始的查詢，但定義新的資料表名稱。
    
         var request = new BatchExecutionRequest() 
-        {            
+        {           
             GlobalParameters = new Dictionary<string, string>() {
                 { "Query", @"select [age], [workclass], [fnlwgt], [education], [education-num], [marital-status], [occupation], [relationship], [race], [sex], [capital-gain], [capital-loss], [hours-per-week], [native-country], [income] from dbo.censusdata" },
                 { "Table", "dbo.ScoredTable2" },
@@ -131,13 +131,13 @@ ms.lasthandoff: 03/29/2017
 3. 在 [部署實驗] 頁面上，輸入您 Web 服務的名稱並選取定價方案，然後按一下 [部署]。
 4. 在 [快速入門] 頁面上，按一下 [取用]。
 5. 在 [範例程式碼] 區段中，按一下 [批次]。
-6. 在 Visual Studio 中，建立 C# 主控台應用程式。
+6. 在 Visual Studio 中建立 C# 主控台應用程式：[新增] > [專案] > [Visual C#] > [Windows 傳統桌面] > [主控台應用程式 (.NET Framework)]。
 7. 將 C# 範例程式碼複製並貼入 Program.cs 檔案。
 8. 使用位於 [基本取用資訊] 區段中的 [主索引鍵] 更新 *apiKey* 變數的值。
 9. 找出 *scoreRequest* 宣告並更新傳入「匯入資料」和「匯出資料」模組的 Web 服務參數值。 在此情況下，您會使用原始的查詢，但定義新的資料表名稱。
    
         var scoreRequest = new
-        {        
+        {       
             Inputs = new Dictionary<string, StringTable>()
             {
             },

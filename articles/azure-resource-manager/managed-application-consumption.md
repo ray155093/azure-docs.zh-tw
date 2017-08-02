@@ -10,15 +10,14 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 05/17/2017
 ms.author: gauravbh; tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 041254b07584a52ae92e603f60a439050b747af1
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 8745db3abe6ddec6da1f92da6b7cf8bf82b96d79
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
-# <a name="consume-an-azure-managed-application"></a>使用 Azure 受管理的應用程式
+# <a name="consume-a-service-catalog-managed-application"></a>使用 Service Catalog 受管理的應用程式
 
 如[受管理的應用程式概觀](managed-application-overview.md)文章中所述，端對端體驗中有兩種案例。 其中一個是發行者 (或稱為 ISV)，是要建立受管理的應用程式供客戶使用。 第二個是受管理應用程式的客戶或取用者。 本文是涵蓋第二個案例，說明客戶如何使用 ISV 所提供的受管理應用程式。
 
@@ -69,10 +68,10 @@ az group deployment create --name managedAppDeployment --resourceGroup mainResou
 ```azurecli
 az managedapp create --name ravtestappliance401 --location "westcentralus" 
     --kind "Servicecatalog" --resource-group "ravApplianceCustRG401" 
-       --managedapp-definition-id "/subscriptions/{guid}/resourceGroups/ravApplianceDefRG401/providers/Microsoft.Solutions/applianceDefinitions/ravtestAppDef401" 
-       --managed-rg-id "/subscriptions/{guid}/resourceGroups/ravApplianceCustManagedRG401" 
-       --parameters "{\"storageAccountName\": {\"value\": \"ravappliancedemostore1\"}}" 
-       --debug
+    --managedapp-definition-id "/subscriptions/{guid}/resourceGroups/ravApplianceDefRG401/providers/Microsoft.Solutions/applianceDefinitions/ravtestAppDef401" 
+    --managed-rg-id "/subscriptions/{guid}/resourceGroups/ravApplianceCustManagedRG401" 
+    --parameters "{\"storageAccountName\": {\"value\": \"ravappliancedemostore1\"}}" 
+    --debug
 ```
 
 **appliance-definition-Id** - 在先前步驟中建立之設備定義的資源識別碼。 若要取得這個識別碼，請執行下列命令：
@@ -118,4 +117,6 @@ az appliance definition show -n ravtestAppDef1 -g ravApplianceRG2
 ## <a name="next-steps"></a>後續步驟
 
 * 如需受管理應用程式的簡介，請參閱 [Azure 受管理的應用程式概觀](managed-application-overview.md)。
-* 若要了解廠商體驗，請參閱[建立及發佈 Azure 受管理應用程式](managed-application-publishing.md)。
+* 如需發行 Service Catalog 受管理應用程式的資訊，請參閱[建立和發行 Service Catalog 受管理的應用程式](managed-application-publishing.md)。
+* 如需發行受管理的應用程式到 Marketplace 的資訊，請參閱 [Marketplace 中 Azure 受管理的應用程式](managed-application-author-marketplace.md)。
+* 如需從 Marketplace 使用受管理應用程式的詳細資訊，請參閱[在 Marketplace 中使用 Azure 受管理的應用程式](managed-application-consume-marketplace.md)。

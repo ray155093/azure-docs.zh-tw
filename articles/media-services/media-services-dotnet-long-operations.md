@@ -12,16 +12,19 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 07/18/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2a24c683b66878e4404a6baf879890453755bc0c
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 763f97855695a51d8fb6050cf1404c787b72c6f6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="delivering-live-streaming-with-azure-media-services"></a>利用 Azure 媒體服務提供即時資料流
+
 ## <a name="overview"></a>Overview
+
 Microsoft Azure 媒體服務提供將要求傳送至媒體服務以啟動作業 (如建立、啟動、停止或刪除頻道) 的 API。 這些作業屬於長時間執行的作業。
 
 Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API 會在內部依照某些間隔輪詢作業進度). 例如，當您呼叫 channel.Start() 時，方法會在通道啟動後返回。 您也可以使用非同步的 version: await channel.StartAsync() (如需以工作為基礎的非同步模式，請參閱 [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx))。 傳送作業要求並輪詢狀態，直到作業完成為止的 API 稱為「輪詢方法」。 我們建議豐富型用戶端應用程式和/或可設定狀態的服務使用這些方法 (尤其是非同步版本)。
@@ -33,12 +36,24 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
 
 若要輪詢作業狀態，請針對 **OperationBaseCollection** 類別使用 **GetOperation** 方法。 請使用下列間隔來檢查作業狀態：對於**通道**和 **StreamingEndpoint** 作業，使用 30 秒；對於**程式**作業，使用 10 秒。
 
+## <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
+
+設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。
+
 ## <a name="example"></a>範例
+
 以下範例定義名為 **ChannelOperations**的類別。 此類別定義可能是 Web 服務類別定義的起始點。 為了簡單起見，以下範例使用非同步版本的方法。
 
 此範例也示範用戶端如何使用這個類別。
 
 ### <a name="channeloperations-class-definition"></a>ChannelOperations class definition
+
+    using Microsoft.WindowsAzure.MediaServices.Client;
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Net;
+
     /// <summary> 
     /// The ChannelOperations class only implements 
     /// the Channel’s creation operation. 
@@ -46,21 +61,21 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
     public class ChannelOperations
     {
         // Read values from the App.config file.
-        private static readonly string _mediaServicesAccountName =
-            ConfigurationManager.AppSettings["MediaServicesAccountName"];
-        private static readonly string _mediaServicesAccountKey =
-            ConfigurationManager.AppSettings["MediaServicesAccountKey"];
+        private static readonly string _AADTenantDomain =
+            ConfigurationManager.AppSettings["AADTenantDomain"];
+        private static readonly string _RESTAPIEndpoint =
+            ConfigurationManager.AppSettings["MediaServiceRESTAPIEndpoint"];
 
         // Field for service context.
         private static CloudMediaContext _context = null;
-        private static MediaServicesCredentials _cachedCredentials = null;
 
         public ChannelOperations()
         {
-                _cachedCredentials = new MediaServicesCredentials(_mediaServicesAccountName,
-                    _mediaServicesAccountKey);
+            var tokenCredentials = new AzureAdTokenCredentials(_AADTenantDomain, AzureEnvironments.AzureCloudEnvironment);
+            var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
-                _context = new CloudMediaContext(_cachedCredentials);    }
+            _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
+        }
 
         /// <summary>  
         /// Initiates the creation of a new channel.  
@@ -118,7 +133,6 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
             return completed;
         }
 
-
         private static ChannelInput CreateChannelInput()
         {
             return new ChannelInput
@@ -127,14 +141,14 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
                 AccessControl = new ChannelAccessControl
                 {
                     IPAllowList = new List<IPRange>
-                    {
-                        new IPRange
                         {
-                            Name = "TestChannelInput001",
-                            Address = IPAddress.Parse("0.0.0.0"),
-                            SubnetPrefixLength = 0
+                            new IPRange
+                            {
+                                Name = "TestChannelInput001",
+                                Address = IPAddress.Parse("0.0.0.0"),
+                                SubnetPrefixLength = 0
+                            }
                         }
-                    }
                 }
             };
         }
@@ -146,14 +160,14 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
                 AccessControl = new ChannelAccessControl
                 {
                     IPAllowList = new List<IPRange>
-                    {
-                        new IPRange
                         {
-                            Name = "TestChannelPreview001",
-                            Address = IPAddress.Parse("0.0.0.0"),
-                            SubnetPrefixLength = 0
+                            new IPRange
+                            {
+                                Name = "TestChannelPreview001",
+                                Address = IPAddress.Parse("0.0.0.0"),
+                                SubnetPrefixLength = 0
+                            }
                         }
-                    }
                 }
             };
         }
@@ -190,10 +204,5 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

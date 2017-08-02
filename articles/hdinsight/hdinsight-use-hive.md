@@ -1,5 +1,5 @@
 ---
-title: "什麼是 Apache Hive 和 HiveQL - Azure HDInsight | Microsoft Docs"
+title: "什麼是 Apache Hive 和 HiveQL？ - Azure HDInsight | Microsoft Docs"
 description: "Apache Hive 是適用於 Hadoop 的資料倉儲系統。 您可以使用 HiveQL (這類似於 TRANSACT-SQL) 查詢 Hive 中儲存的資料。 在本文件中，您將了解如何使用 Hive 和 HiveQL 搭配 Azure HDInsight。"
 keywords: "hiveql,什麼是 hive,hadoop hiveql,如何使用 hive,了解 hive,什麼是s hive"
 services: hdinsight
@@ -10,7 +10,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 2c10f989-7636-41bf-b7f7-c4b67ec0814f
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -18,14 +18,14 @@ ms.workload: big-data
 ms.date: 05/12/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: f974c2714fc600d850baff64fdf65aae178e5068
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 495afb2d6e166e8f8cbb5157ef2182804c91a4e4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
-# <a name="what-is-apache-hive-and-hiveql-on-azure-hdinsight"></a>什麼是 Apache Hive 和 Azure HDInsight 上的 HiveQL
+# <a name="what-is-apache-hive-and-hiveql-on-azure-hdinsight"></a>Azure HDInsight 上的 Apache Hive 和 HiveQL 是什麼？
 
 [Apache Hive](http://hive.apache.org/) 是適用於 Hadoop 的資料倉儲系統。 Hive 可執行資料摘要、查詢以及資料分析。 Hive 查詢是以 HiveQL 撰寫而成，這是類似 SQL 的查詢語言。
 
@@ -54,7 +54,7 @@ HDInsight 提供數種已針對特定工作負載進行微調的叢集類型。 
 | [Windows PowerShell](hdinsight-hadoop-use-hive-powershell.md) |&nbsp; |✔ |Linux 或 Windows* |Windows |
 
 > [!IMPORTANT]
-> \* Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+> \* Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 >
 > 如果您使用以 Windows 為基礎的 HDInsight 叢集，您可以從瀏覽器或[遠端桌面](hdinsight-hadoop-use-hive-remote-desktop.md)使用[查詢主控台](hdinsight-hadoop-use-hive-query-console.md)來執行 Hive 查詢。
 

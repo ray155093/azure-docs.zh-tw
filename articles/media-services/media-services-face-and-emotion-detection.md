@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 07/18/2017
 ms.author: milanga;juliako;
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 5a604f3538a0749f7f951926f451cc91504255d6
-ms.lasthandoff: 04/21/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: dfff2900aedd3fa2cb0b38d18e71f001c44ababa
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="detect-face-and-emotion-with-azure-media-analytics"></a>使用 Azure 媒體分析偵測臉部和情緒
@@ -49,26 +49,9 @@ ms.lasthandoff: 04/21/2017
 
 已偵測並追蹤的臉部將會搭配能以像素為單位表示臉部在影像中位置的座標 (左側、上方、寬度和高度)，以及表示對該人員進行追蹤的臉部識別碼。 臉部識別碼很容易在正面臉部長時間於畫面中遺失或重疊的情況下重設，導致某些人員被指派多個識別碼。
 
-### <a id="output_elements"></a>輸出 JSON 檔案的元素
-針對臉部偵測和追蹤作業，輸出結果會以 JSON 格式包含指定檔案內臉部的中繼資料。
+## <a id="output_elements"></a>輸出 JSON 檔案的元素
 
-臉部偵測和追蹤 JSON 包括下列屬性：
-
-| 元素 | 說明 |
-| --- | --- |
-| 版本 |這是指影片 API 的版本。 |
-| 時幅 |影片每秒的「刻度」數目。 |
-| Offset |這是時間戳記的時間位移。 在版本 1.0 的影片 API 中，這永遠會是 0。 在我們於未來將支援的案例中，此值可能會變更。 |
-| 畫面播放速率 |影片的每秒畫面格數。 |
-| 片段 |中繼資料會被分成稱為「片段」的不同區段。 每個片段皆包含開始、持續時間、間隔數字及事件。 |
-| Start |第一個事件的開始時間 (以「刻度」為單位)。 |
-| Duration |片段的長度 (以「刻度」為單位)。 |
-| 間隔 |片段內每個事件項目的間隔 (以「刻度」為單位)。 |
-| 事件 |每個事件皆包含在該持續時間內所偵測到並進行追蹤的臉部。 它是個包含事件之陣列的陣列。 外部陣列代表一個單位的時間間隔。 內部陣列包含在那個時間點所發生的 0 或多個事件。 空白的括號 [] 代表沒有偵測到臉部。 |
-| ID |正在被追蹤之臉部的識別碼。 如果該臉部變成無法被偵測，這個號碼可能會在無意中變更。 特定的人員在整個影片中應該要擁有相同的識別碼，但由於偵測演算法的限制 (例如受到阻擋等情況)，使我們並無法保證這個情況。 |
-| X，Y |標準化縮放 (0.0 到 1.0) 中臉部週框方塊左上角的 X 和 Y 座標。 <br/>-X 和 Y 座標總是相對於橫向方向，因此如果您的影片是直向影片 (或在 iOS 的情況下為上下顛倒)，便需要相對應地轉換座標。 |
-| 寬度，高度 |標準化縮放 (0.0 到 1.0) 中臉部週框方塊的寬度和高度。 |
-| facesDetected |這是位於 JSON 結果的末端，並能摘要說明演算法在影片期間所偵測到的臉部數目。 由於識別碼可能會在臉部變成無法被偵測時 (例如臉部離開螢幕、轉向別處) 於無意中變更，此數字並不會總是和影片中的實際臉部數目相同。 |
+[!INCLUDE [media-services-analytics-output-json](../../includes/media-services-analytics-output-json.md)]
 
 臉部偵測器使用分散 (中繼資料可以分解為以時間為基礎的區塊，讓您可以只下載需要的部分) 及分割 (可以在事件過於龐大的情況下對事件進行分解) 的技術。 某些簡單的計算可以協助您轉換資料。 例如，如果事件是從 6300 (刻度) 開始，並擁有 2997 (刻度/每秒) 的時幅，以及 29.97 (畫面/每秒) 的畫面播放速率，則：
 
@@ -93,7 +76,6 @@ ms.lasthandoff: 04/21/2017
 | 屬性名稱 | 說明 |
 | --- | --- |
 | Mode |Fast：較快的處理速度，但較不精確 (預設)。|
-
 
 ### <a name="json-output"></a>JSON 輸出
 下列為 JSON 輸出受到截斷的範例。
@@ -331,14 +313,14 @@ ms.lasthandoff: 04/21/2017
                  "disgust": 0,
                  "fear": 0,
 
-
 ## <a name="limitations"></a>限制
 * 支援的輸入影片格式包括 MP4、MOV 及 WMV。
 * 可偵測的臉部大小範圍是 24x24 到 2048x2048 像素。 位於此範圍之外的臉部將無法被偵測。
 * 針對每個影片，傳回臉部的最大數目為 64。
 * 某些臉部可能因技術挑戰而無法偵測，例如非常大的臉部角度 (頭部姿勢)，以及大型的阻擋物。 正面和接近正面的臉部能提供最佳結果。
 
-## <a name="sample-code"></a>範例程式碼
+## <a name="net-sample-code"></a>.NET 範例程式碼
+
 下列程式將示範如何：
 
 1. 建立資產並將媒體檔案上傳到資產。
@@ -348,169 +330,169 @@ ms.lasthandoff: 04/21/2017
             "version": "1.0"
         }
 3. 下載輸出 JSON 檔案。 
-   
-        using System;
-        using System.Configuration;
-        using System.IO;
-        using System.Linq;
-        using Microsoft.WindowsAzure.MediaServices.Client;
-        using System.Threading;
-        using System.Threading.Tasks;
-   
-        namespace FaceDetection
+
+#### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
+
+設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
+
+#### <a name="example"></a>範例
+
+    using System;
+    using System.Configuration;
+    using System.IO;
+    using System.Linq;
+    using Microsoft.WindowsAzure.MediaServices.Client;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    namespace FaceDetection
+    {
+        class Program
         {
-            class Program
+            private static readonly string _AADTenantDomain =
+                      ConfigurationManager.AppSettings["AADTenantDomain"];
+            private static readonly string _RESTAPIEndpoint =
+                      ConfigurationManager.AppSettings["MediaServiceRESTAPIEndpoint"];
+
+            // Field for service context.
+            private static CloudMediaContext _context = null;
+
+            static void Main(string[] args)
             {
-                // Read values from the App.config file.
-                private static readonly string _mediaServicesAccountName =
-                    ConfigurationManager.AppSettings["MediaServicesAccountName"];
-                private static readonly string _mediaServicesAccountKey =
-                    ConfigurationManager.AppSettings["MediaServicesAccountKey"];
-   
-                // Field for service context.
-                private static CloudMediaContext _context = null;
-                private static MediaServicesCredentials _cachedCredentials = null;
-   
-                static void Main(string[] args)
+                var tokenCredentials = new AzureAdTokenCredentials(_AADTenantDomain, AzureEnvironments.AzureCloudEnvironment);
+                var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
+
+                _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
+
+                // Run the FaceDetection job.
+                var asset = RunFaceDetectionJob(@"C:\supportFiles\FaceDetection\BigBuckBunny.mp4",
+                                            @"C:\supportFiles\FaceDetection\config.json");
+
+                // Download the job output asset.
+                DownloadAsset(asset, @"C:\supportFiles\FaceDetection\Output");
+            }
+
+            static IAsset RunFaceDetectionJob(string inputMediaFilePath, string configurationFile)
+            {
+                // Create an asset and upload the input media file to storage.
+                IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
+                    "My Face Detection Input Asset",
+                    AssetCreationOptions.None);
+
+                // Declare a new job.
+                IJob job = _context.Jobs.Create("My Face Detection Job");
+
+                // Get a reference to Azure Media Face Detector.
+                string MediaProcessorName = "Azure Media Face Detector";
+
+                var processor = GetLatestMediaProcessorByName(MediaProcessorName);
+
+                // Read configuration from the specified file.
+                string configuration = File.ReadAllText(configurationFile);
+
+                // Create a task with the encoding details, using a string preset.
+                ITask task = job.Tasks.AddNew("My Face Detection Task",
+                    processor,
+                    configuration,
+                    TaskOptions.None);
+
+                // Specify the input asset.
+                task.InputAssets.Add(asset);
+
+                // Add an output asset to contain the results of the job.
+                task.OutputAssets.AddNew("My Face Detectoion Output Asset", AssetCreationOptions.None);
+
+                // Use the following event handler to check job progress.  
+                job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
+
+                // Launch the job.
+                job.Submit();
+
+                // Check job execution and wait for job to finish.
+                Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
+
+                progressJobTask.Wait();
+
+                // If job state is Error, the event handling
+                // method for job progress should log errors.  Here we check
+                // for error state and exit if needed.
+                if (job.State == JobState.Error)
                 {
-   
-                    // Create and cache the Media Services credentials in a static class variable.
-                    _cachedCredentials = new MediaServicesCredentials(
-                                    _mediaServicesAccountName,
-                                    _mediaServicesAccountKey);
-                    // Used the cached credentials to create CloudMediaContext.
-                    _context = new CloudMediaContext(_cachedCredentials);
-   
-                    // Run the FaceDetection job.
-                    var asset = RunFaceDetectionJob(@"C:\supportFiles\FaceDetection\BigBuckBunny.mp4",
-                                                @"C:\supportFiles\FaceDetection\config.json");
-   
-                    // Download the job output asset.
-                    DownloadAsset(asset, @"C:\supportFiles\FaceDetection\Output");
+                    ErrorDetail error = job.Tasks.First().ErrorDetails.First();
+                    Console.WriteLine(string.Format("Error: {0}. {1}",
+                                                    error.Code,
+                                                    error.Message));
+                    return null;
                 }
-   
-                static IAsset RunFaceDetectionJob(string inputMediaFilePath, string configurationFile)
+
+                return job.OutputMediaAssets[0];
+            }
+
+            static IAsset CreateAssetAndUploadSingleFile(string filePath, string assetName, AssetCreationOptions options)
+            {
+                IAsset asset = _context.Assets.Create(assetName, options);
+
+                var assetFile = asset.AssetFiles.Create(Path.GetFileName(filePath));
+                assetFile.Upload(filePath);
+
+                return asset;
+            }
+
+            static void DownloadAsset(IAsset asset, string outputDirectory)
+            {
+                foreach (IAssetFile file in asset.AssetFiles)
                 {
-                    // Create an asset and upload the input media file to storage.
-                    IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
-                        "My Face Detection Input Asset",
-                        AssetCreationOptions.None);
-   
-                    // Declare a new job.
-                    IJob job = _context.Jobs.Create("My Face Detection Job");
-   
-                    // Get a reference to Azure Media Face Detector.
-                    string MediaProcessorName = "Azure Media Face Detector";
-   
-                    var processor = GetLatestMediaProcessorByName(MediaProcessorName);
-   
-                    // Read configuration from the specified file.
-                    string configuration = File.ReadAllText(configurationFile);
-   
-                    // Create a task with the encoding details, using a string preset.
-                    ITask task = job.Tasks.AddNew("My Face Detection Task",
-                        processor,
-                        configuration,
-                        TaskOptions.None);
-   
-                    // Specify the input asset.
-                    task.InputAssets.Add(asset);
-   
-                    // Add an output asset to contain the results of the job.
-                    task.OutputAssets.AddNew("My Face Detectoion Output Asset", AssetCreationOptions.None);
-   
-                    // Use the following event handler to check job progress.  
-                    job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
-   
-                    // Launch the job.
-                    job.Submit();
-   
-                    // Check job execution and wait for job to finish.
-                    Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
-   
-                    progressJobTask.Wait();
-   
-                    // If job state is Error, the event handling
-                    // method for job progress should log errors.  Here we check
-                    // for error state and exit if needed.
-                    if (job.State == JobState.Error)
-                    {
-                        ErrorDetail error = job.Tasks.First().ErrorDetails.First();
-                        Console.WriteLine(string.Format("Error: {0}. {1}",
-                                                        error.Code,
-                                                        error.Message));
-                        return null;
-                    }
-   
-                    return job.OutputMediaAssets[0];
+                    file.Download(Path.Combine(outputDirectory, file.Name));
                 }
-   
-                static IAsset CreateAssetAndUploadSingleFile(string filePath, string assetName, AssetCreationOptions options)
+            }
+
+            static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
+            {
+                var processor = _context.MediaProcessors
+                    .Where(p => p.Name == mediaProcessorName)
+                    .ToList()
+                    .OrderBy(p => new Version(p.Version))
+                    .LastOrDefault();
+
+                if (processor == null)
+                    throw new ArgumentException(string.Format("Unknown media processor",
+                                                               mediaProcessorName));
+
+                return processor;
+            }
+
+            static private void StateChanged(object sender, JobStateChangedEventArgs e)
+            {
+                Console.WriteLine("Job state changed event:");
+                Console.WriteLine("  Previous state: " + e.PreviousState);
+                Console.WriteLine("  Current state: " + e.CurrentState);
+
+                switch (e.CurrentState)
                 {
-                    IAsset asset = _context.Assets.Create(assetName, options);
-   
-                    var assetFile = asset.AssetFiles.Create(Path.GetFileName(filePath));
-                    assetFile.Upload(filePath);
-   
-                    return asset;
+                    case JobState.Finished:
+                        Console.WriteLine();
+                        Console.WriteLine("Job is finished.");
+                        Console.WriteLine();
+                        break;
+                    case JobState.Canceling:
+                    case JobState.Queued:
+                    case JobState.Scheduled:
+                    case JobState.Processing:
+                        Console.WriteLine("Please wait...\n");
+                        break;
+                    case JobState.Canceled:
+                    case JobState.Error:
+                        // Cast sender as a job.
+                        IJob job = (IJob)sender;
+                        // Display or log error details as needed.
+                        // LogJobStop(job.Id);
+                        break;
+                    default:
+                        break;
                 }
-   
-                static void DownloadAsset(IAsset asset, string outputDirectory)
-                {
-                    foreach (IAssetFile file in asset.AssetFiles)
-                    {
-                        file.Download(Path.Combine(outputDirectory, file.Name));
-                    }
-                }
-   
-                static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
-                {
-                    var processor = _context.MediaProcessors
-                        .Where(p => p.Name == mediaProcessorName)
-                        .ToList()
-                        .OrderBy(p => new Version(p.Version))
-                        .LastOrDefault();
-   
-                    if (processor == null)
-                        throw new ArgumentException(string.Format("Unknown media processor",
-                                                                   mediaProcessorName));
-   
-                    return processor;
-                }
-   
-                static private void StateChanged(object sender, JobStateChangedEventArgs e)
-                {
-                    Console.WriteLine("Job state changed event:");
-                    Console.WriteLine("  Previous state: " + e.PreviousState);
-                    Console.WriteLine("  Current state: " + e.CurrentState);
-   
-                    switch (e.CurrentState)
-                    {
-                        case JobState.Finished:
-                            Console.WriteLine();
-                            Console.WriteLine("Job is finished.");
-                            Console.WriteLine();
-                            break;
-                        case JobState.Canceling:
-                        case JobState.Queued:
-                        case JobState.Scheduled:
-                        case JobState.Processing:
-                            Console.WriteLine("Please wait...\n");
-                            break;
-                        case JobState.Canceled:
-                        case JobState.Error:
-                            // Cast sender as a job.
-                            IJob job = (IJob)sender;
-                            // Display or log error details as needed.
-                            // LogJobStop(job.Id);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-   
             }
         }
+    }
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -521,6 +503,6 @@ ms.lasthandoff: 04/21/2017
 ## <a name="related-links"></a>相關連結
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
-[Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
+[Azure 媒體分析示範](http://amslabs.azurewebsites.net/demos/Analytics.html)
 
 

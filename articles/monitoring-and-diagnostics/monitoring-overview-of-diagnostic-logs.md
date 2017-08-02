@@ -2,7 +2,7 @@
 title: "Azure 診斷記錄檔概觀 | Microsoft Docs"
 description: "認識 Azure 診斷記錄檔，並了解如何利用它們來了解 Azure 資源內發生的事件。"
 author: johnkemnetz
-manager: rboucher
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: johnkem; magoedte
-ms.translationtype: Human Translation
-ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
-ms.openlocfilehash: d144dd60192a4b62db393db08b82efeaa8d45447
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: 2517972b63bbd1a552fe591e937c9e34db580865
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="collect-and-consume-diagnostic-data-from-your-azure-resources"></a>收集並取用來自 Azure 資源的診斷資料
@@ -86,7 +85,7 @@ ms.lasthandoff: 07/06/2017
 針對非計算資源，若要在資源建立之後在 Azure 入口網站中啟用診斷記錄檔，可執行下列作業︰
 
 1. 移至資源的刀鋒視窗，開啟 [診斷]  刀鋒視窗。
-2. 按一下 [開啟]  並選取儲存體帳戶和/或事件中樞。
+2. 按一下 [開啟] 並選取儲存體帳戶和/或事件中樞。
 
    ![在資源建立之後啟用診斷記錄檔](./media/monitoring-overview-of-diagnostic-logs/enable-portal-existing.png)
 3. 在 [記錄] 下，選取您要收集或資料流哪些 [記錄檔分類]。
@@ -98,7 +97,7 @@ ms.lasthandoff: 07/06/2017
 若要啟用儲存體帳戶中的診斷記錄檔的儲存體，使用下列命令︰
 
 ```powershell
-    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -StorageAccountId [your storage account id] -Enabled $true
+Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -StorageAccountId [your storage account id] -Enabled $true
 ```
 
 儲存體帳戶識別碼是您要將記錄檔傳送至此的儲存體帳戶的資源識別碼。
@@ -106,15 +105,15 @@ ms.lasthandoff: 07/06/2017
 若要啟用將診斷記錄檔串流至事件中樞，使用下列命令︰
 
 ```powershell
-    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -ServiceBusRuleId [your service bus rule id] -Enabled $true
+Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -ServiceBusRuleId [your Service Bus rule id] -Enabled $true
 ```
 
-服務匯流排規則識別碼是此格式的字串︰ `{service bus resource ID}/authorizationrules/{key name}`。
+服務匯流排規則識別碼是此格式的字串︰ `{Service Bus resource ID}/authorizationrules/{key name}`。
 
 若要啟用將診斷記錄檔傳送到 Log Analytics 工作區，請使用此命令︰
 
 ```powershell
-    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of the log analytics workspace] -Enabled $true
+Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of the log analytics workspace] -Enabled $true
 ```
 
 您可以使用下列命令取得 Log Analytics 工作區的資源識別碼︰
@@ -131,7 +130,7 @@ ms.lasthandoff: 07/06/2017
 若要啟用儲存體帳戶中的診斷記錄檔的儲存體，使用下列命令︰
 
 ```azurecli
-    azure insights diagnostic set --resourceId <resourceId> --storageId <storageAccountId> --enabled true
+azure insights diagnostic set --resourceId <resourceId> --storageId <storageAccountId> --enabled true
 ```
 
 儲存體帳戶識別碼是您要將記錄檔傳送至此的儲存體帳戶的資源識別碼。
@@ -139,15 +138,15 @@ ms.lasthandoff: 07/06/2017
 若要啟用將診斷記錄檔串流至事件中樞，使用下列命令︰
 
 ```azurecli
-    azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serviceBusRuleId> --enabled true
+azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serviceBusRuleId> --enabled true
 ```
 
-服務匯流排規則識別碼是此格式的字串︰ `{service bus resource ID}/authorizationrules/{key name}`。
+服務匯流排規則識別碼是此格式的字串︰ `{Service Bus resource ID}/authorizationrules/{key name}`。
 
 若要啟用將診斷記錄檔傳送到 Log Analytics 工作區，請使用此命令︰
 
 ```azurecli
-    azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of the log analytics workspace> --enabled true
+azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of the log analytics workspace> --enabled true
 ```
 
 您可以結合這些參數讓多個輸出選項。

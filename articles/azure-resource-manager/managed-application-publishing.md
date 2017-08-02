@@ -8,17 +8,16 @@ ms.service: azure-resource-manager
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 05/08/2017
+ms.date: 07/09/2017
 ms.author: gauravbh; tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 56dd68e328abd6c1dacdf7a8e051ca6b3cd07083
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 623d728cf70a5aa0b91b6acd9e314ca5c009c0aa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
-# <a name="create-and-publish-an-azure-managed-application"></a>建立及發佈 Azure 受管理的應用程式 
+# <a name="create-and-publish-service-catalog-managed-application"></a>建立及發行 Service Catalog 受管理的應用程式
 
 如[受管理的應用程式概觀](managed-application-overview.md)文章中所述，端對端體驗中有兩種案例。 其中一個是發行者 (或稱為 ISV)，是要建立受管理的應用程式供客戶使用。 第二個是受管理應用程式的客戶或取用者。 本文著重於第一個案例，並說明 ISV 要如何建立及發佈受管理的應用程式。 
 
@@ -32,7 +31,7 @@ ms.lasthandoff: 05/11/2017
 
 ## <a name="create-managed-application-package"></a>建立受管理的應用程式套件
 
-第一個步驟是建立包含主要範本檔案的受管理應用程式套件。 發行者或 ISV 會建立三個檔案。 
+第一個步驟是建立包含主要範本檔案的受管理應用程式套件。 發行者或 ISV 會建立三個檔案。 您必須將這三個檔案封裝為 .zip 檔案，並將它上傳至可存取的位置。
 
 * 第一個檔案稱為 **applianceMainTemplate.json**。 此範本檔案會將佈建作為受管理應用程式一部分的實際資源進行定義。 例如，若要使用受管理的應用程式來建立儲存體帳戶，applianceMainTemplate.json 會包含︰ 
 
@@ -208,6 +207,8 @@ az managedapp definition create -n ravtestAppDef4 -l "westcentralus"
 
 * 如需受管理應用程式的簡介，請參閱 [Azure 受管理的應用程式概觀](managed-application-overview.md)。
 * 如需檔案的範例，請參閱[受管理的應用程式範例](https://github.com/Azure/azure-managedapp-samples/tree/master/samples)。
-* 若要了解取用者體驗，請參閱[使用 Azure 受管理的應用程式](managed-application-consumption.md)。
+* 如需使用 Service Catalog 受管理應用程式的詳細資訊，請參閱[使用 Service Catalog 受管理的應用程式](managed-application-consumption.md)。
+* 如需發行受管理的應用程式到 Marketplace 的資訊，請參閱 [Marketplace 中 Azure 受管理的應用程式](managed-application-author-marketplace.md)。
+* 如需從 Marketplace 使用受管理應用程式的詳細資訊，請參閱[在 Marketplace 中使用 Azure 受管理的應用程式](managed-application-consume-marketplace.md)。
 * 若要了解如何建立受管理應用程式的 UI 定義檔案，請參閱[開始使用 CreateUiDefinition](managed-application-createuidefinition-overview.md)。
 

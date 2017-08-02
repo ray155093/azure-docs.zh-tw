@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 05/22/2017
 ms.author: arramac
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
-ms.openlocfilehash: 6d5a5814977d05fbe7be52dcb482a622de1c2ef6
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: 0beae16534b8efa7a23be6d2b61f1f1257317bd7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="how-does-azure-cosmos-db-index-data"></a>Azure Cosmos DB 如何為資料編製索引？
@@ -161,7 +160,7 @@ Azure Cosmos DB 會將 JSON 文件和索引模型化為樹狀結構，並可讓�
 
 * 資料類型：**String**、**Number**、**Point**、**Polygon** 或 **LineString** (每個路徑每個資料類型只能包含一個項目)
 * 索引類型：**雜湊** (相等查詢)、**範圍** (相等、範圍或 Order By 查詢) 或**空間** (空間查詢) 
-* 精確度：數字為 1-8 或 -1 (最大精確度)；字串為 1-100 (最大精確度)
+* 有效位數：字串和數字預設值為 3 的雜湊索引有效位數，會在 1 到 8 之間變換。 至於範圍索引，此值可以是 -1 (最大有效位數)，字串或數字的值可在 1 到 100 之間變換 (最大有效位數)。
 
 #### <a name="index-kind"></a>索引類型
 Azure Cosmos DB 支援每個路徑的雜湊和範圍索引種類 (可針對字串、數字或兩者進行設定)。

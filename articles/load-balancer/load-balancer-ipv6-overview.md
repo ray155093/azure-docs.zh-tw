@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/14/2016
 ms.author: kumud
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 8827793d771a2982a3dccb5d5d1674af0cd472ce
-ms.openlocfilehash: 397f3e75830acf46b29ac864c77ed3160f4e01e4
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 8cca857314ecf37ef51700fd25aef228515ecd0a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/14/2017
 
 ---
 
@@ -74,6 +74,8 @@ ms.lasthandoff: 07/06/2017
 * 雙重堆疊 (IPv4 + IPv6) 部署支援 IPv4 的網路安全性群組 (NSG) 保護。 NSG 不適用於 IPv6 端點。
 * VM 上的 IPv6 端點不會直接向網際網路公開， 而是擺在負載平衡器後。 透過 IPv6 存取只能存取負載平衡器規則中指定的連接埠。
 * **目前不支援**變更 IPv6 的 IdleTimeout 參數。 預設為四分鐘。
+* **目前不支援**變更 IPv6 的 loadDistributionMethod 參數。
+* **目前不支援**保留的 IPv6 IP (其中 IPAllocationMethod = 靜態)。
 
 ## <a name="next-steps"></a>後續步驟
 

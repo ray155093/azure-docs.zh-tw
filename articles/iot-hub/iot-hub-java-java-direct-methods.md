@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure IoT 中樞直接方法 (.NET/Node) | Microsoft Docs"
-description: "如何使用 Azure IoT 中樞直接方法。 您可以使用適用於 Node.js 的 Azure IoT 裝置 SDK，實作模擬裝置應用程式 (包含直接方法)，也可以使用適用於 .NET 的 Azure IoT 服務 SDK，實作服務應用程式 (叫用直接方法)。"
+title: "使用 Azure IoT 中樞直接方法 (Java) | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞直接方法。 您可以使用適用於 Java 的 Azure IoT 裝置 SDK，實作模擬的裝置應用程式 (包含直接方法)，也可以使用適用於 Java 的 Azure IoT 服務 SDK，實作服務應用程式 (叫用直接方法)。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: dobett
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
-ms.openlocfilehash: fe804cc01925cee58a1d694bdb94b85a8f994cef
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 3be5b442b357523449850e0a179eab93634e7b7b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/19/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="use-direct-methods-java"></a>使用直接方法 (Java)
@@ -48,7 +47,7 @@ ms.lasthandoff: 05/19/2017
 
 在本節中，您會建立 Java 主控台應用程式，回應解決方案後端所呼叫的方法。
 
-1. 建立名為 iot-java-direct-method 的空資料夾。 在 iot-java-direct-method 資料夾的命令提示字元下，使用下列命令建立名為 **simulated-device** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
+1. 建立名為 iot-java-direct-method 的空資料夾。
 
 1. 在 iot-java-direct-method 資料夾的命令提示字元下，使用下列命令建立名為 **simulated-device** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
 

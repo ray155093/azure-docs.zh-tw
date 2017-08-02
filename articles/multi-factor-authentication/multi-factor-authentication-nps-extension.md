@@ -5,24 +5,24 @@ services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: yossib
 ms.assetid: 
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/13/2017
+ms.date: 07/14/2017
 ms.author: kgremban
-ms.custom: H1Hack27Feb2017,it-pro
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
-ms.openlocfilehash: 46f5761caf2883d6083245a9a1fe689ea0529212
+ms.reviewer: yossib
+ms.custom: H1Hack27Feb2017; it-pro
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 1615f1ebbc4ade9dddbab3bd964bc27e6150a4c5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/17/2017
+ms.lasthandoff: 07/19/2017
 
 ---
-# <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication---public-preview"></a>將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合 - 公開預覽
+# <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication"></a>將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合
 
 Azure MFA 的網路原則伺服器 (NPS) 擴充功能可使用現有伺服器將雲端式 MFA 功能新增至驗證基礎結構。 利用 NPS 擴充功能，您可以在現有驗證流程中新增通話、簡訊或電話應用程式驗證，而不必安裝、設定及維護新的伺服器。 
 
@@ -108,8 +108,7 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 
 1. 在 RADIUS 用戶端 (VPN、Netscaler 伺服器或其他) 與 NPS 伺服器之間使用的密碼加密演算法。
    - **PAP** 支援雲端中 Azure MFA 的所有驗證方法：通話、簡訊、行動裝置應用程式通知，和行動裝置應用程式驗證碼。
-   - **CHAPV2** 支援通話和行動裝置應用程式通知。
-   - 不支援 **EAP**。
+   - **CHAPV2** 和 **EAP** 支援通話和行動裝置應用程式通知。
 2. 用戶端應用程式 (VPN、Netscaler 伺服器或其他) 可以處理的輸入法。 例如，VPN 用戶端是否有一些方法可讓使用者從文字或行動裝置應用程式輸入驗證程式碼？
 
 當您部署 NPS 擴充時，使用這些因素來評估哪些方法可供您的使用者使用。 如果您的 RADIUS 用戶端支援 PAP，但用戶端 UX 沒有驗證碼的輸入欄位，則通話和行動裝置應用程式通知是兩個支援的選項。
@@ -121,9 +120,9 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 在部署完整 NPS 延伸模組之前，您必須針對您想要執行雙步驟驗證的使用者啟用 MFA。 緊接著，若要同時部署與測試延伸模組，您必須至少有一個測試帳戶，並應已針對 Multi-Factor Authentication 完全註冊此帳戶。
 
 使用下列步驟啟動測試帳戶：
-1. [針對對 MFA 啟用帳戶](multi-factor-authentication-get-started-user-states.md)。
-2. 移至任何展開 Azure AD 驗證的網站，例如 https://portal.azure.com。
-3. [註冊雙步驟驗證](./end-user/multi-factor-authentication-end-user-first-time.md)。
+1. 使用測試帳戶登入 [https://aka.ms/mfasetup](https://aka.ms/mfasetup)。 
+2. 遵循提示來設定驗證方法。
+3. 建立條件式存取原則或[變更使用者狀態](multi-factor-authentication-get-started-user-states.md)，以要求測試帳戶進行雙步驟驗證。 
 
 您的使用者在向 NPS 擴充功能驗證之前，也必須遵循下列步驟進行註冊。
 
@@ -169,14 +168,13 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 
 本節包含成功部署 NPS 擴充功能的設計考量和建議。
 
-### <a name="configurations-limitations"></a>組態限制
+### <a name="configuration-limitations"></a>設定限制
 
 - Azure MFA 的 NPS 延伸模組並未包含可將使用者與設定從 MFA Server 移轉至雲端的工具。 有基於此，建議將此延伸模組用於新的部署，而非用於現有部署。 如果您在現有部署上使用此延伸模組，您的使用者必須再次執行證明，以便在雲端中填入其 MFA 詳細資料。  
 - NPS 擴充功能會使用來自內部部署 Active Directory 的 UPN，識別 Azure MFA 上用來執行次要驗證的使用者。 擴充功能無法設定為使用不同的識別碼，例如 UPN 以外的替代登入識別碼或自訂 AD 欄位。  
 - 並非所有的加密通訊協定都支援所有的驗證方法。
    - **PAP** 支援通話、簡訊、行動裝置應用程式通知和行動裝置應用程式驗證碼
-   - **CHAPV2** 支援通話和行動裝置應用程式通知
-   - 不支援 **EAP**
+   - **CHAPV2** 和 **EAP** 支援通話和行動裝置應用程式通知
 
 ### <a name="control-radius-clients-that-require-mfa"></a>控制需要 MFA 的 RADIUS 用戶端
 
@@ -225,7 +223,7 @@ Get-MsolServicePrincipalCredential -AppPrincipalId "981f26a1-7f43-403b-a875-f8b0
 1. 重新啟動 NPS 伺服器。
 2. 確認已如預期安裝用戶端憑證。
 3. 確認憑證已與 Azure AD 上的租用戶相關聯。
-4. 確認可以從執行擴充功能的伺服器存取 https://login.windows.net/。
+4. 確認可以從執行延伸模組的伺服器存取 https://login.microsoftonline.com/。
 
 -------------------------------------------------------------
 
@@ -242,5 +240,7 @@ Get-MsolServicePrincipalCredential -AppPrincipalId "981f26a1-7f43-403b-a875-f8b0
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何整合 Azure MFA 與[Active Directory](multi-factor-authentication-get-started-server-dirint.md)、[RADIUS 驗證](multi-factor-authentication-get-started-server-radius.md)和 [LDAP 驗證](multi-factor-authentication-get-started-server-ldap.md)。
+- 在 [Multi-Factor Authentication 之 NPS 延伸模組的進階設定選項](nps-extension-advanced-configuration.md)中，設定登入的替代識別碼，或為不應該執行雙步驟驗證之 IP 設定的例外狀況清單
+
+- [解決 Azure Multi-Factor Authentication NPS 擴充功能的錯誤訊息](multi-factor-authentication-nps-errors.md)
 

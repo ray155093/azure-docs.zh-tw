@@ -12,12 +12,13 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-ios
 ms.devlang: objective-c
 ms.topic: article
-ms.date: 12/13/2016
+ms.date: 07/17/2017
 ms.author: piyushjo
-translationtype: Human Translation
-ms.sourcegitcommit: c8bb1161e874a3adda4a71ee889ca833db881e20
-ms.openlocfilehash: cd70b0b5656bef08a8be1c1a67754b203cceb905
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 6acd343782a3ee07750e27ec3022ff81cedfadee
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="ios-sdk-for-azure-mobile-engagement"></a>Azure Mobile Engagement iOS SDK
@@ -31,8 +32,11 @@ ms.openlocfilehash: cd70b0b5656bef08a8be1c1a67754b203cceb905
 3. 標記計劃實作： [如何在 iOS 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-ios-use-engagement-api.md)
 
 ## <a name="release-notes"></a>版本資訊
-### <a name="401-12132016"></a>4.0.1 (12/13/2016)
-* 改善在背景中的記錄傳送。
+### <a name="410-07172017"></a>4.1.0 (07/17/2017)
+* 修正在背景清除徽章。
+* 修正在 XCode 9 上關於 API 未在主要佇列呼叫的警告。
+* 修正觸達輪詢中的記憶體流失。
+* 停止支援 iOS 6.X。 從此版本開始，您的應用程式部署目標必須至少為 iOS 7。
 
 如需較早版本，請參閱 [完整版本資訊](mobile-engagement-ios-release-notes.md)
 
@@ -49,8 +53,8 @@ ms.openlocfilehash: cd70b0b5656bef08a8be1c1a67754b203cceb905
 
 > [!NOTE]
 > 如果您實際上是仰賴 XCode 7，則可以使用 [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh)。 這個舊版本的觸達模組在 iOS 10 裝置上執行時有已知錯誤︰系統通知不會採取動作。 若要修正此錯誤，您必須在應用程式委派中實作已被取代的 API `application:didReceiveRemoteNotification:` ，方式如下︰
-> 
-> 
+>
+>
 
     - (void)application:(UIApplication*)application
     didReceiveRemoteNotification:(NSDictionary*)userInfo
@@ -60,8 +64,8 @@ ms.openlocfilehash: cd70b0b5656bef08a8be1c1a67754b203cceb905
 
 > [!IMPORTANT]
 > **我們不建議此因應措施** ，因為此 iOS API 已被取代，此行為在任何即將推出的 (甚至次要的) iOS 版本升級中會有所變更。 您應盡快改用 XCode 8。
-> 
-> 
+>
+>
 
 #### <a name="usernotifications-framework"></a>UserNotifications 架構
 您需要在建置階段新增 `UserNotifications` 架構。
@@ -72,7 +76,7 @@ ms.openlocfilehash: cd70b0b5656bef08a8be1c1a67754b203cceb905
 XCode 8 可能會重設您的應用程式推播功能，請在您選取的目標的 `capability` 索引標籤中再檢查一次。
 
 #### <a name="add-the-new-ios-10-notification-registration-code"></a>新增 iOS 10 通知註冊程式碼
-要將應用程式註冊通知的較舊程式碼片段仍會運作，但在 iOS 10 上執行時會使用已被取代的 API。 
+要將應用程式註冊通知的較舊程式碼片段仍會運作，但在 iOS 10 上執行時會使用已被取代的 API。
 
 匯入 `User Notification` 架構：
 
@@ -176,14 +180,8 @@ SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本�
 
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         // Any other code
-  
+
         [UNUserNotificationCenter currentNotificationCenter].delegate = self;
         return YES;
       }
-
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

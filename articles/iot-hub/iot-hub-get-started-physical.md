@@ -1,6 +1,6 @@
 ---
 title: "開始將實體裝置連線到 Azure IoT 中樞 | Microsoft Docs"
-description: "了解如何建立實體 IoT 裝置，並將它們連線至 Azure IoT 中樞。 您的裝置可以將遙測傳送到 IoT 中樞，而 IoT 中樞會監視並管理您的裝置。"
+description: "了解實體裝置和面板如何連線到 Azure IoT 中樞。 您的裝置可以將遙測資料傳送到 IoT 中樞，而 IoT 中樞會監視並管理您的裝置。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,10 +15,10 @@ ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
-ms.openlocfilehash: 2e00affad9302145ac0c62e5994bd636cb2b72a9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dce80d060538adc061149f686b71992a09d190da
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/03/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---

@@ -1,10 +1,10 @@
 ---
 title: "Intel Edison 到雲端 (C) - 將 Intel Edison 連線到 Azure IoT 中樞 | Microsoft Docs"
-description: "將 Intel Edison 連線到適用於 Intel Edison 的 Azure IoT 中樞以將資料傳送到 Azure 雲端。"
+description: "了解如何設定及連線 Intel Edison 和 Azure IoT 中樞，在本教學課程中讓 Intel Edison 將資料傳送到 Azure 雲端平台。"
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: "azure iot intel edison, intel edison iot 中樞, intel edison 傳送資料到雲端, intel edison 到雲端"
 ms.assetid: 4885fa2c-c2ee-4253-b37f-ccd55f92b006
@@ -16,11 +16,11 @@ ms.workload: na
 ms.date: 4/17/2017
 ms.author: xshi
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: fd6d04159c46439b5f1a91be7d2fa1b500bc92b3
-ms.lasthandoff: 04/20/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: edbdbe0230f742cd7228f04a4a83c9bd567527e8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="connect-intel-edison-to-azure-iot-hub-c"></a>將 Intel Edison 連線到 Azure IoT 中樞 (C)
@@ -181,7 +181,7 @@ ms.lasthandoff: 04/20/2017
 
 1. 使用下列其中一個 SSH 用戶端，從主機電腦連線到 Intel Edison。 IP 位址來自組態工具，密碼則是您在該工具中設定的密碼。
     - [PuTTY](http://www.putty.org/) 適用於 Windows。
-    - Ubuntu 或 macOS 上內建的 SSH 用戶端。
+    - Ubuntu 或 macOS 上的內建 SSH 用戶端 (執行 `ssh root@"the IP address"`)。
 
 2. 將範例用戶端應用程式複製到裝置。 
    
@@ -241,3 +241,4 @@ ms.lasthandoff: 04/20/2017
 您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
+

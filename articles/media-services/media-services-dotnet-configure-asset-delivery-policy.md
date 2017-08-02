@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 07/13/2017
 ms.author: juliako;mingfeiy
-translationtype: Human Translation
-ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
-ms.openlocfilehash: 0649f36f55696d2c9a9d31a9f87bc3b34373f273
-ms.lasthandoff: 01/11/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 93a3bba0fbc635bd04063168796eac0d89fba87c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="configure-asset-delivery-policies-with-net-sdk"></a>使用 .NET SDK 設定資產傳遞原則
@@ -196,11 +196,12 @@ Azure 媒體服務也可讓您加入 Widevine 加密。 下列範例會示範 Pl
     }
 
 
-## <a name="a-idtypesatypes-used-when-defining-assetdeliverypolicy"></a><a id="types"></a>定義 AssetDeliveryPolicy 時使用的類型
-### <a name="a-idassetdeliveryprotocolaassetdeliveryprotocol"></a><a id="AssetDeliveryProtocol"></a>AssetDeliveryProtocol
-    /// <summary>
-    /// Delivery protocol for an asset delivery policy.
-    /// </summary>
+## <a id="types"></a>定義 AssetDeliveryPolicy 時使用的類型
+
+### <a id="AssetDeliveryProtocol"></a>AssetDeliveryProtocol
+
+下列列舉描述您可以針對資產傳遞通訊協定設定的值。
+
     [Flags]
     public enum AssetDeliveryProtocol
     {
@@ -224,16 +225,18 @@ Azure 媒體服務也可讓您加入 Widevine 加密。 下列範例會示範 Pl
         /// </summary>
         HLS = 0x4,
 
+        ProgressiveDownload = 0x10, 
+ 
         /// <summary>
         /// Include all protocols.
         /// </summary>
         All = 0xFFFF
     }
 
-### <a name="a-idassetdeliverypolicytypeaassetdeliverypolicytype"></a><a id="AssetDeliveryPolicyType"></a>AssetDeliveryPolicyType
-    /// <summary>
-    /// Policy type for dynamic encryption of assets.
-    /// </summary>
+### <a id="AssetDeliveryPolicyType"></a>AssetDeliveryPolicyType
+
+下列列舉描述您可以針對資產傳遞原則類型設定的值。  
+
     public enum AssetDeliveryPolicyType
     {
         /// <summary>
@@ -261,27 +264,30 @@ Azure 媒體服務也可讓您加入 Widevine 加密。 下列範例會示範 Pl
         /// Apply Dynamic Common encryption.
         /// </summary>
         DynamicCommonEncryption
-    }
+        }
 
-### <a name="a-idcontentkeydeliverytypeacontentkeydeliverytype"></a><a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType
-    /// <summary>
-    /// Delivery method of the content key to the client.
-    /// </summary>
+### <a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType
+
+下列列舉描述您可用來設定將內容金鑰傳遞給用戶端之方法的值。
+    
     public enum ContentKeyDeliveryType
     {
         /// <summary>
         /// None.
-        /// </summary>
+        ///
+        </summary>
         None = 0,
 
         /// <summary>
         /// Use PlayReady License acquistion protocol
-        /// </summary>
+        ///
+        </summary>
         PlayReadyLicense = 1,
 
         /// <summary>
         /// Use MPEG Baseline HTTP key protocol.
-        /// </summary>
+        ///
+        </summary>
         BaselineHttp = 2,
 
         /// <summary>
@@ -292,10 +298,10 @@ Azure 媒體服務也可讓您加入 Widevine 加密。 下列範例會示範 Pl
 
     }
 
-### <a name="a-idassetdeliverypolicyconfigurationkeyaassetdeliverypolicyconfigurationkey"></a><a id="AssetDeliveryPolicyConfigurationKey"></a>AssetDeliveryPolicyConfigurationKey
-    /// <summary>
-    /// Keys used to get specific configuration for an asset delivery policy.
-    /// </summary>
+### <a id="AssetDeliveryPolicyConfigurationKey"></a>AssetDeliveryPolicyConfigurationKey
+
+下列列舉描述您可以設定的值，以便設定用來取得資產傳遞原則特定設定的金鑰。
+
     public enum AssetDeliveryPolicyConfigurationKey
     {
         /// <summary>

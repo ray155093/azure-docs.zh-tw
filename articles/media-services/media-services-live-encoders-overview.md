@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: juliako
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 555e0b6340d09517bfd87efe209f0304f3266788
-ms.openlocfilehash: 0ebed14fe5a24f2b161c0bab0a0e1d36dadb6b5b
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 7c883c53fd3d151401173e4569818ee769505113
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/27/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
-# <a name="how-to-configure-on-premise-encoders-when-using-azure-media-services-to-create-multi-bitrate-streams"></a>使用 Azure 媒體服務時如何設定內部部署編碼器來建立多位元速率串流
+# <a name="how-to-configure-on-premises-encoders-when-using-azure-media-services-to-create-multi-bitrate-streams"></a>使用 Azure 媒體服務時如何設定內部部署編碼器來建立多位元速率串流
 本主題列出的內部部署即時編碼器可用來擷取即時事件，並傳送單一位元速率即時串流到 AMS 通道 (啟用即時編碼) 以供進一步處理。 本主題也列出示範如何設定列出之編碼器的教學課程連結。
 
 ## <a name="elemental-live"></a>Elemental Live

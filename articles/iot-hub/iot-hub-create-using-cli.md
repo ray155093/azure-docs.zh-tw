@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: 159aed19b4c5e381ef15c40c15cf6bd7694d2fa3
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 161089159999a4a63a39b059e69a08b7a9297445
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/24/2017
-
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="create-an-iot-hub-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立 IoT 中樞
@@ -79,14 +78,17 @@ ms.lasthandoff: 03/24/2017
     >
     >
 
-2. 執行下列[命令以在資源群組中建立 IoT 中樞][lnk-az-iot-command]：
+2. 使用 IoT 中樞的全域唯一名稱，在資源群組中執行下列命令[建立 IoT 中樞][lnk-az-iot-command]：
     
     ```azurecli
     az iot hub create --name {your iot hub name} --resource-group {your resource group name} --sku S1
     ```
 
+   [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
+
+
 > [!NOTE]
-> 您 IoT 中樞的名稱必須是全域唯一的。 上一個命令會在您付費使用的 S1 定價層中建立 IoT 中樞。 如需詳細資訊，請參閱 [Azure IoT 中樞價格][lnk-iot-pricing]。
+> 上一個命令會在您付費使用的 S1 定價層中建立 IoT 中樞。 如需詳細資訊，請參閱 [Azure IoT 中樞價格][lnk-iot-pricing]。
 >
 >
 
