@@ -15,10 +15,10 @@ ms.custom: tables
 ms.date: 07/14/2017
 ms.author: rortloff;barbkess
 ms.translationtype: HT
-ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
-ms.openlocfilehash: 36515f6a3886ec68748a5b21b8022199abc3e092
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: efb5361496a2199a960564f6213f509b693e3cfa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/17/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 
@@ -43,7 +43,7 @@ ms.lasthandoff: 07/17/2017
 
 下圖顯示每個計算節點上可存取的複寫資料表。 在「SQL 資料倉儲」中，會將複寫資料表完整複製到每個計算節點上的散發資料庫。 
 
-![複寫的資料表](media/sql-data-warehouse-distributed-data/replicated-table.png "複寫的資料表")  
+![複寫的資料表](media/guidance-for-using-replicated-tables/replicated-table.png "複寫的資料表")  
 
 複寫資料表適用於星型結構描述中的小型維度資料表。 維度資料表的大小通常是適合儲存及維護多個複本的大小。 維度會儲存變更緩慢的描述性資料，例如客戶名稱和地址，以及產品詳細資料。 資料的變更緩慢特性導致較少發生重建複寫資料表的情況。 
 

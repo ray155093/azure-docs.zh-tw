@@ -15,12 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: genli
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ad0e96a91d6d502897953a4c841cbfa40a4852a3
-ms.openlocfilehash: 20b5144cafebc83eb00d191292b34ea550273914
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: e5f3fc57292102afb8f0ffb1f851953e97d7478a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/04/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="troubleshoot-deploying-windows-virtual-machine-issues-in-azure"></a>針對 Azure 中的 Windows 虛擬機器部署問題進行疑難排解
@@ -129,7 +128,7 @@ Windows 型 VM 的驅動程式位於[這裡](n-series-driver-setup.md)。
 
 ## <a name="can-i-add-an-existing-classic-vm-to-an-availability-set"></a>我是否可以將現有的傳統 VM 新增到可用性設定組？
 
-是。 您可以將現有的傳統 VM 新增到新的或現有的「可用性設定組」。 如需詳細資訊，請參閱[將現有的虛擬機器新增至可用性設定組](classic/configure-availability.md#a-idaddmachine-aoption-2-add-an-existing-virtual-machine-to-an-availability-set)。
+是。 您可以將現有的傳統 VM 新增到新的或現有的「可用性設定組」。 如需詳細資訊，請參閱[將現有的虛擬機器新增至可用性設定組](classic/configure-availability.md#addmachine)。
 
 
 ## <a name="next-steps"></a>後續步驟

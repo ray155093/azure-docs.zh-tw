@@ -16,12 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: 9bccb28934415d3ff6d363d35b604056b28cb6b9
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 41a5c652a89c85f248039fc617c84a2b6b230f56
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="install-and-use-hue-on-hdinsight-hadoop-clusters"></a>在 HDInsight Hadoop 叢集上安裝和使用 Hue
@@ -129,7 +128,7 @@ ms.lasthandoff: 07/08/2017
 3. 以滑鼠右鍵按一下檔案或資料夾，以查看可用的作業。 使用右邊的 [上傳]  按鈕，將檔案上傳至目前的目錄。 使用 [新增]  按鈕建立新的檔案或目錄。
 
 > [!NOTE]
-> Hue 檔案瀏覽器只會顯示與 HDInsight 叢集相關聯的預設容器的內容。 已與叢集相關聯的任何額外儲存體帳戶/容器將無法使用檔案瀏覽器存取。 不過，與叢集相關聯的其他容器一律可供 Hive 工作存取。 例如，如果您在 Hive 編輯器中輸入 `dfs -ls wasbs://newcontainer@mystore.blob.core.windows.net` 命令，則您也可以看到其他容器的內容。 在這個命令中， **newcontainer** 不是與叢集相關聯的預設容器。
+> Hue 檔案瀏覽器只會顯示與 HDInsight 叢集相關聯的預設容器的內容。 已與叢集相關聯的任何額外儲存體帳戶/容器將無法使用檔案瀏覽器存取。 不過，與叢集相關聯的其他容器一律可供 Hive 工作存取。 例如，如果您在 Hive 編輯器中輸入 `dfs -ls wasb://newcontainer@mystore.blob.core.windows.net` 命令，則您也可以看到其他容器的內容。 在這個命令中， **newcontainer** 不是與叢集相關聯的預設容器。
 >
 >
 
@@ -146,7 +145,7 @@ ms.lasthandoff: 07/08/2017
    ![Hue 入口網站錯誤](./media/hdinsight-hadoop-hue-linux/hdinsight-hue-portal-error.png "Hue 入口網站錯誤")
 
    這是由已知問題造成的。 因應措施是修改 Ambari，讓作用中的 Resource Manager 也在主要前端節點上執行。
-5. 當 HDInsight 叢集使用 Azure 儲存體 (使用 `wasbs://`) 時，色調能了解 WebHDFS。 因此，搭配指令碼動作使用的自訂指令碼會安裝 WebWasb，這是針對與 WASB 通訊的 WebHDFS 相容服務。 所以，即使在 Hue 入口網站顯示有 HDFS (例如將滑鼠移至 [檔案瀏覽器] 時)，應將它解讀成 WASB。
+5. 當 HDInsight 叢集使用 Azure 儲存體 (使用 `wasb://`) 時，色調能了解 WebHDFS。 因此，搭配指令碼動作使用的自訂指令碼會安裝 WebWasb，這是針對與 WASB 通訊的 WebHDFS 相容服務。 所以，即使在 Hue 入口網站顯示有 HDFS (例如將滑鼠移至 [檔案瀏覽器] 時)，應將它解讀成 WASB。
 
 ## <a name="next-steps"></a>後續步驟
 * [在 HDInsight 叢集上安裝 Giraph](hdinsight-hadoop-giraph-install-linux.md)。 在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Giraph。 Giraph 可讓您利用 Hadoop 執行圖形處理，且可以搭配 Azure HDInsight 一起使用。

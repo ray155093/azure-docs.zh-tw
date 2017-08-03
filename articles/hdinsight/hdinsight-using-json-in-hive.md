@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/26/2017
 ms.author: jgao
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: 41ae560b6ab66860baa1a311bb8d14ed33a20b41
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: bd136afebeceb0cd9c24cfc5f15601caa80a755e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="process-and-analyze-json-documents-using-hive-in-hdinsight"></a>使用 HDInsight 中的 Hive 處理並分析 JSON 文件
@@ -62,7 +61,7 @@ ms.lasthandoff: 07/08/2017
         ]
     }
 
-檔案位於 wasbs://processjson@hditutorialdata.blob.core.windows.net/。 如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。 您可以將檔案複製到叢集的預設容器。
+檔案位於 wasb://processjson@hditutorialdata.blob.core.windows.net/。 如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。 您可以將檔案複製到叢集的預設容器。
 
 在本教學課程中，您會使用 Hive 主控台。  如需開啟 Hive 主控台的指示，請參閱 [利用遠端桌面搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-remote-desktop.md)。
 
@@ -86,7 +85,7 @@ ms.lasthandoff: 07/08/2017
 
     SELECT * FROM StudentsOneLine
 
-原始 JSON 檔案位於 **wasbs://processjson@hditutorialdata.blob.core.windows.net/**。 StudentsRaw Hive 資料表會指向原始未扁平化的 JSON 文件。
+原始 JSON 檔案位於 **wasb://processjson@hditutorialdata.blob.core.windows.net/**。 StudentsRaw Hive 資料表會指向原始未扁平化的 JSON 文件。
 
 StudentsOneLine Hive 資料表會將資料儲存在 HDInsight 預設檔案系統的 /json/students/ 路徑下。
 

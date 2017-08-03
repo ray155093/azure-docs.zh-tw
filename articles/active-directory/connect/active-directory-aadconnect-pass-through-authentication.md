@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2017
+ms.date: 07/27/2017
 ms.author: billmath
 ms.translationtype: HT
-ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
-ms.openlocfilehash: 2f76d23fc80e0050bf5fb1460a58f56dee57a90b
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 6acbc347d7b187a6aac603dd05cf95c6aba54475
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 
@@ -33,6 +33,9 @@ Azure Active Directory (Azure AD) 傳遞驗證可讓您的使用者以相同密�
 ![Azure AD 傳遞驗證](./media/active-directory-aadconnect-pass-through-authentication/pta1.png)
 
 您可以將傳遞驗證與[無縫單一登入](active-directory-aadconnect-sso.md)功能結合在一起。 如此一來，當使用者在公司網路內的公司電腦上存取應用程式時，就不需要輸入密碼來進行登入。
+
+>[!IMPORTANT]
+>Azure AD 傳遞驗證目前為預覽功能。
 
 ## <a name="key-benefits-of-using-azure-ad-pass-through-authentication"></a>使用 Azure AD 傳遞驗證的主要好處
 

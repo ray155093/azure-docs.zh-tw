@@ -12,13 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 07/10/2017
+ms.date: 07/26/2017
 ms.author: alkohli
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: 40af4c3057d5689600b06cbcfb60fabb2674d842
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: 70c85bcb2c26d2ad3d0515d24e028f84495634c0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="use-the-storsimple-device-manager-service-in-azure-portal-to-clone-a-volume"></a>在 Azure 入口網站中，使用 StorSimple 裝置管理員服務來複製磁碟區
@@ -105,7 +105,7 @@ StorSimple 裝置管理員服務 [備份類別目錄]  刀鋒視窗會顯示在�
 
     ![備份組清單](./media/storsimple-8000-clone-volume-u2/clonevol6.png)
 
-以這種方式建立的複製就是暫時性複製。 如需複製類型的詳細資訊，請參閱 [暫時性與永久複製](#transient-vs.-permanent-clones)。
+以這種方式建立的複製就是暫時性複製。 如需複製類型的詳細資訊，請參閱 [暫時性與永久複製](#transient-vs-permanent-clones)。
 
 
 ## <a name="transient-vs-permanent-clones"></a>暫時性與永久複製

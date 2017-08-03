@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 07/17/2017
 ms.author: jdial;narayan;annahar
 ms.translationtype: HT
-ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
-ms.openlocfilehash: b9494ae2cc7b60863b5837becec48c04cb60749d
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: 7d75d85863ce4b06ef1f552e0d583dec302f7ace
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/18/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="create-a-virtual-network-peering---different-deployment-models-same-subscription"></a>建立虛擬網路對等互連 - 不同部署模型、相同訂用帳戶 
@@ -70,7 +70,7 @@ ms.lasthandoff: 07/18/2017
      - **訂用帳戶**︰選取您的訂用帳戶
      - **虛擬網路**：按一下 [選擇虛擬網路]，然後按一下 [myVnet2]。
      - **允許虛擬網路存取**：確定已選取 [啟用]。
-    本教學課程中不會使用其他設定。 若要了解所有對等互連設定，請閱讀[管理虛擬網路對等互連](virtual-network-manage-peering.md#create-peering)。
+    本教學課程中不會使用其他設定。 若要了解所有對等互連設定，請閱讀[管理虛擬網路對等互連](virtual-network-manage-peering.md#create-a-peering)。
 12. 按一下上一個步驟中的 [確定] 後，[新增對等互連] 刀鋒視窗隨即關閉，而且您會再次看到 [myVnet1 - 對等互連] 刀鋒視窗。 幾秒之後，您建立的對等互連會出現在刀鋒視窗中。 您所建立之 **myVnet1ToMyVnet2** 對等互連的 [對等互連狀態] 資料行中會列出 [已連線]。
 
     現在已建立對等互連。 您在任何一個虛擬網路中建立的任何 Azure 資源現在能夠透過其 IP 位址彼此通訊。 如果您使用虛擬網路的預設 Azure 名稱解析，則虛擬網路中的資源無法跨虛擬網路解析名稱。 如果您想要跨對等互連中的虛擬網路解析名稱，您必須建立自己的 DNS 伺服器。 了解如何設定[使用自己的 DNS 伺服器進行名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server)。
@@ -267,7 +267,7 @@ ms.lasthandoff: 07/18/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-- 請先徹底熟悉重要[虛擬網路對等互連的條件約束和行為](virtual-network-manage-peering.md#about-peering)，再建立虛擬網路對等互連以供生產環境使用。
-- 了解所有[虛擬網路對等互連設定](virtual-network-manage-peering.md#create-peering)。
+- 請先徹底熟悉重要[虛擬網路對等互連的條件約束和行為](virtual-network-manage-peering.md#requirements-and-constraints)，再建立虛擬網路對等互連以供生產環境使用。
+- 了解所有[虛擬網路對等互連設定](virtual-network-manage-peering.md#create-a-peering)。
 - 了解如何透過虛擬網路對等互連來[建立中樞和輪輻網路拓撲](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#vnet-peering)。
 

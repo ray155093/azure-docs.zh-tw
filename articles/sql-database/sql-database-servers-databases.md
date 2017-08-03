@@ -16,10 +16,10 @@ ms.workload: data-management
 ms.date: 07/05/2017
 ms.author: carlrab
 ms.translationtype: HT
-ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
-ms.openlocfilehash: cbecac946e0e140503d8c14c6072fa38673d4495
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: ef61aa610957024d85f4231d957869858fd545c5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/14/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 
@@ -65,7 +65,7 @@ Azure 資料庫邏輯伺服器：
 - 是資料庫的父資源、彈性集區和資料倉儲
 - 提供資料庫的命名空間、彈性集區和資料倉儲
 - 是具有強式存留期語意 - 刪除伺服器的邏輯容器，它會刪除自主資料庫、彈性集區和資料倉儲
-- 參與 [Azure 角色型存取控制 (RBAC)](/active-directory/role-based-access-control-what-is.md) - 伺服器內的資料庫、彈性集區和資料倉儲會從伺服器繼承存取權限
+- 參與 [Azure 角色型存取控制 (RBAC)](/active-directory/role-based-access-control-what-is) - 伺服器內的資料庫、彈性集區和資料倉儲會從伺服器繼承存取權限
 - 是供 Azure 資源管理的資料庫身分識別、彈性集區和資料倉儲的高序位項目 (請參閱資料庫和集區的 URL 配置)
 - 區域中的共置資源
 - 提供用來存取資料庫的連接端點 (<serverName>.database.windows.net)

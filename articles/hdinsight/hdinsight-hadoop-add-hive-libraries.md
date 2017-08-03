@@ -16,10 +16,10 @@ ms.date: 07/12/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 ms.translationtype: HT
-ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
-ms.openlocfilehash: 9bd95113616cc8e943f20e8a3795933ac9e99cc8
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 3412864384961e8820d6700c1bf22a4cae64ba4b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/14/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="add-custom-hive-libraries-when-creating-your-hdinsight-cluster"></a>建立 HDInsight 叢集時新增自訂 Hive 程式庫
@@ -57,7 +57,7 @@ ms.lasthandoff: 07/14/2017
 
 * 包含 jar 檔案程式庫的儲存體帳戶**必須**在建立期間連結至 HDInsight 叢集。 它必須是預設的儲存體帳戶，或是透過__選擇性組態__新增的帳戶。
 
-* 必須指定容器的 WASB 路徑做為指令碼動作的參數。 例如，如果 jar 儲存在名為 **mystorage** 的儲存體帳戶上稱為 **libs** 的容器中，則這個參數會是 **wasbs://libs@mystorage.blob.core.windows.net/**。
+* 必須指定容器的 WASB 路徑做為指令碼動作的參數。 例如，如果 jar 儲存在名為 **mystorage** 的儲存體帳戶上稱為 **libs** 的容器中，則這個參數會是 **wasb://libs@mystorage.blob.core.windows.net/**。
 
   > [!NOTE]
   > 本文件假設您已建立儲存體帳戶、blob 容器，也已將檔案上傳給它。
@@ -85,7 +85,7 @@ ms.lasthandoff: 07/14/2017
 
    * **ZOOKEEPER**：將此選項保留空白。
 
-   * **參數**：輸入包含 jar 的容器和儲存體帳戶的 WASB 位址。 例如：**wasbs://libs@mystorage.blob.core.windows.net/**。
+   * **參數**：輸入包含 jar 的容器和儲存體帳戶的 WASB 位址。 例如：**wasb://libs@mystorage.blob.core.windows.net/**。
 
 3. 在 [指令碼動作] 底部，使用 [選取] 按鈕以儲存組態。
 

@@ -13,14 +13,13 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/03/2017
+ms.date: 07/31/2017
 ms.author: gwallace
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: 14dab2197ff7c1eaff012066e321ef1b99f05bb3
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 7776942602e21cd0efc86fd471dc072564bb64a6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="create-an-application-gateway-by-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立應用程式閘道
@@ -58,9 +57,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 * 建立含有兩個執行個體的中型應用程式閘道。
 * 建立名為 AdatumAppGatewayVNET 且含有 10.0.0.0/16 保留 CIDR 區塊的虛擬網路。
 * 建立名為 Appgatewaysubnet 且使用 10.0.0.0/28 做為其 CIDR 區塊的子網路。
-* 為 SSL 卸載設定憑證。
-
-![案例範例][scenario]
 
 > [!NOTE]
 > 其他應用程式閘道組態 (包括自訂健康狀況探查、後端集區位址及其他規則) 會在設定應用程式閘道設定之後才進行設定，而不會在初始部署期間設定。
@@ -128,14 +124,12 @@ az network application-gateway create \
 --subnet Appgatewaysubnet \
 ---subnet-address-prefix 10.0.0.0/28 \
 --servers 10.0.0.4 10.0.0.5 \
---cert-file /mnt/c/Users/username/Desktop/application-gateway/fabrikam.pfx \
---cert-password P@ssw0rd \
 --capacity 2 \
 --sku Standard_Small \
 --http-settings-cookie-based-affinity Enabled \
 --http-settings-protocol Http \
 --public-ip-address AdatumAppGatewayPIP \
---frontend-port 443 \
+--frontend-port 80 \
 --routing-rule-type Basic \
 --http-settings-port 80
 
@@ -144,7 +138,7 @@ az network application-gateway create \
 > [!NOTE]
 > 如需可在建立期間提供的參數清單，請執行下列命令︰**az network application-gateway create --help**。
 
-此範例會建立一個具有接聽程式、後端集區、後端 http 設定及規則之預設設定的基本應用程式閘道。 也會設定 SSL 卸載。 佈建成功之後，您可以依據您的部署需求修改這些設定。
+此範例會建立一個具有接聽程式、後端集區、後端 http 設定及規則之預設設定的基本應用程式閘道。 佈建成功之後，您可以依據您的部署需求修改這些設定。
 如果在先前步驟中已經以後端集區定義 Web 應用程式，一旦建立之後，負載平衡即開始。
 
 ## <a name="delete-all-resources"></a>刪除所有資源

@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: ramankum
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: c905bfe672d1027916d7f273ab5ac79ceec9a4d9
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 94ae2fa4600c007725ae2615554144d12306e833
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="high-performance-premium-storage-and-managed-disks-for-vms"></a>VM 高效能進階儲存體與受控磁碟
@@ -59,7 +58,7 @@ Azure 提供兩種建立 VM 進階儲存體磁碟的方法：
 
 * **進階儲存體磁碟**
 
-    進階儲存體支援可連結至特定大小系列 VM 的 VM 磁碟。 進階儲存體支援 DS 系列、DSv2 系列、GS 系列和 Fs 系列 VM。 您可以選擇七種磁碟大小：P4 (32GB)、P6 (64GB)、P10 (128GB)、P20 (512GB)、P30 (1024GB)、P40 (2048GB)、P50 (4095GB)。 受控磁碟至今僅支援 P4 和 P6 磁碟大小。 每個磁碟大小都有自己的效能規格。 端視您的應用程式需求而定，您可以將一或多個磁碟連結至您的 VM。 在[進階儲存體延展性和效能目標 ](#premium-storage-scalability-and-performance-targets)中，我們會更詳細地說明規格。
+    進階儲存體支援可連結至特定大小系列 VM 的 VM 磁碟。 進階儲存體支援 DS 系列、DSv2 系列、GS 系列、Ls 系列和 Fs 系列 VM。 您可以選擇七種磁碟大小：P4 (32GB)、P6 (64GB)、P10 (128GB)、P20 (512GB)、P30 (1024GB)、P40 (2048GB)、P50 (4095GB)。 受控磁碟至今僅支援 P4 和 P6 磁碟大小。 每個磁碟大小都有自己的效能規格。 端視您的應用程式需求而定，您可以將一或多個磁碟連結至您的 VM。 在[進階儲存體延展性和效能目標 ](#scalability-and-performance-targets)中，我們會更詳細地說明規格。
 
 * **進階分頁 Blob**
 

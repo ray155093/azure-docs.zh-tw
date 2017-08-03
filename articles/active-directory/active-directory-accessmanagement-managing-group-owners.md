@@ -12,17 +12,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 07/25/2017
 ms.author: curtand
+ms.custom: oldportal;it-pro;
 ms.translationtype: HT
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 6b448b4fac56d4b5debcf4fb3a545dd538929aff
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: 82fbeb379e90add09f7c569111053f6e9b1bc9c5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="managing-owners-for-a-group"></a>管理群組的擁有者
 一旦資源擁有者將資源的存取權指派給 Azure AD 群組後，群組擁有者就會管理群組的成員資格。 資源擁有者實際上是委派權限給群組的擁有者，以指派使用者存取資源。
+
+> [!IMPORTANT]
+> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。 
 
 ## <a name="assigning-group-ownership"></a>指派群組擁有權
 **將擁有者新增至群組**

@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/26/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: 6fe228ee8967c1d290e9bd515733d8207a721466
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 481d234eaf88bdb210821084ee4154159470eda0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-a-java-udf-with-hive-in-hdinsight"></a>在 HDInsight 中搭配使用 Java UDF 和 Hive
@@ -215,12 +214,12 @@ ms.lasthandoff: 07/08/2017
 2. 一旦到達 `jdbc:hive2://localhost:10001/>` 提示後，請輸入下列命令以將 UDF 新增至 Hive，並將它公開為函式。
 
     ```hiveql
-    ADD JAR wasbs:///example/jars/ExampleUDF-1.0-SNAPSHOT.jar;
+    ADD JAR wasb:///example/jars/ExampleUDF-1.0-SNAPSHOT.jar;
     CREATE TEMPORARY FUNCTION tolower as 'com.microsoft.examples.ExampleUDF';
     ```
 
     > [!NOTE]
-    > 此範例假設 Azure 儲存體是叢集的預設儲存體。 如果您的叢集改為使用 Data Lake Store，請將 `wasbs:///` 值變更為 `adl:///`。
+    > 此範例假設 Azure 儲存體是叢集的預設儲存體。 如果您的叢集改為使用 Data Lake Store，請將 `wasb:///` 值變更為 `adl:///`。
 
 3. 使用 UDF 將從資料表擷取的值轉換成小寫字串。
 

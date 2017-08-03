@@ -15,21 +15,21 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: 4d86910acca16299627c4202ef073c526bd4fc26
-ms.lasthandoff: 04/14/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 595c30ab5d9adc6061ad753d952adf894ba80b2f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="connect-a-virtual-network-to-an-expressroute-circuit"></a>將虛擬網路連線到 ExpressRoute 電路
 > [!div class="op_single_selector"]
-> * [Resource Manager - Azure 入口網站](expressroute-howto-linkvnet-portal-resource-manager.md)
-> * [Resource Manager - PowerShell](expressroute-howto-linkvnet-arm.md)
-> * [傳統 - PowerShell](expressroute-howto-linkvnet-classic.md)
+> * [Azure 入口網站](expressroute-howto-linkvnet-portal-resource-manager.md)
+> * [PowerShell](expressroute-howto-linkvnet-arm.md)
+> * [Azure CLI](howto-linkvnet-cli.md)
 > * [影片 - Azure 入口網站](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit)
+> * [PowerShell (傳統)](expressroute-howto-linkvnet-classic.md)
 > 
->  
 
 本文會協助您使用 Resource Manager 部署模型和 Azure 入口網站將虛擬網路 (VNet) 連結到 Azure ExpressRoute 線路。 虛擬網路可以位於相同的訂用帳戶中，或屬於另一個訂用帳戶。
 
@@ -113,24 +113,24 @@ ms.lasthandoff: 04/14/2017
 
 **兌換連線授權**
 
-1.    按一下 [+新增] 按鈕。
+1.  按一下 [+新增] 按鈕。
 
     ![Click New](./media/expressroute-howto-linkvnet-portal-resource-manager/Connection1.png)
 
-2.    在 Marketplace 中搜尋**連線**、選取它，然後按一下 [建立]。
+2.  在 Marketplace 中搜尋**連線**、選取它，然後按一下 [建立]。
 
     ![搜尋連線](./media/expressroute-howto-linkvnet-portal-resource-manager/Connection2.png)
 
-3.    確定 [連線類型] 設定為 [ExpressRoute]。
+3.  確定 [連線類型] 設定為 [ExpressRoute]。
 
 
-4.    填入詳細資料，然後在 [基本] 刀鋒視窗中按一下 [確定]。
+4.  填入詳細資料，然後在 [基本] 刀鋒視窗中按一下 [確定]。
 
     ![基本概念刀鋒視窗](./media/expressroute-howto-linkvnet-portal-resource-manager/Connection3.png)
 
-5.    在 [設定] 刀鋒視窗中選取 [虛擬網路閘道]，並選取 [兌換授權] 核取方塊。
+5.  在 [設定] 刀鋒視窗中選取 [虛擬網路閘道]，並選取 [兌換授權] 核取方塊。
 
-6.    輸入**授權金鑰**和**對等線路 URI**，並提供連線名稱。 按一下 [確定] 。
+6.  輸入**授權金鑰**和**對等線路 URI**，並提供連線名稱。 按一下 [確定] 。
 
     ![設定刀鋒視窗](./media/expressroute-howto-linkvnet-portal-resource-manager/Connection4.png)
 

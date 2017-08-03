@@ -16,12 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 06/28/2017
 ms.author: daredis
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
-ms.openlocfilehash: cb267625cb6ea279b4094b1cc4d456cfd7542cca
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: 4bc09ad13ed0c9dc9257e9c75ec6f9ff3d689a0b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
 # <a name="secure-your-azure-sql-database"></a>保護 Azure SQL Database
@@ -117,10 +116,6 @@ Azure 的防火牆會保護 SQL Database。 依預設，伺服器與其內部資
 3. 檢閱完整的 **ADO.NET** 連接字串。
 
     ![ADO.NET 連接字串](./media/sql-database-security-tutorial/adonet-connection-string.png)
-
-> [!TIP]
-> 如需建立使用 Azure SQL Database 之 .NET 應用程式的範例，請參閱[在 Azure 中搭配 SQL Database 來建置 ASP.NET 應用程式](/app-service-web/app-service-web-tutorial-dotnet-sqldatabase.md)。
->
 
 ## <a name="creating-database-users"></a>建立資料庫使用者
 

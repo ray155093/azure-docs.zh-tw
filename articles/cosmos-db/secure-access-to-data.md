@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/24/2017
 ms.author: mimig
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
-ms.openlocfilehash: b57a157bc47b09af34684b0d85ce4538782a5ff2
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 383e04f91eec2f465b381ce30f2d6d24c488b731
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="securing-access-to-azure-cosmos-db-data"></a>安全存取 Azure Cosmos DB 資料
@@ -46,7 +45,7 @@ Azure Cosmos DB 會使用兩種類型的金鑰來驗證使用者，以允許存�
 
 除了 Cosmos DB 帳戶的兩個主要金鑰，還有兩個唯讀金鑰。 這些唯讀金鑰只允許帳戶上的讀取作業。 唯讀金鑰不提供存取權來讀取權限資源。
 
-您可以使用 Azure 入口網站來擷取和重新產生主要、次要、唯讀和讀寫主要金鑰。 相關指示請參閱[檢視、複製和重新產生存取金鑰](manage-account.md#a-idkeysaview-copy-and-regenerate-access-keys)。
+您可以使用 Azure 入口網站來擷取和重新產生主要、次要、唯讀和讀寫主要金鑰。 相關指示請參閱[檢視、複製和重新產生存取金鑰](manage-account.md#keys)。
 
 ![Azure 入口網站中的存取控制 (IAM) - 示範 NoSQL 資料庫安全性](./media/secure-access-to-data/nosql-database-security-master-key-portal.png)
 
@@ -59,7 +58,7 @@ Azure Cosmos DB 會使用兩種類型的金鑰來驗證使用者，以允許存�
 下列程式碼範例說明如何使用 Cosmos DB 帳戶端點和主要金鑰，以具現化 DocumentClient 並建立資料庫。 
 
 ```csharp
-//Read the DocumentDB endpointUrl and authorization keys from config.
+//Read the Azure Cosmos DB endpointUrl and authorization keys from config.
 //These values are available from the Azure portal on the Azure Cosmos DB account blade under "Keys".
 //NB > Keep these values in a safe and secure location. Together they provide Administrative access to your DocDB account.
 
@@ -183,6 +182,6 @@ DocumentClient userClient = new DocumentClient(new Uri(endpointUrl), permList);
 
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解 Cosmos DB 資料庫安全性，請參閱 [Cosmos DB 資料庫安全性](database-security.md)。
-* 若要了解如何管理主要和唯讀金鑰，請參閱[如何管理 Azure Cosmos DB 帳戶](manage-account.md#a-idkeysaview-copy-and-regenerate-access-keys)。
+* 若要了解如何管理主要和唯讀金鑰，請參閱[如何管理 Azure Cosmos DB 帳戶](manage-account.md#keys)。
 * 若要了解如何建構 Cosmos DB 授權權杖，請參閱 [Cosmos DB 資源的存取控制 (英文)](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources)。
 

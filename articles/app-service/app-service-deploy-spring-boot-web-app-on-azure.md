@@ -14,12 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 05/20/2017
 ms.author: asirveda;robmcm
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: ec6982f41d1e04d737c0f47571c30d813a390ea7
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: a071cd1933caafce1f176cd5c5c4f41a60c54357
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -197,9 +196,9 @@ ms.lasthandoff: 05/26/2017
 
 如需在 Azure 上使用 Spring Boot 應用程式的詳細資訊，請參閱下列文章：
 
-* [在 Azure Container Service 的 Linux 上執行 Spring Boot 應用程式](../container-service/container-service-deploy-spring-boot-app-on-linux.md)
+* [在 Azure Container Service 的 Linux 上執行 Spring Boot 應用程式](../container-service/kubernetes/container-service-deploy-spring-boot-app-on-linux.md)
 
-* [在 Azure Container Service 的 Kubernetes 叢集上執行 Spring Boot 應用程式](../container-service/container-service-deploy-spring-boot-app-on-kubernetes.md)
+* [在 Azure Container Service 的 Kubernetes 叢集上執行 Spring Boot 應用程式](../container-service/kubernetes/container-service-deploy-spring-boot-app-on-kubernetes.md)
 
 ## <a name="additional-resources"></a>其他資源
 

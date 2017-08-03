@@ -12,20 +12,23 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/27/2017
+ms.date: 07/31/2017
 ms.author: billmath
-ms.custom: pim ; H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: b9a3b64d9de48f17a295ca7a9ea58cf26e8f83ed
-ms.openlocfilehash: be32a7125807905f12699dba92b260d80ac2c4de
+ms.custom: pim ; H1Hack27Feb2017;oldportal;it-pro;
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 693785d5c9ae64275ae75721fe1f8f143dcd8c36
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/28/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="different-administrative-role-in-azure-active-directory-pim"></a>Azure Active Directory PIM 中不同的系統管理角色
 <!-- **PLACEHOLDER: Need description of how this works. Azure PIM uses roles from MSODS objects.**-->
 
 您可以將組織中的使用者指派給 Azure AD 內的不同系統管理角色。 這些角色指派控制使用者可以在 Azure AD、Office 365 和其他 Microsoft Online Services 與連線的應用程式執行哪些工作，像是新增或移除使用者或變更服務設定。  
+
+> [!IMPORTANT]
+> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。
 
 全域管理員可以使用 PowerShell Cmdlet (例如 `Add-MsolRoleMember` 和 `Remove-MsolRoleMember`) 或如[在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles.md)中所述透過傳統入口網站，更新要將哪些使用者「永久」指派給 Azure AD 中的角色。
 

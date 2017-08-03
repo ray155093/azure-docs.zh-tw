@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: spelluru
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: dbee3f1d0aae885325ef9efe9c2f48961495e8b9
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: c5eda443dcd41a481ad952d8472f7f67f4517abd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
 # <a name="invoke-spark-programs-from-azure-data-factory-pipelines"></a>從 Azure Data Factory 叫用 Spark 程式管線
@@ -231,7 +230,7 @@ Spark 活動是 Azure Data Factory 所支援的其中一個[資料轉換活動](
 
     ![Jupyter 查詢結果](media/data-factory-spark/jupyter-notebook-results.png)
 
-如需詳細指示，請參閱[執行 Spark SQL 查詢](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md#run-an-interactive-spark-sql-query)區段。 
+如需詳細指示，請參閱[執行 Spark SQL 查詢](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md#run-a-hive-query-using-spark-sql)區段。 
 
 ### <a name="troubleshooting"></a>疑難排解
 因為您將 **getDebugInfo** 設定為 **Always**，您會在 Azure Blob 容器的 **pyFiles** 資料夾中看到一個 **log** 子資料夾。 log 資料夾中的記錄檔會提供其他詳細資料。 發生錯誤時，此記錄檔特別有用。 在生產環境中，您可能想要將它設定為**失敗**。
