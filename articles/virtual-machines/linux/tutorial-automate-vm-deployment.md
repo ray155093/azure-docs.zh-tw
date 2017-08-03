@@ -16,11 +16,11 @@ ms.workload: infrastructure
 ms.date: 05/02/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 8d7d69fb6a27dfac3c96fb6bc811cad6a531e24e
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: facead3c038ad9ba8c7b8a9c0e02e38f9f92fd96
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
+ms.lasthandoff: 07/18/2017
 
 ---
 
@@ -101,7 +101,7 @@ runcmd:
   - nodejs index.js
 ```
 
-如需 Cloud-init 組態選項的詳細資訊，請參閱 [Cloud-init 組態範例 (英文)](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)。
+如需 Cloud-init 組態選項的詳細資訊，請參閱 [Cloud-init 組態範例](https://cloudinit.readthedocs.io/en/latest/topics/examples.html) \(英文\)。
 
 ## <a name="create-virtual-machine"></a>Create virtual machine
 建立 VM 之前，請先使用 [az group create](/cli/azure/group#create) 來建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroupAutomate 的資源群組：

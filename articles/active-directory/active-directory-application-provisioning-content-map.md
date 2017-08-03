@@ -20,22 +20,16 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="problems-configuring-and-provisioning-users-to-an-application" class="xliff"></a>
-
-# 為應用程式設定和佈建使用者時發生問題
+# <a name="problems-configuring-and-provisioning-users-to-an-application"></a>為應用程式設定和佈建使用者時發生問題
 
 
 
-<a id="i-want-to-know-when-provisioning-will-finish" class="xliff"></a>
-
-## 我想知道佈建何時會完成
+## <a name="i-want-to-know-when-provisioning-will-finish"></a>我想知道佈建何時會完成
   下列文件可協助您解決此類別的一些最常見問題。
   * [我不知道如何得知特定使用者能夠存取應用程式的時間](https://docs.microsoft.com/azure/active-directory/application-provisioning-when-will-provisioning-finish-specific-user/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [Azure AD 資源庫應用程式的佈建運作正常，但佈建程序已費時幾小時或更久](https://docs.microsoft.com/azure/active-directory/application-provisioning-when-will-provisioning-finish/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
-<a id="im-having-problems-configuring-user-provisioning-to-an-application" class="xliff"></a>
-
-## 我在為應用程式設定使用者佈建時遇到問題
+## <a name="im-having-problems-configuring-user-provisioning-to-an-application"></a>我在為應用程式設定使用者佈建時遇到問題
   下列文件可協助您解決此類別的一些最常見問題。
   * [我不知道如何設定 Azure AD 資源庫應用程式的使用者佈建](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [我在設定 Azure AD 資源庫應用程式的使用者佈建時遇到問題](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)

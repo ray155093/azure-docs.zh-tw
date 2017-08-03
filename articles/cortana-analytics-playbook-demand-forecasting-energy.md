@@ -14,20 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/24/2016
 ms.author: ilanr9;yijichen;garye
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
-ms.openlocfilehash: 0c07495a932c8bfdabb97e8eebe8d99de19fbd15
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 275e387878900154660d044b26ff5ac03a17a65a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/30/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
-<a id="cortana-intelligence-solution-template-playbook-for-demand-forecasting-of-energy" class="xliff"></a>
-
-# 能源需求預測的 Cortana Intelligence 解決方案範本教戰守則
-<a id="executive-summary" class="xliff"></a>
-
-## 執行摘要
+# <a name="cortana-intelligence-solution-template-playbook-for-demand-forecasting-of-energy"></a>能源需求預測的 Cortana Intelligence 解決方案範本教戰守則
+## <a name="executive-summary"></a>執行摘要
 過去幾年來，物聯網 (IoT)、替代能源和巨量資料已共同在公共事業和能源領域中創造龐大的機會。 在此同時，公共事業和整個能源工業看到用電量已失控，消費者急需更有效地控制能源用量。 因此，公共事業和智慧電網公司本身極需改革與創新。 此外，許多電力和公共電網已經過時，維護和管理所費不貲。 去年，本小組在能源領域內從事許多研究。 在這些研究中，我們經常發現公共事業或 ISV (獨立軟體廠商) 一直在探索如何預測未來的能源需求。 這些預測在其目前和未來的事業中扮演著重要角色，已成為不同使用案例的基礎。 其中包括短期與長期的電力負載預測、交易、負載平衡、電網最佳化等。為了產生準確且可靠的預測，巨量資料和進階分析 (AA) 方法是關鍵因素，例如機器學習服務 (ML)。  
 
 在本教戰守則中，我們結合商務和分析指導方針，以成功開發及部署能源需求預測解決方案。 這些建議的指導方針可協助公共事業、資料科學家和資料工程師建立全面運作、以雲端為基礎的需求預測解決方案。 對於剛踏入巨量資料和進階分析領域的公司，這種解決方案就是長期智慧電源策略的菩提種子。
@@ -37,9 +33,7 @@ ms.lasthandoff: 01/30/2017
 > 
 > 
 
-<a id="overview" class="xliff"></a>
-
-## Overview
+## <a name="overview"></a>Overview
 本文涵蓋使用 Cortana Intelligence (尤其是 Azure Machine Learning (AML)) 來實作與部署能源預測解決方案的商務、資料和技術層面。 文件包含三個主要部分 ︰  
 
 1. 了解商務  
@@ -56,16 +50,12 @@ ms.lasthandoff: 01/30/2017
 
 請務必注意，本文件不涵蓋深奧的資料科學程序，及其數學和技術層面。 您可以在 [Azure ML 文件](http://azure.microsoft.com/services/machine-learning/)和[部落格](http://blogs.microsoft.com/blog/tag/azure-machine-learning/)找到這些詳細資料。
 
-<a id="target-audience" class="xliff"></a>
-
-### 目標對象
+### <a name="target-audience"></a>目標對象
 本文件以商業和技術人員為目標對象，幫助他們認識和了解機器學習服務解決方案，及其在能源預測領域內的具體運用情形。
 
 本文件也有益於資料科學家深入了解主導能源預測解決方案部署的高階程序。 就這方面而言，本文件也能為閱讀更詳細和進階的資料打下扎實的基礎和發出點。
 
-<a id="industry-trends" class="xliff"></a>
-
-### 產業趨勢
+### <a name="industry-trends"></a>產業趨勢
 過去幾年來，IoT、替代能源和巨量資料已共同在公共事業和能源領域中創造龐大的機會。 在此同時，公共事業和整個能源工業看到用電量已失控，消費者急需更有效地控制能源用量。
 
 許多公共事業和智慧能源公司都在研發 [智慧電網](https://en.wikipedia.org/wiki/Smart_grid) ，利用電網所產生的資料來部署使用一些案例。 許多使用案例脫離不了發電的固有特性 ︰無法累積也無法貯藏。 因此，生產出來就必須用掉，別無選擇。 公共事業想要變得更有效率必須預測的用電量，理由很簡單，因為如此才更能**平衡供需**，以避免浪費能源、**減少溫室氣體排放**及控制成本。
@@ -76,12 +66,8 @@ ms.lasthandoff: 01/30/2017
 
 本文件的其餘部分著重於一系列特定的使用案例，涵蓋預測未來、短期和長期的能源需求。 數個月來我們一直努力於這些領域，已獲得一些知識和技能，能夠產生工業級的結果。 不久的未來，本文件也會涵蓋其他使用案例。
 
-<a id="business-understanding" class="xliff"></a>
-
-## 了解商務
-<a id="business-goals" class="xliff"></a>
-
-### 商務目標
+## <a name="business-understanding"></a>了解商務
+### <a name="business-goals"></a>商務目標
 「能源示範」  目的在於示範可在極短時間內部署的一般預測性分析和機器學習服務解決方案。 具體來說，我們目前的焦點是推動能源需求預測解決方案，以快速實現並運用其商業價值。 本教戰守則中的資訊可協助客戶達成下列目標︰
 
 * 加速機器學習服務解決方案的價值實現
@@ -90,14 +76,10 @@ ms.lasthandoff: 01/30/2017
 
 本教戰守則謹記這些目標，希望提供商務和技術知識來協助達成這些目標。
 
-<a id="power-load-and-demand-forecasting" class="xliff"></a>
-
-### 電力負載和需求預測
+### <a name="power-load-and-demand-forecasting"></a>電力負載和需求預測
 在能源產業內，需求預測在許多方面可協助解決危急的商業問題。 事實上，需求預測可視為產業中許多核心使用案例的基礎。 一般而言，我們會考慮兩種能源需求預測︰短期和長期。 各有不同的用途並採用不同的方法。 兩者的主要差異在於預測範圍，也就是可預測的未來時間範圍。
 
-<a id="short-term-load-forecasting" class="xliff"></a>
-
-#### 短期負載預測
+#### <a name="short-term-load-forecasting"></a>短期負載預測
 在能源需求方面，短期負載預測 (STLF) 定義為對電網各部分 (或整個電網) 預測不久將來的總體負載。 在此，短期定義為 1 小時到 24 小時範圍內的時間範圍。 在某些情況下，範圍也可能長達 48 小時。 因此，STLF 在電網的運作使用案例中很常見。 以下是 STLF 導向的使用案例的一些例子：
 
 * 供需平衡
@@ -116,9 +98,7 @@ STLF 模型大多根據最近 (昨天或上週) 的用電量資料，並以預�
 
 SLTF 解決方案也可能引起大量的預測呼叫 (服務要求)，因為每小時就要引用一次，在某些情況下甚至更頻繁。 也常見到機房中每個變電站或變壓器都是獨立模型，因此預測要求量甚至更高。
 
-<a id="long-term-load-forecasting" class="xliff"></a>
-
-#### 長期負載預測
+#### <a name="long-term-load-forecasting"></a>長期負載預測
 長期負載預測 (LTLF) 的目標是預測時間範圍從 1 週到數個月的電力需求 (在某些情況下可能是許多年)。 此時間範圍最適用於規劃和投資使用案例。
 
 在長期情況下，需要有涵蓋多年 (至少 3 年) 的高品質資料。 這些模型通常會從歷史資料中萃取出季節性模式，並利用外部預測因子，例如天氣和氣候模式。
@@ -127,9 +107,7 @@ SLTF 解決方案也可能引起大量的預測呼叫 (服務要求)，因為每
 
 由於 LTLF 的用電量案例大多用於規劃，預測量必然很低 (相較於 STLF)。 我們通常會看到這些預測內嵌至視覺化工具中，例如 Excel 或 PowerBI，並由使用者手動引用。
 
-<a id="short-term-vs-long-term-prediction" class="xliff"></a>
-
-### 短期與長期預測
+### <a name="short-term-vs-long-term-prediction"></a>短期與長期預測
 下表比較 STLF 和 LTLF 的最重要屬性︰
 
 | 屬性 | 短期負載預測 | 長期負載預測 |
@@ -146,9 +124,7 @@ SLTF 解決方案也可能引起大量的預測呼叫 (服務要求)，因為每
 
 從這個表格可以看出，區別短期和長期預測案例相當重要，因為這些各代表不同的商務需求，可能會有不同的部署和用電模式。
 
-<a id="example-use-case-1-esmart-systems--overload-optimization" class="xliff"></a>
-
-### 範例使用案例 1：Esmart Systems – 超載最佳化
+### <a name="example-use-case-1-esmart-systems--overload-optimization"></a>範例使用案例 1：Esmart Systems – 超載最佳化
 [智慧電網](https://en.wikipedia.org/wiki/Smart_grid) 是一個重要角色是隨著不斷變化的用電模式，而動態和持續地最佳化並調整。 用電量可能受到短期變化所影響，主要是溫度變動所造成 (例如，空調或暖氣的用電增加)。 同時，用電量也會受到長期趨勢所影響。 其中包括季節性效應、國定假日、長期用電量成長，甚至是經濟因素，例如消費者指數、石油價格和 GDP。
 
 在此使用案例中， [eSmart](http://www.esmartsystems.com/) 想要部署以雲端為基礎的解決方案，以預測電網的任何給定變電站發生超載情況的傾向。 特別是的，eSmart 希望找出下一個小時可能超載的變電站，以立即採取動作來避免或解決這種情況。
@@ -165,9 +141,7 @@ SLTF 解決方案也可能引起大量的預測呼叫 (服務要求)，因為每
 
 [這裡](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18945)提供此使用案例的詳細資訊。
 
-<a id="use-case-qualification-criteria--prerequisites" class="xliff"></a>
-
-#### 使用案例檢定準則 – 必要條件
+#### <a name="use-case-qualification-criteria--prerequisites"></a>使用案例檢定準則 – 必要條件
 Cortana Intelligence 的真正威力在於有強大的能力部署及調整以機器學習服務為中心的解決方案。 目的是支援數以千計同時執行的預測。 它可以自動調整規模以符合不斷變化的用電模式。 因此，解決方案的重點是精確度和運算效能。 例如，公共事業公司的興趣是為下一個小時及一天中每個小時產生精確的能源需求預測。 相反地，我們較沒興趣回答為何預測出如此需求的這種問題 (這是由模型本身來處理)。
 
 因此，必須了解，並非所有使用案例和商務問題都能利用機器學習服務來有效解決。
@@ -187,10 +161,8 @@ Cortana Intelligence 的真正威力在於有強大的能力部署及調整以�
 
 根據上述準則來檢定使用案例，將可大幅提高使用案例的成功率，並為實作未來的使用案例打下良好基礎。
 
-<a id="cloud-based-solutions" class="xliff"></a>
-
-### 以雲端為基礎的解決方案
-Cortana Intelligence Suite 是位於雲端的整合式環境。 在雲端環境中部署進階的分析解決方案，將可以為企業帶來顯著的效益，同時也代表仍在使用內部部署 IT 解決方案的公司將出現巨大的轉變。 在能源產業內，明顯看出營運逐漸轉向雲端的趨勢。 這種趨勢與上述產業趨勢 中的智慧電網發展同步並進。 由於本教戰守則著重於能源領域中以雲端為基礎的解決方案，因此必須說明部署以雲端為基礎的解決方案帶來的優點和其他考量。
+### <a name="cloud-based-solutions"></a>以雲端為基礎的解決方案
+Cortana Intelligence Suite 是位於雲端的整合式環境。 在雲端環境中部署進階的分析解決方案，將可以為企業帶來顯著的效益，而對於仍在使用內部部署 IT 解決方案的公司來說，同時也意謂著巨大的變革。 在能源產業內，明顯看出營運逐漸轉向雲端的趨勢。 這種趨勢與上述產業趨勢 中的智慧電網發展同步並進。 由於本教戰守則著重於能源領域中以雲端為基礎的解決方案，因此必須說明部署以雲端為基礎的解決方案帶來的優點和其他考量。
 
 以雲端為基礎的解決方案帶來的最大優點，可能就在於成本。 由於解決方案使用雲端部署的元件，因此不需要前期成本或相關的 COGS (銷貨成本) 元件成本。 這表示不需要投資硬體、軟體和 IT 維護，因而大幅降低商業風險。
 
@@ -200,10 +172,8 @@ Cortana Intelligence Suite 是位於雲端的整合式環境。 在雲端環境�
 
 對於剛開始轉換到雲端的公司，強烈建議實作雲端移轉藍圖，採取漸進方式。 對於能源領域中的公共事業或公司，我們相信本教戰守則所討論的使用案例，就代表在雲端中試驗預測性分析解決方案的絕佳機會。
 
-<a id="business-case-justification-considerations" class="xliff"></a>
-
-#### 商務案例理由考量
-在許多情況下，客戶可能想要對給定的使用案例提出一個商業理由，表明以雲端為基礎的解決方案和機器學習服務是重要的元件。 不同於內部部署解決方案，在以雲端為基礎的解決方案中，前期成本的成分極少，大部分的成本要素都與實際用量有關。 說到部署預測上 Cortana Intelligence 解決方案的能源，多個服務可以與單一的一般成本結構整合。 比方說，資料庫 (例如SQL Azure) 可以用來儲存原始資料，然後在實際預測時，使用 Azure ML 來裝載預測服務。 在此範例中，成本結構可能包含儲存體和交易式元件。
+#### <a name="business-case-justification-considerations"></a>商務案例理由考量
+在許多情況下，客戶可能想要對給定的使用案例提出一個商業理由，表明以雲端為基礎的解決方案和機器學習服務是重要的元件。 不同於內部部署解決方案，在雲端式解決方案中，前期成本的成分極少，大部分的成本要素都與實際用量有關。 說到部署預測上 Cortana Intelligence 解決方案的能源，多個服務可以與單一的一般成本結構整合。 比方說，資料庫 (例如SQL Azure) 可以用來儲存原始資料，然後在實際預測時，使用 Azure ML 來裝載預測服務。 在此範例中，成本結構可能包含儲存體和交易式元件。
 
 另一方面，應該要正確了解從事能源需求預測 (短期或長期) 的商業價值。 事實上，必須了解每個預測作業的商業價值。 比方說，精確預測接下來 24 小時內的電力負載，可以避免生產過剩或電網超載，還能從每日節省的資金來量化這方面的資訊。
 
@@ -213,9 +183,7 @@ Cortana Intelligence Suite 是位於雲端的整合式環境。 在雲端環境�
 
 [這裡](http://azure.microsoft.com/pricing/details/machine-learning/)提供 Cortana Intelligence Suite 和 Azure ML 目前的價格方案。
 
-<a id="solution-development-process" class="xliff"></a>
-
-### 解決方法開發程序
+### <a name="solution-development-process"></a>解決方法開發程序
 能源需求預測解決方案的開發週期通常需要 4 個階段，在所有階段中，我們都採用 Cortana Intelligence Suite 內以雲端為基礎的技術和服務。
 
 下圖提供相關說明：
@@ -233,16 +201,12 @@ Cortana Intelligence Suite 是位於雲端的整合式環境。 在雲端環境�
 3. **部署** – 獲得工作模型後，下一步就是部署。 在此，模型轉換為 Web 服務並公開 RESTful API，供各種用電用戶端透過網際網路同時叫用。 Azure ML 提供簡單的方法，直接從 Azure ML Studio 中按一下按鈕，就能部署模型。 整個部署程序都是自動完成。 這個解決方案可以自動調整規模以符合所需的用電量。
 4. **耗用量** – 在這個階段，我們實際利用預測模型來產生預測。 用電量可由使用者應用程式 (例如，儀表板) 或直接從作業系統來控管，例如供需平衡系統或電網最佳化解決方案。 單一模型可以控管多個使用案例。
 
-<a id="data-understanding" class="xliff"></a>
-
-## 了解資料
+## <a name="data-understanding"></a>了解資料
 討論過能源需求預測解決方案的商務考量之後 (請參閱「了解商務」 )，現在可以開始討論資料部分。 任何預測性分析解決方案都仰賴可靠的資料。 在能源需求預測方面，我們依賴不同細微程度的用電量歷史資料。 該歷史資料就成為原始資料。 經過仔細分析，資料科學家將找出預測因子 (也稱為特徵)，然後輸入模型中，最後產生所需的預測。
 
 在本節的其餘部分，我們將說明各種步驟和考量，讓您了解資料及如何轉換成實用的格式。
 
-<a id="the-model-development-cycle" class="xliff"></a>
-
-### 模型開發週期
+### <a name="the-model-development-cycle"></a>模型開發週期
 需要仔細準備和規劃才能產生良好的預測模型。 將模型化程序分解成多個步驟，且一次專注於一個步驟，如此即可大幅改善整個程序的結果。
 
 下圖說明如何將模型化程序分解成多個步驟︰
@@ -260,9 +224,7 @@ Cortana Intelligence Suite 是位於雲端的整合式環境。 在雲端環境�
 
 在本節的其餘部分，我們將說明個別的步驟及每個步驟需要考量的項目。
 
-<a id="problem-formulation" class="xliff"></a>
-
-### 問題編寫
+### <a name="problem-formulation"></a>問題編寫
 問題編寫可視為在實作任何預測性分析解決方案之前，必須執行的最重要步驟。 在此我們會轉換商務問題，並將它分解成利用資料和模型化技術就可解決的特定要素。 最好將問題編寫成一組我們想要回答的問題。 以下是能源需求預測範圍內可能適用的一些問題︰
 
 * 個別變電站在下一個小時或次日預期的負載是什麼？
@@ -272,18 +234,14 @@ Cortana Intelligence Suite 是位於雲端的整合式環境。 在雲端環境�
 
 擬定這些問題可讓我們專注於取得正確的資料，並充分配合眼前的商務問題來實作解決方案。 此外，我們可以再設定一些重要的計量，讓我們評估模型的效能。 比方說，預測應該有多高的準確度及企業仍可接受多大的錯誤範圍？
 
-<a id="data-sources" class="xliff"></a>
-
-### 資料來源
+### <a name="data-sources"></a>資料來源
 現代智慧電網會從電網的各種組件和元件收集資料。 此資料代表電網運作和利用的各個層面。 在能源需求預測的範圍內，我們的討論僅限於可反映實際需求消耗的資料來源。 能源消耗量的重要來源之一是智慧型電表。 世界各地的公共事業正快速地為消費者部署智慧型電表。 智慧型電表會記錄實際的用電量，並不斷地將此資料轉送給公共事業公司。 資料是以固定時間間隔收集並傳回，範圍從每 5 分鐘到 1 小時。 更先進的智慧型電表可以設計成從遠端控制，並平衡住家內的實際用電量。 智慧型電表資料相當可靠，而且包含時間戳記。 因此成為需求預測的重要元素。 電表資料可以電網拓撲內的各個層級上彙總 (加總)︰變壓器、變電站、區域等。然後，我們可以挑選彙總層級來建置預測模型。 比方說，如果公共事業公司想要預測每一個電網變電站的未來負載，則可以針對每個變電站來彙總所有電表的資料，再做為預測模型的輸入。 我們將智慧型電表稱為內部資料來源。
 
 可靠的能源需求預測也依賴其他外部資料來源。 影響用電量的一個重要因素是天氣，更準確地說是溫度。 歷史資料顯示室外溫度和用電量之間有很大的關聯性。 在酷暑季節，消費者會開冷氣機，而冬季時會開啟暖氣系統。 因此，關鍵在於電網地點要有可靠的歷史溫度來源。 此外，我們也依賴精確預測的溫度當作用電量的預測因子。
 
 其他外部資料來源也有助於建立能源需求預測模型。 其中可能包括長期氣候變化、經濟指標 (例如GDP) 等。 本文中不討論其他這些資料來源。
 
-<a id="data-structure" class="xliff"></a>
-
-### 資料結構
+### <a name="data-structure"></a>資料結構
 決定所需的資料來源之後，我們需要確定已收集的原始資料包含正確的資料特徵。 若要建立可靠的需求預測模型，我們需要確定收集的資料包含有助於預測未來需求的資料元素。 以下是關於原始資料的資料結構 (結構描述) 的一些基本條件。
 
 原始資料是由資料列和資料行所組成。 每個度量單位以單一資料列表示。 每個資料列包含多個資料行 (也稱為特徵或欄位)。
@@ -310,23 +268,17 @@ Cortana Intelligence Suite 是位於雲端的整合式環境。 在雲端環境�
 
 從上面可以看出，這個範例包含與 3 電源階段相關聯的 3 個不同用電量值。 另外，請注意日期和時間欄位分隔，但也可以結合成單一資料行。 在此案例中，位置資料行以 5 位數郵遞區號格式表示，溫度以攝氏度數格式表示。
 
-<a id="data-format" class="xliff"></a>
-
-### 資料格式
+### <a name="data-format"></a>資料格式
 Cortana Intelligence Suite 支援最常見的資料格式，例如 CSV、TSV、JSON 等。在專案的整個生命週期，資料格式必須保持一致。
 
-<a id="data-ingestion" class="xliff"></a>
-
-### 資料擷取
+### <a name="data-ingestion"></a>資料擷取
 由於能源需求預測是持續且經常預測，我們必須確保有一個穩固且可靠的資料擷取程序不斷地傳送原始資料。 擷取程序必須保證預測程序在需要時一定可以取得原始資料。 這表示資料擷取頻率應該高於預測頻率。
 
 例如︰如果需求預測解決方案會在每天上午 8:00 產生新的預測，則我們需要確保在此之前已完全擷取過去 24 小時內已收集的所有資料，甚至包括過去一小時的資料。
 
 為達成此目的，Cortana Intelligence Suite 提供各種方法來支援可靠的資料擷取程序。 這將在本文件的「部署」  一節進一步討論。
 
-<a id="data-quality" class="xliff"></a>
-
-### 資料品質
+### <a name="data-quality"></a>資料品質
 為了執行可靠且正確的需求預測，所需的原始資料來源必須符合一些基本的資料品質準則。 雖然進階統計方法可以用來彌補一些可能的資料品質問題，但在擷取新的資料時，我們仍然需要確保跨越某些基本的資料品質門檻。 以下是關於原始資料品質的一些考量︰
 
 * **遺漏值** – 這是指未收集到特定度量的情況。 在此，基本要求是在任何指定的期間，遺漏值比率都不應該超過 10%。 如果遺漏單一值，應該以預先定義的值 (例如：'9999') 表示，而不是可能為有效度量的 '0'。
@@ -335,9 +287,7 @@ Cortana Intelligence Suite 支援最常見的資料格式，例如 CSV、TSV、J
 * **同步處理** – 使用多個資料來源時 (例如，用電量和溫度)，必須確保它們之間沒有時間同步化的問題。 這表示從任何兩個獨立的資料來源收集的時間戳記之間，時差不應超過 10 秒以上。
 * **延遲** - 如上所述，在**資料擷取**中，我們依賴可靠的資料流和擷取程序。 為了做好控制，必須確保我們控制資料延遲。 這指定為從進行實際測量的時間，到已載入至 Cortana Intelligence Suite 儲存體且可供使用的時間，兩者之間的時差。 對於短期負載預測，總延遲時間不應該超過 30 分鐘。 對於長期負載預測，總延遲時間不應該超過 1 天。
 
-<a id="data-preparation-and-feature-engineering" class="xliff"></a>
-
-### 資料準備和特徵設計
+### <a name="data-preparation-and-feature-engineering"></a>資料準備和特徵設計
 擷取原始資料 (請參閱「資料擷取」 ) 並安全地儲存後，就可以開始處理。 基本上，資料準備階段是取得原始資料並轉換 (變換、重塑) 成適用於模型化階段的格式。 其中包括簡單的作業，例如直接使用原始資料行及其實際的測量值、標準化值，還有更複雜的作業，例如 [時間延遲](https://en.wikipedia.org/wiki/Lag_operator)等。 新建立的資料行稱為資料特徵，而產生這些特徵的程序就稱為特徵設計。 此程序結束時，我們會獲得一組從原始資料導出的新資料集，可用於模型化。 此外，資料準備階段還必須處理並補償遺漏值 (請參閱「資料品質」 )。 在某些情況下，我們也需要將資料正規化，以確保所有的值都以相同的級別表示。
 
 在本節，我們列出能源需求預測模型包含的一些常見的資料特徵。
@@ -364,16 +314,12 @@ Cortana Intelligence Suite 支援最常見的資料格式，例如 CSV、TSV、J
 **資料正規化︰** 資料正規化是另一種轉換，用於將所有數值資料 (例如需求預測) 變成類似的級別。 這通常有助於改善模型的正確性和精確度。 在作法上我們通常會依資料範圍來分割實際值。
 這會將原始值按比例縮小到較小的範圍，通常介於 -1 和 1 之間。
 
-<a id="modeling" class="xliff"></a>
-
-## 模型化
+## <a name="modeling"></a>模型化
 模型化階段會將資料轉換成模型。 此程序的核心是進階的演算法，負責掃描歷史資料 (訓練資料)、擷取模式及建立模型。 稍後，該模型可用來預測未用來建立模型的新資料。
 
 獲得可靠的工作模型後，我們就可以用它來評比在結構上包含所需特徵 (X) 的新資料。 評分程序將使用持續性模型 (來自訓練階段的物件)，並預測由 Ŷ 所表示的目標變數。
 
-<a id="demand-forecasting-modeling-techniques" class="xliff"></a>
-
-### 需求預測模型化技巧
+### <a name="demand-forecasting-modeling-techniques"></a>需求預測模型化技巧
 在需求預測方面，我們會使用依時間排序的歷史資料。 我們通常將包含時間維度的資料稱為 [時間序列](https://en.wikipedia.org/wiki/Time_series)。 時間序列模型化的目標是尋找時間相關的趨勢、季節性、自相關 (經過一段時間的相互關聯)，並將這些編寫成模型。
 
 在最近幾年，已開發出進階演算法來配合時間序列預測，並改善預測精確度。 在此我們簡短討論其中一部分。
@@ -383,23 +329,17 @@ Cortana Intelligence Suite 支援最常見的資料格式，例如 CSV、TSV、J
 > 
 > 
 
-<a id="ma-moving-averagehttpswwwotextsorgfpp62" class="xliff"></a>
-
-#### [**MA (移動平均)**](https://www.otexts.org/fpp/6/2)
+#### <a name="ma-moving-averagehttpswwwotextsorgfpp62"></a>[**MA (移動平均)**](https://www.otexts.org/fpp/6/2)
 移動平均是時間序列預測的第一代分析技巧之一，目前仍是最常用的其中一項技巧。 它也是更進階預測技巧的基礎。 使用移動平均時，我們會將 K 個最近資料點算出平均值，以預測下一個資料點，其中 K 表示移動平均的順序。
 
 移動平均技巧具有將預測平滑化的效果，因此可能無法處理資料中的劇烈波動性。
 
-<a id="ets-exponential-smoothinghttpswwwotextsorgfpp75" class="xliff"></a>
-
-#### [**ETS (指數平滑法)**](https://www.otexts.org/fpp/7/5)
+#### <a name="ets-exponential-smoothinghttpswwwotextsorgfpp75"></a>[**ETS (指數平滑法)**](https://www.otexts.org/fpp/7/5)
 指數平滑法 (ETS) 是一系列的各種方法，使用最近資料點的加權平均來預測下一個資料點。 在概念上是將較高權數指派給較新的值，而對於較舊的測量值，就逐漸降低此權數。 這一系列有許多不同的方法，其中包括處理資料中的季節性，例如 [Holt-Winters 季節性方法](https://www.otexts.org/fpp/7/5)。
 
 其中某些方法也會納入資料的季節性。
 
-<a id="arima-auto-regression-integrated-moving-averagehttpswwwotextsorgfpp8" class="xliff"></a>
-
-#### [**ARIMA (自迴歸整合移動平均)**](https://www.otexts.org/fpp/8)
+#### <a name="arima-auto-regression-integrated-moving-averagehttpswwwotextsorgfpp8"></a>[**ARIMA (自迴歸整合移動平均)**](https://www.otexts.org/fpp/8)
 自迴歸整合移動平均 (ARIMA) 是常用於時間序列預測的另一系列的方法。 實際上是結合自迴歸方法與移動平均。 自迴歸方法使用迴歸模型時會取得先前的時間序列值來計算下一個日期點。 ARIMA 方法也運用差異性方法，包括計算資料點之間的差異，以及使用它們而不是原始的測量值。 最後，ARIMA 也使用上面所討論的移動平均技巧。 以各種方式將所有這些方法組合起來，就構成 ARIMA 方法系列。
 
 ETS 和 ARIMA 現在廣泛用於能源需求預測和其他許多的預測問題。 在許多情況下，這些結合起來可提供非常精確的結果。
@@ -410,45 +350,33 @@ ETS 和 ARIMA 現在廣泛用於能源需求預測和其他許多的預測問題
 
 根據我們在實作和部署能源需求預測試驗的經驗，我們發現 Azure ML 中可用的進階迴歸模型可產生最佳結果，因此我們採用它們。
 
-<a id="model-evaluation" class="xliff"></a>
-
-## 模型評估
+## <a name="model-evaluation"></a>模型評估
 模型評估在「模型開發週期」 內扮演重要的角色。 在這個步驟中，我們以現實生活中的資料來探討驗證模型及其表現。 在模型化步驟期間，我們使用一部分可用的資料來訓練模型。 在評估階段，我們利用剩餘的資料來測試模型。 實際上，這表示我們在模型中輸入的新資料已重新編排，且包含與訓練資料集相同的特徵。 不過，在驗證過程中，我們使用模型來預測目標變數，而不是提供可用的目標變數。 我們通常稱此程序稱為模型評分。 然後，我們會使用真實目標值，並與預測值做比較。 在此，目標是測量並最小化預測誤差，也就是預測值與真值之間的差異。 量化錯誤度量是關鍵，因為我們想要微調模型，並驗證是否確實減少錯誤。 微調模型可以透過修改控制學習程序的模型參數，也可以新增或移除資料特徵 (稱為 [參數掃掠](https://channel9.msdn.com/Blogs/Azure/Data-Science-Series-Building-an-Optimal-Model-With-Parameter-Sweep))。 實際上，這表示我們可能需要在特徵設計、模型化和模型評估階段之間反覆許多次，直到能夠將錯誤減少到所需的程度為止。
 
 必須強調，預測誤差永遠不會是零，因為從來沒有任何模型能夠完美預測所有結果。 不過，企業仍可接受一定程度的誤差量。 在驗證過程中，我們想要確保模型預測誤差等於或高於商業容忍度。 因此，在「問題編寫」  階段的週期開頭，就必須設定誤差容忍度。
 
-<a id="typical-evaluation-techniques" class="xliff"></a>
-
-### 一般評估技術
+### <a name="typical-evaluation-techniques"></a>一般評估技術
 有各種方法可測量和量化預測誤差。 在本節，我們將專注於討論有關時間序列的預測技巧，尤其是能源需求預測。
 
-<a id="mapehttpsenwikipediaorgwikimeanabsolutepercentageerror" class="xliff"></a>
-
-#### [**MAPE**](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error)
+#### <a name="mapehttpsenwikipediaorgwikimeanabsolutepercentageerror"></a>[**MAPE**](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error)
 MAPE (Mean Absolute Percentage Error) 代表「平均絕對百分比誤差」。 我們利用 MAPE 來計算每一個預測點和該點的實際值之間的差異。 接著，我們計算差異相對於實際值的比例，以量化每個點的誤差。 在最後一個步驟中，我們計算這些值的平均。 MAPE 使用的數學公式如下所示︰
 
 ![MAPE 公式](media/cortana-analytics-playbook-demand-forecasting-energy/mape-formula.png)
  *其中 A<sub>t</sub> 是實際值，F<sub>t</sub> 是預測值，而 n 是預測時間範圍*
 
-<a id="deployment" class="xliff"></a>
-
-## 部署
+## <a name="deployment"></a>部署
 一旦完成模型化階段，也已驗證模型的效能，我們就可以開始進入部署階段。 就此而言，部署是指讓客戶在模型上大規模執行實際預測來運用模型。 部署概念是 Azure ML 中的關鍵，因為我們的主要目標是不斷地引用預測，而不是只從資料找到領悟而已。 在部署階段，我們讓模型開始被大規模運用。
 
 在能源需求預測方面，我們的目標是引用連續和定期的預測，同時確保模型可取得最新的資料，並將預測的資料傳回給取用的用戶端。
 
-<a id="web-services-deployment" class="xliff"></a>
-
-### Web 服務部署
+### <a name="web-services-deployment"></a>Web 服務部署
 在 Azure ML 中，主要的可部署建置組塊是 Web 服務。 這是在雲端中利用預測模型的最有效方式。 Web 服務封裝模型，並以 [RESTful](http://www.restapitutorial.com/) API (應用程式開發介面) 來包裝它。 API 可以做為任何用戶端程式碼的一部分，如下圖所示。
 
 ![Web 服務部署和取用](media/cortana-analytics-playbook-demand-forecasting-energy/web-service-deployment-and-consumption.png)
 
 由此可知，Web 服務是部署在 Cortana Intelligence Suite 雲端，然後透過其公開的 REST API 端點來叫用。 位於不同網域的各種不同的用戶端，可以透過 Web API 服務來同時叫用服務。 Web 服務也可以擴大來支援數千個同時的呼叫。
 
-<a id="a-typical-solution-architecture" class="xliff"></a>
-
-### 典型的解決方案架構
+### <a name="a-typical-solution-architecture"></a>典型的解決方案架構
 在部署能源需求預測解決方案時，我們的興趣是部署端對端解決方案，超越預測 Web 服務，並加速整個資料流。 當我們叫用新的預測時，我們必須確定可供應最新的資料特徵給模型。 這表示需要不斷地擷取、處理及轉換新收集的原始資料，成為賴以建立模型的必要特徵。 同時，我們也想要將預測的資料提供給最終取用的用戶端使用。 下圖顯示範例資料流循環 (或資料管線)：
 
 ![能源需求預測的端對端資料流](media/cortana-analytics-playbook-demand-forecasting-energy/energy-demand-forecase-end-data-flow.png)
@@ -466,9 +394,7 @@ MAPE (Mean Absolute Percentage Error) 代表「平均絕對百分比誤差」。
 
 請務必注意，這整個週期完全自動化，並依排程執行。 可利用工具來完成此資料循環的整個協調流程，例如 [Azure Data Factory](http://azure.microsoft.com/services/data-factory/)。
 
-<a id="end-to-end-deployment-architecture" class="xliff"></a>
-
-### 端對端部署架構
+### <a name="end-to-end-deployment-architecture"></a>端對端部署架構
 為了實際地在 Cortana Intelligence 上部署能源需求預測解決方案，我們必須確定已建立並正確設定必要的元件。
 
 下圖說明實作並協調上述資料流循環的典型 Cortana Intelligence 架構：

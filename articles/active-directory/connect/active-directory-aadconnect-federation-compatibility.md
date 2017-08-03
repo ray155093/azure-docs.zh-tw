@@ -12,14 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/01/2017
+ms.date: 07/13/2017
 ms.author: billmath
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: 6f91f732b7579c9f14458dab9be49c027debfac1
+ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
+ms.openlocfilehash: 6b0fd60e79308b75c3a2797ff25065b8a500a3b4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
-
+ms.lasthandoff: 06/10/2017
 
 ---
 # <a name="azure-ad-federation-compatibility-list"></a>Azure AD 同盟相容性清單
@@ -47,6 +46,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 * [CA SiteMinder 12.52](#ca-siteminder-1252-sp1-cumulative-release-4) 
 * [Centrify](#centrify) 
 * [Dell One Identity Cloud Access Manager v7.1](#dell-one-identity-cloud-access-manager-v71) 
+* [DigitalPersona Composite 驗證](#digitalpersona-composite-authentication)
 * [IBM Tivoli Federated Identity Manager 6.2.2](#ibm-tivoli-federated-identity-manager-622) 
 * [IceWall Federation Version 3.0](#icewall-federation-version-30) 
 * [Memority](#memority)
@@ -61,7 +61,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 * [Sign&go 5.3](#signgo-53) 
 * [SoftBank Technology Online Service Gate](#softbank)
 * [VMware Workspace One](#vmware-workspace-one)
-* [VMware Workspace Portal 2.1 版](#vmware--workspace-portal-version-21) 
+
 
 
 > [!IMPORTANT]
@@ -82,7 +82,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 | 使用 ADAL 的現代應用程式，例如 Office 2016 |支援 |None |
 
-如需有關搭配 AD FS 使用 Azure Active Directory 的詳細資訊，請參閱 [Active Directory 同盟服務 (ADFS)](active-directory-aadconnect-get-started-custom.md#configuring-federation-with-ad-fs)
+如需搭配使用 Azure Active Directory 與 AD FS 的詳細資訊，請參閱 [Active Directory 同盟服務 (ADFS)](active-directory-aadconnect-get-started-custom.md#configuring-federation-with-ad-fs)。
 
 如需搭配密碼同步使用 Azure Active Directory 的相關詳細資訊，請參閱 [Azure AD Connect](active-directory-aadconnect.md)。
 
@@ -96,7 +96,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需詳細資訊，請參閱 [AuthAnvil 單一登入](https://help.scorpionsoft.com/entries/26538603-How-can-I-Configure-Single-Sign-On-for-Office-365-)
+如需詳細資訊，請參閱 [AuthAnvil 單一登入](https://help.scorpionsoft.com/entries/26538603-How-can-I-Configure-Single-Sign-On-for-Office-365-)。
 
 
 ## <a name="big-ip-with-access-policy-manager-big-ip-ver-113x--116x"></a>BIG-IP with Access Policy Manager BIG-IP ver. 11.3x – 11.6x
@@ -111,7 +111,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 
 如需 BIG-IP Access Policy Manager 的相關詳細資訊，請參閱 [BIG-IP Access Policy Manager](https://f5.com/products/modules/access-policy-manager) 
 
-如需有關如何設定此 STS 來為您的 Active Directory 使用者提供單一登入體驗的 BIG-IP Access Policy Manager 指示，請下載 [此處](http://www.f5.com/pdf/deployment-guides/microsoft-office-365-idp-dg.pdf)
+如需如何設定此 STS 來為您的 Active Directory 使用者提供單一登入體驗的 BIG-IP Access Policy Manager 指示，請下載 pdf [BIG-IP](http://www.f5.com/pdf/deployment-guides/microsoft-office-365-idp-dg.pdf)。
 
 ## <a name="bitglass"></a>BitGlass
 
@@ -123,7 +123,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需有關 BitGlass 的詳細資訊，請參閱[這裡](http://www.bitglass.com )。
+如需 BitGlass 的詳細資訊，請參閱 [BitGlass](http://www.bitglass.com)。
 
 ## <a name="ca-secure-cloud"></a>CA Secure Cloud
 
@@ -135,7 +135,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需 CA Secure Cloud 的相關詳細資訊，請參閱 [CA Secure Cloud](http://www.ca.com/us/products/security-as-a-service.aspx)
+如需 CA Secure Cloud 的詳細資訊，請參閱 [CA Secure Cloud](http://www.ca.com/us/products/security-as-a-service.aspx)。
 
 ## <a name="ca-siteminder-1252-sp1-cumulative-release-4"></a>CA SiteMinder 12.52 SP1 累計版本 4
 
@@ -147,7 +147,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |None |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需 CA SiteMinder 的相關詳細資訊，請參閱 [CA SiteMinder Federation](http://www.ca.com/us/products/ca-single-sign-on.html) 
+如需 CA SiteMinder 的詳細資訊，請參閱 [CA SiteMinder Federation](http://www.ca.com/us/products/ca-single-sign-on.html)。 
 
 ## <a name="centrify"></a>Centrify
 
@@ -159,7 +159,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |None |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |不支援用戶端存取控制 |
 
-如需有關 Centrify 的詳細資訊，請參閱[這裡](http://www.centrify.com/cloud/apps/single-sign-on-for-office-365.asp)。|
+如需 Centrify 的詳細資訊，請參閱 [Centrify](http://www.centrify.com/cloud/apps/single-sign-on-for-office-365.asp)。
 
 ## <a name="dell-one-identity-cloud-access-manager-v71"></a>Dell One Identity Cloud Access Manager v7.1
 
@@ -171,9 +171,22 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |None |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需 Dell One Identity Cloud Access Manager 的相關詳細資訊，請參閱 [Dell One Identity Cloud Access Manager](http://software.dell.com/products/cloud-access-manager)
+如需 Dell One Identity Cloud Access Manager 的詳細資訊，請參閱 [Dell One Identity Cloud Access Manager](http://software.dell.com/products/cloud-access-manager)。
 
- 如需有關如何設定此 STS 來為您的 Office 365 使用者提供單一登入體驗的指示，請參閱 [設定 Office 365 使用者](http://documents.software.dell.com/dell-one-identity-cloud-access-manager/7.1/how-to-configure-microsoft-office-365) 
+ 如需如何設定此 STS 來為您的 Office 365 使用者提供單一登入體驗的指示，請參閱[設定 Office 365 使用者](http://documents.software.dell.com/dell-one-identity-cloud-access-manager/7.1/how-to-configure-microsoft-office-365)。 
+
+## <a name="digitalpersona-composite-authentication"></a>DigitalPersona Composite 驗證  
+
+以下是支援此單一登入體驗之矩陣的案例：
+
+| 用戶端 | 支援 | 例外狀況 |
+| --- | --- | --- |
+| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online |支援 |不支援整合式 Windows 驗證|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證|
+| 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
+
+如需詳細資訊，請參閱 [DigitalPersona Composite 驗證](http://www.crossmatch.com/uploadedFiles/Support/Reference_Material/DigitalPersona-Office-365-Deployment-Guide.pdf)。
+
 
 ## <a name="ibm-tivoli-federated-identity-manager-622"></a>IBM Tivoli Federated Identity Manager 6.2.2
 
@@ -185,7 +198,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |None |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需 IBM Tivoli Federated Identity Manager 的相關詳細資訊，請參閱 [IBM Security Access Manager for Microsoft Applications](http://www-01.ibm.com/support/docview.wss?uid=swg24029517)
+如需 IBM Tivoli Federated Identity Manager 的詳細資訊，請參閱 [IBM Security Access Manager for Microsoft Applications](http://www-01.ibm.com/support/docview.wss?uid=swg24029517)。
 
 ## <a name="icewall-federation-version-30"></a>IceWall Federation Version 3.0
 
@@ -197,7 +210,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需有關 IceWall Federation 的詳細資訊，請參閱[這裡](http://h50146.www5.hp.com/products/software/security/icewall/eng/federation/)和[這裡](http://h50146.www5.hp.com/products/software/security/icewall/federation/office365.html)。
+如需 IceWall Federation 的詳細資訊，請參閱 [IceWall Federation 3.0 版](http://h50146.www5.hp.com/products/software/security/icewall/eng/federation/)和 [IceWall Federation (含 Office 365)](http://h50146.www5.hp.com/products/software/security/icewall/federation/office365.html)。
 
 ## <a name="memority"></a>Memority
 
@@ -209,7 +222,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |None |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需有關使用 Memority 的詳細資訊，請參閱 [Memority](http://www.memority.com)
+如需使用 Memority 的詳細資訊，請參閱 [Memority](http://www.memority.com)。
 
 
 ## <a name="netiq-access-manager-4x"></a>NetIQ Access Manager 4.x
@@ -222,7 +235,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |None|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需詳細資訊，請參閱 [NetIQ Access Manager](https://www.netiq.com/documentation/access-manager-43/admin/data/b65ogn0.html#b12iqp0m)
+如需詳細資訊，請參閱 [NetIQ Access Manager](https://www.netiq.com/documentation/access-manager-43/admin/data/b65ogn0.html#b12iqp0m)。
 
 ## <a name="okta"></a>Okta
 
@@ -234,7 +247,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需 Okta 的相關詳細資訊，請參閱 [Okta](https://www.okta.com/)
+如需 Okta 的詳細資訊，請參閱 [Okta](https://www.okta.com/)。
 
 ## <a name="onelogin"></a>OneLogin
 
@@ -246,7 +259,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需 OneLogin 的相關詳細資訊，請參閱 [OneLogin](https://www.onelogin.com/)
+如需 OneLogin 的詳細資訊，請參閱 [OneLogin](https://www.onelogin.com/)。
 
 ## <a name="optimal-idm-virtual-identity-server-federation-services"></a>Optimal IDM Virtual Identity Server Federation Services
 
@@ -258,7 +271,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |
 
-如需用戶端存取原則的相關詳細資訊，請參閱[依據用戶端所在位置限制存取 Office 365 服務](https://technet.microsoft.com/library/hh526961.aspx) |。
+如需用戶端存取原則的詳細資訊，請參閱[依據用戶端所在位置限制存取 Office 365 服務](https://technet.microsoft.com/library/hh526961.aspx)。
 
 
 
@@ -290,7 +303,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需 RadiantOne CFS 的相關詳細資訊，請參閱 [RadiantOne CFS](http://www.radiantlogic.com/products/radiantone-cfs/)
+如需 RadiantOne CFS 的詳細資訊，請參閱 [RadiantOne CFS](http://www.radiantlogic.com/products/radiantone-cfs/)。
 
 ## <a name="sailpoint-identitynow"></a>Sailpoint IdentityNow
 
@@ -339,7 +352,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |None |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-Sign&go 5.3 透過 Kerberos Contract 的組態支援 Kerberos 驗證。  如需此組態相關協助，請連絡 Ilex 或檢視 [此處](http://www.ilex-international.com/docs/sign&go_wsfederation_en.pdf)
+Sign&go 5.3 透過 Kerberos Contract 的組態支援 Kerberos 驗證。  如需此設定的協助，請連絡 Ilex 或檢視設定指南 [Sign&go](http://www.ilex-international.com/docs/sign&go_wsfederation_en.pdf)。
 
 ## <a name="softbank-technology-online-service-gate"></a>SoftBank Technology Online Service Gate
 
@@ -351,7 +364,7 @@ Sign&go 5.3 透過 Kerberos Contract 的組態支援 Kerberos 驗證。  如需�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需 SoftBank Technology Online Service Gate 的詳細資訊，請參閱[這裡](https://www.softbanktech.jp/service/list/osg-pro-ent/)。
+如需 SoftBank Technology Online Service Gate 的詳細資訊，請參閱 [Softbank](https://www.softbanktech.jp/service/list/osg-pro-ent/)。
 
 ## <a name="vmware-workspace-one"></a>VMware Workspace One
 
@@ -363,16 +376,6 @@ Sign&go 5.3 透過 Kerberos Contract 的組態支援 Kerberos 驗證。  如需�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需詳細資訊，請參閱[這裡](http://www.vmware.com/pdf/vidm-office365-saml.pdf)。
+如需詳細資訊，請參閱 [VMware Workspace One](http://www.vmware.com/pdf/vidm-office365-saml.pdf)。
 
-## <a name="vmware--workspace-portal-version-21"></a>VMware Workspace Portal 2.1 版
 
-以下是支援此單一登入體驗之矩陣的案例：
-
-| 用戶端 | 支援 | 例外狀況 |
-| --- | --- | --- |
-| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online |支援 |不支援整合式 Windows 驗證 |
-| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證 |
-| 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
-
-如需有關 VMware Workspace Portal 2.1 版的詳細資訊，請從[這裡](http://pubs.vmware.com/workspace-portal-21/topic/com.vmware.ICbase/PDF/workspace-portal-21-resource.pdf)下載 PDF。

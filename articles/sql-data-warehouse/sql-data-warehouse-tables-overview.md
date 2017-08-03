@@ -13,14 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: tables
-ms.date: 10/31/2016
+ms.date: 06/29/2016
 ms.author: shigu;jrj
-ms.translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 914d85267e82ce6a2e60f3841889935046f17c87
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: c16fef2f302dbc56f257eaf2f0d2b68b6a3c1852
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/03/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="overview-of-tables-in-sql-data-warehouse"></a>SQL 資料倉儲中的資料表概觀
@@ -50,7 +49,7 @@ RENAME OBJECT Customer TO CustomerOrig;
  ```
 
 ## <a name="distributed-tables"></a>分散式資料表
-**散發資料行**是 SQL 資料倉儲等分散式系統所導入的新基本屬性。  散發資料行名符其實。  此資料行可決定如何在幕後散發或分割您的資料。  當您建立資料表，但不指定散發資料行時，系統會使用 **循環配置資源**自動散發資料表。  雖然在某些情況下，循環配置資源資料表可能已足夠，但定義散發資料行可大幅減少期間查詢的資料移動，因而讓效能達到最佳化。  若要深入了解如何選取散發資料行，請參閱[散發資料表][Distribute]。
+**散發資料行**是 SQL 資料倉儲等分散式系統所導入的新基本屬性。  散發資料行名符其實。  此資料行可決定如何在幕後散發或分割您的資料。  當您建立資料表，但不指定散發資料行時，系統會使用 **循環配置資源**自動散發資料表。  雖然在某些情況下，循環配置資源資料表可能已足夠，但定義散發資料行可大幅減少期間查詢的資料移動，因而讓效能達到最佳化。  在資料表只有少量資料的情況下，選擇使用**複寫**分佈類型建立資料表會將資料複製到每個計算節點，並儲存查詢執行時間的資料移動。 若要深入了解如何選取散發資料行，請參閱[散發資料表][Distribute]。
 
 ## <a name="indexing-and-partitioning-tables"></a>編製資料表的索引和分割資料表
 隨著您更加擅長使用 SQL 資料倉儲並想要讓效能達到最佳化，您會想要深入了解資料表設計。  若要深入了解，請參閱[資料表資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]和[分割資料表][Partition]等文章。
@@ -69,7 +68,6 @@ RENAME OBJECT Customer TO CustomerOrig;
 
 | 不支援的功能 |
 | --- |
-| [身分識別屬性][Identity Property] (請參閱[指派 Surrogate 索引鍵因應措施][Assigning Surrogate Key Workaround]) |
 | 主索引鍵、外部索引鍵、唯一和檢查[資料表條件約束][Table Constraints] |
 | [唯一索引][Unique Indexes] |
 | [計算資料行][Computed Columns] |
@@ -202,7 +200,7 @@ FROM size
 ```
 
 ### <a name="table-space-summary"></a>資料表空間摘要
-此查詢會傳回資料表的資料列和空格。  這是很實用的查詢，可查看哪些資料表是最大的資料表，以及其屬於循環配置資源或雜湊散發資料表。  若為雜湊散發資料表，也會顯示散發資料行。  在大部分情況下，最大的資料表應該是具有叢集資料行存放區索引的雜湊散發資料表。
+此查詢會傳回資料表的資料列和空格。  這是很實用的查詢，可查看哪些資料表是最大的資料表，以及其屬於循環配置資源、複寫或雜湊散發資料表。  若為雜湊散發資料表，也會顯示散發資料行。  在大部分情況下，最大的資料表應該是具有叢集資料行存放區索引的雜湊散發資料表。
 
 ```sql
 SELECT 
@@ -295,8 +293,6 @@ ORDER BY    distribution_id
 [CREATE TABLE]: https://msdn.microsoft.com/library/mt203953.aspx
 [RENAME]: https://msdn.microsoft.com/library/mt631611.aspx
 [DBCC PDW_SHOWSPACEUSED]: https://msdn.microsoft.com/library/mt204028.aspx
-[Identity Property]: https://msdn.microsoft.com/library/ms186775.aspx
-[Assigning Surrogate Key Workaround]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/18/assigning-surrogate-key-to-dimension-tables-in-sql-dw-and-aps/
 [Table Constraints]: https://msdn.microsoft.com/library/ms188066.aspx
 [Computed Columns]: https://msdn.microsoft.com/library/ms186241.aspx
 [Sparse Columns]: https://msdn.microsoft.com/library/cc280604.aspx

@@ -15,11 +15,11 @@ ms.topic: hero-article
 ms.date: 03/17/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 233db1cb74a6c81cf044953ecdf6e9de6cc50ee8
+ms.translationtype: HT
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: 754c381cb242e0bdf7c56bd2a763d46acc80fbda
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
+ms.lasthandoff: 07/21/2017
 
 ---
 # <a name="create-a-python-web-app-in-azure"></a>在 Azure 中建立 Python Web 應用程式
@@ -59,6 +59,12 @@ cd Python-docs-hello-world
 ```
 
 ## <a name="run-the-app-locally"></a>在本機執行應用程式
+
+使用 `pip` 安裝必要的套件。
+
+```bash
+pip install -r requirements.txt
+```
 
 開啟終端機視窗並使用 `Python` 命令來啟動內建 Python Web 伺服器，以在本機執行應用程式。
 

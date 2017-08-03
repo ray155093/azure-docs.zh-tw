@@ -12,14 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/29/2017
+ms.date: 08/01/2017
 ms.author: juliako
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
 ms.openlocfilehash: 25a13ad3738286795f45bbdec681614356bd3db8
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/30/2017
-
 
 ---
 
@@ -940,28 +939,30 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
 #### <a name="xml-preset"></a>XML 預設值
 
 使用 XML 時，請使用 Condition="InsertBlackIfNoVideoBottomLayerOnly" 做為 **H264Video** 元素的屬性，並使用 Condition="InsertSilenceIfNoAudio" 做為 **AACAudio** 的屬性。
-    
-    . . .
-    <Encoding>  
-    <H264Video Condition="InsertBlackIfNoVideoBottomLayerOnly">  
-      <KeyFrameInterval>00:00:02</KeyFrameInterval>
-      <SceneChangeDetection>true</SceneChangeDetection>  
-      <StretchMode>AutoSize</StretchMode>
-      <H264Layers>  
-    <H264Layer>  
-      . . .
-    </H264Layer>  
-      </H264Layers>  
-      <Chapters />  
-    </H264Video>  
-    <AACAudio Condition="InsertSilenceIfNoAudio">  
-      <Profile>AACLC</Profile>  
-      <Channels>2</Channels>  
-      <SamplingRate>48000</SamplingRate>  
-      <Bitrate>128</Bitrate>  
-    </AACAudio>  
-    </Encoding>  
-    . . .
+
+```
+. . .
+<Encoding>
+  <H264Video Condition="InsertBlackIfNoVideoBottomLayerOnly">
+    <KeyFrameInterval>00:00:02</KeyFrameInterval>
+    <SceneChangeDetection>true</SceneChangeDetection>
+    <StretchMode>AutoSize</StretchMode>
+    <H264Layers>
+      <H264Layer>
+        . . .
+      </H264Layer>
+    </H264Layers>
+    <Chapters />
+  </H264Video>
+  <AACAudio Condition="InsertSilenceIfNoAudio">
+    <Profile>AACLC</Profile>
+    <Channels>2</Channels>
+    <SamplingRate>48000</SamplingRate>
+    <Bitrate>128</Bitrate>
+  </AACAudio>
+</Encoding>
+. . .
+```
 
 ### <a name="inserting-video-at-all-output-bitrates"></a>以所有輸出位元速率插入視訊
 假設您正在使用多重位元速率編碼預設值 (例如 [「H264 Multiple 多重位元速率 720p」](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) ) 來將整個輸入目錄針對串流進行編碼，這將會包含各種視訊檔案和純音訊檔案。 在這個案例中，當輸入沒有視訊時，您可能需要強制編碼器於所有輸出位元速率插入單色視訊播放軌。 這能確保您所有的輸出資產與視訊播放軌和音訊播放軌之間的同質性。 若要達成此目的，您必須指定 "InsertBlackIfNoVideo" 旗標。
@@ -982,27 +983,29 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
 
 使用 XML 時，請使用 Condition="InsertBlackIfNoVideo" 做為 **H264Video** 元素的屬性，並使用 Condition="InsertSilenceIfNoAudio" 做為 **AACAudio** 的屬性。
 
-    . . .
-    <Encoding>  
-    <H264Video Condition="InsertBlackIfNoVideo">  
-      <KeyFrameInterval>00:00:02</KeyFrameInterval>
-      <SceneChangeDetection>true</SceneChangeDetection>  
-      <StretchMode>AutoSize</StretchMode>
-      <H264Layers>  
-    <H264Layer>  
-      . . .
-    </H264Layer>  
-      </H264Layers>  
-      <Chapters />  
-    </H264Video>  
-    <AACAudio Condition="InsertSilenceIfNoAudio">  
-      <Profile>AACLC</Profile>  
-      <Channels>2</Channels>  
-      <SamplingRate>48000</SamplingRate>  
-      <Bitrate>128</Bitrate>  
-    </AACAudio>  
-    </Encoding>  
-    . . .  
+```
+. . .
+<Encoding>
+  <H264Video Condition="InsertBlackIfNoVideo">
+    <KeyFrameInterval>00:00:02</KeyFrameInterval>
+    <SceneChangeDetection>true</SceneChangeDetection>
+    <StretchMode>AutoSize</StretchMode>
+    <H264Layers>
+      <H264Layer>
+        . . .
+      </H264Layer>
+    </H264Layers>
+    <Chapters />
+  </H264Video>
+  <AACAudio Condition="InsertSilenceIfNoAudio">
+    <Profile>AACLC</Profile>
+    <Channels>2</Channels>
+    <SamplingRate>48000</SamplingRate>
+    <Bitrate>128</Bitrate>
+  </AACAudio>
+</Encoding>
+. . .  
+```
 
 ## <a id="rotate_video"></a>旋轉視訊
 [媒體編碼器標準](media-services-dotnet-encode-with-media-encoder-standard.md)支援 0/90/180/270 度的旋轉角度。 預設行為是「自動」，此時它會嘗試偵測內送之視訊檔案的旋轉中繼資料並加以補償。 將以下 **Sources** 元素包含至[此](media-services-mes-presets-overview.md)節所定義的其中一個預設項目：

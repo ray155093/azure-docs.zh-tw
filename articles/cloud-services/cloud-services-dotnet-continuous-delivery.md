@@ -12,19 +12,20 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 11/18/2016
+ms.date: 06/12/2017
 ms.author: tarcher
-translationtype: Human Translation
-ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
-ms.openlocfilehash: 14212dd4b9eff135d379a7431d0aaa0e396a6f7f
-
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: f18605ec638a628805f5bd1c7207e9d874f104f3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="continuous-delivery-for-cloud-services-in-azure"></a>Azure 中雲端服務的連續傳遞
 本文所述的程序顯示如何為 Azure 雲端應用程式設定連續傳遞。 此程序可讓您自動建立套件，並在每次程式碼簽入時將套件部署到 Azure。 本文所述的套件建置程序等同於 Visual Studio 中的 [封裝]命令，而發佈步驟等同於 Visual Studio 中的 [發佈] 命令。
 文中會說明使用 MSBuild 命令列陳述式與指令碼來建置伺服器的方法，同時也會示範如何選擇性設定 Visual StudioTeam Foundation Server - Team Build 定義來使用 MSBuild 命令及 PowerShell 指令碼。 您可根據自己的組建環境及 Azure 目標環境自訂此程序。
 
-此動作也可以用 Visual Studio Team Services (託管於 Azure 中的 TFS 版本) 來執行，這樣會變得更容易。 如需詳細資訊，請參閱[使用 Visual Studio Team Services 持續傳遞至 Azure][Continuous Delivery to Azure by Using Visual Studio Team Services]。
+此動作也可以用 Visual Studio Team Services (託管於 Azure 中的 TFS 版本) 來執行，這樣會變得更容易。 
 
 開始之前，您應該先從 Visual Studio 發佈應用程式。
 如此可確保當您嘗試將發佈程序自動化時，所有資源皆可用並已初始化。
@@ -115,10 +116,10 @@ ms.openlocfilehash: 14212dd4b9eff135d379a7431d0aaa0e396a6f7f
 6. 檢閱指令碼的參數區段。 新增或修改任何預設值。 您永遠可以傳遞明確參數來覆寫這些值。
 7. 確定訂閱中建立了可作為發佈指令碼之目標的有效雲端服務與儲存體帳戶。 儲存體帳戶 (Blob 儲存) 將用來在建立部署期間上傳並暫時儲存部署套件與組態檔。
 
-   * 若要建立新的雲端服務，您可以呼叫此指令碼或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。 雲端服務名稱將作為完整網域名稱中的首碼，因此必須是唯一的。
+   * 若要建立新的雲端服務，您可以呼叫此指令碼或使用 [Azure 入口網站](https://portal.azure.com)。 雲端服務名稱將作為完整網域名稱中的首碼，因此必須是唯一的。
 
          New-AzureService -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
-   * 若要建立新的儲存體帳戶，您可以呼叫此指令碼或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。 儲存體帳戶名稱將作為完整網域名稱中的首碼，因此必須是唯一的。 您可以嘗試使用與雲端服務相同的名稱。
+   * 若要建立新的儲存體帳戶，您可以呼叫此指令碼或使用 [Azure 入口網站](https://portal.azure.com)。 儲存體帳戶名稱將作為完整網域名稱中的首碼，因此必須是唯一的。 您可以嘗試使用與雲端服務相同的名稱。
 
          New-AzureStorageAccount -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
 8. 直接從 Azure PowerShell 呼叫指令碼，或將此指令碼接到主機組建自動化程序中，以在建置套件之後執行。
@@ -132,7 +133,7 @@ ms.openlocfilehash: 14212dd4b9eff135d379a7431d0aaa0e396a6f7f
 
        PowerShell c:\scripts\windowsazure\PublishCloudService.ps1 -environment Staging -serviceName mycloudservice -storageAccountName mystoragesaccount -packageLocation c:\drops\app.publish\ContactManager.Azure.cspkg -cloudConfigLocation c:\drops\app.publish\ServiceConfiguration.Cloud.cscfg -subscriptionDataFile c:\scripts\default.publishsettings
 
-   此作業後面通常接著測試執行驗證及 VIP 交換。 VIP 交換可以透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885) 或使用 Move-Deployment Cmdlet 來完成。
+   此作業後面通常接著測試執行驗證及 VIP 交換。 VIP 交換可以透過 [Azure 入口網站](https://portal.azure.com)或使用 Move-Deployment Cmdlet 來完成。
 
    **範例案例 2：** 連續部署至專用測試服務的生產環境
 
@@ -156,7 +157,7 @@ ms.openlocfilehash: 14212dd4b9eff135d379a7431d0aaa0e396a6f7f
 
        Add-AzureCertificate -serviceName 'mytestcloudservice' -certToDeploy (get-item cert:\CurrentUser\MY\C33B6C432C25581601B84C80F86EC2809DC224E8
 
-   或者，您也可以使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，匯出憑證檔 PFX 與私密金鑰，並將憑證上傳至每個目標雲端服務。
+   或者，您也可以使用 [Azure 入口網站](https://portal.azure.com)，匯出憑證檔 PFX 與私密金鑰，並將憑證上傳至每個目標雲端服務。
 
    <!---
    Fixing broken links for Azure content migration from ACOM to DOCS. I'm unable to find a replacement links, so I'm commenting out this reference for now. The author can investigate in the future. "Read the following article to learn more: http://msdn.microsoft.com/library/windowsazure/gg443832.aspx.
@@ -515,7 +516,6 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy scrip
 ## <a name="next-steps"></a>後續步驟
 若要在使用連續傳遞時啟用遠端偵錯，請參閱 [使用連續傳遞來發行至 Azure 時啟用遠端偵錯](cloud-services-virtual-machines-dotnet-continuous-delivery-remote-debugging.md)。
 
-[Continuous Delivery to Azure by Using Visual Studio Team Services]: cloud-services-continuous-delivery-use-vso.md
 [Team Foundation Build Service]: https://msdn.microsoft.com/library/ee259687.aspx
 [.NET Framework 4]: https://www.microsoft.com/download/details.aspx?id=17851
 [.NET Framework 4.5]: https://www.microsoft.com/download/details.aspx?id=30653
@@ -530,9 +530,4 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy scrip
 [4]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-04.png
 [5]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-05.png
 [6]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-06.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

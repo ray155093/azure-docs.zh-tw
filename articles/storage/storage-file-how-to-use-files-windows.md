@@ -15,33 +15,31 @@ ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: a6d3a6f6e3457c84c5a7dc7d3601ef9495c060fe
+ms.sourcegitcommit: 2812039649f7d2fb0705220854e4d8d0a031d31e
+ms.openlocfilehash: e911e787cd1e29b2bbeaa648869c50245f2dd9ba
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/22/2017
 
 ---
 
 # <a name="mount-an-azure-file-share-and-access-the-share-in-windows"></a>掛接 Azure 檔案共用並在 Windows 中存取共用
 [Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)是 Microsoft 容易使用的雲端檔案系統。 Azure 檔案共用可在 Windows 和 Windows Server 中掛接。 本文將說明在 Windows 中掛接 Azure 檔案共用的三種不同方式：使用檔案總管 UI、透過 PowerShell，以及透過命令提示字元。 
 
-若要在 Azure 區域之外掛接 Azure 檔案共用，例如內部部署或是在不同的 Azure 區域，作業系統必須支援 SMB 3.x。 下表顯示最新 Windows 版本的 SMB 版本：
+若要在 Azure 區域之外掛接 Azure 檔案共用，例如內部部署或是在不同的 Azure 區域，作業系統必須支援 SMB 3.0。 
 
-| Windows 版本 | SMB 版本 | 支援從 Azure VM 掛接 | 支援從內部部署掛接 | 最低建議 KB |
-|----|----|----|----|----|
-| Windows 10 版本 1703 | SMB 3.1.1 | 是 | 是 | |
-| Windows Server 2016 | SMB 3.1.1 | 是 | 是 | [KB4015438](https://support.microsoft.com/help/4015438) |
-| Windows 10 版本 1607 | SMB 3.1.1 | 是 | 是 | [KB4015438](https://support.microsoft.com/help/4015438) | 
-| Windows 10 版本 1511 | SMB 3.1.1 | 是 | 是 | [KB4013198](https://support.microsoft.com/help/4013198) |
-| Windows 10 版本 1507 | SMB 3.1.1 | 是 | 是 | [KB4012606](https://support.microsoft.com/help/4012606) | 
-| Windows 8.1 | SMB 3.0.2 | 是 | 是 | [KB4012216](https://support.microsoft.com/help/4012216) |
-| Windows Server 2012 R2 | SMB 3.0.2 | 是 | 是 | [KB4012216](https://support.microsoft.com/help/4012216) |
-| Windows Server 2012 | SMB 3.0 | 是 | 是 | [KB4012214](https://support.microsoft.com/help/4012214) |
-| Windows 7 | SMB 2.1 | 是 | 否 | [KB4012215](https://support.microsoft.com/help/4012215) |
-| Windows Server 2008 R2 | SMB 2.1 | 是 | 否 | [KB4012215](https://support.microsoft.com/help/4012215) |
+Azure 檔案共用可以掛接在 Windows 電腦上 (視 OS 版本而定，不是內部部署環境就是 Azure VM)。 下表說明 
+
+| Windows 版本        | SMB 版本 |可在 Azure VM 上掛接|可在內部部署環境掛接|
+|------------------------|-------------|---------------------|---------------------|
+| Windows 7              | SMB 2.1     | 是                 | 否                  |
+| Windows Server 2008 R2 | SMB 2.1     | 是                 | 否                  |
+| Windows 8              | SMB 3.0     | 是                 | 是                 |
+| Windows Server 2012    | SMB 3.0     | 是                 | 是                 |
+| Windows Server 2012 R2 | SMB 3.0     | 是                 | 是                 |
+| Windows 10             | SMB 3.0     | 是                 | 是                 |
 
 > [!Note]  
-> 我們一律建議針對您的 Windows 版本採取最新的 KB。 最低建議 KB 旨在為厭惡更新的 IT 系統管理員，提供具有 SMB 修正程式的最新套件。
+> 我們一律建議針對您的 Windows 版本採取最新的 KB。
 
 ## <a name="aprerequisites-for-mounting-azure-file-share-with-windows"></a></a>使用 Windows 掛接 Azure 檔案共用的必要條件 
 * **儲存體帳戶名稱**：若要掛接 Azure 檔案共用，您需要儲存體帳戶的名稱。
@@ -144,3 +142,4 @@ ms.lasthandoff: 07/12/2017
 ### <a name="reference"></a>參考
 * [Storage Client Library for .NET 參考資料](https://msdn.microsoft.com/library/azure/dn261237.aspx)
 * [檔案服務 REST API 參考](http://msdn.microsoft.com/library/azure/dn167006.aspx)
+

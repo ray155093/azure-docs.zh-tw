@@ -15,15 +15,13 @@ ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: spelluru
 ms.translationtype: HT
-ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
-ms.openlocfilehash: 7303b51a4a107e63e4c6514f7bf8f33a3ba00e39
+ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
+ms.openlocfilehash: c67169f296f2f13b9ee87180f126fb1dcf10fbea
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/11/2017
-
+ms.lasthandoff: 07/21/2017
 
 ---
-# 教學課程：使用 Azure Resource Manager 範本建置您的第一個 Azure Data Factory
-<a id="tutorial-build-your-first-azure-data-factory-using-azure-resource-manager-template" class="xliff"></a>
+# <a name="tutorial-build-your-first-azure-data-factory-using-azure-resource-manager-template"></a>教學課程：使用 Azure Resource Manager 範本建置您的第一個 Azure Data Factory
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-build-your-first-pipeline.md)
 > * [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
@@ -43,14 +41,12 @@ ms.lasthandoff: 07/11/2017
 > 
 > 本教學課程中的管線只有一個 HDInsightHive 類型的活動。 一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱 [Data Factory 排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。 
 
-## 必要條件
-<a id="prerequisites" class="xliff"></a>
+## <a name="prerequisites"></a>必要條件
 * 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。
 * 按照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
 * 若要了解 Azure Resource Manager 範本，請參閱 [撰寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md) 。 
 
-## 本教學課程內容
-<a id="in-this-tutorial" class="xliff"></a>
+## <a name="in-this-tutorial"></a>本教學課程內容
 | 實體 | 說明 |
 | --- | --- |
 | Azure 儲存體連結服務 |將您的 Azure 儲存體帳戶連結至 Data Factory。 Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。 |
@@ -63,8 +59,7 @@ ms.lasthandoff: 07/11/2017
 
 下節會提供完整的 Resource Manager 範本來定義 Data Factory 實體，如此您可以快速執行教學課程並測試範本。 若要了解每個 Data Factory 實體的定義方式，請參閱[範本中的 Data Factory 實體](#data-factory-entities-in-the-template)一節。
 
-## Data Factory JSON 範本
-<a id="data-factory-json-template" class="xliff"></a>
+## <a name="data-factory-json-template"></a>Data Factory JSON 範本
 用於定義資料處理站的最上層 Resource Manager 範本是︰ 
 
 ```json
@@ -148,9 +143,10 @@ ms.lasthandoff: 07/11/2017
             "properties": {
                   "type": "HDInsightOnDemand",
                   "typeProperties": {
+                    "version": "3.5",
                     "clusterSize": 1,
                     "timeToLive": "00:05:00",
-                    "osType": "windows",
+                    "osType": "Linux",
                     "linkedServiceName": "[variables('azureStorageLinkedServiceName')]"
                   }
             }
@@ -251,8 +247,8 @@ ms.lasthandoff: 07/11/2017
                       "linkedServiceName": "[variables('hdInsightOnDemandLinkedServiceName')]"
                 }
                   ],
-                  "start": "2016-10-01T00:00:00Z",
-                  "end": "2016-10-02T00:00:00Z",
+                  "start": "2017-07-01T00:00:00Z",
+                  "end": "2017-07-02T00:00:00Z",
                   "isPaused": false
               }
           }
@@ -267,8 +263,7 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-## 參數 JSON
-<a id="parameters-json" class="xliff"></a>
+## <a name="parameters-json"></a>參數 JSON
 建立名為 **ADFTutorialARM Parameters.json** 的 JSON 檔案，其中包含 Azure Resource Manager 範本的參數。  
 
 > [!IMPORTANT]
@@ -314,8 +309,7 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-## 建立 Data Factory
-<a id="create-data-factory" class="xliff"></a>
+## <a name="create-data-factory"></a>建立 Data Factory
 1. 啟動 **Azure PowerShell** 並執行下列命令： 
    * 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
     ```PowerShell
@@ -335,8 +329,7 @@ ms.lasthandoff: 07/11/2017
     New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFTutorialResourceGroup -TemplateFile C:\ADFGetStarted\ADFTutorialARM.json -TemplateParameterFile C:\ADFGetStarted\ADFTutorialARM-Parameters.json
     ```
 
-## 監視管線
-<a id="monitor-pipeline" class="xliff"></a>
+## <a name="monitor-pipeline"></a>監視管線
 1. 登入 [Azure 入口網站](https://portal.azure.com/)後，按一下 [瀏覽]，然後選取 [Data Factory]。
      ![瀏覽 Data Factory](./media/data-factory-build-your-first-pipeline-using-arm/BrowseDataFactories.png)
 2. 在 [Data Factory] 刀鋒視窗中，按一下您建立的 Data Factory (**TutorialFactoryARM**)。    
@@ -363,10 +356,8 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-## 範本中的 Data Factory 實體
-<a id="data-factory-entities-in-the-template" class="xliff"></a>
-### 定義資料處理站
-<a id="define-data-factory" class="xliff"></a>
+## <a name="data-factory-entities-in-the-template"></a>範本中的 Data Factory 實體
+### <a name="define-data-factory"></a>定義資料處理站
 您可以在 Resource Manager 範本中定義資料處理站，如下列範例所示︰  
 
 ```json
@@ -385,8 +376,7 @@ dataFactoryName 定義為：
 ```
 根據資源群組識別碼，它是唯一的字串。  
 
-### 定義 Data Factory 實體
-<a id="defining-data-factory-entities" class="xliff"></a>
+### <a name="defining-data-factory-entities"></a>定義 Data Factory 實體
 下列的 Data Factory 實體定義於 JSON 範本中︰ 
 
 * [Azure 儲存體連結服務](#azure-storage-linked-service)
@@ -395,8 +385,7 @@ dataFactoryName 定義為：
 * [Azure Blob 輸出資料集](#azure-blob-output-dataset)
 * [具有複製活動的管線](#data-pipeline)
 
-#### Azure 儲存體連結服務
-<a id="azure-storage-linked-service" class="xliff"></a>
+#### <a name="azure-storage-linked-service"></a>Azure 儲存體連結服務
 在此區段中指定您 Azure 儲存體帳戶的名稱和金鑰。 如需用來定義 Azure 儲存體連結服務之 JSON 屬性的詳細資料，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)。 
 
 ```json
@@ -418,8 +407,7 @@ dataFactoryName 定義為：
 ```
 **connectionString** 會使用 storageAccountName 和 storageAccountKey 參數。 使用組態檔傳遞這些參數的值。 定義也會使用在範本中定義的變數︰azureStroageLinkedService 和 dataFactoryName。 
 
-#### HDInsight 隨選連結服務
-<a id="hdinsight-on-demand-linked-service" class="xliff"></a>
+#### <a name="hdinsight-on-demand-linked-service"></a>HDInsight 隨選連結服務
 請參閱[計算連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)文章，以取得關於用來定義 HDInsight 隨選連結服務之 JSON 屬性的詳細資訊。  
 
 ```json
@@ -433,9 +421,10 @@ dataFactoryName 定義為：
     "properties": {
         "type": "HDInsightOnDemand",
         "typeProperties": {
+            "version": "3.5",
             "clusterSize": 1,
             "timeToLive": "00:05:00",
-            "osType": "windows",
+            "osType": "Linux",
             "linkedServiceName": "[variables('azureStorageLinkedServiceName')]"
         }
     }
@@ -443,7 +432,7 @@ dataFactoryName 定義為：
 ```
 請注意下列幾點： 
 
-* Data Factory 會以上述 JSON 為您建立**「以 Windows 為基礎的」**HDInsight 叢集。 您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。 如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) 。 
+* Data Factory 會使用上述 JSON，為您建立**以 Linux 為基礎的** HDInsight 叢集。 如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) 。 
 * 您可以使用 **自己的 HDInsight 叢集** ，不必使用隨選的 HDInsight 叢集。 如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) 。
 * HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。 HDInsight 不會在刪除叢集時刪除此容器。 這是設計的行為。 在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每當需要處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
   
@@ -451,8 +440,7 @@ dataFactoryName 定義為：
 
 如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) 。
 
-#### Azure Blob 輸入資料集
-<a id="azure-blob-input-dataset" class="xliff"></a>
+#### <a name="azure-blob-input-dataset"></a>Azure Blob 輸入資料集
 您可以指定 blob 容器、資料夾和包含輸入資料之檔案的名稱。 請參閱 [Azure Blob 資料集屬性](data-factory-azure-blob-connector.md#dataset-properties)，以取得用來定義 Azure Blob 資料集之 JSON 屬性的詳細資訊。 
 
 ```json
@@ -485,8 +473,7 @@ dataFactoryName 定義為：
 ```
 這個定義會使用下列參數範本中定義的參數︰blobContainer、inputBlobFolder 和 inputBlobName。 
 
-#### Azure Blob 輸出資料集
-<a id="azure-blob-output-dataset" class="xliff"></a>
+#### <a name="azure-blob-output-dataset"></a>Azure Blob 輸出資料集
 您可以指定 blob 容器和包含輸出資料之資料夾的名稱。 請參閱 [Azure Blob 資料集屬性](data-factory-azure-blob-connector.md#dataset-properties)，以取得用來定義 Azure Blob 資料集之 JSON 屬性的詳細資訊。  
 
 ```json
@@ -518,8 +505,7 @@ dataFactoryName 定義為：
 
 這個定義會使用下列參數範本中定義的參數︰blobContainer 和 outputBlobFolder。 
 
-#### Data Pipeline
-<a id="data-pipeline" class="xliff"></a>
+#### <a name="data-pipeline"></a>Data Pipeline
 您可以定義在隨選 Azure HDInsight 叢集上執行 Hive 指令碼以轉換資料的管線。 請參閱[管線 JSON](data-factory-create-pipelines.md#pipeline-json)，以取得用來在此範例中定義管線的 JSON 元素之描述。 
 
 ```json
@@ -569,15 +555,14 @@ dataFactoryName 定義為：
             "linkedServiceName": "[variables('hdInsightOnDemandLinkedServiceName')]"
         }
         ],
-        "start": "2016-10-01T00:00:00Z",
-        "end": "2016-10-02T00:00:00Z",
+        "start": "2017-07-01T00:00:00Z",
+        "end": "2017-07-02T00:00:00Z",
         "isPaused": false
     }
 }
 ```
 
-## 重複使用範本
-<a id="reuse-the-template" class="xliff"></a>
+## <a name="reuse-the-template"></a>重複使用範本
 在教學課程中，您可以建立定義 Data Factory 實體的範本和傳遞參數值的範本。 若要使用相同的範本將 Data Factory 實體部署至不同的環境，您可以針對每個環境建立參數檔案，並在部署到該環境時使用它。     
 
 範例：  
@@ -593,8 +578,7 @@ New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFT
 
 您也可以重複使用範本來執行重複的工作。 例如，您需要使用一個或多個管線建立許多資料處理站，這些管線會實作相同的邏輯，但每個資料處理站會使用不同的 Azure 儲存體和 Azure SQL Database 帳戶。 在此案例中，您會在具有不同參數檔案的相同環境中 (開發、測試或生產) 使用相同的範本來建立資料處理站。 
 
-## 可供建立閘道的 Resource Manager 範本
-<a id="resource-manager-template-for-creating-a-gateway" class="xliff"></a>
+## <a name="resource-manager-template-for-creating-a-gateway"></a>可供建立閘道的 Resource Manager 範本
 以下是可供在後端建立邏輯閘道的範例 Resource Manager 範本。 在內部部署電腦或 Azure IaaS VM 上安裝閘道，並使用金鑰向 Data Factory 服務註冊此閘道。 如需詳細資訊，請參閱 [在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 。
 
 ```json
@@ -631,8 +615,7 @@ New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFT
 ```
 此範本會利用名為 GatewayUsingARM 的閘道建立名為 GatewayUsingArmDF 的 Data Factory。 
 
-## 另請參閱
-<a id="see-also" class="xliff"></a>
+## <a name="see-also"></a>另請參閱
 | 主題 | 說明 |
 |:--- |:--- |
 | [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |

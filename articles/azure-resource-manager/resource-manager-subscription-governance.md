@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/31/2017
 ms.author: rodend;karlku;tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: ce4e19738a66629c7dd587da50f71f6675c159e8
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 3a19f2cf7566f38f80639d7c966638a3ec900cf4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/16/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -216,7 +216,7 @@ Azure 最初發行時，訂用帳戶的存取控制是基本的︰系統管理�
 > 原則對於適當控制項的維護也十分重要。 我們建議您將 **CanNotDelete** 鎖定套用到正在使用的原則。
 
 ## <a name="core-networking-resources"></a>核心網路資源
-資源的存取可以是內部的 (在公司網路內) 或外部的 (透過網際網路)。 您組織中的使用者很容易不小心將資源放在錯誤的位置，並可能加以開啟而遭到惡意存取。 對於內部部署的裝置，企業必須加上適度的控制，以確保 Azure 使用者做出適當的決策。 針對訂用帳戶治理，我們會找出可提供基本存取控制的核心資源。 核心資源是由下列各項所組成︰
+資源的存取可以是內部的 (在公司網路內) 或外部的 (透過網際網路)。 您組織中的使用者很容易不小心將資源放在錯誤的位置，並可能加以開啟而遭到惡意存取。 針對內部部署裝置，企業必須加上適度的控制，以確保 Azure 使用者能做出適當的決策。 針對訂用帳戶治理，我們會找出可提供基本存取控制的核心資源。 核心資源是由下列各項所組成︰
 
 * **虛擬網路**是子網路的容器物件。 雖然不是絕對必要，但通常使用於將應用程式連接到內部公司資源時。
 * **網路安全性群組**類似於防火牆，可提供資源如何透過網路「交談」的規則。 這類群組可細微控制子網路 (或虛擬機器) 如何/是否可以連接到網際網路或相同虛擬網路中的其他子網路。

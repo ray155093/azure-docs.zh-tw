@@ -21,9 +21,7 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="how-to-configure-a-new-multi-tenant-application" class="xliff"></a>
-
-# 如何設定新的多租用戶應用程式
+# <a name="how-to-configure-a-new-multi-tenant-application"></a>如何設定新的多租用戶應用程式
 
 在您的應用程式中啟用同盟單一登入 (SSO)，會在針對 OpenID Connect、SAML 2.0 或 WS-Fed 透過 Azure AD 進行同盟時自動啟用。 如果您的使用者儘管目前已經有含 Azure AD 的工作階段還是必須登入，很可能是您的應用程式設定錯誤。
 
@@ -35,9 +33,7 @@ ms.lasthandoff: 04/17/2017
 
 若是 iOS，請參閱[在 iOS 上啟用跨應用程式的 SSO](https://docs.microsoft.com/azure/active-directory/develop/active-directory-sso-ios)。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 [Azure AD 的 SSO](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis)<br>
 

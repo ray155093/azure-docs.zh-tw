@@ -21,9 +21,7 @@ ms.lasthandoff: 05/09/2017
 
 ---
 
-<a id="tutorial-azure-active-directory-integration-with-neota-logic-studio" class="xliff"></a>
-
-# 教學課程：Azure Active Directory 與 Neota Logic Studio 整合
+# <a name="tutorial-azure-active-directory-integration-with-neota-logic-studio"></a>教學課程：Azure Active Directory 與 Neota Logic Studio 整合
 
 在本教學課程中，您會了解如何整合 Neota Logic Studio 與 Azure Active Directory (Azure AD)。
 
@@ -35,9 +33,7 @@ Neota Logic Studio 與 Azure AD 整合提供下列優點：
 
 如果您想要知道與 Azure AD 整合的 SaaS 應用程式詳細資訊，請參閱： [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 如要設定 Azure AD 與 Neota Logic Studio 的整合，您需要下列項目：
 
@@ -52,18 +48,14 @@ Neota Logic Studio 與 Azure AD 整合提供下列優點：
 - 除非必要，否則請勿使用生產環境。
 - 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
-<a id="scenario-description" class="xliff"></a>
-
-## 案例描述
+## <a name="scenario-description"></a>案例描述
 
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Neota Logic Studio
 2. 設定並測試 Azure AD 單一登入
 
-<a id="adding-neota-logic-studio-from-the-gallery" class="xliff"></a>
-
-## 從資源庫新增 Neota Logic Studio
+## <a name="adding-neota-logic-studio-from-the-gallery"></a>從資源庫新增 Neota Logic Studio
 
 若要設定將 Neota Logic Studio 整合到 Azure AD 中，您必須從資源庫將 Neota Logic Studio 新增到受管理的 SaaS 應用程式清單。
 
@@ -89,9 +81,7 @@ Neota Logic Studio 與 Azure AD 整合提供下列優點：
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-neotalogicstudio-tutorial/tutorial_neotalogicstudio_addfromgallery.png)
 
-<a id="configuring-and-testing-azure-ad-single-sign-on" class="xliff"></a>
-
-##  設定並測試 Azure AD 單一登入
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
 
 在本節中，您會以測試使用者 Britta Simon 的身分，設定及測試 Azure AD 與 Neota Logic Studio 的單一登入。
 
@@ -107,9 +97,7 @@ Neota Logic Studio 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-<a id="configuring-azure-ad-single-sign-on" class="xliff"></a>
-
-### 設定 Azure AD 單一登入
+### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
 在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，並在您的 Neota Logic Studio 應用程式中設定單一登入。
 
@@ -147,9 +135,7 @@ Neota Logic Studio 與 Azure AD 整合提供下列優點：
 > [!TIP]
 > 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
 
-<a id="creating-an-azure-ad-test-user" class="xliff"></a>
-
-### 建立 Azure AD 測試使用者
+### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][100]
@@ -180,15 +166,11 @@ Neota Logic Studio 與 Azure AD 整合提供下列優點：
 
     d. 按一下 [建立] 。
  
-<a id="creating-a-neota-logic-studio-test-user" class="xliff"></a>
-
-### 建立 Neota Logic Studio 測試使用者
+### <a name="creating-a-neota-logic-studio-test-user"></a>建立 Neota Logic Studio 測試使用者
 
 在本節中，您要在 Neota Logic Studio 中建立名為 Britta Simon 的使用者。 與 [Neota Logic Studio 客戶支援小組](https://www.neotalogic.com/contact-us/)合作，在 Neota Logic Studio 平台新增使用者。 您必須先建立和啟動使用者，然後才能使用單一登入。 
 
-<a id="assigning-the-azure-ad-test-user" class="xliff"></a>
-
-### 指派 Azure AD 測試使用者
+### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
 在本節中，您會將 Neota Logic Studio 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
@@ -218,9 +200,7 @@ Neota Logic Studio 與 Azure AD 整合提供下列優點：
 
 7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
-<a id="testing-single-sign-on" class="xliff"></a>
-
-### 測試單一登入
+### <a name="testing-single-sign-on"></a>測試單一登入
 
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
@@ -228,9 +208,7 @@ Neota Logic Studio 與 Azure AD 整合提供下列優點：
 
 如需存取面板的詳細資訊，請參閱[存取面板簡介](https://msdn.microsoft.com/library/dn308586)。 
 
-<a id="additional-resources" class="xliff"></a>
-
-## 其他資源
+## <a name="additional-resources"></a>其他資源
 
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)

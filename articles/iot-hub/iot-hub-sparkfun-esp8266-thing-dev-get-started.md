@@ -1,10 +1,10 @@
 ---
 title: "ESP8266 到雲端 - 將 Sparkfun ESP8266 Thing Dev 連接到 Azure IoT 中樞 | Microsoft Docs"
-description: "將 Arduino 裝置 (Sparkfun ESP8266 Thing Dev) 連接到 Azure IoT 中樞 (可協助管理 IoT 資產的 Microsoft 雲端服務) 的指南。"
+description: "了解如何設定及連線 Sparkfun ESP8266 Thing Dev 和 Azure IoT 中樞，在本教學課程中將資料傳送到 Azure 雲端平台。"
 services: iot-hub
 documentationcenter: 
 author: shizn
-manager: timtl
+manager: timlt
 tags: 
 keywords: 
 ms.assetid: 587fe292-9602-45b4-95ee-f39bba10e716
@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/15/2017
 ms.author: xshi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 0b7ce531c73d991897f1c35932e795a97dd33162
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 9b3d968379d38ac4e4080de7eae6ffea89f73a49
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="connect-sparkfun-esp8266-thing-dev-to-azure-iot-hub-in-the-cloud"></a>將 Sparkfun ESP8266 Thing Dev 連接到雲端的 Azure IoT 中樞

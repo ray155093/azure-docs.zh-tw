@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/03/2017
 ms.author: TomSh
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 65d24488ce4910c59f7afce5d540ace81ffc50ac
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: f5d33b6a36b84589a24108a84636c42043f21c69
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 
@@ -136,20 +135,20 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 #### <a name="web-server-diagnostics"></a>Web 伺服器診斷
 您可以啟用或停用下列各種記錄：
 
--    詳細的錯誤記錄：對於表示失敗的 HTTP 狀態碼 (狀態碼 400 或更大) 的詳細錯誤資訊。 這當中包含的資訊可協助您判斷為何伺服器傳回錯誤碼。
+-   詳細的錯誤記錄：對於表示失敗的 HTTP 狀態碼 (狀態碼 400 或更大) 的詳細錯誤資訊。 這當中包含的資訊可協助您判斷為何伺服器傳回錯誤碼。
 
--    失敗要求的追蹤：關於失敗要求的詳細資訊，包括追蹤用來處理要求的 IIS 元件及每個元件所花費的時間。 如果您嘗試提升網站效能或是想要從傳回的特定 HTTP 錯誤中找到發生原因，這個方法非常實用。
+-   失敗要求的追蹤：關於失敗要求的詳細資訊，包括追蹤用來處理要求的 IIS 元件及每個元件所花費的時間。 如果您嘗試提升網站效能或是想要從傳回的特定 HTTP 錯誤中找到發生原因，這個方法非常實用。
 
--    Web 伺服器記錄：使用 W3C 擴充記錄檔格式的 HTTP 交易相關資訊。 當您需要判斷整體網站指標 (例如，處理的要求數量，或者有多少要求來自特定的 IP 位址) 時，這非常實用。
+-   Web 伺服器記錄：使用 W3C 擴充記錄檔格式的 HTTP 交易相關資訊。 當您需要判斷整體網站指標 (例如，處理的要求數量，或者有多少要求來自特定的 IP 位址) 時，這非常實用。
 
 #### <a name="application-diagnostics"></a>應用程式診斷
 [應用程式診斷](https://docs.microsoft.com/azure/app-service-web/web-sites-enable-diagnostic-log)可讓您擷取 Web 應用程式所產生的資訊。 ASP.NET 應用程式會使用 [System.Diagnostics.Trace](https://msdn.microsoft.com/library/system.diagnostics.trace) 類別將資訊記錄到應用程式診斷記錄。 在應用程式診斷中，有兩種主要的事件類型：與應用程式效能相關的類型，以及與應用程式失敗和錯誤相關的類型。 失敗和錯誤可進一步細分為連線、安全性和失敗問題。 失敗問題通常與應用程式程式碼的問題有關。
 
 在應用程式診斷中，您可以檢視以下列方式分組的事件：
 
--    全部 (顯示所有事件)
--    應用程式錯誤 (顯示例外狀況事件)
--    效能 (顯示效能事件)
+-   全部 (顯示所有事件)
+-   應用程式錯誤 (顯示例外狀況事件)
+-   效能 (顯示效能事件)
 
 ## <a name="storage"></a>儲存體
 本節提供關於 Azure 儲存體安全性中主要功能的其他資訊，以及這些功能的摘要資訊。
@@ -162,30 +161,30 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 
 ### <a name="encryption-in-transit"></a>傳輸中加密
 傳輸中加密是透過網路傳輸資料時用來保護資料的機制。 透過 Azure 儲存體，您可以使用下列各項來保護資料：
--    [傳輸層級加密](https://docs.microsoft.com/azure/storage/storage-security-guide#encryption-in-transit)，例如從 Azure 儲存體傳入或傳出資料時的 HTTPS。
+-   [傳輸層級加密](https://docs.microsoft.com/azure/storage/storage-security-guide#encryption-in-transit)，例如從 Azure 儲存體傳入或傳出資料時的 HTTPS。
 
--    [連線加密](https://docs.microsoft.com/azure/storage/storage-security-guide#using-encryption-during-transit-with-azure-file-shares)，例如 [Azure 檔案共用](https://docs.microsoft.com/azure/storage/storage-dotnet-how-to-use-files)的 [SMB 3.0 加密](https://docs.microsoft.com/azure/storage/storage-security-guide)。
+-   [連線加密](https://docs.microsoft.com/azure/storage/storage-security-guide#using-encryption-during-transit-with-azure-file-shares)，例如 [Azure 檔案共用](https://docs.microsoft.com/azure/storage/storage-dotnet-how-to-use-files)的 [SMB 3.0 加密](https://docs.microsoft.com/azure/storage/storage-security-guide)。
 
--    用戶端加密，在將資料傳輸至儲存體之前加密資料，以及自儲存體傳出後解密資料。
+-   用戶端加密，在將資料傳輸至儲存體之前加密資料，以及自儲存體傳出後解密資料。
 
 ### <a name="encryption-at-rest"></a>待用加密
 對許多組織來說，待用資料加密是達到資料隱私權、合規性及資料主權的必要步驟。 有三個 Azure 儲存體安全性功能可提供「待用」資料的加密：
 
--    [儲存體服務加密](https://docs.microsoft.com/azure/storage/storage-service-encryption)可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加密資料。
+-   [儲存體服務加密](https://docs.microsoft.com/azure/storage/storage-service-encryption)可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加密資料。
 
--    [用戶端加密](https://docs.microsoft.com/azure/storage/storage-client-side-encryption) 也會提供待用加密的功能。
+-   [用戶端加密](https://docs.microsoft.com/azure/storage/storage-client-side-encryption) 也會提供待用加密的功能。
 
--    [Azure 磁碟加密](https://docs.microsoft.com/azure/security/azure-security-disk-encryption) 允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。
+-   [Azure 磁碟加密](https://docs.microsoft.com/azure/security/azure-security-disk-encryption) 允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。
 
 ### <a name="storage-analytics"></a>儲存體分析
 [Azure 儲存體分析](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics)會執行記錄，並提供儲存體帳戶的計量資料。 您可以使用此資料來追蹤要求、分析使用量趨勢，以及診斷儲存體帳戶的問題。 儲存體分析會記錄對儲存體服務之成功和失敗要求的詳細資訊。 這項資訊可用來監視個別要求，並診斷儲存體服務的問題。 系統會以最佳方式來記錄要求。 系統將記錄下列類型的驗證要求：
--    成功的要求。
+-   成功的要求。
 
--    失敗的要求，包括逾時、節流、網路、授權和其他錯誤。
+-   失敗的要求，包括逾時、節流、網路、授權和其他錯誤。
 
--    使用共用存取簽章 (SAS) 的要求，包括失敗和成功的要求。
+-   使用共用存取簽章 (SAS) 的要求，包括失敗和成功的要求。
 
--    分析資料的要求。
+-   分析資料的要求。
 
 ### <a name="enabling-browser-based-clients-using-cors"></a>使用 CORS 啟用瀏覽器型用戶端
 [跨原始來源資源共用 (CORS)](https://docs.microsoft.com/rest/api/storageservices/fileservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services) 這個機制可讓網域能夠為彼此提供權限來存取彼此的資源。 使用者代理程式會傳送額外的標頭，以確保允許從特定網域載入的 JavaScript 程式碼存取位於另一個網域的資源。 第二個網域接著會利用額外的標頭回覆，以允許或拒絕對其資源的原始網域存取。
@@ -220,13 +219,13 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 它是專屬�
 
 Azure 網路功能支援各種安全遠端存取案例。 其中包含：
 
--    [將個別工作站連線到 Azure 虛擬網路](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps)
+-   [將個別工作站連線到 Azure 虛擬網路](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps)
 
--    [使用 VPN 將內部部署網路連線到 Azure 虛擬網路](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-plan-design)
+-   [使用 VPN 將內部部署網路連線到 Azure 虛擬網路](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-plan-design)
 
--    [使用專用 WAN 連結將內部部署網路連線到 Azure 虛擬網路](https://docs.microsoft.com/azure/expressroute/expressroute-introduction)
+-   [使用專用 WAN 連結將內部部署網路連線到 Azure 虛擬網路](https://docs.microsoft.com/azure/expressroute/expressroute-introduction)
 
--    [將 Azure 虛擬網路彼此連線](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps)
+-   [將 Azure 虛擬網路彼此連線](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps)
 
 ### <a name="vpn-gateway"></a>VPN 閘道
 若要在 Azure 虛擬網路和您的內部部署網站之間傳送網路流量，就必須為 Azure 虛擬網路建立 VPN 閘道。 [VPN 閘道](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways)是一種虛擬網路閘道，可透過公用連接傳送加密的流量。 您也可以使用 VPN 閘道，透過 Azure 網路網狀架構傳送 Azure 虛擬網路之間的流量。
@@ -257,17 +256,17 @@ Web 應用程式防火牆是 [Azure 應用程式閘道](https://docs.microsoft.c
 
 ![Web 應用程式防火牆](./media/azure-security/azure-security-fig1.png)
 
--    SQL 插入式攻擊保護
+-   SQL 插入式攻擊保護
 
--    常見 Web 攻擊保護，例如命令插入式攻擊、HTTP 要求走私、HTTP 回應分割和遠端檔案包含攻擊
+-   常見 Web 攻擊保護，例如命令插入式攻擊、HTTP 要求走私、HTTP 回應分割和遠端檔案包含攻擊
 
--    防範 HTTP 通訊協定違規
+-   防範 HTTP 通訊協定違規
 
--    防範 HTTP 通訊協定異常行為，例如遺漏主機使用者代理程式和接受標頭
+-   防範 HTTP 通訊協定異常行為，例如遺漏主機使用者代理程式和接受標頭
 
--    防範 Bot、編目程式和掃描器
+-   防範 Bot、編目程式和掃描器
 
--    偵測一般應用程式錯誤組態 (也就是 Apache、IIS 等)
+-   偵測一般應用程式錯誤組態 (也就是 Apache、IIS 等)
 
 
 防止 Web 攻擊的集中式 Web 應用程式防火牆可簡化安全性管理作業，並更加確保應用程式能夠對抗入侵威脅。 相較於保護每個個別的 Web 應用程式，WAF 方案還可透過在中央位置修補已知弱點，更快地因應安全性威脅。 現有的應用程式閘道可以輕易地轉換成具有 Web 應用程式防火牆的應用程式閘道。
@@ -278,9 +277,9 @@ Microsoft [Azure 流量管理員](https://docs.microsoft.com/azure/traffic-manag
 ### <a name="azure-load-balancer"></a>Azure Load Balancer
 [Azure Load Balancer](https://docs.microsoft.com/azure/load-balancer/load-balancer-overview) 可為您的應用程式提供高可用性和網路效能。 這是 Layer 4 (TCP、UDP) 負載平衡器，可將連入流量分配到負載平衡集中所定義服務的狀況良好執行個體。 Azure Load Balancer 可以設定為：
 
--    對虛擬機器的連入網際網路流量進行負載平衡。 這個組態稱為 [網際網路面向的負載平衡](https://docs.microsoft.com/azure/load-balancer/load-balancer-internet-overview)。
+-   對虛擬機器的連入網際網路流量進行負載平衡。 這個組態稱為 [網際網路面向的負載平衡](https://docs.microsoft.com/azure/load-balancer/load-balancer-internet-overview)。
 
--    平衡虛擬網路中的虛擬機器之間、雲端服務中的虛擬機器之間，或內部部署電腦與跨單位部署虛擬網路中的虛擬機器之間的流量負載。 這個組態稱為 [內部負載平衡](https://docs.microsoft.com/azure/load-balancer/load-balancer-internal-overview)。 
+-   平衡虛擬網路中的虛擬機器之間、雲端服務中的虛擬機器之間，或內部部署電腦與跨單位部署虛擬網路中的虛擬機器之間的流量負載。 這個組態稱為 [內部負載平衡](https://docs.microsoft.com/azure/load-balancer/load-balancer-internal-overview)。 
 
 - 將外部流量轉送到特定的虛擬機器
 
@@ -291,22 +290,22 @@ Microsoft [Azure 流量管理員](https://docs.microsoft.com/azure/traffic-manag
 [網域名稱系統](https://technet.microsoft.com/library/bb629410.aspx) (或 DNS) 負責將網站或服務名稱轉譯 (或解析) 為其 IP 位址。 [Azure DNS](https://docs.microsoft.com/azure/dns/dns-overview) 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。 DNS 支援 “CIA” 安全性三部曲的可用性層面。
 ### <a name="log-analytics-nsgs"></a>Log Analytics NSG
 您可以啟用下列 NSG 的診斷記錄類別︰
--    事件︰包含要將 NSG 規則套用到以 MAC 位址為基礎的 VM 和執行個體角色的項目。 每隔 60 秒會收集一次這些規則的狀態。
+-   事件︰包含要將 NSG 規則套用到以 MAC 位址為基礎的 VM 和執行個體角色的項目。 每隔 60 秒會收集一次這些規則的狀態。
 
--    規則計數器：包含套用每個 NSG 規則以拒絕或允許流量之次數的項目。
+-   規則計數器：包含套用每個 NSG 規則以拒絕或允許流量之次數的項目。
 
 ### <a name="azure-security-center"></a>Azure 資訊安全中心
 資訊安全中心可協助您預防、偵測和回應威脅，並加強對 Azure 資源安全性的能見度及控制權。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理、協助偵測可能忽略的威脅，並適用於廣泛的安全性解決方案生態系統。 網路建議集中圍繞在防火牆、網路安全性群組、設定輸入流量規則等等。
 
 可用的網路建議如下：
 
--    [新增新一代防火牆](https://docs.microsoft.com/azure/security-center/security-center-add-next-generation-firewall)：建議您新增由 Microsoft 合作夥伴提供的新一代防火牆 (NGFW)，以提升您的安全防護。
+-   [新增新一代防火牆](https://docs.microsoft.com/azure/security-center/security-center-add-next-generation-firewall)：建議您新增由 Microsoft 合作夥伴提供的新一代防火牆 (NGFW)，以提升您的安全防護。
 
--    [僅透過 NGFW 路由傳送流量](https://docs.microsoft.com/azure/security-center/security-center-add-next-generation-firewall#route-traffic-through-ngfw-only)：建議您設定網路安全性群組 (NSG) 規則，強制透過您的 NGFW 將輸入流量傳送到 VM。
+-   [僅透過 NGFW 路由傳送流量](https://docs.microsoft.com/azure/security-center/security-center-add-next-generation-firewall#route-traffic-through-ngfw-only)：建議您設定網路安全性群組 (NSG) 規則，強制透過您的 NGFW 將輸入流量傳送到 VM。
 
--    [啟用子網路/虛擬機器上的網路安全性群組](https://docs.microsoft.com/azure/security-center/security-center-enable-network-security-groups)：建議您在子網路或 VM 上啟用 NSG。
+-   [啟用子網路/虛擬機器上的網路安全性群組](https://docs.microsoft.com/azure/security-center/security-center-enable-network-security-groups)：建議您在子網路或 VM 上啟用 NSG。
 
--    [透過網際網路面向端點限制存取](https://docs.microsoft.com/azure/security-center/security-center-restrict-access-through-internet-facing-endpoints)：建議您為 NSG 設定輸入流量規則。
+-   [透過網際網路面向端點限制存取](https://docs.microsoft.com/azure/security-center/security-center-restrict-access-through-internet-facing-endpoints)：建議您為 NSG 設定輸入流量規則。
 
 
 ## <a name="compute"></a>計算
@@ -353,24 +352,24 @@ Azure 金鑰保存庫 (AKV) 服務是設計來改善這些金鑰在安全且高�
 
 ### <a name="secure-identity"></a>安全的身分識別
 Microsoft 在其產品與服務上使用多個安全性作法與技術來管理身分識別與存取。
--    [Multi-Factor Authentication](https://azure.microsoft.com/services/multi-factor-authentication/) 需要使用者在內部部署和雲端中使用多種方法進行存取。 它使用一些簡單驗證選項來提供堅固的驗證，同時透過簡易登入程序來因應使用者。
+-   [Multi-Factor Authentication](https://azure.microsoft.com/services/multi-factor-authentication/) 需要使用者在內部部署和雲端中使用多種方法進行存取。 它使用一些簡單驗證選項來提供堅固的驗證，同時透過簡易登入程序來因應使用者。
 
--    [Microsoft Authenticator (英文)](https://aka.ms/authenticator) 提供易於使用的 Multi-Factor Authentication 體驗，可搭配 Microsoft Azure Active Directory 和 Microsoft 帳戶一起使用，並包括對於穿戴式裝置與指紋式核准的支援。
+-   [Microsoft Authenticator (英文)](https://aka.ms/authenticator) 提供易於使用的 Multi-Factor Authentication 體驗，可搭配 Microsoft Azure Active Directory 和 Microsoft 帳戶一起使用，並包括對於穿戴式裝置與指紋式核准的支援。
 
--    [密碼原則強制執行](https://azure.microsoft.com/documentation/articles/active-directory-passwords-policy/)藉由加強長度和複雜度需求、強制定期循環，以及在失敗的驗證嘗試之後鎖定帳戶，來提高傳統密碼的安全性。
+-   [密碼原則強制執行](https://azure.microsoft.com/documentation/articles/active-directory-passwords-policy/)藉由加強長度和複雜度需求、強制定期循環，以及在失敗的驗證嘗試之後鎖定帳戶，來提高傳統密碼的安全性。
 
--    [權杖型驗證](https://azure.microsoft.com/documentation/articles/active-directory-authentication-scenarios/)會透過 Active Directory 同盟服務 (AD FS) 或協力廠商的安全性權杖系統來啟用驗證。
+-   [權杖型驗證](https://azure.microsoft.com/documentation/articles/active-directory-authentication-scenarios/)會透過 Active Directory 同盟服務 (AD FS) 或協力廠商的安全性權杖系統來啟用驗證。
 
--    [角色型存取控制 (RBAC)](https://azure.microsoft.com/documentation/articles/role-based-access-built-in-roles/) 可讓您根據使用者指派的角色來授與存取權限，以便輕鬆地只為使用者提供執行其作業內容所需的存取權限。 您可以針對每個組織的商務模型和風險承受度自訂 RBAC。
+-   [角色型存取控制 (RBAC)](https://azure.microsoft.com/documentation/articles/role-based-access-built-in-roles/) 可讓您根據使用者指派的角色來授與存取權限，以便輕鬆地只為使用者提供執行其作業內容所需的存取權限。 您可以針對每個組織的商務模型和風險承受度自訂 RBAC。
 
--    [整合式身分識別管理 (混合式身分識別)](https://azure.microsoft.com/documentation/articles/active-directory-hybrid-identity-design-considerations-overview/) 可讓您維持控制使用者在內部資料中心和雲端平台上的存取權，建立單一使用者身分識別，以便對所有資源進行驗證與授權。
+-   [整合式身分識別管理 (混合式身分識別)](https://azure.microsoft.com/documentation/articles/active-directory-hybrid-identity-design-considerations-overview/) 可讓您維持控制使用者在內部資料中心和雲端平台上的存取權，建立單一使用者身分識別，以便對所有資源進行驗證與授權。
 
 ### <a name="secure-apps-and-data"></a>保護應用程式和資料
 [Azure Active Directory](https://azure.microsoft.com/services/active-directory/) 是全面性的身分識別和存取管理雲端解決方案，可協助保護對現場與雲端中應用程式內資料的存取，並簡化使用者和群組的管理。 它結合了核心目錄服務、進階身分識別控管、安全性，以及應用程式存取管理，並讓開發人員能夠輕鬆地將以原則為基礎的身分識別管理建置到他們的應用程式中。 若要增強您的 Azure Active Directory，您可以使用 Azure Active Directory Basic、Premium P1 及 Premium P2 版本來新增付費功能。
 
 | 免費/常用功能     | 基本功能    |Premium P1 功能 |Premium P2 功能 | Azure Active Directory Join – 僅適用於 Windows 10 的相關功能|
 | :------------- | :------------- |:------------- |:------------- |:------------- |
-|     [目錄物件](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#directory-objects)、[使用者/群組管理 (新增/更新/刪除)/ 以使用者為基礎的佈建、裝置註冊](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#usergroup-management-addupdatedelete-user-based-provisioning-device-registration)、[單一登入 (SSO)](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#single-sign-on-sso)、[雲端使用者的自助式密碼變更](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#self-service-password-change-for-cloud-users)、[連接 (針對將內部部署目錄延伸至 Azure Active Directory 的引擎進行同步)](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#connect-sync-engine-that-extends-on-premises-directories-to-azure-active-directory)、[安全性/使用量報告](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#securityusage-reports)       |     [以群組為基礎的存取管理/佈建](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#group-based-access-managementprovisioning)、[雲端使用者的自助式密碼重設](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#self-service-password-reset-for-cloud-users)、[創建公司品牌 (登入頁面/存取面板自訂)](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#company-branding-logon-pagesaccess-panel-customization)、[ Proxy](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#application-proxy)、[SLA 99.9%](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#sla-999) |  [自助式群組和應用程式管理/自助式應用程式新增/動態群組](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#self-service-group)、[使用內部部署回寫來進行的自助式密碼重設/變更/解除鎖定](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#self-service-password-resetchangeunlock-with-on-premises-write-back)、[Multi-Factor Authentication (雲端與內部部署 (MFA Server))](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#multi-factor-authentication-cloud-and-on-premises-mfa-server)、[MIM CAL + MIM 伺服器](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#mim-cal-mim-server)、[Cloud App Discovery](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#cloud-app-discovery)、[Connect Health](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#connect-health)、[群組帳戶的自動密碼變換](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#automatic-password-rollover-for-group-accounts)|     [Identity Protection](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-identityprotection)、[Privileged Identity Management](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-privileged-identity-management-configure)|    [將裝置加入 Azure AD、Desktop SSO、適用於 Azure AD 的 Microsoft Passport、系統管理員 Bitlocker 復原](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#join-a-device-to-azure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery)、[MDM 自動註冊、自助式 Bitlocker 復原、Windows 10 裝置透過 Azure AD Join 取得的其他本機系統管理員](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#mdm-auto-enrollment)|
+|   [目錄物件](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#directory-objects)、[使用者/群組管理 (新增/更新/刪除)/ 以使用者為基礎的佈建、裝置註冊](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#usergroup-management-addupdatedelete-user-based-provisioning-device-registration)、[單一登入 (SSO)](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#single-sign-on-sso)、[雲端使用者的自助式密碼變更](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#self-service-password-change-for-cloud-users)、[連線 (針對將內部部署目錄延伸至 Azure Active Directory 的引擎進行同步)](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#connect-sync-engine-that-extends-on-premises-directories-to-azure-active-directory)、[安全性/使用量報告](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#securityusage-reports)       |     [以群組為基礎的存取管理/佈建](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#group-based-access-managementprovisioning)、[雲端使用者的自助式密碼重設](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#self-service-password-reset-for-cloud-users)、[創建公司品牌 (登入頁面/存取面板自訂)](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#company-branding-logon-pagesaccess-panel-customization)、[ Proxy](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#application-proxy)、[SLA 99.9%](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#sla-999) |  [自助式群組和應用程式管理/自助式應用程式新增/動態群組](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#self-service-group)、[使用內部部署回寫來進行的自助式密碼重設/變更/解除鎖定](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#self-service-password-resetchangeunlock-with-on-premises-write-back)、[Multi-Factor Authentication (雲端與內部部署 (MFA Server))](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#multi-factor-authentication-cloud-and-on-premises-mfa-server)、[MIM CAL + MIM 伺服器](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#mim-cal-mim-server)、[Cloud App Discovery](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#cloud-app-discovery)、[Connect Health](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#connect-health)、[群組帳戶的自動密碼變換](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#automatic-password-rollover-for-group-accounts)|     [Identity Protection](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-identityprotection)、[Privileged Identity Management](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-privileged-identity-management-configure)|    [將裝置加入 Azure AD、Desktop SSO、適用於 Azure AD 的 Microsoft Passport、系統管理員 Bitlocker 復原](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#join-a-device-to-azure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery)、[MDM 自動註冊、自助式 Bitlocker 復原、Windows 10 裝置透過 Azure AD Join 取得的其他本機系統管理員](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-editions#mdm-auto-enrollment)|
 
 
 - [Cloud App Discovery](https://docs.microsoft.com/azure/active-directory/active-directory-cloudappdiscovery-whatis) 是 Azure Active Directory 的一個高階功能，可讓您識別組織中的員工所使用的雲端應用程式。

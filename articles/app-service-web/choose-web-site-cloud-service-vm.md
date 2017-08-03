@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 07/07/2016
 ms.author: glenga
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
-ms.openlocfilehash: 2d6e1ba60d1f81aa1a9d3afde4ac9b621b01f04d
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: ec6f0b10e68e024292384e9b45891ccd905372ff
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/03/2017
+ms.lasthandoff: 07/11/2017
 
 ---
 # <a name="azure-app-service-virtual-machines-service-fabric-and-cloud-services-comparison"></a>Azure App Service、虛擬機器、Service Fabric 及雲端服務的比較
@@ -78,7 +78,7 @@ Azure App Service 是大多數 Web 應用程式的最佳選擇。 部署和管�
 * [我有個主要商務應用程式需要連線至公司網路。](#lob)
 * [我想要裝載 REST API 或 Web 服務供行動用戶端使用。](#mobile)
 
-### <a id="onprem"></a> 我需要一個具有背景處理和資料庫後端的 Web 前端，以執行與內部部署資源整合的商業應用程式。
+### <a id="onprem"></a>我需要一個具有背景處理和資料庫後端的 Web 前端，以執行與內部部署資源整合的商業應用程式。
 Azure App Service 是複雜商業應用程式的絕佳解決方案。 您開發的應用程式將能夠在負載平衡平台上自動調整、採用 Active Directory 來保護，以及連接到內部部署資源。 它可讓您透過世界級的入口網站和 API 來輕鬆管理應用程式，並利用應用程式洞察工具來深入了解客戶如何使用應用程式。 [Webjobs][Webjobs] 功能可讓您將背景程序和工作當作 Web 層的一部分執行，而混合式連線和 VNET 功能可讓您輕鬆地連回內部部署資源。 Azure App Service 為 Web 應用程式提供三個 9 的 SLA，可讓您：
 
 * 在自我修復、自動修補的雲端平台上可靠地執行應用程式。
@@ -101,7 +101,7 @@ Azure App Service 是裝載公司網站的絕佳解決方案。 它可讓 Web �
 Azure App Service 可讓您輕鬆地省去移轉舊版 IIS6 應用程式時相關的基礎結構成本。 Microsoft 建立 [簡單易用的移轉工具和詳細的移轉指引](https://www.movemetowebsites.net/) ，可讓您檢查相容性和識別任何需要進行的變更。 與 Visual Studio、TFS 和一般 CMS 工具整合，讓您輕鬆地將 IIS6 應用程式直接部署到雲端。 部署之後，Azure 入口網站提供健全的管理工具，可讓您依需要相應減少來管理成本，或相應增加來符合需求。 移轉工具可讓您：
 
 * 快速又輕鬆地將舊式的 Windows Server 2003 Web 應用程式移轉至雲端。
-* 選擇將連接的 SQL 資料庫留在內部部署，以建立混合式應用程式。
+* 選擇將連結的 SQL 資料庫留在內部部署，以建立混合式應用程式。
 * 自動隨著舊式應用程式一起移動 SQL 資料庫。
 
 ### <a id="smallbusiness"></a>我是小型企業業主，需要有便宜的方式來裝載網站，但又想顧及網站未來成長的可能性。

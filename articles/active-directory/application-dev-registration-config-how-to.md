@@ -21,9 +21,7 @@ ms.lasthandoff: 04/14/2017
 
 ---
 
-<a id="how-to-select-permissions-for-a-given-api" class="xliff"></a>
-
-# 如何為指定的 API 選取權限
+# <a name="how-to-select-permissions-for-a-given-api"></a>如何為指定的 API 選取權限
 
 您可以在 [Azure 入口網站](https://portal.azure.com)尋找應用程式的驗證端點。
 
@@ -37,8 +35,6 @@ ms.lasthandoff: 04/14/2017
 
 -   使用您所使用之驗證通訊協定特定的端點搭配應用程式識別碼，來製作您應用程式的特定驗證要求。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [Azure Active Directory 開發人員指南](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide#authentication-and-authorization-protocols)
 

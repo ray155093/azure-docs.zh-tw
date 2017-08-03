@@ -3,27 +3,27 @@ title: "什麼是 Azure Active Directory？"
 description: "使用 Azure Active Directory 將現有的內部部署身分識別延伸至雲端，或開發 Azure AD 整合式應用程式。"
 services: active-directory
 documentationcenter: 
-author: curtand
+author: jeffgilb
 manager: femila
-editor: 
+ms.reviewer: jsnow
+ms.author: jeffgilb
 ms.assetid: 498820c4-9ebe-42be-bda2-ecf38cc514ca
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/08/2017
-ms.author: curtand
-ms.translationtype: Human Translation
-ms.sourcegitcommit: b40ae90ea313638cbd0b60792dc4803d3d08aa0a
-ms.openlocfilehash: 03c1442daf07f57476af64491229f1f38f6ffeff
+ms.date: 07/17/2017
+ms.custom: it-pro
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: 6e4c1cdac51664d83805252cf178e705042e76ca
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/24/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="what-is-azure-active-directory"></a>什麼是 Azure Active Directory？
-Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄和身分識別管理服務。
+Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄和身分識別管理服務。 Azure AD 結合核心目錄服務及進階身分識別管理和應用程式存取管理。 Azure AD 同時也提供豐富且標準型的平台，可讓開發人員根據集中式原則和規則，提供對其應用程式的存取控制。 
 
 對於 IT 系統管理員而言，Azure AD 提供經濟實惠、易於使用的解決方案，讓員工和企業合作夥伴能使用單一登入 (SSO) 功能來存取 [數千個雲端 SaaS 應用程式](active-directory-saas-tutorial-list.md) ，例如 Office365、Salesforce.com、DropBox 和 Concur。
 
@@ -42,27 +42,25 @@ Azure AD 經悉心設計，不但支援多租用戶、地理分布周全，更�
 
 如需詳細資料，請參閱 [服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
 
-## <a name="what-are-the-benefits-of-azure-ad"></a>Azure AD 有哪些優點？
-您的組織可以使用 Azure AD 在許多方面提升員工生產力、簡化 IT 程序、改善安全性並降低成本：
+## <a name="choose-an-edition"></a>選擇版本
+所有 Microsoft Online 商務服務都依賴 Azure Active Directory (Azure AD) 來進行登入和其他身分識別需求。 如果您訂閱任何 Microsoft Online 商務服務 (例如 Office 365、Microsoft Azure)，您就會取得 Azure AD 並可存取所有免費的功能。 利用 Azure Active Directory 免費版，您可以管理使用者和群組、與內部部署目錄同步處理、取得 Azure、Office 365 和數千個熱門 SaaS 應用程式 (像是 Salesforce、Workday、Concur、DocuSign、Google Apps、Box、ServiceNow、Dropbox 等) 之間的單一登入。 
 
-* 快速採用雲端服務，提供員工和合作夥伴簡單的單一登入體驗，這是由 Azure AD 提供、完全自動的 SaaS 應用程式存取管理和佈建服務功能。
-* 讓員工可以在任何地方，使用他們所喜愛的裝置工作，存取世界級雲端應用程式和自助式功能。
-* 輕鬆安全地管理員工和廠商對貴公司社交媒體帳戶的存取權限。
-* 利用 Azure AD 多重要素驗證和條件式存取，改善應用程式的安全性。
-* 實施具一致性的自助式應用程式存取管理，讓企業主能夠快速採取行動，同時能夠降低 IT 成本和額外負荷。
-* 利用安全性報告和監視，監視應用程式使用量並保護您的企業免於受到嚴重的威脅。
-* 為內部部署應用程式確保行動 (遠端) 存取的安全性。
+若要增強您的 Azure Active Directory，您可以使用 Azure Active Directory Basic、Premium P1 及 Premium P2 版本來新增付費功能。 付費版本的 Azure Active Directory 是建立在您現有的免費目錄上，提供的企業級功能跨越自助、增強的監視、安全性報告、Multi-Factor Authentication (MFA) 及您的行動工作力的安全存取。
 
-## <a name="how-does-azure-ad-compare-to-on-premises-active-directory-domain-services-ad-ds"></a>Azure AD 與內部部署 Active Directory Domain Services (AD DS) 的比較為何？
+> [!NOTE]
+> 這兩種版本的詳細價格請參閱 [Azure Active Directory 價格](https://azure.microsoft.com/pricing/details/active-directory/)。 目前在中國不支援 Premium P1、Premium P2 及 Azure Active Directory Basic。 如需詳細資訊，請透過 Azure Active Directory 論壇與我們連絡。
+>
 
-Azure Active Directory (Azure AD) 和內部部署 Active Directory (Active Directory Domain Services 或 AD DS) 是儲存目錄資料及管理使用者與資源間通訊的系統，包括使用者登入程序、驗證和目錄搜尋。
+* **Azure Active Directory Basic** - 針對具有雲端優先需求的任務背景工作角色設計，此版本提供以雲端為中心的應用程式存取和自助身分識別管理解決方案。 有了 Azure Active Directory 的 Basic 版本，您可獲得生產力增強和成本節約功能，例如：群組式存取管理、雲端應用程式的自助式密碼重設、Azure Active Directory 應用程式 Proxy (以使用 Azure Active Directory 發佈內部部署 Web 應用程式)，全都由可獲得 99.9% 運作時間的企業級 SLA 支援。
+* **Azure Active Directory Premium P1** - Azure Active Directory Premium 版本的設計目的是要協助在身分識別及存取管理需求上有更嚴格要求的組織，此版本除了新增功能豐富的企業級身分識別管理功能之外，也可讓混合式使用者順暢地存取內部部署和雲端功能。 此版本包含資訊背景工作角色和混合環境中身分識別管理員對於應用程式存取、自助身分識別和存取管理 (IAM)、雲端中的身分識別保護和安全性所需的一切。 它支援進階管理和委派資源，例如：動態群組和自助群組管理。 它包含 Microsoft Identity Manager (一項內部部署及身分識別和存取管理套件)，並提供可為您的內部部署使用者啟用自助密碼重設之類解決方案的雲端回寫功能。
+* **Azure Active Directory Premium P2** - 這個新方案採用了為所有使用者和系統管理員提供進階保護的設計，此方案不僅包括 Azure AD Premium P1 中的所有功能，也包括新的 Identity Protection 與 Privileged Identity Management。 Azure Active Directory Identity Protection 利用數十億個訊號，針對應用程式及重要公司資料提供以風險為基礎的條件式存取。 此外，我們還使用 Azure Active Directory Privileged Identity Management 來協助您管理及保護授權帳戶，讓您能夠探索、限制和監視系統管理員及他們對資源的存取，並在需要時，提供及時的存取權。  
 
-AD DS 是 Windows Server 上的伺服器角色，這表示它可以部署在實體或虛擬機器上。 它具有以 X.500 為基礎的階層式結構。 它會將 DNS 用於尋找物件 (可與使用 LDAP 互動)，而且主要使用 Kerberos 進行驗證。 除了讓機器加入網域以外，Active Directory 還可啟用組織單位 (OU) 和群組原則物件 (GPO)，而且網域之間會產生信任。
-
-Azure AD 是多客戶公用目錄服務，這表示您可以在 Azure AD 中針對雲端伺服器和應用程式 (例如 Office 365) 建立租用戶。 使用者和群組會建立於單層式結構中 (不含 OU 或 GPO)。 驗證會透過通訊協定 (如 SAML、WS-同盟和 OAuth) 執行。 您可以查詢 Azure AD，但不是使用 LDAP，而必須使用名為 AD Graph API 的 REST API。 這些全都透過 HTTP 和 HTTPS 進行。
-
-
-
+> [!NOTE]
+> 許多 Azure Active Directory 功能是透過「隨用隨付」版本提供：
+>
+> * Active Directory B2C 是面向消費者應用程式適用的身分識別和存取管理解決方案。 如需詳細資料，請參閱： [Azure Active Directory B2C](https://azure.microsoft.com/documentation/services/active-directory-b2c/)
+> * Azure Multi-Factor Authentication 可透過每一使用者或每一驗證提供者方式使用。 如需詳細資訊，請參閱 [什麼是 Azure Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
+>
 
 ## <a name="how-can-i-get-started"></a>如何開始使用？
 
@@ -78,18 +76,6 @@ Azure AD 是多客戶公用目錄服務，這表示您可以在 Azure AD 中針�
 
 * [開始使用試用版](https://azure.microsoft.com/trial/get-started-active-directory/) – 立即註冊免費 30 天的試用版，並開始整合您的應用程式與 Azure AD
 
-## <a name="where-can-i-learn-more"></a>哪裡可以深入了解？
-我們有無數的絕佳線上資源，協助您詳細了解 Azure AD。 以下是一些很棒的文章，讓您快速入門：
-
-* [使用 Azure AD Connect 啟用目錄的混合式管理](active-directory-aadconnect.md)
-* [為連線過的項目提供額外的安全性](../multi-factor-authentication/multi-factor-authentication.md)
-* [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)
-* [開始使用 Azure AD 報告](active-directory-reporting-getting-started.md)
-* [從任何地方管理您的密碼](active-directory-passwords.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
-* [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)
-* [如何為內部部署應用程式提供安全的遠端存取](active-directory-application-proxy-get-started.md)
-* [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
-* [什麼是 Microsoft Azure Active Directory 授權？](active-directory-licensing-what-is.md)
-* [如何探索組織內使用未經批准的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
+## <a name="next-steps"></a>後續步驟
+[深入了解 Azure 身分識別和存取管理的基本概念](https://docs.microsoft.com/azure/active-directory/identity-fundamentals)
 

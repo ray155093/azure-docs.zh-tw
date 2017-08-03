@@ -1,8 +1,7 @@
 
 <!--author=alkohli last changed: 01/20/2017-->
 
-#### 建立手動備份
-<a id="to-create-a-manual-backup" class="xliff"></a>
+#### <a name="to-create-a-manual-backup"></a>建立手動備份
 
 1. 移至 StorSimple 裝置管理員服務，然後按一下 [裝置]。 從表格式的裝置清單中，選取您的裝置。 移至 [設定] > [管理] > [備份原則]。
 

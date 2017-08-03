@@ -1,6 +1,6 @@
 ---
 title: "相應縮小或放大 Service Fabric 叢集 | Microsoft Docs"
-description: "設定每個節點類型/VM 擴展集的自動調整規模規則，以相應縮小或放大 Service Fabric 叢集使其符合需求。 新增或移除 Service Fabric 叢集的節點"
+description: "設定每個節點類型/虛擬機器擴展集的自動調整規模規則，以相應縮小或放大 Service Fabric 叢集使其符合需求。 新增或移除 Service Fabric 叢集的節點"
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
@@ -12,52 +12,52 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/22/2017
+ms.date: 06/22/2017
 ms.author: chackdan
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 17c8c9aee01e8a991259ee23279d2a659fa60de3
-ms.lasthandoff: 12/08/2016
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 32d8fca81c20e77db4ed3aae05d017ccc2ce1be3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="scale-a-service-fabric-cluster-in-or-out-using-auto-scale-rules"></a>使用自動調整規模規則相應縮小或放大 Service Fabric 叢集
-虛擬機器擴展集是一個 Azure 計算資源，可以用來將一組虛擬機器當做一個集合加以部署和管理。 在 Service Fabric 叢集中定義的每個節點類型都會安裝為不同的 VM 擴展集。 然後每個節點類型可以獨立相應縮小或放大，可以開啟不同組的連接埠，並可以有不同的容量度量。 若要深入了解，請參閱 [Service Fabric 節點類型](service-fabric-cluster-nodetypes.md) 文件。 因為叢集中的 Service Fabric 節點類型是由後端的 VM 擴展集建立，所以您必須為每個節點類型/VM 擴展集設定自動調整規模規則。
+虛擬機器擴展集是一個 Azure 計算資源，可以用來將一組虛擬機器當做一個集合加以部署和管理。 在 Service Fabric 叢集中定義的每個節點類型都會安裝為不同的虛擬機器擴展集。 然後每個節點類型可以獨立相應縮小或放大，可以開啟不同組的連接埠，並可以有不同的容量度量。 若要深入了解，請參閱 [Service Fabric 節點類型](service-fabric-cluster-nodetypes.md) 文件。 因為叢集中的 Service Fabric 節點類型是由後端的虛擬機器擴展集建立，所以您必須為每個節點類型/虛擬機器擴展集設定自動調整規模規則。
 
 > [!NOTE]
 > 您的訂用帳戶必須要有足夠的核心，來新增構構成此叢集的虛擬機器。 目前沒有模型驗證，所以如果達到任一配額限制，就會收到部署時間失敗。
 > 
 > 
 
-## <a name="choose-the-node-typevm-scale-set-to-scale"></a>選擇要調整規模的節點類型/VM 擴展集
-目前，您不能使用入口網站指定 VM 擴展集的自動調整規模規則，所以請讓我們使用 Azure PowerShell (1.0+) 列出節點類型，然後將自動調整規模規則加入它們。
+## <a name="choose-the-node-typevirtual-machine-scale-set-to-scale"></a>選擇要調整規模的節點類型/虛擬機器擴展集
+目前，您不能使用入口網站指定虛擬機器擴展集的自動調整規模規則，所以請讓我們使用 Azure PowerShell (1.0+) 列出節點類型，然後將自動調整規模規則加入它們。
 
-若要取得建立叢集的 VM 擴展集清單，請執行下列 Cmdlet：
+若要取得建立叢集的虛擬機器擴展集清單，請執行下列 Cmdlet：
 
 ```powershell
 Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Compute/VirtualMachineScaleSets
 
-Get-AzureRmVmss -ResourceGroupName <RGname> -VMScaleSetName <VM Scale Set name>
+Get-AzureRmVmss -ResourceGroupName <RGname> -VMScaleSetName <Virtual Machine scale set name>
 ```
 
-## <a name="set-auto-scale-rules-for-the-node-typevm-scale-set"></a>設定節點類型/VM 擴展集的自動調整規模規則
-如果您的叢集有多個節點類型，您就需要為每個要相應縮小或放大的節點類型/VM 擴展集重複這項作業。 請先考慮一定要有的節點數目，再設定自動調整規模。 主要節點類型一定要有的節點數目下限是由您已選擇的可靠性層級決定。 深入了解 [可靠性層級](service-fabric-cluster-capacity.md)。
+## <a name="set-auto-scale-rules-for-the-node-typevirtual-machine-scale-set"></a>設定節點類型/虛擬機器擴展集的自動調整規模規則
+如果您的叢集有多個節點類型，您就需要為每個要相應縮小或放大的節點類型/虛擬機器擴展集重複這項作業。 請先考慮一定要有的節點數目，再設定自動調整規模。 主要節點類型一定要有的節點數目下限是由您已選擇的可靠性層級決定。 深入了解 [可靠性層級](service-fabric-cluster-capacity.md)。
 
 > [!NOTE]
 > 將主要節點類型相應減少到小於最低數目，會造成叢集不穩定或關閉。 這可能導致應用程式和系統服務資料遺失。
 > 
 > 
 
-自動調整規模功能目前不是由應用程式可能向 Service Fabric 報告的負載所驅動。 所以，您現在取得的自動調整規模只由每個 VM 擴展集執行個體所發出的效能計數器驅動。  
+自動調整規模功能目前不是由應用程式可能向 Service Fabric 報告的負載所驅動。 所以，您現在取得的自動調整規模只由每個虛擬機器擴展集執行個體所發出的效能計數器驅動。  
 
-請遵循下列指示 [設定每個 VM 擴展集的自動調整規模](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md)。
+請遵循下列指示[設定每個虛擬機器擴展集的自動調整規模](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md)。
 
 > [!NOTE]
 > 在相應減少的案例中，除非節點類型有 Gold 或 Silver 的持久性層級，否則必須以適當的節點名稱呼叫 [Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/azure/mt125993.aspx) Cmdlet。
 > 
 > 
 
-## <a name="manually-add-vms-to-a-node-typevm-scale-set"></a>手動將 VM 加入節點類型/VM 擴展集
+## <a name="manually-add-vms-to-a-node-typevirtual-machine-scale-set"></a>手動將 VM 加入節點類型/虛擬機器擴展集
 請依照 [快速啟動範本庫](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) 的範例/指示變更每個 Nodetype 的 VM 數目。 
 
 > [!NOTE]
@@ -65,7 +65,7 @@ Get-AzureRmVmss -ResourceGroupName <RGname> -VMScaleSetName <VM Scale Set name>
 > 
 > 
 
-## <a name="manually-remove-vms-from-the-primary-node-typevm-scale-set"></a>手動從主要節點類型/VM 擴展集移除 VM
+## <a name="manually-remove-vms-from-the-primary-node-typevirtual-machine-scale-set"></a>手動從主要節點類型/虛擬機器擴展集移除 VM
 > [!NOTE]
 > Service Fabric 系統服務在叢集中是以主要節點類型執行。 所以請永遠不要關閉該節點類型的執行個體，或將該節點類型的執行個體數目相應減少到少於可靠性層級所需的數目。 請參閱 [可靠性層級的詳細資料](service-fabric-cluster-capacity.md)。 
 > 
@@ -78,7 +78,7 @@ Get-AzureRmVmss -ResourceGroupName <RGname> -VMScaleSetName <VM Scale Set name>
 3. 請依照 [快速啟動範本庫](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) 的範例/指示變更該 Nodetype 的一個 VM。 移除的執行個體是最高的 VM 執行個體。 
 4. 視需要重複步驟 1 到 3，但是請永遠不要將主要節點類型的執行個體數目相應減少到少於可靠性層級所需的數目。 請參閱 [可靠性層級的詳細資料](service-fabric-cluster-capacity.md)。 
 
-## <a name="manually-remove-vms-from-the-non-primary-node-typevm-scale-set"></a>手動從非主要節點類型/VM 擴展集移除 VM
+## <a name="manually-remove-vms-from-the-non-primary-node-typevirtual-machine-scale-set"></a>手動從非主要節點類型/虛擬機器擴展集移除 VM
 > [!NOTE]
 > 如果是具狀態服務，您需要一些永遠啟動的節點來維持可用性，以及維持服務的狀態。 您至少需要與資料分割/服務的目標複本集計數相等的節點數目。 
 > 
@@ -92,11 +92,11 @@ Get-AzureRmVmss -ResourceGroupName <RGname> -VMScaleSetName <VM Scale Set name>
 4. 視需要重複步驟 1 到 3，但是請永遠不要將主要節點類型的執行個體數目相應減少到少於可靠性層級所需的數目。 請參閱 [可靠性層級的詳細資料](service-fabric-cluster-capacity.md)。
 
 ## <a name="behaviors-you-may-observe-in-service-fabric-explorer"></a>Service Fabric Explorer 可能出現的行為
-當您相應增加叢集時，Service Fabric Explorer 會反映屬於叢集的節點數目 (VM 擴展集執行個體)。  不過，當您相應減少叢集時，除非您以適當的節點名稱呼叫 [Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/mt125993.aspx) Cmdlet，否則會看到已移除的節點/VM 執行個體顯示為健康狀態不良。   
+當您相應增加叢集時，Service Fabric Explorer 會反映屬於叢集的節點數目 (虛擬機器擴展集執行個體)。  不過，當您相應減少叢集時，除非您以適當的節點名稱呼叫 [Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/mt125993.aspx) Cmdlet，否則會看到已移除的節點/VM 執行個體顯示為健康狀態不良。   
 
 以下是這種行為的說明。
 
-Service Fabric Explorer 列出的節點會反映出 Service Fabric 系統服務 (特別是 FM) 所知叢集曾經有過/現有擁有的節點數目。 當您相應減少 VM 擴展集時會刪除 VM，但 FM 系統服務仍然認為節點 (也就是已刪除的對應 VM) 會回復。 所以 Service Fabric Explorer 會繼續顯示該節點 (雖然健全狀況狀態可能是錯誤或未知)。
+Service Fabric Explorer 列出的節點會反映出 Service Fabric 系統服務 (特別是 FM) 所知叢集曾經有過/現有擁有的節點數目。 當您相應減少虛擬機器擴展集時會刪除 VM，但 FM 系統服務仍然認為節點 (也就是已刪除的對應 VM) 會回復。 所以 Service Fabric Explorer 會繼續顯示該節點 (雖然健全狀況狀態可能是錯誤或未知)。
 
 為確保移除 VM 時也移除節點，您有兩個選項︰
 

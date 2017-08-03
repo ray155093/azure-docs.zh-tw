@@ -5,20 +5,21 @@ services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: 
 ms.assetid: ded0d9c9-45f6-47d7-bd0f-3f7fd99ab621
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
+ms.date: 07/05/2017
 ms.author: kgremban
-ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 015cc28903bfd366c653a51b0f73512bf8b578ea
-ms.openlocfilehash: aac56543b2b3b7fa8f8baf1cc719ead79b3c1b00
-ms.lasthandoff: 02/28/2017
+ms.reviewer: harshja
+ms.custom: H1Hack27Feb2017, it-pro
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8470fc79d27847fc0e12d1c40cfccc08dfc3cdf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 ---
 
@@ -27,14 +28,14 @@ ms.lasthandoff: 02/28/2017
 
 1. 使用者登入雲端。  
 2. 所有安全性驗證都在雲端完成 (預先驗證)。  
-3. 當要求傳送至內部部署應用程式時，應用程式 Proxy 連接器會模擬使用者。 後端應用程式會將此視為來自已加入網域之裝置的一般使用者。
+3. 當要求傳送至內部部署應用程式時，應用程式 Proxy 連接器會模擬使用者。 後端應用程式會認為要求是來自已加入網域之裝置上的一般使用者。
 
 ![存取的圖表，從使用者經過應用程式 Proxy 到公司網路](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_diagram.png)
 
 Azure AD 應用程式 Proxy 可協助您為使用者提供單一登入 (SSO) 體驗。 使用下列指示來發佈您使用 SSO 的應用程式：
 
 ## <a name="sso-for-on-prem-iwa-apps-using-kcd-with-application-proxy"></a>使用 KCD 搭配應用程式 Proxy 的內部部署 IWA 應用程式 SSO
-您可以在 Active Directory 中提供應用程式 Proxy 連接器權限來模擬使用者並代表其傳送和接收權杖，以使用「整合式 Windows 驗證」(IWA) 啟用應用程式的單一登入。
+您可以在 Active Directory 中提供應用程式 Proxy 連接器權限來模擬使用者，以使用「整合式 Windows 驗證」(IWA) 啟用應用程式的單一登入。 連接器會使用此權限來代表其傳送和接收權杖。
 
 ### <a name="network-diagram"></a>網路圖表
 此圖表說明使用者嘗試存取採用 IWA 之內部部署應用程式時的流程。
@@ -56,7 +57,7 @@ Azure AD 應用程式 Proxy 可協助您為使用者提供單一登入 (SSO) 體
 * 您的應用程式 (例如 SharePoint Web 應用程式) 已設為使用「整合式 Windows 驗證」。 如需詳細資訊，請參閱[啟用支援 Kerberos 驗證](https://technet.microsoft.com/library/dd759186.aspx)，或者若是使用 SharePoint，請參閱[為 SharePoint 2013 中的 Kerberos 驗證做規劃](https://technet.microsoft.com/library/ee806870.aspx)。
 * 您的所有應用程式都有「服務主體名稱」。
 * 執行「連接器」的伺服器與執行應用程式的伺服器，皆已加入網域且屬於相同網域或信任網域。 如需有關加入網域的詳細資訊，請參閱 [將電腦加入網域](https://technet.microsoft.com/library/dd807102.aspx)。
-* 執行「連接器」的伺服器有權限讀取使用者的 TokenGroupsGlobalAndUniversal。 這是預設設定，可能受環境強化安全性所影響。 請參閱 [KB2009157](https://support.microsoft.com/en-us/kb/2009157) 以取得此設定的更多相關說明。
+* 執行「連接器」的伺服器有權限讀取使用者的 TokenGroupsGlobalAndUniversal。 這個預設設定可能已受到環境強化安全性所影響。 請參閱 [KB2009157](https://support.microsoft.com/en-us/kb/2009157) 以取得此設定的更多相關說明。
 
 ### <a name="active-directory-configuration"></a>Active Directory 組態
 根據您的「應用程式 Proxy 連接器」和已發佈的伺服器是否位於相同網域，Active Directory 組態會有所不同。
@@ -64,7 +65,7 @@ Azure AD 應用程式 Proxy 可協助您為使用者提供單一登入 (SSO) 體
 #### <a name="connector-and-published-server-in-the-same-domain"></a>連接器和已發佈的伺服器位於相同網域
 1. 在 Active Directory 中，移至 [工具] > [使用者和電腦]。
 2. 選取執行「連接器」的伺服器。
-.3. 按一下滑鼠右鍵，然後選取 [屬性] > [委派]。
+3. 按一下滑鼠右鍵，然後選取 [屬性] > [委派]。
 4. 選取 [信任這台電腦，但只委派指定的服務]。 在 [這個帳戶可以呈送委派認證的服務] 下方，新增應用程式伺服器的 SPN 身分識別值。
 5. 這可讓「應用程式 Proxy 連接器」針對清單中所定義的應用程式，在 AD 中模擬使用者。
 
@@ -86,11 +87,12 @@ Azure AD 應用程式 Proxy 可協助您為使用者提供單一登入 (SSO) 體
 >
 
 ### <a name="azure-classic-portal-configuration"></a>Azure 傳統入口網站設定
-1. 根據 [使用應用程式 Proxy 發佈應用程式](active-directory-application-proxy-publish.md)中的所述指示來發佈您的應用程式。 請務必選取 [Azure Active Directory] 作為 [預先驗證方法]。
-2. 應用程式出現於應用程式清單後，將其選取並按一下 [設定] 。
-3. 在 [屬性] 下方，將 [內部驗證方法] 設定為 [整合式 Windows 驗證]。  
+1. 根據 [使用應用程式 Proxy 發佈應用程式](application-proxy-publish-azure-portal.md)中的所述指示來發佈您的應用程式。 請務必選取 [Azure Active Directory] 作為 [預先驗證方法]。
+2. 應用程式出現於企業應用程式清單後，將其選取並按一下 [單一登入]。
+3. 將單一登入模式設定為 [整合式 Windows 驗證]。  
+4. 輸入應用程式伺服器的 [內部應用程式 SPN]  。 在此範例中，已發佈應用程式的 SPN 為 http/www.contoso.com。  
+
    ![進階應用程式組態](./media/active-directory-application-proxy-sso-using-kcd/cwap_auth2.png)  
-4. 輸入應用程式伺服器的 [內部應用程式 SPN]  。 在此範例中，已發佈應用程式的 SPN 為 http/lob.contoso.com。  
 
 > [!IMPORTANT]
 > 如果您的內部部署 UPN 和 Azure Active Directory 中的 UPN 不相同，您必須設定 [委派的登入身分識別](#delegated-login-identity) ，才能讓預先驗證運作。
@@ -129,12 +131,12 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 * 在內部有多個網域 (joe@us.contoso.com、joe@eu.contoso.com)，並且在雲端有單一網域 (joe@contoso.com)。
 * 在內部有無法路由傳送的網域名稱 (joe@contoso.usa)，並且在雲端有合法網域名稱。
 * 請勿在內部使用網域名稱 (joe)
-* 在內部部署和雲端中使用不同別名。 例如 joe-johns@contoso.com 對上 joej@contoso.com  
+* 在內部部署和雲端中使用不同別名。 例如：joe-johns@contoso.com 對上 joej@contoso.com  
 
 它也有助於不接受電子郵件地址形式位址的應用程式，這對於非 Windows 後端伺服器是很常見的案例。
 
 ### <a name="setting-sso-for-different-cloud-and-on-prem-identities"></a>設定不同雲端和內部部署身分識別的 SSO
-1. 設定 Azure AD Connect 設定，讓主要的身分識別會是電子郵件地址 (郵件)。 這是在自訂程序中完成 (透過變更同步設定中的 [使用者主體名稱] 欄位)。 這些設定也決定使用者如何登入 Office&365;、Windows&10; 裝置與其他使用 Azure AD 作為其身分識別存放區的應用程式。  
+1. 設定 Azure AD Connect 設定，讓主要的身分識別會是電子郵件地址 (郵件)。 這是在自訂程序中完成 (透過變更同步設定中的 [使用者主體名稱] 欄位)。 這些設定也決定使用者如何登入 Office 365、Windows 10 裝置與其他使用 Azure AD 作為其身分識別存放區的應用程式。  
    ![識別使用者螢幕擷取畫面 - [使用者主體名稱] 下拉式清單](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_connect_settings.png)  
 2. 在您想要修改之應用程式的應用程式組態設定中，選取要使用的 [委派的登入識別]  ：
 

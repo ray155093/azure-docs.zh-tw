@@ -1,9 +1,9 @@
 ---
-title: "在 Azure 虛擬機器中建立 Oracle Database 12c 資料庫 | Microsoft Docs"
+title: "在 Azure VM 中建立 Oracle 資料庫 | Microsoft Docs"
 description: "在您的 Azure 環境中快速啟動並執行 Oracle Database 12c 資料庫。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: tonyguid
+author: rickstercdn
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -13,21 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 04/26/2017
+ms.date: 07/17/2017
 ms.author: rclaus
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
-ms.openlocfilehash: 95e37d57ad92ef47a358527189997e7dd29d7b8d
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 8683b016c4db2c66fb1dd994405b70c3d137a7fc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/20/2017
 
 ---
 
-<a id="create-an-oracle-database-12c-database-in-an-azure-virtual-machine" class="xliff"></a>
+# <a name="create-an-oracle-database-in-an-azure-vm"></a>在 Azure VM 中建立 Oracle 資料庫
 
-# 在 Azure 虛擬機器中建立 Oracle Database 12c 資料庫
-
-本指南詳述如何使用 Azure CLI 從 [Oracle Marketplace 資源庫映像](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview)部署 Azure 虛擬機器，以便建立 Oracle 12c 資料庫。 部署伺服器後，將會建立 SSH 連線，以便進一步設定 Oracle 資料庫。 
+本指南詳述如何使用 Azure CLI 從 [Oracle Marketplace 資源庫映像](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview)部署 Azure 虛擬機器，以便建立 Oracle 12c 資料庫。 部署伺服器之後，您會透過 SSH 連接，以設定 Oracle 資料庫。 
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
@@ -35,9 +33,7 @@ ms.lasthandoff: 07/06/2017
 
 如果您選擇在本機安裝和使用 CLI，本快速入門會要求您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
-<a id="create-a-resource-group" class="xliff"></a>
-
-## 建立資源群組
+## <a name="create-a-resource-group"></a>建立資源群組
 
 使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
 
@@ -46,9 +42,7 @@ ms.lasthandoff: 07/06/2017
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
 ```
-<a id="create-virtual-machine" class="xliff"></a>
-
-## Create virtual machine
+## <a name="create-virtual-machine"></a>Create virtual machine
 
 若要建立虛擬機器，請使用 [az vm create](/cli/azure/vm#create) 命令。 
 
@@ -79,19 +73,15 @@ az vm create \
 }
 ```
 
-<a id="connect-to-the-vm" class="xliff"></a>
-
-## 連接至 VM
+## <a name="connect-to-the-vm"></a>連接至 VM
 
 若要對 VM 建立 SSH 工作階段，請使用下列命令。 以 VM 的 `publicIpAddress` 值取代 IP 位址。
 
 ```bash 
-ssh azureuser@<publicIpAddress>
+ssh <publicIpAddress>
 ```
 
-<a id="create-the-database" class="xliff"></a>
-
-## 建立資料庫
+## <a name="create-the-database"></a>建立資料庫
 
 Marketplace 映像上已安裝 Oracle 軟體。 建立範例資料庫，如下所示。 
 
@@ -133,7 +123,7 @@ Marketplace 映像上已安裝 Oracle 軟體。 建立範例資料庫，如下�
 2.  建立資料庫︰
 
     ```bash
-    $ dbca -silent \
+    dbca -silent \
            -createDatabase \
            -templateName General_Purpose.dbc \
            -gdbname cdb1 \
@@ -159,72 +149,74 @@ Marketplace 映像上已安裝 Oracle 軟體。 建立範例資料庫，如下�
 在連線之前，您需要設定兩個環境變數︰ORACLE_HOME 和 ORACLE_SID。
 
 ```bash
-$ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
-$ ORACLE_SID=cdb1; export ORACLE_SID
+ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
+ORACLE_SID=cdb1; export ORACLE_SID
 ```
-您也可以將 ORACLE_HOME 和 ORACLE_SID 變數新增至 .bashrc 檔案。 這會儲存環境變數以供未來登入。 使用您選擇的編輯器，將下列陳述式新增至 .bashrc 檔案。
+您也可以將 ORACLE_HOME 和 ORACLE_SID 變數新增至 .bashrc 檔案。 這會儲存環境變數以供未來登入。 請確認已使用您選擇的編輯器，將下列陳述式新增至 `~/.bashrc` 檔案。
 
-```
+```bash
 # Add ORACLE_HOME. 
 export ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1 
 # Add ORACLE_SID. 
 export ORACLE_SID=cdb1 
 ```
 
-<a id="oracle-em-express-connectivity" class="xliff"></a>
-
-## Oracle EM Express 連線能力
+## <a name="oracle-em-express-connectivity"></a>Oracle EM Express 連線能力
 
 對於您可用來瀏覽資料庫的 GUI 管理工具，請設定 Oracle EM Express。 若要連線到 Oracle EM Express，您必須先在 Oracle 中設定連接埠。 
 
 1. 使用 sqlplus 連線到您的資料庫：
 
     ```bash
-    $ sqlplus / as sysdba
+    sqlplus / as sysdba
     ```
 
 2. 連線後，請針對 EM Express 設定連接埠 5502
 
     ```bash
-    SQL> exec DBMS_XDB_CONFIG.SETHTTPSPORT(5502);
+    exec DBMS_XDB_CONFIG.SETHTTPSPORT(5502);
     ```
 
 3. 如果容器 PDB1 尚未開啟，請加以開啟，但是先檢查狀態：
 
     ```bash
-    SQL> select con_id, name, open_mode from v$pdbs;
- 
+    select con_id, name, open_mode from v$pdbs;
+    ```
+
+    輸出大致如下：
+
+    ```bash
       CON_ID NAME                           OPEN_MODE 
       ----------- ------------------------- ---------- 
       2           PDB$SEED                  READ ONLY 
       3           PDB1                      MOUNT
     ```
 
-4. 如果 OPEN_MODE 不是「讀寫」，則執行下列命令以開啟 PDB1：
+4. 如果 `PDB1` 的 OPEN_MODE 不是「讀寫」，則執行下列命令以開啟 PDB1：
 
    ```bash
-    SQL> alter session set container=pdb1;
-    SQL> alter database open;
+    alter session set container=pdb1;
+    alter database open;
    ```
 
-<a id="automate-database-startup-and-shutdown" class="xliff"></a>
+您需要鍵入 `quit` 結束 sqlplus 工作階段，並鍵入 `exit` 登出 oracle 使用者。
 
-## 自動進行資料庫啟動和關機
+## <a name="automate-database-startup-and-shutdown"></a>自動進行資料庫啟動和關機
 
 當您重新啟動 VM 時，Oracle 資料庫預設不會自動啟動。 若要將 Oracle 資料庫設定為自動啟動，請先以 root 的身分登入。 接著，建立並更新一些系統檔案。
 
 1. 以 root 的身分登入
     ```bash
-    $ sudo su -
+    sudo su -
     ```
 
-2.  編輯 /etc/oratab 並將預設的 `N` 變更為 `Y`：
+2.  使用您最愛的編輯器，編輯 `/etc/oratab` 檔案，並將預設的 `N` 變更為 `Y`：
 
     ```bash
     cdb1:/u01/app/oracle/product/12.1.0/dbhome_1:Y
     ```
 
-3.  建立名為 /etc/init.d/dbora 的檔案並貼上下列內容︰
+3.  建立名為 `/etc/init.d/dbora` 的檔案，並貼上下列內容︰
 
     ```
     #!/bin/sh
@@ -258,33 +250,31 @@ export ORACLE_SID=cdb1
 4.  使用 chmod 變更檔案的權限，如下所示：
 
     ```bash
-    # chgrp dba /etc/init.d/dbora
-    # chmod 750 /etc/init.d/dbora
+    chgrp dba /etc/init.d/dbora
+    chmod 750 /etc/init.d/dbora
     ```
 
 5.  建立用於啟動和關閉的符號連結，如下所示：
 
     ```bash
-    # ln -s /etc/init.d/dbora /etc/rc.d/rc0.d/K01dbora
-    # ln -s /etc/init.d/dbora /etc/rc.d/rc3.d/S99dbora
-    # ln -s /etc/init.d/dbora /etc/rc.d/rc5.d/S99dbora
+    ln -s /etc/init.d/dbora /etc/rc.d/rc0.d/K01dbora
+    ln -s /etc/init.d/dbora /etc/rc.d/rc3.d/S99dbora
+    ln -s /etc/init.d/dbora /etc/rc.d/rc5.d/S99dbora
     ```
 
 6.  若要測試您的變更，請重新啟動 VM：
 
     ```bash
-    # reboot
+    reboot
     ```
 
-<a id="open-ports-for-connectivity" class="xliff"></a>
-
-## 開始連接埠進行連線
+## <a name="open-ports-for-connectivity"></a>開始連接埠進行連線
 
 最後一項工作是設定一些外部端點。 若要設定可保護 VM 的 Azure 網路安全性群組，請先結束 VM 中您的 SSH 工作階段 (應已在前一個步驟中重新啟動時被移出 SSH)。 
 
 1.  若要開啟您用來從遠端存取 Oracle 資料庫的端點，請使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 建立網路安全性群組規則，如下所示： 
 
-    ```azurecli
+    ```azurecli-interactive
     az network nsg rule create \
         --resource-group myResourceGroup\
         --nsg-name myVmNSG \
@@ -296,7 +286,7 @@ export ORACLE_SID=cdb1
 
 2.  若要開啟您用來從遠端存取 Oracle EM Express 的端點，請使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 建立網路安全性群組規則，如下所示：
 
-    ```azurecli
+    ```azurecli-interactive
     az network nsg rule create \
         --resource-group myResourceGroup \
         --nsg-name myVmNSG \
@@ -308,7 +298,7 @@ export ORACLE_SID=cdb1
 
 3. 如有需要，請使用 [az network public-ip show](/cli/azure/network/public-ip#show) 再次取得 VM 的公用 IP 位址，如下所示：
 
-    ```azurecli
+    ```azurecli-interactive
     az network public-ip show \
         --resource-group myResourceGroup \
         --name myVMPublicIP \
@@ -316,29 +306,25 @@ export ORACLE_SID=cdb1
         --output tsv
     ```
 
-4.  從您的瀏覽器連接 EM Express： 
+4.  從您的瀏覽器連接 EM Express。 確定您的瀏覽器與 EM Express 相容 (需要安裝 Flash)： 
 
     ```
     https://<VM ip address or hostname>:5502/em
     ```
 
-您可以使用 SYS 帳戶進行登入，然後勾選 as sysdba 核取方塊。 使用您在安裝期間設定的密碼 OraPasswd1。 確定您的瀏覽器與EM Express 相容 (可能需要安裝 Flash)
+您可以使用 SYS 帳戶進行登入，然後勾選 as sysdba 核取方塊。 使用您在安裝期間設定的密碼 OraPasswd1。 
 
 ![Oracle OEM Express 登入頁面的螢幕擷取畫面](./media/oracle-quick-start/oracle_oem_express_login.png)
 
-<a id="clean-up-resources" class="xliff"></a>
+## <a name="clean-up-resources"></a>清除資源
 
-## 清除資源
-
-若不再需要，您可以使用 [az group delete](/cli/azure/group#delete) 命令來移除資源群組、VM 和所有相關資源。
+完成在 Azure 上探索第一個 Oracle 資料庫而且不再需要 VM 之後，就可以使用 [az group delete](/cli/azure/group#delete) 命令移除資源群組、VM 和所有相關資源。
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
 ```
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 深入了解 [Azure 上的其他 Oracle 解決方案](oracle-considerations.md)。 
 

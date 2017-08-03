@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/29/2017
 ms.author: dobett
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
-ms.openlocfilehash: 7055e207cfbcc9de02669be9f0e97045769ef217
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: a5528e01ca7ad9bc807b621e08de991ce1ab9fd8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="process-iot-hub-device-to-cloud-messages-java"></a>處理 IoT 中樞的裝置到雲端訊息 (Java)
@@ -33,11 +32,16 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 在本教學課程結尾，您會執行三個 Java 主控台應用程式：
 
 * **simulated-device**(在 [開始使用IoT 中樞入門] 教學課程中建立之應用程式的已修改版本) 會每秒傳送資料點裝置到雲端訊息，以及每 10 秒傳送互動式裝置到雲端訊息。 此應用程式會使用 AMQP 通訊協定與「IoT 中樞」進行通訊。
-* **read-d2c-messages** 顯示模擬裝置應用程式所傳送的遙測。
+* **read-d2c-messages** 會顯示您的裝置應用程式所傳送的遙測資料。
 * **read-critical-queue** 可從連接到 IoT 中樞的服務匯流排佇列中移除重要訊息。
 
 > [!NOTE]
+<<<<<<< HEAD IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。 如需了解如何以實體裝置取代本教學課程中的裝置，以及如何將裝置連接到「IoT 中樞」，請參閱 [Azure IoT 開發人員中心]。
+> 
+> 
+=======
 > IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。 如需了解如何以實體裝置取代本教學課程中的模擬裝置，以及如何將裝置連接到「IoT 中樞」，請參閱 [Azure IoT 開發人員中心]。
+>>>>>>> master
 
 若要完成此教學課程，您需要下列項目：
 
@@ -48,9 +52,14 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 您應具備 [Azure 儲存體]和 [Azure 服務匯流排]的基本知識。
 
+<<<<<<< HEAD
+## <a name="send-interactive-messages-from-a-device-app"></a>從裝置應用程式傳送互動式訊息
+<a name="in-this-section-you-modify-the-device-app-you-created-in-the-get-started-with-iot-hub-tutorial-to-occasionally-send-messages-that-require-immediate-processing"></a>在本節中，您會修改您在[開始使用IoT 中樞入門]教學課程中建立的裝置應用程式，偶爾傳送需要立即處理的訊息。
+=======
 ## <a name="send-interactive-messages-from-a-simulated-device-app"></a>從模擬的裝置應用程式傳送互動式訊息
 
 在本節中，您會修改您在[開始使用IoT 中樞入門]教學課程中建立的模擬裝置應用程式，偶爾傳送需要立即處理的訊息。
+>>>>>>> master
 
 1. 使用文字編輯器來開啟 simulated-device\src\main\java\com\mycompany\app\App.java 檔案。 這個檔案包含您在 **開始使用 IoT 中樞** 教學課程中建立的 [開始使用IoT 中樞入門] 應用程式。
 
@@ -101,11 +110,21 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
         }
     }
     ```
+<<<<<<< HEAD
+   
+    This method randomly adds the property `"level": "critical"` to messages sent by the device, which simulates a message that requires immediate action by the application back-end. The application passes this information in the message properties, instead of in the message body, so that IoT Hub can route the message to the proper message destination.
+   
+   > [!NOTE]
+   > 除了此處顯示的最忙碌路徑範例以外，您可以使用訊息屬性來路由傳送各種案例的訊息，包括冷門路徑處理。
+   > 
+   > 
+=======
 
-    這個方法會隨機將 `"level": "critical"` 屬性新增至模擬裝置所傳送的訊息，該裝置會模擬需要應用程式後端立即採取行動的訊息。 應用程式會在訊息屬性中傳遞此資訊，而不是在訊息主體中傳遞，因此 IoT 中樞可以將訊息路由傳送至適當的訊息目的地。
+    This method randomly adds the property `"level": "critical"` to messages sent by the simulated device, which simulates a message that requires immediate action by the application back-end. The application passes this information in the message properties, instead of in the message body, so that IoT Hub can route the message to the proper message destination.
 
     > [!NOTE]
-    > 除了此處顯示的最忙碌路徑範例以外，您可以使用訊息屬性來路由傳送各種案例的訊息，包括冷門路徑處理。
+    > You can use message properties to route messages for various scenarios including cold-path processing, in addition to the hot path example shown here.
+>>>>>>> master
 
 2. 儲存並關閉 simulated-device\src\main\java\com\mycompany\app\App.java 檔案。
 

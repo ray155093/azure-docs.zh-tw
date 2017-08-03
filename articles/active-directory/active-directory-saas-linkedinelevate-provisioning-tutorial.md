@@ -22,16 +22,12 @@ ms.lasthandoff: 05/04/2017
 
 ---
 
-<a id="tutorial-configuring-linkedin-elevate-for-automatic-user-provisioning" class="xliff"></a>
-
-# 教學課程︰設定自動使用者佈建的 LinkedIn Elevate
+# <a name="tutorial-configuring-linkedin-elevate-for-automatic-user-provisioning"></a>教學課程︰設定自動使用者佈建的 LinkedIn Elevate
 
 
 本教學課程旨在說明您需要在 LinkedIn Elevate 和 Azure AD 中執行的步驟，以將使用者帳戶從 Azure AD 自動佈建和取消佈建至 LinkedIn Elevate。 
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 本教學課程中說明的案例假設您已經具有下列項目：
 
@@ -42,9 +38,7 @@ ms.lasthandoff: 05/04/2017
 > [!NOTE]
 > Azure Active Directory 使用 [SCIM](http://www.simplecloud.info/) 通訊協定與 LinkedIn Elevate 整合。
 
-<a id="assigning-users-to-linkedin-elevate" class="xliff"></a>
-
-## 將使用者指派給 LinkedIn Elevate
+## <a name="assigning-users-to-linkedin-elevate"></a>將使用者指派給 LinkedIn Elevate
 
 Azure Active Directory 會使用稱為「指派」的概念，來判斷哪些使用者應接收對指定應用程式的存取權。 在自動使用者帳戶佈建的內容中，只有已「指派」至 Azure AD 中的應用程式之使用者和群組會進行同步處理。 
 
@@ -52,27 +46,21 @@ Azure Active Directory 會使用稱為「指派」的概念，來判斷哪些使
 
 [將使用者或群組指派給企業應用程式](active-directory-coreapps-assign-user-azure-portal.md)
 
-<a id="important-tips-for-assigning-users-to-linkedin-elevate" class="xliff"></a>
-
-### 將使用者指派給 LinkedIn Elevate 的重要秘訣
+### <a name="important-tips-for-assigning-users-to-linkedin-elevate"></a>將使用者指派給 LinkedIn Elevate 的重要秘訣
 
 *    建議將單一 Azure AD 使用者指派給 LinkedIn Elevate，以測試佈建的組態。 其他使用者及/或群組可能會稍後再指派。
 
 *    將使用者指派給 LinkedIn Elevate 時，您必須在指派對話方塊中選取**使用者**角色。 「預設存取」角色不適用於佈建。
 
 
-<a id="configuring-user-provisioning-to-linkedin-elevate" class="xliff"></a>
-
-## 設定使用者佈建至 LinkedIn Elevate
+## <a name="configuring-user-provisioning-to-linkedin-elevate"></a>設定使用者佈建至 LinkedIn Elevate
 
 本節會引導您將 Azure AD 連接至 LinkedIn Elevate 的 SCIM 使用者帳戶佈建 API，以及根據 Azure AD 中的使用者和群組指派，設定佈建服務以在 LinkedIn Elevate 中建立、更新和停用指派的使用者帳戶。
 
 **提示︰**您也可以選擇啟用 LinkedIn Elevate 的 SAML 型單一登入，請遵循 [Azure 入口網站](https://portal.azure.com)中提供的指示。 可以獨立設定自動佈建的單一登入，雖然這兩個功能彼此補充。
 
 
-<a id="to-configure-automatic-user-account-provisioning-to-linkedin-elevate-in-azure-ad" class="xliff"></a>
-
-### 若要在 Azure AD 中設定自動使用者帳戶佈建至 LinkedIn Elevate︰
+### <a name="to-configure-automatic-user-account-provisioning-to-linkedin-elevate-in-azure-ad"></a>若要在 Azure AD 中設定自動使用者帳戶佈建至 LinkedIn Elevate︰
 
 
 第一步是擷取您的 LinkedIn Elevate 存取權杖。 如果您是企業版系統管理員，可以自我佈建存取權杖。 在帳戶中心，移至 [設定]> [通用設定]**&gt;**，開啟 [SCIM 安裝] 面板。
@@ -133,9 +121,7 @@ Azure Active Directory 會使用稱為「指派」的概念，來判斷哪些使
 這會啟動在 [使用者和群組] 區段中指派給 LinkedIn Elevate 的任何使用者和/或群組之初始同步處理。 請注意，初始同步處理會比後續的同步處理花費較多時間執行，只要服務正在執行，這大約每 20 分鐘便會發生一次。 您可以使用 [同步處理詳細資料] 區段來監視進度，並遵循連結來佈建活動報告，報告中會描述您的 LinkedIn Elevate 應用程式上的佈建服務所執行之所有動作。
 
 
-<a id="additional-resources" class="xliff"></a>
-
-## 其他資源
+## <a name="additional-resources"></a>其他資源
 
 * [管理企業應用程式的使用者帳戶佈建](active-directory-enterprise-apps-manage-provisioning.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)

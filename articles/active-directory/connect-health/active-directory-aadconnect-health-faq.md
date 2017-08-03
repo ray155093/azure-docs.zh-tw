@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/18/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: e22a1ccb958942cfa3c67194430af6bc74fdba64
-ms.openlocfilehash: 233691d19aa2553744f92af17f7ecf9fda2290e0
-ms.lasthandoff: 04/05/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
+ms.openlocfilehash: 1f1c453267ea17d749a251539f4232131dae53d3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/13/2017
 
 ---
 # <a name="azure-ad-connect-health-frequently-asked-questions"></a>Azure AD Connect Health 常見問題集
@@ -138,6 +139,44 @@ Health 代理程式會因為下列可能原因而無法註冊：
 **問：Azure AD Connect Health 警示如何獲得解決？**
 
 Azure AD Connect Health 警示會在成功情況下獲得解決。 Azure AD Connect Health 代理程式會定期偵測成功情況，並向服務回報。 對於少數幾個警示，隱藏是以時間為基礎。 也就是說，如果在警示產生的 72 小時內未觀察到相同的錯誤狀況，就會自動解決警示。
+
+**問：我收到下列警示：「測試驗證要求 (綜合交易) 無法取得權杖」。我該如何進行解決這個問題？**
+
+在健康狀態代理程式所起始的綜合交易期間，AD FS 伺服器上安裝的健康狀態代理程式無法取得權杖時，Azure AD Connect Health for AD FS 會產生警示。 健康狀態代理程式使用本機系統內容，並嘗試取得自我信賴憑證者的權杖。 這是 catch-all 測試，可確保 AD FS 處於發行權杖狀態。
+
+這項測試經常失敗，因為健康狀態代理程式無法解析 AD FS 伺服器陣列名稱。 如果 AD FS 伺服器受到網路負載平衡器保護，並且從受到負載平衡器保護的節點起始要求 (相較於不受負載平衡器保護的一般用戶端)，可能會發生此問題。 更新 "C:\Windows\System32\drivers\etc" 下的 "hosts" 檔案，使其包含 AD FS 伺服器的 IP 位址或 AD FS 伺服器陣列名稱 (例如 sts.contoso.com) 的迴圈 IP 位址 (127.0.0.1)，即可修正此問題。 新增主機檔案會讓網路呼叫短路，如此可讓健康狀態代理程式取得權杖。
+
+**問：我收到一封電子郵件，指出未針對最近的勒索軟體攻擊修補我的電腦。我為什麼收到這封電子郵件？**
+
+Azure AD Connect Health 服務已掃描所有已監視的電腦，確保已安裝的必要修補程式。 如果至少一部電腦沒有重大修補程式，則已將電子郵件傳送給租用戶系統管理員。 下列邏輯已用來進行這項決定。
+1. 尋找電腦上安裝的所有 Hotfix。
+2. 檢查定義的清單中是否有至少一個 Hotfix。
+3. 如果有，則電腦受到保護。 如果沒有，則電腦會有受攻擊的風險。
+
+您可以使用下列 PowerShell 指令碼手動執行這項檢查。 它會實作上述邏輯。
+
+```
+Function CheckForMS17-010 ()
+{
+    $hotfixes = "KB3205409", "KB3210720", "KB3210721", "KB3212646", "KB3213986", "KB4012212", "KB4012213", "KB4012214", "KB4012215", "KB4012216", "KB4012217", "KB4012218", "KB4012220", "KB4012598", "KB4012606", "KB4013198", "KB4013389", "KB4013429", "KB4015217", "KB4015438", "KB4015546", "KB4015547", "KB4015548", "KB4015549", "KB4015550", "KB4015551", "KB4015552", "KB4015553", "KB4015554", "KB4016635", "KB4019213", "KB4019214", "KB4019215", "KB4019216", "KB4019263", "KB4019264", "KB4019472", "KB4015221", "KB4019474", "KB4015219", "KB4019473"
+
+    #checks the computer it's run on if any of the listed hotfixes are present
+    $hotfix = Get-HotFix -ComputerName $env:computername | Where-Object {$hotfixes -contains $_.HotfixID} | Select-Object -property "HotFixID"
+
+    #confirms whether hotfix is found or not
+    if (Get-HotFix | Where-Object {$hotfixes -contains $_.HotfixID})
+    {
+        "Found HotFix: " + $hotfix.HotFixID
+    } else {
+        "Didn't Find HotFix"
+    }
+}
+
+CheckForMS17-010
+
+```
+
+
 
 ## <a name="related-links"></a>相關連結
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)

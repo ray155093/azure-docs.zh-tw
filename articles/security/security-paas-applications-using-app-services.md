@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/21/2017
+ms.date: 07/11/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 41528ad70598907759cdf149777195007296fe98
-ms.lasthandoff: 03/22/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: 0738522250f1863c9584936a2d2b2c7a0a823c8c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="securing-paas-web-and-mobile-applications-using-azure-app-services"></a>使用 Azure App Service 來保護 PaaS Web 與行動應用程式
@@ -35,9 +35,9 @@ ms.lasthandoff: 03/22/2017
 使用 App Service 時，請依照下列最佳做法操作：
 
 - [透過 Azure Active Directory (AD) 進行驗證](../app-service-web/web-sites-authentication-authorization.md#authenticate-through-azure-active-directory)。 App Service 可為您的身分識別提供者提供 OAuth 2.0 服務。 OAuth 2.0 既將焦點放在為用戶端開發人員提供簡易性，同時又為 Web 應用程式、傳統型應用程式及行動電話提供特定授權流程。 Azure AD 使用 OAuth 2.0 來讓您能夠授與對行動與 Web 應用程式的存取權。
-- 根據必要知悉和最低權限安全性原則來限制存取。 對於想要強制執行資料存取安全性原則的組織來說，限制存取是必須做的事。 「角色型存取控制」(RBAC) 可用來將權限指派給特定範圍的使用者、群組及應用程式。 若要深入了解如何將應用程式存取權授與使用者，請參閱[開始使用存取管理](../active-directory/role-based-access-control-what-is.md)。
+- 根據必要知悉和最低權限安全性原則來限制存取。 對於想要強制執行資料存取安全性原則的組織來說，限制存取是必須做的事。 「角色型存取控制」(RBAC) 可用來將權限指派給特定範圍的使用者、群組及應用程式。 若要深入了解授與使用者的應用程式存取權，請參閱[開始使用存取管理](../active-directory/role-based-access-control-what-is.md)。
 - 保護您的金鑰。 如果您遺失訂用帳戶金鑰，則安全性措施做得再好也沒有用。 Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密碼編譯金鑰和密碼。 使用金鑰保存庫之後，您可以加密金鑰和密碼 (例如驗證金鑰、儲存體帳戶金鑰、資料加密金鑰、.PFX 檔案和密碼)，方法是使用受硬體安全模組 (HSM) 保護的金鑰。 為了加強保證，您可以在 HSM 中匯入或產生金鑰。 若要深入了解，請參閱 [Azure Key Vault](../key-vault/key-vault-whatis.md)。 您可以使用 Key Vault 藉由自動更新管理 TLS 憑證。
-- 限制連入來源 IP 位址。 App Service 具有虛擬網路整合功能，可協助您透過網路安全性群組 (NSG) 限制連入來源 IP 位址。 如果您不熟悉「Azure 虛擬網路」(VNET)，這是一種功能，可讓您將許多 Azure 資源放在由您控制存取的非網際網路、可路由網路中。 請參閱[將您的應用程式與 Azure 虛擬網路整合](../app-service-web/web-sites-integrate-with-vnet.md)來深入了解。
+- 限制連入來源 IP 位址。 [應用程式服務環境](../app-service-web/app-service-app-service-environment-intro.md)具有虛擬網路整合功能，可協助您透過網路安全性群組 (NSG) 限制連入來源 IP 位址。 如果您不熟悉「Azure 虛擬網路」(VNET)，這是一種功能，可讓您將許多 Azure 資源放在由您控制存取的非網際網路、可路由網路中。 若要深入了解，請參閱[將您的應用程式與 Azure 虛擬網路整合](../app-service-web/web-sites-integrate-with-vnet.md)。
 
 ## <a name="next-steps"></a>後續步驟
 本文介紹用來保護 PaaS Web 與行動應用程式的一組 App Service 安全性最佳做法。 若要深入了解如何保護您的 PaaS 部署，請參閱︰

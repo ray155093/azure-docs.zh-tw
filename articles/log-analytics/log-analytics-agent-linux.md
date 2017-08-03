@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/15/2017
+ms.date: 07/06/2017
 ms.author: magoedte
 ms.translationtype: Human Translation
-ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
-ms.openlocfilehash: 79bbb4dfe03a6c1ae782abc1404e22343bde22a0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 24d970faa0b4b1a74629b55efb034e9d79eddb1d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/08/2017
 
 ---
 
@@ -55,8 +55,8 @@ OMS Agent for Linux 會透過 TCP 通訊埠 443 對外與 OMS 服務通訊，如
 |------|---------|  
 |*.ods.opinsights.azure.com | 連接埠 443|   
 |*.oms.opinsights.azure.com | 連接埠 443|   
-|ods.systemcenteradvisor.com | 連接埠 443|   
 |*.blob.core.windows.net/ | 連接埠 443|   
+|*.azure-automation.net | 連接埠 443|  
 
 ### <a name="package-requirements"></a>封裝需求
 
@@ -66,7 +66,7 @@ Glibc | GNU C 程式庫   | 2.5-12
 Openssl | OpenSSL 程式庫 | 0.9.8e 或 1.0
 Curl | cURL Web 用戶端 | 7.15.5
 Python-ctypes | | 
-PAM | 插入式驗證模組   | 
+PAM | 插入式驗證模組 | 
 
 > [!NOTE]
 >  需要有 rsyslog 或 syslog-ng，才能收集 syslog 訊息。 Red Hat Enterprise Linux 第 5 版、CentOS 和 Oracle Linux 版本 (sysklog) 不支援預設 syslog 精靈，進行 syslog 事件收集。 若要從此版的這些散發套件收集 syslog 資料，rsyslog 精靈應安裝和設定為取代 sysklog。 
@@ -75,7 +75,7 @@ PAM | 插入式驗證模組   |
 
 **Package** | **版本** | **說明**
 ----------- | ----------- | --------------
-omsagent | 1.3.4 | Operations Management Suite Agent for Linux
+omsagent | 1.4.0 | Operations Management Suite Agent for Linux
 omsconfig | 1.1.1 | OMS 代理程式的組態代理程式
 omi | 1.2.0 | 開放式管理基礎結構 (OMI) - 輕量型 CIM 伺服器
 scx | 1.6.3 | 作業系統效能計量的 OMI CIM 提供者
@@ -142,22 +142,22 @@ Options:
 
 #### <a name="to-install-and-onboard-directly"></a>直接安裝並上架
 ```
-sudo sh ./omsagent-1.3.0-1.universal.x64.sh --upgrade -w <workspace id> -s <shared key>
+sudo sh ./omsagent-<version>.universal.x64.sh --upgrade -w <workspace id> -s <shared key>
 ```
 
 #### <a name="to-install-and-onboard-to-a-workspace-in-us-government-cloud"></a>安裝並上架到美國政府雲端
 ```
-sudo sh ./omsagent-1.3.0-1.universal.x64.sh --upgrade -w <workspace id> -s <shared key> -d opinsights.azure.us
+sudo sh ./omsagent-<version>.universal.x64.sh --upgrade -w <workspace id> -s <shared key> -d opinsights.azure.us
 ```
 
 #### <a name="to-install-the-agent-packages-and-onboard-at-a-later-time"></a>安裝代理程式封裝並於稍後上架
 ```
-sudo sh ./omsagent-1.3.0-1.universal.x64.sh --upgrade
+sudo sh ./omsagent-<version>.universal.x64.sh --upgrade
 ```
 
 #### <a name="to-extract-the-agent-packages-from-the-bundle-without-installing"></a>從套件組合擷取代理程式封裝而不安裝
 ```
-sudo sh ./omsagent-1.3.0-1.universal.x64.sh --extract
+sudo sh ./omsagent-<version>.universal.x64.sh --extract
 ```
 
 ## <a name="configuring-the-agent-for-use-with-an-http-proxy-server-or-oms-gateway"></a>設定代理程式搭配 HTTP Proxy 伺服器或 OMS 閘道使用
@@ -184,7 +184,7 @@ port|Proxy 伺服器/OMS 閘道的選擇性連接埠號碼
 omsagent 安裝套件組合的 `-p` 或 `--proxy` 引數可指定要使用的 Proxy 組態。 
 
 ```
-sudo sh ./omsagent-1.3.0-1.universal.x64.sh --upgrade -p http://<proxy user>:<proxy password>@<proxy address>:<proxy port> -w <workspace id> -s <shared key>
+sudo sh ./omsagent-<version>.universal.x64.sh --upgrade -p http://<proxy user>:<proxy password>@<proxy address>:<proxy port> -w <workspace id> -s <shared key>
 ```
 
 ### <a name="define-the-proxy-configuration-in-a-file"></a>在檔案中定義 Proxy 組態
@@ -217,9 +217,8 @@ sudo /opt/microsoft/omsagent/bin/service_control restart [<workspace id>]
 透過提供您工作區的工作區識別碼與金鑰來執行 omsadmin.sh 命令。 此命令必須以根身分 (具有 sudo 提升權限) 執行：
 ```
 cd /opt/microsoft/omsagent/bin
-sudo ./omsadmin.sh -w <WorkspaceID> -s <Shared Key> [-p <proxy>] [-v]
+sudo ./omsadmin.sh -w <WorkspaceID> -s <Shared Key>
 ```
-選用的 -v 參數將會在上架過程中啟用詳細資訊記錄。 所有資訊都會顯示在殼層指令碼執行所在的螢幕上。
 
 ### <a name="onboarding-using-a-file"></a>使用檔案上架
 1.  建立檔案 `/etc/omsagent-onboard.conf`。 此檔案必須可讓根使用者讀取與寫入。
@@ -328,4 +327,3 @@ omsagent 的記錄輪替組態位於：`/etc/logrotate.d/omsagent-<workspace id>
 4. 在某些情況下，當 OMS Agent for Linux 無法與 OMS 服務通訊時，系統會將整個緩衝區大小 (亦即 50 MB) 的資料加入佇列。 應執行 `/opt/microsoft/omsagent/bin/service_control restart [<workspace id>]` 命令重新啟動 OMS Agent for Linux。 
 > [!NOTE]
 > 此問題已在代理程式 1.1.0-28 版和更新版本中修正。
-

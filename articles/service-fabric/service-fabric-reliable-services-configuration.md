@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 6/29/2017
 ms.author: sumukhs
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e90efe810084939280b392c470e14e76d35aff01
-ms.openlocfilehash: 101b4e6a7bd5ded44334a4c3c9efee69669d9bcf
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: fa77eaf44f4d90d1a78f5de69e36432a53d80ecd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/21/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -115,7 +115,7 @@ ReplicatorConfig
 | MaxRecordSizeInKB |KB |1024 |複寫器可以寫入記錄檔中的最大記錄大小。 此值必須是 4 的倍數且大於 16。 |
 | MinLogSizeInMB |MB |0 (系統判定) |交易記錄檔大小下限。 系統將不會允許把記錄檔截斷為低於此設定的大小。 0 表示複寫器將會判斷記錄檔大小下限。 提高這個值會提高執行部分複本和增量備份的可能性，因為這會降低將相關記錄檔記錄截斷的可能性。 |
 | TruncationThresholdFactor |因素 |2 |判斷將會觸發截斷的記錄檔大小。 截斷臨界值是以 MinLogSizeInMB 乘以 TruncationThresholdFactor 來決定。 TruncationThresholdFactor 必須大於 1。 MinLogSizeInMB 乘以 TruncationThresholdFactor 必須小於 MaxStreamSizeInMB。 |
-| ThrottlingThresholdFactor |因素 |4 |判斷複本將會開始節流的記錄檔大小。 節流臨界值 (MB) 是以 Max((MinLogSizeInMB * ThrottlingThresholdFactor),(CheckpointThresholdInMB * ThrottlingThresholdFactor)) 來決定。 節流臨界值 (MB) 必須大於截斷臨界值 (MB)。 截斷臨界值 (MB) 必須小於 MaxStreamSizeInMB。 |
+| ThrottlingThresholdFactor |因素 |4 |判斷複本將會開始節流的記錄檔大小。 節流閾值 (MB) 是以 Max((MinLogSizeInMB * ThrottlingThresholdFactor),(CheckpointThresholdInMB * ThrottlingThresholdFactor)) 來決定。 節流臨界值 (MB) 必須大於截斷臨界值 (MB)。 截斷臨界值 (MB) 必須小於 MaxStreamSizeInMB。 |
 | MaxAccumulatedBackupLogSizeInMB |MB |800 |指定備份記錄鏈中備份記錄檔的最大累積大小 (MB)。 如果增量備份會產生導致累積備份記錄檔的備份記錄檔，增量備份要求將會失敗，因為相關完整備份會大於此大小。 在這個情況下，使用者需要進行完整備份。 |
 | SharedLogId |GUID |"" |指定用於識別此複本共用記錄檔的唯一 GUID。 服務通常不應使用此設定。 不過，如果有指定 SharedLogId，則也必須指定 SharedLogPath。 |
 | SharedLogPath |完整路徑名稱 |"" |指定建立此複本共用記錄檔的完整路徑。 服務通常不應使用此設定。 不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。 |

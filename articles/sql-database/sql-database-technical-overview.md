@@ -17,10 +17,10 @@ ms.workload: data-management
 ms.date: 06/30/2017
 ms.author: carlrab
 ms.translationtype: HT
-ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
-ms.openlocfilehash: 17b51afc0c67377dccdef63deacdcc67af8df576
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 54aa8c2f738ef92c211462498103d368e4cb4c5c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/14/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="what-is-the-azure-sql-database-service"></a>什麼是 Azure SQL Database 服務？ 
@@ -98,7 +98,7 @@ SQL Database 中可用的自動調整層面有兩個：
 
 ### <a name="adaptive-query-processing"></a>自適性查詢處理
 
-我們也將[自適性查詢處理](/sql/relational-databases/performance/adaptive-query-processing.md)功能系列新增至 SQL Database，包括交錯執行多陳述式的資料表值函式、批次模式記憶體授與意見反應，以及批次模式自適性聯結。 每個自適性查詢處理功能都會應用類似的「了解並適應」技術，協助進一步解決與過去很棘手的查詢最佳化問題相關的效能問題。
+我們也將[自適性查詢處理](/sql/relational-databases/performance/adaptive-query-processing)功能系列新增至 SQL Database，包括交錯執行多陳述式的資料表值函式、批次模式記憶體授與意見反應，以及批次模式自適性聯結。 每個自適性查詢處理功能都會應用類似的「了解並適應」技術，協助進一步解決與過去很棘手的查詢最佳化問題相關的效能問題。
 
 ### <a name="intelligent-threat-detection"></a>智慧型威脅偵測
 
@@ -160,3 +160,4 @@ SQL Database 支援在 MacOS、Linux 和 Windows 上使用 Python、Java、Node.
 - 如需一組 Azure CLI 和 PowerShell 範例，請參閱︰
   - [SQL Database 的 Azure CLI 範例](sql-database-cli-samples.md)
   - [SQL Database 的 Azure PowerShell 範例](sql-database-powershell-samples.md)
+

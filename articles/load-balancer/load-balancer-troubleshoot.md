@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/17/2017
+ms.date: 07/10/2017
 ms.author: kumud
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 53425eaf388e5164d2664c163f56a33d48cf8a36
-ms.lasthandoff: 04/20/2017
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: df5c836abbf09889f4859170359c0ee6c1b03378
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 
@@ -119,9 +120,9 @@ ms.lasthandoff: 04/20/2017
 * 每個應用程式都設定個別的後端集區 VM。 
 * 在有兩個 NIC 的 VM 中設定應用程式，讓每個應用程式使用自己的網路介面和 IP 位址。 
 
-### <a name="cause-4-accessing-the-internet-load-balancer-vip-from-the-participating-load-balancer-backend-pool-vm"></a>原因 4：從參與的負載平衡器後端集區 VM 存取網際網路負載平衡器 VIP
+### <a name="cause-4-accessing-the-internal-load-balancer-vip-from-the-participating-load-balancer-backend-pool-vm"></a>原因 4：從參與的負載平衡器後端集區 VM 存取內部負載平衡器 VIP
 
-如果在 VNet 內設定 ILB VIP，其中一個參與的後端 VM 會嘗試存取網際網路負載平衡器 VIP，這會導致失敗。 這是不支援的案例。
+如果在 VNet 內設定 ILB VIP，其中一個參與的後端 VM 會嘗試存取內部負載平衡器 VIP，這會導致失敗。 這是不支援的案例。
 **解決方式** 評估使用應用程式閘道或其他 Proxy (例如 nginx 或 haproxy) 來支援這種案例。 如需應用程式閘道的詳細資訊，請參閱[應用程式閘道的概觀](../application-gateway/application-gateway-introduction.md)
 
 ## <a name="additional-network-captures"></a>其他網路擷取

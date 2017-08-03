@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/15/2017
 ms.author: pkc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
-ms.openlocfilehash: de5795d4781d8c01bce7313ae53ad801a0e48149
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 70b2fefa654a73693a8064654cde1d767bfdd496
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/17/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 06/17/2017
 
 ## <a name="report-production-or-live-site-issues-or-request-paid-support-for-standalone-service-fabric-clusters"></a>報告實際執行或即時網站問題，或要求獨立 Service Fabric 叢集的付費支援
 
-對於報告內部部署或其他雲端上部署的 Service Fabric 叢集的即時網站問題，在 [Microsoft 支援網站](http://support.microsoft.com/oas/default.aspx?prid=16146)開啟專業支援的票證。
+對於報告內部部署或其他雲端上部署的 Service Fabric 叢集的即時網站問題，在 [Microsoft 支援入口網站](http://support.microsoft.com/oas/default.aspx?prid=16146)開啟專業支援的票證。
 
 深入了解：
 

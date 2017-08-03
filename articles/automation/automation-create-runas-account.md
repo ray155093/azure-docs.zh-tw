@@ -12,7 +12,7 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 06/29/2017
+ms.date: 07/27/2017
 ms.author: magoedte
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
@@ -22,9 +22,7 @@ ms.lasthandoff: 06/30/2017
 
 ---
 
-<a id="update-your-automation-account-authentication-with-run-as-accounts" class="xliff"></a>
-
-# 使用執行身分帳戶更新您的自動化帳戶驗證 
+# <a name="update-your-automation-account-authentication-with-run-as-accounts"></a>使用執行身分帳戶更新您的自動化帳戶驗證 
 您可以從入口網站或使用 PowerShell 來更新現有的自動化帳戶，前提是：
 
 * 您已建立一個自動化帳戶，但拒絕建立執行身分帳戶。
@@ -32,9 +30,7 @@ ms.lasthandoff: 06/30/2017
 * 您已使用自動化帳戶來管理傳統資源，而且您想要更新此帳戶以使用傳統執行身分，而不是建立新的帳戶並將 Runbook 和資產移轉至該帳戶。   
 * 您想要使用企業憑證授權單位 (CA) 所核發的憑證，來建立執行身分和傳統執行身分帳戶。
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 * 此指令碼只能在具有 Azure Resource Manager 模組 3.0.0 和更新版本的 Windows 10 與 Windows Server 2016 上執行。 不支援在舊版 Windows 上執行。
 * Azure PowerShell 1.0 和更新版本。 如需有關 PowerShell 1.0 版本的資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
@@ -46,9 +42,7 @@ ms.lasthandoff: 06/30/2017
 2. 在 [所有設定] 刀鋒視窗上，選取 [帳戶設定] 之下的 [屬性]。 
 3. 請記下 [屬性] 刀鋒視窗上的值。<br><br> ![自動化帳戶的 [屬性] 刀鋒視窗](media/automation-create-runas-account/automation-account-properties.png)  
 
-<a id="required-permissions-to-update-your-automation-account" class="xliff"></a>
-
-### 更新自動化帳戶所需的權限
+### <a name="required-permissions-to-update-your-automation-account"></a>更新自動化帳戶所需的權限
 若要更新自動化帳戶，您必須具有下列特定權限，才能完成本主題。   
  
 * 您的 AD 使用者帳戶必須新增至具備與 Microsoft.Automation 資源的參與者角色同等權限的角色 (如[Azure 自動化中的角色型存取控制](automation-role-based-access-control.md#contributor-role-permissions)一文所述)。  
@@ -56,9 +50,7 @@ ms.lasthandoff: 06/30/2017
 
 若您在新增至訂用帳戶的全域管理員/共同管理員角色之前，並非訂用帳戶 Active Directory 執行個體的成員，系統會將您以來賓身分新增至 Active Directory。 在此情況下，您會在 [新增自動化帳戶] 刀鋒視窗中看到 「您沒有權限建立...」的警告。 新增至全域管理員/共同管理員角色的使用者可以先從訂用帳戶的 Active Directory 執行個體中移除並重新新增，使其成為 Active Directory 中的完整使用者。 若要確認這種情況，請從 Azure 入口網站的 [Azure Active Directory] 窗格，選取 [使用者和群組]、選取 [所有使用者]，然後在選取特定使用者之後，選取 [設定檔]。 使用者設定檔之下 [使用者類型] 屬性的值不得等於 [來賓]。
 
-<a id="create-run-as-account-from-the-portal" class="xliff"></a>
-
-## 從 Azure 入口網站建立執行身分帳戶
+## <a name="create-run-as-account-from-the-portal"></a>從 Azure 入口網站建立執行身分帳戶
 在本節中，執行下列步驟以從 Azure 入口網站更新 Azure 自動化帳戶。  您會個別建立執行身分和傳統執行身分帳戶，如果您不需要在 Azure 傳統入口網站中管理資源，您就可以建立 Azure 執行身分帳戶。  
 
 此程序會在自動化帳戶中建立下列項目。
@@ -79,9 +71,7 @@ ms.lasthandoff: 06/30/2017
 3. 根據您所需的帳戶，選取 [Azure 執行身分帳戶] 或 [Azure 傳統執行身分帳戶]。  選取 [新增 Azure 執行身分] 之後或 [新增 Azure 傳統執行身分帳戶] 刀鋒視窗出現之後，並檢閱概觀資訊之後，請按一下 [建立] 繼續建立執行身分帳戶。  
 4. 在 Azure 建立執行身分帳戶時，您可以在功能表的 [通知] 底下追蹤進度，系統會顯示一個橫幅，表示正在建立帳戶。  此程序需要數分鐘的時間完成。  
 
-<a id="create-run-as-account-using-powershell-script" class="xliff"></a>
-
-## 使用 PowerShell 指令碼建立執行身分帳戶
+## <a name="create-run-as-account-using-powershell-script"></a>使用 PowerShell 指令碼建立執行身分帳戶
 這個 PowerShell 指令碼包含下列組態的支援︰
 
 * 使用自我簽署憑證建立執行身分帳戶。
@@ -166,7 +156,7 @@ ms.lasthandoff: 06/30/2017
 
         $KeyCredential = New-Object  Microsoft.Azure.Commands.Resources.Models.ActiveDirectory.PSADKeyCredential
         $KeyCredential.StartDate = $CurrentDate
-        $KeyCredential.EndDate= [DateTime]$PfxCert.GetExpirationDateString()
+        $KeyCredential.EndDate = Get-Date $PfxCert.GetExpirationDateString()
         $KeyCredential.EndDate = $KeyCredential.EndDate.AddDays(-1)
         $KeyCredential.KeyId = $KeyId
         $KeyCredential.CertValue  = $keyValue
@@ -307,8 +297,6 @@ ms.lasthandoff: 06/30/2017
 * 如果您使用企業公開憑證 (.cer 檔案) 建立了傳統執行身分帳戶，請使用此憑證。 請遵循[將管理 API 憑證上傳至 Azure 傳統入口網站](../azure-api-management-certs.md)的指示，然後使用[用來向服務 Azure 傳統部署資源進行驗證的範例程式碼](automation-verify-runas-authentication.md#classic-run-as-authentication)來驗證傳統部署資源的認證組態。 
 * 如果您「並未」建立傳統執行身分帳戶，請使用[用來向服務管理資源進行驗證的程式碼範例](automation-verify-runas-authentication.md#automation-run-as-authentication)向 Resource Manager 資源進行驗證並驗證認證組態。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 如需服務主體的詳細資訊，請參閱 [應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。
 * 如需有關憑證和 Azure 服務的詳細資訊，請參考 [Azure 雲端服務的憑證概觀](../cloud-services/cloud-services-certs-create.md)。

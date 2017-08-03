@@ -22,9 +22,7 @@ ms.lasthandoff: 07/06/2017
 
 
 ---
-<a id="how-to-use-properties-in-azure-api-management-policies" class="xliff"></a>
-
-# 如何在 Azure API 管理原則中使用屬性
+# <a name="how-to-use-properties-in-azure-api-management-policies"></a>如何在 Azure API 管理原則中使用屬性
 API 管理原則是系統的強大功能，可讓發行者透過設定來變更 API 的行為。 原則是陳述式的集合，會因 API 的要求或回應循序執行。 原則陳述可以使用引述的文字、值、原則運算式及屬性來建構。 
 
 每個 API 管理服務執行個體都有服務執行個體全域適用的之鍵/值組的屬性集合。 這個屬性可用來管理所有 API 組態及原則的常數字串值。 每個屬性都有下列屬性。
@@ -48,9 +46,7 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 | ContosoHeaderValue |•••••••••••••••••••••• |True |Contoso |
 | ExpressionProperty |@(DateTime.Now.ToString()) |False | |
 
-<a id="to-use-a-property" class="xliff"></a>
-
-## 使用屬性
+## <a name="to-use-a-property"></a>使用屬性
 若要在原則中使用屬性，請將屬性名稱放在雙大括號 (如 `{{ContosoHeader}}`) 內，如以下範例所示。
 
 ```xml
@@ -83,9 +79,7 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 請注意，雖然屬性值可以包含原則運算式，但屬性值不能包含其他屬性。 如果文字包含做為屬性值的屬性參照 (例如 `Property value text {{MyProperty}}`)，該屬性參照不會被取代，且將會包含做為屬性值的一部分。
 
-<a id="to-create-a-property" class="xliff"></a>
-
-## 建立屬性
+## <a name="to-create-a-property"></a>建立屬性
 若要建立屬性，請按一下 [屬性] 索引標籤上的 [新增屬性]。
 
 ![新增屬性][api-management-properties-add-property-menu]
@@ -100,9 +94,7 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 如需使用 REST API 建立屬性的詳細資訊，請參閱 [使用 REST API 建立屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put)。
 
-<a id="to-edit-a-property" class="xliff"></a>
-
-## 編輯屬性
+## <a name="to-edit-a-property"></a>編輯屬性
 若要編輯屬性，請按一下屬性旁邊的 [編輯]  來編輯。
 
 ![編輯屬性][api-management-properties-edit]
@@ -113,9 +105,7 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 如需使用 REST API 編輯屬性的詳細資訊，請參閱 [使用 REST API 編輯屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch)。
 
-<a id="to-delete-a-property" class="xliff"></a>
-
-## 刪除屬性
+## <a name="to-delete-a-property"></a>刪除屬性
 若要刪除屬性，請按一下屬性旁邊的 [刪除]  來刪除。
 
 ![刪除屬性][api-management-properties-delete]
@@ -131,9 +121,7 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 如需使用 REST API 刪除屬性的詳細資訊，請參閱 [使用 REST API 刪除屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete)。
 
-<a id="to-search-and-filter-properties" class="xliff"></a>
-
-## 搜尋與篩選屬性
+## <a name="to-search-and-filter-properties"></a>搜尋與篩選屬性
 [屬性]  索引標籤包括可協助您管理屬性的搜尋與篩選功能。 若要按照屬性名稱篩選屬性清單，請在 [搜尋屬性]  文字方塊中輸入搜尋字詞。 若要顯示所有屬性，請清除 [搜尋屬性]  文字方塊並按 Enter。
 
 ![搜尋][api-management-properties-search]
@@ -142,17 +130,13 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 ![篩選器][api-management-properties-filter]
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 深入了解原則的使用方式
   * [API 管理中的原則](api-management-howto-policies.md)
   * [原則參考文件](https://msdn.microsoft.com/library/azure/dn894081.aspx)
   * [原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)
 
-<a id="watch-a-video-overview" class="xliff"></a>
-
-## 觀看影片概觀
+## <a name="watch-a-video-overview"></a>觀看影片概觀
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Use-Properties-in-Policies/player]
 > 
 > 

@@ -21,31 +21,23 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 07/06/2017
 
 ---
-<a id="azure-active-directory-b2c-configure-ui-customization-in-a-custom-policy" class="xliff"></a>
-
-# Azure Active Directory B2C︰在自訂原則中設定 UI 自訂
+# <a name="azure-active-directory-b2c-configure-ui-customization-in-a-custom-policy"></a>Azure Active Directory B2C︰在自訂原則中設定 UI 自訂
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
 完成本文之後，您將擁有一個具備您的品牌和外觀的註冊和登入自訂原則。 使用 Azure Active Directory B2C (Azure AD B2C)，幾乎可完全掌控對使用者呈現的 HTML 和 CSS 內容。 使用自訂原則時，您會以 XML 設定 UI 自訂，而不是在 Azure 入口網站中使用控制項。 
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 開始之前，請完成[開始使用自訂原則](active-directory-b2c-get-started-custom.md)。 您應該有一個使用本機帳戶來註冊和登入的有效自訂原則。
 
-<a id="page-ui-customization" class="xliff"></a>
-
-## 頁面 UI 自訂
+## <a name="page-ui-customization"></a>頁面 UI 自訂
 
 您可以使用頁面 UI 自訂功能，自訂任何自訂原則的外觀與風格。 您也可以維護應用程式與 Azure AD B2C 之間的品牌和視覺一致性。
 
 運作方式如下：Azure AD B2C 會在客戶的瀏覽器中執行程式碼並使用稱為[跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/) 的新式方法。 首先，在自訂原則中使用自訂 HTML 內容指定 URL。 Azure AD B2C 會合併 UI 元素與從您 URL 載入的 HTML 內容，然後對客戶顯示此頁面。
 
-<a id="create-your-html5-content" class="xliff"></a>
-
-## 建立您的 HTML5 內容
+## <a name="create-your-html5-content"></a>建立您的 HTML5 內容
 
 建立 HTML 內容並在標題中顯示您的產品品牌名稱。
 
@@ -68,9 +60,7 @@ ms.lasthandoff: 07/06/2017
 
 2. 在文字編輯器中貼上所複製的程式碼片段，然後將檔案儲存為 customize-ui.html。
 
-<a id="create-an-azure-blob-storage-account" class="xliff"></a>
-
-## 建立 Azure Blob 儲存體帳戶
+## <a name="create-an-azure-blob-storage-account"></a>建立 Azure Blob 儲存體帳戶
 
 >[!NOTE]
 > 在本文中，我們使用 Azure Blob 儲存體來裝載內容。 您可以選擇在 Web 伺服器上裝載您的內容，但必須[在 Web 伺服器上啟用 CORS](https://enable-cors.org/server.html)。
@@ -92,9 +82,7 @@ ms.lasthandoff: 07/06/2017
 13. 按一下 [建立]  建立儲存體帳戶。  
     部署完成後，[儲存體帳戶] 刀鋒視窗會自動開啟。
 
-<a id="create-a-container" class="xliff"></a>
-
-## 建立容器
+## <a name="create-a-container"></a>建立容器
 
 若要在 Blob 儲存體中建立公用容器，請執行下列作業：
 
@@ -111,9 +99,7 @@ ms.lasthandoff: 07/06/2017
 11. 在 **URL** 旁邊，按一下 [複製]。
 12. 在瀏覽器中，貼上所複製的 URL，然後移至網站。 如果無法存取此網站，請確定容器的存取類型設定為 **blob**。
 
-<a id="configure-cors" class="xliff"></a>
-
-## 設定 CORS
+## <a name="configure-cors"></a>設定 CORS
 
 執行下列作業，針對跨原始資源共用設定 Blob 儲存體：
 
@@ -129,9 +115,7 @@ ms.lasthandoff: 07/06/2017
 7. 針對 [最長使用期限 (秒)]，輸入 **200**。
 8. 按一下 [新增] 。
 
-<a id="test-cors" class="xliff"></a>
-
-## 測試 CORS
+## <a name="test-cors"></a>測試 CORS
 
 執行下列作業來驗證您已準備就緒：
 
@@ -139,9 +123,7 @@ ms.lasthandoff: 07/06/2017
 2. 按一下 [傳送要求]。  
     如果您收到錯誤，請確定您的 [CORS 設定](#configure-cors)正確無誤。 您也可能需要清除瀏覽器快取，或按 Ctrl+Shift+P 來開啟 InPrivate 瀏覽工作階段。
 
-<a id="modify-your-sign-up-or-sign-in-custom-policy" class="xliff"></a>
-
-## 修改您的註冊或登入自訂原則
+## <a name="modify-your-sign-up-or-sign-in-custom-policy"></a>修改您的註冊或登入自訂原則
 
 在最上層的 \<TrustFrameworkPolicy\> 標籤中，您應該會發現 \<BuildingBlocks\> 標籤。 在 \<BuildingBlocks\> 標籤內，藉由複製下列範例來新增 \<ContentDefinitions\> 標籤。 使用您的儲存體帳戶名稱來取代 *your_storage_account*。
 
@@ -155,26 +137,20 @@ ms.lasthandoff: 07/06/2017
   </BuildingBlocks>
   ```
 
-<a id="upload-your-updated-custom-policy" class="xliff"></a>
-
-## 上傳更新的自訂原則
+## <a name="upload-your-updated-custom-policy"></a>上傳更新的自訂原則
 
 1. 在 [Azure 入口網站](https://portal.azure.com)中，[切換至您的 Azure AD B2C 租用戶環境](active-directory-b2c-navigate-to-b2c-context.md)，然後開啟 [Azure AD B2C] 刀鋒視窗。
 2. 按一下 [所有原則]。
 3. 按一下 [上傳原則]。
 4. 上傳 `SignUpOrSignin.xml` 與您先前新增的 \<ContentDefinitions\> 標籤。
 
-<a id="test-the-custom-policy-by-using-run-now" class="xliff"></a>
-
-## 使用 [立即執行] 測試自訂原則
+## <a name="test-the-custom-policy-by-using-run-now"></a>使用 [立即執行] 測試自訂原則
 
 1. 在 [Azure AD B2C] 刀鋒視窗上，移至 [所有原則]。
 2. 選取您上傳的自訂原則，按一下 [立即執行] 按鈕。
 3. 您應該可以使用電子郵件地址註冊。
 
-<a id="reference" class="xliff"></a>
-
-## 參考
+## <a name="reference"></a>參考
 
 您可以在此找到 UI 自訂的範例範本：
 
@@ -207,9 +183,7 @@ Sample_templates/wingtip 資料夾包含下列 HTML 檔案：
 | api.selfasserted.profileupdate | **設定檔更新頁面**。 此頁面包含一份表單，以供使用者用來更新其設定檔。 此頁面類似於社交帳戶註冊頁面，但密碼輸入欄位除外。 |
 | api.signuporsignin | **統一的註冊或登入頁面**。 此頁面可處理使用者的註冊和登入，這些使用者可使用企業識別提供者、社交識別提供者 (例如 Facebook 或 Google+) 或本機帳戶。  |
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 如需有關可自訂之 UI 元素的其他資訊，請參閱[內建原則 UI 自訂參考指南](active-directory-b2c-reference-ui-customization.md)。
 

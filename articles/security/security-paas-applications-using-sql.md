@@ -1,5 +1,5 @@
 ---
-title: "使用 SQL Database 和 SQL 資料倉儲來保護 PaaS Web 與行動應用程式 | Microsoft Docs"
+title: "保護 Azure 中的 PaaS 資料庫 | Microsoft Docs"
 description: " 了解用來保護 PaaS Web 與行動應用程式的 Azure SQL Database 和 SQL 資料倉儲安全性最佳做法。 "
 services: security
 documentationcenter: na
@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/21/2017
+ms.date: 07/11/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: be00c1427d57b96506ec8b0ac881b7c1bd09e4de
-ms.lasthandoff: 03/22/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: 18509b3fc3a73118f67583a0b087c58f0e51993c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
 
 ---
-# <a name="securing-paas-web-and-mobile-applications-using-sql-database-and-sql-data-warehouse"></a>使用 SQL Database 和 SQL 資料倉儲來保護 PaaS Web 與行動應用程式
+# <a name="securing-paas-databases-in-azure"></a>保護 Azure 中的 PaaS 資料庫
 
 在本文中，我們將說明用來保護 PaaS Web 與行動應用程式的 [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) 和 [SQL 資料倉儲](https://azure.microsoft.com/services/sql-data-warehouse/)安全性最佳做法。 這些最佳做法衍生自我們的 Azure 經驗和客戶 (例如您自己) 的經驗。
 
@@ -77,15 +77,15 @@ SQL Database 的預設來源 IP 位址限制會允許來自任何 Azure 位址 (
 - [使用 Azure 入口網站設定 Azure SQL Database 伺服器層級防火牆規則](../sql-database/sql-database-configure-firewall-settings.md)
 
 ### <a name="encryption-of-data-at-rest"></a>待用資料加密
-[透明資料加密 (TDE)](https://msdn.microsoft.com/library/azure/bb934049) 會將 SQL Server、Azure SQL Database 及「Azure SQL 資料倉儲」資料檔案加密，稱為將待用資料加密。 您可以採取數個預防措施來協助保護資料庫，例如設定安全系統、加密機密資產，以及建置圍繞資料庫伺服器的防火牆。 不過，在實體媒體 (例如磁碟機或備份磁帶) 遭竊的案例中，惡意人士將可還原或連接資料庫，然後瀏覽資料。 其中一個解決方案就是將資料庫中的敏感性資料加密，然後使用憑證來保護用來加密資料的金鑰。 這可防止所有沒有金鑰的人使用該資料，但這種保護必須事先規劃。
+[透明資料加密 (TDE)](https://msdn.microsoft.com/library/azure/bb934049) 預設為啟用。 TDE 會透明加密 SQL Server、Azure SQL Database 和 Azure SQL 資料倉儲資料和記錄檔。 TDE 會保護對檔案或其備份的直接存取，免於遭受入侵。 這可讓您加密待用資料，而不需要變更現有應用程式。 TDE 應保持啟用，不過這無法阻止攻擊者使用一般存取路徑。 TDE 提供遵守各種產業中所確立的眾多法律、規定及指導方針的功能。
 
-TDE 可以保護待用資料，亦即資料和記錄檔。 它提供遵守各種產業中所確立的眾多法律、規定及指導方針的功能。 這讓軟體開發人員能夠使用業界標準加密演算法來加密資料，而不需變更現有的應用程式。
+Azure SQL 會管理 TDE 的金鑰相關問題。 如同 TDE，在移動資料庫時，內部部署必須特別小心，如此才能保障復原能力。 在更複雜的情況下，您可以透過可延伸金鑰管理在 Azure Key Vault 中明確管理金鑰 (請參閱[使用 EKM 在 SQL Server 上啟用 TDE](/security/encryption/enable-tde-on-sql-server-using-ekm))。 也可以透過 Azure Key Vault BYOK 功能，實行自備金鑰 (BYOK)。
 
-如果法規明確指定使用 TDE，就應該使用這種加密。 不過，請注意，這並不會阻止攻擊者使用一般存取路徑。 TDE 是用來針對極不可能發生的情況提供防護，此情況就是您可能需要透過 Azure SQL 針對資料列和資料行提供的加密，或透過應用程式層級加密，使用額外的應用程式層級加密。
+Azure SQL 可透過 [Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine) 提供資料行加密。 如此僅有獲得授權的應用程式得以存取敏感的資料行。 使用此類加密可讓加密資料行的 SQL 查詢限制於相等值。
 
-應用程式層級加密也應該用於選擇性資料。 藉由使用保存在正確國家/地區的金鑰來加密資料，即可緩和資料主權問題的疑慮。 這甚至可以防止意外資料傳輸造成問題，因為在沒有金鑰的情況下，就無法將資料解密，這裡是假設使用增強式演算法 (例如 AES 256)。
+應用程式層級加密也應該用於選擇性資料。 藉由使用保存在正確國家/地區的金鑰來加密資料，有時即可緩和資料主權問題的疑慮。 這甚至可以防止意外資料轉送造成問題，因為在沒有金鑰的情況下，就無法將資料解密，這裡是假設使用增強式演算法 (例如 AES 256)。
 
-您可以執行 Azure SQL 針對資料列和資料行提供的加密，以只允許已獲授權的 ([RBAC](../active-directory/role-based-access-built-in-roles.md)) 使用者進行存取，以及防止權限較低的使用者查看資料行或資料列。
+您可以採取其他預防措施來協助保護資料庫，例如設定安全系統、加密機密資產，以及建置圍繞資料庫伺服器的防火牆。
 
 ## <a name="next-steps"></a>後續步驟
 本文介紹用來保護 PaaS Web 與行動應用程式的一組 SQL Database 和「SQL 資料倉儲」安全性最佳做法。 若要深入了解如何保護您的 PaaS 部署，請參閱︰

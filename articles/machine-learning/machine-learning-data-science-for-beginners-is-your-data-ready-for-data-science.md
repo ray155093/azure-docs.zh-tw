@@ -1,5 +1,5 @@
 ---
-title: "已備妥資料來進行資料科學嗎？ 資料評估 - Azure | Microsoft Docs"
+title: "已備妥資料來進行資料科學嗎？ 資料評估 - Azure Machine Learning | Microsoft Docs"
 description: "了解已備妥資料來進行資料科學的 4 個準則。 適用於初學者的資料科學影片 2 提供具體範例，可協助進行基本的資料評估。"
 keywords: "相關的資料, 評估資料, 準備資料, 資料準則, 備妥資料"
 services: machine-learning
@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/09/2017
+ms.date: 07/13/2017
 ms.author: cgronlun;garye
-translationtype: Human Translation
-ms.sourcegitcommit: b167b88d227bf239fd5d3676e48e04436f140c34
-ms.openlocfilehash: 3d2b259c29a52394ac42afba0c5572364cfeea39
-ms.lasthandoff: 02/10/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: 8c27159e75482e5d3b2048298b118c55574c6b57
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="is-your-data-ready-for-data-science"></a>已備妥資料來進行資料科學嗎？
@@ -27,6 +27,7 @@ ms.lasthandoff: 02/10/2017
 了解如何評估您的資料，以確定它符合進行資料科學的基本準則。
 
 若要充分運用這系列影片，請觀賞所有影片。 [瀏覽影片清單](#other-videos-in-this-series)
+<br>
 
 > [!VIDEO https://channel9.msdn.com/Shows/SupervisionNotRequired/9/player]
 >
@@ -37,14 +38,14 @@ ms.lasthandoff: 02/10/2017
 
 * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 分 14 秒)*
 * 影片 2：您的資料已經可以進行資料科學了嗎？
-* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)*(4 分 17 秒)*
+* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) *(4 分 17 秒)*
 * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) *(7 分 42 秒)*
 * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 分 18 秒)*
 
 ## <a name="transcript-is-your-data-ready-for-data-science"></a>文字記錄：已備妥資料來進行資料科學嗎？
 歡迎觀賞「已備妥資料來進行資料科學嗎？」 這是「適用於初學者的資料科學」系列的第二個影片。  
 
-您必須先提供一些可運用的高品質原始資料，資料科學才能提供您想要的答案。 就像製作比薩，您一開始使用的原料越好，最終產品就越好。
+您必須先提供一些可運用的高品質原始資料，資料科學才能提供您想要的答案。 就像製作比薩，您一開始使用的原料越好，最終產品就越好。 
 
 ## <a name="criteria-for-data"></a>資料準則
 因此，就資料科學來說，有一些我們需要合併在一起的要素。
@@ -59,7 +60,7 @@ ms.lasthandoff: 02/10/2017
 ## <a name="is-your-data-relevant"></a>您的資料有相關性嗎？
 因此第一個要素 - 我們需要相關的資料。
 
-![相關的資料與無關的資料 - 評估資料](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-relevant-and-irrelevant-data.png)
+![相關的資料與無關的資料 - 評估資料](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/relevant-and-irrelevant-data.png)
 
 查看左邊表格。 我們在波士頓酒吧外面遇到了七個人、測量了他們的血液酒精濃度、紅襪隊在他們的最後一場比賽中的打擊率，以及最近一家便利商店的牛奶價格。
 
@@ -70,7 +71,7 @@ ms.lasthandoff: 02/10/2017
 ## <a name="do-you-have-connected-data"></a>是否有連貫的資料？
 下一個要素是連貫的資料。
 
-![連接的資料與中斷連接的資料 - 資料準則、備妥資料](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-connected-vs-disconnected-data.png)
+![連接的資料與中斷連接的資料 - 資料準則、備妥資料](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/connected-vs-disconnected-data.png)
 
 以下是一些關於漢堡品質的相關資料：燒烤溫度、肉餅重量，以及當地食品雜誌的評價。 但請注意左邊表格中的空格。
 
@@ -83,7 +84,7 @@ ms.lasthandoff: 02/10/2017
 ## <a name="is-your-data-accurate"></a>是您的資料精確嗎？
 下一個我們所需的要素是精確度。 以下是我們想要用箭射中的 4 個目標。
 
-![準確的資料與不準確的資料 - 資料準則](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-inaccurate-vs-accurate-data.png)
+![準確的資料與不準確的資料 - 資料準則](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/inaccurate-vs-accurate-data.png)
 
 看看右上方的目標。 我們正確地密集射中了靶心周圍。 當然這是精確的。 奇怪的是，在資料科學的語言中，我們在右下方目標的效能也會被視為正確。
 
@@ -94,7 +95,7 @@ ms.lasthandoff: 02/10/2017
 ## <a name="do-you-have-enough-data-to-work-with"></a>您是否有足夠資料可供使用？
 最後，要素 4 - 我們需要有足夠的資料。
 
-![您是否有足夠資料可進行分析？ 資料評估](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-barely-enough-data.png)
+![您是否有足夠資料可進行分析？ 資料評估](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/barely-enough-data.png)
 
 將表格中的每一個資料點視為繪圖中的筆刷筆劃。 如果只有幾個筆刷筆劃，繪圖就會變得很模糊 - 很難判斷它是什麼。
 

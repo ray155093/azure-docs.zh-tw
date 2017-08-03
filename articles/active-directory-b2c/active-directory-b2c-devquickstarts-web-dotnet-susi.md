@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: parakhj
-translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 87b8b91fc5970bd127dfdc47e24d99a19471aa8c
-ms.lasthandoff: 05/03/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 2dcde690d138fdf524c84c38ffaf3dd8f5a38b83
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="azure-ad-b2c-sign-up--sign-in-in-a-aspnet-web-app"></a>Azure AD B2C：在 ASP.NET Web 應用程式中註冊和登入
@@ -347,7 +347,7 @@ public ActionResult Claims()
 
 ## <a name="run-the-sample-app"></a>執行範例應用程式
 
-最後，您可以建置並執行您的應用程式。 使用電子郵件地址或使用者名稱來註冊應用程式。 登出，再以相同的使用者身分重新登入。 編輯設定檔或重設密碼。 登出，再以不同的使用者身分登入。 請注意，[宣告]  索引標籤上顯示的資訊對應到您在原則上設定的資訊。
+最後，建置 TaskService 和 TaskWebApp 專案，在 Visual Studio 中將 TaskWebApp 設定為啟動專案，讓網頁功能表項目正確顯示，並執行您的應用程式。 使用電子郵件地址或使用者名稱來註冊應用程式。 登出，再以相同的使用者身分重新登入。 編輯設定檔或重設密碼。 登出，再以不同的使用者身分登入。 請注意，[宣告]  索引標籤上顯示的資訊對應到您在原則上設定的資訊。
 
 ## <a name="add-social-idps"></a>新增社交 IDP
 

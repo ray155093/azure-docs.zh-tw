@@ -21,9 +21,7 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="error-on-an-applications-page-after-signing-in" class="xliff"></a>
-
-# 登入後應用程式頁面的錯誤
+# <a name="error-on-an-applications-page-after-signing-in"></a>登入後應用程式頁面的錯誤
 
 在此案例中，Azure AD 已將使用者登入，但應用程式顯示不允許使用者成功完成登入流程的錯誤。 在此案例中，應用程式不接受由 Azure AD 發出的回應。
 
@@ -35,9 +33,7 @@ ms.lasthandoff: 04/17/2017
 
 -   將 SAML 回應與應用程式廠商分享，以得知遺漏的項目。
 
-<a id="missing-attributes-in-the-saml-response" class="xliff"></a>
-
-## SAML 回應中遺漏屬性
+## <a name="missing-attributes-in-the-saml-response"></a>SAML 回應中遺漏屬性
 
 若要在 Azure AD 組態中新增要以 Azure AD 回應傳送的屬性，請依照下列步驟執行：
 
@@ -69,15 +65,11 @@ ms.lasthandoff: 04/17/2017
 
 下次使用者登入應用程式，Azure AD 會以 SAML 回應傳送新的屬性。
 
-<a id="the-application-expects-a-different-user-identifier-value-or-format" class="xliff"></a>
-
-## 應用程式預期不同的使用者識別碼值或格式
+## <a name="the-application-expects-a-different-user-identifier-value-or-format"></a>應用程式預期不同的使用者識別碼值或格式
 
 登入應用程式失敗，因為 SAML 回應中遺漏如角色等屬性，或因為應用程式所預期的 EntityID 屬性格式不同。
 
-<a id="add-an-attribute-in-the-azure-ad-application-configuration" class="xliff"></a>
-
-## 在 Azure AD 應用程式組態中新增屬性：
+## <a name="add-an-attribute-in-the-azure-ad-application-configuration"></a>在 Azure AD 應用程式組態中新增屬性：
 
 若要變更的使用者識別碼值，請依照下列步驟執行︰
 
@@ -99,17 +91,13 @@ ms.lasthandoff: 04/17/2017
 
 8.  在 [使用者屬性] 下方，從 [使用者識別碼] 下拉式清單選取使用者的唯一識別碼。
 
-<a id="change-entityid-user-identifier-format" class="xliff"></a>
-
-## 變更 EntityID (使用者識別碼) 格式
+## <a name="change-entityid-user-identifier-format"></a>變更 EntityID (使用者識別碼) 格式
 
 如果應用程式預期 EntityID 屬性為另一種格式。 接著，在使用者驗證之後，您將無法選取 Azure AD 要在回應中傳送至應用程式的 EntityID (使用者識別碼) 格式。
 
 Azure AD 會根據由應用程式以 SAML AuthRequest 選取的值或要求的格式，來選取 NameID 屬性 (使用者識別碼) 的格式。 如需詳細資訊，請參閱 NameIDPolicy 區段下方的[單一登入 SAML 通訊協定](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest)一文。
 
-<a id="the-application-expects-a-different-signature-method-for-the-saml-response" class="xliff"></a>
-
-## 應用程式所預期的 SAML 回應簽章方法不同
+## <a name="the-application-expects-a-different-signature-method-for-the-saml-response"></a>應用程式所預期的 SAML 回應簽章方法不同
 
 若要變更 Azure Active Directory 數位簽署 SAML 權杖的部分， 請依照下列步驟執行：
 
@@ -141,9 +129,7 @@ Azure AD 會根據由應用程式以 SAML AuthRequest 選取的值或要求的�
 
 下次使用者登入應用程式，Azure AD 會簽署所選的 SAML 回應部分。
 
-<a id="the-application-expects-the-signing-algorithm-to-be-sha-1" class="xliff"></a>
-
-## 應用程式預期的簽署演算法是 SHA-1
+## <a name="the-application-expects-the-signing-algorithm-to-be-sha-1"></a>應用程式預期的簽署演算法是 SHA-1
 
 根據預設，Azure AD 會使用最安全的演算法簽署 SAML 權杖。 不建議將簽署演算法變更為 SHA-1，除非應用程式需要。
 
@@ -171,8 +157,6 @@ Azure AD 會根據由應用程式以 SAML AuthRequest 選取的值或要求的�
 
 下次使用者登入應用程式，Azure AD 會使用 SHA-1 演算法簽署 SAML 權杖。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging)
 

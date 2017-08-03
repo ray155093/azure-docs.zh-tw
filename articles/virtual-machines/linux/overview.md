@@ -15,11 +15,11 @@ ms.workload: infrastructure
 ms.date: 09/14/2016
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017, mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: 981b87540070dff18a01d6bf3dce24a675b451aa
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: c82459bfddc2755a56fdad6eb8ab4c8bb41862f6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="azure-and-linux"></a>Azure 和 Linux
@@ -135,7 +135,7 @@ VM 現在已在 Azure 上執行，而您已經可以登入。  使用密碼透�
 ## <a name="containers"></a>容器
 * [Azure 中的虛擬機器和容器](containers.md)
 * [Azure 容器服務簡介](../../container-service/container-service-intro.md)
-* [部署 Azure 容器服務叢集](../../container-service/container-service-deployment.md)
+* [部署 Azure 容器服務叢集](../../container-service/dcos-swarm/container-service-deployment.md)
 
 ## <a name="next-steps"></a>後續步驟
 您現在已概略了解 Azure 上的 Linux。  下一個步驟是深入了解並建立一些 VM！

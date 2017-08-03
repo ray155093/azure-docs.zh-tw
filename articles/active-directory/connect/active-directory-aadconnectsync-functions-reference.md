@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 07/12/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 0f62c1f4f67bec12d1f71b1b02fd121402b0e25c
-ms.openlocfilehash: 70fe899087effca47b2b537facf1c3ed227657de
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
+ms.openlocfilehash: dbd3727d3a31132c2dc1ae1bf5fade7ed969e2c9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 06/17/2017
 
 ---
 # <a name="azure-ad-connect-sync-functions-reference"></a>Azure AD Connect 同步處理：函式參考
@@ -50,6 +51,13 @@ ms.openlocfilehash: 70fe899087effca47b2b537facf1c3ed227657de
 ## <a name="functions-reference"></a>函式參考
 | 函數的清單 |  |  |  |  |
 | --- | --- | --- | --- | --- | --- |
+| **憑證** | | | | |
+| [CertExtensionOids](#certextensionoids) |[CertFormat](#certformat) |[CertFriendlyName](#certfriendlyname) |[CertHashString](#certhashstring) | |
+| [CertIssuer](#certissuer) |[CertIssuerDN](#certissuerdn) |[CertIssuerOid](#certissueroid) |[CertKeyAlgorithm](#certkeyalgorithm) | |
+| [CertKeyAlgorithmParams](#certkeyalgorithmparams) |[CertNameInfo](#certnameinfo) |[CertNotAfter](#certnotafter) |[CertNotBefore](#certnotbefore) | |
+| [CertPublicKeyOid](#certpublickeyoid) |[CertPublicKeyParametersOid](#certpublickeyparametersoid) |[CertSerialNumber](#certserialnumber) |[CertSignatureAlgorithmOid](#certsignaturealgorithmoid) | |
+| [CertSubject](#certsubject) |[CertSubjectNameDN](#certsubjectnamedn) |[CertSubjectNameOid](#certsubjectnameoid) |[CertThumbprint](#certthumbprint) | |
+[ CertVersion](#certversion) |[IsCert](#iscert) | | | |
 | **轉換** | | | | |
 | [CBool](#cbool) |[CDate](#cdate) |[CGuid](#cguid) |[ConvertFromBase64](#convertfrombase64) | |
 | [ConvertToBase64](#converttobase64) |[ConvertFromUTF8Hex](#convertfromutf8hex) |[ConvertToUTF8Hex](#converttoutf8hex) |[CNum](#cnum) | |
@@ -69,7 +77,8 @@ ms.openlocfilehash: 70fe899087effca47b2b537facf1c3ed227657de
 | [Contains](#contains) |[Count](#count) |[Item](#item) |[ItemOrNull](#itemornull) | |
 | [Join](#join) |[RemoveDuplicates](#removeduplicates) |[Split](#split) | | |
 | **程式流程** | | | | |
-| [Error](#error) |[IIF](#iif) |[Switch](#switch) | | |
+| [Error](#error) |[IIF](#iif) |[選取](#select) |[Switch](#switch) | |
+| [其中](#where) |[With](#with) | | | |
 | **文字** | | | | |
 | [GUID](#guid) |[InStr](#instr) |[InStrRev](#instrrev) |[LCase](#lcase) | |
 | [Left](#left) |[Len](#len) |[LTrim](#ltrim) |[Mid](#mid) | |
@@ -148,6 +157,204 @@ CDate 函式會傳回字串的 UTC DateTime。 DateTime 不是同步處理中的
 `CDate("2013-01-10 4:00 PM -8")`  
 傳回代表 "2013-01-11 12:00 AM" 的 DateTime
 
+
+
+
+
+
+
+
+- - -
+### <a name="certextensionoids"></a>CertExtensionOids
+**說明：**  
+傳回所有憑證物件重要延伸模組的 Oid 值。
+
+**語法：**  
+`mvstr CertExtensionOids(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certformat"></a>CertFormat
+**說明：**  
+傳回此 X.509v3 憑證的格式名稱。
+
+**語法：**  
+`str CertFormat(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certfriendlyname"></a>CertFriendlyName
+**說明：**  
+傳回憑證的相關聯別名。
+
+**語法：**  
+`str CertFriendlyName(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certhashstring"></a>CertHashString
+**說明：**  
+為傳回 X.509v3 憑證的 SHA1 雜湊值作為十六進位字串。
+
+**語法：**  
+`str CertHashString(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certissuer"></a>CertIssuer
+**說明：**  
+傳回發出 X.509v3 憑證的憑證授權單位名稱。
+
+**語法：**  
+`str CertIssuer(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certissuerdn"></a>CertIssuerDN
+**說明：**  
+傳回憑證簽發者的辨別名稱。
+
+**語法：**  
+`str CertIssuerDN(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certissueroid"></a>CertIssuerOid
+**說明：**  
+傳回憑證簽發者的 Oid。
+
+**語法：**  
+`str CertIssuerOid(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certkeyalgorithm"></a>CertKeyAlgorithm
+**說明：**  
+傳回此 X.509v3 憑證的金鑰演算法資訊作為字串。
+
+**語法：**  
+`str CertKeyAlgorithm(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certkeyalgorithmparams"></a>CertKeyAlgorithmParams
+**說明：**  
+傳回此 X.509v3 憑證的金鑰演算法參數作為十六進位字串。
+
+**語法：**  
+`str CertKeyAlgorithm(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certnameinfo"></a>CertNameInfo
+**說明：**  
+傳回憑證的主體與簽發者名稱。
+
+**語法：**  
+`str CertNameInfo(binary certificateRawData, str x509NameType, bool includesIssuerName)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+*   X509NameType：主體的 X509NameType 值。
+*   includesIssuerName：true 則包含簽發者名稱，否則為 false。
+
+- - -
+### <a name="certnotafter"></a>CertNotAfter
+**說明：**  
+傳回憑證失效的當地時間日期。
+
+**語法：**  
+`dt CertNotAfter(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certnotbefore"></a>CertNotBefore
+**說明：**  
+傳回憑證開始生效的當地時間日期。
+
+**語法：**  
+`dt CertNotBefore(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certpublickeyoid"></a>CertPublicKeyOid
+**說明：**  
+傳回 X.509v3 憑證公開金鑰的 Oid。
+
+**語法：**  
+`str CertKeyAlgorithm(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certpublickeyparametersoid"></a>CertPublicKeyParametersOid
+**說明：**  
+傳回 X.509v3 憑證公開金鑰參數的 Oid。
+
+**語法：**  
+`str CertPublicKeyParametersOid(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certserialnumber"></a>CertSerialNumber
+**說明：**  
+傳回 X.509v3 憑證的序號。
+
+**語法：**  
+`str CertSerialNumber(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certsignaturealgorithmoid"></a>CertSignatureAlgorithmOid
+**說明：**  
+傳回建立憑證簽章所用演算法的 Oid。
+
+**語法：**  
+`str CertSignatureAlgorithmOid(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certsubject"></a>CertSubject
+**說明：**  
+取得憑證的主體辨別名稱。
+
+**語法：**  
+`str CertSubject(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certsubjectnamedn"></a>CertSubjectNameDN
+**說明：**  
+傳回憑證的主體辨別名稱。
+
+**語法：**  
+`str CertSubjectNameDN(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certsubjectnameoid"></a>CertSubjectNameOid
+**說明：**  
+傳回憑證主體名稱的 Oid。
+
+**語法：**  
+`str CertSubjectNameOid(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certthumbprint"></a>CertThumbprint
+**說明：**  
+傳回憑證的指紋。
+
+**語法：**  
+`str CertThumbprint(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
+- - -
+### <a name="certversion"></a>CertVersion
+**說明：**  
+傳回憑證的 X.509 格式版本。
+
+**語法：**  
+`str CertThumbprint(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+
 - - -
 ### <a name="cguid"></a>CGuid
 **說明：**  
@@ -172,7 +379,7 @@ Contains 函式會在多重值屬性內尋找字串
 * search：要在屬性中尋找的字串。
 * Casetype：CaseInsensitive 或 CaseSensitive。
 
-傳回在多重值屬性中找到字串的索引。 如果找不到該字串，即會傳回&0;。
+傳回在多重值屬性中找到字串的索引。 如果找不到該字串，即會傳回 0。
 
 **備註：**  
 針對多重值字串屬性，搜尋會在值中尋找子字串。  
@@ -506,6 +713,14 @@ IsBitSet 函式會測試是否已設定位元
 用來判斷 CDate() 是否可能成功。
 
 - - -
+### <a name="iscert"></a>IsCert
+**說明：**  
+如果原始資料可以序列化為 .NET X509Certificate2 憑證物件，則傳回 true。
+
+**語法：**  
+`bool CertThumbprint(binary certificateRawData)`  
+*   certificateRawData：X.509 憑證的位元組陣列表示。 位元組陣列可以是編碼的二進位 (DER) 或 Base64 編碼的 X.509 資料。
+- - -
 ### <a name="isempty"></a>IsEmpty
 **說明：**  
 如果屬性存在於 CS 或 MV 中，但評估為空字串，則 IsEmpty 函式會評估為 True。
@@ -650,7 +865,7 @@ Join 和 Split 函式之間有同位。 Join 函式可接受字串陣列，並�
 
 **範例：**  
 `Join([proxyAddresses],",")`  
-可能會傳回："SMTP:john.doe@contoso.com,smtp:jd@contoso.com"
+可能傳回："SMTP:john.doe@contoso.com,smtp:jd@contoso.com"
 
 - - -
 ### <a name="lcase"></a>LCase
@@ -954,6 +1169,24 @@ RTrim 函式會從字串移除結尾空白字元。
 傳回 "Test"。
 
 - - -
+### <a name="select"></a>選取
+**說明：**  
+在以指定函式為基礎的多重值屬性 (或運算式的輸出) 中處理所有值。
+
+**語法：**  
+`mvattr Select(variable item, mvattr attribute, func function)`  
+`mvattr Select(variable item, exp expression, func function)`
+
+* item：表示多重值屬性中的項目
+* attribute：多重值屬性
+* expression：傳回值集合的運算式
+* condition：可以在屬性中處理項目的任何函式
+
+**範例：**  
+`Select($item,[otherPhone],Replace($item,“-”,“”))`  
+傳回移除連字號 (-) 後，多重值屬性 otherPhone 中所有值。
+
+- - -
 ### <a name="split"></a>Split
 **說明：**  
 Split 函式會接受以分隔符號分隔的字串，並使其成為多重值的字串。
@@ -1043,6 +1276,42 @@ UCase 函式會將字串中的所有字元轉換為大寫。
 傳回 "test"。
 
 - - -
+### <a name="where"></a>Where
+
+**說明：**  
+傳回以指定條件為基礎的多重值屬性 (或運算式的輸出) 的值子集。
+
+**語法：**  
+`mvattr Where(variable item, mvattr attribute, exp condition)`  
+`mvattr Where(variable item, exp expression, exp condition)`  
+* item：表示多重值屬性中的項目
+* attribute：多重值屬性
+* condition：可評估為 True 或 False 的任何運算式
+* expression：傳回值集合的運算式
+
+**範例：**  
+`Where($item,[userCertificate],CertNotAfter($item)>Now())`  
+傳回未過期的多重值屬性 userCertificate 中的憑證值。
+
+- - -
+### <a name="with"></a>With
+**說明：**  
+With 函式可以簡化複雜的運算式，使用變數代表在複雜運算式中會出現一或多次的子運算式。
+
+**語法：**
+`With(var variable, exp subExpression, exp complexExpression)`  
+* variable：代表子運算式。
+* subExpression：變數代表的子運算式。
+* complexExpression：複雜的運算式。
+
+**範例：**  
+`With($unExpiredCerts,Where($item,[userCertificate],CertNotAfter($item)>Now()),IIF(Count($unExpiredCerts)>0,$unExpiredCerts,NULL))`  
+在功能上等同於：  
+`IIF (Count(Where($item,[userCertificate],CertNotAfter($item)>Now()))>0, Where($item,[userCertificate],CertNotAfter($item)>Now()),NULL)`  
+只傳回 UserCertificate 屬性中未過期的憑證值。
+
+
+- - -
 ### <a name="word"></a>Word
 **說明：**  
 Word 函式會根據描述要使用之分隔符號及要傳回之字數的參數，傳回字串內含的單字。
@@ -1073,9 +1342,4 @@ string 內以 delimiters 其中一個字元來分隔之字元的每個字串，�
 * [了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

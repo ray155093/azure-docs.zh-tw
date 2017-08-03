@@ -1,5 +1,5 @@
 ---
-title: "搭配使用 Apache Storm 與 Power BI | Microsoft Docs"
+title: "搭配使用 Apache Storm 與 Power BI - Azure HDInsight | Microsoft Docs"
 description: "使用來自 HDInsight 中的 Apache Storm 叢集上執行的 C# 拓撲的資料建立 Power BI。"
 services: hdinsight
 documentationcenter: 
@@ -14,12 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/01/2017
+ms.date: 05/31/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: bedb6816e4f203687529e95ffa24688e86b5a3cb
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 36487c0c34e5a4bb955bbc15c8c96b9e838aeb44
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.lasthandoff: 04/12/2017
 Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提供如何使用 Apache Storm on HDInsight 為 Power BI 產生資料的範例。
 
 > [!NOTE]
-> 雖然本文件中的步驟依賴 Windows 開發環境與 Visual Studio，但已編譯的專案可以提交到以 Linux 或 Windows 為基礎的 HDInsight 叢集。 只有在 2016/10/28 之後建立的以 Linux 為基礎的叢集可支援 SCP.NET 拓撲。
+> 本文件中的步驟仰賴於含有 Visual Studio 的 Windows 開發環境。 已編譯的專案可以提交到以 Linux 為基礎的 HDInsight 叢集。 只有在 2016/10/28 之後建立的以 Linux 為基礎的叢集可支援 SCP.NET 拓撲。
 >
 > 若要搭配使用 C# 拓撲與以 Linux 為基礎的叢集，請將專案使用的 Microsoft.SCP.Net.SDK NuGet 套件，更新為 0.10.0.6 版或更新版本。 套件版本也必須符合 HDInsight 上安裝的 Storm 主要版本。 例如，Storm on HDInsight 3.3 和 3.4 版使用 Storm 0.10.x 版，而 HDInsight 3.5 使用 Storm 1.0.x。
 >
@@ -42,7 +43,7 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
 * HDInsight 叢集。 如需詳細資訊，請參閱[開始使用 Storm on HDInsight](hdinsight-apache-storm-tutorial-get-started-linux.md)。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 * Visual Studio (下列其中一個版本)
 
@@ -108,7 +109,7 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
 
         select * from iislogs;
 
-    使用 Ctrl + Shift + E 來執行查詢，您應該會收到類似下列的結果：
+    使用 Ctrl + Shift + E 來執行查詢，您應該會收到類似下列資料的結果：
 
         1    2016-05-27 17:57:14.797    255.255.255.255    /bar    GET    200
         2    2016-05-27 17:57:14.843    127.0.0.1    /spam/eggs    POST    500
@@ -121,11 +122,17 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
 
 ## <a name="create-a-report"></a>建立報表
 
-1. 連接到適用於 Power BI 的 [Azure SQL Database 連接器](https://app.powerbi.com/getdata/bigdata/azure-sql-database-with-live-connect) 。
+1. 連接到適用於 Power BI 的 [Azure SQL Database 連接器](https://app.powerbi.com/getdata/bigdata/azure-sql-database-with-live-connect) 。 
 
 2. 在 [資料庫] 內，選取 [Get]。
 
 3. 選取 [Azure SQL Database]，然後選取 [連接]。
+
+    > [!NOTE]
+    > 系統可能會要求您下載 Power BI Desktop 以繼續執行。 若是如此，請使用下列步驟來連接：
+    >
+    > 1. 開啟 Power BI Desktop 並選取 [取得資料]。
+    > 2  選取 __Azure__，然後選取 __Azure SQL Database__。
 
 4. 輸入資訊以連接到您的 Azure SQL Database。 您可以造訪 [Azure 入口網站](https://portal.azure.com)，並且選取您的 SQL Database，以找到此資訊。
 
@@ -134,15 +141,15 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
 
 5. 連接之後，您會看到新的資料集具有與您連接的資料庫相同的名稱。 選取要開始設計報告的資料集。
 
-6. 從 [欄位] 展開 [IISLOGS] 項目。 選取 [URISTEM] 的核取方塊。 這會建立報告，列出資料庫中記錄的 URI 詞幹 (/foo、/bar 等等)。
+6. 從 [欄位] 展開 [IISLOGS] 項目。 若要建立列出 URI 主體的報告，請選取 **URISTEM** 的核取方塊。
 
     ![建立報告](./media/hdinsight-storm-power-bi-topology/createreport.png)
 
-7. 接著，將 **方法** 拖曳至報告。 報告將會更新以列出詞幹和用於 HTTP 要求的對應 HTTP 方法。
+7. 接著，將 **方法** 拖曳至報告。 報告將會更新以列出主體和用於 HTTP 要求的對應 HTTP 方法。
 
     ![新增方法資料](./media/hdinsight-storm-power-bi-topology/uristemandmethod.png)
 
-8. 從 [視覺效果] 資料行中，選取 [欄位] 圖示，然後選取 [值] 區段中 [方法] 旁的向下箭號。 從顯示的清單中，選取 [計數] 。 這會變更報告以列出已存取特定 URI 多少次的計數。
+8. 從 [視覺效果] 資料行中，選取 [欄位] 圖示，然後選取 [值] 區段中 [方法] 旁的向下箭號。 若要顯示存取 URI 的次數，請選取 [計數]。
 
     ![變更為方法的計數](./media/hdinsight-storm-power-bi-topology/count.png)
 
@@ -154,7 +161,7 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
 
 ## <a name="stop-the-topology"></a>停止拓撲
 
-拓撲會繼續執行，直到您將它停止，或刪除 Storm on HDInsight 叢集為止。 請執行下列步驟來停止拓撲。
+拓撲會繼續執行，直到您將它停止，或刪除 Storm on HDInsight 叢集為止。 若要停止拓撲，請執行下列步驟：
 
 1. 在 Visual Studio 中，返回拓撲檢視器並選取拓撲。
 
@@ -168,7 +175,7 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
 
 ## <a name="next-steps"></a>後續步驟
 
-在本文件中，您已學會如何將資料從 Storm 拓撲傳送到 SQL Database，然後使用 Power BI 視覺化資料。 如需如何使用 Storm on HDInsight 以使用其他 Azure 技術的資訊，請參閱下列項目：
+在本文件中，您已學會如何將資料從 Storm 拓撲傳送到 SQL Database，然後使用 Power BI 視覺化資料。 如需如何使用 Storm on HDInsight 以利用其他 Azure 技術的資訊，請參閱下列文件：
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 

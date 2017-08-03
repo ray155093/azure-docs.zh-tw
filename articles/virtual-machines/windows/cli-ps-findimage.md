@@ -1,6 +1,6 @@
 ---
-title: "瀏覽並選取 Windows VM 映像 | Microsoft Docs"
-description: "了解如何在使用資源管理員部署模型建立 Windows 虛擬機器時，判斷映像的發行者、訂閱詳情及 SKU。"
+title: "在 Azure 中選取 Linux VM 映像 | Microsoft Docs"
+description: "了解如何使用 Azure PowerSHell 來判斷發行者、優惠、SKU 和 Marketplace VM 映像的版本。"
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -13,43 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 08/23/2016
+ms.date: 07/12/2017
 ms.author: danlep
-ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 28bb214570fcca94c5ceb6071c4851b81ec00c8d
+ms.translationtype: HT
+ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
+ms.openlocfilehash: 630f555b003b0efc45b372a7009dbf036aa8c737
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 07/14/2017
 
 ---
-<a id="navigate-and-select-windows-virtual-machine-images-in-azure-with-powershell" class="xliff"></a>
+# <a name="how-to-find-windows-vm-images-in-the-azure-marketplace-with-azure-powershell"></a>如何使用 Azure PowerShell 在 Azure Marketplace 中尋找 Windows VM 映像
 
-# 使用 PowerShell 在 Azure 中瀏覽並選取 Windows 虛擬機器映像
-本主題說明如何針對您可能在其中進行部署的每個位置，尋找 VM 映像發行者、提供項目、SKU 及版本。 例如，一些常用的 Windows VM 映像包括︰
+本主題描述如何在 Azure Marketplace 中使用 Azure PowerShell 尋找 Windows VM 映像。 您可以使用此資訊，在建立 Windows VM 時指定 Marketplace 映像。
 
-<a id="table-of-commonly-used-windows-images" class="xliff"></a>
+確定您已安裝並設定最新的 [Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
-## 常用 Windows 映像表
+
+
+## <a name="table-of-commonly-used-windows-images"></a>常用 Windows 映像表
 | PublisherName | 提供項目 | SKU |
 |:--- |:--- |:--- |:--- |
-| MicrosoftDynamicsNAV |DynamicsNAV |2015 |
-| MicrosoftSharePoint |MicrosoftSharePointServer |2013 |
-| MicrosoftSQLServer |SQL2014-WS2012R2 |Enterprise-Optimized-for-DW |
-| MicrosoftSQLServer |SQL2014-WS2012R2 |Enterprise-Optimized-for-OLTP |
+| MicrosoftWindowsServer |WindowsServer |2016-Datacenter |
+| MicrosoftWindowsServer |WindowsServer |2016-Datacenter-Server-Core |
+| MicrosoftWindowsServer |WindowsServer |2016-Datacenter-with-Containers |
+| MicrosoftWindowsServer |WindowsServer |2016-Nano-Server |
 | MicrosoftWindowsServer |WindowsServer |2012-R2-Datacenter |
-| MicrosoftWindowsServer |WindowsServer |2012-Datacenter |
 | MicrosoftWindowsServer |WindowsServer |2008-R2-SP1 |
-| MicrosoftWindowsServer |WindowsServer |Windows-Server-Technical-Preview |
-| MicrosoftWindowsServerEssentials |WindowsServerEssentials |WindowsServerEssentials |
+| MicrosoftDynamicsNAV |DynamicsNAV |2017 |
+| MicrosoftSharePoint |MicrosoftSharePointServer |2016 |
+| MicrosoftSQLServer |SQL2016-WS2016 |Enterprise |
+| MicrosoftSQLServer |SQL2014SP2-WS2012R2 |Enterprise |
 | MicrosoftWindowsServerHPCPack |WindowsServerHPCPack |2012R2 |
+| MicrosoftWindowsServerEssentials |WindowsServerEssentials |WindowsServerEssentials |
 
-<a id="find-azure-images-with-powershell" class="xliff"></a>
+## <a name="find-specific-images"></a>尋找特定映像
 
-## 使用 PowerShell 來尋找 Azure 映像
-> [!NOTE]
-> 安裝及設定 [最新的 Azure PowerShell](/powershell/azure/overview)。 如果您使用 1.0 以下的 Azure PowerShell 模組，您仍可以使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。 
-> 
-> 
 
 使用 Azure 資源管理員建立新的虛擬機器時，在某些情況下，您需要使用下列映像屬性組合來指定映像：
 
@@ -57,9 +55,9 @@ ms.lasthandoff: 04/27/2017
 * 提供項目
 * SKU
 
-例如， `Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本檔案需要這些值，而在此檔案中，您必須指定要建立的虛擬機器類型。
+例如，使用這些值搭配 [Set-AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) PowerShell Cmdlet，或搭配資源群組範本，而在此範本中，您必須指定要建立的 VM 類型。
 
-如果您需要決定這些值，則可以巡覽映像以決定這些值，方法是：
+如果您需要判斷這些值，可以執行 [Get AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher)、[Get AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer)和 [Get AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) Cmdlet 以導覽映像。 您要判斷這些值：
 
 1. 列出映像發行者。
 2. 針對指定的發行者，列出其提供項目。
@@ -86,14 +84,19 @@ $offerName="<offer>"
 Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
 ```
 
-從 `Get-AzureRMVMImageSku` 命令的顯示中，您擁有指定新虛擬機器映像時所需的所有資訊。
+從 `Get-AzureRMVMImageSku` 命令的輸出中，您擁有指定新虛擬機器映像時所需的所有資訊。
 
 下圖顯示完整範例：
 
 ```powershell
-PS C:\> $locName="West US"
-PS C:\> Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
+$locName="West US"
+Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
 
+```
+
+輸出：
+
+```
 PublisherName
 -------------
 a10networks
@@ -112,34 +115,48 @@ Canonical
 針對 "MicrosoftWindowsServer" 發佈者：
 
 ```powershell
-PS C:\> $pubName="MicrosoftWindowsServer"
-PS C:\> Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
+$pubName="MicrosoftWindowsServer"
+Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
+```
 
+輸出：
+
+```
 Offer
 -----
+Windows-HUB
 WindowsServer
+WindowsServer-HUB
 ```
 
 針對 "WindowsServer" 提供項目：
 
 ```powershell
-PS C:\> $offerName="WindowsServer"
-PS C:\> Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
+$offerName="WindowsServer"
+Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
+```
 
+輸出：
+
+```
 Skus
 ----
 2008-R2-SP1
+2008-R2-SP1-smalldisk
 2012-Datacenter
+2012-Datacenter-smalldisk
 2012-R2-Datacenter
-2016-Nano-Server-Technical-Previe
-2016-Technical-Preview-with-Conta
-Windows-Server-Technical-Preview
+2012-R2-Datacenter-smalldisk
+2016-Datacenter
+2016-Datacenter-Server-Core
+2016-Datacenter-Server-Core-smalldisk
+2016-Datacenter-smalldisk
+2016-Datacenter-with-Containers
+2016-Nano-Server
 ```
 
 從這個清單中，複製選擇的 SKU 名稱，您就可以取得 `Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本的所有資訊。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
-現在，您可以精確地選擇想要使用的映像。 若要使用您剛找到的映像資訊來快速建立虛擬機器，或使用範本搭配該映像資訊，請參閱[使用 Resource Manager 和 PowerShell 建立 Windows VM](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+## <a name="next-steps"></a>後續步驟
+現在，您可以精確地選擇想要使用的映像。 若要使用映像資訊快速建立虛擬機器，請參閱[使用 PowerShell 建立 Windows 虛擬機器](quick-create-powershell.md)。
 

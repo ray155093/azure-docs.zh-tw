@@ -15,12 +15,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/22/2017
 ms.author: mimig
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 79156c0b511dafcb43ed91800f01338dbb7ee5f3
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: dba483c21afc46b1b9f0a74ebfb24ed644080e09
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="introduction-to-azure-cosmos-db-documentdb-api"></a>Azure Cosmos DB 簡介：DocumentDB API
@@ -51,7 +50,7 @@ Azure Cosmos DB 可透過 DocumentDB API 提供下列重要功能和優點：
 * **自動編製索引**：根據預設，Azure Cosmos DB 會自動為資料庫中的所有文件編制索引，且不預期或需要任何結構描述或建立次要索引。 不想要編製所有項目的索引嗎？ 別擔心，您也可以 [選擇退出 JSON 檔案中的路徑](indexing-policies.md) 。
 
 ## <a name="data-management"></a>您要如何使用 DocumentDB API 來管理資料？
-DocumentDB API 透過定義完善的資料庫資源來協助管理 JSON 資料。 這些資源會進行複寫來達到高可用性，並且會透過其邏輯 URI 來進行唯一定址。 DocumentDB 針對所有資源提供簡單的 HTTP 式 RESTful 程式設計模型。 
+DocumentDB API 透過定義完善的資料庫資源來協助管理 JSON 資料。 這些資源會進行複寫來達到高可用性，並且會透過其邏輯 URI 來進行唯一定址。 DocumentDB API 針對所有資源提供簡單的 HTTP 式 RESTful 程式設計模型。 
 
 
 Azure Cosmos DB 資料庫帳戶是可讓您存取 Azure Cosmos DB 的唯一命名空間。 在建立資料庫帳戶之前，您必須先擁有 Azure 訂用帳戶，此帳戶可讓您存取各種 Azure 服務。 
@@ -87,16 +86,16 @@ Azure Cosmos DB 公開資源的方式是透過 REST API，此 API 可供任何�
 除了基本的建立、讀取、更新和刪除作業之外，DocumentDB API 還提供可用來擷取 JSON 文件的豐富 SQL 查詢介面，並在伺服器端支援以交易方式執行 JavaScript 應用程式邏輯。 查詢和指令碼執行介面可以透過所有平台程式庫以及 REST API 來取得。 
 
 ### <a name="sql-query"></a>SQL 查詢
-DocumentDB API 支援使用根植於 JavaScript 類型系統的 SQL 語言，以及支援關聯式、階層式和空間查詢的運算式來查詢文件。 DocumentDB 查詢語言是可用來查詢 JSON 文件的簡單卻功能強大的介面。 此語言支援 ANSI SQL 文法的子集，並新增 JavaScript 物件、陣列、物件建構和函式叫用的深入整合。 DocumentDB 提供其查詢模型，而沒有來自開發人員的任何明確結構描述或編製索引提示。
+DocumentDB API 支援使用根植於 JavaScript 類型系統的 SQL 語言，以及支援關聯式、階層式和空間查詢的運算式來查詢文件。 DocumentDB 查詢語言是可用來查詢 JSON 文件的簡單卻功能強大的介面。 此語言支援 ANSI SQL 文法的子集，並新增 JavaScript 物件、陣列、物件建構和函式叫用的深入整合。 DocumentDB API 提供其查詢模型，而沒有來自開發人員的任何明確結構描述或編製索引提示。
 
 使用者定義函式 (UDF) 可以向 DocumentDB API 進行註冊，然後在 SQL 查詢中供參考，從而延伸文法來支援自訂應用程式邏輯。 這些 UDF 是以 JavaScript 程式的形式撰寫，並在資料庫內執行。 
 
-對於 .NET 開發人員，DocumentDB [.NET SDK](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.linq.aspx) 也提供 LINQ 查詢提供者。 
+對於 .NET 開發人員，DocumentDB API [.NET SDK](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.linq.aspx) 也提供 LINQ 查詢提供者。 
 
 ### <a name="transactions-and-javascript-execution"></a>交易和 JavaScript 執行
 DocumentDB API 可讓您將應用程式邏輯撰寫成完全以 JavaScript 撰寫的具名程式。 這些程式會針對集合進行註冊，而可對指定之集合內的文件進行資料庫操作。 JavaScript 可以註冊成觸發程序、預存程序或使用者定義函式 (UDF) 來供執行。 觸發程序和預存程序可以建立、讀取、更新和刪除文件，而使用者定義函式則可在查詢執行邏輯中執行，而不需要對集合進行寫入存取。
 
-在 DocumentDB API 內執行 JavaScript 的作法，是仿造自關聯式資料庫系統所支援的概念，以 JavaScript 作為 Transact-SQL 的新式取代項目。 所有 JavaScript 邏輯都是以隔離的快照在環境 ACID 交易內執行。 在執行期間，如果 JavaScript 擲回例外狀況，則會中止整個交易。
+在 Cosmos DB 內執行 JavaScript 的作法是仿造自關聯式資料庫系統所支援的概念，以 JavaScript 做為 Transact-SQL 的新式取代項目。 所有 JavaScript 邏輯都是以隔離的快照在環境 ACID 交易內執行。 在執行期間，如果 JavaScript 擲回例外狀況，則會中止整個交易。
 
 ## <a name="are-there-any-online-courses-on-azure-cosmos-db"></a>Azure Cosmos DB 上是否有任何線上課程？
 

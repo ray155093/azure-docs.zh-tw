@@ -22,18 +22,12 @@ ms.lasthandoff: 06/10/2017
 
 
 ---
-<a id="collect-alerts-from-nagios-and-zabbix-in-log-analytics-from-oms-agent-for-linux" class="xliff"></a>
-
-# 從 OMS Agent for Linux 在 Log Analytics 中收集來自 Nagios 和 Zabbix 的警示 
+# <a name="collect-alerts-from-nagios-and-zabbix-in-log-analytics-from-oms-agent-for-linux"></a>從 OMS Agent for Linux 在 Log Analytics 中收集來自 Nagios 和 Zabbix 的警示 
 [Nagios](https://www.nagios.org/) 和 [Zabbix](http://www.zabbix.com/) 是開放原始碼監視工具。  您可以將來自這些工具的警示收集到 Log Analytics，以搭配[其他來源的警示](log-analytics-alerts.md)一起分析。  本文說明如何設定 OMS Agent for Linux 以收集來自這些系統的警示。
  
-<a id="configure-alert-collection" class="xliff"></a>
+## <a name="configure-alert-collection"></a>設定警示收集
 
-## 設定警示收集
-
-<a id="configuring-nagios-alert-collection" class="xliff"></a>
-
-### 設定 Nagios 警示收集
+### <a name="configuring-nagios-alert-collection"></a>設定 Nagios 警示收集
 在 Nagios 伺服器上執行下列步驟來收集警示。
 
 1. 將 Nagios 記錄檔 (即 `/var/log/nagios/nagios.log`) 的讀取權授與使用者 **omsagent**。 假設 nagios.log 檔案是由 `nagios` 群組所擁有，您可以將使用者 **omsagent** 新增至 **nagios** 群組。 
@@ -60,9 +54,7 @@ ms.lasthandoff: 06/10/2017
     sudo sh /opt/microsoft/omsagent/bin/service_control restart
     ```
 
-<a id="configuring-zabbix-alert-collection" class="xliff"></a>
-
-### 設定 Zabbix 警示收集
+### <a name="configuring-zabbix-alert-collection"></a>設定 Zabbix 警示收集
 若要收集來自 Zabbix 伺服器的警示，您需要以「純文字」指定使用者名稱和密碼。 這雖然不理想，但建議您建立使用者，而且只授與監視權限。
 
 在 Nagios 伺服器上執行下列步驟來收集警示。
@@ -83,14 +75,10 @@ ms.lasthandoff: 06/10/2017
     sudo sh /opt/microsoft/omsagent/bin/service_control restart
 
 
-<a id="alert-records" class="xliff"></a>
-
-## 警示記錄
+## <a name="alert-records"></a>警示記錄
 您可以在 Log Analytics 中使用[記錄搜尋](log-analytics-log-searches.md)，擷取來自 Nagios 和 Zabbix 的警示記錄。
 
-<a id="nagios-alert-records" class="xliff"></a>
-
-### Nagios 警示記錄
+### <a name="nagios-alert-records"></a>Nagios 警示記錄
 
 Nagios 所收集之警示記錄的 **Type** 為 **Alert**，而 **SourceSystem** 為 **Nagios**。  其屬性如下表所示。
 
@@ -107,9 +95,7 @@ Nagios 所收集之警示記錄的 **Type** 為 **Alert**，而 **SourceSystem**
 | TimeGenerated |建立警示的日期和時間。 |
 
 
-<a id="zabbix-alert-records" class="xliff"></a>
-
-### Zabbix 警示記錄
+### <a name="zabbix-alert-records"></a>Zabbix 警示記錄
 Zabbix 所收集之警示記錄的 **Type** 為 **Alert**，而 **SourceSystem** 為 **Zabbix**。  其屬性如下表所示。
 
 | 屬性 | 說明 |
@@ -127,9 +113,7 @@ Zabbix 所收集之警示記錄的 **Type** 為 **Alert**，而 **SourceSystem**
 | TimeLastModified |上次變更警示狀態的日期和時間。 |
 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 了解 Log Analytics 中的[警示](log-analytics-alerts.md)。
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。 
 

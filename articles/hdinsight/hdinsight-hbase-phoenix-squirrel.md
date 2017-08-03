@@ -15,12 +15,11 @@ ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 4371092aa31db444c4ca0374b4b2e7d700029a8b
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 024b70df99fdefa1598225ebb1fbfee85ea375d0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="use-apache-phoenix-and-squirrel-with-windows-based-hbase-clusters-in-hdinsight"></a>在 HDInsight 中搭配 Windows 型 HBase 叢集使用 Apache Phoenix 和 SQuirreL
@@ -31,7 +30,7 @@ ms.lasthandoff: 05/26/2017
 >
 
 > [!IMPORTANT]
-> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
+> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
 >
 
 
@@ -89,7 +88,7 @@ ms.lasthandoff: 05/26/2017
 * 取得 HBase 叢集的連線專用 DNS 尾碼。 若要取得該尾碼，請 RDP 到叢集，然後執行 IPConfig。  DNS 尾碼會類似於：
 
         myhbase.b7.internal.cloudapp.net
-* 在您的工作站上下載並安裝 [Microsoft Visual Studio Express 2013 for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx) 。 您將需要封裝的 makecert 以建立您的憑證。  
+* 在您的工作站上下載並安裝 [Microsoft Visual Studio Express for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx) 。 您將需要封裝的 makecert 以建立您的憑證。  
 * 在您的工作站上下載並安裝 [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) 。  SQuirreL SQL 用戶端 3.0 版和更新版本需要 JRE 1.6 版或更新版本。  
 
 ### <a name="configure-a-point-to-site-vpn-connection-to-the-azure-virtual-network"></a>設定點對站 VPN 連線到 Azure 虛擬網路
@@ -128,7 +127,7 @@ ms.lasthandoff: 05/26/2017
     此圖表顯示 0 個用戶端連線。 建立虛擬網路的連線之後，此數字將會更新為一。
 
 #### <a name="create-your-certificates"></a>建立您的憑證
-建立 X.509 憑證的其中一個方式是使用 [Microsoft Visual Studio Express 2013 for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx)隨附的憑證建立工具 (makecert.exe)。
+建立 X.509 憑證的其中一個方式是使用 [Microsoft Visual Studio Express for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx) 隨附的憑證建立工具 (makecert.exe)。
 
 **建立自我簽署根憑證**
 

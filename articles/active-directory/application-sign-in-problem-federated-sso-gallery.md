@@ -11,13 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 07/11/2017
 ms.author: asteen
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: b6d998575a3bf21ada200cfedeed61fe67e3b9d7
-ms.lasthandoff: 04/17/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: 0fc5a8eb3d033d60bf6082d61bf1698924ab91c6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/18/2017
 
 ---
 
@@ -33,7 +33,7 @@ ms.lasthandoff: 04/17/2017
 
 ## <a name="application-not-found-in-directory"></a>在目錄中找不到應用程式
 
-*錯誤：目錄中找不到識別碼為 ‘https://contoso.com’ 的應用程式*。
+*錯誤 AADSTS70001：目錄中找不到識別碼為 ‘https://contoso.com’ 的應用程式*。
 
 **可能的原因**
 
@@ -63,9 +63,42 @@ ms.lasthandoff: 04/17/2017
 
 您已在 Azure AD 中更新識別碼值，且該值符合應用程式以 SAML 要求傳送的值後，您應該能夠登入應用程式。
 
+## <a name="the-reply-address-does-not-match-the-reply-addresses-configured-for-the-application"></a>回覆位址不符合為應用程式設定的回覆位址。
+
+*Error AADSTS50011：回覆位址 ‘https://contoso.com’ 不符合為應用程式設定的回覆位址*
+
+**可能的原因**
+
+SAML 要求中的 AssertionConsumerServiceURL 值不符合在 Azure AD 中設定的 [回覆 URL] 值或模式。 SAML 要求中的 AssertionConsumerServiceURL 值是您在錯誤中看到的 URL。
+
+**解決方案**
+
+確保 SAML 要求中的 AssertionConsumerServiceURL 值符合在 Azure AD 中設定的 [回覆 URL] 值。
+
+1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**或 **共同管理員**身分登入
+
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+
+3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+
+4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+
+5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+
+  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+
+6.  選取您要設定單一登入的應用程式
+
+7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
+
+8.  移至 [網域及 URL] 區段。 驗證或更新 [回覆 URL] 文字方塊中的值，以符合 SAML 要求中的 AssertionConsumerServiceURL 值。  
+    * 如果沒有看到 [回覆 URL] 文字方塊中，請選取 [顯示進階 URL 設定] 核取方塊。
+
+您已在 Azure AD 中更新 [回覆 URL] 值，且該值符合應用程式以 SAML 要求傳送的值後，您應該能夠登入應用程式。
+
 ## <a name="user-not-assigned-a-role"></a>使用者未指派角色
 
-*錯誤：未將已登入的使用者 'brian@contoso.com' 指派至應用程式的角色*。
+*錯誤 AADSTS50105：未將已登入的使用者 'brian@contoso.com' 指派至應用程式的角色*。
 
 **可能的原因**
 
@@ -111,7 +144,7 @@ ms.lasthandoff: 04/17/2017
 
 ## <a name="not-a-valid-saml-request"></a>非有效的 SAML 要求
 
-*錯誤：要求不是有效的 Saml2 通訊協定訊息。*
+*錯誤 AADSTS75005：要求不是有效的 Saml2 通訊協定訊息。*
 
 **可能的原因**
 
@@ -135,15 +168,42 @@ Azure AD 不支援應用程式為單一登入傳送的 SAML 要求。 以下為�
 
 ## <a name="no-resource-in-requiredresourceaccess-list"></a>requiredResourceAccess 清單中沒有資源
 
-*錯誤：用戶端應用程式已要求存取資源 '00000002-0000-0000-c000-000000000000'。此要求失敗，因為用戶端尚未在其 requiredResourceAccess 清單中指定此資源*。
+*錯誤 AADSTS65005：用戶端應用程式已要求存取資源 '00000002-0000-0000-c000-000000000000'。此要求失敗，因為用戶端尚未在其 requiredResourceAccess 清單中指定此資源*。
 
 **可能的原因**
 
 應用程式物件已損毀。
 
-**解決方案**
+**解決方式：選項 1**
 
-若要解決此問題，請將應用程式從目錄中移除。 然後，依照下列步驟新增並重新設定應用程式：
+若要解決此問題，請在 Azure AD 組態新增唯一的 [識別碼] 值。 若要新增 [識別碼] 值，請依照下列步驟執行︰
+
+1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**或 **共同管理員**身分登入
+
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
+
+3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
+
+4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
+
+5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
+
+  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
+
+6.  選取您已設定單一登入的應用程式。
+
+7.  應用程式載入之後，按一下應用程式左邊導覽功能表中的 [單一登入]。
+
+8.  在 [網域和 URL] 區段之下，勾選 [顯示進階 URL 設定]。
+
+9.  在 [識別碼] 文字方塊中輸入應用程式的唯一識別碼。
+
+10. **儲存**組態。
+
+
+**解決方式：選項 2**
+
+如果上述選項 1 無效，請試著從目錄中移除應用程式。 然後，依照下列步驟新增並重新設定應用程式：
 
 1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**或**共同管理員**身分登入。
 
@@ -167,7 +227,7 @@ Azure AD 不支援應用程式為單一登入傳送的 SAML 要求。 以下為�
 
 ## <a name="certificate-or-key-not-configured"></a>未設定憑證或金鑰
 
-*錯誤︰未設定簽署金鑰。*
+*錯誤 AADSTS50003︰未設定簽署金鑰。*
 
 **可能的原因**
 
@@ -200,6 +260,10 @@ Azure AD 不支援應用程式為單一登入傳送的 SAML 要求。 以下為�
 10. 勾選 [Make new certificate active (啟用新憑證)] 以覆寫作用中的憑證。 然後按一下刀鋒視窗頂端的 [儲存]，接受啟用變換憑證。
 
 11. 在 [SAML 簽署憑證] 區段下，按一下 [移除] 以移除**未使用**的憑證。
+
+## <a name="problem-when-customizing-the-saml-claims-sent-to-an-application"></a>自訂傳送至應用程式的 SAML 宣告時發生問題
+
+若要了解如何自訂傳送至應用程式的 SAML 屬性宣告，請參閱 [Azure Active Directory 中的宣告對應](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping)以取得詳細資訊。
 
 ## <a name="next-steps"></a>後續步驟
 [如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-debugging)

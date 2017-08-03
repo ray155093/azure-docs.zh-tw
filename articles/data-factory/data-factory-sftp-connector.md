@@ -19,7 +19,6 @@ ms.openlocfilehash: c8ac99f63bd6700349bb352b2c880a2ffedf7457
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/06/2017
 
-
 ---
 # <a name="move-data-from-an-sftp-server-using-azure-data-factory"></a>使用 Azure Data Factory 從 SFTP 伺服器移動資料
 本文概述如何使用 Azure Data Factory 中的複製活動，將內部部署/雲端 SFTP 伺服器中的資料移動到支援的接收資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援作為來源/接收的資料存放區清單。
@@ -219,7 +218,7 @@ ms.lasthandoff: 06/06/2017
 ## <a name="supported-file-and-compression-formats"></a>支援的檔案和壓縮格式
 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)文章以了解詳細資訊。
 
-### <a name="json-example-copy-data-from-sftp-server-to-azure-blob"></a>JSON 範例：將資料從 SFTP 伺服器複製到 Azure Blob
+## <a name="json-example-copy-data-from-sftp-server-to-azure-blob"></a>JSON 範例：將資料從 SFTP 伺服器複製到 Azure Blob
 下列範例提供您使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 來建立管線時，可使用的範例 JSON 定義。 這些範例示範如何將資料從 SFTP 來源複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。
 
 > [!IMPORTANT]

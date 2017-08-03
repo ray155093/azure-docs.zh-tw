@@ -3,8 +3,8 @@ title: "開始使用 U-SQL 語言 | Microsoft Docs"
 description: "了解 U-SQL 語言的基礎概念。"
 services: data-lake-analytics
 documentationcenter: 
-author: edmacauley
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: 57143396-ab86-47dd-b6f8-613ba28c28d2
 ms.service: data-lake-analytics
@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 12/05/2016
-ms.author: edmaca
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 4884d96e8126337f62af23316935978cfe219ec8
+ms.date: 06/23/2017
+ms.author: saveenr
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: a193590504fc3706a7c1f1562e94a8a80da03e75
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -27,9 +27,9 @@ U-SQL 是一種語言，結合了宣告式 SQL 與命令式 C#，可讓您處理
 
 ## <a name="learning-resources"></a>學習資源
 
-如需 **U-SQL 語言語法**的詳細資訊，請參閱 [U-SQL 語言參考 (英文)](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
-
-若要了解 U-SQL 的設計原理，請參閱 Visual Studio 部落格文章[簡介 U-SQL – 讓巨量資料的處理變簡單的語言 (英文)](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
+* [U-SQL 教學課程] 提供大多數 U-SQL 語言的引導式逐步解說。 本文件的建議閱讀對象是所有想要學習 U-SQL 的開發人員。
+* 如需 **U-SQL 語言語法**的詳細資訊，請參閱 [U-SQL 語言參考 (英文)](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
+* 若要了解 U-SQL 的設計原理，請參閱 Visual Studio 部落格文章[簡介 U-SQL – 讓巨量資料的處理變簡單的語言 (英文)](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -37,7 +37,7 @@ U-SQL 是一種語言，結合了宣告式 SQL 與命令式 C#，可讓您處理
 
 ## <a name="your-first-u-sql-script"></a>您的第一個 U-SQL 指令碼
 
-下列 U-SQL 指令碼非常簡單，可讓我們能夠探索 U-SQL 語言的語多層面。
+以下是一個簡單的 U-SQL 指令碼，可讓我們探索 U-SQL 語言的許多層面。
 
 ```
 @searchlog =
@@ -69,20 +69,13 @@ OUTPUT @searchlog
 
 EXTRACT 與 OUTPUT 陳述式使用檔案路徑。 檔案路徑可以是絕對或相對路徑：
 
-此絕對檔案路徑會參考名為 `mystore` 的 Data Lake Store 中的檔案：
+下面這個絕對檔案路徑會參考名為 `mystore` 的 Data Lake Store 中的檔案：
 
     adl://mystore.azuredatalakestore.net/Samples/Data/SearchLog.tsv
 
-此絕對檔案路徑會參考名為 `myblobaccount` 的 Azure Blob 儲存體帳戶及名為 `mycontainer` 的容器中的檔案：
+下面這個檔案路徑的開頭為 `"/"`。 它會參考預設 Data Lake Store 帳戶中的檔案：
 
-    wasb://mycontainer@myblobaccount.blob.core.windows.net/Samples/Data/SearchLog.tsv
-
- >[!NOTE]
- >目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 儲存體容器。
-
-此相對檔案路徑的開頭為 `"/"`。 它會參考與 Data Lake Analytics 帳戶相關聯的預設 Data Lake Store 帳戶中的檔案：
-
-    TO "/output/SearchLog-first-u-sql.csv"
+    /output/SearchLog-first-u-sql.csv
 
 ## <a name="use-scalar-variables"></a>使用純量變數
 
@@ -192,15 +185,16 @@ U-SQL 資料列集不會保留它們的順序以供下一次查詢使用。 因�
     GROUP BY Region;
 
     @res =
-    SELECT *
-    FROM @rs1
-    ORDER BY TotalDuration DESC
-    FETCH 5 ROWS;
+        SELECT *
+        FROM @rs1
+        ORDER BY TotalDuration DESC
+        FETCH 5 ROWS;
 
     OUTPUT @rs1
         TO @out1
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
+
     OUTPUT @res
         TO @out2
         ORDER BY TotalDuration DESC
@@ -226,21 +220,17 @@ U-SQL 的 HAVING 子句可以用來將輸出限制為符合 HAVING 條件的群�
             Region,
             SUM(Duration) AS TotalDuration
         FROM @searchlog
-    GROUP BY Region
-    HAVING SUM(Duration) > 200;
+        GROUP BY Region
+        HAVING SUM(Duration) > 200;
 
     OUTPUT @res
         TO "/output/Searchlog-having.csv"
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
 
-## <a name="see-also"></a>另請參閱
-* [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)
-* [使用 Data Lake Tools for Visual Studio 開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
-* [針對 Azure 資料湖分析工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
+如需進階的彙總案例，請參閱 U-SQL 的[彙總、分析及參考函式](https://msdn.microsoft.com/en-us/library/azure/mt621335.aspx)參考文件
 
-## <a name="let-us-know-what-you-think"></a>讓我們知道您的想法
-* [提交要求功能](http://aka.ms/adlafeedback)
-* [在論壇上取得協助](http://aka.ms/adlaforums)
-* [提供關於 U-SQL 的意見反應](http://aka.ms/usqldiscuss)
+## <a name="next-steps"></a>後續步驟
+* [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)
+* [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
 

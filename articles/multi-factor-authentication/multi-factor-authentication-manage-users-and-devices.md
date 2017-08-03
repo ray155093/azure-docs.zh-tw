@@ -70,7 +70,7 @@ Azure Multi-Factor Authentication 的可設定功能之一，是讓使用者可�
 3. 選取 [多重要素驗證]。 多重要素驗證頁面隨即開啟。 
 6. 勾選您想要管理之使用者旁邊的方塊。 快速步驟選項清單隨即出現在右邊。 
 7. 選取 [管理使用者設定]。
-8. 勾選 [在所有記住的裝置上還原多重要素驗證]****
+8. 勾選 [在所有記住的裝置上還原多重要素驗證]
     方塊![刪除應用程式密碼](./media/multi-factor-authentication-manage-users-and-devices/rememberdevices.png)
 9. 按一下 [儲存] 。
 10. 按一下 [關閉]。

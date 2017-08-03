@@ -31,9 +31,7 @@ ms.lasthandoff: 07/06/2017
 * Web 應用程式和 CDN 提供的內容採用統一的部署工作流程
 * 整合 ASP.NET 統合和縮製與 Azure CDN
 
-<a id="what-you-will-learn" class="xliff"></a>
-
-## 學習目標
+## <a name="what-you-will-learn"></a>學習目標
 在本教學課程中，您將了解如何：
 
 * [整合 Azure CDN 端點與雲端服務，並從 Azure CDN 提供網頁的靜態內容](#deploy)
@@ -42,14 +40,10 @@ ms.lasthandoff: 07/06/2017
 * [透過 Azure CDN 提供統合和縮製的內容，同時保持良好的 Visual Studio 指令碼偵錯體驗](#bundling)
 * [設定 Azure CDN 離線時的後援指令碼和 CSS](#fallback)
 
-<a id="what-you-will-build" class="xliff"></a>
-
-## 將建置的項目
+## <a name="what-you-will-build"></a>將建置的項目
 您將使用預設 ASP.NET MVC 範本來部署雲端服務 Web 角色、加入程式碼從整合式 Azure CDN 提供內容，例如影像、控制器動作結果及預設 JavaScript 和 CSS 檔案，也會撰寫程式碼來為 CDN 離線時提供的套件組合設定後援機制。
 
-<a id="what-you-will-need" class="xliff"></a>
-
-## 必要元件
+## <a name="what-you-will-need"></a>必要元件
 本教學課程有下列先決條件：
 
 * 使用中的 [Microsoft Azure 帳戶](/account/)
@@ -65,9 +59,7 @@ ms.lasthandoff: 07/06/2017
 
 <a name="deploy"></a>
 
-<a id="deploy-a-cloud-service" class="xliff"></a>
-
-## 部署雲端服務
+## <a name="deploy-a-cloud-service"></a>部署雲端服務
 在本節中，您將在 Visual Studio 2015 中將預設 ASP.NET MVC 應用程式範本部署至雲端服務 Web 角色，然後將其與新的 CDN 端點整合。 請遵循下列指示：
 
 1. 在 Visual Studio 2015 中，從功能表列前往 [檔案] > [新增] > [專案] > [雲端] > [Azure 雲端服務]，建立新的 Azure 雲端服務。 命名並按一下 [確定] 。
@@ -108,9 +100,7 @@ ms.lasthandoff: 07/06/2017
    > 
    > 
 
-<a id="create-a-new-cdn-profile" class="xliff"></a>
-
-## 建立新的 CDN 設定檔
+## <a name="create-a-new-cdn-profile"></a>建立新的 CDN 設定檔
 CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個 CDN 端點。  您可能會想要使用多個設定檔，依網際網路網域、Web 應用程式或其他準則來組織您的 CDN 端點。
 
 > [!TIP]
@@ -120,9 +110,7 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 [!INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
 
-<a id="create-a-new-cdn-endpoint" class="xliff"></a>
-
-## 建立新的 CDN 端點
+## <a name="create-a-new-cdn-endpoint"></a>建立新的 CDN 端點
 **為儲存體帳戶建立新的 CDN 端點**
 
 1. 在 [Azure 管理入口網站](https://portal.azure.com)中，巡覽至您的 CDN 設定檔。  您可能已在先前步驟中將其釘選至儀表板。  若否，則您可依序按一下 [瀏覽]、[CDN 設定檔] 尋找該設定檔，然後再按一下您要在其中新增端點的設定檔。
@@ -151,9 +139,7 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
    > 
    > 
 
-<a id="test-the-cdn-endpoint" class="xliff"></a>
-
-## 測試 CDN 端點
+## <a name="test-the-cdn-endpoint"></a>測試 CDN 端點
 若發佈狀態為 [已完成]，請開啟瀏覽器視窗並瀏覽至 **http://<cdnName>*.azureedge.net/Content/bootstrap.css**。 在我的設定中，此 URL 為：
 
     http://camservice.azureedge.net/Content/bootstrap.css
@@ -187,9 +173,7 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 <a name="caching"></a>
 
-<a id="configure-caching-options-for-static-files-in-your-cloud-service" class="xliff"></a>
-
-## 在雲端服務中設定靜態檔案的快取選項
+## <a name="configure-caching-options-for-static-files-in-your-cloud-service"></a>在雲端服務中設定靜態檔案的快取選項
 利用雲端服務中的 Azure CDN 整合，您可以指定如何在 CDN 端點中快取靜態內容。 若要執行此動作，從 Web 角色專案 (例如 WebRole1) 開啟 *Web.config*，然後將 `<staticContent>` 元素加入至 `<system.webServer>`。 以下的 XML 將快取設為 3 天過期。  
 
     <system.webServer>
@@ -218,9 +202,7 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 <a name="controller"></a>
 
-<a id="serve-content-from-controller-actions-through-azure-cdn" class="xliff"></a>
-
-## 透過 Azure CDN 使用控制器動作提供內容
+## <a name="serve-content-from-controller-actions-through-azure-cdn"></a>透過 Azure CDN 使用控制器動作提供內容
 整合雲端服務 Web 角色與 Azure CDN 時，透過 Azure CDN 從控制器動作提供內容就非常簡單。 除了透過 Azure CDN 直接提供雲端服務 (如上面示範) 以外，在[使用 Azure CDN 縮短網路延遲時間](http://channel9.msdn.com/events/TechDays/Techdays-2014-the-Netherlands/Reducing-latency-on-the-web-with-the-Windows-Azure-CDN) (英文) 中，[Maarten Balliauw](https://twitter.com/maartenballiauw) 示範如何透過有趣的 MemeGenerator 控制器提供雲端服務。 我在這裡簡單地重述一次。
 
 假設您想在雲端服務中利用查克羅禮士年輕時的一張相片 ( [Alan Light](http://www.flickr.com/photos/alan-light/218493788/)拍攝) 來引起網路瘋傳：
@@ -387,9 +369,7 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 <a name="bundling"></a>
 
-<a id="integrate-aspnet-bundling-and-minification-with-azure-cdn" class="xliff"></a>
-
-## 整合 ASP.NET 統合和縮製與 Azure CDN
+## <a name="integrate-aspnet-bundling-and-minification-with-azure-cdn"></a>整合 ASP.NET 統合和縮製與 Azure CDN
 指令碼和 CSS 樣式表不常變更，是 Azure CDN 快取的最佳候選項。 透過 Azure CDN 提供整個 Web 角色是整合統合和縮製與 Azure CDN 最輕鬆的方法。 然而，您可能不想這樣做，我將說明如何這樣做，但同時保留開發人員希望的 ASP.NET 統合和縮製體驗，例如：
 
 * 絕佳的偵錯模式體驗
@@ -508,9 +488,7 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 <a name="fallback"></a>
 
-<a id="fallback-mechanism-for-cdn-urls" class="xliff"></a>
-
-## CDN URL 的後援機制
+## <a name="fallback-mechanism-for-cdn-urls"></a>CDN URL 的後援機制
 當 Azure CDN 端點因故失敗時，您一定希望網頁能夠聰明地存取原始 Web 伺服器，當作後援選項來載入 JavaScript 或 Bootstrap。 因 CDN 無法使用而遺失網站的影像就已經夠嚴重，而遺失由指令碼和樣式表所提供的重要頁面功能又更加嚴重。
 
 [Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.aspx) 類別包含一個稱為 [CdnFallbackExpression](http://msdn.microsoft.com/library/system.web.optimization.bundle.cdnfallbackexpression.aspx) 的屬性，可讓您設定 CDN 失敗時的後援機制。 若要使用此屬性，請遵循下列步驟：
@@ -614,9 +592,7 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
     但因為 || 運算式的開頭部分一定會傳回 true (緊鄰的上一行)，所以 document.write() 函數永遠不會執行。
 
-<a id="more-information" class="xliff"></a>
-
-## 相關資訊
+## <a name="more-information"></a>相關資訊
 * [Azure 內容傳遞網路 (CDN) 概觀](http://msdn.microsoft.com/library/azure/ff919703.aspx)
 * [使用 Azure CDN](cdn-create-new-endpoint.md)
 * [ASP.NET 統合和縮製](http://www.asp.net/mvc/tutorials/mvc-4/bundling-and-minification)

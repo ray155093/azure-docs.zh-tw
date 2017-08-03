@@ -12,13 +12,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/18/2017
+ms.date: 06/01/2017
 ms.author: magoedte
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: db9f2174e9928083957f160be8c268fe21cd4169
+ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
+ms.openlocfilehash: e44f04b3492ac07822b0842864f84a5f16dc3f5b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 06/03/2017
 
 ---
 
@@ -57,23 +57,23 @@ StopByResourceGroup-MS-Mgmt-VM | 此 Runbook 旨在停止位於指定 Azure 資�
 **SendMailO365-MS-Mgmt** Runbook ||
 SendMailO365-IsSendEmail-MS-Mgmt | 指定 StartByResourceGroup-MS-Mgmt-VM 和 StopByResourceGroup-MS-Mgmt-VM Runbook 是否可以在完成時傳送電子郵件通知。  選取 [True] 可啟用電子郵件警示，而選取 [False] 則為停用。 預設值為 [False]。| 
 **StartByResourceGroup-MS-Mgmt-VM** Runbook ||
-StartByResourceGroup-ExcludeList-MS-Mgmt-VM | 輸入要從管理作業中排除的 VM 名稱；使用分號 (;) 分隔名稱。 值會區分大小寫並支援萬用字元 (星號)。|
+StartByResourceGroup-ExcludeList-MS-Mgmt-VM | 輸入要從管理作業中排除的 VM 名稱；使用不含空格的分號 (;) 分隔名稱。 值會區分大小寫並支援萬用字元 (星號)。|
 StartByResourceGroup-SendMailO365-EmailBodyPreFix-MS-Mgmt | 可以附加至電子郵件訊息本文開頭的文字。|
 StartByResourceGroup-SendMailO365-EmailRunBookAccount-MS-Mgmt | 指定包含電子郵件 Runbook 的自動化帳戶名稱。  **請勿修改此變數。**|
 StartByResourceGroup-SendMailO365-EmailRunbookName-MS-Mgmt | 指定電子郵件 Runbook 的名稱。  此變數由 StartByResourceGroup-MS-Mgmt-VM 和 StopByResourceGroup-MS-Mgmt-VM Runbook 用來傳送電子郵件。  **請勿修改此變數。**|
 StartByResourceGroup-SendMailO365-EmailRunbookResourceGroup-MS-Mgmt | 指定包含電子郵件 Runbook 的資源群組名稱。  **請勿修改此變數。**|
 StartByResourceGroup-SendMailO365-EmailSubject-MS-Mgmt | 指定電子郵件的主旨列文字。|  
-StartByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt | 指定電子郵件的收件者。  使用分號 (;) 輸入不同的名稱。|
-StartByResourceGroup-TargetResourceGroups-MS-Mgmt-VM | 輸入要從管理作業中排除的 VM 名稱；使用分號 (;) 分隔名稱。 值會區分大小寫並支援萬用字元 (星號)。  預設值 (星號) 將包含訂用帳戶中的所有資源群組。|
+StartByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt | 指定電子郵件的收件者。  使用不含空格的分號 (;) 輸入不同的名稱。|
+StartByResourceGroup-TargetResourceGroups-MS-Mgmt-VM | 輸入要從管理作業中排除的 VM 名稱；使用不含空格的分號 (;) 分隔名稱。 值會區分大小寫並支援萬用字元 (星號)。  預設值 (星號) 將包含訂用帳戶中的所有資源群組。|
 StartByResourceGroup-TargetSubscriptionID-MS-Mgmt-VM | 指定包含此方案所要管理之 VM 的訂用帳戶。  這必須是此方案的自動化帳戶所在的相同訂用帳戶。|
 **StopByResourceGroup-MS-Mgmt-VM** Runbook ||
-StopByResourceGroup-ExcludeList-MS-Mgmt-VM | 輸入要從管理作業中排除的 VM 名稱；使用分號 (;) 分隔名稱。 值會區分大小寫並支援萬用字元 (星號)。|
+StopByResourceGroup-ExcludeList-MS-Mgmt-VM | 輸入要從管理作業中排除的 VM 名稱；使用不含空格的分號 (;) 分隔名稱。 值會區分大小寫並支援萬用字元 (星號)。|
 StopByResourceGroup-SendMailO365-EmailBodyPreFix-MS-Mgmt | 可以附加至電子郵件訊息本文開頭的文字。|
 StopByResourceGroup-SendMailO365-EmailRunBookAccount-MS-Mgmt | 指定包含電子郵件 Runbook 的自動化帳戶名稱。  **請勿修改此變數。**|
 StopByResourceGroup-SendMailO365-EmailRunbookResourceGroup-MS-Mgmt | 指定包含電子郵件 Runbook 的資源群組名稱。  **請勿修改此變數。**|
 StopByResourceGroup-SendMailO365-EmailSubject-MS-Mgmt | 指定電子郵件的主旨列文字。|  
-StopByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt | 指定電子郵件的收件者。  使用分號 (;) 輸入不同的名稱。|
-StopByResourceGroup-TargetResourceGroups-MS-Mgmt-VM | 輸入要從管理作業中排除的 VM 名稱；使用分號 (;) 分隔名稱。 值會區分大小寫並支援萬用字元 (星號)。  預設值 (星號) 將包含訂用帳戶中的所有資源群組。|
+StopByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt | 指定電子郵件的收件者。  使用不含空格的分號 (;) 輸入不同的名稱。|
+StopByResourceGroup-TargetResourceGroups-MS-Mgmt-VM | 輸入要從管理作業中排除的 VM 名稱；使用不含空格的分號 (;) 分隔名稱。 值會區分大小寫並支援萬用字元 (星號)。  預設值 (星號) 將包含訂用帳戶中的所有資源群組。|
 StopByResourceGroup-TargetSubscriptionID-MS-Mgmt-VM | 指定包含此方案所要管理之 VM 的訂用帳戶。  這必須是此方案的自動化帳戶所在的相同訂用帳戶。|  
 <br>
 

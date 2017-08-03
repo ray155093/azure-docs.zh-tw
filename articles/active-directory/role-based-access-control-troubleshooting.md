@@ -5,20 +5,20 @@ services: azure-portal
 documentationcenter: na
 author: kgremban
 manager: femila
-editor: 
 ms.assetid: df42cca2-02d6-4f3c-9d56-260e1eb7dc44
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/02/2017
+ms.date: 07/12/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 32b335d8a1f84348ab28bcc081cc42fd79fb08fc
-ms.lasthandoff: 03/04/2017
-
+ms.reviewer: rqureshi
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 9ad194308d30ca652b32ec3b76750b0e838472f4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="role-based-access-control-troubleshooting"></a>角色型存取控制疑難排解
@@ -53,7 +53,7 @@ Web 應用程式因為幾個互有關聯的資源而顯得複雜。 以下是具
 
 ![Web 應用程式資源群組](./media/role-based-access-control-troubleshooting/website-resource-model.png)
 
-如此一來，如果您只授予某人 Web 應用程式存取權限，Azure 入口網站的網站刀鋒視窗上的諸多功能將會停用。
+如此一來，如果您只授予某人 Web 應用程式存取權限，Azure 入口網站的網站刀鋒視窗上的諸多功能即會停用。
 
 這些項目需要對應至您網站的「應用程式服務方案」的**寫入**權：  
 
@@ -63,7 +63,7 @@ Web 應用程式因為幾個互有關聯的資源而顯得複雜。 以下是具
 
 這些項目都需要包含您網站的整個「資源群組」的**寫入**權：  
 
-* SSL 憑證與繫結 (這是因為相同的資源群組與地理位置的各個網站之間，會共用 SSL 憑證)  
+* SSL 憑證與繫結 (相同資源群組與地理位置中的各個網站之間，可共用 SSL 憑證)  
 * 警示規則  
 * 自動調整設定  
 * 應用程式見解元件  
@@ -87,7 +87,7 @@ Web 應用程式因為幾個互有關聯的資源而顯得複雜。 以下是具
 * 負載平衡集合  
 * 警示規則  
 
-如果您無法存取上述任何一個圖格，則需洽詢您的系統管理員，以取得資源群組的參與者存取權限。
+如果您無法存取上述任何一個磚，請洽詢您的系統管理員，以取得資源群組的參與者存取權限。
 
 ## <a name="see-more"></a>更多資訊
 * [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。

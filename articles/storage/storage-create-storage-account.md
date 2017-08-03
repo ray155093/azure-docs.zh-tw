@@ -24,20 +24,17 @@ ms.lasthandoff: 06/20/2017
 
 
 ---
-<a id="about-azure-storage-accounts" class="xliff"></a>
-# 關於 Azure 儲存體帳戶
+# <a name="about-azure-storage-accounts"></a>關於 Azure 儲存體帳戶
 [!INCLUDE [storage-selector-portal-create-storage-account](../../includes/storage-selector-portal-create-storage-account.md)]
 
 [!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
 
-<a id="overview" class="xliff"></a>
-## Overview
+## <a name="overview"></a>Overview
 Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲存體資料物件。 儲存體帳戶中的所有物件會做為群組共同計費。 根據預設，您帳戶中的資料只有帳戶擁有者 (也就是您) 可以使用。
 
 [!INCLUDE [storage-account-types-include](../../includes/storage-account-types-include.md)]
 
-<a id="storage-account-billing" class="xliff"></a>
-## 儲存體帳戶計費
+## <a name="storage-account-billing"></a>儲存體帳戶計費
 [!INCLUDE [storage-account-billing-include](../../includes/storage-account-billing-include.md)]
 
 > [!NOTE]
@@ -45,8 +42,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 > 
 > 
 
-<a id="storage-account-endpoints" class="xliff"></a>
-## 儲存體帳戶端點
+## <a name="storage-account-endpoints"></a>儲存體帳戶端點
 每個儲存在 Azure 儲存體中的物件都有一個唯一 URL 位址。 儲存體帳戶名稱會構成該位址的子網域。 子網域和每個服務的特定網域名稱的組合，會構成儲存體帳戶的 *端點* 。
 
 例如，如果您的儲存體帳戶名為 *mystorageaccount*，則儲存體帳戶的預設端點將是：
@@ -65,8 +61,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 您也可以設定與儲存體帳戶搭配使用的自訂網域名稱。 對於傳統儲存體帳戶，如需詳細資訊，請參閱 [針對 Blob 儲存體端點設定自訂網域名稱](storage-custom-domain-name.md) 。 對於 Resource Manager 儲存體帳戶，這項功能尚未加入至 [Azure 入口網站](https://portal.azure.com) ，但是您可以使用 PowerShell 設定它。 如需詳細資訊，請參閱 [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) cmdlet。  
 
-<a id="create-a-storage-account" class="xliff"></a>
-## 建立儲存體帳戶
+## <a name="create-a-storage-account"></a>建立儲存體帳戶
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在 [中樞] 功能表上，選取 [新增] -> [儲存體] -> [儲存體帳戶]。
 3. 輸入儲存體帳戶的名稱。 請參閱 [儲存體帳戶端點](#storage-account-endpoints) 以深入了解此儲存體帳戶名稱如何用來解析 Azure 儲存體中的物件。
@@ -94,10 +89,8 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 9. 選取儲存體帳戶的地理位置。 如需各區域可用服務的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services) 。
 10. 按一下 [建立]  建立儲存體帳戶。
 
-<a id="manage-your-storage-account" class="xliff"></a>
-## 管理儲存體帳戶
-<a id="change-your-account-configuration" class="xliff"></a>
-### 變更帳戶組態
+## <a name="manage-your-storage-account"></a>管理儲存體帳戶
+### <a name="change-your-account-configuration"></a>變更帳戶組態
 建立儲存體帳戶之後，您可以修改其組態，例如變更帳戶所用的複寫選項，或變更 Blob 儲存體帳戶的存取層。 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至您的儲存體帳戶，尋找並按一下 [設定] 之下的 [組態] 以檢視和/或變更帳戶組態。
 
 > [!NOTE]
@@ -109,8 +102,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 針對 Blob 儲存體帳戶，變更存取層除了會變更您的價格之外，可能還會產生費用的變更。 如需詳細資訊，請參閱 [Blob 儲存體帳戶 - 價格和計費](storage-blob-storage-tiers.md#pricing-and-billing) 。
 
-<a id="manage-your-storage-access-keys" class="xliff"></a>
-### 管理儲存體存取金鑰
+### <a name="manage-your-storage-access-keys"></a>管理儲存體存取金鑰
 當您建立儲存體帳戶時，Azure 會產生兩個 512 位元的儲存體存取金鑰，做為存取儲存體帳戶時的驗證憑藉。 透過提供這兩個儲存體存取金鑰，Azure 讓您可重新產生金鑰，同時又不需中斷儲存體服務或對該服務的存取。
 
 > [!NOTE]
@@ -118,12 +110,10 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 > 
 > 
 <a id="view-and-copy-storage-access-keys"/></a>
-<a id="view-and-copy-storage-access-keys" class="xliff"></a>
-#### 檢視並複製儲存體存取金鑰
+#### <a name="view-and-copy-storage-access-keys"></a>檢視並複製儲存體存取金鑰
 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至您的儲存體帳戶，按一下 [所有設定]，然後按一下 [存取金鑰] 圖示來檢視、複製和重新產生帳戶存取金鑰。 [存取金鑰]  刀鋒視窗也包含使用您主要與次要金鑰的預先設定連接字串，讓您可以複製以在應用程式中使用。
 
-<a id="regenerate-storage-access-keys" class="xliff"></a>
-#### 重新產生儲存體存取金鑰
+#### <a name="regenerate-storage-access-keys"></a>重新產生儲存體存取金鑰
 建議您定期變更儲存體帳戶的存取金鑰，保護儲存體連線的安全。 指派了兩個存取金鑰，因此您可以在重新產生一個存取金鑰的同時，使用另一個存取金鑰維持儲存體帳戶連線。
 
 > [!WARNING]
@@ -144,8 +134,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 3. 更新程式碼中的連接字串，以參考新的主要存取金鑰。
 4. 以同樣的方式重新產生次要存取金鑰。
 
-<a id="delete-a-storage-account" class="xliff"></a>
-## 刪除儲存體帳戶
+## <a name="delete-a-storage-account"></a>刪除儲存體帳戶
 若要移除不再使用的儲存體帳戶，請在 [Azure 入口網站](https://portal.azure.com)中瀏覽至儲存體帳戶，然後按一下 [刪除]。 刪除儲存體帳戶會刪除整個帳戶，包括帳戶中的所有資料。
 
 > [!WARNING]
@@ -167,8 +156,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 如需詳細資訊，請參閱 [Azure 虛擬機器文件](http://azure.microsoft.com/documentation/services/virtual-machines/)。
 
-<a id="next-steps" class="xliff"></a>
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
 * [Azure Blob 儲存體：經常存取及不常存取層](storage-blob-storage-tiers.md)
 * [Azure 儲存體複寫](storage-redundancy.md)

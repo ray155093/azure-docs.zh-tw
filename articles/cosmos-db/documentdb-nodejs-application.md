@@ -1,10 +1,10 @@
 ---
-title: "了解 Node.js - Azure Cosmos DB Node.js 教學課程 | Microsoft Docs"
-description: "了解 Node.js！ 透過教學課程探索如何使用 Microsoft Azure Cosmos DB，來儲存和存取 Azure 網站上所託管的 Node.js Express Web 應用程式資料。"
-keywords: "應用程式開發, 資料庫教學課程, 了解 node.js, node.js 教學課程, documentdb, azure, Microsoft azure"
+title: "建置適用於 Azure Cosmos DB 的 Node.js Web 應用程式 | Microsoft Docs"
+description: "這個 Node.js 教學課程會探索如何使用 Microsoft Azure Cosmos DB，從 Azure 網站上裝載的 Node.js Express Web 應用程式來儲存和存取資料。"
+keywords: "應用程式開發, 資料庫教學課程, 了解 node.js, node.js 教學課程"
 services: cosmos-db
 documentationcenter: nodejs
-author: syamkmsft
+author: mimig1
 manager: jhubbard
 editor: cgronlun
 ms.assetid: 9da9e63b-e76a-434e-96dd-195ce2699ef3
@@ -13,14 +13,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 05/23/2017
-ms.author: syamk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 511c9e4d6f68b3e063559acb5996111acd3c653f
+ms.date: 07/06/2017
+ms.author: mimig
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: dd5ba797fe973dddc16231f42d5f561e1956b91c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="_Toc395783175"></a>使用 Azure Cosmos DB 來建置 Node.js Web 應用程式
@@ -50,7 +49,7 @@ ms.lasthandoff: 05/31/2017
 
    或
 
-   本機安裝的 [Azure Cosmos DB 模擬器](local-emulator.md)。
+   本機安裝的 [Azure Cosmos DB 模擬器](local-emulator.md) (僅適用於 Windows)。
 * [Node.js][Node.js] v0.10.29 版或更高版本。
 * [Express 產生器](http://www.expressjs.com/starter/generator.html) (您可以透過 `npm install express-generator -g` 進行安裝)
 * [Git][Git]。
@@ -62,7 +61,7 @@ ms.lasthandoff: 05/31/2017
 
 [!INCLUDE [cosmos-db-keys](../../includes/cosmos-db-keys.md)]
 
-## <a name="_Toc395783178"></a>步驟 2：了解如何建立新的 Node.js 應用程式
+## <a name="_Toc395783178"></a>步驟 2 - 建立新的 Node.js 應用程式
 現在，我們來了解如何使用 [Express](http://expressjs.com/) 架構來建立基本的 Hello World Node.js 專案。
 
 1. 開啟您喜好的終端機，例如 Node.js 命令提示字元。
@@ -435,69 +434,76 @@ ms.lasthandoff: 05/31/2017
 
 1. **views** 目錄中的 **layout.jade** 檔是用來作為其他 **.jade** 檔案的全域範本。 在此步驟中，您將修改它以使用 [Twitter Bootstrap](https://github.com/twbs/bootstrap)，這個工具組能夠方便設計美觀的網站。 
 2. 開啟在 **views** 資料夾中找到的 **layout.jade** 檔案，並將其中的內容取代為下列內容：
-   
-        doctype html
-        html
-           head
-             title= title
-             link(rel='stylesheet', href='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.min.css')
-             link(rel='stylesheet', href='/stylesheets/style.css')
-           body
-             nav.navbar.navbar-inverse.navbar-fixed-top
-               div.navbar-header
-                 a.navbar-brand(href='#') My Tasks
-             block content
-             script(src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js')
-             script(src='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.min.js')
+
+    ```
+    doctype html
+    html
+      head
+        title= title
+        link(rel='stylesheet', href='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+      body
+        nav.navbar.navbar-inverse.navbar-fixed-top
+          div.navbar-header
+            a.navbar-brand(href='#') My Tasks
+        block content
+        script(src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js')
+        script(src='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.min.js')
+    ```
 
     這段程式碼實際上會指示 **Jade** 引擎轉譯出我們應用程式的部分 HTML，並建立稱為 **content** 的**區塊**，讓我們能在其中提供內容頁面的配置。
+
     儲存並關閉此 **layout.jade** 檔案。
 
 3. 現在，開啟 **index.jade** 檔案 (應用程式即將使用的檢視)，並將檔案中的內容取代為下列內容；
-   
-        extends layout
-        block content
-           h1 #{title}
-           br
-        
-           form(action="/completetask", method="post")
-             table.table.table-striped.table-bordered
-               tr
-                 td Name
-                 td Category
-                 td Date
-                 td Complete
-               if (typeof tasks === "undefined")
-                 tr
-                   td
-               else
-                 each task in tasks
-                   tr
-                     td #{task.name}
-                     td #{task.category}
-                     - var date  = new Date(task.date);
-                     - var day   = date.getDate();
-                     - var month = date.getMonth() + 1;
-                     - var year  = date.getFullYear();
-                     td #{month + "/" + day + "/" + year}
-                     td
-                       input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
-             button.btn(type="submit") Update tasks
-           hr
-           form.well(action="/addtask", method="post")
-             label Item Name:
-             input(name="name", type="textbox")
-             label Item Category:
-             input(name="category", type="textbox")
-             br
-             button.btn(type="submit") Add item
-   
+
+    ```
+    extends layout
+    block content
+      h1 #{title}
+      br
+    
+      form(action="/completetask", method="post")
+        table.table.table-striped.table-bordered
+          tr
+            td Name
+            td Category
+            td Date
+            td Complete
+          if (typeof tasks === "undefined")
+            tr
+              td
+          else
+            each task in tasks
+              tr
+                td #{task.name}
+                td #{task.category}
+                - var date  = new Date(task.date);
+                - var day   = date.getDate();
+                - var month = date.getMonth() + 1;
+                - var year  = date.getFullYear();
+                td #{month + "/" + day + "/" + year}
+                td
+                  input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
+        button.btn(type="submit") Update tasks
+      hr
+      form.well(action="/addtask", method="post")
+        label Item Name:
+        input(name="name", type="textbox")
+        label Item Category:
+        input(name="category", type="textbox")
+        br
+        button.btn(type="submit") Add item
+    ```
+
     這個程式碼會擴充配置，並為我們在前面的 **layout.jade** 檔案中看到的 **content** 預留位置提供內容。
    
-    在此配置中，我們建立了兩個 HTML 表單。 
+    在此配置中，我們建立了兩個 HTML 表單。
+
     第一個表單包含資料的表格，以及可讓我們透過張貼到控制器的 **/completetask** 方法來更新項目的按鈕。
+    
     第二個表單包含兩個輸入欄位，以及可讓我們透過張貼到控制器的 **/addtask** 方法來建立項目的按鈕。
-   
+
     這應該就是要讓應用程式開始運作所需的所有程式碼。
 4. 開啟 **public\stylesheets** 目錄中的 **style.css** 檔案，然後使用下列內容取代程式碼：
    

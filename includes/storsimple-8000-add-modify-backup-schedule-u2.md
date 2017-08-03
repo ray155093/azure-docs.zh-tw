@@ -1,8 +1,7 @@
 
 <!--author=alkohli last changed: 01/02/17-->
 
-#### 若要加入或修改 StorSimple 備份排程
-<a id="to-add-or-modify-a-storsimple-backup-schedule" class="xliff"></a>
+#### <a name="to-add-or-modify-a-storsimple-backup-schedule"></a>若要加入或修改 StorSimple 備份排程
 
 1. 請移至 StorSimple 裝置，並按一下 [備份原則]。
 

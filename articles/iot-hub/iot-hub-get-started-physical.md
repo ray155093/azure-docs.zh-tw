@@ -1,6 +1,6 @@
 ---
 title: "開始將實體裝置連線到 Azure IoT 中樞 | Microsoft Docs"
-description: "了解如何建立實體 IoT 裝置，並將它們連線至 Azure IoT 中樞。 您的裝置可以將遙測傳送到 IoT 中樞，而 IoT 中樞會監視並管理您的裝置。"
+description: "了解實體裝置和面板如何連線到 Azure IoT 中樞。 您的裝置可以將遙測資料傳送到 IoT 中樞，而 IoT 中樞會監視並管理您的裝置。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
-ms.openlocfilehash: 2e00affad9302145ac0c62e5994bd636cb2b72a9
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: c42c1c115fac70920b08d65fc1a2cdc8497f5080
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/03/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="azure-iot-hub-get-started-with-physical-devices-tutorials"></a>Azure IoT 中樞開始使用實體裝置教學課程
@@ -28,7 +27,7 @@ ms.lasthandoff: 06/03/2017
 
 | IoT 裝置                       | 程式設計語言 |
 |---------------------------------|----------------------|
-| Raspberry Pi                    | [Node.js][Pi_Nd]、[C][Pi_C]           |
+| Raspberry Pi                    | [Node.js][Pi_Nd]、[C][Pi_C]、[Python][Pi_Py]           |
 | Intel Edison                    | [Node.js][Ed_Nd]、[C][Ed_C]           |
 | Adafruit Feather HUZZAH ESP8266 | [Arduino][Hu_Ard]              |
 | Sparkfun ESP8266 Thing 開發人員      | [Arduino][Th_Ard]              |
@@ -45,6 +44,7 @@ ms.lasthandoff: 06/03/2017
 
 [Pi_Nd]: iot-hub-raspberry-pi-kit-node-get-started.md
 [Pi_C]: iot-hub-raspberry-pi-kit-c-get-started.md
+[Pi_Py]: iot-hub-raspberry-pi-kit-python-get-started.md
 [Ed_Nd]: iot-hub-intel-edison-kit-node-get-started.md
 [Ed_C]: iot-hub-intel-edison-kit-c-get-started.md
 [Hu_Ard]: iot-hub-arduino-huzzah-esp8266-get-started.md

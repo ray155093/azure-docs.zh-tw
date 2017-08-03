@@ -15,10 +15,11 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 3d9bdd4f07d22a7bc6c80150ae27453813d39f07
-ms.lasthandoff: 04/06/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: e54c3bc484b0b3b81cc495e54c17e8ef448abe91
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -46,7 +47,7 @@ ms.lasthandoff: 04/06/2017
 > Microsoft Azure 不支援在本機處理模式中設定的 ReportViewer。
 
 ## <a name="adding-assemblies-to-the-deployment-package"></a>將組件新增至部署套件
-在內部部署裝載 ASP.NET 應用程式後，ReportViewer 組件通常會在 Visual Studio 安裝期間，直接安裝在 IIS 伺服器的全域組件快取 (GAC) 中，並可直接透過應用程式存取。 不過，若您是在雲端中裝載 ASP.NET 應用程式，Microsoft Azure 不允許任何項目安裝至 GAC，因此您必須確定 ReportViewer 組件位於本機上，可供應用程式使用。 作法：將組件的參考加入您的專案中，並設定為可從本機複製。
+在內部部署裝載 ASP.NET 應用程式後，通常會在 Visual Studio 安裝期間，於 IIS 伺服器的全域組件快取 (GAC) 中直接安裝 ReportViewer 組件，並可直接透過應用程式存取。 不過，若您是在雲端中裝載 ASP.NET 應用程式，Microsoft Azure 不允許任何項目安裝至 GAC，因此您必須確定 ReportViewer 組件位於本機上，可供應用程式使用。 作法：將組件的參考加入您的專案中，並設定為可從本機複製。
 
 在遠端處理模式中，ReportViewer 控制項會使用下列組件：
 

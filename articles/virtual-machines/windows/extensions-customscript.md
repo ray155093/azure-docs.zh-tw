@@ -13,14 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 01/17/2017
+ms.date: 07/16/2017
 ms.author: nepeters
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: 957fb7bf1bd646ae5e4d27350502bdf14b0f00c3
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: aeddf1aba1e8df74750538ba798d34a1a957e83f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
-
+ms.lasthandoff: 07/17/2017
 
 ---
 # <a name="custom-script-extension-for-windows"></a>Windows 的自訂指令碼延伸模組
@@ -37,7 +36,7 @@ ms.lasthandoff: 05/12/2017
 
 ### <a name="script-location"></a>指令碼位置
 
-指令碼必須儲存在 Azure 儲存體或任何可透過有效 URL 存取的其他位置。
+指令碼必須儲存在 Azure Blob 儲存體或任何可透過有效 URL 存取的其他位置。
 
 ### <a name="internet-connectivity"></a>網際網路連線
 

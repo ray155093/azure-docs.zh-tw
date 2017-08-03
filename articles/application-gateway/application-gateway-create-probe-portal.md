@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: gwallace
-ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: a12e9d342daf41ee9f83cadb9e29ee867be055de
+ms.translationtype: HT
+ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
+ms.openlocfilehash: 65e9bba4ce9ac41ae2a9a8c3fa7f661165fc1403
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="create-a-custom-probe-for-application-gateway-by-using-the-portal"></a>使用入口網站建立應用程式閘道的自訂探查
@@ -74,7 +73,7 @@ ms.lasthandoff: 04/27/2017
 1. 在 [appGatewayBackEndHttpSettings] 設定刀鋒視窗中，選取 [使用自訂探查] 核取方塊，然後在 [自訂探查] 下拉式清單中選擇在[建立探查](#createprobe)一節中建立的探查。
 完成時，按一下 [儲存] 即可套用設定。
 
-預設探查會檢查 Web 應用程式的預設存取權。 建立自訂探查之後，應用程式閘道便可使用定義的自訂路徑來監視後端伺服器的健康狀態。 應用程式閘道會根據定義的準則，以檢查探查中指定的路徑。 如果對 host:Port/path 的呼叫沒有傳回 HTTP 200-299 狀態回應，當達到狀況不良閾值時，系統就會將該伺服器從輪替的行列中移除。 探查會繼續在狀況不良的執行個體上執行，以判斷它何時再次變成狀況良好。 系統將執行個體重新加回至狀況良好的伺服器集區之後，流量就會再次開始流向它，而對執行個體的探查則會如常依據使用者指定的間隔繼續執行。
+預設探查會檢查 Web 應用程式的預設存取權。 建立自訂探查之後，應用程式閘道便可使用定義的自訂路徑來監視後端伺服器的健康狀態。 應用程式閘道會根據定義的準則，以檢查探查中指定的路徑。 如果對 host:Port/path 的呼叫沒有傳回 HTTP 200-399 狀態回應，當達到狀況不良閾值時，系統就會將該伺服器從輪替的行列中移除。 探查會繼續在狀況不良的執行個體上執行，以判斷它何時再次變成狀況良好。 系統將執行個體重新加回至狀況良好的伺服器集區之後，流量就會再次開始流向它，而對執行個體的探查則會如常依據使用者指定的間隔繼續執行。
 
 ## <a name="next-steps"></a>後續步驟
 

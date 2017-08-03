@@ -15,12 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: wesmc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
-ms.openlocfilehash: 6da663ea282e09b01ce380827fa7e31505712516
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: bfa902aae0b1ab4ca6a93387106b40a16c7288cd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/04/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
 # <a name="ssh-support-for-azure-web-app-on-linux"></a>Linux 上的 Azure Web 應用程式 SSH 支援
@@ -90,7 +89,7 @@ Linux 上的 Web 應用程式會利用每個用於新 Web Apps 的「執行階�
     EXPOSE 2222 80
     ```
 
-4. 請確定啟動 SSH 服務。 [這裡](https://github.com/Azure-App-Service/node/blob/master/6.9.3-1/init_container.sh)的範例會使用 /bin 目錄中的殼層指令碼。
+4. 請確定啟動 SSH 服務。 [這裡](https://github.com/Azure-App-Service/node/blob/master/6.9.3/startup/init_container.sh)的範例會使用 /bin 目錄中的殼層指令碼。
 
     ```bash
     #!/bin/bash

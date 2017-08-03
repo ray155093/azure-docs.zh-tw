@@ -15,12 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: big-compute
 ms.date: 10/12/2016
 ms.author: danlep
-ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: c65a932d0bf9bfb00f138997babc1bd642bcf879
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 048854b440f939077a7a95fa1db9ba42daf55ede
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="get-started-with-linux-compute-nodes-in-an-hpc-pack-cluster-in-azure"></a>開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點
@@ -53,7 +52,7 @@ ms.lasthandoff: 04/27/2017
   * **Ubuntu Server**：14.04 LTS、16.04 LTS
     
     > [!TIP]
-    > 若要使用 Azure RDMA 網路搭配其中一個支援 RDMA 的 VM 大小，請從 Azure Marketplace 指定 SUSE Linux Enterprise Server 12 HPC 或 CentOS 型 HPC 映像。 如需詳細資訊，請參閱 [關於 H 系列和計算密集型 A 系列 VM](../a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+    > 若要使用 Azure RDMA 網路搭配其中一個支援 RDMA 的 VM 大小，請從 Azure Marketplace 指定 SUSE Linux Enterprise Server 12 HPC 或 CentOS 型 HPC 映像。 如需詳細資訊，請參閱[高效能運算 VM 大小](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
     > 
     > 
 
@@ -187,7 +186,7 @@ HPC Pack IaaS 部署指令碼會使用 XML 組態檔作為輸入，以描述 HPC
 ### <a name="azure-file-storage"></a>Azure 檔案儲存體
 [Azure 檔案](https://azure.microsoft.com/services/storage/files/) 服務會公開使用標準 SMB 2.1 通訊協定的檔案共用。 Azure VM 和雲端服務可以透過掛接的共用，在應用程式元件之間共用檔案資料，而內部部署應用程式可以透過檔案儲存體 API，存取共用中的檔案資料。 
 
-如需建立 Azure 檔案共用以及將其裝載於前端節點上的詳細步驟，請參閱 [開始使用 Windows 上的 Azure 檔案儲存體](../../../storage/storage-dotnet-how-to-use-files.md)。 若要在 Linux 節點上裝載 Azure 檔案共用，請參閱 [如何在 Linux 使用 Azure 檔案儲存體](../../../storage/storage-how-to-use-files-linux.md)。 若要設定持續性連線，請參閱 [Microsoft Azure 檔案的持續性連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)。
+如需建立 Azure 檔案共用以及將其裝載於前端節點上的詳細步驟，請參閱 [開始使用 Windows 上的 Azure 檔案儲存體](../../../storage/storage-file-how-to-use-files-windows.md)。 若要在 Linux 節點上裝載 Azure 檔案共用，請參閱[如何搭配使用 Azure 檔案儲存體與 Linux](../../../storage/storage-how-to-use-files-linux.md)。 若要設定持續性連線，請參閱 [Microsoft Azure 檔案的持續性連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)。
 
 在下列範例中，在儲存體帳戶上建立 Azure 檔案共用。 若要在前端節點上裝載共用，請開啟 [命令提示字元] 並輸入下列命令：
 
@@ -300,7 +299,7 @@ HPC Pack [clusrun](https://technet.microsoft.com/library/cc947685.aspx) 工具�
 
 ## <a name="next-steps"></a>後續步驟
 * 嘗試擴大叢集中的節點數量，或嘗試在叢集上執行 Linux 工作負載。 如需範例，請參閱 [在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 NAMD](hpcpack-cluster-namd.md)。
-* 請嘗試[具備 RDMA 功能、計算密集型 VM](../../windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 的叢集執行 MPI 工作負載。 如需範例，請參閱 [在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](hpcpack-cluster-openfoam.md)。
+* 請嘗試[具備 RDMA 功能、計算密集型 VM](../../windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 的叢集執行 MPI 工作負載。 如需範例，請參閱 [在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](hpcpack-cluster-openfoam.md)。
 * 如果您有興趣在內部部署的 HPC Pack 叢集中使用 Linux 節點，請參閱 [TechNet guidance (TechNet 指引)](https://technet.microsoft.com/library/mt595803.aspx)。
 
 <!--Image references-->

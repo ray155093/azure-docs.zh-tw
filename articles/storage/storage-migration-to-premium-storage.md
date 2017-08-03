@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: yuemlu
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 82485e569d91a082f72725ecfb04e75f0820cf02
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 373dde7b751156490fafd3e052b32310c497b43b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -238,7 +238,7 @@ C:\PS> Start-AzureStorageBlobCopy -srcUri $sourceBlobUri -SrcContext $sourceCont
 ##### <a name="copy-a-vhd-from-other-non-azure-cloud"></a>從其他非 Azure 雲端複製 VHD
 如果您將 VHD 從非 Azure 雲端儲存體移轉至 Azure，您必須先將 VHD 匯出至本機目錄。 複製儲存 VHD 所在本機目錄的完整來源路徑。
 
-##### <a name="copy-a-vhd-from-on-premise"></a>從內部部署複製 VHD
+##### <a name="copy-a-vhd-from-on-premises"></a>從內部部署複製 VHD
 如果您要從內部部署環境移轉 VHD，將需要儲存 VHD 的完整來源路徑。 來源路徑可能是伺服器位置或檔案共用。
 
 #### <a name="step-2-create-the-destination-for-your-vhd"></a>步驟 2. 為您的 VHD 建立目的地

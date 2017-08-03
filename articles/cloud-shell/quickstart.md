@@ -7,18 +7,18 @@ author: jluk
 manager: timlt
 tags: azure-resource-manager
 ms.assetid: 
-ms.service: 
+ms.service: azure
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 07/10/2017
 ms.author: juluk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 347984aae91a9fa99f88001effe2cba49f92deb9
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: a174ecd452047d11f6ad374ede76becabcfff899
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
+ms.lasthandoff: 07/18/2017
 
 ---
 
@@ -29,8 +29,7 @@ ms.lasthandoff: 05/17/2017
 ## <a name="start-cloud-shell"></a>啟動 Cloud Shell
 1. 從 Azure 入口網站的頂端導覽啟動 **Cloud Shell** <br>
 ![](media/shell-icon.png)
-2. 選取要用來建立儲存體帳戶和 Azure 檔案共用的訂用帳戶 <br>
-![](media/storage-prompt.png)
+2. 選取用來建立儲存體帳戶和 Azure 檔案共用的訂用帳戶
 3. 選取 [建立儲存體]
 
 > [!TIP]
@@ -43,7 +42,7 @@ ms.lasthandoff: 05/17/2017
 `az account set --subscription my-subscription-name`
 
 > [!TIP]
-> 系統會使用保留在 $Home 目錄中的 `azureProfile.json`，以記住您的訂用帳戶供未來工作階段使用。
+> 系統將使用 `/home/<user>/.azure/azureProfile.json` 來記住您的訂用帳戶，以供未來工作階段使用。
 
 ### <a name="create-a-resource-group"></a>建立資源群組
 在 WestUS 中建立名為 "MyRG" 的新資源群組： <br>
@@ -72,5 +71,6 @@ ms.lasthandoff: 05/17/2017
 執行 `az group delete -n MyRG`
 
 ## <a name="next-steps"></a>後續步驟
-[了解在 Cloud Shell 上保存儲存體](persisting-shell-storage.md) [了解 Azure CLI 2.0] (https://docs.microsoft.com/cli/azure/) [了解 Azure 檔案儲存體] (https://docs.microsoft.com/azure/storage/storage-introduction#file-storage) 
-
+[了解如何在 Cloud Shell 上保存儲存體](persisting-shell-storage.md) <br>
+[了解 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/) \(英文\) <br>
+[了解 Azure 檔案儲存體](../storage/storage-files-introduction.md) <br>

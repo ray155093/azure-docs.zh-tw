@@ -13,14 +13,13 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: tables
-ms.date: 06/29/2017
+ms.date: 07/12/2017
 ms.author: jrj;barbkess
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
-ms.openlocfilehash: ec9b3cc391a75b4f3a75f95a2ff9613c0317bfa2
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 3c166acb17193caae32d7bad133ec510ff679353
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="distributed-data-and-distributed-tables-for-massively-parallel-processing-mpp"></a>大量平行處理 (MPP) 的分散式資料和分散式資料表
@@ -68,7 +67,7 @@ ms.lasthandoff: 06/30/2017
 ## <a name="Replicated"></a>複寫資料表
 複寫資料表會在每個計算節點上都儲存一份完整的資料表複本。 複寫資料表可使在進行聯結或彙總之前，不需要在計算節點之間傳輸資料。 由於在每個計算節點上儲存完整資料表所需的額外儲存體，因此複寫資料表僅在小型資料表才可行。  
 
-下圖顯示儲存在每個計算節點上的複寫資料表。 針對 SQL 資料倉儲，複寫資料表會由循環配置資源資料表維護，並會完整複製到每個計算節點上的第一個散發資料庫。 針對平行處理資料倉儲，複寫資料表會儲存在指派給計算節點的所有磁碟上。  此磁碟策略會使用 SQL Server 檔案群組來實作。  
+下圖顯示儲存在每個計算節點上的複寫資料表。 對於「SQL 資料倉儲」，會將複寫資料表完整複製到每個計算節點上的散發資料庫。 針對平行處理資料倉儲，複寫資料表會儲存在指派給計算節點的所有磁碟上。  此磁碟策略會使用 SQL Server 檔案群組來實作。  
 
 ![複寫的資料表](media/sql-data-warehouse-distributed-data/replicated-table.png "複寫的資料表") 
 

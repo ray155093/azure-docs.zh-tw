@@ -23,30 +23,25 @@ ms.lasthandoff: 05/08/2017
 
 ---
 
-# 我在已下載的 Azure Active Directory 活動記錄中找不到任何資料
-<a id="i-cant-find-any-data-in-the-azure-active-directory-activity-logs-i-have-downloaded" class="xliff"></a>
+# <a name="i-cant-find-any-data-in-the-azure-active-directory-activity-logs-i-have-downloaded"></a>我在已下載的 Azure Active Directory 活動記錄中找不到任何資料
 
 
-## 徵兆
-<a id="symptoms" class="xliff"></a>
+## <a name="symptoms"></a>徵兆
 
 我已下載活動記錄 (稽核或登入)，卻沒看到我所選擇時間的所有記錄。 原因為何？ 
 
  ![報告](./media/active-directory-reporting-troubleshoot-missing-data-download/01.png)
  
 
-## 原因
-<a id="cause" class="xliff"></a>
+## <a name="cause"></a>原因
 
 當您在 Azure 入口網站中下載活動記錄時，我們會將級別限制為 120K 筆記錄，依最新記錄排序。 
 
-## 解決方案
-<a id="resolution" class="xliff"></a>
+## <a name="resolution"></a>解決方案
 
 您可以利用 [Azure AD 報告 API](active-directory-reporting-api-getting-started.md) 在任何指定時間點擷取最多一萬筆記錄。 我們建議的方法是定期執行指令碼，呼叫報告 API 以增量方式來擷取一段時間的記錄 (例如，每天或每週)。
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 請參閱 [Azure Active Directory 報告常見問題集](active-directory-reporting-faq.md)。
 
 

@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 06/23/2017
 ms.author: jdial
 ms.custom: 
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c69630688e4bcd68ab3b4ee6d9fdb0e0c46d04b
-ms.openlocfilehash: 6baf1a642778bdd281ae641611bc09ee26aaec70
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: f1e3ae26b6525f2235a6b0d53546b334dc027b94
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/24/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 06/24/2017
 
 使用網路組態檔建立及設定虛擬網路 (傳統) 需要匯出、變更及匯入檔案。
 
-## <a name="export-a-network-configuration-file"></a>匯出網路組態檔
+## <a name="export"></a>匯出網路組態檔
 
 您可以使用 PowerShell 或 Azure CLI 來匯出網路組態檔。 PowerShell 會匯出一個 XML 檔案，而 Azure CLI 會匯出一個 json 檔案。
 
@@ -120,7 +120,7 @@ ms.lasthandoff: 06/24/2017
 
 如果您匯出的網路組態檔不包含任何內容，則可以複製上一個範例中的 json，並將它貼上到新檔案中。
 
-## <a name="import-a-network-configuration-file"></a>匯入網路組態檔
+## <a name="import"></a>匯入網路組態檔
 
 您可以使用 PowerShell 或 Azure CLI 來匯入網路組態檔。 PowerShell 會匯入一個 XML 檔案，而 Azure CLI 會匯入一個 json 檔案。 如果匯入失敗，請確認檔案符合[網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100.aspx)。 
 
@@ -143,3 +143,4 @@ ms.lasthandoff: 06/24/2017
     ```azurecli
     azure network import c:\azure\networkconfig.json
     ```
+

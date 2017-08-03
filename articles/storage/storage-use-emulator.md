@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/08/2017
 ms.author: marsma
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1e6f2b9de47d1ce84c4043f5f6e73d462e0c1271
-ms.openlocfilehash: 9820cef564e291d1c8aee7c360198de1dc05379e
+ms.translationtype: HT
+ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
+ms.openlocfilehash: 5b9e497078fe0b276ec8a717b43a0080e1667592
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/21/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="use-the-azure-storage-emulator-for-development-and-testing"></a>使用 Azure 儲存體模擬器進行開發和測試
@@ -209,6 +208,10 @@ https://storageaccount.blob.core.windows.net/sascontainer?sv=2012-02-12&se=2015-
 模擬器中的佇列儲存體沒有特定差異。
 
 ## <a name="storage-emulator-release-notes"></a>儲存體模擬器版本資訊
+### <a name="version-52"></a>5.2 版
+* 儲存體模擬器現在支援 Blob、佇列和表格服務端點上 2017-04-17 版的儲存體服務。
+* 已修正資料表屬性值未正確編碼的錯誤。
+
 ### <a name="version-51"></a>版本 5.1
 * 修正了儲存體模擬器在某些回應中傳回 `DataServiceVersion` 標頭 (但服務未傳回) 的問題。
 

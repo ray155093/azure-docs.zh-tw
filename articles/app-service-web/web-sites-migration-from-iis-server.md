@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/01/2016
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
-ms.openlocfilehash: 6fdee57d33b19569ef892d0d32ea7007fd69faaf
-ms.lasthandoff: 03/23/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 18d6a8da38b42dcf5c1500f7fc26638aea26a809
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -55,7 +56,7 @@ ms.lasthandoff: 03/23/2017
 * 不會移轉其他元件，例如 SharePoint、Front Page Server Extensions (FPSE)、FTP、SSL 憑證。
 
 ## <a name="how-to-use-the-web-apps-migration-assistant"></a>如何使用 Web Apps 移轉小幫手
-這一節逐步說明如何移轉一些使用 SQL Server 資料庫並在內部部署 Windows Server 2003 R2 (IIS 6.0) 機器上執行之網站的範例：
+本節將逐步說明如何移轉一些使用 SQL Server 資料庫並在內部部署 Windows Server 2003 R2 (IIS 6.0) 機器上執行之網站的範例：
 
 1. 在 IIS 伺服器或您的用戶端機器上瀏覽至 [https://www.movemetothecloud.net/](https://www.movemetothecloud.net/) 
    
@@ -107,7 +108,7 @@ ms.lasthandoff: 03/23/2017
     ![](./media/web-sites-migration-from-iis-server/migration-settings.png)
     
     > [!NOTE]
-    > 自訂設定中的 [啟用 Azure Active Directory] 核取方塊可整合 Azure Web 應用程式與 [Azure Active Directory](../active-directory/active-directory-whatis.md) (預設目錄)。 如需有關同步處理 Azure Active Directory 與內部部署 Active Directory 的詳細資訊，請參閱 [目錄整合](http://msdn.microsoft.com/library/jj573653)。
+    > 自訂設定中的 [啟用 Azure Active Directory] 核取方塊可整合 Azure Web 應用程式與 [Azure Active Directory](../active-directory/active-directory-whatis.md) (預設目錄)。 如需同步處理 Azure Active Directory 與內部部署 Active Directory 的詳細資訊，請參閱[目錄整合](http://msdn.microsoft.com/library/jj573653)。
     > 
     > 
 11. 進行所有必要的變更後，按一下 [建立]  即可啟動移轉程序。 移轉工具會建立 Azure SQL Database 和 Azure Web 應用程式，然後發行網站內容和資料庫。 移轉進度會清楚地顯示在移轉工具中，而您最後將看到摘要畫面，詳述移轉的網站、移轉是否成功、新建立的 Azure Web 應用程式連結。 

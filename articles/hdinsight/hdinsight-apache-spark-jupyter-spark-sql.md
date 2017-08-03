@@ -1,6 +1,6 @@
 ---
-title: "開始使用 - Apache Spark 與互動式 Spark SQL 查詢 - Azure HDInsight | Microsoft Docs"
-description: "HDInsight Spark 快速入門會說明如何在 HDInsight 中建立 Apache Spark 叢集，並使用 Jupyter Notebook 來執行互動式查詢。"
+title: "在 Azure HDInsight 中建立 Apache Spark 叢集 | Microsoft Docs"
+description: "HDInsight Spark 快速入門會說明如何在 HDInsight 中建立 Apache Spark 叢集。"
 keywords: "spark 快速入門, 互動式 spark, 互動式查詢, hdinsight spark, azure spark"
 services: hdinsight
 documentationcenter: 
@@ -15,19 +15,18 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/25/2017
+ms.date: 07/21/2017
 ms.author: nitinme
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
-ms.openlocfilehash: 925dbf5e595941da58e7d705175d0cc63bbf6a16
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: ad4330a1fc7f8de154d9aaa8df3acc2ab59b9dc1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
-# <a name="get-started-create-an-apache-spark-cluster-in-hdinsight-and-run-interactive-spark-sql-queries"></a>開始使用：在 HDInsight 中建立 Apache Spark 叢集，並執行互動式 Spark SQL 查詢
+# <a name="create-an-apache-spark-cluster-in-azure-hdinsight"></a>在 Azure HDInsight 中建立 Apache Spark 叢集
 
-了解如何使用 [Jupyter](https://jupyter.org) Notebook，在 HDInsight 中建立 [Apache Spark](hdinsight-apache-spark-overview.md) 叢集，並執行互動式 Spark SQL 查詢。
+本文說明如何在 Azure HDInsight 中建立 Apache Spark 叢集。 如需 Spark on HDInsight 相關資訊，請參閱[概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)。
 
    ![描述在 Azure HDInsight 上建立 Apache Spark 叢集之步驟的快速入門圖表](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-quickstart-interactive-spark-query-flow.png "在 HDInsight 中使用 Apache Spark 的 Spark 快速入門。說明的步驟︰建立叢集；執行 Spark 互動式查詢")
 
@@ -49,9 +48,9 @@ ms.lasthandoff: 06/07/2017
 
     * **訂用帳戶**：針對此叢集選取您的 Azure 訂用帳戶。
     * **資源群組**：建立資源群組，或選取現有的資源群組。 資源群組用來管理專案的 Azure 資源。
-    * **位置**：選取資源群組的位置。  這個位置也用於預設叢集儲存體和 HDInsight 叢集。
-    * **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
-    * **Spark 版本**︰選取您想要在叢集上安裝的 Spark 版本。
+    * **位置**：選取資源群組的位置。 此範本會使用這個位置，用於建立叢集以及預設叢集儲存體。
+    * **ClusterName**：輸入您想要建立的 HDInsight 叢集名稱。
+    * **Spark 版本**︰選取 **2.0** 作為您要在叢集上安裝的版本。
     * 叢集登入名稱和密碼：預設登入名稱是 admin。
     * SSH 使用者名稱和密碼。
 
@@ -59,26 +58,16 @@ ms.lasthandoff: 06/07/2017
 
 3. 選取 [我同意上方所述的條款及條件]，選取 [釘選到儀表板]，然後按一下 [購買]。 您可以看到新的圖格，標題為「提交範本部署的部署」。 大約需要 20 分鐘的時間來建立叢集。
 
+如果您在建立 HDInsight 叢集時遇到問題，可能是您沒有這麼做的適當權限。 如需詳細資訊，請參閱[存取控制需求](hdinsight-administer-use-portal-linux.md#create-clusters)。
+
 > [!NOTE]
-> 本文建立使用 [Azure 儲存體 Blob 做為叢集儲存體](hdinsight-hadoop-use-blob-storage.md)的 Spark 叢集。 除了使用 Azure 儲存體 Blob 做為預設儲存體外，您也可以建立使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 做為額外儲存體的 Spark 叢集。 如需指示，請參閱 [建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+> 本文建立使用 [Azure 儲存體 Blob 做為叢集儲存體](hdinsight-hadoop-use-blob-storage.md)的 Spark 叢集。 您也可以建立使用 [Azure Data Lake Store](hdinsight-hadoop-use-data-lake-store.md) 作為預設儲存體的 Spark 叢集。 如需指示，請參閱 [建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 >
 >
 
-## <a name="run-an-interactive-spark-sql-query"></a>執行互動式 Spark SQL 查詢
+## <a name="run-a-hive-query-using-spark-sql"></a>執行使用 Spark SQL 的 Hive 查詢
 
-在本節中，您會使用 Jupyter Notebook，針對您稍早建立的 Spark 叢集執行互動式 Spark SQL 查詢。 HDInsight Spark 叢集提供三種核心，可讓您用於 Jupyter Notebook。 它們是：
-
-* **PySpark** (適用於以 Python 撰寫的應用程式)
-* **PySpark3** (適用於以 Python3 撰寫的應用程式)
-* **Spark** (適用於以 Scala 撰寫的應用程式)
-
-在本文中，您會使用 Notebook 中的 **PySpark** 核心，這是您執行互動式 Spark SQL 查詢之處。 如需核心的詳細資訊，請參閱[在 HDInsight 中搭配使用 Jupyter Notebook 核心與 Apache Spark 叢集](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 使用 PySpark 核心的幾個主要優點包括：
-
-* 系統會自動設定 Spark 和 Hive 的內容。
-* 使用 cell magic (例如 `%%sql`) 直接執行互動式 SQL 或 Hive 查詢，而不需要任何前置的程式碼片段。
-* 會自動將互動式查詢的輸出進行視覺化。
-
-### <a name="create-jupyter-notebook-with-pyspark-kernel"></a>使用 PySpark 核心建立 Jupyter Notebook
+當您使用針對 HDInsight Spark 叢集設定的 Jupyter Notebook 時，您可取得預設 `sqlContext`，用來執行使用 Spark SQL 的 Hive 查詢。 本節說明如何啟動 Jupyter Notebook，然後執行基本 Hive 查詢。
 
 1. 開啟 [Azure 入口網站](https://portal.azure.com/)。
 
@@ -106,92 +95,37 @@ ms.lasthandoff: 06/07/2017
 
     ![為要執行互動式 Spark 查詢的 Jupter Notebook 命名](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-jupyter-notebook-name.png "為要執行互動式 Spark 查詢的 Jupter Notebook 命名")
 
-5. 將以下程式碼貼入空白儲存格，然後按下 **SHIFT + ENTER** 鍵以執行此程式碼。 此程式碼會匯入此案例所需的類型：
-
-        from pyspark.sql.types import *
-
-    您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。 當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。
-
-    ![互動式 Spark SQL 查詢的狀態](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-interactive-spark-query-status.png "互動式 Spark SQL 查詢的狀態")
-
-    每當您在 Jupyter 中執行互動式查詢時，網頁瀏覽器視窗標題都會顯示 Notebook 標題和 **(忙碌)** 狀態。 您也會在右上角的 **PySpark** 文字旁看到一個實心圓。 作業完成後，實心圓將變成空心圓。
-
-6. 執行下列程式碼，以註冊範例資料集做為暫存資料表 (**hvac**)。
-
-        # Load the data
-        hvacText = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
-
-        # Create the schema
-        hvacSchema = StructType([StructField("date", StringType(), False),StructField("time", StringType(), False),StructField("targettemp", IntegerType(), False),StructField("actualtemp", IntegerType(), False),StructField("buildingID", StringType(), False)])
-
-        # Parse the data in hvacText
-        hvac = hvacText.map(lambda s: s.split(",")).filter(lambda s: s[0] != "Date").map(lambda s:(str(s[0]), str(s[1]), int(s[2]), int(s[3]), str(s[6]) ))
-
-        # Create a data frame
-        hvacdf = sqlContext.createDataFrame(hvac,hvacSchema)
-
-        # Register the data frame as a table to run queries against
-        hvacdf.registerTempTable("hvac")
-
-    HDInsight 中的 Spark 叢集隨附範例資料檔案 **hvac.csv** (位於 **\HdiSamples\HdiSamples\SensorSampleData\hvac**)。
-
-7. 若要對資料執行互動式查詢，請使用下列程式碼。
+5.  將以下程式碼貼入空白儲存格，然後按下 **SHIFT + ENTER** 鍵以執行此程式碼。 在以下程式碼中，`%%sql` (稱為 sql magic) 會告知 Jupyter Notebook 使用預設的 `sqlContext` 來執行 Hive 查詢。 此查詢會擷取 Hive 資料表 (**hivesampletable**) 中的前 10 個資料列，該資料表預設可用於所有 HDInsight 叢集上。
 
         %%sql
-        SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
+        SELECT * FROM hivesampletable LIMIT 10
 
-   由於您使用的是 PySpark 核心，因此現在可在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行互動式 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#parameters-supported-with-the-sql-magic)。
+    ![HDInsight Spark 中的 Hive 查詢](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-get-started-hive-query.png "HDInsight Spark 中的 Hive 查詢")
 
-   預設會顯示下列表格式輸出。
+    如需有關 `%%sql` magic 和預設內容的詳細資訊，請參閱 [HDInsight 叢集可用的 Jupyter 核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。
 
-     ![互動式 Spark 查詢結果的資料表輸出](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-interactive-spark-query-result.png "互動式 Spark 查詢結果的資料表輸出")
+    > [!NOTE]
+    > 每當您在 Jupyter 中執行查詢時，網頁瀏覽器視窗標題將會顯示 Notebook 標題和 **(忙碌)** 狀態。 您也會在右上角的 **PySpark** 文字旁看到一個實心圓。 作業完成後，實心圓將變成空心圓。
+    >
+    >
+    
+6. 畫面應會重新整理以顯示查詢輸出。
 
-    您也可以查看其他視覺效果中的結果。 例如，相同輸出的區域圖看起來會如下所示。
+    ![HDInsight Spark 中的 Hive 查詢輸出](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-get-started-hive-query-output.png "HDInsight Spark 中的 Hive 查詢輸出")
 
-    ![互動式 Spark 查詢結果的區域圖表](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-interactive-spark-query-result-area-chart.png "互動式 Spark 查詢結果的區域圖表")
+7. 應用程式執行完畢之後，請關閉 Notebook 來釋放叢集資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。
 
-9. 應用程式執行完畢之後，請關閉 Notebook 來釋放叢集資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。
+8. 如果您打算稍後完成後續步驟，請務必刪除在本文中建立的 HDInsight 叢集。 
 
-## <a name="delete-the-cluster"></a>刪除叢集
-[!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
+    [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="troubleshoot-access-control"></a>針對存取控制進行疑難排解
+## <a name="next-step"></a>後續步驟 
 
-如果您在建立 HDInsight 叢集時遇到問題，請參閱[存取控制需求](hdinsight-administer-use-portal-linux.md#create-clusters)。
+在本文中，您已了解如何建立 HDInsight Spark 叢集和執行基本的 Spark SQL 查詢。 前往下篇文章，了解如何使用 HDInsight Spark 叢集執行簡單資料的互動查詢。
 
-## <a name="see-also"></a>另請參閱
-* [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
+> [!div class="nextstepaction"]
+>[在 HDInsight Spark 叢集上執行互動查詢](hdinsight-apache-spark-load-data-run-query.md)
 
-### <a name="scenarios"></a>案例
-* [Spark 和 BI：在 HDInsight 中搭配使用 Spark 和 BI 工具執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark，利用 HVAC 資料來分析建築物溫度](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark 來預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
-* [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
-* [使用 HDInsight 中的 Spark 進行網站記錄分析](hdinsight-apache-spark-custom-library-website-log-analysis.md)
-* [HDInsight 中使用 Spark 的 Application Insight 遙測資料分析](hdinsight-spark-analyze-application-insight-logs.md)
 
-### <a name="create-and-run-applications"></a>建立及執行應用程式
-* [使用 Scala 建立獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
-* [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
 
-### <a name="tools-and-extensions"></a>工具和擴充功能
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
-* [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-zeppelin-notebook.md)
-* [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
-* [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
-
-### <a name="manage-resources"></a>管理資源
-* [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
-* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
-
-[hdinsight-versions]: hdinsight-component-versioning.md
-[hdinsight-upload-data]: hdinsight-upload-data.md
-[hdinsight-storage]: hdinsight-hadoop-use-blob-storage.md
-
-[azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
-[azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/
-[azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-[azure-create-storageaccount]: storage-create-storage-account.md
 

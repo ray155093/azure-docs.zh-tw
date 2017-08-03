@@ -22,21 +22,15 @@ ms.lasthandoff: 05/09/2017
 
 ---
 
-<a id="take-action-with-an-automation-runbook-from-a-log-analytics-log-search-result" class="xliff"></a>
-
-# 從 Log Analytics 記錄搜尋結果利用自動化 Runbook 採取動作
+# <a name="take-action-with-an-automation-runbook-from-a-log-analytics-log-search-result"></a>從 Log Analytics 記錄搜尋結果利用自動化 Runbook 採取動作
 
 從 Azure Log Analytics 中的記錄搜尋結果，您現在可以選取 [採取動作] 執行自動化 Runbook。  Runbook 可用來修復問題或採取其他動作，例如收集疑難排解資訊、傳送電子郵件，或建立服務要求。 
 
-<a id="components-and-features-used" class="xliff"></a>
-
-## 使用的元件和功能
+## <a name="components-and-features-used"></a>使用的元件和功能
 * [Azure 自動化帳戶](../automation/automation-offering-get-started.md)
 * [Log Analytics 工作區](../log-analytics/log-analytics-overview.md)
 
-<a id="to-initiate-runbook-from-log-search" class="xliff"></a>
-
-## 從記錄搜尋初始化 Runbook
+## <a name="to-initiate-runbook-from-log-search"></a>從記錄搜尋初始化 Runbook
 
 若要對事件採取動作，並從記錄搜尋結果初始化 Runbook，首先請建立記錄搜尋，然後就可以從結果中視需要叫用 Runbook。  您可以利用 Azure 或 [OMS 入口網站](../log-analytics/log-analytics-log-searches.md)中的記錄搜尋功能達到此目的。  在此範例中，我們會透過這項功能的基本示範，從 Azure 入口網站執行記錄搜尋。
 
@@ -54,9 +48,7 @@ ms.lasthandoff: 05/09/2017
 
 如果您選取的 Runbook 已設定為[從 Log Analytics 警示呼叫](../automation/automation-invoke-runbook-from-omsla-alert.md)，它會有一個 **Object** 類型的輸入參數，稱為 **WebhookData**。  如果是必要的輸入參數，您需要將搜尋結果傳遞給 Runbook，它才能將 JSON 格式的字串轉換成物件類型，讓您篩選要在 Runbook 活動中參考的特定項目。  作法是從下拉式清單中選取 [搜尋結果 (Object)]。<br><br> ![選取 Webhook 資料物件給 Runbook 參數](media/log-analytics-log-search-takeaction/select-runbook-and-properties.png)   
     
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 * 檢閱 [Log Analytics 記錄檔搜尋參考資料](log-analytics-search-reference.md) ，以檢視 Log Analytics 中提供的所有搜尋欄位和 Facet。
 * 若要了解如何自動叫用自動化 Runbook，請檢閱[從 OMS Log Analytics 警示呼叫 Azure 自動化 Runbook](../automation/automation-invoke-runbook-from-omsla-alert.md)。  

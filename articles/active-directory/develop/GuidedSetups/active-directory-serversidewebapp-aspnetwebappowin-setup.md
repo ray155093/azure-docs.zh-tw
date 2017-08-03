@@ -14,9 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
+ms.custom: aaddev
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: e8a22545e00b16f02124980cba4a8831e0df207a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ebf54f5a203adb7f0e5b0c47dcc07595e269e218
 ms.contentlocale: zh-tw
 
 
@@ -26,14 +27,14 @@ ms.contentlocale: zh-tw
 
 本節說明使用 OpenID Connect 在 ASP.NET 專案中，透過 OWIN 中介軟體安裝及設定驗證管線的步驟。 
 
-> 想要改為下載此範例的 Visual Studio 專案嗎？ [下載專案](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-DotNet/archive/master.zip) 並跳至[設定](#create-an-application-express)步驟，以在執行之前先設定程式碼範例。
+> 想要改為下載此範例的 Visual Studio 專案嗎？ [下載專案](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIDConnect-DotNet/archive/master.zip)並跳至[設定步驟](#create-an-application-express)，以在執行之前先設定程式碼範例。
 
 <!--start-collapse-->
 > ### <a name="create-your-aspnet-project"></a>建立 ASP.NET 專案
 
 > 1. 在 Visual Studio 中：`File` > `New` > `Project`<br/>
 > 2. 在 *Visual C#\Web* 底下，選取 `ASP.NET Web Application (.NET Framework)`。
-> 3. 為您的應用程式命名並按一下 [確定]**
+> 3. 為您的應用程式命名並按一下 [確定]
 > 4. 選取 `Empty` 並選取核取方塊以新增 `MVC` 參考
 <!--end-collapse-->
 

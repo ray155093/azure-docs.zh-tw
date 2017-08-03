@@ -12,23 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/15/2017
+ms.date: 07/19/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 7f6d82d211e9b3d25b0efe62ab8dd32f827b08ef
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: f1875582476c3817b9eb0082b6548cc15043cb98
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 07/20/2017
 
 ---
-# 在 Azure 入口網站中尋找活動報告
-<a id="find-activity-reports-in-the-azure-portal" class="xliff"></a>
+# <a name="find-activity-reports-in-the-azure-portal"></a>在 Azure 入口網站中尋找活動報告
 
 如果您從 Azure 傳統入口網站移轉到 Azure 入口網站，您可看到新的 Azure Active Directory 活動記錄風貌。 在一篇近期的[部落格文章](https://blogs.technet.microsoft.com/enterprisemobility/2016/11/08/azuread-weve-just-turned-on-detailed-auditing-and-sign-in-logs-in-the-new-azure-portal/)中，我們說明如何在 Azure 入口網站中您正在處理的資源內容中查看活動記錄。 在本文中，我們會說明如何在 Azure 入口網站中尋找您使用於 Azure 傳統入口網站的報告。
 
-## 新功能
-<a id="whats-new" class="xliff"></a>
+## <a name="whats-new"></a>新功能
 
 Azure 傳統入口網站中的報告分為下列幾類：
 
@@ -36,8 +34,7 @@ Azure 傳統入口網站中的報告分為下列幾類：
 2.  活動報告
 3.  整合式應用程式報告
 
-### 活動和整合式應用程式報告
-<a id="activity-and-integrated-app-reports" class="xliff"></a>
+### <a name="activity-and-integrated-app-reports"></a>活動和整合式應用程式報告
 
 為了在 Azure 入口網站中進行以內容為基礎的報告，現有的報告會合併成單一檢視。 單一基礎 API 可提供此檢視的資料。
 
@@ -65,13 +62,11 @@ Azure 傳統入口網站中的報告分為下列幾類：
 
 ![企業應用程式](./media/active-directory-reporting-migration/484.png "企業應用程式")
 
-## 存取特定報告
-<a id="access-a-specific-report" class="xliff"></a>
+## <a name="access-a-specific-report"></a>存取特定報告
 
 雖然 Azure 入口網站提供了單一檢視，但您也可以查看特定報告。
 
-### 稽核記錄
-<a id="audit-logs" class="xliff"></a>
+### <a name="audit-logs"></a>稽核記錄
 
 為了回應客戶的意見反應，您可以在 Azure 入口網站中使用進階篩選來存取想要的資料。 您可以使用的其中一個篩選是「活動類別」，它會列出 Azure AD 中的各種活動記錄。 若要縮小您要尋找的結果範圍，您可以選取一個類別。
 
@@ -86,18 +81,15 @@ Azure 傳統入口網站中的報告分為下列幾類：
 - 自助式群組管理
 - 帳戶佈建
 
-### 應用程式使用情況
-<a id="application-usage" class="xliff"></a>
+### <a name="application-usage"></a>應用程式使用情況
 
 若要檢視所有應用程式或單一應用程式的應用程式使用量詳細資料，請在 [活動] 之下選取 [登入]。 若要縮小結果範圍，您可以依據使用者名稱或應用程式名稱進行篩選。
 
 ![[篩選登入事件] 頁面](./media/active-directory-reporting-migration/07.png "[篩選登入事件] 頁面")
 
-### 安全性報告
-<a id="security-reports" class="xliff"></a>
+### <a name="security-reports"></a>安全性報告
 
-#### Azure AD 異常活動報告
-<a id="azure-ad-anomalous-activity-reports" class="xliff"></a>
+#### <a name="azure-ad-anomalous-activity-reports"></a>Azure AD 異常活動報告
 
 來自 Azure 傳統入口網站的 Azure AD 異常活動安全性報告已經合併，可為您提供一個集中檢視。 此檢視顯示 Azure AD 可以偵測及作為報告依據的所有安全性相關風險事件。
 
@@ -122,8 +114,7 @@ Azure 傳統入口網站中的報告分為下列幾類：
 如需詳細資訊，請參閱 [Azure Active Directory 風險事件](active-directory-identity-protection-risk-events.md)。  
 
 
-#### 偵測到的風險事件
-<a id="detected-risk-events" class="xliff"></a>
+#### <a name="detected-risk-events"></a>偵測到的風險事件
 
 在 Azure 入口網站中，您可以在 [Azure Active Directory] 刀鋒視窗的 [安全性] 之下，存取所偵測到之風險事件的相關報告。 偵測到的風險事件會在下列報告中進行追蹤︰   
 
@@ -138,8 +129,7 @@ Azure 傳統入口網站中的報告分為下列幾類：
 - [Azure Active Directory 入口網站中有風險的登入報告](active-directory-reporting-security-risky-sign-ins.md)
 
 
-## Azure 傳統入口網站與 Azure 入口網站中活動報告的比較
-<a id="activity-reports-in-the-azure-classic-portal-vs-the-azure-portal" class="xliff"></a>
+## <a name="activity-reports-in-the-azure-classic-portal-vs-the-azure-portal"></a>Azure 傳統入口網站與 Azure 入口網站中活動報告的比較
 
 本節中的表格會列出 Azure 傳統入口網站的現有報表。 此外也說明如何在 Azure 入口網站中取得相同的資訊。
 
@@ -162,4 +152,8 @@ Azure 傳統入口網站中的報告分為下列幾類：
 
 
 ![企業應用程式登入報告](./media/active-directory-reporting-migration/199.png "企業應用程式登入報告")
+
+## <a name="next-steps"></a>後續步驟
+
+如需報告概觀，請參閱 [Azure Active Directory 報告](active-directory-reporting-azure-portal.md)。
 

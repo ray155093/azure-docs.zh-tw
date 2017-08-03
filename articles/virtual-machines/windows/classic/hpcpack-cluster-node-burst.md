@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
 ms.date: 10/14/2016
 ms.author: danlep
-translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: d27376e81f5be3d4f473ef044a84a18ac451921f
-ms.lasthandoff: 03/27/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 9336743b92130e37b1df2992aab806696f8276aa
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="add-on-demand-burst-nodes-to-an-hpc-pack-cluster-in-azure"></a>將隨選「高載」節點新增至 Azure 中的 HPC Pack 叢集
@@ -77,7 +77,7 @@ ms.lasthandoff: 03/27/2017
 如果您在部署 Azure 節點時遇到問題，請參閱 [使用 Microsoft HPC Pack 部署 Azure 節點時的疑難排解](http://technet.microsoft.com/library/jj159097.aspx)。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要對高載節點使用計算密集型執行個體大小，請參閱[關於 H 系列和計算密集型 A 系列 VM](../../virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 中的考量。
+* 若要對高載節點使用密集計算的執行個體大小，請參閱[高效能運算 VM 大小](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的考量。
 * 如果您想要根據叢集工作負載自動擴增或縮減 Azure 計算資源，請參閱 [在 HPC Pack 叢集中自動擴增和縮減 Azure 運算資源](hpcpack-cluster-node-autogrowshrink.md)。
 
 <!--Image references-->

@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 70e78af25c7087aa0eb59697aa9b51d615480085
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 8e0b9181bcd43692619726e7215e90116e5b9221
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="use-packet-capture-for-proactive-network-monitoring-with-alerts-and-azure-functions"></a>使用封包擷取搭配警示和 Azure Functions 進行主動式網路監視
@@ -372,7 +371,8 @@ $Encryptedpassword
 
 ## <a name="next-steps"></a>後續步驟
 
-瀏覽[使用 Wireshark 的封包擷取分析](network-watcher-alert-triggered-packet-capture.md)，了解如何檢視封包擷取。
+瀏覽[使用 Wireshark 的封包擷取分析](network-watcher-deep-packet-inspection.md)，了解如何檢視封包擷取。
+
 
 [1]: ./media/network-watcher-alert-triggered-packet-capture/figure1.png
 [1-1]: ./media/network-watcher-alert-triggered-packet-capture/figure1-1.png

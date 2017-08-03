@@ -12,13 +12,14 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 02/27/2017
+ms.date: 06/05/2017
 ms.author: v-sharos
-ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 7651a2ba6c206bb39d7cf8839f6f0f828fb3bc16
-ms.openlocfilehash: 25265349cb8cb47e93b7bea7103f1d06878a6158
-ms.lasthandoff: 02/28/2017
+ms.custom: 
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b48c507e38eb7cadff56259f617e336e4efe5708
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -126,7 +127,7 @@ StorSimple Snapshot Manager 使用者介面支援 Windows 作業系統和 Micros
 | 重新掃描磁碟區 |以滑鼠右鍵按一下 [ **磁碟區** ] 節點。 |按一下 [重新掃描磁碟區]，以更新 [結果] 窗格中出現的磁碟區清單。 |
 | 還原 |依序展開 [備份目錄]、磁碟區群組和[本機快照] 或 [雲端快照]，然後以滑鼠右鍵按一下備份。 |按一下 [ **還原** ]，以所選取備份的資料取代目前的磁碟區群組資料。 |
 | 進行備份 |執行下列其中一項：<ul><li>展開**磁碟區群組**，然後以滑鼠右鍵按一下磁碟區群組。</li><li>展開**備份目錄**，然後以滑鼠右鍵按一下磁碟區群組。</li></ul> |按一下 [ **取得備份** ] 以立即開始備份作業。 |
-| 切換匯入顯示 |以滑鼠右鍵按一下 [範圍] 窗格中的最上層節點 (範例中的 [StorSimple Snapshot Manager] 節點)。 |按一下 [ **切換匯入顯示** ]，以顯示或隱藏磁碟區群組，以及從 StorSimple Manager 服務儀表板匯入的相關聯備份。 |
+| 切換匯入顯示 |以滑鼠右鍵按一下 [範圍] 窗格中的最上層節點 (範例中的 [StorSimple Snapshot Manager] 節點)。 |按一下 [切換匯入顯示]，以顯示或隱藏磁碟區群組，以及從 StorSimple 裝置管理員服務儀表板匯入的相關聯備份。 |
 
 ### <a name="view-menu"></a>檢視功能表
 使用 [檢視] 功能表，可建立 [結果] 窗格內容的自訂檢視。 [檢視] 功能表包含 [新增/移除資料行] 和 [自訂] 選項。
@@ -273,8 +274,7 @@ StorSimple Snapshot Manager 使用者介面支援 Windows 作業系統和 Micros
 
 > [!NOTE]
 > 您最多可以保留 64 個備份。
-> 
-> 
+
 
 ### <a name="backup-catalog-node"></a>備份目錄節點
 [ **備份目錄** ] 節點包含 Azure StorSimple 磁碟區的現場和異地備份清單。 此節點是依磁碟區群組組織，而且每個磁碟區群組容器包含本機快照 ([本機快照] 節點) 和雲端快照 ([雲端快照] 節點) 的個別結構。 展開時，每個磁碟區群組容器會列出以互動方式或透過已設定的原則所取得的所有成功備份。
@@ -429,7 +429,7 @@ StorSimple Snapshot Manager 可啟用 Windows 作業系統和 Microsoft Manageme
 | V |開啟 [ **檢視** ] 功能表。 |
 | W |開啟新的 StorSimple Snapshot Manager 主控台，且焦點在 [ **磁碟區群組** ] 節點。 |
 | F |更新 StorSimple Snapshot Manager 主控台。 |
-| L |開啟 [ **匯出清單**] 頁面。 |
+| L |開啟 [匯出清單] 頁面。 |
 | H |開啟線上說明。 |
 
 #### <a name="backup-catalog-node-shortcut-keys"></a>備份目錄節點快速鍵

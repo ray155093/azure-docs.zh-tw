@@ -1,5 +1,5 @@
 ---
-title: "在 HDInsight 中搭配使用 Hadoop Pig 與 REST | Microsoft Docs"
+title: "在 HDInsight 中搭配使用 Hadoop Pig 與 REST - Azure | Microsoft Docs"
 description: "了解如何使用 REST 在 Azure HDInsight 中的 Hadoop 叢集上執行 Pig Latin 作業。"
 services: hdinsight
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.workload: big-data
 ms.date: 05/03/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 1c719a33001654755ec8d83f4bf43ca1fc52954e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b7a4772180225fc6be48ab5c75dcc334d3431e75
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -38,7 +38,7 @@ ms.lasthandoff: 05/18/2017
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Linux 型或 Windows 型)
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 * [Curl](http://curl.haxx.se/)
 

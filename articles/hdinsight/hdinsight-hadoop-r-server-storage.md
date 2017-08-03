@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/19/2017
 ms.author: bradsev
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 017a66ae1ade5e0f64fc799b7bb6aa97b67791a8
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 02bf921222917a50af8e28e62514e167901743b8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="azure-storage-solutions-for-r-server-on-hdinsight"></a>適用於 HDInsight 上 R 伺服器的 Azure 儲存體選項
@@ -77,14 +76,14 @@ HDInsight 上的 Microsoft R 伺服器有數種儲存體選項可用來保存資
         #Specify the input file to analyze in HDFS:
         inputFile <-file.path(bigDataDirRoot,"mycsv.csv")
 
-所有目錄和檔案的參考會指向儲存體帳戶 wasbs://container1@storage1.blob.core.windows.net。 這是與 HDInsight 叢集關聯的「預設儲存體帳戶」。
+所有目錄和檔案的參考會指向儲存體帳戶 wasb://container1@storage1.blob.core.windows.net。 這是與 HDInsight 叢集關聯的「預設儲存體帳戶」。
 
 現在，假設您想要處理名稱為 mySpecial.csv 的檔案，其所在位置為 **storage2** 中 **container2** 的 /private 目錄。
 
 在 R 程式碼中，將名稱節點參考指向 **storage2** 儲存體帳戶。
 
 
-    myNameNode <- "wasbs://container2@storage2.blob.core.windows.net"
+    myNameNode <- "wasb://container2@storage2.blob.core.windows.net"
     myPort <- 0
 
     #Location of the data:
@@ -102,14 +101,14 @@ HDInsight 上的 Microsoft R 伺服器有數種儲存體選項可用來保存資
     #Specify the input file to analyze in HDFS:
     inputFile <-file.path(bigDataDirRoot,"mySpecial.csv")
 
-現在，所有目錄和檔案的參考會指向儲存體帳戶 wasbs://container2@storage2.blob.core.windows.net。 這是您已指定的「名稱節點」。
+現在，所有目錄和檔案的參考會指向儲存體帳戶 wasb://container2@storage2.blob.core.windows.net。 這是您已指定的「名稱節點」。
 
 您必須在 **storage2** 上設定 /user/RevoShare/<SSH username> 目錄，如下所示：
 
 
-    hadoop fs -mkdir wasbs://container2@storage2.blob.core.windows.net/user
-    hadoop fs -mkdir wasbs://container2@storage2.blob.core.windows.net/user/RevoShare
-    hadoop fs -mkdir wasbs://container2@storage2.blob.core.windows.net/user/RevoShare/<RDP username>
+    hadoop fs -mkdir wasb://container2@storage2.blob.core.windows.net/user
+    hadoop fs -mkdir wasb://container2@storage2.blob.core.windows.net/user/RevoShare
+    hadoop fs -mkdir wasb://container2@storage2.blob.core.windows.net/user/RevoShare/<RDP username>
 
 
 

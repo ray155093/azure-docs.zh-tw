@@ -1,5 +1,5 @@
 ---
-title: "HDInsight 所使用的連接埠 | Microsoft Docs"
+title: "HDInsight 上 Hadoop 服務使用的連接埠 - Azure | Microsoft Docs"
 description: "在 HDInsight 上執行的 Hadoop 服務所使用的連接埠清單。"
 services: hdinsight
 documentationcenter: 
@@ -13,17 +13,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/17/2017
+ms.date: 06/02/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
-ms.openlocfilehash: 3bf5ff732b03a1ecffb4e149d7805a6216ab0019
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: b1a4ca17a53a6d337d704bc4eef6d441de1f32d8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
-
+ms.lasthandoff: 07/14/2017
 
 ---
-# <a name="ports-and-uris-used-by-hdinsight"></a>HDInsight 所使用的連接埠和 URI
+# <a name="ports-used-by-hadoop-services-on-hdinsight"></a>HDInsight 上 Hadoop 服務所使用的連接埠
 
 本文件提供在以 Linux 為基礎的 HDInsight 叢集上執行的 Hadoop 服務所使用的連接埠清單。 此外，也提供用來連線到使用 SSH 之叢集的連接埠相關資訊。
 
@@ -76,6 +75,14 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 > [!NOTE]
 > 部分服務只能在特定叢集類型上使用。 例如，HBase 只能在 HBase 叢集類型上使用。
 
+### <a name="ambari"></a>Ambari
+
+| 服務 | 節點 | 連接埠 | 路徑 | 通訊協定 | 
+| --- | --- | --- | --- | --- |
+| Ambari Web UI | 前端節點 | 8080 | / | HTTP |
+| Ambari REST API | 前端節點 | 8080 | /api/v1 | HTTP |
+
+
 ### <a name="hdfs-ports"></a>HDFS 連接埠
 
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
@@ -105,8 +112,8 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
-| HiveServer2 |前端節點 |10001 |Thrift |可以程式設計方式連接到 Hive 的服務 (Thrift/JDBC) |
-| Hive 中繼存放區 |前端節點 |9083 |Thrift |可以程式設計方式連接到 Hive 中繼資料的服務 (Thrift/JDBC) |
+| HiveServer2 |前端節點 |10001 |Thrift |要連接到 Hive 的服務 (Thrift/JDBC) |
+| Hive 中繼存放區 |前端節點 |9083 |Thrift |要連接到 Hive 中繼資料的服務 (Thrift/JDBC) |
 
 ### <a name="webhcat-ports"></a>WebHCat 連接埠
 
@@ -152,4 +159,8 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | Broker |背景工作節點 |9092 |[Kafka Wire Protocol (Kafka 有線通訊協定)](http://kafka.apache.org/protocol.html) |用於用戶端通訊 |
 | &nbsp; |Zookeeper 節點 |2181 |&nbsp; |用戶端用於連接至 ZooKeeper 的連接埠 |
 
+### <a name="spark-ports"></a>Spark 連接埠
 
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
+| --- | --- | --- | --- | --- |
+| Spark Thrift 伺服器 |前端節點 |10002 |Thrift |要連接到 Spark SQL 的服務 (Thrift/JDBC) |

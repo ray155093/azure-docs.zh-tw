@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/21/2017
 ms.author: genli
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 61fd58063063d69e891d294e627ae40cb878d65b
-ms.openlocfilehash: 9f6ea8296f1bf81813594b07c50f70dd8647f032
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 99a790617baa65116bfba976cd9279627e8775f3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/22/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 
@@ -34,14 +34,14 @@ ms.lasthandoff: 06/22/2017
 
 檢查 Azure 虛擬網路閘道的類型：
 
-1. 移至 [Azure 入口網站 ](https://portal.azure.com) 。
+1. 移至 [Azure 入口網站 ](https://portal.azure.com)。
 2. 檢查虛擬網路閘道的 [概觀] 頁面來取得類型資訊。
     
     ![閘道概觀](media\vpn-gateway-troubleshoot-site-to-site-disconnected-intermittently\gatewayoverview.png)
 
 ### <a name="step-1-check-whether-the-on-premises-vpn-device-is-validated"></a>步驟 1：檢查內部部署 VPN 裝置是否經過驗證
 
-1. 檢查您是否使用[經過驗證的 VPN 裝置和作業系統版本](vpn-gateway-about-vpn-devices.md#a-namedevicetableavalidated-vpn-devices-and-device-configuration-guides)。 如果 VPN 裝置未經驗證，您可能需要連絡裝置製造商，以了解是否有任何相容性問題。
+1. 檢查您是否使用[經過驗證的 VPN 裝置和作業系統版本](vpn-gateway-about-vpn-devices.md#devicetable)。 如果 VPN 裝置未經驗證，您可能需要連絡裝置製造商，以了解是否有任何相容性問題。
 2. 確定已正確設定 VPN 裝置。 如需詳細資訊，請參閱[編輯裝置組態範例](vpn-gateway-about-vpn-devices.md#editing)。
 
 ### <a name="step-2-check-the-security-association-settingsfor-policy-based-azure-virtual-network-gateways"></a>步驟 2：檢查安全性關聯設定 (適用於原則式 Azure 虛擬網路閘道)

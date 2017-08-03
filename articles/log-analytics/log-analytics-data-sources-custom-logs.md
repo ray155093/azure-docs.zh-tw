@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 07/07/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
-ms.openlocfilehash: a9c70810c4f731b2d8b395873fa6b94db78306aa
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d79e7ec6abfc0104008139bb4f86cc7bb1a02a13
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -28,12 +29,12 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 
 要收集的記錄檔必須符合下列準則。
 
-* 記錄檔必須是每行一個項目，或在每個項目開頭使用符合下列其中一種格式的時間戳記。
+- 記錄檔必須是每行一個項目，或在每個項目開頭使用符合下列其中一種格式的時間戳記。
   
-    YYYY-MM-DD HH:MM:SS  <br>
-    M/D/YYYY HH:MM:SS AM/PM <br>
-    Mon DD,YYYY HH:MM:SS
-* 記錄檔不得使用會以新的項目覆寫檔案的循環更新。 
+    YYYY-MM-DD HH:MM:SS <br>M/D/YYYY HH:MM:SS AM/PM <br>Mon DD,YYYY HH:MM:SS
+
+- 記錄檔不得使用會以新的項目覆寫檔案的循環更新。 
+- 記錄檔必須使用 ASCII 或 UTF-8 編碼。  不支援其他格式，例如 UTF-16。
 
 ## <a name="defining-a-custom-log"></a>定義自訂記錄檔
 使用下列程序來定義自訂記錄檔。  如需新增自訂記錄檔之範例的逐步解說，請捲動到本文結尾處。
@@ -59,10 +60,10 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 > 
 
 1. 按一下 [瀏覽]  並瀏覽至範例檔案。  請注意，在某些瀏覽器中，這個按鈕可能標示為 [選擇檔案]  。
-2. 按 [下一步] 。 
+2. 按一下 [下一步] 。 
 3. 自訂記錄檔精靈會上傳檔案並列出其識別的記錄。
 4. 變更用來識別新記錄的分隔符號，並選取最能識別記錄檔中的記錄的分隔符號。
-5. 按 [下一步] 。
+5. 按一下 [下一步] 。
 
 ### <a name="step-3-add-log-collection-paths"></a>步驟 3. 新增記錄檔收集路徑
 您必須在代理程式上定義一個或多個它可以在其中找到自訂記錄檔的路徑。  您可以提供該記錄檔的特定路徑和名稱，或者您可以使用萬用字元為該名稱指定路徑。  這可支援每天會建立一個新檔案的應用程式或在一個檔案到達特定大小時提供支援。  您也可以為單一記錄檔提供多個路徑。

@@ -24,9 +24,7 @@ ms.lasthandoff: 06/20/2017
 
 ---
 
-<a id="create-a-function-app-for-serverless-execution" class="xliff"></a>
-
-# 建立無伺服器也可執行的函式應用程式
+# <a name="create-a-function-app-for-serverless-execution"></a>建立無伺服器也可執行的函式應用程式
 
 此範例指令碼會建立 Azure 函式應用程式，這是您的函式容器。 將會使用[取用方案](../functions-scale.md#consumption-plan)建立函數應用程式，這適用於事件驅動的無伺服器工作負載。
 
@@ -36,9 +34,7 @@ ms.lasthandoff: 06/20/2017
 
 如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-<a id="sample-script" class="xliff"></a>
-
-## 範例指令碼
+## <a name="sample-script"></a>範例指令碼
 
 此指令碼會使用[取用方案](../functions-scale.md#consumption-plan)建立 Azure 函數應用程式。
 
@@ -46,9 +42,7 @@ ms.lasthandoff: 06/20/2017
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
-<a id="script-explanation" class="xliff"></a>
-
-## 指令碼說明
+## <a name="script-explanation"></a>指令碼說明
 
 下表中的每個命令都會連結至命令特定的文件。 此指令碼會使用下列命令：
 
@@ -58,9 +52,7 @@ ms.lasthandoff: 06/20/2017
 | [az storage account create](/cli/azure/storage/account#create) | 建立 Azure 儲存體帳戶。 |
 | [az functionapp create](https://docs.microsoft.com/cli/azure/functionapp#create) | 建立 Azure 函式。 |
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 

@@ -17,11 +17,11 @@ ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 146495393d5ed356a2ad3b6ce181a30e8b2ae997
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: c0b5968189512d3ca936c0e916274e1df057afb9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/03/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -733,7 +733,7 @@ Microsoft Azure ExpressRoute 可在 Azure 資料中心與客戶的內部部署�
 * <https://azure.microsoft.com/documentation/articles/expressroute-howto-linkvnet-arm/>
 * <https://azure.microsoft.com/documentation/articles/expressroute-howto-circuit-arm/>
 
-#### <a name="forced-tunneling-in-case-of-cross-premise"></a>跨單位時強制通道
+#### <a name="forced-tunneling-in-case-of-cross-premises"></a>跨單位時的強制通道
 針對透過站對站、點對站或 ExpressRoute 加入內部部署網域的 VM，您也必須確定為這些 VM 中的所有使用者部署網際網路 Proxy 設定。 根據預設，在這些 VM 中執行的軟體或使用瀏覽器存取網際網路的使用者不會經過公司 Proxy，而是會透過 Azure 直接連線到網際網路。 但即使是 Proxy 設定也無法 100% 解決將流量引導通過公司 Proxy 的問題，因為檢查 Proxy 的責任在於軟體和服務。 如果在 VM 中執行的軟體未執行該項作業，或是由系統管理員管理設定，則前往網際網路的流量可能會透過 Azure 直接再次繞道至網際網路。
 
 若要避免此問題，您可以在內部部署與 Azure 之間設定具有站對站連線能力的強制通道。 如需「強制通道」功能的詳細說明，請參閱這裡 <https://azure.microsoft.com/documentation/articles/vpn-gateway-forced-tunneling-rm/>
@@ -911,7 +911,7 @@ Microsoft Azure 提供多種方法來部署 VM 和相關聯的磁碟。 因此�
 [comment]: <> (MShermannd TODO 必須檢查 CLI 是否也會轉換為靜態 )
 * 它必須是固定 VHD 格式。 Azure 尚未支援動態 VHD 或 VHDx 格式的 VHD。 當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 掛接到 VM 並應該在 Azure 中再次掛接到 VM 的 VHD 也必須是固定 VHD 格式。 OS 磁碟的相同大小限制也適用於資料磁碟。 VHD 可以有 1TB 的大小上限。 當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
-* 由於所有在 VM 中註冊為使用者的網域使用者在「僅限雲端」案例中都將不存在 (請參閱本文件的[僅限雲端 - 將虛擬機器部署到 Azure，無須倚賴內部部署客戶網路][planning-guide-2.1]一章)，因此一旦在 Azure 中部署映像，使用這類網域帳戶的服務可能就無法運作。 特別是使用帳戶來執行 DBMS 或 SAP 應用程式等的服務時。 因此，您必須以 VM 本機帳戶取代這類網域帳戶，並刪除 VM 中的內部部署網域帳戶。 在以「跨單位」方式部署 VM 的情況下 (如本文件的[跨單位 - 將單一或多個 SAP VM 部署到 Azure，必須完全整合到內部部署網路][planning-guide-2.2]一章所述)，在 VM 映像中保留內部部署網域使用者可能就不構成問題。
+* 由於所有在 VM 中註冊為使用者的網域使用者在「僅限雲端」案例中都將不存在 (請參閱本文件的[僅限雲端 - 將虛擬機器部署到 Azure，無須倚賴內部部署客戶網路][planning-guide-2.1]一章)，因此一旦在 Azure 中部署映像，使用這類網域帳戶的服務可能就無法運作。 特別是使用帳戶來執行 DBMS 或 SAP 應用程式等的服務時。 因此，您必須以 VM 本機帳戶取代這類網域帳戶，並刪除 VM 中的內部部署網域帳戶。 在以「跨單位」方式部署 VM 的情況下 (如本文件的[跨單位 - 將單一或多個 SAP VM 部署到 Azure，必須完全整合到內部部署網路][planning-guide-2.2]一章所述)，在 VM 映像中保留內部部署網域使用者並不構成問題。
 * 使用系統管理員權限新增本機帳戶，此帳戶可供 Microsoft 支援服務用來調查問題，並可指派為執行服務和應用程式的內容，直到部署 VM 並可使用更適當的使用者為止。
 * 在僅限雲端部署中，如果在內部部署執行系統時使用網域帳戶作為 DBMS 登入或使用者，則應該刪除網域使用者。 您必須確定將本機系統管理員和另一位 VM 本機使用者以 DBMS 的登入/使用者身分加入成為系統管理員。
 * 新增其他本機帳戶，因為特定部署案例可能需要這些帳戶。

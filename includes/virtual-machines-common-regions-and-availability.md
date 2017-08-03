@@ -81,7 +81,7 @@ Azure 在世界各地多個資料中心運作。 這些資料中心會依據地�
 
 ![更新網域和容錯網域組態的概念圖](./media/virtual-machines-common-regions-and-availability/ud-fd-configuration.png)
 
-您可以深入了解如何管理 [Linux VM](../articles/virtual-machines/linux/manage-availability.md) 或 [Windows VM](../articles/virtual-machines/linux/manage-availability.md)。
+您可以深入了解如何管理 [Linux VM](../articles/virtual-machines/linux/manage-availability.md) 或 [Windows VM](../articles/virtual-machines/windows/manage-availability.md)。
 
 ### <a name="fault-domains"></a>容錯網域
 容錯網域是共用通用電源和網路交換器的基礎硬體邏輯群組，類似於內部部署資料中心內的機架。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些容錯網域。 此方法可限制潛在實體硬體錯誤、網路中斷或電源中斷的影響。

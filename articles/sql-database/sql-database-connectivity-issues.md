@@ -336,7 +336,7 @@ Enterprise Library 6 (EntLib60) 是 .NET 類別的架構，可協助您實作雲
 ### <a name="entlib60-classes-for-transient-errors-and-retry"></a>用於暫時性錯誤和重試的 EntLib60 類別
 下列 EntLib60 類別特別有助於重試邏輯。 這些全部都在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中，或進一步位於其下：
 
-*在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中：*
+*在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling**中：*
 
 * **RetryPolicy** 類別
   

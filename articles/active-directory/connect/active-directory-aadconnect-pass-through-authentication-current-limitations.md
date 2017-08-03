@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2017
+ms.date: 07/25/2017
 ms.author: billmath
-ms.translationtype: Human Translation
-ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
-ms.openlocfilehash: 3ed2ee8c996628caabefd60b5ecff7528402eb52
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 40d07ce6e480924c7c1af601cc25e4a74280141f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 
@@ -33,6 +33,7 @@ ms.lasthandoff: 07/06/2017
 
 - 使用者登入所有網頁瀏覽器應用程式。
 - 使用者登入支援[新式驗證](https://aka.ms/modernauthga)的 Office 365 用戶端應用程式。
+- 適用於 Windows 10 裝置的 Azure AD Join。
 
 ## <a name="unsupported-scenarios"></a>不支援的情節
 
@@ -41,7 +42,6 @@ ms.lasthandoff: 07/06/2017
 - 使用者登入舊版 Office 用戶端應用程式和 Exchange ActiveSync (亦即，行動裝置上的原生電子郵件應用程式)。 組織應該盡可能切換到新式驗證。 新式驗證提供傳遞驗證支援，但也可使用 Multi-Factor Authentication (MFA) 等[條件式存取](../active-directory-conditional-access.md)功能，協助您保護身分識別。
 - 使用者登入商務用 Skype 用戶端應用程式。
 - 使用者登入 PowerShell 1.0 版。 建議您改為使用 PowerShell 2.0 版。
-- 適用於 Windows 10 裝置的 Azure AD Join。
 
 >[!IMPORTANT]
 >對於不支援的情節，請在 Azure AD Connect 精靈的[選用功能](active-directory-aadconnect-get-started-custom.md#optional-features)頁面上，啟用 [密碼雜湊同步處理] 作為因應措施。 密碼雜湊同步處理「只是」作為先前情節的後援 (「不是」作為傳遞驗證的一般後援)。 如果您不需要這些情節，請關閉 [密碼雜湊同步處理]。

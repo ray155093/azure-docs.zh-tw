@@ -5,21 +5,20 @@ services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: 
 ms.assetid: 8f8aadeb-45c9-4d0e-af87-f1f79373e039
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 04/13/2017
+ms.date: 07/13/2017
 ms.author: kgremban
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 06daecfe8cd61cbb3ab9d2307acb07e30270d921
+ms.reviewer: rqureshi
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 68213a40755ae7dc675556c595da032b408be261
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
-
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="get-started-with-role-based-access-control-in-the-azure-portal"></a>在 Azure 入口網站中開始使用角色型存取控制
@@ -48,7 +47,7 @@ Azure 中其餘的 RBAC 角色可以管理特定 Azure 資源。 例如，「虛
 [RBAC 內建角色](role-based-access-built-in-roles.md) 會列出 Azure 中可用的角色。 它會指定每個內建角色授與使用者的作業和範圍。 如果您想要定義自己的角色，獲得更進一步控制，請參閱如何建立 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)。
 
 ## <a name="resource-hierarchy-and-access-inheritance"></a>資源階層和存取繼承
-* Azure 中的每個 **訂用帳戶** 只屬於一個目錄。
+* Azure 中的每個 **訂用帳戶** 只屬於一個目錄。 (但每個目錄可以有多個訂用帳戶)。
 * 每個 **資源群組** 只屬於一個訂用帳戶。
 * 每個 **資源** 只屬於一個資源群組。
 

@@ -12,12 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 07/27/2016
+ms.date: 07/26/2017
 ms.author: alkohli
-translationtype: Human Translation
-ms.sourcegitcommit: eb56cae77722268f42e5126c45ad2878af7db94a
-ms.openlocfilehash: 0db0af490f03525f4c23c4e9a23e62a1ef9f1c7f
-
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: 2b627250df62bbe3299869ef3812947afbb8f29f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="use-the-storsimple-manager-service-to-clone-a-volume-update-2"></a>使用 StorSimple Manager 服務來複製磁碟區 (Update 2)
@@ -86,7 +87,7 @@ StorSimple Manager 服務 [備份類別目錄]  頁面會顯示在進行手動�
 > 
 > 
 
-以這種方式建立的複製就是暫時性複製。 如需複製類型的詳細資訊，請參閱 [暫時性與永久複製](#transient-vs.-permanent-clones)。
+以這種方式建立的複製就是暫時性複製。 如需複製類型的詳細資訊，請參閱 [暫時性與永久複製](#transient-vs-permanent-clones)。
 
 此複製現在是一般的磁碟區，可在磁碟區進行的任何操作都能在此複製進行。 您必須設定此磁碟區以進行任何備份。
 
@@ -111,10 +112,5 @@ StorSimple Manager 服務 [備份類別目錄]  頁面會顯示在進行手動�
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set-u2.md)。
 * 了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

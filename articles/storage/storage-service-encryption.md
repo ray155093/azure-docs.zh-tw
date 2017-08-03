@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/09/2017
 ms.author: robinsh
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 7b91be16b5820f379f7408b477311ea86b213ccd
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: dcd843ae1ba768ce02256dcc91c61693730c60e4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="azure-storage-service-encryption-for-data-at-rest"></a>待用資料的 Azure 儲存體服務加密
@@ -40,7 +39,7 @@ SSE 的運作方式是在將資料寫入「Azure 儲存體」時加密資料，�
 
 若要深入了解，請參閱常見問題集。
 
-若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://azure.portal.com)並選取儲存體帳戶。 在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
+若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://portal.azure.com)並選取儲存體帳戶。 在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
 
 ![顯示 [加密] 選項的入口網站螢幕擷取畫面](./media/storage-service-encryption/image1.png)
 <br/>*圖 1：為 Blob 服務啟用 SSE (步驟 1)*
@@ -85,7 +84,7 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 若要深入了解，請參閱[使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
 
 #### <a name="using-smb"></a>使用 SMB
-Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案共用。 您可以從內部部署或 Azure 中的用戶端掛接檔案共用。 一旦掛接，您就能使用如 Robocopy 的工具來將檔案複製到 Azure 檔案共用。 如需詳細資訊，請參閱[如何在 Windows 上掛接 Azure 檔案共用](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-files#mount-the-file-share)與[如何在 Linux 上掛接 Azure 檔案共用](https://docs.microsoft.com/en-us/azure/storage/storage-how-to-use-files-linux#mount-the-file-share)。
+Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案共用。 您可以從內部部署或 Azure 中的用戶端掛接檔案共用。 一旦掛接，您就能使用如 Robocopy 的工具來將檔案複製到 Azure 檔案共用。 如需詳細資訊，請參閱[如何在 Windows 上掛接 Azure 檔案共用](storage-file-how-to-use-files-windows.md)與[如何在 Linux 上掛接 Azure 檔案共用](storage-how-to-use-files-linux.md)。
 
 
 #### <a name="using-the-storage-client-libraries"></a>使用儲存體用戶端程式庫

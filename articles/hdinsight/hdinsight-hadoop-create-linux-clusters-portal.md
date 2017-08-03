@@ -22,7 +22,6 @@ ms.openlocfilehash: 678b2847f9bf39995fa214f181a05c96df9e49f2
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/13/2017
 
-
 ---
 # <a name="create-linux-based-clusters-in-hdinsight-using-the-azure-portal"></a>在 HDInsight 中使用 Azure 入口網站建立以 Linux 為基礎的叢集
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
@@ -37,6 +36,9 @@ Azure 入口網站是 Web 架構的管理工具，可用來管理裝載於 Micro
 
 ## <a name="create-clusters"></a>建立叢集
 Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Manager 範本，您可以隱藏許多詳細資料。 如需詳細資訊，請參閱 [使用 Azure Resource Manager 範本在 HDInsight 中建立 Linux 型的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
+
+[!INCLUDE [secure-transfer-enabled-storage-account](../../includes/hdinsight-secure-transfer.md)]
+
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 依序按一下 [+]、[智慧 + 分析] 及 [HDInsight]。

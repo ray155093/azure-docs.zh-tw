@@ -13,14 +13,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/20/2017
+ms.date: 07/31/2017
 ms.author: billmath
 ms.reviewer: jesakowi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 095497656a1c6ed1fe5322b6015de750d8fd6f15
-ms.openlocfilehash: 3706ed729a525526a415d3a3367e6b8245ead812
+ms.custom: oldportal;it-pro;
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 6f6baf5e1538fb280a899065c64ca5688473c04a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 12/07/2016
+ms.lasthandoff: 08/01/2017
 
 ---
 
@@ -29,6 +30,8 @@ ms.lasthandoff: 12/07/2016
 
 ![](media/active-directory-apps-permissions-consent/apps1.png)
 
+> [!IMPORTANT]
+> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。
 
 ## <a name="types-of-apps"></a>應用程式類型
 
@@ -84,7 +87,7 @@ ms.lasthandoff: 12/07/2016
 
 - 您可以控制使用者是否可以同意應用程式︰
 
-在傳統入口網站中，選取 [使用者可以賦予應用程式存取其資料的權限]****。
+在傳統入口網站中，選取 [使用者可以賦予應用程式存取其資料的權限]。
 ![](media/active-directory-apps-permissions-consent/apps8.png)
 
 在 Azure 入口網站中，選取 [使用者可以允許應用程式存取其資料]。
@@ -92,7 +95,7 @@ ms.lasthandoff: 12/07/2016
 
 
 
-- 您可以控制使用者是否可以註冊自己的單一租用戶 LOB 應用程式︰在傳統入口網站中，選取 [使用者可以新增整合的應用程式]****。
+- 您可以控制使用者是否可以註冊自己的單一租用戶 LOB 應用程式︰在傳統入口網站中，選取 [使用者可以新增整合的應用程式]。
 ![](media/active-directory-apps-permissions-consent/apps9.png)
 
 在 Azure 入口網站中，選取 [使用者可以允許應用程式存取其資料]。

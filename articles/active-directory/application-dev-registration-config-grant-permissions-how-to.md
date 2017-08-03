@@ -21,15 +21,11 @@ ms.lasthandoff: 04/14/2017
 
 ---
 
-<a id="how-to-grant-permissions-to-a-custom-developed-application" class="xliff"></a>
-
-# 如何為自訂開發的應用程式授與權限
+# <a name="how-to-grant-permissions-to-a-custom-developed-application"></a>如何為自訂開發的應用程式授與權限
 
 如果您希望在應用程式上事先獲得同意，或遇到您尚未同意應用程式的錯誤，請嘗試下列步驟。
 
-<a id="how-to-perform-admin-consent-for-your-application" class="xliff"></a>
-
-## 如何讓管理員同意您的應用程式
+## <a name="how-to-perform-admin-consent-for-your-application"></a>如何讓管理員同意您的應用程式
 
 這樣就能讓組織內的所有使用者獲得同意來使用應用程式。
 
@@ -39,15 +35,11 @@ ms.lasthandoff: 04/14/2017
 
 或者，您可以利用您的應用程式設定來建構對 *login.microsoftonline.com* 的要求，並附加於 *&prompt=admin\_consent* 上。 使用系統管理員認證登入之後，就已同意所有使用者使用應用程式。
 
-<a id="how-to-force-user-consent-for-your-application" class="xliff"></a>
-
-## 如何強制使用者同意您的應用程式
+## <a name="how-to-force-user-consent-for-your-application"></a>如何強制使用者同意您的應用程式
 
 * 附加至授權要求 *&prompt=consent* 上，這會在使用者每次驗證時要求他們同意。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 [同意並將應用程式整合到 AzureAD](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications)
 

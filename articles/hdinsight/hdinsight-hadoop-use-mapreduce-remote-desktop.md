@@ -1,5 +1,5 @@
 ---
-title: "MapReduce 和遠端桌面與 HDInsight 中的 Hadoop | Microsoft Docs"
+title: "MapReduce 和遠端桌面與 HDInsight 中的 Hadoop - Azure | Microsoft Docs"
 description: "了解如何使用遠端桌面連線到 HDInsight 上的 Hadoop，並執行 MapReduce 工作。"
 services: hdinsight
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.date: 01/12/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
-ms.openlocfilehash: 5e91fd06fb2ae22496832d7afedb3f003edf7ea6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: edb7e6153060bf4b5471bf6c360b16672d5f759d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -30,7 +30,7 @@ ms.lasthandoff: 05/18/2017
 在本文中，您將學習如何使用遠端桌面連線至 HDInsight 叢集上的 Hadoop，然後使用 Hadoop 命令執行 MapReduce 工作。
 
 > [!IMPORTANT]
-> 只有在 Windows 型 HDInsight 叢集上才能使用「遠端桌面」。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+> 只有在 Windows 型 HDInsight 叢集上才能使用「遠端桌面」。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 >
 > 針對 HDInsight 3.4 或更新版本，請參閱[使用 MapReduce 搭配 SSH](hdinsight-hadoop-use-mapreduce-ssh.md)，以了解如何連線到 HDInsight 叢集及執行 MapReduce 工作。
 

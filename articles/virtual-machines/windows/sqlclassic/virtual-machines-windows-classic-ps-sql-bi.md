@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/30/2017
 ms.author: asaxton
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
-ms.openlocfilehash: 1d35dc01aba57dcf8a37db757138abbd7b22c8c5
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 65bada117e7d005362b0ac0ce7cc5336a92e0889
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/02/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -227,7 +227,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 2. 在虛擬機器防火牆中開啟連接埠 80。
 3. 使用 Azure 虛擬機器 **DNS 名稱** 做為 URL 中的伺服器名稱，瀏覽至入口網站或報表管理員。 例如：
    
-    **報表伺服器**：http://uebi.cloudapp.net/reportserver  **Web 入口網站**：http://uebi.cloudapp.net/reports
+    **報表伺服器**：http://uebi.cloudapp.net/reportserver **Web 入口網站**：http://uebi.cloudapp.net/reports
    
     [為報表伺服器存取設定防火牆](https://msdn.microsoft.com/library/bb934283.aspx)
 

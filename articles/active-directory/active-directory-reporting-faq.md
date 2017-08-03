@@ -14,15 +14,14 @@ ms.topic: article
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e6dcd3f6f9c7c8765409c3b0d50e4b3843bab5c6
-ms.openlocfilehash: e39ee63d190308b87ebeb43adeb8b3e5db86df57
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: 9a9ca74b959d1940bf30a903a8eab65cad87b74a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/22/2017
+ms.lasthandoff: 07/18/2017
 
 ---
-# Azure Active Directory 報告常見問題集
-<a id="azure-active-directory-reporting-faq" class="xliff"></a>
+# <a name="azure-active-directory-reporting-faq"></a>Azure Active Directory 報告常見問題集
 
 本文會回答有關 Azure Active Directory 報告的常見問題 (FAQ)。  
 如需更多詳細資料，請參閱 [Azure Active Directory 報告](active-directory-reporting-azure-portal.md)。 
@@ -86,7 +85,23 @@ ms.lasthandoff: 02/22/2017
 
 **答：**如果您是最近切換到「進階」版 (包括試用版)，您一開始最多可以看見 7 天的資料。 當資料累積之後，您將最多可以看見 30 天的資料。
 
- 
+---
+
+**問：Identity Protection 有風險事件，但是我在所有登入中看不到對應的登入。這是預期行為嗎？**
+**答：**是，Identity Protection 會評估所有驗證流程的風險，無論是互動式或非互動式。 不過，所有登入只會報告顯示互動式登入。
+
+---
+
+**問：如何下載 Azure 入口網站中的「使用者標示為風險」報告？**
+
+**答**：下載「使用者標示為風險」報告的選項即將新增。
+
+---
+
+**問：如何知道在 Azure 入口網站中登入或使用者標示為風險的原因？**
+
+**答**：Premium 版本的客戶可以藉由按一下「使用者標示為風險」中的使用者，或按一下「風險登入」，進一步了解基礎風險事件。 Free 和 Basic 版本的客戶只能看到不含基礎風險事件資訊的風險使用者和登入。
+
 ---
 
 

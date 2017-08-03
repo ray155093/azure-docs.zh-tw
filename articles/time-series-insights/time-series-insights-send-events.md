@@ -1,36 +1,32 @@
 ---
 title: "將事件傳送至 Azure Time Series Insights 環境 | Microsoft Docs"
-description: "本教學課程說明如何將事件推送至 Time Series Insights 環境"
+description: "本教學課程涵蓋將事件發送至 Time Series Insights 環境的步驟"
 keywords: 
-services: time-series-insights
+services: tsi
 documentationcenter: 
 author: venkatgct
-manager: almineev
-editor: cgronlun
+manager: jhubbard
+editor: 
 ms.assetid: 
-ms.service: time-series-insights
+ms.service: tsi
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/21/2017
+ms.date: 07/21/2017
 ms.author: venkatja
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
-ms.openlocfilehash: 9f2d3b57a42efb7b04566278d3267b3cdbed713a
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: b4ef96a045393f28b3cd750068fe82a5a8411afa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/01/2017
+ms.lasthandoff: 07/24/2017
 
 ---
-<a id="send-events-to-a-time-series-insights-environment-via-event-hub" class="xliff"></a>
-
-# 透過事件中樞將事件傳送至 Time Series Insights 環境
+# <a name="send-events-to-a-time-series-insights-environment-using-event-hub"></a>使用事件中樞將事件傳送至 Time Series Insights 環境
 
 本教學課程說明如何建立和設定事件中樞，並執行應用程式範例以推送事件。 如果您現有的事件中樞內含 JSON 格式的事件，請跳過本教學課程，並在 [Time Series Insights](https://insights.timeseries.azure.com) 檢視您的環境。
 
-<a id="configure-an-event-hub" class="xliff"></a>
-
-## 設定事件中樞
+## <a name="configure-an-event-hub"></a>設定事件中樞
 1. 若要建立事件中樞，請遵循事件中樞[文件](https://docs.microsoft.com/azure/event-hubs/event-hubs-create)的指示。
 
 2. 確定您已建立專供 Time Series Insights 事件來源使用的取用者群組。
@@ -46,18 +42,14 @@ ms.lasthandoff: 07/01/2017
 
   ![新增共用存取原則](media/send-events/shared-access-policy-2.png)  
 
-<a id="create-time-series-insights-event-source" class="xliff"></a>
+## <a name="create-time-series-insights-event-source"></a>建立 Time Series Insights 事件來源
+1. 如果您尚未建立事件來源，請遵循[這些指示](time-series-insights-add-event-source.md)來建立事件來源。
 
-## 建立 Time Series Insights 事件來源
-1. 如果您尚未建立事件來源，請遵循[這裡](time-series-insights-add-event-source.md)指定的指示來建立事件來源。
-
-2. 指定「deviceTimestamp」作為時間戳記屬性名稱，這個屬性會作為 Csharp 範例中的實際時間戳記。 以 JSON 形式將時間戳記屬性傳送至事件中樞時，該屬性的名稱需區分大小寫，且值的格式應為 __yyyy-MM-ddTHH:mm:ss.FFFFFFFK__。 如果事件中不存在該屬性，則系統會使用加入事中樞佇列的時間。
+2. 指定「deviceTimestamp」作為時間戳記屬性名稱，這個屬性會作為 Csharp 範例中的實際時間戳記。 以 JSON 形式將時間戳記屬性傳送至事件中樞時，該屬性的名稱區分大小寫，且值的格式必須是 __yyyy-MM-ddTHH:mm:ss.FFFFFFFK__。 如果事件中不存在該屬性，則系統會使用加入事中樞佇列的時間。
 
   ![建立事件來源](media/send-events/event-source-1.png)
 
-<a id="sample-code-to-push-events" class="xliff"></a>
-
-## 用來推送事件的範例程式碼
+## <a name="sample-code-to-push-events"></a>用來推送事件的範例程式碼
 1. 移至事件中樞原則「MySendPolicy」，然後複製連接字串與原則金鑰。
 
   ![複製 MySendPolicy 連接字串](media/send-events/sample-code-connection-string.png)
@@ -131,16 +123,10 @@ namespace Microsoft.Rdx.DataGenerator
 }
 
 ```
-<a id="supported-json-shapes" class="xliff"></a>
+## <a name="supported-json-shapes"></a>支援的 JSON 樣貌
+### <a name="sample-1"></a>範例 1
 
-## 支援的 JSON 樣貌
-<a id="sample-1" class="xliff"></a>
-
-### 範例 1
-
-<a id="input" class="xliff"></a>
-
-#### 輸入
+#### <a name="input"></a>輸入
 
 簡單的 JSON 物件。
 
@@ -150,21 +136,15 @@ namespace Microsoft.Rdx.DataGenerator
     "timestamp":"2016-01-08T01:08:00Z"
 }
 ```
-<a id="output---1-event" class="xliff"></a>
-
-#### 輸出 - 1 個事件
+#### <a name="output---1-event"></a>輸出 - 1 個事件
 
 |id|timestamp|
 |--------|---------------|
 |device1|2016-01-08T01:08:00Z|
 
-<a id="sample-2" class="xliff"></a>
+### <a name="sample-2"></a>範例 2
 
-### 範例 2
-
-<a id="input" class="xliff"></a>
-
-#### 輸入
+#### <a name="input"></a>輸入
 具有兩個 JSON 物件的 JSON 陣列。 每個 JSON 物件都會轉換成事件。
 ```json
 [
@@ -178,21 +158,15 @@ namespace Microsoft.Rdx.DataGenerator
     }
 ]
 ```
-<a id="output---2-events" class="xliff"></a>
-
-#### 輸出 - 2 個事件
+#### <a name="output---2-events"></a>輸出 - 2 個事件
 
 |id|timestamp|
 |--------|---------------|
 |device1|2016-01-08T01:08:00Z|
 |device2|2016-01-08T01:17:00Z|
-<a id="sample-3" class="xliff"></a>
+### <a name="sample-3"></a>範例 3
 
-### 範例 3
-
-<a id="input" class="xliff"></a>
-
-#### 輸入
+#### <a name="input"></a>輸入
 
 具有巢狀 JSON 陣列的 JSON 物件，此陣列中包含兩個 JSON 物件。
 ```json
@@ -211,9 +185,7 @@ namespace Microsoft.Rdx.DataGenerator
 }
 
 ```
-<a id="output---2-events" class="xliff"></a>
-
-#### 輸出 - 2 個事件
+#### <a name="output---2-events"></a>輸出 - 2 個事件
 請注意，系統會將「location」屬性複製到每個事件。
 
 |location|events.id|events.timestamp|
@@ -221,13 +193,9 @@ namespace Microsoft.Rdx.DataGenerator
 |WestUs|device1|2016-01-08T01:08:00Z|
 |WestUs|device2|2016-01-08T01:17:00Z|
 
-<a id="sample-4" class="xliff"></a>
+### <a name="sample-4"></a>範例 4
 
-### 範例 4
-
-<a id="input" class="xliff"></a>
-
-#### 輸入
+#### <a name="input"></a>輸入
 
 具有巢狀 JSON 陣列的 JSON 物件，此陣列中包含兩個 JSON 物件。 此輸入示範可由複雜 JSON 物件表示的全域屬性。
 
@@ -260,18 +228,14 @@ namespace Microsoft.Rdx.DataGenerator
     ]
 }
 ```
-<a id="output---2-events" class="xliff"></a>
-
-#### 輸出 - 2 個事件
+#### <a name="output---2-events"></a>輸出 - 2 個事件
 
 |location|manufacturer.name|manufacturer.location|events.id|events.timestamp|events.data.type|events.data.units|events.data.value|
 |---|---|---|---|---|---|---|---|
 |WestUs|manufacturer1|EastUs|device1|2016-01-08T01:08:00Z|pressure|psi|108.09|
 |WestUs|manufacturer1|EastUs|device2|2016-01-08T01:17:00Z|vibration|abs G|217.09|
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 * 在 [Time Series Insights 入口網站](https://insights.timeseries.azure.com)中檢視您的環境
 

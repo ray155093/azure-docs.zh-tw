@@ -4,8 +4,8 @@ description: "了解如何使用適用於 Azure App Service Mobile Apps 的 .NET
 keywords: "App Service, Azure App Service, 行動應用程式, 行動服務, 調整, 可調整, 應用程式部署, Azure 應用程式部署"
 services: app-service\mobile
 documentationcenter: 
-author: adrianhall
-manager: adrianha
+author: ggailey777
+manager: syntaxc4
 editor: 
 ms.assetid: 0620554f-9590-40a8-9f47-61c48c21076b
 ms.service: app-service-mobile
@@ -14,13 +14,12 @@ ms.tgt_pltfrm: mobile-multiple
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
-ms.author: adrianha
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: fcbaa0df29fac22917695046ebc4015f3abf108f
+ms.author: glenga
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: ebaeee9b68810d0e5d47da20373e7951c57147d4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
-
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="work-with-the-net-backend-server-sdk-for-azure-mobile-apps"></a>使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK
@@ -118,17 +117,12 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 下列 NuGet 型擴充套件提供了許多您應用程式可以使用的行動功能。 您可以使用 **MobileAppConfiguration** 物件，在初始化期間啟用擴充功能。
 
 * [Microsoft.Azure.Mobile.Server.Quickstart] 支援基本的 Mobile Apps 設定。 在初始化期間，透過呼叫 **UseDefaultConfiguration** 擴充方法來新增到組態。 此擴充包含下列擴充功能：通知、驗證、實體、資料表、跨網域和首頁封裝。 此封裝由 Azure 入口網站上可取得的 Mobile Apps 快速入門使用。
-* [Microsoft.Azure.Mobile.Server.Home](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Home/)
-   實作網站根目錄的預設 *[此行動應用程式已啟動並執行中]* 頁面。 透過呼叫   **AddMobileAppHomeController** 擴充方法來新增到組態。
-* [Microsoft.Azure.Mobile.Server.Tables](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Tables/)
-   包含適用於處理資料與設定資料管線的類別。 透過呼叫 **AddTables** 擴充方法來加入設定中。
-* [Microsoft.Azure.Mobile.Server.Entity](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Entity/)
-   讓 Entity Framework 能存取 SQL Database 中的資料。 透過呼叫 **AddTablesWithEntityFramework** 擴充方法來加入設定中。
-* [Microsoft.Azure.Mobile.Server.Authentication] 啟用驗證，並設定用來驗證權杖的 OWIN 中介軟體。 透過呼叫 **AddAppServiceAuthentication**
-   與 **IAppBuilder**.**UseAppServiceAuthentication** 擴充方法來新增到組態。
+* [Microsoft.Azure.Mobile.Server.Home](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Home/) 實作網站根目錄的預設 [此行動應用程式已啟動並執行中] 頁面。 透過呼叫 **AddMobileAppHomeController** 擴充方法來新增到組態。
+* [Microsoft.Azure.Mobile.Server.Tables](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Tables/) 包含適用於處理資料與設定資料管線的類別。 透過呼叫 **AddTables** 擴充方法來加入設定中。
+* [Microsoft.Azure.Mobile.Server.Entity](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Entity/) 讓 Entity Framework 能存取 SQL Database 中的資料。 透過呼叫 **AddTablesWithEntityFramework** 擴充方法來加入設定中。
+* [Microsoft.Azure.Mobile.Server.Authentication] 啟用驗證，並設定用來驗證權杖的 OWIN 中介軟體。 透過呼叫 **AddAppServiceAuthentication** 與 **IAppBuilder**.**UseAppServiceAuthentication** 擴充方法來新增到組態。
 * [Microsoft.Azure.Mobile.Server.Notifications] 啟用推播通知，並定義推播註冊端點。 透過呼叫 **AddPushNotifications** 擴充方法來加入設定中。
-* [Microsoft.Azure.Mobile.Server.CrossDomain](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.CrossDomain/)
-   建立從行動應用程式提供資料給舊版網頁瀏覽器的控制器。 透過呼叫   **MapLegacyCrossDomainController** 擴充方法來新增到組態。
+* [Microsoft.Azure.Mobile.Server.CrossDomain](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.CrossDomain/) 建立從行動應用程式提供資料給舊版網頁瀏覽器的控制器。 透過呼叫 **MapLegacyCrossDomainController** 擴充方法來加入設定中。
 * [Microsoft.Azure.Mobile.Server.Login] 會提供 AppServiceLoginHandler.CreateToken() 方法，這是在自訂驗證案例期間使用的靜態方法。
 
 ## <a name="publish-server-project"></a>做法：發佈伺服器專案
@@ -478,5 +472,4 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 [Microsoft.Azure.Mobile.Server.Login]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Login/
 [Microsoft.Azure.Mobile.Server.Notifications]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Notifications/
 [MapHttpAttributeRoutes]: https://msdn.microsoft.com/library/dn479134(v=vs.118).aspx
-
 

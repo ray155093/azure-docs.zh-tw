@@ -22,9 +22,7 @@ ms.lasthandoff: 04/14/2017
 ---
 
 
-<a id="how-to-change-the-token-lifetime-defaults-for-a-custom-developed-application" class="xliff"></a>
-
-# 如何為自訂開發的應用程式變更權杖存留期預設值
+# <a name="how-to-change-the-token-lifetime-defaults-for-a-custom-developed-application"></a>如何為自訂開發的應用程式變更權杖存留期預設值
 
 Azure AD Premium 可讓應用程式開發人員與租用戶系統管理員為針對非機密用戶端簽發的權杖設定存留期。 權杖存留期原則是以整個租用戶為基礎所設定，或針對要存取的資源所設定。
 
@@ -36,9 +34,7 @@ Azure AD Premium 可讓應用程式開發人員與租用戶系統管理員為針
 
  * 請參閱[設定權杖存留期](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)一文，以了解如何建立其他自訂。
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [設定權杖存留期](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)<br>
 
 [Azure AD 權杖參考](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-token-and-claims)

@@ -20,8 +20,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 05/09/2017
 
 ---
-# Azure Active Directory 入口網站中有風險使用者的安全性報告
-<a id="users-at-risk-security-report-in-the-azure-active-directory-portal" class="xliff"></a>
+# <a name="users-at-risk-security-report-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中有風險使用者的安全性報告
 
 利用 Azure Active Directory (Azure AD) 中的安全性報告，您可以深入了解環境中使用者帳戶被盜用的可能性。 
 
@@ -37,8 +36,7 @@ Azure Active Directory 會偵測使用者帳戶相關的可疑動作。 針對�
 
 ![有風險的登入](./media/active-directory-reporting-security-user-at-risk/10.png)
 
-## Azure Active Directory 免費和基本版本
-<a id="azure-active-directory-free-and-basic-edition" class="xliff"></a>
+## <a name="azure-active-directory-free-and-basic-edition"></a>Azure Active Directory 免費和基本版本
 
 Azure Active Directory 免費和基本版本中有風險的報告上的使用者，會提供可能遭到盜用的使用者帳戶清單。 
 
@@ -50,8 +48,7 @@ Azure Active Directory 免費和基本版本中有風險的報告上的使用者
 
 ![有風險的登入](./media/active-directory-reporting-security-user-at-risk/46.png)
 
-## Azure Active Directory Premium Edition
-<a id="azure-active-directory-premium-editions" class="xliff"></a>
+## <a name="azure-active-directory-premium-editions"></a>Azure Active Directory Premium Edition
 
 Azure Active Directory Premium Edition 中有風險的報告上的使用者可為您提供：
 
@@ -88,8 +85,7 @@ Azure Active Directory Premium Edition 中有風險的報告上的使用者可�
 
 
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 
 - 如需 Azure Active Directory Identity Protection 的詳細資訊，請參閱 [Azure Active Directory Identity Protection](active-directory-identityprotection.md)。
 

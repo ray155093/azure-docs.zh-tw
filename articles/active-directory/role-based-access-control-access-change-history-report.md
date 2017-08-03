@@ -5,27 +5,28 @@ services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: 
 ms.assetid: 2bc68595-145e-4de3-8b71-3a21890d13d9
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/27/2017
+ms.date: 07/17/2017
 ms.author: kgremban
+ms.reviewer: rqureshi
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 015cc28903bfd366c653a51b0f73512bf8b578ea
-ms.openlocfilehash: 433dc731c342924d962e2f08e392556558a0168d
-ms.lasthandoff: 02/28/2017
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 43ddeebfea4c914b8377d3363ba3d0c12db0adca
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="create-an-access-report-for-role-based-access-control"></a>建立角色型存取控制的存取報告
 每當有人授與或撤銷您訂用帳戶中的存取權時，變更就會記錄在 Azure 事件中。 您可以建立存取權變更歷程記錄報告，以查看過去 90 天內的所有變更。
 
 ## <a name="create-a-report-with-azure-powershell"></a>使用 Azure PowerShell 建立報告
-若要在 PowerShell 中建立存取權變更歷程記錄報告，請使用 `Get-AzureRMAuthorizationChangeLog` 命令。 [PowerShell 資源庫](https://www.powershellgallery.com/packages/AzureRM.Storage/1.0.6/Content/ResourceManagerStartup.ps1)中有提供關於此 Cmdlet 的更多詳細資料。
+若要在 PowerShell 中建立存取權變更歷程記錄報告，請使用 [Get-AzureRMAuthorizationChangeLog](/powershell/module/azurerm.resources/get-azurermauthorizationchangelog) 命令。
 
 呼叫此命令時，您可以指定要列出哪一個指派屬性，其中包括下列屬性︰
 
@@ -33,18 +34,17 @@ ms.lasthandoff: 02/28/2017
 | --- | --- |
 | **Action** |已授與或已撤銷存取權 |
 | **Caller** |負責存取權變更的擁有者 |
-| **Date** |變更存取權的日期和時間 |
-| **DirectoryName** |Azure Active Directory 目錄 |
+| **PrincipalId** | 已指派角色之使用者、群組或應用程式的唯一識別碼 |
 | **PrincipalName** |使用者、群組或應用程式的名稱 |
 | **PrincipalType** |指派對象為使用者、群組或應用程式 |
-| **RoleId** |已授與或已撤銷之角色的 GUID |
+| **RoleDefinitionId** |已授與或已撤銷之角色的 GUID |
 | **RoleName** |已授與或已撤銷的角色 |
+| **範圍** | 套用指派之訂用帳戶、資源群組或資源的唯一識別碼 | 
 | **ScopeName** |訂用帳戶、資源群組或資源的名稱 |
 | **ScopeType** |指派的範圍是訂用帳戶、資源群組或資源 |
-| **SubscriptionId** |Azure 訂用帳戶的 GUID |
-| **SubscriptionName** |Azure 訂用帳戶的名稱 |
+| **Timestamp** |變更存取權的日期和時間 |
 
-此範例命令會列出過去&7; 天訂用帳戶中的所有存取權變更：
+此範例命令會列出過去 7 天訂用帳戶中的所有存取權變更：
 
 ```
 Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::FromDays(7)) | FT Caller,Action,RoleName,PrincipalType,PrincipalName,ScopeType,ScopeName

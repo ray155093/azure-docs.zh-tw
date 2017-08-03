@@ -12,14 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/27/2017
+ms.date: 07/14/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 99fab8eafe4e17f50db8e7e33637001be03abe7b
-ms.openlocfilehash: 0cb356910b858bf231dfadffa1d4561df1977af0
-ms.lasthandoff: 02/28/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: ba3637a3a8b15b45c16bf5a00c1f4225bcfc5af8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="deploy-the-storsimple-manager-service-in-the-azure-classic-portal"></a>在 Azure 傳統入口網站中部署 StorSimple Manager 服務
@@ -29,7 +29,7 @@ StorSimple Manager 服務可在 Microsoft Azure 中執行，並且連接至多�
 
 StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您可用來管理您的 StorSimple 儲存體裝置。 針對每個 StorSimple Manager 服務，下列資訊會顯示在 StorSimple Manager 頁面上：
 
-* **名稱** – 在建立時指派給您的 StorSimple Manager 服務的名稱。 建立服務之後，無法變更服務名稱。
+* **名稱** – 在建立時指派給您的 StorSimple Manager 服務的名稱。 **建立服務之後，就無法變更服務名稱。這也適用於其他實體，例如裝置、磁碟區、磁碟區容器和備份原則，在 Azure 傳統入口網站中無法重新命名。**
 * **狀態** – 服務的狀態，可以是 [作用中]、[建立] 或是 [線上]。
 * **位置** – 部署 StorSimple 裝置所在的地理位置。
 * **訂用帳戶** – 與您的服務相關聯的計費訂用帳戶。

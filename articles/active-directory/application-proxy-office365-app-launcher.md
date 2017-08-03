@@ -11,14 +11,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/15/2017
+ms.date: 07/06/2017
 ms.author: kgremban
+ms.reviewer: harshja
+ms.custom: it-pro
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: 31e8e39580ed83f13fd3ffb9981221765063a0b7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 194367028c3c2c571dd8645a794f67a0c3a21d4c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/21/2017
-
+ms.lasthandoff: 07/08/2017
 
 ---
 
@@ -35,8 +36,6 @@ ms.lasthandoff: 04/21/2017
 
 ## <a name="before-you-start"></a>開始之前
 
-### <a name="determine-the-home-page-url"></a>決定首頁 URL
-
 設定首頁 URL 之前，請記住下列事項︰
 
 * 確保您指定的路徑是根網域 URL 的子網域路徑。
@@ -44,6 +43,16 @@ ms.lasthandoff: 04/21/2017
   如果根網域 URL 是 https://apps.contoso.com/app1/，您設定的首頁 URL 開頭必須 https://apps.contoso.com/app1/。
 
 * 若變更已發佈的應用程式，則變更可能會重設首頁 URL 的值。 當您未來更新應用程式時，您應該重新檢查並視需要更新首頁 URL。
+
+## <a name="change-the-home-page-in-the-azure-portal"></a>在 Azure 入口網站中變更首頁
+
+1. 以系統管理員身分登入 [Azure 入口網站](https://portal.azure.com)。
+2. 瀏覽至 [Azure Active Directory] > [應用程式註冊]，然後從清單中選擇您的應用程式。 
+3. 從設定中選取 [屬性]。
+4. 使用新路徑更新 [首頁 URL] 欄位。 
+5. 選取 [儲存]。
+
+## <a name="change-the-home-page-with-powershell"></a>使用 PowerShell 變更首頁
 
 ### <a name="install-the-azure-ad-powershell-module"></a>安裝 Azure AD PowerShell 模組
 
@@ -59,7 +68,7 @@ ms.lasthandoff: 04/21/2017
     若您以非系統管理員身分執行此命令，請使用 `-scope currentuser` 選項。
 2. 在安裝期間，選取 [Y] 以從 Nuget.org 安裝兩個套件。 兩個套件都是必要套件。 
 
-## <a name="step-1-find-the-objectid-of-the-app"></a>步驟 1：尋找應用程式的 ObjectID
+### <a name="find-the-objectid-of-the-app"></a>尋找應用程式的 ObjectID
 
 取得應用程式中的 ObjectID，然後依其首頁搜尋應用程式。
 
@@ -87,7 +96,7 @@ ms.lasthandoff: 04/21/2017
     ObjectId    : 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4
     ```
 
-## <a name="step-2-update-the-home-page-url"></a>步驟 2：更新首頁 URL
+### <a name="update-the-home-page-url"></a>更新首頁 URL
 
 在您於步驟 1 所使用的相同 PowerShell 模組中，執行下列動作：
 

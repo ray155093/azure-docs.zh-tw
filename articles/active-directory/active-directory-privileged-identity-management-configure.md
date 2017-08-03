@@ -16,10 +16,10 @@ ms.date: 05/04/2017
 ms.author: billmath
 ms.custom: pim ; H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: b9a3b64d9de48f17a295ca7a9ea58cf26e8f83ed
-ms.openlocfilehash: 89174dad8fcd3bcceafd728feb2211926266720a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 44867f16acb620fd29957eae90311ef6c8fde559
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/28/2017
+ms.lasthandoff: 07/08/2017
 
 ---
 
@@ -27,7 +27,7 @@ ms.lasthandoff: 02/28/2017
 您可以利用 Azure Active Directory (AD) Privileged Identity Management 來管理、控制和監視組織內的存取行為。 這包括存取 Azure AD 中的資源和其他 Microsoft 線上服務，例如 Office 365 或 Microsoft Intune。  
 
 > [!NOTE]
-> Privileged Identity Management 僅可在 Azure Active Directory 的 Premium P2 Edition 中使用。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
+> 當您將 Azure Active Directory 的 Premium P2 版本授權給系統管理員時，Privileged Identity Management 可供您的整個組織使用。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
 組織想要將能夠存取安全資訊或資源的人數降到最低，因為這樣可以降低惡意使用者取得該存取權的機率。 不過，使用者仍然需要在 Azure、Office 365 或 SaaS 應用程式中執行特殊權限作業。 組織可以在 Azure AD 中授與使用者特殊權限，而不需監視這些使用者使用其系統管理權限來執行什麼作業。 Azure AD 特殊權限身分識別管理有助於解決此風險。  
 
@@ -37,6 +37,7 @@ Azure AD Privileged Identity Management 可協助您：
 * 視需要啟用 Office 365 和 Intune 等 Microsoft Online Services 的 "just-in-time" 系統管理存取權限
 * 取得有關系統管理員存取記錄與系統管理員指派變更的報告
 * 取得有關特殊權限角色存取的警示
+* 需要核准才能啟動 (預覽)
 
 Azure AD Privileged Identity Management 可以管理內建的 Azure AD 組織角色，包括 (但不限於)：  
 
@@ -64,13 +65,13 @@ Azure AD Privileged Identity Management 可以管理內建的 Azure AD 組織角
 
 只有特殊權限角色管理員可以管理其他系統管理員的存取權。 您可以 [在 PIM 中為其他使用者提供管理能力](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)。
 
-## <a name="privileged-identity-management-dashboard"></a>特殊權限身分識別管理儀表板
-Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，例如：
+## <a name="privileged-identity-management-admin-dashboard"></a>Privileged Identity Management 管理員儀表板
+Azure AD Privileged Identity Manager 有一個管理員儀表板可提供重要資訊，例如：
 
 * 指出有提升安全性機會的警示
 * 指派給每個特殊權限角色的使用者數目  
 * 合格和永久系統管理員的數目
-* 進行中的存取權檢閱
+* 您的目錄中特殊權限角色啟用的圖表
 
 ![PIM 儀表板 - 螢幕擷取畫面][2]
 
@@ -84,7 +85,9 @@ Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，�
 
 * 角色啟用期間的持續時間
 * 角色啟用通知
-* 使用者在角色啟用程序期間所需提供的資訊  
+* 使用者在角色啟用程序期間所需提供的資訊
+* 服務票證或事件數目
+* [核准工作流程需求 - 預覽](./privileged-identity-management/azure-ad-pim-approval-workflow.md)
 
 ![PIM 設定 - 系統管理員啟動 - 螢幕擷取畫面][4]
 
@@ -100,14 +103,14 @@ Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，�
 ![PIM 系統管理員要求角色啟用 - 螢幕擷取畫面][5]
 
 ## <a name="review-role-activity"></a>檢閱角色活動
-有兩種方式可以追蹤您的員工和系統管理員使用特殊權限角色的情況。 第一個選項是使用 [稽核歷程](active-directory-privileged-identity-management-how-to-use-audit-log.md)。 稽核歷程記錄會追蹤特殊權限角色的指派和角色啟用歷程中的變更。
+有兩種方式可以追蹤您的員工和系統管理員使用特殊權限角色的情況。 第一個選項是使用[目錄角色稽核歷程](active-directory-privileged-identity-management-how-to-use-audit-log.md)。 稽核歷程記錄會追蹤特殊權限角色的指派和角色啟用歷程中的變更。
 
 ![PIM 啟動歷程記錄 - 螢幕擷取畫面][6]
 
 第二個選項是設定標準 [存取檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)。 這些存取檢閱可以由指派的檢閱者 (例如團隊經理) 來執行或者員工可以檢閱自己。 如此來監視誰仍需要或不再需要存取是最佳的方式。
 
 ## <a name="azure-ad-pim-at-subscription-expiration"></a>訂用帳戶過期時的 Azure AD PIM
-在公開上市之前，Azure AD PIM 處於預覽狀態，而且沒有租用戶的授權檢查可預覽 Azure AD PIM。  現在，Azure AD PIM 已公開上市，試用或付費訂用帳戶必須存在於租用戶中，才能在 2016 年 12 月之後繼續使用 PIM。  如果您的組織並未購買 Azure AD Premium P2 或您的訂用帳戶過期，則 Azure AD PIM 將無法再使用於您的租用戶。  您可以深入了解 [Azure AD PIM 訂用帳戶需求](./privileged-identity-management/subscription-requirements.md)
+在公開上市之前，Azure AD PIM 處於預覽狀態，而且沒有租用戶的授權檢查可預覽 Azure AD PIM。  現在，Azure AD PIM 已公開上市，試用或付費授權必須指派給租用戶的系統管理員，才能繼續使用 PIM。  如果您的組織並未購買 Azure AD Premium P2 或您的試用過期，您的租用戶就無法再使用幾乎所有 Azure AD PIM 功能。  您可以深入了解 [Azure AD PIM 訂用帳戶需求](./privileged-identity-management/subscription-requirements.md)
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
@@ -115,9 +118,9 @@ Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，�
 <!--Image references-->
 
 [1]: ./media/active-directory-privileged-identity-management-configure/PIM_EnablePim.png
-[2]: ./media/active-directory-privileged-identity-management-configure/PIM_Dash.png
+[2]: ./media/active-directory-privileged-identity-management-configure/PIM_Admin_Overview.png
 [3]: ./media/active-directory-privileged-identity-management-configure/PIM_AddRemove.png
-[4]: ./media/active-directory-privileged-identity-management-configure/PIM_RoleActivationSettings.png
+[4]: ./media/active-directory-privileged-identity-management-configure/PIM_Settings_w_Approval_Disabled.png
 [5]: ./media/active-directory-privileged-identity-management-configure/PIM_RequestActivation.png
 [6]: ./media/active-directory-privileged-identity-management-configure/PIM_ActivationHistory.png
 

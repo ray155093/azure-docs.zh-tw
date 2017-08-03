@@ -2,8 +2,7 @@
 
 如果磁碟區容器有相關聯的磁碟區，請先將那些磁碟區離線。 請遵循 [使磁碟區離線](../articles/storsimple/storsimple-manage-volumes.md#take-a-volume-offline)中的步驟進行。 磁碟機離線後，才可以刪除它們。 當磁碟區容器沒有相關聯的磁碟區時，請將磁碟區容器刪除。 執行下列程序可將磁碟區容器刪除。
 
-#### 刪除磁碟區容器
-<a id="to-delete-a-volume-container" class="xliff"></a>
+#### <a name="to-delete-a-volume-container"></a>刪除磁碟區容器
 1. 移至 StorSimple 裝置管理員服務，然後按一下 [裝置]。 選取並按一下裝置，然後移至 [設定] > [管理] > [磁碟區容器]。
 
     ![磁碟區容器刀鋒視窗](./media/storsimple-8000-create-volume-container/createvolumecontainer2.png)

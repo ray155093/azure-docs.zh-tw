@@ -12,14 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 09/29/2016
+ms.date: 07/19/2017
 ms.author: v-sharos
-ms.translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 0894908fc4d050e7890dd21e698bf3981a7413f7
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 5bfbeb038dbedae2bf77016abbc19458c3dc22c9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="use-the-storsimple-manager-service-to-modify-your-storsimple-device-configuration"></a>使用 StorSimple Manager 服務來修改 StorSimple 裝置組態。
@@ -35,6 +34,9 @@ Azure 傳統入口網站 [設定]  頁面包含所有裝置參數，可讓您重
 ## <a name="modify-device-settings"></a>修改裝置設定
 裝置設定包括裝置和裝置描述的易記名稱。
 
+> [!NOTE] 
+> 您無法修改 Azure 傳統入口網站中的裝置名稱。 不支援重新命名裝置。
+
 系統會為連線到 StorSimple Manager 服務的 StorSimple 裝置指派預設名稱。 預設名稱通常會反映裝置的序號。 例如，長度為 15 個字元的預設裝置名稱，如 8600-SHX0991003G44HT，將表示以下項目：
 
 * **8600** – 表示裝置型號。
@@ -42,9 +44,7 @@ Azure 傳統入口網站 [設定]  頁面包含所有裝置參數，可讓您重
 * **0991003** – 表示特定產品。
 * **G44HT**– 最後 5 位數會以遞增方式來建立唯一的序號。 這可能不是連續的組合。
 
-您可以使用 Azure 傳統入口網站來變更裝置名稱，並將它指派為您所選擇的唯一易記名稱。 易記名稱可以包含任何字元，且長度上限為 64 個字元。
-
-您也可以指定裝置描述。 裝置描述通常有助於識別擁有者和裝置的實體位置。 [描述] 欄位不得超過 256 個字元。
+您可以指定裝置描述。 裝置描述通常有助於識別擁有者和裝置的實體位置。 [描述] 欄位不得超過 256 個字元。
 
 ## <a name="modify-time-settings"></a>修改時間設定
 您的裝置必須同步時間才能驗證雲端儲存空間服務提供者。 從下拉式清單選取您的時區，並指定最多兩個網路時間通訊協定 (NTP) 伺服器。 當您使用 Windows PowerShell for StorSimple 來設定您的裝置時，需要指定主要 NTP 伺服器。 您可以指定預設 Windows Server **time.windows.com** 作為 NTP 伺服器。 您可以透過 Azure 傳統入口網站來檢視主要 NTP 伺服器組態，但是您必須使用 Windows PowerShell 介面來進行變更。

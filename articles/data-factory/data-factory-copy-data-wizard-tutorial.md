@@ -22,8 +22,7 @@ ms.lasthandoff: 05/17/2017
 
 
 ---
-<a id="tutorial-create-a-pipeline-with-copy-activity-using-data-factory-copy-wizard" class="xliff"></a>
-# 教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線
+# <a name="tutorial-create-a-pipeline-with-copy-activity-using-data-factory-copy-wizard"></a>教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -40,12 +39,10 @@ Azure Data Factory 的[複製精靈] 可讓您快速建立資料管線，以將�
 
 本教學課程說明如何建立 Azure data factory、啟動 [複製精靈]、執行一系列的步驟，以提供有關資料擷取/移動案例的詳細資料。 當您完成精靈中的步驟時，精靈會自動建立具有複製活動的管線，以將資料從 Azure Blob 儲存體複製到 Azure SQL Database。 如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)。
 
-<a id="prerequisites" class="xliff"></a>
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 請先完成 [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 一文中列出的必要條件，再執行本教學課程。
 
-<a id="create-data-factory" class="xliff"></a>
-## 建立 Data Factory
+## <a name="create-data-factory"></a>建立 Data Factory
 在此步驟中，您會使用 Azure 入口網站來建立名為 **ADFTutorialDataFactory**的 Azure Data Factory。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
@@ -74,8 +71,7 @@ Azure Data Factory 的[複製精靈] 可讓您快速建立資料管線，以將�
    
    ![Data Factory 首頁](./media/data-factory-copy-data-wizard-tutorial/getstarted-data-factory-home-page.png)
 
-<a id="launch-copy-wizard" class="xliff"></a>
-## 啟動複製精靈
+## <a name="launch-copy-wizard"></a>啟動複製精靈
 1. 在 Data Factory 刀鋒視窗上，按一下 [複製資料 (預覽)] 來啟動 [複製精靈]。 
    
    > [!NOTE]
@@ -137,8 +133,7 @@ Azure Data Factory 的[複製精靈] 可讓您快速建立資料管線，以將�
     
     ![複製工具 - 效能設定](./media/data-factory-copy-data-wizard-tutorial/summary-page.png)
 
-<a id="launch-monitor-and-manage-application" class="xliff"></a>
-## 啟動監視及管理應用程式
+## <a name="launch-monitor-and-manage-application"></a>啟動監視及管理應用程式
 1. 在 [部署] 頁面上，按一下連結︰`Click here to monitor copy pipeline`。
    
    ![複製工具 - 部署成功](./media/data-factory-copy-data-wizard-tutorial/copy-tool-deployment-succeeded.png)  
@@ -154,8 +149,7 @@ Azure Data Factory 的[複製精靈] 可讓您快速建立資料管線，以將�
 
     如需使用此應用程式的詳細資訊，請參閱[使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md)。
 
-<a id="next-steps" class="xliff"></a>
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 在本教學課程中，您可使用 Azure Blob 儲存體作為來源資料存放區以及使用 Azure SQL Database 作為複製作業的目的地資料存放區。 下表提供複製活動所支援作為來源或目的地的資料存放區清單： 
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]

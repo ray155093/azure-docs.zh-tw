@@ -12,13 +12,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/14/2017
+ms.date: 07/21/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: c1e28c5ad7fd3236899ac0ffe9f3d43241061897
-ms.openlocfilehash: 5f253c3a10e5bfdfa9fe36912b5ebcbc9abae3eb
-ms.lasthandoff: 02/15/2017
-
+ms.reviewer: jeedes
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: f4180601e720351a8b0e95ccffe7712028cfba08
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-servicenow"></a>教學課程：Azure Active Directory 與 ServiceNow 整合
@@ -116,7 +117,7 @@ ServiceNow 和 ServiceNow Express 與 Azure AD 整合提供下列優點：
    
     b. 在 [識別碼] 文字方塊中，使用下列模式輸入使用者用來登入 ServiceNow 應用程式的 URL：`https://<instance-name>.service-now.com`。
    
-    c. 依序按一下  **下一步**
+    c. 按一下 [下一步] 
 
 4. 若要讓 Azure AD 自動設定 ServiceNow 以便進行 SAML 型驗證，請在 [自動設定單一登入] 表單上輸入您的 ServiceNow 執行個體名稱、系統管理員使用者名稱和系統管理員密碼，然後按一下 [設定]。 請注意，提供的系統管理員使用者名稱必須在 ServiceNow 中指派 **security_admin** 角色，才能運作。 否則，若要手動設定 ServiceNow 以使用 Azure AD 做為 SAML 識別提供者，請按一下 [手動設定應用程式以進行單一登入]，然後按 [下一步] 並完成下列步驟。
    
@@ -192,7 +193,7 @@ ServiceNow 和 ServiceNow Express 與 Azure AD 整合提供下列優點：
     
      ![設定單一登入](./media/active-directory-saas-servicenow-tutorial/IC7694977.png "設定單一登入")
 
-15. 在 [身分識別提供者] 對話方塊中，按一下 [SAML2 更新&1;]：
+15. 在 [身分識別提供者] 對話方塊中，按一下 [SAML2 更新 1]：
     
      ![設定單一登入](./media/active-directory-saas-servicenow-tutorial/IC7694978.png "設定單一登入")
 
@@ -263,7 +264,7 @@ ServiceNow 和 ServiceNow Express 與 Azure AD 整合提供下列優點：
    
     b. 在 [簽發者 URL] 文字方塊中，使用下列模式輸入使用者用來登入 ServiceNow 應用程式的 URL：`https://<instance-name>.service-now.com`。
    
-    c. 依序按一下  **下一步**
+    c. 按一下 [下一步] 
 
 4. 按一下 [手動設定應用程式以進行單一登入]，然後按 [下一步] 並完成下列步驟。
    
@@ -432,7 +433,7 @@ ServiceNow 和 ServiceNow Express 與 Azure AD 整合提供下列優點：
    
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. 按 [下一步] 。
+    c. 按一下 [下一步] 。
 
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
@@ -446,7 +447,7 @@ ServiceNow 和 ServiceNow Express 與 Azure AD 整合提供下列優點：
    
    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步] 。
+   e. 按一下 [下一步] 。
 
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    

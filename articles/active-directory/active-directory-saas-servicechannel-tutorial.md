@@ -21,9 +21,7 @@ ms.lasthandoff: 05/09/2017
 
 
 ---
-<a id="tutorial-azure-active-directory-integration-with-servicechannel" class="xliff"></a>
-
-# 教學課程：Azure Active Directory 與 ServiceChannel 整合
+# <a name="tutorial-azure-active-directory-integration-with-servicechannel"></a>教學課程：Azure Active Directory 與 ServiceChannel 整合
 
 在本教學課程中，您會了解如何整合 ServiceChannel 與 Azure Active Directory (Azure AD)。
 
@@ -35,9 +33,7 @@ ServiceChannel 與 Azure AD 整合提供下列優點：
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 若要設定 Azure AD 與 ServiceChannel 整合，您需要下列項目：
 
@@ -52,17 +48,13 @@ ServiceChannel 與 Azure AD 整合提供下列優點：
 - 除非必要，否則您不應使用生產環境，。
 - 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
-<a id="scenario-description" class="xliff"></a>
-
-## 案例描述
+## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 ServiceChannel
 2. 設定並測試 Azure AD 單一登入
 
-<a id="adding-servicechannel-from-the-gallery" class="xliff"></a>
-
-## 從資源庫新增 ServiceChannel
+## <a name="adding-servicechannel-from-the-gallery"></a>從資源庫新增 ServiceChannel
 若要設定將 ServiceChannel 整合到 Azure AD 中，您需要從資源庫將 ServiceChannel 新增至受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 ServiceChannel，請執行下列步驟：**
@@ -87,9 +79,7 @@ ServiceChannel 與 Azure AD 整合提供下列優點：
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-servicechannel-tutorial/tutorial-servicechannel_2.png)
 
-<a id="configuring-and-testing-azure-ad-single-sign-on" class="xliff"></a>
-
-##  設定並測試 Azure AD 單一登入
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 ServiceChannel 設定及測試 Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 ServiceChannel 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 ServiceChannel 中的相關使用者之間建立連結關聯性。
@@ -104,9 +94,7 @@ ServiceChannel 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-<a id="configuring-azure-ad-single-sign-on" class="xliff"></a>
-
-### 設定 Azure AD 單一登入
+### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
 在本節中，您會在 Azure 管理入口網站中啟用 Azure AD 單一登入，並在您的 ServiceChannel 應用程式中設定單一登入。
 
@@ -170,9 +158,7 @@ ServiceChannel 與 Azure AD 整合提供下列優點：
 
 9. 若要在 **ServiceChannel** 端設定單一登入，您需要將已下載的**憑證 (Base64)**和 **SAML 實體識別碼**傳送給 [ServiceChannel 支援小組](https://servicechannel.zendesk.com/hc/en-us)。 他們將會設定妥當，讓兩端的 SAML SSO 連線都設定正確。
 
-<a id="creating-an-azure-ad-test-user" class="xliff"></a>
-
-### 建立 Azure AD 測試使用者
+### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節目標是在 Azure 管理入口網站中建立名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][100]
@@ -203,15 +189,11 @@ ServiceChannel 與 Azure AD 整合提供下列優點：
 
     d. 按一下 [建立] 。 
 
-<a id="creating-a-servicechannel-test-user" class="xliff"></a>
-
-### 建立 ServiceChannel 測試使用者
+### <a name="creating-a-servicechannel-test-user"></a>建立 ServiceChannel 測試使用者
 
 應用程式支援及時 (Just In Time) 使用者佈建，而在驗證之後，則會在應用程式中自動建立使用者。 如需完整的使用者佈建，請連絡 [ServiceChannel 支援小組](https://servicechannel.zendesk.com/hc/en-us)
 
-<a id="assigning-the-azure-ad-test-user" class="xliff"></a>
-
-### 指派 Azure AD 測試使用者
+### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
 在本節中，您會將 ServiceChannel 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
@@ -241,17 +223,13 @@ ServiceChannel 與 Azure AD 整合提供下列優點：
 
 7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
-<a id="testing-single-sign-on" class="xliff"></a>
-
-### 測試單一登入
+### <a name="testing-single-sign-on"></a>測試單一登入
 
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
 當您在存取面板中按一下 [ServiceChannel] 圖格時，應該會自動登入您的 ServiceChannel 應用程式。
 
-<a id="additional-resources" class="xliff"></a>
-
-## 其他資源
+## <a name="additional-resources"></a>其他資源
 
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)

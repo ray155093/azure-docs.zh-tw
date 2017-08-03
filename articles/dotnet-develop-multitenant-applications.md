@@ -14,9 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/05/2015
 ms.author: wpickett
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c1614eeac922a4fc496be77b4d1d1588f28b4284
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 57ba0e46139bda2d74c9f7db0ffab2f2122b0df2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -41,7 +43,7 @@ ms.openlocfilehash: c1614eeac922a4fc496be77b4d1d1588f28b4284
 
 簡言之，要提供具有高度延展性的服務，的確需要考量許多事項，但也有不少目標和需求是許多多租用戶應用程式所共有的。 有些可能與特定案例無關，且個別目標和需求的重要性也可能隨著案例而不同。 如果您是多租用戶應用程式的提供者，您也會有目標和需求，例如：達到租用戶的目標和需求、利潤、收費、多重服務層級、佈建、可維護性監視和自動化等。
 
-若想進一步了解多租用戶應用程式的其他設計注意事項，請參閱 [在 Azure 上託管多租用戶應用程式][在 Azure 上代管多租用戶應用程式] (英文)。 如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md)。 
+若想進一步了解多租用戶應用程式的其他設計注意事項，請參閱[在 Azure 上裝載多租用戶應用程式][Hosting a Multi-Tenant Application on Azure] \(英文\)。 如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md)。 
 
 Azure 有多項功能可讓您處理在設計多租用戶系統時遇到的重大問題。
 
@@ -50,7 +52,7 @@ Azure 有多項功能可讓您處理在設計多租用戶系統時遇到的重�
 * 依主機標頭區隔具有 (或沒有) SSL 通訊的網站租用戶
 * 依查詢參數區隔網站租用戶
 * 背景工作角色中的 Web 服務
-  * 通常在應用程式後端處理資料的背景工作角色。 that typically process data on the backend of an application.
+  * 背景工作角色： 通常在應用程式後端處理資料。
   * 通常作為應用程式前端的 Web 角色。
 
 **儲存體**
@@ -73,7 +75,7 @@ Azure 提供了幾項支援驗證、並且可讓受到代管的應用程式提�
 * Azure 虛擬網路可讓您在 Azure 中佈建及管理虛擬私人網路 (VPN)，並使用內部部署 IT 基礎結構安全地連結這些網路。
 * 虛擬網路流量管理員可讓您對多個代管 Azure 服務間的傳入流量進行負載平衡，無論這些服務是在相同的資料中心內執行，還是在世界各地不同的資料中心間執行。
 * Azure Active Directory (Azure AD) 是以 REST 為基礎的新式服務，可為您的雲端應用程式提供身分識別管理和存取控制功能。 使用適用於應用程式資源的 Azure AD，可讓您輕鬆地對要存取您的 Web 應用程式和服務的使用者進行驗證和授權，並可讓您在程式碼中排除驗證和授權功能的考量。
-* Azure 服務匯流排可為分散式和混合式應用程式提供安全訊息和資料流程功能 (例如 Azure 代管的應用程式與內部部署應用程式和服務之間的通訊)，而無須使用複雜的防火牆和安全性基礎結構。 使用適用於應用程式資源的服務匯流排轉送：公開為端點的服務可能屬於租用戶 (例如，在內部部署之類的系統外部受到代管的服務)，或者可能是明確地為租用戶佈建的服務 (因為敏感的租用戶特定資料透過這些服務進行傳送)。
+* Azure 服務匯流排可為分散式和混合式應用程式提供安全訊息和資料流程功能 (例如 Azure 代管的應用程式與內部部署應用程式和服務之間的通訊)，而無須使用複雜的防火牆和安全性基礎結構。 使用適用於應用程式資源的服務匯流排轉送：公開為端點的服務可能是屬於租用戶的服務 (例如，在內部部署環境之類的系統外部受到代管的服務)，或者可能是明確針對租用戶佈建的服務 (因為敏感的租用戶特定資料會透過這些服務進行傳送)。
 
 **佈建資源**
 
@@ -90,11 +92,6 @@ Azure 提供許多可為應用程式佈建新租用戶的方式。 就租用戶�
 
 <!--links-->
 
-[在 Azure 上代管多租用戶應用程式]: http://msdn.microsoft.com/library/hh534480.aspx
-[在 Azure 上設計多租用戶應用程式]: http://msdn.microsoft.com/library/windowsazure/hh689716
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[Hosting a Multi-Tenant Application on Azure]: http://msdn.microsoft.com/library/hh534480.aspx
+[Designing Multitenant Applications on Azure]: http://msdn.microsoft.com/library/windowsazure/hh689716
 

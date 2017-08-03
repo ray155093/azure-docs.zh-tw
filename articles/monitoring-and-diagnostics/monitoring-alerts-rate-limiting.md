@@ -2,7 +2,7 @@
 title: "SMS、電子郵件和 Webhook 的速率限制 | Microsoft Docs"
 description: "活動記錄中發生特定事件時，透過 SMS、Webhook 及電子郵件收到通知。"
 author: anirudhcavale
-manager: carmonm
+manager: orenr
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -14,17 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: 1b4196d3b1d41458c7dd20b6986cc09100ae318c
+ms.translationtype: HT
+ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
+ms.openlocfilehash: b2e954405500921c0c1e9c7cd71ce57130c98d64
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 
 # <a name="rate-limiting-for-sms-emails-and-webhooks"></a>SMS、電子郵件和 Webhook 的速率限制
-速率限制是當傳送了太多通知給特定電話號碼或電子郵件時所發生的通知暫停。 限制可確保活動記錄警示與服務健康狀態警示的相關通訊可管理且可採取動作
+速率限制是當傳送了太多通知給特定電話號碼或電子郵件時所發生的通知暫停。 速率限制可確保警示可管理且可採取動作
 
 SMS 和電子郵件的規則相同。 以下項目的速率限制閾值
  - SMS - 1 小時內 10 個訊息
@@ -33,7 +32,7 @@ SMS 和電子郵件的規則相同。 以下項目的速率限制閾值
 ## <a name="rate-limit-rules"></a>速率限制規則
 - 當特定電話號碼或電子郵件收到的通知超過閾值時，會受到速率限制
 - 電話號碼或電子郵件可以是跨許多訂用帳戶動作群組的一部分。 速率限制適用於所有訂用帳戶，也就是說，即使是傳送自多個訂用帳戶，只要達到閾值即會套用。  
-- 當電話號碼或電子郵件受到速率限制時，將會傳送相同類型的另一個訊息來溝通速率限制。 SMS 或電子郵件會說明速率限制到期的時間。
+- 當電話號碼或電子郵件受到速率限制時，將會傳送另一個通知來溝通速率限制。 通知會說明速率限制到期的時間。
 
 ## <a name="rate-limit-of-webhooks"></a>Webhook 的速率限制 ##
 目前沒有對 Webhook 的既有速率限制。

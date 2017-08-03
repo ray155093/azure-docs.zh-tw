@@ -15,12 +15,11 @@ ms.workload: big-compute
 ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: 93f80018d71368c800abd3dceb42b2ab51e60659
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 346e7abf862330afe64dc5685737a9301d7d861a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
 # <a name="develop-large-scale-parallel-compute-solutions-with-batch"></a>使用 Batch 開發大規模的平行運算解決方案
@@ -47,7 +46,7 @@ ms.lasthandoff: 07/08/2017
 下列各節討論可達成分散式計算案例的 Batch 資源。
 
 > [!NOTE]
-> 您需要有 [Batch 帳戶](#account)才能使用 Batch 服務。 此外，幾乎所有解決方案都會使用 [Azure 儲存體][azure_storage]帳戶來儲存和擷取檔案。 Batch 目前僅支援**一般用途**的儲存體帳戶類型，如關於 [Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。
+> 您需要有 [Batch 帳戶](#account)才能使用 Batch 服務。 大部分 Batch 解決方案也會使用 [Azure 儲存體][azure_storage] 帳戶來儲存和擷取檔案。 Batch 目前僅支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。
 >
 >
 
@@ -74,35 +73,51 @@ ms.lasthandoff: 07/08/2017
 
 您可以使用 [Azure 入口網站](batch-account-create-portal.md)或以程式設計的方式建立 Azure Batch 帳戶，例如使用 [Batch管理 .NET 程式庫](batch-management-dotnet.md)。 建立帳戶時，您可以將 Azure 儲存體帳戶產生關聯。
 
-Batch 支援兩個帳戶設定，當您要建立 Batch 帳戶時，需選取適當的設定。 兩個帳戶設定之間的差異，在於帳戶的 Batch [集區](#pool)如何配置。 您可以在 Azure Batch 管理的訂用帳戶中配置計算節點的集區，或是可以將它們配置在您自己的訂用帳戶中。 帳戶的集區配置模式屬性會決定所使用的是什麼設定。 
+### <a name="pool-allocation-mode"></a>集區配置模式
 
-如需決定要使用的帳戶設定，請考慮最適合您案例的是哪一個：
+當您建立 Batch 帳戶時，可以指定如何配置計算節點的[集區](#pool)。 您可以選擇在 Azure Batch 管理的訂用帳戶中配置計算節點的集區，也可以在自己的訂用帳戶中配置。 帳戶的「集區配置模式」屬性可決定配置集區的位置。 
 
-* **Batch 服務**：Batch 服務是預設的帳戶設定。 針對使用此設定所建立的帳戶，Batch 集區會在幕後配置於 Azure 受控訂用帳戶。 請記住關於 Batch 服務帳戶設定的這些關鍵點：
+如需決定要使用的集區配置模式，請考慮何者最適合您的情況：
 
-    - Batch 服務帳戶設定支援雲端服務和虛擬機器集區。
-    - Batch 服務帳戶設定支援使用共用索引鍵驗證或 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 
-    - 在 Batch 服務帳戶設定中，您可以使用集區中專用或低優先順序的計算節點。
-    - 如果您打算從自訂 VM 映像建立 Azure 虛擬機器集區，或如果打算使用虛擬網路，請勿使用 Batch 服務帳戶設定。 改為透過使用者訂用帳戶的帳戶設定來建立您的帳戶。
-    - 使用 Batch 服務訂用帳戶的帳戶設定在帳戶中佈建之虛擬機器集區，必須從 [Azure 虛擬機器 Marketplace][vm_marketplace] 映像加以建立。
+* **Batch 服務**：Batch 服務是預設集區配置模式，可指定在幕後將集區配置在 Azure 管理的訂用帳戶中。 關於 Batch 服務集區配置模式，請記住下列重點：
 
-* **使用者訂用帳戶**：Batch 集區會透過使用者訂用帳戶的帳戶設定，在帳戶所建立的 Azure 訂用帳戶中進行配置。 請記住關於使用者訂用帳戶之帳戶設定的這些關鍵點：
+    - Batch 服務集區配置模式支援雲端服務集區和虛擬機器集區。
+    - Batch 服務集區配置模式支援共用金鑰驗證或 [Azure Active Directory 驗證](batch-aad-auth.md) (Azure AD)。 
+    - 您可以在以 Batch 服務集區配置模式所配置的集區中，使用專用或低優先順序的計算節點。
+    - 如果您打算從自訂 VM 映像建立 Azure 虛擬機器集區，或打算使用虛擬網路，請勿使用 Batch 服務集區配置模式。 請改以使用「使用者訂用帳戶」集區配置模式來建立帳戶。
+    - 在以 Batch 服務集區配置模式所建立的帳戶中，佈建的虛擬機器集區必須是從 [Azure 虛擬機器 Marketplace][vm_marketplace] 映像建立。
+
+* **使用者訂用帳戶**：在「使用者訂用帳戶」集區配置模式下，Batch 集區會配置在建立帳戶時的 Azure 訂用帳戶中。 關於「使用者訂用帳戶」集區配置模式，請記住下列重點：
      
-    - 使用者訂用帳戶的帳戶設定僅支援虛擬機器集區。 並不支援雲端服務集區。
-    - 若要從自訂 VM 映像建立虛擬機器集區，或使用虛擬網路搭配虛擬機器集區，您必須使用使用者訂用帳戶設定。  
-    - 您必須使用 [Azure Active Directory 驗證](batch-aad-auth.md)來驗證對 Batch 服務的要求。 
-    - 使用者訂用帳戶的帳戶設定會要求您設定 Batch 帳戶的 Azure Key Vault。 
-    - 您只能在透過使用者訂用帳戶的帳戶設定所建立的帳戶中，使用集區中的專用計算節點。 不支援低優先順序的節點。
-    - 您可從 [Azure 虛擬機器 Marketplace][vm_marketplace] 映像，或從您提供的自訂映像，建立透過使用者訂用帳戶設定中佈建的虛擬機器集區。
+    - 「使用者訂用帳戶」集區配置模式僅支援虛擬機器集區。 並不支援雲端服務集區。
+    - 若要從自訂 VM 映像建立虛擬機器集區，或使用虛擬網路搭配虛擬機器集區，您必須使用「使用者訂用帳戶」集區配置模式。  
+    - 對於使用者訂用帳戶中配置的集區，您必須使用 [Azure Active Directory 驗證](batch-aad-auth.md)。 
+    - 如果集區配置模式設定為「使用者訂用帳戶」，您必須為 Batch 帳戶設定 Azure 金鑰保存庫。 
+    - 在以「使用者訂用帳戶」集區配置模式所建立的帳戶中，您只能在集區中使用專用計算節點。 不支援低優先順序的節點。
+    - 您可以從 [Azure 虛擬機器 Marketplace][vm_marketplace] 映像，或從您提供的自訂映像，建立在採用「使用者訂用帳戶」集區配置模式的帳戶中所佈建的虛擬機器集區。
 
-> [!IMPORTANT]
-> Batch 目前僅支援一般用途的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。 您的 Batch 工作 (包括標準工作、啟動工作、作業準備工作和作業發行工作) 必須指定位於一般用途的儲存體帳戶中的資源檔。
->
->
+下表比較 Batch 服務和「使用者訂用帳戶」集區配置模式。
+
+| **集區配置模式：**                 | **Batch 服務**                                                                                       | **使用者訂用帳戶**                                                              |
+|-------------------------------------------|---------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **集區配置在：**               | Azure 管理的訂用帳戶                                                                           | 用來建立 Batch 帳戶的使用者訂用帳戶                        |
+| **支援的設定：**             | <ul><li>雲端服務設定</li><li>虛擬機器設定 (Linux 和 Windows)</li></ul> | <ul><li>虛擬機器設定 (Linux 和 Windows)</li></ul>                |
+| **支援的 VM 映像：**                  | <ul><li>Azure Marketplace 影像</li></ul>                                                              | <ul><li>Azure Marketplace 影像</li><li>自訂映像</li></ul>                   |
+| **支援的計算節點類型：**         | <ul><li>專用節點</li><li>低優先順序節點</li></ul>                                            | <ul><li>專用節點</li></ul>                                                  |
+| **支援的驗證：**             | <ul><li>共用金鑰</li><li>Azure AD</li></ul>                                                           | <ul><li>Azure AD</li></ul>                                                         |
+| **需要 Azure 金鑰保存庫：**             | 否                                                                                                      | 是                                                                                |
+| **核心配額：**                           | 取決於 Batch 核心配額                                                                          | 取決於訂用帳戶核心配額                                              |
+| **Azure 虛擬網路 (Vnet) 支援：** | 使用雲端服務設定建立的集區                                                      | 使用虛擬機器設定建立的集區                               |
+| **支援的 Vnet 部署模型：**      | 使用傳統部署模型建立的 Vnet                                                             | 使用傳統部署模型或 Azure Resource Manager 建立的 Vnet |
+## <a name="azure-storage-account"></a>Azure 儲存體帳戶
+
+大部分 Batch 解決方案都使用 Azure 儲存體來儲存資源檔和輸出檔。  
+
+Batch 目前僅支援一般用途的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。 您的 Batch 工作 (包括標準工作、啟動工作、作業準備工作和作業發行工作) 必須指定位於一般用途的儲存體帳戶中的資源檔。
 
 
 ## <a name="compute-node"></a>計算節點
-計算節點是 Azure 虛擬機器 (VM) 或雲端服務 VM，專門用來處理您應用程式的部分工作負載。 節點大小決定配置給節點的 CPU 核心數目、記憶體容量，以及本機檔案系統大小。 您可以使用 Azure 雲端服務或虛擬機器 Marketplace 的映像來建立 Windows 或 Linux 節點集區。 如需這些選項的詳細資訊，請參閱下列 [集區](#pool) 。
+計算節點是 Azure 虛擬機器 (VM) 或雲端服務 VM，專門用來處理您應用程式的部分工作負載。 節點大小決定配置給節點的 CPU 核心數目、記憶體容量，以及本機檔案系統大小。 您可以使用 Azure 雲端服務、[Azure 虛擬機器 Marketplace][vm_marketplace] 中的映像，或您準備的自訂映像來建立 Windows 或 Linux 節點的集區。 如需這些選項的詳細資訊，請參閱下列 [集區](#pool) 。
 
 節點可以執行節點作業系統環境所支援的任何可執行檔或指令碼。 這包括適用於 Windows 的 \*.exe、\*.cmd、\*.bat 和 PowerShell 指令碼，以及適用於 Linux 的二進位檔、Shell 和 Python 指令碼。
 
@@ -134,9 +149,11 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 這些設定每一個都會在下列各節詳細說明。
 
 > [!IMPORTANT]
-> 透過 Batch 服務設定建立的 Batch 帳戶都具有預設配額，以限制 Batch 帳戶中的核心數目。 對應到計算節點數目的核心數目。 在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中，您可以找到預設配額及如何[增加配額](batch-quota-limit.md#increase-a-quota)的說明。 如果您的集區未達其目標節點數目，可能是因為核心配額的原因。
+> 以 Batch 服務集區配置模式所建立的 Batch 帳戶有預設配額，將會限制 Batch 帳戶中的核心數目。 對應到計算節點數目的核心數目。 在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中，您可以找到預設配額及如何[增加配額](batch-quota-limit.md#increase-a-quota)的說明。 如果您的集區未達其目標節點數目，可能是因為核心配額的原因。
 >
->透過使用者訂用帳戶設定建立的 Batch 帳戶不會觀察 Batch 服務配額。 相反地，它們會在核心配額中共用指定的訂用帳戶。 如需詳細資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束](../azure-subscription-service-limits.md)中的 [虛擬機器限制](../azure-subscription-service-limits.md#virtual-machines-limits)。
+>以「使用者訂用帳戶」集區配置模式所建立的 Batch 帳戶不會遵守 Batch 服務配額。 相反地，它們會在核心配額中共用指定的訂用帳戶。 如需詳細資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束](../azure-subscription-service-limits.md)中的 [虛擬機器限制](../azure-subscription-service-limits.md#virtual-machines-limits)。
+>
+>
 
 ### <a name="compute-node-operating-system-and-version"></a>計算節點作業系統和版本
 
@@ -158,7 +175,12 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
 #### <a name="custom-images-for-virtual-machine-pools"></a>適用於虛擬機器集區的自訂映像
 
-若要使用您虛擬機器集區的自訂映像，請利用使用者訂用帳戶的帳戶設定來建立您的 Batch 帳戶。 使用此設定時，Batch 集區會配置到帳戶所在的訂用帳戶。 如需有關在建立 Batch 帳戶時設定集區配置模式的資訊，請參閱[帳戶](#account)一節。
+若要使用自訂映像來佈建虛擬機器集區，請以「使用者訂用帳戶」集區配置模式來建立 Batch 帳戶。 使用此模式時，Batch 集區會配置到帳戶所在的訂用帳戶。 如需有關在建立 Batch 帳戶時設定集區配置模式的資訊，請參閱[帳戶](#account)一節。
+
+若要使用自訂映像，您必須將映像一般化來備妥映像。 如需有關從 Azure VM 準備自訂 Linux 映像的資訊，請參閱[擷取 Azure Linux VM 作為範本](../virtual-machines/linux/capture-image-nodejs.md)。 如需有關從 Azure VM 準備自訂 Windows 映像的資訊，請參閱[使用 Azure PowerShell 建立自訂 VM 映像](../virtual-machines/windows/tutorial-custom-images.md)。 準備您的映像時，請記住下列事項：
+
+- 請確認您用來佈建 Batch 集區的基本 OS 映像沒有任何預先安裝的 Azure 擴充，例如自訂指令碼擴充。 如果映像包含預先安裝的擴充，Azure 在部署 VM 時可能會遇到問題。
+- 請確定您提供的基本 OS 映像使用預設的暫存磁碟機，因為 Batch 節點代理程式目前需要有預設的暫存磁碟機。
 
 若要使用自訂映像來建立虛擬機器設定集區，您需要一或多個標準 Azure 儲存體帳戶來儲存自訂的 VHD 映像。 自訂映像會儲存為 blob。 建立集區時若要參考自訂映像，請針對 [virtualMachineConfiguration](https://docs.microsoft.com/rest/api/batchservice/add-a-pool-to-an-account#bk_vmconf) 屬性的 [osDisk](https://docs.microsoft.com/rest/api/batchservice/add-a-pool-to-an-account#bk_osdisk) 屬性，指定自訂映像 VHD blob 的 URI。
 
@@ -166,7 +188,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
 - 包含自訂映像 VHD blob 的儲存體帳戶必須與 Batch 帳戶 (使用者訂用帳戶) 位於相同的訂用帳戶。
 - 指定的儲存體帳戶必須與 Batch 帳戶位於相同區域中。
-- 目前僅支援標準儲存體帳戶。 未來將會支援 Azure 高階儲存體。
+- 目前僅支援標準一般用途的儲存體帳戶。 未來將會支援 Azure 高階儲存體。
 - 您可以指定一個具有多個自訂 VHD blob 的儲存體帳戶，或是多個儲存體帳戶，每個皆具有單一的 blob。 建議您使用多個儲存體帳戶，以取得更佳的效能。
 - 一個唯一自訂映像 VHD blob 最多可支援 40 個 Linux VM 執行個體，或 20 個 Windows VM 執行個體。 您必須建立 VHD blob 的複本，才能建立具有多個 VM 的集區。 例如，具有 200 個 Windows VM 的集區，需要針對 **osDisk** 屬性指定 10 個唯一的 VHD blob。
 
@@ -418,26 +440,46 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 有一個通常用來處理可變但持續負載的組合方法。 您可以設定有多個作業提交至該處，但根據作業負載向上或向下調整節點數目的集區 (請參閱下一節 [調整計算資源](#scaling-compute-resources) )。 您可以根據目前的負載被動完成，或在負載可預測時主動完成。
 
-## <a name="pool-network-configuration"></a>集區網路組態
+## <a name="virtual-network-vnet-and-firewall-configuration"></a>虛擬網路 (VNet) 和防火牆設定 
 
-當您在 Azure Batch 中建立計算節點的集區時，您可以指定 Azure [虛擬網路 (VNet)](../virtual-network/virtual-networks-overview.md) 的子網路識別碼，以讓系統知道要在哪裡建立集區的計算節點。
+當您在 Azure 批次中佈建計算節點集區時，可以將此集區與 Azure [虛擬網路 (VNet)](../virtual-network/virtual-networks-overview.md) 的子網路產生關聯。 若要深入了解建立含有子網路的 VNet，請參閱[建立含有子網路的 Azure 虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。 
 
-* VNet 必須：
+ * 與集區相關聯的 VNet 必須是：
 
    * 與 Azure Batch 帳戶位於相同的 Azure **區域**中。
    * 與 Azure Batch 帳戶在相同的**訂用帳戶**中。
 
 * 所支援的 VNet 類型取決於您要如何為 Batch 帳戶配置集區︰
-    - 如果您在建立 Batch 帳戶時將其 **poolAllocationMode** 屬性設定為「BatchService」，則指定的 VNet 必須是傳統 VNet。
-    - 如果您在建立 Batch 帳戶時將其 **poolAllocationMode** 屬性設定為「UserSubscription」，則指定的 VNet 可以是傳統 VNet 或 Azure Resource Manager VNet。 必須使用虛擬機器組態來建立集區才能使用 VNet。 在建立集區時，不支援使用雲端服務組態。
 
-* 如果您在建立 Batch 帳戶時將其 **poolAllocationMode** 屬性設定為「BatchService」，則必須提供相關權限以供 Batch 服務主體用來存取 VNet。 針對指定的 VNet，名為「Microsoft Azure Batch」或「MicrosoftAzureBatch」的 Batch 服務主體必須有[傳統虛擬機器參與者角色型存取控制 (RBAC)](https://azure.microsoft.com/documentation/articles/role-based-access-built-in-roles/#classic-virtual-machine-contributor) 角色。 如果您沒有提供指定的 RBAC 角色，Batch 服務會傳回 400 (不正確的要求)。
+    - 如果 Batch 帳戶的集區配置模式設定為 Batch 服務，則您只能將 VNet 指派給以**雲端服務設定**建立的集區。 此外，指定的 VNet 必須以傳統部署模型建立。 不支援使用 Azure Resource Manager 部署模型建立的 VNet。
+ 
+    - 如果 Batch 帳戶的集區配置模式設定為「使用者訂用帳戶」，則您只能將 VNet 指派給以**虛擬機器設定**建立的集區。 不支援使用**雲端服務設定**建立的集區。 您可以使用 Azure Resource Manager 部署模型或傳統部署模型來建立相關聯的 VNet。
+
+    有關於根據集區配置模式來彙總 VNet 支援的表格，請參閱[集區配置模式](#pool-allocation-mode)一節。
+
+* 如果 Batch 帳戶的集區配置模式設定為 Batch 服務，則您必須提供權限讓 Batch 服務主體存取 VNet。 VNet 必須將[傳統虛擬機器參與者角色型存取控制 (RBAC)](https://azure.microsoft.com/documentation/articles/role-based-access-built-in-roles/#classic-virtual-machine-contributor) 角色指派給 Batch 服務主體。 如果您沒有提供指定的 RBAC 角色，Batch 服務會傳回 400 (不正確的要求)。 在 Azure 入口網站中新增角色：
+
+    1. 依序選取 [VNet]、[存取控制 (IAM)] > [角色] > [虛擬機器參與者] > [新增]。
+    2. 在 [新增權限] 刀鋒視窗中，選取 [虛擬機器參與者] 角色。
+    3. 在 [新增權限] 刀鋒視窗中，搜尋 Batch API。 依次搜尋以下每個字串，直到您找到 API 為止：
+        1. **MicrosoftAzureBatch**。
+        2. **Microsoft Azure Batch**。 較新的 Azure AD 租用戶可以使用這個名稱。
+        3. **ddbf3205-c6bd-46ae-8127-60eb93363864** 是 Batch API 的識別碼。 
+    3. 選取 Batch API 服務主體。 
+    4. 按一下 [儲存] 。
+
+        ![將 VM 參與者角色指派給 Batch 服務主體](./media/batch-api-basics/iam-add-role.png)
+
 
 * 指定的子網路必須有足夠的可用 **IP 位址**以容納所有目標節點，其數目為集區之 `targetDedicatedNodes` 和 `targetLowPriorityNodes` 屬性的總和。 如果子網路沒有足夠的可用 IP 位址，Batch 服務會配置集區中部分的計算節點，並傳回調整大小錯誤。
 
 * 指定的子網路必須允許來自 Batch 服務的通訊，才能在計算節點上排程工作。 如果對計算節點的通訊遭到與 VNet 相關聯的「網路安全性群組 (NSG)」拒絕，則 Batch 服務會將計算節點的狀態設為 [無法使用]。
 
-* 如果指定的 VNet 有任何相關聯的網路安全性群組 (NSG)，則必須啟用幾個已保留的系統連接埠以供進行輸入通訊。 若為使用虛擬機器組態所建立的集區，請啟用連接埠 29876 和 29877，另外，請針對 Linux 啟用連接埠 22，至於 Windows 則啟用連接埠 3389。 若為使用雲端服務組態所建立的集區，請啟用連接埠 10100、20100 和 30100。 此外，請在連接埠 443 上啟用對 Azure 儲存體的輸出連線。
+* 如果指定的 VNet 有相關聯的**網路安全性群組 (NSG)**和/或**防火牆**，則必須啟用幾個保留的系統連接埠，以進行輸入通訊：
+
+- 若為使用虛擬機器組態所建立的集區，請啟用連接埠 29876 和 29877，另外，請針對 Linux 啟用連接埠 22，至於 Windows 則啟用連接埠 3389。 
+- 若為使用雲端服務組態所建立的集區，請啟用連接埠 10100、20100 和 30100。 
+- 在連接埠 443 上啟用對 Azure 儲存體的輸出連線。 此外，請確定為 VNET 提供服務的任何自訂 DNS 伺服器，都能解析您的 Azure 儲存體端點。 具體而言，`<account>.table.core.windows.net` 格式的 URL 應該可解析。
 
     下表說明您必須針對使用虛擬機器組態建立的集區啟用的輸入連接埠：
 
@@ -451,29 +493,6 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
     |    輸出連接埠    |    目的地    |    Batch 會新增 NSG 嗎？    |    VM 是否需要有才可使用？    |    使用者的動作    |
     |------------------------|-------------------|----------------------------|-------------------------------------|------------------------|
     |    443    |    Azure 儲存體    |    否    |    是    |    如果您新增任何 NSG，請確定已對輸出流量開啟此連接埠。    |
-
-
-根據 Batch 帳戶的集區配置模式，會有額外的設定。
-
-### <a name="vnets-for-pools-provisioned-in-the-batch-service"></a>在 Batch 服務中佈建的集區 VNet
-
-在 Batch 服務配置模式中，只有 [雲端服務組態] 集區可以指派 VNet。 此外，指定的 VNet 必須為**傳統** VNet。 不支援使用 Azure Resource Manager 部署模型建立的 VNet。
-
-
-
-* 針對指定的 VNet，*MicrosoftAzureBatch* 服務主體必須有[傳統虛擬機器參與者](../active-directory/role-based-access-built-in-roles.md#classic-virtual-machine-contributor)角色型存取控制 (RBAC) 角色。 在 Azure 入口網站中：
-
-  * 依序選取 VNet、[存取控制 (IAM)] > [角色] > [傳統虛擬機器參與者] > [新增]
-  * 在 [搜尋] 方塊中輸入 "MicrosoftAzureBatch"
-  * 選取 [MicrosoftAzureBatch] 核取方塊
-  * 選取 [選取] 按鈕
-
-
-
-### <a name="vnets-for-pools-provisioned-in-a-user-subscription"></a>在使用者訂用帳戶中佈建的集區 VNet
-
-在使用者訂用帳戶配置模式中，只有**虛擬機器組態**集區受支援且可指派 VNet。 此外，指定的 VNet 必須為 **Resource Manager** 型的 VNet。 不支援使用傳統部署模型建立的 VNet。
-
 
 
 ## <a name="scaling-compute-resources"></a>調整計算資源

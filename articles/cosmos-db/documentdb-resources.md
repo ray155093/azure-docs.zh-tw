@@ -16,12 +16,11 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: anhoh
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 18a2f6fba707ad920df96117f1c5fb4c8cf9142a
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: f632d94222590f97b7a95edf9d4941a66b0710e6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="azure-cosmos-db-hierarchical-resource-model-and-core-concepts"></a>Azure Cosmos DB 階層式資源模型和核心概念
@@ -194,7 +193,7 @@ Cosmos DB 是真正不具結構描述的資料庫系統。 它不會假設或不
 在集合上執行 PUT 即可變更索引原則。 不論是透過[用戶端 SDK](documentdb-sdk-dotnet.md)、[Azure 入口網站](https://portal.azure.com)還是 [REST API](/rest/api/documentdb/)，都可達到此目的。
 
 ### <a name="querying-a-collection"></a>查詢集合
-集合內的文件可以有任意結構描述，而且您可以查詢集合內的文件，而不需要預先提供任何結構描述或次要索引。 您可以利用 [DocumentDB API SQL 語法 (英文)](https://msdn.microsoft.com/library/azure/dn782250.aspx)，透過使用 JavaScript 之 UDF 所提供的豐富階層式及關聯式空間運算子與擴充能力來查詢集合。 JSON 文法允許用於將 JSON 文件建模為標籤做為樹狀節點的樹狀目錄。 這會同時應用 DocumentDB API 的自動編製索引技術與 DocumentDB API 的 SQL 方言。 DocumentDB API 查詢語言包含三個主要部分：   
+集合內的文件可以有任意結構描述，而且您可以查詢集合內的文件，而不需要預先提供任何結構描述或次要索引。 您可以使用 [Azure Cosmos DB DocumentDB API：SQL 語法參考](https://msdn.microsoft.com/library/azure/dn782250.aspx)來查詢集合，這些語法透過 JavaScript 型 UDF 提供豐富階層式與關聯式的空間運算子及擴充性。 JSON 文法允許用於將 JSON 文件建模為標籤做為樹狀節點的樹狀目錄。 這會同時應用 DocumentDB API 的自動編製索引技術與 DocumentDB API 的 SQL 方言。 DocumentDB API 查詢語言包含三個主要部分：   
 
 1. 本質上對應至樹狀結構的較小一組查詢作業 (包括階層式查詢和投射)。 
 2. 關聯式作業 (包括複合、篩選、投射、彙總和自我聯結) 的子集。 

@@ -15,12 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/08/2017
 ms.author: arramac
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: 1241b6d97447fe6ee2a8abfb425b8b5f7d0f8a9c
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: 71878a5a8807b025f418b978990cb0c502e4eca7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/16/2017
-
+ms.lasthandoff: 07/17/2017
 
 ---
 # <a name="sql-queries-for-azure-cosmos-db-documentdb-api"></a>適用於 Azure Cosmos DB DocumentDB API 的 SQL 查詢
@@ -921,9 +920,7 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
 
 **結果**
 
-    [{
-        "$1": 1
-    }]
+    [ 1 ]
 
 下表顯示 DocumentDB API 中支援的彙總函式清單。 `SUM` 和 `AVG` 是對數值執行，而 `COUNT`、`MIN`和 `MAX` 則可對數字、字串、布林值和 null 執行。 
 
@@ -1206,7 +1203,7 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
         }
     }
 
-`AndersenFamily` 有一個小孩養了一隻寵物。 因此，交叉乘積會從此家族產生 1 個資料列 (1*1*1)。 不過，WakefieldFamily 有兩個小孩，但只有一個小孩 "Jesse" 養了多隻寵物。 而 Jesse 擁有 2 隻寵物。 因此，交叉乘積會從此家族產生 1*1*2 = 2 個資料列。
+`AndersenFamily` 有一個小孩養了一隻寵物。 因此，交叉乘積會從此家族產生 1 個資料列 (1\*1\*1)。 不過，WakefieldFamily 有兩個小孩，但只有一個小孩 "Jesse" 養了多隻寵物。 而 Jesse 擁有 2 隻寵物。 因此，交叉乘積會從此家族產生 1\*1\*2 = 2 個資料列。
 
 在下一個範例中，對 `pet`有一個額外的篩選。 這會排除寵物名稱不是 "Shadow" 的所有 Tuple。 請注意，我們可以從陣列建置 Tuple、根據 Tuple 的任何元素進行篩選，以及投射元素的任何組合。 
 
@@ -1242,7 +1239,7 @@ Azure Cosmos DB 提供一個程式設計模型，可藉由預存程序和觸發�
 ### <a id="UserDefinedFunctions"></a>使用者定義函數 (UDF)
 除了本文中已定義的類型之外，DocumentDB API SQL 還支援「使用者定義函數」(UDF)。 特別的是，如果開發人員可以傳入零個或多個引數並傳回單一引數結果，則支援純量 UDF。 系統會檢查所有這些引數是否為合法的 JSON 值。  
 
-DocumentDB API SQL 語法已延伸，可支援使用這些「使用者定義函數」的自訂應用程式邏輯。 您可以向 DocumentDB API 註冊 UDF，然後在 SQL 查詢中參照它。 實際上，UDF 是特別設計來透過查詢進行叫用。 這項選擇的必然結果，就是 UDF 無法存取其他 JavaScript 類型 (預存程序和觸發程序) 擁有的內容物件。 因為查詢是以唯讀形式執行，所以可以在主要或次要複本上執行。 因此，與其他 JavaScript 類型不同，UDF 是設計成在次要複本上執行。
+DocumentDB API SQL 語法已延伸，可支援使用這些「使用者定義函式」的自訂應用程式邏輯。 您可以向 DocumentDB API 註冊 UDF，然後在 SQL 查詢中參照它。 實際上，UDF 是特別設計來透過查詢進行叫用。 這項選擇的必然結果，就是 UDF 無法存取其他 JavaScript 類型 (預存程序和觸發程序) 擁有的內容物件。 因為查詢是以唯讀形式執行，所以可以在主要或次要複本上執行。 因此，與其他 JavaScript 類型不同，UDF 是設計成在次要複本上執行。
 
 以下是如何在 Cosmos DB 資料庫 (更明確地說是在文件集合下) 註冊 UDF 的範例。
 
@@ -1515,7 +1512,7 @@ Cosmos DB 也支援一些適用於一般作業的內建函數，這些函數可�
 | [LOWER (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_lower) |傳回將大寫字元資料轉換成小寫之後的字串運算式。 |
 | [UPPER (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_upper) |傳回將小寫字元資料轉換成大寫之後的字串運算式。 |
 | [REPLACE (str_expr, str_expr, str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_replace) |使用其他字串值取代指定的字串值的所有項目。 |
-| [REPLICATE (str_expr, num_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_replicate) |將字串值重複指定的次數。 |
+| [REPLICATE (str_expr, num_expr)](https://docs.microsoft.com/azure/cosmos-db/documentdb-sql-query-reference#bk_replicate) |將字串值重複指定的次數。 |
 | [REVERSE (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_reverse) |傳回反向順序的字串值。 |
 
 藉由使用這些函數，您現在可以執行下列查詢。 例如，您可以傳回大寫的家族名稱，如下所示：

@@ -14,12 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 7/02/2017
 ms.author: mfussell
-ms.translationtype: Human Translation
-ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
-ms.openlocfilehash: 69c517da6c23df1708f94ef7486b8c3b5b4edcaa
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 471ec6f45f4152fbac56242ef3ce906f8af00b54
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="service-fabric-application-scenarios"></a>Service Fabric 應用程式案例
@@ -36,7 +35,7 @@ Azure 中的 Service Fabric 平台適用於下列類別的應用程式：
 我們已有數名客戶使用 Service Fabric 建置 IoT 系統，包括 [BMW](https://blogs.msdn.microsoft.com/azureservicefabric/2016/08/24/service-fabric-customer-profile-bmw-technology-corporation/)、[Schneider Electric](https://blogs.msdn.microsoft.com/azureservicefabric/2016/08/05/service-fabric-customer-profile-schneider-electric/)、[Mesh Systems](https://blogs.msdn.microsoft.com/azureservicefabric/2016/06/20/service-fabric-customer-profile-mesh-systems/)。
 
 ## <a name="application-design-case-studies"></a>應用程式設計個案研究
-[Service Fabric 團隊部落格](https://blogs.msdn.microsoft.com/azureservicefabric/tag/customer-profile/)和[微服務解決方案網站](https://azure.microsoft.com/solutions/microservice-applications/)發佈了許多示範如何使用 Service Fabric 來設計應用程式的個案研究
+[Service Fabric 團隊部落格](https://blogs.msdn.microsoft.com/azureservicefabric/tag/customer-profile/)和[微服務解決方案網站](https://azure.microsoft.com/solutions/microservice-applications/)發佈了許多示範如何使用 Service Fabric 來設計應用程式的個案研究。
 
 ## <a name="design-applications-composed-of-stateless-and-stateful-microservices"></a>設計由無狀態與具狀態的微服務組成的應用程式
 使用「Azure 雲端服務」背景工作角色來建置應用程式，即是一個無狀態服務的範例。 相較之下，具狀態的微服務會維護要求及其回應以外的授權狀態。 這可透過簡單的 API 提供高可用性和狀態的一致性，其提供受複寫支援的交易式保證。 Service Fabric 的具狀態服務會將高可用性普及至所有類型的應用程式，而不會侷限於資料庫和其他資料存放區。 這是自然的進展。 針對高可用性，應用程式已經從使用單純的關聯式資料庫進展到 NoSQL 資料庫的境界。 現在應用程式就能在其本身內管理它們的「熱門」狀態和資料，以便進一步提高效能，而不需犧牲可靠性、一致性或可用性。

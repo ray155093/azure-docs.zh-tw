@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 1/19/2017
 ms.author: robinsh
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 3b7eca721181155cd2bcc619d517c9b5a6a89a0d
-ms.lasthandoff: 04/06/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: adc7e23d8c9f869f2951490020e3d0f1a2b2e81c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="designing-highly-available-applications-using-ra-grs"></a>使用 RA-GRS 設計高可用性應用程式
@@ -37,7 +37,7 @@ ms.lasthandoff: 04/06/2017
 
 * 唯讀複本與主要區域中的資料是[最終一致](https://en.wikipedia.org/wiki/Eventual_consistency)的。
 
-* 針對 Blob、資料表和佇列，您可以查詢次要區域來取得 [上次同步處理時間] 值，讓您知道上次從主要區域複寫到次要區域是在何時發生 (Azure 檔案服務不支援此動作，它目前沒有 RA-GRS 備援)。
+* 針對 Blob、資料表和佇列，您可以查詢次要區域來取得 [上次同步處理時間] 值，讓您知道上次從主要區域複寫到次要區域是在何時發生 (Azure 檔案儲存體不支援此動作，它目前沒有 RA-GRS 備援)。
 
 * 您可以使用儲存體用戶端程式庫，來與主要或次要區域中的資料進行互動。 如果對主要區域的讀取要求逾時，您也可以將讀取要求自動重新導向到次要區域。
 

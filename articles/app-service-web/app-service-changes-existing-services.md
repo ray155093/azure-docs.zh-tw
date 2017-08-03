@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/12/2016
 ms.author: yochaykk
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 75d42f41e6218d83cda00f2ef8926d6ca1f0aacd
 ms.openlocfilehash: 8f458884d0ea649dffa5f92fd459bbaaa9f5e4cf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/07/2016
 
 
 ---
@@ -91,10 +93,5 @@ App Service 將下列現有 Azure 服務 - [網站](https://azure.microsoft.com/
 </table>
 
 若要深入了解，請瀏覽 [App Service 文件](https://azure.microsoft.com/documentation/services/app-service/)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

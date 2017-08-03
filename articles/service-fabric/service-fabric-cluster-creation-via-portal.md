@@ -13,14 +13,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/21/2017
+ms.date: 06/21/2017
 ms.author: chackdan
-ms.translationtype: Human Translation
-ms.sourcegitcommit: bb27d279396aa7b670187560cebe2ed074576bad
-ms.openlocfilehash: c413f415cb056f079ed30cf444af4edbe20364ea
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 37e8d04f1786187a947a435b3cfd299546617c8b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/25/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="create-a-service-fabric-cluster-in-azure-using-the-azure-portal"></a>使用 Azure 入口網站在 Azure 中建立 Service Fabric 叢集
@@ -259,7 +258,7 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 
 最後一個步驟是使用金鑰保存庫和稍早建立的憑證資訊，提供憑證資訊來保護叢集。
 
-* 將使用 PowerShell 命令把**叢集憑證**`Invoke-AddCertToKeyVault`上傳至金鑰保存庫時取得的輸出填入主要憑證欄位。
+* 將使用** PowerShell 命令把**叢集憑證`Invoke-AddCertToKeyVault`上傳至金鑰保存庫時取得的輸出填入主要憑證欄位。
 
 ```powershell
 Name  : CertificateThumbprint
@@ -298,7 +297,7 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 > 
 
 ## <a name="remote-connect-to-a-virtual-machine-scale-set-instance-or-a-cluster-node"></a>遠端連接到虛擬機器擴展集執行個體或叢集節點
-您在叢集中指定的每個 NodeTypes 都會形成 VM 擴展集。 如需詳細資料，請參閱[遠端連線到 VM 擴展集執行個體][remote-connect-to-a-vm-scale-set]。
+您在叢集中指定的每個 NodeTypes 都會形成虛擬機器擴展集。 如需詳細資料，請參閱[遠端連接到虛擬機器擴展集執行個體][remote-connect-to-a-vm-scale-set]。
 
 ## <a name="next-steps"></a>後續步驟
 此時，您擁有一個使用憑證來管理驗證的安全叢集。 接下來，請[連線到您的叢集](service-fabric-connect-to-secure-cluster.md)並了解如何[管理應用程式密碼](service-fabric-application-secret-management.md)。  同時，了解 [Service Fabric 支援選項](service-fabric-support.md)。

@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: kumud
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
-ms.openlocfilehash: 8bbcb87f2ce8aefddcb174eb80a7a6f7fb16b752
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 770b1b8418baba78371dda43eb255dde8a1d13e8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 
@@ -63,6 +63,6 @@ ms.lasthandoff: 06/09/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-- 深入了解[地理流量路由方法](traffic-manager-routing-methods.md#a-name--geographicageographic-traffic-routing-method)。
+- 深入了解[地理流量路由方法](traffic-manager-routing-methods.md#geographic)。
 - 深入了解如何[測試流量管理員設定](traffic-manager-testing-settings.md)。
 

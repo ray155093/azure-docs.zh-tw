@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: dc501a1c7c0d6a1d70ce368f86a967f889394dc7
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: 9a8f3156a62a1a7aa49377349e8a85454efeda50
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/12/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
 # <a name="move-data-from-on-premises-hdfs-using-azure-data-factory"></a>使用 Azure Data Factory 從內部部署的 HDFS 移動資料
@@ -184,7 +183,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 第一步是設定資料管理閘道。 如需相關指示，請參閱 [在內部部署位置和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 。
 
-**HDFS 已連結的服務：**此範例使用 Windows 驗證。 請參閱 [HDFS 連結服務](#linked-service) 章節以了解您可以使用的各種不同類型的驗證。
+**HDFS 已連結的服務：**此範例使用 Windows 驗證。 請參閱 [HDFS 連結服務](#linked-service-properties) 章節以了解您可以使用的各種不同類型的驗證。
 
 ```JSON
 {
@@ -480,7 +479,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **在 Azure Data Factory 中：**
 
-* 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的網域帳戶或 Kerberos 主體，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#linked-service)區段。
+* 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的網域帳戶或 Kerberos 主體，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#linked-service-properties)區段。
 
 > [!NOTE]
 > 若要將來自來源資料集的資料行與來自接收資料集的資料行對應，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。

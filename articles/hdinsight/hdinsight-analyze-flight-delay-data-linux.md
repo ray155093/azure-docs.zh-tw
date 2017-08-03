@@ -1,5 +1,5 @@
 ---
-title: "在 Linux 型 HDInsight 上使用 Hive 分析航班延誤資料 | Microsoft Docs"
+title: "在 HDInsight 上使用 Hive 分析航班延誤資料 - Azure | Microsoft Docs"
 description: "了解如何在 Linux 型 HDInsight 上使用 Hive 分析航班資料，然後使用 Sqoop 將資料匯出至 SQL Database。"
 services: hdinsight
 documentationcenter: 
@@ -13,13 +13,14 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 07/31/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: 6c92292a67d14ac43c0fe5dbe7e14672c74b216b
-ms.lasthandoff: 04/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 88031b3698ec575eb48531b118c45f11ef7f19c0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-on-linux-based-hdinsight"></a>在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料
@@ -27,7 +28,7 @@ ms.lasthandoff: 04/11/2017
 了解如何在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料，然後使用 Sqoop 將資料匯出至 Azure SQL Database。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 ### <a name="prerequisites"></a>必要條件
 
@@ -76,7 +77,7 @@ ms.lasthandoff: 04/11/2017
     unzip FILENAME.zip
     ```
 
-    此命令會解壓縮一個 .csv 檔案 (大小大約為 60MB)。
+    此命令會解壓縮一個 .csv 檔案 (約為 60MB)。
 
 4. 使用下列命令在 HDInsight 儲存體上建立目錄，然後將檔案複製到目錄︰
 
@@ -157,12 +158,12 @@ ms.lasthandoff: 04/11/2017
     FROM delays_raw;
     ```
 
-2. 依序按 **Ctrl + X**，然後 **Y** 儲存檔案。
+2. 若要儲存檔案，請按 **Ctrl + X**，再按 **Y**。
 
-3. 使用以下命令啟動 Hive 並執行 **flightdelays.hql** 檔案：
+3. 若要啟動 Hive 並執行 **flightdelays.hql** 檔案，請使用下列命令：
 
     ```
-    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -f flightdelays.hql
+    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -f flightdelays.hql
     ```
 
    > [!NOTE]
@@ -171,7 +172,7 @@ ms.lasthandoff: 04/11/2017
 4. 當 __flightdelays.hql__指令碼執行完畢之後，請使用下列命令來開啟互動式 Beeline 工作階段：
 
     ```
-    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
+    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http'
     ```
 
 5. 當您接收 `jdbc:hive2://localhost:10001/>` 提示字元時，請使用以下查詢從匯入的航班延誤資料中擷取資料。
@@ -194,7 +195,7 @@ ms.lasthandoff: 04/11/2017
 
 如果您已經有 SQL Database，就必須取得伺服器名稱。 您可以在 [Azure 入口網站](https://portal.azure.com)中找到伺服器名稱，方法是選取 [SQL Database]，然後篩選您想要使用的資料庫名稱。 伺服器名稱會列在 [伺服器]  資料行中。
 
-如果您還沒有 SQL Database，請使用 [SQL Database 教學課程：在幾分鐘內建立 SQL Database](../sql-database/sql-database-get-started.md) 中的相關資訊來建立一個資料庫。 您必須儲存用於資料庫的伺服器名稱。
+如果您還沒有 SQL Database，請使用 [SQL Database 教學課程：在幾分鐘內建立 SQL Database](../sql-database/sql-database-get-started.md) 中的相關資訊來建立一個資料庫。 儲存用於資料庫的伺服器名稱。
 
 ## <a name="create-a-sql-database-table"></a>建立 SQL Database 資料表
 
@@ -237,9 +238,9 @@ ms.lasthandoff: 04/11/2017
     GO
     ```
 
-    輸入 `GO` 陳述式後，將評估先前的陳述式。 這會建立名為 **delays** 的資料表，包含叢集索引。
+    輸入 `GO` 陳述式後，將評估先前的陳述式。 此查詢會建立名為 **delays** 的資料表 (具有叢集索引)。
 
-    使用下列命令來確認已建立資料表：
+    使用下列查詢來確認已建立資料表：
 
     ```
     SELECT * FROM information_schema.tables

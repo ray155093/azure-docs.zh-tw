@@ -21,26 +21,18 @@ ms.lasthandoff: 07/06/2017
 
 
 ---
-<a id="design-patterns-for-multitenant-saas-applications-and-azure-search" class="xliff"></a>
-
-# 多租用戶 SaaS 應用程式與 Azure 搜尋服務的設計模式
+# <a name="design-patterns-for-multitenant-saas-applications-and-azure-search"></a>多租用戶 SaaS 應用程式與 Azure 搜尋服務的設計模式
 多租用戶應用程式是為不能查看或共用任何其他租用戶之資料的租用戶提供相同服務和功能的應用程式，其中租用戶的數目並無限制。 本文件將討論以「Azure 搜尋服務」建置的多租用戶應用程式的租用戶隔離策略。
 
-<a id="azure-search-concepts" class="xliff"></a>
-
-## Azure 搜尋服務概念
+## <a name="azure-search-concepts"></a>Azure 搜尋服務概念
 「Azure 搜尋服務」是一個搜尋即服務解決方案，可讓開發人員不需管理任何基礎結構或成為搜尋專家，就能夠將豐富的搜尋體驗新增到應用程式中。 資料會上傳至服務，然後儲存在雲端。 使用對「Azure 搜尋服務」API 的簡單要求，接著便可修改及搜尋資料。 如需此服務的概觀，請參閱 [這篇文章](http://aka.ms/whatisazsearch)。 在討論設計模式之前，請務必了解「Azure 搜尋服務」的一些概念。
 
-<a id="search-services-indexes-fields-and-documents" class="xliff"></a>
-
-### 搜尋服務、索引、欄位及文件
+### <a name="search-services-indexes-fields-and-documents"></a>搜尋服務、索引、欄位及文件
 使用「Azure 搜尋服務」時，使用者需訂閱「搜尋服務」 。 由於資料是上傳到「Azure 搜尋服務」，因此它會儲存在該搜尋服務內的「索引」  中。 單一服務內可能會有好幾個索引。 若要使用熟悉的資料庫概念，搜尋服務可以比喻為資料庫，而服務內的索引則可比喻為資料庫內的資料表。
 
 搜尋服務內的每個索引都有自己的結構描述，此結構描述是由一些可自訂的「欄位」 所定義。 資料會以個別「文件」 的形式新增到「Azure 搜尋服務」索引中。 每個文件都必須上傳至特定的索引，並且必須符合該索引的結構描述。 使用「Azure 搜尋服務」來搜尋資料時，會針對特定索引發出全文檢索搜尋查詢。  若要將這些概念比喻成資料庫的概念，則欄位可以比喻為資料表中的資料行，而文件則可以比喻為資料列。
 
-<a id="scalability" class="xliff"></a>
-
-### 延展性
+### <a name="scalability"></a>延展性
 「標準」 [定價層](https://azure.microsoft.com/pricing/details/search/) 中的任何「Azure 搜尋服務」服務都可以調整成兩個維度︰儲存體和可用性。
 
 *  來增加搜尋服務的儲存體。
@@ -48,9 +40,7 @@ ms.lasthandoff: 07/06/2017
 
 新增及移除資料分割和複本將可讓搜尋服務的容量，隨著應用程式要求的資料量和流量成長。 為了讓搜尋服務達到讀取 [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/)，它將需要兩個複本。 為了讓服務達到讀寫 [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/)，它將需要三個複本。
 
-<a id="service-and-index-limits-in-azure-search" class="xliff"></a>
-
-### Azure 搜尋服務中的服務和索引限制
+### <a name="service-and-index-limits-in-azure-search"></a>Azure 搜尋服務中的服務和索引限制
 Azure 搜尋服務有幾個不同的[定價層](https://azure.microsoft.com/pricing/details/search/)，每個層都有不同的[限制和配額](search-limits-quotas-capacity.md)。 這些限制當中有些在服務層級，有些在索引層級，有些則是在資料分割層級。
 
 |  | 基本 | Standard1 | Standard2 | Standard3 | Standard3 HD |
@@ -64,18 +54,14 @@ Azure 搜尋服務有幾個不同的[定價層](https://azure.microsoft.com/pric
 | 每個資料分割的儲存體上限 |2 GB |25 GB |100 GB |200 GB |200 GB |
 | 每項服務的索引數目上限 |5 |50 |200 |200 |3000 (最多 1000 個索引/資料分割) |
 
-<a id="s3-high-density" class="xliff"></a>
-
-#### S3 高密度
+#### <a name="s3-high-density"></a>S3 高密度
 在「Azure 搜尋服務」的 S3 定價層中，有一個專門針對多租用戶案例設計的「高密度」(HD) 模式選項。 在許多情況下，必須在單一服務下支援大量較小的租用戶，才能達到簡化和成本效益的好處。
 
 S3 HD 會以使用資料分割相應放大索引的能力換取在單一服務中裝載更多索引的能力，來允許在單一搜尋服務的管理下封裝許多小型索引。
 
 具體而言，S3 服務可以擁有 1 到 200 個索引，總共可以裝載多達 14 億份文件。 S3 HD 另一方面只會允許個別索引裝載多達 1 百萬份文件，但它可以在每個資料分割處理多達 1000 個索引 (每個服務多達 3000 個)，總計每個資料分割有 2 億份文件 (每個服務多達 6 億)。
 
-<a id="considerations-for-multitenant-applications" class="xliff"></a>
-
-## 多租用戶應用程式的考量
+## <a name="considerations-for-multitenant-applications"></a>多租用戶應用程式的考量
 多租用戶應用程式必須有效地將資源分散到各個租用戶中，同時又在各個租用戶之間保留某種程度的隱私性。 設計這類應用程式的架構時，有幾個考量︰
 
 * *租用戶隔離︰* 應用程式開發人員需要採取適當措施，以確保沒有任何租用戶能夠在未經授權或不需要的情況下存取其他租用戶的資料。 除了資料隱私性的觀點以外，租用戶隔離策略還需要有效的共用資源管理，以及對吵雜鄰居的防範。
@@ -86,18 +72,14 @@ S3 HD 會以使用資料分割相應放大索引的能力換取在單一服務�
 
 「Azure 搜尋服務」提供一些可用來隔離租用戶資料和工作負載的界限。
 
-<a id="modeling-multitenancy-with-azure-search" class="xliff"></a>
-
-## 使用 Azure 搜尋服務來建立多租用戶模型
+## <a name="modeling-multitenancy-with-azure-search"></a>使用 Azure 搜尋服務來建立多租用戶模型
 在多租用戶案例的情況中，應用程式開發人員會使用一或多個搜尋服務，然後將其租用戶劃分到服務、索引或兩者。 建立多租用戶案例模型時，「Azure 搜尋服務」有幾個常見的模式︰
 
 1. *每個租用戶都使用專屬索引︰* 每個租用戶在與其他租用戶共用的搜尋服務內都有自己的索引。
 2. *每個租用戶都使用專屬服務︰* 每個租用戶都有自己的專用「Azure 搜尋服務」服務，可提供最高層級的資料和工作負載分隔。
 3. *兩者混合︰* 針對較大且較活躍的租用戶會指派專用服務，而針對較小的租用戶則會在共用服務內指派個別的索引。
 
-<a id="1-index-per-tenant" class="xliff"></a>
-
-## 1.每個租用戶都使用專屬索引
+## <a name="1-index-per-tenant"></a>1.每個租用戶都使用專屬索引
 ![「每個租用戶都使用專屬索引」模型的圖解](./media/search-modeling-multitenant-saas-applications/azure-search-index-per-tenant.png)
 
 在「每個租用戶都使用專屬索引」模型中，多個租用戶會佔用單一的「Azure 搜尋服務」，其中每個租用戶都有自己的索引。
@@ -114,9 +96,7 @@ S3 HD 會以使用資料分割相應放大索引的能力換取在單一服務�
 
 如果單一服務的索引總數成長得太大，則必須佈建另一個服務來容納新的租用戶。 如果在新增新的服務時，必須在搜尋服務之間移動索引，您將必須手動將來自索引的資料從一個索引複製到另一個索引，因為「Azure 搜尋服務」並未考量到索引移動。
 
-<a id="2-service-per-tenant" class="xliff"></a>
-
-## 2.每個租用戶都使用專屬服務
+## <a name="2-service-per-tenant"></a>2.每個租用戶都使用專屬服務
 ![「每個租用戶都使用專屬服務」模型的圖解](./media/search-modeling-multitenant-saas-applications/azure-search-service-per-tenant.png)
 
 在「每個租用戶都使用專屬服務」架構中，每個租用戶都有自己的搜尋服務。
@@ -131,18 +111,14 @@ S3 HD 會以使用資料分割相應放大索引的能力換取在單一服務�
 
 當個別租用戶的成長速度超出其服務所能處理的範圍時，調整此模式的挑戰便隨之產生。 「Azure 搜尋服務」目前不支援升級搜尋服務的定價層，因此所有資料都將必須手動複製到新的服務。
 
-<a id="3-mixing-both-models" class="xliff"></a>
-
-## 3.混合兩種模型
+## <a name="3-mixing-both-models"></a>3.混合兩種模型
 建立多租用戶模型的另一種模式是將「每個租用戶都使用專屬索引」與「每個租用戶都使用專屬服務」策略混合。
 
 透過混合這兩種模式，應用程式的最大租用戶便可以佔用專用服務，而為數眾多的較不活躍且較小的租用戶則可以在共用服務中佔用索引。 此模型可確保最大租用戶可以從服務一直享有高效能，同時又可協助保護較小的租用戶不受任何吵雜的鄰居干擾。
 
 不過，實作此策略需要有遠見來預測哪些租用戶需要的是專用服務，而哪些租用戶需要的是共用服務中的索引。 當產生管理這兩個多租用戶模型的需求時，應用程式複雜性也隨之增加。
 
-<a id="achieving-even-finer-granularity" class="xliff"></a>
-
-## 達到更精細的細微度
+## <a name="achieving-even-finer-granularity"></a>達到更精細的細微度
 上述用來在「Azure 搜尋服務」中建立多租用戶案例模型的設計模式是假設一個一致的範圍，其中每個租用戶都是一個完整的應用程式執行個體。 不過，應用程式有時可能是處理許多較小的範圍。
 
 如果「每個租用戶都使用專屬服務」和「每個租用戶都使用專屬索引」模型的範圍不夠小，您可以建立索引模型來達到更精細的細微程度。
@@ -156,9 +132,7 @@ S3 HD 會以使用資料分割相應放大索引的能力換取在單一服務�
 > 
 > 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 「Azure 搜尋服務」對許多應用程式而言是相當具吸引力的選擇，請 [深入了解此服務的強大功能](http://aka.ms/whatisazsearch)。 評估多租用戶應用程式的各種設計模式時，請考量[各種定價層](https://azure.microsoft.com/pricing/details/search/)和個別的[服務限制](search-limits-quotas-capacity.md)，以便量身打造「Azure 搜尋服務」來配合各種規模的應用程式工作負載和架構。
 
 如果您有任何關於「Azure 搜尋服務」和多租用戶案例的問題，都可以寄送郵件給 azuresearch_contact@microsoft.com。

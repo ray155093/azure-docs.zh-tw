@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 05/22/2017
 ms.author: arramac
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
-ms.openlocfilehash: 6d5a5814977d05fbe7be52dcb482a622de1c2ef6
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 2d840f1c70e9668ae0a8b76cd9623258c2563d98
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="how-does-azure-cosmos-db-index-data"></a>Azure Cosmos DB 如何為資料編製索引？
@@ -161,7 +160,7 @@ Azure Cosmos DB 會將 JSON 文件和索引模型化為樹狀結構，並可讓�
 
 * 資料類型：**String**、**Number**、**Point**、**Polygon** 或 **LineString** (每個路徑每個資料類型只能包含一個項目)
 * 索引類型：**雜湊** (相等查詢)、**範圍** (相等、範圍或 Order By 查詢) 或**空間** (空間查詢) 
-* 精確度：數字為 1-8 或 -1 (最大精確度)；字串為 1-100 (最大精確度)
+* 有效位數：字串和數字預設值為 3 的雜湊索引有效位數，會在 1 到 8 之間變換。 至於範圍索引，此值可以是 -1 (最大有效位數)，字串或數字的值可在 1 到 100 之間變換 (最大有效位數)。
 
 #### <a name="index-kind"></a>索引類型
 Azure Cosmos DB 支援每個路徑的雜湊和範圍索引種類 (可針對字串、數字或兩者進行設定)。
@@ -229,7 +228,7 @@ Azure Cosmos DB 針對每個路徑也支援空間索引類型 (可針對 Point�
 
 在關閉自動索引編製功能的情況下，您仍然可以選擇性地只將特定的文件新增到索引中。 相反地，您也可以讓自動索引編製功能保持開啟，並選擇性地只排除特定的文件。 當您只需要查詢文件的子集時，索引編製功能開/關組態相當有用。
 
-例如，下列範例示範如何使用 [DocumentDB API .NET SDK](https://github.com/Azure/azure-documentdb-java) 和 [RequestOptions.IndexingDirective](http://msdn.microsoft.com/library/microsoft.azure.documents.client.requestoptions.indexingdirective.aspx) 屬性來明確地包含文件。
+例如，下列範例示範如何使用 [DocumentDB API .NET SDK](https://docs.microsoft.com/en-us/azure/cosmos-db/documentdb-sdk-dotnet) 和 [RequestOptions.IndexingDirective](http://msdn.microsoft.com/library/microsoft.azure.documents.client.requestoptions.indexingdirective.aspx) 屬性來明確地包含文件。
 
     // If you want to override the default collection behavior to either
     // exclude (or include) a Document from indexing,

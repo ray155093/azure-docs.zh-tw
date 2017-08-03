@@ -1,5 +1,4 @@
 ---
-
 title: "Azure 公用雲端中的隔離 | Microsoft Docs"
 description: "了解雲端式計算服務，其中包含各式各樣的計算執行個體和服務，可自動相應增加或縮小以符合您應用程式或企業的需求。"
 services: security
@@ -15,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/27/2017
 ms.author: TomSh
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: a167f15b1c885c51c9a85c501a9a9a60992cdf5d
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: 2559bdbca8002392ef925e0eddfd23044cc563b5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
-
+ms.lasthandoff: 07/12/2017
 
 ---
 
@@ -116,9 +114,9 @@ Azure Active Directory 的一些其他功能包括：
 ### <a name="isolation-from-microsoft-administrators--data-deletion"></a>從 Microsoft 管理員及資料刪除中隔離
 Microsoft 採取強固的措施來保護您的資料，以免受到未經授權之使用者的不當存取或使用。 這些作業程序和控制都受到 [Online Services 條款 (英文)](http://aka.ms/Online-Services-Terms) 所支援，這類條款會提供管理資料存取的契約承諾。
 
--    Microsoft 工程師對於您在雲端中的資料預設並無存取權。 而是只有在必要時，才會在有管理監督的情況下授與他們權限。 該存取權會受到仔細的控制及記錄，並於不再需要時撤銷。
+-   Microsoft 工程師對於您在雲端中的資料預設並無存取權。 而是只有在必要時，才會在有管理監督的情況下授與他們權限。 該存取權會受到仔細的控制及記錄，並於不再需要時撤銷。
 
--    Microsoft 可能會雇用其他公司代表 Microsoft 提供有限的服務。 轉包商只有在遞送我們雇用他們來提供的服務時才能存取客戶資料，並禁止基於任何其他目的使用該資料。 此外，他們會受到合約所束縛，以保持我們客戶資訊的機密性。
+-   Microsoft 可能會雇用其他公司代表 Microsoft 提供有限的服務。 轉包商只有在遞送我們雇用他們來提供的服務時才能存取客戶資料，並禁止基於任何其他目的使用該資料。 此外，他們會受到合約所束縛，以保持我們客戶資訊的機密性。
 
 Microsoft 與公認的稽核公司只會基於合法商業用途，定期驗證具有已經過審核之認證的商業服務 (例如 ISO/IEC 27001)，它們會執行範例稽核來證明該存取權。 您一律可基於任何原因，隨時存取您自己的客戶資料。
 
@@ -176,9 +174,9 @@ Hypervisor 與主機 OS 提供網路封包 - 篩選器，以協助保證不受�
 
 以下為要進行程式設計的兩種規則：
 
--    **機器組態或基礎結構規則**：依預設會封鎖所有通訊。 有部分例外狀況可允許虛擬機器傳送與接收 DHCP 和 DNS 流量。 虛擬機器也可以將流量傳送至「公用」網際網路，以及將流量傳送至同一個 Azure 虛擬網路和 OS 啟用伺服器內的其他虛擬機器。 虛擬機器允許的連出目的地清單不包含 Azure 路由器子網路、Azure 管理和其他 Microsoft 屬性。
+-   **機器組態或基礎結構規則**：依預設會封鎖所有通訊。 有部分例外狀況可允許虛擬機器傳送與接收 DHCP 和 DNS 流量。 虛擬機器也可以將流量傳送至「公用」網際網路，以及將流量傳送至同一個 Azure 虛擬網路和 OS 啟用伺服器內的其他虛擬機器。 虛擬機器允許的連出目的地清單不包含 Azure 路由器子網路、Azure 管理和其他 Microsoft 屬性。
 
--    **角色組態檔**：這會根據租用戶的服務模型定義輸入存取控制清單 (ACL)。
+-   **角色組態檔**：這會根據租用戶的服務模型定義輸入存取控制清單 (ACL)。
 
 ### <a name="vlan-isolation"></a>VLAN 隔離
 每個叢集中有三個 VLAN：
@@ -186,11 +184,11 @@ Hypervisor 與主機 OS 提供網路封包 - 篩選器，以協助保證不受�
 ![VLAN 隔離](./media/azure-isolation/azure-isolation-fig8.jpg)
 
 
--    主要 VLAN：互連未受信任的客戶節點
+-   主要 VLAN：互連未受信任的客戶節點
 
--    FC VLAN：包含受信任的 FC 和支援系統
+-   FC VLAN：包含受信任的 FC 和支援系統
 
--    裝置 VLAN：包含受信任的網路和其他基礎結構裝置
+-   裝置 VLAN：包含受信任的網路和其他基礎結構裝置
 
 允許從 FC VLAN 到主要 VLAN 的通訊，但無法起始從主要 VLAN 到 FC VLAN 的通訊。 從主要 VLAN 到裝置 VLAN 的通訊也會遭到封鎖。 這樣可確保即使執行客戶程式碼的節點遭到危害，它也不能攻擊 FC 或裝置 VLAN 上的節點。
 
@@ -215,27 +213,27 @@ IP 儲存體資料可透過網路機制受到保護，以避免未經授權之�
 
 ### <a name="encryption"></a>加密
 Azure 提供下列加密類型來保護資料：
--    傳輸中加密
+-   傳輸中加密
 
--    待用加密
+-   待用加密
 
 #### <a name="encryption-in-transit"></a>傳輸中加密
 傳輸中加密是透過網路傳輸資料時用來保護資料的機制。 透過 Azure 儲存體，您可以使用下列各項來保護資料：
 
--    [傳輸層級加密](https://docs.microsoft.com/azure/storage/storage-security-guide#encryption-in-transit)，例如從 Azure 儲存體傳入或傳出資料時的 HTTPS。
+-   [傳輸層級加密](https://docs.microsoft.com/azure/storage/storage-security-guide#encryption-in-transit)，例如從 Azure 儲存體傳入或傳出資料時的 HTTPS。
 
--    [連線加密](https://docs.microsoft.com/azure/storage/storage-security-guide#using-encryption-during-transit-with-azure-file-shares)，例如 Azure 檔案共用的 SMB 3.0 加密。
+-   [連線加密](../storage/storage-security-guide.md#using-encryption-during-transit-with-azure-file-shares)，例如 Azure 檔案共用的 SMB 3.0 加密。
 
--    [用戶端加密](https://docs.microsoft.com/azure/storage/storage-security-guide#using-client-side-encryption-to-secure-data-that-you-send-to-storage)，以在將資料傳輸至儲存體之前加密資料，以及自儲存體傳出後解密資料。
+-   [用戶端加密](https://docs.microsoft.com/azure/storage/storage-security-guide#using-client-side-encryption-to-secure-data-that-you-send-to-storage)，以在將資料傳輸至儲存體之前加密資料，以及自儲存體傳出後解密資料。
 
 #### <a name="encryption-at-rest"></a>待用加密
 對許多組織來說， [待用資料加密](https://blogs.microsoft.com/cybertrust/2015/09/10/cloud-security-controls-series-encrypting-data-at-rest/) 是達到資料隱私性、法規遵循及資料主權的必要步驟。 有三個 Azure 功能可提供「待用」資料的加密。
 
--    [儲存體服務加密](https://docs.microsoft.com/azure/storage/storage-security-guide#encryption-at-rest) 可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加密資料。
+-   [儲存體服務加密](https://docs.microsoft.com/azure/storage/storage-security-guide#encryption-at-rest) 可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加密資料。
 
--    [用戶端加密](https://docs.microsoft.com/azure/storage/storage-security-guide#client-side-encryption) 也會提供待用加密的功能。
+-   [用戶端加密](https://docs.microsoft.com/azure/storage/storage-security-guide#client-side-encryption) 也會提供待用加密的功能。
 
--    [Azure 磁碟加密](https://docs.microsoft.com/azure/security/azure-security-disk-encryption) 允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。
+-   [Azure 磁碟加密](https://docs.microsoft.com/azure/security/azure-security-disk-encryption) 允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。
 
 #### <a name="azure-disk-encryption"></a>Azure 磁碟加密
 適用於虛擬機器 (VM) 的 [Azure 磁碟加密](https://docs.microsoft.com/azure/security/azure-security-disk-encryption)會使用您在 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) 中所控制的金鑰與原則來將 VM 磁碟 (包括開機和資料磁碟) 加密，以協助您達成組織安全性與合規性需求。
@@ -243,39 +241,39 @@ Azure 提供下列加密類型來保護資料：
 Windows 的磁碟加密解決方案是建基於 [Microsoft BitLocker 磁碟機加密](https://technet.microsoft.com/library/cc732774.aspx)，而 Linux 解決方案是建基於 [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt)。
 
 在 Microsoft Azure 中啟用時，解決方案會對 IaaS VM 支援下列案例：
--    與 Azure 金鑰保存庫整合
+-   與 Azure 金鑰保存庫整合
 
--    標準層 VM：A、D、DS、G、GS 等系列 IaaS VM
+-   標準層 VM：A、D、DS、G、GS 等系列 IaaS VM
 
--    在 Windows 和 Linux IaaS VM 上啟用加密
+-   在 Windows 和 Linux IaaS VM 上啟用加密
 
--    為 Windows IaaS VM 的 OS 和資料磁碟機停用加密
+-   為 Windows IaaS VM 的 OS 和資料磁碟機停用加密
 
--    為 Linux IaaS VM 的資料磁碟機停用加密
+-   為 Linux IaaS VM 的資料磁碟機停用加密
 
--    在執行 Windows 用戶端 OS 的 IaaS VM 上啟用加密
+-   在執行 Windows 用戶端 OS 的 IaaS VM 上啟用加密
 
--    在具有掛接路徑的磁碟區上啟用加密
+-   在具有掛接路徑的磁碟區上啟用加密
 
--    在使用 [mdadm (英文)](https://en.wikipedia.org/wiki/Mdadm) 設定等量磁碟 (RAID) 的 Linux VM 上啟用加密
+-   在使用 [mdadm (英文)](https://en.wikipedia.org/wiki/Mdadm) 設定等量磁碟 (RAID) 的 Linux VM 上啟用加密
 
--    在使用資料磁碟適用之 [LVM (邏輯磁碟區管理員) (英文)](https://msdn.microsoft.com/library/windows/desktop/bb540532) 的 Linux VM 上啟用加密
+-   在使用資料磁碟適用之 [LVM (邏輯磁碟區管理員) (英文)](https://msdn.microsoft.com/library/windows/desktop/bb540532) 的 Linux VM 上啟用加密
 
--    在使用儲存空間設定的 Windows VM 上啟用加密
+-   在使用儲存空間設定的 Windows VM 上啟用加密
 
--    所有 Azure 公用區域皆受到支援
+-   所有 Azure 公用區域皆受到支援
 
 解決方案不支援此版本中的下列案例、功能和技術：
 
--    基本層 IaaS VM
+-   基本層 IaaS VM
 
--    在 Linux IaaS VM 的 OS 磁碟機上停用加密
+-   在 Linux IaaS VM 的 OS 磁碟機上停用加密
 
--    使用傳統 VM 建立方法所建立的 IaaS VM
+-   使用傳統 VM 建立方法所建立的 IaaS VM
 
--    與您的內部部署金鑰管理服務整合
+-   與您的內部部署金鑰管理服務整合
 
--    Azure 檔案 (共用檔案系統)、網路檔案系統 (NFS)、動態磁碟區和以軟體型 RAID 系統所設定的 Windows VM
+-   Azure 檔案 (共用檔案系統)、網路檔案系統 (NFS)、動態磁碟區和以軟體型 RAID 系統所設定的 Windows VM
 
 ## <a name="sql-azure-database-isolation"></a>SQL Azure 資料庫隔離
 SQL Database 是 Microsoft Cloud 中以領先市場的 Microsoft SQL Server 引擎為基礎的關聯式資料庫服務，能夠處理各種任務關鍵性工作負載。 SQL Database 提供帳戶層級的可預測資料隔離 (以地理位置/區域為基礎和以網路為基礎)；幾乎全都不需管理。
@@ -298,9 +296,9 @@ SQL Azure 伺服器不是實體或 VM 執行個體，而是資料庫、共用管
 
 邏輯 master 資料庫包括：
 
--    用來連接到伺服器的 SQL 登入
+-   用來連接到伺服器的 SQL 登入
 
--    防火牆規則
+-   防火牆規則
 
 來自同一部邏輯伺服器之 SQL Azure 資料庫的計費與使用量相關資訊，不保證會在 SQL Azure 叢集中的同一個實體執行個體上，應用程式必須改為在連接時提供目標資料庫名稱。
 
@@ -311,13 +309,13 @@ SQL Azure 伺服器不是實體或 VM 執行個體，而是資料庫、共用管
 建立邏輯伺服器並註冊其 DNS 名稱時，DNS 名稱會指向放置伺服器之特定資料中心內所謂的「閘道 VIP」位址。
 
 在 VIP (虛擬 IP 位址) 背後，我們擁有一組無狀態閘道服務。 通常，若在多個資料來源 (master 資料庫、使用者資料庫等) 之間需要進行協調，就會牽涉到閘道。 閘道服務會實作下列各項：
--    **TDS 連接 Proxy 處理。** 這包括在後端叢集中尋找使用者資料庫、實作登入順序，然後將 TDS 封包轉送至後端，並往回執行。
+-   **TDS 連接 Proxy 處理。** 這包括在後端叢集中尋找使用者資料庫、實作登入順序，然後將 TDS 封包轉送至後端，並往回執行。
 
--    **資料庫管理。** 這包括實作執行一組工作流程來執行 CREATE/ALTER/DROP 資料庫作業。 資料庫作業可以透過探查 TDS 封包或明確的 OData API 來叫用。
+-   **資料庫管理。** 這包括實作執行一組工作流程來執行 CREATE/ALTER/DROP 資料庫作業。 資料庫作業可以透過探查 TDS 封包或明確的 OData API 來叫用。
 
--    CREATE/ALTER/DROP 登入/使用者作業
+-   CREATE/ALTER/DROP 登入/使用者作業
 
--    透過 OData API 的邏輯伺服器管理作業
+-   透過 OData API 的邏輯伺服器管理作業
 
 ![透過網路拓撲進行隔離](./media/azure-isolation/azure-isolation-fig12.png)
 

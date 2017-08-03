@@ -1,6 +1,6 @@
 ---
-title: "5 個資料科學問題 - 適用於初學者的資料科學 - Azure | Microsoft Docs"
-description: "從「適用於初學者的資料科學」中取得資料科學的快速簡介，這個系列有五個簡短影片，第一個影片是「資料科學可以回答的 5 個問題」。"
+title: "5 個資料科學問題 - 適用於初學者的資料科學 - Azure Machine Learning | Microsoft Docs"
+description: "「適用於初學者的資料科學」會運用 5 支短片教導基本概念，首先為「資料科學可以回答的 5 個問題」。 來自 Azure Machine Learning。"
 keywords: "進行資料科學, 資料科學初學者, 適用於初學者的資料科學, 資料科學基本概念, 資料科學問題, 資料科學影片, 資料科學簡介"
 services: machine-learning
 documentationcenter: na
@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/09/2017
+ms.date: 07/13/2017
 ms.author: cgronlun;garye
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 50d1f8dfc7ce2d8bf4b04cff68698eafd56ce9c2
-ms.openlocfilehash: 518a7d2b5e43d8133d54ab583e4545a3ee9b3cba
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: e77e7e99747995a4a6ad800e391f0c063bded82f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="data-science-for-beginners-video-1-the-5-questions-data-science-answers"></a>適用於初學者的資料科學影片 1：資料科學可以回答的 5 個問題
 從頂尖資料科學家所提供之「適用於初學者的資料科學」的五個簡短影片中快速認識資料科學。 無論您是對從事資料科學有興趣，或您是和資料科學家一起工作，這些影片都能為您提供基本但很有用的知識。
 
 第一段影片是關於資料科學可以回答何種問題。 若要充分運用這系列影片，請觀賞所有影片。 [瀏覽影片清單](#other-videos-in-this-series)
+<br>
 
 > [!VIDEO https://channel9.msdn.com/Shows/SupervisionNotRequired/8/player]
 >
 >
 
 ## <a name="other-videos-in-this-series"></a>系列中的其他影片
- 是一個資料科學的快速簡介，總共大約 25 分鐘。 查看其他四個影片：
+ 是一個資料科學的快速簡介，總共大約 25 分鐘。 查看全部五支影片：
 
 * 影片 1：資料科學可以回答的 5 個問題
 * 影片 2： [您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 分 56 秒)*
@@ -58,14 +58,14 @@ ms.lasthandoff: 05/05/2017
 * 這是如何組織的？
 * 我接下來該怎麼辦？
 
-  您可以透過不同系列的機器學習方法 (稱為演算法) 來回答這其中每一個問題。
+您可以透過不同系列的機器學習方法 (稱為演算法) 來回答這其中每一個問題。
 
 您可以將演算法視為配方，將資料視為原料，這非常有用。 演算法可告訴您如何結合並混合資料，以便獲得答案。 電腦就像是攪拌器。 它們可以為您執行演算法中大部分費力的工作，而且非常快速地執行。
 
 ## <a name="question-1-is-this-a-or-b-uses-classification-algorithms"></a>「問題 1︰這是 A 或 B 嗎？」使用分類演算法
 讓我們從「這是 A 或 B 嗎？」的問題開始。
 
-![分類演算法：這是 A 或 B 嗎？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/machine-learning-data-science-classification-algorithms.png)
+![分類演算法：這是 A 或 B 嗎？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/classification-algorithms.png)
 
 這系列的演算法稱為雙類別分類。
 
@@ -81,7 +81,7 @@ ms.lasthandoff: 05/05/2017
 ## <a name="question-2-is-this-weird-uses-anomaly-detection-algorithms"></a>「問題 2︰這很奇怪嗎？」使用異常偵測演算法
 下一個資料科學可以回答的問題是：這很奇怪嗎？ 這個問題可以透過稱為異常偵測的演算法系列來回答。
 
-![異常偵測演算法：這很奇怪嗎？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/machine-learning-data-science-anomaly-detection-algorithms.png)
+![異常偵測演算法：這很奇怪嗎？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/anomaly-detection-algorithms.png)
 
 如果您有一張信用卡，您就已經從異常偵測中受益。 信用卡公司會分析您的購買模式，以便他們可以警告您可能發生詐騙事件。 「奇怪」的費用可能是在您通常不會去購物的商店中所產生的購物，或是購買異常昂貴的商品。
 
@@ -95,7 +95,7 @@ ms.lasthandoff: 05/05/2017
 ## <a name="question-3-how-much-or-how-many-uses-regression-algorithms"></a>「問題 3︰多少？或有多少？」使用迴歸演算法
 機器學習服務也可以預測「多少？或有多少？」的答案。 回答這個問題的演算法系列稱為「迴歸」。
 
-![迴歸演算法：多少？或有多少？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/machine-learning-data-science-regression-algorithms.png)
+![迴歸演算法：多少？或有多少？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/regression-algorithms.png)
 
 迴歸演算法會進行數值預測，例如：
 
@@ -111,7 +111,7 @@ ms.lasthandoff: 05/05/2017
 
 有很多方法可以梳理出資料結構。 其中一個方法就是叢集。 它會將資料正常分割為「團塊」，以便更容易進行解譯。 透過叢集，就不會有正確的答案。
 
-![叢集演算法︰這是如何組織的？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/machine-learning-data-science-clustering-algorithms.png)
+![叢集演算法︰這是如何組織的？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/clustering-algorithms.png)
 
 叢集問題的常見範例包括：
 
@@ -127,7 +127,7 @@ ms.lasthandoff: 05/05/2017
 
 一般而言，增強式學習適用於自動化系統，這類系統必須進行許多小型決策，而不需人為指引。
 
-![增強式學習演算法︰我接下來該怎麼辦？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/machine-learning-data-science-reinforcement-learning-algorithms.png)
+![增強式學習演算法︰我接下來該怎麼辦？](./media/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers/reinforcement-learning-algorithms.png)
 
 它回答的問題一定是應採取何種動作 - 通常透過機器或機器人來執行。 範例包括：
 

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: fboylu
-translationtype: Human Translation
-ms.sourcegitcommit: c78604783bb21f9162939637e04e60aa8131ce11
-ms.openlocfilehash: 1fc824c65e68c70ace589e788a0c470c475e66b4
-ms.lasthandoff: 01/25/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: a1e7b95e6dcbf46d83ce3bf10a38d6a572f4497d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -229,7 +230,7 @@ ms.lasthandoff: 01/25/2017
 
 在特徵產生期間，應執行其他一些重要步驟，例如處理遺失值和正規化。 遺失值插補和資料正規化的方法都有很多種，此處將不會加以討論。 不過，嘗試不同的方法來看看是否可能提升預測效能，則是非常實用。
 
-當時間單位為&1; 天時，上一節所述的特徵設計步驟後面的最終特徵資料表應該類似下列範例資料結構描述：
+當時間單位為 1 天時，上一節所述的特徵設計步驟後面的最終特徵資料表應該類似下列範例資料結構描述：
 
 | 資產識別碼 | 時間 | 特徵資料行 | 標籤 |
 | --- | --- | --- | --- |
@@ -287,7 +288,7 @@ ms.lasthandoff: 01/25/2017
 
 圖 5. 故障時間預測的多類別分類標記方式
 
-針對第一個問題，取用資產故障前的 X 筆記錄並將其標記為「即將由於問題 P<sub>i</sub> 而失敗」(標籤 = P<sub>i</sub>)，而將其他所有記錄標記為「正常」(標籤 =&0;)，即可完成標記。 在此方法中，標籤為類別變數 (請參閱圖 6)。
+針對第一個問題，取用資產故障前的 X 筆記錄並將其標記為「即將由於問題 P<sub>i</sub> 而失敗」(標籤 = P<sub>i</sub>)，而將其他所有記錄標記為「正常」(標籤 = 0)，即可完成標記。 在此方法中，標籤為類別變數 (請參閱圖 6)。
 
 ![圖 6. 根本原因預測的多類別分類標記方式](media/cortana-analytics-playbook-predictive-maintenance/labelling-for-multiclass-classification-for-root-cause-prediction.png)
 

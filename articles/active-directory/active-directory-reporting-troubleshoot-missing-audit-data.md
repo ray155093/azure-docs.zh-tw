@@ -23,31 +23,26 @@ ms.lasthandoff: 05/08/2017
 
 ---
 
-# 找不到我在 Azure Active Directory 活動記錄中執行的某些動作
-<a id="i-cant-find-some-actions-that-i-performed-in-the-azure-active-directory-activity-log" class="xliff"></a>
+# <a name="i-cant-find-some-actions-that-i-performed-in-the-azure-active-directory-activity-log"></a>找不到我在 Azure Active Directory 活動記錄中執行的某些動作
 
 
-## 徵兆
-<a id="symptoms" class="xliff"></a>
+## <a name="symptoms"></a>徵兆
 
 我在 Azure 入口網站中執行某些動作，並預期要在 `Activity logs > Audit Logs` 刀鋒視窗中查看這些動作的稽核記錄，但卻找不到。
 
  ![報告](./media/active-directory-reporting-troubleshoot-missing-audit-data/01.png)
  
 
-## 原因
-<a id="cause" class="xliff"></a>
+## <a name="cause"></a>原因
 
 動作不會立即出現在活動稽核記錄中。 從執行作業的時間起，可能要花 15 分鐘到 1 小時才可在入口網站中看到稽核記錄。
 
-## 解決方案
-<a id="resolution" class="xliff"></a>
+## <a name="resolution"></a>解決方案
 
 等候 15 分鐘到 1 小時的時間，檢查動作是否出現在記錄中。 如果您仍看不到它們，請向我們提出支援票證，我們將探討它。
 
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 請參閱 [Azure Active Directory 報告常見問題集](active-directory-reporting-faq.md)。
 
 

@@ -3,8 +3,8 @@ title: "使用 Azure Data Lake Analytics 來分析網站記錄 | Microsoft Docs"
 description: "了解如何使用資料湖分析來分析網站記錄。 "
 services: data-lake-analytics
 documentationcenter: 
-author: edmacauley
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: 3a196735-d0d9-4deb-ba68-c4b3f3be8403
 ms.service: data-lake-analytics
@@ -13,38 +13,29 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
-ms.author: edmaca
+ms.author: saveenr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: ad0610c1aed8e21f322516a4b7ea41bf55cc200e
+ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
+ms.openlocfilehash: 25fbbe97d26491fc421f4821315761c18e523ec8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
+ms.lasthandoff: 06/20/2017
 
 
 ---
-# <a name="tutorial-analyze-website-logs-using-azure-data-lake-analytics"></a>教學課程：使用 Azure 資料湖分析來分析網站記錄
+# <a name="analyze-website-logs-using-azure-data-lake-analytics"></a>使用 Azure Data Lake Analytics 來分析網站記錄
 了解如何使用資料湖分析來分析網站記錄，特別是找出哪些訪客來源在嘗試瀏覽網站時遇到錯誤。
 
-> [!NOTE]
-> 如果您只想看到應用程式正常運作，瀏覽 [使用 Azure 資料湖分析互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)可節省時間。 本教學課程根據相同的案例和相同的程式碼。 本教學課程的目的是讓開發人員獲得從端對端建立和執行資料湖分析應用程式的經驗。
->
->
-
-## <a name="prerequisites"></a>必要條件：
-* **已安裝 Visual Studio 2015、Visual Studio 2013 更新 4，或具有 Visual C++ 的 Visual Studio 2012**。
-* **Microsoft Azure SDK for .NET 2.5 版或更新版本**。  使用 [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來進行安裝。
+## <a name="prerequisites"></a>必要條件
+* **Visual Studio 2015 或 Visual Studio 2013**。
 * **[Visual Studio 適用的 Data Lake 工具](http://aka.ms/adltoolsvs)**。
 
-    安裝適用於 Visual Studio 的資料湖工具之後，您會在 Visual Studio 中看到 [資料湖]  功能表：
+    安裝適用於 Visual Studio 的 Data Lake 工具之後，您會在 Visual Studio 的 [工具] 功能表中看到 [Datat Lake] 項目：
 
     ![U-SQL Visual Studio 功能表](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-menu.png)
 * **對於資料湖分析和適用於 Visual Studio 的資料湖工具有基本的認識**。 若要開始使用，請參閱：
 
-  * [使用 Azure 入口網站開始使用 Azure 資料湖分析](data-lake-analytics-get-started-portal.md)。
   * [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-* **資料湖分析帳戶。**  請參閱[建立 Azure Data Lake Analytics 帳戶可節省時間](data-lake-analytics-get-started-portal.md#create-data-lake-analytics-account)。
-
-    資料湖工具不支援建立資料湖分析帳戶。  因此您必須使用 Azure 入口網站、Azure PowerShell、.NET SDK 或 Azure CLI 建立帳戶。
+* **資料湖分析帳戶。**  請參閱[建立 Azure Data Lake Analytics 帳戶可節省時間](data-lake-analytics-get-started-portal.md)。
 * **將範例資料上傳到資料湖分析帳戶。** 請參閱[複製範例資料檔案](data-lake-analytics-get-started-portal.md)。
 
     若要執行資料湖分析工作，您需要一些資料。 即使資料湖工具支援上傳資料，您將使用入口網站來上傳範例資料，以方便遵循本教學課程。
@@ -55,7 +46,7 @@ ms.lasthandoff: 06/01/2017
 **連接到資料湖分析**
 
 1. 開啟 Visual Studio。
-2. 從 [Data Lake] 功能表，按一下 [選項和設定]。
+2. 按一下 [Data Lake] > [選項和設定]。
 3. 按一下 [登入]，或者如果已有其他人登入則按一下 [變更使用者]，並遵循指示。
 4. 按一下 [確定]  關閉 [選項和設定] 對話方塊。
 
@@ -71,7 +62,7 @@ U-SQL 應用程式基本上是 U-SQL 指令碼。 若要深入了解 U-SQL，請
 
 **建立並提交資料湖分析工作**
 
-1. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
+1. 按一下 [檔案] > [新增] > [專案]。
 2. 選取 [U-SQL 專案] 類型。
 
     ![新的 U-SQL Visual Studio 專案](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-new-project.png)
@@ -141,7 +132,7 @@ U-SQL 應用程式基本上是 U-SQL 指令碼。 若要深入了解 U-SQL，請
         (
             INDEX idx1
             CLUSTERED(Year ASC)
-            PARTITIONED BY HASH(Year)
+            DISTRIBUTED BY HASH(Year)
         ) AS
 
         SELECT s_date.Year AS Year,
@@ -178,11 +169,6 @@ U-SQL 應用程式基本上是 U-SQL 指令碼。 若要深入了解 U-SQL，請
     ![資料湖分析分析 weblog 網站記錄](./media/data-lake-analytics-analyze-weblogs/data-lake-analytics-analyze-weblogs-job-completed.png)
 11. 現在針對 **Script1.usql**重複步驟 7 - 10。
 
-> [!NOTE]
-> 您無法讀取或寫入已在相同指令碼中建立或修改的 U-SQL 資料表。  這就是為什麼此範例使用兩個指令碼。
->
->
-
 **查看作業輸出**
 
 1. 在 [伺服器總管] 中，依序展開 [Azure]、[Data Lake Analytics]、您的 Data Lake Analytics 帳戶，以及 [儲存體帳戶]，然後用滑鼠右鍵按一下預設的 Data Lake 儲存體帳戶，再按一下 [總管]。
@@ -196,10 +182,4 @@ U-SQL 應用程式基本上是 U-SQL 指令碼。 若要深入了解 U-SQL，請
 * [使用 Azure 入口網站開始使用資料湖分析](data-lake-analytics-get-started-portal.md)
 * [使用 Azure PowerShell 開始使用資料湖分析](data-lake-analytics-get-started-powershell.md)
 * [使用 .NET SDK 開始使用資料湖分析](data-lake-analytics-get-started-net-sdk.md)
-
-若要查看更多開發主題：
-
-* [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
-* [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
-* [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
 

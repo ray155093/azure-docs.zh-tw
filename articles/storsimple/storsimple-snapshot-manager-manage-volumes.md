@@ -14,9 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 04/18/2016
 ms.author: v-sharos
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 5086fa86149e4d8133df339b1261d3792fa66b4c
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c0b211bced99d272a73a7b018a22f99d8d58aa9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -94,16 +96,14 @@ ms.openlocfilehash: 5086fa86149e4d8133df339b1261d3792fa66b4c
    |:--- |:--- |
    |  名稱 |[名稱]  資料行包含已指派至每個已探索到之磁碟區的磁碟機代號。 |
    |  裝置 |[裝置]  資料行包含已連接到主機電腦之裝置的 IP 位址。 |
-   |  裝置磁碟區名稱 |[裝置磁碟區名稱]  資料行包含所選磁碟區所屬之裝置磁碟區的名稱。 這是 Azure 傳統入口網站中針對該特定磁碟區定義的磁碟區名稱。 |
+   |  裝置磁碟區名稱 |[裝置磁碟區名稱]  資料行包含所選磁碟區所屬之裝置磁碟區的名稱。 這是 Azure 入口網站中針對該特定磁碟區定義的磁碟區名稱。 |
    |  存取路徑 |[存取路徑]  資料行會顯示磁碟區的存取路徑。 這是可在主機電腦上存取磁碟區的磁碟機代號或掛接點。 |
 
 ## <a name="delete-a-volume"></a>刪除磁碟區
 請使用下列程序，從 StorSimple Snapshot Manager 中刪除磁碟區。
 
 > [!NOTE]
-> 如果磁碟區是任何磁碟區群組的一部分，則您無法將其刪除。 (磁碟區若是磁碟區群組的成員，無法對其使用刪除選項。)您必須刪除整個磁碟區群組，才能刪除磁碟區。
-> 
-> 
+> 如果磁碟區是任何磁碟區群組的一部分，則無法刪除。 (磁碟區若是磁碟區群組的成員，無法對其使用刪除選項。)您必須刪除整個磁碟區群組，才能刪除磁碟區。
 
 #### <a name="to-delete-a-volume"></a>若要刪除磁碟區
 1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
@@ -162,7 +162,7 @@ ms.openlocfilehash: 5086fa86149e4d8133df339b1261d3792fa66b4c
 ### <a name="prerequisites"></a>必要條件
 開始之前：
 
-* 確定已正確設定 StorSimple 裝置和主機電腦。 如需詳細資訊，請移至 [部署內部部署 StorSimple 裝置](storsimple-deployment-walkthrough-u2.md)。
+* 確定已正確設定 StorSimple 裝置和主機電腦。 如需詳細資訊，請移至 [部署內部部署 StorSimple 裝置](storsimple-8000-deployment-walkthrough-u2.md)。
 * 安裝和設定 StorSimple Snapshot Manager。 如需詳細資訊，請移至 [部署 StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md)。
 * 在 StorSimple 裝置上設定兩個磁碟區。 (在這些範例中，可用的磁碟區為 [磁碟 1] 和 [磁碟 2]。) 
 
@@ -212,9 +212,4 @@ ms.openlocfilehash: 5086fa86149e4d8133df339b1261d3792fa66b4c
 
 <!--Reference links-->
 [1]: https://msdn.microsoft.com/library/ee338480(v=ws.10).aspx
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

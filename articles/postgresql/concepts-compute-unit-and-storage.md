@@ -9,11 +9,11 @@ editor: jasonwhowell
 ms.service: postgresql-database
 ms.topic: article
 ms.date: 05/23/2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 44a6e1c8e71f3a89b5900887c71fbce92af45d6f
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: e480671e6550b305c49442becaed3c0b42ce5cb3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 07/11/2017
 
 ---
 # <a name="explaining-compute-units-in-azure-database-for-postgresql"></a>說明適用於 PostgreSQL 的 Azure 資料庫中的計算單位
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/25/2017
 例如，標準的 800 個計算單位所提供的 CPU 輸送量與記憶體，比標準的 100 個計算單位設定多 8 倍。 不過，儘管相較於基本的 100 個計算單位，標準的 100 個計算單位會提供相同的 CPU 輸送量，但是，標準定價層中預先設定的記憶體量是針對基本定價層所設定之記憶體量的兩倍。 因此，比起選取相同計算單位數的基本定價層，標準定價層提供更佳的工作負載效能與更低的交易延遲。
 
 ## <a name="how-can-i-determine-the-number-of-compute-units-needed-for-my-workload"></a>如何判斷我的工作負載所需的計算單位數？
-如果您打算移轉在內部部署或虛擬機器上執行的現有 PostgreSQL 伺服器，可透過評估工作負載需要多少個處理輸送量核心來決定計算單位數。 
+如果您打算移轉在內部部署或虛擬機器上執行的現有 PostgreSQL 伺服器，可透過評估工作負載需要多少個處理輸送量核心，來決定計算單位數。 
 
 如果您現有的內部部署或虛擬機器伺服器目前使用 4 個核心 (不含計算 CPU 超執行緒)，一開始請為適用於 PostgreSQL 伺服器的 Azure 資料庫設定 400 個計算單位。 計算單位可根據您的工作負載需求，動態地相應增加或減少，而且幾乎不會產生任何應用程式停機時間。 
 

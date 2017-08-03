@@ -15,12 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: mimig
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
-ms.openlocfilehash: 04810ffa33d90d31003d0919c3edb2710fed453c
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: cd314049a536ad4a95e243eac26aa044c90c8164
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
-
+ms.lasthandoff: 07/17/2017
 
 ---
 # <a name="azure-cosmos-db-documentdb-api-sql-query-cheat-sheet-pdf"></a>Azure Cosmos DB：DocumentDB API SQL 查詢速查表 PDF
@@ -40,7 +39,7 @@ Cosmos DB 可使用 [SQL](documentdb-sql-query.md) 來支援 JSON 文件的關�
 
 ## <a name="more-help-with-writing-sql-queries"></a>撰寫 SQL 查詢的詳細說明
 * 如需 Cosmos DB 中可用查詢選項的逐步解說，請參閱 [查詢 Cosmos DB](documentdb-sql-query.md)。
-* 如需相關的參考文件，請參閱 [Cosmos DB SQL 查詢語言](https://msdn.microsoft.com/library/azure/dn782250.aspx)。
+* 如需相關參考文件，請參閱 [Azure Cosmos DB DocumentDB API：SQL 語法參考](https://msdn.microsoft.com/library/azure/dn782250.aspx)。
 
 ## <a name="release-notes"></a>版本資訊
 2016 年 7 月 29 日更新以納入 TOP。

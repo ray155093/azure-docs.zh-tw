@@ -21,15 +21,11 @@ ms.lasthandoff: 04/17/2017
 
 ---
 
-<a id="how-to-fill-out-specific-fields-for-a-custom-developed-application" class="xliff"></a>
-
-# 如何針對自訂開發的應用程式填寫特定欄位
+# <a name="how-to-fill-out-specific-fields-for-a-custom-developed-application"></a>如何針對自訂開發的應用程式填寫特定欄位
 
 本文提供 [Azure 入口網站](https://portal.azure.com)上應用程式註冊表單中所有可用欄位的簡短說明。
 
-<a id="register-a-new-application" class="xliff"></a>
-
-## 註冊新的應用程式
+## <a name="register-a-new-application"></a>註冊新的應用程式
 
 -   若要註冊新的應用程式，請瀏覽至 [Azure 入口網站](https://portal.azure.com)。
 
@@ -39,9 +35,7 @@ ms.lasthandoff: 04/17/2017
 
 -   這樣會開啟應用程式註冊表單。
 
-<a id="fields-in-the-application-registration-form" class="xliff"></a>
-
-## 應用程式註冊表單中的欄位
+## <a name="fields-in-the-application-registration-form"></a>應用程式註冊表單中的欄位
 
 
 | 欄位            | 說明                                                                              |
@@ -65,8 +59,6 @@ ms.lasthandoff: 04/17/2017
 | 重新導向 URI   | 針對原生應用程式，這是要將使用者傳送至下列成功授權的位置。 Azure AD 會檢查 OAuth 2.0 要求中您應用程式所提供的重新導向 URI 是否符合入口網站上其中一個已註冊的值。                                                            |
 | 之間的信任            | 您可以建立金鑰，以程式設計方式存取 Azure AD 所保護的 Web API，而不需與使用者互動。 從 [金鑰]\*\*\*\* 頁面，輸入金鑰描述和到期日，並儲存以產生金鑰。 請確定會將其儲存於安全的位置，因為您稍後將無法存取它。             |
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [使用 Azure Active Directory 管理應用程式](active-directory-enable-sso-scenario.md)
 

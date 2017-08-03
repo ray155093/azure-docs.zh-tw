@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/31/2017
 ms.author: ninarn
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
-ms.openlocfilehash: e668fb62843e09031e203edf51606aa64dad594b
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 8d884d660d4124e8eafdf3690fe8956904f50827
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/10/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---

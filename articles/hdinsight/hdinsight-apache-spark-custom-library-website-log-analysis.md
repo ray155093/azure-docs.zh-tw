@@ -22,7 +22,6 @@ ms.openlocfilehash: 41275f8264353e7158ca42e5cfc089b2fbaa556d
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/07/2017
 
-
 ---
 # <a name="analyze-website-logs-using-a-custom-python-library-with-spark-cluster-on-hdinsight"></a>使用自訂 Python 程式庫搭配 HDInsight 上的 Spark 叢集來分析網站記錄
 
@@ -69,7 +68,7 @@ ms.lasthandoff: 06/07/2017
 
 1. 使用叢集上已有的範例記錄資料來建立 RDD。 您可以在 **\HdiSamples\HdiSamples\WebsiteLogSampleData\SampleLog\909f2b.log** 上存取與叢集相關聯之預設儲存體帳戶中的資料。
 
-        logs = sc.textFile('wasbs:///HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/909f2b.log')
+        logs = sc.textFile('wasb:///HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/909f2b.log')
 
 
 1. 擷取範例記錄組，以確認先前的步驟已順利完成。
@@ -93,7 +92,7 @@ ms.lasthandoff: 06/07/2017
 
     不過，此程式庫不在 `PYTHONPATH` 中，因此無法藉由 `import iislogparser` 之類的匯入陳述式來使用它。 若要使用此程式庫，我們必須將它散發到所有的背景工作角色節點。 執行下列程式碼片段。
 
-        sc.addPyFile('wasbs:///HdiSamples/HdiSamples/WebsiteLogSampleData/iislogparser.py')
+        sc.addPyFile('wasb:///HdiSamples/HdiSamples/WebsiteLogSampleData/iislogparser.py')
 
 
 1. `iislogparser` 提供一個函數 `parse_log_line`，在記錄行為標頭資料列時會傳回 `None`，在發現記錄行時則傳回 `LogLine` 類別的執行個體。 使用 `LogLine` 類別，僅從 RDD 擷取記錄行：
@@ -120,7 +119,7 @@ ms.lasthandoff: 06/07/2017
        numLines = logLines.count()
        numErrors = errors.count()
        print 'There are', numErrors, 'errors and', numLines, 'log entries'
-       errors.map(lambda p: str(p)).saveAsTextFile('wasbs:///HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/909f2b-2.log')
+       errors.map(lambda p: str(p)).saveAsTextFile('wasb:///HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/909f2b-2.log')
 
    您應該會看到如下的輸出：
 

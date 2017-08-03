@@ -21,8 +21,7 @@ ms.contentlocale: zh-tw
 ms.lasthandoff: 07/12/2017
 
 ---
-# Service Fabric 叢集容量規劃考量
-<a id="service-fabric-cluster-capacity-planning-considerations" class="xliff"></a>
+# <a name="service-fabric-cluster-capacity-planning-considerations"></a>Service Fabric 叢集容量規劃考量
 對於任何生產部署而言，容量規劃都是一個很重要的步驟。 以下是一些您在該程序中必須考量的項目。
 
 * 您的叢集一開始所需的節點類型的數目
@@ -31,8 +30,7 @@ ms.lasthandoff: 07/12/2017
 
 讓我們簡短地檢閱各個項目。
 
-## 您的叢集一開始所需的節點類型的數目
-<a id="the-number-of-node-types-your-cluster-needs-to-start-out-with" class="xliff"></a>
+## <a name="the-number-of-node-types-your-cluster-needs-to-start-out-with"></a>您的叢集一開始所需的節點類型的數目
 首先，您必須了解您要建立的叢集將用於什麼用途，以及您要規劃哪些要部署到此叢集中的應用程式種類。 如果您不清楚叢集的用途，您很可能還未準備好進入容量規劃程序。
 
 建立您的叢集一開始所需的節點類型的數目。  每個節點類型都會對應到虛擬機器調整集。 然後每個節點類型可以獨立相應增加或相應減少，可以開啟不同組的連接埠，並可以有不同的容量度量。 因此，節點類型數目的決定基本上可歸結為下列考量︰
@@ -43,16 +41,14 @@ ms.lasthandoff: 07/12/2017
   在此範例中，您可以決定將所有服務都放在一個節點類型上，但我們建議您將它們放在包含兩個節點類型的叢集上。  這可讓每個節點類型都有不同的屬性，例如，網際網路連線或 VM 大小。 VM 的數目也可以單獨調整。  
 * 您無法預測未來，因此請利用您所知道的事實，決定您的應用程式一開始所需的節點類型的數目。 您之後都可以新增或移除節點類型。 Service Fabric 叢集必須至少有一個節點類型。
 
-## 每個節點類型的屬性
-<a id="the-properties-of-each-node-type" class="xliff"></a>
+## <a name="the-properties-of-each-node-type"></a>每個節點類型的屬性
 **節點類型**就像是雲端服務中的角色。 可用來定義定義 VM 的大小、VM 的數目，以及 VM 的屬性。 在 Service Fabric 叢集中定義的每個節點類型都會安裝為不同的虛擬機器擴展集。 虛擬機器擴展集是一個 Azure 計算資源，可以用來將一組 VM 當做一個集合加以部署和管理。 如果定義為不同的虛擬機器擴展集，則每個節點類型都可以獨立相應增加或相應減少、可以開放不同組的連接埠，而且可以有不同的容量度量。
 
 請參閱[這份文件](service-fabric-cluster-nodetypes.md)，以更仔細了解 Nodetypes 與虛擬機器擴展集的關聯性、如何 RDP 至其中一個執行個體、開啟新連接埠等。
 
 您的叢集可以多個節點類型，但主要節點類型 (您在入口網站定義的第一個節點類型) 必須至少有 5 個 VM 供叢集用於生產工作負載 (或至少有 3 個 VM 供測試叢集使用)。 如果您要使用 Resource Manager 範本建立叢集，請在節點類型定義下找到 **is Primary** 屬性。 主要節點類型就是放置 Service Fabric 系統服務所在的節點類型。  
 
-### 主要節點類型
-<a id="primary-node-type" class="xliff"></a>
+### <a name="primary-node-type"></a>主要節點類型
 若是包含多個節點類型的叢集，您必須選擇其中一個作為主要節點類型。 以下是主要節點類型的特性︰
 
 * 主要節點類型的 **VM 大小下限**取決於您選擇的**持久性層級**。 持久性層級的預設值為 Bronze。 如需有關持久性層級的定義以及可採用的值，請向下捲動。  
@@ -64,15 +60,13 @@ ms.lasthandoff: 07/12/2017
 
 ![有兩個節點類型的叢集螢幕擷取畫面 ][SystemServices]
 
-### 非主要節點類型
-<a id="non-primary-node-type" class="xliff"></a>
+### <a name="non-primary-node-type"></a>非主要節點類型
 如果是包含多個節點類型的叢集，則會有一個主要節點類型，其餘則是非主要節點類型。 以下是非主要節點類型的特性︰
 
 * 此節點類型的 VM 大小下限取決於您選擇的持久性層級。 持久性層級的預設值為 Bronze。 如需有關持久性層級的定義以及可採用的值，請向下捲動。  
 * 此節點類型的 VM 數目下限可以是 1。 不過，您應該根據您想要在這個節點類型中執行的應用程式/服務的複本數目，選擇這個數目。 部署叢集之後，節點類型中的 VM 數目可能會增加。
 
-## 叢集的持久性特性
-<a id="the-durability-characteristics-of-the-cluster" class="xliff"></a>
+## <a name="the-durability-characteristics-of-the-cluster"></a>叢集的持久性特性
 持久性層級用來向系統指示您的 VM 對於基本 Azure 基礎結構所擁有的權限。 在主要節點類型中，此權限可讓 Service Fabric 暫停會影響系統服務及具狀態服務的仲裁需求的任何 VM 層級基礎結構要求 (例如，VM 重新開機、VM 重新安裝映像，或 VM 移轉)。 在非主要節點類型中，此權限可讓 Service Fabric 暫停會影響其中所執行之具狀態服務的仲裁需求的任何 VM 層級基礎結構要求，例如，VM 重新開機、VM 重新安裝映像、VM 移轉等等。
 
 此權限會以下列值表示︰
@@ -95,13 +89,11 @@ ms.lasthandoff: 07/12/2017
 
 
 
-### 使用 Silver 或 Gold 持久性層級的建議時機
-<a id="recommendations-on-when-to-use-silver-or-gold-durability-levels" class="xliff"></a>
+### <a name="recommendations-on-when-to-use-silver-or-gold-durability-levels"></a>使用 Silver 或 Gold 持久性層級的建議時機
 
 針對所有裝載您預期會經常進行相應縮小 (減少 VM 執行個體計數)，且偏好延遲部署作業以簡化相應縮小作業之具狀態服務的節點類型，請使用 Silver 或 Gold 持久性。 相應放大案例 (新增 VM 執行個體) 並不會影響您對耐久性層級的選擇，只有相應縮小才會。
 
-### 針對您已設定為 Silver 或 Gold 耐久性層級之節點類型的作業建議。
-<a id="operational-recommendations-for-the-node-type-that-you-have-set-to-silver-or-gold-durability-level" class="xliff"></a>
+### <a name="operational-recommendations-for-the-node-type-that-you-have-set-to-silver-or-gold-durability-level"></a>針對您已設定為 Silver 或 Gold 耐久性層級之節點類型的作業建議。
 
 1. 使叢集和應用程式持續保持良好的狀況，並確保應用程式會及時回應所有[服務複本生命週期事件](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle) (例如當組建中的複本陷入停滯)。
 2. 採用更安全的方式來進行 VM SKU 變更 (相應增加/減少)：
@@ -114,8 +106,7 @@ ms.lasthandoff: 07/12/2017
 6. 如果您使用自動調整功能，則請設定規則使系統一次只會針對一個節點進行相應縮小 (移除 VM 執行個體)。 
 
 
-## 叢集的可靠性特性
-<a id="the-reliability-characteristics-of-the-cluster" class="xliff"></a>
+## <a name="the-reliability-characteristics-of-the-cluster"></a>叢集的可靠性特性
 可靠性層級用來設定您想要在此叢集中的主要節點類型上執行的系統服務複本數目。 複本數目越多，叢集中的系統服務越可靠。  
 
 可靠性層級可以採用以下的值：
@@ -133,8 +124,7 @@ ms.lasthandoff: 07/12/2017
  您可以選擇將叢集的可靠性從一個層級更新為另一個層級。 如此一來就會觸發變更系統服務複本集計數所需的叢集升級。 請先等候升級完成，再對叢集進行任何其他變更，例如新增節點。  您可以在 Service Fabric Explorer 上或執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) 監視升級的進度
 
 
-## 主要節點類型 - 容量指引
-<a id="primary-node-type---capacity-guidance" class="xliff"></a>
+## <a name="primary-node-type---capacity-guidance"></a>主要節點類型 - 容量指引
 
 以下是規劃主要節點類型容量的指引
 
@@ -153,8 +143,7 @@ ms.lasthandoff: 07/12/2017
 - 基於效能理由，標準 A1 SKU 不支援生產工作負載。
 
 
-## 非主要節點類型 - 具狀態工作負載的容量指引
-<a id="non-primary-node-type---capacity-guidance-for-stateful-workloads" class="xliff"></a>
+## <a name="non-primary-node-type---capacity-guidance-for-stateful-workloads"></a>非主要節點類型 - 具狀態工作負載的容量指引
 
 請參閱以下內容，以了解使用 Service Fabric 可靠集合或 Reliable Actors 的工作負載。 深入了解[程式設計模型](service-fabric-choose-framework.md)。
 
@@ -172,8 +161,7 @@ ms.lasthandoff: 07/12/2017
 - 基於效能理由，標準 A1 SKU 確定不支援生產工作負載。
 
 
-## 非主要節點類型 - 無狀態工作負載的容量指引
-<a id="non-primary-node-type---capacity-guidance-for-stateless-workloads" class="xliff"></a>
+## <a name="non-primary-node-type---capacity-guidance-for-stateless-workloads"></a>非主要節點類型 - 無狀態工作負載的容量指引
 
 請參閱以下內容，以了解無狀態工作負載
 
@@ -196,8 +184,7 @@ ms.lasthandoff: 07/12/2017
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 
-## 後續步驟
-<a id="next-steps" class="xliff"></a>
+## <a name="next-steps"></a>後續步驟
 一旦您完成容量規劃並設定叢集之後，請閱讀︰
 
 * [Service Fabric 叢集安全性](service-fabric-cluster-security.md)

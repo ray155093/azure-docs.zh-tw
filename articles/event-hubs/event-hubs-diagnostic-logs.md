@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 03/27/2017
+ms.date: 06/27/2017
 ms.author: sethm;babanisa
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: bb8679b733e9ebd8d6a95a618d4ab8deab18ece4
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09bc62f4918635419d74ef3ae400a41d4ce58b5a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -29,27 +30,25 @@ ms.lasthandoff: 04/18/2017
 * **[診斷記錄](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**。 您可以設定診斷記錄，以更深入檢視與作業一起發生的所有事件。 診斷記錄涵蓋從建立工作到刪除工作期間的活動，包括工作執行時發生的更新與活動。
 
 ## <a name="turn-on-diagnostic-logs"></a>開啟診斷記錄
-診斷記錄預設為 [關閉]。 啟用診斷記錄：
+診斷記錄預設為停用。 啟用診斷記錄：
 
-1.    在 Azure 入口網站中，移至 [資料流處理工作] 刀鋒視窗。
+1.  在 [Azure 入口網站](https://portal.azure.com)的 [監視 + 管理] 下，按一下 [診斷記錄]。
 
-2.    在 [監視] 底下，移至 [診斷記錄檔] 刀鋒視窗。
+    ![瀏覽到診斷記錄檔的刀鋒視窗](./media/event-hubs-diagnostic-logs/image1.png)
 
-    ![瀏覽到診斷記錄檔的刀鋒視窗](./media/event-hubs-diagnostic-logs/image1.png)  
+2.  按一下您想要監視的資源。
 
-3.    選取 [開啟診斷]。
+3.  按一下 [開啟診斷]。
 
-    ![開啟診斷記錄檔](./media/event-hubs-diagnostic-logs/image2.png)
+    ![開啟診斷記錄](./media/event-hubs-diagnostic-logs/image2.png)
 
-4.    針對 [狀態] 選取 [開啟]。
+4.  針對 [狀態]，按一下 [開啟]。
 
     ![變更診斷記錄檔的狀態](./media/event-hubs-diagnostic-logs/image3.png)
 
-5.    設定您想要的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
+5.  設定您想要的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
 
-6.    選取您要收集的記錄類別，例如**執行**或**製作**。
-
-7.    儲存新的診斷設定。
+6.  儲存新的診斷設定。
 
 新的設定大約會在 10 分鐘內生效。 之後，記錄就會顯示在 [診斷記錄] 刀鋒視窗上已設定的封存目標中。
 
@@ -58,11 +57,11 @@ ms.lasthandoff: 04/18/2017
 ## <a name="diagnostic-logs-categories"></a>診斷記錄類別
 事件中樞會擷取兩種類別的診斷記錄檔：
 
-* **ArchivalLogs**：與事件中樞封存相關的記錄，具體而言，就是與封存錯誤相關的記錄。
+* **ArchiveLogs**：與「事件中樞」封存相關的記錄，具體而言，就是與封存錯誤相關的記錄。
 * **OperationalLogs**：與「事件中樞」作業期間發生的事件有關的資訊，具體而言，就是作業類型 (包括建立事件中樞)、使用的資源及作業狀態。
 
 ## <a name="diagnostic-logs-schema"></a>診斷記錄結構描述
-所有的記錄檔都會以 JavaScript 物件標記法 (JSON) 格式儲存。 每個項目都具有字串欄位，這些欄位會使用下列範例所述的格式。
+所有的記錄檔都會以 JavaScript 物件標記法 (JSON) 格式儲存。 每個項目都具有字串欄位，這些欄位會使用下列小節所述的格式。
 
 ### <a name="archive-logs-schema"></a>封存記錄檔結構描述
 
@@ -83,7 +82,7 @@ durationInSeconds | 失敗持續時間。
 Message | 錯誤訊息。
 category | ArchiveLogs
 
-以下是封存記錄 JSON 字串的範例：
+下列程式碼是封存記錄 JSON 字串的範例：
 
 ```json
 {
@@ -102,23 +101,23 @@ category | ArchiveLogs
 }
 ```
 
-### <a name="operation-logs-schema"></a>作業記錄檔結構描述
+### <a name="operational-logs-schema"></a>作業記錄結構描述
 
-作業記錄檔 JSON 字串包括下表所列的元素：
+作業記錄 JSON 字串包括下表所列的元素：
 
 名稱 | 說明
 ------- | -------
 ActivityId | 用於追蹤目的的內部識別碼。
-EventName | 作業名稱。     
+EventName | 作業名稱。  
 resourceId | Azure Resource Manager 資源識別碼。
-SubscriptionId | [訂閱識別碼]。
+SubscriptionId | 訂用帳戶 ID。
 EventTimeString | 作業時間。
 EventProperties | 作業屬性。
 狀態 | 作業狀態。
 呼叫者 | 作業呼叫者 (Azure 入口網站或管理用戶端)。
 category | OperationalLogs
 
-以下是作業記錄 JSON 字串的範例：
+下列程式碼是作業記錄 JSON 字串的範例：
 
 ```json
 Example:

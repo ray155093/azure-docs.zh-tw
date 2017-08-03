@@ -11,12 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 06/02/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: 16a000074ae742cc6bc1b25bf359990fe73608f7
-ms.lasthandoff: 04/21/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 0c9adf369dfecc25d1bf3dc8a77cb3778e867af5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -25,14 +26,14 @@ ms.lasthandoff: 04/21/2017
 
 連接器是讓 Azure AD 應用程式 Proxy 運作的關鍵。 它們很簡單、容易部署及維護且超級強大。 本文討論什麼是連接器，其運作方式，以及充分運用部署的一些最佳做法。 
 
-## <a name="connector-deployment"></a>連接器部署
+## <a name="deployment"></a>部署
 
 須在您的網路上安裝稱為連接器的 Windows Server 服務之後，應用程式 Proxy 才會運作。 您可以根據您的高可用性和延展性需求安裝多個連接器。 以其中一種開始，並視需要新增更多。 每次安裝連接器時，它會新增至做為您租用戶的連接器集區。
 
 我們建議不要在相同伺服器上安裝連線器和裝載您的應用程式。 不過，您必須能夠從安裝連接器的伺服器存取應用程式。
 
 
-## <a name="connector-maintenance"></a>連接器維護
+## <a name="maintenance"></a>維護 
 連接器和服務會負責所有高可用性的工作。 它們可以動態新增或移除。 每當新要求抵達時，它會路由傳送至其中一個目前可用的連接器。 如果連接器暫時無法使用，則不會回應此流量。
 
 除了服務設定和驗證此連接器之憑證的連線之外，連接器是無狀態且在電腦上沒有組態資料。 當它們連線至服務時，會提取所有必要的組態資料，且每隔幾分鐘會重新整理。
@@ -44,19 +45,17 @@ ms.lasthandoff: 04/21/2017
 
 您不必手動刪除未使用的連接器。 當連接器執行時，它在連接到服務時會保持作用中。 未使用的連接器會標記為_非作用中_，且將在未作用 10 天之後移除。 
 
-## <a name="automatic-updates-to-the-connector"></a>自動更新至連接器
+## <a name="automatic-updates"></a>自動更新
 
-利用連接器更新程式服務，我們提供自動化的方式來維持最新狀態。 如此一來，您可持續擁有所有新功能的優點，以及安全性和效能增強功能。
+Azure AD 支援您部署之所有連接器的自動更新。 只要應用程式 Proxy 連接器更新程式服務正在執行，您的連接器便會自動更新。 如果您在伺服器上沒有看到連接器更新程式服務，則需要[重新安裝您的連接器](active-directory-application-proxy-enable.md)以取得任何更新。 對於具有多個連接器的租用戶，自動更新會一次以每個群組中的一個連接器為目標，以免您的環境發生停機。 
 
-Azure AD 支援您部署之所有連接器的自動更新。 只要應用程式 Proxy 連接器更新程式服務正在執行，您的連接器便會自動更新。 如果您在伺服器上沒有看到連接器更新程式服務，則需要[重新安裝您的連接器](active-directory-application-proxy-enable.md)以取得任何更新。
+如果不想等候您的連接器自動更新，您可以執行手動升級。 移至您的連接器所在伺服器上的[連接器下載頁面](https://download.msappproxy.net/subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/connector/download)並選取 [下載]。 這樣就能開始本機連接器的升級。 
 
-如果是下列情況，連接器更新時可能會遭遇停機︰
-
-- 您只有一個連接器。 若要避免這種停機情形並改善高可用性，建議您安裝第二個連接器，然後[建立連接器群組](active-directory-application-proxy-connectors-azure-portal.md)。
-
+如果是下列情況，連接器更新時可能會遭遇停機︰  
+- 您只有一個連接器。 若要避免這種停機情形並改善高可用性，建議您安裝第二個連接器，然後[建立連接器群組](active-directory-application-proxy-connectors-azure-portal.md)。  
 - 更新開始時，連接器正處於交易中途。 您的瀏覽器應該會自動重試作業，或者，您可以重新整理頁面。 當重新傳送要求時，流量會路由傳送至備份連接器。
 
-## <a name="all-networking-is-outbound"></a>所有的網路為輸出
+## <a name="outbound-only-networking"></a>輸出專用網路
 連接器只會傳送輸出要求，因此連線一律由連接器啟動。 不需要開啟輸入連接埠，因為建立工作階段後，流量就會雙向流動。
 
 輸出流量會傳送到應用程式 Proxy 服務和已發佈應用程式。 服務的流量會傳送至 Azure 資料中心的多個不同通訊埠編號。 如需使用哪些連接埠的詳細資訊，請參閱[在 Azure 入口網站中啟用應用程式 Proxy](active-directory-application-proxy-enable.md)。
