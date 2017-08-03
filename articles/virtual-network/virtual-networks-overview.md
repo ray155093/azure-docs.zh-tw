@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 03/23/2017
 ms.author: jdial
 ms.translationtype: HT
-ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
-ms.openlocfilehash: b820491107372551896bf37d04cf995e6a8bd0e7
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 6d6afd2b9b956138ed400fbd6cabd3b480fde0f0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/20/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="azure-virtual-network"></a>Azure 虛擬網路
@@ -65,7 +65,7 @@ Azure 虛擬網路服務可讓 Azure 資源與虛擬網路 (VNet) 安全地彼�
 - **站對站 VPN：**建立於 VPN 裝置與 Azure VPN 閘道之間。 此連線類型可讓您授權的任何內部部署資源存取 VNet。 此連線是 IPSec/IKE VPN，可透過網際網路提供內部部署裝置與 Azure VPN 閘道之間的加密通訊。 站對站連線的延遲無法預期，因為流量會周遊網際網路。
 - **Azure ExpressRoute：**透過 ExpressRoute 合作夥伴，建立於您的網路與 Azure 之間。 此連線是私人連線。 流量不會周遊網際網路。 ExpressRoute 連線的延遲無法預期，因為流量不會周遊網際網路。
 
-若要深入了解所有先前的連線選項，請閱讀[連線拓撲圖](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#a-namediagramsaconnection-topology-diagrams)一文。
+若要深入了解所有先前的連線選項，請閱讀[連線拓撲圖](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#diagrams)一文。
 
 ## <a name="filtering"></a>篩選網路流量
 您可以使用下列一個或兩個選項，篩選子網路之間的網路流量︰

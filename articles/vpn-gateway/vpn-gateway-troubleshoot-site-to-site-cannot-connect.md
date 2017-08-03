@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 06/21/2017
 ms.author: genli
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: 436b8d3058a6ea32d1f0e8f996386efd01aa5c83
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: e7a3da64895f0307e5d6c3563672205a2f93a7d2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 
@@ -44,7 +44,7 @@ ms.lasthandoff: 07/12/2017
 
 ### <a name="step-1-check-whether-the-on-premises-vpn-device-is-validated"></a>步驟 1. 檢查內部部署 VPN 裝置是否經過驗證
 
-1. 檢查您是否使用[經過驗證的 VPN 裝置和作業系統版本](vpn-gateway-about-vpn-devices.md#a-namedevicetableavalidated-vpn-devices-and-device-configuration-guides)。 如果裝置不是經過驗證的 VPN 裝置，您可能需要連絡裝置製造商，以了解是否有任何相容性問題。
+1. 檢查您是否使用[經過驗證的 VPN 裝置和作業系統版本](vpn-gateway-about-vpn-devices.md#devicetable)。 如果裝置不是經過驗證的 VPN 裝置，您可能需要連絡裝置製造商，以了解是否有任何相容性問題。
 
 2. 確定已正確設定 VPN 裝置。 如需詳細資訊，請參閱[編輯裝置組態範例](/vpn-gateway-about-vpn-devices.md#editing)。
 

@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: krnese
 ms.translationtype: HT
-ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
-ms.openlocfilehash: 3e9321255b65d46af59d0ee478e214df795664ac
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: cdb88505427cdea05f594277170633183dbe6d3e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/14/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="deploy-the-mobility-service-with-azure-automation-dsc-for-replication-of-vm"></a>使用 Azure Automation DSC 部署行動服務，以進行 VM 複寫
@@ -59,7 +59,7 @@ ms.lasthandoff: 07/14/2017
 * 安裝在您想要啟用保護功能之機器上的 Windows Management Framework (WMF) 5.0 (Automation DSC 的需求)
 
   > [!NOTE]
-  > 如果您想要針對已安裝 WMF 4.0 的 Windows 機器使用 DSC，請參閱[在中斷連線的環境中使用 DSC](#Use DSC in disconnected environments)。
+  > 如果您想要針對已安裝 WMF 4.0 的 Windows 機器使用 DSC，請參閱[在中斷連線的環境中使用 DSC](## Use DSC in disconnected environments)。
   >
   >
 

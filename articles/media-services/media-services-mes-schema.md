@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: juliako
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
-ms.openlocfilehash: f8e6e1da776d680d48737ecb5ac7b9319901f121
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 13a3da67da28a1cdebd784e9e33021bb2c2668ce
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="media-encoder-standard-schema"></a>媒體編碼器標準結構描述
@@ -64,11 +64,11 @@ ms.lasthandoff: 06/30/2017
 ### <a name="attributes"></a>屬性
 | 名稱 | 類型 | 說明 |
 | --- | --- | --- |
-| **Condition** |**xs:string** | 當輸入沒有視訊時，您可能需要強制編碼器插入單色視訊播放軌。 若要這樣做，請使用 Condition="InsertBlackIfNoVideoBottomLayerOnly" (只以最低位元速率插入視訊) 或 Condition="InsertBlackIfNoVideo" (以所有輸出位元速率插入視訊)。 如需詳細資訊，請參閱 [這個](media-services-advanced-encoding-with-mes.md#a-idnovideoainsert-a-video-track-when-input-has-no-video) 主題。|
+| **Condition** |**xs:string** | 當輸入沒有視訊時，您可能需要強制編碼器插入單色視訊播放軌。 若要這樣做，請使用 Condition="InsertBlackIfNoVideoBottomLayerOnly" (只以最低位元速率插入視訊) 或 Condition="InsertBlackIfNoVideo" (以所有輸出位元速率插入視訊)。 如需詳細資訊，請參閱 [這個](media-services-advanced-encoding-with-mes.md#no_video) 主題。|
 
 ## <a name="H264Layers"></a> H264Layers
 
-依照預設，如果您傳送僅包含音訊訊不含視訊的輸入到編碼器，輸出資產將包含僅含音訊資料的檔案。 某些播放器可能無法處理此類型輸出資料流。 您可以在該案例中使用 H264Video 的 **InsertBlackIfNoVideo** 屬性設定來強制編碼器將視訊播放軌新增至輸出。 如需詳細資訊，請參閱 [這個](media-services-advanced-encoding-with-mes.md#a-idnovideoainsert-a-video-track-when-input-has-no-video) 主題。
+依照預設，如果您傳送僅包含音訊訊不含視訊的輸入到編碼器，輸出資產將包含僅含音訊資料的檔案。 某些播放器可能無法處理此類型輸出資料流。 您可以在該案例中使用 H264Video 的 **InsertBlackIfNoVideo** 屬性設定來強制編碼器將視訊播放軌新增至輸出。 如需詳細資訊，請參閱 [這個](media-services-advanced-encoding-with-mes.md#no_video) 主題。
               
 ### <a name="elements"></a>元素
 | 名稱 | 類型 | 說明 |

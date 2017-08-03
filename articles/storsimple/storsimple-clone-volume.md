@@ -14,12 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 09b67ca9258a490338d29763710c40ea2da23ce7
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 8f1936fac543f559a44ad0f9c35b30d1a92dce68
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-the-storsimple-manager-service-to-clone-a-volume"></a>使用 StorSimple Manager 服務來複製磁碟區
@@ -66,7 +65,7 @@ StorSimple Manager 服務 [備份類別目錄]  頁面會顯示在進行手動�
 > 
 > 
 
-以這種方式建立的複製就是暫時性複製。 如需複製類型的詳細資訊，請參閱 [暫時性與永久複製](#transient-vs.-permanent-clones)。
+以這種方式建立的複製就是暫時性複製。 如需複製類型的詳細資訊，請參閱 [暫時性與永久複製](#transient-vs-permanent-clones)。
 
 此複製現在是一般的磁碟區，可在磁碟區進行的任何操作都能在此複製進行。 您必須設定此磁碟區以進行任何備份。
 

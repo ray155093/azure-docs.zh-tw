@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: kumud
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
-ms.openlocfilehash: 2dacb50ab9b8604e48f5ba08e8f8e94fa4a71bd5
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 1ac4ec2775ca9f690f5adf4f939908f8cee3f715
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 
@@ -46,7 +46,7 @@ ms.lasthandoff: 06/09/2017
 
 在此設定中，透過父設定檔導向的流量正常地將流量分散至各區域。 在西歐內，巢狀設定檔會根據指派的權數，將流量分散至生產端點和測試端點。
 
-當父設定檔使用「效能」流量路由方法時，必須指派位置給每個端點。 您需要在設定端點時指派位置。 選擇最接近部署的 Azure 區域。 Azure 區域是「網際網路延遲資料表」所支援的位置值。 如需詳細資訊，請參閱[流量管理員「效能」流量路由方法](traffic-manager-routing-methods.md#a-name--performanceaperformance-traffic-routing-method)。
+當父設定檔使用「效能」流量路由方法時，必須指派位置給每個端點。 您需要在設定端點時指派位置。 選擇最接近部署的 Azure 區域。 Azure 區域是「網際網路延遲資料表」所支援的位置值。 如需詳細資訊，請參閱[流量管理員「效能」流量路由方法](traffic-manager-routing-methods.md#performance)。
 
 ## <a name="example-2-endpoint-monitoring-in-nested-profiles"></a>範例 2︰巢狀設定檔中的端點監視
 
