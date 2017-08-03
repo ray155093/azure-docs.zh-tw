@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/30/2017
 ms.author: tarcher
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 015782373e59d1aaf10a7b089c84c982031b36b2
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 265a968f902f53c7561c8c7e937f8eacfdb37167
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="create-a-lab-in-azure-devtest-labs"></a>在 Azure 研測實驗室中建立實驗室
@@ -64,6 +63,6 @@ Azure DevTest Labs 中的實驗室是包含一組資源 (例如虛擬機器 (VM)
 * [設定實驗室原則](devtest-lab-set-lab-policy.md)。
 * [建立實驗室範本](devtest-lab-create-template.md)。
 * [為您的 VM 建立自訂成品](devtest-lab-artifact-author.md)。
-* [將具有構件的 VM 新增至實驗室](devtest-lab-add-vm-with-artifacts.md)。
+* [將具有構件的 VM 新增至實驗室](https://azure.microsoft.com/resources/videos/how-to-create-vms-with-artifacts-in-a-devtest-lab/)。
 
 

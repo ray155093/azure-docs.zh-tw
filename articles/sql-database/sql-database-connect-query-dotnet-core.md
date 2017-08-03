@@ -1,6 +1,6 @@
 ---
 title: "使用 .NET Core 查詢 Azure SQL Database | Microsoft Docs"
-description: "本主題說明如何使用 .NET Core 來建立連線到 Azure SQL Database 的程式，並使用 Transact-SQL 陳述式查詢。"
+description: "本主題說明如何使用 .NET Core 來建立連線到 Azure SQL Database 的程式，並使用 Transact-SQL 陳述式來查詢。"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -16,15 +16,15 @@ ms.topic: hero-article
 ms.date: 07/05/2017
 ms.author: carlrab
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 4b44064f05a24a25c3ac8157e4aa68a8a8d9856a
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 046322624d3b89bb983acee863534256fee94b60
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-net-core-c-to-query-an-azure-sql-database"></a>使用 .NET Core (C#) 查詢 Azure SQL 資料庫
 
-此快速入門教學課程示範如何在 Windows/Linux/macOS 上使用 [.NET Core](https://www.microsoft.com/net/) 來建立 C# 程式以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
+本快速入門教學課程示範如何在 Windows/Linux/macOS 上使用 [.NET Core](https://www.microsoft.com/net/) 來建立 C# 程式，以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -151,7 +151,7 @@ namespace sqltest
 
 ## <a name="next-steps"></a>後續步驟
 
-- [使用命令列以開始使用在 Windows/Linux/macOS 上的 .NET Core](/dotnet/core/tutorials/using-with-xplat-cli.md)。
+- [使用命令列以開始使用在 Windows/Linux/macOS 上的 .NET Core](/dotnet/core/tutorials/using-with-xplat-cli)。
 - 了解如何[使用 .NET 架構和 Visual Studio 來連線及查詢 Azure SQL 資料庫](sql-database-connect-query-dotnet-visual-studio.md)。  
 - 深入了解如何[使用 SSMS 設計您的第一個 Azure SQL 資料庫](sql-database-design-first-database.md)或[使用 .NET 設計您的第一個 Azure SQL 資料庫](sql-database-design-first-database-csharp.md)。
 - 如需 .NET 的詳細資訊，請參閱 [.NET 文件](https://docs.microsoft.com/dotnet/)。
