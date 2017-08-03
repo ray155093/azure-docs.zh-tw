@@ -13,22 +13,17 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: reference
-ms.date: 06/01/2017
+ms.date: 07/12/2017
 ms.author: kevin;barbkess
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
-ms.openlocfilehash: 7c38488d55719f5bc376a929a36c98c1e5900eaf
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: a9327388f8789e548610a7d4f140c492afd88fef
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
-<a id="system-views" class="xliff"></a>
-
-# 系統檢視表
-<a id="sql-data-warehouse-catalog-views" class="xliff"></a>
-
-## SQL 資料倉儲目錄檢視
+# <a name="system-views"></a>系統檢視表
+## <a name="sql-data-warehouse-catalog-views"></a>SQL 資料倉儲目錄檢視
 * [sys.pdw_column_distribution_properties](http://msdn.microsoft.com/library/mt204022.aspx)
 * [sys.pdw_database_mappings](http://msdn.microsoft.com/library/mt203891.aspx)
 * [sys.pdw_distributions](http://msdn.microsoft.com/library/mt203892.aspx)
@@ -43,12 +38,11 @@ ms.lasthandoff: 07/06/2017
 * [sys.pdw_nodes_partitions](http://msdn.microsoft.com/library/mt203908.aspx)
 * [sys.pdw_nodes_pdw_physical_databases](http://msdn.microsoft.com/library/mt203897.aspx)
 * [sys.pdw_nodes_tables](http://msdn.microsoft.com/library/mt203886.aspx)
+* [sys.pdw_replicated_table_cache_state](https://docs.microsoft.com/sql/relational-databases/system-catalog-views/sys-pdw-replicated-table-cache-state-transact-sql)
 * [sys.pdw_table_distribution_properties](http://msdn.microsoft.com/library/mt203896.aspx)
 * [sys.pdw_table_mappings](http://msdn.microsoft.com/library/mt203876.aspx)
 
-<a id="sql-data-warehouse-dynamic-management-views-dmvs" class="xliff"></a>
-
-## SQL 資料倉儲動態管理檢視 (DMV)
+## <a name="sql-data-warehouse-dynamic-management-views-dmvs"></a>SQL 資料倉儲動態管理檢視 (DMV)
 * [sys.dm_pdw_dms_cores](http://msdn.microsoft.com/library/mt203911.aspx)
 * [sys.dm_pdw_dms_external_work](https://msdn.microsoft.com/library/mt204024.aspx)
 * [sys.dm_pdw_dms_workers](http://msdn.microsoft.com/library/mt203878.aspx)
@@ -68,18 +62,14 @@ ms.lasthandoff: 07/06/2017
 * [sys.dm_pdw_wait_stats](http://msdn.microsoft.com/library/mt203909.aspx)
 * [sys.dm_pdw_waits](http://msdn.microsoft.com/library/mt203909.aspx)
 
-<a id="sql-server-dmvs-applicable-to-sql-data-warehouse" class="xliff"></a>
-
-## 適用於 SQL 資料倉儲的 SQL Server DMV
+## <a name="sql-server-dmvs-applicable-to-sql-data-warehouse"></a>適用於 SQL 資料倉儲的 SQL Server DMV
 下列 DMV 適用於「SQL 資料倉儲」，但必須透過連接到 **master** 資料庫才能執行。
 
 * [sys.database_service_objectives](https://msdn.microsoft.com/library/mt712619.aspx)
 * [sys.dm_operation_status](https://msdn.microsoft.com/library/dn270022.aspx)
 * [sys.fn_helpcollations()](https://msdn.microsoft.com/library/ms187963.aspx)
 
-<a id="sql-server-catalog-views" class="xliff"></a>
-
-## SQL Server 目錄檢視
+## <a name="sql-server-catalog-views"></a>SQL Server 目錄檢視
 * [sys.all_columns](http://msdn.microsoft.com/library/ms177522.aspx)
 * [sys.all_objects](http://msdn.microsoft.com/library/ms178618.aspx)
 * [sys.all_parameters](http://msdn.microsoft.com/library/ms190340.aspx)
@@ -145,9 +135,7 @@ ms.lasthandoff: 07/06/2017
 * [sys.types](http://msdn.microsoft.com/library/ms188021.aspx)
 * [sys.views](http://msdn.microsoft.com/library/ms190334.aspx)
 
-<a id="sql-server-dmvs-available-in-sql-data-warehouse" class="xliff"></a>
-
-## SQL 資料倉儲中可用的 SQL Server DMV
+## <a name="sql-server-dmvs-available-in-sql-data-warehouse"></a>SQL 資料倉儲中可用的 SQL Server DMV
 SQL 資料倉儲公開許多 SQL Server 動態管理檢視 (DMV)。 在 SQL 資料倉儲中查詢這些檢視表時，將會報告分布區域上執行的 SQL Database 狀態。
 
 由於 SQL 資料倉儲採用 Microsoft 的 MPP 技術，SQL 資料倉儲和分析平台系統的 Parallel Data Warehouse (PDW) 都使用相同的系統檢視表。
@@ -223,9 +211,7 @@ SQL 資料倉儲公開許多 SQL Server 動態管理檢視 (DMV)。 在 SQL 資�
 | sys.dm_pdw_nodes_tran_session_transactions |[sys.dm_tran_session_transactions](http://msdn.microsoft.com/library/ms188739.aspx) |
 | sys.dm_pdw_nodes_tran_top_version_generators |[sys.dm_tran_top_version_generators](http://msdn.microsoft.com/library/ms188778.aspx) |
 
-<a id="sql-server-2016-polybase-dmvs-available-in-sql-data-warehouse" class="xliff"></a>
-
-## SQL 資料倉儲中可用的 SQL Server 2016 PolyBase DMV
+## <a name="sql-server-2016-polybase-dmvs-available-in-sql-data-warehouse"></a>SQL 資料倉儲中可用的 SQL Server 2016 PolyBase DMV
 * [sys.dm_exec_compute_node_errors](http://msdn.microsoft.com/library/mt146380.aspx)
 * [sys.dm_exec_compute_node_status](http://msdn.microsoft.com/library/mt146382.aspx)
 * [sys.dm_exec_compute_nodes](https://msdn.microsoft.com/library/mt130700.aspx)
@@ -237,9 +223,7 @@ SQL 資料倉儲公開許多 SQL Server 動態管理檢視 (DMV)。 在 SQL 資�
 * [sys.dm_exec_external_operations](https://msdn.microsoft.com/library/mt146391.aspx)
 * [sys.dm_exec_external_work](https://msdn.microsoft.com/library/mt146375.aspx)
 
-<a id="sql-server-informationschema-views" class="xliff"></a>
-
-## SQL Server INFORMATION_SCHEMA 檢視表
+## <a name="sql-server-informationschema-views"></a>SQL Server INFORMATION_SCHEMA 檢視表
 * [CHECK_CONSTRAINTS](http://msdn.microsoft.com/library/ms189772.aspx)
 * [資料行](http://msdn.microsoft.com/library/ms188348.aspx)
 * [PARAMETERS](http://msdn.microsoft.com/library/ms173796.aspx)
@@ -250,9 +234,7 @@ SQL 資料倉儲公開許多 SQL Server 動態管理檢視 (DMV)。 在 SQL 資�
 * [VIEW_TABLE_USAGE](https://msdn.microsoft.com/library/ms173869.aspx)
 * [VIEWS](http://msdn.microsoft.com/library/ms181381.aspx)
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 如需更多的參考資訊，請參閱 [SQL 資料倉儲參考概觀][SQL Data Warehouse reference overview]。
 
 <!--Image references-->

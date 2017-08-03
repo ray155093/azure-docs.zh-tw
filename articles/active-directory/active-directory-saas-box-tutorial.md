@@ -1,159 +1,226 @@
 ---
 title: "教學課程：Azure Active Directory 與 Box 整合 | Microsoft Docs"
-description: "了解如何使用 Box 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！"
+description: "了解如何設定 Azure Active Directory 與 Box 之間的單一登入。"
 services: active-directory
+documentationCenter: na
 author: jeevansd
-documentationcenter: na
 manager: femila
 ms.assetid: 5f3517f8-30f2-4be7-9e47-43d702701797
 ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: identity
-ms.date: 02/10/2017
+ms.date: 05/19/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: 325d92e493f6e011367d2c85b52c92838327101e
-ms.openlocfilehash: 6e6dad2dba03bd3339d841c885ab4e60b2dafbd3
-ms.lasthandoff: 02/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2cc2afe8ff3f0063224c94eb0b8135347051b0aa
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-box"></a>教學課程：Azure Active Directory 與 Box 整合
-本教學課程的目的是要示範 Azure 與 Box 的整合。  
 
-本教學課程中說明的案例假設您已經具有下列項目：
+在本教學課程中，您將了解如何整合 Box 與 Azure Active Directory (Azure AD)。
 
-* 有效的 Azure 訂閱
-* Box 中的測試租用戶
+Box 與 Azure AD 整合提供下列優點：
 
-完成本教學課程之後，您指派給 Box 的 Azure AD 使用者就能夠單一登入您 Box 公司網站 (服務提供者起始登入) 的應用程式，或是使用 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+- 您可以在 Azure AD 中控制可存取 Box 的人員
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Box (單一登入)
+- 您可以在 Azure 入口網站中集中管理您的帳戶
 
-本教學課程中說明的案例由下列建置組塊組成：
+若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-* 啟用 Box 的應用程式整合
-* 設定單一登入 (SSO)
-* 設定使用者和群組佈建
-* 指派使用者
+## <a name="prerequisites"></a>必要條件
 
-![案例](./media/active-directory-saas-box-tutorial/IC769537.png "案例")
+若要設定 Azure AD 與 Box 整合，您需要下列項目：
 
-## <a name="enable-the-application-integration-for-box"></a>啟用 Box 的應用程式整合
-本節的目的是概述如何啟用 Box 的應用程式整合。
+- Azure AD 訂用帳戶
+- 已啟用 Box 單一登入功能的訂用帳戶
 
-**若要啟用 Box 的應用程式整合，請執行下列步驟：**
+> [!NOTE]
+> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
-1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
-   
-   ![Active Directory](./media/active-directory-saas-box-tutorial/IC700993.png "Active Directory")
-2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
-   
-   ![應用程式](./media/active-directory-saas-box-tutorial/IC700994.png "應用程式")
-4. 按一下頁面底部的 [新增]  。
-   
-   ![新增應用程式](./media/active-directory-saas-box-tutorial/IC749321.png "新增應用程式")
-5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
-   
-   ![從資源庫新增應用程式](./media/active-directory-saas-box-tutorial/IC749322.png "從資源庫新增應用程式")
-6. 在**搜尋方塊**中，輸入 **Box**。
-   
-   ![應用程式資源庫](./media/active-directory-saas-box-tutorial/IC701023.png "應用程式資源庫")
-7. 在結果窗格中，選取 [Box]，然後按一下 [完成] 以加入應用程式。
-   
-   ![Box](./media/active-directory-saas-box-tutorial/IC701024.png "Box")
+若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-## <a name="configure-single-sign-on"></a>設定單一登入
-本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Box 中進行驗證。 
+- 除非必要，否則請勿使用生產環境。
+- 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
-在此程序中，您必須將中繼資料上傳至 Box.com。
+## <a name="scenario-description"></a>案例描述
+在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
-**若要設定單一登入，請執行下列步驟：**
+1. 從資源庫新增 Box
+2. 設定並測試 Azure AD 單一登入
 
-1. 在 Azure 傳統入口網站的 [Box] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
-   
-   ![設定單一登入](./media/active-directory-saas-box-tutorial/IC769538.png "設定單一登入")
-2. 在 [要如何讓使用者登入 Box] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
-   
-   ![設定單一登入](./media/active-directory-saas-box-tutorial/IC769539.png "設定單一登入")
-3. 在 [設定應用程式 URL] 頁面的 [Box 租用戶 URL] 文字方塊中，輸入您的 Box 租用戶 URL (例如︰https://<mydomainname>.box.com)，然後按 [下一步]。
-   
-  ![設定應用程式 URL](./media/active-directory-saas-box-tutorial/IC669826.png "設定應用程式 URL")
-4. 在 [設定在 Box 單一登入] 頁面上，按一下 [下載中繼資料] 來下載您的中繼資料，然後將資料檔儲存在您的本機電腦中。
-   
-  ![設定單一登入](./media/active-directory-saas-box-tutorial/IC669824.png "設定單一登入")
-5. 將該中繼資料檔案轉寄給 Box 支援小組。 支援小組需要為您設定單一登入。
-6. 選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
-   
-  ![設定單一登入](./media/active-directory-saas-box-tutorial/IC769540.png "設定單一登入")
-   
-## <a name="configure-user-provisioning"></a>設定使用者佈建
+## <a name="adding-box-from-the-gallery"></a>從資源庫新增 Box
+若要設定將 Box 整合到 Azure AD 中，您需要從資源庫將 Box 新增到受管理的 SaaS 應用程式清單。
 
-本節的目的是要說明如何對 Box 啟用 Active Directory 使用者帳戶的佈建。
+**若要從資源庫新增 Box，請執行下列步驟：**
 
-**若要設定單一登入，請執行下列步驟：**
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
 
-1. 在 Azure 傳統入口網站中的 [Box] 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。 
-   
-    ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769541.png "啟用自動使用者佈建")
-2. 在 [啟用使用者佈建到 Box] 對話方塊頁面上，按一下 [啟用使用者佈建]。 
-   
-    ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769544.png "啟用自動使用者佈建")
-3. 在 [登入以授與 Box 存取權] 頁面上，提供必要的認證，然後按一下 [授權]。 
-   
-    ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769546.png "啟用自動使用者佈建")
-4. 按一下 [授與 Box 存取權]  ，以授權進行此作業並返回 Azure 傳統入口網站。 
-   
-    ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769549.png "啟用自動使用者佈建")
-5. 在 [佈建選項] 頁面上，[要佈建的物件類型] 核取方塊可讓您選取是否在使用者物件之外，也在 Box 佈建群組物件。  如需詳細資訊，請參閱以下＜指派使用者和群組＞一節。
-6. 若要完成設定，請按一下 [完成] 按鈕。 
-   
-    ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769551.png "啟用自動使用者佈建")
+    ![Active Directory][1]
 
-## <a name="assign-a-test-user"></a>指派測試使用者
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+2. 瀏覽至 [企業應用程式]。 然後移至 [所有應用程式]。
 
-**若要指派使用者給 Box，請執行下列步驟：**
+    ![應用程式][2]
+    
+3. 按一下對話方塊頂端的 [新增應用程式] 按鈕。
 
-1. 在 Azure 傳統入口網站中建立測試帳戶。
-2. 在 [Box] 應用程式整合頁面上，按一下 [指派使用者]。 
-   
-    ![指派使用者](./media/active-directory-saas-box-tutorial/IC769552.png "指派使用者")
-3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。 
-   
-   ![是](./media/active-directory-saas-box-tutorial/IC767830.png "是")
+    ![應用程式][3]
 
-請等候 10 分鐘並確認帳戶已同步至 Box。
+4. 在搜尋方塊中，輸入 **Box**。
 
-在第一個驗證步驟中，您可以在 Azure 傳統入口網站的 Box 應用程式整合頁面上，按一下 D 的儀表板來檢查佈建狀態。
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-box-tutorial/tutorial_box_search.png)
 
-![儀表板](./media/active-directory-saas-box-tutorial/IC769553.png "儀表板")
+5. 在結果窗格中，選取 [Box]，然後按一下 [新增] 按鈕以新增應用程式。
 
-成功完成的使用者佈建週期會以相關狀態表示：
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-box-tutorial/tutorial_box_addfromgallery.png)
 
-![整合狀態](./media/active-directory-saas-box-tutorial/IC769555.png "整合狀態")
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Box 設定及測試 Azure AD 單一登入。
 
-在 Box 租用戶中，已同步處理的使用者會列在 [管理主控台] 的 [管理使用者] 之下。
+若要讓單一登入運作，Azure AD 必須知道 Box 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 Box 中相關使用者之間的連結關聯性。
 
-![整合狀態](./media/active-directory-saas-box-tutorial/IC769556.png "整合狀態")
+建立此連結關聯性的方法，就是指派 Azure AD 中**使用者名稱**的值作為 Box 中 **Username** 的值。
 
-## <a name="assign-users-and-groups"></a>指派使用者和群組
-Azure 傳統入口網站的 [Box] > [使用者和群組] 索引標籤可讓您指定應該授與哪些使用者和群組 Box 的存取權。 指派使用者或群組會導致下列事項發生︰
+若要設定及測試與 Box 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
-* Azure AD 允許指派的使用者 (直接指派或群組成員資格) 驗證 Box。 如果使用者未經指派，則 Azure AD 不會允許他們登入 Box，並會在 Azure AD 登入頁面傳回錯誤。
-* Box 的應用程式圖格會加入使用者的 [應用程式啟動程式](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)中。
-* 如已啟用自動佈建，則指派的使用者及/或群組就會加入佈建佇列進行自動佈建。
-  
-  * 如果只設定要佈建使用者物件，則所有直接指派的使用者都會放在佈建佇列中，而任何指派群組成員的所有使用者也會放在佈建佇列中。 
-  * 如果設定要佈建的是群組物件，則所有指派的群組物件以及這些群組成員的所有使用者都會佈建到 Box。 群組和使用者成員資格都會保留寫入 Box。
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+3. **[建立 Box 測試使用者](#creating-a-box-test-user)** - 讓 Britta Simon 在 Box 中有一個對應項目連結至使用者的 Azure AD 代表身分。
+4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-您可以使用 [屬性] > [單一登入] 索引標籤來設定，在 SAML 驗證期間，要向 Box 呈現哪些使用者屬性 (或宣告)；使用 [屬性] > [佈建] 索引標籤來設定，在佈建作業期間，使用者及群組屬性如何從 Azure AD 流向 Box。 如需詳細資訊，請參閱底下的資源。
+### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+
+在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，然後在您的 Box 應用程式中設定單一登入。
+
+**若要使用 Box 設定 Azure AD 單一登入，請執行下列步驟：**
+
+1. 在 Azure 入口網站的 [Box] 應用程式整合分頁上，按一下 [單一登入]。
+
+    ![設定單一登入][4]
+
+2. 在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。
+ 
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/tutorial_box_samlbase.png)
+
+3. 在 [Box 網域與 URL] 區段中，執行下列步驟：
+
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/tutorial_box_url.png)
+
+    在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://<subdomain>.box.com`
+
+    > [!NOTE] 
+    > 這不是真實的值。 請使用實際的「登入 URL」來更新此值。 請連絡 [Box 用戶端支援小組](https://community.box.com/t5/custom/page/page-id/submit_sso_questionaire)以取得此值。 
+ 
+4. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將 XML 檔案儲存在您的電腦上。
+
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/tutorial_box_certificate.png) 
+
+5. 按一下 [儲存]  按鈕。
+
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/tutorial_general_400.png)
+
+6. 若要為您的應用程式設定 SSO，請連絡 [Box 用戶端支援小組](https://community.box.com/t5/custom/page/page-id/submit_sso_questionaire)並提供下載的 XML 檔案。
+
+> [!TIP]
+> 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
+
+### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
+
+![建立 Azure AD 使用者][100]
+
+**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
+
+1. 在 **Azure 入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-box-tutorial/create_aaduser_01.png) 
+
+2. 若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。
+    
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-box-tutorial/create_aaduser_02.png) 
+
+3. 若要開啟 [使用者] 對話方塊，按一下對話方塊頂端的 [新增]。
+ 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-box-tutorial/create_aaduser_03.png) 
+
+4. 在 [使用者]  對話頁面上，執行下列步驟：
+ 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-box-tutorial/create_aaduser_04.png) 
+
+    a. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
+
+    b.這是另一個 C# 主控台應用程式。 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
+
+    c. 選取 [顯示密碼] 並記下 [密碼] 的值。
+
+    d. 按一下 [建立] 。
+ 
+### <a name="creating-a-box-test-user"></a>建立 Box 測試使用者
+
+本節會在 Box 中建立名為 Britta Simon 的使用者。 Box 支援預設啟用的 Just-In-Time 佈建。
+在這一節沒有您需要進行的動作項目。 如果 Box 中還沒有該使用者，當您嘗試存取 Box 時，就會建立新的使用者。
+
+### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+
+在本節中，您會將 Box 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+
+![指派使用者][200] 
+
+**若要將 Britta Simon 指派給 Box，請執行下列步驟：**
+
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
+
+    ![指派使用者][201] 
+
+2. 在應用程式清單中，選取 [Box]。
+
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/tutorial_box_app.png) 
+
+3. 在左側功能表中，按一下 [使用者和群組]。
+
+    ![指派使用者][202] 
+
+4. 按一下 [新增] 按鈕。 然後選取 [新增指派] 對話方塊上的 [使用者和群組]。
+
+    ![指派使用者][203]
+
+5. 在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。
+
+6. 按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。
+
+7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
+    
+### <a name="testing-single-sign-on"></a>測試單一登入
+
+在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
+
+當您在存取面板中按一下 Box 圖格時，您應該會進入登入頁面以便登入您的 Box 應用程式。
 
 ## <a name="additional-resources"></a>其他資源
-* [自訂 SAML 權杖發出的宣告](active-directory-saml-claims-customization.md)
-* [佈建︰自訂屬性對應](active-directory-saas-customizing-attribute-mappings.md)
+
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+* [設定使用者佈建](active-directory-saas-box-userprovisioning-tutorial.md)
+
+
+<!--Image references-->
+
+[1]: ./media/active-directory-saas-box-tutorial/tutorial_general_01.png
+[2]: ./media/active-directory-saas-box-tutorial/tutorial_general_02.png
+[3]: ./media/active-directory-saas-box-tutorial/tutorial_general_03.png
+[4]: ./media/active-directory-saas-box-tutorial/tutorial_general_04.png
+
+[100]: ./media/active-directory-saas-box-tutorial/tutorial_general_100.png
+
+[200]: ./media/active-directory-saas-box-tutorial/tutorial_general_200.png
+[201]: ./media/active-directory-saas-box-tutorial/tutorial_general_201.png
+[202]: ./media/active-directory-saas-box-tutorial/tutorial_general_202.png
+[203]: ./media/active-directory-saas-box-tutorial/tutorial_general_203.png
 
 

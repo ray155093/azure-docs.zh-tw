@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/01/2016
 ms.author: jonor;sivae
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 24d6a25e872eabb7d64d57d5ee66969401e4f1cd
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: fdb3c5cbd3acee90386352c6f180a71aa81f54fe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -84,7 +86,7 @@ VNETLocal 一律是該特定網路之 VNet 的定義位址前置詞 (也就是�
 3. “Default” = 上述路由表所示的系統路由、本機 VNet 和靜態項目。
 
 > [!NOTE]
-> 您現在可以將「使用者定義路由」(UDR) 與 ExpressRoute 和「VPN 閘道」搭配使用，以強制將輸入和輸出的跨單位流量路由傳送至網路虛擬設備 (NVA)。
+> 您現在可以將使用者定義路由 (UDR) 與 ExpressRoute 和 VPN 閘道搭配使用，以強制將輸入和輸出的跨單位流量路由傳送至網路虛擬設備 (NVA)。
 > 
 > 
 
@@ -246,7 +248,7 @@ UDR 隨附 IP 轉送功能。 這是虛擬應用裝置的一項設定，以允�
 
 在此範例中，應定義三個具名的網路物件 (Frontend 子網路和 Backend 子網路各一個，還有一個網路物件則用於 DNS 伺服器的 IP 位址)。 若要建立具名網路：先從 Barracuda NG Admin 用戶端儀表板瀏覽至 [設定] 索引標籤，在 [作業組態] 區段中按一下 [規則集]，接著按一下 [防火牆物件] 功能表底下的 [網路]，然後在 [編輯網路] 功能表中按一下 [新增]。 現在您可以藉由新增名稱和前置詞來建立網路物件：
 
-![建立前端網路物件][3]
+![建立 FrontEnd 網路物件][3]
 
 這會建立 FrontEnd 子網路的具名網路，您也應該對 BackEnd 子網路建立類似物件。 現在您可以更輕鬆地在防火牆規則中依名稱參考子網路。
 
@@ -274,11 +276,11 @@ UDR 隨附 IP 轉送功能。 這是虛擬應用裝置的一項設定，以允�
 ### <a name="firewall-rules-creation"></a>建立防火牆規則
 此範例使用三種類型的防火牆規則，它們各有不同的圖示：
 
-應用程式重新導向規則： ![應用程式重新導向圖示][7]
+應用程式重新導向規則：![應用程式重新導向圖示][7]
 
-目的地 NAT 規則： ![目的地 NAT 圖示][8]
+目的地 NAT 規則：![目的地 NAT 圖示][8]
 
-傳遞規則： ![傳遞圖示][9]
+傳遞規則：![傳遞圖示][9]
 
 Barracuda 網站可以找到這些規則的詳細資訊。
 
@@ -983,9 +985,4 @@ Barracuda 網站可以找到這些規則的詳細資訊。
 <!--Link References-->
 [HOME]: ../best-practices-network-security.md
 [SampleApp]: ./virtual-networks-sample-app.md
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

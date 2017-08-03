@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/03/2017
 ms.author: robinsh
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: da581b2e22f85152ae7bc5f0d403b2fc0aaf0e54
-ms.lasthandoff: 04/06/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: a477c1eaf2388f31d4fd36b90f9a830c782873d3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="storage-analytics"></a>儲存體分析
@@ -38,7 +38,7 @@ Azure 儲存體分析會執行記錄，並提供儲存體帳戶的度量資料�
 
 只有在發生儲存體服務活動時，才會建立記錄檔項目。 例如，如果儲存體帳戶在其 Blob 服務中有活動，而不是在其資料表或佇列服務中，則只會建立關於 Blob 服務的記錄檔。
 
-儲存體分析記錄不適用於 Azure 檔案服務。
+儲存體分析記錄不適用於 Azure 檔案儲存體。
 
 ### <a name="logging-authenticated-requests"></a>記錄驗證要求
 系統將記錄下列類型的驗證要求：

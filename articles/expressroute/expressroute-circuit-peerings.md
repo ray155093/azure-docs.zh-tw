@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/14/2017
 ms.author: cherylmc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: cb88ce2960d63b8a1c5861913b2095bcc977938f
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 3742fb37016db5e6230bc2b7ce11f0270d9d58b3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="expressroute-circuits-and-routing-domains"></a>ExpressRoute 線路和路由網域
@@ -83,8 +83,7 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
 * 尋找服務提供者。 請參閱 [ExpressRoute 服務提供者和位置](expressroute-locations.md)。
 * 請確定符合所有必要條件。 請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
 * 設定 ExpressRoute 連線。
-  * [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)
-  * [設定路由 (線路對等)](expressroute-howto-routing-classic.md)
-  * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
+  * [建立和管理 ExpressRoute 線路](expressroute-howto-circuit-portal-resource-manager.md)
+  * [設定 ExpressRoute 線路的路由 (對等戶連)](expressroute-howto-routing-portal-resource-manager.md)
 
 

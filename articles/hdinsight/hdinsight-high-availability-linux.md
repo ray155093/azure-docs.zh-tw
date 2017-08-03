@@ -15,14 +15,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
-ms.date: 06/26/2017
+ms.date: 07/28/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: f8f58f7007b6a52f0955232ad1492b25f3e851f0
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 56dd07de81e322aa66587ee160beb734811285dc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="availability-and-reliability-of-hadoop-clusters-in-hdinsight"></a>HDInsight 上 Hadoop 叢集的可用性和可靠性
@@ -36,12 +35,10 @@ Hadoop 藉由在叢集中的多個節點間複寫服務和資料，以達到高�
 
 ## <a name="availability-and-reliability-of-nodes"></a>節點的可用性和可靠性
 
-使用 Azure 虛擬機器在 HDInsight 叢集中的節點實作。 如果節點失敗，該節點會離線，並且會建立一個新的節點，來取代失敗的節點。 當節點離線時，在新節點上線之前，將會使用相同類型的另一個節點。
+使用 Azure 虛擬機器在 HDInsight 叢集中的節點實作。 下列各節會討論個別的節點類型所搭配使用的 HDInsight。 
 
 > [!NOTE]
-> 當節點失敗時，如果是正在分析資料，其作業的進度會遺失。 作業已提交至另一個節點。
-
-下列各節會討論個別的節點類型所搭配使用的 HDInsight。 並非所有的節點類型都可用於某個叢集類型。 例如，Hadoop 叢集類型就不會有任何 Nimbus 節點。 如需 HDInsight 叢集類型所使用的節點詳細資訊，請參閱[在 HDInsight 建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)文件的＜叢集類型＞一節。
+> 並非所有的節點類型都可用於某個叢集類型。 例如，Hadoop 叢集類型就不會有任何 Nimbus 節點。 如需 HDInsight 叢集類型所使用的節點詳細資訊，請參閱[在 HDInsight 建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)文件的＜叢集類型＞一節。
 
 ### <a name="head-nodes"></a>前端節點
 

@@ -16,11 +16,11 @@ ms.workload:
 ms.date: 05/10/2017
 ms.author: mimig
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 485fb2e8ac96e2cdb8e4293b63971af1c1b9baf4
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 2eed74ae9bd173b0944ec190dfe5d9a4bdc54c37
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
+ms.lasthandoff: 07/20/2017
 
 ---
 
@@ -108,7 +108,7 @@ private DocumentClient client;
 
 從入口網站中複製 URI，然後將它貼到 program.cs 檔案中的 `<your endpoint URL>`。 然後從入口網站複製「主要金鑰」，並將它貼到 `<your primary key>`。 請務必將您值中的 `<` 和 `>` 移除。
 
-![NoSQL 教學課程用來建立 C# 主控台應用程式的 Azure 入口網站螢幕擷取畫面。 顯示 Azure Cosmos DB 帳戶，其中 Azure Cosmos DB 帳戶刀鋒視窗上醒目提示 [金鑰]，[金鑰] 刀鋒視窗上則醒目提示 [URI] 和 [主要金鑰] 的值[keys]
+![NoSQL 教學課程用來建立 C# 主控台應用程式之 Azure 入口網站的螢幕擷取畫面。 顯示 Azure Cosmos DB 帳戶，其中 Azure Cosmos DB 帳戶刀鋒視窗上醒目提示 [金鑰]，[金鑰] 刀鋒視窗上則醒目提示 [URI] 和 [主要金鑰] 的值](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-keys.png)
 
 ## <a id="instantiate"></a>將 DocumentClient 具現化
 

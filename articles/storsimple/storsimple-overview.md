@@ -4,7 +4,7 @@ description: "描述 StorSimple 分層、裝置、虛擬裝置、服務與儲存
 services: storsimple
 documentationcenter: NA
 author: SharS
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 7144d218-db21-4495-88fb-e3b24bbe45d1
 ms.service: storsimple
@@ -12,13 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 10/05/2016
+ms.date: 07/10/2017
 ms.author: v-sharos@microsoft.com
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 8824568e9e4204a567cc08a10608cf835aa7164b
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: aa1b28301eec88ac1be160722ce3b734f4fea43f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -28,46 +28,38 @@ ms.lasthandoff: 05/16/2017
 
 StorSimple 使用 [儲存體分層](#automatic-storage-tiering) 管理各種儲存媒體中儲存的資料。 目前的工作集是以內部部署的方式儲存在固態硬碟 (SSD) 中，較不常使用的資料會儲存於硬碟機 (HDD)，而封存資料則會推送到雲端。 此外，StorSimple 使用重複資料刪除和壓縮來減少資料使用的儲存體數量。 如需詳細資訊，請至 [重複資料刪除和壓縮](#deduplication-and-compression)。 如需 StorSimple 8000 系列文件中使用的其他主要詞彙和概念定義，請至這篇文章的結尾的 [StorSimple 詞彙](#storsimple-terminology) 。
 
-利用 StorSimple Update 2，您可以將適當的磁碟區視為 *在本機固定* 以確保主要資料留在本機裝置，並且不會分層到雲端。 這可讓您在本機固定磁碟區執行對雲端延遲敏感的工作負載，例如 SQL 和虛擬機器工作負載，同時繼續使用雲端備份。 如需本機固定磁碟區的詳細資訊，請參閱 [使用 StorSimple Manager 服務來管理磁碟區](storsimple-manage-volumes-u2.md)。 
-
-Update 2 也可讓您建立 StorSimple 虛擬裝置，可利用 Azure 進階儲存體所提供的低延遲及高效能。 如需 StorSimple 高階虛擬裝置的詳細資訊，請參閱 [部署和管理 Azure 中的 StorSimple 虛擬裝置](storsimple-virtual-device-u2.md)。 如需 Azure 進階儲存體的詳細資訊，請移至 [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)。
-
 除了儲存體管理外，StorSimple 資料保護功能可讓您建立依需求和排程的備份，然後將其儲存在本機或雲端中。 備份採用累加快照的形式，這表示建立及還原備份更快速。 雲端快照在災害復原案例中至關重要，因為這些快照會取代次要儲存體系統 (例如磁帶備份)，並讓您將資料還原到資料中心或在必要時還原至其他網站。
 
 ![影片圖示](./media/storsimple-overview/video_icon.png) 觀賞 Microsoft Azure StorSimple 的快速簡介影片。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/StorSimple-Hybrid-Cloud-Storage-Solution/player]
-> 
-> 
 
 ## <a name="why-use-storsimple"></a>為何要使用 StorSimple？
 下表描述一些 Microsoft Azure StorSimple 提供的主要優點。
 
 | 功能 | 優點 |
 | --- | --- |
-| 透明整合 |Microsoft Azure StorSimple 使用 iSCSI 通訊協定，以無形的方式連結資料儲存設備。 這可確保儲存在雲端、在資料中心或在遠端伺服器上的資料會看似儲存在單一位置。 |
-| 降低儲存成本 |Microsoft Azure StorSimple 會配置足夠符合目前需求的本機或雲端儲存體，且只在必要時才擴充雲端儲存體。 它可以進一步地降低儲存體需求和支出，方法是消除相同資料的備援版本 (重複資料刪除)，並使用壓縮。 |
-| 簡化儲存管理 |Microsoft Azure StorSimple 提供系統管理工具，可用來設定和管理在內部部署、在遠端伺服器上和在雲端中儲存的資料。 此外，您可以從 Microsoft Management Console (MMC) 嵌入式管理單元來管理備份和還原功能。 StorSimple 提供一個單獨的選用介面，可用來將 StorSimple 管理和資料保護服務延伸到儲存在 SharePoint 伺服器上的內容。 |
-| 改進災害復原和提高合規性 |Microsoft Azure StorSimple 不需要延長的回復時間。 相反地，它會在需要時還原資料。 這表示正常作業可以在最少干擾的情況下繼續執行。 此外，您還可以設定原則以指定備份排程和資料保留。 |
-| 資料行動性 |您可以從其他站台存取上傳至 Microsoft Azure 雲端服務的資料，以供復原和移轉使用。 此外，您可以使用 StorSimple，在 Microsoft Azure 中執行的虛擬機器 (VM) 上設定 StorSimple 虛擬裝置。 VM 然後可以使用虛擬裝置來存取儲存的資料，以供測試或復原使用。 |
-| 支援其他雲端服務提供者 |包含軟體更新 1 或更新版本的 StorSimple 8000 Series 支援使用 RRS 的 Amazon S3、HP 和 OpenStack 雲端服務，以及 Microsoft Azure。 (您仍然需要 Microsoft Azure 儲存體帳戶進行裝置管理。)如需詳細資訊，請參閱 [Update 1.2 的新功能](storsimple-update1-release-notes.md#whats-new-in-update-12)。 |
-| 業務持續性 |Update 1 或更新版本也提供新的移轉功能，可讓 StorSimple 5000-7000 系列的使用者將他們的資料移轉到 StorSimple 8000 系列裝置。 |
-| Azure 政府機構入口網站中的可用性 |StorSimple Update 1 或更新版本可以在 Azure 政府機構入口網站中使用。 如需詳細資訊，請參閱 [在政府機構入口網站中部署您的內部部署 StorSimple 裝置](storsimple-deployment-walkthrough-gov.md)。 |
-| 資料保護與可用性 |具備 Update 1 或更新版本的 StorSimple 8000 系列除了本地備援儲存體 (LRS) 和異地備援儲存體 (GRS) 之外，也將支援區域備援儲存體 (ZRS)。 如需 ZRS 的詳細資訊，請參閱 [本文件的 Azure 儲存體備援選項](https://azure.microsoft.com/documentation/articles/storage-redundancy/) 。 |
-| 重要應用程式的支援 |利用 StorSimple Update 2，您可以將適當的磁碟區視為在本機固定。 這項功能可確保重要應用程式所需的資料不會分層至雲端。 本機固定磁碟區不受限於雲端延遲或連線問題。 如需本機固定磁碟區的詳細資訊，請參閱 [使用 StorSimple Manager 服務來管理磁碟區](storsimple-manage-volumes-u2.md)。 |
-| 低延遲和高效能 |StorSimple Update 2 可讓您建立虛擬裝置，可利用 Azure 進階儲存體帳戶的高效能和低延遲功能。 如需 StorSimple 高階虛擬裝置的詳細資訊，請參閱 [部署和管理 Azure 中的 StorSimple 虛擬裝置](storsimple-virtual-device-u2.md)。 |
+| 透明整合 |使用 iSCSI 通訊協定，以無形的方式連結資料儲存設備。 這可確保儲存在雲端、在資料中心或在遠端伺服器上的資料會看似儲存在單一位置。 |
+| 降低儲存成本 |配置足夠符合目前需求的本機或雲端儲存體，且只在必要時才擴充雲端儲存體。 它可以進一步地降低儲存體需求和支出，方法是消除相同資料的備援版本 (重複資料刪除)，並使用壓縮。 |
+| 簡化儲存管理 |提供系統管理工具，可用來設定和管理在內部部署、在遠端伺服器上和在雲端中儲存的資料。 此外，您可以從 Microsoft Management Console (MMC) 嵌入式管理單元來管理備份和還原功能。|
+| 改進災害復原和提高合規性 |不需要延長復原時間。 相反地，它會在需要時還原資料。 這表示正常作業可以在最少干擾的情況下繼續執行。 此外，您還可以設定原則以指定備份排程和資料保留。 |
+| 資料行動性 |您可以從其他站台存取上傳至 Microsoft Azure 雲端服務的資料，以供復原和移轉使用。 此外，您可以使用 StorSimple，在 Microsoft Azure 中執行的虛擬機器 (VM) 上設定 StorSimple 雲端設備。 VM 然後可以使用虛擬裝置來存取儲存的資料，以供測試或復原使用。 |
+| 業務持續性 |允許 StorSimple 5000-7000 系列的使用者將他們的資料移轉到 StorSimple 8000 系列裝置。 |
+| Azure 政府機構入口網站中的可用性 |StorSimple 可以在 Azure Government 入口網站中使用。 如需詳細資訊，請參閱 [在政府機構入口網站中部署您的內部部署 StorSimple 裝置](storsimple-8000-deployment-walkthrough-gov-u2.md)。 |
+| 資料保護與可用性 |StorSimple 8000 系列除了本地備援儲存體 (LRS) 和異地備援儲存體 (GRS) 之外，也支援區域備援儲存體 (ZRS)。 如需 ZRS 的詳細資訊，請參閱 [本文件的 Azure 儲存體備援選項](https://azure.microsoft.com/documentation/articles/storage-redundancy/) 。 |
+| 重要應用程式的支援 |StorSimple 可讓您找出適當的磁碟區作為本機固定的磁碟區，進而確保重要應用程式所需的資料不會分層到雲端。 本機固定磁碟區不受限於雲端延遲或連線問題。 如需有關本機固定磁碟區的詳細資訊，請參閱[使用 StorSimple 裝置管理員服務來管理磁碟區](storsimple-8000-manage-volumes-u2.md)。 |
+| 低延遲和高效能 |您可以利用 Azure 進階儲存體的高效能和低延遲功能來建立雲端設備。 如需 StorSimple 進階雲端設備的詳細資訊，請參閱[部署和管理 Azure 中的 StorSimple 雲端設備](storsimple-8000-cloud-appliance-u2.md)。 |
 
-![影片圖示](./media/storsimple-overview/video_icon.png) 觀賞 [這段影片](https://www.youtube.com/watch?v=4MhJT5xrvQw&feature=youtu.be) 了解 StorSimple 8000 系列功能及優點的概觀。
 
 ## <a name="storsimple-components"></a>StorSimple 元件
 Microsoft Azure StorSimple 解決方案包括下列元件：
 
 * **Microsoft Azure StorSimple 裝置** - 包含 SSD 和 HDD 的內部部署混合式存放裝置陣列，提供備援控制器和自動容錯移轉功能。 控制器可管理儲存體分層、將目前使用的 (或熱) 資料放在本機儲存體 (在裝置或在內部部署伺服器中)，而將不常使用的資料移到雲端。
-* **StorSimple 虛擬裝置** – 也就是 StorSimple 虛擬應用裝置，這是 StorSimple 裝置的軟體版本，可複寫實體混合式存放裝置的架構和大部分功能。 StorSimple 虛擬裝置會在 Azure 虛擬機器中的單一節點上執行。 可利用 Azure 進階儲存體帳戶的高階虛擬裝置可在 Update 2 及更新版本中使用。
-* **StorSimple Manager 服務** – Azure 傳統入口網站的延伸模組，可讓您透過單一 Web 介面管理 StorSimple 裝置或 StorSimple 虛擬裝置。 您可以使用 StorSimple Manager 服務來建立和管理服務、檢視和管理裝置、檢視警示、管理磁碟區，以及檢視和管理備份原則與備份類別。
+* **StorSimple 雲端設備** – 也稱為 StorSimple 虛擬設備，這是 StorSimple 裝置的軟體版本，可複寫實體混合式存放裝置的架構和大部分功能。 StorSimple 雲端設備會在 Azure 虛擬機器中的單一節點上執行。 可利用 Azure 進階儲存體帳戶的高階虛擬裝置可在 Update 2 及更新版本中使用。
+* **StorSimple 裝置管理員服務** – Azure 入口網站的延伸模組，可讓您透過單一 Web 介面管理 StorSimple 裝置或 StorSimple 雲端設備。 您可以使用 StorSimple 裝置管理員服務來建立和管理服務、檢視和管理裝置、檢視警示、管理磁碟區，以及檢視和管理備份原則與備份目錄。
 * **Windows PowerShell for StorSimple** – 可讓您管理 StorSimple 裝置的命令列介面。 Windows PowerShell for StorSimple 的功能包括：可讓您註冊您的 StorSimple 裝置、在您的裝置上設定網路介面、安裝特定類型的更新，以及透過存取支援工作階段及變更裝置狀態來疑難排解您的裝置。 藉由連接至序列主控台或使用 Windows PowerShell 遠端處理，您可以存取 Windows PowerShell for StorSimple。
 * **Azure PowerShell StorSimple Cmdlet** – 一組 Windows PowerShell Cmdlet，可讓您從命令列將服務層級和移轉工作自動化。 如需適用於 StorSimple 的 Azure PowerShell Cmdlet 的詳細資訊，請移至 [Cmdlet 參考](/powershell/module/azure/?view=azuresmps-3.7.0#azure)。
-* **StorSimple Snapshot Manager** – MMC 嵌入式管理單元，可使用磁碟區群組和 Windows 磁碟區陰影複製服務產生應用程式一致備份。 此外，您可以使用 StorSimple Snapshot Manager 建立備份排程及複製或還原磁碟區。 
+* **StorSimple Snapshot Manager** – MMC 嵌入式管理單元，可使用磁碟區群組和 Windows 磁碟區陰影複製服務產生應用程式一致備份。 此外，您可以使用 StorSimple Snapshot Manager 建立備份排程及複製或還原磁碟區。
 * **StorSimple Adapter for SharePoint** – 此工具可將 Microsoft Azure StorSimple 儲存體和資料保護明確延伸至 SharePoint 伺服器陣列，並可讓您從 SharePoint 管理中心入口網站檢視和管理 StorSimple 儲存體。
 
 下圖提供 Microsoft Azure StorSimple 架構和元件的高階檢視。
@@ -88,25 +80,25 @@ StorSimple 裝置包括 SSD 和硬碟 HDD，並支援叢集和自動容錯移轉
 * 叢集感知更新可管理容錯移轉叢集中伺服器上的軟體更新，因此更新對服務可用性的影響會降到最低或不會有影響
 * 叢集服務 (如後端叢集般運作) 可提供高可用性，並將 HDD 或 SSD 故障或離線時可能會發生的任何負面影響降到最低
 
-不論在任何時間點，只會有一個作用中的控制器。 如果作用中的控制器發生故障，則第二個控制站便會自動啟動。 
+不論在任何時間點，只會有一個作用中的控制器。 如果作用中的控制器發生故障，則第二個控制站便會自動啟動。
 
-如需詳細資訊，請移至 [StorSimple 硬體元件和狀態](storsimple-monitor-hardware-status.md)。
+如需詳細資訊，請移至 [StorSimple 硬體元件和狀態](storsimple-8000-monitor-hardware-status.md)。
 
-## <a name="storsimple-virtual-device"></a>StorSimple 虛擬裝置
-您可以使用 StorSimple 來建立可複寫實體混合式存放裝置之架構與功能的虛擬裝置。 StorSimple 虛擬裝置 (也稱為 StorSimple 虛擬應用裝置) 會在 Azure 虛擬機器中的單一節點上執行。 (虛擬裝置只能建立在 Azure 虛擬機器上。 您無法在 StorSimple 裝置或在內部部署伺服器上建立虛擬裝置)。 
+## <a name="storsimple-cloud-appliance"></a>StorSimple 雲端設備
+您可以使用 StorSimple 來建立可複寫實體混合式存放裝置之架構與功能的雲端設備。 StorSimple 雲端設備 (也稱為 StorSimple 虛擬設備) 會在 Azure 虛擬機器中的單一節點上執行。 (雲端設備只能建立在 Azure 虛擬機器上。 您無法在 StorSimple 裝置或在內部部署伺服器上建立虛擬裝置)。
 
-虛擬裝置具有下列功能：
+雲端設備具有下列功能：
 
-* 模仿實體設備的運作方式，而且可對雲端中的虛擬機器提供 iSCSI 介面。 
-* 您可以在雲端中建立無限量的虛擬裝置，視需要將其開啟和關閉。 
-* 可協助您模擬災害復原、開發和測試案例中的內部部署環境，並可協助從備份進行項目層級的擷取。 
+* 模仿實體設備的運作方式，而且可對雲端中的虛擬機器提供 iSCSI 介面。
+* 您可以在雲端中建立無限量的雲端設備，視需要將其開啟和關閉。
+* 可協助您模擬災害復原、開發和測試案例中的內部部署環境，並可協助從備份進行項目層級的擷取。
 
-利用 Update 2 和更新版本，StorSimple 虛擬裝置可在兩個模型中使用：8010 裝置 (先前稱為 1100 模型) 和 8020 裝置。 8010 裝置的最大容量為 30 TB。 利用 Azure 進階儲存體帳戶的 8020 裝置的最大容量為 64 TB。 (在本機層中，Azure 進階儲存體會將資料儲存在 SSD 上，而標準儲存體會將資料儲存在 HDD 上。)請注意，您必須具有 Azure 進階儲存體帳戶才能使用進階儲存體。 如需進階儲存體的詳細資訊，請移至 [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)。
+StorSimple 雲端設備可在兩種機型中使用：8010 裝置 (先前稱為 1100 機型) 和 8020 裝置。 8010 裝置的最大容量為 30 TB。 利用 Azure 進階儲存體帳戶的 8020 裝置的最大容量為 64 TB。 (在本機層中，Azure 進階儲存體會將資料儲存在 SSD 上，而標準儲存體會將資料儲存在 HDD 上。)請注意，您必須具有 Azure 進階儲存體帳戶才能使用進階儲存體。 如需進階儲存體的詳細資訊，請移至 [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)。
 
-如需 StorSimple 虛擬裝置的詳細資訊，請移至 [部署和管理 Azure 中的 StorSimple 虛擬裝置](storsimple-virtual-device-u2.md)。
+如需 StorSimple 雲端設備的詳細資訊，請移至[部署和管理 Azure 中的 StorSimple 雲端設備](storsimple-8000-cloud-appliance-u2.md)。
 
-## <a name="storsimple-manager-service"></a>StorSimple Manager 服務
-Microsoft Azure StorSimple 提供可讓您集中管理資料中心和雲端儲存體的 Web 架構使用者介面 (StorSimple Manager 服務)。 您可以使用 StorSimple Manager 服務來執行下列工作：
+## <a name="storsimple-device-manager-service"></a>StorSimple 裝置管理員服務
+Microsoft Azure StorSimple 提供一個 Web 架構使用者介面 (StorSimple 裝置管理員服務)，可讓您集中管理資料中心和雲端儲存體。 您可以使用 StorSimple 裝置管理員服務來執行下列工作：
 
 * 進行 StorSimple 裝置的系統設定。
 * 進行和管理 StorSimple 裝置的安全性設定。
@@ -117,9 +109,9 @@ Microsoft Azure StorSimple 提供可讓您集中管理資料中心和雲端儲�
 * 監視效能。
 * 檢閱系統設定，並識別可能發生的問題。
 
-您可以使用 StorSimple Manager 服務來執行所有管理工作，除了需要系統停機的工作 (例如初始安裝和更新安裝) 以外。
+您可以使用 StorSimple 裝置管理員服務來執行所有管理工作，除了需要系統停機的工作 (例如初始安裝和更新安裝) 以外。
 
-如需詳細資訊，請移至 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
+如需詳細資訊，請移至[使用 StorSimple 裝置管理員服務管理 StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
 
 ## <a name="windows-powershell-for-storsimple"></a>Windows PowerShell for StorSimple
 Windows PowerShell for StorSimple 提供了可用來建立和管理 Microsoft Azure StorSimple 服務以及設定和監視 StorSimple 裝置的命令列介面。 它會是 Windows PowerShell 型的命令列介面，其中包含可管理 StorSimple 裝置的專用 Cmdlet。 Windows PowerShell for StorSimple 的功能可讓您：
@@ -130,9 +122,9 @@ Windows PowerShell for StorSimple 提供了可用來建立和管理 Microsoft Az
 * 透過存取支援工作階段來疑難排解您的裝置。
 * 變更裝置狀態。
 
-您可以從序列主控台 (在與裝置直接連線的主機電腦上) 或使用 Windows PowerShell 遠端處理來遠端存取 Windows PowerShell for StorSimple。 請注意，部分 Windows PowerShell for StorSimple 工作 (例如初始裝置註冊) 只能在序列主控台上執行。 
+您可以從序列主控台 (在與裝置直接連線的主機電腦上) 或使用 Windows PowerShell 遠端處理來遠端存取 Windows PowerShell for StorSimple。 請注意，部分 Windows PowerShell for StorSimple 工作 (例如初始裝置註冊) 只能在序列主控台上執行。
 
-如需詳細資訊，請移至 [使用 Windows PowerShell for StorSimple 管理您的裝置](storsimple-windows-powershell-administration.md)。
+如需詳細資訊，請移至 [使用 Windows PowerShell for StorSimple 管理您的裝置](storsimple-8000-windows-powershell-administration.md)。
 
 ## <a name="azure-powershell-storsimple-cmdlets"></a>Azure PowerShell StorSimple Cmdlet
 Azure PowerShell StorSimple Cmdlet 是一組 Windows PowerShell Cmdlet 集合，可讓您從命令列將服務層級和移轉工作自動化。 如需適用於 StorSimple 的 Azure PowerShell Cmdlet 的詳細資訊，請移至 [Cmdlet 參考](/powershell/module/azure/?view=azuresmps-3.7.0)。
@@ -174,19 +166,18 @@ Microsoft Azure StorSimple 會依據目前使用量、使用年限及與其他�
 
 > [!NOTE]
 > 在 Update 2 或更新版本中，您可以指定本機固定磁碟區，在此情況下，資料會保留在本機裝置，而且不會分層至雲端。 
-> 
-> 
+
 
 StorSimple 會隨著使用模式變更而調整並重新排列資料和儲存體指派。 例如，某些資訊在經過一段時間之後可能會變成不常使用。 在資訊變成極少使用的情況下，系統會將它從 SSD 移轉至 HDD，然後移轉至雲端。 如果相同資料再次變成使用中，系統會將它移轉回存放裝置。
 
 儲存體分層程序會如下進行：
 
 1. 系統管理員設定 Microsoft Azure 雲端儲存體帳戶。
-2. 管理員使用序列主控台和 StorSimple Manager 服務 (在 Azure 傳統入口網站中執行)，設定裝置與檔案伺服器，以建立磁碟區和資料保護原則。 內部部署機器 (如檔案伺服器) 使用 Internet Small Computer System Interface (iSCSI) 來存取 StorSimple 裝置。
+2. 系統管理員使用序列主控台和 StorSimple 裝置管理員服務 (在 Azure 入口網站中執行)，設定裝置與檔案伺服器，以建立磁碟區和資料保護原則。 內部部署機器 (如檔案伺服器) 使用 Internet Small Computer System Interface (iSCSI) 來存取 StorSimple 裝置。
 3. 一開始，StorSimple 將資料儲存在裝置的快速 SSD 層上。
 4. 當 SSD 層接近容量上限時，StorSimple deduplicates 會刪除重複資料並壓縮最舊的資料區塊，並將它們移至 HDD 層。
 5. 當 HDD 層接近容量上限時，StorSimple 會加密最舊的資料區塊，並透過 HTTPS 將它們安全地傳送到 Microsoft Azure 儲存體帳戶。
-6. Microsoft Azure 會在其資料中心和遠端資料中心建立多個資料複本，確保災害發生時可以復原資料。 
+6. Microsoft Azure 會在其資料中心和遠端資料中心建立多個資料複本，確保災害發生時可以復原資料。
 7. 當檔案伺服器要求雲端中儲存的資料時，StorSimple 會順暢地傳回它，並將複本儲存在 StorSimple 裝置的 SSD 層上。
 
 #### <a name="how-storsimple-manages-cloud-data"></a>StorSimple 管理雲端資料的方式
@@ -240,7 +231,7 @@ StorSimple 8000 系列裝置不支援下列工作負載。 如果部署於 StorS
 * 內容發佈
 * 從 SCSI 開機
 
-以下是 StorSimple 支援的基礎結構元件清單。 
+以下是 StorSimple 支援的基礎結構元件清單。
 
 | 案例 | 工作負載 | 支援 | 限制 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -252,6 +243,15 @@ StorSimple 8000 系列裝置不支援下列工作負載。 如果部署於 StorS
 
 是&#42; - 應套用解決方案指導方針和限制。
 
+以下是與 StorSimple 搭配使用來建立解決方案的其他軟體清單。
+
+| 工作負載類型 | 與 StorSimple 搭配使用的軟體 | 支援的版本|解決方案指南的連結| 
+| --- | --- | --- | --- |
+| 備份目標 |Veeam |Veeam v 9 及更新版本 |[使用 StorSimple 做為 Veeam 的備份目標](storsimple-configure-backup-target-veeam.md)|
+| 備份目標 |Veritas Backup Exec |Backup Exec 16 及更新版本 |[使用 StorSimple 做為 Backup Exec 的備份目標](storsimple-configure-backup-target-using-backup-exec.md)|
+| 備份目標 |Veritas NetBackup |NetBackup 7.7.x 及更新版本  |[使用 StorSimple 做為 NetBackup 的備份目標](storsimple-configure-backuptarget-netbackup.md)|
+| 通用檔案共用 <br></br> 共同作業 |Talon  |[StorSimple 搭配 Talon](https://www.talonstorage.com/products/fast-deployment-azure-storsimple) | |
+
 ## <a name="storsimple-terminology"></a>StorSimple 詞彙
 在部署 Microsoft Azure StorSimple 解決方案，我們建議您檢閱下列詞彙和定義。
 
@@ -262,7 +262,7 @@ StorSimple 8000 系列裝置不支援下列工作負載。 如果部署於 StorS
 | AES 256 |256 位元進階加密標準 (AES) 演算法，用於加密移入和移出雲端的資料。 |
 | 配置單位大小 (AUS) |最小數量的磁碟空間，可配置來保留 Windows 檔案系統中的檔案。 如果檔案大小不是叢集大小的偶數倍數，則必須使用額外的空間來保留檔案 (最多為叢集大小的下一個倍數)，這會導致喪失空間和硬碟的片段。 <br>建議的 Azure StorSimple 磁碟區 AUS 為 64 KB，因為此容量適用於進行重複資料刪除演算法。 |
 | 自動儲存體分層 |自動將較不活躍的資料從 SSD 移到 HDD，再移至雲端中的層，然後可讓您從中央使用者介面管理所有儲存體。 |
-| 備份類別目錄 |備份的集合，通常與所使用的應用程式類型相關。 這個集合會顯示在 StorSimple Manager 服務 UI 的 [備份類別目錄] 頁面中。 |
+| 備份類別目錄 |備份的集合，通常與所使用的應用程式類型相關。 這個集合會顯示在 StorSimple 裝置管理員服務 UI 的 [備份類別目錄] 刀鋒視窗中。 |
 | 備份類別目錄檔案 |包含清單的檔案，此清單會列出 StorSimple Snapshot Manager 的備份資料庫中目前儲存的可用快照。 |
 | 備份原則 |選取磁碟區、備份類型，以及可讓您根據預先定義的排程建立備份的時間資料表。 |
 | 二進位大型物件 (BLOB) |二進位資料的集合，而這些二進位資料會在資料庫管理系統中儲存為單一實體。 BLOB 通常是影像、音訊或其他多媒體物件，但是有時二進位可執行程式碼會儲存為 BLOB。 |
@@ -294,13 +294,13 @@ StorSimple 8000 系列裝置不支援下列工作負載。 如果部署於 StorS
 | 主要機箱 |StorSimple 裝置的主要機箱，其中包含應用程式平台控制器。 |
 | 復原時間目標 (RTO) |發生災害之後，商務程序或系統完全還原之前應該延長的時間量上限。 |
 | 序列連接 SCSI (SAS) |硬碟 (HDD) 的類型。 |
-| 服務資料加密金鑰 |向 StorSimple Manager 服務註冊的金鑰，讓任何新的 StorSimple 裝置可供使用。 StorSimple Manager 服務與裝置之間傳輸的組態資料會使用公開金鑰加密，然後只能使用私密金鑰在裝置上進行解密。 服務資料加密金鑰可讓服務取得此私密金鑰進行解密。 |
-| 服務註冊金鑰 |可協助向 StorSimple Manager 服務註冊 StorSimple 裝置的金鑰，以使該裝置能夠出現在 Azure 傳統入口網站中，讓您能夠採取進一步的管理動作。 |
+| 服務資料加密金鑰 |向 StorSimple 裝置管理員服務註冊的金鑰，能讓任何新的 StorSimple 裝置使用。 StorSimple 裝置管理員服務與裝置之間傳輸的組態資料使用公開金鑰加密，但是只能使用私密金鑰在裝置上進行解密。 服務資料加密金鑰可讓服務取得此私密金鑰進行解密。 |
+| 服務註冊金鑰 |可協助向 StorSimple 裝置管理員服務註冊 StorSimple 裝置的金鑰，以使該裝置能夠出現在 Azure 入口網站中，讓您能夠採取進一步的管理動作。 |
 | Small Computer System Interface (SCSI) |一組實際連接電腦並在它們之間傳送資料的標準。 |
 | 固態硬碟 (SSD) |沒有包含任何移動組件的磁碟；例如，快閃磁碟機。 |
 | storage account |一組針對給定的雲端服務提供者連結至您的儲存體帳戶的存取認證。 |
 | StorSimple Adapter for SharePoint |一種 Microsoft Azure StorSimple 元件，其可將 StorSimple 儲存體和資料保護明確延伸至 SharePoint 伺服器陣列。 |
-| StorSimple Manager 服務 |Azure 傳統入口網站的延伸模組，可讓您管理您的 Azure StorSimple 內部部署和虛擬裝置。 |
+| StorSimple 裝置管理員服務 |Azure 入口網站的延伸模組，可讓您管理您的 Azure StorSimple 內部部署和虛擬裝置。 |
 | StorSimple Snapshot Manager |一種 Microsoft Management Console (MMC) 嵌入式管理單元，用於管理 Microsoft Azure StorSimple 中的備份和還原作業。 |
 | 進行備份 |一種可讓使用者進行磁碟區互動式備份的功能。 相對於透過定義的原則進行自動備份，它是進行磁碟區手動備份的替代方式。 |
 | 精簡佈建 |一種可在儲存體系統中以最佳效率使用可用之儲存空間的方法。 在精簡佈建中，會根據每個使用者在任何給定時間所需的最小空間，在多個使用者之間配置儲存體。 另請參閱 *豐富佈建*。 |
@@ -312,6 +312,6 @@ StorSimple 8000 系列裝置不支援下列工作負載。 如果部署於 StorS
 | Windows PowerShell for StorSimple |用來操作和管理 StorSimple 裝置的 Windows PowerShell 型命令列介面。 這個介面具備 Windows PowerShell 的一些基本功能，同時又具有額外的專用 Cmdlet，相互搭配來管理 StorSimple 裝置。 |
 
 ## <a name="next-steps"></a>後續步驟
-深入了解 [StorSimple 安全性](storsimple-security.md)。
+深入了解 [StorSimple 安全性](storsimple-8000-security.md)。
 
 

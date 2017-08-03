@@ -11,13 +11,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/24/2017
+ms.date: 07/21/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: 5d37dbcce06ac979f3cabef1220e5f1fe8e67931
-ms.openlocfilehash: 6c0cd8aeaaa094a6bf046d47a96eddffc6430d44
-ms.lasthandoff: 03/01/2017
-
+ms.reviewer: jeedes
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: f8296aa92f58829da698cae8bf6e2e9191c4b257
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-salesforce-sandbox"></a>教學課程：Azure Active Directory 與 Salesforce 沙箱整合
@@ -113,7 +114,7 @@ ms.lasthandoff: 03/01/2017
  5. 對於 [SAML 身分識別類型]，選取 [判斷提示包含來自使用者物件的同盟識別碼]。 
  6. 對於 [SAML 身分識別位置]，選取 [身分識別位於 Subject 陳述式的 NameIdentifier 元素中]。
  7. 在 Azure 傳統入口網站中的 [設定在 Salesforce 沙箱單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後貼到 [識別提供者登入 URL] 文字方塊中。 
- 8. SFDC 不支援 SAML 登出。  解決方法是在 [識別提供者登出 URL] 文字方塊中貼上 'https://login.windows.net/common/wsfederation?wa=wsignout1.0'。
+ 8. SFDC 不支援 SAML 登出。  解決方法是在 [識別提供者登出 URL] 文字方塊中貼上 'https://login.microsoftonline.com/common/wsfederation?wa=wsignout1.0'。
  9. 在 [服務提供者起始的要求繫結]，選取 [HTTP POST]。 
  10. 按一下 [儲存] 。
 11. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
@@ -177,7 +178,7 @@ ms.lasthandoff: 03/01/2017
 **若要將使用者指派給 Salesforce 沙箱，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站中建立測試帳戶。
-2. 在 [Salesforce 沙箱] 應用程式整合頁面上，按一下 [指派使用者]。
+2. 在 [Salesforce Sandbox] 應用程式整合頁面上，按一下 [指派使用者]。
    
    ![指派使用者](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769574.png "指派使用者")
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。

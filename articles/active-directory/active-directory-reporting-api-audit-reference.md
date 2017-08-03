@@ -3,7 +3,7 @@ title: "Azure Active Directory 稽核 API 參考 | Microsoft Docs"
 description: "如何開始使用 Azure Active Directory 稽核 API"
 services: active-directory
 documentationcenter: 
-author: markusvi
+author: MarkusVi
 manager: femila
 editor: 
 ms.assetid: 44e46be8-09e5-4981-be2b-d474aaa92792
@@ -14,12 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/05/2017
 ms.author: dhanyahk;markvi
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: 87c7990834eaf2aa6c4aff0c341150ba9bd9eed4
+ms.reviewer: dhanyahk
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: 573e940c5390e7b990d889681eb37b73c5b253d9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/10/2017
-
+ms.lasthandoff: 07/17/2017
 
 ---
 # <a name="azure-active-directory-audit-api-reference"></a>Azure Active Directory 稽核 API 參考
@@ -29,10 +29,17 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽
 
 請參閱：
 
-* [稽核記錄](active-directory-reporting-azure-portal.md#audit-logs)以取得詳細概念資訊
+* [稽核記錄](active-directory-reporting-azure-portal.md#activity-reports)以取得詳細概念資訊
+
 * [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md) 以取得報告 API 的詳細資訊。
 
-如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
+
+關於：
+
+- 閱讀常見問題集，請參閱我們的[常見問題集](active-directory-reporting-faq.md) 
+
+- 問題，請[提出支援票證](active-directory-troubleshooting-support-howto.md) 
+
 
 ## <a name="who-can-access-the-data"></a>誰可以存取資料？
 * 具有安全性系統管理員或安全性讀取器角色的使用者

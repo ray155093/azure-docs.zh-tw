@@ -1,5 +1,5 @@
 ---
-title: "設定已加入網域的 HDInsight 叢集 | Microsoft Docs"
+title: "設定已加入網域的 HDInsight 叢集 - Azure | Microsoft Docs"
 description: "了解如何安裝及設定已加入網域的 HDInsight 叢集"
 services: hdinsight
 documentationcenter: 
@@ -15,15 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 11/02/2016
 ms.author: saurinsh
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 1fb13d60eebbaf45ca9cb394c073c834bbe59bb9
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9964c3dff24ef8a3a6047fe18c0f36c12c1de33d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
 # <a name="configure-domain-joined-hdinsight-clusters-preview"></a>設定已加入網域的 HDInsight 叢集 (預覽)
+
 了解如何設定 Azure HDInsight 叢集與 Azure Active Directory (Azure AD) 和 [Apache Ranger](http://hortonworks.com/apache/ranger/)，以利用增強式驗證和豐富的角色型存取控制 (RBAC) 原則。  您可以只在 Linux 架構的叢集上設定已加入網域的 HDInsight。 如需詳細資訊，請參閱[已加入網域的 HDInsight 叢集簡介](hdinsight-domain-joined-introduction.md)。
+
+> [!IMPORTANT]
+> Oozie 未在已加入網域的 HDInsight 上啟用。
 
 本文是此系列文章的其中一篇：
 
@@ -71,8 +76,8 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 
 有 PowerShell 指令碼可自動執行步驟 3 到步驟 7。  如需詳細資訊，請參閱[使用 Azure PowerShell 設定已加入網域的 HDInsight 叢集](hdinsight-domain-joined-configure-use-powershell.md)。
 
-## <a name="create-an-azure-classic-vnet"></a>建立 Azure 傳統 VNet
-在本節中，您會使用 Azure 入口網站建立傳統 VNet。 在下一節，您會啟用傳統 VNet 中 Azure AD 的 Azure AD DS。 如需下列程序和使用其他 VNet 建立方法的詳細資訊，請參閱 [使用 Azure 入口網站建立虛擬網路 (傳統)](../virtual-network/virtual-networks-create-vnet-classic-portal.md)。
+## <a name="create-an-azure-virtual-network-classic"></a>建立 Azure 虛擬網路 (傳統)
+在本節中，您會使用 Azure 入口網站建立虛擬網路 (傳統)。 在下一節，您會啟用虛擬網路中 Azure AD 的 Azure AD DS。 如需下列程序和使用其他虛擬網路建立方法的詳細資訊，請參閱[使用 Azure 入口網站建立虛擬網路 (傳統)](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。
 
 **建立傳統 VNet**
 
@@ -250,7 +255,7 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
      
      * **叢集類型**：Hadoop。 目前在 Hadoop 叢集上僅支援已加入網域的 HDInsight。
      * **作業系統**：Linux。  目前在 Linux 架構的 HDInsight 叢集上僅支援已加入網域的 HDInsight。
-     * **版本**：Hadoop 2.7.3 (HDI 3.5)。 在 HDInsight 叢集版本 3.5 上僅支援已加入網域的 HDInsight。
+     * **版本**：HDI 3.6。 在 HDInsight 叢集版本 3.6 上僅支援已加入網域的 HDInsight。
      * **叢集類型**：進階 PREMIUM
        
        按一下 [選取] 儲存變更。

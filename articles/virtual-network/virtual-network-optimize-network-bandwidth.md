@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/30/2017
+ms.date: 07/07/2017
 ms.author: steveesp
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 6efa2cca46c2d8e4c00150ff964f8af02397ef99
-ms.openlocfilehash: 1340048d5d518caff3397f671d0c75caaab4b5ac
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a7c32f07516ca83bc2fb5ad5a9a526631932ad4a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/01/2017
+ms.lasthandoff: 07/08/2017
 
 
 ---
@@ -29,7 +29,7 @@ Azure 虛擬機器 (VM) 有預設網路設定，可進一步針對網路輸送�
 
 ## <a name="windows-vm"></a>Windows VM
 
-相較於不使用接收端調整 (RSS) 的 VM，使用 RSS 的 VM 可達到更高的最大輸送量。 根據預設，Windows VM 中可能會停用 RSS。 完成下列步驟來判斷是否已啟用 RSS，以及在它已停用的情況下將它啟用。
+如果您的 Windows VM 支援[加速的網路](virtual-network-create-vm-accelerated-networking.md)，啟用該功能會是最適合輸送量的設定。 針對所有其他的 Windows VM，相較於不使用接收端調整 (RSS) 的 VM，使用 RSS 的 VM 可達到更高的最大輸送量。 根據預設，Windows VM 中可能會停用 RSS。 完成下列步驟來判斷是否已啟用 RSS，以及在它已停用的情況下將它啟用。
 
 1. 輸入 `Get-NetAdapterRss` PowerShell 命令來查看是否已針對網路介面卡啟用 RSS。 在從 `Get-NetAdapterRss` 傳回的下列範例輸出中，RSS 並未啟用。
 

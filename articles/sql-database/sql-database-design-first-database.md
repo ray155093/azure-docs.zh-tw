@@ -16,12 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 06/20/2017
 ms.author: janeng
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 8af9ea0a76b9a0606284505195ee3f52b1964604
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: d5e63e7079b652e69a089aef495952d29cae67a2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 07/19/2017
 
 ---
 
@@ -42,7 +41,9 @@ Azure SQL Database 是 Microsoft 雲端 ("Azure") 中的關聯式資料庫即服
 
 ## <a name="prerequisites"></a>必要條件
 
-為了完成此教學課程，請確定您已安裝最新版的 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS)。 
+若要完成本教學課程，請確定您已安裝︰
+- 最新版的 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS)。
+- 最新版的 [BCP 和 SQLCMD][https://www.microsoft.com/download/details.aspx?id=36433]。
 
 ## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
@@ -110,7 +111,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
    > 在後續的快速入門中，您需要此完整伺服器名稱才能連線到伺服器及其資料庫。
    > 
 
-   ![伺服器名稱](./media/sql-database-get-started-portal/server-name.png) 
+   ![伺服器名稱](./media/sql-database-connect-query-dotnet/server-name.png) 
 
 2. 如先前映像所示，按一下工具列上的 [設定伺服器防火牆]。 SQL Database 伺服器的 [防火牆設定] 頁面隨即開啟。 
 
@@ -130,7 +131,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 > [!IMPORTANT]
 > 根據預設，已對所有 Azure 服務啟用透過 SQL Database 防火牆存取。 按一下此頁面上的 [關閉] 即可對所有 Azure 服務停用。
 
-## <a name="get-connection-information-in-the-azure-portal"></a>在 Azure 入口網站中取得連線資訊
+## <a name="sql-server-connection-information-in-the-azure-portal"></a>Azure 入口網站中的 SQL Server 連線資訊
 
 在 Azure 入口網站中取得 Azure SQL Database 伺服器的完整伺服器名稱。 透過 SQL Server Management Studio，您可使用此完整伺服器名稱連接到您的伺服器。
 
@@ -138,7 +139,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
 3. 在 Azure 入口網站中您資料庫的 [基本資訊] 窗格中，找到後複製 [伺服器名稱]。
 
-   ![連線資訊](./media/sql-database-get-started-portal/server-name.png)
+   ![連線資訊](./media/sql-database-connect-query-dotnet/server-name.png)
 
 ## <a name="connect-to-the-database-with-ssms"></a>使用 SSMS 連接到資料庫
 

@@ -1,7 +1,8 @@
 ---
-title: "使用 HDInsight 開發 Python MapReduce 工作 | Microsoft Docs"
-description: "了解如何在 Linux 型 HDInsight 叢集上建立和執行 Python MapReduce 作業。"
+title: "使用 HDInsight 開發 Python 串流處理 MapReduce 工作 - Azure | Microsoft Docs"
+description: "了解如何在串流處理 MapReduce 工作中使用 Python。 Hadoop 提供適用於 MapReduce 的串流處理 API，可以 Java 以外的語言撰寫。"
 services: hdinsight
+keyword: mapreduce python,python map reduce,python mapreduce
 documentationcenter: 
 author: Blackmist
 manager: jhubbard
@@ -9,31 +10,30 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 7631d8d9-98ae-42ec-b9ec-ee3cf7e57fb3
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/03/2017
+ms.date: 07/31/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 125f05f5dce5a0e4127348de5b280f06c3491d84
-ms.openlocfilehash: ce96113ad979997c555bc64698c0b78822b525ad
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: b86605c49291a99f49c4b2841d46324cfd0db56d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/22/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
-# <a name="develop-python-streaming-programs-for-hdinsight"></a>開發適用於 HDInsight 的 Python 串流程式
+# <a name="develop-python-streaming-mapreduce-programs-for-hdinsight"></a>開發 HDInsight 的 Python 串流處理 MapReduce 程式
 
-了解如何在 MapReduce 作業中使用 Python。 Hadoop 為 MapReduce 提供一個串流 API，可讓您以 Java 以外的語言撰寫 map 和 reduce 函數。 本文件中的步驟會以 Python 實作對應和歸納元件。
+了解如何在串流處理 MapReduce 作業中使用 Python。 Hadoop 為 MapReduce 提供一個串流 API，可讓您以 Java 以外的語言撰寫 map 和 reduce 函數。 本文件中的步驟會以 Python 實作對應和歸納元件。
 
 ## <a name="prerequisites"></a>必要條件
 
 * HDInsight 叢集上的 Linux 型 Hadoop
 
   > [!IMPORTANT]
-  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。
+  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 * 文字編輯器
 
@@ -79,7 +79,7 @@ Python 可以使用 `sys` 模組來讀取 STDIN 並使用 `print` 來列印到 S
    def main(separator='\t'):
        # Read the data using read_input
        data = read_input(sys.stdin)
-       # Process each words returned from read_input
+       # Process each word returned from read_input
        for words in data:
            # Process each word
            for word in words:
@@ -152,7 +152,7 @@ Python 可以使用 `sys` 模組來讀取 STDIN 並使用 `print` 來列印到 S
     此命令會將檔案從本機系統複製到前端節點。
 
     > [!NOTE]
-    > 如果您使用密碼來保護 SSH 帳戶，系統就會提示您輸入密碼。 如果您使用 SSH 金鑰，您可能必須使用 `-i` 參數和私密金鑰的路徑，例如 `scp -i /path/to/private/key mapper.py reducer.py username@clustername-ssh.azurehdinsight.net:`。
+    > 如果您使用密碼來保護 SSH 帳戶，系統就會提示您輸入密碼。 如果您使用 SSH 金鑰，您可能必須使用 `-i` 參數和私密金鑰的路徑。 例如， `scp -i /path/to/private/key mapper.py reducer.py username@clustername-ssh.azurehdinsight.net:`。
 
 2. 使用 SSH 連線到叢集：
 

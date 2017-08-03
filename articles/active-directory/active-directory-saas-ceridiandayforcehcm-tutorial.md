@@ -2,53 +2,54 @@
 title: "教學課程：Azure Active Directory 與 Ceridian Dayforce HCM 整合 | Microsoft Docs"
 description: "了解如何設定 Azure Active Directory 與 Ceridian Dayforce HCM 之間的單一登入。"
 services: active-directory
-documentationcenter: 
+documentationCenter: na
 author: jeevansd
 manager: femila
-editor: 
+ms.reviewer: joflore
 ms.assetid: 7adf1eb3-d063-45d6-96a8-fd53b329b3f3
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 07/19/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: 1a2ff324cfa65977685f6a0eee9cd398b0717519
-ms.openlocfilehash: dba809c8d7021357142ec2832b4660c6fb10ec96
-
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: b2ea3d92f233dab5bd6814e4875f881117eac8e3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-ceridian-dayforce-hcm"></a>教學課程：Azure Active Directory 與 Ceridian Dayforce HCM 整合
-本教學課程旨在說明如何整合 Ceridian Dayforce HCM 與 Azure Active Directory (Azure AD)。  
+
+在本教學課程中，您將了解如何整合 Ceridian Dayforce HCM 與 Azure Active Directory (Azure AD)。
+
 Ceridian Dayforce HCM 與 Azure AD 整合提供下列優點：
 
-* 您可以在 Azure AD 中控制可存取 Ceridian Dayforce HCM 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Ceridian Dayforce HCM (單一登入)
-* 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+- 您可以在 Azure AD 中控制可存取 Ceridian Dayforce HCM 的人員。
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Ceridian Dayforce HCM (單一登入)。
+- 您可以在 Azure 入口網站中集中管理您的帳戶。
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 ## <a name="prerequisites"></a>必要條件
+
 若要設定 Azure AD 與 Ceridian Dayforce HCM 整合，您需要下列項目：
 
-* Azure AD 訂用帳戶
-* 啟用 Ceridian Dayforce HCM 單一登入的訂用帳戶
+- Azure AD 訂用帳戶
+- 啟用 Ceridian Dayforce HCM 單一登入的訂用帳戶
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
-> 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-* 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+- 除非必要，否則請勿使用生產環境。
+- 如果您沒有 Azure AD 試用環境，您可以[取得一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。  
-本教學課程中說明的案例由二個主要建置組塊組成：
+在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Ceridian Dayforce HCM
 2. 設定並測試 Azure AD 單一登入
@@ -58,185 +59,223 @@ Ceridian Dayforce HCM 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 Ceridian Dayforce HCM，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
-   
-    ![Active Directory][1]
-2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
-   
-    ![應用程式][2]
-4. 按一下頁面底部的 [新增]  。
-   
-    ![應用程式][3]
-5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
-   
-    ![應用程式][4]
-6. 在搜尋方塊中，輸入 **Ceridian Dayforce HCM**。
-   
-    ![應用程式](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_01.png)
-7. 在結果窗格中，選取 [Ceridian Dayforce HCM]，然後按一下 [完成] 來新增應用程式。
-   
-    ![應用程式](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_07.png)
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Ceridian Dayforce HCM 搭配運作的 Azure AD 單一登入。
+    ![Azure Active Directory 按鈕][1]
+
+2. 瀏覽至 [企業應用程式]。 然後移至 [所有應用程式]。
+
+    ![企業應用程式刀鋒視窗][2]
+    
+3. 若要新增新的應用程式，請按一下對話方塊頂端的 [新增應用程式] 按鈕。
+
+    ![新增應用程式按鈕][3]
+
+4. 在搜尋方塊中，輸入 **Ceridian Dayforce HCM**，從結果面板選取 [Ceridian Dayforce HCM]，然後按一下 [新增] 按鈕以新增應用程式。
+
+    ![結果清單中的 Ceridian Dayforce HCM](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_addfromgallery.png)
+
+## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
+
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Ceridian Dayforce HCM 設定及測試 Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 Ceridian Dayforce HCM 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 Ceridian Dayforce HCM 中的相關使用者之間建立連結關聯性。
 
+在 Ceridian Dayforce HCM 中，將 [Username] 的值指派為 Azure AD 中 [使用者名稱] 的值，以建立連結關聯性。
+
 若要設定及測試與 Ceridian Dayforce HCM 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 Ceridian Dayforce HCM 測試使用者](#creating-a-ceridian-dayforce-hcm-test-user)** - 在 Ceridian Dayforce HCM 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表 Britta Simon 的項目連結。
-4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+1. **[設定 Azure AD 單一登入](#configure-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#create-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+3. **[建立 Ceridian Dayforce HCM 測試使用者](#create-a-ceridian-dayforce-hcm-test-user)** - 在 Ceridian Dayforce HCM 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表使用者的項目連結。
+4. **[指派 Azure AD 測試使用者](#assign-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[測試單一登入](#test-single-sign-on)**，驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Ceridian Dayforce HCM 應用程式中設定單一登入。
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-Ceridian Dayforce HCM 應用程式需要特定格式的 SAML 判斷提示。 請先與 Dayforce HCM 小組合作來識別正確的使用者識別碼。 Microsoft 建議使用 **"name"** 屬性做為使用者識別碼。 您可以從 [屬性]  索引標籤管理這個屬性的值。 以下螢幕擷取畫面顯示上述的範例。 
-
-![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_02.png) 
+在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，然後在您的 Ceridian Dayforce HCM 應用程式中設定單一登入。
 
 **若要設定與 Ceridian Dayforce HCM 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站中的 **Ceridian Dayforce HCM** 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
-   
-    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_81.png) 
-2. 在屬性 **SAML Token 屬性**清單中，選取名稱屬性，然後按一下 [編輯]。
-   
-    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_06.png) 
-3. 在 [編輯使用者屬性]  對話方塊上，執行下列步驟：
-   
-    a. 從 [屬性值] 清單中，選取您想要用於實作的使用者屬性。  
-    例如，如果您想要使用 EmployeeID 為唯一的使用者識別碼，而且已在 ExtensionAttribute2 中儲存屬性值，則選取 [user.extensionattribute2]。 
-   
-    b. 按一下 [完成]。    
-4. 按一下頂端功能表中的 [快速啟動] 。
-   
-    ![設定單一登入](./media/active-directory-saas-hightail-tutorial/tutorial_general_83.png)  
-5. 在 Azure 傳統入口網站的 [Ceridian Dayforce HCM] 應用程式整合頁面上，按一下 [設定單一登入]。
-   
-    ![設定單一登入][6] 
-6. 在 [要如何讓使用者登入 Ceridian Dayforce HCM] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
-   
-    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_03.png) 
-7. 在 [設定應用程式設定]  對話方塊頁面上，執行下列步驟：
-   
-    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_04.png) 
+1. 在 Azure 入口網站的 [Ceridian Dayforce HCM] 應用程式整合分頁上，按一下 [單一登入]。
 
-    a. 在 [登入 URL] 文字方塊中，輸入使用者用來登入您 Ceridian Dayforce HCM 應用程式的 URL。 針對生產環境，使用下列 URL 格式︰`https://sso.dayforcehcm.com/DayforcehcmNamespace`
+    ![設定單一登入連結][4]
 
-    為了清楚起見，使用您環境的命名空間或貴公司的識別碼來取代 DayforcehcmNamespace，例如︰ `https://sso.dayforcehcm.com/contoso`
+2. 在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。
+ 
+    ![單一登入對話方塊](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_samlbase.png)
 
-    針對測試環境，使用下列 URL 格式︰`https://ssotest.dayforcehcm.com/DayforcehcmNamespace` 
+3. 在 [Ceridian Dayforce HCM 網域及 URL] 區段上，執行下列步驟：
 
-    b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，輸入 Azure AD 用來公佈回應的 URL。  
-    針對生產環境，請使用︰`https://ncpingfederate.dayforcehcm.com/sp/ACS.saml2`  
-    針對測試環境，請使用︰`https://fs-test.dayforcehcm.com/sp/ACS.saml2`  
+    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_url.png)
+    
+    a. 在 [登入 URL] 文字方塊中，輸入使用者用來登入您 Ceridian Dayforce HCM 應用程式的 URL。
+    
+    | 環境 | URL |
+    | :-- | :-- |
+    | 針對生產環境 | `https://sso.dayforcehcm.com/<DayforcehcmNamespace>` |
+    | 針對測試 | `https://ssotest.dayforcehcm.com/<DayforcehcmNamespace>` |
+    
+    b.這是另一個 C# 主控台應用程式。 在 [識別碼] 文字方塊中，使用下列模式輸入 URL：
+    
+    | 環境 | URL |
+    | :-- | :-- |
+    | 針對生產環境 | `https://ncpingfederate.dayforcehcm.com/sp` |
+    | 針對測試 | `https://fs-test.dayforcehcm.com/sp` |
+    
+    c. 在 [回覆 URL] 文字方塊中，輸入 Azure AD 用來公佈回應的 URL。
+    
+    | 環境 | URL |
+    | :-- | :-- |
+    | 針對生產環境 | `https://ncpingfederate.dayforcehcm.com/sp/ACS.saml2` |
+    | 針對測試 | `https://fs-test.dayforcehcm.com/sp/ACS.saml2` |
+    
+    > [!NOTE] 
+    > 這些都不是真正的值。 使用實際的識別碼、回覆 URL 和登入 URL 來更新這些值。 請連絡 [Ceridian Dayforce HCM 用戶端支援小組](https://www.ceridian.com/contact-us/index.html)以取得這些值。
 
-1. 在 [設定在 Ceridian Dayforce HCM 單一登入]  頁面上，執行下列步驟：
-   
-    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_05.png) 
-   
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
-2. 若要為您的應用程式設定 SSO，請透過電子郵件連絡您的 Ceridian Dayforce HCM 支援小組，並提供下列資訊：
-   
-   * 下載的憑證檔案
-   * **簽發者 URL**
-   * **SAML SSO URL** 
-   * **單一登出服務 URL** 
-3. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
-   
-    ![Azure AD 單一登入][10]
-4. 在 [單一登入確認] 頁面上，按一下 [完成]。  
-   
-    ![Azure AD 單一登入][11]
+4. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將中繼資料檔案儲存在您的電腦上。
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+    ![憑證下載連結](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_certificate.png) 
 
-![建立 Azure AD 使用者][20]
+5. Ceridian Dayforce HCM 應用程式需要特定格式的 SAML 判斷提示。 請先與 [Ceridian Dayforce HCM 支援小組](https://www.ceridian.com/contact-us/index.html)合作來識別正確的使用者識別碼。 Microsoft 建議使用 **"name"** 屬性做為使用者識別碼。 您可以在應用程式整合頁面的 [使用者屬性] 區段中，管理這些屬性的值。 以下螢幕擷取畫面顯示上述的範例。  
+
+    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_07.png)
+
+6. 在 [單一登入] 對話方塊的 [使用者屬性] 區段中，如上圖所示設定 SAML 權杖屬性，然後執行下列步驟：
+    
+    | 屬性名稱  | 屬性值 |
+    | --------------- | -------------------- |    
+    | 名稱  | user.extensionattribute2 |    
+
+    a. 按一下 [新增屬性] 來開啟 [新增屬性] 對話方塊。
+
+    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_attribute_04.png)
+
+    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_attribute_05.png)
+    
+    b. 在 [名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
+
+    c. 在 [值] 清單中，選取您想要用於實作的使用者屬性。
+    例如，如果您想要使用 EmployeeID 為唯一的使用者識別碼，而且已在 ExtensionAttribute2 中儲存屬性值，則選取 [user.extensionattribute2]。
+    
+    d. 按一下 [確定] 。
+
+7. 按一下 [儲存]  按鈕。
+
+    ![設定單一登入儲存按鈕](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_400.png)
+    
+8. 在 [Ceridian Dayforce HCM 設定] 區段中，按一下 [設定 Ceridian Dayforce HCM] 以開啟 [設定登入] 視窗。 從 [快速參考] 區段中複製 [登出 URL、SAML 實體識別碼和 SAML 單一登入服務 URL]。
+
+    ![Ceridian Dayforce HCM 設定](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_configure.png) 
+
+9. 若要在 **Ceridian Dayforce HCM** 這一端設定單一登入，您需要將所下載的**中繼資料 XML**、**登出 URL、SAML 實體識別碼和 SAML 單一登入服務 URL** 傳送給 [Ceridian Dayforce HCM 支援小組](https://www.ceridian.com/contact-us/index.html)。
+
+> [!TIP]
+> 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
+
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+
+本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
+
+   ![建立 Azure AD 測試使用者][100]
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_09.png) 
-2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者] 。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_03.png) 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_04.png) 
-5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
-6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_06.png) 
-   
-    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-    d. 在 [角色] 清單中選取 [使用者]。
-   
-    e. 按 [下一步] 。
+1. 在 Azure 入口網站的左窗格中，按一下 [Azure Active Directory] 按鈕。
 
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_07.png) 
-8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_08.png) 
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+    ![Azure Active Directory 按鈕](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_01.png)
 
-### <a name="creating-a-ceridian-dayforce-hcm-test-user"></a>建立 Ceridian Dayforce HCM 測試使用者
-本節的目標是要在 Ceridian Dayforce HCM 中建立名為 Britta Simon 的使用者。 
+2. 若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。
 
-請與 Ceridian Dayforce HCM 支援小組合作，將使用者新增至您的 Ceridian Dayforce HCM 應用程式。 
+    ![[使用者和群組] 與 [所有使用者] 連結](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_02.png)
+
+3. 若要開啟 [使用者] 對話方塊，按一下 [所有使用者] 對話方塊頂端的 [新增]。
+
+    ![[新增] 按鈕](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_03.png)
+
+4. 在 [使用者] 對話方塊中，執行下列步驟：
+
+    ![[使用者] 對話方塊](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_04.png)
+
+    a. 在 [名稱] 方塊中，輸入 **BrittaSimon**。
+
+    b. 在 [使用者名稱] 方塊中，輸入使用者 Britta Simon 的電子郵件地址。
+
+    c. 選取 [顯示密碼] 核取方塊，然後記下 [密碼] 方塊中顯示的值。
+
+    d. 按一下 [建立] 。
+ 
+### <a name="create-a-ceridian-dayforce-hcm-test-user"></a>建立 Ceridian Dayforce HCM 測試使用者
+
+本節的目標是要在 Ceridian Dayforce HCM 中建立名為 Britta Simon 的使用者。 請與 [Ceridian Dayforce HCM 支援小組](https://www.ceridian.com/contact-us/index.html)合作，將使用者新增至您的 Ceridian Dayforce HCM 應用程式。 
 
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-本節目標是授權 Britta Simon 存取 Ceridian Dayforce HCM，讓她能夠使用 Azure 單一登入。
+
+在本節中，您會將 Ceridian Dayforce HCM 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
 
 **若要將 Britta Simon 指派給 Ceridian Dayforce HCM，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
-   
-    ![指派使用者][201] 
-2. 在應用程式清單中，選取 [Ceridian Dayforce HCM] 。
-   
-    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_50.png) 
-3. 在頂端的功能表中，按一下 [使用者] 。
-   
-    ![指派使用者][203] 
-4. 在 [使用者] 清單中，選取 [Britta Simon] 。
-5. 在底部的工具列中，按一下 [指派] 。
-   
-    ![指派使用者][205]
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。  
-當您在存取面板中按一下 [Ceridian Dayforce HCM] 圖格時，應該會自動登入您的 Ceridian Dayforce HCM 應用程式。
+    ![指派使用者][201] 
+
+2. 在應用程式清單中，選取 [Ceridian Dayforce HCM] 。
+
+    ![設定單一登入](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_app.png) 
+
+3. 在左側功能表中，按一下 [使用者和群組]。
+
+    ![指派使用者][202] 
+
+4. 按一下 [新增] 按鈕。 然後選取 [新增指派] 對話方塊上的 [使用者和群組]。
+
+    ![指派使用者][203]
+
+5. 在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。
+
+6. 按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。
+
+7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
+
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+
+在本節中，您會將 Ceridian Dayforce HCM 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+
+![指派使用者角色][200] 
+
+**若要將 Britta Simon 指派給 Ceridian Dayforce HCM，請執行下列步驟：**
+
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
+
+    ![指派使用者][201] 
+
+2. 在應用程式清單中，選取 [Ceridian Dayforce HCM] 。
+
+    ![應用程式清單中的 Ceridian Dayforce HCM 連結](./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_ceridiandayforcehcm_app.png)  
+
+3. 在左側功能表中，按一下 [使用者和群組]。
+
+    ![[使用者和群組] 連結][202]
+
+4. 按一下 [新增] 按鈕。 然後選取 [新增指派] 對話方塊上的 [使用者和群組]。
+
+    ![[新增指派] 窗格][203]
+
+5. 在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。
+
+6. 按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。
+
+7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
+    
+### <a name="test-single-sign-on"></a>測試單一登入
+
+本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。  
+當您在存取面板中按一下 [Ceridian Dayforce HCM] 圖格時，應該會自動登入您的 Ceridian Dayforce HCM 應用程式。 
 
 ## <a name="additional-resources"></a>其他資源
+
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
@@ -247,19 +286,11 @@ Ceridian Dayforce HCM 應用程式需要特定格式的 SAML 判斷提示。 請
 [3]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_03.png
 [4]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_04.png
 
-[6]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_05.png
-[10]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_06.png
-[11]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_07.png
-[20]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_100.png
+[100]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_100.png
 
 [200]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_200.png
 [201]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_201.png
+[202]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_202.png
 [203]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_203.png
-[204]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_204.png
-[205]: ./media/active-directory-saas-ceridiandayforcehcm-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

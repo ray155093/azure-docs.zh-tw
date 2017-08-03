@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/08/2017
 ms.author: chackdan
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 8e487cd33bef73ac66e1b1b6ee614b5a1376d772
-ms.lasthandoff: 04/21/2017
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: dcc7c088d7b6db7af334977315f122dca3c17f69
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -36,7 +37,7 @@ Service Fabric 可讓您在執行 Windows Server 或 Linux 的任何 VM 或電�
 * Windows Server 2016 
 * Linux Ubuntu 16.04 (公開預覽中) 
 
-## <a name="create-service-fabric-standalone-clusters-on-premise-or-with-any-cloud-provider"></a>在內部部署或透過任何雲端提供者建立 Service Fabric 獨立叢集
+## <a name="create-service-fabric-standalone-clusters-on-premises-or-with-any-cloud-provider"></a>在內部部署或透過任何雲端提供者建立 Service Fabric 獨立叢集
 Service Fabric 提供安裝套件，讓您在內部部署或任何雲端提供者上建立獨立 Service Fabric 叢集。
 
 如需在 Windows Server 上設定獨立 Service Fabric 叢集的詳細資訊，請參閱 [建立適用於 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)

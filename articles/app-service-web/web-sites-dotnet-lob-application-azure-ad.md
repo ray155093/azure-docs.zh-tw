@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: web
 ms.date: 09/01/2016
 ms.author: cephalin
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
-ms.openlocfilehash: 2576b658eaf1df95aa9700e06559edf6066cc534
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 6eadf0a521a32c5bc580908e4e4b7f4305e2bf7e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/02/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
 # <a name="create-a-line-of-business-azure-app-with-azure-active-directory-authentication"></a>使用 Azure Active Directory 驗證建立企業營運 Azure 應用程式
 本文說明如何在 [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 中使用[驗證/授權](../app-service/app-service-authentication-overview.md)功能建立 .NET 企業營運應用程式。 文中也會說明如何在應用程式中使用 [Azure Active Directory 圖形 API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog) 來查詢目錄資料。
 
-您所使用的 Azure Active Directory 租用戶可以是純 Azure 目錄。 或者，它可以 [與內部部署 Active Directory 同步處理](../active-directory/active-directory-aadconnect.md) ，以為內部部署和遠端的工作者建立單一登入體驗。 本文使用 Azure 帳戶的預設目錄。
+您所使用的 Azure Active Directory 租用戶可以是純 Azure 目錄。 或者，它可以[與您的內部部署 Active Directory 同步處理](../active-directory/active-directory-aadconnect.md)，以便為內部部署和遠端的工作者建立單一登入體驗。 本文使用 Azure 帳戶的預設目錄。
 
 <a name="bkmk_build"></a>
 
@@ -312,7 +312,7 @@ ms.lasthandoff: 06/02/2017
         AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
     
     > [!NOTE]
-    > 您需要這行程式碼，因為預設的 MVC 範本會在某些動作上使用 <code>[[ValidateAntiForgeryToken]]</code> 裝飾。 基於 [Brock Allen](https://twitter.com/BrockLAllen) 在 [MVC 4、AntiForgeryToken 和宣告](http://brockallen.com/2012/07/08/mvc-4-antiforgerytoken-and-claims/)中描述的行為，您的 HTTP POST 可能無法通過防偽權杖驗證，因為：
+    > 您需要這行程式碼，因為預設的 MVC 範本會在某些動作上使用 <code>[ValidateAntiForgeryToken]</code> 裝飾。 基於 [Brock Allen](https://twitter.com/BrockLAllen) 在 [MVC 4、AntiForgeryToken 和宣告](http://brockallen.com/2012/07/08/mvc-4-antiforgerytoken-and-claims/)中描述的行為，您的 HTTP POST 可能無法通過防偽權杖驗證，因為：
     > 
     > * Azure Active Directory 不會傳送防偽權杖預設所需要的 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider。
     > * 如果 Azure Active Directory 目錄與 AD FS 進行同步處理，AD FS 信任預設不會傳送 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider 宣告，但您可以手動設定 AD FS 來傳送此宣告。

@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2016
 ms.author: ccompy
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 5c8268a90c5e14839ed97daa6a186d170f5a4cc3
-ms.lasthandoff: 03/29/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 31b4f69a2870e619255feac6bed3679efb03f568
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="integrate-your-app-with-an-azure-virtual-network"></a>將您的應用程式與 Azure 虛擬網路整合
-本文件說明 Azure App Service 虛擬網路整合功能，以及示範如何使用 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)中的應用程式來設定此功能。  如果您不熟悉 Azure 虛擬網路 (VNET)，這是一種功能，可讓您在非網際網路可路由網路中放置許多您可控制其存取的 Azure 資源。  然後，可以使用各種 VPN 技術，將這些網路連接到您的內部部署網路。  若要深入了解「Azure 虛擬網路」，請從以下資訊著手：[Azure 虛擬網路概觀][VNETOverview]。  
+本文件說明 Azure App Service 虛擬網路整合功能，以及示範如何使用 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)中的應用程式來設定此功能。  如果您不熟悉 Azure 虛擬網路 (VNET)，這是一種功能，可讓您在非網際網路可路由網路中放置許多您可控制其存取的 Azure 資源。  接著，可以使用各種 VPN 技術，將這些網路連接到您的內部部署網路。  若要深入了解「Azure 虛擬網路」，請從以下資訊著手：[Azure 虛擬網路概觀][VNETOverview]。  
 
 Azure App Service 具有兩種形式。  
 
@@ -95,7 +95,7 @@ VNET 整合 UI 可讓您從 VNET 的清單中選取。  Classic VNET 會在 VNET
 ![][8]
 
 ##### <a name="enabling-point-to-site-in-a-resource-manager-vnet"></a>啟用 Resource Manager VNET 中的點對站
-若要為 Resource Manager VNET 設定閘道和「點對站」連線，您可以如以下文件所述使用 PowerShell：[使用 PowerShell 設定虛擬網路的點對站連線][V2VNETP2S]；或如以下文件所述使用「Azure 入口網站」：[使用 Azure 入口網站設定 VNet 的點對站連線][V2VNETPortal]。  用來執行這項功能的 UI 尚無法使用。 
+若要為 Resource Manager VNET 設定閘道和「點對站」連線，您可以如以下文件所述使用 PowerShell：[使用 PowerShell 設定虛擬網路的點對站連線][V2VNETP2S]；或如以下文件所述使用「Azure 入口網站」：[使用 Azure 入口網站設定 VNet 的點對站連線][V2VNETPortal]。  用來執行這項功能的 UI 尚無法使用。 請注意，您不需針對點對站組態建立憑證。 這會在您將 WebApp 連線至 VNET 時自動設定。 
 
 ### <a name="creating-a-pre-configured-vnet"></a>建立預先設定的 VNET
 如果您想要建立新的 VNET，以閘道器和點對站進行設定，則 App Service 網路 UI 具有功能可以完成這項操作，但是僅適用於 Resource manager VNET。  如果您想要以閘道器和點對站建立 Classic VNET，您需要透過網路使用者介面手動執行。 
@@ -152,7 +152,7 @@ VNET 位址空間需要以 CIDR 標記法指定。  如果您不熟悉 CIDR 標�
 * 閘道器狀態 - 無論您的閘道器基於何種原因關閉，您的應用程式將無法存取 VNET 中的資源。  
 * VNET 位址空間 - 這是 VNET 的 IP 位址空間。  
 * 點對站位址空間 - 這是 VNET 的點對站 IP 位址空間。  您的應用程式將顯示來自此位址空間的其中一個 IP 的通訊。  
-* 站對站位址空間 - 您可以使用站對站 VPN，將您的 VNET 連接到您的內部部署資源或連接到其他 VNET。  如果您已如此設定，則以該 VPN 連線定義的 IP 範圍將顯示在這裡。
+* 站對站位址空間：您可以使用站對站 VPN，將 VNET 連線到內部部署資源或連線到其他 VNET。  如果您已如此設定，則以該 VPN 連線定義的 IP 範圍將顯示在這裡。
 * DNS 伺服器 - 如果您已設定 DNS 伺服器與 VNET 搭配，則它們會列示在這裡。
 * 路由傳送至 VNET 的 IP - 有一個 IP 位址清單，您的 VNET 已定義將路由傳送至這些 IP 位址。  這些位址將顯示在這裡。  
 
@@ -177,11 +177,11 @@ VNET 位址空間需要以 CIDR 標記法指定。  如果您不熟悉 CIDR 標�
 **憑證** 憑證狀態反映 App Service 執行的檢查，此檢查用來驗證用於 VPN 連線的憑證是否依然完好。  啟用 VNET 整合時，如果這是此 ASP 中的任何應用程式與該 VNET 的第一個整合，則需要交換憑證以確保連線的安全性。  除了憑證以外，我們還得到 DNS 組態、路由，以及其他描述網路的類似項目。
 如果這些憑證或網路資訊已變更，您將需要按一下 [同步處理網路]。  **注意**：當按一下 [同步處理網路] 時，將導致應用程式與 VNET 之間的連線短暫中斷。  如果應用程式不重新啟動，失去連線會導致您的網站無法正常運作。  
 
-## <a name="accessing-on-premise-resources"></a>存取內部部署資源
-VNET 整合功能的優點之一就是，如果 VNET 以站對站 VPN 連接到內部部署網路，應用程式就可以從應用程式中存取內部部署資源。  但是，若要如此運作，您可能需要以點對站 IP 範圍的路由更新內部部署 VPN 閘道器。  第一次設定站對站 VPN 時，用來設定它的指令碼應該設定路由，包括點對站 VPN。  如果在建立站對站 VPN 之後新增點對站 VPN，您將需要手動更新路由。  此做法的詳細資料將根據閘道器而有所不同，不在這裡詳述。  
+## <a name="accessing-on-premises-resources"></a>存取內部部署資源
+VNET 整合功能的優點之一是，如果 VNET 以站對站 VPN 連線到內部部署網路，應用程式就可以從應用程式中存取內部部署資源。  但若要以此方式運作，您可能需要以點對站 IP 範圍的路由來更新內部部署 VPN 閘道。  第一次設定站對站 VPN 時，用來設定它的指令碼應該設定路由，包括點對站 VPN。  如果在建立站對站 VPN 之後新增點對站 VPN，您將需要手動更新路由。  此做法的詳細資料將根據閘道器而有所不同，不在這裡詳述。  
 
 > [!NOTE]
-> 儘管 VNET 整合功能將使用站對站 VPN 存取內部部署資源，但是它目前不會使用 ExpressRoute VPN 執行相同的動作。  與Classic 或 Resource Manager VNET 整合時，也是如此。  如果您需要透過 ExpressRoute VPN 存取資源，則您可以使用可在 VNET 中執行的 ASE。 
+> VNET 整合功能不會將應用程式與具有 ExpressRoute 閘道的 VNet 整合。 即使是在[共存模式][VPNERCoex]中設定 ExpressRoute 閘道，它仍無法運作。 如果您需要透過 ExpressRoute 連線存取資源，則可使用在您 VNet 中執行的 [App Service 環境][ASE]。
 > 
 > 
 
@@ -249,14 +249,14 @@ VNET 整合功能的優點之一就是，如果 VNET 以站對站 VPN 連接到�
 
 * 登入 VNET 中的另一個 VM，並嘗試從該處觸達資源主機:連接埠。  有一些您可以基於此用途使用的 TCP ping 公用程式，或者甚至需要時，也可使用 telnet。  這裡的用途只是判斷是否可從這個其他 VM 連接到該處。 
 * 啟動另一個 VM 上的應用程式，並從主控台測試是否可從應用程式存取該主機和連接埠  
-  ####<a name="on-premise-resources"></a>內部部署資源####
-  如果您無法觸達內部部署的資源，您應該檢查的第一件事就是，您是否可以觸達 VNET 中的資源。  如果可以，接下來的步驟就相當簡單。  您必須從 VNET 中的 VM 嘗試觸達內部部署應用程式。  您可以使用 telnet 或 TCP ping 公用程式。  如果 VM 無法觸達內部部署資源，首先確定站對站 VPN 連線運作中。  如果運作中，接著檢查先前提到的相同事物，以及內部部署閘道器組態和狀態。  
+  ####<a name="on-premises-resources"></a>內部部署資源####
+  如果無法觸達內部部署的資源，則首先應該檢查是否可以觸達 VNET 中的資源。  如果可以，接下來的步驟就相當簡單。  您必須從 VNET 中的 VM 嘗試觸達內部部署應用程式。  您可以使用 telnet 或 TCP ping 公用程式。  如果 VM 無法觸達內部部署資源，則需先確定站對站 VPN 連線正在運作中。  如果正在運作中，接著檢查先前提到的相同事項，以及內部部署閘道組態和狀態。  
 
-現在，如果 VNET 裝載的 VM 可以觸達您的內部部署系統，但您的應用程式無法觸達此系統，可能是下列其中一個原因：
+現在，如果 VNET 裝載的 VM 可以觸達您的內部部署系統，但您的應用程式無法觸達此系統，則很可能是下列其中一個原因：
 
-* 內部部署閘道中未以您的點對站 IP 範圍來設定路由
+* 內部部署閘道中未以您的點對站 IP 範圍設定路由
 * 網路安全性群組已封鎖點對站 IP 範圍的存取
-* 網路防火牆已封鎖來自點對站 IP 範圍的流量
+* 內部部署防火牆已封鎖來自點對站 IP 範圍的流量
 * 您在 VNET 中有使用者定義的路由 (UDR) 阻止點對站的流量觸達您的內部部署網路
 
 ## <a name="hybrid-connections-and-app-service-environments"></a>混合式連線和 App Service 環境
@@ -276,7 +276,7 @@ App Service 環境功能可讓您在 VNET 中執行 Azure App Service 的執行�
 * 如果您是想要將大量 Web 內容放在公用雲端，並在自己的網路中管理它們的大型組織，則您會想要使用 App Service 環境。  
 * 如果您有許多 App Service 裝載的應用程式，而且只想要存取 VNET 中的資源，則 VNET 整合是最好的選擇。  
 
-除了使用案例以外，還有一些簡單相關層面。  如果 VNET 已連接到內部部署網路，則使用 VNET 整合或 App Service 環境是取用內部部署資源的簡單方法。  另一方面，如果 VNET 未連接到內部部署網路，則與安裝 HCM 相較，設定站對站 VPN 與 VNET 搭配，需要更多的額外負荷。  
+除了使用案例以外，還有一些簡單相關層面。  如果 VNET 已經連線到內部部署網路，則使用 VNET 整合或 App Service 環境是取用內部部署資源的簡單方法。  另一方面，如果 VNET 未連線到內部部署網路，則相較於安裝 HCM，搭配您的 VNET 設定站對站 VPN，需要更多的額外負荷。  
 
 除了功能差異以外，還有價格差異。  App Service 環境功能是進階服務供應項目，除了其他很棒的功能外，還提供最多的網路組態可能性。  VNET 整合可與標準或進階 ASP 搭配使用，並非常適合從多租用戶 App Service 安全取用 VNET 中的資源。  混合式連線目前取決於 BizTalk 帳戶，此帳戶具有的價格層級，從一開始免費，然後根據您需要的數量而越發昂貴。  不過，當在許多網路之間工作時，沒有其他功能像混合式連線一樣，可讓您存取超過 100 個不同網路中的資源。    
 
@@ -301,4 +301,6 @@ App Service 環境功能可讓您在 VNET 中執行 Azure App Service 的執行�
 [ASEintro]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-intro/
 [ILBASE]: http://azure.microsoft.com/documentation/articles/app-service-environment-with-internal-load-balancer/
 [V2VNETPortal]: https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal
+[VPNERCoex]: http://docs.microsoft.com/en-us/azure/expressroute/expressroute-howto-coexist-resource-manager
+[ASE]: http://docs.microsoft.com/azure/app-service/app-service-environment/intro
 

@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/10/2017
 ms.author: jdial
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: b5457f754f6118f936b5aae48de51c76bff128b5
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: beb4f74012359f6a0a837f0194c7f43746977cea
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="create-change-or-delete-a-virtual-network"></a>建立、變更或刪除虛擬網路
@@ -74,7 +73,7 @@ ms.lasthandoff: 06/14/2017
       >有時候，系統管理員會建立不同的子網路來篩選或控制在子網路之間傳送的流量。 在定義子網路之前，請先考慮您想要如何篩選和路由傳送子網路之間的流量。 若要深入了解如何篩選子網路之間的流量，請參閱[網路安全性群組](virtual-networks-nsg.md)。 Azure 會自動路由傳送子網路之間的流量，但您可以覆寫 Azure 預設路由。 若要深入了解如何覆寫 Azure 預設子網路流量路由，請參閱[使用者定義的路由](virtual-networks-udr-overview.md)。
       >
 
-    - **子網路位址範圍**︰此範圍必須位於您針對虛擬網路輸入的位址空間內。 您可以指定的最小範圍是 /29，此範圍可提供八個 IP 位址供子網路使用。 為了符合通訊協定的規定，Azure 會保留每個子網路中的第一個和最後一個位址。 Azure 還會保留三個位址供 Azure 服務使用。 因此，使用 /29 子網路位址範圍的虛擬網路只有三個可用的 IP 位址。 如果您打算將虛擬網路連線至 VPN 閘道，則必須建立一個閘道子網路。 深入了解[閘道子網路位址範圍的具體考量](../vpn-gateway/vpn-gateway-about-vpn-gateway-settings.md?toc=%2fazure%2fvirtual-network%2ftoc.json#a-namegwsubagateway-subnet)。 若符合特定條件，您可以在子網路建立好之後變更其位址範圍。 若要了解如何變更子網路的位址範圍，請參閱[新增、變更或刪除子網路](virtual-network-manage-subnet.md)中的[變更子網路設定](#change-subnet)。
+    - **子網路位址範圍**︰此範圍必須位於您針對虛擬網路輸入的位址空間內。 您可以指定的最小範圍是 /29，此範圍可提供八個 IP 位址供子網路使用。 為了符合通訊協定的規定，Azure 會保留每個子網路中的第一個和最後一個位址。 Azure 還會保留三個位址供 Azure 服務使用。 因此，使用 /29 子網路位址範圍的虛擬網路只有三個可用的 IP 位址。 如果您打算將虛擬網路連線至 VPN 閘道，則必須建立一個閘道子網路。 深入了解[閘道子網路位址範圍的具體考量](../vpn-gateway/vpn-gateway-about-vpn-gateway-settings.md?toc=%2fazure%2fvirtual-network%2ftoc.json#gwsub)。 若符合特定條件，您可以在子網路建立好之後變更其位址範圍。 若要了解如何變更子網路的位址範圍，請參閱[新增、變更或刪除子網路](virtual-network-manage-subnet.md)中的[變更子網路設定](#change-subnet)。
     - **訂用帳戶**︰選取[訂用帳戶](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#subscription)。 您無法在多個 Azure 訂用帳戶中使用相同的虛擬網路。 不過，您可以將一個訂用帳戶中的虛擬網路連線至其他訂用帳戶中的虛擬網路。 若要連線不同訂用帳戶中的虛擬網路，請使用 Azure VPN 閘道或虛擬網路對等互連。 您連線到虛擬網路的任何 Azure 資源必須與虛擬網路位於相同的訂用帳戶中。
     - **資源群組**：選取現有[資源群組](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-groups)或建立新的資源群組。 您連線到虛擬網路的 Azure 資源，可以位於與虛擬網路相同或不同的資源群組中。
     - **位置**︰選取 Azure [位置](https://azure.microsoft.com/regions/) (也稱為區域)。 虛擬網路只能位於一個 Azure 位置。 不過，您可以使用 VPN 閘道，將某個位置的虛擬網路連線至其他位置的虛擬網路。 您連線到虛擬網路的任何 Azure 資源必須與虛擬網路位於相同的位置。
@@ -151,7 +150,7 @@ ms.lasthandoff: 06/14/2017
 
 ## <a name="dns-servers"></a>新增、變更或移除 DNS 伺服器
 
-所有連線至虛擬網路的 VM 會向您為虛擬網路指定的 DNS 伺服器註冊。 他們也可使用指定的 DNS 伺服器進行名稱解析。 VM 中的每個網路介面 (NIC) 都可以有自己的 DNS 伺服器設定。 如果 NIC 有自己的 DNS 伺服器設定，其設定就會覆寫虛擬網路的 DNS 伺服器設定。 若要深入了解 NIC DNS 設定，請參閱[網路介面工作和設定](virtual-network-network-interface.md#dns)。 若要深入了解 Azure 雲端服務中 VM 和角色執行個體的名稱解析，請參閱 [VM 和角色執行個體的名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)。 若要新增、變更或移除 DNS 伺服器：
+所有連線至虛擬網路的 VM 會向您為虛擬網路指定的 DNS 伺服器註冊。 他們也可使用指定的 DNS 伺服器進行名稱解析。 VM 中的每個網路介面 (NIC) 都可以有自己的 DNS 伺服器設定。 如果 NIC 有自己的 DNS 伺服器設定，其設定就會覆寫虛擬網路的 DNS 伺服器設定。 若要深入了解 NIC DNS 設定，請參閱[網路介面工作和設定](virtual-network-network-interface.md#change-dns-servers)。 若要深入了解 Azure 雲端服務中 VM 和角色執行個體的名稱解析，請參閱 [VM 和角色執行個體的名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)。 若要新增、變更或移除 DNS 伺服器：
 
 1. 請使用已指派訂用帳戶網路參與者角色權限 (至少) 的帳戶來登入[入口網站](https://portal.azure.com)。 若要深入了解如何將角色和權限指派給帳戶，請參閱 [Azure 角色型存取控制的內建角色](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor)。
 2. 在入口網站的搜尋方塊中，輸入「虛擬網路」。 在搜尋結果中，選取「虛擬網路」。
@@ -196,8 +195,8 @@ ms.lasthandoff: 06/14/2017
 
 ## <a name="next-steps"></a>接續步驟
 
-- 若要建立 VM 並將它連線到虛擬網路，請參閱[建立虛擬網路並連線 VM](virtual-network-get-started-vnet-subnet.md#a-namecreate-vmsacreate-virtual-machines)。
+- 若要建立 VM 並將它連線到虛擬網路，請參閱[建立虛擬網路並連線 VM](virtual-network-get-started-vnet-subnet.md#create-vms)。
 - 若要篩選虛擬網路之間的網路流量，請參閱[建立網路安全性群組](virtual-networks-create-nsg-arm-pportal.md)。
-- 若要讓兩個虛擬交換器對等互連，請參閱[建立虛擬網路對等互連](virtual-network-create-peering.md#a-nameportalacreate-peering---azure-portal)。
-- 若要了解用於將虛擬網路連線到內部部署網路的選項，請參閱[關於 VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#a-namediagramsaconnection-topology-diagrams)。
+- 若要讓兩個虛擬交換器對等互連，請參閱[建立虛擬網路對等互連](virtual-network-create-peering.md#portal)。
+- 若要了解用於將虛擬網路連線到內部部署網路的選項，請參閱[關於 VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#diagrams)。
 

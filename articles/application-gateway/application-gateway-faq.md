@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/28/2017
 ms.author: gwallace
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
-ms.openlocfilehash: 3b2ddf764f54d2e7f23b02b5b593077938ac9355
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: dbf870ca6e0ab85c96290a93eafd47d4b574dbc7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/29/2017
-
+ms.lasthandoff: 07/20/2017
 
 ---
 
@@ -57,7 +56,11 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 **問：是否支援 HTTP->HTTPS 重新導向？**
 
-目前不支援。
+支援重新導向。 若要深入了解，請瀏覽[應用程式閘道重新導向概觀](application-gateway-redirect-overview.md)。
+
+**問：接聽程式的處理順序為何？**
+
+接聽程式會依其顯示順序處理。 因此，如果基本接聽程式符合傳入的要求，就會先處理它。  多站台接聽程式應在基本接聽程式之前設定，以確保流量會路由傳送到正確的後端。
 
 **問：哪裡可找到應用程式閘道的 IP 和 DNS？**
 
@@ -130,6 +133,10 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 **問：自訂探查是否支援回應資料使用萬用字元/regex？**
 
 自訂探查不支援回應資料使用萬用字元或 regex。
+
+**問：規則的處理方式為何？**
+
+規則會依其設定順序處理。 建議在基本規則前設定多站台規則，以減少流量路由傳送到不適當後端的機會，因為在評估多站台規則之前，基本規則會根據連接埠比對流量。
 
 **問：自訂探查的 [主機] 欄位表示什麼？**
 

@@ -16,12 +16,11 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 04/01/2017
 ms.author: chrande; glenga
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: a930e02313aa0a2238ecfaa31af68d59b2c8e961
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: 58b6d5c6ef40891e56ea4811f5e778286bdb8bc3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="azure-functions-service-bus-bindings"></a>Azure Functions 服務匯流排繫結
@@ -76,7 +75,7 @@ Azure Functions 支援服務匯流排佇列和主題的觸發程序和輸出繫�
 
 ## <a name="trigger-behavior"></a>觸發程序行為
 * **單一執行緒** - Functions 執行階段預設會並行處理多個訊息。 若要指示執行階段一次只處理一個佇列或主題訊息，請在 *host.json* 檔案中將 `serviceBus.maxConcurrentCalls` 設定為 1。 
-  如需有關 *host.json* 的資訊，請參閱[資料夾結構](functions-reference.md#folder-structure)和 [host.json](https://git .com/Azure/azure-webjobs-sdk-script/wiki/host.json)。
+  如需有關 *host.json* 的資訊，請參閱[資料夾結構](functions-reference.md#folder-structure)和 [host.json](https://github .com/Azure/azure-webjobs-sdk-script/wiki/host.json) \(英文\)。
 * **有害訊息處理** - 服務匯流排會自行處理無法在 Azure Functions 組態或程式碼中控制或設定的有害訊息。 
 * **PeekLock behavior** - Functions 執行階段會在 [`PeekLock` 模式](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode)下接收訊息，並在函式順利完成時，於訊息上呼叫 `Complete`，或是在函式失敗時呼叫 `Abandon`。 
   如果函數執行時間較 `PeekLock` 逾時還長，即會自動更新鎖定。

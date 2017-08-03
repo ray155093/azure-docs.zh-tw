@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: f0a1717219bfc33033bdb827e66e80dd18388e64
-ms.lasthandoff: 04/03/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
+ms.openlocfilehash: ccadf55c492c097ef96f25e469dbf36fc87b6102
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/15/2017
 
 ---
 # <a name="information-for-non-endorsed-distributions"></a>非背書散發套件的資訊
@@ -53,8 +53,8 @@ ms.lasthandoff: 04/03/2017
 * 請勿在作業系統磁碟上設定交換磁碟分割。 您可以設定 Linux 代理程式在暫存資源磁碟上建立交換檔。  您可以在以下步驟中找到與此有關的詳細資訊。
 * 所有 VHD 的大小都必須是 1 MB 的倍數。
 
-### <a name="installing-linux-without-hyper-v"></a>安裝不含 Hyper-V 的 Linux
-在某些情況下，Linux 安裝程式在初始 ramdisk (initrd 或 initramfs) 中可能不包含 Hyper-V 的驅動程式，除非偵測到它正在執行 Hyper-V 環境。  使用不同的虛擬化系統 (例如 Virtualbox、KVM 等) 來準備您的 Linux 映像時，您可能需要重新建置 initrd，以確保在初始 ramdisk 上至少有 `hv_vmbus` 和 `hv_storvsc` 核心模組可以使用。  目前至少已知在以上游 Red Hat 散發套件為基礎的系統上有此問題。
+### <a name="installing-kernel-modules-without-hyper-v"></a>安裝不含 Hyper-V 的核心模組
+Azure 在 Hyper-V Hypervisor 上執行，因此 Linux 會要求必須安裝某些核心模組，才能在 Azure 中執行。 如果您的 VM 建立在 Hyper-V 外部，Linux 安裝程式在初始 Ramdisk (initrd 或 initramfs) 中可能不包含 Hyper-V 的驅動程式，除非它偵測到所執行的環境是 Hyper-V 環境。 使用不同的虛擬化系統 (例如 Virtualbox、KVM 等) 來準備您的 Linux 映像時，您可能需要重新建置 initrd，以確保在初始 ramdisk 上至少有 `hv_vmbus` 和 `hv_storvsc` 核心模組可以使用。  目前至少已知在以上游 Red Hat 散發套件為基礎的系統上有此問題。
 
 重新建置 initrd 或 initramfs 映像的機制會根據散發套件而有所不同。 請參閱散發套件的文件或支援人員，以了解適當程序。  以下是如何使用 `mkinitrd` 公用程式重新建置 initrd 的範例：
 

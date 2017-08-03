@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/29/2017
 ms.author: mandia; ladocs
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 014b726c2e960029cf5896e07063e807e9ae1915
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: cc64441617eb5e7d5e70c1cf5c491a672428bc51
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -90,7 +90,7 @@ ms.lasthandoff: 05/10/2017
 
 ### <a name="workflow-ideas"></a>工作流程想法
 
-* 您希望能監視 #oracle 雜湊標記，並在資料庫中放置推文以便查詢，並在其他應用程式中使用。 在邏輯應用程式中，新增 `Twitter - When a new tweet is posted` 觸發程序並輸入 **#oracle** 雜湊標記。 接著，新增 `Oracle Database - Insert row` 動作，再選取您的資料表：
+* 您希望能監視 #oracle 主題標籤，並在資料庫中放置推文以便查詢，並在其他應用程式中使用。 在邏輯應用程式中，新增 `Twitter - When a new tweet is posted` 觸發程序並輸入 **#oracle** 主題標籤。 接著，新增 `Oracle Database - Insert row` 動作，再選取您的資料表：
 
     ![](./media/connectors-create-api-oracledatabase/twitter-oracledb.png)
 
@@ -124,8 +124,9 @@ ms.lasthandoff: 05/10/2017
 * 包含複合索引鍵的任何資料表
 * 資料表中的巢狀物件類型
  
-## <a name="view-the-swagger"></a>檢視 Swagger
-請參閱 [Swagger 詳細資料](/connectors/oracle/)。 
+## <a name="connector-specific-details"></a>連接器特定的詳細資料
+
+檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/oracle/)的所有限制。 
 
 ## <a name="get-some-help"></a>取得協助
 

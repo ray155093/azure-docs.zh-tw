@@ -12,13 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/04/2017
+ms.date: 07/18/2017
 ms.author: adegeo
-translationtype: Human Translation
-ms.sourcegitcommit: 0b404af5b638ec2d543ce98b562b7df538652f70
-ms.openlocfilehash: 71863e52dca951b1fc3847e1bba47977a6e49c7c
-ms.lasthandoff: 01/05/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
+ms.openlocfilehash: 2a2172a78bfd3ac923edbc9de366b035629dd27b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/19/2017
 
 ---
 # <a name="how-to-create-and-deploy-a-cloud-service"></a>如何建立和部署雲端服務
@@ -33,7 +33,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
 本主題說明如何使用「快速建立」方法建立新的雲端服務，然後使用 [上傳] 來上傳雲端服務封裝並在 Azure 中加以部署。 當您使用這個方法時，Azure 傳統入口網站會在過程中提供便利的連結，讓您完成所有要求。 如果您準備在建立雲端服務時加以部署，可以同時使用 [自訂建立] 進行這兩項作業。
 
 > [!NOTE]
-> 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用 [快速建立]，然後從 [ **快速啟動** ] 或儀表板設定 VSTS 發佈。 如需詳細資訊，請參閱[使用 Visual Studio Team Services 連續傳遞至 Azure][TFSTutorialForCloudService]，或參閱 [快速入門] 頁面的說明。
+> 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用 [快速建立]，然後從 [快速啟動] 或儀表板設定 VSTS 發佈。
 > 
 > 
 
@@ -121,7 +121,6 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
    
     ![CloudServices_QuickGlance](./media/cloud-services-how-to-create-deploy/CloudServices_QuickGlance.png)
 
-[TFSTutorialForCloudService]: cloud-services-continuous-delivery-use-vso.md
 
 ## <a name="next-steps"></a>後續步驟
 * [雲端服務的一般設定](cloud-services-how-to-configure.md)。

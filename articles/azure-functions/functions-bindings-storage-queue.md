@@ -16,12 +16,11 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: donnam, glenga
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 85a3386c8159eb1abf01ccd35c6aea04f5710d5c
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: f39f674bf576a2661a0e03710b9005b0515b3aa5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="azure-functions-queue-storage-bindings"></a>Azure Functions 佇列儲存體繫結
@@ -75,7 +74,7 @@ Azure 佇列儲存體觸發程序可讓您監視佇列儲存體的新訊息，�
 * **ExpirationTime** - 鍵入 `DateTimeOffset?`。 訊息到期時間。
 * **Id** - 鍵入 `string`。 佇列訊息識別碼。
 * **InsertionTime** - 鍵入 `DateTimeOffset?`。 訊息新增至佇列的時間。
-* **NextVisibleTime** - 鍵入 `DateTimeOffset?。 下次顯示訊息的時間。
+* **NextVisibleTime** - 鍵入 `DateTimeOffset?`。 下次顯示訊息的時間。
 * **PopReceipt** - 鍵入 `string`。 訊息的離開通知。
 
 請參閱[觸發程序範例](#triggersample)以了解如何使用佇列中繼資料。
@@ -294,3 +293,4 @@ module.exports = function(context) {
 <!-- LINKS -->
 
 [`CloudQueueMessage`]: /dotnet/api/microsoft.windowsazure.storage.queue.cloudqueuemessage
+

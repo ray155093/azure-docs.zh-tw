@@ -11,13 +11,13 @@ ms.workload: na
 ms.tgt_pltfrm: dotnet
 ms.devlang: na
 ms.topic: article
-ms.date: 06/23/2017
+ms.date: 07/13/2017
 ms.author: glenga, donnam
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 8b569727c51589bd622d41465bb3565220c19fca
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: fab2b3042faf870fe4b9d09d5e96dadb7155c450
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="azure-functions-tools-for-visual-studio"></a>Azure Functions Tools for Visual Studio  
@@ -56,7 +56,7 @@ Azure Functions Tools 提供下列優點：
 
 ## <a name="create-an-azure-functions-project"></a>建立 Azure Functions 專案 
 
-[!INCLUDE [Create a project using the Azure Functions ](../../includes/functions-vstools-create.md)]
+[!INCLUDE [Create a project using the Azure Functions](../../includes/functions-vstools-create.md)]
 
 
 ## <a name="configure-the-project-for-local-development"></a>設定專案以進行本機開發
@@ -65,13 +65,17 @@ Azure Functions Tools 提供下列優點：
 
 * **host.json**：讓您設定 Functions 主機。 這些設定同時適用於在本機執行及在 Azure 中執行。 如需詳細資訊，請參閱 [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) \(英文\) 參考文章。
     
-* **local.settings.json**：維持在本機執行函數時所使用的設定。 Azure 不會使用這些設定，Azure Functions Core Tools 會使用這些設定。 使用此檔案來指定設定，例如連至其他 Azure 服務的連接字串。 針對專案中函數所需的每個連接，將新機碼新增至 [值] 陣列。 如需詳細資訊，請參閱＜Azure Functions Core Tools＞主題中的[本機設定檔](functions-run-local.md#local-settings-file)。
+* **local.settings.json**：維持在本機執行函數時所使用的設定。 Azure 不會使用這些設定，[Azure Functions Core Tools](functions-run-local.md) 會使用這些設定。 使用此檔案來指定設定，例如連至其他 Azure 服務的連接字串。 針對專案中函數所需的每個連接，將新機碼新增至 [值] 陣列。 如需詳細資訊，請參閱＜Azure Functions Core Tools＞主題中的[本機設定檔](functions-run-local.md#local-settings-file)。
 
-函數執行階段會在內部使用 Azure 儲存體帳戶。 針對 HTTP 和 Webhook 以外的所有觸發程序類型，您必須將 **Values.AzureWebJobsStorage** 機碼設定為有效的 Azure 儲存體帳戶連接字串。 設定儲存體帳戶連接字串：
+函數執行階段會在內部使用 Azure 儲存體帳戶。 針對 HTTP 和 Webhook 以外的所有觸發程序類型，您必須將 **Values.AzureWebJobsStorage** 機碼設定為有效的 Azure 儲存體帳戶連接字串。
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)瀏覽至您的儲存體帳戶，按一下 [所有設定]  > [存取金鑰][連接字串]。 
+[!INCLUDE [Note to not use local storage](../../includes/functions-local-settings-note.md)]
 
-2. 在 Visual Studio 的專案中，開啟 local.settings.json 專案檔案並將 **AzureWebJobsStorage** 機碼的值設定為您所複製的連接字串。
+ 設定儲存體帳戶連接字串：
+
+1. 在 Visual Studio 中，開啟 [Cloud Explorer]，展開 [儲存體帳戶] > 「您的儲存體帳戶」，然後選取 [屬性] 並複製 [主要連接字串] 值。   
+
+2. 在您的專案中，開啟 local.settings.json 專案檔案並將 **AzureWebJobsStorage** 機碼的值設定為您所複製的連接字串。
 
 3. 重複上一步，針對函數所需的其他任何連接，將唯一機碼新增至 [值] 陣列。  
 
@@ -85,7 +89,7 @@ Azure Functions Tools 提供下列優點：
 
     ![](./media/functions-develop-vs/functions-vstools-create-queuetrigger.png)
     
-    會提供名為 **QueueStorage** 的連接字串機碼，它是在 local.settings.json 檔案中定義的。 類別名稱 
+    會提供名為 **QueueStorage** 的連接字串機碼，它是在 local.settings.json 檔案中定義的。 
  
 3. 檢查新加入的類別。 您會看到靜態 [執行] 方法，它是使用 **FunctionName** 屬性來屬性化。 這個屬性指出該方法是函數的進入點。 
 
@@ -113,7 +117,9 @@ Azure Functions Tools 提供下列優點：
 
 ## <a name="testing-functions"></a>測試函式
 
-[!INCLUDE [Test the function locally](../../includes/functions-vstools-test.md)]
+Azure Functions Core Tools 可讓您在本機開發電腦上執行 Azure Functions 專案。 第一次從 Visual Studio 啟動函式時，系統會提示您安裝這些工具。  
+
+若要測試您的函式，請按 F5。 如果出現提示，接受來自 Visual Studio 之下載及安裝 Azure Functions Core (CLI) 工具的要求。  您可能也需要啟用防火牆例外狀況，工具才能處理 HTTP 要求。
 
 隨著專案的執行，您可以像測試部署函數一樣測試程式碼。 如需詳細資訊，請參閱[在 Azure Functions 中測試程式碼的策略](functions-test-a-function.md)。 在偵錯模式下執行時，會依預期在 Visual Studio 中遇到中斷點。 
 
@@ -125,8 +131,17 @@ Azure Functions Tools 提供下列優點：
 
 [!INCLUDE [Publish the project to Azure](../../includes/functions-vstools-publish.md)]
 
+>[!NOTE]  
+>您在 local.settings.json 中所新增的所有設定，也必須新增至 Azure 中的函式應用程式。 系統並不會自動新增這些設定。 您可以透過下列方法將必要的設定新增至函式應用程式：
+>
+>* [使用 Azure 入口網站](functions-how-to-use-azure-function-app-settings.md#settings)。
+>* [使用 Azure Functions Core Tools 中的 `--publish-local-settings` 發行選項](functions-run-local.md#publish)。
+>* [使用 Azure CLI](/cli/azure/functionapp/config/appsettings#set)。 
+
 ## <a name="next-steps"></a>後續步驟
 
 如需 Azure Functions Tools 的詳細資訊，請參閱 [Visual Studio 2017 Tools for Azure Functions](https://blogs.msdn.microsoft.com/webdev/2017/05/10/azure-function-tools-for-visual-studio-2017/) \(英文\) 部落格文章的＜常見問題＞一節。
 
-若要深入了解 Azure Functions Core Tools，請參閱[在本機撰寫和測試 Azure Functions 程式碼](functions-run-local.md)。
+若要深入了解 Azure Functions Core Tools，請參閱[在本機撰寫和測試 Azure Functions 程式碼](functions-run-local.md)。  
+若要深入了解如何將函式開發為 .NET 類別庫，請參閱[搭配使用 .NET 類別庫與 Azure Functions](functions-dotnet-class-library.md)。 本主題也提供範例以示範如何使用屬性宣告 Azure Functions 所支援的各種繫結類型。    
+

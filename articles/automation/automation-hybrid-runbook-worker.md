@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/29/2017
 ms.author: bwren
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3716c7699732ad31970778fdfa116f8aee3da70b
-ms.openlocfilehash: 5cd863c3e357b67d281adb8484376295ad9099ec
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 9faa1c9d40c50b2ed70d5574f3fde79dad71c9e5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
+ms.lasthandoff: 07/11/2017
 
 ---
 
@@ -57,7 +57,7 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 * 請考慮使用實際位於或接近自動化帳戶所在區域的電腦，因為當作業完成時，作業資料會送回到 Azure 自動化。
 
 ### <a name="configure-proxy-and-firewall-settings"></a>設定 Proxy 和防火牆設定
-若要讓內部部署 Hybrid Runbook Worker 連線到 Microsoft Operations Management Suite (OMS) 服務並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  這是除了 [Microsoft Monitoring Agent 所需的連接埠和 URL](../log-analytics/log-analytics-windows-agents.md#network) 以連線至 OMS。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
+若要讓內部部署 Hybrid Runbook Worker 連線到 Microsoft Operations Management Suite (OMS) 服務並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  此外，這是 [Microsoft Monitoring Agent 連線至 OMS 所需的連接埠和 URL](../log-analytics/log-analytics-windows-agents.md#network)。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
 
 以下資訊列出要讓 Hybrid Runbook Worker 與自動化進行通訊所需的連接埠和 URL。
 

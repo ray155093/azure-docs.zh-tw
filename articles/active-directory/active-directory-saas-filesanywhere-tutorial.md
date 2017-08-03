@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 40164cfba8b54634278194c599a4493a5b7910b2
-ms.lasthandoff: 04/03/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: 4153056bd21006061c6ad8ff9cf3c17de9248628
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-filesanywhere"></a>教學課程：Azure Active Directory 與 FilesAnywhere 整合
@@ -117,6 +117,8 @@ FilesAnywhere 與 Azure AD 整合提供下列優點：
     ![設定單一登入](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_filesanywhere_url.png)
     
     a. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.filesanywhere.com/saml20.aspx?c=215`
+> [!NOTE]
+> 請注意，**clientid** 的值 **215** 只是範例。 您必須以實際的 clientid 值加以取代。
 
 4. 在 [FilesAnywhere 網域和 URL] 區段中，如果您想要在 [SP 起始模式] 中設定應用程式，請執行下列步驟：
     
@@ -170,7 +172,7 @@ FilesAnywhere 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_configuresignon.png)
 
-10.    若要在 FilesAnywhere 結尾為您的應用程式完成 SSO 組態，請連絡 [FilesAnywhere 支援小組](mailto:support@FilesAnywhere.com)，並且提供已下載的 SAML 權杖簽署憑證和單一登入 (SSO) URL。
+10. 若要在 FilesAnywhere 結尾為您的應用程式完成 SSO 組態，請連絡 [FilesAnywhere 支援小組](mailto:support@FilesAnywhere.com)，並且提供已下載的 SAML 權杖簽署憑證和單一登入 (SSO) URL。
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節目標是在 Azure 管理入口網站中建立名為 Britta Simon 的測試使用者。

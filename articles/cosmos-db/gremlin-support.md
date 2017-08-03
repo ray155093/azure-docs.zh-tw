@@ -3,7 +3,7 @@ title: "Azure Cosmos DB Gremlin 支援 | Microsoft Docs"
 description: "了解 Apache TinkerPop 的 Gremlin 語言，Azure Cosmos DB 中可用使用其功能和步驟"
 services: cosmos-db
 documentationcenter: 
-author: arramac
+author: dennyglee
 manager: jhubbard
 editor: 
 tags: 
@@ -14,18 +14,17 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 06/10/2017
-ms.author: arramac
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
-ms.openlocfilehash: acea54d202d1117cf2dfb1d35ad48346daa9053d
+ms.author: denlee
+ms.translationtype: HT
+ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
+ms.openlocfilehash: 3f2d2af1d6be41d98f9780b4cf9ca4cd79de0fd7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/13/2017
-
+ms.lasthandoff: 07/17/2017
 
 ---
 
 # <a name="azure-cosmos-db-gremlin-graph-support"></a>Azure Cosmos DB Gremlin graph 支援
-Azure Cosmos DB 支援 [Gremlin]([Gremlin](http://tinkerpop.apache.org/docs/current/reference/#graph-traversal-steps))，該圖形 API 是 [Apache Tinkerpop](http://tinkerpop.apache.org) 的圖形周遊語言，可用於建立圖表實體和執行圖表查詢作業。 您可以使用 Gremlin 語言建立圖表實體 (頂點和邊緣)、修改這些實體內的屬性、執行查詢和周遊，以及刪除實體。 
+Azure Cosmos DB 支援 [Gremlin](http://tinkerpop.apache.org/docs/current/reference/#graph-traversal-steps) \(英文\)，該圖形 API 是 [Apache Tinkerpop](http://tinkerpop.apache.org) \(英文\) 的圖形周遊語言，可用於建立圖表實體和執行圖表查詢作業。 您可以使用 Gremlin 語言建立圖表實體 (頂點和邊緣)、修改這些實體內的屬性、執行查詢和周遊，以及刪除實體。 
 
 Azure Cosmos DB 在圖表資料庫中提供符合企業需求的功能。 其中包括全域散發、獨立調整儲存體和輸送量、可預測的個位數毫秒延遲、自動編製索引，以及 99.99% 的 SLA。 由於 Azure Cosmos DB 支援 TinkerPop/Gremlin，您可以輕鬆地移轉使用另一個圖表資料庫撰寫的應用程式，而不必變更程式碼。 此外，憑藉 Gremlin 支援，Azure Cosmos DB 與啟用 TinkerPop 的分析架構緊密整合，例如 [Apache Spark GraphX](http://spark.apache.org/graphx/)。 
 
@@ -150,7 +149,7 @@ GraphSON 用於頂點的屬性如下︰
 | --- | --- |
 | id | 邊緣的識別碼。 必須是唯一的 (適合的話，與 _partition 的值結合) |
 | 標籤 | 邊緣的標籤。 這是選擇性屬性，用來描述關聯性類型。 |
-| inV | 與邊緣相關聯的使用者定義屬性包。 每個屬性可以有多個值。 |
+| inV | 這包含特定邊緣的頂點清單。 儲存邊緣的相鄰資訊可以加速周遊的執行。 頂點會根據標籤而分組。 |
 | 屬性 | 與邊緣相關聯的使用者定義屬性包。 每個屬性可以有多個值。 |
 
 每個屬性可以將多個值儲存在陣列中。 
@@ -210,3 +209,4 @@ GraphSON 用於頂點的屬性如下︰
 ## <a name="next-steps"></a>後續步驟
 * [使用我們的 SDK](create-graph-dotnet.md) 開始建置圖表應用程式 
 * 深入了解 [Azure Cosmos DB 的圖表支援](graph-introduction.md)
+

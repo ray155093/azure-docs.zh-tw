@@ -13,11 +13,11 @@ ums.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 3/13/2017
 ms.author: rclaus
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 047d9191e2c844a591c35279ff7b143906087f56
-ms.lasthandoff: 04/27/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
+ms.openlocfilehash: b7e17b83afb7306b74b8769f31188642b54566ca
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/12/2017
 
 ---
 
@@ -133,13 +133,13 @@ NFS 共用是快速串接集，就像 SAP HANA 伺服器上的一樣。 不過�
 
 ![替代方法 1 小時 43 分鐘沒快多少](media/sap-hana-backup-file-level/image037.png)
 
-執行備份至本機串接集，並複製到 OS 層級 NFS 共用的另一個替代方法 (簡單的 **cp -avr** 命令) 沒快多少， 花了 1 小時 43 分鐘。
+對本機等量磁碟區執行備份，並複製到 OS 層級之 NFS 共用的替代方法 (簡單的 **cp -avr** 命令) 沒快多少， 花了 1 小時 43 分鐘。
 
 它的確可行，但效能不如 230 GB 備份測試好。 若遇到數 TB 的資料，可能會更糟。
 
 ## <a name="copy-sap-hana-backup-files-to-azure-file-service"></a>將 SAP HANA 備份檔案複製到 Azure 檔案服務
 
-可以將 Azure 檔案共用掛接在 Azure Linux VM 內部。 [如何在 Linux 使用 Azure 檔案儲存體](../../../storage/storage-how-to-use-files-linux.md)一文提供做法詳細資訊。 請記住，目前 Azure 檔案共用有 5 TB 配額的限制，以及每個檔案 1 TB 的檔案大小限制。 如需儲存體限制的詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](../../../storage/storage-scalability-targets.md) (英文)。
+可以將 Azure 檔案共用掛接在 Azure Linux VM 內部。 [如何搭配使用 Azure 檔案儲存體與 Linux](../../../storage/storage-how-to-use-files-linux.md) 一文提供作法的詳細資訊。 請記住，目前 Azure 檔案共用有 5 TB 配額的限制，以及每個檔案 1 TB 的檔案大小限制。 如需儲存體限制的詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](../../../storage/storage-scalability-targets.md) (英文)。
 
 不過測試顯示，SAP HANA 備份目前不能直接搭配使用這種 CIFS 掛接。 在 [SAP Note 1820529](https://launchpad.support.sap.com/#/notes/1820529) (英文) 中也提到不建議使用 CIFS。
 

@@ -1,6 +1,6 @@
 ---
 title: "以組織方式註冊 Azure"
-description: "了解如何使用工作或學校帳戶，來運用您已有的現有使用者帳戶、原則、設定或內部部署伺服器部署，而提升您的組織在內部部署身分識別基礎結構與 Azure AD 之間的效率。"
+description: "了解如何使用公司或學校帳戶，來運用您已有的現有使用者帳戶、原則、設定或內部部署伺服器部署，而提升您的組織在內部部署身分識別基礎結構與 Azure AD 之間的效率。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: curtand
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: bdbe25307b8b5e811dad374583d9ba3b96e212a5
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 07ad266ad87028996c4a7b3e4365c11b019f8529
 ms.contentlocale: zh-tw
-ms.lasthandoff: 11/17/2016
+ms.lasthandoff: 07/11/2017
 
 
 ---

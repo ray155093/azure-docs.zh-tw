@@ -1,5 +1,5 @@
 ---
-title: "以程式設計方式存取 Hadoop YARN 應用程式記錄檔 | Microsoft Docs"
+title: "以程式設計方式存取 Hadoop YARN 應用程式記錄檔 - Azure | Microsoft Docs"
 description: "在 HDInsight 中的 Hadoop 叢集上以程式設計方式存取應用程式記錄檔"
 services: hdinsight
 documentationcenter: 
@@ -17,18 +17,17 @@ ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: ce07cf026ca9dae40afe3205685f3ab463492e39
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 798bd85dc136853a73e8a675f7a060a2ad2cf246
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 07/08/2017
 
 ---
 # <a name="access-yarn-application-logs-on-windows-based-hdinsight"></a>存取以 Windows 為基礎之 HDInsight 上的 YARN 應用程式記錄
 本主題說明如何存取已在 Azure HDInsight 的 Windows 型 Hadoop 叢集上完成的 YARN (Yet Another Resource Negotiator) 應用程式記錄
 
 > [!IMPORTANT]
-> 本文件中的資訊僅適用於 Windows 型 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdi-version-33-nearing-retirement-date)。 如需存取 Linux 之 HDInsight 叢集上 YARN 記錄檔的相關資訊，請參閱 [在 HDInsight 中的 Linux 之 Hadoop 上存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs-linux.md)
+> 本文件中的資訊僅適用於 Windows 型 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 如需存取 Linux 之 HDInsight 叢集上 YARN 記錄檔的相關資訊，請參閱 [在 HDInsight 中的 Linux 之 Hadoop 上存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs-linux.md)
 >
 
 
@@ -60,7 +59,7 @@ YARN 藉由將資源管理從應用程式排程/監視分離，支援多種程�
 
 應用程式記錄檔 (和關聯的容器記錄檔) 在對有問題的 Hadoop 應用程式進行偵錯上相當重要。 YARN 以 [記錄檔彙總][log-aggregation] 功能提供一個良好的架構，以收集、彙總及儲存應用程式記錄檔。 「記錄檔彙總」功能讓存取應用程式記錄檔更具確定性，因為它會彙總背景工作節點上所有容器的記錄檔，並在應用程式完成之後，將它們以每一背景工作節點一個彙總記錄檔方式儲存在預設檔案系統上。 您的應用程式可能使用數百或數千個容器，但在單一工作者節點上執行之所有容器的記錄檔將一律彙總成單一檔案，也就是為您應用程式所使用的每一背景工作節點產生一個記錄檔。 「記錄檔彙總」在 HDInsight 叢集 (3.0 版和更新版本) 上預設為啟用，而在您叢集的預設容器中，即可找到彙總的記錄檔，位置如下：
 
-    wasbs:///app-logs/<user>/logs/<applicationId>
+    wasb:///app-logs/<user>/logs/<applicationId>
 
 在該位置中，user 是啟動應用程式之使用者的名稱，applicationId 是 YARN RM 所指派的應用程式唯一識別碼。
 

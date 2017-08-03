@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/29/2017
 ms.author: kumud
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
-ms.openlocfilehash: f0609465edde67a9e11af86c3265ea29a737fc85
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 792712e3e529d77ff20a7603b5fbf028ca60f8c8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 
@@ -51,7 +51,7 @@ PublicIPAddress 資源是 Azure Resource Manager 資源。 它們不存在於傳
 外部端點用於 Azure 外部的服務。 例如，在內部部署託管或使用不同提供者的服務。 外部端點可以單獨使用，或與相同流量管理員設定檔中的 Azure 端點結合。 結合 Azure 端點與外部端點可以解決各種情況：
 
 * 在主動-主動或主動-被動容錯移轉模式中，使用 Azure 以提升現有內部部署應用程式的備援性。
-* 為了讓世界各地使用者感受更短的應用程式延遲，在 Azure 中將現有的內部部署應用程式延伸至其他地理位置。 如需詳細資訊，請參閱[流量管理員「效能」流量路由](traffic-manager-routing-methods.md#a-name--performanceaperformance-traffic-routing-method)。
+* 為了讓世界各地使用者感受更短的應用程式延遲，在 Azure 中將現有的內部部署應用程式延伸至其他地理位置。 如需詳細資訊，請參閱[流量管理員「效能」流量路由](traffic-manager-routing-methods.md#performance)。
 * 使用 Azure 來擴充現有內部部署應用程式的容量，以連續方式或「高載至雲端」解決方案來因應需求暴增。
 
 在某些情況下，使用外部端點來參考 Azure 服務很實用 (如需範例，請參閱[常見問題集](traffic-manager-faqs.md#traffic-manager-endpoints))。 在此情況下，健康情況檢查是以 Azure 端點費率計費 (而不是外部端點費率)。 但是，不同於 Azure 端點，如果您停止或刪除基礎服務，健康檢查會持續計費，直到您在流量管理員中停用或刪除端點為止。

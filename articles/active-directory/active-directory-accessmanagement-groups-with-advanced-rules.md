@@ -1,5 +1,5 @@
 ---
-title: "根據 Azure Active Directory 中的使用者屬性以動態方式填入群組 | Microsoft Docs"
+title: "根據 Azure Active Directory 中的物件屬性以動態方式填入群組 | Microsoft Docs"
 description: "說明如何建立群組成員資格的進階規則，包括支援的運算式規則運算子和參數。"
 services: active-directory
 documentationcenter: 
@@ -12,20 +12,22 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/14/2017
+ms.date: 06/19/2017
 ms.author: curtand
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: b0c8eb46b6c01662f0b53213843f8a7ad295e5aa
+ms.reviewer: rodejo
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 720fd28f7ff5d1bc1c3a32cb98d5d7e1eb88e816
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
-# <a name="populate-groups-dynamically-based-on-user-attributes"></a>根據使用者屬性以動態方式填入群組 
+
+# <a name="populate-groups-dynamically-based-on-object-attributes"></a>根據物件屬性以動態方式填入群組 
 Azure 傳統入口網站可讓您對 Azure Active Directory (Azure AD) 群組啟用更複雜的屬性型動態成員資格。  
 
-當使用者的任何屬性變更時，系統會評估目錄中的所有動態群組規則，以查看使用者的屬性變更是否會觸發任何的群組新增或移除。 如果使用者滿足群組規則，則使用者會新增為該群組的成員。 如果他們不再滿足其所屬群組的規則，則會從該群組的成員中移除。
+當使用者或裝置的任何屬性變更時，系統會評估目錄中的所有動態群組規則，以查看使用者或裝置的屬性變更是否會觸發任何的群組新增或移除。 如果使用者或裝置滿足群組規則，則使用者會新增為該群組的成員。 如果他們不再滿足其所屬群組的規則，則會從該群組的成員中移除。
 
 > [!NOTE]
 > 您可以為安全性群組或 Office 365 群組的動態成員資格設定規則。 
@@ -57,6 +59,7 @@ Azure 傳統入口網站可讓您對 Azure Active Directory (Azure AD) 群組啟
 
 如需支援的參數和運算式規則運算子的完整清單，請參閱下列各節。
 
+
 請注意，屬性前面必須加上正確的物件類型︰使用者或裝置。
 以下規則會驗證失敗︰mail –ne null
 
@@ -86,6 +89,8 @@ user.mail –ne null
 | Contains |-contains |
 | Not Match |-notMatch |
 | Match |-match |
+| 在 | -in |
+| 不在 | -notIn |
 
 ## <a name="operator-precedence"></a>運算子優先順序
 
@@ -100,6 +105,14 @@ user.mail –ne null
 相當於：
 
    (user.department –eq "Marketing") –and (user.country –eq "US")
+
+## <a name="using-the--in-and--notin-operators"></a>使用 -In 和 -notIn 運算子
+
+如果您想要針對許多不同的值比較使用者屬性的值，您可以使用 -In 或 -notIn 運算子。 使用 -In 運算子的範例如下︰
+
+    user.department -In [ "50001", "50002", "50003", “50005”, “50006”, “50007”, “50008”, “50016”, “50020”, “50024”, “50038”, “50039”, “51100” ]
+
+請注意值清單的開頭和結尾有使用 "[" 和 "]"。 當 user.department 的值等於清單中的其中一個值時，這個條件會評估為 True。
 
 ## <a name="query-error-remediation"></a>查詢錯誤補救
 下表列出可能的錯誤以及其更正方式
@@ -151,6 +164,7 @@ user.mail –ne null
 | mailNickName |任何字串值 (使用者的郵件別名) |(user.mailNickName -eq "value") |
 | mobile |任何字串值或 $null |(user.mobile -eq "value") |
 | objectId |使用者物件的 GUID |(user.objectId -eq "1111111-1111-1111-1111-111111111111") |
+| onPremisesSecurityIdentifier | 已從內部部署環境同步至雲端之使用者的內部部署安全性識別碼 (SID)。 |(user.onPremisesSecurityIdentifier -eq "S-1-1-11-1111111111-1111111111-1111111111-1111111") |
 | passwordPolicies |None DisableStrongPassword DisablePasswordExpiration DisablePasswordExpiration, DisableStrongPassword |(user.passwordPolicies -eq "DisableStrongPassword") |
 | physicalDeliveryOfficeName |任何字串值或 $null |(user.physicalDeliveryOfficeName -eq "value") |
 | postalCode |任何字串值或 $null |(user.postalCode -eq "value") |
@@ -189,7 +203,7 @@ user.mail –ne null
 
 (user.extensionAttribute15 -eq "Marketing")
 
-自訂屬性會從內部部署 Windows Server AD 或從連接的 SaaS 應用程式進行同步處理，並採用 "user.extension[GUID]\__[Attribute]" 格式，其中 [GUID] 是 AAD 中的唯一識別碼 (適用於在 AAD 中建立屬性的應用程式)，而 [Attribute] 是其建立的屬性名稱。
+自訂屬性會從內部部署 Windows Server AD 或從連線的 SaaS 應用程式進行同步處理，並採用 "user.extension[GUID]\__[Attribute]" 格式，其中 [GUID] 是 AAD 中的唯一識別碼 (適用於在 AAD 中建立屬性的應用程式)，而 [Attribute] 是其建立的屬性名稱。
 以下是使用自訂屬性的規則範例：
 
 user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber  
@@ -219,11 +233,12 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
     其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。 您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔]  索引標籤上找到物件識別碼。
 5. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。 一開始填入群組可能需要幾分鐘的時間。
 
-## <a name="using-attributes-to-create-rules-for-device-objects"></a>使用屬性來建立裝置物件的規則
+# <a name="using-attributes-to-create-rules-for-device-objects"></a>使用屬性來建立裝置物件的規則
 您也可以建立規則以在群組中選取成員資格的裝置物件。 可以使用下列裝置屬性︰
 
 | 屬性 | 允許的值 | 使用量 |
 | --- | --- | --- |
+| accountEnabled |true false |(device.accountEnabled -eq true) |
 | displayName |任何字串值 |(device.displayName -eq "Rob Iphone”) |
 | deviceOSType |任何字串值 |(device.deviceOSType -eq "IOS") |
 | deviceOSVersion |任何字串值 |(device.OSVersion -eq "9.1") |
@@ -239,7 +254,8 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 | isRooted |true false null |(device.isRooted -eq true) |
 | managementType |任何字串值 |(device.managementType -eq "") |
 | organizationalUnit |任何字串值 |(device.organizationalUnit -eq "") |
-| deviceId |有效的 deviceId |(device.deviceId -eq "d4fe7726-5966-431c-b3b8-cddc8fdb717d" |
+| deviceId |有效的 deviceId |(device.deviceId -eq "d4fe7726-5966-431c-b3b8-cddc8fdb717d") |
+| objectId |有效的 AAD objectId |(device.objectId -eq "76ad43c9-32c5-45e8-a272-7b58b58f596d") |
 
 > [!NOTE]
 > 無法在 Azure 傳統入口網站中使用 [簡單規則] 下拉式清單建立這些裝置規則。

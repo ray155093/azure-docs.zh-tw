@@ -15,12 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/03/2017
 ms.author: carlrab
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f7479260c7c2e10f242b6d8e77170d4abe8634ac
-ms.openlocfilehash: 24c345e173ffe3cd215552b604e8b6cc525d8aa7
+ms.translationtype: HT
+ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
+ms.openlocfilehash: 3db5be35b3087bbbe87e623a623e7a10156b932f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/21/2017
-
+ms.lasthandoff: 07/18/2017
 
 ---
 # <a name="azure-sql-database-customer-implementation-technical-studies"></a>Azure SQL Database 客戶實作技術研究
@@ -37,5 +36,5 @@ ms.lasthandoff: 06/21/2017
 
 - [任務](https://customers.microsoft.com/en-US/story/quest)：任務專注於一個目標，在 SQL Server Enterprise 服務上提供其焦點：為資料庫專業人員提供最佳工具，可維護資料安全、移動該資料並監視資料庫作業。 透過焦點，SQL Server 資料庫系統管理員可以使用 Microsoft Azure 和 Azure SQL Database 來進行監視、偵測、診斷，並提供解析 SQL Server 效能問題的方法，不論坐在辦公室或在家工作都能辦到。
 
-- [Microsoft Synamics](https://customers.microsoft.com/story/dynamics365operationsproductteam)：為提供客戶完整的受管理軟體即服務 (SaaS) 供應項目，本簡短案例研究重點說明了最佳做法與課程，是取自 Dynamics 365 for Operations 產品小組移轉至 Azure SQL Database 的經驗。 透過 Azure SQL Database，Dynamics 365 for Operations 小組能夠明顯地以較少人員來管理及操作服務，並能以立即可用的管理功能 (例如，資料庫自動備份、資料庫備份保留、高可用性和災害復原等功能) 輕鬆擴充。 這搭配上透過簡單式自動化佈建資料庫的能力，促使 Azure SQL Database 成為能經得起大規模服務的絕佳平台。
+- [Microsoft Dynamics](https://customers.microsoft.com/story/dynamics365operationsproductteam)：為提供客戶完整的受管理軟體即服務 (SaaS) 供應項目，本簡短案例研究重點說明了最佳做法與課程，是取自 Dynamics 365 for Operations 產品小組移轉至 Azure SQL Database 的經驗。 透過 Azure SQL Database，Dynamics 365 for Operations 小組能夠明顯地以較少人員來管理及操作服務，並能以立即可用的管理功能 (例如，資料庫自動備份、資料庫備份保留、高可用性和災害復原等功能) 輕鬆擴充。 這搭配上透過簡單式自動化佈建資料庫的能力，促使 Azure SQL Database 成為能經得起大規模服務的絕佳平台。
 

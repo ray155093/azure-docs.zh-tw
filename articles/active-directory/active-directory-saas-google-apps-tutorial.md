@@ -1,252 +1,278 @@
 ---
-title: "教學課程：Azure Active Directory 與 Google Apps整合 | Microsoft Docs"
-description: "了解如何使用 Google Apps 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！"
+title: "教學課程：Azure Active Directory 與 Google Apps 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Google Apps 之間的單一登入。"
 services: active-directory
-documentationcenter: 
-author: asmalser-msft
+documentationCenter: na
+author: jeevansd
 manager: femila
-editor: 
 ms.assetid: 38a6ca75-7fd0-4cdc-9b9f-fae080c5a016
 ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: identity
-ms.date: 05/16/2016
-ms.author: asmalser
-translationtype: Human Translation
-ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
-ms.openlocfilehash: 111d2835610262a5c726562df09ecfecae7dbc07
-
+ms.date: 07/12/2017
+ms.author: jeedes
+ms.translationtype: HT
+ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
+ms.openlocfilehash: 065841d6b4fe50e953f01bba4d3f23de82b82726
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-google-apps"></a>教學課程：Azure Active Directory 與 Google Apps 整合
-本教學課程將示範如何將 Google Apps 環境與 Azure Active Directory (Azure AD) 連接。 您將學習如何設定單一登入 Google Apps、如何啟用自動的使用者佈建，以及如何指派使用者存取 Google Apps。 
+
+在本教學課程中，您會了解如何整合 Google Apps 與 Azure Active Directory (Azure AD)。
+
+Google Apps 與 Azure AD 整合提供下列優點：
+
+- 您可以在 Azure AD 中控制可存取 Google Apps 的人員
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Google Apps (單一登入)
+- 您可以在 Azure 入口網站中集中管理您的帳戶
+
+若您想了解 SaaS app 與 Azure AD 整合的更多資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 ## <a name="prerequisites"></a>必要條件
-1. 若要透過 [Azure 傳統入口網站](https://manage.windowsazure.com)存取 Azure Active Directory，您必須先具備有效的 Azure 訂用帳戶。
-2. 您必須擁有 [Google Apps for Work](https://www.google.com/work/apps/) 或 [Google Apps for Education](https://www.google.com/edu/products/productivity-tools/) 的有效租用戶。 您可以使用免費試用帳戶來使用任何服務。
+
+若要設定 Azure AD 與 Google Apps 整合，您需要下列項目：
+
+- Azure AD 訂用帳戶
+- 啟用 Google Apps 單一登入的訂用帳戶
+
+> [!NOTE]
+> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+
+若要測試本教學課程中的步驟，您應該遵循這些建議：
+
+- 除非必要，否則請勿使用生產環境。
+- 如果您沒有 Azure AD 試用環境，您可以在這裡取得一個月試用：[試用優惠](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="video-tutorial"></a>影片教學課程
 如何在 2 分鐘內啟用單一登入至 Google Apps：
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enable-single-sign-on-to-Google-Apps-in-2-minutes-with-Azure-AD/player]
-> 
-> 
 
 ## <a name="frequently-asked-questions"></a>常見問題集
 1. **問：Chromebook 及其他 Chrome 裝置是否與 Azure AD 單一登入相容？**
    
-    答：是，使用者可以使用其 Azure AD 認證來登入其 Chromebook 裝置。 若要了解為何使用者可能收到兩次提供認證的提示，請參閱此 [Google Apps 支援文章](https://support.google.com/chrome/a/answer/6060880) 。
+    答：是，使用者能夠使用其 Azure AD 認證來登入其 Chromebook 裝置。 若要了解為何使用者可能收到兩次提供認證的提示，請參閱此 [Google Apps 支援文章](https://support.google.com/chrome/a/answer/6060880) 。
+
 2. **問：如果我啟用單一登入，使用者是否將能夠使用其 Azure AD 認證來登入任何 Google 產品 (例如 Google Classroom、GMail、Google 雲端硬碟、YouTube 等)？**
    
     答：是，視您選擇為您組織啟用或停用的 [Google Apps](https://support.google.com/a/answer/182442?hl=en&ref_topic=1227583) 而定。
+
 3. **問：我是否可以只為一部分 Google Apps 使用者啟用單一登入？**
    
-    答：否，開啟單一登入將會立即要求您的所有 Google Apps 使用者使用其 Azure AD 認證進行驗證。 由於 Google Apps 不支援使用多個身分識別提供者，因此您 Google Apps 環境的身分識別提供者可以是 Azure AD 或 Google 其中之一，但不可同時是兩者。
+    答：否，開啟單一登入會立即要求您的所有 Google Apps 使用者使用其 Azure AD 認證進行驗證。 由於 Google Apps 不支援使用多個身分識別提供者，因此您 Google Apps 環境的身分識別提供者可以是 Azure AD 或 Google 其中之一，但不可同時是兩者。
+
 4. **問：如果使用者透過 Windows 登入，他們是否會自動向 Google Apps 進行驗證，而不會收到輸入密碼的提示？**
    
-    答：有兩個選項可允許這樣的情況。 第一個是，使用者可以透過 [Azure Active Directory Join](active-directory-azureadjoin-overview.md)登入 Windows 10 裝置。 另一個是，使用者可以登入已加入某個內部部署 Active Directory 網域的 Windows 裝置，其中此內部部署 Active Directory 已透過 [Active Directory 同盟服務 (AD FS)](active-directory-aadconnect-user-signin.md) 部署而能夠單一登入到 Azure AD。 當然，這兩個選項都需要您依照以下教學課程，在 Azure AD 與 Google Apps 之間啟用單一登入。
+    答：有兩個選項可允許這樣的情況。 第一個是，使用者可以透過 [Azure Active Directory Join](active-directory-azureadjoin-overview.md)登入 Windows 10 裝置。 另一個是，使用者可以登入已加入某個內部部署 Active Directory 網域的 Windows 裝置，其中此內部部署 Active Directory 已透過 [Active Directory 同盟服務 (AD FS)](active-directory-aadconnect-user-signin.md) 部署而能夠單一登入到 Azure AD。 這兩個選項都需要您執行下列教學課程的步驟，才能在 Azure AD 與 Google Apps 之間啟用單一登入。
 
-## <a name="step-1-add-google-apps-to-your-directory"></a>步驟 1：將 Google Apps 加入您的目錄
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
-   
-    ![從左方的導覽窗格中選取 [Active Directory]。][0]
-2. 從 [目錄]  清單中，選取您想要將 Google Apps 加入的目錄。
-3. 按一下上方功能表中的 [應用程式]  。
-   
-    ![按一下 [應用程式]。][1]
-4. 按一下頁面底部的 [新增]  。
-   
-    ![按一下 [新增] 以加入新的應用程式。][2]
-5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
-   
-    ![按一下 [從資源庫新增應用程式]。][3]
-6. 在**搜尋方塊**中，輸入 **Google Apps**。 從結果選取 [Google Apps]，然後按一下 [完成] 以新增應用程式。
-   
-    ![新增 [Google Apps]。][4]
-7. 您現在應該會看到 Google Apps 的 [快速入門] 頁面：
-   
-    ![Azure AD 中 Google Apps 的 [快速入門] 頁面][5]
+## <a name="scenario-description"></a>案例描述
+在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
-## <a name="step-2-enable-single-sign-on"></a>步驟 2：啟用單一登入
-1. 在 Azure AD 中 Google Apps 的 [快速入門] 頁面上，按一下 [設定單一登入]  按鈕。
-   
-    ![[設定單一登入] 按鈕][6]
-2. 此時會開啟一個對話方塊，您會看到一個畫面，詢問「您要讓使用者如何登入 Google Apps?」 選取 [Azure AD 單一登入]，然後按 [下一步]。
-   
-    ![選取 [Azure AD 單一登入]][7]
-   
-   > [!NOTE]
-   > 若要深入了解有關不同單一登入的選項，請 [按一下這裡](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)
-   > 
-   > 
-3. 在 [設定應用程式設定] 頁面的 [登入 URL] 欄位中，使用下列格式輸入您的 Google Apps 租用戶 URL：`https://mail.google.com/a/<yourdomain>`
-   
-    ![輸入您的租用戶 URL][8]
-4. 在 [自動設定單一登入]  頁面上，輸入 Google Apps 租用戶的網域。 然後按下 [設定]  按鈕。
-   
-    ![輸入您的網域名稱並按下 [設定]。](./media/active-directory-saas-google-apps-tutorial/ga-auto-config.png)
-   
-   > [!NOTE]
-   > 如果您想要手動設定單一登入，請參閱 [選擇性步驟：手動設定單一登入](#optional-step-manually-configure-single-sign-on)
-   > 
-   > 
-5. 登入您的 Google Apps 管理員帳戶。 然後按一下 [允許]  以允許 Azure Active Directory 在您的 Google Apps 訂用帳戶中進行組態變更。
-   
-    ![輸入您的網域名稱並按下 [設定]。](./media/active-directory-saas-google-apps-tutorial/ga-consent.PNG)
-6. 在 Azure Active Directory 設定 Google Apps 租用戶時請稍候幾秒的時間。 完成後按 [下一步] 。
-7. 在對話方塊的最後一頁，如果您想要收到電子郵件通知與此單一登入組態相關的錯誤和警告，請輸入電子郵件地址。
-   
-   ![輸入您的電子郵件地址。][14]
-8. 按一下 [完成]  關閉對話方塊。 若要測試您的組態，請參閱下面標題為 [指派使用者至 Google Apps](#step-4-assign-users-to-google-apps)的章節。
+1. 從資源庫新增 Google Apps
+2. 設定並測試 Azure AD 單一登入
 
-## <a name="optional-step-manually-configure-single-sign-on"></a>選擇性步驟：手動設定單一登入
-如果您想要手動設定單一登入，請完成下列步驟：
+## <a name="adding-google-apps-from-the-gallery"></a>從資源庫新增 Google Apps
+若要設定將 Google Apps 整合到 Azure AD 中，您需要從資源庫將 Google Apps 新增到受管理的 SaaS 應用程式清單。
 
-1. 在 Azure AD 中 Google Apps 的 [快速入門] 頁面上，按一下 [設定單一登入]  按鈕。
-   
-    ![[設定單一登入] 按鈕][6]
-2. 此時會開啟一個對話方塊，您會看到一個畫面，詢問「您要讓使用者如何登入 Google Apps?」 選取 [Azure AD 單一登入]，然後按 [下一步]。
-   
-    ![選取 [Azure AD 單一登入]][7]
-   
-   > [!NOTE]
-   > 若要深入了解有關不同單一登入的選項，請 [按一下這裡](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)
-   > 
-   > 
-3. 在 [設定應用程式設定] 頁面的 [登入 URL] 欄位中，使用下列格式輸入您的 Google Apps 租用戶 URL：`https://mail.google.com/a/<yourdomain>`
-   
-    ![輸入您的租用戶 URL][8]
-4. 在 [自動設定單一登入功能] 頁面上，選取標示為 [手動設定應用程式以進行單一登入] 的核取方塊。 然後按 [下一步] 。
-   
-    ![按一下 [手動組態]。](./media/active-directory-saas-google-apps-tutorial/ga-auto-skip.PNG)
-5. 在 [設定在 Google Apps 單一登入] 頁面上，按一下 [下載憑證]，然後在本機電腦上儲存憑證檔案。
-   
-    ![下載憑證。][9]
-6. 在瀏覽器中開啟新索引標籤，然後使用系統管理員帳戶登入 [Google Apps 管理控制台](http://admin.google.com/) 。
-7. 按一下 [安全性] 。 如果您沒有看到連結，它可能隱藏在畫面底部的 [其他控制項]  功能表之下。
+**若要從資源庫新增 Google Apps，請執行下列步驟：**
+
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
+
+    ![Active Directory][1]
+
+2. 瀏覽至 [企業應用程式]。 然後移至 [所有應用程式]。
+
+    ![應用程式][2]
+    
+3. 若要新增新的應用程式，請按一下對話方塊頂端的 [新增應用程式] 按鈕。
+
+    ![應用程式][3]
+
+4. 在搜尋方塊中，輸入 **Google Apps**。
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_search.png)
+
+5. 在結果面板中，選取 [Google Apps]，然後按一下 [新增] 按鈕以新增應用程式。
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_addfromgallery.png)
+
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，設定及測試與 Google Apps 搭配運作的 Azure AD 單一登入。
+
+若要讓單一登入運作，Azure AD 必須知道 Google Apps 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Google Apps 中的相關使用者之間，建立連結關聯性。
+
+建立此連結關聯性的方法，就是將 Azure AD 中**使用者名稱**的值，指派為 Google Apps 中 **Username** 的值。
+
+若要設定及測試與 Google Apps 搭配運作的 Azure AD 單一登入，您需要完成下列建置組塊：
+
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+3. **[建立 Google Apps 測試使用者](#creating-a-google-apps-test-user)** - 使 Google Apps 中對應的 Britta Simon 連結到該使用者在 Azure AD 中的代表項目。
+4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+
+### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+
+在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，並在您的 Google Apps 應用程式中設定單一登入。
+
+**若要設定與 Google Apps 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
+
+1. 在 Azure 入口網站的 [Google Apps] 應用程式整合頁面上，按一下 [單一登入]。
+
+    ![設定單一登入][4]
+
+2. 在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。
+ 
+    ![設定單一登入](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_samlbase.png)
+
+3. 在 [Google Apps 網域及 URL] 區段中，執行下列步驟：
+
+    ![設定單一登入](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_url.png)
+
+    在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://mail.google.com/a/<yourdomain>`
+
+    > [!NOTE] 
+    > 這不是真實的值。 請使用實際的「登入 URL」來更新此值。 請連絡 [Google 支援小組](https://www.google.com/contact/)。
+ 
+4. 在 [SAML 簽署憑證] 區段上，按一下 [憑證]，然後將憑證儲存在您的電腦上。
+
+    ![設定單一登入](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_certificate.png) 
+
+5. 按一下 [儲存]  按鈕。
+
+    ![設定單一登入](./media/active-directory-saas-google-apps-tutorial/tutorial_general_400.png)
+
+6. 在 [Google Apps 組態] 區段上，按一下 [設定 Google Apps] 以開啟 [設定登入] 視窗。 從 [快速參考] 區段中，複製 [登出 URL、SAML 實體識別碼和 SAML 單一登入服務 URL]。
+
+    ![設定單一登入](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_configure.png) 
+
+7. 在瀏覽器中開啟新索引標籤，然後使用系統管理員帳戶登入 [Google Apps 管理控制台](http://admin.google.com/) 。
+
+8. 按一下 [安全性] 。 如果您沒有看到連結，它可能隱藏在畫面底部的 [其他控制項]  功能表之下。
    
     ![按一下 [安全性]。][10]
-8. 在 [安全性] 頁面上，按一下 [設定單一登入 (SSO)]。
+
+9. 在 [安全性] 頁面上，按一下 [設定單一登入 (SSO)]。
    
     ![按一下 [SSO]。][11]
-9. 執行下列組態變更：
+
+10. 執行下列組態變更：
    
     ![設定 SSO][12]
    
-   * 選取 [使用協力廠商身分識別提供者設定 SSO] 。
-   * 在 Azure AD 中，複製 [單一登入服務 URL]，並將它貼到 Google Apps 中的 [登入頁面 URL] 欄位。
-   * 在 Azure AD 中，複製 [單一登出服務 URL]，並將它貼到 Google Apps 中的 [登出頁面 URL] 欄位。
-   * 在 Azure AD 中，複製 [變更密碼 URL]，並將它貼到 Google Apps 中的 [變更密碼 URL] 欄位。
-   * 在 Google Apps 中，對於 [驗證憑證] ，上傳您在步驟 #4 中下載的憑證。
-   * 按一下 [儲存變更] 。
-10. 在 Azure AD 中，選取單一登入組態確認核取方塊以啟用您上傳到 Google Apps 的憑證。 然後按 [下一步] 。
-    
-     ![核取確認核取方塊][13]
-11. 在對話方塊的最後一頁，如果您想要收到電子郵件通知與此單一登入組態相關的錯誤和警告，請輸入電子郵件地址。 
-    
-    ![輸入您的電子郵件地址。][14]
-12. 按一下 [完成]  關閉對話方塊。 若要測試您的組態，請參閱下面標題為 [指派使用者至 Google Apps](#step-4-assign-users-to-google-apps)的章節。
+    a. 選取 [使用第三方識別提供者來設定 SSO]。
 
-## <a name="step-3-enable-automated-user-provisioning"></a>步驟 3：啟用自動的使用者佈建
-> [!NOTE]
-> 自動化使用者佈建至 Google Apps 另一個可行的選項是使用 [Google Apps Directory Sync (GADS)](https://support.google.com/a/answer/106368?hl=en) ，這會將您的內部部署 Active Directory 身分識別佈建至 Google Apps。 但是，本教學課程中的解決方案則會將您的 Azure Active Directory (雲端) 使用者和啟用郵件功能的群組佈建至 Google Apps。
-> 
-> 
+    b.這是另一個 C# 主控台應用程式。 在 Google Apps 的 [登入頁面 URL] 欄位中，貼上您從 Azure 入口網站複製的 [單一登入服務 URL] 值。
 
-1. 使用您的系統管理員帳戶登入 [Google Apps 管理控制台](http://admin.google.com/)，然後按一下 [安全性]。 如果您沒有看到連結，它可能隱藏在畫面底部的 [其他控制項]  功能表之下。
-   
-    ![按一下 [安全性]。][10]
-2. 在 [安全性] 頁面上，按一下 [API 參考]。
-   
-    ![按一下 [API 參考]。][15]
-3. 選取 [啟用 API 存取] 。
-   
-    ![按一下 [API 參考]。][16]
-   
-   > [!IMPORTANT]
-   > 對於您想要佈建至 Google Apps 的每位使用者，其使用者名稱在 Azure Active Directory 中*必須*繫結至自訂網域。 例如，Google Apps 將不會接受如 bob@contoso.onmicrosoft.com 的使用者名稱，但是會接受 bob@contoso.com。 您可以在 Azure AD 中編輯現有使用者的內容，來變更其網域。 以下將說明如何設定 Azure Active Directory 與 Google Apps 兩者的自訂網域。
-   > 
-   > 
-4. 如果您還沒將自訂網域名稱加入 Azure Active directory，請執行下列步驟：
-   
-   * 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。 在目錄清單中，選取您的目錄。 
-   * 從最上層功能表按一下 [網域]，然後按一下 [新增自訂網域]。
-     
-       ![新增自訂網域][17]
-   * 在 [網域名稱]  欄位中輸入您的網域名稱。 這個網域名稱必須與您要用於 Google Apps 的網域名稱相同。 準備好時，按一下 [新增]  按鈕。
-     
-       ![輸入您的網域名稱。][18]
-   * 按 [下一步]  移至驗證頁面。 若要確認您擁有此網域，您必須根據此頁面提供的值，編輯網域的 DNS 記錄。 您可以選擇使用 [MX 記錄] 或 [TXT 記錄] 進行確認，視您選取的 [記錄類型] 選項而定。 如需有關如何向 Azure AD 驗證網域名稱的更完整指示，請參閱 [將您自己的網域名稱新增至 Azure AD](https://go.microsoft.com/fwLink/?LinkID=278919&clcid=0x409)。
-     
-       ![驗證您的網域名稱。][19]
-   * 對於所有您想要加入目錄的網域重複上述步驟。
-5. 您已經向 Azure AD 驗證所有網域，但是您還必須向 Google Apps 再驗證一次。 對於尚未向 Google Apps 註冊的每個網域，執行下列步驟：
-   
-   * 在 [Google Apps 管理控制台](http://admin.google.com/)中，按一下 [網域]。
-     
-       ![按一下 [網域]][20]
-   * 按一下 [新增網域或網域別名] 。
-     
-       ![新增網域][21]
-   * 選取 [新增另一個網域] ，並輸入您想要新增的網域名稱。
-     
-       ![輸入您的網域名稱][22]
-   * 按一下 [繼續並驗證網域擁有權] 。 然後依照步驟以驗證您擁有網域名稱。 如需有關如何向 Google Apps 驗證您的網域的完整指示，請參閱 [向 Google Apps 驗證您的站台擁有權](https://support.google.com/webmasters/answer/35179)。
-   * 對於您想要加入 Google Apps 的任何其他網域重複上述步驟。
-     
-     > [!WARNING]
-     > 如果您變更您 Google Apps 租用戶的主要網域，而且如果您已經向 Azure AD 設定單一登入，那麼就必須重複 [步驟 2：啟用單一登入](#step-two-enable-single-sign-on)下的步驟 #3。
-     > 
-     > 
-6. 在 [Google Apps 管理控制台](http://admin.google.com/)中，按一下 [管理角色]。
-   
-    ![按一下 [Google Apps]][26]
-7. 決定您想要用來管理使用者佈建的管理帳戶。 對於該帳戶的 [管理角色]，編輯該角色的 [權限]。 確定它已啟用所有 [管理 API 權限]  ，以便讓此帳戶可以用來佈建。
-   
-    ![按一下 [Google Apps]][27]
-   
-   > [!NOTE]
-   > 如果您要設定生產環境，最佳作法是特別針對此步驟在 Google Apps 中建立新的管理帳戶。 這些帳戶必須具有與其相關聯的管理角色，具備必要的 API 權限。
-   > 
-   > 
-8. 在 Azure Active Directory 中，按一下最上層功能表中的 [應用程式]，然後按一下 [Google Apps]。
-   
-    ![按一下 [Google Apps]][23]
-9. 在 Google Apps 的 [快速入門] 頁面上，按一下 [設定使用者佈建] 。
-   
-    ![設定使用者佈建][24]
-10. 在開啟的對話方塊中，按一下 [啟用使用者佈建]  來驗證您想要用來管理佈建的 Google Apps 管理帳戶。
+    c. 在 Google Apps 的 [登出頁面 URL] 欄位中，貼上您從 Azure 入口網站複製的 [登出 URL] 值。 
+
+    d. 在 Google Apps 的 [變更密碼 URL] 欄位中，貼上您從 Azure 入口網站複製的 [變更密碼 URL] 值。 
+
+    e. 在 Google Apps 中，對於 [驗證憑證]，上傳您已從 Azure 入口網站下載的憑證。
+
+    f. 按一下 [儲存變更] 。
+
+> [!TIP]
+> 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
+ 
+### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
+
+![建立 Azure AD 使用者][100]
+
+**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
+
+1. 在 **Azure 入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-google-apps-tutorial/create_aaduser_01.png) 
+
+2. 若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。
     
-    ![啟用佈建][25]
-11. 確認您想要授與 Azure Active Directory 權限來變更您的 Google Apps 租用戶。
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-google-apps-tutorial/create_aaduser_02.png) 
+
+3. 若要開啟 [使用者] 對話方塊，按一下對話方塊頂端的 [新增]。
+ 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-google-apps-tutorial/create_aaduser_03.png) 
+
+4. 在 [使用者]  對話頁面上，執行下列步驟：
+ 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-google-apps-tutorial/create_aaduser_04.png) 
+
+    a. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
+
+    b.這是另一個 C# 主控台應用程式。 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
+
+    c. 選取 [顯示密碼] 並記下 [密碼] 的值。
+
+    d. 按一下 [建立] 。
+ 
+### <a name="creating-a-google-apps-test-user"></a>建立 Google Apps 測試使用者
+
+本節目標是要在 Google Apps Software 中建立名為 Britta Simon 的使用者。 Google Apps 支援預設啟用的自動佈建。 在這一節沒有您需要進行的動作。 如果 Google Apps Software 中還沒有使用者，當您嘗試存取 Google Apps Software 時，就會建立新的使用者。
+
+>[!NOTE] 
+>如果您需要手動建立使用者，請連絡 [Google 支援小組](https://www.google.com/contact/)。
+
+### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+
+在本節中，您會將 Google Apps 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+
+![指派使用者][200] 
+
+**若要將 Britta Simon 指派給 Google Apps，請執行下列步驟：**
+
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
+
+    ![指派使用者][201] 
+
+2. 在應用程式清單中，選取 [Google Apps]。
+
+    ![設定單一登入](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_app.png) 
+
+3. 在左側功能表中，按一下 [使用者和群組]。
+
+    ![指派使用者][202] 
+
+4. 按一下 [新增] 按鈕。 然後選取 [新增指派] 對話方塊上的 [使用者和群組]。
+
+    ![指派使用者][203]
+
+5. 在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。
+
+6. 按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。
+
+7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
-    ![確認權限。][28]
-12. 按一下 [完成]  關閉對話方塊。
+### <a name="testing-single-sign-on"></a>測試單一登入
 
-## <a name="step-4-assign-users-to-google-apps"></a>步驟 4：指派使用者至 Google Apps
-1. 若要測試您的組態，請先在目錄中建立新的測試帳戶。
-2. 在 Google Apps [快速入門] 頁面上，按一下 [指派使用者]  按鈕。
-   
-    ![按一下 [指派使用者]][29]
-3. 選取測試使用者，然後按一下畫面底部的 [指派]  按鈕：
-   
-   * 如果還沒有啟用自動的使用者佈建，您會看到下列確認提示：
-     
-        ![確認指派。][30]
-   * 如果已啟用自動的使用者佈建，您會看到提示，定義使用者在 Google Apps 中要具備何種角色。 幾分鐘之後，新佈建的使用者應該就會出現在 Google Apps 環境中。
-4. 若要測試您的單一登入設定，請開啟 [https://myapps.microsoft.com](https://myapps.microsoft.com/) 的 [存取面板]、登入測試帳戶，然後按一下 [Google Apps]。
+在本節中，若要測試您的單一登入設定，請開啟位於 [https://myapps.microsoft.com](active-directory-saas-access-panel-introduction.md) 的存取面板，登入測試帳戶，然後在存取面板中按一下 [Google Apps] 圖格。
 
-## <a name="related-articles"></a>相關文章
-* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-* [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+## <a name="additional-resources"></a>其他資源
+
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+* [設定使用者佈建](active-directory-saas-google-apps-provisioning-tutorial.md)
+
+<!--Image references-->
+
+[1]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_01.png
+[2]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_02.png
+[3]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_03.png
+[4]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_04.png
+
+[100]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_100.png
+
+[200]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_200.png
+[201]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_201.png
+[202]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_202.png
+[203]: ./media/active-directory-saas-google-apps-tutorial/tutorial_general_203.png
 
 [0]: ./media/active-directory-saas-google-apps-tutorial/azure-active-directory.png
-[1]: ./media/active-directory-saas-google-apps-tutorial/applications-tab.png
-[2]: ./media/active-directory-saas-google-apps-tutorial/add-app.png
-[3]: ./media/active-directory-saas-google-apps-tutorial/add-app-gallery.png
-[4]: ./media/active-directory-saas-google-apps-tutorial/add-gapps.png
+
 [5]: ./media/active-directory-saas-google-apps-tutorial/gapps-added.png
 [6]: ./media/active-directory-saas-google-apps-tutorial/config-sso.png
 [7]: ./media/active-directory-saas-google-apps-tutorial/sso-gapps.png
@@ -273,9 +299,3 @@ ms.openlocfilehash: 111d2835610262a5c726562df09ecfecae7dbc07
 [28]: ./media/active-directory-saas-google-apps-tutorial/gapps-auth.png
 [29]: ./media/active-directory-saas-google-apps-tutorial/assign-users.png
 [30]: ./media/active-directory-saas-google-apps-tutorial/assign-confirm.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
-

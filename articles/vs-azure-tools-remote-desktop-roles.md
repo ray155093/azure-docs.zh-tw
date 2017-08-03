@@ -14,14 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/11/2016
 ms.author: tarcher
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 99c8067cf08b8ae7650c240c9d69d2fe1c18f9c8
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 50c463588356cc4725b038cbf89a49b6ce2bdc3b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 
 ---
 # <a name="using-remote-desktop-with-azure-roles"></a>搭配使用遠端桌面與 Azure 角色
-使用 Azure SDK 和遠端桌面服務，您可以存取 Azure 角色和由 Azure 裝載的虛擬機器。 在 Visual Studio 中，您可以從 Azure 專案設定遠端桌面服務。 若要啟用遠端桌面服務，您必須建立包含一或多個角色的工作專案並發佈至 Azure。
+使用 Azure SDK 和遠端桌面服務，您可以存取 Azure 角色和由 Azure 裝載的虛擬機器。 在 Visual Studio 中，您可以從 Azure 雲端服務專案設定遠端桌面服務。 若要啟用遠端桌面服務，您必須建立包含一或多個角色的工作專案並發佈至 Azure。
 
 > [!IMPORTANT]
 > 您應該只基於疑難排解或開發目的來存取 Azure 角色。 每個虛擬機器的用途是在 Azure 應用程式中執行特定角色，而不是執行其他用戶端應用程式。 如果您想要使用 Azure 來裝載可做為任何用途的虛擬機器，請參閱「從伺服器總管存取 Azure 虛擬機器」。
@@ -29,7 +31,7 @@ ms.openlocfilehash: 99c8067cf08b8ae7650c240c9d69d2fe1c18f9c8
 > 
 
 ## <a name="to-enable-and-use-remote-desktop-for-an-azure-role"></a>啟用和使用遠端桌面來存取 Azure 角色
-1. 在 [方案總管] 中，開啟專案的捷徑功能表並按一下 [發佈] 。
+1. 在 [方案總管] 中，開啟雲端服務專案的捷徑功能表，然後選擇 [發佈]。
    
     [發佈 Azure 應用程式]  精靈隨即出現。
    
@@ -76,10 +78,5 @@ ms.openlocfilehash: 99c8067cf08b8ae7650c240c9d69d2fe1c18f9c8
    
     ![透過遠端桌面連接](./media/vs-azure-tools-remote-desktop-roles/IC799162.png)
 3. 輸入您先前建立的使用者名稱和密碼。 您現在已登入遠端工作階段。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

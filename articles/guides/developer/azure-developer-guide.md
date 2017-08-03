@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: glenga
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: efd01bb001f4ac05f933793184b5027157f143f6
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: b53b044242f339d00dcc947c213dacb5dffdcce6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -149,7 +148,7 @@ Azure 提供數種方式，以在應用程式中使用容器。
 
     >**使用時機**：當您需要建置提供其他排程和管理工具的生產就緒、可調整環境時，或當您部署 Docker Swarm 叢集時。
 
-    >**開始使用**：[部署容器服務叢集](../../container-service/container-service-deployment.md)。
+    >**開始使用**：[部署容器服務叢集](../../container-service/dcos-swarm/container-service-deployment.md)。
 
 -   **Docker Machine**：可讓您使用 docker-machine 命令安裝和管理虛擬主機上的 Docker 引擎。
 

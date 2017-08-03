@@ -12,10 +12,10 @@ ms.devlang: python
 ms.topic: hero-article
 ms.date: 07/07/2017
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 3cd090b02887857a68271f021e3580e05660d1dc
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: f6ae1ef3855711a86333857f26400f29dfd7c54e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="azure-database-for-postgresql-use-python-to-connect-and-query-data"></a>Azure Database for PostgreSQL︰使用 Python 連線及查詢資料
@@ -50,7 +50,7 @@ pip install psycopg2
 
 ## <a name="how-to-run-python-code"></a>如何執行 Python 程式碼
 - 使用慣用的文字編輯器，建立稱為 postgres.py 的新檔案，並將它儲存到專案資料夾。 將下面顯示的程式碼範例複製並貼入文字檔，然後儲存它。 將檔案儲存在 Windows OS 中時，請一定要選取 UTF-8 編碼。 
-- 若要執行程式碼，請啟動命令提示字元或 bash shell。 將目錄切換到專案資料夾，例如 `cd postgresql`。 然後，鍵入後接檔案名稱 (例如 `python postgresql.py`) 的 python 命令。
+- 若要執行程式碼，請啟動命令提示字元或 bash shell。 將目錄切換到專案資料夾，例如 `cd postgresql`。 然後，鍵入後接檔案名稱 (例如 `python postgres.py`) 的 python 命令。
 
 > [!NOTE]
 > 從 Python 第 3 版開始，您可能會在執行下面的程式碼區塊時看到錯誤 `SyntaxError: Missing parentheses in call to 'print'`。 如果發生這種情況，請將每個 `print "string"` 命令呼叫取代為使用括號的函式呼叫，例如 `print("string")`。

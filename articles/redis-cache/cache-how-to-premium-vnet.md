@@ -12,14 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 05/11/2017
+ms.date: 06/07/2017
 ms.author: sdanie
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 945da7ce2ab5f2d479d96a6ed2896a0ba7e0747e
+ms.translationtype: HT
+ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
+ms.openlocfilehash: c758aa5955362d04abf69c760d2aed7983cdf102
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
-
+ms.lasthandoff: 07/20/2017
 
 ---
 # <a name="how-to-configure-virtual-network-support-for-a-premium-azure-redis-cache"></a>如何設定高階 Azure Redis 快取的虛擬網路支援
@@ -40,7 +39,7 @@ Azure Redis 快取有不同的快取供應項目，可讓您彈性選擇快取�
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-premium-create.md)]
 
-一旦選取進階定價層之後，您就可以藉由選取與您的快取相同的訂用帳戶和位置中的 VNet，來設定 Redis VNet。 若要使用新的 VNet，請先建立 VNet，方法是遵循[使用 Azure 入口網站建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)或[使用 Azure 入口網站建立虛擬網路 (傳統)](../virtual-network/virtual-networks-create-vnet-classic-portal.md)，然後返回 [新的 Redis 快取] 刀鋒視窗來建立和設定進階快取。
+一旦選取進階定價層之後，您就可以藉由選取與您的快取相同的訂用帳戶和位置中的 VNet，來設定 Redis VNet。 若要使用新的 VNet，請先建立 VNet，方法是遵循[使用 Azure 入口網站建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)或[使用 Azure 入口網站建立虛擬網路 (傳統)](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)，然後返回 [新的 Redis 快取] 刀鋒視窗來建立和設定進階快取。
 
 若要為新的快取設定 VNet，按一下 [新的 Redis 快取] 刀鋒視窗上的 [虛擬網路]，然後從下拉式清單中選取想要的 VNet。
 
@@ -85,6 +84,7 @@ Azure Redis 快取有不同的快取供應項目，可讓您彈性選擇快取�
 下列清單包含 Azure Redis 快取調整常見問題的解答。
 
 * [Azure Redis 快取和 VNet 的某些常見錯誤設定有哪些？](#what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets)
+* [如何確認我的快取是在 VNET 中運作？](#how-can-i-verify-that-my-cache-is-working-in-a-vnet)
 * [可以搭配標準或基本快取使用 VNet 嗎？](#can-i-use-vnets-with-a-standard-or-basic-cache)
 * [為什麼無法在某些子網路中建立 Redis 快取，但其他的可以？](#why-does-creating-a-redis-cache-fail-in-some-subnets-but-not-others)
 * [子網路位址空間需求為何？](#what-are-the-subnet-address-space-requirements)
@@ -105,7 +105,7 @@ Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。
 
 有七項輸出連接埠需求。
 
-- 如有需要，可透過用戶端的內部部署稽核裝置對網際網路進行所有輸出連線。
+- 如有需要，可透過用戶端的內部部署稽核裝置，對網際網路進行所有輸出連線。
 - 其中的三個連接埠會將流量路由至提供 Azure 儲存體與 Azure DNS 的 Azure 端點。
 - 剩餘的連接埠有數種範圍，且適用於內部 Redis 子網域通訊。 內部 Redis 子網域通訊不需要子網路 NSG 規則。
 
@@ -144,6 +144,26 @@ Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。
 * 虛擬網路的 DNS 設定必須能夠解析前面幾點所提到的所有端點和網域。 確定已針對虛擬網路設定及維護有效的 DNS 基礎結構，即可符合 DNS 需求。
 * 在下列 DNS 網域下解析之下列 Azure 監視端點的輸出網路連線︰shoebox2-black.shoebox2.metrics.nsatc.net、north-prod2.prod2.metrics.nsatc.net、azglobal-black.azglobal.metrics.nsatc.net、shoebox2-red.shoebox2.metrics.nsatc.net、east-prod2.prod2.metrics.nsatc.net、azglobal-red.azglobal.metrics.nsatc.net。
 
+### <a name="how-can-i-verify-that-my-cache-is-working-in-a-vnet"></a>如何確認我的快取是在 VNET 中運作？
+
+>[!IMPORTANT]
+>連線到裝載在 VNET 中的 Azure Redis 快取執行個體時，快取用戶端必須位於相同的 VNET，包括任何測試應用程式或執行偵測的診斷工具。
+>
+>
+
+一旦如上一節中所述設定連接埠需求之後，您可以執行下列步驟來驗證快取是否正在運作。
+
+- [重新啟動](cache-administration.md#reboot)所有的快取節點。 如果無法觸達所有必要的快取相依性連線 (如[輸入連接埠需求](cache-how-to-premium-vnet.md#inbound-port-requirements)和[輸出連接埠需求](cache-how-to-premium-vnet.md#outbound-port-requirements)中所述)，快取將無法順利重新啟動。
+- 一旦快取節點重新啟動 (如 Azure 入口網站中的快取狀態所報告) 後，您可以執行下列測試：
+  - 使用 [tcping](https://www.elifulkerson.com/projects/tcping.php)，從與快取位於相同 VNET 中的電腦偵測快取端點 (使用連接埠 6380)。 例如：
+    
+    `tcping.exe contosocache.redis.cache.windows.net 6380`
+    
+    如果 `tcping` 工具報告連接埠已開啟，就可以在 VNET 中從用戶端使用快取進行連線。
+
+  - 另一種測試的方式是建立測試快取用戶端 (可能是使用 StackExchange.Redis 的簡單主控台應用程式)，其會連線到快取，並從快取新增及擷取某些項目。 將範例用戶端應用程式安裝到與快取位於相同 VNET 的 VM 並加以執行，來驗證對快取的連線能力。
+
+
 ### <a name="can-i-use-vnets-with-a-standard-or-basic-cache"></a>可以搭配標準或基本快取使用 VNet 嗎？
 VNet 僅適用於進階快取。
 
@@ -165,9 +185,9 @@ Azure 會在每個子網路中保留一些 IP 位址，但這些位址無法使�
 ## <a name="use-expressroute-with-azure-redis-cache"></a>搭配 Azure Redis 快取使用 ExpressRoute
 客戶可以將 [Azure ExpressRoute](https://azure.microsoft.com/services/expressroute/) 循環連接至虛擬網路基礎結構，因而將其內部部署網路延伸至 Azure。 
 
-新建立的 ExpressRoute 循環預設會通告允許輸出網際網路連線的預設路由。 利用此組態，用戶端應用程式能連接到其他的 Azure 端點，包括 Azure Redis 快取。
+根據預設，新建立的 ExpressRoute 循環並不會在 VNET 上執行強制通道 (預設路由的公告 0.0.0.0/0)。 如此一來，會直接從 VNET 允許輸出網際網路連線，且用戶端應用程式能連線到其他的 Azure 端點，包括 Azure Redis 快取。
 
-不過，常見的客戶組態是定義其專屬預設路由 (0.0.0.0/0)，以強制輸出網際網路流量來替代透過內部部署方式流動。 如果輸出流量遭內部部署封鎖，而使得 Azure Redis Cache 執行個體無法與其相依項目通訊，則此流量流程會中斷與 Azure Redis Cache 的連線。
+不過，常見的客戶組態是使用強制通道 (公告預設路由)，以強制輸出網際網路流量來替代透過內部部署方式流動。 如果輸出流量遭內部部署封鎖，而使得 Azure Redis Cache 執行個體無法與其相依項目通訊，則此流量流程會中斷與 Azure Redis Cache 的連線。
 
 解決方法是在子網路上定義包含 Azure Redis 快取的一 (或多個) 使用者定義路由 (UDR)。 UDR 會定義將使用的子網路特有路由，而非預設路由。
 

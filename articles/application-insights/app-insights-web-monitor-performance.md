@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2015
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: 4fbf4fcfba4452111f406fe0f2303731877eba71
+ms.translationtype: HT
+ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
+ms.openlocfilehash: 69ead621c179bf49f17ed3274be4b625fc587556
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
+ms.lasthandoff: 07/11/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 06/14/2017
 
 確認應用程式的運作狀況良好，以及迅速找出任何失敗。 [Application Insights][start] 能指出任何效能問題和例外狀況，以及協助您尋找及診斷根本原因。
 
-Application Insights 可以監視 Java 和 ASP.NET Web 應用程式與服務、WCF 服務。 這些服務可以裝載在內部部署、虛擬機器上，或做為 Microsoft Azure 網站。 
+Application Insights 可以監視 Java 和 ASP.NET Web 應用程式與服務、WCF 服務。 這些服務可以裝載在內部部署、虛擬機器上，或作為 Microsoft Azure 網站。 
 
 用戶端方面，Application Insights 可從網頁及各種裝置 (包括 iOS、Android 和 Windows 市集應用程式) 上取得遙測。
 

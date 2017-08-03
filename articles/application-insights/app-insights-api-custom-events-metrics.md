@@ -13,16 +13,14 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/17/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
-ms.openlocfilehash: 8793744f63388c5df04a167585d5f7b99ec7acee
+ms.translationtype: HT
+ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
+ms.openlocfilehash: fe769fb433d65374109fec60c6c6d032b1ad97fb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/19/2017
-
+ms.lasthandoff: 07/13/2017
 
 ---
 # <a name="application-insights-api-for-custom-events-and-metrics"></a>自訂事件和度量的 Application Insights API
-
 
 在您的應用程式中插入幾行程式碼，以了解使用者對它進行的動作或協助診斷問題。 您可以從裝置和桌面應用程式、Web 用戶端以及 Web 伺服器傳送遙測。 使用 [Azure Application Insights](app-insights-overview.md) 核心遙測 API 來傳送自訂的事件和度量，以及您自己的標準遙測版本。 這個 API 與標準 Application Insights 資料收集器所使用的 API 相同。
 
@@ -42,7 +40,7 @@ API 是跨所有平台統一的，除了一些小變化形式。
 您可以 [附加屬性和度量](#properties) 至這裡大部分的遙測呼叫。
 
 ## <a name="prep"></a>開始之前
-如果您尚未完成這些動作：
+如果您還沒有 Application Insights SDK 的參考：
 
 * 將 Application Insights SDK 加入至專案：
 
@@ -58,7 +56,7 @@ API 是跨所有平台統一的，除了一些小變化形式。
     *Java：* `import com.microsoft.applicationinsights.TelemetryClient;`
 
 ## <a name="constructing-a-telemetryclient-instance"></a>建構 TelemetryClient 執行個體
-建構 TelemetryClient 的執行個體 (除了在網頁中的 JavaScript)：
+建構 `TelemetryClient` 的執行個體 (除了網頁中的 JavaScript)：
 
 *C#*
 
@@ -79,7 +77,7 @@ TelemetryClient 具備執行緒安全。
 ## <a name="trackevent"></a>TrackEvent
 在 Application Insights 中，「自訂事件」是您可以在[計量瀏覽器](app-insights-metrics-explorer.md)顯示為彙總計數，以及在[診斷搜尋](app-insights-diagnostic-search.md)中顯示為個別發生點的資料點。 (它與 MVC 或其他架構的「事件」不相關。)
 
-在您的程式碼中插入 TrackEvent 呼叫，以計算使用者選擇特定功能的頻率、達成特定目標的頻率，或他們犯特定類型錯誤的頻率。
+在您的程式碼中插入 `TrackEvent` 呼叫，以計算各種事件。 使用者選擇特定功能的頻率、達成特定目標的頻率，或他們犯特定類型錯誤的頻率。
 
 例如，在遊戲應用程式中，每當使用者贏得遊戲時傳送事件：
 
@@ -99,8 +97,7 @@ TelemetryClient 具備執行緒安全。
 
     telemetry.trackEvent("WinGame");
 
-
-### <a name="view-your-events-in-the-azure-portal"></a>在 Azure 入口網站中檢視您的事件
+### <a name="view-your-events-in-the-microsoft-azure-portal"></a>在 Microsoft Azure 入口網站中檢視您的事件
 若要查看事件計數，請開啟 [[計量瀏覽器](app-insights-metrics-explorer.md)] 刀鋒視窗、新增圖表，然後再選取 [事件]。  
 
 ![查看自訂事件的計數](./media/app-insights-api-custom-events-metrics/01-custom.png)
@@ -109,7 +106,7 @@ TelemetryClient 具備執行緒安全。
 
 ![設定圖表類型和群組](./media/app-insights-api-custom-events-metrics/07-grid.png)
 
-在方格中逐一點選事件名稱，以查看該事件的個別發生次數。 按一下任何發生以查看詳細資料。
+在方格中逐一點選事件名稱，以查看該事件的個別發生次數。 若要查看詳細資料 - 按一下清單中的任何發生項目。
 
 ![鑽研事件](./media/app-insights-api-custom-events-metrics/03-instances.png)
 
@@ -121,7 +118,7 @@ TelemetryClient 具備執行緒安全。
 
 [Application Insights 分析](app-insights-analytics.md)的 `customEvents` 資料表中有提供遙測資料。 每個資料列各代表應用程式中的一個 `trackEvent(..)` 呼叫。 
 
-如果[取樣](app-insights-sampling.md)運作中，itemCount 屬性將會顯示大於 1 的值。 例如，itemCount==10 表示在 trackEvent() 的 10 個呼叫中，取樣處理序只會傳輸其中一個。 若要取得正確的自訂事件計數，您應該使用程式碼，例如 `customEvent | summarize sum(itemCount)`。
+如果[取樣](app-insights-sampling.md)運作中，itemCount 屬性會顯示大於 1 的值。 例如，itemCount==10 表示在 trackEvent() 的 10 個呼叫中，取樣處理序只會傳輸其中一個。 若要取得正確的自訂事件計數，您應該使用程式碼，例如 `customEvent | summarize sum(itemCount)`。
 
 
 ## <a name="trackmetric"></a>TrackMetric
@@ -405,21 +402,20 @@ pageViews | join (dependencies) on operation_Id
 *C#*
 
 ```C#
+// Establish an operation context and associated telemetry item:
+using (var operation = telemetry.StartOperation<RequestTelemetry>("operationName"))
+{
+    // Telemetry sent in here will use the same operation ID.
+    ...
+    telemetry.TrackTrace(...); // or other Track* calls
+    ...
+    // Set properties of containing telemetry item--for example:
+    operation.Telemetry.ResponseCode = "200";
 
-    // Establish an operation context and associated telemetry item:
-    using (var operation = telemetry.StartOperation<RequestTelemetry>("operationName"))
-    {
-        // Telemetry sent in here will use the same operation ID.
-        ...
-        telemetry.TrackEvent(...); // or other Track* calls
-        ...
-        // Set properties of containing telemetry item--for example:
-        operation.Telemetry.ResponseCode = "200";
+    // Optional: explicitly send telemetry item:
+    telemetry.StopOperation(operation);
 
-        // Optional: explicitly send telemetry item:
-        telemetry.StopOperation(operation);
-
-    } // When operation is disposed, telemetry item is sent.
+} // When operation is disposed, telemetry item is sent.
 ```
 
 在設定作業內容時，`StartOperation` 會建立所指定類型的遙測項目。 它會在您處置作業時或您明確地呼叫 `StopOperation` 時傳送遙測項目。 如果您使用 `RequestTelemetry` 做為遙測類型，則其持續時間會設定為開始與停止之間的時間間隔。
@@ -429,6 +425,8 @@ pageViews | join (dependencies) on operation_Id
 在搜尋中，會使用作業內容來建立 [相關項目] 清單：
 
 ![相關項目](./media/app-insights-api-custom-events-metrics/21.png)
+
+如需有關自訂作業追蹤的詳細資訊，請參閱 [application-insights-custom-operations-tracking.md]。
 
 ### <a name="requests-in-analytics"></a>分析中的要求 
 
@@ -488,13 +486,13 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 
 在 [Application Insights 分析](app-insights-analytics.md)中，例外狀況會顯示在 `exceptions` 資料表中。
 
-如果[取樣](app-insights-sampling.md)運作中，itemCount 屬性將會顯示大於 1 的值。 例如，itemCount==10 表示在 trackException() 的 10 個呼叫中，取樣處理序只會傳輸其中一個。 若要取得依例外狀況類型分割的正確例外狀況計數，請使用類似如下的程式碼：
+如果[取樣](app-insights-sampling.md)運作中，`itemCount` 屬性會顯示大於 1 的值。 例如，itemCount==10 表示在 trackException() 的 10 個呼叫中，取樣處理序只會傳輸其中一個。 若要取得依例外狀況類型分割的正確例外狀況計數，請使用類似如下的程式碼：
 
 ```
 exceptions | summarize sum(itemCount) by type
 ```
 
-大多數重要堆疊資訊已擷取到不同的變數中，但您可以拉開 [詳細資料] 結構以取得更多資訊。 由於這是動態結構，因此您應該將結果轉換成預期的類型。 例如：
+大多數重要堆疊資訊已擷取到不同的變數中，但您可以拉開 `details` 結構以取得更多資訊。 由於這是動態結構，因此您應該將結果轉換成預期的類型。 例如：
 
 ```AIQL
 exceptions
@@ -537,25 +535,24 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 在 [Application Insights 分析](app-insights-analytics.md)中，TrackTrace 的呼叫會顯示在 `traces` 資料表中。
 
-如果[取樣](app-insights-sampling.md)運作中，itemCount 屬性將會顯示大於 1 的值。 例如，itemCount==10 表示在 trackTrace() 的 10 個呼叫中，取樣處理序只會傳輸其中一個。 若要取得正確的追蹤呼叫計數，您應該使用程式碼，例如 `traces | summarize sum(itemCount)`。
+如果[取樣](app-insights-sampling.md)運作中，itemCount 屬性會顯示大於 1 的值。 例如，itemCount==10 表示在 `trackTrace()` 的 10 個呼叫中，取樣處理序只會傳輸其中一個。 若要取得正確的追蹤呼叫計數，您應該使用程式碼，例如 `traces | summarize sum(itemCount)`。
 
 ## <a name="trackdependency"></a>TrackDependency
 您可以使用 TrackDependency 呼叫來追蹤回應時間以及呼叫外部程式碼片段的成功率。 結果會出現在入口網站中的相依性圖表中。
 
 ```C#
-
-            var success = false;
-            var startTime = DateTime.UtcNow;
-            var timer = System.Diagnostics.Stopwatch.StartNew();
-            try
-            {
-                success = dependency.Call();
-            }
-            finally
-            {
-                timer.Stop();
-                telemetry.TrackDependency("myDependency", "myCall", startTime, timer.Elapsed, success);
-            }
+var success = false;
+var startTime = DateTime.UtcNow;
+var timer = System.Diagnostics.Stopwatch.StartNew();
+try
+{
+    success = dependency.Call();
+}
+finally
+{
+    timer.Stop();
+    telemetry.TrackDependency("myDependency", "myCall", startTime, timer.Elapsed, success);
+}
 ```
 
 請記住，伺服器 SDK 包含[相依性模組](app-insights-asp-net-dependencies.md)，可用來自動探索和追蹤特定相依性呼叫 (例如資料庫和 REST API)。 您必須在伺服器上安裝代理程式才能讓模組正常運作。 如果您想要追蹤自動化追蹤不會攔截的呼叫，或不想安裝代理程式，您可以使用這個呼叫。
@@ -566,7 +563,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 在 [Application Insights 分析](app-insights-analytics.md)中，trackDependency 呼叫會顯示在 `dependencies` 資料表中。
 
-如果[取樣](app-insights-sampling.md)運作中，itemCount 屬性將會顯示大於 1 的值。 例如，itemCount==10 表示在 trackDependency() 的 10 個呼叫中，取樣處理序只會傳輸其中一個。 若要取得依目標元件分割的正確相依性計數，請使用類似如下的程式碼：
+如果[取樣](app-insights-sampling.md)運作中，itemCount 屬性會顯示大於 1 的值。 例如，itemCount==10 表示在 trackDependency() 的 10 個呼叫中，取樣處理序只會傳輸其中一個。 若要取得依目標元件分割的正確相依性計數，請使用類似如下的程式碼：
 
 ```
 dependencies | summarize sum(itemCount) by target
@@ -599,12 +596,12 @@ dependencies
 *JavaScript*
 
 ```JS
-    // Called when my app has identified the user.
-    function Authenticated(signInId) {
-      var validatedId = signInId.replace(/[,;=| ]+/g, "_");
-      appInsights.setAuthenticatedUserContext(validatedId);
-      ...
-    }
+// Called when my app has identified the user.
+function Authenticated(signInId) {
+    var validatedId = signInId.replace(/[,;=| ]+/g, "_");
+    appInsights.setAuthenticatedUserContext(validatedId);
+    ...
+}
 ```
 
 在 ASP.NET Web MVC 應用程式，例如：
@@ -622,13 +619,13 @@ dependencies
 
 這不需要用到使用者的實際登入名稱。 只需是使用者的唯一識別碼。 其中不能包含空格或任何 `,;=|` 字元。
 
-使用者識別碼也會設定於工作階段 Cookie 中，並傳送到伺服器。 如果安裝了伺服器 SDK，則會傳送經過驗證的使用者識別碼以做為用戶端和伺服器遙測的內容屬性一部分。 您可以接著對它進行篩選和搜尋。
+使用者識別碼也會設定於工作階段 Cookie 中，並傳送到伺服器。 如果安裝了伺服器 SDK，則會傳送經過驗證的使用者識別碼以作為用戶端和伺服器遙測的內容屬性一部分。 您可以接著對它進行篩選和搜尋。
 
 如果您的 app 會將使用者群組為帳戶，您也可以傳遞該帳戶的識別碼 (具有相同的字元限制)。
 
       appInsights.setAuthenticatedUserContext(validatedId, accountId);
 
-在[計量瀏覽器](app-insights-metrics-explorer.md)中，您可建立可計算**已驗證的使用者**和**使用者帳戶**的圖表。
+在[計量瀏覽器](app-insights-metrics-explorer.md)中，您可建立可計算 [已驗證的使用者] 和 [使用者帳戶] 的圖表。
 
 您也可以[搜尋](app-insights-diagnostic-search.md)具有特定使用者名稱和帳戶的用戶端資料點。
 

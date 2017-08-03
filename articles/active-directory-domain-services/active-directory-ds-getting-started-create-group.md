@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Domain Services：建立 Azure AD DC 系統管理員群組 | Microsoft Docs"
-description: "開始使用 Azure Active Directory 網域服務"
+description: "使用 Azure 傳統入口網站啟用 Azure Active Directory Domain Services"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -12,17 +12,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/15/2017
+ms.date: 07/13/2017
 ms.author: maheshu
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 99607cf642bb6767c845ceb6fb4e62b1c15834f9
-ms.lasthandoff: 04/12/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
+ms.openlocfilehash: 5ed0125e05928cf0f6d9941e099b433ecb46e6e2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/13/2017
 
 ---
-# <a name="get-started-with-azure-active-directory-domain-services"></a>開始使用 Azure Active Directory Domain Services
+# <a name="enable-azure-active-directory-domain-services-using-the-azure-classic-portal"></a>使用 Azure 傳統入口網站啟用 Azure Active Directory Domain Services
 本文將說明並逐步引導您進行所需的組態工作，以讓您啟用 Azure Active Directory (Azure AD) 租用戶的 Azure Active Directory Domain Services (Azure AD DS)。
+
+> [!NOTE]
+> [**改為嘗試新的 (預覽) Azure 入口網站體驗**](active-directory-ds-getting-started.md)。 
+>
 
 ## <a name="task-1-create-the-azure-ad-dc-administrators-group"></a>工作 1：建立 Azure AD DC 系統管理員群組
 第一個工作是在您的 Azure AD 租用戶中建立系統管理群組。 這個特殊的系統管理群組稱為 *AAD DC 系統管理員*。 此群組的成員會獲得電腦的系統管理權限，而這類電腦已加入受 Azure Active Directory Domain Services 管理的網域。 在加入網域的電腦上，這個群組會新增到系統管理員群組。 此外，此群組的成員可以使用遠端桌面，從遠端連接到已加入網域的電腦。  
@@ -51,7 +55,7 @@ ms.lasthandoff: 04/12/2017
 
     ![[新增群組] 對話方塊](./media/active-directory-domain-services-getting-started/create-admin-group.png)
 7. 在 [描述] 方塊中輸入描述，讓其他人了解此群組可授與 Azure Active Directory Domain Services 內的系統管理權限。
-8. 建立該群組之後，按一下群組名稱以檢視其屬性。 
+8. 建立該群組之後，按一下群組名稱以檢視其屬性。
 9. 若要將使用者新增為此群組的成員，請按一下視窗底部的 [新增成員] 按鈕。
 
     ![新增群組成員按鈕](./media/active-directory-domain-services-getting-started/add-group-members-button.png)
@@ -59,7 +63,7 @@ ms.lasthandoff: 04/12/2017
 
     ![將使用者新增至系統管理員群組](./media/active-directory-domain-services-getting-started/add-group-members.png)
 
-## <a name="next-steps"></a>後續步驟
-步驟 2：[建立或選取 Azure 虛擬網路](active-directory-ds-getting-started-vnet.md)
-  
+
+## <a name="next-step"></a>後續步驟
+[工作 2：建立或選取 Azure 虛擬網路](active-directory-ds-getting-started-vnet.md)
 

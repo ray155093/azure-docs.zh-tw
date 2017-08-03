@@ -1,5 +1,5 @@
 ---
-title: "在 HDInsight 上使用 Hadoop 分析航班延誤資料 | Microsoft Docs"
+title: "在 HDInsight 中使用 Hadoop 分析航班延誤資料 - Azure | Microsoft Docs"
 description: "了解如何使用一個 Windows PowerShell 指令碼建立 HDInsight 叢集、執行 Hive 工作、執行 Sqool 工作和刪除叢集。"
 services: hdinsight
 documentationcenter: 
@@ -12,21 +12,21 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: 0875b40045387a9695c8b86a01a708433016c1ee
-ms.lasthandoff: 04/11/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e457b722ec403d56ca551bb1fd01c3dd619bf9b5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/08/2017
 
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-in-hdinsight"></a>在 HDInsight 上使用 Hadoop 分析航班延誤資料
 Hive 可透過一種類似 SQL 的指令碼語言 (稱為 *[HiveQL][hadoop-hiveql]*) 來執行 Hadoop MapReduce 作業，可用來彙總、查詢和分析大量資料。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要以 Windows 為基礎的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。 如需與 Linux 叢集搭配使用的步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)。
+> 此文件中的步驟需要以 Windows 為基礎的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 如需與 Linux 叢集搭配使用的步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)。
 
 Azure HDInsight 的其中一個主要優點就是區隔資料儲存和運算。 HDInsight 使用 Azure Blob 儲存體來儲存資料。 典型的工作包含三個部分：
 
@@ -59,7 +59,7 @@ Azure HDInsight 的其中一個主要優點就是區隔資料儲存和運算。 
 * **具有 Azure PowerShell 的工作站**。
 
     > [!IMPORTANT]
-    > 使用 Azure Service Manager 管理 HDInsight 資源的 Azure PowerShell 支援已**被取代**，將會在 2017 年 1 月 1 日前移除。 本文件中的步驟會使用可與 Azure Resource Manager 搭配使用的新 HDInsight Cmdlet。
+    > 使用 Azure Service Manager 管理 HDInsight 資源的 Azure PowerShell 支援已**被取代**，並已在 2017 年 1 月 1 日移除。 本文件中的步驟會使用可與 Azure Resource Manager 搭配使用的新 HDInsight Cmdlet。
     >
     > 請遵循 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱 [移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md) ，以取得詳細資訊。
 
@@ -74,8 +74,8 @@ PowerShell 指令碼其中一部分會將資料從公用 Blob 容器複製到叢
 
 <table border="1">
 <tr><th>檔案</th><th>說明</th></tr>
-<tr><td>wasbs://flightdelay@hditutorialdata.blob.core.windows.net/flightdelays.hql</td><td>Hive 工作所用的 HiveQL 指令碼檔案。 此指令碼已上傳至具有公用存取的 Azure Blob 儲存體帳戶。 <a href="#appendix-b">附錄 B</a> 具有準備和上傳此檔案至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
-<tr><td>wasbs://flightdelay@hditutorialdata.blob.core.windows.net/2013Data</td><td>Hive 工作的輸入資料。 此資料已上傳至具有公用存取的 Azure Blob 儲存體帳戶。 <a href="#appendix-a">附錄 A</a> 具有取得資料和上傳資料至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
+<tr><td>wasb://flightdelay@hditutorialdata.blob.core.windows.net/flightdelays.hql</td><td>Hive 工作所用的 HiveQL 指令碼檔案。 此指令碼已上傳至具有公用存取的 Azure Blob 儲存體帳戶。 <a href="#appendix-b">附錄 B</a> 具有準備和上傳此檔案至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
+<tr><td>wasb://flightdelay@hditutorialdata.blob.core.windows.net/2013Data</td><td>Hive 工作的輸入資料。 此資料已上傳至具有公用存取的 Azure Blob 儲存體帳戶。 <a href="#appendix-a">附錄 A</a> 具有取得資料和上傳資料至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
 <tr><td>\tutorials\flightdelays\output</td><td>Hive 工作的輸出路徑。 預設容器用來儲存輸出資料。</td></tr>
 <tr><td>\tutorials\flightdelays\jobstatus</td><td>預設容器上的 Hive 工作狀態資料夾。</td></tr>
 </table>
@@ -204,7 +204,7 @@ Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益�
     ###########################################
     # Submit the Sqoop job
     ###########################################
-    $exportDir = "wasbs://$defaultBlobContainerName@$defaultStorageAccountName.blob.core.windows.net/tutorials/flightdelays/output"
+    $exportDir = "wasb://$defaultBlobContainerName@$defaultStorageAccountName.blob.core.windows.net/tutorials/flightdelays/output"
 
     $sqoopDef = New-AzureRmHDInsightSqoopJobDefinition `
                     -Command "export --connect $sqlDatabaseConnectionString --table $sqlDatabaseTableName --export-dir $exportDir --fields-terminated-by \001 "
@@ -262,7 +262,7 @@ Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益�
     <tr><td>篩選期間</td><td>一月</td></tr>
     <tr><td>欄位</td><td>*Year*、*FlightDate*、*UniqueCarrier*、*Carrier*、*FlightNum*、*OriginAirportID*、*Origin*、*OriginCityName*、*OriginState*、*DestAirportID*、*Dest*、*DestCityName*、*DestState*、*DepDelayMinutes*、*ArrDelay*、*ArrDelayMinutes*、*CarrierDelay*、*WeatherDelay*、*NASDelay*、*SecurityDelay*、*LateAircraftDelay* (請清除其餘所有欄位)</td></tr>
     </table>
-3. 按一下 [下載] 。
+3.按一下 [下載]****。
 4. 將檔案解壓縮至 **C:\Tutorials\FlightDelay\2013Data** 資料夾。 每個檔案皆為 CSV 檔案，大小約為 60 GB。
 5. 將檔案重新命名為檔案資料所屬月份的名稱。 例如，包含一月份資料的檔案，應命名為 *January.csv*。
 6. 重複步驟 2 到 5，以下載 2013 年 12 個月份的檔案。 至少要有一個檔案，才能執行此教學課程。
@@ -351,7 +351,7 @@ Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益�
 
 如果您選擇使用不同的方法來上傳檔案，請確定檔案路徑為 tutorials/flightdelay/data。 存取檔案的語法為：
 
-    wasbs://<ContainerName>@<StorageAccountName>.blob.core.windows.net/tutorials/flightdelay/data
+    wasb://<ContainerName>@<StorageAccountName>.blob.core.windows.net/tutorials/flightdelay/data
 
 tutorials/flightdelay/data 路徑是您在上傳檔案時所建立的虛擬資料夾。 請確認共有 12 個檔案，每個月份各一個。
 
@@ -501,7 +501,7 @@ HiveQL 指令碼將執行下列作業：
         "ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' " +
         "LINES TERMINATED BY '\n' " +
         "STORED AS TEXTFILE " +
-        "LOCATION 'wasbs://flightdelay@hditutorialdata.blob.core.windows.net/2013Data';"
+        "LOCATION 'wasb://flightdelay@hditutorialdata.blob.core.windows.net/2013Data';"
 
     $hqlDropDelays = "DROP TABLE delays;"
 

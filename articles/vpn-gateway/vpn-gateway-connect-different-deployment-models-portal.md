@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/21/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 9e0dbb028c668aad182e2c1c54fb397ffe99a0a0
-ms.lasthandoff: 04/27/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
+ms.openlocfilehash: 1b7b67ec28986b7c20b3e990e3565265f74c28e6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/14/2017
 
 ---
 # <a name="connect-virtual-networks-from-different-deployment-models-using-the-portal"></a>使用入口網站從不同的部署模型連接虛擬網路
@@ -84,7 +84,16 @@ VPN 類型 = 路由式 <br>
 
 ## <a name="classicvnet"></a>1.進行傳統 VNet 設定
 
-在本節中，您會為您的傳統 VNet 建立區域網路 (本機網站) 及虛擬網路閘道。 如果您沒有傳統 VNet，而且正在執行這些步驟作為練習，您可以使用[這篇文章](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)和上述的[範例](#values)設定值來建立 VNet。 如果您已經有具備 VPN 閘道的 VNet，請確認閘道是動態的。 如果是靜態，您必須先刪除該 VPN 閘道，然後繼續進行作業。
+在本節中，您會為您的傳統 VNet 建立區域網路 (本機網站) 及虛擬網路閘道。 如果您沒有傳統 VNet，而且正在執行這些步驟作為練習，您可以使用[這篇文章](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)和上述的[範例](#values)設定值來建立 VNet。
+
+使用入口網站建立傳統虛擬網路時，您必須使用下列步驟來瀏覽至 [虛擬網路] 刀鋒視窗，否則建立傳統虛擬網路的選項就不會出現：
+
+1. 按一下 [+] 以開啟 [新增] 刀鋒視窗。
+2. 在 [搜尋 Marketplace] 欄位中，輸入「虛擬網路」。 如果您改為選取 [網路功能]-> [虛擬網路]，將無法取得建立傳統 VNet 的選項。
+3. 在傳回的清單中找到 [虛擬網路]，然後按一下以開啟 [虛擬網路] 刀鋒視窗。 
+4. 在 [虛擬網路] 刀鋒視窗中，選取 [傳統] 以建立傳統的 VNet。 
+
+如果您已經有具備 VPN 閘道的 VNet，請確認閘道是動態的。 如果是靜態，您必須先刪除該 VPN 閘道，然後繼續進行作業。
 
 已提供螢幕擷取畫面做為範例。 請務必將值取代為您自己的值，或使用[範例](#values)值。
 
