@@ -84,7 +84,7 @@ ms.lasthandoff: 06/23/2017
 
 若要讓單一登入能夠運作，Azure AD 必須知道 WORKS MOBILE 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 WORKS MOBILE 中的相關使用者之間建立連結關聯性。
 
-建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值指派成 WORKS MOBILE 中 [Username] (使用者名稱) 的值。
+建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值指派成 WORKS MOBILE 中 [Username] \(使用者名稱) 的值。
 
 若要設定及測試與 WORKS MOBILE 搭配運作的 Azure AD 單一登入，您必須完成下列構成要素：
 

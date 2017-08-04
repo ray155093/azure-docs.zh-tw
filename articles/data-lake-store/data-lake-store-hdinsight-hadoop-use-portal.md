@@ -110,7 +110,7 @@ ms.lasthandoff: 06/09/2017
 **使用 Azure 入口網站中現有的服務主體**
 
 1. 按一下 [Data Lake Store 存取]。
-1. 在 [Data Lake Store 存取] 刀鋒視窗中，按一下 [Use existing] (使用現有)。
+1. 在 [Data Lake Store 存取] 刀鋒視窗中，按一下 [Use existing] \(使用現有)。
 2. 按一下 [服務主體]，然後選取一個服務主體。 
 3. 上傳與您所選取服務主體建立關聯的憑證 (.pfx 檔案)，然後輸入憑證密碼。
 

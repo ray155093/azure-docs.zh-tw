@@ -159,7 +159,7 @@ ms.lasthandoff: 05/31/2017
 
     ![設定單一登入](./media/active-directory-saas-workpath-tutorial/tutorial_general_400.png)
 
-9. 在 [Workpath Configuration] (Workpath 設定) 區段上，按一下 [Configure Workpath] (設定 Workpath) 以開啟 [設定登入] 視窗。 從 [快速參考] 區段中複製 [登出 URL、SAML 實體識別碼和 SAML 單一登入服務 URL]。
+9. 在 [Workpath Configuration] \(Workpath 設定) 區段上，按一下 [Configure Workpath] \(設定 Workpath) 以開啟 [設定登入] 視窗。 從 [快速參考] 區段中複製 [登出 URL、SAML 實體識別碼和 SAML 單一登入服務 URL]。
 
     ![設定單一登入](./media/active-directory-saas-workpath-tutorial/tutorial_workpath_configure.png) 
 
