@@ -54,7 +54,7 @@ Install-Package -Id Microsoft.Azure.Graph.RBAC -Version 3.4.0-preview
 
 ## <a name="common-variables"></a>常用變數
 
-```
+``` csharp
 string subid = "<Subscription ID>"; // Subscription ID (a GUID)
 string tenantid = "<Tenant ID>"; // AAD tenant ID or domain. For example, "contoso.onmicrosoft.com"
 string rg == "<value>"; // Resource  group name
@@ -65,7 +65,7 @@ string clientid = "1950a258-227b-4e31-a9cf-717495945fc2"; // Sample client ID (t
 
 您有多個可登入 Azure Data Lake Analytics 的選項。 下列程式碼片段說明使用快顯視窗進行互動式使用者驗證的驗證範例。
 
-```
+``` csharp
 using System;
 using System.IO;
 using System.Threading;
@@ -106,7 +106,7 @@ public static Program
 
 ## <a name="create-the-client-management-objects"></a>建立用戶端管理物件
 
-```
+``` csharp
 var resourceManagementClient = new ResourceManagementClient(armCreds) { SubscriptionId = subid };
 
 var adlaAccountClient = new DataLakeAnalyticsAccountManagementClient(armCreds);
@@ -131,7 +131,7 @@ graphClient.TenantID = domain;
 
 如果您尚未建立，您必須具有 Azure 資源群組來建立 Data Lake Analytics 元件。 您將需要您的驗證認證、訂用帳戶 ID 及一個位置。 下列程式碼示範如何建立資源群組：
 
-```
+``` csharp
 var resourceGroup = new ResourceGroup { Location = location };
 resourceManagementClient.ResourceGroups.CreateOrUpdate(groupName, rg);
 ```
@@ -141,7 +141,7 @@ resourceManagementClient.ResourceGroups.CreateOrUpdate(groupName, rg);
 
 每個 ADLA 帳戶都需要一個 ADLS 帳戶。 如果您還沒有可用的帳戶，可以使用下列程式碼來建立一個：
 
-```
+``` csharp
 var new_adls_params = new DataLakeStoreAccount(location: _location);
 adlsAccountClient.Account.Create(rg, adls, new_adls_params);
 ```
@@ -150,7 +150,7 @@ adlsAccountClient.Account.Create(rg, adls, new_adls_params);
 
 下列程式碼會建立一個 ADLS 帳戶
 
-```
+``` csharp
 var new_adla_params = new DataLakeAnalyticsAccount()
 {
    DefaultDataLakeStoreAccount = adls,
@@ -162,34 +162,34 @@ adlaClient.Account.Create(rg, adla, new_adla_params);
 
 ### <a name="list-data-lake-store-accounts"></a>列出 Data Lake Store 帳戶
 
-```
+``` csharp
 var adlsAccounts = adlsAccountClient.Account.List().ToList();
 foreach (var adls in adlsAccounts)
 {
-   Console.WriteLine("ADLS: {0}", adls.Name);
+   Console.WriteLine($"ADLS: {0}", adls.Name);
 }
 ```
 
 ### <a name="list-data-lake-analytics-accounts"></a>列出 Data Lake Analytics 帳戶
 
-```
+``` csharp
 var adlaAccounts = adlaClient.Account.List().ToList();
 
 for (var adla in AdlaAccounts)
 {
-   Console.WriteLine("ADLA: {0}, adla.Name");
+   Console.WriteLine($"ADLA: {0}, adla.Name");
 }
 ```
 
 ### <a name="checking-if-an-account-exists"></a>檢查帳戶是否存在
 
-```
+``` csharp
 bool exists = adlaClient.Account.Exists(rg, adla));
 ```
 
 ### <a name="get-information-about-an-account"></a>取得帳戶的相關資訊
 
-```
+``` csharp
 bool exists = adlaClient.Account.Exists(rg, adla));
 if (exists)
 {
@@ -199,7 +199,7 @@ if (exists)
 
 ### <a name="delete-an-account"></a>刪除帳戶
 
-```
+``` csharp
 if (adlaClient.Account.Exists(rg, adla))
 {
    adlaClient.Account.Delete(rg, adla);
@@ -210,7 +210,7 @@ if (adlaClient.Account.Exists(rg, adla))
 
 每個 Data Lake Analytics 帳戶都必須擁有預設 Data Lake Store 帳戶。 您可以使用此程式碼來判斷 Analytics 帳戶的預設 Store 帳戶。
 
-```
+``` csharp
 if (adlaClient.Account.Exists(rg, adla))
 {
   var adla_accnt = adlaClient.Account.Get(rg, adla);
@@ -229,7 +229,7 @@ Data Lake Analytics 目前支援下列資料來源：
 
 您可以建立「Azure 儲存體」帳戶的連結。
 
-```
+``` csharp
 string storage_key = "xxxxxxxxxxxxxxxxxxxx";
 string storage_account = "mystorageaccount";
 var addParams = new AddStorageAccountParameters(storage_key);            
@@ -238,28 +238,28 @@ adlaClient.StorageAccounts.Add(rg, adla, storage_account, addParams);
 
 ### <a name="list-azure-storage-data-sources"></a>列出 Azure 儲存體資料來源
 
-```
+``` csharp
 var stg_accounts = adlaAccountClient.StorageAccounts.ListByAccount(rg, adla);
 
 if (stg_accounts != null)
 {
   foreach (var stg_account in stg_accounts)
   {
-      Console.WriteLine("Storage account: {0}", stg_account.Name);
+      Console.WriteLine($"Storage account: {0}", stg_account.Name);
   }
 }
 ```
 
 ### <a name="list-data-lake-store-data-sources"></a>列出 Data Lake Store 資料來源
 
-```
+``` csharp
 var adls_accounts = adlsClient.Account.List();
 
 if (adls_accounts != null)
 {
   foreach (var adls_accnt in adls_accounts)
   {
-      Console.WriteLine("ADLS account: {0}", adls_accnt.Name);
+      Console.WriteLine($"ADLS account: {0}", adls_accnt.Name);
   }
 }
 ```
@@ -276,13 +276,13 @@ if (adls_accounts != null)
 
 下列範例示範如何下載 Data Lake Store 中的資料夾。
 
-```
+``` csharp
 adlsFileSystemClient.FileSystem.DownloadFolder(adls, sourcePath, destinationPath);
 ```
 
 ### <a name="create-a-file-in-a-data-lake-store-account"></a>在 Data Lake Store 帳戶中建立檔案
 
-```
+``` csharp
 using (var memstream = new MemoryStream())
 {
    using (var sw = new StreamWriter(memstream, UTF8Encoding.UTF8))
@@ -298,7 +298,7 @@ using (var memstream = new MemoryStream())
 ### <a name="verify-azure-storage-account-paths"></a>確認 Azure 儲存體帳戶路徑
 下列程式碼會檢查 Azure 儲存體帳戶 (storageAccntName) 是否存在於 Data Lake Analytics 帳戶 (analyticsAccountName)，以及容器 (containerName) 是否存在於 Azure 儲存體帳戶。
 
-```
+``` csharp
 string storage_account = "mystorageaccount";
 string storage_container = "mycontainer";
 bool accountExists = adlaClient.Account.StorageAccountExists(rg, adla, storage_account));
@@ -311,7 +311,7 @@ DataLakeAnalyticsCatalogManagementClient 物件會提供方法，用以管理為
 ### <a name="list-databases-and-schemas"></a>列出資料庫和結構描述
 在您可以列出的幾個項目中，最常見的是資料庫和其結構描述。 下列程式碼會取得資料庫的集合，然後列舉每個資料庫的結構描述。
 
-```
+``` csharp
 var databases = adlaCatalogClient.Catalog.ListDatabases(adla);
 foreach (var db in databases)
 {
@@ -328,7 +328,7 @@ foreach (var db in databases)
 ### <a name="list-table-columns"></a>列出資料表資料行
 下列程式碼示範如何使用 Data Lake Analytics 目錄管理用戶端存取資料庫，以列出指定資料表的資料行。
 
-```
+``` csharp
 var tbl = adlaCatalogClient.Catalog.GetTable(adla, "master", "dbo", "MyTableName");
 IEnumerable<USqlTableColumn> columns = tbl.ColumnList;
 
@@ -355,7 +355,7 @@ foreach (USqlTableColumn utc in columns)
 ### <a name="list-failed-jobs"></a>列出失敗的作業
 下列程式碼列出失敗作業的相關資訊。
 
-```
+``` csharp
 var odq = new ODataQuery<JobInformation> { Filter = "result eq 'Failed'" };
 var jobs = adlaJobClient.Job.List(adla, odq);
 foreach (var j in jobs)
@@ -367,7 +367,7 @@ foreach (var j in jobs)
 ### <a name="list-pipelines"></a>列出管線
 下列程式碼會列出提交給帳戶之作業的每個管線相關資訊。
 
-```
+``` csharp
 var pipelines = adlaJobClient.Pipeline.List(adla);
 foreach (var p in pipelines)
 {
@@ -378,7 +378,7 @@ foreach (var p in pipelines)
 ### <a name="list-recurrences"></a>列出週期
 下列程式碼會列出提交給帳戶之作業的每個週期相關資訊。
 
-```
+``` csharp
 var recurrences = adlaJobClient.Recurrence.List(adla);
 foreach (var r in recurrences)
 {
@@ -390,13 +390,13 @@ foreach (var r in recurrences)
 
 ### <a name="look-up-user-in-the-aad-directory"></a>查詢 AAD 目錄中的使用者
 
-```
+``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
 ```
 
 ### <a name="get-the-objectid-of-a-user-in-the-aad-directory"></a>取得 AAD 目錄中使用者的 ObjectId
 
-```
+``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
 Console.WriteLine( userinfo.ObjectId )
 ```
@@ -407,7 +407,7 @@ DataLakeAnalyticsAccountManagementClient 物件會提供方法，用以管理 Da
 ### <a name="list-compute-policies"></a>列出計算原則
 下列程式碼會擷取 Data Lake Analytics 帳戶的計算原則清單。
 
-```
+``` csharp
 var policies = adlaAccountClient.ComputePolicies.ListByAccount(rg, adla);
 foreach (var p in policies)
 {
@@ -418,7 +418,7 @@ foreach (var p in policies)
 ### <a name="create-a-new-compute-policy"></a>建立新的計算原則
 下列程式碼會為 Data Lake Analytics 帳戶建立新的計算原則，其中是將指定使用者可用的 AU 上限設定為 50，而將作業最低優先順序設定為 250。
 
-```
+``` csharp
 var userAadObjectId = "3b097601-4912-4d41-b9d2-78672fc2acde";
 var newPolicyParams = new ComputePolicyCreateOrUpdateParameters(userAadObjectId, "User", 50, 250);
 adlaAccountClient.ComputePolicies.CreateOrUpdate(rg, adla, "GaryMcDaniel", newPolicyParams);
