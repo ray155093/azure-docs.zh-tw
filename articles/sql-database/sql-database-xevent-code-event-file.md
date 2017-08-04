@@ -269,7 +269,7 @@ PowerShell 指令碼在結束時列印出幾個具名的值。 您必須編輯 T
 
 ### <a name="transact-sql-code"></a>Transact-SQL 程式碼
 
-```tsql
+```sql
 ---- TODO: First, run the PowerShell portion of this two-part code sample.
 ---- TODO: Second, find every 'TODO' in this Transact-SQL file, and edit each.
 
@@ -465,7 +465,7 @@ GO
 
 如果目標在執行時無法附加，您就必須停止事件工作階段並重新啟動：
 
-```tsql
+```sql
 ALTER EVENT SESSION ... STATE = STOP;
 GO
 ALTER EVENT SESSION ... STATE = START;
