@@ -66,7 +66,7 @@ ms.lasthandoff: 07/04/2017
 4.  在 [來源] 中，選取 [事件中樞]。
 5.  在 [服務匯流排命名空間] 中，選取 [TollData] 選項。
 6.  在 [事件中樞名稱] 中，選取 [entry]。
-7.  在 [事件中樞原則名稱] 中，選取 [RootManageSharedAccessKey] (預設值)。
+7.  在 [事件中樞原則名稱] 中，選取 [RootManageSharedAccessKey] \(預設值)。
 8.  在 [事件序列化格式] 中，選取 [Json]。 
 9.  在 [編碼] 中，選取 [UTF8]。 您的設定應該如以下的螢幕擷取畫面：
 
