@@ -59,7 +59,7 @@ RFPIO 與 Azure AD 整合提供下列優點：
 
 ### <a name="to-add-rfpio-from-the-gallery"></a>從資源庫新增 RFPIO
 
-1. 在 **Azure 入口網站[](https://portal.azure.com)**的左方瀏覽窗格中，選取 [Azure Active Directory] 圖示。 
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，選取 [Azure Active Directory] 圖示。 
 
     ![Active Directory][1]
 
