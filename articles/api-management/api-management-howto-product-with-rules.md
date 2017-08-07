@@ -3,7 +3,7 @@ title: "使用 Azure API 管理保護 API| Microsoft Docs"
 description: "了解如何使用配額和節流 (頻率限制) 原則保護您的 API。"
 services: api-management
 documentationcenter: 
-author: steved0x
+author: vladvino
 manager: erikre
 editor: 
 ms.assetid: 450dc368-d005-401d-ae64-3e1a2229b12f
@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
-translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: 73c9675490f95f68450716cd67e58df9c84daef8
-
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 9dba928b78c11213d4b0098986561b09678444eb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="protect-your-api-with-rate-limits-using-azure-api-management"></a>使用 Azure API 管理以頻率限制保護 API
@@ -53,7 +54,7 @@ ms.openlocfilehash: 73c9675490f95f68450716cd67e58df9c84daef8
 
 在 [標題] 文字方塊中輸入**免費試用**。
 
-在 [描述] 文字方塊中輸入下列文字： **存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
+在 [描述] 文字方塊中輸入下列文字：**存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
 
 API 管理中的產品可以是受保護或開放的。 受保護的產品必須先訂閱才能使用。 開放產品不需要訂用帳戶即可使用。 若要建立需要訂用帳戶的受保護產品，請務必選取 [需要訂用帳戶]  。 這是預設設定。
 
@@ -95,7 +96,9 @@ API 管理中的產品可以是受保護或開放的。 受保護的產品必須
 ![Add Echo API][api-management-add-echo-api]
 
 ## <a name="policies"> </a>設定呼叫頻率限制和配額原則
-頻率限制和配額是在原則編輯器中設定。 在左邊的 [API 管理] 功能表下，按一下 [原則]。 在 [產品] 清單中，按一下 [免費試用]。
+頻率限制和配額是在原則編輯器中設定。 我們將在本教學課程中加入的兩個原則為[限制每個訂用帳戶的呼叫頻率](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate)和[設定每個訂用帳戶的使用量配額](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota)原則。 這些原則必須套用於產品範圍。
+
+在左邊的 [API 管理] 功能表下，按一下 [原則]。 在 [產品] 清單中，按一下 [免費試用]。
 
 ![Product policy][api-management-product-policy]
 
@@ -103,11 +106,11 @@ API 管理中的產品可以是受保護或開放的。 受保護的產品必須
 
 ![Add policy][api-management-add-policy]
 
-若要插入原則，請將游標放在原則範本的 **inbound** 或 **outbound** 區段上。 頻率限制和配額原則為輸入原則，因此將游標放置在輸入元素中。
+頻率限制和配額原則為輸入原則，因此將游標放置在輸入元素中。
 
 ![Policy editor][api-management-policy-editor-inbound]
 
-我們要在本教學課程中加入的兩個原則為[限制每個訂用帳戶的呼叫頻率](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate)和[設定每個訂用帳戶的使用量配額](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota)原則。
+透過原則清單捲動並找出 [限制每個訂用帳戶的呼叫率] 原則項目。
 
 ![Policy statements][api-management-limit-policies]
 
@@ -121,7 +124,7 @@ API 管理中的產品可以是受保護或開放的。 受保護的產品必須
 </rate-limit>
 ```
 
-[限制每個訂用帳戶的呼叫頻率] 可用在產品層級，也可以用在 API 和個別作業名稱層級。 本教學課程中只會使用產品層級原則，因此請將 **rate-limit** 元素中的 **api** 和 **operation** 元素刪除，只保留外部 **rate-limit** 元素，如以下範例所示。
+如您在程式碼片段中所見，此原則允許設定產品的 API 和作業限制。 我們不會在本教學課程中使用該功能，因此請將 **rate-limit** 元素中的 **api** 和 **operation** 元素刪除，只保留外部 **rate-limit** 元素，如以下範例所示。
 
 ```xml
 <rate-limit calls="number" renewal-period="seconds">
@@ -135,7 +138,7 @@ API 管理中的產品可以是受保護或開放的。 受保護的產品必須
 </rate-limit>
 ```
 
-若要設定 [設定每個訂用帳戶的使用量配額] 原則，請將游標放置在 **inbound** 元素內新加入的 **rate-limit** 元素正下方，然後按一下 [設定每個訂用帳戶的使用量配額] 左側的箭頭。
+若要設定 [設定每個訂用帳戶的使用量配額] 原則，請將游標放置在 **inbound** 元素內新加入的 **rate-limit** 元素正下方，然後找出並按一下 [設定每個訂用帳戶的使用量配額] 左側的箭頭。
 
 ```xml
 <quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
@@ -145,7 +148,7 @@ API 管理中的產品可以是受保護或開放的。 受保護的產品必須
 </quota>
 ```
 
-因為此原則也意欲用於產品層級，請刪除 **api** 和 **operation** 名稱元素，如以下範例所示。
+與 [設定每個訂用帳戶的使用量配額] 原則類似，[設定每個訂用帳戶的使用量配額] 原則允許設定產品的 API 和作業上限。 我們不會在本教學課程中使用該功能，因此請將 **quota** 元素中的 **api** 和 **operation** 元素刪除，如以下範例所示。
 
 ```xml
 <quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
@@ -323,9 +326,4 @@ API 管理中的產品可以是受保護或開放的。 受保護的產品必須
 
 [Limit call rate]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
 [Set usage quota]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

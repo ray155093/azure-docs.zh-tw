@@ -29,6 +29,9 @@
 
 5. 在 [共用存取原則] 窗格中，按一下 [iothubowner] 原則，然後複製並記下 IoT 中樞的**連接字串**。 如需詳細資訊，請參閱[控制 IoT 中樞的存取權](../articles/iot-hub/iot-hub-devguide-security.md)。
 
+> [!NOTE] 
+在此設定教學課程中，您不需要此 iothubowner 連接字串。 不過，在您完成此設定之後，您可能需要在不同 IoT 案例的一些教學課程中使用到它。
+
    ![取得 IoT 中樞連接字串](../articles/iot-hub/media/iot-hub-create-hub-and-device/5_get-azure-iot-hub-connection-string-portal.png)
 
 ## <a name="register-a-device-in-the-iot-hub-for-your-device"></a>在裝置的 IoT 中樞中註冊裝置

@@ -1,6 +1,6 @@
 ---
-title: "使用點對站將電腦連接至 Azure 虛擬網路︰PowerShell | Microsoft Docs"
-description: "藉由建立點對站 VPN 閘道連線，將電腦安全地連接到您的 Azure 虛擬網路。"
+title: "使用點對站和憑證驗證將電腦連線至 Azure 虛擬網路︰PowerShell | Microsoft Docs"
+description: "使用憑證驗證建立點對站 VPN 閘道連線，進而將電腦安全地連線到您的 Azure 虛擬網路。 本文適用於 Resource Manager 部署模型並使用 PowerShell。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,20 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/27/2017
 ms.author: cherylmc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 7abc3f238d08694c9f7359479cdce07bfb3d87bd
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: 27484932f13a85bef29b7a19b4f06b75722b4c38
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
-<a id="configure-a-point-to-site-connection-to-a-vnet-using-powershell" class="xliff"></a>
+# <a name="configure-a-point-to-site-connection-to-a-vnet-using-certificate-authentication-powershell"></a>使用憑證驗證設定 VNet 的點對站連線：PowerShell
 
-# 使用 PowerShell 設定 VNet 的點對站連線
-
-
-本文顯示如何使用 PowerShell，在 Resource Manager 部署模型中建立具有點對站連線的 VNet。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
+本文顯示如何使用 PowerShell，在 Resource Manager 部署模型中建立具有點對站連線的 VNet。 這項設定使用憑證來驗證連線用戶端。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
@@ -41,19 +37,18 @@ ms.lasthandoff: 06/28/2017
 
 ![將電腦連接至 Azure VNet - 點對站連線圖表](./media/vpn-gateway-howto-point-to-site-rm-ps/point-to-site-diagram.png)
 
-點對站連線不需要 VPN 裝置或公眾對應 IP 位址。 P2S 會建立透過 SSTP (安全通訊端通道通訊協定) 的 VPN 連線。 我們在伺服器端上支援 SSTP 1.0、1.1 和 1.2 版。 用戶端會決定要使用的版本。 若為 Windows 8.1 和更新版本，SSTP 預設使用 1.2。 如需有關點對站連線的詳細資訊，請參閱本文結尾的[點對站常見問題集](#faq)。
-
-P2S 連線需要下列各個條件：
+點對站連線驗證連線需要下列各項：
 
 * RouteBased VPN 閘道。
 * 已上傳至 Azure 之根憑證的公開金鑰 (.cer 檔案)。 這會被視為受信任的憑證並且用於驗證。
 * 用戶端憑證是從根憑證產生，並安裝在每部即將連線的用戶端電腦上。 此憑證使用於用戶端憑證。
 * 必須在每部連線的用戶端電腦上產生並安裝 VPN 用戶端組態套件。 用戶端組態套件會使用連線到 VNet 的必要資訊，設定已在作業系統上的原生 VPN 用戶端。
 
+點對站連線不需要 VPN 裝置或內部部署公眾對應 IP 位址。 已透過 SSTP (安全通訊端通道通訊協定) 建立 VPN 連線。 我們在伺服器端上支援 SSTP 1.0、1.1 和 1.2 版。 用戶端會決定要使用的版本。 若為 Windows 8.1 和更新版本，SSTP 預設使用 1.2。 
 
-<a id="before-beginning" class="xliff"></a>
+如需有關點對站連線的詳細資訊，請參閱本文結尾的[點對站常見問題集](#faq)。
 
-## 開始之前
+## <a name="before-beginning"></a>開始之前
 
 * 請確認您有 Azure 訂用帳戶。 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial)。
 * 安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
@@ -231,11 +226,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 
   ![連線已建立](./media/vpn-gateway-howto-point-to-site-rm-ps/connected.png)
 
-如果您連線時遇到問題，請檢查下列事項︰
-
-- 開啟 [管理使用者憑證] 並瀏覽至 [受信任的根憑證授權單位]\[憑證]。 確認已列出根憑證。 必須要有根憑證驗證才可運作。 當您使用預設值 '[如果可能的話，包含憑證路徑中的所有憑證]' 將用戶端憑證 .pfx 匯出時，也會一併匯出根憑證資訊。 當您安裝用戶端憑證時，也會在用戶端電腦上安裝根憑證。 
-
-- 如果您使用的是藉由企業 CA 解決方案簽發的憑證，而在驗證時發生問題，請檢查用戶端憑證上的驗證順序。 您可以按兩下用戶端憑證，然後移至 [詳細資料] > [增強金鑰使用方法]，來檢查驗證清單順序。 請確定清單所顯示的第一個項目是「用戶端驗證」。 如果不是，您就必須根據以「用戶端驗證」作為清單中第一個項目的「使用者」範本來簽發用戶端憑證。  
+[!INCLUDE [verify client certificates](../../includes/vpn-gateway-certificates-verify-client-cert-include.md)]
 
 ## <a name="verify"></a>9 - 確認您的連線
 
@@ -255,7 +246,6 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
       NetBIOS over Tcpip..............: Enabled
   ```
 
-
 ## <a name="connectVM"></a>連線至虛擬機器
 
 [!INCLUDE [Connect to a VM](../../includes/vpn-gateway-connect-vm-p2s-include.md)]
@@ -264,9 +254,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 
 您可以從 Azure 新增和移除受信任的根憑證。 當您移除根憑證時，從該根憑證產生憑證的用戶端將無法進行驗證，因而無法進行連線。 若希望用戶端進行驗證和連線，您需要安裝從 Azure 信任 (已上傳至 Azure) 的根憑證產生的新用戶端憑證。
 
-<a id="to-add-a-trusted-root-certificate" class="xliff"></a>
-
-### 若要新增受信任的根憑證
+### <a name="to-add-a-trusted-root-certificate"></a>若要新增受信任的根憑證
 
 您最多可將 20 個根憑證 .cer 檔案新增至 Azure。 下列步驟可協助您新增根憑證︰
 
@@ -297,9 +285,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
   -VirtualNetworkGatewayName "VNet1GW"
   ```
 
-<a id="to-remove-a-root-certificate" class="xliff"></a>
-
-### 若要移除根憑證：
+### <a name="to-remove-a-root-certificate"></a>若要移除根憑證：
 
 1. 宣告變數。
 
@@ -327,9 +313,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 
 常見的做法是使用根憑證管理小組或組織層級的存取權，然後使用撤銷的用戶端憑證針對個別使用者進行細部的存取控制。
 
-<a id="to-revoke-a-client-certificate" class="xliff"></a>
-
-### 若要撤銷用戶端憑證
+### <a name="to-revoke-a-client-certificate"></a>若要撤銷用戶端憑證
 
 1. 擷取用戶端憑證指紋。 如需詳細資訊，請參閱[做法：擷取憑證的指紋](https://msdn.microsoft.com/library/ms734695.aspx)。
 2. 將資訊複製到文字編輯器，並移除所有的空格，讓它是連續字串。 這在下一個步驟中會宣告為變數。
@@ -355,9 +339,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
   ```
 6. 新增指紋之後，憑證無法再用於連線接。 嘗試使用此憑證進行連線的用戶端會收到訊息，指出憑證不再有效。
 
-<a id="to-reinstate-a-client-certificate" class="xliff"></a>
-
-### 若要恢復用戶端憑證
+### <a name="to-reinstate-a-client-certificate"></a>若要恢復用戶端憑證
 
 您可以從撤銷的用戶端憑證清單中移除指紋來恢復用戶端憑證。
 
@@ -385,8 +367,5 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 
 [!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-point-to-site-faq-include.md)]
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。 若要了解網路與虛擬機器的詳細資訊，請參閱 [Azure 與 Linux VM 網路概觀](../virtual-machines/linux/azure-vm-network-overview.md)。
-

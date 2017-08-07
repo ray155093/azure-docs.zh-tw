@@ -16,12 +16,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 05/30/2017
 ms.author: carlrab
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: ab664eb8803037b0bf09399bf9d28059fec2e204
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: a863cf3ad08040906850f64db6505f30bcfa72eb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
 # <a name="create-an-azure-sql-database-in-the-azure-portal"></a>在 Azure 入口網站中建立 Azure SQL Database
@@ -59,7 +58,7 @@ Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-databa
    > 您必須在此表單上選取範例資料庫，因為它會用於本快速入門的其餘部分。
    > 
 
-4. 使用下列資訊填寫 SQL Server (邏輯伺服器) 表單，如上圖所示︰   
+4. 在 [伺服器] 之下，按一下 [進行必要設定]，並使用下列資訊填妥 SQL Server (邏輯伺服器) 表單，如下圖所示︰   
 
    | 設定       | 建議的值 | 說明 | 
    | ------------ | ------------------ | ------------------------------------------------- | 

@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 07/14/2017
 ms.author: denlee
 ms.translationtype: HT
-ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
-ms.openlocfilehash: 153b4cc668fdebd28cec5f3d95093a595064202a
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 6d14719938af0ce825955389824441e111024869
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/17/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="azure-cosmos-db-build-a-nodejs-application-by-using-graph-api"></a>Azure Cosmos DB：使用圖形 API 來建置 Node.js 應用程式
@@ -103,7 +103,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
     ![在 Azure 入口網站的 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/create-graph-nodejs/gremlin-uri.png)
 
-   如果 [Gremlin URI] 值空白，您可以從入口網站的 [金鑰] 頁面產生此值，方法是使用 [URI]，移除 https://，然後將文件變更為圖形。
+   如果 [Gremlin URI] 值空白，您可以從入口網站的 [金鑰] 頁面產生此值，方法是使用 [URI]，移除https://，然後將文件變更為圖形。
 
    Gremlin 端點必須是沒有通訊協定/連接埠號碼的主機名稱，像是 `mygraphdb.graphs.azure.com` (而不是 `https://mygraphdb.graphs.azure.com` 或 `mygraphdb.graphs.azure.com:433`)。
 
@@ -141,9 +141,11 @@ module.exports = config;
 
 您現在可以回到 Azure 入口網站中的 [資料總管]，檢視、查詢、修改並使用新的圖形資料。
 
-在 [資料總管] 中，新的資料庫會出現在 [集合] 窗格中。 展開 [graphdb]、[graphcoll]，然後按一下 [圖形]。
+在 [資料總管] 中，新的資料庫會出現在 [圖形] 窗格中。 展開資料庫，後面接著該集合，然後按一下 [圖形]。
 
-範例應用程式所產生的資料會顯示在 [圖形] 窗格中。
+當您按一下 [套用篩選條件] 時，範例應用程式所產生的資料會顯示在 [圖形] 索引標籤內的下一個窗格中。
+
+試著使用 `.has('firstName', 'Thomas')` 完成 `g.V()` 以測試篩選條件。 請注意此值會區分大小寫。
 
 ## <a name="review-slas-in-the-azure-portal"></a>在 Azure 入口網站中檢閱 SLA
 

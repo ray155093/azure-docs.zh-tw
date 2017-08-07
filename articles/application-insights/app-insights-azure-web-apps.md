@@ -13,12 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/05/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: da09e09bb0605da583716e125f5d961bfb7af0c7
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: b25f3dd41c8dc381258bb42d8802ba4b56e05903
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="monitor-azure-web-app-performance"></a>監視 Azure Web 應用程式效能
@@ -31,7 +30,7 @@ ms.lasthandoff: 05/10/2017
 * **建置階段** - 您可以在開發應用程式中安裝封裝。 此選項比較靈活。 除了相同的標準封裝以外，您可以撰寫程式碼以自訂遙測，或傳送自己的遙測。 您可以根據您的應用程式網域，記錄特定活動或記錄事件。 
 
 ## <a name="run-time-instrumentation-with-application-insights"></a>使用 Application Insights 執行時間檢測
-如果您已在 Azure 中執行 Web 應用程式，您便已得到一些監視︰要求率和錯誤率。 新增 Application Insights 可得到更多監視，例如回應時間、監視相依性呼叫、智慧偵測，以及強大的分析查詢語言。 
+如果您已在 Azure 中執行 Web 應用程式，您便已得到一些監視︰要求率和錯誤率。 新增 Application Insights 可得到更多監視，例如回應時間、監視相依性呼叫、智慧偵測，以及強大的 Log Analytics 查詢語言。 
 
 1. 在 Web 應用程式的 Azure 控制台中**選取 Application Insights**。
    
@@ -102,7 +101,7 @@ Application Insights 可以提供更詳細的遙測，方法是將 SDK 安裝至
    
     您可以 [自訂搜尋](app-insights-diagnostic-search.md)。
 
-透過您的遙測功能更強大的搜尋，請使用 [Analytics 查詢語言](app-insights-analytics-tour.md)。
+如需透過遙測功能進行更強大的搜尋，請使用 [Log Analytics 查詢語言](app-insights-analytics-tour.md)。
 
 ## <a name="more-telemetry"></a>更多遙測
 

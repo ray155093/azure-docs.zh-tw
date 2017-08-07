@@ -15,12 +15,12 @@ ms.topic: hero-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 07/05/2017
-ms.author: rachelap, glenga
+ms.author: glenga
 ms.translationtype: HT
-ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
-ms.openlocfilehash: be7a9979ba7e6aa26c60b24bcc892ca35af3c1fc
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: 4a6b706b63c4e1b0df3c46bce4ff6877efca4ead
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="create-your-first-function-using-visual-studio"></a>使用 Visual Studio 建立第一個函式
@@ -58,27 +58,29 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 ## <a name="create-the-function"></a>建立函式
 
-在 [方案總管] 中，於專案節點上按一下滑鼠右鍵，然後選取 [新增] > [新增項目]。 選取 [Azure Function]，然後按一下 [新增]。
+1. 在 [方案總管] 中，於專案節點上按一下滑鼠右鍵，然後選取 [新增] > [新增項目]。 選取 [Azure Function]，然後按一下 [新增]。
 
-選取 [HttpTrigger]，輸入 [函式名稱]，針對 [存取權限] 選取 [匿名]，然後按一下 [建立]。 建立的函式會由任何用戶端的 HTTP 要求存取。 
+2. 選取 [HttpTrigger]，輸入 [函式名稱]，針對 [存取權限] 選取 [匿名]，然後按一下 [建立]。 建立的函式會由任何用戶端的 HTTP 要求存取。 
 
-![建立新的 Azure Function](./media/functions-create-your-first-function-visual-studio/functions-vstools-add-new-function-2.png)
+    ![建立新的 Azure Function](./media/functions-create-your-first-function-visual-studio/functions-vstools-add-new-function-2.png)
 
 您現在已建立 HTTP 觸發的函式，可以在本機電腦上進行測試。
 
 ## <a name="test-the-function-locally"></a>在本機測試函式
 
-[!INCLUDE [Test the function locally](../../includes/functions-vstools-test.md)]
+Azure Functions Core Tools 可讓您在本機開發電腦上執行 Azure Functions 專案。 第一次從 Visual Studio 啟動函式時，系統會提示您安裝這些工具。  
 
-從 Azure Functions 執行階段輸出複製函式的 URL。  
+1. 若要測試您的函式，請按 F5。 如果出現提示，接受來自 Visual Studio 之下載及安裝 Azure Functions Core (CLI) 工具的要求。  您可能也需要啟用防火牆例外狀況，工具才能處理 HTTP 要求。
 
-![Azure 本機執行階段](./media/functions-create-your-first-function-visual-studio/functions-vstools-f5.png)
+2. 從 Azure Functions 執行階段輸出複製函式的 URL。  
 
- 將 HTTP 要求的 URL 貼到瀏覽器的網址列。 將查詢字串 `&name=<yourname>` 附加至此 URL 並執行要求。 下圖顯示瀏覽器中對於函式傳回之本機 GET 要求所做出的回應︰ 
+    ![Azure 本機執行階段](./media/functions-create-your-first-function-visual-studio/functions-vstools-f5.png)
 
-![瀏覽器中的函式 localhost 回應](./media/functions-create-your-first-function-visual-studio/functions-test-local-browser.png)
+3. 將 HTTP 要求的 URL 貼到瀏覽器的網址列。 將查詢字串 `&name=<yourname>` 附加至此 URL 並執行要求。 下圖顯示瀏覽器中對於函式傳回之本機 GET 要求所做出的回應︰ 
 
-若要停止偵錯，請按一下 Visual Studio 工具列上的 [停止] 按鈕。
+    ![瀏覽器中的函式 localhost 回應](./media/functions-create-your-first-function-visual-studio/functions-test-local-browser.png)
+
+4. 若要停止偵錯，請按一下 Visual Studio 工具列上的 [停止] 按鈕。
 
 確認函式在本機電腦上正確執行之後，就可以將專案發佈到 Azure。
 
@@ -90,22 +92,22 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 
 ## <a name="test-your-function-in-azure"></a>在 Azure 中測試您的函式
 
-從發行設定檔頁面複製函式應用程式的基底 URL。 使用新的基底 URL，取代在本機測試函式時所使用之 URL 的 `localhost:port` 部分。 如同以往，務必將查詢字串 `&name=<yourname>` 附加至此 URL 並執行要求。
+1. 從發行設定檔頁面複製函式應用程式的基底 URL。 使用新的基底 URL，取代在本機測試函式時所使用之 URL 的 `localhost:port` 部分。 如同以往，務必將查詢字串 `&name=<yourname>` 附加至此 URL 並執行要求。
 
-呼叫 HTTP URL 觸發函式的 URL 如下所示：
+    呼叫 HTTP URL 觸發函式的 URL 如下所示：
 
-    http://<functionappname>.azurewebsites.net/api/<functionname>?name=<yourname> 
+        http://<functionappname>.azurewebsites.net/api/<functionname>?name=<yourname> 
 
-將 HTTP 要求的新 URL 貼到瀏覽器的網址列。 下圖顯示瀏覽器中對於函式傳回之遠端 GET 要求所做出的回應︰ 
+2. 將 HTTP 要求的新 URL 貼到瀏覽器的網址列。 下圖顯示瀏覽器中對於函式傳回之遠端 GET 要求所做出的回應︰ 
 
-![瀏覽器中的函式回應](./media/functions-create-your-first-function-visual-studio/functions-test-remote-browser.png)
+    ![瀏覽器中的函式回應](./media/functions-create-your-first-function-visual-studio/functions-test-remote-browser.png)
  
 ## <a name="next-steps"></a>後續步驟
 
 您已透過 Visual Studio，使用簡單的 HTTP 觸發函式建立 C# 函式應用程式。 
 
-[!INCLUDE [functions-quickstart-next-steps](../../includes/functions-quickstart-next-steps.md)]
-
-若要深入了解如何使用 Azure Functions Core Tools 進行本機測試和偵錯，請參閱[在本機編碼和測試 Azure Functions](functions-run-local.md)。 若要深入了解如何將函式開發為 .NET 類別庫，請參閱[搭配使用 .NET 類別庫與 Azure Functions](functions-dotnet-class-library.md)。 
++ 若要了解如何設定專案以支援其他類型的觸發程序和繫結，請參閱 [Azure Functions Tools for Visual Studio](functions-develop-vs.md) 中的[設定專案以進行本機開發](functions-develop-vs.md#configure-the-project-for-local-development)一節。
++ 若要深入了解如何使用 Azure Functions Core Tools 進行本機測試和偵錯，請參閱[在本機編碼和測試 Azure Functions](functions-run-local.md)。 
++ 若要深入了解如何將函式開發為 .NET 類別庫，請參閱[搭配使用 .NET 類別庫與 Azure Functions](functions-dotnet-class-library.md)。 
 
 

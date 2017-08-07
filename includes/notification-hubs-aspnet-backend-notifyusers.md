@@ -8,7 +8,7 @@
 下列步驟說明如何建立新的 ASP.NET WebAPI 後端： 
 
 > [!NOTE]
-> **重要事項**：開始本教學課程之前，請確定您已安裝最新版本的 NuGet 封裝管理員。 若要檢查版本，請啟動 Visual Studio。 在 [工具] 功能表中，按一下 [擴充功能和更新]。 搜尋 **NuGet Package Manager for Visual Studio 2013**，然後確定您已安裝 2.8.50313.46 版或更新版本。 否則的話，請解除安裝，然後重新安裝 NuGet Package Manager。
+> **重要事項**：如果您使用 Visual Studio 2015 或更新版本，在開始本教學課程之前，請確定您已安裝最新版本的 NuGet 封裝管理員。 若要檢查版本，請啟動 Visual Studio。 在 [工具] 功能表中，按一下 [擴充功能和更新]。 搜尋您的 Visual Studio 版本適用的 **NuGet Package Manager**，然後確定您已安裝最新版本。 否則的話，請解除安裝，然後重新安裝 NuGet Package Manager。
 > 
 > ![][B4]
 > 
@@ -38,7 +38,9 @@
         using System.Threading;
         using System.Security.Principal;
         using System.Net;
-        using System.Web;
+        using System.Text;
+        using System.Threading.Tasks;
+
 3. 在 AuthenticationTestHandler.cs 中，以下列程式碼取代 `AuthenticationTestHandler` 類別定義。 
    
     下列三個條件都成立時，這個處理常式將授權要求：
@@ -51,12 +53,7 @@
      
      如果要求訊息已經由 `AuthenticationTestHandler`驗證及授權，則基本驗證使用者會附加至 [HttpContext](https://msdn.microsoft.com/library/system.web.httpcontext.current.aspx)上的目前要求。 之後另一個控制器 (RegisterController) 會使用 HttpContext 中的使用者資訊，將 [標記](https://msdn.microsoft.com/library/azure/dn530749.aspx) 新增至通知註冊要求。
      
-       public class AuthenticationTestHandler : DelegatingHandler   {
-     
-           protected override Task<HttpResponseMessage> SendAsync(
-           HttpRequestMessage request, CancellationToken cancellationToken)
-           {
-               var authorizationHeader = request.Headers.GetValues("Authorization").First();
+       public class AuthenticationTestHandler : DelegatingHandler   {       protected override Task<HttpResponseMessage> SendAsync(       HttpRequestMessage request, CancellationToken cancellationToken)       {           var authorizationHeader = request.Headers.GetValues("Authorization").First();
      
                if (authorizationHeader != null && authorizationHeader
                    .StartsWith("Basic ", StringComparison.InvariantCultureIgnoreCase))
@@ -313,15 +310,16 @@
 
 ## <a name="publish-the-new-webapi-backend"></a>發佈新的 WebAPI 後端
 1. 為了可以從所有裝置存取此應用程式，我們現在可以將它部署到 Azure 網站。 以滑鼠右鍵按一下 **AppBackend** 專案，然後選取 [發佈]。
-2. 選取 [Microsoft Azure Web Apps]  做為發佈目標。
-   
+2. 選取 [Microsoft Azure App Service] 作為發佈目標，然後按一下 [發佈]。 這會開啟 [建立 App Service] 對話方塊，協助您建立在 Azure 中執行 ASP.NET Web 應用程式所需的 Azure 資源。
+
     ![][B15]
-3. 使用您的 Azure 帳戶登入，並選取現有或新的 Web 應用程式。
-   
-    ![][B16]
-4. 記下 [連線] 索引標籤中的 [目的地 URL] 屬性。 我們後續將在本教學課程中參考此 URL 作為您的 *後端端點* 。 按一下 [發行] 。
-   
-    ![][B18]
+3. 在 [建立 App Service] 對話方塊中，選取您的 Azure 帳戶。 按一下 [變更類型] 並選取 [Web 應用程式]。 保留指定的 [Web 應用程式名稱] 並選取 [訂用帳戶]、[資源群組] 和 [App Service 方案]。  按一下 [建立] 。
+
+4. 記下 [摘要] 區段中的 [網站 URL] 屬性。 我們後續將在本教學課程中參考此 URL 作為您的 *後端端點* 。 按一下 [發行] 。
+
+5. 精靈完成後，它會將 ASP.NET Web 應用程式發佈至 Azure，然後在預設瀏覽器中啟動該應用程式。  您的應用程式將可在 Azure App Service 中檢視。
+
+URL 會使用您稍早指定的 Web 應用程式名稱，其格式為 http://<app_name>.azurewebsites.net。
 
 [B1]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push1.png
 [B2]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push2.png
@@ -332,6 +330,6 @@
 [B7]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push7.png
 [B8]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push8.png
 [B14]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push14.png
-[B15]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-notify-users15.PNG
+[B15]: ./media/notification-hubs-aspnet-backend-notifyusers/publish-to-app-service.png
 [B16]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-notify-users16.PNG
 [B18]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-notify-users18.PNG

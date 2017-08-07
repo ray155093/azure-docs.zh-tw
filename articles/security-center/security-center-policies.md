@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/18/2017
+ms.date: 07/27/2017
 ms.author: yurid
 ms.translationtype: HT
-ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
-ms.openlocfilehash: aefec15c72c6cf8389a29b03be70abb4c7f020b9
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: f4e3f74ce3f342eecf633cd748e2b7b21b2ccdd2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="set-security-policies-in-azure-security-center"></a>在 Azure 資訊安全中心設定安全性原則
@@ -45,11 +45,11 @@ ms.lasthandoff: 07/19/2017
    * **預防原則**︰使用此選項為每個訂用帳戶設定原則。  
    * **電子郵件通知**：使用此選項設定在每天第一個警示發生時傳送的電子郵件通知，以及針對高嚴重性警示傳送的電子郵件通知。 電子郵件喜好設定只能針對訂用帳戶原則進行設定。 如需如何設定電子郵件通知的詳細資訊，請閱讀 [在 Azure 資訊安全中心提供安全性連絡人詳細資料](security-center-provide-security-contact-details.md) 。
    * **定價層**：使用此選項來升級定價層選取項目。 若要深入了解價格選項，請參閱[資訊安全中心價格](security-center-pricing.md)。
-4. 確定 [從虛擬機器收集資料] 選項為 [開啟]。 這個選項能夠使用 Microsoft Monitoring Agent (這是 Operations Management Suite 和 Log Analytics 服務所用的相同代理程式) 自動收集現有和新資源的記錄。 從這個代理程式收集的資料，將會儲存在與您的 Azure 訂用帳戶相關聯的現有 Log Analytics 工作區或新的工作區中 (將 VM 的地理位置納入考量)。
+4. 確定 [從虛擬機器收集資料] 選項為 [開啟]。 這個選項能夠使用 Microsoft Monitoring Agent (這是 Operations Management Suite 和 Log Analytics 服務所用的相同代理程式) 自動收集現有和新資源的記錄。 從這個代理程式收集的資料，會儲存在與您的 Azure 訂用帳戶相關聯的現有 Log Analytics 工作區或新的工作區中 (將 VM 的地理位置納入考量)。
 
 5. 在 [安全性原則] 刀鋒視窗中，按一下 [預防原則] 以查看可用的選項。 按一下 [開啟]，啟用此訂用帳戶的相關安全性建議。
 
-    ![選取安全性原則](./media/security-center-policies/security-center-policies-fig4-newUI.png)
+    ![選取安全性原則](./media/security-center-policies/security-center-policies-fig7.png)
 
 請使用下表做為參考，以了解每個選項：
 
@@ -65,7 +65,8 @@ ms.lasthandoff: 07/19/2017
 | SQL 稽核與威脅偵測 |建議針對法規遵循、進階威脅偵測及調查用途，啟用 Azure 資料庫的存取稽核。 |
 | SQL 加密 |建議為您的 Azure SQL Database、關聯的備份及交易記錄檔啟用待用期加密。 您的資料即使遭到入侵，也無法被讀取。 |
 | 弱點評估 |建議在 VM 上安裝弱點評估解決方案。 |
-| 儲存體加密 |這項功能目前可用於 Azure Blob 和檔案。 請注意，啟用儲存體服務加密之後，只會加密新的資料，而此儲存體帳戶中任何現有的檔案都會保持未加密狀態。 |
+| 儲存體加密 |這項功能目前可用於 Azure Blob 和檔案。 啟用儲存體服務加密之後，只會加密新的資料，而此儲存體帳戶中任何現有的檔案都會保持未加密狀態。 |
+| JIT 網路存取 |啟用 Just-In-Time 時，資訊安全中心會建立 NSG 規則，藉此鎖定進入 Azure VM 的流量。 系統應會鎖定選取的 VM 連接埠的輸入流量。 如需詳細資訊，請參閱[使用 Just-In-Time 管理虛擬機器存取](https://docs.microsoft.com/azure/security-center/security-center-just-in-time)。 |
 
 設定所有選項之後，請在具有建議的 [安全性原則] 刀鋒視窗中按一下 [確定]，然後在具有初始設定的 [安全性原則] 刀鋒視窗中按一下 [儲存]。
 

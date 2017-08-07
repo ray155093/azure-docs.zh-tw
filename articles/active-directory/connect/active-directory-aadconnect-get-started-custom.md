@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/12/2017
+ms.date: 08/02/2017
 ms.author: billmath
 ms.translationtype: HT
-ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
-ms.openlocfilehash: 82e8d7e0ea975f140eaf73a625d181a4ec68eaa7
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 1580e2841790b7c1b6c9540da4940eef2c487256
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/21/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="custom-installation-of-azure-ad-connect"></a>自訂 Azure AD Connect 安裝
@@ -317,6 +317,15 @@ AD FS 服務需要網域服務帳戶來驗證使用者，以及在 Active Direct
 
 ### <a name="verify-your-federation-configuration"></a>驗證同盟組態
 當您按一下 [驗證] 按鈕時，Azure AD Connect 會為您驗證 DNS 設定。
+
+**內部網路連線能力檢查**
+
+* 解決同盟 FQDN：Azure AD Connect 會檢查 DNS 是否可以解析同盟 FQDN，以確保連線能力。 如果 Azure AD Connect 無法解析 FQDN，驗證將會失敗。 確保同盟服務 FQDN 有 DNS 記錄存在，才能成功完成驗證。
+* DNS A 記錄：Azure AD Connect 會檢查您的同盟服務是否有 A 記錄。 如果沒有使用 A 記錄，驗證將會失敗。 為您的同盟 FQDN 建立 A 記錄 (而非 CNAME 記錄)，才能成功完成驗證。
+
+**外部網路連線能力檢查**
+
+* 解決同盟 FQDN：Azure AD Connect 會檢查 DNS 是否可以解析同盟 FQDN，以確保連線能力。
 
 ![完成](./media/active-directory-aadconnect-get-started-custom/completed.png)
 

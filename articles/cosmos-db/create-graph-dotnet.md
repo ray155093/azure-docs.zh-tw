@@ -13,13 +13,13 @@ ms.workload:
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 07/14/2017
+ms.date: 07/28/2017
 ms.author: denlee
 ms.translationtype: HT
-ms.sourcegitcommit: c999eb5d6b8e191d4268f44d10fb23ab951804e7
-ms.openlocfilehash: 1794341ed0d4519eef7f065d04ccf86a7e48a4a4
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: a973b81ea5b06c5826cc31c399aae9dec43f5b72
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/17/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="azure-cosmos-db-build-a-net-application-using-the-graph-api"></a>Azure Cosmos DB：使用圖形 API 來建置 .NET 應用程式
@@ -54,7 +54,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
     git clone https://github.com/Azure-Samples/azure-cosmos-db-graph-dotnet-getting-started.git
     ```
 
-3. 然後在 Visual Studio 中開啟方案檔案。 
+3. 然後開啟 Visual Studio 並開啟方案檔案。 
 
 ## <a name="review-the-code"></a>檢閱程式碼
 
@@ -103,23 +103,19 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 現在，返回 Azure 入口網站以取得連接字串資訊，並將它複製到應用程式中。
 
-1. 在 Azure 入口網站的 Azure Cosmos DB 帳戶左側瀏覽區中，按一下 [概觀]。 您會將 [Gremlin URI] 值複製到下一個步驟的 App.config 檔案中。 
+1. 在 Visual Studio 2017 中，開啟 App.config 檔案。 
 
-    ![在 Azure 入口網站的 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/create-graph-dotnet/gremlin-uri.png)
-
-    如果 [Gremlin URI] 值空白，您可以從入口網站的 [金鑰] 頁面產生此值，方法是使用 [URI]，移除 https://，然後將文件變更為圖形。 
-
-2. 在 Visual Studio 2017 中，開啟 App.config 檔案。 
-
-3. 從入口網站複製您的 [Gremlin URI] 值，並使它成為 App.config 中的端點金鑰值。 
-
-    `<add key="Endpoint" value="FILLME.graphs.azure.com:443" />`
-
-4. 回到 Azure 入口網站，按一下左導覽功能表上的 [金鑰]，從入口網站複製您的 [主鑰金鑰] 值，並讓它成為 App.config 中的 AuthKey 金鑰值，然後儲存您的變更。 
-
-    `<add key="AuthKey" value="FILLME" />`
+2. 在 Azure 入口網站的 Azure Cosmos DB 帳戶中，按一下左側瀏覽區中的 [金鑰]。 
 
     ![在 Azure 入口網站的 [金鑰] 頁面上檢視並複製主要金鑰](./media/create-graph-dotnet/keys.png)
+
+3. 從入口網站複製您的 [URI] 值，並使它成為 App.config 中的端點金鑰值。 您可以使用上面螢幕擷取畫面中所示的複製按鈕來複製此值。
+
+    `<add key="Endpoint" value="https://FILLME.documents.azure.com:443" />`
+
+4. 從入口網站複製您的**主要金鑰**，並使它成為 App.config 中的 AuthKey 金鑰值，然後儲存變更。 
+
+    `<add key="AuthKey" value="FILLME" />`
 
 您現已更新應用程式，使其具有與 Azure Cosmos DB 通訊所需的所有資訊。 
 
@@ -131,6 +127,8 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 3. 從結果中，安裝 **Microsoft.Azure.Graphs** 程式庫。 這會安裝 Azure Cosmos DB 圖形擴充程式庫套件以及所有相依性。
 
+    如果您收到關於檢閱方案變更的訊息，請按一下 [確定]。 如果您收到關於接受授權的訊息，請按一下 [我接受]。
+
 4. 按 CTRL + F5 來執行應用程式。
 
    主控台視窗會顯示將要新增至圖形的頂點和邊緣。 當指令碼完成時，請按兩次 ENTER 以關閉主控台視窗。 
@@ -139,9 +137,13 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 您現在可以回到 Azure 入口網站中的 [資料總管]，瀏覽及查詢新的圖形資料。
 
-* 在 [資料總管] 中，新的資料庫會出現在 [集合] 窗格中。 展開 [graphdb]、[graphcoll]，然後按一下 [圖形]。
+1. 在 [資料總管] 中，新的資料庫會出現在 [圖形] 窗格中。 展開 [graphdb]、[graphcollz]，然後按一下 [圖形]。
 
-    範例應用程式所產生的資料會顯示在 [圖形] 窗格中。
+2. 按一下 [套用篩選條件] 按鈕，以使用預設查詢來檢視圖形中的所有頂點。 範例應用程式所產生的資料會顯示在 [圖形] 窗格中。
+
+    您可以縮放圖形、展開圖形顯示空間、新增其他頂點，並在顯示介面上移動頂點。
+
+    ![在 Azure 入口網站的資料總管中檢視圖形](./media/create-graph-dotnet/graph-explorer.png)
 
 ## <a name="review-slas-in-the-azure-portal"></a>在 Azure 入口網站中檢閱 SLA
 

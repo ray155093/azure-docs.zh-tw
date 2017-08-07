@@ -1,3 +1,4 @@
+
 NC 和 NV 大小也稱為已啟用 GPU 功能的執行個體。 這些是包含 NVIDIA GPU 卡並已針對不同情況和使用案例進行最佳化的特製化虛擬機器。 NV 大小會針對遠端視覺效果、串流、遊戲、編碼及利用 OpenGL 和 DirectX 這類架構的 VDI 案例進行最佳化和設計。 NC 大小則是對運算密集型和網路密集型應用程式和演算法 (包括以 CUDA 和 OpenCL 為基礎的應用程式及模擬) 有更深入的最佳化。 
 
 
@@ -7,7 +8,7 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 卡提供技術支援。 使用者現
 
 ## <a name="nv-instances"></a>NV 執行個體
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU | 資料磁碟數目上限 |
+| 大小 | vCPU | 記憶體：GiB | 暫存儲存體 (SSD) GiB | GPU | 資料磁碟數目上限 |
 | --- | --- | --- | --- | --- | --- |
 | Standard_NV6 |6 |56 |380 | 1 | 8 |
 | Standard_NV12 |12 |112 |680 | 2 | 16 |
@@ -17,7 +18,7 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 卡提供技術支援。 使用者現
 
 ## <a name="nc-instances"></a>NC 執行個體
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU | 資料磁碟數目上限 |
+| 大小 | vCPU | 記憶體：GiB | 暫存儲存體 (SSD) GiB | GPU | 資料磁碟數目上限 |
 | --- | --- | --- | --- | --- | --- |
 | Standard_NC6 |6 |56 | 380 | 1 | 8 |
 | Standard_NC12 |12 |112 | 680 | 2 | 16 |

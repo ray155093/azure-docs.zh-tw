@@ -14,7 +14,7 @@
 | **開發測試或概念證明**   | 基本                  |
 |                                    |                        |
 
-如果您使用舊式 SKU，生產 SKU 建議為基本和高效能 SKU。 如需舊式 SKU 的相關資訊，請參閱[閘道 SKU (舊式)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md)。
+如果您使用舊式 SKU，生產 SKU 建議為基本和高效能 SKU。 如需舊式 SKU 的相關資訊，請參閱[閘道 SKU (舊版 SKU)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md)。
 
 ###  <a name="feature"></a>閘道 SKU 功能集
 

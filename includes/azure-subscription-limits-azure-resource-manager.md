@@ -1,6 +1,6 @@
 | 資源 | 預設限制 | 上限 |
 | --- | --- | --- |
-| 每一[訂用帳戶](../articles/billing-buy-sign-up-azure-subscription.md) VM |每個區域 20<sup>1</sup> 個 |每個區域 10,000 個 |
+| 每一[訂用帳戶](../articles/billing-buy-sign-up-azure-subscription.md) VM |每個區域 10,000 個 <sup>1</sup> |每個區域 10,000 個 |
 | 每一[訂用帳戶](../articles/billing-buy-sign-up-azure-subscription.md)的 VM 總計核心 |每個區域 20<sup>1</sup> 個 | 請連絡支援人員 |
 | 每一[訂用帳戶](../articles/billing-buy-sign-up-azure-subscription.md)的 VM 每個系列 (Dv2、F 等等) 核心 |每個區域 20<sup>1</sup> 個 | 請連絡支援人員 |
 | 每一訂用帳戶[共同管理員](../articles/billing-add-change-azure-subscription-administrator.md) |無限 |無限 |

@@ -16,10 +16,10 @@ ms.workload: data-services
 ms.date: 07/13/2017
 ms.author: bradsev
 ms.translationtype: HT
-ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
-ms.openlocfilehash: ee4298b91f4e2b215b5faabaad96323f4ef234b8
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: f0ee0d23f28df2824ea41f7c9f7490e1ec62d041
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/14/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="get-started-using-r-server-on-hdinsight"></a>開始使用 HDInsight 中的 R Server
@@ -367,7 +367,7 @@ HDInsight 包含了要整合至您的 HDInsight 叢集的 R 伺服器選項。 �
 
 4. 您也可以使用 WASB 樣式定址。
 
-    rxHadoopListFiles("wasbs:///")
+    rxHadoopListFiles("wasb:///")
 
 
 ## <a name="using-r-server-on-hdi-from-a-remote-instance-of-microsoft-r-server-or-microsoft-r-client"></a>從 Microsoft R Server 或 Microsoft R Client 的遠端執行個體使用 HDI 上的 R Server

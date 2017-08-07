@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 07/21/2017
 ms.author: magoedte
 ms.translationtype: HT
-ms.sourcegitcommit: 8021f8641ff3f009104082093143ec8eb087279e
-ms.openlocfilehash: 5f57cbdb1678dd61eda449d2103125d8db83892e
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 9a4709f298131722e9c473a19f7eee0aebf7e1e6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/21/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="analyze-data-usage-in-log-analytics"></a>在 Log Analytics 中分析資料使用量
@@ -128,9 +128,9 @@ Log Analytics [警示](log-analytics-alerts-creating.md)會使用搜尋查詢。
 
 如有需要，請執行其他分析，找出解決方案或資料類型中的大型磁碟區。 查詢範例包括：
 
-+ **安全性**解決方案**記錄管理**解決方案
++ **安全性**解決方案
   - `Type=SecurityEvent | measure count() by EventID`
-+ **Log Management** solution
++ **記錄管理**解決方案
   - `Type=Usage Solution=LogManagement IsBillable=true | measure count() by DataType`
 + **Perf** 資料類型
   - `Type=Perf | measure count() by CounterPath`
@@ -141,6 +141,8 @@ Log Analytics [警示](log-analytics-alerts-creating.md)會使用搜尋查詢。
 + **Syslog** 資料類型
   - `Type=Syslog | measure count() by Facility, SeverityLevel`
   - `Type=Syslog | measure count() by ProcessName`
++ **AzureDiagnostics** 資料類型
+  - `Type=AzureDiagnostics | measure count() by ResourceProvider, ResourceId`
 
 使用下列步驟來減少所收集的記錄數量：
 
@@ -150,6 +152,7 @@ Log Analytics [警示](log-analytics-alerts-creating.md)會使用搜尋查詢。
 | 效能計數器       | 變更[效能計數器組態](log-analytics-data-sources-performance-counters.md)以： <br> - 減少收集頻率 <br> - 減少效能計數器的數目 |
 | 事件記錄檔                 | 變更[事件記錄組態](log-analytics-data-sources-windows-events.md)以： <br> - 減少所收集的事件記錄數目 <br> - 只收集必要的事件層級。 例如，不要收集「資訊」層級事件 |
 | syslog                     | 變更 [Syslog 組態](log-analytics-data-sources-syslog.md)以： <br> - 減少所收集的設施數目 <br> - 只收集必要的事件層級。 例如，不要收集「資訊」和「偵錯」層級事件 |
+| AzureDiagnostics           | 變更資源記錄集合： <br> - 減少會將記錄傳送至 Log Analytics 的資源數目 <br> - 只收集必要的記錄 |
 | 電腦中不需要解決方案的方案資料 | 使用[方案目標](../operations-management-suite/operations-management-suite-solution-targeting.md)，只從必要的電腦群組收集資料。 |
 
 ### <a name="check-if-there-are-more-nodes-than-expected"></a>檢查是否有比預期更多的節點
