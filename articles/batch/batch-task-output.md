@@ -89,7 +89,7 @@ Batch 服務 API 支援從使用虛擬機器設定建立的集區，將工作資
 
 ### <a name="use-the-batch-file-conventions-library-for-net"></a>使用適用於 .NET 的 Batch 檔案慣例程式庫
 
-使用 C# 和 .NET 建置 Batch 解決方案的開發人員可以使用[適用於 .NET 的檔案慣例][ nuget_package]，根據 [Batch 檔案慣例標準](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions)，將工作資料保存至 Azure 儲存體帳戶。 檔案慣例程式庫可處理將輸出檔案移動至 Azure 儲存體，並使用已知方法命名目的地容器和 blob。
+使用 C# 和 .NET 建置 Batch 解決方案的開發人員可以使用 [適用於 .NET 的檔案慣例][nuget_package] ，根據 [Batch 檔案慣例標準](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions)，將工作資料保存至 Azure 儲存體帳戶。 檔案慣例程式庫可處理將輸出檔案移動至 Azure 儲存體，並使用已知方法命名目的地容器和 blob。
 
 檔案慣例程式庫支援依識別碼或用途查詢輸出檔案，讓您不需要完整的檔案 URI，就可以輕鬆地找到它們。 
 

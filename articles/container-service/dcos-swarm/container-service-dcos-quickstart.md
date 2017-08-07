@@ -14,7 +14,7 @@ ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/05/2017
+ms.date: 08/04/2017
 ms.author: nepeters
 ms.translationtype: HT
 ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
@@ -32,13 +32,11 @@ DC/OS 所提供的分散式平台可執行現代及容器化的應用程式。 �
 
 本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
-[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
-
 ## <a name="log-in-to-azure"></a>登入 Azure 
 
 使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
 
-```azurecli-interactive
+```azurecli
 az login
 ```
 
@@ -48,7 +46,7 @@ az login
 
 下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組。
 
-```azurecli-interactive
+```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
@@ -58,7 +56,7 @@ az group create --name myResourceGroup --location eastus
 
 下列範例會建立名為 myDCOSCluster 的 DC/OS 叢集，並建立 SSH 金鑰 (如果它們尚未存在)。 若要使用一組特定金鑰，請使用 `--ssh-key-value` 選項。  
 
-```azurecli-interactive
+```azurecli
 az acs create \
   --orchestrator-type dcos \
   --resource-group myResourceGroup \
@@ -72,13 +70,13 @@ az acs create \
 
 一旦建立 DC/OS 叢集之後，可透過 SSH 通道加以存取。 執行下列命令，可傳回 DC/OS 主機的公用 IP 位址。 此 IP 位址儲存在變數中，且用於下一個步驟。
 
-```azurecli-interactive
+```azurecli
 ip=$(az network public-ip list --resource-group myResourceGroup --query "[?contains(name,'dcos-master')].[ipAddress]" -o tsv)
 ```
 
 若要建立 SSH 通道，請執行下列命令，並遵循螢幕上的指示。 如果連接埠 80 已在使用中，命令就會失敗。 將通道連接埠更新為非使用中的連接埠，例如 `85:localhost:80`。 
 
-```azurecli-interactive
+```azurecli
 sudo ssh -i ~/.ssh/id_rsa -fNL 80:localhost:80 -p 2200 azureuser@$ip
 ```
 
@@ -94,13 +92,13 @@ DC/OS 命令列介面可用來從命令列管理 DC/OS 叢集。 使用 [az acs 
 
 如果您是在 Mac OS 或 Lunix 上執行 Azure CLI，可能需要搭配 sudo 來執行命令。
 
-```azurecli-interactive
+```azurecli
 az acs dcos install-cli
 ```
 
 在 CLI 可與叢集搭配使用之前，它必須先設定為使用 SSH 通道。 若要這樣做，請執行下列命令，並視需要調整連接埠。
 
-```azurecli-interactive
+```azurecli
 dcos config set core.dcos_url http://localhost
 ```
 
@@ -140,26 +138,26 @@ ACS DC/OS 叢集的預設排程機制為 Marathon。 Marathon 可用來啟動應
 
 執行下列命令可排程要在 DC/OS 叢集上執行的應用程式。
 
-```azurecli-interactive
+```azurecli
 dcos marathon app add marathon-app.json
 ```
 
 若要查看應用程式的部署狀態，請執行下列命令。
 
-```azurecli-interactive
+```azurecli
 dcos marathon app list
 ```
 
 當 **WAITING** 資料行值從 True 切換為 False 時，應用程式部署就已完成。
 
-```azurecli-interactive
+```azurecli
 ID     MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  WAITING  CONTAINER  CMD   
 /test   32   1     1/1    ---       ---      False      DOCKER   None
 ```
 
 取得 DC/OS 叢集代理程式的公用 IP 位址。
 
-```azurecli-interactive
+```azurecli
 az network public-ip list --resource-group myResourceGroup --query "[?contains(name,'dcos-agent')].[ipAddress]" -o tsv
 ```
 
@@ -171,7 +169,7 @@ az network public-ip list --resource-group myResourceGroup --query "[?contains(n
 
 若不再需要，您可以使用 [az group delete](/cli/azure/group#delete) 命令將資源群組、DC/OS 叢集和所有相關資源移除。
 
-```azurecli-interactive
+```azurecli
 az group delete --name myResourceGroup --no-wait
 ```
 

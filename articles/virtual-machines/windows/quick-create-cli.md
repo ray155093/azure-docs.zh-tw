@@ -53,11 +53,7 @@ az group create --name myResourceGroup --location eastus
 下列範例會建立名為 myVM 的 VM。 此範例會以 azureuser 作為系統管理使用者名稱並以 myPassword12 作為密碼。 將這些值更新為適合您環境的值。 建立與虛擬機器的連線時需要使用這些值。
 
 ```azurecli-interactive 
-az vm create `
-  --resource-group myResourceGroup `
-  --name myVM --image win2016datacenter `
-  --admin-username azureuser `
-  --admin-password myPassword12
+az vm create --resource-group myResourceGroup --name myVM --image win2016datacenter --admin-username azureuser --admin-password myPassword12
 ```
 
 建立 VM 後，Azure CLI 會顯示類似下列範例的資訊。 記下 `publicIpAaddress`。 此位址用來存取 VM。
