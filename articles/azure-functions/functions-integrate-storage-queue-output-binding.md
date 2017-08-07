@@ -16,30 +16,24 @@ ms.workload: na
 ms.date: 05/02/2017
 ms.author: glenga
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
-ms.openlocfilehash: d1ddfbe9a0a0c7c7e0a060776938bd68a87e1ba5
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: 3eae02f7cf756e8e24d4f1952d12c37f2ad4b400
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/26/2017
+ms.lasthandoff: 08/02/2017
 
 ---
-<a id="add-messages-to-an-azure-storage-queue-using-functions" class="xliff"></a>
-
-# 使用 Functions 在 Azure 儲存體佇列中新增訊息
+# <a name="add-messages-to-an-azure-storage-queue-using-functions"></a>使用 Functions 在 Azure 儲存體佇列中新增訊息
 
 在 Azure Functions 中，輸入和輸出繫結會提供宣告式方法，以便從函式連線到外部服務資料。 在本主題中，請學習如何新增會將訊息傳送至 Azure 佇列儲存體的輸出繫結，以更新現有函式。  
 
 ![檢視記錄中的訊息。](./media/functions-integrate-storage-queue-output-binding/functions-integrate-storage-binding-in-portal.png)
 
-<a id="prerequisites" class="xliff"></a>
-
-## 必要條件 
+## <a name="prerequisites"></a>必要條件 
 
 [!INCLUDE [Previous topics](../../includes/functions-quickstart-previous-topics.md)]
 
 * 安裝 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)。
-
-[!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)] 
 
 ## <a name="add-binding"></a>新增輸出繫結
  
@@ -49,7 +43,7 @@ ms.lasthandoff: 06/26/2017
     
     ![在 Azure 入口網站中對函式新增佇列儲存體輸出繫結。](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding.png)
 
-3. 使用表格中指定的設定，然後選取 [儲存]： 
+3. 使用表格中所指定的設定︰ 
 
     ![在 Azure 入口網站中對函式新增佇列儲存體輸出繫結。](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding-2.png)
 
@@ -59,11 +53,11 @@ ms.lasthandoff: 06/26/2017
     | **儲存體帳戶連線** | AzureWebJobStorage | 您可以使用應用程式函式已在使用的儲存體帳戶連線，或建立新的連線。  |
     | **訊息參數名稱** | outQueueItem | 輸出繫結參數的名稱。 | 
 
+4. 按一下 [儲存] 來新增繫結。
+ 
 您已定義了輸出繫結，接下來您需要將程式碼更新為使用繫結來對佇列新增訊息。  
 
-<a id="update-the-function-code" class="xliff"></a>
-
-## 更新函式程式碼
+## <a name="update-the-function-code"></a>更新函式程式碼
 
 1. 選取函式以在編輯器中顯示函式程式碼。 
 
@@ -92,9 +86,7 @@ ms.lasthandoff: 06/26/2017
 
 傳遞至 HTTP 觸發程序的值會包含在新增至佇列的訊息中。
  
-<a id="test-the-function" class="xliff"></a>
-
-## 測試函式 
+## <a name="test-the-function"></a>測試函式 
 
 1. 儲存程式碼的變更後，選取 [執行]。 
 
@@ -104,9 +96,7 @@ ms.lasthandoff: 06/26/2017
 
 接下來，您可以連線到儲存體帳戶，以便驗證新佇列和您對佇列新增的訊息。 
 
-<a id="connect-to-the-queue" class="xliff"></a>
-
-## 連線至佇列
+## <a name="connect-to-the-queue"></a>連線至佇列
 
 如果您已經安裝儲存體總管並將它連線至儲存體帳戶，請略過前三個步驟。    
 
@@ -127,15 +117,11 @@ ms.lasthandoff: 06/26/2017
     ![建立儲存體佇列。](./media/functions-integrate-storage-queue-output-binding/function-queue-storage-output-view-queue.png)
  
 
-<a id="clean-up-resources" class="xliff"></a>
-
-## 清除資源
+## <a name="clean-up-resources"></a>清除資源
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-cleanup.md)]
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 您已在現有函式中新增輸出繫結。 
 

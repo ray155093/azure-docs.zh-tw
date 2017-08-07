@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/01/2017
+ms.date: 08/02/2017
 ms.author: cherylmc
 ms.translationtype: HT
-ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
-ms.openlocfilehash: b7076980781898573eca14291d718cceac5aa784
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: d97dfa3bc14c54e4c7097b5418c5b61e204e7676
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/15/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="create-a-virtual-network-with-a-site-to-site-vpn-connection-using-cli"></a>使用 CLI 建立具有站對站 VPN 連線的虛擬網路
@@ -31,7 +31,6 @@ ms.lasthandoff: 07/15/2017
 > * [PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
 > * [CLI](vpn-gateway-howto-site-to-site-resource-manager-cli.md)
 > * [Azure 入口網站 (傳統)](vpn-gateway-howto-site-to-site-classic-portal.md)
-> * [傳統入口網站 (傳統)](vpn-gateway-site-to-site-create.md)
 > 
 >
 
@@ -105,7 +104,6 @@ az network vnet create --name TestVNet1 --resource-group TestRG1 --address-prefi
 您所要建立的 VPN 閘道組態會決定您需要為閘道子網路指定的大小。 雖然您可以建立小至 /29 的閘道子網路，但我們會建議您選取 /27 或 /28，以建立包含更多位址的較大子網路。 使用較大的閘道子網路可讓您擁有足夠的 IP 位址，以因應未來可能的組態。
 
 使用 [az network vnet subnet create](/cli/azure/network/vnet/subnet#create) 命令建立子網路閘道。
-
 
 ```azurecli
 az network vnet subnet create --address-prefix 10.12.255.0/27 --name GatewaySubnet --resource-group TestRG1 --vnet-name TestVNet1
@@ -197,8 +195,8 @@ az network vpn-connection create --name VNet1toSite2 -resource-group TestRG1 --v
 
 ## <a name="next-steps"></a>後續步驟
 
-*  一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。
+* 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。
 * 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
-* 如需強制通道的相關資訊，請參閱[設定強制通道](vpn-gateway-forced-tunneling-rm.md)。
+* 如需強制通道的相關資訊，請參閱[關於強制通道](vpn-gateway-forced-tunneling-rm.md)。
+* 如需高可用性主動-主動連線的相關資訊，請參閱[高可用性跨單位和 VNet 對 VNet 連線能力](vpn-gateway-highlyavailable.md)。
 * 如需 Azure CLI 網路命令的清單，請參閱 [Azure CLI](https://docs.microsoft.com/cli/azure/network)。
-

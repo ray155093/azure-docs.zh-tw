@@ -13,12 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/15/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: af932e111ebc60ee86c823e65000d39fa6ea81cb
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: 1960fa0e17ea9aa0ca15bc3ecb8ce5b1f6630a60
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
-
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="set-up-application-insights-for-your-aspnet-website"></a>設定 ASP.NET 網站的 Application Insights
@@ -112,7 +111,7 @@ ms.lasthandoff: 05/17/2017
 ## <a name="step-4-publish-your-app"></a>步驟 4：發佈您的應用程式
 將您的應用程式發佈至 IIS 伺服器或 Azure。 監看 [即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream) 以確定一切順利執行。
 
-您的遙測會累積在 Application Insights 入口網站，您可以在此監視計量，搜尋您的遙測，以及設定[儀表板](app-insights-dashboards.md)。 您也可以使用功能強大的[分析查詢語言](app-insights-analytics.md)，分析使用狀況和效能或尋找特定事件。
+您的遙測會累積在 Application Insights 入口網站，您可以在此監視計量，搜尋您的遙測，以及設定[儀表板](app-insights-dashboards.md)。 您也可以使用功能強大的 [Log Analytics 查詢語言](https://docs.loganalytics.io/)，分析使用狀況和效能或尋找特定事件。
 
 您也可以繼續在 [Visual Studio](app-insights-visual-studio.md) 中，以診斷搜尋和[趨勢](app-insights-visual-studio-trends.md)等工具來分析您的遙測。
 

@@ -101,5 +101,5 @@ sql-database-service-tiers.md
 >
 >\*\* 起始數量為 200 eDTU 以上的每資料庫 eDTU 下限/上限目前為公開預覽版。
 >
->\*\*\* 對於具有 500 或更多 eDTU 的進階集區而言，每個集區的預設最大資料儲存體為 750GB。 若要為每個具有 1000 或更多 eDTU 的進階集區取得更高的資料儲存體大小上限，必須使用 Azure 入口網站、[PowerShell](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-powershell)、[Azure CLI](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-the-azure-cli) 或 [REST API](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-the-rest-api) 明確地選取此大小。 儲存體超過 1000TB 的進階集區目前在下列區域為公開預覽狀態：美國東部 2、美國西部、美國維吉尼亞州政府、西歐、德國中部、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。 其他所有地區每個集區的最大儲存體目前限制為 750 GB。
+>\*\*\* 對於具有 500 或更多 eDTU 的進階集區而言，每個集區的預設最大資料儲存體為 750GB。 若要為每個具有 1000 或更多 eDTU 的進階集區取得更高的資料儲存體大小上限，必須使用 Azure 入口網站、[PowerShell](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-powershell)、[Azure CLI](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-the-azure-cli) 或 [REST API](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-the-rest-api) 明確地選取此大小。 儲存體超過 1 TB 的進階集區目前在下列區域為公開預覽狀態：美國東部 2、美國西部、美國維吉尼亞州政府、西歐、德國中部、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。 其他所有地區每個集區的最大儲存體目前限制為 750 GB。
 >

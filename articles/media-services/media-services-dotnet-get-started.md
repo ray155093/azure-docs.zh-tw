@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 07/16/2017
+ms.date: 07/31/2017
 ms.author: juliako
 ms.translationtype: HT
-ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
-ms.openlocfilehash: a8e69933b977f60d09837f0f0360a274ef1b5dcd
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: e80fe0970ec130754c2c058789e1d1e2a9492216
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/18/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/18/2017
 
 搭配使用媒體服務與 .NET 時，您必須將 **CloudMediaContext** 類別用於大部分的媒體服務程式設計工作：連線到媒體服務帳戶；建立、更新、存取和刪除下列物件：資產、資產檔案、工作、存取原則、定位器等。
 
-將預設 Program 類別覆寫為下列程式碼。 此程式碼示範如何讀取 App.config 檔案中的連線值，以及如何建立 **CloudMediaContext** 物件來連線到媒體服務。 如需連線到媒體服務的詳細資訊，請參閱 [使用 Media Services SDK for .NET 連線到媒體服務](media-services-dotnet-connect-programmatically.md)。
+將預設 Program 類別覆寫為下列程式碼。 此程式碼示範如何讀取 App.config 檔案中的連線值，以及如何建立 **CloudMediaContext** 物件來連線到媒體服務。 如需詳細資訊，請參閱[連線至媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。
 
 務必更新您的媒體檔案的檔案名稱和路徑。
 

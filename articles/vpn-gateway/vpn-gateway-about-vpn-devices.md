@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/14/2017
 ms.author: yushwang;cherylmc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: 8a7419c7a759060dc91f11ec94085ff0afd4a457
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: c8e1db0a5488b1296206a4d557e47599edc59a88
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="about-vpn-devices-and-ipsecike-parameters-for-site-to-site-vpn-gateway-connections"></a>關於 VPN 裝置和站對站 VPN 閘道連線的 IPsec/IKE 參數
 
-使用 VPN 閘道設定站對站 (S2S) 跨單位 VPN 連接需要有 VPN 裝置。 站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。 本文提供 Azure VPN 閘道的 IPsec/IKE 參數清單，和連線至 Azure VPN 閘道的已驗證 VPN 裝置清單。
-
+使用 VPN 閘道設定站對站 (S2S) 跨單位 VPN 連接需要有 VPN 裝置。 站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。 本文提供已驗證的 VPN 裝置清單和 VPN 閘道的 IPsec/IKE 參數清單。
 
 > [!IMPORTANT]
-> 如果您的內部部署 VPN 裝置與 Azure VPN 閘道之間發生連線問題，請參考[已知的裝置相容性問題](#known)。 
+> 如果您的內部部署 VPN 裝置與 VPN 閘道之間發生連線問題，請參考[已知的裝置相容性問題](#known)。
+>
+>
 
+### <a name="items-to-note-when-viewing-the-tables"></a>檢視表格時應注意的項目：
 
-###<a name="items-to-note-when-viewing-the-tables"></a>檢視表格時應注意的項目：
-
-* Azure VPN 閘道的名稱已經變更。 功能未變更。 只有名稱會變更。
+* Azure VPN 閘道的名稱已經變更。 只有名稱會變更。 功能未變更。
   * 靜態路由 = 原則式
   * 動態路由 = 路由式
-* 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。 例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也能與 Azure 高效能 VPN 閘道相容。
+* 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。 例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也能與高效能 VPN 閘道相容。
+
+## <a name="devicetable"></a>已經驗證的 VPN 裝置及裝置設定指南
 
 > [!NOTE]
 > 設定站對站連線時，您的 VPN 裝置需要公開的 IPv4 IP 位址。
->                
+>
 
-## <a name="devicetable"></a>已經驗證的 VPN 裝置及裝置設定指南
-我們已與裝置廠商合作驗證一組標準 VPN 裝置。 在以下清單所含的裝置系列中，所有裝置應該都能與 Azure VPN 閘道搭配運作。 請參閱 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md) ，以確認您需要為欲設定之解決方案所建立的閘道類型。
+我們已與裝置廠商合作驗證一組標準 VPN 裝置。 在以下清單的裝置系列中，所有裝置應該都能與 VPN 閘道搭配運作。 請參閱[關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md#vpntype)，了解您要設定的 VPN 閘道解決方案使用的 VPN 類型 (原則式或路由式)。
 
 為了協助設定您的 VPN 裝置，請參閱對應到適當裝置系列的連結。 會以最佳方式來提供組態指示的連結。 如需 VPN 裝置的支援，請連絡裝置製造商。
 
@@ -77,9 +77,11 @@ ms.lasthandoff: 06/15/2017
 (*) ISR 7200 系列路由器僅支援原則式 VPN。
 
 ## <a name="additionaldevices"></a>未經驗證的 VPN 裝置
+
 如果沒有看到您的裝置列在「已經驗證的 VPN 裝置」表格中，您的裝置仍然可能可以與站對站連線搭配使用。 如需額外支援和設定指示，請連絡裝置製造商。
 
 ## <a name="editing"></a>編輯裝置組態範本
+
 下載提供的 VPN 裝置組態範本之後，您將需要取代其中一些值，以反映您環境的設定。
 
 ### <a name="to-edit-a-sample"></a>編輯範本：
@@ -102,8 +104,9 @@ ms.lasthandoff: 06/15/2017
 | &lt;SP_PresharedKey&gt; |此資訊專屬於您的虛擬網路，是 [管理入口網站] 中的管理金鑰。 |
 
 ## <a name="ipsec"></a>IPsec/IKE 參數
+
 > [!NOTE]
-> 雖然 Azure VPN 閘道支援下表所列的值，但您目前沒有任何機制可指定，或從 Azure VPN 閘道選取演算法或參數的特定組合。 您必須指定內部部署 VPN 裝置的任何條件約束。 此外，您必須將 **MSS** 固定在 **1350**。
+> 雖然 VPN 閘道支援下表所列的值，但您目前沒有任何機制可指定，或從 VPN 閘道選取演算法或參數的特定組合。 您必須指定內部部署 VPN 裝置的任何條件約束。 此外，您必須將 **MSS** 固定在 **1350**。
 > 
 >
 
@@ -114,6 +117,7 @@ ms.lasthandoff: 06/15/2017
 * IKE 階段 2 也稱為「快速模式」
 
 ### <a name="ike-phase-1-main-mode-parameters"></a>IKE 階段 1 (主要模式) 參數
+
 | **屬性**          |**原則式**    | **路由式**    |
 | ---                   | ---               | ---               |
 | IKE 版本           |IKEv1              |IKEv2              |
@@ -123,6 +127,7 @@ ms.lasthandoff: 06/15/2017
 | SA 存留期           |28,800 秒     |28,800 秒     |
 
 ### <a name="ike-phase-2-quick-mode-parameters"></a>IKE 階段 2 (快速模式) 參數
+
 | **屬性**                  |**原則式**| **路由式**                              |
 | ---                           | ---           | ---                                         |
 | IKE 版本                   |IKEv1          |IKEv2                                        |
@@ -134,9 +139,11 @@ ms.lasthandoff: 06/15/2017
 
 
 ### <a name ="RouteBasedOffers"></a>RouteBased VPN IPsec 安全性關聯 (IKE 快速模式 SA) 提供項目
+
 下表列出 IPsec SA (IKE 快速模式) 提供項目。 提供項目是依其呈現或被接受的喜好設定順序而列出。
 
 #### <a name="azure-gateway-as-initiator"></a>Azure 閘道器為啟動者
+
 |-  |**加密**|**驗證**|**PFS 群組**|
 |---| ---          |---               |---          |
 | 1 |GCM AES256    |GCM (AES256)      |None         |
@@ -147,6 +154,7 @@ ms.lasthandoff: 06/15/2017
 | 6 |3DES          |SHA256            |None         |
 
 #### <a name="azure-gateway-as-responder"></a>Azure 閘道器為回應者
+
 |-  |**加密**|**驗證**|**PFS 群組**|
 |---| ---          | ---              |---          |
 | 1 |GCM AES256    |GCM (AES256)      |None         |
@@ -176,7 +184,7 @@ ms.lasthandoff: 06/15/2017
 | 25|AES128        |SHA256            |14           |
 | 26|3DES          |SHA1              |14           |
 
-* 您可以使用路由式和高效能 VPN 閘道指定 IPsec ESP NULL 加密。 以 Null 為基礎的加密不提供傳輸中資料的保護，應該只用於時需要最大輸送量和最小延遲時。  用戶端可能會選擇在 VNet 對 VNet 通訊案例中，或當加密套用至解決方案中的其他地方時，使用此功能。
+* 您可以使用路由式和高效能 VPN 閘道指定 IPsec ESP NULL 加密。 以 Null 為基礎的加密不提供傳輸中資料的保護，應該只用於時需要最大輸送量和最小延遲時。 用戶端可能會選擇在 VNet 對 VNet 通訊案例中，或當加密套用至解決方案中的其他地方時，使用此功能。
 * 透過網際網路的跨單位連線，請使用含有加密和雜湊演算法的預設 Azure VPN 閘道設定 (如上表所列)，以確保重要通訊的安全性。
 
 ## <a name="known"></a>已知的裝置相容性問題
@@ -193,4 +201,3 @@ ms.lasthandoff: 06/15/2017
 1. 檢查您 Palo Alto Networks 裝置的韌體版本。 如果您的 PAN-OS 版本比 7.1.4 舊，請升級至 7.1.4。
 2. 在 Palo Alto Networks 裝置上，於連線到 Azure VPN 閘道時，將 [Phase 2 SA (第 2 階段 SA)] \(或 [Quick Mode SA (快速模式 SA)]) 存留期變更為 28,800 秒 (8 小時)。
 3. 如果您仍然遇到連線問題，請從 Azure 入口網站開啟支援要求。
-

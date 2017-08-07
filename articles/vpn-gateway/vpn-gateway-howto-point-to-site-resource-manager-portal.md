@@ -1,6 +1,6 @@
 ---
-title: "使用點對站將電腦連接至 Azure 虛擬網路︰入口網站 | Microsoft Docs"
-description: "使用 Resource Manager 和 Azure 入口網站建立點對站 VPN 閘道連線，安全地連線到您的 Azure 虛擬網路。"
+title: "使用點對站和憑證驗證將電腦連線至虛擬網路︰入口網站 | Microsoft Docs"
+description: "使用憑證驗證建立點對站 VPN 閘道連線，進而將電腦安全地連線到您的 Azure 虛擬網路。 本文適用於 Resource Manager 部署模型並使用 Azure 入口網站。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,19 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/27/2017
 ms.author: cherylmc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 4045dd501ba70b04cb8ea06901c76072fc009018
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: 171159fece2e3927458aff6e6185b96c792e17c8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
-<a id="configure-a-point-to-site-connection-to-a-vnet-using-the-azure-portal" class="xliff"></a>
+# <a name="configure-a-point-to-site-connection-to-a-vnet-using-certificate-authentication-azure-portal"></a>使用憑證驗證設定 VNet 的點對站連線：Azure 入口網站
 
-# 使用 Azure 入口網站設定 VNet 的點對站連線
-
-本文顯示如何使用 Azure 入口網站，在 Resource Manager 部署模型中建立具有點對站連線的 VNet。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
+本文顯示如何使用 Azure 入口網站，在 Resource Manager 部署模型中建立具有點對站連線的 VNet。 這項設定使用憑證來驗證連線用戶端。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
@@ -38,17 +35,18 @@ ms.lasthandoff: 06/28/2017
 
 點對站 (P2S) 設定可讓您建立從個別的用戶端電腦到虛擬網路的安全連線。 當您想要從遠端位置 (例如從住家或會議) 連線至 VNet 時，或只有幾個需要連線至虛擬網路的用戶端時，點對站連線是很實用的解決方案。 使用原生 Windows VPN 用戶端從用戶端電腦起始 P2S VPN 連線。 連線用戶端會使用憑證進行驗證。 
 
-
 ![Point-to-Site-diagram](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/point-to-site-connection-diagram.png)
 
-點對站連線不需要 VPN 裝置或公眾對應 IP 位址。 P2S 會建立透過 SSTP (安全通訊端通道通訊協定) 的 VPN 連線。 我們在伺服器端上支援 SSTP 1.0、1.1 和 1.2 版。 用戶端會決定要使用的版本。 若為 Windows 8.1 和更新版本，SSTP 預設使用 1.2。 如需有關點對站連線的詳細資訊，請參閱本文結尾的[點對站常見問題集](#faq)。
-
-P2S 連線需要下列各個條件：
+點對站連線驗證連線需要下列各項：
 
 * RouteBased VPN 閘道。
 * 已上傳至 Azure 之根憑證的公開金鑰 (.cer 檔案)。 這會被視為受信任的憑證並且用於驗證。
 * 用戶端憑證是從根憑證產生，並安裝在每部即將連線的用戶端電腦上。 此憑證使用於用戶端憑證。
 * 必須在每部連線的用戶端電腦上產生並安裝 VPN 用戶端組態套件。 用戶端組態套件會使用連線到 VNet 的必要資訊，設定已在作業系統上的原生 VPN 用戶端。
+
+點對站連線不需要 VPN 裝置或內部部署公眾對應 IP 位址。 已透過 SSTP (安全通訊端通道通訊協定) 建立 VPN 連線。 我們在伺服器端上支援 SSTP 1.0、1.1 和 1.2 版。 用戶端會決定要使用的版本。 若為 Windows 8.1 和更新版本，SSTP 預設使用 1.2。 
+
+如需有關點對站連線的詳細資訊，請參閱本文結尾的[點對站常見問題集](#faq)。
 
 ### <a name="example"></a>範例值
 
@@ -87,9 +85,7 @@ P2S 連線需要下列各個條件：
 
 本節中的螢幕擷取畫面提供作為參考範例。 請務必使用與您的組態所需值對應的 GatewaySubnet 位址範圍。
 
-<a id="to-create-a-gateway-subnet" class="xliff"></a>
-
-### 建立閘道子網路
+### <a name="to-create-a-gateway-subnet"></a>建立閘道子網路
 
 [!INCLUDE [vpn-gateway-add-gwsubnet-rm-portal](../../includes/vpn-gateway-add-gwsubnet-rm-portal-include.md)]
 
@@ -106,9 +102,7 @@ P2S 連線需要下列各個條件：
 * 閘道類型：VPN
 * VPN 類型：路由式
 
-<a id="to-create-a-virtual-network-gateway" class="xliff"></a>
-
-### 建立虛擬網路閘道
+### <a name="to-create-a-virtual-network-gateway"></a>建立虛擬網路閘道
 
 [!INCLUDE [create a vnet gateway](../../includes/vpn-gateway-add-gw-rm-portal-include.md)]
 
@@ -120,11 +114,11 @@ P2S 連線需要下列各個條件：
 
 ### <a name="getcer"></a>步驟 1 - 取得根憑證的 .cer 檔案
 
-[!INCLUDE [obtain root certificate](../../includes/vpn-gateway-p2s-rootcert-include.md)]
+[!INCLUDE [get the root certificate](../../includes/vpn-gateway-p2s-rootcert-include.md)]
 
 ### <a name="generateclientcert"></a>步驟 2 - 產生用戶端憑證
 
-[!INCLUDE [generate client certificate](../../includes/vpn-gateway-p2s-clientcert-include.md)]
+[!INCLUDE [generates client certificate](../../includes/vpn-gateway-p2s-clientcert-include.md)]
 
 ## <a name="addresspool"></a>7 - 新增用戶端位址集區
 
@@ -156,9 +150,7 @@ P2S 連線需要下列各個條件：
 
 您可以在每個用戶端電腦上使用相同的 VPN 用戶端組態套件，只要版本符合用戶端的架構。 如需支援的用戶端作業系統清單，請參閱本文結尾的[點對站連線常見問題集](#faq)。
 
-<a id="step-1---download-the-client-configuration-package" class="xliff"></a>
-
-### 步驟 1 - 下載用戶端組態套件
+### <a name="step-1---download-the-client-configuration-package"></a>步驟 1 - 下載用戶端組態套件
 
 1. 在 [點對站組態] 刀鋒視窗上，按一下 [下載 VPN 用戶端] 來開啟 [下載 VPN 用戶端] 刀鋒視窗。 需要幾分鐘的時間來產生套件。
 
@@ -167,9 +159,7 @@ P2S 連線需要下列各個條件：
 
   ![VPN 用戶端下載 2](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/vpnclient.png)
 
-<a id="step-2---install-the-client-configuration-package" class="xliff"></a>
-
-### 步驟 2 - 安裝用戶端組態套件
+### <a name="step-2---install-the-client-configuration-package"></a>步驟 2 - 安裝用戶端組態套件
 
 1. 在本機將組態檔複製到您要連線至虛擬網路的電腦上。 
 2. 在用戶端電腦上按兩下 .exe 檔案以安裝套件。 因為是您建立組態套件，所以它尚未簽署，且您可能會看到一則警告。 如果您看到 Windows SmartScreen 快顯視窗，請按一下 [更多資訊] \(左側)，然後按一下 [仍要執行] 來安裝套件。
@@ -191,31 +181,25 @@ P2S 連線需要下列各個條件：
 
   ![連線已建立](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/connected.png)
 
-如果您連線時遇到問題，請檢查下列項目︰
-
-- 開啟 [管理使用者憑證] 並瀏覽至 [受信任的根憑證授權單位]\[憑證]。 確認已列出根憑證。 必須要有根憑證驗證才可運作。 當您使用預設值 '[如果可能的話，包含憑證路徑中的所有憑證]' 將用戶端憑證 .pfx 匯出時，也會一併匯出根憑證資訊。 當您安裝用戶端憑證時，也會在用戶端電腦上安裝根憑證。 
-
-- 如果您使用的是藉由企業 CA 解決方案簽發的憑證，而在驗證時發生問題，請檢查用戶端憑證上的驗證順序。 您可以按兩下用戶端憑證，然後移至 [詳細資料] > [增強金鑰使用方法]，來檢查驗證清單順序。 請確定清單所顯示的第一個項目是「用戶端驗證」。 如果不是，您就必須根據以「用戶端驗證」作為清單中第一個項目的「使用者」範本來簽發用戶端憑證。
-
+[!INCLUDE [verifies client certificates](../../includes/vpn-gateway-certificates-verify-client-cert-include.md)]
 
 ## <a name="verify"></a>12 - 確認您的連線
 
 1. 若要驗證您的 VPN 連線為作用中狀態，請開啟提升權限的命令提示字元，並執行 *ipconfig/all*。
 2. 檢視結果。 請注意，您接收到的 IP 位址是您在組態中指定的點對站 VPN 用戶端位址集區中的其中一個位址。 結果類似於此範例：
-   
-        PPP adapter VNet1:
-            Connection-specific DNS Suffix .:
-            Description.....................: VNet1
-            Physical Address................:
-            DHCP Enabled....................: No
-            Autoconfiguration Enabled.......: Yes
-            IPv4 Address....................: 172.16.201.3(Preferred)
-            Subnet Mask.....................: 255.255.255.255
-            Default Gateway.................:
-            NetBIOS over Tcpip..............: Enabled
 
-
-如果您在透過 P2S 連線至虛擬機器時發生問題，請使用 'ipconfig' 來檢查指派給所連線電腦上的乙太網路介面卡之 IPv4 位址。 如果 IP 位址位在您要連線的 VNet 位址範圍內，或在您 VPNClientAddressPool 的位址範圍內，這稱為重疊位址空間。 當您的位址空間以這種方式重疊時，網路流量不會連線到 Azure，它會保留在本機網路上。 如果您的網路位址空間並未重疊，而且仍然無法連線至虛擬機器，請參閱[針對遠端桌面連線至 VM 進行疑難排解](../virtual-machines/windows/troubleshoot-rdp-connection.md)。
+  ```
+  PPP adapter VNet1:
+      Connection-specific DNS Suffix .:
+      Description.....................: VNet1
+      Physical Address................:
+      DHCP Enabled....................: No
+      Autoconfiguration Enabled.......: Yes
+      IPv4 Address....................: 172.16.201.3(Preferred)
+      Subnet Mask.....................: 255.255.255.255
+      Default Gateway.................:
+      NetBIOS over Tcpip..............: Enabled
+  ```
 
 ## <a name="connectVM"></a>連線至虛擬機器
 
@@ -225,15 +209,11 @@ P2S 連線需要下列各個條件：
 
 您可以從 Azure 新增和移除受信任的根憑證。 當您移除根憑證時，從該根憑證產生憑證的用戶端將無法進行驗證，因而無法進行連線。 若希望用戶端進行驗證和連線，您需要安裝從 Azure 信任 (已上傳至 Azure) 的根憑證產生的新用戶端憑證。
 
-<a id="to-add-a-trusted-root-certificate" class="xliff"></a>
-
-### 若要新增受信任的根憑證
+### <a name="to-add-a-trusted-root-certificate"></a>若要新增受信任的根憑證
 
 您最多可新增 20 個受信任的根憑證 .cer 檔案至 Azure。 如需指示，請參閱這篇文章的[上傳受信任的根憑證](#uploadfile)一節。
 
-<a id="to-remove-a-trusted-root-certificate" class="xliff"></a>
-
-### 移除受信任的根憑證
+### <a name="to-remove-a-trusted-root-certificate"></a>移除受信任的根憑證
 
 1. 若要移除受信任的根憑證，瀏覽至虛擬網路閘道的 [點對站組態] 刀鋒視窗。
 2. 在刀鋒視窗的 [根憑證] 區段中，找出您想要移除的憑證。
@@ -245,9 +225,7 @@ P2S 連線需要下列各個條件：
 
 常見的做法是使用根憑證管理小組或組織層級的存取權，然後使用撤銷的用戶端憑證針對個別使用者進行細部的存取控制。
 
-<a id="to-revoke-a-client-certificate" class="xliff"></a>
-
-### 若要撤銷用戶端憑證
+### <a name="to-revoke-a-client-certificate"></a>若要撤銷用戶端憑證
 
 您可以藉由將指紋新增至撤銷清單來撤銷用戶端憑證。
 
@@ -263,8 +241,5 @@ P2S 連線需要下列各個條件：
 
 [!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-point-to-site-faq-include.md)]
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。 若要了解網路與虛擬機器的詳細資訊，請參閱 [Azure 與 Linux VM 網路概觀](../virtual-machines/linux/azure-vm-network-overview.md)。
-

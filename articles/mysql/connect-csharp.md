@@ -1,6 +1,6 @@
 ---
 title: "從 C# 連線到 Azure Database for MySQL | Microsoft Docs"
-description: "本快速入門提供 C# (.Net) 程式碼範例，您可用於從 Azure Database for MySQL 連線及查詢資料。"
+description: "本快速入門提供 C# (.NET) 程式碼範例，您可用於從 Azure Database for MySQL 連線及查詢資料。"
 services: MySQL
 author: seanli1988
 ms.author: seal
@@ -12,10 +12,10 @@ ms.devlang: csharp
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.translationtype: HT
-ms.sourcegitcommit: 9afd12380926d4e16b7384ff07d229735ca94aaa
-ms.openlocfilehash: ffe3ae320a61031cf314cc1d70e0c093b033f85c
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: e0db2d0a59d62eebbb624a3ad32f19fa634ad5db
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/15/2017
+ms.lasthandoff: 08/02/2017
 
 ---
 
@@ -28,43 +28,9 @@ ms.lasthandoff: 07/15/2017
 - [使用 Azure CLI 建立適用於 MySQL 的 Azure 資料庫伺服器](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
 您也需要：
-- 安裝 [.Net Framework](https://www.microsoft.com/net/download)
-- 安裝 [Visual Studio](https://www.visualstudio.com/downloads/)
-- 安裝[適用於 MySQL 的 ODBC 驅動程式](https://dev.mysql.com/downloads/connector/odbc/) 
-
-## <a name="install-visual-studio-and-net"></a>安裝 Visual Studio 和 .NET
-本節中的步驟假設您已熟悉使用 .NET 進行開發。
-
-### <a name="windows-net-framework-and-net-core"></a>**Windows .NET Framework 和 .NET Core**
-Visual Studio 2017 Community 是功能完整且可擴充的免費 IDE，用以建立適用於 Android、iOS、Windows 以及 Web 和資料庫應用程式和雲端服務的新式應用程式。 您可以安裝完整的 .NET Framework 或只安裝 .NET Core。 快速入門中的程式碼片段均可搭配使用。 如果您已在電腦上安裝 Visual Studio，請略過後續幾個步驟。
-
-1. 下載 [Visual Studio 2017 安裝程式](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15)。 
-2. 執行安裝程式並依照安裝提示來完成安裝。
-
-### <a name="mac-os"></a>**Mac OS**
-開啟您的終端機，然後瀏覽至您打算在其中建立 .NET Core 專案的目錄。 輸入下列命令以安裝 **brew**、**OpenSSL** 和 **.NET Core**。 
-
-```bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
-brew install openssl
-mkdir -p /usr/local/lib
-ln -s /usr/local/opt/openssl/lib/libcrypto.1.0.0.dylib /usr/local/lib/
-ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
-```
-
-在 macOS 上安裝 .NET Core。 下載[正式安裝程式](https://go.microsoft.com/fwlink/?linkid=843444)。 此安裝程式會安裝一些工具，並將這些工具放在您的 PATH，以便您從主控台執行 .net
-
-### <a name="linux-ubuntu"></a>**Linux (Ubuntu)**
-開啟您的終端機，然後瀏覽至您打算在其中建立 .NET Core 專案的目錄。 輸入下列命令以安裝 **.NET Core**。
-
-```bash
-sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
-sudo apt-get update
-sudo apt-get install dotnet-dev-1.0.1
-```
-
+- 安裝 [.NET](https://www.microsoft.com/net/download)。 請依照連結文章中的步驟，特別為您的平台 (Windows、Ubuntu Linux 或 macOS) 安裝 .NET。 
+- 安裝 [Visual Studio](https://www.visualstudio.com/downloads/)。
+- 安裝 [ODBC Driver for MySQL](https://dev.mysql.com/downloads/connector/odbc/)。
 
 ## <a name="get-connection-information"></a>取得連線資訊
 取得連線到 Azure Database for MySQL 所需的連線資訊。 您需要完整的伺服器名稱和登入認證。

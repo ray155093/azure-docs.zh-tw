@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/20/2017
 ms.author: garye
-translationtype: Human Translation
-ms.sourcegitcommit: 9e738c4e5f43ae6c939f7c6da90c258498943e73
-ms.openlocfilehash: b8115f1fb72b0ba89fd0c8afa3358878a0fab92b
-ms.lasthandoff: 12/14/2016
-
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: 70a1d0acb8ec9bbb591f696281ea5e975b443a15
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/31/2017
 
 ---
 # <a name="what-is-azure-machine-learning-studio"></a>什麼是 Azure Machine Learning Studio？
@@ -78,7 +78,7 @@ Machine Learning Studio 讓資料科學、預測分析、雲端資源和您的�
 * 模組的所有輸入埠必須有資料流程的某些連線
 * 必須設定每個模組的所有必要參數
 
-您可以從頭建立實驗，或者使用現有的範例實驗做為範本。 如需詳細資訊，請參閱 [使用範例實驗來建立新的實驗](machine-learning-sample-experiments.md)。
+您可以從頭建立實驗，或者使用現有的範例實驗做為範本。 如需詳細資訊，請參閱[複製範例實驗來建立新的機器學習服務實驗](machine-learning-sample-experiments.md)。
 
 如需建立簡易實驗的範例，請參閱 [在 Azure Machine Learning Studio 中建立簡易實驗](machine-learning-create-experiment.md)。
 

@@ -12,23 +12,22 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/12/2017
+ms.date: 07/31/2017
 ms.author: osamam
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
-ms.openlocfilehash: 0bb4999aa511e002d6088d69400ba4eececd8cf1
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: e6e2009717430a692528cd3ec3a2c6e46a12fe03
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/15/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="expressroute-routing-requirements"></a>ExpressRoute 路由需求
-若要使用 ExpressRoute 連線到 Microsoft 雲端服務，您必須設定和管理路由。 有些連線提供者會以受管理的服務形式提供路由的設定和管理。 請洽詢您的連線服務提供者，以查看他們是否提供這類服務。 如果沒有，您必須遵循下列需求。 
+若要使用 ExpressRoute 連線到 Microsoft 雲端服務，您必須設定和管理路由。 有些連線提供者會以受管理的服務形式提供路由的設定和管理。 請洽詢您的連線服務提供者，以查看他們是否提供這類服務。 如果沒有，您必須遵循下列需求：
 
 如需必須設定才能進行連線的路由工作階段的說明，請參閱[線路和路由網域](expressroute-circuit-peerings.md)一文。
 
 > [!NOTE]
-> Microsoft 不支援任何高可用性組態的路由器備援通訊協定 (如 HSRP、VRRP)。 我們依賴每個對等互連的一組備援 BGP 工作階段來取得高可用性。
+> Microsoft 不支援任何高可用性組態的路由器備援通訊協定 (例如 HSRP、VRRP)。 我們依賴每個對等互連的一組備援 BGP 工作階段來取得高可用性。
 > 
 > 
 
@@ -42,7 +41,7 @@ ms.lasthandoff: 05/15/2017
 * 用於路由的子網路可以是私人 IP 位址或公用 IP 位址。
 * 子網路不得與客戶保留以便用於 Microsoft Cloud 的範圍衝突。
 * 如果使用 /29 子網路，它就會分割成兩個 /30 子網路。 
-  * 第一個 /30 子網路將用於主要連結，而第二個 /30 子網路將用於次要連結。
+  * 第一個 /30 子網路用於主要連結，而第二個 /30 子網路用於次要連結。
   * 針對每個 /30 子網路，您必須在您的路由器上使用 /30 子網路的第一個 IP 位址。 Microsoft 會使用 /30 子網路的第二個 IP 位址來設定 BGP 工作階段。
   * 您必須設定兩個 BGP 工作階段，我們的 [可用性 SLA](https://azure.microsoft.com/support/legal/sla/) 才會有效。  
 
@@ -61,13 +60,15 @@ a.b.c.d/29 會分割成 a.b.c.d/30 和 a.b.c.d+4/30 並透過佈建 API 向下�
 
 * 您必須使用唯一的 /29 子網路或兩個 /30 子網路來為每個 ExpressRoute 循環 (如果您有多個) 的每個對等互連設定 BGP 對等互連。 
 * 如果使用 /29 子網路，它就會分割成兩個 /30 子網路。 
-  * 第一個 /30 子網路將用於主要連結，而第二個 /30 子網路將用於次要連結。
+  * 第一個 /30 子網路將用於主要連結，而第二個 /30 子網路用於次要連結。
   * 針對每個 /30 子網路，您必須在您的路由器上使用 /30 子網路的第一個 IP 位址。 Microsoft 會使用 /30 子網路的第二個 IP 位址來設定 BGP 工作階段。
   * 您必須設定兩個 BGP 工作階段，我們的 [可用性 SLA](https://azure.microsoft.com/support/legal/sla/) 才會有效。
 
 ## <a name="public-ip-address-requirement"></a>公用 IP 位址需求
+
 ### <a name="private-peering"></a>私人對等互連
 您可以選擇使用公用或私人 IPv4 位址進行私人對等互連。 我們會提供流量的端對端隔離，因此在私人對等互連的情況下不可能發生位址與其他客戶重疊。 這些位址不會向網際網路公告。 
+
 
 ### <a name="public-peering"></a>公用對等互連
 Azure 公用對等路徑可讓您連接到裝載於 Azure 中的所有服務的公用 IP 位址。 其中包括 [ExpessRoute 常見問題集](expressroute-faqs.md) 列出的服務，以及由 ISV 裝載於 Microsoft Azure 上的任何服務。 連線到公用對等的 Microsoft Azure 服務時，一律是從您的網路出發到 Microsoft 網路。 您必須將公用 IP 位址使用於目的地為 Microsoft 網路的流量。
@@ -75,7 +76,7 @@ Azure 公用對等路徑可讓您連接到裝載於 Azure 中的所有服務的�
 ### <a name="microsoft-peering"></a>Microsoft 對等互連
 Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑存取的 Microsoft 雲端服務。 服務清單包括 Office 365 服務，例如 Exchange Online、SharePoint Online、商務用 Skype 和 Dynamics 365。 Microsoft 支援在 Microsoft 對等上的雙向連線能力。 以 Microsoft 雲端服務為目的地的流量，必須使用有效的公用 IPv4 位址，才能進入 Microsoft 網路。
 
-確定您的 IP 位址和 AS 號碼已在下列其中一個登錄中註冊。
+確定已在下列其中一個登錄中註冊您的 IP 位址和 AS 號碼：
 
 * [ARIN](https://www.arin.net/)
 * [APNIC](https://www.apnic.net/)
@@ -119,7 +120,7 @@ ExpressRoute 不能設定為傳輸路由器。 您必須依賴連線提供者的
 > 
 > 
 
-## <a name="support-for-bgp-communities"></a>BGP 社群支援
+## <a name="bgp"></a>BGP 社群支援
 本節提供 BGP 社群如何搭配 ExpressRoute 使用的概觀。 Microsoft 將會公告公用和 Microsoft 對等互連路徑中的路由並為路由標記適當的社群值。 這麼做的基本原理和社群值的詳細資料如下所述。 不過，Microsoft 不接受任何標記至向 Microsoft 公告之路由的社群值。
 
 如果您要在地理政治區域內的任何一個對等互連位置透過 ExpressRoute 連接到 Microsoft，您必須能夠存取地理政治界限內所有區域中的所有 Microsoft 雲端服務。 

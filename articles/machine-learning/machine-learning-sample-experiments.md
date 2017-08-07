@@ -1,6 +1,7 @@
 ---
-title: "複製機器學習服務範例實驗 | Microsoft Docs"
+title: "複製機器學習服務範例實驗 - Azure | Microsoft Docs"
 description: "了解如何透過 Cortana 智慧資源庫和 Microsoft Azure Machine Learning 使用範例機器學習服務實驗來建立新的實驗。"
+keywords: "機器學習服務範例, 範例實驗, 機器學習服務範例"
 services: machine-learning
 documentationcenter: 
 author: cjgronlund
@@ -12,19 +13,19 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/13/2017
+ms.date: 07/28/2017
 ms.author: cgronlun;olgali
-translationtype: Human Translation
-ms.sourcegitcommit: 25e1def880dbb8431e1a0cae9d8b84c6f5906315
-ms.openlocfilehash: 7b2bca108770a79a693a408a628ccc6370c36b7c
-ms.lasthandoff: 02/13/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: a6c8ca83e3a4020cb1ea0f1c14299f1aee3bdca5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
-# <a name="copy-sample-experiments-to-create-new-machine-learning-experiments"></a>複製範例實驗來建立新的機器學習服務實驗
+# <a name="copy-example-experiments-to-create-new-machine-learning-experiments"></a>複製範例實驗來建立新的機器學習服務實驗
 了解如何從 [Cortana 智慧資源庫](https://gallery.cortanaintelligence.com/) 的範例實驗開始，而不是從頭建立機器學習服務實驗。 您可以使用範例來建立自己的機器學習服務解決方案。
 
-資源庫中包含 Microsoft Azure Machine Learning 小組的範例實驗，以及由 Machine Learning 社群共用的範例。 您也可以提出有關實驗的問題或張貼意見。
+資源庫有 Microsoft Azure Machine Learning 小組的範例實驗，以及由 Machine Learning 社群共用的範例。 您也可以提出有關實驗的問題或張貼意見。
 
 若要查看如何使用資源庫，請觀看[初學者的資料科學](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)系列中的 3 分鐘影片[複製其他人的工作來進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)。
 
@@ -40,9 +41,9 @@ ms.lasthandoff: 02/13/2017
 若要瀏覽所有實驗︰
 
 1. 按一下頁面頂端的 [全部瀏覽]  。
-2. 在 [類別] 區段的 [精簡依據] 之下，選取 [實驗] 以查看資源庫中的所有實驗。
+2. 在左側 [類別] 區段的 [精簡依據] 之下，選取 [實驗] 以查看資源庫中的所有實驗。
 3. 有幾種不同方式可以找到符合您需求的實驗︰
-   * **選取左邊的篩選。** 例如，若要瀏覽使用 PCA 型異常偵測演算法的實驗，請選取 [類別] 之下的 [實驗]，以及 [使用的演算法] 之下的 [PCA 型異常偵測]  \(如果您沒有看到該演算法，請按一下清單底部的 [全部顯示])。<br></br>
+   * **選取左邊的篩選。** 例如，若要瀏覽使用以 PCA 為基礎之異常偵測演算法的實驗，請選取 [類別] 之下的 [實驗]，然後按一下 [全部顯示]。 然後，在 [使用的演算法] 之下，選擇 [以 PCA 為基礎的異常偵測]。 <br></br>
      ![選取篩選器](./media/machine-learning-sample-experiments/refine-the-view.png)
    * **使用 [搜尋] 方塊。** 例如，若要尋找 Microsoft 所提出並使用二級支援向量機器演算法的數字辨識相關實驗，請在 [搜尋] 方塊中輸入「數字辨識」。 然後選取篩選器 [實驗]、[僅包含 Microsoft 內容] 和 [二級支援向量機器]：<br></br>
      ![使用搜尋方塊](./media/machine-learning-sample-experiments/search-for-experiments.png)
@@ -56,13 +57,13 @@ ms.lasthandoff: 02/13/2017
     >
     >
 
-## <a name="use-a-template-in-machine-learning-studio"></a>在 Machine Learning Studio 中使用範本
-您也可以使用資源庫範例作為範本，在 Machine Learning Studio 中建立新的實驗。
+## <a name="create-a-new-experiment-using-an-example-as-a-template"></a>使用範例作為範本來建立新實驗
+您也可以使用資源庫範例作為範本，在 Machine Learning Studio 中建立新實驗。
 
 1. 用您的 Microsoft 帳戶認證登入 [Studio](https://studio.azureml.net)，然後按一下 [新增] 以建立實驗。
 2. 瀏覽範例內容，然後按一下其中一個。
 
-隨即使用範例實驗做為範本，在您的工作區中建立新的實驗。
+隨即以範例實驗作為範本，在您的 Machine Learning Studio 工作區中建立新的實驗。
 
 ## <a name="next-steps"></a>後續步驟
 * [從各種資源匯入資料](machine-learning-data-science-import-data.md)

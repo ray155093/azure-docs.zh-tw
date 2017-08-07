@@ -1,8 +1,9 @@
 > [!NOTE]
-> 從舊 SKU 移轉至新 SKU 時，將會變更 VPN 閘道公用 IP 位址。
+> * 從舊 SKU 移轉至新 SKU 時，將會變更 VPN 閘道公用 IP 位址。
+> * 您無法將傳統 VPN 閘道移轉至新的 SKU。 傳統 VPN 閘道只能使用舊版 (舊式) SKU。
 > 
 
-您無法直接調整舊 SKU 與新 SKU 系列之間的 Azure VPN 閘道大小。 如果在 Resource Manager 部署模型中有使用舊版 SKU 的 VPN 閘道，您可以移轉至新的 SKU。 若要移轉，您可刪除虛擬網路的現有 VPN 閘道，然後建立一個新閘道。
+您無法調整舊 SKU 與新 SKU 系列之間的 Azure VPN 閘道大小。 如果在 Resource Manager 部署模型中有使用舊版 SKU 的 VPN 閘道，您可以移轉至新的 SKU。 若要移轉，您可刪除虛擬網路的現有 VPN 閘道，然後建立一個新閘道。
 
 移轉工作流程：
 

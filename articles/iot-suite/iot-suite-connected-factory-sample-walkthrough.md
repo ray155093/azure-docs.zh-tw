@@ -13,14 +13,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/08/2017
+ms.date: 07/27/2017
 ms.author: dobett
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: 3011fd608ba83561c319e57c8a7b5a4f3c4c2284
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 81ecd5771be544e250ea0df31aa274f0850527ad
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="connected-factory-preconfigured-solution-walkthrough"></a>連線處理站預先設定的解決方案逐步解說
@@ -47,6 +46,13 @@ IoT 套件連線處理站[預先設定的解決方案][lnk-preconfigured-solutio
 下圖概述預先設定解決方案的邏輯元件：
 
 ![連線處理站的邏輯架構][connected-factory-logical]
+
+## <a name="communication-patterns"></a>通訊模式
+
+此解決方案會使用 [OPC UA Pub/Sub 規格](https://opcfoundation.org/news/opc-foundation-news/opc-foundation-announces-support-of-publish-subscribe-for-opc-ua/)，以 JSON 格式將 OPC UA 遙測資料傳送到 IoT 中樞。 此解決方案會就此目的使用 [OPC 發行者](https://github.com/Azure/iot-edge-opc-publisher) IoT Edge 模組。
+
+此解決方案也有整合至 Web 應用程式的 OPC UA 用戶端，該應用程式可以建立與內部部署 OPC UA 伺服器的連線。 用戶端會使用 [reverse-proxy](https://wikipedia.org/wiki/Reverse_proxy) 並接受 IoT 中樞的協助進行連線，而不需要內部部署防火牆中的開啟連接埠。 此通訊模式稱為[服務輔助通訊](https://blogs.msdn.microsoft.com/clemensv/2014/02/09/service-assisted-communication-for-connected-devices/)。 此解決方案會就此目的使用 [OPC Proxy](https://github.com/Azure/iot-edge-opc-proxy/) IoT Edge 模組。
+
 
 ## <a name="simulation"></a>模擬
 

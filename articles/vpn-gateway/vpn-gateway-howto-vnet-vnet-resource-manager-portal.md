@@ -13,20 +13,20 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 07/05/2017
+ms.date: 08/02/2017
 ms.author: cherylmc
 ms.translationtype: HT
-ms.sourcegitcommit: 818f7756189ed4ceefdac9114a0b89ef9ee8fb7a
-ms.openlocfilehash: bf028b0e49833385837fa7bdd68f215ed27e0325
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 0293495a9cbdab1fc797d9948e4cbb7759b1ba54
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/14/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="configure-a-vnet-to-vnet-vpn-gateway-connection-using-the-azure-portal"></a>使用 Azure 入口網站設定 VNet 對 VNet 的 VPN 閘道連線
 
 本文說明如何建立虛擬網路之間的VPN 閘道連線。 虛擬網路可位於相同或不同的區域，以及來自相同或不同的訂用帳戶。 連線來自不同訂用帳戶的 VNet 時，訂用帳戶不需與相同的 Active Directory 租用戶相關聯。 
 
-本文中的步驟適用於 Resource Manager 部署模型以及相同訂用帳戶中 VNet 的 Azure 入口網站。 如果您的 Vnet 位於不同的訂用帳戶中，就無法在入口網站中建立連線。 您可以使用 [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md) 或 [CLI](vpn-gateway-howto-vnet-vnet-cli.md)。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
+本文中的步驟適用於 Resource Manager 部署模型並使用 Azure 入口網站。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
