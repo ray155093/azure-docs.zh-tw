@@ -15,24 +15,27 @@
 ### [受 HSM 保護的金鑰](key-vault-hsm-protected-keys.md)
 ### [移轉到 .NET 2.0](key-vault-dotnet2api-release-notes.md)
 ### 概觀
-#### [安全性環境概觀](key-vault-ovw-security-worlds.md)
-#### [虛刪除概觀](key-vault-ovw-soft-delete.md)
-#### [儲存體帳戶金鑰概觀](key-vault-ovw-storage-keys.md)
-#### [節流概觀](key-vault-ovw-throttling.md)
+#### [安全性環境](key-vault-ovw-security-worlds.md)
+#### [虛刪除](key-vault-ovw-soft-delete.md)
+#### [儲存體帳戶金鑰](key-vault-ovw-storage-keys.md)
+#### [節流](key-vault-ovw-throttling.md)
 
 ## 管理
 ### [Azure Key Vault 記錄](key-vault-logging.md)
 ### [防火牆後的存取](key-vault-access-behind-firewall.md)
-### [變更租用戶識別碼](key-vault-subscription-move-fix.md)
-### [使用群組，即可授與存取權](key-vault-group-permissions-for-apps.md)
 ### [可用性與備援](key-vault-disaster-recovery-guidance.md)
+### [變更租用戶識別碼](key-vault-subscription-move-fix.md)
+### [使用 CLI 2.0 建立和管理](key-vault-manage-with-cli2.md)
+### [如何使用 Key Vault 虛刪除與 CLI](key-vault-soft-delete-cli.md)
+### [如何使用 Key Vault 虛刪除與 PowerShell](key-vault-soft-delete-powershell.md)
+### [使用群組，即可授與存取權](key-vault-group-permissions-for-apps.md)
 ### [保護您的金鑰保存庫](key-vault-secure-your-key-vault.md)
 
 ## 自動化
 ### [Azure 自動化](automation-manage-key-vault.md)
-### [使用 CLI 2.0 建立和管理](key-vault-manage-with-cli2.md)
 
 # 參考
+## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=key-vault)
 ## [PowerShell](/powershell/module/azurerm.keyvault)
 ## [Azure CLI 2](/cli/azure/keyvault)
 ## [.NET](/dotnet/api/microsoft.azure.keyvault)
@@ -55,3 +58,4 @@
 ## [程式碼範例](https://www.microsoft.com/download/details.aspx?id=45343)
 ## [論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureKeyVault)
 ## [價格](https://azure.microsoft.com/pricing/details/key-vault/)
+## [定價計算機](https://azure.microsoft.com/pricing/calculator/)

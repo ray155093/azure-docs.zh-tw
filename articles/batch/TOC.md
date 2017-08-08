@@ -8,6 +8,7 @@
 ## [Batch .NET 教學課程](batch-dotnet-get-started.md)
 ## [Batch Python 教學課程](batch-python-tutorial.md)
 ## [Batch Node.js 教學課程](batch-nodejs-get-started.md)
+## [Batch 轉譯服務](batch-rendering-service.md)
 # 作法
 ## 開發
 ### [應用程式套件](batch-application-packages.md)
@@ -15,7 +16,9 @@
 ### Azure AD 驗證
 #### [包含 Batch 服務的 Azure AD](batch-aad-auth.md)
 #### [包含 Batch 管理的 Azure AD](batch-aad-auth-management.md)
+### [計算密集 VM](batch-pool-compute-intensive-sizes.md)
 ### [並行節點工作](batch-parallel-node-tasks.md)
+### [依狀態計算工作數量](batch-get-task-counts.md)
 ### [有效率的清單查詢](batch-efficient-list-queries.md)
 ### [作業的準備與完成工作](batch-job-prep-release.md)
 ### [Linux 計算節點](batch-linux-nodes.md)
@@ -36,8 +39,8 @@
 #### [新增應用程式](./scripts/batch-cli-sample-add-application.md)
 #### [管理集區](./scripts/batch-cli-sample-manage-pool.md)
 #### [執行作業和工作](./scripts/batch-cli-sample-run-job.md)
-
 # 參考
+## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=batch)
 ## [PowerShell](/powershell/module/azurerm.batch)
 ## [Azure CLI](/cli/azure/batch)
 ## [.NET](/dotnet/api/microsoft.azure.batch)
@@ -69,6 +72,7 @@
 ## [C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-us/home?forum=azurebatch)
 ## [價格](https://azure.microsoft.com/pricing/details/batch/)
+## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 ## [Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
 ## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-batch)

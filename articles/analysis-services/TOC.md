@@ -1,10 +1,10 @@
 # 概觀
 ## [什麼是 Azure Analysis Services？](analysis-services-overview.md)
-## [支援的資料來源](analysis-services-datasource.md)
 
 # 快速入門
 ## [建立伺服器 - 入口網站](analysis-services-create-server.md)
-## [部署模型 - SSDT](analysis-services-deploy.md)
+## [建立伺服器 - PowerShell](analysis-services-create-powershell.md)
+## [部署模型 - Visual Studio](analysis-services-deploy.md)
 
 # 教學課程
 ## 建立和部署模型
@@ -27,6 +27,7 @@
 ### [補充課程 - 不完全階層](tutorials/aas-supplemental-lesson-ragged-hierarchies.md)
 
 # 概念
+## [支援的資料來源](analysis-services-datasource.md)
 ## [驗證和使用者權限](analysis-services-manage-users.md)
 ## [高可用性](analysis-services-bcdr.md)
 
@@ -57,6 +58,7 @@
 ## [Azure 狀態](https://azure.microsoft.com/status/)
 ## [意見反應](https://feedback.azure.com/forums/556165-azure-analysis-services)
 ## [價格](https://azure.microsoft.com/pricing/details/analysis-services/)
+## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 ## [Stackoverflow](http://stackoverflow.com/questions/tagged/azure-analysis-services)
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=analysis-services&sort=newest)
 
