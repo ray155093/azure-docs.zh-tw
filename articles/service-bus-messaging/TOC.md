@@ -56,8 +56,8 @@
 
 # 參考
 ## .NET
-### [Microsoft.ServiceBus.Messaging](/dotnet/api/microsoft.servicebus.messaging)
-### [Microsoft.Azure.Management.ServiceBus](/dotnet/api/microsoft.azure.management.servicebus)
+### [Microsoft.ServiceBus.Messaging (.NET Framework)](/dotnet/api/microsoft.servicebus.messaging)
+### [Microsoft.Azure.ServiceBus (.NET Standard)](/dotnet/api/microsoft.azure.servicebus)
 ## [PowerShell](/powershell/module/azurerm.servicebus)
 ## [REST](/rest/api/servicebus)
 ## [例外狀況](service-bus-messaging-exceptions.md)
@@ -69,9 +69,11 @@
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=enterprise-integration)
 ## [部落格](https://blogs.msdn.microsoft.com/servicebus/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/forums/home?forum=servbus)
-## [價格詳細資料](service-bus-pricing-billing.md)
 ## [價格](https://azure.microsoft.com/pricing/details/service-bus/)
+## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
+## [價格詳細資料](service-bus-pricing-billing.md)
 ## [範例](service-bus-samples.md)
+## [ServiceBus360](https://www.servicebus360.com/)
 ## [服務匯流排總管](https://github.com/paolosalvatori/ServiceBusExplorer)
 ## [服務更新](https://azure.microsoft.com/updates/?product=service-bus)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/servicebus)

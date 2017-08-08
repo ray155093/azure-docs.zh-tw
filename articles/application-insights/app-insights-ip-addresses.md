@@ -19,7 +19,6 @@ ms.openlocfilehash: eec83ceb6edbc1aaa68d51a85d2a913063677530
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/29/2017
 
-
 ---
 # <a name="ip-addresses-used-by-application-insights"></a>Application Insights 使用的 IP 位址
 [Azure Application Insights](app-insights-overview.md) 服務會使用一些 IP 位址。 如果您所監視的應用程式裝載於防火牆後面，您可能需要知道這些位址。
@@ -110,6 +109,10 @@ JP : Kawaguchi
 202.89.228.68
 202.89.228.69
 202.89.228.57
+52.243.33.33
+52.243.33.141
+52.243.35.253
+52.243.41.117
 NL : Amsterdam
 213.199.178.54
 213.199.178.55
