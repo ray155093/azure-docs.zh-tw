@@ -2,9 +2,11 @@
 layout: LandingPage
 title: "服務匯流排轉送文件"
 description: "了解 Azure 轉送服務在混合式雲端和內部部署環境中的運作情況，包含作法、教學課程、影片、API 參考等。"
-translationtype: Human Translation
-ms.sourcegitcommit: ef8188d6790dac8b420348887c480cd4fdab07c4
-ms.openlocfilehash: 911ad28e0e93b9b46b368de2cfbbbbc9f1183b7b
+ms.translationtype: HT
+ms.sourcegitcommit: 8b857b4a629618d84f66da28d46f79c2b74171df
+ms.openlocfilehash: 43d2c5ca34e4903a41160496fdb4d975cb665de7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 08/04/2017
 
 ---
 # <a name="service-bus-relay-documentation"></a>服務匯流排轉送文件
@@ -30,7 +32,7 @@ ms.openlocfilehash: 911ad28e0e93b9b46b368de2cfbbbbc9f1183b7b
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/documentation/videos/index/?services=service-bus-relay">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=service-bus">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -112,8 +114,8 @@ ms.openlocfilehash: 911ad28e0e93b9b46b368de2cfbbbbc9f1183b7b
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>範例</h3>
-                        <p><a href="/azure/service-bus-relay/service-bus-relay-samples">服務匯流排轉送範例</a></p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/module/azurerm.servicebus">PowerShell</a></p>
                     </div>
                 </div>
             </div>
@@ -124,9 +126,8 @@ ms.openlocfilehash: 911ad28e0e93b9b46b368de2cfbbbbc9f1183b7b
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>.NET</h3>
-                        <p><a href="/dotnet/api/microsoft.servicebus.messaging">Microsoft.ServiceBus.Messaging</a></p>
-                        <p><a href="/dotnet/api/microsoft.azure.relay">Microsoft.Azure.Relay</a></p>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/overview/azure/service-bus-relay">.NET</a></p>
                     </div>
                 </div>
             </div>
@@ -137,17 +138,12 @@ ms.openlocfilehash: 911ad28e0e93b9b46b368de2cfbbbbc9f1183b7b
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>其他</h3>
-                        <p><a href="service-bus-relay-port-settings.md">連接埠設定</a></p>
+                        <h3>REST</h3>
+                        <p><a href="/rest/api/servicebus/">REST API 參考</a></p>
                    </div>
                 </div>
             </div>
         </div>
     </li>
 </ul>
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
