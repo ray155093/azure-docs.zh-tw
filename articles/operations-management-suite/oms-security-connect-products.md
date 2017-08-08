@@ -64,7 +64,7 @@ OMS 安全性支援收集使用 CEF over Syslogs 的記錄檔和 [Cisco ASA](htt
     log { source(src); filter(f_local4_oms); destination(security_oms); };
     
 3. 下載 security_events.conf 檔案並放在 OMS Agent 電腦中的 */etc/opt/microsoft/omsagent/conf/omsagent.d/*。
-4. 輸入下列命令來重新啟動 syslog 精靈︰若為 syslog-ng 執行︰ **
+4. 輸入下列命令來重新啟動 syslog 精靈︰  *若為 syslog-ng 執行* ︰
     
     ```
     sudo service rsyslog restart
@@ -77,7 +77,7 @@ OMS 安全性支援收集使用 CEF over Syslogs 的記錄檔和 [Cisco ASA](htt
     ```
 5. 輸入下列命令來重新啟動 OMS Agent︰
 
-    若為 syslog-ng 執行︰
+    *若為 syslog-ng 執行* ︰
     
     ```
     sudo service omsagent restart
