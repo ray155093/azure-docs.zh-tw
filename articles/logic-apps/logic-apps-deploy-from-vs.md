@@ -15,17 +15,17 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 2/14/2017
 ms.author: LADocs; jehollan
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: ad18896548449d85e2af8a91ddd90c8192db1ab2
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: e7f5cf483d22e4c60dedbe5176ceb0bc8b2b6e66
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/06/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 
 # <a name="design-build-and-deploy-azure-logic-apps-in-visual-studio"></a>在 Visual Studio 中設計、建置和部署 Azure Logic Apps
 
-雖然 [Azure 入口網站](https://portal.azure.com/)提供一種絕佳的方式讓您能夠建立和管理 Azure Logic Apps，但您可能想要使用 Visual Studio 來設計、建置和部署邏輯應用程式。 Visual Studio 提供豐富的工具 (例如邏輯應用程式設計工具)，讓您能夠用來建立邏輯應用程式、設定部署和自動化範本，並部署至任何環境。 
+雖然 [Azure 入口網站](https://portal.azure.com/)提供一種絕佳的方式讓您能夠建立和管理 Azure Logic Apps，但您可以使用 Visual Studio 來設計、建置和部署邏輯應用程式。 Visual Studio 提供豐富的工具 (例如邏輯應用程式設計工具)，讓您能夠用來建立邏輯應用程式、設定部署和自動化範本，並部署至任何環境。 
 
 若要開始使用 Azure Logic Apps，請先了解[如何在 Azure 入口網站中建立第一個邏輯應用程式](logic-apps-create-a-logic-app.md)。
 
@@ -106,7 +106,7 @@ Visual Studio 會針對您的邏輯應用程式需要函式的任何連線，將
 
 ### <a name="add-references-for-dependent-resources-to-visual-studio-deployment-templates"></a>將相依資源的參考新增至 Visual Studio 部署範本
 
-當您想要邏輯應用程式參考相依的資源時，您可以在邏輯應用程式部署範本中使用 [Azure Resource Manager 範本函數](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-functions)，例如參數。 例如，您可能想要邏輯應用程式參考您要與邏輯應用程式一起部署的 Azure 函式或整合帳戶。 遵循這些有關如何在部署範本中使用參數的指導方針，以便邏輯應用程式設計工具可正確轉譯。 
+當您想要邏輯應用程式參考相依的資源時，您可以在邏輯應用程式部署範本中使用 [Azure Resource Manager 範本函式](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-functions)。 例如，您可能想要邏輯應用程式參考您要與邏輯應用程式一起部署的 Azure 函式或整合帳戶。 遵循這些有關如何在部署範本中使用參數的指導方針，以便邏輯應用程式設計工具可正確轉譯。 
 
 您可以在這些類型的觸發程序和動作中使用邏輯應用程式參數︰
 
@@ -114,15 +114,16 @@ Visual Studio 會針對您的邏輯應用程式需要函式的任何連線，將
 *   函式應用程式
 *   APIM 呼叫
 *   API 連線執行階段 URL
+*   API 連線路徑
 
-您可以使用這些範本函式︰list below、includes parameters、variables、resourceId、concat，等等。 例如，以下是取代 Azure 函式資源識別碼的方式︰
+您可以使用範本函式，例如 parameters、variables、resourceId、concat 等等。例如，以下是取代 Azure 函式資源識別碼的方式︰
 
 ```
 "parameters":{
     "functionName": {
-    "type":"string",
-    "minLength":1,
-    "defaultValue":"<FunctionName>"
+        "type":"string",
+        "minLength":1,
+        "defaultValue":"<FunctionName>"
     }
 },
 ```
@@ -131,16 +132,43 @@ Visual Studio 會針對您的邏輯應用程式需要函式的任何連線，將
 
 ```
 "MyFunction": {
-        "type": "Function",
-        "inputs": {
+    "type": "Function",
+    "inputs": {
         "body":{},
         "function":{
-        "id":"[resourceid('Microsoft.Web/sites/functions','functionApp',parameters('functionName'))]"
+            "id":"[resourceid('Microsoft.Web/sites/functions','functionApp',parameters('functionName'))]"
         }
     },
     "runAfter":{}
 }
 ```
+另一個範例是您可以參數化服務匯流排傳送訊息作業：
+
+```
+"Send_message": {
+    "type": "ApiConnection",
+        "inputs": {
+            "host": {
+                "connection": {
+                    "name": "@parameters('$connections')['servicebus']['connectionId']"
+                }
+            },
+            "method": "post",
+            "path": "[concat('/@{encodeURIComponent(''', parameters('queueuname'), ''')}/messages')]",
+            "body": {
+                "ContentData": "@{base64(triggerBody())}"
+            },
+            "queries": {
+                "systemProperties": "None"
+            }
+        },
+        "runAfter": {}
+    }
+```
+> [!NOTE] 
+> host.runtimeUrl 是選擇性的，如果存在的話，可以從您的範本中移除。
+> 
+
 
 > [!NOTE] 
 > 針對您在使用參數時要運作的邏輯應用程式設計工具，您必須提供預設值，例如︰

@@ -13,14 +13,13 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/09/2017
+ms.date: 07/27/2017
 ms.author: arramac
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: d2a6af66b6c1e92b8b694685ab8c16781d1ade48
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 2ea15afa857e568a10b0ef802764afd1eab0d3f3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-the-azure-cosmos-db-emulator-for-local-development-and-testing"></a>使用 Azure Cosmos DB 模擬器進行本機開發和測試
@@ -157,6 +156,12 @@ Azure Cosmos DB 模擬器預設會安裝到 `C:\Program Files\Azure Cosmos DB Em
 
 此外，就像 Azure Cosmos DB 服務一樣，Azure Cosmos DB 模擬器僅支援透過 SSL 的安全通訊。
 
+## <a name="running-the-emulator-on-a-local-network"></a>在本機網路上執行模擬器
+
+您可以在本機網路上執行模擬器。 若要啟用網路存取，請在[命令列](#command-line-syntax)指定 /AllowNetworkAccess 選項，也需要您指定 /Key=key_string 或 /KeyFile=file_name。 您可以使用 /GenKeyFile=file_name 來產生具有預先隨機金鑰的檔案。  然後您可以將其傳遞至 /KeyFile=file_name 或 /Key=contents_of_file。
+
+若是第一次啟用網路存取，使用者應該關閉模擬器，並且刪除模擬器的資料目錄 (C:\Users\user_name\AppData\Local\CosmosDBEmulator)。
+
 ## <a name="developing-with-the-emulator"></a>使用模擬器進行開發
 在桌面上執行 Azure Cosmos DB 模擬器之後，就可以使用任何支援的 [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md) 或 [Azure Cosmos DB REST API](/rest/api/documentdb/) 與模擬器互動。 Azure Cosmos DB 模擬器也包含內建的資料總管，可讓您建立 DocumentDB 和 MongoDB API 集合、檢視及編輯文件，而不需要撰寫任何程式碼。   
 
@@ -167,7 +172,7 @@ Azure Cosmos DB 模擬器預設會安裝到 `C:\Program Files\Azure Cosmos DB Em
 
 如果您使用 [MongoDB 的 Azure Cosmos DB 通訊協定支援](mongodb-introduction.md)，請使用下列連接字串︰
 
-    mongodb://localhost:C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==@localhost:10250/admin?ssl=true&3t.sslSelfSignedCerts=true
+    mongodb://localhost:C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==@localhost:10255/admin?ssl=true&3t.sslSelfSignedCerts=true
 
 您可以使用現有的工具，像是 [Azure DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio) 連線到 Azure Cosmos DB 模擬器。 您也可以使用 [Azure Cosmos DB 資料移轉工具](https://github.com/azure/azure-documentdb-datamigrationtool)在 Azure Cosmos DB 模擬器與 Azure Cosmos DB 服務之間移轉資料。
 
@@ -233,7 +238,7 @@ Azure Cosmos DB 模擬器預設會安裝到 `C:\Program Files\Azure Cosmos DB Em
 </tr>
 <tr>
   <td>MongoPort</td>
-  <td>指定要用於 MongoDB 相容性 API 的連接埠號碼。 預設值為 10250。</td>
+  <td>指定要用於 MongoDB 相容性 API 的連接埠號碼。 預設值為 10255。</td>
   <td>CosmosDB.Emulator.exe /MongoPort=&lt;mongoport&gt;</td>
   <td>&lt;mongoport&gt;︰單一連接埠號碼</td>
 </tr>
@@ -278,6 +283,42 @@ Azure Cosmos DB 模擬器預設會安裝到 `C:\Program Files\Azure Cosmos DB Em
   <td>指定已分割集合的數目上限。 如需詳細資訊，請參閱[變更集合的數目](#set-partitioncount)。</td>
   <td>CosmosDB.Emulator.exe /PartitionCount=&lt;partitioncount&gt;</td>
   <td>&lt;partitioncount&gt;：允許的單一分割區集合數目上限。 預設值為 25。 允許的上限為 250。</td>
+</tr>
+<tr>
+  <td>DefaultPartitionCount</td>
+  <td>指定分割集合之分割數目的預設值。</td>
+  <td>CosmosDB.Emulator.exe /DefaultPartitionCount=&lt;defaultpartitioncount&gt;</td>
+  <td>&lt;defaultpartitioncount&gt; 預設值為 25。</td>
+</tr>
+<tr>
+  <td>AllowNetworkAccess</td>
+  <td>讓模擬器可以透過網路存取。 您也必須傳遞 /Key=&lt;key_string&gt; 或 /KeyFile=&lt;file_name&gt; 以啟用網路存取。</td>
+  <td>CosmosDB.Emulator.exe /AllowNetworkAccess /Key=&lt;key_string&gt;<br><br>或<br><br>CosmosDB.Emulator.exe /AllowNetworkAccess /KeyFile=&lt;file_name&gt;</td>
+  <td></td>
+</tr>
+<tr>
+  <td>NoFirewall</td>
+  <td>當 /AllowNetworkAccess 在使用中時請勿調整防火牆規則。</td>
+  <td>CosmosDB.Emulator.exe /NoFirewall</td>
+  <td></td>
+</tr>
+<tr>
+  <td>GenKeyFile</td>
+  <td>產生新的授權金鑰並儲存到指定的檔案。 產生的金鑰可以搭配 /Key 或 /KeyFile 選項使用。</td>
+  <td>CosmosDB.Emulator.exe  /GenKeyFile</td>
+  <td></td>
+</tr>
+<tr>
+  <td>一致性</td>
+  <td>設定帳戶的預設一致性層級。</td>
+  <td>CosmosDB.Emulator.exe /Consistency=&lt;consistency&gt;</td>
+  <td>&lt;一致性&gt;：值必須是下列[一致性層級](consistency-levels.md)其中之一：Session、Strong、Eventual 或 BoundedStaleness。  預設值為 Session。</td>
+</tr>
+<tr>
+  <td>?</td>
+  <td>顯示說明訊息。</td>
+  <td></td>
+  <td></td>
 </tr>
 </table>
 

@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/18/2017
 ms.author: jdial
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: d66489b43e983f313028a846d2b7da1534c86b53
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 1032c4e7d378016e36c92efa9478be72e9a557c4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="azure-virtual-network-frequently-asked-questions-faq"></a>Azure 虛擬網路的常見問題 (FAQ)
@@ -59,7 +58,7 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 它是專屬�
 * Azure CLI (適用於傳統與資源管理員 VNet)。
 
 ### <a name="what-address-ranges-can-i-use-in-my-vnets"></a>我可以在 VNet 中使用哪些位址範圍？
-您可以使用公用 IP 位址範圍，以及任何 [RFC 1918](http://tools.ietf.org/html/rfc1918)中定義的 IP 位址範圍。
+[RFC 1918](http://tools.ietf.org/html/rfc1918) 中定義的任何 IP 位址範圍。 例如：10.0.0.0/16。
 
 ### <a name="can-i-have-public-ip-addresses-in-my-vnets"></a>我可以在 VNet 擁有公用 IP 位址嗎？
 是。 如需有關公用 IP 位址範圍的詳細資訊，請參閱[虛擬網路中的公用 IP 位址空間](virtual-networks-public-ip-within-vnet.md)一文。 您無法直接從網際網路存取公用 IP 位址。

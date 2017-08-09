@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 07/06/2017
 ms.author: mimig
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: dd5ba797fe973dddc16231f42d5f561e1956b91c
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: e5f7697b1069186b9ab6b6594fa5efb069252475
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="_Toc395783175"></a>使用 Azure Cosmos DB 來建置 Node.js Web 應用程式
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/13/2017
 1. 返回終端機，透過 npm 安裝 **async** 模組。
    
         npm install async --save
-2. 透過 npm 安裝 **documentdb** 模組。 這是 DocumentDB 發揮所有強大功能的模組。
+2. 透過 npm 安裝 **documentdb** 模組。 這是 Azure Cosmos DB 發揮所有強大功能的模組。
    
         npm install documentdb --save
 3. 快速檢查應用程式的 **package.json** 檔案應該會顯示其他模組。 這個檔案會告訴 Azure 在執行您的應用程式時要下載及安裝的封裝。 它看起來應該類似下面的範例。
@@ -390,8 +390,8 @@ ms.lasthandoff: 07/13/2017
    
         var config = {}
    
-        config.host = process.env.HOST || "[the URI value from the DocumentDB Keys blade on http://portal.azure.com]";
-        config.authKey = process.env.AUTH_KEY || "[the PRIMARY KEY value from the DocumentDB Keys blade on http://portal.azure.com]";
+        config.host = process.env.HOST || "[the URI value from the Azure Cosmos DB Keys blade on http://portal.azure.com]";
+        config.authKey = process.env.AUTH_KEY || "[the PRIMARY KEY value from the Azure Cosmos DB Keys blade on http://portal.azure.com]";
         config.databaseId = "ToDoList";
         config.collectionId = "Items";
    
@@ -456,45 +456,46 @@ ms.lasthandoff: 07/13/2017
     儲存並關閉此 **layout.jade** 檔案。
 
 3. 現在，開啟 **index.jade** 檔案 (應用程式即將使用的檢視)，並將檔案中的內容取代為下列內容；
-
-    ```
-    extends layout
-    block content
-      h1 #{title}
-      br
-    
-      form(action="/completetask", method="post")
-        table.table.table-striped.table-bordered
-          tr
-            td Name
-            td Category
-            td Date
-            td Complete
-          if (typeof tasks === "undefined")
-            tr
-              td
-          else
-            each task in tasks
-              tr
-                td #{task.name}
-                td #{task.category}
-                - var date  = new Date(task.date);
-                - var day   = date.getDate();
-                - var month = date.getMonth() + 1;
-                - var year  = date.getFullYear();
-                td #{month + "/" + day + "/" + year}
-                td
-                  input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
-        button.btn(type="submit") Update tasks
-      hr
-      form.well(action="/addtask", method="post")
-        label Item Name:
-        input(name="name", type="textbox")
-        label Item Category:
-        input(name="category", type="textbox")
-        br
-        button.btn(type="submit") Add item
-    ```
+   
+        extends layout
+        block content
+           h1 #{title}
+           br
+        
+           form(action="/completetask", method="post")
+             table.table.table-striped.table-bordered
+               tr
+                 td Name
+                 td Category
+                 td Date
+                 td Complete
+               if (typeof tasks === "undefined")
+                 tr
+                   td
+               else
+                 each task in tasks
+                   tr
+                     td #{task.name}
+                     td #{task.category}
+                     - var date  = new Date(task.date);
+                     - var day   = date.getDate();
+                     - var month = date.getMonth() + 1;
+                     - var year  = date.getFullYear();
+                     td #{month + "/" + day + "/" + year}
+                     td
+                       input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
+             button.btn.btn-primary(type="submit") Update tasks
+           hr
+           form.well(action="/addtask", method="post")
+             .form-group
+               label(for="name") Item Name:
+               input.form-control(name="name", type="textbox")
+             .form-group
+               label(for="category") Item Category:
+               input.form-control(name="category", type="textbox")
+             br
+             button.btn(type="submit") Add item
+   
 
     這個程式碼會擴充配置，並為我們在前面的 **layout.jade** 檔案中看到的 **content** 預留位置提供內容。
    
@@ -505,27 +506,6 @@ ms.lasthandoff: 07/13/2017
     第二個表單包含兩個輸入欄位，以及可讓我們透過張貼到控制器的 **/addtask** 方法來建立項目的按鈕。
 
     這應該就是要讓應用程式開始運作所需的所有程式碼。
-4. 開啟 **public\stylesheets** 目錄中的 **style.css** 檔案，然後使用下列內容取代程式碼：
-   
-        body {
-          padding: 50px;
-          font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-        }
-        a {
-          color: #00B7FF;
-        }
-        .well label {
-          display: block;
-        }
-        .well input {
-          margin-bottom: 5px;
-        }
-        .btn {
-          margin-top: 5px;
-          border: outset 1px #C8C8C8;
-        }
-   
-    儲存並關閉此 **style.css** 檔案。
 
 ## <a name="_Toc395783181"></a>步驟 6：在本機執行您的應用程式
 1. 若要在本機電腦上測試應用程式，請在終端機中執行 `npm start` 以啟動應用程式，然後重新整理 [http://localhost:3000](http://localhost:3000) 瀏覽器頁面。 此頁面現在看起來應該類似以下影像：

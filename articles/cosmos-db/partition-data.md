@@ -15,12 +15,11 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: 5f501bdb0a3c478a436d729dfe045ad8e39bd3bb
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: e2d2847276e553d7511241ff323c3e00aad8e5c9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -184,7 +183,7 @@ g.E(['USA', 'I5'])
 來看看一些真實案例和每個案例良好的資料分割索引鍵︰
 * 如果您實作使用者設定檔後端，則使用者識別碼是不錯的資料分割索引鍵選擇。
 * 如果您在儲存 IoT 資料 (例如，裝置狀態)，則裝置識別碼是不錯的資料分割索引鍵選擇。
-* 如果您使用 DocumentDB 來記錄時間序列資料，則主機名稱或處理序識別碼很適合做為資料分割索引鍵。
+* 如果您使用 Azure Cosmos DB 來記錄時間序列資料，則主機名稱或處理序識別碼很適合作為資料分割索引鍵。
 * 如果您有多重租用戶架構，租用戶識別碼是不錯的資料分割索引鍵選擇。
 
 在一些使用案例 (例如 IoT 與使用者設定檔) 中，資料分割索引鍵可能與您的識別碼 (文件索引鍵) 相同。 在其他使用案例 (例如時間序列資料) 中，您的資料分割索引鍵可能與識別碼不同。

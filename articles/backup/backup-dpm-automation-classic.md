@@ -12,14 +12,13 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/14/2017
+ms.date: 08/02/2017
 ms.author: nkolli;trinadhk;anuragm;markgal
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: 5f86d2722b6ba94598c6c671b1154ee4e58e1c79
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 943a12dcba49a114d206b9dab968da332ea99926
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="deploy-and-manage-backup-to-azure-for-data-protection-manager-dpm-servers-using-powershell"></a>使用 PowerShell 部署和管理 Data Protection Manager (DPM) 伺服器的 Azure 備份
@@ -32,8 +31,8 @@ ms.lasthandoff: 07/06/2017
 本文說明如何使用 PowerShell 從備份保存庫備份和還原 DPM 資料。 Microsoft 建議讓大部分的新部署使用復原服務保存庫。 如果您是新的 Azure 備份使用者，請利用[使用 PowerShell 管理 Data Protection Manager 資料並部署到 Azure](backup-dpm-automation.md)一文，因此您將資料儲存在復原服務保存庫中。
 
 > [!IMPORTANT]
-> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。 **自 2017 年 11 月 1 日起**：
->- 任何其餘的備份保存庫都會自動升級至復原服務保存庫。
+> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。 在 2017 年 10 月 15 日之後，您就不能使用 PowerShell 建立備份保存庫。 **在 2017 年 11 月 1 日以前**：
+>- 所有其餘的備份保存庫都會自動升級至復原服務保存庫。
 >- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
 >
 

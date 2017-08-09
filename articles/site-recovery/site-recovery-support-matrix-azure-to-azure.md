@@ -15,11 +15,10 @@ ms.workload: storage-backup-recovery
 ms.date: 06/10/2017
 ms.author: sujayt
 ms.translationtype: HT
-ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
-ms.openlocfilehash: 89b12ce7af1e810f72e14f67ec5b11390ac3e72f
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: e8ff96587a840236adfb277b3a33b11db71f7d8e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/11/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="azure-site-recovery-support-matrix-for-replicating-from-azure-to-azure"></a>用於從 Azure 複寫至 Azure 的 Azure Site Recovery 支援矩陣
@@ -107,7 +106,7 @@ ms.lasthandoff: 07/11/2017
 -- | --
 美洲 | 加拿大東部、加拿大中部、美國中南部、美國中西部、美國東部、美國東部 2、美國西部、美國西部 2、美國中部、美國中北部
 歐洲 | 英國西部、英國南部、北歐、西歐
-亞洲 | 印度南部、印度中部、東南亞、東亞、日本東部、日本西部
+亞洲 | 印度南部、印度中部、東南亞、東亞、日本東部、日本西部、韓國中部、韓國南部
 澳大利亞   | 澳大利亞東部、澳大利亞東南部
 
 >[!NOTE]
@@ -149,7 +148,7 @@ Azure 磁碟加密 (ADE) | 不支援 |
 LRS | 支援 |
 GRS | 支援 |
 RA-GRS | 支援 |
-ZRS | 支援 |  
+ZRS | 不支援 |  
 非經常性和經常性儲存體 | 不支援 | 非經常性和經常性儲存體不支援虛擬機器磁碟
 
 >[!IMPORTANT]

@@ -13,19 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/05/2017
+ms.date: 08/01/2017
 ms.author: cherylmc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
-ms.openlocfilehash: ba380d88704d33353518c55fdc91493e804c0746
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 01ef2f0309848be5a891749178196e60fff2930e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
-# <a name="working-with-virtual-network-gateway-skus-old-skus"></a>使用虛擬網路閘道 SKU (舊式 SKU)
+# <a name="working-with-virtual-network-gateway-skus-legacy-skus"></a>使用虛擬網路閘道 SKU (舊版 SKU)
 
-本文包含舊式虛擬網路閘道 SKU 的相關資訊。 如需最新 SKU 的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
+此文章包含舊版虛擬網路閘道 SKU 的相關資訊。 舊版 SKU 仍然可以在針對 VPN 閘道建立的兩個部署模型中運作。 傳統 VPN 閘道仍繼續針對現有閘道以及新閘道使用舊版 SKU。 在建立新的資源管理員 VPN 閘道時，請使用新的閘道 SKU。 如需最新 SKU 的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
 
 ## <a name="gateway-skus"></a>閘道 SKU
 
@@ -39,10 +38,31 @@ ms.lasthandoff: 06/07/2017
 
 [!INCLUDE [Table requirements for old SKUs](../../includes/vpn-gateway-table-requirements-legacy-sku-include.md)]
 
-## <a name="migrating-to-the-new-gateway-skus"></a>移轉到新式閘道 SKU
+## <a name="resize"></a>調整閘道的大小 (變更閘道 SKU)
+
+您可以調整相同 SKU 系列內的閘道 SKU 大小。 例如，如果您有標準 SKU，則可以調整為高效能 SKU。 您無法調整舊 SKU 與新 SKU 系列之間的 VPN 閘道大小。 例如，您不能從標準 SKU 變成 VpnGw2 SKU。 
+
+若要調整傳統部署模型的閘道 SKU 大小，請使用下列命令：
+
+```powershell
+Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
+```
+
+若要調整資源管理員部署模型的閘道 SKU 大小，請使用下列命令：
+
+```powershell
+$gw = Get-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg
+Resize-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -GatewaySku HighPerformance
+```
+
+## <a name="migrate"></a>移轉到新的閘道 SKU
+
+如果您使用的是資源管理員部署模型，則可以移轉到新的閘道 SKU。 如果您使用的是傳統部署模型，則無法移轉到新的 SKU，而必須改為繼續使用舊版 SKU。
 
 [!INCLUDE [Migrate SKU](../../includes/vpn-gateway-migrate-legacy-sku-include.md)]
 
+## <a name="next-steps"></a>後續步驟
+
 如需新式閘道 SKU 的相關資訊，請參閱[閘道 SKU](vpn-gateway-about-vpngateways.md#gwsku)。
 
-
+如需組態設定的詳細資訊，請參閱[關於 VPN 閘道組態設定](vpn-gateway-about-vpn-gateway-settings.md)。

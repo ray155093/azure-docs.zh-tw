@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: robinsh
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
-ms.openlocfilehash: 292a93bd1d355b8a39c59d220352ad465df46629
+ms.translationtype: HT
+ms.sourcegitcommit: a678700884b612cad6281eb8f3b74ce63a0ebb69
+ms.openlocfilehash: 88a356e61c32f529d511aa1c9c68bdfa47acadb5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 
@@ -48,12 +47,11 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 您可以使用 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 將受控磁碟的特定權限指派給一個或多個使用者。 受控磁碟公開各種不同的作業，包括讀取、寫入 (建立/更新)、刪除和擷取磁碟的[共用存取簽章 (SAS) URI](storage-dotnet-shared-access-signature-part-1.md)。 您可以授權某人只能存取他份內工作所需的作業。 例如，如果您不想讓某人將受控磁碟複製到儲存體帳戶，您可以選擇不要授權存取該受控磁碟的匯出動作。 同樣地，如果您不想讓某人使用 SAS URI 來複製受控磁碟，您可以選擇不要授與有關受控磁碟的這種權限。
 
 ### <a name="azure-backup-service-support"></a>Azure 備份服務支援
-搭配受控磁碟使用 Azure 備份服務，以建立具有以時間為基礎的備份、簡易 VM 還原，以及備份保留原則的備份作業。 受控磁碟僅支援本地備援儲存體 (LRS) 做為複寫選項，這表示它在單一區域內會保留三份資料。 針對區域性災害復原，您必須使用 [Azure 備份服務](../backup/backup-introduction-to-azure-backup.md)來備份位於不同區域的 VM 磁碟，並以 GRS 儲存體帳戶作為備份保存庫。 如需深入了解，請參閱[針對具有受控磁碟的 VM 使用 Azure 備份服務](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。
+搭配受控磁碟使用 Azure 備份服務，以建立具有以時間為基礎的備份、簡易 VM 還原，以及備份保留原則的備份作業。 受控磁碟僅支援本地備援儲存體 (LRS) 做為複寫選項，這表示它在單一區域內會保留三份資料。 針對區域性災害復原，您必須使用 [Azure 備份服務](../backup/backup-introduction-to-azure-backup.md)來備份位於不同區域的 VM 磁碟，並以 GRS 儲存體帳戶作為備份保存庫。 Azure 備份目前支援用於備份的資料磁碟大小最大為 1TB。 如需深入了解，請參閱[針對具有受控磁碟的 VM 使用 Azure 備份服務](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。
 
 ## <a name="pricing-and-billing"></a>價格和計費
 
 使用受控磁碟時，需考量下列計費資訊：
-
 * 儲存體類型
 
 * 磁碟大小
@@ -89,7 +87,12 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 **輸出資料傳輸**： [輸出資料傳輸](https://azure.microsoft.com/pricing/details/data-transfers/) (Azure 資料中心送出的資料) 會產生頻寬使用量費用。
 
-**受控磁碟快照集 (完整磁碟複製)**：受管理的快照集是受控磁碟的唯讀複本，儲存為標準受控磁碟。 快照集可讓您在任何時間點備份受控磁碟。 這些快照集可在來源磁碟外獨立存在，還能用來建立新的受控磁碟。 受管理快照集的成本與標準受控磁碟相同。 例如，如果您建立 128 GB 進階受控磁碟的快照集，受管理快照集的成本就等於 128 GB 標準受控磁碟的成本。
+如需受控磁碟價格的詳細資訊，請參閱[受控磁碟價格](https://azure.microsoft.com/pricing/details/managed-disks)。
+
+
+## <a name="managed-disk-snapshots"></a>受控磁碟快照集
+
+受控快照集是受控磁碟的完整唯讀複本，預設會儲存為標準受控磁碟。 快照集可讓您在任何時間點備份受控磁碟。 這些快照集可在來源磁碟外獨立存在，還能用來建立新的受控磁碟。 它們是根據使用的大小來計費。 例如，如果建立佈建容量為 64 GB 的受控磁碟快照集，而實際使用資料大小為 10 GB，則只會對已使用的 10 GB 資料大小收取快照集費用。  
 
 受控磁碟目前不支援[增量快照集](storage-incremental-snapshots.md)，但未來會支援。
 
@@ -98,8 +101,6 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 * [在 Windows 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/windows/snapshot-copy-managed-disk.md)
 * [在 Linux 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/linux/snapshot-copy-managed-disk.md)
 
-
-如需受控磁碟價格的詳細資訊，請參閱[受控磁碟價格](https://azure.microsoft.com/pricing/details/managed-disks)。
 
 ## <a name="images"></a>映像
 

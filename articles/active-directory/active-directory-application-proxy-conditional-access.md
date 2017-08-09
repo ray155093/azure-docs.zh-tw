@@ -5,24 +5,28 @@ services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: 
 ms.assetid: 2e97722b-eb4e-4078-b607-9fed210d8a0f
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/23/2017
+ms.date: 07/23/2017
 ms.author: kgremban
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: c16e07925389cc17ff156cae767366223fefa18f
+ms.reviewer: harshja
+ms.custom: it-pro; oldportal
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 463946256f9e335fa6d98fc904835e5c3dc2725e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="working-with-conditional-access-in-azure-ad-application-proxy"></a>使用 Azure AD 應用程式 Proxy 中的條件式存取
+
+>[!NOTE]
+>本文適用於 Azure 傳統入口網站 (即將淘汰)。 建議您使用 [Azure 入口網站](https://portal.azure.com)。 在 Azure 入口網站中，應用程式 Proxy 應用程式具有與任何其他 SaaS 應用程式相同的條件式式存取功能。 若要深入了解條件式存取，請參閱[開始使用 Azure Active Directory 中的條件式存取](active-directory-conditional-access-azure-portal-get-started.md)。
+
 對於使用應用程式 Proxy 發佈的應用程式，您可以設定存取規則，以授與對這些應用程式的條件式存取。 這可讓您：
 
 * 要求各應用程式的多重要素驗證

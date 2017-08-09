@@ -15,15 +15,14 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: ab8d7fefb64b1358bb1b9667d280cb53fc2f636c
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: c6880b79189e0683387a7aafbd6fa4805b3b42ef
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
-# <a name="reporting-apis-for-enterprise-customers---billing-periods-preview"></a>適用於企業客戶的報告 API - 計費週期 (預覽)
+# <a name="reporting-apis-for-enterprise-customers---billing-periods"></a>適用於企業客戶的報告 API - 計費週期
 
 計費週期 API 會傳回計費週期清單，其中包含所指定註冊的使用情況資料 (以反向時間順序排列)。 每個週期包含指向四組資料 (BalanceSummary、UsageDetails、MarketplaceCharges 和 PriceSheet) 之 API 路由的屬性。 如果該週期沒有資料，則對應的屬性為 Null。 
 
@@ -33,25 +32,28 @@ ms.lasthandoff: 05/03/2017
 
 |方法 | 要求 URI|
 |-|-|
-|GET| https://consumption.azure.com/v1/enrollments/{enrollmentNumber}/billingperiods|
+|GET| https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingperiods|
 
+> [!Note]
+> 若要使用 API 的預覽版本，請將上述 URL 中的 v2 取代為 v1。
+>
 
 ## <a name="response"></a>Response
  
     
     
-        [
+      [
             {
-                  "billingPeriodId": "201704",
-                  "billingStart": "2017-04-01T00:00:00Z",
-                  "billingEnd": "2017-04-30T11:59:59Z",
+                "billingPeriodId": "201704",
+                "billingStart": "2017-04-01T00:00:00Z",
+                "billingEnd": "2017-04-30T11:59:59Z",
                 "balanceSummary": "/v1/enrollments/100/billingperiods/201704/balancesummary",
-                  "usageDetails": "/v1/enrollments/100/billingperiods/201704/usagedetails",
-                  "marketplaceCharges": "/v1/enrollments/100/billingperiods/201704/marketplacecharges",
-                  "priceSheet": "/v1/enrollments/100/billingperiods/201704/pricesheet"
-            },            
+                "usageDetails": "/v1/enrollments/100/billingperiods/201704/usagedetails",
+                "marketplaceCharges": "/v1/enrollments/100/billingperiods/201704/marketplacecharges",
+                "priceSheet": "/v1/enrollments/100/billingperiods/201704/pricesheet"
+            },          
             ....
-        ]
+      ]
     
 
 **回應屬性定義**
@@ -68,6 +70,7 @@ ms.lasthandoff: 05/03/2017
 
 <br/>
 ## <a name="see-also"></a>另請參閱
+
 * [餘額與摘要 API](billing-enterprise-api-balance-summary.md)
 
 * [使用量詳細資料 API](billing-enterprise-api-usage-detail.md) 

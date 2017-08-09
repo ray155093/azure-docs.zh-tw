@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 06/05/2017
+ms.date: 07/04/2017
 ms.author: rajanaki
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: 6664cb20393ec5f588c8eeb119d6f606a0072861
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: a2ccc3d43a56a569897e1efe24f576eb92610ec3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
 # <a name="azure-site-recovery-support-matrix-for-replicating-from-on-premises-to-azure"></a>用於從內部部署複寫至 Azure 的 Azure Site Recovery 支援矩陣
@@ -43,7 +42,7 @@ ms.lasthandoff: 06/15/2017
 
 **部署** | **支援**
 --- | ---
-**VMware VM/實體伺服器** | vSphere 6.0、5.5 或 5.1 (含最新更新)
+**VMware VM/實體伺服器** | vCenter 6.5、6.0 或 5.5
 **Hyper-V (有 Virtual Machine Manager)** | System Center Virtual Machine Manager 2016 和 System Center Virtual Machine Manager 2012 R2
 
   >[!Note]
@@ -53,7 +52,7 @@ ms.lasthandoff: 06/15/2017
 
 **部署** | **支援**
 --- | ---
-**VMware VM/實體伺服器** | vCenter 5.5 或 6.0 (僅支援 5.5 功能)
+**VMware VM/實體伺服器** | vSphere 6.5、6.0、5.5
 **Hyper-V (含/不含 Virtual Machine Manager)** | 具有最新更新的 Windows Server 2016、Windows Server 2012 R2。<br></br>Windows Server 2016 主機應由 SCVMM 2016 所管理 (若使用 SCVMM)。
 
 
@@ -67,7 +66,7 @@ ms.lasthandoff: 06/15/2017
 
  **VMware/實體伺服器** | **Hyper-V (含/不含 VMM)** |
 --- | --- |
-64 位元的 Windows Server 2012 R2、Windows Server 2012、Windows Server 2008 R2 (至少含 SP1)<br/><br/> Red Hat Enterprise Linux 6.7、6.8、7.1、7.2 <br/><br/>CentOS 6.5、6.6、6.7、6.8、7.0、7.1、7.2 <br/><br/>Ubuntu 14.04 LTS 伺服器 [(支援的核心版本)](#supported-ubuntu-kernel-versions-for-vmwarephysical-servers)<br/><br/>Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 <br/><br/> SUSE Linux Enterprise Server 11 SP4 <br/>(不支援 SLES 11 SP3 至 SLES 11 SP4 的複寫電腦升級。 若已將複寫電腦從 SLES 11SP3 升級至 SLES 11 SP4，則您必須停用複寫以在升級後重新提供電腦防護。） | 任何 [Hyper-V 支援的](https://technet.microsoft.com/library/cc794868.aspx)的客體 OS
+64 位元的 Windows Server 2012 R2、Windows Server 2012、Windows Server 2008 R2 (至少含 SP1)<br/>*Windows Server 2016* - VMware 虛擬機器和實體伺服器目前不支援。 <br/><br/> Red Hat Enterprise Linux ：5.2 至 5.11、6.1 至 6.8、7.0 至 7.3 <br/><br/>Cent OS：5.2 至 5.11、6.1 至 6.8、7.0 至 7.3 <br/><br/>Ubuntu 14.04 LTS 伺服器 [(支援的核心版本)](#supported-ubuntu-kernel-versions-for-vmwarephysical-servers)<br/><br/>Ubuntu 16.04 LTS 伺服器 [(支援的核心版本)](#supported-ubuntu-kernel-versions-for-vmwarephysical-servers)<br/><br/>Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 <br/><br/> SUSE Linux Enterprise Server 11 SP4 <br/>(不支援 SLES 11 SP3 至 SLES 11 SP4 的複寫電腦升級。 若已將複寫電腦從 SLES 11SP3 升級至 SLES 11 SP4，則您必須停用複寫以在升級後重新提供電腦防護。） | 任何 [Hyper-V 支援的](https://technet.microsoft.com/library/cc794868.aspx)的客體 OS
 
 
 >[!IMPORTANT]
@@ -82,19 +81,24 @@ ms.lasthandoff: 06/15/2017
 **版本** | **行動服務版本** | **核心版本** |
 --- | --- | --- |
 14.04 LTS | 9.9 | 3.13.0-24-generic 至 3.13.0-117-generic、<br/>3.16.0-25-generic 至 3.16.0-77-generic、<br/>3.19.0-18-generic 至 3.19.0-80-generic、<br/>4.2.0-18-generic 至 4.2.0-42-generic、<br/>4.4.0-21-generic 至 4.4.0-75-generic |
+14.04 LTS | 9.10 | 3.13.0-24-generic 至 3.13.0-121-generic、<br/>3.16.0-25-generic 至 3.16.0-77-generic、<br/>3.19.0-18-generic 至 3.19.0-80-generic、<br/>4.2.0-18-generic 至 4.2.0-42-generic、<br/>4.4.0-21-generic 至 4.4.0-81-generic |
+16.04 LTS | 9.10 | 4.4.0-21-generic 至 4.4.0-81-generic、<br/>4.8.0-34-generic 至 4.8.0-56-generic、<br/>4.10.0-14-generic 至 4.10.0-24-generic |
+
 
 ## <a name="supported-file-systems-and-guest-storage-configurations-on-linux-vmwarephysical-servers"></a>Linux 上的支援檔案系統與客體儲存體組態 (VMware/實體伺服器)
 
 執行 VMware 或實體伺服器的 Linux 伺服器，支援下列檔案系統與儲存體組態：
-* 檔案系統：ext3、ext4、ReiserFS (僅 Suse Linux Enterprise Server)、XFS (最高僅至 v4)
+* 檔案系統：ext3、ext4、ReiserFS (僅 Suse Linux Enterprise Server)、XFS
 * 磁碟區管理員：LVM2
 * 多重路徑軟體：裝置對應程式
 
-不支援使用 HP CCISS 儲存體控制器的實體伺服器。
+不支援並行虛擬存放裝置 (由並行虛擬驅動程式匯出的裝置)。<br/>
+不支援多佇列區塊 IO 裝置。<br/>
+不支援使用 HP CCISS 儲存體控制器的實體伺服器。<br/>
 
 >[!Note]
 > 在 Linux 伺服器上，下列目錄必須一律位於來源伺服器的同個磁碟 (OS 磁碟) (若設為獨立資料分割/檔案系統)：/ (root)、/boot、/usr、/usr/local、/var、/ 等等<br/><br/>
-> 諸如中繼資料總和檢查碼等 XFS v5 功能，目前不受 XFS 檔案系統的 ASR 所支援。 請確定 XFS 檔案系統未使用任何 v5 功能。 您可使用 xfs_info 公用程式來檢查資料分割的 XFS 超級區塊。 若 ftype 設為 1，則會使用 XFSv5 功能。
+> 從「行動服務」9.10 版開始，支援 XFS 檔案系統上的 XFSv5 功能 (例如中繼資料總和檢查碼)。 如果您使用 XFSv5 功能，請確定正在執行行動服務 9.10 版或更新版本。 您可使用 xfs_info 公用程式來檢查資料分割的 XFS 超級區塊。 若 ftype 設為 1，則會使用 XFSv5 功能。
 >
 
 
@@ -105,7 +109,7 @@ ms.lasthandoff: 06/15/2017
 
 **組態** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
 --- | --- | ---
-NIC Teaming | 是<br/><br/>在實體機器中不支援| 是
+NIC Teaming | 是<br/><br/>複寫實體機器時不支援| 是
 VLAN | 是 | 是
 IPv4 | 是 | 是
 IPv6 | 否 | 否
@@ -118,7 +122,7 @@ NIC Teaming | 否 | 否
 IPv4 | 是 | 是
 IPv6 | 否 | 否
 靜態 IP (Windows) | 是 | 是
-靜態 IP (Linux) | 否 | 否
+靜態 IP (Linux) | 是 <br/><br/>虛擬機器設定為在容錯回復時使用 DHCP  | 否
 多個 NIC | 是 | 是
 
 ### <a name="failed-over-azure-vm-network-configuration"></a>容錯移轉的 Azure VM 網路組態
@@ -155,12 +159,13 @@ VMDK | 是 | N/A
 VHD/VHDX | N/A | 是
 第 2 代 VM | N/A | 是
 EFI/UEFI| 否 | 是
-共用叢集磁碟 | VMware 為是<br/><br/> 實體伺服器為 N/A | 否
+共用叢集磁碟 | 否 | 否
 已加密磁碟 | 否 | 否
 NFS | 否 | N/A
 SMB 3.0 | 否 | 否
 RDM | 是<br/><br/> 實體伺服器為 N/A | N/A
-磁碟 > 1 TB | 否 | 否
+磁碟 > 1 TB | 是<br/><br/>最大 4095 GB | 是<br/><br/>最大 4095 GB
+具有 4K 磁區大小的磁碟 | 是 | 是，支援第 1 代 VM<br/><br/>不支援第 2 代 VM。
 使用等量磁碟的磁碟區 > 1 TB<br/><br/> LVM 邏輯磁碟區管理 | 是 | 是
 儲存空間 | 否 | 是
 熱新增/移除磁碟 | 否 | 否
@@ -182,9 +187,10 @@ RA-GRS | 是 | 是
 ## <a name="support-for-azure-compute-configuration"></a>支援 Azure 計算設定
 
 **計算功能** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
---- | --- | --- | ---
+--- | --- | --- 
 可用性設定組 | 是 | 是
 中樞 | 是 | 是  
+受控磁碟 | 是 | 是<br/><br/>目前不支援從具有受控磁碟的 Azure VM 容錯回復至內部部署。
 
 ## <a name="failed-over-azure-vm-requirements"></a>容錯移轉的 Azure VM 需求
 
@@ -192,12 +198,12 @@ RA-GRS | 是 | 是
 
 **實體** | **需求** | **詳細資料**
 --- | --- | ---
-**客體作業系統** | 從 Hyper-V 複寫到 Azure：Site Recovery 支援 [Azure 支援](https://technet.microsoft.com/library/cc794868%28v=ws.10%29.aspx)的所有作業系統。 <br/><br/> 針對 VMware 和實體伺服器複寫：請檢查 Windows 和 Linux [必要條件](site-recovery-vmware-to-azure-classic.md#before-you-start-deployment) | 如果不支援，則先決條件檢查會失敗。
+**客體作業系統** | 從 Hyper-V 複寫到 Azure：Site Recovery 支援 [Azure 支援](https://technet.microsoft.com/library/cc794868%28v=ws.10%29.aspx)的所有作業系統。 <br/><br/> 針對 VMware 和實體伺服器複寫：請檢查 Windows 和 Linux [必要條件](site-recovery-vmware-to-azure-classic.md) | 如果不支援，則先決條件檢查會失敗。
 **客體作業系統架構** | 64 位元 | 如果不支援，則先決條件檢查會失敗
-**作業系統磁碟大小** | 最多 1023 GB | 如果不支援，則先決條件檢查會失敗
+**作業系統磁碟大小** | 如果您要將 **VMware VM 或實體伺服器複寫至 Azure**，則最多 2048 GB。<br/><br/>對於 **Hyper-V 第 1 代** VM，最多 2048 GB。<br/><br/>對於 **Hyper-V 第 2 代 VM**，最多 300 GB。  | 如果不支援，則先決條件檢查會失敗
 **作業系統磁碟計數** | 1 | 如果不支援，則先決條件檢查會失敗。
 **資料磁碟計數** | 如果您要複寫 **VMware VM 至 Azure**，則為 64 或低於 64；如果您要複寫 **Hyper-V VM 至 Azure**，則為 16 或低於 16 | 如果不支援，則先決條件檢查會失敗
-**資料磁碟 VHD 大小** | 最多 1023 GB | 如果不支援，則先決條件檢查會失敗
+**資料磁碟 VHD 大小** | 最多 4095 GB | 如果不支援，則先決條件檢查會失敗
 **網路介面卡** | 支援多個介面卡 |
 **共用 VHD** | 不支援 | 如果不支援，則先決條件檢查會失敗
 **FC 磁碟** | 不支援 | 如果不支援，則先決條件檢查會失敗

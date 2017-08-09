@@ -15,12 +15,11 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: e62b9742875512e70e5369978c1c90bdc9c6c1cb
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 3fbb2f0629e510dfa9dac8e363eafb8e668e81d4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="partitioning-in-azure-cosmos-db-using-the-documentdb-api"></a>使用 DocumentDB API 在 Azure Cosmos DB 進行資料分割
@@ -77,7 +76,7 @@ ms.lasthandoff: 06/20/2017
 
 讓我們看看資料分割索引鍵選擇對於應用程式效能的影響。
 
-## <a name="working-with-the-documentdb-sdks"></a>使用 DocumentDB SDK
+## <a name="working-with-the-azure-cosmos-db-sdks"></a>使用 Azure Cosmos DB SDK
 Azure Cosmos DB 已透過 [REST API 版本 2015-12-16](/rest/api/documentdb/) 新增對自動資料分割的支援。 若要建立資料分割的容器，必須下載其中一個支援的 SDK 平台 (.NET、Node.js、Java、Python、MongoDB) 中的 SDK 1.6.0 版或更新版本。 
 
 ### <a name="creating-containers"></a>建立容器
@@ -207,7 +206,7 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
 * 藉由設定 `MaxDegreeOfParallelism`，您可以控制平行處理原則的程度，亦即同時連往容器資料分割的網路連線數上限。 如果您將此設定為 -1，平行處理原則的程度是由 SDK 管理。 如果 `MaxDegreeOfParallelism` 未指定或設為 0 (這是預設值)，將會有連往容器資料分割的單一網路連線。
 * 您可藉由設定 `MaxBufferedItemCount`，來權衡取捨查詢延遲和用戶端記憶體使用量。 如果您省略這個參數或將此設定為 -1，平行查詢執行期間緩衝處理的項目數是由 SDK 管理。
 
-在相同的集合狀態下，平行查詢會以和序列執行相同的順序傳回結果。 執行包含排序 (ORDER BY 和/或 TOP) 的跨資料分割查詢時，DocumentDB SDK 會跨資料分割發出平行查詢，並合併用戶端中已部分排序的結果來產生全域排序的結果。
+在相同的集合狀態下，平行查詢會以和序列執行相同的順序傳回結果。 執行包含排序 (ORDER BY 和/或 TOP) 的跨資料分割查詢時，Azure Cosmos DB SDK 會跨資料分割發出平行查詢，並合併用戶端中已部分排序的結果來產生全域排序的結果。
 
 ### <a name="executing-stored-procedures"></a>執行預存程序
 您也可以對具有相同裝置識別碼的文件執行不可部分完成交易，例如，如果您正在維護彙總或處於單一項目中裝置的最新狀態。 
@@ -222,9 +221,9 @@ await client.ExecuteStoredProcedureAsync<DeviceReading>(
 在下一節中，我們會探討如何從單一資料分割容器改為資料分割的容器。
 
 ## <a name="next-steps"></a>後續步驟
-在本文中，我們提供如何透過 DocumentDB API 使用 Cosmos DB 容器資料分割的概觀。 如需使用任一 Azure Cosmos DB API 進行資料分割之概念和最佳做法的概觀，另請參閱[資料分割與水平調整](../cosmos-db/partition-data.md)。 
+在本文中，我們提供如何透過 DocumentDB API 使用 Azure Cosmos DB 容器資料分割的概觀。 如需使用任一 Azure Cosmos DB API 進行資料分割之概念和最佳做法的概觀，另請參閱[資料分割與水平調整](../cosmos-db/partition-data.md)。 
 
-* 使用 Cosmos DB 執行規模和效能測試。 如需範例，請參閱 [Azure Cosmos DB 的效能和規模測試](performance-testing.md)。
+* 使用 Azure Cosmos DB 執行規模和效能測試。 如需範例，請參閱 [Azure Cosmos DB 的效能和規模測試](performance-testing.md)。
 * 使用 [SDK](documentdb-sdk-dotnet.md) 或 [REST API](/rest/api/documentdb/) 開始撰寫程式碼
 * 了解 [Azure Cosmos DB 中佈建的輸送量](request-units.md)
 

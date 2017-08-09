@@ -1,6 +1,6 @@
 ---
-title: "Azure DocumentDB .NET Core API、SDK 和資源 | Microsoft Docs"
-description: "全面了解 .NET Core API 和 SDK，包括發行日期、停用日期及 DocumentDB .NET Core SDK 每個版本之間的變更。"
+title: "Azure Cosmos DB .NET Core API、SDK 和資源 | Microsoft Docs"
+description: "全面了解 .NET Core API 和 SDK，包括發行日期、停用日期及 Azure Cosmos DB .NET Core SDK 每個版本之間的變更。"
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -16,13 +16,13 @@ ms.date: 06/12/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 4e842bf237bf51b020218d1f612af55939b2deb9
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 28eb505bf58943f7a687b79af3427a0ee74fe9bb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/25/2017
 
 ---
-# <a name="documentdb-net-core-sdk-release-notes-and-resources"></a>DocumentDB .NET Core SDK︰版本資訊與資源
+# <a name="azure-cosmos-db-net-core-sdk-release-notes-and-resources"></a>Azure Cosmos DB .NET Core SDK︰版本資訊與資源
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-sdk-dotnet.md)
 > * [.NET 變更摘要](documentdb-sdk-dotnet-changefeed.md)
@@ -44,19 +44,19 @@ ms.lasthandoff: 07/13/2017
 
 <tr><td>**範例**</td><td>[.NET 程式碼範例](documentdb-dotnet-samples.md)</td></tr>
 
-<tr><td>**開始使用**</td><td>[開始使用 DocumentDB .NET Core SDK](documentdb-dotnetcore-get-started.md)</td></tr>
+<tr><td>**開始使用**</td><td>[開始使用 Azure Cosmos DB .NET Core SDK 教學課程](documentdb-dotnetcore-get-started.md)</td></tr>
 
-<tr><td>**Web 應用程式教學課程**</td><td>[使用 DocumentDB 開發 Web 應用程式](documentdb-dotnet-application.md)</td></tr>
+<tr><td>**Web 應用程式教學課程**</td><td>[使用 Azure Cosmos DB 進行 Web 應用程式開發](documentdb-dotnet-application.md)</td></tr>
 
 <tr><td>**目前支援的架構**</td><td>[.NET Standard 1.6 和 .NET Standard 1.5](https://www.nuget.org/packages/NETStandard.Library)</td></tr>
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
 
-DocumentDB .NET Core SDK 有與最新版 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 類似的功能。
+Azure Cosmos DB .NET Core SDK 有與最新版 [Azure Cosmos DB .NET SDK](documentdb-sdk-dotnet.md) 類似的功能。
 
 > [!NOTE] 
-> DocumentDB .NET Core SDK 與「通用 Windows 平台」(UWP) 應用程式尚未相容。 如果您有興趣了解可支援 UWP 應用程式的 .NET Core SDK，請傳送電子郵件至 [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)。
+> Azure Cosmos DB .NET Core SDK 與「通用 Windows 平台」(UWP) 應用程式尚未相容。 如果您有興趣了解可支援 UWP 應用程式的 .NET Core SDK，請傳送電子郵件至 [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)。
 
 ### <a name="a-name132132"></a><a name="1.3.2"/>1.3.2
 
@@ -64,7 +64,7 @@ DocumentDB .NET Core SDK 有與最新版 [DocumentDB .NET SDK](documentdb-sdk-do
 
 ### <a name="a-name131131"></a><a name="1.3.1"/>1.3.1
 
-*   已修正當執行 DocumentDB 查詢時，受影響的 x64 機器不支援 SSE4 指令並且擲回 SEHException 的問題。
+*   已修正當執行 Azure Cosmos DB 查詢時，受影響的 x64 機器不支援 SSE4 指令並且擲回 SEHException 的問題。
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
 
@@ -107,13 +107,13 @@ DocumentDB .NET Core SDK 有與最新版 [DocumentDB .NET SDK](documentdb-sdk-do
 
 ### <a name="a-name100100"></a><a name="1.0.0"/>1.0.0
 
-DocumentDB .NET Core SDK 可讓您建置快速、跨平台的 [ASP.NET Core](https://www.asp.net/core) 和 [.NET Core](https://www.microsoft.com/net/core#windows) 應用程式，以在 Windows、Mac 和 Linux 上執行。 最新版 DocumentDB .NET Core SDK 與 [Xamarin](https://www.xamarin.com) 完全相容，可用來建置以 iOS、Android 及 Mono (Linux) 為目標的應用程式。  
+Azure Cosmos DB .NET Core SDK 可讓您建置快速、跨平台的 [ASP.NET Core](https://www.asp.net/core) 和 [.NET Core](https://www.microsoft.com/net/core#windows) 應用程式，以在 Windows、Mac 和 Linux 上執行。 最新版 Azure Cosmos DB .NET Core SDK 與 [Xamarin](https://www.xamarin.com) 完全相容，可用來建置以 iOS、Android 及 Mono (Linux) 為目標的應用程式。  
 
 ### <a name="a-name010-preview010-preview"></a><a name="0.1.0-preview"/>0.1.0-preview
 
-DocumentDB .NET Core Preview SDK 可讓您建置快速、跨平台的 [ASP.NET Core](https://www.asp.net/core) 和 [.NET Core](https://www.microsoft.com/net/core#windows) 應用程式，在 Windows、Mac 和 Linux 上執行。
+Azure Cosmos DB .NET Core Preview SDK 可讓您建置快速、跨平台的 [ASP.NET Core](https://www.asp.net/core) 和 [.NET Core](https://www.microsoft.com/net/core#windows) 應用程式，以在 Windows、Mac 和 Linux 上執行。
 
-DocumentDB .NET Core Preview SDK 有與最新版本 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 的功能類似的功能，並且支援下列項目︰
+Azure Cosmos DB .NET Core Preview SDK 有與最新版本 [Azure Cosmos DB .NET SDK](documentdb-sdk-dotnet.md) 的功能類似的功能，並且支援下列項目︰
 * 所有[連接模式](performance-tips.md#networking)︰閘道器模式、直接 TCP 和 Direct HTTPs。 
 * 所有[一致性層級](consistency-levels.md)︰強式、工作階段、限定過期和最終。
 * [資料分割的集合](partition-data.md)。 

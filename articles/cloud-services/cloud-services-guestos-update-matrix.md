@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 7/7/2017
+ms.date: 7/26/2017
 ms.author: raiye
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: d22ecfd1c439f1af63f07ef472ceedb029f9d6a6
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: cd61a785c415e945a33b0727004338e01c67f3ec
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="azure-guest-os-releases-and-sdk-compatibility-matrix"></a>Azure 客體 OS 版次與 SDK 相容性矩陣
@@ -38,6 +38,9 @@ ms.lasthandoff: 07/12/2017
 不確定客體 OS 為何或客體 OS 版次如何工作？ 請閱讀 [本節內容](#how-it-works) 。
 
 ## <a name="news-updates"></a>新聞更新
+###### <a name="july-19-2017"></a>**2017 年 7 月 19 日**
+7 月客體 OS 的首度發行期間從 7 月 19 日開始，預訂的正式發行日為 8 月 8 日。
+
 ###### <a name="july-7-2017"></a>**2017 年 7 月 7 日**
 6 月客體 OS 已發行。
 
@@ -107,8 +110,6 @@ ms.lasthandoff: 07/12/2017
 |~~WA-GUEST-OS-4.36_201609-01~~ |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
 |~~WA-GUEST-OS-4.35_201608-01~~ |2016 年 9 月 13 日 |2016 年 12 月 16 日 |TBD |
 |~~WA-GUEST-OS-4.34_201607-01~~ |2016 年 8 月 8 日 |2016 年 11 月 13 日 |TBD |
-|~~WA-GUEST-OS-4.33_201606-01~~ |2016 年 7 月 13 日 |2016 年 10 月 13 日 |TBD |
-
 
 
 ## <a name="family-3-releases"></a>系列 3 版次
@@ -133,8 +134,6 @@ ms.lasthandoff: 07/12/2017
 |~~WA-GUEST-OS-3.43_201609-01~~ |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
 |~~WA-GUEST-OS-3.42_201608-01~~ |2016 年 9 月 13 日 |2016 年 12 月 16 日 |TBD |
 |~~WA-GUEST-OS-3.41_201607-01~~ |2016 年 8 月 8 日 |2016 年 11 月 13 日 |TBD |
-|~~WA-GUEST-OS-3.40_201606-01~~ |2016 年 7 月 13 日 |2016 年 10 月 13 日 |TBD |
-
 
 
 ## <a name="family-2-releases"></a>系列 2 版次
@@ -160,7 +159,6 @@ ms.lasthandoff: 07/12/2017
 |~~WA-GUEST-OS-2.55_201609-01~~ |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
 |~~WA-GUEST-OS-2.54_201608-01~~ |2016 年 9 月 13 日 |2016 年 12 月 16 日 |TBD |
 |~~WA-GUEST-OS-2.53_201607-01~~ |2016 年 8 月 8 日 |2016 年 11 月 13 日 |TBD |
-|~~WA-GUEST-OS-2.52_201606-01~~ |2016 年 7 月 13 日 |2016 年 10 月 13 日 |TBD |
 
 
 
@@ -183,7 +181,7 @@ ms.lasthandoff: 07/12/2017
 
 **停用**日期和**到期**日期之間的時間範圍，提供一個緩衝區，讓您可以輕鬆從一個客體 OS 轉換到到較新的客體 OS。 如果您使用「自動化」  作為客體 OS，則一律會是最新版本，不必擔心過期問題。
 
-當 **到期** 日期已過，任何仍在使用該客體 OS 的雲端服務將會遭到停止、刪除或強制升級。 您可以從[這裡][retirepolicy]閱讀更多有關淘汰原則的資訊。
+當**到期**日期已過，任何仍在使用該客體 OS 的雲端服務將會遭到停止、刪除或強制升級。 您可以從[這裡][retirepolicy]閱讀更多有關淘汰原則的資訊。
 
 ## <a name="guest-os-family-version-explanation"></a>客體 OS 系列版本說明
 客體作業系統系列以 Microsoft Windows Server 的發行版本為基礎。 客體作業系統是指執行 Azure 雲端服務的基礎作業系統。 每一個客體作業系統都有系列、版本和版次號碼。

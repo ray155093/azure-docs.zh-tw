@@ -16,25 +16,25 @@ ms.workload: infrastructure
 ms.date: 06/14/2017
 ms.author: echuvyrov
 ms.translationtype: HT
-ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
-ms.openlocfilehash: 3787151651767e594dae21f3cfbf79023fc6db40
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: 9660a95b440c2e4311829979e270d9f10099f624
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/20/2017
+ms.lasthandoff: 08/02/2017
 
 ---
 
 # <a name="create-basic-infrastructure-in-azure-by-using-terraform"></a>在 Azure 中使用 Terraform 建立基本基礎結構
 本文說明將虛擬機器和基礎結構佈建至 Azure 需進行的步驟。 您將了解如何撰寫 Terraform 指令碼，以及如何在雲端基礎結構中進行變更前將其視覺化。 您也將了解如何在 Azure 中使用 Terraform 建立基礎結構。
 
-首先，在您所選的文字編輯器 (Visual Studio Code/Sublime/Vim/等等) 中，建立名為 \_terraform_azure101.tf_ 的檔案。 檔案的確切名稱並不重要，因為 Terraform 接受以資料夾名稱作為參數：資料夾中的所有指令碼都會執行。 將下列程式碼貼到新檔案中：
+首先，在您所選的文字編輯器 (Visual Studio Code/Sublime/Vim/等等) 中，建立名為 \terraform_azure101.tf 的檔案。 檔案的確切名稱並不重要，因為 Terraform 接受以資料夾名稱作為參數：資料夾中的所有指令碼都會執行。 將下列程式碼貼到新檔案中：
 
 ~~~~
 # Configure the Microsoft Azure Provider
 # NOTE: if you defined these values as environment variables, you do not have to include this block
 provider "azurerm" {
   subscription_id = "your_subscription_id_from_script_execution"
-  client_id       = "your_client_id_from_script_execution"
-  client_secret   = "your_client_secret_from_script_execution"
+  client_id       = "your_appId_from_script_execution"
+  client_secret   = "your_password_from_script_execution"
   tenant_id       = "your_tenant_id_from_script_execution"
 }
 
@@ -44,12 +44,16 @@ resource "azurerm_resource_group" "helloterraform" {
     location = "West US"
 }
 ~~~~
-在指令碼的 `provider` 區段中，您可以告訴 Terraform 使用 Azure 提供者在指令碼中佈建資源。 若要取得 subscription_id、client_id、client_secret 和 tenant_id 值，請參閱[安裝和設定 Terraform](terraform-install-configure.md) 指南。 如果您已為此區塊中的值建立環境變數，就不需要將其納入。 
+在指令碼的 `provider` 區段中，您可以告訴 Terraform 使用 Azure 提供者在指令碼中佈建資源。 若要取得 subscription_id、appId、password、and tenant_id 的值，請參閱[安裝和設定 Terraform](terraform-install-configure.md) 指南。 如果您已為此區塊中的值建立環境變數，就不需要將其納入。 
 
 `azurerm_resource_group` 資源指示 Terraform 建立新的資源群組。 您可以在本文稍後看到更多在 Terraform 中可用的資源類型。
 
 ## <a name="execute-the-script"></a>執行指令碼
 儲存指令碼之後，結束並返回主控台/命令列，然後輸入下列命令：
+```
+terraform init
+```
+為 Azure 初始化 Terraform 提供者。 接著輸入下列內容：
 ```
 terraform plan terraformscripts
 ```
@@ -205,7 +209,9 @@ terraform apply terraformscripts
 ```
 稍後，資源 (包括虛擬機器) 就會出現在 Azure 入口網站的 `terraformtest` 資源群組中。
 
-## <a name="complete-the-terraform-script"></a>完成 Terraform 指令碼
+## <a name="complete-terraform-script"></a>完成 Terraform 指令碼
+
+為了方便起見，以下是佈建本文中所有基礎結構的完整 Terraform 指令碼。
 
 ```
 variable "resourcesname" {
@@ -270,9 +276,14 @@ resource "azurerm_network_interface" "helloterraformnic" {
     }
 }
 
+# create a random id
+resource "random_id" "randomId" {
+  byte_length = 4
+}
+
 # create storage account
 resource "azurerm_storage_account" "helloterraformstorage" {
-    name = "helloterraformstorage"
+    name                = "tfstorage${random_id.randomId.hex}"
     resource_group_name = "${azurerm_resource_group.helloterraform.name}"
     location = "westus"
     account_type = "Standard_LRS"

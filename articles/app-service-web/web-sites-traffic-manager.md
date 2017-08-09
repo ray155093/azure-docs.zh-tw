@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure 流量管理員來控制 Azure Web 應用程式的流量"
-description: "本文提供與 Azure Web 應用程式相關之 Azure 流量管理員的摘要資訊。&quot;"
+description: "本文提供與 Azure Web 應用程式相關之 Azure 流量管理員的摘要資訊。\""
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -15,12 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/25/2016
 ms.author: cephalin
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 25502e4124442ed1853e3c3d9226107328c29316
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: fb7d391e3118a9dccde5501c3f30c6f580932a30
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="controlling-azure-web-app-traffic-with-azure-traffic-manager"></a>使用 Azure 流量管理員來控制 Azure Web 應用程式的流量
@@ -50,7 +49,7 @@ Azure 流量管理員使用三種不同的負載平衡方法。 下列清單說�
 * 您在 Azure 流量管理員設定檔中指定的 Web 應用程式端點，將出現在設定檔中該 Web 應用程式之 [設定] 頁面的 [網域名稱]  區段下方，但您無法在該處進行設定。
 * 將 Web 應用程式新增至設定檔後，在該 Web 應用程式之入口網站頁面的 [儀表板] 上，[網站 URL]  將顯示 Web 應用程式的自訂網域 URL (如果已設定一個)。 否則會顯示流量管理員設定檔 URL (例如， `contoso.trafficmgr.com`)。 Web 應用程式的直接網域名稱和流量管理員 URL 都會顯示在 Web 應用程式之 [設定] 頁面的 [網域名稱]  區段下方。
 * 您的自訂網域名稱將如預期般運作，但除了將之新增至 Web 應用程式外，您還必須設定 DNS 對應以指向流量管理員 URL。 如需有關如何設定 Azure Web 應用程式之自訂網域的詳細資訊，請參閱 [設定 Azure 網站的自訂網域名稱](app-service-web-tutorial-custom-domain.md)。
-* 您只能將標準模式的 Web 應用程式新增至 Azure 流量管理員設定檔。
+* 您只能將標準或進階模式的 Web 應用程式新增至 Azure 流量管理員設定檔。
 
 ## <a name="next-steps"></a>後續步驟
 如需 Azure 流量管理員的概念和技術概觀，請參閱 [Traffic Manager 概觀](../traffic-manager/traffic-manager-overview.md)。

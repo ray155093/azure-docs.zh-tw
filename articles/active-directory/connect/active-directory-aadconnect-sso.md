@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2017
+ms.date: 07/18/2017
 ms.author: billmath
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: 72b5217bd8de29fdad753d89f34934f64c551ff2
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: c4cd80c50dca5b97c36f1c9785d8ea347b35285c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/16/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -35,14 +35,14 @@ ms.lasthandoff: 06/16/2017
 >[!NOTE]
 >這項功能「不」適用於 Active Directory Federation Services (ADFS)，因為 ADFS 已包含這項功能。
 
-## <a name="key-benefits-of-using-azure-ad-seamless-sso"></a>使用 Azure AD 無縫 SSO 的主要優點
+## <a name="key-benefits"></a>主要權益
 
 - 良好的使用者體驗
   - 使用者會自動登入內部部署和雲端式應用程式。
   - 使用者不需要重複輸入其密碼。
 - 容易部署和管理
   - 在內部部署上不需要任何其他元件，即可進行這項工作。
-  - 與任何受管理驗證方法搭配運作：[密碼雜湊同步處理](active-directory-aadconnectsync-implement-password-synchronization.md)或[傳遞驗證](active-directory-aadconnect-pass-through-authentication.md)。
+  - 與任何雲端驗證方法搭配運作：[密碼雜湊同步處理](active-directory-aadconnectsync-implement-password-synchronization.md)或[傳遞驗證](active-directory-aadconnect-pass-through-authentication.md)。
   - 可以推出給使用群組原則的一部分使用者或所有使用者。
   - 向 Azure AD 註冊非 Windows 10 裝置。 這需要 2.1 版或更新版本的[加入工作場所用戶端](https://www.microsoft.com/download/details.aspx?id=53554)。
 
@@ -57,11 +57,11 @@ ms.lasthandoff: 06/16/2017
 
 | 作業系統\瀏覽器 |Internet Explorer|Edge|Google Chrome|Mozilla Firefox|Safari|
 | --- | --- |--- | --- | --- | -- 
-|Windows 10|是|不支援|是|是\*|N/A
-|Windows 8.1|是|不支援|是|是\*|N/A
-|Windows 8|是|不支援|是|是\*|N/A
-|Windows 7|是|不支援|是|是\*|N/A
-|Mac OS X|N/A|N/A|是\*|是\*|不支援
+|Windows 10|是|是|是|是\*|N/A
+|Windows 8.1|是|N/A|是|是\*|N/A
+|Windows 8|是|N/A|是|是\*|N/A
+|Windows 7|是|N/A|是|是\*|N/A
+|Mac OS X|N/A|N/A|是\*|是\*|是\*
 
 \*需要[其他設定](active-directory-aadconnect-sso-quick-start.md#browser-considerations)
 

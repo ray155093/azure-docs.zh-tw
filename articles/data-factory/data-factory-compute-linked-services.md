@@ -1,6 +1,6 @@
 ---
 title: "Azure Data Factory 支援的計算環境 | Microsoft Docs"
-description: "了解您可以在 Azure Data Factory 管線中用來轉換/處理資料的計算環境。"
+description: "了解您可以在 Azure Data Factory 管線中 (如 Azure HDInsight) 用來轉換/處理資料的計算環境。"
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -10,15 +10,14 @@ ms.assetid: 6877a7e8-1a58-4cfb-bbd3-252ac72e4145
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 05/05/2017
+ms.date: 07/25/2017
 ms.author: shlo
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
-ms.openlocfilehash: 97e40e0081e1dcce0ed42748a053c46cecf569ba
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 66d3b5532e602ef3ef160740c0f6752ebbdff7a2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="compute-environments-supported-by-azure-data-factory"></a>Azure Data Factory 支援的計算環境
@@ -84,7 +83,7 @@ Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個�
 
   **建議：** 
   * 在 **2017/07/15** 之前利用[可以搭配不同 HDInsight 版本使用的 Hadoop 元件](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions)和[與 HDInsight 版本相關聯的 Hortonworks 版本資訊](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions)中記載的資訊，執行測試以確保參考此連結服務之活動的相容性為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。  
-  * 在 **2017/07/15**之後，如果您想要覆寫預設設定，請確定您明確對 osType 指定版本值。 
+  * 在 **2017/07/15** 之後，如果您想要覆寫預設設定，請務必明確指定 osType 和版本值。 
 
 >[!Note]
 >目前 Azure Data Factory 不支援使用 Azure Data Lake Store 作為主要存放區的 HDInsight 叢集。 使用 Azure 儲存體作為 HDInsight 叢集的主要存放區。 
@@ -348,10 +347,60 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | apiKey |已發佈的工作區模型的 API。 |是 |
 
 ## <a name="azure-data-lake-analytics-linked-service"></a>Azure Data Lake Analytics 連結服務
-您應建立 **Azure Data Lake Analytics** 連結服務，將 Azure Data Lake Analytics 計算服務連結至 Azure Data Factory，然後再使用管線中的 [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md) 。
+您需建立 **Azure Data Lake Analytics** 連結服務，來將 Azure Data Lake Analytics 計算服務連結到 Azure Data Factory。 管線中的 Data Lake Analytics U-SQL 活動會參考此連結服務。 
 
-下列範例提供 Azure Data Lake Analytics 連結服務的 JSON 定義。
+下表提供 JSON 定義中所使用之一般屬性的描述。 您可以在服務主體與使用者認證驗證之間進一步選擇。
 
+| 屬性 | 說明 | 必要 |
+| --- | --- | --- |
+| **type** |type 屬性應設為： **AzureDataLakeAnalytics**。 |是 |
+| **accountName** |Azure Data Lake Analytics 帳戶名稱。 |是 |
+| **dataLakeAnalyticsUri** |Azure Data Lake Analytics URI。 |否 |
+| **subscriptionId** |Azure 訂用帳戶識別碼 |否 (如果未指定，便會使用 Data Factory 的訂用帳戶)。 |
+| **resourceGroupName** |Azure 資源群組名稱 |否 (若未指定，便會使用 Data Factory 的資源群組)。 |
+
+### <a name="service-principal-authentication-recommended"></a>服務主體驗證 (建議)
+若要使用服務主體驗證，請在 Azure Active Directory (Azure AD) 中註冊應用程式實體，並授與其 Data Lake Store 存取權。 如需詳細的步驟，請參閱[服務對服務驗證](../data-lake-store/data-lake-store-authenticate-using-active-directory.md)。 請記下以下的值，您可以使用這些值來定義連結服務：
+* 應用程式識別碼
+* 應用程式金鑰 
+* 租用戶識別碼
+
+指定下列屬性以使用服務主體驗證：
+
+| 屬性 | 說明 | 必要 |
+|:--- |:--- |:--- |
+| **servicePrincipalId** | 指定應用程式的用戶端識別碼。 | 是 |
+| **servicePrincipalKey** | 指定應用程式的金鑰。 | 是 |
+| **tenant** | 指定您的應用程式所在租用戶的資訊 (網域名稱或租用戶識別碼)。 將滑鼠游標暫留在 Azure 入口網站右上角，即可擷取它。 | 是 |
+
+**範例：服務主體驗證**
+```json
+{
+    "name": "AzureDataLakeAnalyticsLinkedService",
+    "properties": {
+        "type": "AzureDataLakeAnalytics",
+        "typeProperties": {
+            "accountName": "adftestaccount",
+            "dataLakeAnalyticsUri": "datalakeanalyticscompute.net",
+            "servicePrincipalId": "<service principal id>",
+            "servicePrincipalKey": "<service principal key>",
+            "tenant": "<tenant info, e.g. microsoft.onmicrosoft.com>",
+            "subscriptionId": "<optional, subscription id of ADLA>",
+            "resourceGroupName": "<optional, resource group name of ADLA>"
+        }
+    }
+}
+```
+
+### <a name="user-credential-authentication"></a>使用者認證驗證
+或者，您也可以藉由指定下列屬性，使用 Data Lake Analytics 的使用者認證驗證：
+
+| 屬性 | 說明 | 必要 |
+|:--- |:--- |:--- |
+| **authorization** | 按一下「資料處理站編輯器」中的 [授權] 按鈕，然後輸入您的認證，此動作會將自動產生的授權 URL 指派給此屬性。 | 是 |
+| **sessionId** | OAuth 授權工作階段的 OAuth 工作階段識別碼。 每個工作階段識別碼都是唯一的，只能使用一次。 當您使用「資料處理站編輯器」時便會自動產生此設定。 | 是 |
+
+**範例：使用者認證授權**
 ```json
 {
     "name": "AzureDataLakeAnalyticsLinkedService",
@@ -361,40 +410,25 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
             "accountName": "adftestaccount",
             "dataLakeAnalyticsUri": "datalakeanalyticscompute.net",
             "authorization": "<authcode>",
-            "sessionId": "<session ID>",
-            "subscriptionId": "<subscription id>",
-            "resourceGroupName": "<resource group name>"
+            "sessionId": "<session ID>", 
+            "subscriptionId": "<optional, subscription id of ADLA>",
+            "resourceGroupName": "<optional, resource group name of ADLA>"
         }
     }
 }
 ```
 
-下表提供 JSON 定義中所使用之屬性的描述：
-
-| 屬性 | 說明 | 必要 |
-| --- | --- | --- |
-| 類型 |type 屬性應設為： **AzureDataLakeAnalytics**。 |是 |
-| accountName |Azure Data Lake Analytics 帳戶名稱。 |是 |
-| dataLakeAnalyticsUri |Azure Data Lake Analytics URI。 |否 |
-| 授權 |按一下 Data Factory 編輯器中的 [授權]  按鈕並完成 OAuth 登入後，即會自動擷取授權碼。 |是 |
-| subscriptionId |Azure 訂用帳戶識別碼 |否 (如果未指定，便會使用 Data Factory 的訂用帳戶)。 |
-| resourceGroupName |Azure 資源群組名稱 |否 (若未指定，便會使用 Data Factory 的資源群組)。 |
-| sessionId |OAuth 授權工作階段的工作階段識別碼。 每個工作階段識別碼都是唯一的，只能使用一次。 此識別碼是在 Data Factory 編輯器中自動產生。 |是 |
-
+#### <a name="token-expiration"></a>權杖到期
 您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。 請參閱下表以了解不同類型的使用者帳戶的到期時間。 當驗證**權杖到期**時，您可能會看到下列錯誤訊息：認證作業發生錯誤：invalid_grant - AADSTS70002：驗證認證時發生錯誤。 AADSTS70008：提供的存取授權已過期或撤銷。 追蹤識別碼：d18629e8-af88-43c5-88e3-d8419eb1fca1 相互關連識別碼：fac30a0c-6be6-4e02-8d69-a776d2ffefd7 時間戳記：2015-12-15 21:09:31Z
 
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
-| 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com、@outlook.com 等) |12 小時 |
+| 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com 等) |12 小時 |
 | 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的 14 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
-如果要避免/解決此錯誤，請在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼，以程式設計方式產生 sessionId 和 authorization 屬性的值： 
+如果要避免/解決此錯誤，請在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以如下使用程式碼，以程式設計方式產生 **sessionId** 和 **authorization** 屬性的值：
 
-### <a name="to-programmatically-generate-sessionid-and-authorization-values"></a>若要以程式設計方式產生 sessionId 與 authorization 的值
-下列程式碼會產生 **sessionId** 與 **authorization** 值。  
-
-```CSharp
-
+```csharp
 if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService ||
     linkedService.Properties.TypeProperties is AzureDataLakeAnalyticsLinkedService)
 {
@@ -418,9 +452,8 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
     }
 }
 ```
-請針對 WindowsFormsWebAuthenticationDialog 類別，新增對下列項目的參考：Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll。 
 
-請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 
+請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 請針對 WindowsFormsWebAuthenticationDialog 類別，新增對下列項目的參考：Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll。 
 
 ## <a name="azure-sql-linked-service"></a>Azure SQL 連結服務
 您可建立 Azure SQL 連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 如需此連結服務的詳細資料，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#linked-service-properties) 一文。

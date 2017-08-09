@@ -1,5 +1,5 @@
 ---
-title: "自動調整和 App Service 環境 | Microsoft Docs"
+title: "自動調整和 App Service 環境 v1"
 description: "自動調整和 App Service 環境"
 services: app-service
 documentationcenter: 
@@ -12,16 +12,21 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/24/2016
-ms.author: byvinyal
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 41ad9eb4d248b1f3e6c888c3037b121511799193
-ms.lasthandoff: 12/08/2016
-
+ms.date: 7/11/2017
+ms.author: ccompy
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: f32affd285f3918feb0e893543f2a28f678b7b10
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/26/2017
 
 ---
-# <a name="autoscaling-and-app-service-environment"></a>自動調整和 App Service 環境
+# <a name="autoscaling-and-app-service-environment-v1"></a>自動調整和 App Service 環境 v1
+
+> [!NOTE]
+> 這篇文章是關於 App Service 環境 v1。  有較新版本的 App Service 環境，更易於使用，並且可以在功能更強大的基礎結構上執行。 若要深入了解新版本，請從 [App Service 環境簡介](../app-service/app-service-environment/intro.md)開始。
+> 
+
 Azure App Service 環境支援「自動調整」 。 您可以根據度量或排程自動調整個別的背景工作集區。
 
 ![背景工作集區的自動調整選項。][intro]

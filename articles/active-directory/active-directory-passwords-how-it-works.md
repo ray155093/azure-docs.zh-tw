@@ -16,11 +16,11 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 44426571e3fd8aed090ccccc0dcc46dca8098906
+ms.translationtype: HT
+ms.sourcegitcommit: a678700884b612cad6281eb8f3b74ce63a0ebb69
+ms.openlocfilehash: 0fa05ee6a2df13845024e770a82f50ab7f75bafd
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="self-service-password-reset-in-azure-ad-deep-dive"></a>Azure AD 中的自助式密碼重設深入探討
@@ -225,7 +225,7 @@ Azure AD Connect 工具會傳送定期 ping/keepalives 至服務匯流排端點�
 
 Azure AD Connect 公用程式中指定的帳戶必須具有重設密碼、變更密碼、lockoutTime 寫入權限和 pwdLastSet 寫入權限，以及該樹系中**每個網域**之根物件**或**您希望在 SSPR 範圍內之使用者 OU 的延伸權限。
 
-如果您不確定上述指的是哪些帳戶，請開啟 Azure Active Directory Connect 組態 UI，並按一下 [檢閱您的解決方案] 選項。 您需要新增權限的帳戶會列在 [已同步處理的目錄] 底下。
+如果您不確定上述指的是哪些帳戶，請開啟 Azure Active Directory Connect 組態 UI，然後按一下 [檢視目前的組態] 選項。 您需要新增權限的帳戶會列在 [已同步處理的目錄] 底下。
 
 設定這些權限會允許每個樹系的 MA 服務帳戶代表該樹系內的使用者帳戶管理密碼。 **如果您沒有指定這些權限，則即使回寫看起來設定正確，使用者在嘗試從雲端管理其內部部署密碼時還是會遇到錯誤。**
 
@@ -272,7 +272,7 @@ Azure AD Connect 公用程式中指定的帳戶必須具有重設密碼、變更
 * [**密碼回寫**](active-directory-passwords-writeback.md) - 密碼回寫如何用在您的內部部署目錄
 * [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀與風格。
 * [**報告**](active-directory-passwords-reporting.md) - 探索您的使用者是否、何時、何地存取 SSPR 功能
-* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - 您一直想要詢問之問題的答案
+* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - -您一直想要詢問之問題的答案
 * [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何解決我們看到的 SSPR 常見問題
 
 

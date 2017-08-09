@@ -16,12 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: b43ea48b9b34f3ab6980f7bdc5c21a19d20fd5b6
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: ce145585b31585fdc6a60eb8a8dd933a81a46bd1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-time-based-oozie-coordinator-with-hadoop-in-hdinsight-to-define-workflows-and-coordinate-jobs"></a>在 HDInsight 上將以時間為基礎的 Oozie 協調器與 Hadoop 搭配使用，以定義工作流程和協調工作
@@ -199,7 +198,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
     <table border = "1">
     <tr><th>工作流程變數</th><th>說明</th></tr>
     <tr><td>${jobTracker}</td><td>指定 Hadoop 工作追蹤器的 URL。 請在 HDInsight 叢集 3.0 和 2.0 版上使用 <strong>jobtrackerhost:9010</strong>。</td></tr>
-    <tr><td>${nameNode}</td><td>指定 Hadoop 名稱節點的 URL。 使用預設檔案系統 wasbs:// 位址，例如 <i>wasbs://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>。</td></tr>
+    <tr><td>${nameNode}</td><td>指定 Hadoop 名稱節點的 URL。 使用預設檔案系統 wasb:// 位址，例如 <i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>。</td></tr>
     <tr><td>${queueName}</td><td>指定要將工作提交過去的佇列名稱。 使用<strong>預設值</strong>。</td></tr>
     </table>
 
@@ -253,15 +252,15 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
 ## <a name="deploy-the-oozie-project-and-prepare-the-tutorial"></a>部署 Oozie 專案及進行教學課程前置工作
 您將執行 Azure PowerShell 指令碼，以執行下列作業：
 
-* 將 HiveQL 指令碼 (useoozie.hql) 複製到 Azure Blob 儲存體 wasbs:///tutorials/useoozie/useoozie.hql。
-* 將 workflow.xml 複製到 wasbs:///tutorials/useoozie/workflow.xml。
-* 將 coordinator.xml 複製到 wasbs:///tutorials/useoozie/coordinator.xml。
-* 將資料檔案 (/example/data/sample.log) 複製到 wasbs:///tutorials/useoozie/data/sample.log。
+* 將 HiveQL 指令碼 (useoozie.hql) 複製到 Azure Blob 儲存體 wasb:///tutorials/useoozie/useoozie.hql。
+* 將 workflow.xml 複製到 wasb:///tutorials/useoozie/workflow.xml。
+* 將 coordinator.xml 複製到 wasb:///tutorials/useoozie/coordinator.xml。
+* 將資料檔案 (/example/data/sample.log) 複製到 wasb:///tutorials/useoozie/data/sample.log。
 * 建立用於儲存 Sqoop 匯出資料的 Azure SQL Database 資料表。 資料表名稱為 *log4jLogCount*。
 
 **了解 HDInsight 儲存體**
 
-HDInsight 使用 Azure Blob 儲存體來儲存資料。 wasbs:// 是 Azure Blob 儲存體中 Hadoop 分散式檔案系統 (HDFS) 的 Microsoft 實作。 如需詳細資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
+HDInsight 使用 Azure Blob 儲存體來儲存資料。 wasb:// 是 Azure Blob 儲存體中 Hadoop 分散式檔案系統 (HDFS) 的 Microsoft 實作。 如需詳細資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
 
 當您佈建 HDInsight 叢集時，會將一個 Azure Blob 儲存體帳戶及該帳戶下的特定 Blob 容器指定為預設檔案系統，如同在 HDFS 中一般。 除了此儲存體帳戶之外，您也可以在佈建過程中，從相同的 Azure 訂用帳戶或不同 Azure 訂用帳戶新增其他儲存體帳戶。 如需關於新增其他儲存體帳戶的指示，請參閱[佈建 HDInsight 叢集][hdinsight-provision]。 為簡化本教學課程中使用的 PowerShell 指令碼，所有檔案都會儲存在位於 */tutorials/useoozie*的預設檔案系統容器中。 根據預設，此容器的名稱會與 HDInsight 叢集名稱相同。
 語法為：
@@ -275,8 +274,8 @@ HDInsight 使用 Azure Blob 儲存體來儲存資料。 wasbs:// 是 Azure Blob 
 
 您可以使用下列任一 URI (我使用 workflow.xml 做為範例)，從 HDInsight 存取儲存在預設檔案系統容器中的檔案：
 
-    wasbs://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/workflow.xml
-    wasbs:///tutorials/useoozie/workflow.xml
+    wasb://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/workflow.xml
+    wasb:///tutorials/useoozie/workflow.xml
     /tutorials/useoozie/workflow.xml
 
 如果您要直接從儲存體帳戶存取檔案，檔案的Blob 名稱為：
@@ -411,7 +410,7 @@ Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。 
     #Azure Blob storage (WASB) variables
     $storageAccountName = "<StorageAccountName>"
     $storageContainerName = "<BlobContainerName>"
-    $storageUri="wasbs://$storageContainerName@$storageAccountName.blob.core.windows.net"
+    $storageUri="wasb://$storageContainerName@$storageAccountName.blob.core.windows.net"
 
     #Azure SQL database variables
     $sqlDatabaseServer = "<SQLDatabaseServerName>"

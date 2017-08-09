@@ -16,12 +16,11 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
-ms.openlocfilehash: c3e9ee66974f8b7077a0436b3686fb0515ea5e22
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 34947c6dfd86ddd421f6d8045ed9c5fbf0049e11
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/10/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="run-hadoop-mapreduce-samples-in-windows-based-hdinsight"></a>在以 Windows 為基礎的 HDInsight 中執行 Hadoop MapReduce 範例
@@ -60,7 +59,7 @@ ms.lasthandoff: 06/10/2017
     > 請遵循[安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱[移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md)。
 
 ## <a name="hdinsight-sample-wordcount"></a>字數統計 - Java
-如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。 在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasbs:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。  字數統計 MapReduce 程式會採用兩個引數：用來統計字數的原始程式檔與輸出的位置。
+如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。 在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasb:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。  字數統計 MapReduce 程式會採用兩個引數：用來統計字數的原始程式檔與輸出的位置。
 
 原始程式碼可以在 [附錄 A](#apendix-a---the-word-count-MapReduce-program-in-java)中找到。
 
@@ -80,9 +79,9 @@ ms.lasthandoff: 06/10/2017
 
     # Define the MapReduce job
     $mrJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
-                                -JarFile "wasbs:///example/jars/hadoop-mapreduce-examples.jar" `
+                                -JarFile "wasb:///example/jars/hadoop-mapreduce-examples.jar" `
                                 -ClassName "wordcount" `
-                                -Arguments "wasbs:///example/data/gutenberg/davinci.txt", "wasbs:///example/data/WordCountOutput"
+                                -Arguments "wasb:///example/data/gutenberg/davinci.txt", "wasb:///example/data/WordCountOutput"
 
     # Submit the job and wait for job completion
     $cred = Get-Credential -Message "Enter the HDInsight cluster HTTP user credential:"
@@ -169,7 +168,7 @@ Pi 估算器會使用統計 (擬蒙特卡羅法) 方法來估計 pi 的值。 �
 
     ```powershell
     $mrJobJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
-                                -JarFile "wasbs:///example/jars/hadoop-mapreduce-examples.jar" `
+                                -JarFile "wasb:///example/jars/hadoop-mapreduce-examples.jar" `
                                 -ClassName "pi" `
                                 -Arguments "16", "10000000"
     ```

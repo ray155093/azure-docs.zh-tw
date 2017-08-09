@@ -16,11 +16,11 @@ ms.topic: article
 ms.date: 06/12/2017
 ms.author: anhoh
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 138f04f8e9f0a9a4f71e43e73593b03386e7e5a9
-ms.openlocfilehash: 3823cfc0696c917a66d41e9dbde4349f635a4011
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 1555f13c3ea88b61be0ea240b51218b83f6f9724
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/29/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -31,7 +31,7 @@ ms.lasthandoff: 06/29/2017
 * 從 [MongoDB 下載中心](https://www.mongodb.com/download-center)下載 *mongoimport.exe* 或*mongorestore.exe*。
 * 取得[適用於 MongoDB 的 API 連接字串](connect-mongodb-account.md)。
 
-如果您從 MongoDB 匯入資料，而且想要將這些資料用於 DocumentDB API，則必須使用[資料移轉工具](import-data.md)匯入資料。
+如果您從 MongoDB 匯入資料，而且想要將這些資料用於 Azure Cosmos DB，則必須使用[資料移轉工具](import-data.md)匯入資料。
 
 本教學課程涵蓋下列工作：
 
@@ -130,7 +130,7 @@ ms.lasthandoff: 06/29/2017
     
     * 如果算出的 *batchSize* > 24，則將 *batchSize* 的值設為 24。
     
-    * *numInsertionWorkers* 的算法是使用此方程式：  *numInsertionWorkers =  (佈建輸送量 * 延遲秒數) / (批次大小 * 單一寫入花費的 RU 數)*。
+    * *numInsertionWorkers* 的算法是使用此方程式：*numInsertionWorkers =  (佈建輸送量 * 延遲秒數) / (批次大小 * 單一寫入花費的 RU 數)*。
         
     |屬性|值|
     |--------|-----|

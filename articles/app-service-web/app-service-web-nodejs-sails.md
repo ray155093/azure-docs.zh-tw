@@ -14,12 +14,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 09ececc567c09ea4e0b77d4d37445b7c232de23c
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: deb9ce304069e6bd92518610a9953fb1f29cb555
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="deploy-a-sailsjs-web-app-to-azure-app-service"></a>將 Sails.js Web 應用程式部署至 Azure App Service
@@ -73,7 +72,7 @@ ms.lasthandoff: 05/31/2017
         logDirectory: iisnode
 
     現在已啟用 Azure App Service 用來執行 Node.js 應用程式的 [iisnode](https://github.com/tjanczuk/iisnode) 伺服器記錄功能。 
-    如需有關運作方式的詳細資訊，請參閱  [如何在 Azure App Service 中針對 Node.js Web 應用程式進行偵錯](web-sites-nodejs-debug.md)。
+    如需有關運作方式的詳細資訊，請參閱 [如何在 Azure App Service 中針對 Node.js Web 應用程式進行偵錯](web-sites-nodejs-debug.md)。
 
 2. 接下來，設定 Sails.js 應用程式以使用 Azure 環境變數。 開啟 config/env/production.js 來設定您的生產環境，並設定 `port` 和 `hookTimeout`：
 
@@ -88,7 +87,7 @@ ms.lasthandoff: 05/31/2017
             ...
         };
 
-    您可以在  [Sails.js 文件](http://sailsjs.org/documentation/reference/configuration/sails-config)中找到這些組態設定的文件。
+    您可以在 [Sails.js 文件](http://sailsjs.org/documentation/reference/configuration/sails-config)中找到這些組態設定的文件。
 
 4. 接下來，硬式編碼您要使用的 Node.js 版本。 在 package.json 中新增以下 `engines` 屬性，以將 Node.js 版本設定為我們需要的版本。
 
@@ -188,7 +187,7 @@ ms.lasthandoff: 05/31/2017
 
 1. [建立具有 MongoDB 通訊協定支援的 Cosmos DB 帳戶](../documentdb/documentdb-create-mongodb-account.md)。
 2. [建立 Cosmos DB 集合和資料庫](../documentdb/documentdb-create-collection.md)。 集合的名稱並不重要，但是當您從 Sails.js 連線時，需要資料庫的名稱。
-3. [尋找您 Cosmos DB 資料庫的連線資訊](../cosmos-db/connect-mongodb-account.md#a-idgetcustomconnectiona-get-the-mongodb-connection-string-to-customize)。
+3. [尋找您 Cosmos DB 資料庫的連線資訊](../cosmos-db/connect-mongodb-account.md#GetCustomConnection)。
 2. 從命令列終端機安裝 MongoDB 配接器︰
 
         npm install sails-mongo --save
@@ -245,7 +244,7 @@ ms.lasthandoff: 05/31/2017
             migrate: 'alter'
         },
 
-    `migrate: 'alter'` 可讓您使用資料庫移轉功能，輕鬆地建立和更新資料庫集合或資料表。 不過，要針對您的 Azure (生產) 環境使用 `migrate: 'safe'`，因為 Sails.js 不允許您在生產環境中使用 `migrate: 'alter'` (請參閱  [Sails.js 文件](http://sailsjs.org/documentation/concepts/models-and-orm/model-settings))。
+    `migrate: 'alter'` 可讓您使用資料庫移轉功能，輕鬆地建立和更新資料庫集合或資料表。 不過，要針對您的 Azure (生產) 環境使用 `migrate: 'safe'`，因為 Sails.js 不允許您在生產環境中使用 `migrate: 'alter'` (請參閱 [Sails.js 文件](http://sailsjs.org/documentation/concepts/models-and-orm/model-settings))。
 8. 從終端機中，[產生](http://sailsjs.org/documentation/reference/command-line-interface/sails-generate) Sails.js [藍圖 API](http://sailsjs.org/documentation/concepts/blueprints) (就像您平常所做的一樣)，然後執行 `sails lift` 以使用 Sails.js 資料庫移轉來建立資料庫。 例如：
 
          sails generate api mywidget

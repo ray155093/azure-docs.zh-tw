@@ -12,17 +12,20 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/07/2017
+ms.date: 07/26/2017
 ms.author: bwren
-ms.custom: H1Hack27Feb2017
 ms.translationtype: HT
-ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
-ms.openlocfilehash: 6dbe7713c48a60974f1026dddc8ee9d2aeb01708
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: bf237a837297cb8f1ab3a3340139133adcd2b244
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/20/2017
+ms.lasthandoff: 07/28/2017
 
 ---
-# <a name="find-data-using-log-searches"></a>使用記錄搜尋尋找資料
+# <a name="find-data-using-log-searches-in-log-analytics"></a>在 Log Analytics 中使用記錄搜尋以尋找資料
+
+>[!NOTE]
+> 本文說明在 Azure Log Analytics 中使用目前查詢語言的記錄搜尋。  如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則您應該參閱[了解 Log Analytics 中的記錄搜尋 (新)](log-analytics-log-search-new.md)。
+
 
 Log Analytics 的核心是記錄檔搜尋功能，可讓您結合和相互關聯您環境內多個來源的任何電腦資料。 解決方案也是由記錄搜尋發動，可讓您針對特定問題領域進行度量。
 

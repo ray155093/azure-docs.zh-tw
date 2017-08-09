@@ -11,19 +11,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/08/2017
+ms.date: 07/24/2017
 ms.author: curtand
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: d9143c1ec2075f71659e8deaadc93d1972ea9a85
+ms.custom: oldportal;it-pro;
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: f1fda3c4192d0dae4fa60788f4d88fb72ddba4ad
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="understanding-resource-access-in-azure"></a>了解 Azure 中的資源存取
-> [!NOTE]
-> 本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。 此外，Azure 預覽入口網站提供 [以角色為基礎的存取控制](role-based-access-control-configure.md) ，因此可以更精確地管理 Azure 資源。
+> [!IMPORTANT]
+> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。 Azure 入口網站提供[角色型存取控制](role-based-access-control-configure.md)，因此可以更精確地管理 Azure 資源。
 > 
 > 
 

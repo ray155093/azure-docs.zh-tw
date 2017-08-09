@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
-ms.openlocfilehash: 43acd0e8e6b106013fc4491e3785f6efefc51493
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 1031cd63dede9ed202fdc11b153a550766d9cb19
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/04/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
 
@@ -131,7 +130,7 @@ ms.lasthandoff: 07/04/2017
 > 
 > 
 
-請務必依照這篇文章結尾處＜清理您的 Azure 帳戶＞一節中的步驟來進行，讓您能充分利用您 $200 美元的免費 Azure 點數。
+請務必依照這篇文章結尾處＜清理您的 Azure 帳戶＞一節中的步驟來進行，讓您能充分利用您的免費 Azure 點數。
 
 ## <a name="provision-azure-resources-required-for-the-tutorial"></a>佈建本教學課程所需的 Azure 資源
 本教學課程將需要 2 個事件中樞，來接收 *entry* 及 *exit* 資料流。 Azure SQL Database 會輸出串流分析工作的結果。 Azure 儲存體會儲存車輛登記的相關參考資料。

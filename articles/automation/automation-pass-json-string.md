@@ -1,6 +1,6 @@
 ---
 title: "將 JSON 物件傳送至 Azure 自動化 Runbook | Microsoft Docs"
-description: "Azure 自動化期望狀態組態 (DSC)、其條款和已知問題的概觀"
+description: "如何將參數傳遞給 Runbook 作為 JSON 物件"
 services: automation
 documentationcenter: dev-center-name
 author: eslesar
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: powershell
 ms.workload: TBD
 ms.date: 06/15/2017
 ms.author: eslesar
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
-ms.openlocfilehash: c8f1423e3764e476068681ed725db831543690f5
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: eac0e95a46731b9d396ea0590e629d61ca6a7d70
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -84,9 +84,9 @@ Start-AzureRmVM -Name $json.VMName -ResourceGroupName $json.ResourceGroup
 執行下列 PowerShell 命令：
 
 1. 登入 Azure：
-    ```powershell
-    Login-AzureRmAccount
-    ```
+   ```powershell
+   Login-AzureRmAccount
+   ```
     系統會提示您輸入 Azure 認證。
 1. 取得 JSON 檔案的內容，並將它轉換成字串：
     ```powershell
@@ -94,23 +94,23 @@ Start-AzureRmVM -Name $json.VMName -ResourceGroupName $json.ResourceGroup
     ```
     `JsonPath` 是您儲存 JSON 檔案的路徑。
 1. 將 `$json` 的字串內容轉換為 PowerShell 物件：
-    ```powershell
-    $JsonParams = @{"json"=$json}
-    ```
+   ```powershell
+   $JsonParams = @{"json"=$json}
+   ```
 1. 建立 `Start-AzureRmAutomstionRunbook` 參數的雜湊表：
-    ```powershell
-    $RBParams = @{
+   ```powershell
+   $RBParams = @{
         AutomationAccountName = 'AATest'
         ResourceGroupName = 'RGTest'
         Name = 'Test-Json'
         Parameters = $JsonParams
-    }
-    ```
-    請注意，您要將 `Parameters` 的值設定為 PowerShell 物件，其中包含 JSON 檔案中的值。 
+   }
+   ```
+   請注意，您要將 `Parameters` 的值設定為 PowerShell 物件，其中包含 JSON 檔案中的值。 
 1. 啟動 Runbook
-    ```powershell
-    $job = Start-AzureRmAutomationRunbook @RBParams
-    ```
+   ```powershell
+   $job = Start-AzureRmAutomationRunbook @RBParams
+   ```
 
 Runbook 會使用 JSON 檔案中的值來啟動 VM。
 

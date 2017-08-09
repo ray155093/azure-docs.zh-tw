@@ -16,12 +16,11 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 771e3d1e728f6c85d9f63111b2483d08396ef530
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 7c5089b9db945b0e0f4523e53bb44c178ffd0781
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="azure-storage-infrastructure-guidelines-for-linux-vms"></a>適用於 Linux VM 的 Azure 儲存體基礎結構指導方針
@@ -66,14 +65,14 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 
 作業系統磁碟和資料磁碟具有 4TB 的大小上限。 您可以使用邏輯磁碟區管理員 (LVM) 來超越此限制，方法是共用資料磁碟以向 VM 展現大於 1023GB 的邏輯磁碟區。
 
-設計 Azure 儲存體部署時有幾個延展性的限制 - 如需詳細資訊，請參閱 [Microsoft Azure 訂用帳戶和服務限制、配額與限制](../../azure-subscription-service-limits.md#storage-limits)。 另請參閱 [Azure 儲存體的延展性與效能目標](../../storage/storage-scalability-targets.md)。
+設計 Azure 儲存體部署時有幾個延展性的限制 - 如需詳細資訊，請參閱 [Microsoft Azure 訂用帳戶和服務限制、配額與限制](../../azure-subscription-service-limits.md#storage-limits)。 另請參閱〈 [Azure 儲存體的延展性與效能目標](../../storage/storage-scalability-targets.md)〉。
 
 針對應用程式儲存體，您可以儲存非結構化的物件資料，例如文件、影像、備份、設定資料、記錄檔等等。 使用 Blob 儲存體。 與其讓您的應用程式寫入附加至 VM 的虛擬磁碟，該應用程式可以直接寫入 Azure blob 儲存體。 根據您的可用性需求和成本限制，blob 儲存體也提供[經常性存取與非經常性存取儲存層](../../storage/storage-blob-storage-tiers.md)的選項。
 
 ## <a name="striped-disks"></a>等量磁碟
 除了讓您能夠建立大於 1023 GB 的磁碟，在許多情況下，針對資料磁碟使用等量，可藉由允許多個 blob 備份單一磁碟區的儲存體來增強效能。 從單一邏輯磁碟寫入和讀取資料所需的 I/O 會透過等量速度以平行方式繼續進行。
 
-根據 VM 的大小而定，Azure 會強制限制資料磁碟數量和可用的頻寬量。 如需詳細資訊，請參閱[虛擬機器的大小](sizes.md
+根據 VM 的大小而定，Azure 會強制限制資料磁碟數量和可用的頻寬量。 如需詳細資訊，請參閱[虛擬機器的大小](sizes.md)
 
 如果您針對 Azure 資料磁碟使用磁碟等量，請考量下列指導方針：
 

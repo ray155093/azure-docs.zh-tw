@@ -16,10 +16,10 @@ ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: H1Hack27Feb2017; it-pro
 ms.translationtype: HT
-ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
-ms.openlocfilehash: 1615f1ebbc4ade9dddbab3bd964bc27e6150a4c5
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: f9058ca12cb52c1a9d4a3d05f4ccb3e2c030873e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication"></a>將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合
@@ -107,7 +107,7 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 有兩個因素會影響與 NPS 擴充部署搭配提供的驗證方法：
 
 1. 在 RADIUS 用戶端 (VPN、Netscaler 伺服器或其他) 與 NPS 伺服器之間使用的密碼加密演算法。
-   - **PAP** 支援雲端中 Azure MFA 的所有驗證方法：通話、簡訊、行動裝置應用程式通知，和行動裝置應用程式驗證碼。
+   - **PAP** 支援雲端中 Azure MFA 的所有驗證方法：通話、單向簡訊、行動裝置應用程式通知，和行動裝置應用程式驗證碼。
    - **CHAPV2** 和 **EAP** 支援通話和行動裝置應用程式通知。
 2. 用戶端應用程式 (VPN、Netscaler 伺服器或其他) 可以處理的輸入法。 例如，VPN 用戶端是否有一些方法可讓使用者從文字或行動裝置應用程式輸入驗證程式碼？
 
@@ -173,7 +173,7 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 - Azure MFA 的 NPS 延伸模組並未包含可將使用者與設定從 MFA Server 移轉至雲端的工具。 有基於此，建議將此延伸模組用於新的部署，而非用於現有部署。 如果您在現有部署上使用此延伸模組，您的使用者必須再次執行證明，以便在雲端中填入其 MFA 詳細資料。  
 - NPS 擴充功能會使用來自內部部署 Active Directory 的 UPN，識別 Azure MFA 上用來執行次要驗證的使用者。 擴充功能無法設定為使用不同的識別碼，例如 UPN 以外的替代登入識別碼或自訂 AD 欄位。  
 - 並非所有的加密通訊協定都支援所有的驗證方法。
-   - **PAP** 支援通話、簡訊、行動裝置應用程式通知和行動裝置應用程式驗證碼
+   - **PAP** 支援通話、單向簡訊、行動裝置應用程式通知和行動裝置應用程式驗證碼
    - **CHAPV2** 和 **EAP** 支援通話和行動裝置應用程式通知
 
 ### <a name="control-radius-clients-that-require-mfa"></a>控制需要 MFA 的 RADIUS 用戶端

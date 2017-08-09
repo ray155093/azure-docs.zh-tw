@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2017
+ms.date: 07/28/2017
 ms.author: billmath
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
-ms.openlocfilehash: 05d7c50aaa1209220b6cff3305fdb05dd2c421f8
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 4a687e1edbb2c9b3db3079a70162886092ede521
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/17/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 
@@ -30,6 +30,14 @@ ms.lasthandoff: 06/17/2017
 >如果傳遞驗證發生使用者登入的問題，請不要在沒有可切換的僅限雲端全域管理員帳戶的情況下，停用此功能或解除安裝傳遞驗證代理程式。 了解如何[新增僅限雲端管理員帳戶 (英文)](../active-directory-users-create-azure-portal.md)。 這是確保您不會被租用戶封鎖的關鍵步驟。
 
 ## <a name="general-issues"></a>一般問題
+
+### <a name="check-status-of-the-feature-and-authentication-agents"></a>檢查此功能和驗證代理程式的狀態
+
+確定您租用戶上的傳遞驗證功能仍為 [已啟用]，而驗證代理程式的狀態會顯示 [作用中]，而不是 [非作用中]。 前往 [Azure 入口網站](https://portal.azure.com/)的 [Azure AD Connect] 刀鋒視窗，即可看到此選項。
+
+![Azure 入口網站 - Azure AD Connect 刀鋒視窗](./media/active-directory-aadconnect-pass-through-authentication/pta7.png)
+
+![Azure 入口網站 - 傳遞驗證刀鋒視窗](./media/active-directory-aadconnect-pass-through-authentication/pta11.png)
 
 ### <a name="user-facing-sign-in-error-messages"></a>使用者看到的登入錯誤訊息
 
@@ -43,13 +51,13 @@ ms.lasthandoff: 06/17/2017
 |AADSTS80005|驗證發生無法預期的 WebException|暫時性錯誤。 重試要求。 如果持續發生失敗，請連絡 Microsoft 支援服務。
 |AADSTS80007|和 Active Directory 通訊時發生錯誤|請檢查代理程式記錄檔以了解詳細資訊，並確認 Active Directory 如預期般運作。
 
-### <a name="sign-in-failure-reasons-on-the-azure-active-directory-admin-center"></a>Azure Active Directory 管理中心上的登入失敗原因
+### <a name="sign-in-failure-reasons-on-the-azure-portal"></a>Azure 入口網站上的登入失敗原因
 
-[Azure Active Directory 管理中心](https://aad.portal.azure.com/)的[登入活動報表](../active-directory-reporting-activity-sign-ins.md)是開始針對傳遞驗證使用者登入問題進行疑難排解的好地方。
+藉由查看 [Azure 入口網站](https://portal.azure.com/)上的[登入活動報表](../active-directory-reporting-activity-sign-ins.md)，開始針對使用者登入問題進行疑難排解。
 
 ![登入報告](./media/active-directory-aadconnect-pass-through-authentication/pta4.png)
 
-巡覽至位在 [Azure Active Directory 管理中心](https://aad.portal.azure.com/)的 **Azure Active Directory** -> [登入]，按一下特定使用者的登入活動。 尋找 [登入錯誤碼] 欄位。 使用下表，將該欄位的值對應至失敗的原因和解決方式：
+巡覽至 [Azure 入口網站](https://portal.azure.com/)上的 **Azure Active Directory** -> [登入]，按一下特定使用者的登入活動。 尋找 [登入錯誤碼] 欄位。 使用下表，將該欄位的值對應至失敗的原因和解決方式：
 
 |登入錯誤碼|登入失敗原因|解決方案
 | --- | --- | ---
@@ -64,10 +72,6 @@ ms.lasthandoff: 06/17/2017
 | 80011 | 驗證代理程式無法擷取解密金鑰。 | 如果問題一再出現，請安裝並註冊新的驗證代理程式。 然後解除安裝目前的代理程式。
 
 ## <a name="authentication-agent-installation-issues"></a>驗證代理程式安裝問題
-
-### <a name="an-azure-ad-application-proxy-connector-already-exists"></a>Azure AD 應用程式 Proxy 連接器已經存在
-
-傳遞驗證代理程式無法和 [Azure AD 應用程式 Proxy](../../active-directory/active-directory-application-proxy-get-started.md) 連接器安裝在同一部伺服器上。 請將傳遞驗證代理程式安裝在不同的伺服器上。
 
 ### <a name="an-unexpected-error-occurred"></a>發生意外的錯誤
 
@@ -115,16 +119,16 @@ ms.lasthandoff: 06/17/2017
 
 ### <a name="authentication-agent-event-logs"></a>驗證代理程式事件記錄檔
 
-如需與驗證代理程式相關的錯誤，請開啟伺服器上的事件檢視器應用程式，並於 **Application and Service Logs\Microsoft\AadApplicationProxy\Connector\Admin** 下查看。
+如需與驗證代理程式相關的錯誤，請開啟伺服器上的事件檢視器應用程式，並於 **Application and Service Logs\Microsoft\AzureAdConnect\AuthenticationAgent\Admin** 下查看。
 
 如需詳細分析，請啟用「工作階段」記錄。 不要使用正常作業期間啟用的記錄檔執行驗證代理程式，此記錄檔只適用於進行疑難排解。 只有再次停用此記錄檔之後，才能看見記錄檔的內容。
 
 ### <a name="detailed-trace-logs"></a>詳細的追蹤記錄檔
 
-若要對使用者登入失敗進行疑難排解，請查看追蹤記錄檔，位於：**C:\ProgramData\Microsoft\Microsoft AAD Application Proxy Connector\Trace**。 這些記錄包含使用傳遞驗證功能的特定使用者為什麼會登入失敗的原因。 這些錯誤也對應到先前[資料表](#sign-in-failure-reasons-on-the-Azure-portal)中所示的登入失敗原因。 以下是記錄項目範例：
+若要針對使用者登入失敗進行疑難排解，請查看追蹤記錄，其位於 **%programdata%\Microsoft\Azure AD Connect Authentication Agent\Trace\\**。 這些記錄包含使用傳遞驗證功能的特定使用者為什麼會登入失敗的原因。 這些錯誤也對應到先前[資料表](#sign-in-failure-reasons-on-the-Azure-portal)中所示的登入失敗原因。 以下是記錄項目範例：
 
 ```
-    ApplicationProxyConnectorService.exe Error: 0 : Passthrough Authentication request failed. RequestId: 'df63f4a4-68b9-44ae-8d81-6ad2d844d84e'. Reason: '1328'.
+    AzureADConnectAuthenticationAgentService.exe Error: 0 : Passthrough Authentication request failed. RequestId: 'df63f4a4-68b9-44ae-8d81-6ad2d844d84e'. Reason: '1328'.
         ThreadId=5
         DateTime=xxxx-xx-xxTxx:xx:xx.xxxxxxZ
 ```
@@ -142,7 +146,7 @@ ms.lasthandoff: 06/17/2017
 ```
     <QueryList>
     <Query Id="0" Path="Security">
-    <Select Path="Security">*[EventData[Data[@Name='ProcessName'] and (Data='C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe')]]</Select>
+    <Select Path="Security">*[EventData[Data[@Name='ProcessName'] and (Data='C:\Program Files\Microsoft Azure AD Connect Authentication Agent\AzureADConnectAuthenticationAgentService.exe')]]</Select>
     </Query>
     </QueryList>
 ```

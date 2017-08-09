@@ -12,13 +12,13 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 6/28/2017
+ms.date: 7/27/2017
 ms.author: subramar
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 868c3051f60c27f15bfd99f66e50b65595951a00
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 781431dc8dd576e6fb6807ade4a0a1e909abcab7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 
@@ -58,7 +58,17 @@ Service Fabric 支援為容器服務指定 [Docker 磁碟區外掛程式](https:
 </ApplicationManifest>
 ```
 
-在上述範例中，`Volume` 的 `Source` 標記指的是來源資料夾。 來源資料夾可以是裝載容器或持續性遠端存放區的 VM 中的資料夾。 `Destination` 標記是 `Source` 在執行容器內對應的位置。 使用磁碟區外掛程式時，會指定外掛程式的名稱 (`Driver` 標記)，如上述範例所示。  如果指定了 Docker 記錄驅動程式，就必須在叢集中部署代理程式 (或容器) 來處理記錄檔。 
+在上述範例中，`Volume` 的 `Source` 標記指的是來源資料夾。 來源資料夾可以是裝載容器或持續性遠端存放區的 VM 中的資料夾。 `Destination` 標記是 `Source` 在執行容器內對應的位置。 
+
+指定磁碟區外掛程式時，Service Fabric 會使用指定的參數自動建立磁碟區。 `Source` 標記是磁碟區的名稱，而 `Driver` 標記會指定磁碟區驅動程式的外掛程式。 您可以使用 `DriverOption` 標記指定選項，如下列程式碼片段所示：
+
+```xml
+<Volume Source="myvolume1" Destination="c:\testmountlocation4" Driver="azurefile" IsReadOnly="true">
+           <DriverOption Name="share" Value="models"/>
+</Volume>
+```
+
+如果指定了 Docker 記錄驅動程式，就必須在叢集中部署代理程式 (或容器) 來處理記錄檔。  `DriverOption` 標記也可用來指定記錄驅動程式選項。
 
 請參閱下列文章將容器部署至 Service Fabric 叢集：
 

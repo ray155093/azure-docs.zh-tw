@@ -16,12 +16,11 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: edb7e6153060bf4b5471bf6c360b16672d5f759d
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: b56674857b013f9bb3d4dd4b6e97b34e0a97b1b2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-mapreduce-in-hadoop-on-hdinsight-with-remote-desktop"></a>利用遠端桌面在 HDInsight 上的 Hadoop 中使用 MapReduce
@@ -54,9 +53,9 @@ ms.lasthandoff: 07/08/2017
    >
 2. 若要使用 **Hadoop** 命令執行範例 MapReduce 工作，請使用下列命令：
 
-        hadoop jar hadoop-mapreduce-examples.jar wordcount wasbs:///example/data/gutenberg/davinci.txt wasbs:///example/data/WordCountOutput
+        hadoop jar hadoop-mapreduce-examples.jar wordcount wasb:///example/data/gutenberg/davinci.txt wasb:///example/data/WordCountOutput
 
-    這樣會啟動 **wordcount** 類別 (內含於目前目錄的 **hadoop-mapreduce-examples.jar** 檔案中)。 做為輸入，它會使用 **wasbs://example/data/gutenberg/davinci.txt** 文件，而且輸出會儲存在 **wasbs:///example/data/WordCountOutput**。
+    這樣會啟動 **wordcount** 類別 (內含於目前目錄的 **hadoop-mapreduce-examples.jar** 檔案中)。 作為輸入則會使用 **wasb://example/data/gutenberg/davinci.txt** 文件，且輸出會儲存在 **wasb:///example/data/WordCountOutput**。
 
    > [!NOTE]
    > 如需有關此 MapReduce 工作和範例資料的詳細資訊，請參閱<a href="hdinsight-use-mapreduce.md">在 HDInsight Hadoop 上使用 MapReduce</a>。
@@ -68,9 +67,9 @@ ms.lasthandoff: 07/08/2017
         Bytes Read=1395666
         File Output Format Counters
         Bytes Written=337623
-4. 工作完成之後，請使用下列命令來列出儲存在 **wasbs://example/data/WordCountOutput** 的輸出檔：
+4. 工作完成之後，請使用下列命令來列出儲存在 **wasb://example/data/WordCountOutput** 的輸出檔：
 
-        hadoop fs -ls wasbs:///example/data/WordCountOutput
+        hadoop fs -ls wasb:///example/data/WordCountOutput
 
     這應該會顯示兩個檔案：**_SUCCESS** 和 **part-r-00000**。 **part-r-00000** 檔案包含這項工作的輸出。
 
@@ -80,9 +79,9 @@ ms.lasthandoff: 07/08/2017
    >
 5. 若要檢視輸出，請使用下列命令：
 
-        hadoop fs -cat wasbs:///example/data/WordCountOutput/part-r-00000
+        hadoop fs -cat wasb:///example/data/WordCountOutput/part-r-00000
 
-    這會顯示 **wasbs://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單，以及每個單字的出現次數。 以下是要包含在檔案中之資料的範例：
+    這會顯示 **wasb://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單，以及每個單字的出現次數。 以下是要包含在檔案中之資料的範例：
 
         wreathed        3
         wreathing       1

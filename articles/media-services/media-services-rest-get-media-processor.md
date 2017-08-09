@@ -1,5 +1,5 @@
 ---
-title: "如何建立媒體處理器 | Microsoft Docs"
+title: "如何使用 REST 建立媒體處理器 | Microsoft Docs"
 description: "了解如何建立媒體處理器元件，為 Azure 媒體服務的媒體內容進行編碼、格式轉換、加密或解密。"
 services: media-services
 documentationcenter: 
@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/20/2017
+ms.date: 07/31/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: d1d05b46591fe4b72c92c59d357681c8e1cdb336
-ms.openlocfilehash: c208660fc1439ca831ada6c9bb348dbc3eadc18c
-ms.lasthandoff: 02/21/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 4983069924f0edaeee7ffc91131bb83d9f9f4508
+ms.contentlocale: zh-tw
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="how-to-get-a-media-processor-instance"></a>如何：取得媒體處理器執行個體
@@ -31,30 +31,23 @@ ms.lasthandoff: 02/21/2017
 ## <a name="overview"></a>Overview
 在媒體服務中，媒體處理器是可處理特定處理工作的元件，例如編碼、格式轉換、加密或解密媒體內容。 您通常會在建立媒體內容的編碼、加密或格式轉換工作時建立媒體處理器。
 
-下表提供每個可用媒體處理器的名稱和說明。
+## <a name="azure-media-processors"></a>Azure 媒體處理器 
 
-| 媒體處理器名稱 | 說明 | 相關資訊 |
-| --- | --- | --- |
-| Media Encoder Standard |提供隨選編碼的標準功能。 |[Azure 隨選媒體編碼器的概觀和比較](media-services-encode-asset.md) |
-| Media Encoder Premium Workflow |可讓您使用 Media Encoder Premium Workflow 執行編碼工作。 |[Azure 隨選媒體編碼器的概觀和比較](media-services-encode-asset.md) |
-| Azure Media Indexer |可讓您的媒體檔案和內容可供搜尋，以及產生隱藏式輔助字幕和關鍵字。 |[Azure Media Indexer](media-services-index-content.md) |
-| Azure Media Hyperlapse (預覽) |可讓您使用影片穩定讓影片中的「巔簸」變得平滑。 也可讓您將內容加速至可使用的片段。 |[Azure Media Hyperlapse](media-services-hyperlapse-content.md) |
-| Azure Media Encoder |取代 | |
-| Storage Decryption |取代 | |
-| Azure Media Packager |取代 | |
-| Azure Media Encryptor |取代 | |
+下列主題提供媒體處理器的清單：
+
+* [編碼媒體處理器](scenarios-and-availability.md#encoding-media-processors)
+* [分析媒體處理器](scenarios-and-availability.md#analytics-media-processors)
 
 ## <a name="get-mediaprocessor"></a>取得 MediaProcessor
 > [!NOTE]
 > 使用媒體服務 REST API 時，適用下列考量事項：
 > 
-> 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
+> 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱[媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 > 
-> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 您必須依照 [使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。 
-> 
+> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。 如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。
 > 
 
-下列 REST 呼叫示範如何依名稱取得媒體處理器執行個體 (在此案例中， **媒體編碼器標準**)。 
+下列 REST 呼叫示範如何依名稱取得媒體處理器執行個體 (在此案例中，是**媒體編碼器標準**)。 
 
 要求：
 

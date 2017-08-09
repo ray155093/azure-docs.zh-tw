@@ -3,7 +3,7 @@ title: "設計您的第一個 Azure SQL Database | Microsoft Docs"
 description: "了解如何設計您的第一個 Azure SQL Database。"
 services: sql-database
 documentationcenter: 
-author: janeng
+author: CarlRabeler
 manager: jhubbard
 editor: 
 tags: 
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: 
-ms.date: 06/20/2017
-ms.author: janeng
+ms.date: 07/31/2017
+ms.author: carlrab
 ms.translationtype: HT
-ms.sourcegitcommit: 26c07d30f9166e0e52cb396cdd0576530939e442
-ms.openlocfilehash: d5e63e7079b652e69a089aef495952d29cae67a2
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: ec3b2debcd65f733041462940196a61c109bf051
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 08/02/2017
 
 ---
 
@@ -49,7 +49,7 @@ Azure SQL Database 是 Microsoft 雲端 ("Azure") 中的關聯式資料庫即服
 
 登入 [Azure 入口網站](https://portal.azure.com/)。
 
-## <a name="create-a-blank-sql-database-in-the-azure-portal"></a>在 Azure 入口網站中建立空白的 SQL Database
+## <a name="create-a-blank-sql-database"></a>建立空白 SQL Database
 
 Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-database-service-tiers.md)建立。 此資料庫建立於 [Azure 資源群組](../azure-resource-manager/resource-group-overview.md)和 [Azure SQL Database 邏輯伺服器](sql-database-features.md)內。 
 
@@ -97,7 +97,7 @@ Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-databa
 
    ![通知](./media/sql-database-get-started-portal/notification.png)
 
-## <a name="create-a-server-level-firewall-rule-in-the-azure-portal"></a>在 Azure 入口網站中建立伺服器層級的防火牆規則
+## <a name="create-a-server-level-firewall-rule"></a>建立伺服器層級防火牆規則
 
 SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程式和工具連線到伺服器或伺服器上的任何資料庫，除非建立防火牆規則以針對特定的 IP 位址開啟防火牆。 請遵循下列步驟來為您用戶端的 IP 位址建立 [SQL Database 伺服器層級防火牆規則](sql-database-firewall-configure.md)，並讓外部連線僅能夠穿過您 IP 位址的 SQL Database 防火牆。 
 
@@ -131,7 +131,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 > [!IMPORTANT]
 > 根據預設，已對所有 Azure 服務啟用透過 SQL Database 防火牆存取。 按一下此頁面上的 [關閉] 即可對所有 Azure 服務停用。
 
-## <a name="sql-server-connection-information-in-the-azure-portal"></a>Azure 入口網站中的 SQL Server 連線資訊
+## <a name="sql-server-connection-information"></a>SQL Server 連線資訊
 
 在 Azure 入口網站中取得 Azure SQL Database 伺服器的完整伺服器名稱。 透過 SQL Server Management Studio，您可使用此完整伺服器名稱連接到您的伺服器。
 
@@ -169,7 +169,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 
    ![資料庫物件](./media/sql-database-connect-query-ssms/connected.png)  
 
-## <a name="create-tables-in-the-database-with-ssms"></a>使用 SSMS 在資料庫中建立資料表 
+## <a name="create-tables-in-the-database"></a>在資料庫中建立資料表 
 
 使用四個資料表建立資料庫結構描述，其會使用 [Transact-SQL](https://docs.microsoft.com/sql/t-sql/language-reference) 建立大學的學生管理系統模型：
 
@@ -240,7 +240,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 
    ![建立 ssms 資料表](./media/sql-database-design-first-database/ssms-tables-created.png)
 
-## <a name="load-data-into-the-tables-with-ssms"></a>使用 SSMS 將資料載入到資料表
+## <a name="load-data-into-the-tables"></a>將資料載入到資料表
 
 1. 在 [下載] 資料夾中建立一個名為 **SampleTableData** 的資料夾，以存放您資料庫的範例資料。 
 
@@ -264,7 +264,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 
 您現在已將範例資料載入至先前建立的資料表。
 
-## <a name="query-the-tables-with-ssms"></a>使用 SSMS 查詢資料表
+## <a name="query-data"></a>查詢資料
 
 執行下列查詢，以從資料庫資料表中擷取資訊。 如需深入了解關於撰寫 SQL 查詢的資訊，請參閱[撰寫 SQL 查詢 (英文)](https://technet.microsoft.com/library/bb264565.aspx)。 第一個查詢會聯結所有四個資料表，以尋找由「Dominick Pope」授課且成績高於全班 75% 學生的所有學生。 第二個查詢會連結所有四個資料表，以尋找「Noe Coleman」曾註冊的所有課程。
 
@@ -301,7 +301,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
    AND person.LastName = 'Coleman'
    ```
 
-## <a name="restore-a-database-to-a-previous-point-in-time-using-the-azure-portal"></a>使用 Azure 入口網站將資料庫還原到先前的時間點
+## <a name="restore-a-database-to-a-previous-point-in-time"></a>將資料庫還原至先前的時間點
 
 假設您不小心刪除了資料表。 這是您無法輕易復原的情況。 Azure SQL Database 可讓您返回至最長過去 35 天內的任何時間點，並將此時間點還原至新資料庫。 您可使用此資料庫來復原已刪除的資料。 下列步驟會將範例資料庫還原至新增資料表之前的時間點。
 
@@ -330,8 +330,10 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 > * 建立資料表
 > * 大量載入資料
 > * 查詢該資料
-> * 使用 SQL Database [還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)功能，將資料庫還原至先前的時間點。請繼續下一個教學課程，以了解如何移轉資料。
+> * 使用 SQL Database [還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)功能，將資料庫還原至先前的時間點
+
+前進到下一個教學課程，了解如何使用 Visual Studio 和 C# 設計資料庫。
 
 > [!div class="nextstepaction"]
->[將 SQL Server Database 移轉至 Azure SQL Database](sql-database-migrate-your-sql-server-database.md)
+>[設計 Azure SQL Database 並連接 C# 和 ADO.NET](sql-database-design-first-database-csharp.md)
 

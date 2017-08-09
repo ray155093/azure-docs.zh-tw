@@ -15,12 +15,11 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/25/2016
 ms.author: LADocs; jehollan
-ms.translationtype: Human Translation
-ms.sourcegitcommit: dab219386a32f519e50f76e18013f8f94a2266ff
-ms.openlocfilehash: 9d8f0be3d5c8e2c2e5f169dc1d0851c95a641d0c
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 43df04d6478e44c82c88b17d916cfc9fe4afc03e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/01/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="schema-updates-for-azure-logic-apps---june-1-2016"></a>Azure Logic Apps 的結構描述更新 - 2016 年 6 月 1 日
@@ -31,7 +30,7 @@ ms.lasthandoff: 03/01/2017
 * [條件和迴圈](#conditions-loops)現在是第一級動作。
 * 執行動作的更精確順序與 `runAfter` 屬性，取代 `dependsOn`
 
-如需從 2015 年 8 月 1 日預覽結構描述的邏輯應用程式升級為 2016 年 6 月 1 日結構描述，[請查看升級章節](#upgrading-to-2016-06-01-schema)。
+如需從 2015 年 8 月 1 日預覽結構描述的邏輯應用程式升級為 2016 年 6 月 1 日結構描述，[請查看升級章節](##upgrade-your-schema)。
 
 <a name="scopes"></a>
 ## <a name="scopes"></a>範圍
@@ -115,8 +114,7 @@ ms.lasthandoff: 03/01/2017
     ![選擇 [更新結構描述]][1]
    
     會傳回升級的定義，您可以將其複製並貼到資源定義 (如有必要)。 
-    不過，我們**強烈建議**您選擇**另存新檔** 
-   ，以確定所有連線參考在升級的邏輯應用程式中都有效。
+    不過，我們**強烈建議**您選擇 [另存新檔]，以確定所有連線參考在升級的邏輯應用程式中都有效。
 
 3. 在升級的刀鋒視窗工具列中，選擇 [另存新檔]。
 

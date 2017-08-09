@@ -5,7 +5,7 @@ keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
 author: stevestein
-manager: jhubbard
+manager: craigg
 editor: 
 ms.assetid: 
 ms.service: sql-database
@@ -14,14 +14,13 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/31/2017
+ms.date: 07/26/2017
 ms.author: sstein
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: f6beb62246aaf59bfd81467f07d347913a20677b
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 658c316d8d9d14ce11dbb92188afbf0e68c00493
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="provision-new-tenants-and-register-them-in-the-catalog"></a>佈建新的租用戶並在目錄中註冊它們
@@ -83,15 +82,15 @@ ms.lasthandoff: 06/14/2017
 
 此練習會佈建一批額外的租用戶。 建議您在完成其他 Wingtip SaaS 教學課程之前佈建一批租用戶，才會有多個資料庫可以使用。
 
-1. 在 [PowerShell ISE] 中開啟 \\Learning Modules\\Utilities\\*Demo-ProvisionAndCatalog.ps1* 並設定下列值：
-   * **$DemoScenario** = **3**，設定為 **3** 以「佈建一批租用戶」。
+1. 在 [PowerShell ISE] 中開啟 \\Learning Modules\\Utilities\\*Demo-ProvisionAndCatalog.ps1*，並將 *$DemoScenario* 參數變更為 3：
+   * **$DemoScenario** = **3**，變更為 **3** 以「佈建一批租用戶」。
 1. 按 **F5** 並執行指令碼。
 
 此指令碼會部署一批額外的租用戶。 它會使用控制批次處理的 [Azure Resource Manager 範本](../azure-resource-manager/resource-manager-template-walkthrough.md)，並且將每個資料庫的佈建委派到連結的範本。 以此方式使用範本可讓 Azure Resource Manager 代理指令碼的佈建程序。 範本以平行方式佈建資料庫，它可以視需要處理重試，進而最佳化整體程序。 指令碼為等冪，如果它失敗，或因為任何原因而停止，請再次執行。
 
 ### <a name="verify-the-batch-of-tenants-successfully-deployed"></a>確認已成功部署一批租用戶
 
-* 在 [Azure 入口網站](https://portal.azure.com)中開啟 *tenants1* 伺服器，然後按一下 [SQL 資料庫]：
+* 在 [Azure 入口網站](https://portal.azure.com)中瀏覽到您的伺服器清單以開啟 *tenants1* 伺服器，按一下 [SQL 資料庫]，並驗證清單中有一批額外的 17 個資料庫：
 
    ![資料庫清單](media/sql-database-saas-tutorial-provision-and-catalog/database-list.png)
 
@@ -103,13 +102,13 @@ ms.lasthandoff: 06/14/2017
 1. 開啟 ...\\Learning Modules\Utilities\_Demo-ProvisionAndCatalog.ps1_ 並設定下列參數：
    * **$TenantName** = 租用戶名稱必須是唯一的，因此請設定為和任何現有租用戶不同的名稱 (例如，*Hackberry Hitters*)。
    * **$VenueType** = 使用其中一個預先定義的場地類型 (例如，*judo*)。
-   * **$DemoScenario** = 1，設定為 **1** 以「佈建單一租用戶」。
+   * **$DemoScenario** = **1**，設定為 **1** 以「佈建單一租用戶」。
 
 1. 將您的游標置於以下行的任意位置來新增中斷點：*New-Tenant `*，然後按 **F9**。
 
    ![中斷點](media/sql-database-saas-tutorial-provision-and-catalog/breakpoint.png)
 
-1. 若要執行指令碼，請按 **F5**。 當到達中斷點時，按 **F11** 來逐步執行。 使用 **F10** 來追蹤指令碼的執行，並使用 **F11** 來跳過或進入呼叫的函式。 [使用 PowerShell 指令碼及對其進行偵錯的祕訣](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise)
+1. 若要執行指令碼，請按 **F5**。 當到達中斷點時，按 **F11** 來逐步執行。 使用 [偵錯] 功能表選項追蹤指令碼的執行 - **F10** 和 **F11** 可以跳過或進入呼叫的函式。 如需對 PowerShell 指令碼進行偵錯的詳細資訊，請參閱[使用 PowerShell 指令碼及對其進行偵錯的祕訣](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise) \(英文\)。
 
 ### <a name="examine-the-provision-and-catalog-implementation-in-detail-by-stepping-through-the-script"></a>逐步執行指令碼以詳細檢查佈建及編目實作
 

@@ -16,12 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.translationtype: Human Translation
-ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
-ms.openlocfilehash: 782cab231e1b152c720abebff1fc76ae0559d12a
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 91620e993ae0413080dad03344290e971bf74949
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="release-notes-for-hadoop-components-on-azure-hdinsight"></a>Azure HDInsight 上 Hadoop 元件的版本資訊

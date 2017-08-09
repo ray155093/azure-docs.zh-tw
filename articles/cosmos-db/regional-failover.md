@@ -15,12 +15,11 @@ ms.workload: na
 ms.date: 05/24/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: ff6900cf4516a173e212728a069587d908f9fe11
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 3d8ba08bc9f99cb77c9f03949fc5db299eb222c8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="automatic-regional-failover-for-business-continuity-in-azure-cosmos-db"></a>Azure Cosmos DB 中商務持續性的自動區域性容錯移轉
@@ -122,7 +121,7 @@ Cosmos DB 帳戶的讀取區域若在其中一個受影響區域中，會自動�
 ## <a id="NextSteps"></a>後續步驟
 * 了解 Cosmos DB 如何支援[全域散發](distribute-data-globally.md)
 * 了解 [Azure Cosmos DB 的全域一致性](consistency-levels.md)
-* 使用 Azure Cosmos DB 的 [DocumentDB SDK](../cosmos-db/tutorial-global-distribution-documentdb.md) 進行多區域開發
+* 使用 Azure Cosmos DB 的 [DocumentDB API](../cosmos-db/tutorial-global-distribution-documentdb.md) 進行多區域開發
 * 了解如何使用 Azure DocumentDB 建置[多區域寫入器架構](multi-region-writers.md)
 
 

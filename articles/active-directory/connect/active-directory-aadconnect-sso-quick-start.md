@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2017
+ms.date: 07/24/2017
 ms.author: billmath
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: 451d4fd24dc506fb4a659edb710ab67a66cbbde7
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 05fb966e3e18b8d5242a2795248b9b72352d894d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/16/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -33,6 +33,7 @@ ms.lasthandoff: 06/16/2017
 2. 啟用功能：使用 Azure AD Connect，在租用戶上開啟無縫 SSO。
 3. 推出功能：使用群組原則，向某些或所有使用者推出此功能。
 4. 測試功能：使用無縫 SSO 來測試使用者登入。
+5. *變換金鑰*：經常變換電腦帳戶的 Kerberos 解密金鑰。
 
 ## <a name="step-1-check-prerequisites"></a>步驟 1：檢查必要條件
 
@@ -104,14 +105,19 @@ Mozilla Firefox 不會自動執行 Kerberos 驗證。 每個使用者都必須�
 4. 在欄位中，輸入 "https://autologon.microsoftazuread-sso.com, https://aadg.windows.net.nsatc.net"。
 5. 按一下 [確定]，然後重新開啟瀏覽器。
 
->[!NOTE]
->在 Firefox 的私用瀏覽模式中，無法使用無縫 SSO。
+#### <a name="safari-on-mac-os"></a>Mac OS 上的 Safari
 
-#### <a name="google-chrome-on-mac"></a>Mac 上的 Google Chrome
+確定執行 Mac OS 的電腦已加入至 AD。 請參閱[這裡](http://training.apple.com/pdf/Best_Practices_for_Integrating_OS_X_with_Active_Directory.pdf)的操作指示。
 
-針對 Mac 和其他非 Windows 平台上的 Google Chrome，請參閱[本文](https://dev.chromium.org/administrators/policy-list-3#AuthServerWhitelist)以了解如何將 Azure AD URL 設為白名單進行整合式驗證的資訊。
+#### <a name="google-chrome-on-mac-os"></a>Mac OS 上的 Google Chrome
+
+針對 Mac OS 和其他非 Windows 平台上的 Google Chrome，請參閱[本文](https://dev.chromium.org/administrators/policy-list-3#AuthServerWhitelist)以了解如何將 Azure AD URL 設為白名單進行整合式驗證的資訊。
 
 使用協力廠商 Active Directory 群組原則延伸模組向 Mac 使用者上的 Firefox 和 Google Chrome 推出 Azure AD URL，不在本文的範圍內。
+
+#### <a name="known-limitations"></a>已知限制
+
+無縫 SSO 無法在 Firefox 和 Edge 瀏覽器的私人瀏覽模式中運作。 如果瀏覽器是在「增強保護」模式中執行，它也無法在 Internet Explorer 上運作。
 
 ## <a name="step-4-test-the-feature"></a>步驟 4：測試功能
 
@@ -127,6 +133,13 @@ Mozilla Firefox 不會自動執行 Kerberos 驗證。 每個使用者都必須�
 測試使用者不需要輸入使用者名稱或密碼的案例： 
 - 在新的私用瀏覽器工作階段中，登入 *https://myapps.microsoft.com/contoso.onmicrosoft.com*。 將 "*contoso*" 取代為您租用戶的名稱。
 - 或者，在新的私用瀏覽器工作階段中，登入 *https://myapps.microsoft.com/contoso.com*。 將 "*contoso.com*" 取代為租用戶中的已驗證網域 (非同盟網域)。
+
+## <a name="step-5-roll-over-keys"></a>步驟 5：變換金鑰
+
+在步驟 2 中，Azure AD Connect 會在您已啟用無縫 SSO 的所有 AD 樹系中建立電腦帳戶 (代表 Azure AD)。 在[這裡](active-directory-aadconnect-sso-how-it-works.md)詳細了解。 為了提升安全性，建議您經常變換這些電腦帳戶的 Kerberos 解密金鑰。
+
+>[!IMPORTANT]
+>您不需要在啟用此功能後「立即」執行此步驟。 至少每隔 30 天變換一次 Kerberos 解密金鑰。
 
 ## <a name="next-steps"></a>後續步驟
 

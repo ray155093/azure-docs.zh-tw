@@ -17,10 +17,10 @@ ms.workload: big-data
 ms.date: 07/12/2017
 ms.author: larryfr
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 1477ed13ef0434ed86938c49e6bb815837cb40fb
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 8c6ff4a6b8617cda9b12be060c7c7bed62cb3f44
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="information-about-using-hdinsight-on-linux"></a>在 Linux 上使用 HDInsight 的相關資訊
@@ -127,9 +127,9 @@ Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或�
 
 * `wasb:///`︰使用未加密通訊存取預設儲存體。
 
-* `wasbs:///`︰使用加密通訊存取預設儲存體。
+* `wasbs:///`︰使用加密通訊存取預設儲存體。  HDInsight 3.6 版和更新版本才會支援 wasbs 配置。
 
-* `wasbs://<container-name>@<account-name>.blob.core.windows.net/`︰以非預設儲存體帳戶進行通訊時使用。 例如，當您有其他儲存體帳戶，或在可公開存取的儲存體帳戶中存取儲存的資料時。
+* `wasb://<container-name>@<account-name>.blob.core.windows.net/`︰以非預設儲存體帳戶進行通訊時使用。 例如，當您有其他儲存體帳戶，或在可公開存取的儲存體帳戶中存取儲存的資料時。
 
 使用 __Data Lake Store__ 時，可使用下列其中一種 UI 配置︰
 
@@ -153,7 +153,7 @@ Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或�
 
 此命令會傳回類似下列 URI 的值：
 
-* `wasbs://<container-name>@<account-name>.blob.core.windows.net`，若使用 Azure 儲存體帳戶。
+* `wasb://<container-name>@<account-name>.blob.core.windows.net`，若使用 Azure 儲存體帳戶。
 
     帳戶名稱是 Azure 儲存體帳戶的名稱，容器名稱則是叢集儲存體根目錄的 Blob 容器。
 

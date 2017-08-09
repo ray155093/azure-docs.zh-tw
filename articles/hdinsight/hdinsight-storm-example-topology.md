@@ -14,14 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/03/2017
+ms.date: 07/31/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 30e851272dcaa3bc0ec588f66930234ae39c60c7
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: b68b723aaff1f47dbd2d36503ce1a5db282ed9b4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="example-storm-toplogies-and-components-for-apache-storm-on-hdinsight"></a>HDInsight 上 Apache Storm 的範例 Storm 拓撲及元件
@@ -46,6 +45,7 @@ ms.lasthandoff: 05/10/2017
 | [使用 Storm on HDInsight 從 Azure 事件中樞讀取的延展性效能評比][d6c540e3] |訊息輸送量、事件中心、SQL Database |C#，Java |
 | [在 HDInsight 上使用 Storm 和 HBase 讓事件相互關聯](hdinsight-storm-correlation-topology.md) |HBase |C# |
 | [搭配 Storm on HDInsight 使用 Python](hdinsight-storm-develop-python-topology.md) |使用 Flux 拓撲的 Python 元件 |Python |
+| [搭配 Storm on HDInsight 使用 Kafka](hdinsight-apache-storm-with-kafka.md) | 讀取和寫入 Apache Kafka 的 Apache Storm | Java |
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -61,7 +61,7 @@ ms.lasthandoff: 05/10/2017
 [844d1d81]: hdinsight-storm-develop-csharp-event-hub-topology.md "了解如何利用 Storm on HDInsight 從 Azure 事件中樞讀取和寫入資料。"
 [ab894747]: hdinsight-storm-sensor-data-analysis.md "了解如何使用 Apache Storm on HDInsight 處理 Azure 事件中樞的感應器資料，使用 D3.js 將視覺化，並將它 (選擇性) 儲存至 HBase。"
 [3c86c7c8]: hdinsight-storm-twitter-trending.md "了解如何使用 Trident 建立 Storm 拓撲，以根據雜湊標籤來判斷 Twitter 上的趨勢主題。"
-[246ee964]: hdinsight-storm-iot-eventhub-documentdb.md "了解如何使用 Storm 拓撲讀取 Azure 事件中樞的訊息，閱讀 Azure Cosmos DB 的文件做為資料參考，並將資料儲存至 Azure 儲存體。"
+[246ee964]: https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md "了解如何使用 Storm 拓撲讀取 Azure 事件中樞的訊息，閱讀 Azure Cosmos DB 的文件做為資料參考，並將資料儲存至 Azure 儲存體。"
 [d6c540e3]: https://github.com/hdinsight/hdinsight-storm-examples/blob/master/EventCountExample "示範使用 Apache Storm on HDInsight 從 Azure 事件中樞讀取並儲存至 SQL Database 時之輸送量的幾個拓樸。"
 [b4b68194]: https://github.com/hdinsight/hdinsight-storm-examples/blob/master/RealTimeETLExample "了解如何讀取 Azure 事件中樞的資料、彙總與轉換資料，然後將它儲存至 HBase on HDInsight。"
 [ce0c02a2]: https://github.com/hdinsight/hdinsight-storm-examples/tree/master/templates/HDInsightStormExamples "此專案包含 spout、bolt 和拓撲的範本，藉此和各種 Azure 服務進行互動，例如事件中樞、Cosmos DB 和 SQL Database。"

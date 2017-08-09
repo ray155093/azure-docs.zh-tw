@@ -1,11 +1,11 @@
 ---
 title: "使用 Log Analytics 搭配 SQL Database 多租用戶應用程式 | Microsoft Docs"
-description: "設定及使用 Log Analytics (OMS) 搭配 Azure SQL Database 範例 Wingtip Tickets (WTP) 應用程式"
+description: "設定及使用 Log Analytics (OMS) 搭配 Azure SQL Database 範例 Wingtip SaaS 應用程式"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
 author: stevestein
-manager: jhubbard
+manager: craigg
 editor: 
 ms.assetid: 
 ms.service: sql-database
@@ -14,19 +14,18 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 07/26/2017
 ms.author: billgib; sstein
-ms.translationtype: Human Translation
-ms.sourcegitcommit: be747170a0d8a7a6defd790a3f8a122c4d397671
-ms.openlocfilehash: 813a947ce4deb0755b44f4d287e00ae5218abfc4
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 26f6f519ecb3abf6343dc2776aa141dff99ced15
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/23/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
-# <a name="setup-and-use-log-analytics-oms-with-the-wtp-sample-saas-app"></a>設定及使用 Log Analytics (OMS) 搭配 WTP 範例 SaaS 應用程式
+# <a name="setup-and-use-log-analytics-oms-with-the-wingtip-saas-app"></a>設定及使用 Log Analytics (OMS) 搭配 Wingtip SaaS 應用程式
 
-在本教學課程中，您會設定及使用 *Log Analytics([OMS](https://www.microsoft.com/cloud-platform/operations-management-suite))* 搭配 WTP 應用程式，以便監視彈性集區和資料庫。 它是以[效能監視與管理教學課程](sql-database-saas-tutorial-performance-monitoring.md)為基礎，並示範如何使用 *Log Analytics*，以增強 Azure 入口網站中提供的監視和警示功能。 Log Analytics 特別適合用於大規模監視和警示，因為它可支援數百個集區和數十萬個資料庫。 它也提供單一監視解決方案，可以跨多個 Azure 訂用帳戶，整合不同應用程式和 Azure 服務的監視。
+在本教學課程中，您會設定及使用 *Log Analytics([OMS](https://www.microsoft.com/cloud-platform/operations-management-suite))*，以便監視彈性集區和資料庫。 它是以[效能監視與管理教學課程](sql-database-saas-tutorial-performance-monitoring.md)為基礎，並示範如何使用 *Log Analytics*，以增強 Azure 入口網站中提供的監視和警示功能。 Log Analytics 特別適合用於大規模監視和警示，因為它可支援數百個集區和數十萬個資料庫。 它也提供單一監視解決方案，可以跨多個 Azure 訂用帳戶，整合不同應用程式和 Azure 服務的監視。
 
 在本教學課程中，您了解如何：
 
@@ -36,7 +35,7 @@ ms.lasthandoff: 05/23/2017
 
 若要完成本教學課程，請確定已完成下列必要條件：
 
-* 已部署 WTP 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 WTP SaaS 應用程式](sql-database-saas-tutorial.md)
+* 已部署 Wingtip SaaS 應用程式。 若要在五分鐘內完成部署，請參閱[部署及探索 Wingtip SaaS 應用程式](sql-database-saas-tutorial.md)
 * 已安裝 Azure PowerShell。 如需詳細資料，請參閱[開始使用 Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps)
 
 請參閱[效能監視與管理教學課程](sql-database-saas-tutorial-performance-monitoring.md)，以取得 SaaS 案例和模式的討論區，及其對於監視解決方案需求的影響。
@@ -65,7 +64,7 @@ ms.lasthandoff: 05/23/2017
 
 ## <a name="installing-and-configuring-log-analytics-and-the-azure-sql-analytics-solution"></a>安裝及設定 Log Analytics 和 Azure SQL 分析解決方案
 
-Log Analytics 是需要設定的個別服務。 Log Analytics 會收集 Log Analytics 工作區中的記錄資料和遙測以及計量。 就像 Azure 中的其他資源一樣，工作區是必須建立的資源。 雖然工作區不一定要建立在與其監視之應用程式相同的資源群組中，但這麼做通常最有意義。 在 WTP 應用程式的情況下，這可讓工作區輕鬆地與應用程式一起刪除，只要刪除資源群組即可。
+Log Analytics 是需要設定的個別服務。 Log Analytics 會收集 Log Analytics 工作區中的記錄資料和遙測以及計量。 就像 Azure 中的其他資源一樣，工作區是必須建立的資源。 雖然工作區不一定要建立在與其監視之應用程式相同的資源群組中，但這麼做通常最有意義。 在 Wingtip SaaS 應用程式的情況下，這可讓工作區輕鬆地與應用程式一起刪除，只要刪除資源群組即可。
 
 1. 在 **PowerShell ISE** 中開啟 ...\\Learning Modules\\Performance Monitoring and Management\\Log Analytics\\*Demo-LogAnalytics.ps1*。
 1. 按 **F5** 以執行指令碼。
@@ -76,7 +75,7 @@ Log Analytics 是需要設定的個別服務。 Log Analytics 會收集 Log Anal
 ## <a name="use-log-analytics-and-the-sql-analytics-solution-to-monitor-pools-and-databases"></a>使用 Log Analytics 和 SQL 分析解決方案來監視集區和資料庫
 
 
-在此練習中，開啟 Log Analytics 和 OMS 入口網站以查看針對 WTP 資料庫和集區蒐集的遙測資料。
+在此練習中，開啟 Log Analytics 和 OMS 入口網站以查看針對資料庫和集區蒐集的遙測資料。
 
 1. 瀏覽至 [Azure 入口網站](https://portal.azure.com)，按一下 [更多服務] 以開啟 Log Analytics，然後搜尋 Log Analytics︰
 
@@ -134,7 +133,7 @@ SQL Database 的 Log Analytics 需根據工作區中的資料量付費。 在本
 
 ## <a name="additional-resources"></a>其他資源
 
-* [以初始 Wingtip Tickets Platform (WTP) 應用程式部署為基礎的其他教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* [以初始 Wingtip SaaS 應用程式部署為基礎的其他教學課程](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [Azure Log Analytics](../log-analytics/log-analytics-azure-sql.md)
 * [OMS](https://blogs.technet.microsoft.com/msoms/2017/02/21/azure-sql-analytics-solution-public-preview/)
 

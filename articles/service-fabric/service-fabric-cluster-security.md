@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: chackdan
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 628df1df8f5de99a5c18d0df5b7ee41e2fb747df
-ms.openlocfilehash: c3ff370b105a1f9bdacd1bdb4b32d6209e150be2
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 5afbe575a8affc37b8f902c0988585a83921e3d2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 12/08/2016
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="service-fabric-cluster-security-scenarios"></a>Service Fabric 叢集安全性案例
@@ -57,7 +57,7 @@ Service Fabric 會使用您建立叢集時在節點類型組態中指定的 X.50
 在 Azure 上執行的叢集或在 Windows 上執行的獨立叢集可以使用[憑證安全性](https://msdn.microsoft.com/library/ff649801.aspx)或 [Windows 安全性](https://msdn.microsoft.com/library/ff649396.aspx)。
 
 ### <a name="client-to-node-certificate-security"></a>用戶端對節點憑證安全性
- 用戶端對節點憑證安全性是在建立叢集 (透過 Azure 入口網站、Resource Manager 範本或 JSON 範本) 時，藉由指定系統管理用戶端憑證和 (或) 使用者用戶端憑證來設定的。  您指定的系統管理用戶端憑證和使用者用戶端憑證，應該不同於您為 [節點對節點安全性](#node-to-node-security)指定的主要和次要憑證。
+ 用戶端對節點憑證安全性是在建立叢集 (透過 Azure 入口網站、Resource Manager 範本或 JSON 範本) 時，藉由指定系統管理用戶端憑證和 (或) 使用者用戶端憑證來設定的。  您指定的系統管理用戶端憑證和使用者用戶端憑證，應不同於您針對[節點對節點安全性](#node-to-node-security)指定的主要和次要憑證為最佳做法。 節點對節點安全性的叢集憑證預設會新增到允許的用戶端系統管理員憑證清單中。
 
 用戶端如果是使用系統管理憑證來連接到叢集，就會擁有管理功能的完整存取權。  用戶端如果是使用唯讀使用者用戶端憑證來連接到叢集，則只會擁有管理功能的唯讀存取權。 換句話說，這些憑證是用於下文所述的角色型存取控制 (RBAC)。
 

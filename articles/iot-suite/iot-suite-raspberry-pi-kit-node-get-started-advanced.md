@@ -12,14 +12,13 @@ ms.devlang: nodejs
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/25/2017
+ms.date: 07/25/2017
 ms.author: dobett
-ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 021bf7c3ce70d9857b14597a2d378d7baad5aab2
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 54503d5d6a636239d240509d7d09cf334234bac7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="connect-your-raspberry-pi-3-to-the-remote-monitoring-solution-and-enable-remote-firmware-updates-using-nodejs"></a>將 Raspberry Pi 3 連線到遠端監視解決方案，並且使用 Node.js 來啟用遠端韌體更新
@@ -35,7 +34,6 @@ ms.lasthandoff: 05/03/2017
 
 - Raspbian OS、Node.js 程式設計語言和 Microsoft Azure IoT SDK for Node.js 來實作範例裝置。
 - IoT 套件遠端監視預先設定解決方案作為以雲端為基礎的後端。
-
 
 ## <a name="overview"></a>概觀
 
@@ -67,33 +65,44 @@ ms.lasthandoff: 05/03/2017
 
 1. 若要更新 Raspberry Pi，請使用下列命令︰
 
-    `sudo apt-get update`
+    ```sh
+    sudo apt-get update
+    ```
 
 1. 若要將 Node.js 二進位檔下載至 Raspberry Pi，請使用下列命令︰
 
-    `wget https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-armv7l.tar.gz`
+    ```sh
+    wget https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-armv7l.tar.gz
+    ```
 
 1. 使用下列命令來安裝二進位檔：
 
-    `sudo tar -C /usr/local --strip-components 1 -xzf node-v6.10.2-linux-armv7l.tar.gz`
+    ```sh
+    sudo tar -C /usr/local --strip-components 1 -xzf node-v6.10.2-linux-armv7l.tar.gz
+    ```
 
 1. 若要確認您已成功安裝 Node.js 6.10.2 版，請使用下列命令︰
 
-    `node --version`
+    ```sh
+    node --version
+    ```
 
 ### <a name="clone-the-repositories"></a>複製存放庫
 
 如果您尚未這麼做，請在 Pi 上執行下列命令來複製所需的存放庫︰
 
-`cd ~`
-
-`git clone --recursive https://github.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit.git`
+```sh
+cd ~
+git clone --recursive https://github.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit.git
+```
 
 ### <a name="update-the-device-connection-string"></a>更新裝置連接字串
 
 使用下列命令，將 **nano** 編輯器中的範例組態檔開啟︰
 
-`nano ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advanced/config/deviceinfo`
+```sh
+nano ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advanced/config/deviceinfo
+```
 
 將預留位置值取代為本教學課程開頭所建立及儲存的裝置識別碼和 IoT 中樞。
 
@@ -110,13 +119,16 @@ HostName=youriothubname.azure-devices.net;DeviceId=yourdeviceid;SharedAccessKey=
 
 執行下列命令來安裝範例的必要條件套件︰
 
-`cd ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advance/1.0`
-
-`npm install`
+```sh
+cd ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advance/1.0
+npm install
+```
 
 您現在可以在 Raspberry Pi 上執行範例程式。 輸入命令：
 
-`sudo node ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advanced/1.0/remote_monitoring.js`
+```sh
+sudo node ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advanced/1.0/remote_monitoring.js
+```
 
 下列範例輸出是您在 Raspberry Pi 的命令提示字元所看到的輸出範例︰
 
@@ -132,7 +144,7 @@ HostName=youriothubname.azure-devices.net;DeviceId=yourdeviceid;SharedAccessKey=
 
 1. 在 [叫用方法] 頁面上，選擇 [方法] 下拉式清單中的 [InitiateFirmwareUpdate]。
 
-1. 在 **FWPackageURI** 欄位中，輸入 **https://raw.githubusercontent.com/IoTChinaTeam/iot-remote-monitoring-node-raspberrypi-getstartedkit/master/advanced/2.0/raspberry.js**。 這個檔案包含 2.0 版韌體的實作。
+1. 在 **FWPackageURI** 欄位中，輸入 **https://raw.githubusercontent.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit/master/advanced/2.0/raspberry.js**。 這個檔案包含 2.0 版韌體的實作。
 
 1. 選擇 [InvokeMethod]。 Raspberry Pi 上的應用程式會將通知傳回解決方案儀表板。 接著，它會下載新版的韌體來啟動韌體更新程序︰
 

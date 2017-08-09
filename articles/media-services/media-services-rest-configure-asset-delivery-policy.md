@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/13/2017
+ms.date: 07/31/2017
 ms.author: juliako
 ms.translationtype: HT
-ms.sourcegitcommit: 49bc337dac9d3372da188afc3fa7dff8e907c905
-ms.openlocfilehash: 4bae6dabe5700c487cb3f98498729c9a27de8a44
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 9a22608f63d749c9e28640485698d77a17fcb1b7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/14/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="configuring-asset-delivery-policies"></a>設定資產傳遞原則
@@ -67,7 +67,7 @@ MPEG DASH
 > 
 > 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 > 
-> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 您必須依照 [使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。
+> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。 如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。
 > 
 > 
 
@@ -75,7 +75,7 @@ MPEG DASH
 ### <a id="create_asset_delivery_policy"></a>建立資產傳遞原則
 下列 HTTP 要求會建立資產傳遞原則，指定不要套用動態加密，並以下列任何通訊協定傳遞資料流：MPEG DASH、HLS 和 Smooth Streaming 通訊協定。 
 
-如需建立 AssetDeliveryPolicy 時可以指定之值的相關資訊，請參閱 [定義 AssetDeliveryPolicy 時使用的類型](#types) 一節。   
+如需建立 AssetDeliveryPolicy 時可以指定之值的相關資訊，請參閱[定義 AssetDeliveryPolicy 時使用的類型](#types) 一節。   
 
 要求：
 

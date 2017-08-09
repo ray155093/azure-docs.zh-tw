@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 07/31/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 256f8323d199db98a1267a5139a1ab3f14a3441c
-ms.lasthandoff: 04/25/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 5ca8a8c988afce5f4b9266673aa2afd73dc8ed67
+ms.contentlocale: zh-tw
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="upload-files-into-a-media-services-account-using-rest"></a>使用 REST 將檔案上傳至媒體服務帳戶
@@ -54,7 +54,7 @@ AMS 也可讓您上傳大量資產。 如需詳細資訊，請參閱 [本節](me
 > 
 > 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 > 
-> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 您必須依照 [使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。 
+> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。 如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。
 > 
 > 
 
@@ -90,7 +90,6 @@ AMS 也可讓您上傳大量資產。 如需詳細資訊，請參閱 [本節](me
     Host: media.windows.net
 
     {"Name":"BigBuckBunny.mp4"}
-
 
 **HTTP 回應**
 
@@ -150,7 +149,6 @@ AMS 也可讓您上傳大量資產。 如需詳細資訊，請參閱 [本節](me
        "ParentAssetId":"nb:cid:UUID:9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1"
     }
 
-
 **HTTP 回應**
 
     HTTP/1.1 201 Created
@@ -184,7 +182,6 @@ AMS 也可讓您上傳大量資產。 如需詳細資訊，請參閱 [本節](me
        "MimeType":"video/mp4",
        "ContentChecksum":null
     }
-
 
 ### <a name="creating-the-accesspolicy-with-write-permission"></a>建立具有寫入權限的 AccessPolicy。
 
@@ -269,7 +266,6 @@ SAS URL 具有下列格式：
        "Type":1
     }
 
-
 **HTTP 回應**
 
 如果成功，則會傳回下列回應：
@@ -306,7 +302,7 @@ SAS URL 具有下列格式：
 一旦設定 AccessPolicy 與 Locator，實際檔案會使用 Azure 儲存體 REST API 上傳至 Azure Blob 儲存容器。 您必須將檔案以區塊 Blob 形式上傳。 「Azure 媒體服務」不支援分頁 Blob。  
 
 > [!NOTE]
-> 您必須將要上傳的檔案名稱新增到上一節中所收到的 Locator **Path** 值。 例如，https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? 。 。 。 
+> 您必須將要上傳的檔案名稱新增到上一節中所收到的 Locator **Path** 值。 例如，https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? . . . 
 > 
 > 
 
@@ -349,7 +345,6 @@ SAS URL 具有下列格式：
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstestaccount001&urn%3aSubscriptionId=z7f09258-6753-2233-b1ae-193798e2c9d8&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1421662918&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=utmoXXbm9Q7j4tW1yJuMVA3egRiQy5FPygwadkmPeaY%3d
     x-ms-version: 2.11
     Host: media.windows.net
-
 
 **HTTP 回應**
 

@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/30/2017
 ms.author: dekapur
-ms.translationtype: Human Translation
-ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
-ms.openlocfilehash: a6f74374582d551e2540d1ebd5e9677c92330e09
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 5075f7e7f082a31be3ed30cdce57e89da070dfdb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="upgrade-your-standalone-azure-service-fabric-on-windows-server-cluster"></a>在 Windows Server 叢集上升級獨立的 Azure Service Fabric
@@ -188,6 +187,23 @@ ms.lasthandoff: 07/06/2017
 
 
 ## <a name="upgrade-the-cluster-configuration"></a>升級叢集組態
+起始組態升級之前，您可以執行獨立封裝中的 powershell 指令碼來對新叢集組態 json 進行測試。
+
+```powershell
+
+    TestConfiguration.ps1 -ClusterConfigFilePath <Path to the new Configuration File> -OldClusterConfigFilePath <Path to the old Configuration File>
+
+```
+或
+
+```powershell
+
+    TestConfiguration.ps1 -ClusterConfigFilePath <Path to the new Configuration File> -OldClusterConfigFilePath <Path to the old Configuration File> -FabricRuntimePackagePath <Path to the .cab file which you want to test the configuration against>
+
+```
+
+某些組態無法升級，例如端點、叢集名稱、節點 IP 等。這將會對照舊的叢集組態 json 測試新的叢集組態 json，如有任何問題，會在 Powershell 視窗中擲回錯誤。
+
 若要升級叢集組態升級，請執行 **Start-ServiceFabricClusterConfigurationUpgrade**。 組態升級是按升級網域逐一處理。
 
 ```powershell

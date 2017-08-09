@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: 74982663b0501d3a5c7973a5f383e14e0f964696
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: 0bd9ec41761c9ce575f3bcf4d1f8e8578b83e01c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
-
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="array-and-object-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 範本的陣列和物件函式 
@@ -34,6 +33,7 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 * [empty](#empty)
 * [first](#first)
 * [intersection](#intersection)
+* [json](#json)
 * [last](#last)
 * [length](#length)
 * [min](#min)
@@ -613,6 +613,53 @@ Resource Manager 提供了幾個用來使用陣列和物件的函式。
 | ---- | ---- | ----- |
 | objectOutput | Object | {"one": "a", "three": "c"} |
 | arrayOutput | 陣列 | ["two", "three"] |
+
+
+## <a name="json"></a>json
+`json(arg1)`
+
+傳回 JSON 物件。
+
+### <a name="parameters"></a>參數
+
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| arg1 |是 |字串 |要轉換成 JSON 的值。 |
+
+
+### <a name="return-value"></a>傳回值
+
+來自指定字串的 JSON 物件，或指定 **null** 時為空物件。
+
+### <a name="example"></a>範例
+
+下列範例顯示如何搭配使用 intersection 與陣列和物件︰
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+    ],
+    "outputs": {
+        "jsonOutput": {
+            "type": "object",
+            "value": "[json('{\"a\": \"b\"}')]"
+        },
+        "nullOutput": {
+            "type": "bool",
+            "value": "[empty(json('null'))]"
+        }
+    }
+}
+```
+
+上述範例中具有預設值的輸出如下：
+
+| 名稱 | 類型 | 值 |
+| ---- | ---- | ----- |
+| jsonOutput | Object | {"a": "b"} |
+| nullOutput | Boolean | True |
 
 <a id="last" />
 

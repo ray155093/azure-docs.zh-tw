@@ -16,12 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: jgao
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
-ms.openlocfilehash: b30ae2441170d352851505a38ff5215743942a03
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 0975aedf58c6e110726dd3308eae5f9ad3907cc7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/10/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="run-sqoop-jobs-with-hadoop-in-hdinsight-with-curl"></a>使用 Curl 在 HDInsight 中以 Hadoop 執行 Sqoop 作業
@@ -69,7 +68,7 @@ ms.lasthandoff: 06/10/2017
      所有要求的 URL 開頭 **https://CLUSTERNAME.azurehdinsight.net/templeton/v1** 都會相同。 路徑 **/status** 指出要求是要傳回伺服器之 WebHCat (也稱為 Templeton) 的狀態。 
 2. 使用以下命令提交 Sqoop 作業：
 
-        curl -u USERNAME:PASSWORD -d user.name=USERNAME -d command="export --connect jdbc:sqlserver://SQLDATABASESERVERNAME.database.windows.net;user=USERNAME@SQLDATABASESERVERNAME;password=PASSWORD;database=SQLDATABASENAME --table log4jlogs --export-dir /tutorials/usesqoop/data --input-fields-terminated-by \0x20 -m 1" -d statusdir="wasbs:///example/curl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/sqoop
+        curl -u USERNAME:PASSWORD -d user.name=USERNAME -d command="export --connect jdbc:sqlserver://SQLDATABASESERVERNAME.database.windows.net;user=USERNAME@SQLDATABASESERVERNAME;password=PASSWORD;database=SQLDATABASENAME --table log4jlogs --export-dir /tutorials/usesqoop/data --input-fields-terminated-by \0x20 -m 1" -d statusdir="wasb:///example/curl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/sqoop
 
     此命令中使用的參數如下：
 
@@ -95,7 +94,7 @@ ms.lasthandoff: 06/10/2017
    > 此 Curl 要求會傳回含有工作資訊的 JavaScript Object Notation (JSON) 文件；jq 可用來僅擷取狀態值。
    > 
    > 
-2. 工作狀態變更為 [成功] 之後，即可從 Azure Blob 儲存體擷取工作結果。 隨查詢一起傳送的 `statusdir` 參數包含輸出檔案的位置；在此案例中為 **wasbs:///example/curl**。 此位址會將作業輸出儲存至 HDInsight 叢集所使用之預設儲存體容器的 **example/curl** 目錄中。
+2. 工作狀態變更為 [成功] 之後，即可從 Azure Blob 儲存體擷取工作結果。 隨查詢一起傳送的 `statusdir` 參數包含輸出檔案的位置；在此案例中為 **wasb:///example/curl**。 此位址會將作業輸出儲存至 HDInsight 叢集所使用之預設儲存體容器的 **example/curl** 目錄中。
    
     您可以使用 [Azure CLI](../cli-install-nodejs.md) 列出並下載這些檔案。 例如，若要列出 **example/curl** 中的檔案，請使用下列命令：
    

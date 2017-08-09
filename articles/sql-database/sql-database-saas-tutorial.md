@@ -14,14 +14,13 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/06/2017
+ms.date: 07/26/2017
 ms.author: sstein
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 83d357bd046814c690b8b11841e5c8ebebd0df0e
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: b09bfa8a5bc22a092e963f351e99c16d0e9a57ba
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="deploy-and-explore-a-multi-tenant-application-that-uses-azure-sql-database---wingtip-saas"></a>部署及探索使用 Azure SQL Database 的多租用戶應用程式 - Wingtip SaaS
@@ -54,7 +53,9 @@ ms.lasthandoff: 06/28/2017
 
 部署 Wingtip SaaS 應用程式：
 
-1. 按一下 [部署至 Azure] 按鈕，可將 Azure 入口網站開啟到 Wingtip SaaS 部署範本。 範本需要兩個參數值：新資源群組的名稱，以及區分此部署與 Wingtip SaaS 應用程式中其他部署的使用者名稱。 下一個步驟將詳細說明如何設定這些值。 請務必記下您使用的確切值，因為稍後您必須將其輸入到設定檔。
+1. 按一下 [部署至 Azure] 按鈕，可將 Azure 入口網站開啟到 Wingtip SaaS 部署範本。 範本需要兩個參數值：新資源群組的名稱，以及區分此部署與 Wingtip SaaS 應用程式中其他部署的使用者名稱。 下一個步驟將詳細說明如何設定這些值。
+
+   請務必記下您使用的確切值，因為稍後您必須將其輸入到設定檔。
 
    <a href="http://aka.ms/deploywtpapp" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
 
@@ -63,7 +64,7 @@ ms.lasthandoff: 06/28/2017
     > [!IMPORTANT]
     > 為了示範的目的，已刻意將某些驗證和伺服器防火牆設為不安全。 **建立新的資源群組**，而不要使用現有資源群組、伺服器或集區。 請不要將此應用程式或任何它所建立的資源用於生產環境。 不使用應用程式之後請刪除此資源群組，以停止相關計費。
 
-    * **資源群組** - 選取 [新建] 並提供 [名稱] 和 [位置]。
+    * **資源群組** - 選取 [建立新的] 並提供資源群組的 [名稱]。 從下拉式清單中選取 [位置]。
     * **使用者** - 部分資源需要全域唯一的名稱。 若要確保唯一性，每次部署應用程式時，都請提供值，以區別您建立的資源與 Wingtip 應用程式的任何其他部署所建立的資源。 建議您使用簡短的 [使用者] 名稱，例如您的姓名縮寫加上數字 (例如 *bg1*)，然後將該名稱用於資源群組名稱 (例如 *wingtip-bg1*)。 [使用者] 參數只能包含字母、數字和連字號 (無空格)。 第一個和最後一個字元必須是字母或數字 (建議全部都小寫)。
 
 
@@ -109,7 +110,7 @@ ms.lasthandoff: 06/28/2017
 
 中央 [Events Hub (活動中心)] 提供部署專屬的租用戶 URL 清單。
 
-1. 開啟 [事件中樞]：http://events.wtp.&lt;使用者&gt;.trafficmanager.net (取代為您部署的使用者名稱)：
+1. 在您的瀏覽器中開啟 [事件中樞]：http://events.wtp.&lt;使用者&gt;.trafficmanager.net (取代為您部署的使用者名稱)：
 
     ![事件中樞](media/sql-database-saas-tutorial/events-hub.png)
 
@@ -130,7 +131,7 @@ ms.lasthandoff: 06/28/2017
 1. 按 **F5** 來執行指令碼並啟動負載產生器 (目前先保留預設參數值)。
 
 > [!IMPORTANT]
-> 負載產生器正於您的本機 PowerShell 工作階段中以一系列作業的方式執行。 *Demo-LoadGenerator.ps1* 指令碼會啟動實際負載產生器指令碼，其以前景工作及一系列背景負載產生作業形式執行。 針對目錄中所註冊的每個資料庫，都會叫用負載產生器作業。 這些作業會在本機 PowerShell 工作階段中執行，因此關閉 PowerShell 工作階段會停止所有作業。 如果您暫停電腦，則負載產生會暫停並在您喚醒電腦時繼續。
+> 若要執行其他指令碼，請開啟新的 PowerShell ISE 視窗。 負載產生器正於您的本機 PowerShell 工作階段中以一系列作業的方式執行。 *Demo-LoadGenerator.ps1* 指令碼會啟動實際負載產生器指令碼，其以前景工作及一系列背景負載產生作業形式執行。 針對目錄中所註冊的每個資料庫，都會叫用負載產生器作業。 這些作業會在本機 PowerShell 工作階段中執行，因此關閉 PowerShell 工作階段會停止所有作業。 如果您暫停電腦，則負載產生會暫停並在您喚醒電腦時繼續。
 
 負載產生器針對每個租用戶叫用負載產生作業之後，前景工作會保持作業叫用狀態，而它會針對後續佈建的任何新租用戶啟動額外的背景作業。 您可以使用 *Ctrl-C* 或按 [停止] 按鈕以停止前景工作，但現有背景作業仍會繼續在每個資料庫上產生負載。 如果您需要監視和控制背景作業，請使用 *Get-Job*、*Receive-Job* 和 *Stop-Job*。 正在執行前景工作時，您無法使用相同的 PowerShell 工作階段來執行其他指令碼。 若要執行其他指令碼，請開啟新的 PowerShell ISE 視窗。
 
@@ -160,11 +161,11 @@ ms.lasthandoff: 06/28/2017
 
 既然您已經開始對租用戶集合執行負載，讓我們看看已部署的一些資源：
 
-1. 在 [Azure 入口網站][](http://portal.azure.com) 中，開啟 **類別目錄-&lt;使用者&gt;**伺服器。 目錄伺服器包含兩個資料庫。 **tenantcatalog** 和 **basetenantdb** (複製來建立新租用戶的空 golden 或範本資料庫)。
+1. 在 [Azure 入口網站][](http://portal.azure.com) 中，瀏覽至您的 SQL 伺服器清單，開啟 **類別目錄-&lt;使用者&gt;** 伺服器。 目錄伺服器包含兩個資料庫。 **tenantcatalog** 和 **basetenantdb** (複製來建立新租用戶的空 golden 或範本資料庫)。
 
    ![資料庫](./media/sql-database-saas-tutorial/databases.png)
 
-1. 開啟包含租用戶資料庫的 **tenants1-&lt;使用者&gt;** 伺服器。 每個租用戶資料庫都是 50 eDTU 標準集區中的「彈性標準」資料庫。 另請注意有 _Red Maple Racing_ 資料庫，這是您先前佈建的租用戶資料庫。
+1. 回到您的 SQL 伺服器清單，開啟包含租用戶資料庫的 **tenants1-&lt;使用者&gt;** 伺服器。 每個租用戶資料庫都是 50 eDTU 標準集區中的「彈性標準」資料庫。 另請注意有 _Red Maple Racing_ 資料庫，這是您先前佈建的租用戶資料庫。
 
    ![伺服器](./media/sql-database-saas-tutorial/server.png)
 

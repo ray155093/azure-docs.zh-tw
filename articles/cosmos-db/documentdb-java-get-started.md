@@ -1,6 +1,6 @@
 ---
-title: "NoSQL 教學課程︰Azure DocumentDB Java SDK | Microsoft Docs"
-description: "NoSQL 教學課程，將使用 DocumentDB Java SDK 來建立線上資料庫以及 Java 主控台應用程式。 Azure DocumentDB 是 JSON 的 NoSQL 資料庫。"
+title: "NoSQL 教學課程：適用於 Azure Cosmos DB Java SDK 的 DocumentDB API | Microsoft Docs"
+description: "NoSQL 教學課程，將使用適用於 Azure Cosmos DB 的 DocumentDB API 來建立線上資料庫以及 Java 主控台應用程式。 Azure DocumentDB 是 JSON 的 NoSQL 資料庫。"
 keywords: "nosql 教學課程, 線上資料庫, java 主控台應用程式"
 services: cosmos-db
 documentationcenter: Java
@@ -15,15 +15,14 @@ ms.devlang: java
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: arramac
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
-ms.openlocfilehash: d69e70ae178c9ae889d44998938cb2c215ff10ba
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: ce1857395176ef50a16a7291170fb220896fd792
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
-# <a name="nosql-tutorial-build-a-documentdb-java-console-application"></a>NoSQL 教學課程：建置 DocumentDB Java 主控台應用程式
+# <a name="nosql-tutorial-build-a-documentdb-api-java-console-application"></a>NoSQL 教學課程：建置 DocumentDB API Java 主控台應用程式
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
@@ -34,7 +33,7 @@ ms.lasthandoff: 06/20/2017
 >  
 > 
 
-歡迎使用 Azure DocumentDB Java SDK 的 NoSQL 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 DocumentDB 資源。
+歡迎使用適用於 Azure Cosmos DB Java SDK 之 DocumentDB API 的 NoSQL 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
 
 我們會說明︰
 
@@ -72,7 +71,7 @@ ms.lasthandoff: 06/20/2017
 
     cd azure-cosmos-db-documentdb-java-getting-started
 
-目錄中包含專案的 `pom.xml` 和 `src` 資料夾，此資料夾中所含的 Java 原始程式碼包括 `Program.java`)，它會顯示如何使用 Azure DocumentDB 執行簡單的作業，例如建立文件和查詢集合內的資料。 `pom.xml` 包含 [Maven 上的 DocumentDB Java SDK](https://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb) 上的相依性。
+目錄中包含專案的 `pom.xml` 和 `src` 資料夾，此資料夾中所含的 Java 原始程式碼包括 `Program.java`)，它會顯示如何使用 Azure Cosmos DB 執行簡單的作業，例如建立文件和查詢集合內的資料。 `pom.xml` 包含 [Maven 上的 DocumentDB Java SDK](https://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb) 上的相依性。
 
     <dependency>
         <groupId>com.microsoft.azure</groupId>
@@ -120,7 +119,7 @@ ms.lasthandoff: 06/20/2017
     this.client.createCollection("/dbs/familydb", collectionInfo, requestOptions);
 
 ## <a id="CreateDoc"></a>步驟 6：建立 JSON 文件
-您可以使用 **DocumentClient** 類別的 [createDocument](/java/api/com.microsoft.azure.documentdb._document_client.createdocument) 方法來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 現在可插入一或多份文件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的 [資料移轉工具](import-data.md)，將資料匯入資料庫中。
+您可以使用 **DocumentClient** 類別的 [createDocument](/java/api/com.microsoft.azure.documentdb._document_client.createdocument) 方法來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 現在可插入一或多份文件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 Azure Cosmos DB 的[資料移轉工具](import-data.md)，將資料匯入資料庫中。
 
     // Insert your Java objects as documents 
     Family andersenFamily = new Family();

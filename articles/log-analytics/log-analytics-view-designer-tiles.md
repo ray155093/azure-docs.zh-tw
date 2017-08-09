@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 07/17/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 4d6ea516717077ffb4b832caa9e8a064905fce09
-ms.openlocfilehash: 07938808a6ce39be80f38d93831db40130bcd4b5
-
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 806aba12d07c10816a106b9b2af0e824ceb25ade
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="log-analytics-view-designer-tile-reference"></a>Log Analytics 檢視設計工具圖格參考
@@ -26,7 +27,10 @@ Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂�
 其他與檢視設計工具相關的文章︰
 
 * [檢視設計工具](log-analytics-view-designer.md) -檢視設計工具的概觀以及建立和編輯自訂檢視的程序。
-* [視覺效果組件參考](log-analytics-view-designer-parts.md) - 可用於自訂檢視之每個圖格的設定參考。 
+* [視覺效果組件參考](log-analytics-view-designer-parts.md) - 可用於自訂檢視之每個圖格的設定參考。
+
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則所有檢視中的查詢必須以[新的查詢語言](https://docs.loganalytics.io/learn/tutorial_getting_started_with_queries.html)撰寫。  在工作區升級之前建立的任何檢視都會自動轉換。
 
 下表列出檢視設計工具中可用的各種圖格類型。  下列各節詳細說明每種圖格類型及其屬性。
 
@@ -176,10 +180,4 @@ Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂�
 ## <a name="next-steps"></a>後續步驟
 * 深入了解[記錄檔搜尋](log-analytics-log-searches.md)以支援在圖格中查詢。
 * 將[視覺效果組件](log-analytics-view-designer-parts.md)新增至您的自訂檢視。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

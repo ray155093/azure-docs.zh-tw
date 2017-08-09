@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 635affebf9130c2bfb38e84cc144ee4838504777
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 064642ebb9cafb0c6e1b3ff306241182a95215cc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -297,6 +297,8 @@ Azure AD Connect 安裝精靈一律會建立此設定。
 
 ## <a name="group-based-filtering"></a>群組型篩選
 您可以在首次安裝 Azure AD Connect 時，使用[自訂安裝](active-directory-aadconnect-get-started-custom.md#sync-filtering-based-on-groups)來設定群組型篩選。 它適用於試驗部署，其中您只要同步小型物件集合。 當您停用群組型篩選時，無法將它重新啟用。 不支援在自訂設定中使用群組型篩選。 只支援使用安裝精靈來設定此功能。 完成試驗時，使用此主題中的其他篩選選項之一。 當將 OU 型篩選搭配群組型篩選使用時，必須包含群組及其成員所在的 OU。
+
+同步處理多個 AD 樹系時，您可藉由為每個 AD 連接器指定不同的群組，設定以群組為基礎的篩選。 如果您想要在一個 AD 樹系中同步處理使用者，而相同的使用者在其他 AD 樹系中有一或多個對應的 FSP (外部安全性主體) 物件，您必須確定使用者物件與其對應的 FSP 物件在以群組為基礎的篩選範圍內。 如果以群組為基礎的篩選排除了一或多個 FSP 物件，使用者物件就不會同步處理至 Azure AD。
 
 ## <a name="next-steps"></a>後續步驟
 - 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。

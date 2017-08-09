@@ -12,14 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/29/2017
+ms.date: 08/01/2017
 ms.author: banders
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
-ms.openlocfilehash: 936064959ac9dd6422619076fabbbba887d17bb6
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 524c63d358ce22c10b7a23e5bcf0b33e9f2e5f26
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="containers-preview-solution-in-log-analytics"></a>Log Analytics 中的容器 (預覽) 解決方案
@@ -33,6 +32,49 @@ ms.lasthandoff: 06/30/2017
 下圖顯示各種容器主機和代理程式與 OMS 之間的關聯性。
 
 ![容器圖表](./media/log-analytics-containers/containers-diagram.png)
+
+## <a name="system-requirements"></a>系統需求
+開始之前請檢閱下列詳細資料，以確認符合必要條件。
+
+### <a name="container-monitoring-solution-support-for-docker-orchestrator-and-os-platform"></a>容器監視解決方案支援 Docker Orchestrator 和作業系統平台 
+下表概述對於使用 Log Analytics 之容器清查、效能和記錄的 Docker 協調流程和作業系統監視支援。   
+
+| | ACS | Linux | Windows | 容器<br>清查 | 映像<br>清查 | 節點<br>清查 | 容器<br>效能 | 容器<br>Event | Event<br>記錄檔 | 容器<br>記錄檔 | 
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| Kubernetes | 是 | 是 | | 是 | 是 | 是 | 是 | 是 | 是 | 是 | 
+| Mesosphere<br>DC/OS | 是 | 是 | | 是 | 是 | 是 | 是| 是 | 是 | 是 | 
+| Docker<br>Swarm | 是 | 是 | 是 | 是 | 是 | 是 | 是 | 是 | | 是 |
+| 服務<br>網狀架構 | | | 是 | 是 | 是 | 是 | 是 | 是 | 是 | 是 | 
+| Red Hat 開啟<br>移位 | | 是 | | 是 | 是| 是 | 是 | 是 | | 是 | 
+| Windows Server<br>(獨立) | | | 是 | 是 | 是 | 是 | 是 | 是 | | 是 |
+| Linux 伺服器<br>(獨立) | | 是 | | 是 | 是 | 是 | 是 | 是 | | 是 |
+
+
+### <a name="supported-linux-operating-system"></a>支援的 Linux 作業系統
+
+- Docker 1.11 至 1.13
+- Docker CE 和 EE v17.03
+
+下列 x64 Linux 散發套件可支援做為容器主機︰
+
+- Ubuntu 14.04 LTS、16.04 LTS
+- CoreOS (穩定版)
+- Amazon Linux 2016.09.0
+- openSUSE 13.2
+- openSUSE LEAP 42.2
+- CentOS 7.2、7.3
+- SLES 12
+- RHEL 7.2、7.3
+
+### <a name="supported-windows-operating-system"></a>支援的 Windows 作業系統
+
+- Windows Server 2016
+- Windows 10 年度版 (Professional 或 Enterprise)
+
+### <a name="docker-versions-supported-on-windows"></a>在 Windows 上支援 Docker 版本
+
+- Docker 1.12 – 1.13
+- Docker 17.03.0 
 
 ## <a name="installing-and-configuring-the-solution"></a>安裝和設定方案
 請使用下列資訊來安裝和設定方案。
@@ -50,14 +92,14 @@ ms.lasthandoff: 06/30/2017
 
 ### <a name="container-services"></a>容器服務
 
-- 如果您有使用 Azure Container Service 的 Kubernetes 叢集，請深入了解[使用 Microsoft Operations Management Suite (OMS) 監視 Azure Container Service 叢集](../container-service/container-service-kubernetes-oms.md)。
-- 如果您擁有 Azure Container Service DC/OS 叢集，請深入了解[使用 Operations Management Suite 監視 Azure Container Service DC/OS 叢集](../container-service/container-service-monitoring-oms.md)。
+- 如果您有使用 Azure Container Service 的 Kubernetes 叢集，請深入了解[使用 Microsoft Operations Management Suite (OMS) 監視 Azure Container Service 叢集](../container-service/kubernetes/container-service-kubernetes-oms.md)。
+- 如果您擁有 Azure Container Service DC/OS 叢集，請深入了解[使用 Operations Management Suite 監視 Azure Container Service DC/OS 叢集](../container-service/dcos-swarm/container-service-monitoring-oms.md)。
 - 如果您有 Docker Swarm 模式環境，詳細資訊請參閱[為 Docker Swarm 設定 OMS 代理程式](#configure-an-oms-agent-for-docker-swarm)。
 - 如果您搭配 Service Fabric 使用容器，請參閱 [Azure Service Fabric 概觀](../service-fabric/service-fabric-overview.md)以深入了解。
 - 檢閱 [Windows 上的 Docker 引擎](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon)文章，以取得有關如何在執行 Windows 的電腦上安裝和設定您 Docker 引擎的資訊。
 
 > [!IMPORTANT]
-> 在容器主機上安裝 [OMS Agent for Linux](log-analytics-linux-agents.md)**之前**，Docker 必須已在執行中。 如果您已在安裝 Docker 前安裝此代理程式，您必須重新安裝 OMS Agent for Linux。 如需 Docker 的詳細資訊，請參閱 [Docker 網站](https://www.docker.com)。
+> 在容器主機上安裝 [OMS Agent for Linux](log-analytics-agent-linux.md)**之前**，Docker 必須已在執行中。 如果您已在安裝 Docker 前安裝此代理程式，您必須重新安裝 OMS Agent for Linux。 如需 Docker 的詳細資訊，請參閱 [Docker 網站](https://www.docker.com)。
 >
 >
 
@@ -65,30 +107,12 @@ ms.lasthandoff: 06/30/2017
 
 ## <a name="linux-container-hosts"></a>Linux 容器主機
 
-支援的 Linux 版本：
-
-- Docker 1.11 至 1.13
-- Docker CE 和 EE v17.03
-
-
-下列 x64 Linux 散發套件可支援做為容器主機︰
-
-- Ubuntu 14.04 LTS、16.04 LTS
-- CoreOS (穩定版)
-- Amazon Linux 2016.09.0
-- openSUSE 13.2
-- openSUSE LEAP 42.2
-- CentOS 7.2、7.3
-- SLES 12
-- RHEL 7.2、7.3
-
-
-在您安裝 Docker 之後，使用容器主機的下列設定來設定可搭配 Docker 使用的代理程式。 您需要有 [OMS 工作區識別碼和金鑰](log-analytics-linux-agents.md)。
+在您安裝 Docker 之後，使用容器主機的下列設定來設定可搭配 Docker 使用的代理程式。 您需要有 [OMS 工作區識別碼和金鑰](log-analytics-agent-linux.md)。
 
 
 ### <a name="for-all-linux-container-hosts-except-coreos"></a>適用於 CoreOS 以外的所有 Linux 容器主機
 
-- 請遵循 [OMS Agent for Linux 安裝步驟](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md)中的指示。
+- 如需如何安裝 OMS Agent for Linux 的詳細資訊和步驟，請參閱[將 Linux 電腦連線至 Operations Management Suite (OMS)](log-analytics-agent-linux.md)。
 
 ### <a name="for-all-linux-container-hosts-including-coreos"></a>適用於包含 CoreOS 的所有 Linux 容器主機
 
@@ -108,7 +132,7 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
 
 
 ### <a name="switching-from-using-an-installed-linux-agent-to-one-in-a-container"></a>從使用已安裝的代理程式切換為使用容器中的 Linux 代理程式
-如果您先前使用了直接安裝的代理程式，而且想要改為使用在容器中執行的代理程式，您必須先移除 OMSAgent。 請參閱[安裝 OMS Agent for Linux 的步驟](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md)。
+如果您先前使用了直接安裝的代理程式，而且想要改為使用在容器中執行的代理程式，您必須先移除 OMS Agent for Linux。 請參閱[解除安裝 OMS Agent for Linux](log-analytics-agent-linux.md#uninstalling-the-oms-agent-for-linux)。
 
 ### <a name="configure-an-oms-agent-for-docker-swarm"></a>為 Docker Swarm 設定 OMS 代理程式
 
@@ -254,16 +278,6 @@ KEY:    88 bytes
 
 
 ## <a name="windows-container-hosts"></a>Windows 容器主機
-
-支援的 Windows 版本：
-
-- Windows Server 2016
-- Windows 10 年度版 (Professional 或 Enterprise)
-
-### <a name="docker-versions-supported-on-windows"></a>在 Windows 上支援 Docker 版本
-
-- Docker 1.12 – 1.13
-- Docker 17.03.0 [穩定]
 
 ### <a name="preparation-before-installing-windows-agents"></a>安裝 Windows 代理程式之前的準備動作
 
@@ -425,7 +439,10 @@ Type=Perf <containerName>
 ## <a name="example-log-search-queries"></a>範例記錄檔搜尋查詢
 從一或兩個範例開始建置查詢，然後加以修改以符合您的環境，通常很實用。 首先，您可以體驗 [值得注意的查詢] 刀鋒視窗，協助您建置更進階的查詢。
 
+[!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
+
 ![容器查詢](./media/log-analytics-containers/containers-queries.png)
+
 
 ## <a name="saving-log-search-queries"></a>儲存記錄檔搜尋查詢
 儲存查詢是 Log Analytics 的標準功能。 藉由儲存查詢，您可將您覺得有用的查詢放在容易取得的地方，以便日後使用。

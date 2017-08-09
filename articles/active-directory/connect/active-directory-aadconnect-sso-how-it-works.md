@@ -12,21 +12,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2017
+ms.date: 07/24/2017
 ms.author: billmath
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ef1e603ea7759af76db595d95171cdbe1c995598
-ms.openlocfilehash: 6db2fa2f568c3cf8296bd91214b380a01b85c134
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 1f12a8e3e11bc7eee1fc536e231f71c1d17c3fe4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/16/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 
 # <a name="azure-active-directory-seamless-single-sign-on-technical-deep-dive"></a>Azure Active Directory 無縫單一登入：技術性深入探討
 
-本文提供 Azure Active Directory 無縫單一登入 (Azure AD 無縫 SSO) 功能運作方式的技術詳細資料。
+本文提供 Azure Active Directory 無縫單一登入 (無縫 SSO) 功能運作方式的技術詳細資料。
 
-## <a name="how-does-azure-ad-seamless-sso-work"></a>Azure AD 順暢 SSO 如何運作？
+## <a name="how-does-seamless-sso-work"></a>順暢 SSO 如何運作？
 
 本節有兩個部分：
 1. 無縫 SSO 功能的設定。
@@ -41,6 +41,9 @@ ms.lasthandoff: 06/16/2017
 
 >[!NOTE]
 > 在您同步處理至 Azure AD (使用 Azure AD Connect) 的每個 AD 樹系中，以及您想要為其使用者啟用無縫 SSO 者，建立電腦帳戶和 Kerberos SPN。 將 `AZUREADSSOACCT` 電腦帳戶移至儲存其他電腦帳戶的組織單位 (OU)，確保它是透過相同方式進行管理，而且不會予以刪除。
+
+>[!IMPORTANT]
+>強烈建議您至少每隔 30 天變換一次 `AZUREADSSOACCT` 電腦帳戶的 [Kerberos 解密金鑰](active-directory-aadconnect-sso-faq.md#how-can-i-roll-over-the-kerberos-decryption-key-of-the-azureadssoacct-computer-account)。
 
 ### <a name="how-does-sign-in-with-seamless-sso-work"></a>使用無縫 SSO 登入的運作方式？
 

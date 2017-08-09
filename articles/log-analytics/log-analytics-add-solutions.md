@@ -12,15 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/29/2017
+ms.date: 07/27/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: cbc7461d36e444a106a3ae556fc69f4c91edd4dd
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 494d9445ac1e1add24d085bd33ccd73aa152ec47
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="add-azure-log-analytics-management-solutions-to-your-workspace"></a>將 Azure Log Analytics 管理解決方案新增至您的工作區
@@ -94,10 +93,10 @@ Azure Marketplace 包含 [Log Analytics 的管理解決方案](https://azuremark
 | HDInsight HBase 監視 <br>(預覽)                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
 | [金鑰保存庫分析](log-analytics-azure-key-vault.md)                   | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
 | Logic Apps B2B                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 不適用於從 Azure 入口網站/Marketplace 新增。 |
-| [惡意程式碼評估](log-analytics-malware.md)                                            | <ul><li>安全性與法規遵循</li></ul>                                 | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
+| [惡意程式碼評估](log-analytics-malware.md)                                            | <ul><li>安全性與法規遵循</li></ul>                                 | 免費<br> 獨立<br>每個&nbsp;節點&nbsp;(OMS)                                                                           | 如果您在 2017 年 6 月 19 日以後新增安全性與合規性解決方案，則[每個節點都會計費](https://azure.microsoft.com/pricing/details/security-compliance/)，無論工作區定價層為何。 前 60 天免費。  |
 | [網路效能監視器](log-analytics-network-performance-monitor.md) <br>  | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
 | Office 365 分析 <br>(預覽)                                                        | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [安全性和稽核](../operations-management-suite/oms-security-getting-started.md)      | <ul><li>安全性&nbsp;和&nbsp;合規性</li></ul>                       | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 收集安全性事件記錄檔需要此解決方案 |
+| [安全性和稽核](../operations-management-suite/oms-security-getting-started.md)      | <ul><li>安全性&nbsp;和&nbsp;合規性</li></ul>                       | 免費<br> 獨立<br>每個&nbsp;節點&nbsp;(OMS)                                                                           | 收集安全性事件記錄檔需要此解決方案<br>如果您在 2017 年 6 月 19 日以後新增安全性與合規性解決方案，則[每個節點都會計費](https://azure.microsoft.com/pricing/details/security-compliance/)，無論工作區定價層為何。 前 60 天免費。 |
 | [Service Fabric 分析](log-analytics-service-fabric.md) <br>(預覽)                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
 | [服務對應](../operations-management-suite/operations-management-suite-service-map.md) <br>(預覽)| <ul><li>深入解析與分析</li></ul>                       | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部、西歐和美國中西部    |
 | Site Recovery                                                                             | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)                                                                       | 需要傳統的 Site Recovery 保存庫。<br> 不適用於從 Azure 入口網站/Marketplace 新增。 |
@@ -148,12 +147,12 @@ Log Analytics Windows 代理程式和 System Center Operations Manager 代理程
 | 警示管理 (Zabbix) |Linux |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |1 分鐘 |
 | 警示管理 (Operations Manager) |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |3 分鐘 |
 | Application Insights 連接器 (預覽) | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 與通知同時 |
-| Azure 應用程式閘道分析 | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 10 分鐘 |
-| Azure 網路安全性群組分析 | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 10 分鐘 |
-| Azure SQL Analytics (預覽) |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 10 分鐘 |
-| 產能管理 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |每小時 |
+| Azure 應用程式閘道分析 | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 與通知同時 |
+| Azure 網路安全性群組分析 | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 與通知同時 |
+| Azure SQL Analytics (預覽) |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 10 分鐘 |
+| 產能管理 |Windows |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |與抵達同時 |
 | 容器 | Windows 和 Linux | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 3 分鐘 |
-| 金鑰保存庫分析 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |10 分鐘 |
+| 金鑰保存庫分析 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |與通知同時 |
 | 網路效能監視器 | Windows | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | TCP 會每 5 秒交握一次，而資料會每 3 分鐘傳送一次 |
 | Office 365 分析 (預覽) |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |與通知同時 |
 | Service Fabric 分析 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |5 分鐘 |
@@ -204,16 +203,17 @@ Log Analytics Windows 代理程式和 System Center Operations Manager 代理程
 
 | 資料來源 | 平台 | Microsoft Monitoring Agent | Operations Manager 代理程式 | Azure 儲存體 | 是否需要 Operations Manager？ | 透過管理群組傳送的 Operations Manager 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| Azure 活動記錄檔 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |與通知同時 |
+| Azure 診斷記錄 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |與通知同時 |
+| Azure 診斷計量 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |與通知同時 |
 | ETW |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |5 分鐘 |
 | IIS 記錄檔 |Windows |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |5 分鐘 |
-| 網路應用程式閘道 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |10 分鐘 |
-| 網路安全性群組 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |10 分鐘 |
 | 效能計數器 |Windows |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |依排程，最少 10 秒 |
 | 效能計數器 |Linux |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |依排程，最少 10 秒 |
 | syslog |Linux |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |從 Azure 儲存體 ：10 分鐘；從代理程式：與抵達同時 |
 | Windows 安全性事件記錄檔 |Windows |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |若為 Azure 儲存體：10 分鐘；代理程式：與抵達同時 |
 | Windows 防火牆記錄檔 |Windows |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |與抵達同時 |
-| Windows 事件記錄檔 |Windows |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |若為 Azure 儲存體：1 分鐘；代理程式：與抵達同時 |
+| Windows 事件記錄檔 |Windows |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |若為 Azure 儲存體：10 分鐘；代理程式：與抵達同時 |
 
 
 
@@ -237,7 +237,7 @@ Log Analytics Windows 代理程式和 System Center Operations Manager 代理程
 透過入口網站啟用預覽功能時，您將會看到警告，提醒您此功能還在預覽階段。
 
 #### <a name="for-both-private-and-public-preview"></a>私人和公開預覽
-公開和私人預覽都有下列情況︰
+公開和私人預覽都有下列資訊︰
 
 * 不見得永遠正常運作。
   * 從造成小麻煩到完全無法運作都有可能。
@@ -261,7 +261,7 @@ Log Analytics Windows 代理程式和 System Center Operations Manager 代理程
 * 公開預覽可能不是適用於生產/重要系統。
 
 #### <a name="for-private-preview"></a>私人  預覽
-除了上述幾項，私人預覽還有下列特性︰
+除了上述幾項，私人預覽還有下列資訊︰
 
 * 希望您從體驗中提供意見反應，協助我們改善功能/方案。
 * 我們可能會利用意見調查、電話或電子郵件，請您提供意見反應。

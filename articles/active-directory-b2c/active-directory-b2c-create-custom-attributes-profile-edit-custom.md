@@ -14,11 +14,11 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/29/2017
 ms.author: joroja
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
-ms.openlocfilehash: c2bbb8058ce335c7568d5260ddd0274ca36c9c52
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: fb4302f028ecacf095adbe1b52e31e0432102776
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/02/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="azure-active-directory-b2c-creating-and-using-custom-attributes-in-a-custom-profile-edit-policy"></a>Azure Active Directory B2C︰在自訂設定檔編輯原則中建立和使用自訂屬性。
@@ -50,7 +50,7 @@ Azure AD B2C 可讓您擴充每個使用者帳戶所儲存的屬性組合。 您
 >擴充屬性只存在於租用戶中已註冊之應用程式的內容裡。 該應用程式的物件識別碼必須包含在使用該識別碼的 TechnicalProfile 中
 
 >[!NOTE]
->Azure AD B2C 目錄通常會包含名為 `b2c-extensions-app` 的 Web API 應用程式。  此應用程式主要是供 b2c 內建原則用在透過 Azure 入口網站所建立的自訂宣告中。  使用此應用程式來為 b2c 自訂原則註冊擴充屬性的建議，僅適用於進階使用者。
+>Azure AD B2C 目錄通常包含名為 `b2c-extensions-app` 的 Web 應用程式。  此應用程式主要是供 b2c 內建原則用在透過 Azure 入口網站所建立的自訂宣告中。  使用此應用程式來為 b2c 自訂原則註冊擴充屬性的建議，僅適用於進階使用者。  相關指示包含在本文的 `NEXT STEPS` 一節中。
 
 
 ## <a name="creating-a-new-application-to-store-the-extension-properties"></a>建立新的應用程式來儲存擴充屬性
@@ -71,6 +71,8 @@ Azure AD B2C 可讓您擴充每個使用者帳戶所儲存的屬性組合。 您
 1. 將來自 WebApp-GraphAPI-DirectoryExtensions>Settings>Properties> 的下列識別碼複製到剪貼簿並儲存
 *  **應用程式識別碼**。 範例： `103ee0e6-f92d-4183-b576-8c3739027780`
 * **物件識別碼**。 範例： `80d8296a-da0a-49ee-b6ab-fd232aa45201`
+
+
 
 ## <a name="modifying-your-custom-policy-to-add-the-applicationobjectid"></a>修改您的自訂原則以新增 `ApplicationObjectId`
 
@@ -270,11 +272,38 @@ Azure AD B2C 可讓您擴充每個使用者帳戶所儲存的屬性組合。 您
 
 ## <a name="next-steps"></a>後續步驟
 
-藉由變更下列 TechnicalProfiles，將新的宣告新增至社交帳戶登入的的流程。 社交/同盟帳戶登入會使用這兩個 TechnicalProfiles，以 alternativeSecurityId 作為使用者物件的定位器來寫入和讀取使用者資料。
+### <a name="add-the-new-claim-to-the-flows-for-social-account-logins-by-changing-the-technicalprofiles-listed-below-these-two-technicalprofiles-are-used-by-socialfederated-account-logins-to-write-and-read-the-user-data-using-the-alternativesecurityid-as-the-locator-of-the-user-object"></a>藉由變更下列 TechnicalProfiles，將新的宣告新增至社交帳戶登入的的流程。 社交/同盟帳戶登入會使用這兩個 TechnicalProfiles，以 alternativeSecurityId 作為使用者物件的定位器來寫入和讀取使用者資料。
 ```
   <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 
   <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">
+```
+### <a name="using-the-same-extension-attributes-between-built-in-and-custom-policies"></a>使用內建和自訂原則之間的相同擴充屬性
+當您透過入口網站體驗新增擴充屬性 (也稱為自訂屬性) 時，系統會使用存在於每個 b2c 租用戶中的 **b2c-extensions-app** 註冊這些屬性。  若要在自訂原則中使用這些擴充屬性：
+1. 在 portal.azure.com 中的 b2c 租用戶內，巡覽至 **Azure Active Directory** 並選取 [應用程式註冊]
+2. 尋找您的 **b2c-extensions-app** 並加以選取
+3. 在 [基本資訊] 之下，記錄 [應用程式識別碼] 和 [物件識別碼]
+4. 將它們包含在您的 AAD-Common Technical 設定檔中繼資料中，如下所示：
+
+```xml
+    <ClaimsProviders>
+        <ClaimsProvider>
+              <DisplayName>Azure Active Directory</DisplayName>
+            <TechnicalProfile Id="AAD-Common">
+              <DisplayName>Azure Active Directory</DisplayName>
+              <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+              <!-- Provide objectId and appId before using extension properties. -->
+              <Metadata>
+                <Item Key="ApplicationObjectId">insert objectId here</Item> <!-- This is the "Object ID" from the "b2c-extensions-app"-->
+                <Item Key="ClientId">insert appId here</Item> <!--This is the "Application ID" from the "b2c-extensions-app"-->
+              </Metadata>
+```
+
+5. 若要與入口網站體驗保持一致性，請先使用入口網站 UI 建立這些屬性，「然後」在自訂原則中使用它們。  當您在入口網站中建立屬性 "ActivationStatus" 時，您必須參考它，如下所示：
+
+```
+extension_ActivationStatus in the custom policy
+extension_<app-guid>_ActivationStatus via the Graph API.
 ```
 
 

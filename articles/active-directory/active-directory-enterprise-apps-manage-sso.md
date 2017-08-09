@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 05/04/2017
+ms.date: 07/26/2017
 ms.author: asmalser
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 118b77064a96585b0d5b951ca56313776021624e
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: c975428550690254ba989935fe5110c5903e7102
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="managing-single-sign-on-for-enterprise-apps"></a>管理企業應用程式的單一登入
@@ -28,15 +27,14 @@ ms.lasthandoff: 05/08/2017
 > * [Azure 傳統入口網站](active-directory-sso-integrate-saas-apps.md)
 > 
 
-這篇文章說明如何使用 [Azure 入口網站](https://portal.azure.com)來管理應用程式的單一登入設定，尤其是透過 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)新增的應用程式。 
+本文說明如何使用 [Azure 入口網站](https://portal.azure.com)來管理企業應用程式的單一登入設定。 企業應用程式是您組織內部署和使用的應用程式。 本文特別適用於從 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)新增的應用程式。 
 
-## <a name="finding-your-apps"></a>尋找您的應用程式
 ## <a name="finding-your-apps-in-the-portal"></a>在入口網站中尋找您的應用程式
-目錄管理員使用 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)為目錄中單一登入設定的所有應用程式，可以在 [Azure 入口網站](https://portal.azure.com)中檢視和管理。 這些應用程式可在入口網站的 [更多服務] &gt; [企業應用程式] 區段中找到。 企業應用程式是您組織內部署和使用的應用程式。
+在 Azure 入口網站中可以檢視及管理針對單一登入設定的所有企業應用程式。 這些應用程式可在入口網站的 [更多服務] &gt; [企業應用程式] 區段中找到。 
 
 ![企業應用程式刀鋒視窗][1]
 
-選取 [所有應用程式]  可檢視已設定的所有應用程式的清單，包括已從資源庫新增的應用程式。 選取應用程式會載入該應用程式的資源刀鋒視窗，您可以在其中檢視該應用程式的報告，且可管理各種設定。
+選取 [所有應用程式] 以檢視已設定的所有應用程式清單。 選取應用程式會載入該應用程式的資源刀鋒視窗，您可以在其中檢視該應用程式的報告，且可管理各種設定。
 
 若要管理單一登入設定，請選取 [單一登入] 。
 

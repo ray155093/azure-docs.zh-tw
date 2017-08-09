@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 備份伺服器保護 VMware 伺服器工作負載 | Microsoft Docs"
-description: "使用 Azure 備份伺服器將 VMware 伺服器備份至 Azure 或磁碟。 使用本文來協助保護您的 VMware 工作負載。"
+title: "使用 Azure 備份伺服器來備份 VMware 伺服器 | Microsoft Docs"
+description: "使用 Azure 備份伺服器，將 VMware vCenter/ESXi 伺服器備份至 Azure 或磁碟。 本文提供備份 (或保護) 您 VMware 工作負載的逐步指示。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -11,21 +11,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 04/20/2017
+ms.date: 07/24/2017
 ms.author: markgal;
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
-ms.openlocfilehash: 47728711930703121626c3ed0b654a0f74603ca4
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: ad331dffb7c31d12290f4223967c568e4535fe3c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="back-up-a-vmware-server-to-azure"></a>將 VMware 伺服器備份到 Azure
 
 本文說明如何設定 Azure 備份伺服器來協助保護 VMware 伺服器工作負載。 本文假設您已安裝 Azure 備份伺服器。 如果您尚未安裝 Azure 備份伺服器，請參閱[使用 Azure 備份伺服器準備將工作負載進行備份](backup-azure-microsoft-azure-backup.md)。
 
-Azure 備份伺服器可以備份或協助保護 VMware vCenter Server 6.0 和 5.5 版。
+Azure 備份伺服器可以備份或協助保護 VMware vCenter Server 6.5、6.0 和 5.5 版。
 
 
 ## <a name="create-a-secure-connection-to-the-vcenter-server"></a>建立 vCenter Server 的安全連線
@@ -250,11 +249,12 @@ Azure 備份伺服器會使用使用者名稱和密碼來驗證 vCenter Server�
 
 3. 在 [管理認證] 對話方塊中，按一下 [新增] 以開啟 [新增認證] 對話方塊。
 
-4. 在 [新增認證] 對話方塊中，輸入新認證的名稱和描述。 然後，指定使用者名稱和密碼。 我們會使用「Contoso Vcenter 認證」這個認證名稱來識別下一個程序中的認證。 所使用的使用者名稱和密碼請與 vCenter Server 所使用的相同。 如果 vCenter Server 和 Azure 備份伺服器不在相同網域中，請在 [使用者名稱] 中指定網域。
+4. 在 [新增認證] 對話方塊中，輸入新認證的名稱和描述。 然後，指定使用者名稱和密碼。 我們會使用「Contoso Vcenter 認證」這個名稱來識別下一個程序中的認證。 所使用的使用者名稱和密碼請與 vCenter Server 所使用的相同。 如果 vCenter Server 和 Azure 備份伺服器不在相同網域中，請在 [使用者名稱] 中指定網域。
 
     ![Azure 備份伺服器的 [新增認證] 對話方塊](./media/backup-azure-backup-server-vmware/mabs-add-credential-dialog2.png)
 
     按一下 [新增] 將新的認證新增至 Azure 備份伺服器。 [管理認證] 對話方塊的清單中便會出現新的認證。
+    
     ![Azure 備份伺服器的 [管理認證] 對話方塊](./media/backup-azure-backup-server-vmware/new-list-of-mabs-creds.png)
 
 5. 若要關閉 [管理認證] 對話方塊，請按一下右上角的 **X**。

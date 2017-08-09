@@ -14,14 +14,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: support-article
-ms.date: 06/14/2017
+ms.date: 07/25/2017
 ms.author: genli
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: ed9945ae007d22c18d259984ee68f9c669927f9a
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 2c42ff5b7ab87e8ef8af2c244a1313fb55503c37
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="troubleshoot-remote-desktop-connections-to-an-azure-virtual-machine"></a>針對 Azure 虛擬機器的遠端桌面連線進行疑難排解
@@ -67,25 +66,8 @@ ms.lasthandoff: 06/28/2017
     在 Azure 入口網站中選取您的 VM。 向下捲動至 [設定] 窗格中接近清單底部的 [支援 + 疑難排解] 區段。 按一下 [重設密碼] 按鈕。 將 [模式] 設定為 [只重設組態]，然後按一下 [更新] 按鈕︰
    
     ![在 Azure 入口網站中重設 RDP 組態](./media/troubleshoot-rdp-connection/reset-rdp.png)
-2. **確認網路安全性群組規則**。 此疑難排解步驟可確認您有可允許 RDP 流量的網路安全性群組規則。 RDP 的預設連接埠是 TCP 連接埠 3389。 當您建立您的 VM 時，可能不會自動建立可允許 RDP 流量的規則。
-   
-    在 Azure 入口網站中選取您的 VM。 按一下 [設定] 窗格中的 [網路介面]。
-   
-    ![在 Azure 入口網站中檢視 VM 的網路介面](./media/troubleshoot-rdp-connection/select-network-interfaces.png)
-   
-    從清單中選取您的網路介面 (通常只有一個)︰
-   
-    ![在 Azure 入口網站中選取網路介面](./media/troubleshoot-rdp-connection/select-interface.png)
-   
-    選取 [網路安全性群組]，以檢視與您的網路介面相關聯的網路安全性群組︰
-   
-    ![在 Azure 入口網站中選取網路安全性群組](./media/troubleshoot-rdp-connection/select-nsg.png)
-   
-    確認存在可允許 TCP 連接埠 3389 上 RDP 流量的輸入規則。 下列範例顯示可允許 RDP 流量的有效安全性規則。 您可以看到 `Service` 和 `Action` 已正確設定︰
-   
-    ![在 Azure 入口網站中確認 RDP NSG 規則](./media/troubleshoot-rdp-connection/verify-nsg-rules.png)
-   
-    如果您沒有可允許 RDP 流量的規則，請[建立網路安全性群組規則](nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 允許 TCP 連接埠 3389。
+2. **確認網路安全性群組規則**。 使用 [IP 流量驗證](../../network-watcher/network-watcher-check-ip-flow-verify-portal.md)來確認網路安全性群組中的規則是否會封鎖虛擬機器的輸入或輸出流量。 您也可以檢閱有效的安全性群組規則，以確保輸入「允許」NSG 規則存在並已針對 RDP 連接埠 (預設值 3389) 設定優先順序。 如需詳細資訊，請參閱[使用有效安全性規則對 VM 流量流程進行疑難排解](../../virtual-network/virtual-network-nsg-troubleshoot-portal.md#using-effective-security-rules-to-troubleshoot-vm-traffic-flow)。
+
 3. **檢閱 VM 開機診斷**。 此疑難排解步驟可檢閱 VM 主控台記錄檔，以判斷 VM 是否報告問題。 並非所有 VM 都已啟用開機診斷，所以此疑難排解步驟可能是選擇性的。
    
     特定疑難排解步驟已超出本文的範圍，但可能指出會影響 RDP 連線的更廣問題。 如需有關檢閱主控台記錄檔和 VM 螢幕擷取畫面的詳細資訊，請參閱 [VM 的開機診斷](boot-diagnostics.md)。
