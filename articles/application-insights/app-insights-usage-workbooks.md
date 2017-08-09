@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 06/12/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 44ea03d30c1f2eabc92af63b549823c03a6901e2
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: ecd3d86db1d6b3b65015d1d560027cedb4f2df58
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
+ms.lasthandoff: 08/02/2017
 
 ---
 
@@ -88,9 +88,9 @@ ms.lasthandoff: 06/20/2017
 
 * 在與拒絕使用方式相同的時間週期期間，您的網站擲回多少例外狀況？
 * 檢視某些分頁之使用者的分頁載入時間散發是多久？
-* 有多少使用者檢視您的網站上的某些分頁集合，但是未檢視其他分頁集合？ 如果您有叢集使用者使用網站功能的不同子集 (使用 `join` 運算子搭配分析查詢語言的 `kind=leftanti` 修飾詞)，這項功能相當有用。
+* 有多少使用者檢視您的網站上的某些分頁集合，但是未檢視其他分頁集合？ 如果您有叢集使用者使用網站功能的不同子集 (使用 `join` 運算子搭配 Log Analytics 查詢語言的 `kind=leftanti` 修飾詞)，這項功能相當有用。
 
-使用[分析查詢語言參考](app-insights-analytics-reference.md)以深入了解撰寫查詢。
+使用 [Log Analytics 查詢語言參考](https://docs.loganalytics.io/)以深入了解撰寫查詢。
 
 ## <a name="adding-text-and-markdown-sections"></a>新增文字和 Markdown 區段
 

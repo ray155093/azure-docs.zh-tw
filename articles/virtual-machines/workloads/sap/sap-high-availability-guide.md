@@ -17,16 +17,15 @@ ms.workload: infrastructure-services
 ms.date: 05/05/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: be42447ac95ccc100680d1a360a706fa3b4a58aa
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: d00db895ffcf9ba9a51e3df2dae5d33c0277dd6f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
 
-# <a name="high-availability-for-sap-netweaver-on-azure-vms"></a>Azure VM 上的 SAP NetWeaver 高可用性
+# <a name="azure-virtual-machines-high-availability-for-sap-netweaver"></a>SAP NetWeaver 的 Azure 虛擬機器高可用性
 
 [1928533]:https://launchpad.support.sap.com/#/notes/1928533
 [1999351]:https://launchpad.support.sap.com/#/notes/1999351
@@ -145,8 +144,11 @@ ms.lasthandoff: 05/10/2017
 [sap-ha-guide-figure-6003]:./media/virtual-machines-shared-sap-high-availability-guide/6003-sap-multi-sid-full-landscape.png
 
 [sap-templates-3-tier-multisid-xscs-marketplace-image]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-3-tier-marketplace-image-multi-sid-xscs%2Fazuredeploy.json
+[sap-templates-3-tier-multisid-xscs-marketplace-image-md]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-3-tier-marketplace-image-multi-sid-xscs-md%2Fazuredeploy.json
 [sap-templates-3-tier-multisid-db-marketplace-image]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-3-tier-marketplace-image-multi-sid-db%2Fazuredeploy.json
+[sap-templates-3-tier-multisid-db-marketplace-image-md]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-3-tier-marketplace-image-multi-sid-db-md%2Fazuredeploy.json
 [sap-templates-3-tier-multisid-apps-marketplace-image]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-3-tier-marketplace-image-multi-sid-apps%2Fazuredeploy.json
+[sap-templates-3-tier-multisid-apps-marketplace-image-md]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-3-tier-marketplace-image-multi-sid-apps-md%2Fazuredeploy.json
 
 [virtual-machines-azure-resource-manager-architecture-benefits-arm]:../../../azure-resource-manager/resource-group-overview.md#the-benefits-of-using-resource-manager
 
@@ -171,7 +173,7 @@ ms.lasthandoff: 05/10/2017
 ## <a name="217c5479-5595-4cd8-870d-15ab00d4f84c"></a> 必要條件
 開始之前，請確定符合下列各節所述的必要條件。 此外，請務必檢查[資源][sap-ha-guide-2]一節中列出的所有資源。
 
-在本文中，我們針對[三層式 SAP NetWeaver](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image/) 使用 Azure Resource Manager 範本。 如需範本的實用概觀，請參閱 [SAP Azure Resource Manager 範本](https://blogs.msdn.microsoft.com/saponsqlserver/2016/05/16/azure-quickstart-templates-for-sap/)。
+在本文中，我們針對[使用受控磁碟的三層式 SAP NetWeaver](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-md/) 使用 Azure Resource Manager 範本。 如需範本的實用概觀，請參閱 [SAP Azure Resource Manager 範本](https://blogs.msdn.microsoft.com/saponsqlserver/2016/05/16/azure-quickstart-templates-for-sap/)。
 
 ## <a name="42b8f600-7ba3-4606-b8a5-53c4f026da08"></a> 資源
 這些文章涵蓋 Azure 中的 SAP 部署：
@@ -211,9 +213,9 @@ Azure Resource Manager 與 Azure 傳統部署模型在下列方面有所不同�
 
 ### <a name="3e85fbe0-84b1-4892-87af-d9b65ff91860"></a> Azure 資源群組上的 Azure 內部負載平衡器相依性
 
-在 Azure 傳統部署模型中，Azure 內部負載平衡器 (Azure Load Balancer 服務) 和雲端服務群組之間具有相依性。 每個內部負載平衡器需要一個雲端服務群組。
+在 Azure 傳統部署模型中，Azure 內部負載平衡器 (Azure Load Balancer 服務) 和雲端服務之間具有相依性。 每個內部負載平衡器需要一個雲端服務。
 
-在 Azure Resource Manager 中，您不需要 Azure 資源群組即可使用 Azure Load Balancer。 環境更簡單且更有彈性。
+在 Azure Resource Manager 中，每個 Azure 資源都需要放進 Azure 資源群組中，而這對 Azure Load Balancer 也有效。 不過，不需要讓每個 Azure Load Balancer 都有一個 Azure 資源群組，例如，一個 Azure 資源群組可以包含多個 Azure Load Balancer。 環境更簡單且更有彈性。 
 
 ### <a name="support-for-sap-multi-sid-scenarios"></a>支援 SAP 多 SID 案例
 
@@ -278,9 +280,9 @@ _**圖 2：**Azure 中沒有共用磁碟的 Windows Server 容錯移轉叢集組
 ### <a name="1a464091-922b-48d7-9d08-7cecf757f341"></a> 使用 SIOS DataKeeper 在 Azure 中共用磁碟
 您需要針對高可用性的 SAP ASCS/SCS 執行個體叢集共用儲存體。 自 2016 年 9 月起，Azure 即不再提供可用於建立共用儲存體叢集的共用儲存體。 您可以使用協力廠商軟體 SIOS DataKeeper Cluster Edition 以建立鏡像儲存體，以模擬叢集共用儲存體。 SIOS 解決方案提供即時同步的資料複寫。 可以為叢集建立共用磁碟資源的方式為：
 
-1. 將額外的 Azure 虛擬硬碟 (VHD) 連接到 Windows 叢集組態中的每個虛擬機器 (VM)。
+1. 將額外的磁碟連接到 Windows 叢集組態中的每個虛擬機器 (VM)。
 2. 在兩個虛擬機器節點上執行 SIOS DataKeeper Cluster Edition。
-3. 設定 SIOS DataKeeper Cluster Edition，使它將來源虛擬機器的額外 VHD 連接磁碟區內容鏡像至目標虛擬機器的額外 VHD 連接磁碟區。 SIOS DataKeeper 會提取來源和目標本機磁碟區，並將它們當作一個共用磁碟來呈現給「Windows Server 容錯移轉叢集」。
+3. 設定 SIOS DataKeeper Cluster Edition，使它將來源虛擬機器的額外磁碟連接磁碟區內容鏡像至目標虛擬機器的額外磁碟連接磁碟區。 SIOS DataKeeper 會提取來源和目標本機磁碟區，並將它們當作一個共用磁碟來呈現給「Windows Server 容錯移轉叢集」。
 
 取得 [SIOS DataKeeper](http://us.sios.com/products/datakeeper-cluster/)的詳細資訊。
 
@@ -322,7 +324,7 @@ _**圖 4：**高可用性的 SAP 應用程式伺服器_
 
 深入了解如何[管理虛擬機器的可用性][virtual-machines-manage-availability]。
 
-由於 Azure 儲存體帳戶是潛在的單一失敗點，因此您務必擁有至少兩個 Azure 儲存體帳戶，且至少要將兩個虛擬機器分散到其中。 在理想的設定中，執行 SAP 對話方塊執行個體的每一個虛擬機器磁碟會部署在不同的儲存體帳戶中。
+僅限非受控的磁碟：由於 Azure 儲存體帳戶是潛在的單一失敗點，因此您務必擁有至少兩個 Azure 儲存體帳戶，且至少要將兩個虛擬機器分散到其中。 在理想的設定中，執行 SAP 對話方塊執行個體的每一個虛擬機器磁碟會部署在不同的儲存體帳戶中。
 
 ### <a name="f559c285-ee68-4eec-add1-f60fe7b978db"></a> 高可用性的 SAP ASCS/SCS 執行個體
 圖 5 是高可用性的 SAP ASCS/SCS 執行個體範例。
@@ -398,7 +400,9 @@ Azure Resource Manager 中的三層式範本也支援高可用性案例，例如
 以下是可取得我們在本文中說明之範例案例的 Azure Resource Manager 範本︰
 
 * [Azure Marketplace 映像](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image)  
+* [使用受控磁碟的 Azure Marketplace 映像](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-md) \(英文\)  
 * [自訂映像](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-user-image)
+* [使用受控磁碟的自訂映像](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-user-image-md) \(英文\)
 
 若要準備架構範本 1 的基礎結構：
 
@@ -421,7 +425,7 @@ _**圖 11：**設定 SAP 高可用性 Azure Resource Manager 參數_
     * <*SAPSystemSID*>-nic-ascs-<*Number*>
     * <*SAPSystemSID*>-nic-db-<*Number*>
 
-  * **Azure 儲存體帳戶**
+  * **Azure 儲存體帳戶 (僅限非受控磁碟)**
 
   * 下列項目的**可用性群組**：
     * SAP 應用程式伺服器虛擬機器︰<*SAPSystemSID*>-avset-di
@@ -441,7 +445,7 @@ _**圖 11：**設定 SAP 高可用性 Azure Resource Manager 參數_
 >
 
 ### <a name="c87a8d3f-b1dc-4d2f-b23c-da4b72977489"></a> 使用公司網路連線能力 (跨單位) 部署虛擬機器以用於生產環境中
-針對生產環境 SAP 系統，使用 Azure 站對站 VPN 或 Azure ExpressRoute，部署具有 [公司網路連線能力 (跨單位)][planning-guide-2.2] 的 Azure 虛擬機器。
+針對生產環境 SAP 系統，使用 Azure 站對站 VPN 或 Azure ExpressRoute，部署具有 [公司網路連線能力 (跨單位)][][planning-guide-2.2] 的 Azure 虛擬機器。
 
 > [!NOTE]
 > 您可以使用您的 Azure 虛擬網路執行個體。 虛擬網路和子網路已建立並備妥。
@@ -489,7 +493,9 @@ _**圖 11：**設定 SAP 高可用性 Azure Resource Manager 參數_
 您可以在這裡取得此部署案例的 Azure Resource Manager 範本：
 
 * [Azure Marketplace 映像](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-converged)  
+* [使用受控磁碟的 Azure Marketplace 映像](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-converged-md) \(英文\)  
 * [自訂映像](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-user-image-converged)
+* [使用受控磁碟的自訂映像](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-user-image-converged-md) \(英文\)
 
 
 ### <a name="prepare-the-infrastructure-for-architectural-template-3"></a>準備架構範本 3 的基礎結構
@@ -505,11 +511,11 @@ _**圖 11：**設定 SAP 高可用性 Azure Resource Manager 參數_
 
 下列各節有更多關於您需要在範本中提供之範本和參數的詳細資料。
 
-#### <a name="ASCS-SCS-template"></a> ASCS/SCS 範本
+#### <a name="ASCS-SCS-template">ASCS/SCS 範本</a>
 
 ASCS/SCS 範本會部署兩部虛擬機器，可讓您用來建立裝載多個 ASCS/SCS 執行個體的 Windows Server 容錯移轉叢集。
 
-若要設定 ASCS/SCS 多 SID 範本，請在 [ASCS/SCS 多 SID 範本][sap-templates-3-tier-multisid-xscs-marketplace-image]中輸入下列參數的值︰
+若要設定 ASCS/SCS 多 SID 範本，請在 [ASCS/SCS 多 SID 範本][sap-templates-3-tier-multisid-xscs-marketplace-image]或[使用受控磁碟的 ASCS/SCS 多 SID 範本][sap-templates-3-tier-multisid-xscs-marketplace-image-md]中輸入下列參數的值︰
 
   - **資源前置詞**。  設定資源前置詞，其用來前置部署期間建立的所有資源。 因為資源不只屬於一個 SAP 系統，資源的前置詞不是一個 SAP 系統的 SID。  前置詞必須介於**三到六個字元**。
   - **堆疊類型**。 選取 SAP 系統的堆疊類型。 根據堆疊類型而定，Azure Load Balancer 每個 SAP 系統會有一個 (ABAP 或僅 Java) 或兩個 (ABAP + Java) 私人 IP 位址。
@@ -546,7 +552,7 @@ ASCS/SCS 範本會部署兩部虛擬機器，可讓您用來建立裝載多個 A
 
 資料庫範本會部署一個或兩個虛擬機器，可讓您用來安裝一個 SAP 系統的關聯式資料庫管理系統 (RDBMS)。 例如，如果您部署五個 SAP 系統的 ASCS/SCS 範本，您需要部署此範本五次。
 
-若要設定資料庫多 SID 範本，請在[資料庫多 SID 範本][sap-templates-3-tier-multisid-db-marketplace-image]中輸入下列參數的值︰
+若要設定資料庫多 SID 範本，請在[資料庫多 SID 範本][sap-templates-3-tier-multisid-db-marketplace-image]或[使用受控磁碟的資料庫多 SID 範本][sap-templates-3-tier-multisid-db-marketplace-image-md]中輸入下列參數的值︰
 
   -  **SAP 系統識別碼**。 輸入您想要安裝的 SAP 系統之 SAP 系統識別碼。 識別碼將用於已部署資源的前置詞。
   -  **OS 類型**。 選取虛擬機器的作業系統。
@@ -563,7 +569,7 @@ ASCS/SCS 範本會部署兩部虛擬機器，可讓您用來建立裝載多個 A
 
 應用程式伺服器範本會部署兩個或多個虛擬機器，可用來做為一個 SAP 系統的 SAP 應用程式伺服器執行個體。 例如，如果您部署五個 SAP 系統的 ASCS/SCS 範本，您需要部署此範本五次。
 
-若要設定應用程式伺服器多 SID 範本，請在[多 SID 範本][sap-templates-3-tier-multisid-apps-marketplace-image]中輸入下列參數的值︰
+若要設定應用程式伺服器多 SID 範本，請在[應用程式伺服器多 SID 範本][sap-templates-3-tier-multisid-apps-marketplace-image]或[使用受控磁碟的應用程式伺服器多 SID 範本][sap-templates-3-tier-multisid-apps-marketplace-image-md]中輸入下列參數的值︰
 
   -  **SAP 系統識別碼**。 輸入您想要安裝的 SAP 系統之 SAP 系統識別碼。 識別碼將用於已部署資源的前置詞。
   -  **OS 類型**。 選取虛擬機器的作業系統。
@@ -735,7 +741,7 @@ _**圖 15：**Azure 內部負載平衡器的預設 ASCS/SCS 負載平衡規_
 
 如果您想要將其他號碼用於 SAP ASCS 或 SCS 執行個體，您就必須從預設值變更其連接埠的名稱和值。
 
-1.  在 Azure 入口網站中，選取 **<*SID*>-lb-ascs 負載平衡器** > **負載平衡規則**。
+1.  在 Azure 入口網站中，選取 **<*SID*>-lb-ascs 負載平衡器** > **[負載平衡規則]**。
 2.  針對屬於 SAP ASCS 或 SCS 執行個體的所有負載平衡規則，變更下列值：
 
   * 名稱
@@ -848,7 +854,7 @@ _**表 4：**變更第二個 TCP/IP 參數_
 
   ![圖 26：新增第二個叢集節點][sap-ha-guide-figure-3015]
 
-  _**圖 26：** 新增第二個叢集節點_
+  _**圖 26：**_
 
 8.  輸入第二個叢集節點主機的名稱。
 
@@ -1036,7 +1042,7 @@ Microsoft .NET Framework 3.5 不會自動啟用或安裝在 Windows Server 2012 
 
 #### <a name="d9c1fc8e-8710-4dff-bec2-1f535db7b006"></a> 設定 SIOS DataKeeper
 
-在兩個節點上都安裝 SIOS DataKeeper 之後，您必須開始設定組態。 組態的目標是要在連接至每個虛擬機器的額外 VHD 之間進行同步資料複寫。
+在兩個節點上都安裝 SIOS DataKeeper 之後，您必須開始設定組態。 組態的目標是要在連接至每個虛擬機器的額外磁碟之間進行同步資料複寫。
 
 1.  啟動 DataKeeper 管理與組態工具，然後選取 [連線伺服器]。 (在圖 46 中，此選項是用紅色圈起來的部分。)
 
@@ -1113,7 +1119,7 @@ Microsoft .NET Framework 3.5 不會自動啟用或安裝在 Windows Server 2012 
 ### <a name="31c6bd4f-51df-4057-9fdf-3fcbc619c170"></a> 使用高可用性 ASCS/SCS 執行個體安裝 SAP
 
 > [!IMPORTANT]
-> 請不要將分頁檔放在 DataKeeper 鏡像磁碟區上。 DataKeeper 不支援鏡像磁碟區。 您可以將分頁檔留在 Azure 虛擬機器的暫存磁碟機 D 中，此為預設值。 如果還不在此磁碟機中，請將 Windows 分頁檔移至 Azure 虛擬機器的磁碟機 D。
+> 請不要將分頁檔放在 DataKeeper 鏡像磁碟區上。 DataKeeper 不支援鏡像磁碟區。 您可以將分頁檔留在 Azure 虛擬機器的暫存磁碟機 D 中，此為預設值。 如果還不在此磁碟機中，請將 Windows 分頁檔移至 Azure 虛擬機器的磁碟機 D:。
 >
 >
 

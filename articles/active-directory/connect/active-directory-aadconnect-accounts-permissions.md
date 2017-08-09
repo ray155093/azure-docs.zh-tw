@@ -6,26 +6,27 @@ documentationcenter:
 author: billmath
 manager: femila
 editor: 
+ms.reviewer: cychua
 ms.assetid: b93e595b-354a-479d-85ec-a95553dd9cc2
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/13/2017
+ms.date: 07/27/2017
 ms.author: billmath
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: 44859d5368a954aee6939f6a6060738aa97c9c05
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: fdd90721b6823c20c1ff27383769bfff24e80eae
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="azure-ad-connect-accounts-and-permissions"></a>Azure AD Connect：帳戶與權限
 Azure AD Connect 安裝精靈提供兩個不同的路徑：
 
-* 在快速設定中，精靈需要更多權限，以便在不需要建立使用者或個別設定權限的情況下，輕鬆設定您的組態。
-* 在自訂設定中，精靈會提供更多選擇和選項；但在某些情況下，您必須確定自己擁有正確的權限。
+* 在 [快速設定] 中，精靈需要更多權限，  以便在不需要建立使用者或設定權限的情況下，輕鬆設定您的組態。
+* 在 [自訂設定] 中，精靈會提供更多選擇和選項。 不過，在某些情況下，您必須確定自己擁有正確的權限。
 
 ## <a name="related-documentation"></a>相關文件
 如果您尚未閱讀有關[整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md) 的文件，下表提供相關主題的連結。
@@ -39,7 +40,7 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 |安裝後 | [驗證安裝和指派授權 ](active-directory-aadconnect-whats-next.md)|
 
 ## <a name="express-settings-installation"></a>快速設定安裝
-在「快速設定」中，安裝精靈會要求提供「AD DS 企業系統管理員」認證，以便設定您的內部部署 Active Directory，使其具備必要的 Azure AD Connect 權限。 如果您是從 DirSync 升級，可透過 AD DS 企業系統管理員認證來重設 DirSync 所使用帳戶的密碼。 您也需要 Azure AD 全域管理員認證。
+在快速設定中，安裝精靈會要求提供 AD DS 企業系統管理員認證。  以便設定您的內部部署 Active Directory，使其具備必要的 Azure AD Connect 權限。 如果您是從 DirSync 升級，可透過 AD DS 企業系統管理員認證來重設 DirSync 所使用帳戶的密碼。 您也需要 Azure AD 全域管理員認證。
 
 | 精靈頁面 | 收集的認證 | 所需的權限 | 用於 |
 | --- | --- | --- | --- |
@@ -66,7 +67,7 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 | 重設密碼 |啟用密碼回寫的準備工作 |
 
 ## <a name="custom-settings-installation"></a>自訂設定安裝
-以前在使用自訂設定時，必須先在安裝之前建立用來連線到 Active Directory 的帳戶。 您可以在 [建立 AD DS 帳戶](#create-the-ad-ds-account)中找到必須授與此帳戶的權限。 在 Azure AD Connect 1.1.524.0 版和更新版本中，我們則提供了一個選項，此選項會讓 Azure AD Connect 精靈來為您建立帳戶。
+Azure AD Connect 1.1.524.0 版和更新版本有選項可讓 Azure AD Connect 精靈建立帳戶，以連線至 Active Directory。  舊版需要先建立帳戶，再進行安裝。 您可以在 [建立 AD DS 帳戶](#create-the-ad-ds-account)中找到必須授與此帳戶的權限。 
 
 | 精靈頁面 | 收集的認證 | 所需的權限 | 用於 |
 | --- | --- | --- | --- |
@@ -80,7 +81,7 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 | AD FS 服務帳戶頁面，「使用網域使用者帳戶選項」 |AD 使用者帳戶認證 |網域使用者 |AD 使用者帳戶所提供的認證將做為 AD FS 服務的登入帳戶。 |
 
 ### <a name="create-the-ad-ds-account"></a>建立 AD DS 帳戶
-安裝 Azure AD Connect 時，在 [連接您的目錄]  頁面上指定的帳戶必須存在於 Active Directory，並且獲得必要的權限。 安裝精靈不會驗證權限，在同步處理期間只會發現問題。
+在 [連線您的目錄] 頁面上指定的帳戶必須存在於 Active Directory，才能進行安裝。  它也必須獲得必要的權限。 安裝精靈不會驗證權限，在同步處理期間只會發現問題。
 
 您需要的權限取決於您啟用的選用功能。 如果您有多個網域，則必須對樹系中的所有網域授與權限。 如果您未啟用任何一項功能，預設的 **網域使用者** 權限就已足夠。
 
@@ -92,7 +93,7 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 | Exchange 郵件公用資料夾 |公用資料夾屬性 (詳情記載於 [Exchange 郵件公用資料夾](active-directory-aadconnectsync-attributes-synchronized.md#exchange-mail-public-folder)) 的讀取權限。 | 
 | 密碼回寫 |[開始使用密碼管理](../active-directory-passwords-writeback.md)中記載了使用者適用的屬性的寫入權限。 |
 | 裝置回寫 |[裝置回寫](active-directory-aadconnect-feature-device-writeback.md)中所述的使用 PowerShell 指令碼授與權限。 |
-| 群組回寫 |讀取、建立、更新和刪除散發群組所在 OU 中的群組物件。 |
+| 群組回寫 |讀取、建立、更新和刪除已同步處理之 **Office 365 群組**的群組物件。  如需詳細資訊，請參閱[群組回寫](active-directory-aadconnect-feature-preview.md#group-writeback)。|
 
 ## <a name="upgrade"></a>升級
 當您從一個 Azure AD Connect 版本升級到新版本時，需要下列權限：
@@ -159,12 +160,14 @@ VSA 適用於同步處理引擎和 SQL 位於相同伺服器的情況。 如果�
 
 若要使用此選項，請在 [安裝必要元件](active-directory-aadconnect-get-started-custom.md#install-required-components) 頁面上，依序選取 [使用現有的服務帳戶] 和 [受管理服務帳戶]。  
 ![VSA](./media/active-directory-aadconnect-accounts-permissions/serviceaccount.png)  
-系統也支援使用[獨立受管理服務帳戶](https://technet.microsoft.com/library/dd548356.aspx)。 不過，由於這些帳戶只能在本機電腦上使用，所以對預設虛擬服務帳戶使用這些帳戶並沒有任何實質好處。
+系統也支援使用[獨立受管理服務帳戶](https://technet.microsoft.com/library/dd548356.aspx)。 不過，這些帳戶只能在本機電腦上使用，所以對預設虛擬服務帳戶使用這些帳戶並沒有任何好處。
 
 這項功能需要 Windows Server 2012 或更新版本。 如果您需要使用較舊的作業系統並使用遠端 SQL，則您必須使用[使用者帳戶](#user-account)。
 
 #### <a name="user-account"></a>使用者帳戶
-安裝精靈會建立本機服務帳戶 (除非您在自訂設定指定要使用的帳戶)。 此帳戶的前面會加上 **AAD_** 並用做實際同步處理服務的執行身分。 如果您在網域控制站上安裝 Azure AD Connect，則在網域中建立帳戶。 如果您使用執行 SQL Server 的遠端伺服器，或使用要求驗證的 Proxy，**AAD_** 服務帳戶就必須位於網域中。
+安裝精靈會建立本機服務帳戶 (除非您在自訂設定指定要使用的帳戶)。 此帳戶的前面會加上 **AAD_** 並用做實際同步處理服務的執行身分。 如果您在網域控制站上安裝 Azure AD Connect，則在網域中建立帳戶。 如果有下列情況，**AAD_** 服務帳戶必須位於網域中：
+   - 您使用執行 SQL Server 的遠端伺服器
+   - 您使用需要驗證的 Proxy
 
 ![同步服務帳戶](./media/active-directory-aadconnect-accounts-permissions/syncserviceaccount.png)
 
@@ -183,7 +186,7 @@ VSA 適用於同步處理引擎和 SQL 位於相同伺服器的情況。 如果�
 
 使用帳戶所在伺服器的名稱可以透過使用者名稱的第二個部分來識別。 在圖中，伺服器名稱是 FABRIKAMCON。 如果您有預備伺服器，則每個伺服器會有自己的帳戶。
 
-系統會使用不會過期的長複雜密碼建立服務帳戶， 且該帳戶會獲得特殊角色**目錄同步處理帳戶**，其僅具有執行目錄同步處理工作的權限。 您無法透過 Azure AD Connect 精靈以外的方式授與特殊的內建角色，且 Azure 入口網站會顯示此帳戶具備**使用者**角色。
+系統會使用不會過期的長複雜密碼建立服務帳戶， 且該帳戶會獲得特殊角色**目錄同步處理帳戶**，其僅具有執行目錄同步處理工作的權限。 您無法透過 Azure AD Connect 精靈以外的方式授與特殊的內建角色。 Azure 入口網站會顯示此帳戶具備 [使用者] 角色。
 
 Azure AD 中有 20 個同步服務帳戶的限制。 若要取得 Azure AD 中現有 Azure AD 服務帳戶的清單，請執行下列 Azure AD PowerShell Cmdlet：`Get-AzureADDirectoryRole | where {$_.DisplayName -eq "Directory Synchronization Accounts"} | Get-AzureADDirectoryRoleMember`
 

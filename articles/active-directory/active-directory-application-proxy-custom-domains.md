@@ -5,77 +5,80 @@ services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: harshja
 ms.assetid: 2fe9f895-f641-4362-8b27-7a5d08f8600f
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/13/2017
+ms.date: 07/17/2017
 ms.author: kgremban
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
-ms.openlocfilehash: 3004e694a8ea8cadf622ffeacf00f2b1ff9e550a
+ms.reviewer: harshja
+ms.custom: it-pro
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: d0abd789d47b34f3dad206b9862c289d6683a83b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/17/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
+
 # <a name="working-with-custom-domains-in-azure-ad-application-proxy"></a>使用 Azure AD 應用程式 Proxy 中的自訂網域
-使用預設網域，可讓您將相同的 URL 設為可供存取應用程式的內部或外部 URL，而您的使用者在存取應用程式時只需記住一個 URL (不論他們是從哪裡進行存取)。 這也讓您可以在應用程式的 [存取面板] 中建立單一捷徑。 如果您使用 Azure AD 應用程式 Proxy 所提供的預設網域，則無需進行其他設定來啟用您的網域。 若使用自訂網域，您需要執行一些動作，以確保應用程式 Proxy 能辨識您的網域並驗證其憑證。
 
-## <a name="select-your-custom-domain"></a>選取自訂網域
-1. 根據 [使用應用程式 Proxy 發佈應用程式](active-directory-application-proxy-publish.md)中的指示，發佈您的應用程式。
-2. 在應用程式出現在應用程式清單後，加以選取並按一下 [設定] 。
-3. 在 [外部 URL] 之下，輸入您的自訂網域。
-4. 如果您的外部 URL 是 https，系統會提示您上傳憑證，以便 Azure 驗證應用程式的 URL。 您也可以上傳符合應用程式外部 URL 的萬用字元憑證。 這個網域必須在您的 [Azure 已驗證網域](https://msdn.microsoft.com/library/azure/jj151788.aspx)清單內。 Azure 必須有應用程式之網域 URL 的憑證或符合應用程式之 [外部 URL] 的萬用字元憑證。
-5. 新增 DNS 記錄，以將內部 URL 路由傳送到應用程式。 此記錄可讓您為內部與外部應用程式存取提供相同的 URL，並在使用者的應用程式清單中提供單一捷徑。
+當您透過 Azure Active Directory 應用程式 Proxy 發佈應用程式時，您會建立可供使用者在遠端工作時移至的外部 URL。 此 URL 會取得預設網域 *yourtenant-msappproxy.net*。 如果您想要使用自己的網域名稱，請為您的應用程式設定自訂網域。 
 
-## <a name="frequently-asked-questions"></a>常見問題集
-**問：是否可以選取已上傳的憑證，而不再重新上載？**  
-答︰先前已上傳的憑證會自動繫結至應用程式，而只會有一個符合應用程式主機名稱的憑證。  
+建議您盡可能為應用程式設定自訂網域。 自訂網域的一些優點包括：
 
-**問：如何加入憑證，而已匯出的憑證應以何種格式上傳？**  
-答：憑證應從應用程式組態頁面進行上傳。 此憑證應該是 PFX 檔案。  
+- 使用者可以透過相同的 URL 移至應用程式，不論他們是在網路內部或外部作業。
+- 如果所有應用程式有相同的內部和外部 URL，則某一個應用程式中指向另一個應用程式的連結會繼續在公司網路外部運作。 
+- 您可控制您的品牌，並建立您想要的 URL。 
 
-**問：是否可以使用 ECC 憑證？**  
-答：簽章方法沒有明確的限制。  
 
-**問：是否可以使用 SAN 憑證？**  
-答： 會。  
+## <a name="configure-a-custom-domain"></a>設定自訂網域
 
-**問：是否可以使用萬用字元憑證？**  
-答： 會。  
+設定自訂網域之前，請確定您已備妥下列需求： 
+- [新增至 Azure Active Directory 的已驗證網域](active-directory-domains-add-azure-portal.md)。
+- 網域的自訂憑證 (採用 PFX 檔格式)。 
+- [透過應用程式 Proxy 發佈](application-proxy-publish-azure-portal.md)的內部部署應用程式。
 
-**問：是否可以在每個應用程式上使用不同的憑證？**  
-答：可以，除非兩個應用程式共用相同的外部主機。  
+當您備妥這三項需求時，請遵循下列步驟來設定自訂網域：
 
-**問：如果我註冊新的網域，是否可以使用該網域？**  
-答：可以，網域清單是來自租用戶的已驗證網域清單。  
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 瀏覽至 [Azure Active Directory] > [企業應用程式] > [所有應用程式]，然後選擇您要管理的應用程式。
+3. 選取 [應用程式 Proxy]。 
+4. 在 [外部 URL] 欄位中，使用下拉式清單來選取您的自訂網域。 如果您未在清單中看到您的網域，則它尚未經過驗證。 
+5. 已停用的 [憑證] 欄位會變成已啟用。 選取此欄位。 
 
-**問：憑證過期會發生什麼狀況？**  
-答：您會在應用程式組態頁面的 [憑證] 區段中收到警告。 當使用者嘗試存取應用程式時，系統會顯示安全性警告。  
+   ![按一下以上傳憑證](./media/active-directory-application-proxy-custom-domains/certificate.png)
 
-**問：我該如何取代指定應用程式的憑證？**  
-答：從應用程式組態頁面上傳新的憑證。  
+   如果此欄位維持已停用，可能表示已針對該網域上傳的憑證。 
 
-**問：我是否可以刪除憑證並取代它？**  
-答：當您上傳新的憑證時，如果舊的憑證並未由另一個應用程式所使用，系統會自動予以刪除。  
+6. 上傳 PFX 憑證，然後輸入憑證的密碼。 
+7. 選取 [儲存] 來儲存變更。 
+8. 將可重新導向新外部 URL 的 DNS 記錄新增至 msappproxy.net 網域。 
 
-**問：憑證被撤銷時會發生什麼狀況？**  
-答：不會對憑證執行撤銷檢查。 當使用者嘗試存取應用程式時，視瀏覽器而定，可能會出現安全性警告。  
+>[!TIP] 
+>您只需要針對每個自訂網域上傳一個憑證。 一旦上傳憑證，您即可在發佈新應用程式時選擇自訂網域，而不需要進行額外的設定 (DNS 記錄除外)。 
 
-**問：是否可以使用自我簽署憑證？**  
-答：可以，可以使用自我簽署憑證。 如果您使用私人憑證授權單位，則憑證的 CDP (憑證撤銷點發佈點) 應是公開的。  
+## <a name="manage-certificates"></a>管理憑證
 
-**問：是否有地方可以查看我的租用戶的所有憑證？**  
-答︰目前的版本不支援此功能。  
+### <a name="certificate-format"></a>憑證格式
+憑證簽章方法沒有任何限制。 ECC、SAN 和其他常見的憑證類型全都提供支援。 您也可以使用萬用字元憑證。 如果您使用萬用字元憑證，請確定萬用字元符合所需的外部 URL。 也接受自我簽署的憑證。 如果您使用私人憑證授權單位，則憑證的 CDP (憑證撤銷點發佈點) 應是公開的。
+
+### <a name="changing-the-domain"></a>變更網域
+所有已驗證的網域會出現在您應用程式的外部 URL 下拉式清單中。 若要變更的網域，只要更新應用程式的該欄位。 如果您選取的網域沒有相關聯的憑證，請遵循步驟 5-7 來新增憑證。 如果您想要的網域不在清單中，請[將它新增為已驗證的網域](active-directory-domains-add-azure-portal.md)。 接著，務必更新 DNS 記錄以從新的外部 URL 重新導向。 
+
+### <a name="certificate-management"></a>憑證管理
+除非應用程式共用外部主機，否則您可以將相同的憑證使用於多個應用程式。 
+
+您會在憑證過期時收到警告，告知您透過入口網站上傳另一個憑證。 如果已撤銷憑證，使用者在存取應用程式時可能會看到安全性警告。 我們不會執行憑證的撤銷檢查。  若要更新指定應用程式的憑證，請巡覽至該應用程式並遵循步驟 5-7 以在已發佈的應用程式上設定自訂網域，進而上傳新的憑證。 如果其他應用程式並未使用舊憑證，則系統會自動將它刪除。 
+
+目前所有憑證管理都是透過個別的應用程式頁面進行，所以您必須在相關應用程式的環境中管理憑證。 
 
 ## <a name="next-steps"></a>後續步驟
 * [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)以登入您使用 Azure AD 驗證發佈的應用程式。
 * [啟用條件式存取](active-directory-application-proxy-conditional-access.md)以存取您發佈的應用程式。
-* [將自訂網域名稱新增至 Azure AD](active-directory-add-domain.md)
+* [將自訂網域名稱新增至 Azure AD](active-directory-domains-add-azure-portal.md)
 
 
 

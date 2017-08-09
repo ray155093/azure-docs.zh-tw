@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/01/2017
 ms.author: LADocs; padmavc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 89cd987cee841ea24dce85c0249e0eb3489c8d90
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 3fea93f558d5a4ef62550fd1f6486903cb812930
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 
@@ -36,9 +36,7 @@ ms.lasthandoff: 05/03/2017
 
 - 在您已安裝資料閘道的同一部電腦上，下載並安裝最新的 SAP 用戶端程式庫。 使用下列任一 SAP 版本： 
     - SAP 伺服器
-        - SAP ECC 6.0 Unicode
-        - SAP ECC 6.0 Unicode 含 EHP 4.0
-        - SAP ECC 6.0 含 EHP 7.0 及所有 EHP 舊版
+        - 任何支援 .NET 連接器 (NCo) 3.0 的 SAP 伺服器
  
     - SAP 用戶端
         - SAP.NET 連接器 (NCo) 3.0

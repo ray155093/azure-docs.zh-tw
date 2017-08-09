@@ -12,20 +12,22 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/17/2017
+ms.date: 08/02/2017
 ms.author: anandy
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 9bb29624324305f5295e0a50ef79d8f4c6d063c0
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 87807a203d71b3abfe3e93132eb7d0b82b14b4ee
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/21/2017
+ms.lasthandoff: 08/03/2017
 
 ---    
 
 # <a name="update-the-ssl-certificate-for-an-active-directory-federation-services-ad-fs-farm"></a>更新 Active Directory Federation Services (AD FS) 伺服器陣列的 SSL 憑證
 
 ## <a name="overview"></a>概觀
-本文說明您如何使用 Azure AD Connect 來更新 Active Directory Federation Services (AD FS) 伺服器陣列的 SSL 憑證。 如果 Azure AD Connect 中的登入方法設定為 AD FS，則您可以使用 Azure AD Connect 工具來輕鬆地更新 AD FS 伺服器陣列的 SSL 憑證。 跨所有同盟和 Web 應用程式 Proxy (WAP) 伺服器，只要 3 個簡單步驟︰
+本文說明您如何使用 Azure AD Connect 來更新 Active Directory Federation Services (AD FS) 伺服器陣列的 SSL 憑證。 即使選取的使用者登入方法不是 AD FS，您也可以使用 Azure AD Connect 工具輕鬆地更新 AD FS 伺服器陣列的 SSL 憑證。
+
+只要 3 個簡單步驟，即可跨所有同盟和 Web 應用程式 Proxy (WAP) 伺服器，執行 AD FS 之 SSL 憑證的完整更新作業︰
 
 ![三個步驟](./media/active-directory-aadconnectfed-ssl-update/threesteps.png)
 

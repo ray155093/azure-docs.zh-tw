@@ -12,12 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 07/31/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: bdf41edfa6260749a91bc52ec0a2b62fcae99fb0
-ms.openlocfilehash: 171a971411546d1421a48f3dceab98fb2b54b25f
-
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 3f457b1b82d1f75ec8796152b5c93f852175e1a5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="dynamic-encryption-configure-content-key-authorization-policy"></a>動態加密：設定內容金鑰授權原則
@@ -57,7 +58,7 @@ Microsoft Azure 媒體服務可讓您傳遞使用進階加密標準 (AES) (使�
 > 
 > 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 > 
-> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 您必須依照 [使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。
+> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。 如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。
 > 
 > 
 
@@ -66,7 +67,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 下列範例會建立 open 授權原則，並將它加入至內容金鑰。
 
-#### <a name="a-idcontentkeyauthorizationpoliciesacreate-contentkeyauthorizationpolicies"></a><a id="ContentKeyAuthorizationPolicies"></a>建立 ContentKeyAuthorizationPolicies
+#### <a id="ContentKeyAuthorizationPolicies"></a>建立 ContentKeyAuthorizationPolicies
 要求：
 
     POST https://wamsbayclus001rest-hs.cloudapp.net/api/ContentKeyAuthorizationPolicies HTTP/1.1
@@ -102,7 +103,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#ContentKeyAuthorizationPolicies/@Element","Id":"nb:ckpid:UUID:db4593da-f4d1-4cc5-a92a-d20eacbabee4","Name":"Open Authorization Policy"}
 
-#### <a name="a-idcontentkeyauthorizationpolicyoptionsacreate-contentkeyauthorizationpolicyoptions"></a><a id="ContentKeyAuthorizationPolicyOptions"></a>建立 ContentKeyAuthorizationPolicyOptions
+#### <a id="ContentKeyAuthorizationPolicyOptions"></a>建立 ContentKeyAuthorizationPolicyOptions
 要求：
 
     POST https://wamsbayclus001rest-hs.cloudapp.net/api/ContentKeyAuthorizationPolicyOptions HTTP/1.1
@@ -138,7 +139,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#ContentKeyAuthorizationPolicyOptions/@Element","Id":"nb:ckpoid:UUID:57829b17-1101-4797-919b-f816f4a007b7","Name":"policy","KeyDeliveryType":2,"KeyDeliveryConfiguration":"","Restrictions":[{"Name":"HLS Open Authorization Policy","KeyRestrictionType":0,"Requirements":null}]}
 
-#### <a name="a-idlinkcontentkeyauthorizationpolicieswithoptionsalink-contentkeyauthorizationpolicies-with-options"></a><a id="LinkContentKeyAuthorizationPoliciesWithOptions"></a>連結 ContentKeyAuthorizationPolicies 與選項
+#### <a id="LinkContentKeyAuthorizationPoliciesWithOptions"></a>連結 ContentKeyAuthorizationPolicies 與選項
 要求：
 
     POST https://wamsbayclus001rest-hs.cloudapp.net/api/ContentKeyAuthorizationPolicies('nb%3Ackpid%3AUUID%3A0baa438b-8ac2-4c40-a53c-4d4722b78715')/$links/Options HTTP/1.1
@@ -159,7 +160,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
     HTTP/1.1 204 No Content
 
-#### <a name="a-idaddauthorizationpolicytokeyaadd-authorization-policy-to-the-content-key"></a><a id="AddAuthorizationPolicyToKey"></a>將授權原則加入內容金鑰
+#### <a id="AddAuthorizationPolicyToKey"></a>將授權原則加入內容金鑰
 要求：
 
     PUT https://wamsbayclus001rest-hs.cloudapp.net/api/ContentKeys('nb%3Akid%3AUUID%3A2e6d36a7-a17c-4e9a-830d-eca23ad1a6f9') HTTP/1.1
@@ -185,7 +186,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 若要設定 token 限制選項，您需要使用 XML 來描述權杖的授權需求。 token 限制組態 XML 必須符合下列 XML 結構描述。
 
-#### <a name="a-idschemaatoken-restriction-schema"></a><a id="schema"></a>Token 限制結構描述
+#### <a id="schema"></a>Token 限制結構描述
     <?xml version="1.0" encoding="utf-8"?>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="TokenClaim">
@@ -233,7 +234,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
       <xs:element name="SymmetricVerificationKey" nillable="true" type="tns:SymmetricVerificationKey" />
     </xs:schema>
 
-設定 **token** 限制原則時，您必須指定主要**驗證金鑰**、**簽發者**和**對象**參數。 **主要驗證金鑰**包含簽署權杖使用的金鑰，**簽發者**是發行權杖的安全權杖服務。 **對象** (有時稱為**範圍**) 描述權杖或權杖獲授權存取之資源的用途。 媒體服務金鑰傳遞服務會驗證權杖中的這些值符合在範本中的值。 
+設定 **token** 限制原則時，您必須指定主要**驗證金鑰**、**簽發者**和**對象**參數。 **主要驗證金鑰**包含簽署權杖使用的金鑰，**簽發者**是發行權杖的安全性權杖服務。 **對象** (有時稱為**範圍**) 描述權杖或權杖獲授權存取之資源的用途。 媒體服務金鑰傳遞服務會驗證權杖中的這些值符合在範本中的值。 
 
 下列範例會建立具有 token 限制的授權原則。 在此範例中，用戶端必須提出權杖，權杖中包含簽署金鑰 (VerificationKey)、權杖簽發者和必要的宣告。
 
@@ -292,7 +293,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 下列範例會建立 open 授權原則，並將它加入至內容金鑰。
 
-#### <a name="a-idcontentkeyauthorizationpolicies2acreate-contentkeyauthorizationpolicies"></a><a id="ContentKeyAuthorizationPolicies2"></a>建立 ContentKeyAuthorizationPolicies
+#### <a id="ContentKeyAuthorizationPolicies2"></a>建立 ContentKeyAuthorizationPolicies
 要求：
 
     POST https://wamsbayclus001rest-hs.cloudapp.net/api/ContentKeyAuthorizationPolicies HTTP/1.1
@@ -419,8 +420,8 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 #### <a name="add-authorization-policy-to-the-content-key"></a>將授權原則加入內容金鑰
 將 AuthorizationPolicy 加入 ContentKey，如 [這裡](#AddAuthorizationPolicyToKey)所示。
 
-## <a name="a-idtypesatypes-used-when-defining-contentkeyauthorizationpolicy"></a><a id="types"></a>定義 ContentKeyAuthorizationPolicy 時使用的類型
-### <a name="a-idcontentkeyrestrictiontypeacontentkeyrestrictiontype"></a><a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType
+## <a id="types"></a>定義 ContentKeyAuthorizationPolicy 時使用的類型
+### <a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType
     public enum ContentKeyRestrictionType
     {
         Open = 0,
@@ -428,7 +429,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
         IPRestricted = 2,
     }
 
-### <a name="a-idcontentkeydeliverytypeacontentkeydeliverytype"></a><a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType
+### <a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType
     public enum ContentKeyDeliveryType
     {
         None = 0,
@@ -446,10 +447,5 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 ## <a name="next-steps"></a>後續步驟
 現在，您已設定內容金鑰授權原則，請移至 [如何設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md) 主題。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

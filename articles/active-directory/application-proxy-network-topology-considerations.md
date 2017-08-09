@@ -11,15 +11,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/21/2017
+ms.date: 07/28/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: e85242e251b53cd45b583429bd25c9ef08d2b101
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 62221d7d174de128bf0089fb79a143d73fbe550a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/21/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 
@@ -31,15 +31,15 @@ ms.lasthandoff: 04/21/2017
 
 當應用程式透過 Azure AD App Proxy 發佈時，來自使用者往應用程式的流量會流過三個連線︰
 
-1. 使用者連線至 Azure 上的 Azure AD 應用程式 Proxy 公用端點
-2. 應用程式 Proxy 連線至連接器
-3. 此連接器會連線到目標應用程式
+1. 使用者連線至 Azure 上的 Azure AD 應用程式 Proxy 服務公用端點
+2. 應用程式 Proxy 服務連線至應用程式 Proxy 連接器
+3. 應用程式 Proxy 連接器會連線到目標應用程式
 
- ![顯示從使用者至目標應用程式之流量的圖表](./media/application-proxy-network-topologies/application-proxy-three-hops.png)
+![顯示從使用者至目標應用程式之流量的圖表](./media/application-proxy-network-topologies/application-proxy-three-hops.png)
 
 ## <a name="tenant-location-and-application-proxy-service"></a>租用戶位置與應用程式 Proxy 服務
 
-當您註冊 Azure AD 租用戶時，您租用戶的區域取決於您所指定的國家/地區。 當您啟用應用程式 Proxy 時，租用戶的應用程式 Proxy 服務執行個體會顯示在與 Azure AD 租用戶位於相同區域或最近的區域。
+當您註冊 Azure AD 租用戶時，您租用戶的區域取決於您所指定的國家/地區。 當您啟用應用程式 Proxy 時，租用戶的應用程式 Proxy 服務執行個體會選取或建立在與 Azure AD 租用戶位於相同區域或最近的區域。
 
 例如，如果 Azure AD 租用戶的區域是歐盟 (EU)，則所有的應用程式 Proxy 連接器會使用歐盟 Azure 資料中心的服務執行個體。 當使用者存取發佈的應用程式時，其流量會通過這個位置的應用程式 Proxy 服務執行個體。
 
@@ -49,9 +49,11 @@ ms.lasthandoff: 04/21/2017
 
 組織通常包含其周邊網路中的伺服器端點。 不過，使用 Azure AD 應用程式 Proxy，流量都會流過雲端中的 Proxy 服務，而連接器會位於公司的網路上。 不需要周邊網路。
 
+下一節包含的其他建議可協助您更進一步降低延遲。 
+
 ### <a name="connector-placement"></a>連接器放置
 
-應用程式 Proxy 會根據您的租用戶位置，為您選擇執行個體的位置。 您可以決定在何處安裝連接器，讓您能夠定義網路流量的延遲特性。
+應用程式 Proxy 會根據您的租用戶位置，為您選擇執行個體的位置。 不過，您可以決定在何處安裝連接器，讓您能夠定義網路流量的延遲特性。
 
 設定應用程式 Proxy 服務時，請詢問下列問題︰
 
@@ -60,27 +62,29 @@ ms.lasthandoff: 04/21/2017
 * 應用程式 Proxy 執行個體所在的位置？
 * 您是否已設定 Azure 資料中心的專用網路，例如 Azure ExpressRoute 或類似的 VPN？
 
-連接器必須與 Azure 和您的應用程式進行通訊，因此連接器的位置會影響這些兩個連線的延遲。 評估連接器的位置時，請考慮下列因素：
+連接器必須與 Azure 和您的應用程式 (流量圖表中的步驟 2 和 3) 進行通訊，因此連接器的位置會影響這些兩個連線的延遲。 評估連接器的位置時，請記住下列幾點：
 
-* 如果您想要使用 Kerberos 限制委派 (KCD) 進行單一登入，連接器需要資料中心的視野。 
+* 如果您想要使用 Kerberos 限制委派 (KCD) 進行單一登入，連接器需要資料中心的視野。 此外，連接器伺服器必須加入網域。  
 * 有疑問時，請安裝較接近應用程式的連接器。
 
 ### <a name="general-approach-to-minimize-latency"></a>將延遲降至最低的常見方式
 
-最佳化每個網路連線，即可試著將端對端流量延遲降至最低。 可以將每個連線最佳化，方法為︰
+最佳化每個網路連線，即可將端對端流量的延遲降至最低。 可以將每個連線最佳化，方法為︰
 
 * 減少躍點兩端之間的距離。
 * 選擇正確的網路來周遊。 例如，周遊私人網路而非公用網際網路可能會因為專用的連結而更快。
 
 如果在 Azure 與您的公司網路之間有專用的 VPN 或 ExpressRoute 連結，您可加以使用。
 
-## <a name="focus-your-optimizing-strategy"></a>專注於最佳化策略
+## <a name="focus-your-optimization-strategy"></a>專注於最佳化策略
 
-您幾乎無法控制您的使用者與 Azure AD 應用程式 Proxy 之間的連線；它們可能會從家用網路、咖啡廳或不同的國家/地區存取您的應用程式。 反之，您可以將應用程式 Proxy 連接器與應用程式的連線最佳化。 請考慮將下列模式整合在您的環境中。
+您幾乎沒有辦法可以控制您的使用者與應用程式 Proxy 服務之間的連線。 使用者可以從家用網路、咖啡廳或不同的國家/地區存取您的應用程式。 反之，您可以將應用程式 Proxy 服務與應用程式的應用程式 Proxy 連接器之連線最佳化。 請考慮將下列模式整合在您的環境中。
 
 ### <a name="pattern-1-put-the-connector-close-to-the-application"></a>模式 1︰將連接器放在應用程式附近
 
-將連接器放在接近客戶網路中的目標應用程式。 這個模式的優點是連接器可能需要直視網域連接器。 這個方法就足以應付大部分的情況，這也是為什麼我們的客戶大多會遵循這個模式。 還可以將這個模式與模式 2 結合，以將應用程式 Proxy 與連接器之間的流量最佳化。
+將連接器放在接近客戶網路中的目標應用程式。 因為連接器和應用程式已關閉，這項設定會將拓撲圖表中的步驟 3 降到最低。 
+
+如果您的連接器需要能夠觀察網域控制站，此模式是有利的。 大部分的客戶會使用此模式，因為它非常適合大部分情節。 還可以將這個模式與模式 2 結合，以將服務與連接器之間的流量最佳化。
 
 ### <a name="pattern-2-take-advantage-of-expressroute-with-public-peering"></a>模式 2︰利用 ExpressRoute 與公用對等互連
 
@@ -98,9 +102,9 @@ ms.lasthandoff: 04/21/2017
 
 雖然本文的重點是連接器放置，但您也可以變更應用程式的位置，以取得較佳的延遲特性。
 
-有愈來愈多的組織將其網路移至託管環境。 這可讓它們將自己的應用程式放在託管環境中，這也是其公司網路的一部分，並仍在網域內。 在此情況下，前幾節中所討論的模式可以套用至新的應用程式位置。
+有愈來愈多的組織將其網路移至託管環境。 這可讓它們將自己的應用程式放在託管環境中，這也是其公司網路的一部分，並仍在網域內。 在此情況下，前幾節中所討論的模式可以套用至新的應用程式位置。 如果您正在考慮此選項，請參閱 [AD Domain Services](../active-directory-domain-services/active-directory-ds-overview.md)。
 
-請考慮使用[連接器群組](active-directory-application-proxy-connectors.md)，以鎖定位於不同位置和網路的應用程式。 如果您正在考慮此選項，請參閱 [AD Domain Services](../active-directory-domain-services/active-directory-ds-overview.md)。
+此外，請考慮使用[連接器群組](active-directory-application-proxy-connectors.md)來組織連接器，以鎖定位於不同位置和網路的應用程式。 
 
 ## <a name="common-use-cases"></a>一般使用案例
 
@@ -108,9 +112,9 @@ ms.lasthandoff: 04/21/2017
 
 這些情況下，我們將每個連線稱為「躍點」，並將它們編號以便於討論︰
 
-- **躍點 1**：使用者至 Azure AD 應用程式 Proxy
-- **躍點 2**：Azure AD 應用程式 Proxy 至連接器
-- **躍點 3**︰連接器至目標應用程式 
+- **躍點 1**：使用者至應用程式 Proxy 服務
+- **躍點 2**：應用程式 Proxy 服務至應用程式 Proxy 連接器
+- **躍點 3**：應用程式 Proxy 連接器至目標應用程式 
 
 ### <a name="use-case-1"></a>使用案例 1
 
@@ -136,7 +140,9 @@ ms.lasthandoff: 04/21/2017
 
 **案例︰**應用程式在美國組織的網路中。 Azure 與公司網路之間存在 ExpressRoute 與公用對等互連。
 
-**建議︰**盡可能將連接器放置接近應用程式。 系統會自動使用躍點 2 的 ExpressRoute。 這會遵循模式 2，如上一節所述。
+**建議︰**遵循模式 1 和 2，如上一節所述。
+
+首先，盡可能將連接器放置接近應用程式。 然後，系統會自動使用躍點 2 的 ExpressRoute。 
 
 如果 ExpressRoute 連結使用公用互連，則 Proxy 與連接器之間的流量會流過該連結。 躍點 2 具有最佳化延遲。
 
@@ -146,7 +152,9 @@ ms.lasthandoff: 04/21/2017
 
 **案例︰**應用程式在美國組織的網路中。 Azure 與公司網路之間存在 ExpressRoute 與私人對等互連。
 
-**建議︰**將連接器放置於透過 ExpressRoute 私人對等互連連線到公司網路的 Azure 資料中心。 這會遵循模式 3，如上一節所述。
+**建議︰**遵循模式 3，如上一節所述。
+
+將連接器放置於透過 ExpressRoute 私人對等互連連線到公司網路的 Azure 資料中心。 
 
 連接器可放置於 Azure 資料中心。 因為連接器仍可透過私人網路直視應用程式和資料中心，躍點 3 會維持最佳化。 此外，躍點 2 已進一步最佳化。
 
@@ -160,7 +168,7 @@ ms.lasthandoff: 04/21/2017
 
 ![圖表顯示使用者和 Proxy 在美國，而連接器與應用程式在歐盟](./media/application-proxy-network-topologies/application-proxy-pattern5b.png)
 
-您也可以考慮在此情況下使用另一個變體。 如果組織中的大部分使用者不在美國，則可能您的網路也會延伸至美國。 如果是這樣，則連接器可以放在美國，而且可以使用歐盟國家應用程式的專用內部企業網路。 如此一來，躍點 2 和躍點 3 便已最佳化。
+您也可以考慮在此情況下使用另一個變體。 如果組織中的大部分使用者不在美國，則可能您的網路也會延伸至美國。 將連接器放在美國，並使用歐盟國家應用程式的專用內部企業網路。 如此一來，躍點 2 和躍點 3 便已最佳化。
 
 ![圖表顯示使用者、Proxy 和連接器在美國，而應用程式在歐盟](./media/application-proxy-network-topologies/application-proxy-pattern5c.png)
 

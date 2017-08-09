@@ -14,14 +14,13 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/23/2017
+ms.date: 08/02/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: 9447cf1919cacee5319afe559e7745e5d218fb0d
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 3ee89b6644ba395e0a6c28ecc2c082c2f7393ac8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="develop-c-topologies-for-apache-storm-by-using-the-data-lake-tools-for-visual-studio"></a>使用 Data Lake Tools for Visual Studio 開發 Apache Storm 的 C# 拓撲
@@ -121,6 +120,9 @@ Data Lake Tools for Visual Studio 提供下列範本：
 | Storm HBase 寫入器範例 |如何寫入至 HDInsight 叢集上的 HBase。 |
 | Storm 混合式範例 |如何使用 Java 元件。 |
 | Storm 範例 |基本的字數統計拓撲。 |
+
+> [!WARNING]
+> 並非所有範本都能與 Linux 架構的 HDInsight 搭配運作。 範本所使用的 Nuget 套件可能無法與 Mono 相容。 請查看 [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/)文件，並使用 [.NET Portability Analyzer](hdinsight-hadoop-migrate-dotnet-to-linux.md#automated-portability-analysis) 來找出潛在問題。
 
 在這份文件的步驟中，您會使用基本 Storm 應用程式專案類型來建立拓撲。
 

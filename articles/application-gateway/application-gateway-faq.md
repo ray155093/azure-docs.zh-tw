@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 03/28/2017
 ms.author: gwallace
 ms.translationtype: HT
-ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
-ms.openlocfilehash: dbf870ca6e0ab85c96290a93eafd47d4b574dbc7
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 3a57646922236a10cf51ae3dd86c67c87c6d7f7f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/20/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 
@@ -36,7 +36,7 @@ Azure 應用程式閘道是服務形式的應用程式傳遞控制器 (ADC)，�
 
 **問：應用程式閘道與 Azure Load Balancer 之間的差異為何？**
 
-應用程式閘道是第 7 層負載平衡器。 這表示應用程式閘道只會處理 Web 流量 (HTTP/HTTPS/WebSocket)。 它支援應用程式負載平衡功能，例如 SSL 終止、以 cookie 為基礎的工作階段親和性，以及用於平衡流量負載的循環配置資源。 負載平衡器，平衡第 4 層 (TCP/UDP) 的流量負載。
+應用程式閘道是第 7 層負載平衡器，這表示它只會使用網路流量 (HTTP/HTTPS/WebSocket)。 它支援功能，例如 SSL 終止、以 cookie 為基礎的工作階段親和性，以及用於平衡流量負載的循環配置資源。 負載平衡器，平衡第 4 層 (TCP/UDP) 的流量負載。
 
 **問：應用程式閘道支援哪些通訊協定？**
 
@@ -44,11 +44,11 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 **問：目前支援哪些資源做為後端集區的一部分？**
 
-後端集區可以包含 NIC、虛擬機器擴展集、公用 IP、內部 IP 和完整的網域名稱 (FQDN)。 目前不提供 Azure Web Apps 支援。 應用程式閘道後端集區成員不會繫結至可用性設定組。 只要後端集區成員具有 IP 連線能力，就可以跨越叢集、資料中心或在 Azure 外部。
+後端集區可以包含 NIC、虛擬機器擴展集、公用 IP、內部 IP、完整的網域名稱 (FQDN)，以及如 Azure Web 應用程式的多租用戶後端。 應用程式閘道後端集區成員不會繫結至可用性設定組。 只要後端集區成員具有 IP 連線能力，就可以跨越叢集、資料中心或在 Azure 外部。
 
 **問：哪些區域提供此服務？**
 
-應用程式閘道適用於公用 Azure 的所有區域。 它也適用於 [Azure China](https://www.azure.cn/) 和 [Azure Government](https://azure.microsoft.com/en-us/overview/clouds/government/)
+應用程式閘道適用於全域 Azure 的所有區域。 它也適用於 [Azure China](https://www.azure.cn/) 和 [Azure Government](https://azure.microsoft.com/en-us/overview/clouds/government/)
 
 **問：這是我的訂用帳戶專用的部署，還是所有客戶共用？**
 
@@ -136,7 +136,7 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 **問：規則的處理方式為何？**
 
-規則會依其設定順序處理。 建議在基本規則前設定多站台規則，以減少流量路由傳送到不適當後端的機會，因為在評估多站台規則之前，基本規則會根據連接埠比對流量。
+規則會依其設定順序處理。 建議在基本規則前面設定多網站規則。 藉由先設定多網站接聽程式，此設定可以減少流量路由傳送到不適當後端的機會。 因為在評估多網站規則之前，基本規則會先根據連接埠比對流量，所以會發生此路由問題。
 
 **問：自訂探查的 [主機] 欄位表示什麼？**
 
@@ -144,7 +144,7 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 **問：我可以將一些來源 IP 的應用程式閘道存取列入允許清單嗎？**
 
-使用應用程式閘道子網路上的 NSG 可以完成此作業。 應依照所列的優先順序在子網路施加下列限制：
+使用應用程式閘道子網路上的 NSG 可以完成此案例。 應依照所列的優先順序在子網路施加下列限制：
 
 * 允許來源 IP/IP 範圍的傳入流量。
 
@@ -176,7 +176,7 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 **問：是否可在中斷的情況下，將執行個體大小從中型變成大型？**
 
-是，Azure 會將執行個體分散於更新和容錯網域，確保所有執行個體不會同時失敗。 應用程式閘道支援延展性的方式為藉由新增相同閘道的多個執行個體來分攤負載。
+是，Azure 會將執行個體分散於更新和容錯網域，確保所有執行個體不會同時失敗。 應用程式閘道支援調整的方式為藉由新增相同閘道的多個執行個體來分攤負載。
 
 ## <a name="ssl-configuration"></a>SSL 組態
 
@@ -286,11 +286,11 @@ WAF 目前支援 CRS [2.2.9](application-gateway-crs-rulegroups-rules.md#owasp22
 
 **問：應用程式閘道可使用哪些記錄檔類型？**
 
-應用程式閘道可使用三種記錄檔。 如需有關這些記錄檔和其他診斷功能的詳細資訊，請瀏覽[應用程式閘道的後端健康狀態、診斷記錄和計量](application-gateway-diagnostics.md)。
+應用程式閘道可使用三種記錄檔。 如需有關這些記錄和其他診斷功能的詳細資訊，請瀏覽[應用程式閘道的後端健康情況、診斷記錄和計量](application-gateway-diagnostics.md)。
 
-- **ApplicationGatewayAccessLog** - 此記錄檔包含提交至應用程式閘道前端的每個要求。 此資料包含呼叫者的 IP、所要求的 URL、回應延遲、傳回碼、輸入和輸出位元組。 每隔 300 秒會收集一次存取記錄檔。 此記錄檔包含每個應用程式閘道執行個體的一筆記錄。
-- **ApplicationGatewayPerformanceLog** - 此記錄檔會擷取每個執行個體的效能資訊，包括提供的要求總數、輸送量 (以位元組為單位)、提供的總要求數、失敗的要求計數、狀況良好和狀況不良的後端執行個體計數。
-- **ApplicationGatewayFirewallLog** - 此記錄檔包含透過應用程式閘道的偵測或防護模式 (依 Web 應用程式防火牆的設定) 所記錄的要求。
+- **ApplicationGatewayAccessLog** - 此存取記錄包含提交至應用程式閘道前端的每個要求。 此資料包含呼叫者的 IP、所要求的 URL、回應延遲、傳回碼、輸入和輸出位元組。 每隔 300 秒會收集一次存取記錄檔。 此記錄檔包含每個應用程式閘道執行個體的一筆記錄。
+- **ApplicationGatewayPerformanceLog** - 此效能記錄會擷取每個執行個體的效能資訊，包括提供的要求總數、輸送量 (以位元組為單位)、提供的總要求數、失敗的要求計數、狀況良好和狀況不良的後端執行個體計數。
+- **ApplicationGatewayFirewallLog** - 此防火牆記錄包含透過應用程式閘道的偵測或防護模式 (依 Web 應用程式防火牆的設定) 所記錄的要求。
 
 **問：如何知道我的後端集區成員狀態良好？**
 
@@ -308,7 +308,7 @@ WAF 目前支援 CRS [2.2.9](application-gateway-crs-rulegroups-rules.md#owasp22
 
 是，應用程式閘道可以支援警示，並可將警示設定為關閉計量。  應用程式閘道目前有「輸送量」計量，這可設定用於警示。 若要深入了解警示，請瀏覽[接收警示通知](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)。
 
-**問：後端健康狀態傳回不明狀態，什麼會這樣？**
+**問：後端健康情況傳回不明狀態，什麼導致這個狀態？**
 
 最常見的原因是後端的存取遭到 NSG 或自訂 DNS 所封鎖。 若要深入了解，請瀏覽[應用程式閘道的後端健康狀態、診斷記錄及計量](application-gateway-diagnostics.md)。
 

@@ -13,14 +13,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 05/05/2017
+ms.date: 07/27/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5edc47e03ca9319ba2e3285600703d759963e1f3
-ms.openlocfilehash: 4dcfad63fdc610160bd47a3b900591fb06585005
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: d0cbf7883a8737bcb10e9dd251c9792a12993f77
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/01/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="back-up-linux--virtual-machines-in-azure"></a>備份 Azure 中的 Linux 虛擬機器
@@ -38,7 +38,7 @@ ms.lasthandoff: 06/01/2017
 
 Azure 備份服務開始備份時，會觸發備份擴充功能以建立時間點快照集。 Azure 備份服務在 Linux 中使用 _VMSnapshotLinux_ 擴充功能。 如果 VM 正在執行，會在第一次 VM 備份期間安裝此擴充功能。 如果 VM 未在執行中，則備份服務會擷取基礎儲存體的快照集 (因為 VM 停止時不會發生任何應用程式寫入)。
 
-Azure 備份服務擷取快照集之後，資料會傳輸至保存庫。 為了能更有效率，服務只會找出並傳輸自上次備份之後有變更的資料區塊。
+根據預設，Azure 備份會為 Linux VM 建立檔案系統一致備份，但可以將它設定成建立[應用程式一致備份 (使用備份前指令碼和備份後指令碼架構)](https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent)。 Azure 備份服務擷取快照集之後，資料會傳輸至保存庫。 為了能更有效率，服務只會找出並傳輸自上次備份之後有變更的資料區塊。
 
 資料傳輸完畢後，系統會移除快照集並建立復原點。
 
@@ -95,7 +95,7 @@ Azure 備份服務擷取快照集之後，資料會傳輸至保存庫。 為了�
 6. 在左邊的功能表上，選取 [虛擬機器]。 
 7. 從清單中選取 VM。
 8. 在 VM 刀鋒視窗的 [設定] 區段中，按一下 [備份]。 [備份] 刀鋒視窗隨即開啟。 
-9. 在刀鋒視窗頂端的功能表中，選取 [檔案復原 (預覽)]。 [檔案復原 (預覽)] 刀鋒視窗隨即開啟。
+9. 在刀鋒視窗頂端的功能表中，選取 [檔案復原]。 [檔案復原] 刀鋒視窗隨即開啟。
 10. 在 [步驟 1︰選取復原點] 中，從下拉式清單選取復原點。
 11. 在 [步驟 2：下載指令碼以瀏覽及復原檔案] 中，按一下 [下載執行檔] 按鈕。 將下載的檔案儲存到您的本機電腦。
 7. 按一下 [下載指令碼] 將指令碼檔案下載至本機。

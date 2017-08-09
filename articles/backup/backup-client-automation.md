@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: saurse;markgal;jimpark;nkolli;trinadhk
-translationtype: Human Translation
-ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
-ms.openlocfilehash: 87384588e9e2a77a5b545ce30db2776541223001
-
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 5cab7daeaf79463cd7ad70558581f3253476ff32
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="deploy-and-manage-backup-to-azure-for-windows-serverwindows-client-using-powershell"></a>使用 PowerShell 部署和管理 Windows Server/Windows 用戶端的 Azure 備份
@@ -32,11 +33,11 @@ ms.openlocfilehash: 87384588e9e2a77a5b545ce30db2776541223001
 ## <a name="install-azure-powershell"></a>安裝 Azure PowerShell
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
-本文著重於可讓您在資源群組中使用復原服務保存庫的 Azure Resource Manager (ARM) PowerShell Cmdlet。
+本文著重於可讓您在資源群組中使用復原服務保存庫的 Azure Resource Manager (ARM) 和 MS Online Backup PowerShell Cmdlet。
 
 在 2015 年 10 月，Azure PowerShell 1.0 已發行。 此版本繼承 0.9.8 版，且帶來一些重要的變更，尤其是 Cmdlet 的命名模式。 1.0 Cmdlet 遵循命名模式 {動詞}-AzureRm{名詞}；然而，0.9.8 的名稱不包含 **Rm** (例如，New-AzureRmResourceGroup，而不是 New-AzureResourceGroup)。 在使用 Azure PowerShell 0.9.8 時，您必須先執行 **Switch-AzureMode AzureResourceManager** 命令啟用資源管理員模式。 1.0 或更新版本不需要執行此命令。
 
-如果您想要使用針對 0.9.8 環境所撰寫的指令碼，在 1.0 或更新版本的環境中，您應該先在預先生產環境中仔細測試指令碼，然後才在生產環境中使用它們，以避免產生非預期的影響。
+如果您想要使用針對 0.9.8 環境所撰寫的指令碼，在 1.0 或更新版本的環境中，您應該先在預先生產環境中小心地更新和測試指令碼，然後才在生產環境中使用它們，以避免產生非預期的影響。
 
 [下載最新版 PowerShell](https://github.com/Azure/azure-powershell/releases) (所需的最低版本為：1.0.0)
 
@@ -53,12 +54,12 @@ ms.openlocfilehash: 87384588e9e2a77a5b545ce30db2776541223001
 2. 復原服務保存庫是 ARM 資源，因此您必須將它放在資源群組內。 您可以使用現有的資源群組，或建立一個新的群組。 建立新的資源群組時，請指定資源群組的名稱和位置。  
 
     ```
-    PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
+    PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "WestUS"
     ```
 3. 使用 **New-AzureRmRecoveryServicesVault** Cmdlet 來建立新的保存庫。 請務必為保存庫指定與用於資源群組相同的位置。
 
     ```
-    PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
+    PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "WestUS"
     ```
 4. 指定要使用的儲存體備援類型；您可以使用[本地備援儲存體 (LRS)](../storage/storage-redundancy.md#locally-redundant-storage) 或[異地備援儲存體 (GRS)](../storage/storage-redundancy.md#geo-redundant-storage)。 以下範例示範 testVault 設定為 GeoRedundant 的 BackupStorageRedundancy 選項。
 
@@ -75,7 +76,7 @@ ms.openlocfilehash: 87384588e9e2a77a5b545ce30db2776541223001
 ## <a name="view-the-vaults-in-a-subscription"></a>在訂用帳戶中檢視保存庫
 使用 **Get-AzureRmRecoveryServicesVault** 來檢視目前訂用帳戶中所有保存庫的清單。 您可以使用此命令來檢查是否已建立新的保存庫，或查看訂用帳戶中有哪些保存庫可用。
 
-執行命令時，會列出 Get-AzureRmRecoveryServicesVault 以及訂用帳戶中的所有保存庫。
+執行命令時，會列出 **Get-AzureRmRecoveryServicesVault** 以及訂用帳戶中的所有保存庫。
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesVault
@@ -91,6 +92,15 @@ Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
 
 ## <a name="installing-the-azure-backup-agent"></a>安裝 Azure 備份代理程式
 在安裝 Azure 備份代理程式之前，您必須在 Windows Server 上下載並提供安裝程式。 您可以從 [Microsoft 下載中心](http://aka.ms/azurebackup_agent) 或從復原服務保存庫的 [儀表板] 頁面取得最新版的安裝程式。 請將安裝程式儲存至容易存取的位置，例如 *C:\Downloads\*。
+
+或者，使用 PowerShell 來取得下載程式：
+ 
+ ```
+ $MarsAURL = 'Http://Aka.Ms/Azurebackup_Agent'
+ $WC = New-Object System.Net.WebClient
+ $WC.DownloadFile($MarsAURL,'C:\downloads\MARSAgentInstaller.EXE')
+ C:\Downloads\MARSAgentInstaller.EXE /q
+ ```
 
 若要安裝代理程式，請在已提升權限的 PowerShell 主控台中執行下列命令：
 
@@ -132,10 +142,26 @@ PS C:\> MARSAgentInstaller.exe /?
 ```
 PS C:\> $credspath = "C:\downloads"
 PS C:\> $credsfilename = Get-AzureRmRecoveryServicesVaultSettingsFile -Backup -Vault $vault1 -Path  $credspath
-PS C:\> $credsfilename C:\downloads\testvault\_Sun Apr 10 2016.VaultCredentials
 ```
 
 在 Windows Server 或 Windows 用戶端電腦上，執行 [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) Cmdlet 向保存庫註冊電腦。
+此 Cmdlet 和其他用來進行備份的 Cmdlet 皆來自 MSONLINE 模組，Mars AgentInstaller 會在安裝過程中新增此模組。 
+
+AgentInstaller 不會更新 $Env:PSModulePath 變數。 這表示模組自動載入會失敗。 若要解決此問題，您可以執行下列命令：
+
+```
+PS C:\>  $Env:psmodulepath += ';C:\Program Files\Microsoft Azure Recovery Services Agent\bin\Modules
+```
+
+或者，您可以在指令碼中手動載入模組，如下所示：
+
+```
+PS C:\>  Import-Module  'C:\Program Files\Microsoft Azure Recovery Services Agent\bin\Modules\MSOnlineBackup'
+
+```
+
+在載入 Online Backup Cmdlet 後，您必須註冊保存庫認證：
+
 
 ```
 PS C:\> $cred = $credspath + $credsfilename
@@ -143,7 +169,7 @@ PS C:\> Start-OBRegistration-VaultCredentials $cred -Confirm:$false
 CertThumbprint      :7a2ef2caa2e74b6ed1222a5e89288ddad438df2
 SubscriptionID      : ef4ab577-c2c0-43e4-af80-af49f485f3d1
 ServiceResourceName: testvault
-Region              :West US
+Region              :WestUS
 Machine registration succeeded.
 ```
 
@@ -172,6 +198,9 @@ Server properties updated successfully.
 
 ```
 PS C:\> ConvertTo-SecureString -String "Complex!123_STRING" -AsPlainText -Force | Set-OBMachineSetting
+PS C:\> $PassPhrase = ConvertTo-SecureString -String "Complex!123_STRING" -AsPlainText -Force 
+PS C:\> $PassCode   = 'AzureR0ckx'
+PS C:\> Set-OBMachineSetting -EncryptionPassPhrase $PassPhrase
 Server properties updated successfully
 ```
 
@@ -442,12 +471,14 @@ IsRecursive : True
 
 ```
 PS C:> Get-OBPolicy | Start-OBBackup
+Initializing
 Taking snapshot of volumes...
 Preparing storage...
-Estimating size of backup items...
-Estimating size of backup items...
-Transferring data...
-Verifying backup...
+Generating backup metadata information and preparing the metadata VHD...
+Data transfer is in progress. It might take longer since it is the first backup and all data needs to be transferred...
+Data transfer completed and all backed up data is in the cloud. Verifying data integrity...
+Data transfer completed
+In progress...
 Job completed.
 The backup operation completed successfully.
 ```
@@ -475,8 +506,8 @@ RecoverySourceName : D:\
 ServerName : myserver.microsoft.com
 ```
 
-### <a name="choosing-a-backup-point-to-restore"></a>選擇要還原的備份點
-執行 [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) Cmdlet 搭配適當的參數可以擷取備份點清單。 範例中，我們會選擇來源磁碟區 *D:* 的最新備份點並加以使用來還原特定檔案。
+### <a name="choosing-a-backup-point-from-which-to-restore"></a>選擇要從中還原的備份點
+您可以執行 [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) Cmdlet 並搭配適當參數來擷取備份點清單。 範例中，我們會選擇來源磁碟區 *D:* 的最新備份點並加以使用來還原特定檔案。
 
 ```
 PS C:> $rps = Get-OBRecoverableItem -Source $source[1]
@@ -561,7 +592,7 @@ PS C:\> $item = Get-OBRecoverableItem -RecoveryPoint $rps[0] -Location "D:\MyDat
 PS C:\> $recovery_option = New-OBRecoveryOption -DestinationPath "C:\temp" -OverwriteType Skip
 ```
 
-從 ```Get-OBRecoverableItem``` Cmdlet 的輸出，在選取的 ```$item``` 上使用 [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) 命令，立即觸發還原：
+現在，從 ```Get-OBRecoverableItem``` Cmdlet 的輸出，在選取的 ```$item``` 上使用 [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) 命令來觸發還原程序：
 
 ```
 PS C:\> Start-OBRecovery -RecoverableItem $item -RecoveryOption $recover_option
@@ -630,9 +661,4 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 
 * [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
 * [備份 Windows 伺服器](backup-configure-vault.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

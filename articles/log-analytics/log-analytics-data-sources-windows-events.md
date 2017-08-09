@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/23/2017
+ms.date: 07/12/2017
 ms.author: bwren
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
-ms.openlocfilehash: b6627ed7e3b08e0a94dec229d735114b3ed1b9df
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 1cdaa8c4bf511a07383023f1baf79449ef7fdd35
 ms.contentlocale: zh-tw
-ms.lasthandoff: 01/24/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="windows-event-log-data-sources-in-log-analytics"></a>Log Analytics 中的 Windows 事件記錄檔資料來源
@@ -71,10 +70,21 @@ Windows 事件記錄都具有 **Event** 類型以及下表中的屬性。
 | Type=Event &#124; Measure count() by Source |依據來源的 Windows 事件計數。 |
 | Type=Event EventLevelName=error &#124; Measure count() by Source |依據來源的 Windows 錯誤事件計數。 |
 
+
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
+>
+>| 查詢 | 說明 |
+|:---|:---|
+| Event |所有的 Windows 事件。 |
+| Event &#124; where EventLevelName == "error" |所有 Windows 事件與錯誤的嚴重性。 |
+| Event &#124; summarize count() by Source |依據來源的 Windows 事件計數。 |
+| Event &#124; where EventLevelName == "error" &#124; summarize count() by Source |依據來源的 Windows 錯誤事件計數。 |
+
+
 ## <a name="next-steps"></a>後續步驟
 * 設定 Log Analytics 以收集其他 [資料來源](log-analytics-data-sources.md) 進行分析。
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。  
 * 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將事件記錄剖析至個別欄位。
 * 設定從您的 Windows 代理程式進行 [效能計數器收集](log-analytics-data-sources-performance-counters.md) 。
-
 

@@ -13,17 +13,16 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 05/26/2017
+ms.date: 07/25/2017
 ms.author: owend
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 43aab8d52e854636f7ea2ff3aae50d7827735cc7
-ms.openlocfilehash: f8c9e9ab8b8728202ec3f049b309d96d883022f4
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: f07d72a18221e7a2838cec3982990dca21c00153
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/03/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
-# <a name="on-premises-data-gateway"></a>內部部署資料閘道
+# <a name="install-on-premises-data-gateway"></a>安裝內部部署資料閘道
 內部部署資料閘道的角色如同橋接器，在內部部署資料來源和雲端中的 Azure Analysis Services 伺服器之間提供安全的資料傳輸。
 
 最新版的閘道可透過使用 SSDT 的 [取得資料] 和 M 查詢來支援表格式 1400 模型連線到內部部署資料來源。 
@@ -32,7 +31,7 @@ ms.lasthandoff: 06/03/2017
 
 閘道安裝於您網路的電腦上。 您必須為您的 Azure 訂用帳戶中的每部 Azure Analysis Services 伺服器各安裝一個閘道。 例如，如果您的 Azure 訂用帳戶中有兩部伺服器連接到內部部署資料來源，則閘道必須安裝在您網路中不同的兩部電腦上。
 
-## <a name="requirements"></a>需求
+## <a name="prerequisites"></a>必要條件
 **最低需求：**
 
 * .NET 4.5 Framework
@@ -61,7 +60,7 @@ ms.lasthandoff: 06/03/2017
 1. 執行安裝程式。
 2. 選擇安裝位置，並接受授權條款。
 3. 登入 Azure。
-4. 指定 Azure Analysis Server 名稱。 每個閘道只能指定一部伺服器。 按一下 [設定] 即可開始使用。
+4. 指定 Azure Analysis Server 名稱，然後按一下 [設定]。 每個閘道只能指定一部伺服器。
 
     ![登入 Azure](./media/analysis-services-gateway/aas-gateway-configure-server.png)
 
@@ -70,7 +69,7 @@ ms.lasthandoff: 06/03/2017
 
 ![運作方式](./media/analysis-services-gateway/aas-gateway-how-it-works.png)
 
-查詢和資料流運作方式如下︰
+查詢和資料流程：
 
 1. 雲端服務使用內部部署資料來源的加密認證建立查詢。 查詢接著傳送至佇列供閘道處理。
 2. 閘道雲端服務會分析該查詢，並將要求推送至 [Azure 服務匯流排](https://azure.microsoft.com/documentation/services/service-bus/)。
@@ -111,7 +110,7 @@ ms.lasthandoff: 06/03/2017
 | *.microsoftonline-p.com |443 |用於驗證 (視設定而定)。 |
 
 ### <a name="forcing-https-communication-with-azure-service-bus"></a>強制使用 Azure 服務匯流排進行 HTTPS 通訊
-您可以強制閘道使用 HTTPS 取代直接 TCP 來與 Azure 服務匯流排通訊；但這樣會大幅降低效能。 您需要修改 *Microsoft.PowerBI.DataMovement.Pipeline.GatewayCore.dll.config* 檔案。 將值從 `AutoDetect` 變更為 `Https`。 這個檔案預設位於 *C:\Program Files\On-premises data gateway*。
+您可以強制閘道使用 HTTPS 取代直接 TCP 來與 Azure 服務匯流排通訊；但這樣會大幅降低效能。 您可以修改 *Microsoft.PowerBI.DataMovement.Pipeline.GatewayCore.dll.config* 檔案，方法是將值從 `AutoDetect` 變更為 `Https`。 這個檔案預設位於 *C:\Program Files\On-premises data gateway*。
 
 ```
 <setting name="ServiceBusSystemConnectivityModeString" serializeAs="String">
@@ -132,8 +131,8 @@ ms.lasthandoff: 06/03/2017
 
 **開啟遙測**
 
-1.    檢查電腦上的內部部署資料閘道用戶端目錄。 此目錄通常是 %systemdrive%\Program Files\內部部署資料閘道。 或者，您可以開啟 [服務] 主控台並查看可執行檔的路徑：內部部署資料閘道服務的一個屬性。
-2.    在來自用戶端目錄的 Microsoft.PowerBI.DataMovement.Pipeline.GatewayCore.dll.config 檔案中， 將 SendTelemetry 設定變更為 true。
+1.  檢查電腦上的內部部署資料閘道用戶端目錄。 此目錄通常是 **%systemdrive%\Program Files\內部部署資料閘道**。 或者，您可以開啟 [服務] 主控台並查看可執行檔的路徑：內部部署資料閘道服務的一個屬性。
+2.  在來自用戶端目錄的 Microsoft.PowerBI.DataMovement.Pipeline.GatewayCore.dll.config 檔案中， 將 SendTelemetry 設定變更為 true。
         
     ```
         <setting name="SendTelemetry" serializeAs="String">
@@ -141,7 +140,7 @@ ms.lasthandoff: 06/03/2017
         </setting>
     ```
 
-3.    儲存您的變更，然後重新啟動 Windows 服務：內部部署資料閘道服務。
+3.  儲存您的變更，然後重新啟動 Windows 服務：內部部署資料閘道服務。
 
 
 

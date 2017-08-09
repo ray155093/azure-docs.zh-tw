@@ -13,12 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: c31abf49a05f7911d4ec82db59efa2724ab7b49b
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: 43733e452126c85ab9e19b6036aea96f56fc4d12
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
-
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="set-up-application-insights-dependency-tracking"></a>設定 Application Insights：追蹤相依性
@@ -134,7 +133,7 @@ ms.lasthandoff: 05/10/2017
 ![按一下要求類型，按一下執行個體以取得同一個執行個體的不同檢視，按一下執行個體以取得例外狀況的詳細資料。](./media/app-insights-asp-net-dependencies/07-faildetail.png)
 
 ## <a name="analytics"></a>Analytics
-您可以在[分析查詢語言](app-insights-analytics.md)中追蹤相依性。 以下是一些範例。
+您可以在 [Log Analytics 查詢語言](https://docs.loganalytics.io/)中追蹤相依性。 以下是一些範例。
 
 * 尋找任何失敗的相依性呼叫：
 

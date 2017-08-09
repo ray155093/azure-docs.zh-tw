@@ -12,16 +12,22 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/21/2016
+ms.date: 07/11/2017
 ms.author: stefsch
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 33d1638dfbf1e314d7ea298a39dd4e646c3faf10
-
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: 147ab76d38c8bbbf34d35ed6c2a194d97fe711ab
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="how-to-create-an-ilb-ase-using-azure-resource-manager-templates"></a>如何使用 Azure Resource Manager 範本建立 ILB ASE範本建立 ILB ASE
-## <a name="overview"></a>Overview
+
+> [!NOTE] 
+> 這篇文章是關於 App Service 環境 v1。 有較新版本的 App Service 環境，更易於使用，並且可以在功能更強大的基礎結構上執行。 若要深入了解新版本，請從 [App Service 環境簡介](../app-service/app-service-environment/intro.md)開始。
+>
+
+## <a name="overview"></a>概觀
 使用虛擬網路內部位址 (而不是公用 VIP) 可以建立 App Service 環境。  此內部位址是由稱為內部負載平衡器 (ILB) 的 Azure 元件提供。  使用 Azure 入口網站可以建立 ILB ASE。  也可以透過 Azure Resource Manager 範本使用自動化建立。  本文逐步解說使用 Azure Resource Manager 範本建立 ILB ASE 所需的步驟和語法。
 
 自動建立 ILB ASE 涉及三個步驟︰
@@ -54,7 +60,7 @@ ms.openlocfilehash: 33d1638dfbf1e314d7ea298a39dd4e646c3faf10
 有各種不同的方式可取得有效的 SSL 憑證，包括內部 CA、向外部簽發者購買憑證，以及使用自我簽署的憑證。  無論 SSL 憑證的來源，都需要正確設定下列憑證屬性︰
 
 * 主體︰此屬性必須設為 *.your-root-domain-here.com
-* *主體替代名稱*︰此屬性必須同時包含 *.your-root-domain-here.com 和 *.scm.your-root-domain-here.com。  第二個項目的原因是將使用 your-app-name.scm.your-root-domain-here.com 形式的位址，進行與每個應用程式相關聯的 SCM/Kudu 網站的 SSL 連線。
+* 主體替代名稱︰此屬性必須同時包含 *.your-root-domain-here.com 和 *.scm.your-root-domain-here.com。  第二個項目的原因是將使用 your-app-name.scm.your-root-domain-here.com 形式的位址，進行與每個應用程式相關聯的 SCM/Kudu 網站的 SSL 連線。
 
 備妥有效的 SSL 憑證，還需要兩個額外的準備步驟。  SSL 憑證必須能夠轉換/另存為 .pfx 檔案。  請記住，.pfx 檔案必須包含所有中繼和根憑證，而且也必須使用密碼保護。
 
@@ -138,10 +144,5 @@ ms.openlocfilehash: 33d1638dfbf1e314d7ea298a39dd4e646c3faf10
 [quickstartilbasecreate]: https://azure.microsoft.com/documentation/templates/201-web-app-ase-ilb-create/
 [examplebase64encoding]: http://powershellscripts.blogspot.com/2007/02/base64-encode-file.html 
 [configuringDefaultSSLCertificate]: https://azure.microsoft.com/documentation/templates/201-web-app-ase-ilb-configure-default-ssl/ 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

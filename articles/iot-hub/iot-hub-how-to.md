@@ -12,25 +12,30 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/02/2017
+ms.date: 07/25/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: 6fbdebd316cd00e7dd762487848e616fdd2317e8
-ms.openlocfilehash: 358fd0888049f97e5fde6e2a6303ea6c4cf65da9
-ms.lasthandoff: 03/01/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 786121ae249d69376b4be4c74000868cbb208989
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="how-to-use-azure-iot-hub"></a>如何使用 Azure IoT 中樞
 
-您有各種選項可了解如何開發 IoT 中樞服務。 您可閱讀一些概念性文章，其詳細說明 IoT 中樞功能或遵循其中一個涵蓋各項 IoT 中樞功能的教學課程。
+您有各種選項可了解如何開發 IoT 中樞服務：
 
-## <a name="the-developer-guide"></a>開發人員指南
+* 閱讀詳細描述 IoT 中樞功能的概念性文章。
+* 遵循涵蓋 IoT 中樞各種功能的其中一個教學課程。
 
-身為開發人員，您可以閱讀[開發人員指南][lnk-devguide]中有關 IoT 中樞的詳細概念性指導方針。 本指南包含所有 IoT 中樞功能的詳細說明，可協助您了解如何使用它們，以及如何在多個可用選項之間做出選擇
+## <a name="developer-guide"></a>開發人員指南
 
+身為開發人員，您可以閱讀[開發人員指南][lnk-devguide]中有關 IoT 中樞的詳細概念性指導方針。 本指南包含：
 
-## <a name="the-tutorials"></a>教學課程
+* 可協助您了解如何使用之所有 IoT 中樞功能的詳細描述。
+* 有多個選項可用時如何選擇的指南。
+
+## <a name="tutorials"></a>教學課程
 
 如果您想要透過實際操作練習來了解特定的 IoT 中樞功能，有數個教學課程可供選擇。 其中許多教學課程都是以多種程式設計語言提供。 這些教學課程包括︰
 
@@ -44,11 +49,11 @@ ms.lasthandoff: 03/01/2017
 
 - [使用直接方法][lnk-methods-tutorial]。 本教學課程說明如何使用直接方法。 您可在模擬裝置中新增直接方法的處理常式，並從 IoT 中樞叫用直接方法。
 
-- [開始使用裝置管理][lnk-dm-tutorial]。 本教學課程說明如何使用主要裝置管理功能 (例如裝置對應項和直接方法)，從遠端重新啟動您的模擬裝置。
+- [開始使用裝置管理][lnk-dm-tutorial]。 本教學課程說明如何使用主要裝置管理功能，例如裝置對應項和直接方法。 您可以使用這些功能從遠端重新啟動您的模擬裝置。
 
 - [使用所需屬性來設定裝置][lnk-properties-tutorial]。 本教學課程說明如何使用裝置對應項的所需屬性以及報告屬性，從遠端設定您的裝置。
 
-- [使用裝置作業來起始裝置韌體更新][lnk-jobs-tutorial]。 本教學課程說明如何使用主要裝置管理功能 (例如裝置對應項和直接方法)，從遠端更新裝置的韌體。
+- [使用裝置作業來起始裝置韌體更新][lnk-jobs-tutorial]。 本教學課程說明如何使用主要裝置管理功能，例如裝置對應項和直接方法。 了解如何使用這些功能以從遠端更新裝置的韌體。
 
 - [排程及廣播作業][lnk-schedule-tutorial]。 本教學課程說明如何使用所需屬性和直接方法，在排定的時間與多個裝置互動。
 

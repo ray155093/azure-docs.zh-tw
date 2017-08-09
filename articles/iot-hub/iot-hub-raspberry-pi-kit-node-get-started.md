@@ -17,10 +17,10 @@ ms.date: 5/27/2017
 ms.author: xshi
 ms.custom: H1Hack27Feb2017
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: dc99c78ea4c3b67ff3426feeaf0c4d25cfde63a1
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: e7853892af550ec66fbc48b669a6c9b8ff18df8c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 
@@ -35,9 +35,9 @@ ms.lasthandoff: 07/13/2017
 
 ## <a name="what-you-do"></a>您要做什麼
 
-* 設定 Raspberry Pi。
 * 建立 IoT 中樞。
 * 在 IoT 中樞對於 Pi 註冊裝置。
+* 設定 Raspberry Pi。
 * 在 Pi 上執行範例應用程式，將感應器資料傳送至 IoT 中樞。
 
 將 Raspberry Pi 連接至您建立的 IoT 中樞。 然後，在 Pi 上執行範例應用程式，以收集 BME280 感應器中的溫度和溼度資料。 最後，將感應器資料傳送至 IoT 中樞。
@@ -82,7 +82,7 @@ ms.lasthandoff: 07/13/2017
 準備好用來安裝 Raspbian 映像的 microSD 記憶卡。
 
 1. 下載 Raspbian。
-   1. [下載具備 Pixel 的 Raspbian Jessie](https://www.raspberrypi.org/downloads/raspbian/) (.zip 檔案)。
+   1. [下載具備 Desktop 的 Raspbian Jessie](https://www.raspberrypi.org/downloads/raspbian/) (.zip 檔案)。
    1. 將 Raspbian 映像解壓縮到您電腦上的資料夾。
 1. 將 Raspbian 安裝到 microSD 記憶卡。
    1. [下載並安裝 Etcher SD 記憶卡燒錄器公用程式](https://etcher.io/)。
@@ -108,7 +108,7 @@ ms.lasthandoff: 07/13/2017
 
 ### <a name="connect-the-sensor-to-pi"></a>將感應器連接至 Pi
 
-使用麵包板和跳線將 LED 和 BME280 連接至 Pi，如下所示。 如果沒有感應器，請略過本節。
+使用麵包板和跳線將 LED 和 BME280 連接至 Pi，如下所示。 如果沒有感應器，請[略過本節](#connect-pi-to-the-network)。
 
 ![Raspberry Pi 和感應器連接](media/iot-hub-raspberry-pi-kit-node-get-started/3_raspberry-pi-sensor-connection.png)
 
@@ -145,9 +145,16 @@ BME280 感應器可以收集溫度和溼度資料。 而如果裝置與雲端之
 ### <a name="clone-sample-application-and-install-the-prerequisite-packages"></a>複製範例應用程式並安裝必要條件套件
 
 1. 使用下列其中一個 SSH 用戶端，從主機電腦連接到 Raspberry Pi。
-    - [PuTTY](http://www.putty.org/) 適用於 Windows。 您需要 Pi 的 IP 位址才能透過 SSH 連接它。
-    - Ubuntu 或 macOS 上內建的 SSH 用戶端。 您可能需要執行 `ssh pi@<ip address of pi>`，才能透過 SSH 來連接 Pi。
-
+   
+   **Windows 使用者**
+   1. 下載並安裝適用於 Windows 的 [PuTTY](http://www.putty.org/)。 
+   1. 將 Pi 的 IP 位址複製到 [主機名稱] 或 [IP 位址] 區段，並且選取 SSH 作為連線類型。
+   
+   ![PuTTy](media/iot-hub-raspberry-pi-kit-node-get-started/7_putty-windows.png)
+   
+   **Mac 和 Ubuntu 使用者**
+   
+   在 Ubuntu 或 macOS 上使用內建的 SSH 用戶端。 您可能需要執行 `ssh pi@<ip address of pi>`，才能透過 SSH 來連線 Pi。
    > [!NOTE] 
    預設使用者名稱為 `pi`，密碼為 `raspberry`。
 
@@ -191,7 +198,7 @@ BME280 感應器可以收集溫度和溼度資料。 而如果裝置與雲端之
 
    ![組態檔](media/iot-hub-raspberry-pi-kit-node-get-started/6_config-file.png)
 
-   此檔案中有兩個項目可供您設定。 第一個是 `interval`，這可定義傳送至雲端的兩個訊息之間相隔的時間間隔。 第二個是 `simulatedData`，這是是否使用模擬感應器資料的布林值。
+   此檔案中有兩個項目可供您設定。 第一個是 `interval`，這可定義傳送至雲端的兩個訊息之間相隔的時間間隔 (以毫秒為單位)。 第二個是 `simulatedData`，這是是否使用模擬感應器資料的布林值。
 
    如果**沒有感應器**，請將 `simulatedData` 值設定為 `true`，使範例應用程式建立和使用模擬感應器資料。
 
@@ -199,10 +206,10 @@ BME280 感應器可以收集溫度和溼度資料。 而如果裝置與雲端之
 
 ### <a name="run-the-sample-application"></a>執行範例應用程式
 
-1. 執行下列命令，執行範例應用程式：
+執行下列命令，執行範例應用程式：
 
    ```bash
-   sudo node index.js '<your Azure IoT hub device connection string>'
+   sudo node index.js '<YOUR AZURE IOT HUB DEVICE CONNECTION STRING>'
    ```
 
    > [!NOTE] 
@@ -215,7 +222,7 @@ BME280 感應器可以收集溫度和溼度資料。 而如果裝置與雲端之
 
 ## <a name="next-steps"></a>後續步驟
 
-您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。
+您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。 若要查看 Raspberry Pi 傳送給 IoT 中樞的訊息，或者在命令列介面中將訊息傳送給 Raspberry Pi，請參閱[使用 iothub-explorer 管理雲端裝置訊息教學課程](https://docs.microsoft.com/en-gb/azure/iot-hub/iot-hub-explorer-cloud-device-messaging)。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 

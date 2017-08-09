@@ -4,7 +4,7 @@ description: "使用 Azure Cosmos DB 建立 MVC Web 應用程式的 ASP.NET MVC 
 keywords: "asp.net mvc 教學課程, web 應用程式開發, mvc web 應用程式, asp net mvc 教學課程逐步解說"
 services: cosmos-db
 documentationcenter: .net
-author: syamkmsft
+author: mimig1
 manager: jhubbard
 editor: cgronlun
 ms.assetid: 52532d89-a40e-4fdf-9b38-aadb3a4cccbc
@@ -14,13 +14,12 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 12/25/2016
-ms.author: syamk
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 6623265ea98370db74fd9e2061d1128c44e9cd0e
+ms.author: mimig
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: cc8d26864f455572ad4e2652afbff7447f87f726
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 Azure Cosmos DB 進行 Web 應用程式開發
@@ -101,7 +100,7 @@ ms.lasthandoff: 06/20/2017
 ## <a name="_Toc395637767"></a>步驟 3：將 Azure Cosmos DB 新增至 MVC Web 應用程式專案
 既然我們已經完成了此解決方案的大部分 ASP.NET MVC 瑣事，現在可以開始本教學課程的真正目的，也就是將 Azure Cosmos DB 新增至 MVC Web 應用程式。
 
-1. DocumentDB .NET SDK 會隨 NuGet 封裝而分散。 若要在 Visual Studio 中取得 NuGet 封裝，請使用 Visual Studio 中的 NuGet 封裝管理員，方法是以滑鼠右鍵按一下 [方案總管] 中的專案，然後按一下 [管理 NuGet 封裝]。
+1. Azure Cosmos DB .NET SDK 會進行封裝，並以 NuGet 封裝形式加以散發。 若要在 Visual Studio 中取得 NuGet 封裝，請使用 Visual Studio 中的 NuGet 封裝管理員，方法是以滑鼠右鍵按一下 [方案總管] 中的專案，然後按一下 [管理 NuGet 封裝]。
    
       ![[方案總管] 中 Web 應用程式專案的滑鼠右鍵選項螢幕擷取畫面，內含反白顯示的 [管理 NuGet 套件]。](./media/documentdb-dotnet-application/image21.png)
    
@@ -110,7 +109,7 @@ ms.lasthandoff: 06/20/2017
    
     從結果中，安裝 [Microsoft Azure Cosmos DB 用戶端程式庫] 套件。 這會下載和安裝 Azure Cosmos DB 套件，以及所有依存項目 (例如 Newtonsoft.Json)。 按一下 [預覽] 視窗中的 [確定]，以及 [接受授權] 視窗中的 [我接受] 來完成安裝。
    
-      ![[管理 NuGet 封裝] 視窗的螢幕擷取畫面，內含反白顯示的 Microsoft Azure DocumentDB 用戶端程式庫](./media/documentdb-dotnet-application/nuget.png)
+      ![[管理 NuGet 封裝] 視窗的螢幕擷取畫面，內含反白顯示的 Microsoft Azure Cosmos DB 用戶端程式庫](./media/documentdb-dotnet-application/nuget.png)
    
       或者，您也可以使用 Package Manager Console 來安裝封裝。 若要這樣做，請在 [工具] 功能表上按一下 [NuGet 封裝管理員]，然後按一下 [Package Manager Console]。 在出現提示時輸入下列內容：
    
@@ -329,7 +328,7 @@ ms.lasthandoff: 06/20/2017
         <add key="collection" value="Items"/>
 4. 現在，使用 Azure 入口網站的 [金鑰] 刀鋒視窗來更新 [端點] 和 [authKey] 的值。 使用 [金鑰] 刀鋒視窗的 [URI] 做為端點設定的值，並使用 [金鑰] 刀鋒視窗的 [主索引鍵] 或 [次要金鑰] 做為 authKey 設定的值。
 
-    負責裝設 DocumentDB 儲存機制，現在讓我們加入我們的應用程式邏輯。
+    其會負責裝設 Azure Cosmos DB 存放庫，現在讓我們加入我們的應用程式邏輯。
 
 1. 我們想要對 todo 清單應用程式進行的第一件事就是顯示未完成的項目。  在 **DocumentDBRepository** 類別內的任意位置複製並貼上下列程式碼片段。
    
@@ -404,7 +403,7 @@ ms.lasthandoff: 06/20/2017
            return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
        }
    
-   此方法只會接受傳遞給它的物件，並將它保留在 DocumentDB 中。
+   此方法只接受傳遞給它的物件，並將它保留在 Azure Cosmos DB 中。
 2. 開啟 ItemController.cs 檔案，並在類別中加入下列程式碼片段。 這是 ASP.NET MVC 得知如何執行 **建立** 動作的方式。 在此情況下，只需轉譯先前建立的關聯 Create.cshtml 檢視。
    
         [ActionName("Create")]
@@ -567,7 +566,7 @@ ms.lasthandoff: 06/20/2017
 ## <a name="_Toc395637775"></a>接續步驟
 恭喜！ 您剛剛使用 Azure Cosmos DB 建置您的第一個 ASP.NET MVC Web 應用程式，並將它發佈至 Azure 網站。 您可以從 [GitHub][GitHub]下載或複製完整應用程式 (包括不包含在本教學課程中的詳細資料和刪除功能) 的原始程式碼。 所以如果您想要將程式碼加入您的應用程式，請抓取程式碼，並將它加入這個應用程式。
 
-若要將其他功能新增至您的應用程式，請檢閱 [DocumentDB .NET 程式庫](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)中提供的 API，並歡迎您貢獻到 [GitHub][GitHub] 上的 DocumentDB .NET 程式庫。 
+若要將其他功能新增至您的應用程式，請檢閱 [Azure Cosmos DB .NET 程式庫](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)中提供的 API，並歡迎您貢獻到 [GitHub][GitHub] 上的 Azure Cosmos DB .NET 程式庫。 
 
 [\*]: https://microsoft.sharepoint.com/teams/DocDB/Shared%20Documents/Documentation/Docs.LatestVersions/PicExportError
 [Visual Studio Express]: http://www.visualstudio.com/products/visual-studio-express-vs.aspx

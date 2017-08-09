@@ -13,14 +13,13 @@ ms.devlang: c#
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/04/2017
+ms.date: 07/25/2017
 ms.author: dobett
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
-ms.openlocfilehash: ec4b2808e6984821200be182183e53b69887b912
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 86a4d6d3ab4d29fba8f554265958ffa079b69ec2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="customize-how-the-connected-factory-solution-displays-data-from-your-opc-ua-servers"></a>自訂連線工廠解決方案顯示 OPC UA 伺服器資料的方式
@@ -69,7 +68,7 @@ ms.lasthandoff: 06/07/2017
 
 ## <a name="map-the-data"></a>對應資料
 
-連線工廠解決方案會將 OPC UA 伺服器中的已發行資料項目對應並彙總至解決方案中的各種檢視。 當您佈建連線工廠解決方案時，解決方案會部署到您的 Azure 帳戶。 Visual Studio 連線工廠方案中的 JSON 檔案會儲存此對應資訊。 您可以檢視及修改連線工廠 Visual Studio 方案中的這個 JSON 組態檔，並重新部署它。
+連線工廠解決方案會將 OPC UA 伺服器中的已發行資料項目對應並彙總至解決方案中的各種檢視。 當您佈建連線工廠解決方案時，解決方案會部署到您的 Azure 帳戶。 Visual Studio 連線工廠方案中的 JSON 檔案會儲存此對應資訊。 您可以檢視及修改連線工廠 Visual Studio 解決方案中的這個 JSON 設定檔。 您進行變更之後，可以重新部署解決方案。
 
 您可以使用此組態檔來︰
 
@@ -101,7 +100,7 @@ JSON 檔案的內容是以工廠、生產線和工作站節點的階層來組織
 
 ![儀表板中的幕尼黑資料][img-munich]
 
-每個工廠、生產線和工作站都有一個影像屬性。 您可以在 **WebApp** 專案的 **Content\img** 資料夾中找到這些 JPEG 檔案。 這些影像檔會顯示在連線工廠儀表板中。
+每個工廠、生產線和工作站都有一個映像屬性。 您可以在 **WebApp** 專案的 **Content\img** 資料夾中找到這些 JPEG 檔案。 這些影像檔會顯示在連線工廠儀表板中。
 
 每個工作站均包含數個詳細屬性，定義與 OPC UA 資料項目的對應。 這些屬性將於下列各節中說明：
 

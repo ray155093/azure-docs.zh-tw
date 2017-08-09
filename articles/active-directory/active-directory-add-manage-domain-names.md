@@ -12,17 +12,28 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/13/2017
+ms.date: 07/26/2017
 ms.author: curtand
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: b1ea25a3ec4c10d1821ea876055b15e38d269432
+ms.custom: oldportal;it-pro;
+robots: NOINDEX
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: 5ae19bb370064de96cf466ca09b13d02563d65a4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="managing-custom-domain-names-in-your-azure-active-directory"></a>管理 Azure Active Directory 中的自訂網域名稱
-網域名稱是許多目錄資源識別項的重要部分：它可能是使用者的使用者名稱或電子郵件地址的一部分、群組位址的一部分，也可能是應用程式的應用程式識別碼 URI 的一部分。 Azure Active Directory (Azure AD) 中的資源可包含已驗證為目錄 (其中含有資源) 所擁有的網域名稱。 只有全域管理員可以在 Azure AD 中執行網域管理工作。
+網域名稱可以是許多目錄資源的重要識別碼，其屬於：
+
+* 使用者的使用者名稱或電子郵件地址
+* 群組的位址
+* 應用程式的應用程式識別碼 URI
+
+Azure Active Directory (Azure AD) 中的資源可包含已驗證為目錄 (其中含有資源) 所擁有的網域名稱。 只有全域管理員可以在 Azure AD 中執行網域管理工作。
+
+> [!IMPORTANT]
+> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。 如需如何在 Azure AD 系統管理中心管理網域名稱的相關資訊，請參閱[在 Azure Active Directory 中管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)。
 
 ## <a name="set-the-primary-domain-name-for-your-azure-ad-directory"></a>設定 Azure AD 目錄的主要網域名稱
 在您建立目錄時，初始網域名稱也是目錄的主要網域名稱，例如 'contoso.onmicrosoft.com'。 當您在 [Azure 傳統入口網站](https://manage.windowsazure.com/)或其他入口網站 (例如 Office 365 管理入口網站) 建立新的使用者時，主要網域即為新使用者的預設網域名稱。 這可以簡化系統管理員在入口網站中建立新使用者的程序。

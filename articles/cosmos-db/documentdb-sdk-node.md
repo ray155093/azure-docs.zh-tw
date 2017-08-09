@@ -1,6 +1,6 @@
 ---
-title: "Azure DocumentDB Node.js API、SDK 和資源 | Microsoft Docs"
-description: "了解所有 Node.js API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Node.js SDK 每個版本之間的變更。"
+title: "Azure Cosmos DB Node.js API、SDK 和資源 | Microsoft Docs"
+description: "了解所有 Node.js API 和 SDK 相關資訊，包括 發行日期、停用日期及 Azure Cosmos DB Node.js SDK 每個版本之間所做的變更。"
 services: cosmos-db
 documentationcenter: nodejs
 author: rnagpal
@@ -16,13 +16,13 @@ ms.date: 05/24/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: bb0bdf071e6fefa62efc134ae2eb2f29cd70ae9d
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 297fe8850499212ca41b0b5ca132b7de8c761297
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/25/2017
 
 ---
-# <a name="documentdb-nodejs-sdk-release-notes-and-resources"></a>DocumentDB Node.js SDK︰版本資訊與資源
+# <a name="azure-cosmos-db-nodejs-sdk-release-notes-and-resources"></a>Azure Cosmos DB Node.js SDK︰版本資訊與資源
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-sdk-dotnet.md)
 > * [.NET 變更摘要](documentdb-sdk-dotnet-changefeed.md)
@@ -50,7 +50,7 @@ ms.lasthandoff: 07/13/2017
 
 <tr><td>**開始使用教學課程**</td><td>[開始使用 Node.js SDK](documentdb-nodejs-get-started.md)</td></tr>
 
-<tr><td>**Web 應用程式教學課程**</td><td>[使用 DocumentDB 建置 Node.js Web 應用程式](documentdb-nodejs-application.md)</td></tr>
+<tr><td>**Web 應用程式教學課程**</td><td>[使用 Azure Cosmos DB 來建置 Node.js Web 應用程式](documentdb-nodejs-application.md)</td></tr>
 
 <tr><td>**目前支援的平台**</td><td> 
 [Node.js v6.x](https://nodejs.org/en/blog/release/v6.10.3/)<br/> 
@@ -71,7 +71,7 @@ ms.lasthandoff: 07/13/2017
 ### <a name="1.11.0"/>1.11.0</a>
 * 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。
 * 新增控制跨分割區查詢平行處理程度的選項。
-* 新增針對 DocumentDB 模擬器執行時停用 SSL 驗證的選項。
+* 新增針對 Azure Cosmos DB 模擬器執行時停用 SSL 驗證的選項。
 * 已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
 * 修正單一分割區集合的接續 Token 錯誤 (github #107)。
 * 修正將 0 做為單一參數處理的 executeStoredProcedure 錯誤 (github #155)。
@@ -89,7 +89,7 @@ ms.lasthandoff: 07/13/2017
 * 新增對已分割集合的 TOP/ORDER BY 查詢支援。
 
 ### <a name="1.9.0"/>1.9.0</a>
-* 新加入已節流處理要求的重試原則支援。 (已節流處理的要求會收到要求率太大的例外狀況，即錯誤碼 429。)根據預設，發生錯誤碼 429 時，DocumentDB 會遵守回應標頭中的 retryAfter 時間，並針對每個要求重試九次。 如果您想要忽略伺服器在多次重試之間傳回的 retryAfter 時間，現在可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中設定固定的重試間隔時間。 DocumentDB 現在會針對每個節流處理中的要求等候最多 30 秒 (不論重試計數為何)，並傳回包含錯誤碼 429 的回應。 您也可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中覆寫該時間。
+* 新加入已節流處理要求的重試原則支援。 (已節流處理的要求會收到要求率太大的例外狀況，即錯誤碼 429。)根據預設，發生錯誤碼 429 時，Azure Cosmos DB 會遵守回應標頭中的 retryAfter 時間，並針對每個要求重試九次。 如果您想要忽略伺服器在多次重試之間傳回的 retryAfter 時間，現在可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中設定固定的重試間隔時間。 Azure Cosmos DB 現在會針對每個要進行節流處理的要求等候最多 30 秒 (不論重試計數為何)，並傳回包含錯誤碼 429 的回應。 您也可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中覆寫該時間。
 * Cosmos DB 現在會傳回 x-ms-throttle-retry-count 和 x-ms-throttle-retry-wait-time-ms 作為每個要求的回應標頭，其代表節流重試計數和要求歷經多次重試的累積時間。
 * 新增 RetryOptions 類別，以及公開 ConnectionPolicy 類別上的 RetryOptions 屬性，使其能用來覆寫某些預設的重試選項。
 
@@ -109,7 +109,7 @@ ms.lasthandoff: 07/13/2017
 * 修正 hashParitionResolver resolveForRead()：所提供的資料分割索引鍵都未擲回例外狀況時，而不會傳回所有已註冊連結的清單。
 
 ### <a name="1.5.4"/>1.5.4</a>
-* 修正問題 [#100](https://github.com/Azure/azure-documentdb-node/issues/100) - HTTPS 專用代理程式：避免基於 DocumentDB 用途而修改全域代理程式。 針對所有 lib 要求使用專用的代理程式。
+* 修正問題 [#100](https://github.com/Azure/azure-documentdb-node/issues/100)- HTTPS 專用代理程式：避免基於 Azure Cosmos DB 用途而修改全域代理程式。 針對所有 lib 要求使用專用的代理程式。
 
 ### <a name="1.5.3"/>1.5.3</a>
 * 修正問題 [#81](https://github.com/Azure/azure-documentdb-node/issues/81) - 正確處理媒體識別碼中的連字號。

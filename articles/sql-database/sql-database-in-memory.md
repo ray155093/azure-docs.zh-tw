@@ -13,24 +13,25 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 07/24/2017
 ms.author: jodebrui
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: a7273c50f2619c776268406aa14f6c00dcfbfbbe
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 4cb45551c486263f26947e5684d54b4f2ecc7410
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 07/25/2017
 
 ---
-
 # <a name="optimize-performance-by-using-in-memory-technologies-in-sql-database"></a>使用 SQL Database 中的記憶體內部技術將效能最佳化
 
 您可以使用 Azure SQL Database 中的記憶體內部技術，以改善各種工作負載的效能︰交易式 (線上交易處理 (OLTP))、分析 (線上分析處理 (OLAP)) 及混合 (混合式交易/分析處理 (HTAP))。 因為可讓查詢和交易處理變得更有效率，記憶體內部技術也有助於降低成本。 您通常不需要升級資料庫的定價層，就能提升效能。 在某些情況下，您甚至可以降低定價層，而仍然發現記憶體內部技術可以提升效能。
 
 以下是記憶體內部 OLTP 如何幫助大幅提升效能的兩個範例︰
 
-- 由於使用記憶體內部 OLTP，[Quorum Business Solutions 能使其工作負載倍增，同時將 DTU (亦即資源耗用量) 提高 70%](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)。
-- 下列影片以範例工作負載示範資源耗用量的重大改進︰[Azure SQL Database 影片中的記憶體內部 OLTP](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB)。 如需詳細資訊，請參閱部落格文章︰[Azure SQL Database 中的記憶體 OLTP 部落格文章](https://azure.microsoft.com/blog/in-memory-oltp-in-azure-sql-database/)
+- 由於使用記憶體內部 OLTP，[Quorum Business Solutions 能使其工作負載倍增，同時將 DTU 提高 70%](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)。
+    - DTU 表示「資料庫輸送量單位」，其中包含對資源耗用的測量。
+- 下列影片以範例工作負載示範資源耗用量的重大改進︰[Azure SQL Database 影片中的記憶體內部 OLTP](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB)。
+    - 如需詳細資訊，請參閱部落格文章︰[Azure SQL Database 中的記憶體 OLTP 部落格文章](https://azure.microsoft.com/blog/in-memory-oltp-in-azure-sql-database/)
 
 記憶體內部技術適用於高階定價層的所有資料庫，包括高階彈性集區中的資料庫。
 
@@ -45,11 +46,14 @@ Azure SQL Database 擁有下列記憶體內部技術︰
 - 「記憶體內部 OLTP」可增加輸送量並減少交易處理的延遲。 受益於記憶體內部 OLTP 的案例包括︰高輸送量的交易處理 (例如股票交易和網路遊戲)、從事件或 IoT 裝置擷取資料、快取、資料載入，以及暫存資料表和資料表變數等案例。
 - 「叢集資料行存放區索引」可減少儲存體使用量 (最多 10 倍)，並提升報告和分析查詢的效能。 您可以將它用於資料超市中的事實資料表，在資料庫中容納更多資料並提升效能。 另外，您還可以將它用於操作資料庫中的歷史資料，則可封存並查詢多達 10 倍以上的資料。
 - 「非叢集資料行存放區索引」 (適用於 HTAP) 可讓您透過直接查詢操作資料庫，即時深入了解您的業務，而不必執行昂貴的擷取、轉換和載入 (ETL) 程序並等候資料倉儲填入資料。 非叢集資料行存放區索引可極為快速地對 OLTP 資料庫執行分析查詢，同時降低對操作工作負載的影響。
-- 您也可以結合記憶體內部 OLTP 和資料行存放區索引。 您可以有記憶體最佳化資料表與資料行存放區索引。 這可讓您執行非常快速的交易處理，並非常快速地對相同的資料執行分析查詢。
+- 您也可以結合記憶體最佳化資料表與資料行存放區索引。 結合它們可讓您執行非常快速的交易處理，並快速地*同時*對相同的資料執行分析查詢。
 
 資料行存放區和記憶體內部 OLTP 已分別於 2012 年和 2014 年起納入成為 SQL Server 產品的一部分。 Azure SQL Database 和 SQL Server 共用相同的記憶體內部技術實作。 未來，這些技術的新功能會先在 Azure SQL Database 中推出，然後才在 SQL Server 中推出。
 
-本主題從各個面向說明 Azure SQL Database 特有的記憶體內部 OLTP 和資料行存放區索引，還包含範例。 首先，您會看到這些技術對儲存體和資料大小限制的影響。 然後，您將了解如何管理在不同定價層之間移動採用這些技術的資料庫。 最後，您會看到兩個範例，其分別示範如何在 Azure SQL Database 中使用記憶體內部 OLTP 以及資料行存放區索引。
+本主題從各個面向說明 Azure SQL Database 特有的記憶體內部 OLTP 和資料行存放區索引，還包含範例：
+- 您將了解這些技術對儲存體和資料大小限制的影響。
+- 您將了解如何管理在不同定價層之間移動採用這些技術的資料庫。
+- 您將看到兩個範例，其分別示範如何在 Azure SQL Database 中使用記憶體內部 OLTP 以及資料行存放區索引。
 
 如需詳細資訊，請參閱下列資源。
 
@@ -66,7 +70,7 @@ Azure SQL Database 擁有下列記憶體內部技術︰
 
 - [Azure SQL Database 中的記憶體內部 OLTP](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB) (包含效能優點的示範，以及自行重現這些結果的步驟)
 - [記憶體內部 OLTP 影片︰其功能、使用時機和使用方式](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/10/03/in-memory-oltp-video-what-it-is-and-whenhow-to-use-it/)
-- [資料行存放區索引：記憶體內部分析 (也就是資料行存放區索引) 影片 (來源：Ignite 2016)](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/10/04/columnstore-index-in-memory-analytics-i-e-columnstore-index-videos-from-ignite-2016/)
+- [資料行存放區索引：記憶體內部分析影片 (來源：Ignite 2016)](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/10/04/columnstore-index-in-memory-analytics-i-e-columnstore-index-videos-from-ignite-2016/)
 
 ## <a name="storage-and-data-size"></a>儲存體和資料大小
 
@@ -84,7 +88,7 @@ Azure SQL Database 擁有下列記憶體內部技術︰
 - 記憶體最佳化資料表上的索引。
 - ALTER TABLE 作業的作業負荷。
 
-如果您達到上限，則會收到超出配額錯誤，並再也無法插入或更新資料。 因應措施是刪除資料或增加資料庫或集區的定價層。
+如果您達到上限，則會收到超出配額錯誤，並再也無法插入或更新資料。 為避免此錯誤，您可以刪除資料或增加資料庫或集區的定價層。
 
 如需監視記憶體內部 OLTP 儲存體使用量以及設定要在幾乎達到上限時發出警示的詳細資訊，請參閱[監視記憶體內部儲存體](sql-database-in-memory-oltp-monitoring.md)。
 
@@ -92,14 +96,14 @@ Azure SQL Database 擁有下列記憶體內部技術︰
 
 使用彈性集區時，集區中的所有資料庫會共用記憶體內部 OLTP 儲存體。 因此，一個資料庫中的使用量可能會影響其他資料庫。 對此，您可以採取以下兩個對策︰
 
-- 將資料庫的最大 eDTU 設定為低於整個集區的 eDTU 計數。 這會將集區中任何資料庫的記憶體內部 OLTP 儲存體使用量上限，限制在對應於 eDTU 計數的大小。
-- 設定大於 0 的最小 eDTU。 這可確保集區中的每個資料庫，都能擁有與所設定之最小 eDTU 相對應的可用記憶體內部 OLTP 儲存體數量。
+- 將資料庫的最大 eDTU 設定為低於整個集區的 eDTU 計數。 此最大值會將集區中任何資料庫的記憶體內部 OLTP 儲存體使用量上限，限制為對應到 eDTU 計數的大小。
+- 設定大於 0 的最小 eDTU。 此最小值可確保集區中的每個資料庫，都能擁有與所設定之最小 eDTU 相對應的可用記憶體內部 OLTP 儲存體數量。
 
 ### <a name="data-size-and-storage-for-columnstore-indexes"></a>資料行存放區索引的資料大小和儲存體
 
 資料行存放區索引不需要納入記憶體中。 因此，索引大小的唯一上限是整體資料庫大小上限，相關說明請參閱 [SQL Database 服務層](sql-database-service-tiers.md)一文。
 
-當您使用叢集資料行存放區索引時，基底表格儲存體會使用單欄式壓縮。 這可大幅降低使用者資料的儲存體使用量，也就是說，您可以在資料庫中容納更多資料。 若要進一步增加容納量，您可以使用[單欄式封存壓縮](https://msdn.microsoft.com/library/cc280449.aspx#Using Columnstore and Columnstore Archive Compression)。 能達到多大壓縮量取決於資料性質，但 10 倍的壓縮並不罕見。
+當您使用叢集資料行存放區索引時，基底表格儲存體會使用單資料行式壓縮。 壓縮可大幅降低使用者資料的儲存體使用量，這表示您可以在資料庫中容納更多資料。 若要再進一步壓縮，您可以使用[單資料行式封存壓縮](https://msdn.microsoft.com/library/cc280449.aspx#Using Columnstore and Columnstore Archive Compression)。 能達到多大壓縮量取決於資料性質，但 10 倍的壓縮並不罕見。
 
 例如，如果您的資料庫大小上限是 1 TB，而且您使用資料行存放區達到 10 倍壓縮，您總共可以在資料庫中容納 10 TB 的使用者資料。
 
@@ -107,7 +111,9 @@ Azure SQL Database 擁有下列記憶體內部技術︰
 
 ## <a name="moving-databases-that-use-in-memory-technologies-between-pricing-tiers"></a>在不同定價層之間移動使用記憶體內部技術的資料庫
 
-您在增加使用記憶體內部技術之資料庫的定價層時不需要任何特殊考量，因為較高的定價層一定會擁有更多的功能和資源。 減少定價層可能會影響您的資料庫。 您從進階移至標準或基本時，以及將使用記憶體內部 OLTP 的資料庫移至較低的進階層時，更是如此。 同樣的考量也適用於降低彈性集區的定價層時，或將使用記憶體內部技術的資料庫移至標準或基本的彈性集區時。
+當您升級到較高的定價層時 (例如從標準升級到進階)，絕不會有任何相容性問題或其他問題， 可用的功能和資源只會增加。
+
+但是將定價層降級可能會對資料庫有負面影響。 當您的資料庫包含記憶體內部 OLTP 物件時，從進階降級到標準或基本會有特別顯著的影響。 降級之後將無法使用記憶體最佳化資料表和資料行存放區索引 (即使它們依然可見)。 同樣的考量也適用於降低彈性集區的定價層時，或將使用記憶體內部技術的資料庫移至標準或基本的彈性集區時。
 
 ### <a name="in-memory-oltp"></a>記憶體內部 OLTP
 
@@ -128,11 +134,11 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 
 ### <a name="columnstore-indexes"></a>資料行存放區索引
 
-降級至基本/標準：標準層或基本層的資料庫不支援資料行存放區索引。 若您將資料庫降級至標準層或基本層，資料行存放區索引將變得無法使用。 如果您使用叢集資料行存放區索引，此一結果意味著整個資料表會變得無法使用。
+*降級為基本或標準*：只有在進階定價層才支援資料行存放區索引，標準或基本層則不支援。 當您將資料庫降級至標準或基本時，資料行存放區索引將變成無法使用。 系統會維持您的資料行存放區索引，但它不會再利用索引。 如果您之後再升級為進階，系統會立即重新利用您的資料行存放區索引。
 
-在將資料庫降級至標準層或基本層之前，請先捨棄所有叢集資料行存放區索引。
+如果您有「叢集」資料行存放區索引，則降級層之後整個資料表會變成無法使用。 因此我們建議您在將資料庫降級至進階以下的層之前，先捨棄所有「叢集」資料行存放區索引。
 
-降低至較低的進階層：此行為能否成功的前提是，整個資料庫必須能容納於目標定價層的最大資料庫大小或彈性集區中可用的儲存體。 資料行存放區索引不會產生任何特定影響。
+*降級至較低的進階層*：只要整個資料庫大小小於目標定價層的最大資料庫大小，或小於彈性集區中可用儲存體的大小，此降級就會成功。 資料行存放區索引不會產生任何特定影響。
 
 
 <a id="install_oltp_manuallink" name="install_oltp_manuallink"></a>
@@ -273,7 +279,7 @@ end
 ```
 
 
-若要針對 ostress.exe 製作上述 T-SQL 的 _ondisk 版本，您只需以 _ondisk 取代兩個出現的 _inmem 子字串即可。 這類取代會影響資料表和預存程序的名稱。
+若要針對 ostress.exe 製作上述 T-SQL 指令碼的 *_ondisk* 版本，請以 *_ondisk* 取代兩個出現的 *_inmem* 子字串。 這類取代會影響資料表和預存程序的名稱。
 
 
 ### <a name="install-rml-utilities-and-ostress"></a>安裝 RML 公用程式和 ostress
@@ -321,9 +327,10 @@ ostress.exe -n100 -r50 -S<servername>.database.windows.net -U<login> -P<password
 
 
 1. 在 SSMS 中執行下列命令來重設資料庫資料內容，以刪除先前執行插入的所有資料：
-```
-EXECUTE Demo.usp_DemoReset;
-```
+
+    ``` tsql
+    EXECUTE Demo.usp_DemoReset;
+    ```
 
 2. 將上述 ostress.exe 命令列的文字複製到剪貼簿。
 

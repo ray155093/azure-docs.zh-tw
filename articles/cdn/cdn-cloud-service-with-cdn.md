@@ -14,12 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 06bd0112eab46f3347dfb039a99641a37c2b0197
-ms.openlocfilehash: 6355c98f5c50d03b54cb4977bff4e51b8dfa669f
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: f2849fe25fd0d5b3dc26598ffba7591cb7433161
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="intro"></a> 整合雲端服務與 Azure CDN
@@ -163,11 +162,11 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 ![](media/cdn-cloud-service-with-cdn/cdn-2-home-page.PNG)
 
-然而，這不表示透過 Azure CDN 來提供整個雲端服務一定是好辦法 (或通常是好辦法)。 有幾點需要注意：
+然而，這不表示透過 Azure CDN 來提供整個雲端服務一定是好辦法。 
 
-* 此作法需要公開整個網站，因為目前 Azure CDN 無法提供任何私人內容。
-* 如果 CDN 端點因故離線，不論是排定的維護或使用者錯誤，除非能將客戶重新導向至原始 URL **http://*&lt;serviceName>*.cloudapp.net/**，否則整個雲端服務都會離線。
-* 就算使用自訂的 Cache-Control 設定 (請參閱 [在雲端服務中設定靜態檔案的快取選項](#caching))，CDN 端點也無法改善高度動態內容的效能。 如果您嘗試從 CDN 端點載入首頁，如上所示，請注意，第一次載入預設首頁 (非常簡單的頁面) 至少需要 5 秒。 設想，如果此頁面包含必須每分鐘更新的動態內容，客戶體驗有何影響。 從 CDN 端點提供動態內容需要有較短的快取到期時間，這也說明 CDN 端點經常會發生快取遺漏。 這會降低雲端服務的效能，也會折損 CDN 的效用。
+因為 CDN 必須經常地從原始伺服器提取資產的新版本，所以已將靜態傳遞最佳化的 CDN 不一定能加速傳遞原本就沒有要快取或是會頻繁更新的動態資產。 若情況如此，您可以在 CDN 端點上啟用[動態網站加速](cdn-dynamic-site-acceleration.md)最佳化 (DSA)，以使用各種技術來加速傳遞無法快取的動態資產。 
+
+如果您的網站混合使用靜態及動態內容，您可以選擇從具有靜態最佳化類型的 CDN 提供靜態內容 (例如一般 Web 傳遞)，也可以選擇直接從原始伺服器或依個別情況透過已開啟 DSA 最佳化的 CDN 端點來提供動態內容。 總之，您已了解如何從 CDN 端點存取個別的內容檔案。 我將在透過 Azure CDN 從控制器動作提供內容中說明如何透過特定 CDN 端點提供特定的控制器動作。
 
 替代方法是在雲端服務中依個別情況決定從 Azure CDN 提供什麼內容。 總之，您已了解如何從 CDN 端點存取個別的內容檔案。 我將在 [透過 Azure CDN 從控制器動作提供內容](#controller)中說明如何透過 CDN 端點提供特定的控制器動作。
 

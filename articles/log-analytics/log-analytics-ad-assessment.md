@@ -12,22 +12,21 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/07/2017
+ms.date: 07/13/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 74f34bdbf5707510c682814716aa0b95c19a5503
-ms.openlocfilehash: fa214f1c8d7cfb4b3b1d475183a63a3028f2306f
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 5dbb669d9f78ef7ba3f2668855b08750b7447040
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="optimize-your-active-directory-environment-with-the-active-directory-assessment-solution-in-log-analytics"></a>在 Log Analytics 中使用 Active Directory 評估方案來最佳化 Active Directory 環境
 
 ![AD 評定符號](./media/log-analytics-ad-assessment/ad-assessment-symbol.png)
 
-您可以使用 Active Directory 評估方案定期評估伺服器環境的風險和健全狀況。 本文將協助您安裝和使用方案，讓您可以針對潛在問題採取修正動作。
+您可以使用 Active Directory 評估方案定期評估伺服器環境的風險和健全狀況。 本文協助您安裝和使用此解決方案，讓您可以針對潛在問題採取修正動作。
 
 此方案能針對已部署的伺服器基礎結構提供依照優先順序排列的具體建議清單。 建議分為四個焦點區域，它們可以幫助您快速了解風險並採取動作。
 
@@ -63,12 +62,12 @@ Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資�
 | Windows |![是](./media/log-analytics-ad-assessment/oms-bullet-green.png) |![是](./media/log-analytics-ad-assessment/oms-bullet-green.png) |![否](./media/log-analytics-ad-assessment/oms-bullet-red.png) |![否](./media/log-analytics-ad-assessment/oms-bullet-red.png) |![是](./media/log-analytics-ad-assessment/oms-bullet-green.png) |7 天 |
 
 ## <a name="understanding-how-recommendations-are-prioritized"></a>了解建議的排列方式
-智慧套件會為每項建議指派加權值，該值能顯現建議的相對重要性。 唯有重要性排行前十名的建議會出現在清單中。
+智慧套件會為每項建議指派加權值，該值能顯現建議的相對重要性。 只會顯示最重要的 10 個建議。
 
 ### <a name="how-weights-are-calculated"></a>加權的計算方式
 加權是彙集以下三個重要因素的值：
 
-* 識別之疑難引發問題的 *機率* 。 機率較高等同於建議的整體分數較高。
+* 識別之疑難引發問題的機率。 機率較高等同於建議的整體分數較高。
 * 疑難對組織的 *影響力* (如果確實引發問題)。 影響力較高等同於建議的整體分數較高。
 * 實作建議所需的 *勞力* 。 勞力較高等同於建議的整體分數較低。
 
@@ -109,6 +108,10 @@ Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資�
    ```
    Type=ADAssessmentRecommendation RecommendationResult=Failed | select  Computer, RecommendationId, Recommendation | sort  Computer
    ```
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
+>
+> `ADAssessmentRecommendation | where RecommendationResult == "Failed" | sort by Computer asc | project Computer, RecommendationId, Recommendation`
 
    以下是顯示記錄檔搜尋查詢的螢幕擷取畫面︰![失敗的建議](./media/log-analytics-ad-assessment/ad-failed-recommendations.png)
 2. 選擇您想要忽略的建議。 您將使用下一個程序中的 RecommendationId 值。
@@ -128,6 +131,11 @@ Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資�
     ```
     Type=ADAssessmentRecommendation RecommendationResult=Ignored | select  Computer, RecommendationId, Recommendation | sort  Computer
     ```
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
+>
+> `ADAssessmentRecommendation | where RecommendationResult == "Ignored" | sort by Computer asc | project Computer, RecommendationId, Recommendation`
+
 2. 如果您稍後決定想要查看忽略的建議，請移除任何 IgnoreRecommendations.txt 檔案，或從中移除 RecommendationID。
 
 ## <a name="ad-assessment-solutions-faq"></a>AD 評估方案常見問題集

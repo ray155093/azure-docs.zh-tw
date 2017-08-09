@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: database
 ms.date: 06/07/2017
 ms.author: mimig
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c69630688e4bcd68ab3b4ee6d9fdb0e0c46d04b
-ms.openlocfilehash: 9b117ed5187beeb1207a7ffd484129e5ee830160
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 709d2ccce0f4b9827a8076f683c7e0f74cbdd4ea
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/24/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 06/24/2017
 | |  |
 |---|---|
 |**建立 Azure Cosmos DB 帳戶、資料庫和容器**||
-|[建立 DocumentDB、圖形或資料表 API 帳戶](scripts/create-database-account-collections-cli.md?toc=%2fcli%2fazure%2ftoc.json)| 建立單一 Azure Cosmos DB API 帳戶、資料庫和容器，以便與 DocumentDB、圖形或資料表 API 搭配使用。 |
+|[建立 DocumentDB API、圖形或資料表 API 帳戶](scripts/create-database-account-collections-cli.md?toc=%2fcli%2fazure%2ftoc.json)| 建立單一 Azure Cosmos DB API 帳戶、資料庫和容器，以便與 DocumentDB、圖形或資料表 API 搭配使用。 |
 | [建立 MongoDB API 帳戶](scripts/create-mongodb-database-account-cli.md?toc=%2fcli%2fazure%2ftoc.json) | 建立單一 Azure Cosmos DB MongoDB API 帳戶、資料庫和集合。 |
 |**調整 Azure Cosmos DB**||
 | [調整容器輸送量](scripts/scale-collection-throughput-cli.md?toc=%2fcli%2fazure%2ftoc.json) | 變更容器的已佈建輸送量。|

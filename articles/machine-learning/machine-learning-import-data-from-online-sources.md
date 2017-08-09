@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev;garye
-translationtype: Human Translation
-ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
-ms.openlocfilehash: afecdde0cbc0bcbe0932b23dc1a8e067d02ded12
-ms.lasthandoff: 12/20/2016
-
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: a102b5f5ea04169d1992cad6d53c0a45de69b645
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="import-data-into-azure-machine-learning-studio-from-various-online-data-sources-with-the-import-data-module"></a>使用「匯入資料」模組從各種線上資料來源將資料匯入 Azure Machine Learning Studio 中
@@ -44,6 +44,7 @@ ms.lasthandoff: 12/20/2016
 * Azure SQL Database 或 Azure VM 上的 SQL Server
 * 內部部署 SQL Server 資料庫
 * 資料摘要提供者，目前為 OData
+* Azure CosmosDB (先前稱為 DocumentDB)
 
 若要在您的 Studio 實驗中存取線上資料來源，請將[匯入資料][import-data]模組新增至您的實驗、選取 [資料來源]，然後提供存取資料所需的參數。 下表列舉支援的線上資料來源。 此表格也會摘錄支援的檔案格式和用來存取資料的參數。
 

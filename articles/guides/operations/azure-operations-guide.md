@@ -16,10 +16,10 @@ ms.workload: infrastructure
 ms.date: 06/12/2017
 ms.author: nepeters
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: 2f3203382c11004bad879709a03b44b6d12eb962
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: a9dfb0af80ef018e5e655e6e5c78fb0b7e426794
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/24/2017
 
 ---
 
@@ -191,7 +191,7 @@ Azure 命令列介面是一項工具，可用來從命令列建立、管理和�
 
 您必須先有訂用帳戶，才能使用 Azure 服務。 可用的訂用帳戶類型有好幾種。
 
-**免費帳戶**：[Azure 網站](https://azure.microsoft.com/)上有註冊免費帳戶的連結。 這提供給您 200 美元的 30 天課程點數，可以試用 Azure 中的任何資源組合。 如果超過點數金額，您的帳戶就會暫止。 在試用結束時，您的服務會解除委任，將無法再運作。 您可以隨時升級至隨用隨付的訂用帳戶。
+**免費帳戶**：[Azure 網站](https://azure.microsoft.com/)上有註冊免費帳戶的連結。 這提供給您 30 天的課程點數，可以試用 Azure 中的任何資源組合。 如果超過點數金額，您的帳戶就會暫止。 在試用結束時，您的服務會解除委任，將無法再運作。 您可以隨時升級至隨用隨付的訂用帳戶。
 
 **MSDN 訂用帳戶**：如果您有 MSDN 訂用帳戶，您每個月可取得特定數量的 Azure 點數。 例如，如果您有 Microsoft Visual Studio Enterprise 與 MSDN 訂用帳戶，您每個月可取得\$150 的 Azure 點數。
 

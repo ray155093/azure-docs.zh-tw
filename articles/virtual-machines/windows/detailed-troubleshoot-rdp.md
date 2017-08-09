@@ -14,13 +14,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: support-article
-ms.date: 05/31/2017
+ms.date: 07/25/2017
 ms.author: genli
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: 05517573232f5b5234364865d92d5a2d1b7096e6
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 7a9d994e10ec79437d6ccf60531cb12b86f34151
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="detailed-troubleshooting-steps-for-remote-desktop-connection-issues-to-windows-vms-in-azure"></a>Azure 中 Windows VM 之遠端桌面連線問題的詳細疑難排解步驟
@@ -109,18 +109,9 @@ ms.lasthandoff: 07/12/2017
 若要檢查端點是否為問題來源，請移除目前的端點，再選擇外部連接埠號碼介於 49152 到 65535 的隨機連接埠來建立新的端點。 如需詳細資訊，請參閱[如何設定虛擬機器的端點](classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ## <a name="source-4-network-security-groups"></a>來源 4：網路安全性群組
-網路安全性群組能夠更精確地控制受允許的輸入和輸出流量。 您可以在 Azure 虛擬網路中建立跨越子網路和雲端服務的規則。 請檢查您的網路安全性群組規則，以確保允許來自網際網路的遠端桌面流量：
+網路安全性群組能夠更精確地控制受允許的輸入和輸出流量。 您可以在 Azure 虛擬網路中建立跨越子網路和雲端服務的規則。
 
-* 在 Azure 入口網站中選取您的 VM
-* 按一下 [所有設定] | [網路介面]，然後選取您的網路介面。
-* 按一下 [所有設定] | [網路安全性群組]，然後選取您的網路安全性群組。
-* 按一下 [所有設定] | [輸入安全性規則]，並確定您有一個允許在 TCP 連接埠 3389 上進行 RDP 的規則。
-  * 如果您還沒有規則，請按一下 [新增] 來建立規則。 在通訊協定輸入 **TCP**，然後在目的地連接埠範圍輸入 **3389**。
-  * 確定已將動作設定為 [允許]  ，然後按一下 [確定] 以儲存新的輸入規則。
-
-如需詳細資訊，請參閱 [什麼是網路安全性群組 (NSG)？](../../virtual-network/virtual-networks-nsg.md)
-
-您也可以使用「IP 確認」來驗證 NSG 組態。 如需詳細資訊，請參閱 [Azure 網路監視概觀](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview)。 
+使用 [IP 流量驗證](../../network-watcher/network-watcher-check-ip-flow-verify-portal.md)來確認網路安全性群組中的規則是否會封鎖虛擬機器的輸入或輸出流量。 您也可以檢閱有效的安全性群組規則，以確保輸入「允許」NSG 規則存在並已針對 RDP 連接埠 (預設值 3389) 設定優先順序。 如需詳細資訊，請參閱[使用有效安全性規則對 VM 流量流程進行疑難排解](../../virtual-network/virtual-network-nsg-troubleshoot-portal.md#using-effective-security-rules-to-troubleshoot-vm-traffic-flow)。
 
 ## <a name="source-5-windows-based-azure-vm"></a>來源 5：以 Windows 為基礎的 Azure VM
 ![](./media/detailed-troubleshoot-rdp/tshootrdp_5.png)

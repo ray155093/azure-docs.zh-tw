@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/19/2016
 ms.author: tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: c785ad8dbfa427d69501f5f142ef40a2d3530f9e
-ms.openlocfilehash: e2bfbdd5ca8ec178c2c32c7b52637a8ec7e88a4c
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: dcc31f7a8c85a8f7fbd554371a66fb1e348bca17
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="design-patterns-for-azure-resource-manager-templates-when-deploying-complex-solutions"></a>部署複雜的解決方案時，設計 Azure Resource Manager 範本的模式
@@ -34,7 +33,7 @@ ms.lasthandoff: 05/26/2017
 * 套用角色型存取控制 (RBAC)，以授與使用者、群組和服務適當的存取權限。
 * 使用標記關聯來簡化工作，例如計費彙總套件。
 
-本文提供在我們的設計工作階段以及真實世界中與 Azure 客戶諮詢小組 (AzureCAT) 客戶進行範本實作過程中所識別的取用案例、架構及實作模式的詳細資訊。 姑且不論學術理論為何，這些作法都是透過針對 12 個以 Linux 為基礎的頂尖 OSS 技術開發之範本所通知且經過實證的最佳做法，包括： Apache Kafka、Apache Spark、Cloudera、Couchbase、Hortonworks HDP、Apache Cassandra 提供的 DataStax Enterprise、Elasticsearch、Jenkins、MongoDB、Nagios、PostgreSQL、Redis 及 Nagios。 
+本文提供在我們的設計工作階段以及真實世界中與 Azure 客戶諮詢小組 (AzureCAT) 客戶進行範本實作過程中所識別的取用案例、架構及實作模式的詳細資訊。 姑且不論學術理論為何，這些作法都是透過針對 12 個以 Linux 為基礎的頂尖 OSS 技術開發之範本所通知且經過實證的最佳做法，包括： Apache Kafka、Apache Spark、Cloudera、Couchbase、Hortonworks HDP、Apache Cassandra 提供的 DataStax Enterprise、Elasticsearch、Jenkins、MongoDB、PostgreSQL、Redis 及 Nagios。 
 
 本文將分享這些經過實證的最佳做法，以協助您設計世界級 Azure 資源管理員範本。  
 

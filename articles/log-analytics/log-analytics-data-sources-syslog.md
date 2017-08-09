@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/12/2017
+ms.date: 07/12/2017
 ms.author: magoedte;bwren
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
-ms.openlocfilehash: 783b9b48251c5f092121288af8834e2caf31f5d7
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 7513f405d5c7c05a8e6e2b7b0e6313f23a319c84
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/13/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="syslog-data-sources-in-log-analytics"></a>Log Analytics 中的 Syslog 資料來源
@@ -27,8 +26,8 @@ Syslog 是通用於 Linux 的事件記錄通訊協定。  應用程式將傳送�
 
 > [!NOTE]
 > Log Analytics 支援收集由 rsyslog 或 syslog-ng 所傳送的訊息，其中 rsyslog 是預設精靈。 Red Hat Enterprise Linux 第 5 版、CentOS 和 Oracle Linux 版本 (sysklog) 不支援預設 syslog 精靈，進行 syslog 事件收集。 若要從這些散發套件的這個版本收集 syslog 資料，應該安裝並設定 [rsyslog 精靈](http://rsyslog.com) 來取代 sysklog。
-> 
-> 
+>
+>
 
 ![Syslog 收集](media/log-analytics-data-sources-syslog/overview.png)
 
@@ -49,8 +48,8 @@ OMS Agent for Linux 只會收集具有其組態中指定之設備和嚴重性的
 
 > [!NOTE]
 > 如果您編輯 syslog 組態，則必須重新啟動 syslog 精靈，變更才會生效。
-> 
-> 
+>
+>
 
 #### <a name="rsyslog"></a>rsyslog
 Rsyslog 的組態檔位於 **/etc/rsyslog.d/95-omsagent.conf**。  其預設內容如下所示。  這會針對層級為警告或以上的所有設備收集傳送自本機代理程式的 syslog 訊息。
@@ -138,7 +137,7 @@ Syslog-ng 的組態檔位於 **/etc/syslog-ng/syslog-ng.conf**。  其預設內�
 
 
 ### <a name="collecting-data-from-additional-syslog-ports"></a>從其他 Syslog 連接埠收集資料
-OMS 代理程式會在本機用戶端的連接埠 25224 上接聽 Syslog 訊息。  安裝代理程式時，會套用預設 syslog 組態，並可在下列位置找到： 
+OMS 代理程式會在本機用戶端的連接埠 25224 上接聽 Syslog 訊息。  安裝代理程式時，會套用預設 syslog 組態，並可在下列位置找到：
 
 * Rsyslog：`/etc/rsyslog.d/95-omsagent.conf`
 * Syslog-ng：`/etc/syslog-ng/syslog-ng.conf`
@@ -162,7 +161,7 @@ OMS 代理程式會在本機用戶端的連接埠 25224 上接聽 Syslog 訊息�
 
     > [!NOTE]
     > 如果您在 `95-omsagent.conf` 組態檔中修改這個值，就會在代理程式套用預設組態時將它覆寫。
-    > 
+    >
 
         # OMS Syslog collection for workspace %WORKSPACE_ID%
         kern.warning              @127.0.0.1:%SYSLOG_PORT%
@@ -174,7 +173,7 @@ OMS 代理程式會在本機用戶端的連接埠 25224 上接聽 Syslog 訊息�
 
     > [!NOTE]
     > 如果您在組態檔中修改預設值，就會在代理程式套用預設組態時將它覆寫。
-    > 
+    >
 
         filter f_custom_filter { level(warning) and facility(auth; };
         destination d_custom_dest { udp("127.0.0.1" port(%SYSLOG_PORT%)); };
@@ -206,9 +205,18 @@ Syslog 記錄具有 **Syslog** 類型，以及下表中的屬性。
 | Type=Syslog &#124; measure count() by Computer |依電腦的 Syslog 記錄計數。 |
 | Type=Syslog &#124; measure count() by Facility |依設備的 Syslog 記錄計數。 |
 
-## <a name="next-steps"></a>後續步驟
-* 了解 [記錄搜尋](log-analytics-log-searches.md) ，以分析從資料來源和解決方案所收集的資料。 
-* 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將來自 syslog 記錄的資料剖析至個別欄位。
-* [設定 Linux 代理程式](log-analytics-linux-agents.md) ，以收集其他類型的資料。 
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
 
+> | 查詢 | 說明 |
+|:--- |:--- |
+| syslog |所有的 Syslog。 |
+| Syslog &#124; where SeverityLevel == "error" |嚴重性為錯誤的所有 Syslog 記錄。 |
+| Syslog &#124; summarize AggregatedValue = count() by Computer |依電腦的 Syslog 記錄計數。 |
+| Syslog &#124; summarize AggregatedValue = count() by Facility |依設備的 Syslog 記錄計數。 |
+
+## <a name="next-steps"></a>後續步驟
+* 了解 [記錄搜尋](log-analytics-log-searches.md) ，以分析從資料來源和解決方案所收集的資料。
+* 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將來自 syslog 記錄的資料剖析至個別欄位。
+* [設定 Linux 代理程式](log-analytics-linux-agents.md) ，以收集其他類型的資料。
 

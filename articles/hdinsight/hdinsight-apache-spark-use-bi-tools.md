@@ -15,14 +15,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/09/2017
+ms.date: 07/21/2017
 ms.author: nitinme
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
-ms.openlocfilehash: 8e550b8caaece7a27612686135752336483aa662
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 49dd161049ac442081fe6d26cf8bd3a56a2e0687
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/10/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="apache-spark-bi-using-data-visualization-tools-with-azure-hdinsight"></a>使用資料視覺效果工具搭配 Azure HDInsight 的 Apache Spark BI
@@ -42,9 +41,11 @@ ms.lasthandoff: 06/10/2017
 
 ## <a name="hivetable"></a>準備 Spark 資料視覺效果的資料
 
-在本節中，我們會使用 HDInsight Spark 叢集中的 [Jupyter](https://jupyter.org) Notebook，執行可處理未經處理範例資料並將這些資料儲存成資料表的工作。 範例資料是所有叢集在預設情況下均有的 .csv 檔案 (hvac.csv)。
+在本節中，我們會使用 HDInsight Spark 叢集中的 [Jupyter](https://jupyter.org) Notebook，執行可處理未經處理範例資料並將這些資料儲存成資料表的工作。 範例資料是所有叢集在預設情況下均有的 .csv 檔案 (hvac.csv)。 將資料儲存為資料表後，下一節我們將使用 BI 工具連線到資料表，並執行資料視覺效果。
 
-將資料儲存為資料表後，下一節我們將使用 BI 工具連線到資料表，並執行資料視覺效果。
+> [!NOTE]
+> 如果您是在完成[在 HDInsight Spark 叢集上執行互動式查詢](hdinsight-apache-spark-load-data-run-query.md)中的指示之後執行本文中的步驟，即可跳到下面的步驟 8。
+>
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集格圖格 (如果您已將其釘選到開始面板)。 您也可以按一下 [瀏覽全部] > [HDInsight 叢集] 來瀏覽至您的叢集。   
 
@@ -74,7 +75,7 @@ ms.lasthandoff: 06/10/2017
     將下列程式碼片段貼到空白儲存格中，然後按下 **SHIFT + ENTER**。 此程式碼片段會將資料註冊到名為 **hvac** 的資料表中。
 
         # Create an RDD from sample data
-        hvacText = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
+        hvacText = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
 
         # Create a schema for our data
         Entry = Row('Date', 'Time', 'TargetTemp', 'ActualTemp', 'BuildingID')
@@ -203,38 +204,11 @@ ms.lasthandoff: 06/10/2017
     ![Spark 資料視覺效果的 Tableau 輸出](./media/hdinsight-apache-spark-use-bi-tools/spark-data-visualization-tableau-output.png "Spark 資料視覺效果的 Tableau 輸出")
 9. 按一下 [儲存]  以儲存工作表。 您可以建立儀表板，並在儀表板中加入一個或多個工作表。
 
-## <a name="seealso"></a>另請參閱
-* [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
+## <a name="next-steps"></a>後續步驟
 
-### <a name="scenarios"></a>案例
-* [Spark 和機器學習：使用 HDInsight 中的 Spark，利用 HVAC 資料來分析建築物溫度](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark 來預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
-* [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
-* [使用 HDInsight 中的 Spark 進行網站記錄分析](hdinsight-apache-spark-custom-library-website-log-analysis.md)
+到目前為止，您學會了如何建立叢集、建立 Spark 資料框架來查詢資料，然後從 BI 工具中存取該資料。 您現在可以看看如何管理叢集資源，以及對在 HDInsight Spark 叢集中執行的工作進行偵錯的指示。
 
-### <a name="create-and-run-applications"></a>建立及執行應用程式
-* [使用 Scala 建立獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
-* [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
-
-### <a name="tools-and-extensions"></a>工具和擴充功能
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
-* [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-zeppelin-notebook.md)
-* [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
-* [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
-
-### <a name="manage-resources"></a>管理資源
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-[hdinsight-versions]: hdinsight-component-versioning.md
-[hdinsight-upload-data]: hdinsight-upload-data.md
-[hdinsight-storage]: hdinsight-hadoop-use-blob-storage.md
-
-
-[azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
-[azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/
-[azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-[azure-create-storageaccount]: storage-create-storage-account.md
 

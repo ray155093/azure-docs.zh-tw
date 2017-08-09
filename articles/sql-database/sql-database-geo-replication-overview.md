@@ -16,11 +16,10 @@ ms.workload: NA
 ms.date: 07/10/2017
 ms.author: sashan
 ms.translationtype: HT
-ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
-ms.openlocfilehash: c1e8fd914d83cd3900181c5235455851d7d57485
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 8bb7f93b5ba2d1909653bb1010f1266640a1b2e9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/11/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="overview-failover-groups-and-active-geo-replication"></a>概觀︰容錯移轉群組和主動式異地複寫
@@ -75,7 +74,7 @@ Azure SQL Database 的自動容錯移轉群組 (預覽版) 是一項 SQL Databas
 
 自動容錯移轉群組功能支援群組層級的複寫和自動容錯移轉，提供強大的主動式異地複寫抽象概念。 此外，它提供額外的接聽程式端點，不需要在容錯移轉之後變更 SQL 連接字串。 
 
-* **容錯移轉群組**︰可以在不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個做為復原單位的資料庫，以防所有或部分的主要資料庫因為主要區域中斷而變成無法使用。  
+* **容錯移轉群組**︰可以在不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個作為復原單位的資料庫，以防所有或部分的主要資料庫因為主要區域服務中斷而變成無法使用。  
 * **主要伺服器**︰容錯移轉群組中裝載主要資料庫的伺服器。
 * **次要伺服器**︰容錯移轉群組中裝載次要資料庫的伺服器。 次要伺服器和主要伺服器不能位於相同區域。
 * **在容錯移轉群組中新增資料庫**︰您可以將伺服器或彈性集區內的多個資料庫放在同一個容錯移轉群組中。 如果您在群組中新增獨立的資料庫，它會使用相同的版本和效能層級自動建立次要資料庫。 如果主要資料庫在彈性集區中，則會使用相同名稱在該彈性集區中建立次要資料庫。 如果您新增在次要伺服器中已經有次要資料庫的資料庫，群組就會繼承該異地複寫。
@@ -84,8 +83,8 @@ Azure SQL Database 的自動容錯移轉群組 (預覽版) 是一項 SQL Databas
    > 新增在伺服器中已經有次要資料庫但不屬於容錯移轉群組一部分的資料庫時，會在次要伺服器中建立新的次要資料庫。 
    >
 
-* **容錯移轉群組讀寫接聽程式**︰指向目前主要伺服器 URL 的 DNS CNAME 記錄。 它可讓讀寫 SQL 應用程式在容錯移轉之後，當主要資料庫變更時毫無障礙地重新連線至主要資料庫。 
-* **容錯移轉群組唯讀接聽程式**︰指向次要伺服器 URL 的 DNS CNAME 記錄。 它可讓唯讀 SQL 應用程式使用指定的負載平衡規則毫無障礙地連線到次要資料庫。 您可以選擇性指定當次要伺服器無法使用時，是否要將唯讀流量自動重新導向到主要伺服器。
+* **容錯移轉群組讀寫接聽程式**︰指向目前主要伺服器 URL 且格式為 **&lt;容錯移轉群組名稱&gt;.database.windows.net** 的 DNS CNAME 記錄。 它可讓讀寫 SQL 應用程式在容錯移轉之後，當主要資料庫變更時毫無障礙地重新連線至主要資料庫。 
+* **容錯移轉群組唯讀接聽程式**︰指向目前次要伺服器 URL 且格式為 **&lt;容錯移轉群組名稱&gt;.secondary.database.windows.net** 的 DNS CNAME 記錄。 它可讓唯讀 SQL 應用程式使用指定的負載平衡規則毫無障礙地連線到次要資料庫。 您可以選擇性指定當次要伺服器無法使用時，是否要將唯讀流量自動重新導向到主要伺服器。
 * **自動容錯移轉原則**︰容錯移轉群組預設是利用自動容錯移轉原則設定。 一旦偵測到失敗，系統就會觸發容錯移轉。 如果您想要控制應用程式的容錯移轉工作流程，可以關閉自動容錯移轉。 
 * **手動容錯移轉**︰無論自動容錯移轉設定為何，您都可以在任何時候手動起始容錯移轉。 如果未設定自動容錯移轉原則，就需要手動容錯移轉才能復原容錯移轉群組中的資料庫。 您可以起始強制或易用容錯移轉 (具有完整的資料同步處理)。 後者可用來將作用中伺服器重新放置到主要區域。 容錯移轉完成時，DNS 記錄會自動更新以確保能連線到正確的伺服器。
 * **資料遺失的寬限期**︰因為主要和次要資料庫是使用非同步複寫進行同步處理，容錯移轉可能會導致資料遺失。 您可以自訂自動容錯移轉原則，以反映應用程式對資料遺失的容錯程度。 設定 **GracePeriodWithDataLossHours**，可以控制系統在起始可能造成資料遺失的容錯移轉之前等候的時間長度。 
@@ -99,12 +98,13 @@ Azure SQL Database 的自動容錯移轉群組 (預覽版) 是一項 SQL Databas
 ## <a name="best-practices-of-building-highly-available-service"></a>建置高可用性服務的最佳作法
 
 若要建置使用 Azure SQL Database 的高可用性服務，客戶應遵循下列指導方針︰
-- **容錯移轉群組**︰可以在不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個做為復原單位的資料庫，以防所有或部分的主要資料庫因為主要區域中斷而變成無法使用。
-- **使用自動容錯移轉群組**︰它會使用和主要資料庫相同的服務目標，來建立地區次要資料庫。 如果您在容錯移轉群組中新增現有的異地複寫關聯性，請確定地區次要資料庫所設定的服務等級目標和主要資料庫相同。
-- 使用 **ApplicationIntent=ReadOnly**︰如果工作負載的唯讀部分能容忍特定過期資料，請使用 **ApplicationIntent=ReadOnly** 在連接字串的讀取意圖中加以指出，系統便會自動將連線導向次要資料庫。 
-- 如果系統偵測到服務中斷，SQL 會在就我們所知並無資料遺失時，自動觸發讀寫容錯移轉。 否則，它會等候您透過 **GracePeriodWithDataLossHours** 所指定的這段時間。 
-- **對效能降低做好心理準備**：應用程式的其餘部分或所使用的其他服務並不會影響 SQL 的容錯移轉決策。 應用程式可能會「混用」某個區域的某些元件和另一個區域的某些元件。 若要避免效能降低，請務必要在 DR 區域中部署備援應用程式，並遵循本文中的指導方針。 請注意，DR 區域中的應用程式不一定非得使用不同的連接字串。 
-- **對資料遺失做好心理準備**︰如果您指定了 **GracePeriodWithDataLossHours**，請做好可能會遺失資料的心理準備。 服務中斷期間，Azure 一般會傾向維持可用性。 如果您無法承擔資料遺失情況，請務必將 **GracePeriodWithDataLossHours** 設定為足夠大的數字，例如 24 小時。 
+- **使用容錯移轉群組**︰可以在位於不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個作為復原單位的資料庫，以防所有或部分的主要資料庫因為主要區域服務中斷而變成無法使用。 容錯移轉群組會使用和主要資料庫相同的服務目標，來建立異地次要資料庫。 如果您在容錯移轉群組中新增現有的異地複寫關聯性，請確定異地次要資料庫所設定的服務等級目標和主要資料庫相同。
+- **針對 OLTP 工作負載使用讀取寫入接聽程式**：在執行 OLTP 作業時使用 **&lt;容錯移轉群組名稱&gt;.database.windows.net** 作為伺服器 URL，連線將會自動導向至主要伺服器。 在容錯移轉之後，將不會變更此 URL。  
+請注意，容錯移轉牽涉到更新 DNS 記錄，因此只有在重新整理用戶端 DNS 快取之後，才會將用戶端連線重新導向至新的主要伺服器。
+- **針對唯讀工作負載使用唯讀接聽程式**：如果您有容忍某些過時資料的邏輯隔離唯讀工作負載，則可以使用應用程式中的次要資料庫。 針對唯讀工作階段，請使用 **&lt;容錯移轉群組名稱&gt;.secondary.database.windows.net** 作為伺服器 URL，連線將會自動導向至次要伺服器。 也建議您使用 **ApplicationIntent=ReadOnly**，在連接字串中表示讀取意圖。 
+- **對效能降低做好心理準備**：應用程式的其餘部分或所使用的其他服務並不會影響 SQL 的容錯移轉決策。 應用程式可能會「混用」某個區域的某些元件和另一個區域的某些元件。 若要避免效能降低，請務必要在 DR 區域中部署備援應用程式，並遵循本文中的指導方針。  
+請注意，DR 區域中的應用程式不一定非得使用不同的連接字串。  
+- **對資料遺失做好心理準備**：如果系統偵測到服務中斷，SQL 會在就我們所知並無資料遺失時，自動觸發讀寫容錯移轉。 否則，它會等候您透過 **GracePeriodWithDataLossHours** 所指定的這段時間。 如果您指定了 **GracePeriodWithDataLossHours**，請做好可能會遺失資料的心理準備。 服務中斷期間，Azure 一般會傾向維持可用性。 如果您無法承擔資料遺失情況，請務必將 **GracePeriodWithDataLossHours** 設定為足夠大的數字，例如 24 小時。 
 
 
 ## <a name="upgrading-or-downgrading-a-primary-database"></a>升級或降級主要資料庫
@@ -166,11 +166,11 @@ Azure SQL Database 的自動容錯移轉群組 (預覽版) 是一項 SQL Databas
 | --- | --- |
 | [Create or Update Database (createMode=Restore)](https://docs.microsoft.com/rest/api/sql/databases#Databases_CreateOrUpdate) |建立、更新或還原主要或次要資料庫。 |
 | [取得建立或更新資料庫狀態](https://docs.microsoft.com/rest/api/sql/databases#Databases_CreateOrUpdate) |在建立作業期間傳回狀態。 |
-| [將次要資料庫設定為主要資料庫 (計劃性容錯移轉)](https://docs.microsoft.com/rest/api/sql/databases%20-%20replicationlinks#Databases_FailoverReplicationLink) |從目前主要複本資料庫進行容錯移轉，以設定主要的複本資料庫。 |
-| [將次要資料庫設定為主要資料庫 (非計劃的容錯移轉)](https://docs.microsoft.com/rest/api/sql/databases%20-%20replicationlinks#Databases_FailoverReplicationLinkAllowDataLoss) |從目前主要複本資料庫進行容錯移轉，以設定主要的複本資料庫。 這項作業可能會導致資料遺失。 |
-| [取得複寫連結](https://docs.microsoft.com/rest/api/sql/databases%20-%20replicationlinks#Databases_FailoverReplicationLinkAllowDataLoss) |取得異地複寫關聯性中指定 SQL Database 的特定複寫連結。 它會擷取 sys.geo_replication_links 目錄檢視中顯示的資訊。 |
-| [列出複寫連結](https://docs.microsoft.com/en-us/rest/api/sql/databases%20-%20replicationlinks#Databases_GetReplicationLink) | 取得異地複寫關聯性中指定 SQL Database 的所有複寫連結。 它會擷取 sys.geo_replication_links 目錄檢視中顯示的資訊。 |
-| [刪除複寫連結](https://docs.microsoft.com/rest/api/sql/databases%20-%20replicationlinks#Databases_DeleteReplicationLink) | 刪除資料庫複寫連結。 無法在容錯移轉期間進行。 |
+| [將次要資料庫設定為主要資料庫 (計劃性容錯移轉)](https://docs.microsoft.com/rest/api/sql/replicationlinkss#ReplicationLinks_Failover) |從目前主要複本資料庫進行容錯移轉，以設定主要的複本資料庫。 |
+| [將次要資料庫設定為主要資料庫 (非計劃的容錯移轉)](https://docs.microsoft.com/rest/api/sql/replicationlinks#ReplicationLinks_FailoverAllowDataLoss) |從目前主要複本資料庫進行容錯移轉，以設定主要的複本資料庫。 這項作業可能會導致資料遺失。 |
+| [取得複寫連結](https://docs.microsoft.com/rest/api/sql/replicationlinks#ReplicationLinks_Get) |取得異地複寫關聯性中指定 SQL Database 的特定複寫連結。 它會擷取 sys.geo_replication_links 目錄檢視中顯示的資訊。 |
+| [列出複寫連結](https://docs.microsoft.com/en-us/rest/api/sql/replicationlinks#ReplicationLinks_ListByDatabase) | 取得異地複寫關聯性中指定 SQL Database 的所有複寫連結。 它會擷取 sys.geo_replication_links 目錄檢視中顯示的資訊。 |
+| [刪除複寫連結](https://docs.microsoft.com/rest/api/sql/replicationlinks#ReplicationLinks_Delete) | 刪除資料庫複寫連結。 無法在容錯移轉期間進行。 |
 | [建立或更新容錯移轉群組](https://docs.microsoft.com/rest/api/sql/failovergroups#FailoverGroups_CreateOrUpdate) | 建立或更新容錯移轉群組 |
 | [刪除容錯移轉群組](https://docs.microsoft.com/rest/api/sql/failovergroups#FailoverGroups_Delete) | 從伺服器中移除容錯移轉群組 |
 | [容錯移轉 (計劃性)](https://docs.microsoft.com/rest/api/sql/failovergroups#FailoverGroups_Failover) | 從目前主要伺服器容錯移轉到此伺服器。 |

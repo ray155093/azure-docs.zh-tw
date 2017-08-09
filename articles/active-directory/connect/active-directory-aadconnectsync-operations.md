@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/13/2017
 ms.author: billmath
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 0288d70bb5c0094b5c738b2d0c597e4c6d38a5aa
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: b7583a1556bb1113f349a78890768451e39c6878
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/18/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="azure-ad-connect-sync-operational-tasks-and-consideration"></a>Azure AD Connect 同步處理：作業工作和考量
@@ -109,7 +109,9 @@ ms.lasthandoff: 04/18/2017
 一般和受支援的方法是在虛擬機器中執行同步處理引擎。 如果主機有問題，可將內含同步處理引擎伺服器的映像移轉到另一部伺服器。
 
 ### <a name="sql-high-availability"></a>SQL 高可用性
-如果您未使用 Azure AD Connect 隨附的 SQL Server Express，也應該考慮 SQL Server 的高可用性。 唯一受支援的高可用性解決方案是 SQL 叢集。 不支援的解決方案包括鏡像和永遠開啟。
+如果您未使用 Azure AD Connect 隨附的 SQL Server Express，也應該考慮 SQL Server 的高可用性。 支援的高可用性解決方案包含 SQL 叢集和 AOA (「永遠開啟」可用性群組）。 不支援的解決方案包括鏡像。
+
+Azure AD Connect 1.1.524.0 版中已新增 SQL AOA 支援。 您必須在安裝 Azure AD Connect 之前啟用 SQL AOA。 在安裝期間，Azure AD Connect 會偵測所提供的 SQL 執行個體是否已啟用 SQL AOA。 如果已啟用 SQL AOA，Azure AD Connect 會進一步指出 SQL AOA 已設定為使用同步複寫或非同步複寫。 設定可用性群組接聽程式時，建議將 RegisterAllProvidersIP 屬性設定為 0。 這是因為 Azure AD Connect 目前使用 SQL Native Client 來連線至 SQL，且 SQL Native Client 不支援使用 MultiSubNetFailover 屬性。
 
 ## <a name="appendix-csanalyzer"></a>附錄 CSAnalyzer
 請參閱[驗證](#verify)一節，以了解如何使用此指令碼。

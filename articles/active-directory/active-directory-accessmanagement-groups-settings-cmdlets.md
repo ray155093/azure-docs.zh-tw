@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure Active Directory Cmdlet 設定群組設定 | Microsoft Docs"
-description: "如何使用 Azure Active Directory Cmdlet 管理群組的設定。"
+description: "如何使用 Azure Active Directory Cmdlet 管理群組的設定"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,19 +12,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/04/2017
+ms.date: 07/26/2017
 ms.author: rodejo
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: 81fdae033afd90b77d3725f8c39b8a6c6bbc3812
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 7dd4833000e8550b172e0451c48788b1e627a1fb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="azure-active-directory-cmdlets-for-configuring-group-settings"></a>設定群組設定的 Azure Active Directory Cmdlet
 
 > [!IMPORTANT]
-> 本內容僅適用於整合群組 (又稱為 Office 365 群組)。 
+> 本內容僅適用於 Office 365 群組。 
 
 Office 365 群組設定是使用 Settings 物件和 SettingsTemplate 物件所設定。 一開始，您將不會在目錄中看到任何 Settings 物件。 這表示已使用預設設定來設定您的目錄。 若要變更預設設定，您必須使用設定範本來建立新的設定物件。 設定範本是由 Microsoft 所定義。 有數個不同的設定範本。 若要設定目錄的群組設定，您將會使用名為 "Group.Unified" 的範本。 若要在單一群組上設定群組設定，請使用名為 "Group.Unified.Guest" 的範本。 此範本是用來管理群組的來賓存取權。 
 

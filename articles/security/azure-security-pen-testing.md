@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 5d58d9dd6c92c81328f89a703b3bc8529aff8dc0
-ms.lasthandoff: 11/17/2016
-
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: bc8ca9bb349f41a6ae7371b4fc33cc09fb179c11
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="pen-testing"></a>滲透測試
@@ -34,7 +34,7 @@ ms.lasthandoff: 11/17/2016
 
 怎麼辦？
 
-準備要對您的 Azure 代管應用程式進行滲透測試時，您需要讓我們知道。 一旦我們知道您要執行特定測試，我們將不會不小心將您關閉 (例如封鎖您進行測試的來源 IP 位址)，只要測試符合 Azure 測試滲透條款和條件即可。
+準備要對您的 Azure 代管應用程式進行滲透測試時，您可以選擇[讓我們知道](https://portal.msrc.microsoft.com/en-us/engage/pentest)。 一旦我們知道您要執行特定測試，我們將不會不小心將您關閉 (例如封鎖您進行測試的來源 IP 位址)，只要測試符合如 [Microsoft 雲端整合滲透測試的參與規則](https://technet.microsoft.com/en-us/mt784683)中所述的 Azure 滲透測試條款和條件即可。
 您可以執行的標準測試包括：
 
 * 對端點進行測試，以發掘 [開放式 Web 應用程式安全性專案 (OWASP) 的前 10 大弱點](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)

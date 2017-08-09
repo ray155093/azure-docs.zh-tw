@@ -14,11 +14,11 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/04/2017
 ms.author: parakhj
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 07584294e4ae592a026c0d5890686eaf0b99431f
-ms.openlocfilehash: 0a0d91d622ed72ed22cfaaa0350b31ca653de483
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 33f62a33ea7a3fadb6e7b045de10df25f5edbe83
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/02/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="azure-active-directory-b2c-custom-policies"></a>Azure Active Directory B2C：自訂原則
@@ -41,7 +41,7 @@ ms.lasthandoff: 06/02/2017
 | 屬性自訂 | 標準和自訂屬性 | 相同 |
 |權杖和工作階段管理 | 自訂權杖和多個工作階段選項 | 相同 |
 |識別提供者| **目前**︰預先定義的本機、社交提供者<br><br>**未來**︰標準式 OIDC、SAML、OAuth | **目前**：標準式 OIDC、OAUTH、SAML<br><br>**未來**：WsFed |
-|身分識別工作 (範例) | 使用本機和許多社交帳戶註冊或登入<br><br>密碼重設<br><br>設定檔編輯<br><br>Multi-Factor Auth 案例<br><br>自訂權杖和工作階段<br><br>存取權杖流程 | 使用自訂識別提供者完成與內建原則相同的工作，或使用自訂範圍<br><br>註冊時將使用者佈建在另一個系統中<br><br>使用您自己的電子郵件服務提供者傳送歡迎電子郵件<br><br>使用 B2C 外部的使用者存放區<br><br>透過 API 向受信任的系統驗證使用者所提供的資訊 |
+|身分識別工作 (範例) | 使用本機和許多社交帳戶註冊或登入<br><br>自助式密碼重設<br><br>設定檔編輯<br><br>Multi-Factor Auth 案例<br><br>自訂權杖和工作階段<br><br>存取權杖流程 | 使用自訂識別提供者完成與內建原則相同的工作，或使用自訂範圍<br><br>註冊時將使用者佈建在另一個系統中<br><br>使用您自己的電子郵件服務提供者傳送歡迎電子郵件<br><br>使用 B2C 外部的使用者存放區<br><br>透過 API 向受信任的系統驗證使用者所提供的資訊 |
 
 ## <a name="policy-files"></a>原則檔
 
@@ -97,7 +97,7 @@ Azure AD B2C 依序與身分識別提供者、使用者、其他系統和本機�
 |---------------------|--------------------|-----------------|---------------|
 | 基底 |TrustFrameworkBase.xml<br><br>Mytenant.onmicrosoft.com-B2C-1A_BASE1.xml | 包括核心宣告結構描述、宣告轉換、宣告提供者，以及 Microsoft 所設定的使用者旅程圖<br><br>儘可能不要變更此檔案 | None |
 | 擴充 (EXT) | TrustFrameworkExtensions.xml<br><br>Mytenant.onmicrosoft.com-B2C-1A_EXT.xml | 在此彙總基底檔案的變更<br><br>已修改的宣告提供者<br><br>已修改的使用者旅程圖<br><br>您自己的自訂結構描述定義 | 基底檔案 |
-| 信賴憑證者 (RP) | | | 擴充檔案 |
+| 信賴憑證者 (RP) | B2C_1A_sign_up_sign_in.xml| 在此變更權杖圖形和工作階段設定| Extensions(EXT) 檔案 |
 
 ### <a name="inheritance-model"></a>繼承模型
 

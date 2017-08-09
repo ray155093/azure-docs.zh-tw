@@ -13,12 +13,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 04/25/2017
 ms.author: sedusch
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 7fa853983119ef4e570b768ca177d169c6e17153
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: 951150e621d21037b0adde7287b9f985290d8d11
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
 # <a name="high-availability-of-sap-hana-on-azure-virtual-machines-vms"></a>Azure 虛擬機器 (VM) 上 SAP HANA 的高可用性
@@ -27,10 +26,19 @@ ms.lasthandoff: 05/31/2017
 [deployment-guide]:deployment-guide.md
 [planning-guide]:planning-guide.md
 
-[hana-ha-guide-replication]:sap-hana-high-availability.md#14c19f65-b5aa-4856-9594-b81c7e4df73d
-[hana-ha-guide-shared-storage]:sap-hana-high-availability.md#498de331-fa04-490b-997c-b078de457c9d
 [2205917]:https://launchpad.support.sap.com/#/notes/2205917
 [1944799]:https://launchpad.support.sap.com/#/notes/1944799
+[1928533]:https://launchpad.support.sap.com/#/notes/1928533
+[2015553]:https://launchpad.support.sap.com/#/notes/2015553
+[2178632]:https://launchpad.support.sap.com/#/notes/2178632
+[2191498]:https://launchpad.support.sap.com/#/notes/2191498
+[2243692]:https://launchpad.support.sap.com/#/notes/2243692
+[1984787]:https://launchpad.support.sap.com/#/notes/1984787
+[1999351]:https://launchpad.support.sap.com/#/notes/1999351
+
+[hana-ha-guide-replication]:sap-hana-high-availability.md#14c19f65-b5aa-4856-9594-b81c7e4df73d
+[hana-ha-guide-shared-storage]:sap-hana-high-availability.md#498de331-fa04-490b-997c-b078de457c9d
+
 [suse-hana-ha-guide]:https://www.suse.com/docrep/documents/ir8w88iwu7/suse_linux_enterprise_server_for_sap_applications_12_sp1.pdf
 [sap-swcenter]:https://launchpad.support.sap.com/#/softwarecenter
 [template-multisid-db]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-3-tier-marketplace-image-multi-sid-db%2Fazuredeploy.json
@@ -44,10 +52,25 @@ ms.lasthandoff: 05/31/2017
 
 請先閱讀下列 SAP Note 和文件
 
-* SAP Note [2205917] 適用於 SUSE Linux Enterprise Server for SAP Applications 的建議 OS 設定
-* SAP Note [1944799] 適用於 SUSE Linux Enterprise Server for SAP Applications 的 SAP HANA 指導方針
+* SAP Note [1928533]，其中包含：
+  * SAP 軟體部署支援的 Azure VM 大小清單
+  * Azure VM 大小的重要容量資訊
+  * 支援的 SAP 軟體，以及作業系統 (OS) 與資料庫組合
+  * Microsoft Azure 上 Windows 和 Linux 所需的 SAP 核心版本
+* SAP Note [2015553] 列出 Azure 中 SAP 支援的 SAP 軟體部署先決條件。
+* SAP Note [2205917] 包含適用於 SUSE Linux Enterprise Server for SAP Applications 的建議 OS 設定
+* SAP Note [1944799] 包含適用於 SUSE Linux Enterprise Server for SAP Applications 的 SAP HANA 指導方針
+* SAP Note [2178632] 包含在 Azure 中針對 SAP 回報的所有監視計量詳細資訊。
+* SAP Note [2191498] 包含 Azure 中 Linux 所需的 SAP Host Agent 版本。
+* SAP Note [2243692] 包含 Azure 中 Linux 上的 SAP 授權相關資訊。
+* SAP Note [1984787] 包含 SUSE LINUX Enterprise Server 12 的一般資訊。
+* SAP Note [1999351] 包含 Azure Enhanced Monitoring Extension for SAP 的其他疑難排解資訊。
+* [SAP Community WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) 包含 Linux 所需的所有 SAP Note。
+* [適用於 SAP on Linux 的 Azure 虛擬機器規劃和實作][planning-guide]
+* [適用於 SAP on Linux 的 Azure 虛擬機器部署 (本文)][deployment-guide]
+* [適用於 SAP on Linux 的 Azure 虛擬機器 DBMS 部署][dbms-guide]
 * [SAP HANA SR 效能最佳化案例][suse-hana-ha-guide]：此指南包含設定內部部署 SAP HANA 系統複寫的所有必要資訊。 請使用此指南做為基礎。
-  
+
 ## <a name="deploying-linux"></a>部署 Linux
 
 SAP HANA 的資源代理程式隨附於 SUSE Linux Enterprise Server for SAP Applications 中。
@@ -305,10 +328,10 @@ Azure Marketplace 包含 SUSE Linux Enterprise Server for SAP Applications 12 (�
     } 
     <b>nodelist {
       node {
-        ring0_addr:     < ip address of note 1 >
+        ring0_addr:     < ip address of node 1 >
       }
       node {
-        ring0_addr:     < ip address of note 2 > 
+        ring0_addr:     < ip address of node 2 > 
       } 
     }</b>
     logging {
@@ -404,7 +427,7 @@ Azure Marketplace 包含 SUSE Linux Enterprise Server for SAP Applications 12 (�
 
 <pre>
 sudo vi crm-defaults.txt
-# enter the following to crm-saphana.txt
+# enter the following to crm-defaults.txt
 <code>
 property $id="cib-bootstrap-options" \
   no-quorum-policy="ignore" \

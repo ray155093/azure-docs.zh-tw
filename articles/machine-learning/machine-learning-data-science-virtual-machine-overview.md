@@ -1,6 +1,6 @@
 ---
 title: "什麼是資料科學虛擬機器？ | Microsoft Docs"
-description: "了解重要案例、功能，以及如何開始使用資料科學虛擬機器、準備進行分析的環境和工具組。"
+description: "如何使用資料科學虛擬機器開始進行重要的分析案例。"
 keywords: "資料科學工具、資料科學虛擬機器、資料科學工具、linux 資料科學"
 services: machine-learning
 documentationcenter: 
@@ -13,17 +13,17 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/13/2017
-ms.author: gokuma
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 77b4f634c2a30d0cbec92d34a7f83866541d7d84
-ms.lasthandoff: 04/15/2017
-
+ms.date: 07/21/2017
+ms.author: gokuma;bradsev
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: d6346419756cb0841c23f3ba63e479ba2397af54
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="introduction-to-the-cloud-based-data-science-virtual-machine-for-linux-and-windows"></a>適用於 Linux 和 Windows 的雲端型資料科學虛擬機器簡介
-資料科學虛擬機器 (DSVM) 是 Microsoft Azure 雲端上的自訂 VM 映像，專為進行資料科學建置。 它已預先安裝和預先設定許多常用的資料科學和其他工具，以開始建置智慧應用程式進行進階分析。 這可在 Windows Server 2012 和 Linux 上進行。 我們透過 Ubuntu 16.04 LTS 或 OpenLogic 7.2 CentOS 型 Linux 散發套件提供 Linux 版 DSVM。 
+資料科學虛擬機器 (DSVM) 是 Microsoft Azure 雲端上的自訂 VM 映像，專為進行資料科學建置。 它已預先安裝和預先設定許多常用的資料科學和其他工具，以開始建置智慧應用程式進行進階分析。 我們提供 Windows Server 和 Linux 版。 我們提供了 Server 2016 和 Server 2012 的 Windows 版 DSVM。 我們透過 Ubuntu 16.04 LTS 以及 OpenLogic 7.2 CentOS 型 Linux 發行版本提供 Linux 版 DSVM。 
 
 本主題討論您可以使用資料科學 VM 來做什麼、說明使用 VM 的一些主要案例、逐項列出 Windows 和 Linux 版本中可使用的主要功能，並提供如何開始使用的相關指示。
 
@@ -48,16 +48,17 @@ ms.lasthandoff: 04/15/2017
 資料科學 VM 可以用來評估或學習工具，例如 Microsoft R Server、SQL Server、Visual Studio 工具、Jupyter、深入學習/ML 工具組，與社群中需要最少設定的受歡迎新工具。 因為資料科學 VM 可快速設定，它可以套用至其他短期使用案例，例如複寫已發佈的實驗、執行示範、遵循線上課程或會議教學課程的逐步解說。
 
 ### <a name="deep-learning"></a>深入學習
-資料科學 VM 可以用於在 GPU (圖形處理單元) 型硬體使用深入學習演算法的定型模型。 只有在需要訓練大型模型時，或需要利用 GPU 的能力進行高速計算時，DSVM 才會協助使用雲端的 GPU 型硬體。  對於 Windows，我們目前提供[DSVM 的深入學習工具組](http://aka.ms/dsvm/deeplearning)和 DSVM 的個別附加元件。 您建立 VM 執行個體時，此附加元件會自動安裝 GPU 驅動程式、架構和 GPU 版深層學習演算法。 對於 Linux，只有在 [Linux (Ubuntu) 版資料科學虛擬機器](http://aka.ms/dsvm/ubuntu)上，GPU 上的深入學習才會啟用。 您可以將 Ubuntu 版資料科學 VM 部署到非 GPU 型 Azure 虛擬機器，所有深入學習架構在此情況下將恢復為 CPU 模式。 CentOS 型 Linux 版 DSVM 僅包含一些輸入學習工具 (CNTK、Tensorflow、MXNet) 的 CPU 組建，但是不會預先安裝 GPU 驅動程式和架構。 
+資料科學 VM 可以用於在 GPU (圖形處理單元) 型硬體使用深入學習演算法的定型模型。 利用 Azure 雲端的 VM 規模調整功能，DSVM 可協助您依需求在雲端使用 GPU 型硬體。 當訓練大型模型或需要高速計算同時保留相同的 OS 磁碟時，可以切換到 GPU 型 VM。  Windows Server 2016 版的 DSVM 預先安裝了 GPU 驅動程式、架構和 GPU 版本的深入學習演算法。 對於 Linux，只有在 [Linux (Ubuntu) 版資料科學虛擬機器](http://aka.ms/dsvm/ubuntu)上，GPU 上的深入學習才會啟用。 您可以將 Ubuntu/Windows-2016 版資料科學 VM 部署到非 GPU 型 Azure 虛擬機器，所有深入學習架構在此情況下將恢復為 CPU 模式。 之前，針對 Windows Server 2012，我們發行了[深入學習工具組](http://aka.ms/dsvm/deeplearning)，但現在我們建議您針對 Windows 型深入學習工作負載使用 Windows Server 2016。 CentOS 型 Linux 版 DSVM 僅包含一些輸入學習工具 (CNTK、Tensorflow、MXNet) 的 CPU 組建，但是不會預先安裝 GPU 驅動程式和架構。 
 
 ## <a name="whats-included-in-the-data-science-vm"></a>資料科學 VM 中包含什麼？
-資料科學虛擬機器已安裝和設定許多常用的資料科學和深入學習工具。 它也包含工具，可讓您輕鬆地使用各種 Azure 資料與分析產品。 您可以使用 Microsoft R Server 或 SQL Server 2016 在大型資料集上探索和建置預測模型。 來自開放原始碼社群及 Microsoft 的許多其他工具也會包含在內，以及範例程式碼和 Notebook。 下表列舉並比較 Windows 和 Linux 版本的資料科學虛擬機器所包含的主要元件。
+資料科學虛擬機器已安裝和設定許多常用的資料科學和深入學習工具。 它也包含工具，可讓您輕鬆地使用各種 Azure 資料與分析產品。 您可以使用 Microsoft R Server 或 SQL Server 2016 在大型資料集上探索和建置預測模型。 來自開放原始碼社群及 Microsoft 的許多其他工具也會包含在內，以及範例程式碼和筆記本。 下表列舉並比較 Windows 和 Linux 版本的資料科學虛擬機器所包含的主要元件。
 
 
 | **工具**                                                           | **Windows 版本** | **Linux 版本** |
 | :------------------------------------------------------------------ |:-------------------:|:------------------:|
 | 已預先安裝熱門套件的 [Microsoft R Open](https://mran.microsoft.com/open/)   |Y                      | Y             |
 | [Microsoft R Server](https://msdn.microsoft.com/microsoft-r/) Developer Edition 包括： <br />  &nbsp;&nbsp;&nbsp;&nbsp;* [ScaleR](https://msdn.microsoft.com/microsoft-r/scaler-getting-started) 平行和分散式高效能 R 架構<br />  &nbsp;&nbsp;&nbsp;&nbsp;* [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml-introduction) - Microsoft 的最新 ML 演算法 <br />  &nbsp;&nbsp;&nbsp;&nbsp;* [R 實作](https://msdn.microsoft.com/microsoft-r/operationalize/about)                                            |Y                      | Y <br/> (MicrosoftML 尚無法使用)|
+| [Microsoft Office](https://products.office.com/en-us/business/office-365-proplus-business-software) Pro-Plus 含共用啟用 - Excel、Word 和 PowerPoint   |Y                      |N              |
 | 已預先安裝熱門套件的 [Anaconda Python](https://www.continuum.io/) 2.7、3.5    |Y                      |Y              |
 | 已預先安裝 Julia 語言熱門套件的 [JuliaPro](https://juliacomputing.com/products/juliapro.html)                         |Y                      |Y              |
 | 關聯式資料庫                                                            | [SQL Server 2016 SP1](https://www.microsoft.com/sql-server/sql-server-2016) <br/> Developer Edition| [PostgreSQL](https://www.postgresql.org/) |
@@ -72,7 +73,7 @@ ms.lasthandoff: 04/15/2017
 |     &nbsp;&nbsp;&nbsp;&nbsp;* SparkR     | N | Y |
 | JupyterHub (多使用者筆記型電腦伺服器)| N | Y |
 | **開發工具、IDE 和程式碼編輯器**| | |
-| &nbsp;&nbsp;&nbsp;&nbsp;* [Visual Studio 2015 (Community Edition)](https://www.visualstudio.com/community/) >以及 Git Plugin、Azure HDInsight (Hadoop)、Data Lake、SQL Server Data Tools、[Node.js](https://github.com/Microsoft/nodejstools)、[Python](http://aka.ms/ptvs) 和 [R Tools for Visual Studio (RTVS)](http://microsoft.github.io/RTVS-docs/) | Y | N |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Visual Studio 2017 (Community Edition)](https://www.visualstudio.com/community/) >含 Git Plugin、Azure HDInsight (Hadoop)、Data Lake、SQL Server Data Tools、[Node.js](https://github.com/Microsoft/nodejstools)、[Python](http://aka.ms/ptvs) 和 [Visual Studio R 工具 (RTVS)](http://microsoft.github.io/RTVS-docs/) | Y | N |
 | &nbsp;&nbsp;&nbsp;&nbsp;* [Visual Studio Code](https://code.visualstudio.com/) | Y | Y |
 | &nbsp;&nbsp;&nbsp;&nbsp;* [RStudio Desktop](https://www.rstudio.com/products/rstudio/#Desktop) | Y | Y |
 | &nbsp;&nbsp;&nbsp;&nbsp;* [RStudio Server](https://www.rstudio.com/products/rstudio/#Server) | N | Y |
@@ -103,7 +104,7 @@ ms.lasthandoff: 04/15/2017
 | &nbsp;&nbsp;&nbsp;&nbsp;* [Rattle](http://rattle.togaware.com/) | Y | Y |
 | &nbsp;&nbsp;&nbsp;&nbsp;* [LightGBM](https://github.com/Microsoft/LightGBM) | N | Y (僅限 Ubuntu) |
 | &nbsp;&nbsp;&nbsp;&nbsp;* [H2O](https://www.h2o.ai/h2o/) | N | Y (僅限 Ubuntu) |
-| **GPU 型 Deep Learning Tools** |使用 [Deep Learning Toolkit for DSVM](http://aka.ms/dsvm/deeplearning) |僅限 Ubuntu Edition|
+| **GPU 型 Deep Learning Tools** |Windows Server 2016 版  |Ubuntu 版 |
 | &nbsp;&nbsp;&nbsp;&nbsp;* [Microsoft 辨識工具組 (CNTK)](http://cntk.ai) | Y | Y |
 | &nbsp;&nbsp;&nbsp;&nbsp;* [Tensorflow](https://www.tensorflow.org/) | Y | Y |
 | &nbsp;&nbsp;&nbsp;&nbsp;* [MXNet](http://mxnet.io/) | Y | Y|
@@ -120,14 +121,25 @@ ms.lasthandoff: 04/15/2017
 
 
 ## <a name="how-to-get-started-with-the-windows-data-science-vm"></a>如何開始使用 Windows 資料科學 VM
-* 在 Windows 上建立 VM 的執行個體，方法是瀏覽至[本頁面](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/)並選取綠色 [建立虛擬機器] 按鈕。
+* 瀏覽至
+  * [Windows Server 2016 型 DSVM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-ads.windows-data-science-vm)
+  
+  或 
+  * [Windows Server 2012 型 DSVM](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/)，以建立所需的 Windows DSVM 版本執行個體 
+* 按一下 [立即取得] 按鈕。
 * 使用您建立 VM 時指定的認證，從遠端桌面登入 VM。
-* 若要探索和啟動可用的工具，按一下 [啟動] 功能表。
+* 若要探索和啟動可用的工具，請按一下 [啟動] 功能表。
 
 ## <a name="get-started-with-the-linux-data-science-vm"></a>開始使用 Linux 資料科學 VM
-* 在 Linux 上建立 VM 的執行個體
-  * 對於 OpenLogic CentOS 型版本，瀏覽至[此頁面](http://aka.ms/dsvm/centos)，並選取 [立即取得] 按鈕。
-  * 對於 Ubuntu 版本，瀏覽至[此頁面](http://aka.ms/dsvm/ubuntu)，並選取 [立即取得] 按鈕。
+* 瀏覽至 
+  * [Ubuntu 型 DSVM](http://aka.ms/dsvm/ubuntu)
+
+  或
+
+  * [OpenLogic CentOS 型 DSVM](http://aka.ms/dsvm/centos)，以建立所需的 Linux DSVM 版本執行個體
+
+  
+* 按一下 [立即取得] 按鈕。
 * 使用您建立 VM 時指定的認證，從 SSH 用戶端登入 VM，例如 Putty 或 SSH 命令。
 * 在殼層提示字元中，輸入 dsvm-more-info。
 * 對於圖形化桌面，在[這裡](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)針對您的用戶端平台下載 X2Go 用戶端，並且遵循 Linux 資料科學 VM 文件[佈建 Linux 資料科學虛擬機器](machine-learning-data-science-linux-dsvm-intro.md#installing-and-configuring-x2go-client)中的指示。

@@ -14,12 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/02/2017
 ms.author: msfussell
-ms.translationtype: Human Translation
-ms.sourcegitcommit: b1d56fcfb472e5eae9d2f01a820f72f8eab9ef08
-ms.openlocfilehash: c90079542a91720cb60010dfd5be2cf76802cc70
+ms.translationtype: HT
+ms.sourcegitcommit: a678700884b612cad6281eb8f3b74ce63a0ebb69
+ms.openlocfilehash: 53c142217c67465d29fa413f4edb4f96fcb4c6cc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="why-a-microservices-approach-to-building-applications"></a>為何要用微服務方式建置應用程式？
@@ -46,7 +45,7 @@ ms.lasthandoff: 07/06/2017
 
 微服務可解決這些缺點，更密切配合上述的商務需求，但它們本身也都有優缺點。 微服務的優點是通常各自封裝較簡單的商務功能，您可以獨立地相應增加或減少、測試、部署和管理。 微服務方法的一個重要優點是團隊較具商務案例的導向，而不是分層方法所建議的技術導向。 實際上，較小的團隊會採用他們選擇的任何技術，根據客戶案例來開發微服務。 
 
-換句話說，組織不需要為了維護單體式應用程式而將技術標準化。 擁有服務的個別團隊可以根據團隊的專業知識，或什麼是最適合所要解決的問題，各自發揮所長。 實際上，最好有一組建議的技術，例如特定的 NoSQL 存放區或 Web 應用程式架構。
+換句話說，組織不需要為了維護微服務應用程式而將技術標準化。 擁有服務的個別團隊可以根據團隊的專業知識，或什麼是最適合所要解決的問題，各自發揮所長。 實際上，最好有一組建議的技術，例如特定的 NoSQL 存放區或 Web 應用程式架構。
 
 微服務的缺點包括需要管理越來越多的個別實體，以及處理更複雜的部署和版本控制。 微服務之間的網路流量會增加，而相對應的網路延遲也會增加。 經過大量論述之後，可知細微的服務是效能夢魘的解決良方。 如果沒有工具協助檢視這些相依性，很難「看見」整個系統。 
 

@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/16/2017
+ms.date: 07/12/2017
 ms.author: magoedte
-ms.translationtype: Human Translation
-ms.sourcegitcommit: ff2fb126905d2a68c5888514262212010e108a3d
-ms.openlocfilehash: 4ce302095fc36f046785ac45d1a9452de321113c
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 953bb453b0a9635627fbbb6c3913d0cd757101c7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/17/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="windows-and-linux-performance-data-sources-in-log-analytics"></a>Log Analytics 中的 Windows 和 Linux 效能資料來源
@@ -48,8 +47,8 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 
 1. 在文字方塊中輸入計數器名稱，格式為 *object(instance)\counter*。  開始輸入時，您就會看到符合的常用計數器清單。  您可以從清單中選取計數器，或自行輸入。  您也可以指定 *object\counter*，以傳回特定計數器的所有執行個體。  
 
-    從具名執行個體收集 SQL Server 效能計數器時，所有具名執行個體的計數器會以 MSSQL$ 作為開頭，後面接著執行個體的名稱。  例如，若要從具名 SQL 執行個體 INST2 的資料庫效能物件收集所有資料庫的「記錄快取命中率」計數器，請指定 `MSSQL$INST2:Databases(*)\Log Cache Hit Ratio`。 
- 
+    從具名執行個體收集 SQL Server 效能計數器時，所有具名執行個體的計數器會以 MSSQL$ 作為開頭，後面接著執行個體的名稱。  例如，若要從具名 SQL 執行個體 INST2 的資料庫效能物件收集所有資料庫的「記錄快取命中率」計數器，請指定 `MSSQL$INST2:Databases(*)\Log Cache Hit Ratio`。
+
 2. 按一下 **+** 或按 **Enter**，將計數器新增至清單。
 3. 新增計數器時，它會以 10 秒作為 [取樣間隔時間] 的預設值。  如果您想要降低所收集之效能資料的儲存需求，可以將此值變更為最多 1800 秒 (30 分鐘)。
 4. 加入所要的計數器後，請按一下畫面頂端的 [儲存]  按鈕以儲存設定。
@@ -67,7 +66,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 5. 加入所要的計數器後，請按一下畫面頂端的 [儲存]  按鈕以儲存設定。
 
 #### <a name="configure-linux-performance-counters-in-configuration-file"></a>在組態檔中設定 Linux 效能計數器
-除了使用 OMS 入口網站設定 Linux 效能計數器，您還可以選擇在 Linux 代理程式上編輯組態檔。  要收集的效能計量是由 **/etc/opt/microsoft/omsagent/\<工作區識別碼\>/conf/omsagent.conf** 中的組態所控制。 
+除了使用 OMS 入口網站設定 Linux 效能計數器，您還可以選擇在 Linux 代理程式上編輯組態檔。  要收集的效能計量是由 **/etc/opt/microsoft/omsagent/\<工作區識別碼\>/conf/omsagent.conf** 中的組態所控制。
 
 要收集之效能計量的每個物件或類別都應該當成單一 `<source>` 元素定義於組態檔中。 語法遵循下面的模式。
 
@@ -90,7 +89,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | interval | 物件計數器的收集頻率。 |
 
 
-下表列出您可以在組態檔中指定的物件和計數器。  還有其他計數器適用於特定應用程式，如[在 Log Analytics 中收集 Linux 應用程式的效能計數器](log-analytics-data-sources-linux-applications.md)中所述。 
+下表列出您可以在組態檔中指定的物件和計數器。  還有其他計數器適用於特定應用程式，如[在 Log Analytics 中收集 Linux 應用程式的效能計數器](log-analytics-data-sources-linux-applications.md)中所述。
 
 | 物件名稱 | 計數器名稱 |
 |:--|:--|
@@ -158,7 +157,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
       counter_name_regex ".*"
       interval 5m
     </source>
-    
+
     <source>
       type oms_omi
       object_name "Logical Disk"
@@ -166,7 +165,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
       counter_name_regex ".*"
       interval 5m
     </source>
-    
+
     <source>
       type oms_omi
       object_name "Processor"
@@ -174,7 +173,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
       counter_name_regex ".*"
       interval 30s
     </source>
-    
+
     <source>
       type oms_omi
       object_name "Memory"
@@ -222,6 +221,23 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | Type=Perf CounterName="% Processor Time" InstanceName="_Total"  (Computer="MyComputer") &#124; measure min(CounterValue), avg(CounterValue), percentile75(CounterValue), max(CounterValue) by Computer Interval 1HOUR |特定電腦每小時平均、最小、最大和 75 個百分位數的 CPU 使用量 |
 | Type=Perf ObjectName="MSSQL$INST2:Databases" InstanceName=master | 資料庫效能物件中的所有效能資料適用於來自具名 SQL Server 執行個體 INST2 的 master 資料庫。  
 
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
+
+> | 查詢 | 說明 |
+|:--- |:--- |
+| Perf |所有效能資料 |
+| Perf &#124; where Computer == "MyComputer" |來自特定電腦的所有效能資料 |
+| Perf &#124; where CounterName == "Current Disk Queue Length" |來自特定計數器的所有效能資料 |
+| Perf &#124; where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total" &#124; summarize AVGCPU = avg(Average) by Computer |所有電腦的平均 CPU 使用率 |
+| Perf &#124; where CounterName == "% Processor Time" &#124; summarize AggregatedValue = max(Max) by Computer |所有電腦的最大 CPU 使用率 |
+| Perf &#124; where ObjectName == "LogicalDisk" and CounterName == "Current Disk Queue Length" and Computer == "MyComputerName" &#124; summarize AggregatedValue = avg(Average) by InstanceName |指定電腦之所有執行個體的平均目前磁碟佇列長度 |
+| Perf &#124; where CounterName == "DiskTransfers/sec" &#124; summarize AggregatedValue = percentile(Average, 95) by Computer |所有電腦之第 95 個百分位數的 Disk Transfers/Sec |
+| Perf &#124; where CounterName == "% Processor Time" and InstanceName == "_Total" &#124; summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 1h), Computer |所有電腦每小時平均 CPU 使用率 |
+| Perf &#124; where Computer == "MyComputer" and CounterName startswith_cs "%" and InstanceName == "_Total" &#124; summarize AggregatedValue = percentile(CounterValue, 70) by bin(TimeGenerated, 1h), CounterName | 特定電腦每小時每個 % 百分比計數器的 70 個百分位數 |
+| Perf &#124; where CounterName == "% Processor Time" and InstanceName == "_Total" and Computer == "MyComputer" &#124; summarize ["min(CounterValue)"] = min(CounterValue), ["avg(CounterValue)"] = avg(CounterValue), ["percentile75(CounterValue)"] = percentile(CounterValue, 75), ["max(CounterValue)"] = max(CounterValue) by bin(TimeGenerated, 1h), Computer |特定電腦每小時平均、最小、最大和 75 個百分位數的 CPU 使用量 |
+| Perf &#124; where ObjectName == "MSSQL$INST2:Databases" and InstanceName == "master" | 資料庫效能物件中的所有效能資料適用於來自具名 SQL Server 執行個體 INST2 的 master 資料庫。  
+
 ## <a name="viewing-performance-data"></a>檢視效能資料
 在執行效能資料的記錄搜尋時，預設會顯示 [清單] 檢視。  若要以圖形形式檢視資料，請按一下 [計量]。  如需詳細的圖形檢視，請按一下計數器旁的 **+**。  
 
@@ -234,3 +250,4 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 * [從 Linux 應用程式收集效能計數器](log-analytics-data-sources-linux-applications.md)，包括 MySQL 和 Apache HTTP Server。
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。  
 * 將收集的資料匯出至 [Power BI](log-analytics-powerbi.md) 以進行其他視覺效果和分析。
+

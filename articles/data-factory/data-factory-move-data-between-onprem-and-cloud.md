@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: abnarain
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e1d44f85b36d08944351a79d7a4b39cc8de61201
-ms.openlocfilehash: 13044cc92a1577185b2aebc3a0ff8be0ec5eca60
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: ca8c94cfe6a76ba169b2ec1f7ab3f49caf562289
 ms.contentlocale: zh-tw
-ms.lasthandoff: 11/17/2016
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="move-data-between-on-premises-sources-and-the-cloud-with-data-management-gateway"></a>利用資料管理閘道在內部部署來源和雲端之間移動資料
@@ -36,6 +36,14 @@ ms.lasthandoff: 11/17/2016
 以下逐步解說將示範如何使用將資料從內部部署 **SQL Server** 資料庫移至 Azure Blob 儲存體的管線來建立 Data Factory。 在逐步解說中，您會在電腦上安裝及設定資料管理閘道。
 
 ## <a name="walkthrough-copy-on-premises-data-to-cloud"></a>逐步解說︰將內部部署資料複製到雲端
+
+## <a name="prerequisites-for-the-tutorial"></a>教學課程的必要條件
+開始進行本逐步解說之前，您必須具備下列必要條件：
+
+* **Azure 訂用帳戶**。  如果您沒有訂用帳戶，則只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [免費試用](http://azure.microsoft.com/pricing/free-trial/) 一文。
+* **Azure 儲存體帳戶**。 在本教學課程中，您會使用 Blob 儲存體作為**目的地/接收**資料存放區。 如果您沒有 Azure 儲存體帳戶，請參閱 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account) 一文以取得建立步驟。
+* **SQL Server**。 在本教學課程中，您會使用內部部署 SQL 資料庫作為**來源**資料存放區。 
+
 ## <a name="create-data-factory"></a>建立 Data Factory
 在此步驟中，您將使用 Azure 入口網站來建立名為 **ADFTutorialOnPremDF**的 Azure Data Factory 執行個體。
 
@@ -263,7 +271,7 @@ ms.lasthandoff: 11/17/2016
    * **folderPath** 設定為 **adftutorial/outfromonpremdf**，其中 outfromonpremdf 是 adftutorial 容器中的資料夾。 建立 **adftutorial** 容器 (如果尚未存在)。
    * **availability** 設定為**每小時** (**frequency** 設為 **hour**，**interval** 設為 **1**)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 
-   如果您沒有指定**輸出資料表**的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt)。
+   如果您沒有指定**輸出資料表**的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt)。
 
    若要根據 **SliceStart** 時間動態設定 **folderPath** 和 **fileName**，請使用 partitionedBy 屬性。 在下列範例中，folderPath 使用 SliceStart (所處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。 例如，如果配量產生於 2014-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2014/10/20，而 fileName 設定為 08.csv。
 
@@ -342,7 +350,7 @@ ms.lasthandoff: 11/17/2016
 
    * 在 activities 區段中，只會有 **type** 設定為 **Copy** 的活動。
    * 活動的**輸入**設定為 **EmpOnPremSQLTable**，活動的**輸出**則設定為 **OutputBlobTable**。
-   * 在 **typeProperties** 區段中，**來源類型**指定為 **SqlSource**，**接收類型**指定為 **BlobSink **。
+   * 在 **typeProperties** 區段中，**來源類型**指定為 **SqlSource**，**接收類型**指定為 **BlobSink**。
    * **SqlSource** 的 **sqlReaderQuery** 屬性指定為 SQL 查詢 `select * from emp`。
 
    開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2014-10-14T16:32:41Z。 **end** 時間為選擇性項目，但在本教學課程中會用到。

@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB Python API、SDK 和資源 | Microsoft Docs"
-description: "了解所有 Python API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Python SDK 每個版本之間的變更。"
+description: "了解所有 Python API 和 SDK 相關資訊，包括 發行日期、停用日期及 Azure Cosmos DB Python SDK 每個版本之間所做的變更。"
 services: cosmos-db
 documentationcenter: python
 author: rnagpal
@@ -16,13 +16,13 @@ ms.date: 05/24/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 0cbc98be427c20e98045032817b2db51981b0529
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 43eaa0ae7ab5c3ea08d09c1fdda0033ab0fd2658
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/25/2017
 
 ---
-# <a name="documentdb-python-sdk-release-notes-and-resources"></a>DocumentDB Python SDK︰版本資訊與資源
+# <a name="azure-cosmos-db-python-sdk-release-notes-and-resources"></a>Azure Cosmos DB Python SDK︰版本資訊與資源
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-sdk-dotnet.md)
 > * [.NET 變更摘要](documentdb-sdk-dotnet-changefeed.md)
@@ -59,7 +59,7 @@ ms.lasthandoff: 07/13/2017
 
 ### <a name="a-name210210"></a><a name="2.1.0"/>2.1.0
 * 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。
-* 新增針對 DocumentDB 模擬器執行時停用 SSL 驗證的選項。
+* 新增針對 Cosmos DB 模擬器執行時停用 SSL 驗證的選項。
 * 移除相依要求模組必須為 2.10.0 的限制。
 * 已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
 * 在預存程序執行期間，加入支援指令碼記錄功能。
@@ -75,7 +75,7 @@ ms.lasthandoff: 07/13/2017
 * 新增對已分割集合的 TOP/ORDERBY 查詢支援。
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
-* 新加入已節流處理要求的重試原則支援。 (已節流處理的要求會收到要求率太大的例外狀況，即錯誤碼 429。)根據預設，發生錯誤碼 429 時，DocumentDB 會遵守回應標頭中的 retryAfter 時間，並針對每個要求重試九次。 如果您想要忽略伺服器在多次重試之間傳回的 retryAfter 時間，現在可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中設定固定的重試間隔時間。 DocumentDB 現在會針對每個節流處理中的要求等候最多 30 秒 (不論重試計數為何)，並傳回包含錯誤碼 429 的回應。 您也可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中覆寫該時間。
+* 新加入已節流處理要求的重試原則支援。 (已節流處理的要求會收到要求率太大的例外狀況，即錯誤碼 429。)根據預設，發生錯誤碼 429 時，Azure Cosmos DB 會遵守回應標頭中的 retryAfter 時間，並針對每個要求重試九次。 如果您想要忽略伺服器在多次重試之間傳回的 retryAfter 時間，現在可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中設定固定的重試間隔時間。 Azure Cosmos DB 現在會針對每個要進行節流處理的要求等候最多 30 秒 (不論重試計數為何)，並傳回包含錯誤碼 429 的回應。 您也可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中覆寫該時間。
 * Cosmos DB 現在會傳回 x-ms-throttle-retry-count 和 x-ms-throttle-retry-wait-time-ms 做為每個要求的回應標頭，其代表節流重試計數和要求歷經多次重試的累積時間。
 * 移除 RetryPolicy 類別和 document_client 類別上公開的對應屬性 (retry_policy)，改為引進公開 ConnectionPolicy 類別上的 RetryOptions 屬性，它可以用來覆寫某些預設的重試選項。
 

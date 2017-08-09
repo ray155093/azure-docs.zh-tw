@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/03/2017
+ms.date: 07/31/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
-ms.openlocfilehash: 2bfd7d8a4c06b1b40a9852d21908e7c1c785b91d
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: f5fe6db423f1f2faeaf51e25be9b8f5b551e2a16
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="accessing-diagnostic-logs-for-azure-data-lake-analytics"></a>存取 Azure Data Lake Analytics 的診斷記錄
@@ -51,9 +50,9 @@ ms.lasthandoff: 06/20/2017
      * 選取 [串流至事件中樞] 可將記錄資料串流到 Azure 事件中樞。 如果您有即時分析內送記錄的下游處理管線，請使用此選項。 如果您選取此選項，必須提供要使用的 Azure 事件中樞詳細資料。
 
      * 選取 [傳送至 Log Analytics] 可將資料傳送至 Log Analytics 服務。 如果您想要使用 Log Analytics 來收集和分析記錄，請使用此選項。
-   * 指定要取得稽核記錄、要求記錄或兩者。  要求記錄會擷取每個 API 要求，而稽核記錄則會記錄該 API 要求觸發的所有作業。
+   * 指定要取得稽核記錄、要求記錄或兩者。  要求記錄會擷取每個應用程式開發介面 (API) 的要求。 稽核記錄則會記錄該 API 要求觸發的所有作業。
 
-   * 對於 [封存至儲存體帳戶]，指定資料將保留的天數。
+   * 針對 [封存至儲存體帳戶]，請指定要保留資料的天數。
 
    * 按一下 [檔案] 。
 
@@ -75,7 +74,7 @@ ms.lasthandoff: 06/20/2017
     ![記錄項目](./media/data-lake-analytics-diagnostic-logs/diagnostic-log-entries.png)
 
    * 要求記錄能擷取所有以 Data Lake Analytics 帳戶提出的 API 要求。
-   * 稽核記錄與要求記錄相似，不過能針對以 Data Lake Analytics 帳戶執行之作業提供更詳細的明細。 例如，要求記錄中的一個上傳 API 呼叫可能會致使其稽核記錄出現多個「附加」作業。
+   * 稽核記錄與要求記錄相似，不過能針對作業提供更詳細的明細。 例如，要求記錄中的一個上傳 API 呼叫可能會致使其稽核記錄出現多個「附加」作業。
 
 3. 針對記錄項目按一下 [下載]  連結來下載該記錄。
 
@@ -87,7 +86,7 @@ ms.lasthandoff: 06/20/2017
 
    * 容器 **insights-logs-audit** 包含稽核記錄檔。
    * 容器 **insights-logs-requests** 包含要求記錄檔。
-2. 在這些容器中，紀錄會儲存在下列結構底下。
+2. 在這些容器中，記錄會儲存在下列結構底下：
 
         resourceId=/
           SUBSCRIPTIONS/
@@ -235,7 +234,7 @@ ms.lasthandoff: 06/20/2017
 | 平行處理原則 |String |在提交期間為此作業要求的 Data Lake Analytics 單位數目 |
 
 > [!NOTE]
-> **SubmitTime**、**StartTime**、**EndTime** 和 **Parallelism** 會提供作業的相關資訊，並且只會在該作業啟動或完成時才包含值。 例如，**SubmitTime** 只會在 **operationName** 具有 **JobSubmitted** 值之後包含值。
+> **SubmitTime**、**StartTime**、**EndTime** 和 **Parallelism** 提供作業的相關資訊。 這些項目只會在作業啟動或完成時才包含值。 例如，**SubmitTime** 只會在 **operationName** 具有 **JobSubmitted** 值之後包含值。
 
 ## <a name="process-the-log-data"></a>處理記錄資料
 

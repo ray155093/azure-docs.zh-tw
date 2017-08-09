@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 15dc58a1a607ef40c52dcd62ee9ed0df273fc011
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: f4746e0dd249e417b8077a9bc733d2886daafdf2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
 
@@ -227,7 +226,7 @@ Azure Data Factory 支援下列檔案格式類型：
 
 **JsonFormat** 類型的輸入資料集定義如下：(僅含相關元素的局部定義)。 具體而言：
 
-- `structure` 區段定義自訂資料行名稱，以及轉換成表格式資料時對應的資料類型。 除非您需要對應資料行，否則這個區段是**選擇性**。 如需詳細資訊，請參閱[指定矩形資料集的結構定義](#specifying-structure-definition-for-rectangular-datasets)一節。
+- `structure` 區段定義自訂資料行名稱，以及轉換成表格式資料時對應的資料類型。 除非您需要對應資料行，否則這個區段是**選擇性**。 如需詳細資訊，請參閱[將來源資料集資料行對應至目的地資料集資料行](data-factory-map-columns.md)。
 - `jsonPathDefinition` 指定每個資料行的 JSON 路徑，以指出從哪裡擷取資料。 若要從陣列複製資料，您可以使用 **array[x].property** 從第 x 個物件擷取指定屬性的值，也可以使用 **array[*].property** 從包含這類屬性的物件中尋找此值。
 
 ```json
@@ -300,7 +299,7 @@ Azure Data Factory 支援下列檔案格式類型：
 
 **JsonFormat** 類型的輸入資料集定義如下：(僅含相關元素的局部定義)。 具體而言：
 
-- `structure` 區段定義自訂資料行名稱，以及轉換成表格式資料時對應的資料類型。 除非您需要對應資料行，否則這個區段是**選擇性**。 如需詳細資訊，請參閱[指定矩形資料集的結構定義](#specifying-structure-definition-for-rectangular-datasets)一節。
+- `structure` 區段定義自訂資料行名稱，以及轉換成表格式資料時對應的資料類型。 除非您需要對應資料行，否則這個區段是**選擇性**。 如需詳細資訊，請參閱[將來源資料集資料行對應至目的地資料集資料行](data-factory-map-columns.md)。
 - `jsonNodeReference` 表示逐一查看**陣列** orderlines 下相同模式的物件並擷取資料。
 - `jsonPathDefinition` 指定每個資料行的 JSON 路徑，以指出從哪裡擷取資料。 在此範例中，"ordernumber"、"orderdate" 和 "city" 位於根物件下，JSON 路徑開頭為 "$."，而 "order_pd" 和 "order_price" 以衍生自陣列元素的路徑定義，不含 "$."。
 

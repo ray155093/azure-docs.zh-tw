@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: cherylmc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a1ba750d2be1969bfcd4085a24b0469f72a357ad
-ms.openlocfilehash: bb61222ae01d1613ec27bb016ff1f94bcdaf8935
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 858ce2c748c3383afb6d66ed7b66a5f019902594
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="generate-and-export-certificates-for-point-to-site-connections-using-makecert"></a>使用 MakeCert 來產生並匯出點對站連線的憑證
@@ -55,7 +54,7 @@ ms.lasthandoff: 06/20/2017
   ```cmd
   cd C:\Program Files (x86)\Windows Kits\10\bin\x64
   ```
-3. 在您電腦上的 [個人] 憑證存放區中建立並安裝憑證。 下列範例會建立對應的 .cer 檔案，您在設定 P2S 時會將此檔案上傳至 Azure。 將 'P2SRootCert' 和 'P2SRootCert.cer' 取代為您想使用的憑證名稱。 憑證會位於您的 '[憑證 - 目前的使用者]\[個人]\[憑證]' 中。
+3. 在您電腦上的 [個人] 憑證存放區中建立並安裝憑證。 下列範例會建立對應的 .cer 檔案，您在設定 P2S 時會將此檔案上傳至 Azure。 將 'P2SRootCert' 和 'P2SRootCert.cer' 取代為您想使用的憑證名稱。 憑證位於您的 '[憑證 - 目前的使用者]\[個人]\[憑證]' 中。
 
   ```cmd
   makecert -sky exchange -r -n "CN=P2SRootCert" -pe -a sha1 -len 2048 -ss My

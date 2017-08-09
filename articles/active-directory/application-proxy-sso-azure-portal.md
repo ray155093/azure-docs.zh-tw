@@ -5,45 +5,43 @@ services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: asteen
 ms.assetid: d94ac3f4-cd33-4c51-9d19-544a528637d4
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 07/20/2017
 ms.author: kgremban
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: b0454ad51a2d0edecb6f7e7748ec3b74eeefa1da
+ms.reviewer: harshja
+ms.custom: it-pro
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 9ddc0c1bd5f2cbb24f6761cfd041b820ee6464b8
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 
+# <a name="password-vaulting-for-single-sign-on-with-application-proxy"></a>使用應用程式 Proxy 進行單一登入的密碼保存庫
 
-# <a name="provide-single-sign-on-with-azure-ad-application-proxy---public-preview"></a>使用 Azure AD 應用程式 Proxy 提供單一登入 - 公開預覽
+Azure Active Directory 應用程式 Proxy 可發佈內部部署應用程式，讓遠端員工也可以安全地存取它們，進而幫助您改進生產力。 在 Azure 入口網站中，您也可以設定這些應用程式的單一登入 (SSO)。 您的使用者只需要向 Azure AD 驗證，便可以存取您的企業應用程式，而不必再次登入。
 
-Azure Active Directory 應用程式 Proxy 可發佈內部部署應用程式，讓遠端員工也可以安全地存取它們，進而幫助您改進生產力。 在 Azure 入口網站中，您也可以設定這些應用程式的單一登入 (SSO)。 現在，您的使用者只需要向 Azure AD 驗證，便可以存取您的企業應用程式，而不必再次登入。
+應用程式 Proxy 支援數個[單一登入模式](application-proxy-sso-overview.md)。 密碼型登入適用於使用使用者名稱/密碼組合進行驗證的應用程式。 當您設定應用程式的密碼型登入您時，您的使用者必須登入一次內部部署應用程式。 之後，Azure Active Directory 會儲存登入資訊，並且會在您的使用者從遠端存取時，自動將登入資訊提供給應用程式。 
 
-在本文中，我們使用密碼型應用程式做為範例，以示範密碼保存庫如何提供簡單的 SSO 體驗。 
-
-您應該已經使用應用程式 Proxy 發行並測試您的應用程式。 如果還沒，請依照[使用 Azure AD 應用程式 Proxy 發佈應用程式 - 公開預覽](application-proxy-publish-azure-portal.md)的步驟操作，然後回到這裡。 
-
-或者，如果您是應用程式 Proxy 的新手，可至[如何為內部部署應用程式提供安全的遠端存取](active-directory-application-proxy-get-started.md)深入了解這個功能。
+您應該已經使用應用程式 Proxy 發行並測試您的應用程式。 如果還沒，請依照[使用 Azure AD 應用程式 Proxy 發佈應用程式](application-proxy-publish-azure-portal.md)的步驟操作，然後回到這裡。 
 
 ## <a name="set-up-password-vaulting-for-your-application"></a>為應用程式設定密碼儲存庫存
 
 1. 以系統管理員身分登入 [Azure 入口網站](https://portal.azure.com)。
 2. 選取 [Azure Active Directory]  >  [企業應用程式]  >  [所有應用程式]。
-3. 從清單中選取您要設定 SSO 的應用程式。 如果您有許多應用程式，就可以使用搜尋方塊來篩選出正確的應用程式。  
-4. 在 [管理] 區段中，按一下 [單一登入]。
+3. 從清單中選取您要設定 SSO 的應用程式。  
+4. 選取 [單一登入]。
 
    ![選取單一登入](./media/application-proxy-sso-azure-portal/select-sso.png)
 
 5. 在 SSO 模式中，選擇 [密碼型登入]。
-6. 在登入 URL 輸入頁面 URL，使用者將在該頁面輸入其使用者名稱和密碼以登入您的應用程式。 這應該是您透過應用程式 Proxy 發佈應用程式時建立的外部 URL。 
+6. 在登入 URL 輸入頁面 URL，使用者將在該頁面輸入其使用者名稱和密碼，以登入公司網路外部的應用程式。 這可能是您透過應用程式 Proxy 發佈應用程式時建立的外部 URL。 
 
    ![選擇密碼型登入並輸入您的 URL](./media/application-proxy-sso-azure-portal/password-sso.png)
 
@@ -55,9 +53,9 @@ Azure Active Directory 應用程式 Proxy 可發佈內部部署應用程式，�
 
 ## <a name="test-your-app"></a>測試應用程式
 
-移至[MyApps 網站](https://myapps.microsoft.com)，選取您剛才設定的應用程式。 使用該應用程式的專用認證登入 (或您設定有存取權之測試帳戶的認證)。 一旦您成功登入，應該能夠離開應用程式後再回到應用程式，不需要再次輸入您的認證。 
+移至您設定用於遠端存取應用程式的外部 URL。 使用該應用程式的認證登入 (或您設定有存取權之測試帳戶的認證)。 一旦您成功登入，應該能夠離開應用程式後再回到應用程式，不需要再次輸入您的認證。 
 
 ## <a name="next-steps"></a>後續步驟
 
-閱讀其他實作[使用應用程式 Proxy 進行單一登入](active-directory-application-proxy-sso-using-kcd.md)的做法
-
+- 閱讀其他實作[使用應用程式 Proxy 進行單一登入](application-proxy-sso-overview.md)的做法
+- 深入了解[使用 Azure AD 應用程式 Proxy 遠端存取應用程式的安全性考量](application-proxy-security-considerations.md)

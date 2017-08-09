@@ -5,21 +5,21 @@ services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: harshja
 ms.assetid: c7186f98-dd80-4910-92a4-a7b8ff6272b9
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/02/2017
+ms.date: 07/02/2017
 ms.author: kgremban
-ms.custom: it-pro
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
-ms.openlocfilehash: dc49397f76f982cc7d35bbe3e073cb828a4965c6
+ms.reviewer: harshja
+ms.custom: it-pro; oldportal
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: ea97fdc8d146ed524a932018b572ceda0982738b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 
@@ -76,13 +76,13 @@ ms.lasthandoff: 06/09/2017
 
    * 提供您的 Azure AD 全域管理員認證。 您的全域管理員租用戶可能與您的 Microsoft Azure 認證不同。
    * 請確定註冊連接器的系統管理員與您啟用應用程式 Proxy 服務的位置在相同的目錄中。 例如，如果租用戶網域為 contoso.com，則系統管理員應該是 admin@contoso.com ，或該網域上的其他別名。
-   * 如果 [IE 增強式安全性設定] 在您要安裝連接器的伺服器上設定為 [開啟]，可能會封鎖註冊畫面。 請依照錯誤訊息中的指示允許存取。 請確定已停用 [Internet Explorer 增強式安全性]。
+   * 如果 [IE 增強式安全性設定] 在伺服器上設定為 [開啟]，可能會封鎖註冊畫面。 若要允許存取，請依照錯誤訊息中的指示。 請確定已停用 [Internet Explorer 增強式安全性]。
    * 如果連接器註冊不成功，請參閱 [針對應用程式 Proxy 進行疑難排解](active-directory-application-proxy-troubleshoot.md)。  
 4. 安裝完成後，會在您的伺服器中新增兩個新的服務：
 
    * **Microsoft AAD 應用程式 Proxy 連接器** 可啟用連線
 
-     * **Microsoft AAD 應用程式 Proxy 連接器更新程式** 是自動更新服務，可定期檢查連接器新版本，並在需要時更新連接器。
+     * **Microsoft AAD 應用程式 Proxy 連接器更新程式**是自動更新服務。 更新程式會檢查連接器的新版本，並且視需要更新連接器。
 
      ![應用程式 Proxy 連接器服務 - 螢幕擷取畫面](./media/active-directory-application-proxy-enable/app_proxy_services.png)
 5. 按一下安裝視窗中的 [完成]  。

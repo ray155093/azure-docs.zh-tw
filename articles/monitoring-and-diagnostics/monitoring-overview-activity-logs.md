@@ -12,23 +12,23 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/02/2017
+ms.date: 07/20/2017
 ms.author: johnkem
 ms.translationtype: HT
-ms.sourcegitcommit: cddb80997d29267db6873373e0a8609d54dd1576
-ms.openlocfilehash: d0e436e2392a532cec813e0a8c5ab15c9ca35cf1
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 522960b63048d02140ca9c8eca1f30e6217ec888
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/18/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="overview-of-the-azure-activity-log"></a>Azure 活動記錄檔概觀
-**Azure 活動記錄檔** (Activity Log) 能為您提供訂用帳戶中的資源所執行之作業的深入解析。 活動記錄檔之前叫做「稽核記錄」或「作業記錄」，因為它會報告訂用帳戶中控制層面的事件。 您可以使用活動記錄檔來判斷訂用帳戶中的資源上任何寫入作業 (PUT、POST、DELETE) 的「內容、對象和時間」。 您也可以了解作業的狀態和其他相關屬性。 活動記錄不包含讀取 (GET) 作業，或是使用傳統/"RDFE" 模型之資源的作業。
+透過 **Azure 活動記錄**，您可深入了解 Azure 中發生的訂用帳戶層級事件。 所涵蓋的資料範圍從 Azure Resource Manager 作業資料到服務健康情況事件的更新。 活動記錄之前稱為「稽核記錄」或「作業記錄」，因為系統管理類別會報告訂用帳戶中控制層面的事件。 您可以使用活動記錄檔來判斷訂用帳戶中的資源上任何寫入作業 (PUT、POST、DELETE) 的「內容、對象和時間」。 您也可以了解作業的狀態和其他相關屬性。 活動記錄不包含讀取 (GET) 作業，或是使用傳統/"RDFE" 模型之資源的作業。
 
 ![活動記錄與其他類型的記錄 ](./media/monitoring-overview-activity-logs/Activity_Log_vs_other_logs_v5.png)
 
 圖 1：活動記錄與其他類型的記錄
 
-活動記錄不同於[診斷記錄](monitoring-overview-of-diagnostic-logs.md)。 活動記錄會提供有關外部資源作業的資料。 診斷記錄是由資源所發出，會提供該資源作業的相關資訊。
+活動記錄不同於[診斷記錄](monitoring-overview-of-diagnostic-logs.md)。 活動記錄會提供有關外部資源作業的資料 (控制層面)。 診斷記錄是由資源所發出，會提供該資源作業的相關資訊 (資料層面)。
 
 您可以使用 Azure 入口網站、CLI、PowerShell Cmdlet、Azure 監視器 REST API 從活動記錄檔擷取事件。
 
@@ -42,6 +42,15 @@ ms.lasthandoff: 07/18/2017
 > [!VIDEO https://channel9.msdn.com/Blogs/Seth-Juarez/Logs-John-Kemnetz/player]
 > 
 >
+
+## <a name="categories-in-the-activity-log"></a>活動記錄中的類別
+活動記錄包含數個資料類別。 如需這些類別結構描述的完整詳細資料，[請參閱這篇文章](monitoring-activity-log-schema.md)。 其中包含：
+* **系統管理** - 透過 Resource Manager 執行的所有建立、更新、刪除和動作作業皆記錄在此類別中。 您可能會在此類別中看到的事件類型範例包括「建立虛擬機器」和「刪除網路安全性群組」。使用者或應用程式使用 Resource Manager 所執行的每個動作，都會成為特定資源類型上的作業模型。 如果作業類型為「寫入」、「刪除」或「動作」，則該作業的啟動及成功或失敗記錄皆會記錄在「系統管理」類別。 「系統管理」類別也包含訂用帳戶中角色型存取控制的所有變更。
+* **服務健康情況** - 所有在 Azure 中發生的服務健康情況事件皆記錄在此類別中。 您可能會在此類別中看到的事件類型範例為「美國東部的 SQL Azure 發生停機事件」。 服務健康情況事件有五個種類：必要動作、協助復原、事件、維護、資訊或安全性，這些情況只會在事件可能影響訂用帳戶中的資源時顯示。
+* **警示** - 此類別包含所有 Azure 警示的啟用記錄。 您可能會在此類別中看到的事件類型範例為「myVM 上的 CPU 百分比在過去 5 分鐘內已超過 80」 各種 Azure 系統都有警示概念，您可以定義某種類型的規則，並在條件符合該規則時接收通知。 每次支援的 Azure 警示類型「啟動」時，或產生通知的條件符合時，該啟用記錄會也會推送至此類別的活動記錄。
+* **自動調整規模** - 所有與自動調整規模引擎 (以訂用帳戶中定義的自動調整規模設定為基礎) 作業相關的所有事件皆記錄在此類別。 您可能會在此類別中看到的事件類型範例為「自動調整規模的相應增加動作失敗」 自動調整規模可讓您使用自動調整規模設定，依據每日時間和/或負載 (計量) 資料，自動增加或減少受支援資源類型中的執行個體數目。 相應增加或相應減少的條件符合時，啟動及成功或失敗事件將會記錄在此類別中。
+* **建議** - 此類別包含來自特定資源類型 (如網站和 SQL 伺服器) 的建議事件。 這些事件會提供如何充分運用資源的建議。 只有擁有會發出建議的資源時，您才會收到此類型的事件。
+* **原則、安全性及資源健康情況** - 這些類別不包含任何事件；僅保留以供未來使用。
 
 ## <a name="what-you-can-do-with-the-activity-log"></a>Azure 活動記錄檔的用途
 以下是您可以利用活動記錄檔進行的事：
@@ -144,113 +153,8 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 azure insights logprofile delete --name my_log_profile
 ```
 
-## <a name="event-schema"></a>結構描述
-活動記錄檔中的每個事件都有像此範例的 JSON blob︰
-
-```
-{
-  "value": [ {
-    "authorization": {
-      "action": "microsoft.support/supporttickets/write",
-      "role": "Subscription Admin",
-      "scope": "/subscriptions/s1/resourceGroups/MSSupportGroup/providers/microsoft.support/supporttickets/115012112305841"
-    },
-    "caller": "admin@contoso.com",
-    "channels": "Operation",
-    "claims": {
-      "aud": "https://management.core.windows.net/",
-      "iss": "https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47/",
-      "iat": "1421876371",
-      "nbf": "1421876371",
-      "exp": "1421880271",
-      "ver": "1.0",
-      "http://schemas.microsoft.com/identity/claims/tenantid": "1e8d8218-c5e7-4578-9acc-9abbd5d23315 ",
-      "http://schemas.microsoft.com/claims/authnmethodsreferences": "pwd",
-      "http://schemas.microsoft.com/identity/claims/objectidentifier": "2468adf0-8211-44e3-95xq-85137af64708",
-      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn": "admin@contoso.com",
-      "puid": "20030000801A118C",
-      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier": "9vckmEGF7zDKk1YzIY8k0t1_EAPaXoeHyPRn6f413zM",
-      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname": "John",
-      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname": "Smith",
-      "name": "John Smith",
-      "groups": "cacfe77c-e058-4712-83qw-f9b08849fd60,7f71d11d-4c41-4b23-99d2-d32ce7aa621c,31522864-0578-4ea0-9gdc-e66cc564d18c",
-      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": " admin@contoso.com",
-      "appid": "c44b4083-3bq0-49c1-b47d-974e53cbdf3c",
-      "appidacr": "2",
-      "http://schemas.microsoft.com/identity/claims/scope": "user_impersonation",
-      "http://schemas.microsoft.com/claims/authnclassreference": "1"
-    },
-    "correlationId": "1e121103-0ba6-4300-ac9d-952bb5d0c80f",
-    "description": "",
-    "eventDataId": "44ade6b4-3813-45e6-ae27-7420a95fa2f8",
-    "eventName": {
-      "value": "EndRequest",
-      "localizedValue": "End request"
-    },
-    "eventSource": {
-      "value": "Microsoft.Resources",
-      "localizedValue": "Microsoft Resources"
-    },
-    "httpRequest": {
-      "clientRequestId": "27003b25-91d3-418f-8eb1-29e537dcb249",
-      "clientIpAddress": "192.168.35.115",
-      "method": "PUT"
-    },
-    "id": "/subscriptions/s1/resourceGroups/MSSupportGroup/providers/microsoft.support/supporttickets/115012112305841/events/44ade6b4-3813-45e6-ae27-7420a95fa2f8/ticks/635574752669792776",
-    "level": "Informational",
-    "resourceGroupName": "MSSupportGroup",
-    "resourceProviderName": {
-      "value": "microsoft.support",
-      "localizedValue": "microsoft.support"
-    },
-    "resourceUri": "/subscriptions/s1/resourceGroups/MSSupportGroup/providers/microsoft.support/supporttickets/115012112305841",
-    "operationId": "1e121103-0ba6-4300-ac9d-952bb5d0c80f",
-    "operationName": {
-      "value": "microsoft.support/supporttickets/write",
-      "localizedValue": "microsoft.support/supporttickets/write"
-    },
-    "properties": {
-      "statusCode": "Created"
-    },
-    "status": {
-      "value": "Succeeded",
-      "localizedValue": "Succeeded"
-    },
-    "subStatus": {
-      "value": "Created",
-      "localizedValue": "Created (HTTP Status Code: 201)"
-    },
-    "eventTimestamp": "2015-01-21T22:14:26.9792776Z",
-    "submissionTimestamp": "2015-01-21T22:14:39.9936304Z",
-    "subscriptionId": "s1"
-  } ],
-"nextLink": "https://management.azure.com/########-####-####-####-############$skiptoken=######"
-}
-```
-
-| 元素名稱 | 說明 |
-| --- | --- |
-| 授權 |事件的 RBAC 屬性的 blob。 通常包括 action、role 和 scope 屬性。 |
-| 呼叫者 |已執行作業的使用者的電子郵件地址，根據可用性的 UPN 宣告或 SPN 宣告。 |
-| 通道 |為下列其中一個值：Admin、Operation |
-| correlationId |通常是字串格式的 GUID。 具有相同 correlationId、屬於同一 uber 動作的事件。 |
-| 說明 |事件的靜態文字描述。 |
-| eventDataId |事件的唯一識別碼。 |
-| eventSource |產生此事件的 Azure 服務或基礎結構的名稱。 |
-| httpRequest |描述 HTTP 要求的 blob。 通常包括 “clientRequestId”、“clientIpAddress”和 “method” (HTTP 方法。 例如，PUT)。 |
-| 層級 |事件的層級。 下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
-| resourceGroupName |受影響資源的資源群組的名稱。 |
-| resourceProviderName |受影響資源的資源提供者的名稱。 |
-| resourceUri |受影響資源的資源識別碼。 |
-| operationId |對應至單一作業的事件共用的 GUID。 |
-| operationName |作業名稱。 |
-| properties |描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
-| status |字串，描述作業的狀態。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
-| 子狀態 |通常包含對應 REST 呼叫的 HTTP 狀態碼，但也可以包含其他描述子狀態的字串，常見的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503)、閘道逾時 (HTTP 狀態碼︰504)。 |
-| eventTimestamp |處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
-| submissionTimestamp |當事件變成可供查詢時的時間戳記。 |
-| subscriptionId |Azure 訂用帳戶識別碼。 |
-| nextLink |結果被分成多個回應時，用於提取下一組結果的接續權杖。 通常超過 200 個記錄時就需要。 |
+## <a name="event-schema-per-category"></a>每個類別的事件結構描述
+[請參閱這篇文章以了解每一類活動記錄事件的結構描述。](monitoring-activity-log-schema.md)
 
 ## <a name="next-steps"></a>後續步驟
 * [深入了解活動記錄檔 (之前的稽核記錄檔)](../azure-resource-manager/resource-group-audit.md)

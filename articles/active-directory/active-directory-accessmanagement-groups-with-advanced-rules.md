@@ -16,30 +16,28 @@ ms.date: 06/19/2017
 ms.author: curtand
 ms.reviewer: rodejo
 ms.translationtype: HT
-ms.sourcegitcommit: f76de4efe3d4328a37f86f986287092c808ea537
-ms.openlocfilehash: 720fd28f7ff5d1bc1c3a32cb98d5d7e1eb88e816
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: b9b5ddf42958a2b4e241d0252101d979009e7dc0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/11/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 
-# <a name="populate-groups-dynamically-based-on-object-attributes"></a>根據物件屬性以動態方式填入群組 
+# <a name="populate-groups-dynamically-based-on-object-attributes"></a>根據物件屬性以動態方式填入群組
 Azure 傳統入口網站可讓您對 Azure Active Directory (Azure AD) 群組啟用更複雜的屬性型動態成員資格。  
 
-當使用者或裝置的任何屬性變更時，系統會評估目錄中的所有動態群組規則，以查看使用者或裝置的屬性變更是否會觸發任何的群組新增或移除。 如果使用者或裝置滿足群組規則，則使用者會新增為該群組的成員。 如果他們不再滿足其所屬群組的規則，則會從該群組的成員中移除。
+當使用者或裝置的任何屬性變更時，系統會評估目錄中的所有動態群組規則，以查看變更是否會觸發任何的群組新增或移除。 如果使用者或裝置滿足群組規則，則使用者會新增為該群組的成員。 如果他們不再符合此規則，則會予以移除。
 
 > [!NOTE]
-> 您可以為安全性群組或 Office 365 群組的動態成員資格設定規則。 
+> - 您可以為安全性群組或 Office 365 群組的動態成員資格設定規則。
 >
-> 群組的動態成員資格需要將 Azure AD Premium 授權指派給：
+> - 此功能要求新增到至少一個動態群組的每個使用者成員都有 Azure AD Premium P1 授權。
 >
-> * 負責管理群組規則的系統管理員
-> * 群組的所有成員
->
-> 另請注意，雖然您可以為裝置或使用者建立動態群組，但無法建立規則來同時選取使用者和裝置物件。 
+> - 您可以為裝置或使用者建立動態群組，但無法建立同時包含使用者和裝置物件的規則。
 
-## <a name="to-create-the-advanced-rule"></a>建立進階規則
+> - 目前不可能依據擁有使用者的屬性建立裝置群組。 裝置成員資格規則只能參考目錄中裝置物件的直接屬性。
+
+## <a name="to-create-an-advanced-rule"></a>建立進階規則
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，選取 [Active Directory]，然後開啟您組織的目錄。
 2. 選取 [群組]  索引標籤，然後開啟您想要編輯的群組。
 3. 選取 [設定] 索引標籤，選取 [進階的規則] 選項，然後在文字方塊中輸入進階規則。
@@ -94,7 +92,7 @@ user.mail –ne null
 
 ## <a name="operator-precedence"></a>運算子優先順序
 
-所有運算子會依照優先順序 (從低至高) 列在底下，同一行中的運算子具有相等的優先順序 -any -all -or -and -not -eq -ne -startsWith -notStartsWith -contains -notContains -match –notMatch
+所有運算子會依照優先順序 (從低至高) 列在底下，同一行中的運算子具有相等的優先順序 -any -all -or -and -not -eq -ne -startsWith -notStartsWith -contains -notContains -match –notMatch -in -notIn
 
 不管有沒有連字號前置詞，均可使用所有運算子。
 
@@ -136,8 +134,8 @@ user.mail –ne null
 
 | 屬性 | 允許的值 | 使用量 |
 | --- | --- | --- |
-| accountEnabled |true false |user.accountEnabled -eq true) |
-| dirSyncEnabled |true false null |(user.dirSyncEnabled -eq true) |
+| accountEnabled |true false |user.accountEnabled -eq true |
+| dirSyncEnabled |true false |user.dirSyncEnabled -eq true |
 
 ### <a name="properties-of-type-string"></a>字串類型的屬性
 允許的運算子
@@ -150,11 +148,14 @@ user.mail –ne null
 * -notContains
 * -match
 * -notMatch
+* -in
+* -notIn
 
 | 屬性 | 允許的值 | 使用量 |
 | --- | --- | --- |
 | city |任何字串值或 $null |(user.city -eq "value") |
 | country |任何字串值或 $null |(user.country -eq "value") |
+| companyName | 任何字串值或 $null | (user.companyName -eq "value") |
 | department |任何字串值或 $null |(user.department -eq "value") |
 | displayName |任何字串值 |(user.displayName -eq "value") |
 | facsimileTelephoneNumber |任何字串值或 $null |(user.facsimileTelephoneNumber -eq "value") |
@@ -189,6 +190,34 @@ user.mail –ne null
 | otherMails |任何字串值 |(user.otherMails -contains "alias@domain") |
 | proxyAddresses |SMTP: alias@domain smtp: alias@domain |(user.proxyAddresses -contains "SMTP: alias@domain") |
 
+## <a name="multi-value-properties"></a>多重值屬性
+允許的運算子
+
+* -any (集合中至少有一個項目符合條件時滿足)
+* -all (集合中的所有項目符合條件時滿足)
+
+| 屬性 | 值 | 使用量 |
+| --- | --- | --- |
+| assignedPlans |集合中的每個物件都會公開下列字串屬性：capabilityStatus、service、servicePlanId |user.assignedPlans -any (assignedPlan.servicePlanId -eq "efb87545-963c-4e0d-99df-69c6916d9eb0" -and assignedPlan.capabilityStatus -eq "Enabled") |
+
+多重值屬性是相同類型之物件的集合。 您可以使用- -any 和 -all 運算子，分別將條件套用至集合中的一個或所有項目。 例如：
+
+assignedPlans 是多重值屬性，可列出所有指派給使用者的服務方案。 下列運算式會選取擁有 Exchange Online (方案 2) 服務方案 (也處於 [已啟用] 狀態) 的使用者：
+
+```
+user.assignedPlans -any (assignedPlan.servicePlanId -eq "efb87545-963c-4e0d-99df-69c6916d9eb0" -and assignedPlan.capabilityStatus -eq "Enabled")
+```
+
+(Guid 識別碼可識別 Exchange Online (方案 2) 服務方案。)
+
+> [!NOTE]
+> 如果您想要識別已啟用 Office 365 (或其他 Microsoft Online 服務) 功能的所有使用者，例如以一組特定原則鎖定他們，此屬性非常有用。
+
+下列運算式會選取有任何服務方案與 Intune 服務 (由服務名稱 "SCO" 識別) 相關聯的所有使用者：
+```
+user.assignedPlans -any (assignedPlan.service -eq "SCO" -and assignedPlan.capabilityStatus -eq "Enabled")
+```
+
 ## <a name="use-of-null-values"></a>使用 Null 值
 
 若要在規則中指定 null 值，您可以使用 "null" 或 $null。 範例：
@@ -210,52 +239,47 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 
 使用 [Graph 總管] 查詢使用者的屬性並搜尋屬性名稱，即可在目錄中找到自訂屬性名稱。
 
-## <a name="support-for-multi-value-properties"></a>支援多重值屬性
+## <a name="direct-reports-rule"></a>「直屬員工」規則
+您可以建立一個群組，其中包含某位經理的所有直屬員工。 當經理的直屬員工在未來變更時，系統將會自動調整群組的成員資格。
 
-若要在規則中包含多值屬性，請使用 "-any" 運算子，如下所示：
+> [!NOTE]
+> 1. 若要讓規則得以運作，請確定已對您租用戶中的使用者正確設定 [經理識別碼] 屬性。 您可以在使用者的 [設定檔] 索引標籤上查看使用者的目前值。
+> 2. 此規則只支援**直屬**員工。 目前不可能建立巢狀階層的群組，例如包含直屬員工及其員工的群組。
 
-  user.assignedPlans -any assignedPlan.service -startsWith "SCO"
+**設定群組**
 
-## <a name="direct-reports-rule"></a>屬下規則
-您可以根據使用者的經理屬性在群組中填入成員。
+1. 依照[建立進階規則](#to-create-the-advanced-rule)一節中的步驟 1-5 操作，然後在 [成員資格類型] 選取 [動態使用者]。
+2. 在 [動態成員資格規則]  刀鋒視窗上，使用下列語法來輸入規則：
 
-**設定群組為「經理」群組**
+    *Direct Reports for "{obectID_of_manager}"*
 
-1. 在 Azure 傳統入口網站中，按一下 [Active Directory] ，然後按一下您組織的目錄名稱。
-2. 選取 [群組]  索引標籤，然後開啟您想要編輯的群組。
-3. 選取 [設定] 索引標籤，然後選取 [進階規則]。
-4. 使用下列語法輸入規則：
+    有效規則的範例：
+```
+                    Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863"
+```
+    where “62e19b97-8b3d-4d4a-a106-4ce66896a863” is the objectID of the manager. The object ID can be found on manager's **Profile tab**.
+3. 儲存規則之後，具有指定之經理識別碼值的所有使用者將會新增至群組。
 
-    *Direct Reports for {obectID_of_manager}* 的 Direct Reports。 以下是 Direct Reports 的有效規則範例：
-
-                    Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
-
-    其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。 您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔]  索引標籤上找到物件識別碼。
-5. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。 一開始填入群組可能需要幾分鐘的時間。
-
-# <a name="using-attributes-to-create-rules-for-device-objects"></a>使用屬性來建立裝置物件的規則
+## <a name="using-attributes-to-create-rules-for-device-objects"></a>使用屬性來建立裝置物件的規則
 您也可以建立規則以在群組中選取成員資格的裝置物件。 可以使用下列裝置屬性︰
 
-| 屬性 | 允許的值 | 使用量 |
-| --- | --- | --- |
-| accountEnabled |true false |(device.accountEnabled -eq true) |
-| displayName |任何字串值 |(device.displayName -eq "Rob Iphone”) |
-| deviceOSType |任何字串值 |(device.deviceOSType -eq "IOS") |
-| deviceOSVersion |任何字串值 |(device.OSVersion -eq "9.1") |
-| isDirSynced |true false null |(device.isDirSynced -eq true) |
-| isManaged |true false null |(device.isManaged -eq false) |
-| isCompliant |true false null |(device.isCompliant -eq true) |
-| deviceCategory |任何字串值 |(device.deviceCategory -eq "") |
-| deviceManufacturer |任何字串值 |(device.deviceManufacturer -eq "Microsoft") |
-| deviceModel |任何字串值 |(device.deviceModel -eq "IPhone 7+") |
-| deviceOwnership |任何字串值 |(device.deviceOwnership -eq "") |
-| domainName |任何字串值 |(device.domainName -eq "contoso.com") |
-| enrollmentProfileName |任何字串值 |(device.enrollmentProfileName -eq "") |
-| isRooted |true false null |(device.isRooted -eq true) |
-| managementType |任何字串值 |(device.managementType -eq "") |
-| organizationalUnit |任何字串值 |(device.organizationalUnit -eq "") |
-| deviceId |有效的 deviceId |(device.deviceId -eq "d4fe7726-5966-431c-b3b8-cddc8fdb717d") |
-| objectId |有效的 AAD objectId |(device.objectId -eq "76ad43c9-32c5-45e8-a272-7b58b58f596d") |
+| 屬性              | 允許的值                  | 使用量                                                       |
+|-------------------------|---------------------------------|-------------------------------------------------------------|
+| accountEnabled          | true false                      | (device.accountEnabled -eq true)                            |
+| displayName             | 任何字串值                | (device.displayName -eq "Rob Iphone”)                       |
+| deviceOSType            | 任何字串值                | (device.deviceOSType -eq "IOS")                             |
+| deviceOSVersion         | 任何字串值                | (device.OSVersion -eq "9.1")                                |
+| deviceCategory          | 任何字串值                | (device.deviceCategory -eq "")                              |
+| deviceManufacturer      | 任何字串值                | (device.deviceManufacturer -eq "Microsoft")                 |
+| deviceModel             | 任何字串值                | (device.deviceModel -eq "IPhone 7+")                        |
+| deviceOwnership         | 任何字串值                | (device.deviceOwnership -eq "")                             |
+| domainName              | 任何字串值                | (device.domainName -eq "contoso.com")                       |
+| enrollmentProfileName   | 任何字串值                | (device.enrollmentProfileName -eq "")                       |
+| isRooted                | true false                      | (device.deviceOSType -eq true)                              |
+| managementType          | 任何字串值                | (device.managementType -eq "")                              |
+| organizationalUnit      | 任何字串值                | (device.organizationalUnit -eq "")                          |
+| deviceId                | 有效的 deviceId                | (device.deviceId -eq "d4fe7726-5966-431c-b3b8-cddc8fdb717d") |
+| objectId                | 有效的 AAD objectId            | (device.objectId -eq "76ad43c9-32c5-45e8-a272-7b58b58f596d") |
 
 > [!NOTE]
 > 無法在 Azure 傳統入口網站中使用 [簡單規則] 下拉式清單建立這些裝置規則。

@@ -13,42 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/28/2017
+ms.date: 07/25/2017
 ms.author: dobett
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: c02b4bb6e01bc6e6e5b7e373a8d6d2ab2d2395da
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 2e1387e6cf5fedb983063a7f72ffe74c73948534
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="azure-iot-hub-get-started-tutorials"></a>Azure IoT 中樞快速入門教學課程
 
-您可以使用 Azure IoT 中樞和 Azure IoT 裝置 SDK 來建置物聯網 (IoT) 解決方案。
+您可以使用 Azure IoT 中樞和 Azure IoT 裝置 SDK 來建置物聯網 (IoT) 解決方案：
 
 * Azure IoT 中樞是雲端中完全受管理的服務，可安全地連線、監視及管理您的 IoT 裝置。 您可以使用 Azure IoT 裝置 SDK 來實作您的 IoT 裝置。
-* 使用在更複雜的 IoT 案例中使用 IoT 閘道，您在此案例中必須考慮諸如傳統裝置、頻寬成本、安全性和隱私權原則或邊緣資料處理等因素。 在這些情況下，您可以使用 Azure IoT Edge 來實作閘道以將裝置連線到 IoT 中樞。
+* 在更複雜的 IoT 案例中使用 IoT 閘道。 例如，您在此案例中必須考慮諸如傳統裝置、頻寬成本、安全性和隱私權原則或邊緣資料處理等因素。 在這些情況下，您可以使用 Azure IoT Edge 來實作閘道以將裝置連線到 IoT 中樞。
 
 ## <a name="what-the-tutorials-cover"></a>這些教學課程的涵蓋範圍
 
 這些教學課程將為您介紹 Azure IoT 中樞與裝置的 SDK。 這些教學課程涵蓋的常見 IoT 案例會說明 IoT 中樞的功能。 教學課程也將說明如何將 IoT 中樞與其他 Azure 服務和工具結合，建置更強大的 IoT 解決方案。 在教學課程中，您可以選擇使用模擬或實際的 IoT 裝置。 此外，您可以了解如何使用閘道來將裝置連線到您的 IoT 中樞。
 
-## <a name="setup-your-device-connect-iot-device-or-gateway-to-azure-iot-hub"></a>設定您的裝置︰將 IoT 裝置或閘道連線至 Azure IoT 中樞
+## <a name="set-up-your-device"></a>設定您的裝置
 
-您可以選擇要開始使用的真實或模擬裝置。
+將 IoT 裝置或閘道連線至 Azure IoT 中樞。 您可以選擇要開始使用的實體或模擬裝置：
 
 | IoT 裝置                       | 程式設計語言 |
-|---------------------------------|----------------------|
-| Raspberry Pi                    | [Node.js][Pi_Nd]、[C][Pi_C]、[Python][Pi_Py]           |
-| Intel Edison                    | [Node.js][Ed_Nd]、[C][Ed_C]           |
-| Adafruit Feather HUZZAH ESP8266 | [Arduino][Hu_Ard]              |
-| Sparkfun ESP8266 Thing 開發人員      | [Arduino][Th_Ard]              |
-| Adafruit Feather M0             | [Arduino][M0_Ard]              |
-| 電腦上的模擬的裝置          | [.NET][Sim_NET]、[Java][Sim_Jav]、[Node.js][Sim_Nd]、[Python][Sim_Pyth]              |
+|----------------------------------|----------------------|
+| Raspberry Pi                     | [Node.js][Pi_Nd]、[C][Pi_C]、[Python][Pi_Py]    |
+| Intel Edison                     | [Node.js][Ed_Nd]、[C][Ed_C]    |
+| Adafruit Feather HUZZAH ESP8266  | [Arduino][Hu_Ard]              |
+| Sparkfun ESP8266 Thing 開發人員       | [Arduino][Th_Ard]              |
+| Adafruit Feather M0              | [Arduino][M0_Ard]              |
+| 電腦上的模擬的裝置           | [.NET][Sim_NET]、[Java][Sim_Jav]、[Node.js][Sim_Nd]、[Python][Sim_Pyth] |
 | 線上裝置模擬器         | [Raspberry Pi (Node.js)][Ol_Sim] |
 
-此外，您可以使用 IoT Edge 閘道來將裝置連線到您的 IoT 中樞。
+此外，您可以使用 IoT Edge 閘道來將裝置連線到您的 IoT 中樞：
 
 | 閘道裝置               | 程式設計語言 | 平台         |
 |------------------------------|----------------------|------------------|
@@ -57,10 +56,9 @@ ms.lasthandoff: 07/08/2017
 
 [!INCLUDE [iot-hub-get-started-extended](../../includes/iot-hub-get-started-extended.md)]
 
-
 [Pi_Nd]: iot-hub-raspberry-pi-kit-node-get-started.md
 [Pi_C]: iot-hub-raspberry-pi-kit-c-get-started.md
-[Pi_Py]: iot-hub-raspberry-pi-kit-node-get-started.md
+[Pi_Py]: iot-hub-raspberry-pi-kit-python-get-started.md
 [Ed_Nd]: iot-hub-intel-edison-kit-node-get-started.md
 [Ed_C]: iot-hub-intel-edison-kit-c-get-started.md
 [Hu_Ard]: iot-hub-arduino-huzzah-esp8266-get-started.md

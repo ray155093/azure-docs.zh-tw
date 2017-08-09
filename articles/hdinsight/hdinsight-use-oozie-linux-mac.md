@@ -16,12 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: c1d70bfcf5d1235b34f6cda3ce4e1639e99ebc7f
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 2327945b5f5fe6b6e63660fd5d607d3cc8092f8b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-oozie-with-hadoop-to-define-and-run-a-workflow-on-linux-based-hdinsight"></a>在 Linux 型 HDInsight 上搭配 Hadoop 使用 Oozie 來定義並執行工作流程
@@ -66,7 +65,7 @@ ms.lasthandoff: 07/08/2017
 
 ## <a name="create-the-working-directory"></a>建立工作目錄
 
-Oozie 的工作所需資源必須儲存在同一個目錄中。 這個範例會使用 **wasbs:///tutorials/useoozie**。 請使用以下命令建立此目錄，以及建立資料目錄，以保存此工作流程所建立的新 Hive 資料表：
+Oozie 的工作所需資源必須儲存在同一個目錄中。 這個範例會使用 **wasb:///tutorials/useoozie**。 請使用以下命令建立此目錄，以及建立資料目錄，以保存此工作流程所建立的新 Hive 資料表：
 
 ```
 hdfs dfs -mkdir -p /tutorials/useoozie/data
@@ -131,7 +130,7 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
 
 4. 若要結束編輯器，請按 Ctrl-X。 出現提示時，請選取 **Y** 儲存檔案，然後按 **Enter** 鍵以使用 **useooziewf.hql** 檔案名稱。
 
-5. 使用下列命令將 **useooziewf.hql** 複製到 **wasbs:///tutorials/useoozie/useooziewf.hql**：
+5. 使用下列命令將 **useooziewf.hql** 複製到 **wasb:///tutorials/useoozie/useooziewf.hql**：
 
     ```
     hdfs dfs -put useooziewf.hql /tutorials/useoozie/useooziewf.hql
@@ -295,11 +294,11 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
 
     ```xml
     <name>fs.defaultFS</name>
-    <value>wasbs://mycontainer@mystorageaccount.blob.core.windows.net</value>
+    <value>wasb://mycontainer@mystorageaccount.blob.core.windows.net</value>
     ```
 
     > [!NOTE]
-    > 若 HDInsight 叢集使用 Azure 儲存體做為預設儲存體，`<value>` 元素內容的開頭將會是 `wasbs://`。 若改為使用 Azure Data Lake Store，則其開頭將會是 `adl://`。
+    > 若 HDInsight 叢集使用 Azure 儲存體做為預設儲存體，`<value>` 元素內容的開頭將會是 `wasb://`。 若改為使用 Azure Data Lake Store，則其開頭將會是 `adl://`。
 
     儲存 `<value>` 元素的內容，因為在後續步驟將會用到它。
 
@@ -329,7 +328,7 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
 
         <property>
         <name>nameNode</name>
-        <value>wasbs://mycontainer@mystorageaccount.blob.core.windows.net</value>
+        <value>wasb://mycontainer@mystorageaccount.blob.core.windows.net</value>
         </property>
 
         <property>
@@ -349,7 +348,7 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
 
         <property>
         <name>hiveScript</name>
-        <value>wasbs://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/useooziewf.hql</value>
+        <value>wasb://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/useooziewf.hql</value>
         </property>
 
         <property>
@@ -359,7 +358,7 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
 
         <property>
         <name>hiveDataFolder</name>
-        <value>wasbs://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/data</value>
+        <value>wasb://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/data</value>
         </property>
 
         <property>
@@ -379,12 +378,12 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
 
         <property>
         <name>oozie.wf.application.path</name>
-        <value>wasbs://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie</value>
+        <value>wasb://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie</value>
         </property>
     </configuration>
     ```
 
-   * 將 **wasbs://mycontainer@mystorageaccount.blob.core.windows.net** 的所有執行個體取代為您之前收到的預設儲存體值。
+   * 將 **wasb://mycontainer@mystorageaccount.blob.core.windows.net** 的所有執行個體取代為您之前收到的預設儲存體值。
 
      > [!WARNING]
      > 若該路徑是 `wasb` 路徑，您必須使用完整路徑。 不要將它縮短為 `wasb:///`。
@@ -455,7 +454,7 @@ Oozie 工作流程定義是以 hPDL 撰寫 (一種 XML 程序定義語言)。 �
     Job ID : 0000005-150622124850154-oozie-oozi-W
     ------------------------------------------------------------------------------------------------------------------------------------
     Workflow Name : useooziewf
-    App Path      : wasbs:///tutorials/useoozie
+    App Path      : wasb:///tutorials/useoozie
     Status        : PREP
     Run           : 0
     User          : USERNAME
@@ -623,11 +622,11 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。 Web UI �
         ```xml
         <property>
             <name>workflowPath</name>
-            <value>wasbs://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie</value>
+            <value>wasb://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie</value>
         </property>
         ```
 
-       將 `wasbs://mycontainer@mystorageaccount.blob.core.windows` 文字取代為在 job.xml 檔案之其他項目中使用的值。
+       將 `wasb://mycontainer@mystorageaccount.blob.core.windows` 文字取代為在 job.xml 檔案之其他項目中使用的值。
 
    * 新增下列 XML。 這將會定義 coordinator.xml 檔案要使用的開始時間、結束時間和頻率：
 
@@ -698,7 +697,7 @@ Oozie UI 可讓您檢視 Oozie 記錄。 它也包含工作流程啟動之 MapRe
 
     JA009: Cannot initialize Cluster. Please check your configuration for map
 
-**原因**：**job.xml** 檔案中使用的 WASB 位址未包含儲存體容器或儲存體帳戶名稱。 WASB 位址格式必須是 `wasbs://containername@storageaccountname.blob.core.windows.net`。
+**原因**：**job.xml** 檔案中使用的 WASB 位址未包含儲存體容器或儲存體帳戶名稱。 WASB 位址格式必須是 `wasb://containername@storageaccountname.blob.core.windows.net`。
 
 **解決方法**：變更工作所使用的 WASB 位址。
 

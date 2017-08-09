@@ -13,19 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 5/04/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7948c99b7b60d77a927743c7869d74147634ddbf
-ms.openlocfilehash: 0e9c10b77110efe90239863ee603acbd54b17ead
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: dab2e54dedf55f0d9a0b0b4e66d101ed7df94bfa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/20/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="smart-detection---performance-anomalies"></a>智慧型偵測 - 效能異常
 
 [Application Insights](app-insights-overview.md) 會自動分析 Web 應用程式的效能，並且可以警告您有關潛在的問題。 您會讀取到此訊息，可能是因為您收到一個我們的智慧型偵測通知。
 
-除了設定您 Application Insights 的應用程式 (在 [ASP.NET](app-insights-asp-net.md) 上、Java(app-insights-java-get-started.md) 或 [Node.js](app-insights-nodejs.md)，以及在[網頁程式碼](app-insights-javascript.md)中) 以外，這項功能不需要特殊設定。 當您的應用程式產生足夠的遙測時，就會是在作用中。
+除了設定您 Application Insights 的應用程式 (在 [ASP.NET](app-insights-asp-net.md) 上、[Java](app-insights-java-get-started.md) 或 [Node.js](app-insights-nodejs.md)，以及在[網頁程式碼](app-insights-javascript.md)中) 以外，這項功能不需要特殊設定。 當您的應用程式產生足夠的遙測時，就會是在作用中。
 
 ## <a name="when-would-i-get-a-smart-detection-notification"></a>何時會取得智慧型偵測通知？
 
@@ -192,3 +191,4 @@ Application Insights 會尋找可能只會影響某部分使用者，或只在�
 
 * [手動設定的度量警示](app-insights-alerts.md)
 * [可用性 Web 測試](app-insights-monitor-web-app-availability.md)
+

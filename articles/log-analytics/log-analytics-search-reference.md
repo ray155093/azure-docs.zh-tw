@@ -12,18 +12,21 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/13/2017
+ms.date: 07/13/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: 90706434eb78009bc56fc390cfa5a30e53827c19
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: f5da86a95623234d14b0a99ee64c7b98d7e920a1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="log-analytics-search-reference"></a>Log Analytics 搜尋參考
+
+>[!NOTE]
+> 本文說明在 Azure Log Analytics 中使用目前查詢語言的記錄搜尋。  如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則您應該參閱[新語言的語言參考](https://docs.loganalytics.io/queryLanguage/query_language.html)。
+
 下列關於搜尋語言的參考章節描述一般查詢語法選項，您可以在搜尋資料及篩選運算式時用來幫助您縮小搜尋範圍。 它也會描述您可以用來在已擷取的資料上採取動作的命令。
 
 您可以在[搜尋欄位和 Facet 參考](#search-field-and-facet-reference)小節中閱讀搜尋中傳回的欄位，以及協助您深入探討相似資料類別的 Facet。
