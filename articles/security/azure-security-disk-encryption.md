@@ -248,7 +248,7 @@ Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含：
 ##### <a name="create-an-azure-ad-application-by-using-azure-powershell"></a>使用 Azure PowerShell 來建立 Azure AD 應用程式
 使用下列 PowerShell Cmdlet 建立 Azure AD 應用程式︰
 
-    $aadClientSecret = “yourSecret”
+    $aadClientSecret = "yourSecret"
     $azureAdApplication = New-AzureRmADApplication -DisplayName "<Your Application Display Name>" -HomePage "<https://YourApplicationHomePage>" -IdentifierUris "<https://YouApplicationUri>" -Password $aadClientSecret
     $servicePrincipal = New-AzureRmADServicePrincipal –ApplicationId $azureAdApplication.ApplicationId
 
