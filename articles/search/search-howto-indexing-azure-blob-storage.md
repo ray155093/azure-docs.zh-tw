@@ -12,13 +12,13 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 04/15/2017
+ms.date: 07/22/2017
 ms.author: eugenesh
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
-ms.openlocfilehash: 509682297a3db090caa73bd9438f6434257d558f
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: b60662cbe655eea11cba2aaaaa4671209bf018f4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/28/2017
+ms.lasthandoff: 07/24/2017
 
 ---
 
@@ -35,12 +35,12 @@ blob 索引子可以從下列文件格式擷取文字：
 * ZIP
 * EML
 * RTF
-* 純文字檔案
-* JSON (請參閱[編製 JSON Blob 的索引](search-howto-index-json-blobs.md) 預覽功能)
+* 純文字檔案 (另請參閱[編制純文字的索引](#IndexingPlainText))
+* JSON (請參閱[編製 JSON Blob 的索引](search-howto-index-json-blobs.md))
 * CSV (請參閱[編製 CSV Blob 的索引](search-howto-index-csv-blobs.md) 預覽功能)
 
 > [!IMPORTANT]
-> CSV 和 JSON 的陣列支援目前屬於預覽功能。 僅在使用 **2015-02-28-Preview** 的 REST API 或 .NET sdk 的 2.x-preview 版本時，才可使用這些格式。 請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
+> CSV 和 JSON 的陣列支援目前屬於預覽功能。 只有在使用 REST API 的 **2016-09-01-Preview** 或 .NET SDK 的 2.x-preview 版時，才可使用這些格式。 請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
 >
 >
 
@@ -89,8 +89,8 @@ blob 索引子可以從下列文件格式擷取文字：
 您可以採取下列其中一種方式提供 blob 容器的認證︰
 
 - **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`。 您可以從 Azure 入口網站取得連接字串︰瀏覽至儲存體帳戶刀鋒視窗 > [設定] > [金鑰] \(傳統儲存體帳戶)，或 [設定] > [存取金鑰] \(Azure Resource Manager 儲存體帳戶)。
-- **儲存體帳戶共用存取簽章** (SAS) 連接字串︰`BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl`。 SAS 對於容器和物件 (在此案例中為 blob) 應該擁有列出和讀取權限。
--  **容器共用存取簽章**：`ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl`。 SAS 對於容器應該擁有列出和讀取權限。
+- **儲存體帳戶共用存取簽章** (SAS) 連接字串：`BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl` SAS 應該有容器和物件 (在此案例中為 Blob) 上的列出和讀取權限。
+-  **容器共用存取簽章**：`ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl` SAS 應該有容器上的列出和讀取權限。
 
 如需儲存體共用存取簽章的詳細資訊，請參閱[使用共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-1.md)。
 
@@ -340,13 +340,35 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 - 針對每個資料來源建立對應的索引子。 所有索引子可以指向相同的目標搜尋索引。  
 
+- 服務中的單一搜尋單位一次只能執行一個索引子。 以上述方式建立多個索引子，只有在這些索引子都以平行的方式執行時才會有幫助。 若要平行執行多個索引子，請透過建立適當數目的磁碟分割和複本，來對搜尋服務進行相應放大。 例如，如果您的搜尋服務具有 6 個搜尋單位 (例如 2 個磁碟分割 x 3 個複本)，則 6 個索引子將可以同時執行，並使編製索引的輸送量提升六倍。 若要深入了解調整與容量規劃，請參閱[在 Azure 搜尋服務中調整適用於查詢和編製索引工作負載的資源等級](search-capacity-planning.md)。
+
 ## <a name="indexing-documents-along-with-related-data"></a>為文件及相關資料編製索引
 
-您的文件可能具有相關聯的中繼資料 (例如建立文件的部門)，這類資料會在下列其中一個位置儲存為結構化資料。
--   在個別的資料存放區中，例如 SQL Database 或 Azure Cosmos DB。
--   直接附加至 Azure Blob 儲存體中的每份文件以做為自訂中繼資料 (如需詳細資訊，請參閱[設定和擷取 Blob 資源的屬性及中繼資料](https://docs.microsoft.com/rest/api/storageservices/setting-and-retrieving-properties-and-metadata-for-blob-resources))。
+您可能會想在索引中「組合」來自多個來源的文件。 例如，您可能會想要將來自 Blob 的文字與儲存在 Cosmos DB 中的其他中繼資料合併。 您甚至可以搭配各種索引子使用推送編製索引 API，以建立來自多個部分的搜尋文件。 
 
-您也可以藉由為每份文件和它的中繼資料指派相同的唯一值，以及為每個索引子指派 `mergeOrUpload` 動作，來為文件及其中繼資料編製索引。 如需此解決方案的詳細說明，請參閱這篇外部文章：[在 Azure 搜尋服務中將文件與其他資料組合在一起 (英文)](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html)。
+若要達成此目的，所有索引子和其他元件都需要在文件索引鍵上達成協議。 如需詳細的逐步解說，請參閱這篇外部文章：[在 Azure 搜尋服務中將文件與其他資料組合在一起](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html) \(英文\)。
+
+<a name="IndexingPlainText"></a>
+## <a name="indexing-plain-text"></a>編制純文字的索引 
+
+如果所有的 Blob 都包含相同編碼的純文字，您可以使用「文字剖析模式」來大幅提升編制索引的效能。 若要使用文字剖析模式，請將 `parsingMode` 設定屬性設定為 `text`：
+
+    PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
+    Content-Type: application/json
+    api-key: [admin key]
+
+    {
+      ... other parts of indexer definition
+      "parameters" : { "configuration" : { "parsingMode" : "text" } }
+    }
+
+根據預設，會假定使用 `UTF-8` 編碼。 若要指定其他編碼，請使用 `encoding` 設定屬性： 
+
+    {
+      ... other parts of indexer definition
+      "parameters" : { "configuration" : { "parsingMode" : "text", "encoding" : "windows-1252" } }
+    }
+
 
 <a name="ContentSpecificMetadata"></a>
 ## <a name="content-type-specific-metadata-properties"></a>內容類型特定的中繼資料屬性

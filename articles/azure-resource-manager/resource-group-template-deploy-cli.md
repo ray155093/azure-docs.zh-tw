@@ -12,13 +12,13 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/30/2017
+ms.date: 07/31/2017
 ms.author: tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
-ms.openlocfilehash: 9c9eff8c828329b9d8358f88b90c174c64f5c29f
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 4f1d5f4cc48470f8906edb28628006dd1996bd3a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="deploy-resources-with-resource-manager-templates-and-azure-cli"></a>使用 Resource Manager 範本與 Azure CLI 部署資源
@@ -29,9 +29,9 @@ ms.lasthandoff: 05/16/2017
 
 [!INCLUDE [sample-cli-install](../../includes/sample-cli-install.md)]
 
-<a id="deploy-local-template" />
+如果您沒有安裝 Azure CLI，可以使用 [Cloud Shell](#deploy-template-from-cloud-shell)。
 
-## <a name="deploy-a-template-from-your-local-machine"></a>從本機電腦部署範本
+## <a name="deploy-local-template"></a>部署本機範本
 
 將資源部署至 Azure 時，您應該：
 
@@ -60,13 +60,16 @@ az group deployment create \
 "provisioningState": "Succeeded",
 ```
 
-## <a name="deploy-a-template-from-an-external-source"></a>從外部來源部署範本
+## <a name="deploy-external-template"></a>部署外部範本
 
 您可能希望將 Resource Manager 範本儲存在外部位置，而不是儲存在您的本機電腦。 您可以將範本儲存在原始檔控制存放庫 (例如 GitHub) 中。 或者，您可以將它們儲存在 Azure 儲存體帳戶中，以在組織內共用存取。
 
 若要部署外部範本，請使用 **template-uri** 參數。 在範例中使用 URI 以部署來自 GitHub 的範例範本。
    
 ```azurecli
+az login
+
+az group create --name ExampleGroup --location "Central US"
 az group deployment create \
     --name ExampleDeployment \
     --resource-group ExampleGroup \
@@ -75,6 +78,59 @@ az group deployment create \
 ```
 
 上述範例針對範本需要可公開存取 URI，這適用於大部分的案例，因為您的範本不應該包含機密資料。 如果您需要指定機密資料 (例如系統管理員密碼)，請將該值以安全參數傳遞。 不過，如果不希望將範本公開存取，您可以將它儲存在私人儲存體容器中加以保護。 如需部署需要共用存取簽章 (SAS) 權杖之範本的相關資訊，請參閱[使用 SAS 權杖部署私人範本](resource-manager-cli-sas-token.md)。
+
+## <a name="deploy-template-from-cloud-shell"></a>從 Cloud Shell 部署範本
+
+您可以使用 [Cloud Shell](../cloud-shell/overview.md) 執行 Azure CLI 命令，以便部署範本。 不過，您必須先將範本載入 Cloud Shell 的檔案共用中。 如果您尚未使用 Cloud Shell，請參閱 [Azure Cloud Shell 概觀](../cloud-shell/overview.md)以取得如何設定的相關資訊。
+
+1. 登入 [Azure 入口網站](https://portal.azure.com)。   
+
+2. 選取您的 Cloud Shell 資源群組。 名稱模式為 `cloud-shell-storage-<region>`。
+
+   ![選取資源群組](./media/resource-group-template-deploy-cli/select-cs-resource-group.png)
+
+3. 選取 Cloud Shell 的儲存體帳戶。
+
+   ![選取儲存體帳戶](./media/resource-group-template-deploy-cli/select-storage.png)
+
+4. 選取 [檔案]。
+
+   ![選取檔案](./media/resource-group-template-deploy-cli/select-files.png)
+
+5. 選取 Cloud Shell 的檔案共用。 名稱模式為 `cs-<user>-<domain>-com-<uniqueGuid>`。
+
+   ![選取檔案共用](./media/resource-group-template-deploy-cli/select-file-share.png)
+
+6. 選取 [新增目錄]。
+
+   ![新增目錄](./media/resource-group-template-deploy-cli/select-add-directory.png)
+
+7. 將它命名為 **templates**，然後選取 [確定]。
+
+   ![命名目錄](./media/resource-group-template-deploy-cli/name-templates.png)
+
+8. 選取您的新目錄。
+
+   ![選取目錄](./media/resource-group-template-deploy-cli/select-templates.png)
+
+9. 選取 [上傳] 。
+
+   ![選取上傳](./media/resource-group-template-deploy-cli/select-upload.png)
+
+10. 尋找並上傳您的範本。
+
+   ![上傳檔案](./media/resource-group-template-deploy-cli/upload-files.png)
+
+11. 開啟提示字元。
+
+   ![開啟 Cloud Shell](./media/resource-group-template-deploy-cli/start-cloud-shell.png)
+
+12. 在 Cloud Shell 中輸入下列命令︰
+
+   ```azurecli
+   az group create --name examplegroup --location "South Central US"
+   az group deployment create --resource-group examplegroup --template-file clouddrive/templates/azuredeploy.json --parameters storageAccountType=Standard_GRS
+   ```
 
 ## <a name="parameter-files"></a>參數檔案
 

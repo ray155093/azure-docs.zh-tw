@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 07/19/2017
+ms.date: 08/01/2017
 ms.author: kaanan
 ms.translationtype: HT
-ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
-ms.openlocfilehash: 2e35237b0ccc201cb797c4e65e963e42f7a07c4b
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: 1dcfcde43bf2a41cf5ac3651a23c097a30a84dd3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/20/2017
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
@@ -79,7 +79,7 @@ ms.lasthandoff: 07/20/2017
 | **丹佛** |CoreSite |
 | **都柏林** |Colt、Interxion、Telecity Group |
 | **香港** |Aryaka Networks、British Telecom、China Telecom Global、Equinix、Megaport、Orange、PCCW Global Limited、Tata Communications、Verizon |
-| **拉斯維加斯** |Level 3 Communications+、Megaport |
+| **拉斯維加斯** |Level 3 Communications、Megaport |
 | **倫敦** |AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc、Level 3 Communications、Megaport、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telehouse - KDDI、Telenor、Verizon、Vodafone、Zayo Group+ |
 | **洛杉磯** |CoreSite、Equinix、Megaport、NTT、Zayo Group |
 | **墨爾本** |AARNet、Equinix、Megaport、NEXTDC、Telstra Corporation |
@@ -92,7 +92,7 @@ ms.lasthandoff: 07/20/2017
 | **巴黎** |Colt、Interxion、Equinix、Orange |
 | **魁北克市** | Megaport |
 | **聖安東尼奧** |Megaport |
-| **聖保羅** |Ascenty Data Centers+、Equinix、Level 3 Communications、Telefonica、UOLDIVEO+ |
+| **聖保羅** |Ascenty Data Centers+、Equinix、Level 3 Communications、Telefonica、UOLDIVEO |
 | **Seattle** |Equinix、Level 3 Communications、Megaport |
 | **首爾** |KINX、Sejong Telecom |
 | **矽谷** |Aryaka Networks、AT&T NetBond、British Telecom、CenturyLink+、Comcast、Console、Equinix、Level 3 Communications、Megaport、Orange、Tata Communications、Verizon、Zayo Group |
@@ -127,7 +127,7 @@ ms.lasthandoff: 07/20/2017
 ### <a name="germany"></a>德國
 | **位置** | **服務提供者** |
 | --- | --- |
-| **柏林** |Colt+、e-shelter、Megaport+ |
+| **柏林** |Colt+、e-shelter、Megaport+、T-Systems |
 | **法蘭克福** |Colt、Equinix、Interxion |
 
 ## <a name="c1partners"></a>透過 Exchange 提供者連線

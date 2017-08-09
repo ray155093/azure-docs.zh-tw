@@ -42,6 +42,7 @@
 ## 設定
 ### Azure
 #### [分析工具](app-insights-profiler.md)
+#### [啟用分析工具](enable-profiler-cloud-services.md)
 #### [診斷](app-insights-azure-diagnostics.md)
 #### [預覽](app-insights-previews.md)
 
@@ -91,6 +92,7 @@
 
 ### 使用量
 #### [概觀](app-insights-usage-overview.md)
+#### [傳送使用者內容](app-insights-usage-send-user-context.md)
 #### [使用者、工作階段、事件](app-insights-usage-segmentation.md)
 #### [漏斗圖](usage-funnels.md)
 #### [保留](app-insights-usage-retention.md)
@@ -140,7 +142,7 @@
 ### [Java](app-insights-java-troubleshoot.md)
 
 # 參考
-## [分析](app-insights-analytics-reference.md)
+## [分析](https://docs.loganalytics.io/)
 ## [.NET](https://docs.microsoft.com/dotnet/api/microsoft.applicationinsights)
 ## [Java](/java/api/com.microsoft.applicationinsights)
 ## [JavaScript](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md)
@@ -154,6 +156,7 @@
 ### [度量](application-insights-data-model-metric-telemetry.md)
 ### [內容](application-insights-data-model-context.md)
 ## [遙測相互關聯](application-insights-correlation.md)
+## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=application-insights)
 
 # 資源
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
@@ -161,6 +164,7 @@
 ## [語言和平台](app-insights-platforms.md)
 
 ## [價格](https://azure.microsoft.com/pricing/details/application-insights/)  
+## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 
 ## 新聞
 

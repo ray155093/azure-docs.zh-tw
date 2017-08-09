@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 07/31/2017
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: eae360dd3e627a82986cef32ef39860f60ffe51f
-ms.lasthandoff: 02/11/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 668ba10474fc1b01d5ebccbff1f50fe09ade5f30
+ms.contentlocale: zh-tw
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="azure-media-services-error-codes"></a>Azure 媒體服務錯誤代碼
@@ -28,7 +28,7 @@ ms.lasthandoff: 02/11/2017
 要求包含無效的資訊，並且因為下列其中一個原因遭到拒絕︰
 
 * 指定了不支援的 API 版本。 如需最新版本，請參閱[媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
-* 未指定媒體服務的 API 版本。 如需如何指定 API 版本的詳細資訊，請參閱[使用媒體服務 REST API 連接到媒體服務](media-services-rest-connect-programmatically.md)。
+* 未指定媒體服務的 API 版本。 如需如何指定 API 版本的詳細資訊，請參閱[媒體服務作業 REST API 參考](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference) \(英文\)。
   
   > [!NOTE]
   > 如果您使用 .NET 或 Java SDK 來連接到媒體服務，每當您針對媒體服務嘗試和執行某些動作時，會為您指定 API 版本。
@@ -48,8 +48,8 @@ ms.lasthandoff: 02/11/2017
 
 * 遺失驗證標頭。
 * 不正確的驗證標頭值。
-  * 權杖已過期。 如果直接使用 REST API，請參閱[使用媒體服務 REST API 連接到媒體服務](media-services-rest-connect-programmatically.md)以了解如何產生新的驗證權杖。 如果您使用 .NET 或 Java SDK，建立 CloudMediaContext 或 MediaContract 物件來產生權杖。 如需如何執行此操作的詳細資訊，請參閱[使用 Media Services SDK for .NET 連接到媒體服務](media-services-dotnet-connect-programmatically.md)。
-  * 權杖包含無效的簽章。</li></ul></li></ul>
+  * 權杖已過期。 
+  * 權杖包含無效的簽章。
 
 ## <a name="403-forbidden"></a>403 禁止
 基於下列原因之一不允許此要求：

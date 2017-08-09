@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
-ms.openlocfilehash: 95adddc01ee2814515c20f36e8503de30454a8f4
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 88edb489d967a5bc5cc1c4aa1aeb5abcd6539d12
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/04/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="request-units-in-azure-cosmos-db"></a>Azure Cosmos DB 中的要求單位
@@ -191,7 +191,7 @@ await client.ReplaceOfferAsync(offer);
 > 
 
 ### <a name="use-the-azure-cosmos-db-request-charge-response-header"></a>使用 Azure Cosmos DB 要求費用回應標頭
-Azure Cosmos DB 服務的每個回應都會包括自訂標頭 (`x-ms-request-charge`)，其中包含要求所耗用的要求單位。 此標頭也可以透過 DocumentDB SDK 進行存取。 在 .NET SDK 中，RequestCharge 是 ResourceResponse 物件的屬性。  針對查詢，Azure 入口網站中的 Azure Cosmos DB 查詢總管會提供已執行查詢的要求費用資訊。
+Azure Cosmos DB 服務的每個回應都會包括自訂標頭 (`x-ms-request-charge`)，其中包含要求所耗用的要求單位。 此標頭也可以透過 Azure Cosmos DB SDK 進行存取。 在 .NET SDK 中，RequestCharge 是 ResourceResponse 物件的屬性。  針對查詢，Azure 入口網站中的 Azure Cosmos DB 查詢總管會提供已執行查詢的要求費用資訊。
 
 ![在查詢總管中檢查 RU 費用][1]
 

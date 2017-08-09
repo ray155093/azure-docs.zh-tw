@@ -12,13 +12,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 07/18/2017
+ms.date: 07/31/2017
 ms.author: juliako
 ms.translationtype: HT
-ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
-ms.openlocfilehash: 960ff46ba287fb404239ca8e9d283f86f6b92c20
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: feb4d85270d3c2bee90280459ca2b8383aeca107
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/20/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="use-azure-media-analytics-to-convert-text-content-in-video-files-into-digital-text"></a>使用 Azure 媒體分析以將視訊檔案中的文字內容轉換為數位文字
@@ -178,7 +178,7 @@ OCR 媒體處理器的輸出是 JSON 檔案。
 下列程式將示範如何：
 
 1. 建立資產並將媒體檔案上傳到資產。
-2. 使用 OCR 設定/預設檔案建立工作。
+2. 使用 OCR 設定/預設檔案建立作業。
 3. 下載輸出 JSON 檔案。 
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
@@ -207,7 +207,6 @@ OCR 媒體處理器的輸出是 JSON 檔案。
 
             // Field for service context.
             private static CloudMediaContext _context = null;
-            private static MediaServicesCredentials _cachedCredentials = null;
 
             static void Main(string[] args)
             {

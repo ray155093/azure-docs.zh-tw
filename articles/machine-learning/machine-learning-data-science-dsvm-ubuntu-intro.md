@@ -14,12 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 09f24fa2b55d298cfbbf3de71334de579fbf2ecd
-ms.openlocfilehash: 548b4af7619521e4b61b99b94c1d40f835e6efdb
+ms.translationtype: HT
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: 148603618a7da05d250a6c4f789a212e98791e53
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="provision-the-data-science-virtual-machine-for-linux-ubuntu"></a>佈建適用於 Linux (Ubuntu) 的資料科學虛擬機器
@@ -36,7 +35,7 @@ ms.lasthandoff: 06/07/2017
   * [Theano](http://deeplearning.net/software/theano/)：一種 Python 程式庫，可定義、最佳化和有效地評估涉及多維陣列的數學運算式
   * [Torch](http://torch.ch/)︰廣泛支援機器學習演算法的科學運算架構
   * CUDA、cuDNN 和 NVIDIA 驅動程式
-  * 許多範例 Jupyter Notebook
+  * 許多範例 Jupyter 筆記本
 
 所有程式庫均為 GPU 版本，但它們也可在 CPU 上執行。
 
@@ -46,7 +45,7 @@ ms.lasthandoff: 06/07/2017
 * Anaconda Python 散發套件 (2.7 版和 3.5 版)，包括常用的資料分析程式庫
 * JuliaPro - 使用受歡迎科學和資料分析程式庫的 Julia 語言策劃分佈
 * 獨立 Spark 執行個體和單一節點 Hadoop (HDFS、Yarn)
-* JupyterHub - 多使用者的 Jupyter Notebook 伺服器，支援 R、Python、PySpark、Julia 核心
+* JupyterHub - 多使用者的 Jupyter 筆記本伺服器，支援 R、Python、PySpark、Julia 核心
 * Azure 儲存體總管
 * 用於管理 Azure 資源的 Azure 命令列介面 (CLI)
 * 機器學習工具
@@ -142,7 +141,7 @@ Linux VM 已經佈建了 X2Go 伺服器，並準備接受用戶端連接。 若�
 #### <a name="cntk"></a>CNTK
 Microsoft Cognitive Toolkit (亦稱為 CNTK) 是開放原始碼的深入學習工具組。 Python 繫結位於根環境和 py35 Conda 環境中。 它也包含已經在 PATH 中的一種命令列工具 (cntk)。
 
-範例 Python Notebook 位於 JupyterHub。 若要以命令列執行基本範例，請在殼層中執行以下命令：
+您可以在 JupyterHub 中找到範例 Python 筆記本。 若要以命令列執行基本範例，請在殼層中執行以下命令：
 
     cd /home/[USERNAME]/notebooks/CNTK/HelloWorld-LogisticRegression
     cntk configFile=lr_bs.cntk makeMode=false command=Train
@@ -152,14 +151,21 @@ Microsoft Cognitive Toolkit (亦稱為 CNTK) 是開放原始碼的深入學習�
 #### <a name="caffe"></a>Caffe
 Caffe 是 Berkeley Vision and Learning Center 中的一種深入學習架構。 它位於 /opt/caffe。 您可以在 /opt/caffe/examples 中找到範例。
 
+#### <a name="caffe2"></a>Caffe2
+Caffe2 是來自 Facebook (以 Caffe 為基礎而建置) 的深入學習架構。 您可以在 Conda 根環境中的 Python 2.7 中找到它。 若要啟動它，請從殼層執行下列命令：
+
+    source /anaconda/bin/activate root
+
+您可以在 JupyterHub 找到一些範例筆記本。
+
 #### <a name="h2o"></a>H2O
-H2O 是快速、記憶體內的分散式機器學習和預測性分析平台。 Python 封裝同時安裝於根環境和 py35 Anaconda 環境中。 同時也會安裝 R 封裝。 若要從命令列啟動 H2O，請執行 `java -jar /dsvm/tools/h2o/current/h2o.jar`；有各種您可能想要設定的[命令列選項](http://docs.h2o.ai/h2o/latest-stable/h2o-docs/starting-h2o.html#from-the-command-line)。 可以瀏覽至 http://localhost:54321 存取 Flow Web UI，以便開始。 範例 Notebook 也位於 JupyterHub。
+H2O 是快速、記憶體內的分散式機器學習和預測性分析平台。 Python 封裝同時安裝於根環境和 py35 Anaconda 環境中。 同時也會安裝 R 封裝。 若要從命令列啟動 H2O，請執行 `java -jar /dsvm/tools/h2o/current/h2o.jar`；有各種您可能想要設定的[命令列選項](http://docs.h2o.ai/h2o/latest-stable/h2o-docs/starting-h2o.html#from-the-command-line)。 可以瀏覽至 http://localhost:54321 存取 Flow Web UI，以便開始。 您也可以在 JupyterHub 找到範例筆記本。
 
 #### <a name="keras"></a>Keras
 Keras 是以 Python 撰寫的高層級類神經網路 API，可在 Tensorflow 或 Theano 上執行。 它位於根環境和 py35 Python 環境中。 
 
 #### <a name="mxnet"></a>MXNet
-MXNet 是兼具效率和彈性的深入學習架構。 它在 DSVM 中包含了 R 和 Python 繫結。 範例 Notebook 內含在 JupyterHub 中，範例程式碼則位於 /dsvm/samples/mxnet。
+MXNet 是兼具效率和彈性的深入學習架構。 它在 DSVM 中包含了 R 和 Python 繫結。 範例筆記本內含在 JupyterHub 中，而範例程式碼則位於 /dsvm/samples/mxnet。
 
 #### <a name="nvidia-digits"></a>NVIDIA DIGITS
 NVIDIA 深入學習 GPU 訓練系統 (稱為 DIGITS) 是為了簡化常見的深入學習工作 (如管理資料、設計和訓練 GPU 系統上的類神經網路及使用進階視覺效果即時監視效能) 的一種系統。 
@@ -169,7 +175,7 @@ DIGITS 是做為服務 (稱為 digits) 提供。 啟動此服務並瀏覽至 htt
 DIGITS 也會安裝為 Conda 根環境中的 Python 模組。
 
 #### <a name="tensorflow"></a>TensorFlow
-TensorFlow 是 Google 的深入學習程式庫。 它是使用資料流程圖進行數值計算的開放原始碼軟體程式庫。 TensorFlow 位於 py35 Python 環境中，一些範例 Notebook 則內含在 JupyterHub 中。
+TensorFlow 是 Google 的深入學習程式庫。 它是使用資料流程圖進行數值計算的開放原始碼軟體程式庫。 TensorFlow 位於 py35 Python 環境中，一些範例筆記本則內含在 JupyterHub 中。
 
 #### <a name="theano"></a>Theano
 Theano 是能進行高效數值計算的 Python 程式庫。 它位於根環境和 py35 Python 環境中。 
@@ -184,10 +190,10 @@ R 是其中一種最受歡迎的資料分析和機器學習語言。 如果您�
 
 若要啟動 R 主控台，您只需在殼層中輸入 **R**。 這會帶您前往互動式環境。 若要開發 R 程式，您通常會使用編輯器 (例如 Emacs 或 vi)，然後在 R 內執行指令碼。使用 RStudio，您就會有完整的圖形化整合式開發環境 (IDE) 來開發 R 程式。
 
-如果您想要的話，另外也會有 R 指令碼讓您安裝 [前 20 名 R 封裝](http://www.kdnuggets.com/2015/06/top-20-r-packages.html) 。 當您位於 R 互動式介面 (在殼層中輸入 **R** (如上所述)，即可進入) 時，就可以執行這個指令碼。  
+如果您想要的話，另外也會有 R 指令碼讓您安裝[最熱門的 20 個 R 套件](http://www.kdnuggets.com/2015/06/top-20-r-packages.html)。 當您位於 R 互動式介面 (在殼層中輸入 **R** (如上所述)，即可進入) 時，就可以執行這個指令碼。  
 
 ### <a name="python"></a>Python
-為了能夠使用 Python 進行開發，我們已安裝了 Anaconda Python 散佈 2.7 與 3.5。 這個散發套件包含基本的 Python 以及大約 300 個最受歡迎的數學運算、工程設計和資料分析封裝。 您可以使用預設的文字編輯器。 此外，您也可以使用 Spyder，這是與 Anaconda Python 散發套件配套的 Python IDE。 Spyder 需要圖形化桌面或 X11 轉寄。 圖形化桌面中提供了 Spyder 的捷徑。
+為了能夠使用 Python 進行開發，我們已安裝了 Anaconda Python 散佈 2.7 與 3.5。 這個散發套件包含基本的 Python 以及大約 300 個最受歡迎的數學運算、工程設計和資料分析套件。 您可以使用預設的文字編輯器。 此外，您也可以使用 Spyder，這是與 Anaconda Python 散發套件配套的 Python IDE。 Spyder 需要圖形化桌面或 X11 轉寄。 圖形化桌面中提供了 Spyder 的捷徑。
 
 由於我們有 Python 2.7 和 3.5，您必須明確啟動您想要在目前工作階段中使用的 Python 版本 (conda 環境)。 啟動程序會將 PATH 變數設定為所需的 Python 版本。
 
@@ -213,28 +219,28 @@ Python 3.5 安裝於 */anaconda/envs/py35/bin*上。
 
 
 ### <a name="jupyter-notebook"></a>Jupyter 筆記本
-Jupyter Notebook 中也隨附 Anaconda 散發套件，這是一個共用程式碼與分析的環境。 Jupyter 筆記本是透過 JupyterHub 來存取。 您可以使用本機 Linux 使用者名稱和密碼來登入。
+Anaconda 散發套件中也隨附 Jupyter 筆記本，這是一個共用程式碼與分析的環境。 Jupyter 筆記本是透過 JupyterHub 來存取。 您可以使用本機 Linux 使用者名稱和密碼來登入。
 
-Jupyter 筆記本伺服器已使用 Python 2、Python 3 及 R 核心進行預先設定。 有一個名為「Jupyter 筆記本」的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。 如果您是透過 SSH 或 X2Go 用戶端進入 VM，您也可以造訪 [https://localhost:8000/](https://localhost:8000/) 來存取 Jupyter 筆記本伺服器。
+Jupyter 筆記本伺服器已使用 Python 2、Python 3 及 R 核心進行預先設定。 有一個名為「Jupyter 筆記本」的桌面圖示可以啟動瀏覽器來存取筆記本伺服器。 如果您是透過 SSH 或 X2Go 用戶端進入 VM，您也可以造訪 [https://localhost:8000/](https://localhost:8000/) 來存取 Jupyter 筆記本伺服器。
 
 > [!NOTE]
 > 如果您收到任何憑證警告，請繼續。
 > 
 > 
 
-您可以從任何主機存取 Jupyter Notebook 伺服器。 只要輸入 https://\<VM DNS 名稱或 IP 位址\>:8000/
+您可以從任何主機存取 Jupyter 筆記本伺服器。 只要輸入 https://\<VM DNS 名稱或 IP 位址\>:8000/
 
 > [!NOTE]
 > 在佈建 VM 時，防火牆預設會開啟連接埠 8000。
 > 
 > 
 
-我們已封裝範例 Notebook - 一個用於 Python，另一個用於 R。 選取 [新增] 然後選取適當的語言核心，便可建立新的 Notebook。 如果您沒有看到 [新增] 按鈕，請按一下左上角的 **Jupyter** 圖示移至 Notebook 伺服器的首頁。
+我們已封裝範例筆記本 - 一個用於 Python，另一個用於 R。 選取 [新增]，然後選取適當的語言核心以建立新的筆記本。 如果您沒有看到 [新增] 按鈕，請按一下左上角的 **Jupyter** 圖示移至筆記本伺服器的首頁。
 
 ### <a name="apache-spark-standalone"></a>獨立 Apache Spark 
 Apache Spark 的獨立執行個體已預先安裝在 Linux DSVM，可協助您在大型叢集上測試及部署之前，先在本機上開發 Spark 應用程式。 您可以透過 Jupyter 核心執行 PySpark 程式。 當您開啟 Jupyter 然後按一下 [新增] 按鈕時，您會看到可用核心的清單。 「Spark - Python」是 PySpark 核心，可讓您使用 Python 語言建置 Spark 應用程式。 您也可以使用像是 PyCharm 或 Spyder 的 Python IDE 來建置您的 Spark 程式。 因為這是獨立執行個體，Spark 堆疊會在呼叫用戶端程式中執行。 相較於在 Spark 叢集上進行開發，這樣可以更快速且輕鬆地針對問題進行疑難排解。 
 
-範例 PySpark Notebook 在 Jupyter 上提供，您可以在 Jupyter 的主目錄 ($HOME/notebooks/SparkML/pySpark) 底下的 "SparkML" 目錄中找到。 
+範例 PySpark 筆記本在 Jupyter 上提供，您可以在 Jupyter 的主目錄 ($HOME/notebooks/SparkML/pySpark) 底下的 "SparkML" 目錄中找到。 
 
 如果您是針對 Spark 在 R 中進行程式設計，您可以使用 Microsoft R 伺服器、SparkR 或 sparklyr。 
 

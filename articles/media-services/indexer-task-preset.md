@@ -11,13 +11,13 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 07/18/2017
+ms.date: 07/31/2017
 ms.author: adsolank;juliako;
 ms.translationtype: HT
-ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
-ms.openlocfilehash: db5aa78749b53a2b853840b53dca0f5cf7ff6d18
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: daf86fa55ec402d55763bfbb616e17ce7619a8a0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/20/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="task-preset-for-azure-media-indexer"></a>Azure 媒體索引器的工作預設
@@ -36,7 +36,7 @@ Azure 媒體索引器是您執行下列工作所使用的媒體處理器：使�
 |中繼資料|false|所指定資產檔案的中繼資料。<br/>```<metadata key="..." value="..." />```<br/><br/>您可以提供預先定義的索引鍵值。 <br/><br/>目前支援下列索引鍵：<br/><br/>**標題**和**描述** - 用來更新語言模型，以改善語音辨識準確度。<br/>```<metadata key="title" value="[Title of the media file]" /><metadata key="description" value="[Description of the media file]" />```<br/><br/>**使用者名稱**和**密碼** - 透過 http 或 https 下載網際網路檔案時用於驗證。<br/>```<metadata key="username" value="[UserName]" /><metadata key="password" value="[Password]" />```<br/>使用者名稱和密碼值會套用至輸入資訊清單中的所有媒體 URL。|
 |特性<br/><br/>在 1.2 版中新增。 目前唯一支援的功能是語音辨識 ("ASR")。|false|語音辨識功能具有下列設定索引鍵︰<br/><br/>語言：<br/>- 要在多媒體檔案中辨識的自然語言。<br/>- 英文、西班牙文<br/><br/>CaptionFormats：<br/>- 所需輸出字幕格式的分號分隔清單 (如果有的話)<br/>- ttml;sami;webvtt<br/><br/><br/>GenerateAIB：<br/>- 布林值旗標，用來指定是否需要 AIB 檔案 (適用於 SQL Server 和客戶索引器 IFilter)。 如需詳細資訊，請參閱＜以 Azure 媒體索引器和 SQL Server 使用 AIB 檔案＞。<br/>- True 或 False<br/><br/>GenerateKeywords：<br/>- 布林值旗標，用於指定是否需要關鍵字 XML 檔案。<br/>- True 或 False。|
 
-## <a name="the-following-example-shows-the-azure-media-indexer-configuration-xml"></a>下例顯示 Azure 媒體索引器設定 XML
+## <a name="azure-media-indexer-configuration-xml-example"></a>Azure 媒體索引器設定 XML 範例
 
 ``` 
 <?xml version="1.0" encoding="utf-8"?>  

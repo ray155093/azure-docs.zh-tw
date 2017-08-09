@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 07/07/2017
+ms.date: 07/24/2017
 ms.author: steveesp
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: a7c32f07516ca83bc2fb5ad5a9a526631932ad4a
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 914747983d4d974810836be66d6c6af343f58b60
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 
@@ -78,10 +77,27 @@ apt-get -y upgrade
 選擇性命令︰
 
 `apt-get -y dist-upgrade`
+#### <a name="ubuntu-azure-preview-kernel"></a>Ubuntu 的 Azure 預覽版核心
+> [!WARNING]
+> 此 Azure Linux 預覽版核心可能沒有與正式發行版本的 Marketplace 映像和核心相同層級的可用性和可靠性。 此功能未受支援、能力可能受限，並且可能不如預設核心可靠。 請勿將此核心使用於生產工作負載。
+
+藉由安裝建議的 Azure Linux 核心，可獲得顯著的輸送量效能。 若要嘗試此核心，請將這一行加入至 /etc/apt/sources.list
+
+```bash
+#add this to the end of /etc/apt/sources.list (requires elevation)
+deb http://archive.ubuntu.com/ubuntu/ xenial-proposed restricted main multiverse universe
+```
+
+然後以 root 身分執行這些命令。
+```bash
+apt-get update
+apt-get install "linux-azure"
+reboot
+```
 
 ### <a name="centos"></a>CentOS
 
-若要進行最佳化，請先更新至截至 2017 年 5 月推出的最新支援版本，也就是：
+若要獲得最佳化，請先更新至截至 2017 年 7 月推出的最新支援版本，也就是：
 ```json
 "Publisher": "OpenLogic",
 "Offer": "CentOS",
@@ -89,7 +105,7 @@ apt-get -y upgrade
 "Version": "latest"
 ```
 更新完成之後，請安裝最新的 Linux Integration Services (LIS)。
-輸送量最佳化選項從 LIS 4.2 版開始提供。 輸入下列命令以安裝 LIS：
+輸送量最佳化選項從 LIS 4.2.2-2 版開始提供。 輸入下列命令以安裝 LIS：
 
 ```bash
 sudo yum update
@@ -99,21 +115,21 @@ sudo yum install microsoft-hyper-v
 
 ### <a name="red-hat"></a>Red Hat
 
-若要獲得最佳化，請先更新至截至 2017 年 1 月推出的最新支援版本，也就是：
+若要獲得最佳化，請先更新至截至 2017 年 7 月推出的最新支援版本，也就是：
 ```json
 "Publisher": "RedHat"
 "Offer": "RHEL"
 "Sku": "7.3"
-"Version": "7.3.2017062722"
+"Version": "7.3.2017071923"
 ```
 更新完成之後，請安裝最新的 Linux Integration Services (LIS)。
 輸送量最佳化選項從 LIS 4.2 版開始提供。 輸入下列命令以下載並安裝 LIS：
 
 ```bash
-mkdir lis4.2.1
-cd lis4.2.1
-wget https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.1-1.tar.gz
-tar xvzf lis-rpms-4.2.1-1.tar.gz
+mkdir lis4.2.2-2
+cd lis4.2.2-2
+wget https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.2-2.tar.gz
+tar xvzf lis-rpms-4.2.2-2.tar.gz
 cd LISISO
 install.sh #or upgrade.sh if prior LIS was previously installed
 ```

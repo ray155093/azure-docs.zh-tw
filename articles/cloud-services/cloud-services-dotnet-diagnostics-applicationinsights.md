@@ -67,7 +67,7 @@ Azure 診斷記錄類型會以下列方式對應至 Application Insights 概念�
 
     ![[計量瀏覽器] 中的自訂計量][5]
 
-* 使用 [搜尋][](../application-insights/app-insights-diagnostic-search.md)，在 Azure 診斷傳送的追蹤記錄中進行搜尋。 例如，如果未處理的例外狀況造成角色當機和回收，例外狀況的相關資訊就會顯示在 [Windows 事件記錄] 的 [應用程式] 通道中。 您可以使用搜尋來查看 Windows 事件記錄錯誤，並取得例外狀況的完整堆疊追蹤，可協助找出問題的原因。
+* 使用 [搜尋](../application-insights/app-insights-diagnostic-search.md)，在 Azure 診斷傳送的追蹤記錄中進行搜尋。 例如，如果未處理的例外狀況造成角色當機和回收，例外狀況的相關資訊就會顯示在 [Windows 事件記錄] 的 [應用程式] 通道中。 您可以使用搜尋來查看 Windows 事件記錄錯誤，並取得例外狀況的完整堆疊追蹤，可協助找出問題的原因。
 
     ![搜尋追蹤][6]
 

@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/10/2016
 ms.author: zivr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
-ms.openlocfilehash: 062ab97d00622419e2bca1fcd0a17f6b6b4f6f81
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 793803bfc12059a68ec881da9de37116f7a0eb8c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/23/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="azure-metadata-service---scheduled-events-preview"></a>Azure 中繼資料服務 - 排定的事件 (預覽)
@@ -42,8 +41,8 @@ ms.lasthandoff: 05/23/2017
 而在某些情況下，通知系統管理員有關即將發生的事件，或記錄這類事件，都有助改善裝載於雲端之應用程式的服務性。
 
 Azure 中繼資料服務會在下列使用案例中呈現排定的事件︰
--    平台起始的維護 (例如，主機作業系統推出)
--    使用者起始的呼叫 (例如，使用者重新啟動或重新部署 VM)
+-   平台起始的維護 (例如，主機作業系統推出)
+-   使用者起始的呼叫 (例如，使用者重新啟動或重新部署 VM)
 
 
 ## <a name="scheduled-events---the-basics"></a>排定的事件 - 基本概念  
@@ -58,7 +57,7 @@ Azure 中繼資料服務會在下列使用案例中呈現排定的事件︰
 如果虛擬機器不是在虛擬網路中建立，則針對雲端服務和傳統 VM 的預設案例，需要其他邏輯來探索可使用的端點。 請參閱此範例以了解如何[探索主機端點](https://github.com/azure-samples/virtual-machines-python-scheduled-events-discover-endpoint-for-non-vnet-vm)。
 
 ### <a name="versioning"></a>版本控制 
-執行個體中繼資料服務已建立版本。 版本是必要項目，目前版本為 `2017-03-01`。
+執行個體中繼資料服務已建立版本。 版本是必要項目，且目前版本為 `2017-03-01`。
 
 > [!NOTE] 
 > 先前排定事件的預覽版支援作為 API 版本的 {latest}。 此格式將不再受到支援且之後會遭到取代。
@@ -69,9 +68,16 @@ Azure 中繼資料服務會在下列使用案例中呈現排定的事件︰
 ### <a name="enabling-scheduled-events"></a>啟用排定的事件
 第一次要求排定的事件時，Azure 會在您的虛擬機器上隱含啟用此功能。 因此，您可能會在第一次呼叫中遇到長達兩分鐘的延遲回應。
 
-### <a name="testing-your-logic-with-user-initiated-operations"></a>透過使用者起始的作業測試您的邏輯
-您可以使用 Azure 入口網站、API、CLI 或 PowerShell 來起始會產生排定事件的作業，以測試您的邏輯。 重新啟動虛擬機器時，會產生相當於 `Reboot` 事件類型的排定事件。 重新部署虛擬機器時，會產生相當於 `Redeploy` 事件類型的排定事件。
-在這兩種情況下，使用者起始的作業會花費較長時間來完成，因為排定事件需要更多時間讓應用程式順利關閉。 
+### <a name="user-initiated-maintenance"></a>使用者起始的維護
+使用者透過 Azure 入口網站、API、CLI 或 PowerShell 起始的虛擬機器維護，將會產生「排程的事件」。 這可讓您測試應用程式中的維護準備邏輯，讓應用程式可以為使用者啟動的維護預作準備。
+
+重新啟動虛擬機器將會排程 `Reboot` 類型的事件。 重新部署虛擬機器將會排程 `Redeploy` 類型的事件。
+
+> [!NOTE] 
+> 目前最多可同時排程 10 個使用者起始的維護作業。 「排程的事件」正式運作之前，將會放寬這項限制。
+
+> [!NOTE] 
+> 使用者起始的維護會導致「排程的事件」，這個狀況目前尚無法設定。 預計在未來版本中，將可針對此狀況作設定。
 
 ## <a name="using-the-api"></a>使用 API
 
@@ -373,3 +379,4 @@ if __name__ == '__main__':
 - 深入了解[執行個體中繼資料服務](virtual-machines-instancemetadataservice-overview.md)中提供的 API。
 - 了解 [Azure 中 Windows 虛擬機器預定進行的維修](windows/planned-maintenance.md)。
 - 了解 [Azure 中 Linux 虛擬機器預定進行的維修](linux/planned-maintenance.md)。
+

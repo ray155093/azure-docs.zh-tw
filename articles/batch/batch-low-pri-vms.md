@@ -9,13 +9,13 @@ ms.service: batch
 ms.devlang: multiple
 ms.topic: article
 ms.workload: na
-ms.date: 05/05/2017
+ms.date: 07/21/2017
 ms.author: markscu
 ms.translationtype: HT
-ms.sourcegitcommit: 54454e98a2c37736407bdac953fdfe74e9e24d37
-ms.openlocfilehash: 0f839072d9603e83b0ca493c9a7bab0e71a682c5
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 9bf0ac322020d8a8453011c3207c1930175db6d3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 07/24/2017
 
 ---
 
@@ -171,6 +171,22 @@ VM 可能偶爾會被優先佔用；當這個情況發生時，Batch 會執行�
 -   VM 將會有效地刪除，導致本機儲存在上 VM 的任何資料遺失。
 -   集區會繼續嘗試觸達可用的低優先順序節點之目標數目。 找到取代容量時，節點會保留其識別碼，但在可供工作排程使用之前，會先重新初始化，逐步進行**建立**和**啟動**狀態。
 -   優先佔用計數會在 Azure 入口網站中作為計量提供使用。
+
+## <a name="metrics"></a>度量
+
+[Azure 入口網站](https://portal.azure.com)中有針對低優先順序節點提供的新計量。 這些計量包括：
+
+- 低優先順序節點計數
+- 低優先順序核心計數 
+- 先占節點計數
+
+若要檢視 Azure 入口網站中的計量：
+
+1. 在入口網站中瀏覽至您的 Batch 帳戶，並檢視 Batch 帳戶的設定。
+2. 從 [監視] 區段選取 [計量]。
+3. 從 [可用的計量] 清單中選取您所需的計量。
+
+![低優先順序節點的計量](media/batch-low-pri-vms/low-pri-metrics.png)
 
 ## <a name="next-steps"></a>後續步驟
 

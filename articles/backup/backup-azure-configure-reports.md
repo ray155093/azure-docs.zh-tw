@@ -12,15 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 06/30/2017
+ms.date: 07/24/2017
 ms.author: pajosh
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
-ms.openlocfilehash: ea438530808b418e1a3b4673a72de5df0738e797
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 649823705c9680677b84e77676bf7a004e4ed779
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="configure-azure-backup-reports"></a>設定 Azure 備份報告
@@ -65,6 +64,11 @@ ms.lasthandoff: 06/30/2017
 
       ![選取儲存體帳戶步驟 6](./media/backup-azure-configure-reports/save-configuration.png)
 7. 檢閱所有變更，然後按一下頂端的 [儲存] 按鈕，如上圖所示。 此動作可確保所有變更都會儲存，且儲存體帳戶已針對儲存報告資料進行設定。
+
+> [!NOTE]
+> 一旦您將儲存體帳戶儲存從而設定報告後，應該**等待 24 小時**，初始資料推送才會完成。 只有在該時間之後，您才需要將 Power BI 中的 Azure 備份內容套件匯入。 如需進一步的詳細資料，請參閱[常見問題集一節](#frequently-asked-questions)。 
+>
+>
 
 ## <a name="view-reports-in-power-bi"></a>在 Power BI 中檢視報告 
 使用復原服務保存庫針對報告設定儲存體帳戶之後，報告資料大約需要 24 小時的時間才會開始流入。 在設定儲存體帳戶的 24 小時後，請使用下列步驟以在 Power BI 中檢視報告：

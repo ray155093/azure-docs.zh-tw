@@ -13,10 +13,10 @@ ms.workload: storage
 ms.date: 06/01/2017
 ms.author: jaboes
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: f7ca0c1aa67b8a5f5487dd93a142ac9da094f945
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 4c502784a57850d6f11200e95f7432d2206e920a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 
@@ -92,15 +92,20 @@ ms.lasthandoff: 07/12/2017
 
 ## <a name="managed-disks-template-formatting"></a>受控磁碟範本格式
 
-有了 Azure 受控磁碟，磁碟會變成最上層資源，且不再需要使用者建立儲存體帳戶。 受控磁碟是在 `2016-04-30-preview` API 版本中公開，而且現在是預設磁碟類型。 以下幾節會逐步解說預設設定，並詳細說明如何進一步自訂您的磁碟。
+有了 Azure 受控磁碟，磁碟會變成最上層資源，且不再需要使用者建立儲存體帳戶。 受控磁碟是在 `2016-04-30-preview` API 版本中首次公開，在後續的 API 版本中皆可取得，而且現在它們是預設的磁碟類型。 以下幾節會逐步解說預設設定，並詳細說明如何進一步自訂您的磁碟。
+
+> [!NOTE]
+> 建議使用 `2016-04-30-preview` 以後的 API 版本，因為 `2016-04-30-preview` 和 `2017-03-30` 之間有重大變更。
+>
+>
 
 ### <a name="default-managed-disk-settings"></a>預設的受控磁碟設定
 
-若要建立使用受控磁碟的 VM，您不再需要建立儲存體帳戶資源，而且可以更新虛擬機器資源，如下所示。 請特別注意，`apiVersion` 會反映出 `2016-04-30-preview` 和 `osDisk` 和 `dataDisks` 不再參照 VHD 的特定 URI。 若部署而不指定其他屬性，磁碟將會使用 [標準 LRS 儲存體][](storage-redundancy.md)。 若未指定名稱，它的 OS 磁碟格式為 `<VMName>_OsDisk_1_<randomstring>`，而每個資料磁碟的格式為 `<VMName>_disk<#>_<randomstring>`。 預設已停用 Azure 磁碟加密；OS 磁碟的快取為 [讀取/寫入]，資料磁碟的快取則為 [無]。 您可能會注意到，在下列範例中仍有儲存體帳戶相依性，但這只適用於儲存體的診斷，而且磁碟儲存體並不需要相依性。
+若要建立使用受控磁碟的 VM，您不再需要建立儲存體帳戶資源，而且可以更新虛擬機器資源，如下所示。 請特別注意，`apiVersion` 會反映出 `2017-03-30` 和 `osDisk` 和 `dataDisks` 不再參照 VHD 的特定 URI。 若部署而不指定其他屬性，磁碟將會使用 [標準 LRS 儲存體][](storage-redundancy.md)。 若未指定名稱，它的 OS 磁碟格式為 `<VMName>_OsDisk_1_<randomstring>`，而每個資料磁碟的格式為 `<VMName>_disk<#>_<randomstring>`。 預設已停用 Azure 磁碟加密；OS 磁碟的快取為 [讀取/寫入]，資料磁碟的快取則為 [無]。 您可能會注意到，在下列範例中仍有儲存體帳戶相依性，但這只適用於儲存體的診斷，而且磁碟儲存體並不需要相依性。
 
 ```
 {
-    "apiVersion": "2016-04-30-preview",
+    "apiVersion": "2017-03-30",
     "type": "Microsoft.Compute/virtualMachines",
     "name": "[variables('vmName')]",
     "location": "[resourceGroup().location]",
@@ -143,23 +148,25 @@ ms.lasthandoff: 07/12/2017
 {
     "type": "Microsoft.Compute/disks",
     "name": "[concat(variables('vmName'),'-datadisk1')]",
-    "apiVersion": "2016-04-30-preview",
+    "apiVersion": "2017-03-30",
     "location": "[resourceGroup().location]",
+    "sku": {
+        "name": "Standard_LRS"
+    },
     "properties": {
         "creationData": {
             "createOption": "Empty"
         },
-        "accountType": "Standard_LRS",
         "diskSizeGB": 1023
     }
 }
 ```
 
-然後，在 VM 物件中，我們可以參照這個要連結的磁碟物件。 指定我們在 `managedDisk` 屬性中建立之受控磁碟的資源識別碼，可允許在建立 VM 時連結磁碟。 VM 資源的 `apiVersion` 必須是 `2016-04-30-preview`，才能使用此功能。 也請注意，我們在磁碟資源上建立了相依性，以確保它在建立 VM 之前成功建立。 
+然後，在 VM 物件中，我們可以參照這個要連結的磁碟物件。 指定我們在 `managedDisk` 屬性中建立之受控磁碟的資源識別碼，可允許在建立 VM 時連結磁碟。 請注意，VM 資源的 `apiVersion` 是設定成 `2017-03-30`。 也請注意，我們在磁碟資源上建立了相依性，以確保它在建立 VM 之前成功建立。 
 
 ```
 {
-    "apiVersion": "2016-04-30-preview",
+    "apiVersion": "2017-03-30",
     "type": "Microsoft.Compute/virtualMachines",
     "name": "[variables('vmName')]",
     "location": "[resourceGroup().location]",
@@ -200,11 +207,11 @@ ms.lasthandoff: 07/12/2017
 
 ### <a name="create-managed-availability-sets-with-vms-using-managed-disks"></a>為使用受控磁碟的 VM 建立受控可用性設定組
 
-若要為使用受控磁碟的 VM 建立受控可用性設定組，請將 `sku` 物件新增至可用性設定組資源，並將 `name` 屬性設定為 `Aligned`。 這可確保每個 VM 的磁碟彼此之間都充分隔離，以避免發生單一失敗點。 可用性設定組資源的 `apiVersion` 也必須是 `2016-04-30-preview`，才能使用此功能。
+若要為使用受控磁碟的 VM 建立受控可用性設定組，請將 `sku` 物件新增至可用性設定組資源，並將 `name` 屬性設定為 `Aligned`。 這可確保每個 VM 的磁碟彼此之間都充分隔離，以避免發生單一失敗點。 另請注意，可用性設定組資源的 `apiVersion` 是設定成 `2017-03-30`。
 
 ```
 {
-    "apiVersion": "2016-04-30-preview",
+    "apiVersion": "2017-03-30",
     "type": "Microsoft.Compute/availabilitySets",
     "location": "[resourceGroup().location]",
     "name": "[variables('avSetName')]",

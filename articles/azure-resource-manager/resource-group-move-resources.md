@@ -184,7 +184,7 @@ App Service 方案不需要與應用程式位於相同的資源群組，應用�
 3. 將憑證上傳至 Web 應用程式
 
 ## <a name="recovery-services-limitations"></a>復原服務限制
-不啟用移動用來設定 Azure Site Recovery 相關災害復原的「儲存體」、「網路」或「計算」資源。
+無法移動用來設定 Azure Site Recovery 相關災害復原的「儲存體」、「網路」或「計算」資源。
 
 舉例來說，假設您已設定將內部部署機器複寫到某個儲存體帳戶 (Storage1)，而想要讓受保護的機器在容錯移轉到 Azure 之後，以連接到虛擬網路 (Network1) 的虛擬機器 (VM1) 身分上線。 您無法跨相同訂用帳戶內的資源群組或跨訂用帳戶來移動任何這些 Azure 資源 - Storage1、VM1 及 Network1。
 

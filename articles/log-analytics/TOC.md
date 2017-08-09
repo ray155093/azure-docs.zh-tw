@@ -31,12 +31,22 @@
 #### [IIS 記錄檔](log-analytics-data-sources-iis-logs.md)
 #### [自訂的記錄檔](log-analytics-data-sources-custom-logs.md)
 #### [自訂欄位](log-analytics-custom-fields.md)
+
 ## 查詢資料
 ### [記錄檔搜尋概觀](log-analytics-log-searches.md)
 ### [搜尋參考](log-analytics-search-reference.md)
 #### [規則運算式](log-analytics-log-searches-regex.md)
 ### [搜尋結果中採取行動](log-analytics-log-search-takeaction.md)
 ### [電腦群組](log-analytics-computer-groups.md)
+
+## 記錄搜尋
+### [升級您的工作區](log-analytics-log-search-upgrade.md)
+### [常見問題集](log-analytics-log-search-faq.md)
+### [記錄檔搜尋概觀](log-analytics-log-search-new.md)
+### [記錄搜尋入口網站](log-analytics-log-search-portals.md)
+#### [使用入口網站記錄搜尋](log-analytics-log-search-log-search-portal.md)
+### [從舊版語言轉換](log-analytics-log-search-transition.md)
+
 ## 分析資料
 ### [儀表板](log-analytics-dashboards.md)
 ### [檢視設計工具](log-analytics-view-designer.md)
@@ -74,6 +84,7 @@
 ### [惡意程式碼評估](log-analytics-malware.md)
 ### [網路分析](log-analytics-azure-networking-analytics.md)
 ### [網路效能監視器](log-analytics-network-performance-monitor.md)
+### [Office 365](../operations-management-suite/oms-solution-office-365.md?toc=%2fazure%2flog-analytics%2ftoc.json)
 ### [SCOM 評估](log-analytics-scom-assessment.md)
 ### [安全性稽核](../operations-management-suite/oms-security-getting-started.md?toc=%2fazure%2flog-analytics%2ftoc.json)
 ### [Service Fabric](log-analytics-service-fabric.md)
@@ -101,5 +112,6 @@
 # 資源
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/)
 ## [價格](https://azure.microsoft.com/pricing/details/log-analytics/)
+## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=log-analytics)
 ## [Windows 分析](https://www.microsoft.com/en-us/WindowsForBusiness/windows-analytics)

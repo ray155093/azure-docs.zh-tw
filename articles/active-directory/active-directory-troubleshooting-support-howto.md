@@ -73,7 +73,7 @@ Microsoft 對 Azure Active Directory (Azure AD) 提供全球性的技術、售�
 
 2. 在 [支援] 磚中，選取 [新增服務要求]：![Office 365 入口網站的螢幕擷取畫面](./media/active-directory-troubleshooting-support-howto/office-portal.png)
 
-3. 在 [支援概觀] 頁面上，選取 [身分識別管理] 或 [User and domain management] (使用者和網域管理)：![Azure AD 支援類別螢幕擷取畫面](./media/active-directory-troubleshooting-support-howto/select-identity.png)
+3. 在 [支援概觀] 頁面上，選取 [身分識別管理] 或 [User and domain management] \(使用者和網域管理)：![Azure AD 支援類別螢幕擷取畫面](./media/active-directory-troubleshooting-support-howto/select-identity.png)
 
 4. 對於 [功能]，選取您要支援的 Azure AD 功能。
 

@@ -15,19 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 343b71e28adfd32295b837a40ecf64083341b972
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: c47b652f1a7397b07deee2704509ea2803467416
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
-# <a name="overview-of-reporting-apis-for-enterprise-customers-preview"></a>適用於企業客戶的報告 API 概觀 (預覽)
+# <a name="overview-of-reporting-apis-for-enterprise-customers"></a>適用於企業客戶的報告 API 概觀
 報告 API 可讓企業 Azure 客戶以程式設計方式提取使用情況和帳單資料，以使用慣用的資料分析工具進行分析。 
 
 ## <a name="enabling-data-access-to-the-api"></a>啟用對 API 的資料存取
-* **產生\擷取 API 金鑰** - 登入企業入口網站，並遵循 [說明] - [報告 API] 底下的教學課程。 此說明文章的第一節說明如何針對指定的註冊產生\擷取 API 金鑰。
+* **產生或擷取 API 金鑰** - 登入企業入口網站，並遵循 [說明] - [報告 API] 底下的教學課程。 此說明文章的第一節說明如何針對指定的註冊產生或擷取 API 金鑰。
 * **在 API 中傳遞金鑰** - 必須針對每個驗證和授權呼叫傳遞 API 金鑰。 下列屬性必須是針對 HTTP 標頭
 
 |要求標頭金鑰 | 值|
@@ -35,7 +34,7 @@ ms.lasthandoff: 05/03/2017
 |Authorization| 以此格式指定值：**bearer {API_KEY}** <br/> 範例：bearer eyr....09|
 
 ## <a name="consumption-apis"></a>使用情況 API
-下述 API 的 Swagger 端點可在[這裡](https://consumption.azure.com/v1/swagger)取得，它可讓使用者輕鬆進行 API 自我檢查，並且能使用 [AutoRest](https://github.com/Azure/AutoRest) 或 [Swagger CodeGen](http://swagger.io/swagger-codegen/) 產生用戶端 SDK。 自 2014 年 5 月 1 日起的資料可透過此 API 取得。 
+下述 API 的 Swagger 端點可在[這裡](https://consumption.azure.com/v2/swagger/index)取得，它可讓使用者輕鬆進行 API 自我檢查，並且能使用 [AutoRest](https://github.com/Azure/AutoRest) 或 [Swagger CodeGen](http://swagger.io/swagger-codegen/) 產生用戶端 SDK。 自 2014 年 5 月 1 日起的資料可透過此 API 取得。 
 
 * **餘額與摘要** - [餘額與摘要 API](billing-enterprise-api-balance-summary.md) 可提供餘額、新購買、Azure Marketplace 服務費用、調整，以及超額部分費用的每月摘要資訊。
 
@@ -46,7 +45,7 @@ ms.lasthandoff: 05/03/2017
 * **價位表** - [價位表 API](billing-enterprise-api-pricesheet.md) 可針對指定註冊和計費週期的每個計量提供適用的費率。 
 
 ## <a name="helper-apis"></a>協助程式 API
- **列出計費週期** - [計費週期 API](billing-enterprise-api-billing-periods.md) 會傳回計費週期清單，其中包含所指定註冊的使用情況資料 (以反向時間順序排列)。 每個週期包含指向四組資料 (BalanceSummary、UsageDetails、MarketplaceCharges 和 PriceSheet) 之 API 路由的屬性。
+ **列出計費週期** - [計費週期 API](billing-enterprise-api-billing-periods.md) 會傳回計費週期清單，其中包含所指定註冊的使用情況資料 (以反向時間順序排列)。 每個週期包含指向四組資料 (BalanceSummary、UsageDetails、Marketplace 費用和價位表) 之 API 路由的屬性。
 
 
 ## <a name="api-response-codes"></a>API 回應碼  

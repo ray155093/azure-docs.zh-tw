@@ -14,12 +14,12 @@ ms.topic: get-started-article
 ms.date: 07/14/2017
 ms.author: kgremban
 ms.reviewer: harshja
-ms.custom: it-pro
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: 526efc5b025f8050f40c49d0a07a9c2713509493
+ms.custom: it-pro; oldportal
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 96490c0d060fe5486a7235a5aa76380c8d9b5d4f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 
@@ -63,9 +63,9 @@ Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部�
 6. 若要完成精靈，請按一下畫面底部的核取記號。 應用程式現在已在 Azure AD 中定義。
 
 ## <a name="assign-users-and-groups-to-the-application"></a>將使用者和群組指派給應用程式
-為了讓使用者存取您發佈的應用程式，您必須以個別或群組方式指派他們。 (請也記得指派自己的存取權。)這需要每位使用者具有 Azure Basic 或更新版本的授權。 您可以個別指派授權或指派給群組。 如需詳細資訊， [將使用者指派給應用程式](active-directory-applications-guiding-developers-assigning-users.md) 。 
+為了讓使用者存取您發佈的應用程式，您必須以個別或群組方式指派他們。 (請也記得指派自己的存取權。)您指派的每位使用者需要 Azure Basic 或更新版本的授權。 您可以個別指派授權或指派給群組。 如需詳細資訊，請參閱[將使用者指派給應用程式](active-directory-applications-guiding-developers-assigning-users.md)。 
 
-對於需要預先驗證的應用程式，這會授與使用該應用程式的權限。 對於不需要預先驗證的應用程式，使用者仍可被指派至該應用程式，該應用程式才會出現在其應用程式清單中 (例如 MyApps)。
+對於需要預先驗證的應用程式，指派使用者可授與使用該應用程式的權限。 對於不需要預先驗證的應用程式，指派使用者表示使用者可以透過存取面板存取應用程式。
 
 1. 完成 [新增應用程式] 精靈之後，您會看見您的應用程式的 [快速啟動] 頁面。 若要管理誰有權存取此應用程式，請選取 [使用者和群組] 。
    
@@ -90,7 +90,7 @@ Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部�
 
 使用 Azure Active Directory 應用程式 Proxy 發佈應用程式之後，這些應用程式會出現在 Azure AD 中的應用程式清單內，您可以在那裡進行管理。
 
-如果您在發佈應用程式之後停用應用程式 Proxy 服務，便無法再從您的私人網路外部存取這些服務。 這不會刪除應用程式。
+如果您在發佈應用程式之後停用應用程式 Proxy 服務，便無法再從您的私人網路外部存取應用程式。 您的使用者仍可照常存取內部部署應用程式。
 
 若要檢視應用程式，並確定可以存取該應用程式，按兩下應用程式的名稱。 如果已停用應用程式 Proxy 服務，而且無法使用應用程式，則會在畫面頂端出現一個警告訊息。
 

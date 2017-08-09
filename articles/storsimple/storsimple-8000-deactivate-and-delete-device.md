@@ -14,12 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/23/2017
 ms.author: alkohli
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: 5128f90ac477b67317bb30e0bc614ce35e9b3d46
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 3c00867a29cf8343a57e74e2aabe3971ae6837af
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="deactivate-and-delete-a-storsimple-device"></a>停用及刪除 StorSimple 裝置
@@ -53,6 +52,10 @@ ms.lasthandoff: 07/08/2017
 #### <a name="to-deactivate-the-device-and-delete-the-data"></a>如何停用裝置並刪除資料
 
 1. 在停用裝置之前，您必須刪除和裝置相關聯的所有磁碟區容器 (和磁碟區)。 但您在刪除磁碟區容器之前，必須先刪除相關聯的備份。
+
+    > [!NOTE]
+    > 停用 StorSimple 實體裝置或雲端應用裝置之前，請確定已刪除的磁碟區容器中的資料已確實從裝置上刪除。 您可以監視雲端耗用量圖表，當您看到雲端使用量因為您刪除備份而下降時，就可以繼續進行停用裝置。 如果您在使用量下降之前就停用裝置，資料會受困在儲存體帳戶中，導致費用產生。
+
 2. 請依照下列步驟來停用裝置：
    
    1. 移至 StorSimple 裝置管理員服務，然後按一下 [裝置]。 在 [裝置] 刀鋒視窗中，選取您想要停用的裝置、按一下滑鼠右鍵，然後按一下 [停用]。

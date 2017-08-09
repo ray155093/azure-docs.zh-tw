@@ -12,13 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/15/2017
+ms.date: 07/24/2017
 ms.author: chackdan
 ms.translationtype: HT
-ms.sourcegitcommit: 2ad539c85e01bc132a8171490a27fd807c8823a4
-ms.openlocfilehash: baff8d5f0f2b17acd134ae846286892a2b033721
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 9d5a4bef0c22f637a35390c6a8a245967fb02118
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/12/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="service-fabric-cluster-capacity-planning-considerations"></a>Service Fabric 叢集容量規劃考量
@@ -75,7 +75,7 @@ ms.lasthandoff: 07/12/2017
 * Silver -每個 UD 可持續暫停基礎結構工作 10 分鐘，並於所有單核心 (或更多核心) 的標準 VM 上提供。
 * Bronze - 無權限。 這是預設值，也是您在叢集中僅執行無狀態工作負載時的建議選項。
 
-您可以個別為節點類型選擇持久性層級。您可以為單一節點類型選擇 Gold 或 Silver 持久性層級，並為相同叢集中的其他節點類型選擇 Bronze 持久性層級。 「針對具有 Gold 或 Silver 持久性的節點類型，您必須維持至少 5 個節點。」 
+您可以個別為節點類型選擇持久性層級。您可以為單一節點類型選擇 Gold 或 Silver 持久性層級，並為相同叢集中的其他節點類型選擇 Bronze 持久性層級。**對於具有 Gold 或 Silver 持久性的任何節點類型，您必須維持最少 5 個節點計數**。 
 
 **使用 Silver 或 Gold 持久性層級的優點**
  
@@ -96,14 +96,13 @@ ms.lasthandoff: 07/12/2017
 ### <a name="operational-recommendations-for-the-node-type-that-you-have-set-to-silver-or-gold-durability-level"></a>針對您已設定為 Silver 或 Gold 耐久性層級之節點類型的作業建議。
 
 1. 使叢集和應用程式持續保持良好的狀況，並確保應用程式會及時回應所有[服務複本生命週期事件](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle) (例如當組建中的複本陷入停滯)。
-2. 採用更安全的方式來進行 VM SKU 變更 (相應增加/減少)：
-
-您不應該時常執行此作業，因為它並不安全。  變更虛擬機器擴展集的 VM SKU 是一項不安全的作業。 以下為您可以遵循以避免發生常見問題的程序。
-    - 針對非主要 Nodetype：建議您建立新的虛擬機器擴展集，修改服務放置條件約束以包含新的虛擬機器擴展集/節點類型，然後以一次一個節點的方式，將舊的虛擬機器擴展集執行個體計數減少至 0 (這是為了確保移除節點不會影響到叢集的可靠性)。
-    - 針對主要 Nodetype：建議您不要變更主要節點類型的 VM SKU。 如果是基於容量的原因而需要新的 SKU，我們建議新增更多執行個體，或在可行的情況下建立新的叢集。 如果您沒有選擇，請對虛擬機器擴展集模型定義進行修改以反映新的 SKU。 如果您的叢集只有單一 Nodetype，請確保具狀態應用程式會及時回應所有[服務複本生命週期事件](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle) (例如當組建中的複本陷入停滯)，且您的服務複本重建期間為少於十分鐘 (針對 Silver 持久性層級)。
+2. 採用更安全的方式來進行 VM SKU 變更 (相應增加/減少)：變更虛擬機器擴展集的 VM SKU 本身是一種不安全的作業，因此請盡可能採用這種做法。 以下為您可以遵循以避免發生常見問題的程序。
+    - **針對非主要 Nodetype：**建議您建立新的虛擬機器擴展集，修改服務放置條件約束以包含新的虛擬機器擴展集/節點類型，然後以一次一個節點的方式，將舊的虛擬機器擴展集執行個體計數減少至 0 (這是為了確保移除節點不會影響到叢集的可靠性)。
+    - **針對主要 Nodetype：**建議您不要變更主要節點類型的 VM SKU。 如果是基於容量的原因而需要新的 SKU，我們建議新增更多執行個體，或在可行的情況下建立新的叢集。 如果您沒有選擇，請對虛擬機器擴展集模型定義進行修改以反映新的 SKU。 如果您的叢集只有單一 Nodetype，請確保所有具狀態應用程式會及時回應所有[服務複本生命週期事件](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle) (例如當組建中的複本陷入停滯)，且您的服務複本重建期間為少於五分鐘 (針對 Silver 持久性層級)。 
 3. 針對所有啟用 MR 的虛擬機器擴展集維持至少五個節點
 4. 請勿隨機刪除 VM 執行個體，而一律使用虛擬機器擴展集的相應減少功能。 刪除隨機的 VM 執行個體可能會在 UD 和 FD 上的 VM 執行個體中產生不平衡。 此不平衡可能會嚴重影響系統對服務執行個體/服務複本正確進行負載平衡的能力。
-6. 如果您使用自動調整功能，則請設定規則使系統一次只會針對一個節點進行相應縮小 (移除 VM 執行個體)。 
+6. 如果您使用自動調整功能，則請設定規則使系統一次只會針對一個節點進行相應縮小 (移除 VM 執行個體)。 一次相應減少超過一個執行個體並不安全。
+7. 如果相應減少主要節點類型，您絕對不應將其相應減少超過可靠性層級允許的程度。
 
 
 ## <a name="the-reliability-characteristics-of-the-cluster"></a>叢集的可靠性特性
@@ -117,22 +116,37 @@ ms.lasthandoff: 07/12/2017
 * Bronze - 執行包含 3 個目標複本集的系統服務
 
 > [!NOTE]
-> 您選擇的可靠性層級會決定您的主要節點類型必須具備的節點數目下限。 可靠性層級與叢集大小上限沒有關係。 因此，您可以有 20 個節點叢集在 Bronze 可靠性層級執行。
+> 您選擇的可靠性層級會決定您的主要節點類型必須具備的節點數目下限。 
 > 
 > 
 
- 您可以選擇將叢集的可靠性從一個層級更新為另一個層級。 如此一來就會觸發變更系統服務複本集計數所需的叢集升級。 請先等候升級完成，再對叢集進行任何其他變更，例如新增節點。  您可以在 Service Fabric Explorer 上或執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) 監視升級的進度
+
+### <a name="recommendations-for-the-reliability-tier"></a>可靠性層級的建議。
+
+ 當您增加或減少叢集大小 (所有節點類型的 VM 執行個體總和) 時，必須將叢集的可靠性從一個層級更新到另一個層級。 如此一來就會觸發變更系統服務複本集計數所需的叢集升級。 請先等候升級完成，再對叢集進行任何其他變更，例如新增節點。  您可以在 Service Fabric Explorer 上或執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) 監視升級的進度
+
+以下是選擇可靠性層級的建議。
+
+| **叢集大小** | **可靠性層級** |
+| --- | --- |
+| 1 |不指定「可靠性層級」參數，系統會進行計算 |
+| 3 |Bronze |
+| 5 或 6|Silver |
+| 7 或 8 |Gold |
+| 9 以上 |Platinum |
+
+
 
 
 ## <a name="primary-node-type---capacity-guidance"></a>主要節點類型 - 容量指引
 
 以下是規劃主要節點類型容量的指引
 
-1. **要在 Azure 中執行任何生產工作負載的 VM 執行個體數目**︰您必須指定最小的主要節點類型大小 5。
+1. **要在 Azure 中執行任何生產工作負載的 VM 執行個體數目︰**您必須指定最小的主要節點類型大小 5。 
 2. **要在 Azure 中執行測試工作負載的 VM 執行個體數目︰**您可以指定最小的主要節點類型大小 1 或 3。 以特殊組態執行的一個節點叢集，因此不支援該叢集的相應放大。 一個節點叢集有沒有可靠性且在您的 Resource Manager 範本中，您必須移除/不指定該組態 (不設定組態值並不足夠)。 如果您透過入口網站設定一個節點叢集，則會自動處理組態。 1 和 3 個節點叢集不支援執行生產工作負載。 
 3. **VM SKU：**主要節點類型是執行系統服務的地方，因此，您為此而選擇的 VM SKU，必須考量您打算投入叢集的整體尖峰負載。 我用比喻來闡明我的意思 - 將主要節點類型想像成您的「肺」，它供應氧氣給您的腦，如果腦沒有足夠的氧氣，您的身體就會出問題。 
 
-叢集的容量需求取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供確切的指引，但以下是概括性的指引，可協助您開始進行
+由於叢集的容量需求取決於您打算在叢集中執行的工作負載，因此我們無法為您特定的工作負載提供確切的指引，但以下是概括性的指引，可協助您開始進行
 
 生產工作負載 
 
@@ -145,13 +159,15 @@ ms.lasthandoff: 07/12/2017
 
 ## <a name="non-primary-node-type---capacity-guidance-for-stateful-workloads"></a>非主要節點類型 - 具狀態工作負載的容量指引
 
-請參閱以下內容，以了解使用 Service Fabric 可靠集合或 Reliable Actors 的工作負載。 深入了解[程式設計模型](service-fabric-choose-framework.md)。
+本指引適用於使用 Service Fabric [可靠集合或可靠動作項目](service-fabric-choose-framework.md)的具狀態工作負載 (在非主要節點類型中執行)。
 
-1. **VM 執行個體數目︰**對於具狀態生產工作負載，建議使用目標複本計數至少為 5 來執行工作負載。 這表示在穩定狀態下，最後每個容錯網域和升級網域中會有一個複本 (來自複本集)。 主要節點類型的整個可靠性層級概念，是為系統服務指定此設定。
+
+**VM 執行個體數目︰**對於具狀態生產工作負載，建議使用目標複本計數至少為 5 來執行工作負載。 這表示在穩定狀態下，最後每個容錯網域和升級網域中會有一個複本 (來自複本集)。 主要節點類型的整個可靠性層級概念，是為系統服務指定此設定。 因此，相同的考量也適用於您的具狀態服務。
 
 因此，對於生產工作負載，如果您執行具狀態工作負載，建議的最小非主要節點類型大小為 5。
 
-2. **VM SKU：**這是執行應用程式服務的節點類型，因此，您為此而選擇的 VM SKU，必須考量您打算投入每個節點的尖峰負載。 Nodetype 的容量需求取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供確切的指引，但以下是概括性的指引，可協助您開始進行
+
+**VM SKU：**這是執行應用程式服務的節點類型，因此，您為此而選擇的 VM SKU，必須考量您打算投入每個節點的尖峰負載。 Nodetype 的容量需求取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供確切的指引，但以下是概括性的指引，可協助您開始進行
 
 生產工作負載 
 
@@ -163,7 +179,7 @@ ms.lasthandoff: 07/12/2017
 
 ## <a name="non-primary-node-type---capacity-guidance-for-stateless-workloads"></a>非主要節點類型 - 無狀態工作負載的容量指引
 
-請參閱以下內容，以了解無狀態工作負載
+這個指引適用於您在非主要節點類型上執行的無狀態工作負載。
 
 **VM 執行個體數目︰**對於無狀態的生產工作負載，支援的最小非主要節點類型大小為 2。 這可讓您執行應用程式的兩個無狀態執行個體，在遺失 VM 執行個體的情況下，您的服務仍可繼續運作。 
 
@@ -172,7 +188,7 @@ ms.lasthandoff: 07/12/2017
 > 
 >
 
-**VM SKU：**這是執行應用程式服務的節點類型，因此，您為此而選擇的 VM SKU，必須考量您打算投入每個節點的尖峰負載。 Nodetype 的容量需求完全取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供定性的指引，但以下是概括性的指引，可協助您開始進行
+**VM SKU：**這是執行應用程式服務的節點類型，因此，您為此而選擇的 VM SKU，必須考量您打算投入每個節點的尖峰負載。 Nodetype 的容量需求取決於您打算在叢集中執行的工作負載，因此，我們無法為您特定的工作負載提供確切的指引，但以下是概括性的指引，可協助您開始進行
 
 生產工作負載 
 
@@ -180,7 +196,7 @@ ms.lasthandoff: 07/12/2017
 - 建議的 VM SKU 是標準 D3 或標準 D3_V2 或對等項目。 
 - 支援使用的最小 VM SKU 是標準 D1 或標準 D1_V2 或對等項目。 
 - 局部核心 VM SKU 不支援生產工作負載，例如標準 A0。
-- 基於效能理由，標準 A1 SKU 確定不支援生產工作負載。
+- 基於效能理由，標準 A1 SKU 不支援生產工作負載。
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 

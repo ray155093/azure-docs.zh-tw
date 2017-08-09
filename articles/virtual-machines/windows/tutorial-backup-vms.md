@@ -13,14 +13,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 05/05/2017
+ms.date: 07/27/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: c97ac8f6df1e0fd669b3789d402e1e60f2154205
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 8e58a2290e5034ef393f65cbcddb86e18cf4a6ec
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="back-up-windows-virtual-machines-in-azure"></a>備份 Azure 中的 Windows 虛擬機器
@@ -81,7 +81,7 @@ Azure 備份服務開始備份作業時，會觸發備份擴充功能以建立�
 5. 在您的本機電腦上，開啟新的索引標籤並前往 [Azure 入口網站](https://portal.azure.com)。
 6. 在左邊的功能表上，選取 [虛擬機器]，然後從清單中選取虛擬機器。
 8. 在 VM 刀鋒視窗的 [設定] 區段中，按一下 [備份]。 [備份] 刀鋒視窗隨即開啟。 
-9. 在刀鋒視窗頂端的功能表中，選取 [檔案復原 (預覽)]。 [檔案復原 (預覽)] 刀鋒視窗隨即開啟。
+9. 在刀鋒視窗頂端的功能表中，選取 [檔案復原]。 [檔案復原] 刀鋒視窗隨即開啟。
 10. 在 [步驟 1︰選取復原點] 中，從下拉式清單選取復原點。
 11. 在 [步驟 2：下載指令碼以瀏覽及復原檔案] 中，按一下 [下載執行檔] 按鈕。 將檔案儲存至您的 **Downloads** 資料夾。
 12. 在您的本機電腦上，開啟 [檔案總管] 並瀏覽至 **Downloads** 資料夾，複製下載的 .exe 檔案。 檔案名稱前面會加上您的 VM 名稱。 

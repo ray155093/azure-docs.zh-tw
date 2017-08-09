@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 3/17/2017
+ms.date: 7/20/2017
 ms.author: pratshar
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
-ms.openlocfilehash: 9b2e78ff55ed23732892d605f3edef6a5afdf7ad
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 197441fc24c178695d4eada6db59f503b21672ad
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/18/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
 # <a name="protect-active-directory-and-dns-with-azure-site-recovery"></a>以 Azure Site Recovery 保護 Active Directory 和 DNS
@@ -83,8 +82,7 @@ Site Recovery 是一項 Azure 服務，可藉由協調虛擬機器的複寫、�
 1. 建立隔離的網路。 在 Azure 中建立的任何虛擬網路預設是與其他網路隔離。 建議此網路的 IP 範圍使用與您的生產網路相同的 IP 範圍。 請勿在此網路上啟用網站對網站連線能力。
 1. 提供建立之網站的 DNS IP 位址，做為您預期 DNS 虛擬機器取得的 IP 位址。 如果您是複寫到 Azure，請在 [計算與網路] 設定的 [目標 IP] 設定中提供用於容錯移轉的 VM IP 位址。 
 
-    ![目標 IP](./media/site-recovery-active-directory/DNS-Target-IP.png)
-    **目標 IP**
+    ![目標 IP](./media/site-recovery-active-directory/DNS-Target-IP.png) **目標 IP**
 
     ![Azure 測試網路](./media/site-recovery-active-directory/azure-test-network.png)
 

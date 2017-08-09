@@ -1,0 +1,124 @@
+---
+title: "建立您的第一個 Azure Container Instances 容器 | Azure Docs"
+description: "部署和開始使用 Azure Container Instances"
+services: container-service
+documentationcenter: 
+author: seanmck
+manager: timlt
+editor: 
+tags: 
+keywords: 
+ms.assetid: 
+ms.service: 
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 07/26/2017
+ms.author: seanmck
+ms.custom: 
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: ad053391e6b3927ab11faaf4d9e70b610e86f3c3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
+
+---
+
+# <a name="create-your-first-container-in-azure-container-instances"></a>在 Azure Container Instances 中建立您的第一個容器
+
+Azure Container Instances 可讓您輕鬆地在 Azure 中建立和管理容器。 在本快速入門中，您將會在 Azure 中建立容器，並使用公用 IP 位址向網際網路公開此容器。 只需要一個命令就能完成這項作業。 只在幾秒內，您就能在瀏覽器中看到下列結果：
+
+![在瀏覽器中檢視使用 Azure Container Instances 所部署的應用程式][aci-app-browser]
+
+如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
+
+[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+
+如果您選擇在本機安裝和使用 CLI，本快速入門會要求您執行 Azure CLI 2.0.12 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+
+## <a name="create-a-resource-group"></a>建立資源群組
+
+Azure Container Instances 是 Azure 資源，必須放在 Azure 資源群組中，這是可用來部署和管理 Azure 資源的邏輯集合。
+
+使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。 
+
+下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組。
+
+```azurecli-interactive 
+az group create --name myResourceGroup --location eastus
+```
+
+## <a name="create-a-container"></a>建立容器
+
+您可以提供名稱、Docker 映像和 Azure 資源群組來建立容器。 您可以選擇使用公用 IP 位址向網際網路公開容器。 在此案例中，我們使用的容器裝載一個非常簡單的 Web 應用程式 (以 [Node.js](http://nodejs.org) 撰寫)。
+
+```azurecli-interactive
+az container create --name mycontainer --image microsoft/aci-helloworld --resource-group myResourceGroup --ip-address public 
+```
+
+在幾秒內，您就能取得要求的回應。 一開始，容器會處於**建立中**狀態，但應該會在幾秒鐘內啟動。 您可以使用 `show` 命令來檢查狀態：
+
+```azurecli-interactive
+az container show --name mycontainer --resource-group myResourceGroup
+```
+
+在輸出的底部，您會看到容器的佈建狀態和其 IP 位址：
+
+```json
+...
+"ipAddress": {
+      "ip": "13.88.8.148",
+      "ports": [
+        {
+          "port": 80,
+          "protocol": "TCP"
+        }
+      ]
+    },
+    "osType": "Linux",
+    "provisioningState": "Succeeded"
+...
+```
+
+一旦容器轉為**成功**狀態時，您就可以在瀏覽器中使用提供的 IP 位址來連線至容器。 
+
+![在瀏覽器中檢視使用 Azure Container Instances 所部署的應用程式][aci-app-browser]
+
+## <a name="pull-the-container-logs"></a>提取容器記錄
+
+您可以使用 `logs` 命令來提取您所建立之容器的記錄：
+
+```azurecli-interactive
+az container logs --name mycontainer --resource-group myResourceGroup
+```
+
+輸出：
+
+```bash
+listening on port 80
+::ffff:10.240.255.105 - - [21/Jul/2017:00:01:46 +0000] "GET / HTTP/1.1" 200 1663 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+::ffff:10.240.255.105 - - [21/Jul/2017:00:01:46 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://104.210.39.122/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+```
+
+## <a name="delete-the-container"></a>刪除容器
+
+當容器使用完畢後，您可以使用 `delete` 命令來移除容器：
+
+```azurecli-interactive
+az container delete --name mycontainer --resource-group myResourceGroup
+```
+
+## <a name="next-steps"></a>後續步驟
+
+本快速入門中所使用之容器的所有程式碼，連帶其 Dockerfile，都可以[在 GitHub 上][app-github-repo]取得。 如果您想要自行建置它，並使用 Azure Container Registry 將它部署至 Azure Container Instances，請繼續進行 Azure Container Instances 教學課程。
+
+> [!div class="nextstepaction"]
+> [Azure Container Instances 教學課程](./container-instances-tutorial-prepare-app.md)
+
+
+<!-- LINKS -->
+[app-github-repo]: https://github.com/Azure-Samples/aci-helloworld.git
+
+<!-- IMAGES -->
+[aci-app-browser]: ./media/container-instances-quickstart/aci-app-browser.png

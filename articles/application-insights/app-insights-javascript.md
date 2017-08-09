@@ -13,12 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/14/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: a06ba41193f00f4aa2c7af4e5430ed15f9bb877c
+ms.translationtype: HT
+ms.sourcegitcommit: c30998a77071242d985737e55a7dc2c0bf70b947
+ms.openlocfilehash: 1ae47899443d5552178078a417b7d1ebe91966d2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/13/2017
-
+ms.lasthandoff: 08/02/2017
 
 ---
 # <a name="application-insights-for-web-pages"></a>適用於網頁的 Application Insights
@@ -197,7 +196,7 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP/HTTPS 呼叫。 �
 > 
 > 
 
-您也可以使用功能強大的 [分析查詢語言](https://docs.microsoft.com/azure/application-insights/app-insights-analytics-tour#browser-timings-table) 來搜尋頁面檢視。
+您也可以使用功能強大的 [Log Analytics 查詢語言](https://docs.microsoft.com/azure/application-insights/app-insights-analytics-tour#browser-timings-table)來搜尋頁面檢視。
 
 ### <a name="page-view-properties"></a>頁面檢視屬性
 * **頁面檢視持續時間** 

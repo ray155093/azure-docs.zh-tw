@@ -414,7 +414,7 @@ namespace Microsoft.ServiceBus.Samples
 1. 若要在目前的 Visual Studio 方案中為用戶端建立新專案，請執行下列作業︰
 
    1. 在方案總管中含有服務的相同方案中，以滑鼠右鍵按一下目前的方案 (而非專案)，然後按一下 [加入]。 然後按一下 [新增專案]。
-   2. 在 [新增專案] 對話方塊中，按一下 [Visual C#] (如果 **Visual C#** 未出現，請在 [其他語言] 下尋找)，選取 [主控台應用程式 (.NET Framework)] 範本，並將它命名為 **EchoClient**。
+   2. 在 [新增專案] 對話方塊中，按一下 [Visual C#] \(如果 **Visual C#** 未出現，請在 [其他語言] 下尋找)，選取 [主控台應用程式 (.NET Framework)] 範本，並將它命名為 **EchoClient**。
    3. 按一下 [確定]。
       <br />
 2. 在 [方案總管] 中，按兩下 **EchoClient** 專案中的 Program.cs 檔案，以在編輯器中開啟它 (如果尚未開啟的話)。

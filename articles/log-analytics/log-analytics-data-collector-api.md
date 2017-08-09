@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/30/2017
+ms.date: 07/13/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 2b5899ba43f651ae6f5fdf84d7aa5ee35d81b738
-ms.openlocfilehash: be27695cd1d998eedff0ca76f6ae9d4ff69bb97b
-ms.lasthandoff: 01/05/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: b0c45ff8c1d4c9d35fbb3c8839b38a20df277055
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="send-data-to-log-analytics-with-the-http-data-collector-api"></a>使用 HTTP 資料收集器 API 將資料傳送給 Log Analytics
@@ -162,8 +162,8 @@ Log Analytics 用於每個屬性的資料類型取決於新記錄的記錄類型
 ## <a name="data-limits"></a>資料限制
 在張貼至 Log Analytics 資料收集 API 的資料上有一些限制。
 
-* 可張貼至 Log Analytics 資料收集 API 的每個張貼項目大小上限為 30 MB。 這是單一張貼項目的大小限制。 如果資料是來自超出 30 MB 的單一張貼項目，您應該將資料分割成較小區塊，然後同時傳送它們。 
-* 欄位值的大小上限為 32 KB。 如果欄位值大於 32 KB，資料將會被截斷。 
+* 可張貼至 Log Analytics 資料收集 API 的每個張貼項目大小上限為 30 MB。 這是單一張貼項目的大小限制。 如果資料是來自超出 30 MB 的單一張貼項目，您應該將資料分割成較小區塊，然後同時傳送它們。
+* 欄位值的大小上限為 32 KB。 如果欄位值大於 32 KB，資料將會被截斷。
 * 指定類型欄位的建議數目上限為 50。 對於使用性和搜尋體驗觀點而言，這是一個實際的限制。  
 
 ## <a name="return-codes"></a>傳回碼
@@ -191,6 +191,11 @@ HTTP 狀態碼 200 表示已經接受要求且正在處理。 這表示作業已
 
 ## <a name="query-data"></a>查詢資料
 若要查詢 Log Analytics HTTP 資料收集器 API 所提交的資料，請搜尋 **Type** 等於您所指定之 **LogType** 值且附加 **_CL** 的記錄。 例如，如果您使用 **MyCustomLog**，則會傳回 **Type=MyCustomLog_CL** 的所有記錄。
+
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
+
+> `MyCustomLog_CL`
 
 ## <a name="sample-requests"></a>範例要求
 在後續各節中，您會找到如何使用不同的程式設計語言，將資料提交至 Log Analytics HTTP 資料收集器 API 的範例。
@@ -323,7 +328,7 @@ namespace OIAPIExample
             string stringToHash = "POST\n" + json.Length + "\napplication/json\n" + "x-ms-date:" + datestring + "\n/api/logs";
             string hashedString = BuildSignature(stringToHash, sharedKey);
             string signature = "SharedKey " + customerId + ":" + hashedString;
-    
+
             PostData(signature, datestring, json);
         }
 
@@ -344,20 +349,20 @@ namespace OIAPIExample
         public static void PostData(string signature, string date, string json)
         {
             try
-            { 
+            {
                 string url = "https://" + customerId + ".ods.opinsights.azure.com/api/logs?api-version=2016-04-01";
-    
+
                 System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("Log-Type", LogName);
                 client.DefaultRequestHeaders.Add("Authorization", signature);
                 client.DefaultRequestHeaders.Add("x-ms-date", date);
                 client.DefaultRequestHeaders.Add("time-generated-field", TimeStampField);
-    
+
                 System.Net.Http.HttpContent httpContent = new StringContent(json, Encoding.UTF8);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 Task<System.Net.Http.HttpResponseMessage> response = client.PostAsync(new Uri(url), httpContent);
-    
+
                 System.Net.Http.HttpContent responseContent = response.Result.Content;
                 string result = responseContent.ReadAsStringAsync().Result;
                 Console.WriteLine("Return Result: " + result);

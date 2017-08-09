@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/12/2017
+ms.date: 07/25/2017
 ms.author: tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: db18dd24a1d10a836d07c3ab1925a8e59371051f
-ms.openlocfilehash: 09537fb4058f1fd27469fb9386bc52d938c027ec
+ms.translationtype: HT
+ms.sourcegitcommit: a678700884b612cad6281eb8f3b74ce63a0ebb69
+ms.openlocfilehash: 6a9128f45d4199404019cee594842d59c7f1aaf3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/15/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 
@@ -55,7 +55,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-根據預設，許多資源提供者會自動註冊。不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，請提供命名空間：
+註冊資源提供者可將您的訂用帳戶設定為可搭配資源提供者使用。 註冊範圍一律是訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，您必須有權執行資源提供者的 `/register/action` 作業。 這項作業包含在「參與者」和「擁有者」角色中。
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -69,6 +69,8 @@ RegistrationState : Registering
 ResourceTypes     : {batchAccounts, operations, locations, locations/quotas}
 Locations         : {West Europe, East US, East US 2, West US...}
 ```
+
+當訂用帳戶中仍有資源提供者的資源類型時，您無法取消註冊該資源提供者。
 
 若要查看特定資源提供者的資訊，請使用：
 
@@ -157,13 +159,15 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-根據預設，許多資源提供者會自動註冊。不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，請提供命名空間：
+註冊資源提供者可將您的訂用帳戶設定為可搭配資源提供者使用。 註冊範圍一律是訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，您必須有權執行資源提供者的 `/register/action` 作業。 這項作業包含在「參與者」和「擁有者」角色中。
 
 ```azurecli
 az provider register --namespace Microsoft.Batch
 ```
 
 它會傳回一則訊息說明註冊持續進行中。
+
+當訂用帳戶中仍有資源提供者的資源類型時，您無法取消註冊該資源提供者。
 
 若要查看特定資源提供者的資訊，請使用：
 
@@ -255,9 +259,11 @@ West US
 
 ![顯示資源提供者](./media/resource-manager-supported-services/show-resource-providers.png)
 
-根據預設，許多資源提供者會自動註冊。不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，請選取 [註冊]。
+註冊資源提供者可將您的訂用帳戶設定為可搭配資源提供者使用。 註冊範圍一律是訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，您必須有權執行資源提供者的 `/register/action` 作業。 這項作業包含在「參與者」和「擁有者」角色中。 若要註冊資源提供者，請選取 [註冊]。
 
 ![註冊資源提供者](./media/resource-manager-supported-services/register-provider.png)
+
+當訂用帳戶中仍有資源提供者的資源類型時，您無法取消註冊該資源提供者。
 
 若要查看特定資源提供者的資訊，請選取 [更多服務]。
 

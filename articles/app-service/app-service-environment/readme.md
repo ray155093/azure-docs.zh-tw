@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.translationtype: Human Translation
-ms.sourcegitcommit: cb4d075d283059d613e3e9d8f0a6f9448310d96b
-ms.openlocfilehash: 8b401036d4fa8e6c4e6430433b1641f5cb4ae010
+ms.translationtype: HT
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 5b1362854dbc3b0098718bd2ea3cffb06366000c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/26/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 
-# <a name="app-service-environment-documentation"></a>App Service 環境文件
-App Service Environment 是 Azure App Service 功能，可提供完全隔離和專用的環境，以便安全地在大規模作業執行 Azure App Service 應用程式。 此功能可裝載 [Web Apps][webapps]、[Mobile Apps][mobileapps]、[API Apps][APIApps] 及 [Functions][Functions]。
+# <a name="app-service-environment-documentation"></a>App Service Environment 環境文件
+ Azure App Service Environment 是 Azure App Service 的功能，可提供完全隔離和專用的環境，以便安全地大規模執行 App Service 應用程式。 此功能可裝載 [Web 應用程式][webapps]、[行動裝置應用程式][mobileapps]、[API 應用程式][APIApps]及[函式][Functions]。
 
-適合應用程式工作負載的 App Service Environment 需要：
+適合應用程式工作負載的 App Service Environment (ASE) 需要：
 
-* 非常高的延展性
-* 隔離和安全的網路存取
+* 非常高的延展性。
+* 隔離和安全的網路存取。
 
-客戶可以在單一 Azure 區域，以及跨多個 Azure 區域中建立多個 App Service 環境。 這使得 App Service 環境很適合用來水平調整無狀態應用程式層的規模，以支援高 RPS 工作負載。
+客戶可以在單一 Azure 區域中和跨多個 Azure 區域建立多個 ASE。 這種靈活性讓 ASE 很適合用於水平調整無狀態應用程式層的規模，以支援高 RPS 的工作負載。
 
-App Service 環境已經過隔離，可執行只有單一客戶的應用程式，且一律會部署到虛擬網路。 客戶可以使用[網路安全性群組][NSGs]，精確控制輸入和輸出應用程式網路流量。 應用程式也可以透過虛擬網路建立與內部部署公司資源的高速安全連線。
+ASE 已經過隔離，可執行只有單一客戶的應用程式，且一律會部署到 Azure 虛擬網路。 客戶可以使用[網路安全性群組][NSGs]，同時精確控制輸入和輸出應用程式網路流量。 應用程式也可以透過虛擬網路建立與內部部署公司資源的高速安全連線。
 
-應用程式經常需要存取公司資源，例如內部資料庫和 Web 服務。 只要是可透過[站對站][SiteToSite] VPN 和 [Azure ExpressRoute][ExpressRoute] 連接來取得的資源，App Service 環境上執行的應用程式都可以存取。
+應用程式經常需要存取公司資源，例如內部資料庫和 Web 服務。 執行於 ASE 上的應用程式可透過[站對站][SiteToSite] VPN 連線和[Azure ExpressRoute][ExpressRoute] 連線來存取資源。
 
 * [何謂 App Service Environment？][Intro]
 * [建立 App Service Environment][MakeExternalASE]
@@ -53,7 +53,7 @@ App Service 環境已經過隔離，可執行只有單一客戶的應用程式�
 在 Azure App Service 上執行企業 Web 和行動裝置應用程式
 >[!VIDEO https://channel9.msdn.com/Events/Ignite/2015/BRK3715/player]
 
-## <a name="asev1"></a>ASEv1 ##
+## <a name="app-service-environment-v1"></a>App Service 環境 v1 ##
 App Service Environment 有兩個版本：ASEv1 和 ASEv2。 如需 ASEv1 的資訊，請參閱 [App Service Environment v1 文件][ASEv1README]。
 
 

@@ -143,11 +143,11 @@ ms.lasthandoff: 05/31/2017
 
     ![設定單一登入](./media/active-directory-saas-wdesk-tutorial/tutorial_wdesk_ssoconfig2.png)
 
-10. 勾選 [一般設定] 下的 [Enable SAML Single Sign On] (啟用 SAML 單一登入)：
+10. 勾選 [一般設定] 下的 [Enable SAML Single Sign On] \(啟用 SAML 單一登入)：
 
     ![設定單一登入](./media/active-directory-saas-wdesk-tutorial/tutorial_wdesk_ssoconfig3.png)
 
-11. 在 [Service Provider Details] (提供者詳細資料) 區段中，執行下列步驟：
+11. 在 [Service Provider Details] \(提供者詳細資料) 區段中，執行下列步驟：
 
     ![設定單一登入](./media/active-directory-saas-wdesk-tutorial/tutorial_wdesk_ssoconfig4.png)
 
@@ -159,7 +159,7 @@ ms.lasthandoff: 05/31/2017
    
       d. 按一下 Azure 入口網站的 [儲存]，以儲存變更。      
 
-12. 按一下 [Configure IdP Settings] (設定 IdP 設定) 開啟 [Edit IdP Settings] (編輯 IdP 設定) 對話方塊。 按一下 [選擇檔案] 找出從 Azure 入口網站儲存的 **Metadata.xml** 檔案，然後將它上傳。
+12. 按一下 [Configure IdP Settings] \(設定 IdP 設定) 開啟 [Edit IdP Settings] \(編輯 IdP 設定) 對話方塊。 按一下 [選擇檔案] 找出從 Azure 入口網站儲存的 **Metadata.xml** 檔案，然後將它上傳。
     
     ![設定單一登入](./media/active-directory-saas-wdesk-tutorial/tutorial_wdesk_ssoconfig5.png)
   

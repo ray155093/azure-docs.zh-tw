@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 07/17/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: d65f730a0f84b89d0228a22b42d0421ad4f2678f
-ms.lasthandoff: 03/09/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 29ffb61715d803340abdb7e02aa64e9233676798
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-view-designer-to-create-custom-views-in-log-analytics"></a>在 Log Analytics 中使用檢視表設計工具來建立自訂檢視
@@ -26,8 +26,11 @@ ms.lasthandoff: 03/09/2017
 
 其他與檢視設計工具相關的文章︰
 
-* [圖格參考](log-analytics-view-designer-tiles.md) - 可用於自訂檢視之每個圖格的設定參考。 
-* [視覺效果組件參考](log-analytics-view-designer-parts.md) - 可用於自訂檢視之每個圖格的設定參考。 
+* [圖格參考](log-analytics-view-designer-tiles.md) - 可用於自訂檢視之每個圖格的設定參考。
+* [視覺效果組件參考](log-analytics-view-designer-parts.md) - 可用於自訂檢視之每個圖格的設定參考。
+
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則所有檢視中的查詢必須以[新的查詢語言](https://docs.loganalytics.io/learn/tutorial_getting_started_with_queries.html)撰寫。  在工作區升級之前建立的任何檢視都會自動轉換。
 
 ## <a name="concepts"></a>概念
 以檢視設計工具建立的檢視包含下表中的各部分。
@@ -96,5 +99,4 @@ ms.lasthandoff: 03/09/2017
 ## <a name="next-steps"></a>後續步驟
 * 將[圖格](log-analytics-view-designer-tiles.md)新增至您的自訂檢視。
 * 將[視覺效果組件](log-analytics-view-designer-parts.md)新增至您的自訂檢視。
-
 

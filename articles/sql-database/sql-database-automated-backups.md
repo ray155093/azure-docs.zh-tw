@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database 備份 - 自動、異地備援 | Microsoft Docs"
+title: "Azure SQL Database 自動、異地備援備份 | Microsoft Docs"
 description: "SQL Database 每隔幾鐘會自動建立一個本機資料庫備份，並使用 Azure 讀取權限異地備援儲存體來進行異地備援。"
 services: sql-database
 documentationcenter: 
@@ -15,15 +15,14 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/05/2017
 ms.author: carlrab
-ms.translationtype: Human Translation
-ms.sourcegitcommit: bb794ba3b78881c967f0bb8687b1f70e5dd69c71
-ms.openlocfilehash: cfd0d130186f851bc306065893b137c94cfb7d3d
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: 5e07dd0412570eedf69609fb42ec329d3b0c1936
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/06/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
-# <a name="learn-about-sql-database-backups"></a>了解 SQL Database 備份
+# <a name="learn-about-automatic-sql-database-backups"></a>了解自動 SQL Database 備份
 
 SQL Database 會自動建立一個資料庫備份，並使用 Azure 讀取權限異地備援儲存體 (RA-GRS) 來提供異地備援。 這些備份是自動建立的，且不需額外付費。 您不需要執行任何動作來建立備份。 資料庫備份可保護資料免於意外損毀或刪除，是商務持續性和災害復原策略中不可或缺的一部分。 如果您想要在自己的儲存體容器中保留備份，您可以設定長期的備份保留原則。 如需詳細資訊，請參閱[長期保存](sql-database-long-term-retention.md)。
 

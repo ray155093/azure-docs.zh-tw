@@ -15,15 +15,14 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 9f084dce3f01466aaa0e4c32d339c925d9faccd3
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: 5539623f7ae35e14b6dafe6fdf9efe4bcaba4fd3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
-# <a name="reporting-apis-for-enterprise-customers---marketplace-charges-preview"></a>適用於企業客戶的報告 API - Marketplace 費用 (預覽)
+# <a name="reporting-apis-for-enterprise-customers---marketplace-store-charge"></a>適用於企業客戶的報告 API - Marketplace 市集費用
 
 Marketplace 市集費用 API 可針對指定的計費週期或開始和結束日期，傳回以使用量為基礎的 Marketplace 費用每日明細 (不含一次性費用)。
 
@@ -32,9 +31,13 @@ Marketplace 市集費用 API 可針對指定的計費週期或開始和結束日
 
 |方法 | 要求 URI|
 |-|-|
-|GET|https://consumption.azure.com/v1/enrollments/{enrollmentNumber}/marketplacecharges|
-|GET|https://consumption.azure.com/v1/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/marketplacecharges|
-|GET|https://consumption.azure.com/v1/enrollments/{enrollmentNumber}/marketplacechargesbycustomdate?startTime=2017-01-01&endTime=2017-01-10|
+|GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/marketplacecharges|
+|GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/marketplacecharges|
+|GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/marketplacechargesbycustomdate?startTime=2017-01-01&endTime=2017-01-10|
+
+> [!Note]
+> 若要使用 API 的預覽版本，請將上述 URL 中的 v2 取代為 v1。
+>
 
 ## <a name="response"></a>Response
  
@@ -100,6 +103,7 @@ Marketplace 市集費用 API 可針對指定的計費週期或開始和結束日
 |extendedCost|decimal|根據已耗用數量和延伸成本的預估費用|
 <br/>
 ## <a name="see-also"></a>另請參閱
+
 * [計費週期 API](billing-enterprise-api-billing-periods.md)
 
 * [使用量詳細資料 API](billing-enterprise-api-usage-detail.md) 

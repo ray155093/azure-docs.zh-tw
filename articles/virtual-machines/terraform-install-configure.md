@@ -16,10 +16,10 @@ ms.workload: infrastructure
 ms.date: 06/14/2017
 ms.author: echuvyrov
 ms.translationtype: HT
-ms.sourcegitcommit: d941879aee6042b38b7f5569cd4e31cb78b4ad33
-ms.openlocfilehash: 9718ae5167e9d6cfb044737e12246549440d7808
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 1f26bccf279ebb61fbf77767186d0435e4f4ba40
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/10/2017
+ms.lasthandoff: 07/24/2017
 
 ---
 
@@ -72,33 +72,40 @@ az account show --query "{subscriptionId:id, tenantId:tenantId}"
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/${SUBSCRIPTION_ID}"
 ```
 
-會傳回您的 client_id、client_secret (密碼)、sp_name 和 tenant。 請記下 client\_id 和 client\_secret。
+會傳回您的 appId、密碼、sp_name 和租用戶。 記下 appId 和密碼。
 
-若要確認您的認證 (服務主體)，請開啟新的殼層並執行下列命令。 取代 sp_name、client\_secret 和 tenant 的傳回值：
+若要確認您的認證 (服務主體)，請開啟新的殼層並執行下列命令。 取代 sp_name、密碼和租用戶的傳回值：
 
 ```
-az login --service-principal -u SP_NAME -p CLIENT_SECRET --tenant TENANT
+az login --service-principal -u SP_NAME -p PASSWORD --tenant TENANT
 az vm list-sizes --location westus
 ```
 
 ### <a name="use-powershell-for-windows-users"></a>使用 PowerShell (適用於 Windows 使用者) 
 若要使用 Windows 電腦來撰寫和執行您的 Terraform 指令碼，並且使用 PowerShell 進行設定工作，請先使用適當的 PowerShell 工具來設定您的電腦。 
 
-1. 依照[安裝和設定 Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps) \(英文\) 中的步驟來安裝 PowerShell 工具。 
-2. 下載 [azure-setup.ps1 指令碼](https://github.com/echuvyrov/terraform101/blob/master/azureSetup.ps1)並從 PowerShell 主控台執行。 
-3. 若要執行 azure-setup.ps1 指令碼，請下載並從 PowerShell 主控台執行 `./azure-setup.ps1 setup` 命令。 然後使用系統管理權限登入您的 Azure 訂用帳戶。 
+1. 依照[安裝和設定 Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps) \(英文\) 中的步驟安裝 PowerShell 工具。 
+
+2. 下載 [azure-setup.ps1 指令碼](https://github.com/echuvyrov/terraform101/blob/master/azureSetup.ps1)並從 PowerShell 主控台執行。
+
+3. 若要執行 azure-setup.ps1 指令碼，請下載並從 PowerShell 主控台執行 `./azure-setup.ps1 setup` 命令。 然後使用系統管理權限登入您的 Azure 訂用帳戶。
+
 4. 出現提示時，提供應用程式名稱 (任意字串，必填)。 出現提示時，選擇性提供強式密碼。 如果您未提供密碼，則會使用 .NET 安全性程式庫為您產生強式密碼。
 
 ### <a name="use-azure-cli-10-for-linux-or-mac-users"></a>使用 Azure CLI 1.0 (適用於 Linux 或 Mac 使用者)
 若要在採用 Azure CLI 1.0 的 Linux 電腦或 Mac 上開始使用 Terraform，請在電腦上安裝適當的程式庫。  
 
 1. 依照[安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli) 中的步驟，安裝 Azure xPlat CLI 工具。 
+
 2. 依照[下載 jq](https://stedolan.github.io/jq/download/) \(英文\) 中的指示，下載並安裝 JSON 處理器。
-3. 下載 [azure-setup.ps 指令碼](https://github.com/mitchellh/packer/blob/master/contrib/azure-setup.sh) 並從主控台執行此 bash 指令碼。 
-4. 若要執行 azure-setup.sh 指令碼，請下載並從主控台執行 `./azure-setup setup` 命令。 然後使用系統管理權限登入您的 Azure 訂用帳戶。 
+
+3. 下載 [azure-setup.ps 指令碼](https://github.com/mitchellh/packer/blob/master/contrib/azure-setup.sh) 並從主控台執行此 bash 指令碼。
+
+4. 若要執行 azure-setup.sh 指令碼，請下載並從主控台執行 `./azure-setup setup` 命令。 然後使用系統管理權限登入您的 Azure 訂用帳戶。
+ 
 5. 出現提示時，提供應用程式名稱 (任意字串，必填)。 出現提示時，選擇性提供強式密碼。 如果您未提供密碼，則會使用 .NET 安全性程式庫為您產生強式密碼。
 
-先前所有的指令碼都會建立 Azure AD 應用程式和服務主體。 服務主體會取得訂用帳戶上參與者或擁有者層級的存取權。 因為授與高階存取權，所以您應該一律保護這些指令碼所產生的安全性資訊。 記下這些指令碼所提供的四項安全性資訊：client_id、client_secret、subscription_id 和 tenant_id。
+先前所有的指令碼都會建立 Azure AD 應用程式和服務主體。 服務主體會取得訂用帳戶上參與者或擁有者層級的存取權。 因為授與高階存取權，所以您應該一律保護這些指令碼所產生的安全性資訊。 記下那些指令碼所提供的四個安全性資訊：appId、密碼、subscription_id 和 tenant_id。
 
 ## <a name="set-environment-variables"></a>設定環境變數
 建立並設定 Azure AD 服務主體之後，您必須讓 Terraform 知道要使用的租用戶識別碼、訂用帳戶識別碼、用戶端識別碼和用戶端祕密。 您可以如[使用 Terraform 建立基本基礎結構](terraform-create-complete-vm.md)所述，在 Terraform 指令碼中內嵌這些值來執行此作業。 或者，您也可以設定下列環境變數 (也可因此避免不小心簽入或共用您的認證)：
@@ -114,8 +121,8 @@ az vm list-sizes --location westus
 #!/bin/sh
 echo "Setting environment variables for Terraform"
 export ARM_SUBSCRIPTION_ID=your_subscription_id
-export ARM_CLIENT_ID=your_client_id
-export ARM_CLIENT_SECRET=your_client_secret
+export ARM_CLIENT_ID=your_appId
+export ARM_CLIENT_SECRET=your_password
 export ARM_TENANT_ID=your_tenant_id
 ```
 

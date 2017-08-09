@@ -5,7 +5,7 @@ keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
 author: stevestein
-manager: jhubbard
+manager: craigg
 editor: 
 ms.assetid: 
 ms.service: sql-database
@@ -14,14 +14,13 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/25/2017
+ms.date: 07/26/2017
 ms.author: sstein
-ms.translationtype: Human Translation
-ms.sourcegitcommit: fc27849f3309f8a780925e3ceec12f318971872c
-ms.openlocfilehash: a76b1fc1e3fad5f47ffc550833bf34937e62163d
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 42f727aa40e744916b1a8adf634c10d55880bef0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/14/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="monitor-performance-of-the-wingtip-saas-application"></a>監視 Wingtip SaaS 應用程式的效能
@@ -143,7 +142,6 @@ Wingtip 是 SaaS 應用程式，而實際 SaaS 應用程式上的負載通常是
    ![設定警示](media/sql-database-saas-tutorial-performance-monitoring/alert-rule.png)
 
 
-
 ## <a name="scale-up-a-busy-pool"></a>相應增加忙碌的集區
 
 如果集區上的彙總負載層級增加到超出集區最大值且達到 100% eDTU 使用率，則個別資料庫效能會受到影響，可能拖慢集區中所有資料庫的查詢回應時間。
@@ -157,12 +155,12 @@ Wingtip 是 SaaS 應用程式，而實際 SaaS 應用程式上的負載通常是
 1. 設定 *$DemoScenario* = **3**，_每個資料庫產生時間更長、更頻繁高載的負載_，以增加集區的彙總負載強度，而不變更每個資料庫所需的尖峰負載。
 1. 按下 **F5** 將負載套用到您的所有租用戶資料庫。
 
-1. 在入口網站中，移至 **Pool1**。
+1. 在 Azure 入口網站中，移至 [Pool1]。
 
 監視上方圖表上增加的集區 eDTU 使用量。 需要花數分鐘讓新的高負載開始作用，但您應該很快會看到集區開始達到最大使用率，而隨著負載穩定進入新的模式，它會快速地使集區多載。
 
-1. 若要相應增加集區，按一下 [設定集區]
-1. 將 [集區 eDTU] 滑桿調整至 **100**。 變更集區 eDTU 不會變更每個資料庫設定 (仍然是每個資料庫最高 50 eDTU)。 您可以在 [設定集區] 頁面右側看到每個資料庫的設定。
+1. 若要相應增加集區，請按一下 [Pool1] 頁面頂端的 [設定集區]。
+1. 將 [集區 eDTU] 設定調整至 **100**。 變更集區 eDTU 不會變更每個資料庫設定 (仍然是每個資料庫最高 50 eDTU)。 您可以在 [設定集區] 頁面右側看到每個資料庫的設定。
 1. 按一下 [儲存] 以提交調整集區的要求。
 
 回到 [Pool1] > [概觀]，以檢視監視圖表。 監視為集區提供更多資源的影響 (雖然有一些資料庫和隨機負載，但是在您執行一段時間前，也不容易明確地看出)。 當您查看圖表時，請記住上方圖表上的 100% 現在代表 100 個 eDTU，而下方圖表上的 100% 仍是 50 個 eDTU，因為每個資料庫最大值仍是 50 個 eDTU。

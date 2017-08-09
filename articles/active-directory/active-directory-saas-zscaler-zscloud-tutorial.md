@@ -152,7 +152,7 @@ ms.lasthandoff: 06/23/2017
 
     ![單一登入](./media/active-directory-saas-zscaler-zscloud-tutorial/ic800209.png "單一登入")
     
-    a. 將 [SAML Single Sign-On Service URL] (SAML 單一登入服務 URL) 值貼到 [URL of the SAML Portal to which users are sent for authentication] (傳送用於驗證之使用者的 SAML 入口網站 URL) 文字方塊。
+    a. 將 [SAML Single Sign-On Service URL] \(SAML 單一登入服務 URL) 值貼到 [URL of the SAML Portal to which users are sent for authentication] \(傳送用於驗證之使用者的 SAML 入口網站 URL) 文字方塊。
     
     b.這是另一個 C# 主控台應用程式。 在 [包含登入名稱的屬性] 文字方塊中，輸入 **NameID**。
     

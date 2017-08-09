@@ -12,15 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ums.workload: na
-ms.date: 05/20/2017
+ms.date: 07/26/2017
 ms.author: TomSh
 ms.custom: azlog
-ms.translationtype: Human Translation
-ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
-ms.openlocfilehash: 02b3095bb77a122fddd74e636395628333a13936
+ms.translationtype: HT
+ms.sourcegitcommit: 7bf5d568e59ead343ff2c976b310de79a998673b
+ms.openlocfilehash: a5c51817688140cc2778602b4c1d5184ae4729a0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/23/2017
-
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="azure-log-integration-with-azure-diagnostics-logging-and-windows-event-forwarding"></a>使用 Azure 診斷記錄和 Windows 事件轉送進行 Azure 記錄整合
@@ -101,7 +100,7 @@ Azure 記錄整合服務會從其安裝所在的電腦收集遙測資料。
 您應該會看到類似下圖的內容： </br></br>勾選遙測方塊的安裝畫面 
 ![](./media/security-azure-log-integration-get-started/loaded-modules.png) </br></br>
 3. 現在您需要設定 AzLog，以使用特定的 Azure 環境。 「Azure 環境」是您想要使用的 Azure 雲端資料中心的「類型」。 雖然現在有數個 Azure 環境，目前相關的選項都是 **AzureCloud** 或 **AzureUSGovernment**。   在提高權限的 PowerShell 環境，請確定您是在 **c:\program files\Microsoft Azure Log Integration\** </br></br>
-   確定後，執行命令： </br>
+    確定後，執行命令： </br>
     ``Set-AzlogAzureEnvironment -Name AzureCloud`` (適用於 Azure 商業)
 
       >[!NOTE]
@@ -136,7 +135,7 @@ Azure 記錄整合服務會從其安裝所在的電腦收集遙測資料。
  ![更多服務](./media/security-azure-log-integration-get-started/more-services.png)
  3. 在**篩選**文字方塊中輸入**儲存體**。 按一下 [儲存體帳戶] \(這會在您輸入**儲存體**之後顯示)
 
-  ![篩選方塊](./media/security-azure-log-integration-get-started/filter.png)
+   ![篩選方塊](./media/security-azure-log-integration-get-started/filter.png)
  4. 將顯示儲存體帳戶清單，按兩下您指派給記錄儲存體的帳戶。
 
    ![儲存體帳戶清單](./media/security-azure-log-integration-get-started/storage-accounts.png)
@@ -182,8 +181,8 @@ Azure 記錄整合服務會從其安裝所在的電腦收集遙測資料。
 
 * [Azure 記錄檔的 Microsoft Azure 記錄整合](https://www.microsoft.com/download/details.aspx?id=53324) – Azure 記錄整合詳細資料、系統需求和安裝指示的下載中心。
 * [Azure 記錄整合簡介](security-azure-log-integration-overview.md) – 這份文件為您介紹 Azure 記錄整合、其主要功能以及運作方式。
-* [合作夥伴設定步驟](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) – 此部落格文章說明如何設定 Azure 記錄整合，以搭配使用合作夥伴解決方案 Splunk、HP ArcSight 和 IBM QRadar。
+* [合作夥伴設定步驟](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) – 此部落格文章說明如何設定 Azure 記錄整合，以搭配使用合作夥伴解決方案 Splunk、HP ArcSight 和 IBM QRadar。 這是我們目前有關如何設定 SIEM 元件的指引。 如需其他詳細資料，請先洽詢您的 SIEM 廠商。
 * [Azure 記錄整合常見問題集 (FAQ)](security-azure-log-integration-faq.md) - 此常見問題集會回答有關 Azure 記錄整合的問題。
-* [以 Azure 記錄整合來整合資訊安全中心警示](../security-center/security-center-integrating-alerts-with-log-integration.md) - 這份文件說明如何將資訊安全中心警示以及 Azure 診斷和 Azure 稽核記錄檔所收集的虛擬機器安全性事件，與您的 Log Analytics 或 SIEM 方案進行同步處理。
+* [以 Azure 記錄整合來整合資訊安全中心警示](../security-center/security-center-integrating-alerts-with-log-integration.md) - 這份文件說明如何將資訊安全中心警示以及 Azure 診斷和 Azure 活動記錄所收集的虛擬機器安全性事件，與您的 Log Analytics 或 SIEM 方案進行同步處理。
 * [Azure 診斷和 Azure 稽核記錄檔的新功能](https://azure.microsoft.com/blog/new-features-for-azure-diagnostics-and-azure-audit-logs/) – 此部落格文章為您介紹 Azure 稽核記錄檔和其他功能，協助您深入了解您的 Azure 資源的作業。
 

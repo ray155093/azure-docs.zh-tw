@@ -1,6 +1,6 @@
 ---
-title: "在 App Service 環境中建立 Web 應用程式"
-description: "了解如何在 App Service 環境中建立 Web 應用程式和 App Service 方案"
+title: "在 App Service 環境 v1 中建立 Web 應用程式"
+description: "了解如何在 App Service 環境 v1 中建立 Web 應用程式和 App Service 方案"
 services: app-service
 documentationcenter: 
 author: ccompy
@@ -12,18 +12,23 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/17/2016
+ms.date: 7/11/2017
 ms.author: ccompy
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: a78d37ee59663896acc3192f8ae03575270101a8
-ms.lasthandoff: 04/06/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: 0779486b040b8dc51cdd42521ba965e58388425a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/26/2017
 
 ---
-# <a name="create-a-web-app-in-an-app-service-environment"></a>在 App Service 環境中建立 Web 應用程式
+# <a name="create-a-web-app-in-an-app-service-environment-v1"></a>在 App Service 環境 v1 中建立 Web 應用程式
+
+> [!NOTE]
+> 這篇文章是關於 App Service 環境 v1。  有較新版本的 App Service 環境，更易於使用，並且可以在功能更強大的基礎結構上執行。 若要深入了解新版本，請從 [App Service 環境簡介](../app-service/app-service-environment/intro.md)開始。
+> 
+
 ## <a name="overview"></a>概觀
-本教學課程說明如何在 [App Service 環境](app-service-app-service-environment-intro.md) (ASE) 中建立 Web 應用程式和 App Service 方案。 
+本教學課程說明如何在 [App Service 環境 v1](app-service-app-service-environment-intro.md) (ASE) 中建立 Web 應用程式和 App Service 方案。 
 
 > [!NOTE]
 > 如果您想要了解如何建立 Web 應用程式，但不需要在 App Service 環境中加以實作，請參閱 [建立 .NET Web 應用程式](app-service-web-get-started-dotnet.md) ，或其中一個適用於其他語言和架構的相關教學課程。

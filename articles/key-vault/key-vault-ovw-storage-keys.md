@@ -1,19 +1,19 @@
 ---
 ms.assetid: 
 title: "Azure Key Vault 儲存體帳戶金鑰"
-description: "儲存體帳戶金鑰提供 Azure Key Vault 與 Azure 儲存體帳戶的金鑰存取之間的完美整合。"
+description: "儲存體帳戶金鑰提供 Azure Key Vault 與 Azure 儲存體帳戶的金鑰型存取之間的完美整合。"
 ms.topic: article
 services: key-vault
 ms.service: key-vault
 author: BrucePerlerMS
 ms.author: bruceper
 manager: mbaldwin
-ms.date: 07/10/2017
+ms.date: 07/25/2017
 ms.translationtype: HT
-ms.sourcegitcommit: 19be73fd0aec3a8f03a7cd83c12cfcc060f6e5e7
-ms.openlocfilehash: b30f9601725cdf568f0f2e18bebdc4ae86a616f6
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: c7b20c83b356dd698e66919483c9ff6f0e8a36ef
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/13/2017
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="azure-key-vault-storage-account-keys"></a>Azure Key Vault 儲存體帳戶金鑰
@@ -58,7 +58,8 @@ SAS 定義名稱的長度必須是 1-102 個字元，而且只能包含 0-9、a-
 //create storage account using connection string containing account name 
 // and the storage key 
 
-var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));var blobClient = storageAccount.CreateCloudBlobClient();
+var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+var blobClient = storageAccount.CreateCloudBlobClient();
  ```
  
 ### <a name="after-azure-key-vault-storage-keys"></a>Azure Key Vault 儲存體金鑰之後 
@@ -67,7 +68,7 @@ var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSett
 //Use PowerShell command to get Secret URI 
 
 Set-AzureKeyVaultManagedStorageSasDefinition -Service Blob -ResourceType Container,Service -VaultName yourKV  
--AccountName msak01 -Name blobsas1 -Protocol HttpsOrHttp -ValidityPeriod ([System.Timespan]::FromDays(1)) -Permission Read,List
+-AccountName msak01 -Name blobsas1 -Protocol HttpsOnly -ValidityPeriod ([System.Timespan]::FromDays(1)) -Permission Read,List
 
 //Get SAS token from Key Vault
 
@@ -97,9 +98,9 @@ accountSasCredential.UpdateSASToken(sasToken);
 
 ## <a name="getting-started"></a>開始使用
 
-### <a name="setup-for-role-based-access-control-permissions"></a>設定角色型存取控制權限
+### <a name="setup-for-role-based-access-control-rbac-permissions"></a>設定角色型存取控制 (RBAC) 權限
 
-Key Vault 需要列出及重新產生儲存體帳戶金鑰的權限。 請使用下列步驟來設定這些權限：
+Key Vault 需要「列出」及「重新產生」儲存體帳戶金鑰的權限。 請使用下列步驟來設定這些權限：
 
 - 取得 Key Vault 的 ObjectId： 
 
@@ -114,22 +115,18 @@ Key Vault 需要列出及重新產生儲存體帳戶金鑰的權限。 請使用
 
 ### <a name="storage-account-onboarding"></a>儲存體帳戶登入 
 
-#### <a name="example"></a>範例
+範例：您身為 Key Vault 物件擁有者，將儲存體帳戶物件新增至 Azure Key Vault，以登入儲存體帳戶。
 
-Key Vault 物件擁有者會在 AzKV 上新增儲存體帳戶物件，以登入儲存體帳戶。
-
-在登入期間，Key Vault 需要驗證登入帳戶的身分識別具有「列出」及「重新產生」儲存體金鑰的存取權限。 Key Vault 會從具有受眾為 Azure Resource Manager 的 EvoSTS 取得 OBO 權杖，並對儲存體 RP 發出列出金鑰呼叫。 如果列出呼叫失敗，則 Key Vault 物件建立會失敗，並出現 HTTP 狀態碼「禁止」。 以此方式列出的金鑰會透過 Key Vault 實體儲存體來快取。 
+在登入期間，Key Vault 需要驗證登入帳戶的身分識別具有「列出」及「重新產生」儲存體金鑰的存取權限。 為了確認這些權限，Key Vault 從驗證服務取得 OBO (代表) 權杖，將對象設為 Azure Resource Manager，並且對 Azure 儲存體服務發出「列出」金鑰呼叫。 如果「列出」呼叫失敗，則 Key Vault 物件建立會失敗，並出現 HTTP 狀態碼「禁止」。 以此方式列出的金鑰會透過 Key Vault 實體儲存體來快取。 
 
 Key Vault 必須驗證身分識別具有「重新產生」權限，才能取得擁有權來重新產生您的金鑰。 若要驗證透過 OBO 權杖的身分識別及 Key Vault 的第一個憑證者身分識別具有這些權限：
 
 - Key Vault 會列出儲存體帳戶資源的 RBAC 權限。
 - Key Vault 會透過比對動作和非動作的規則運算式來驗證回應。 
 
-以下是一些支援範例： 
+在 [Key Vault - 受管理的儲存體帳戶金鑰範例](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/KeyVault/dataPlane/Microsoft.Azure.KeyVault.Samples/samples/HelloKeyVault/Program.cs#L167)中尋找一些支援的範例。
 
-- 範例 [GitHub 範例](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/KeyVault/dataPlane/Microsoft.Azure.KeyVault.Samples/samples/HelloKeyVault/Program.cs#L167) 
-
-如果透過 OBO 權杖的身分識別沒有「重新產生」權限，或如果 Key Vault 的第一個憑證者身分識別沒有「列出」或「重新產生」權限，則登入要求會失敗，並傳回適當的錯誤碼和訊息。 
+如果身分識別沒有「重新產生」權限，或如果 Key Vault 的第一個憑證者身分識別沒有「列出」或「重新產生」權限，則登入要求會失敗，並傳回適當的錯誤碼和訊息。 
 
 只有在您使用 PowerShell 或 CLI 的第一個憑證者原生用戶端應用程式時，才能使用 OBO 權杖。
 

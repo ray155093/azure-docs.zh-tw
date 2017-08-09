@@ -12,14 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 07/07/2017
+ms.date: 08/02/2017
 ms.author: alkohli
 ms.translationtype: HT
-ms.sourcegitcommit: d941879aee6042b38b7f5569cd4e31cb78b4ad33
-ms.openlocfilehash: 96f97cd36f45ebe8001bbcbf500305cb6380b644
+ms.sourcegitcommit: 79bebd10784ec74b4800e19576cbec253acf1be7
+ms.openlocfilehash: 57d6d63c55f8ad4da5d1905a1e209da454b0491c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/10/2017
-
+ms.lasthandoff: 08/03/2017
 
 ---
 # <a name="install-update-4-on-your-storsimple-device"></a>在 StorSimple 裝置上安裝 Update 4
@@ -79,8 +78,8 @@ Hotfix 方法涉及下列三個步驟：
 | --- | --- | --- | --- | --- | --- |
 | 1. |KB4011839 |軟體更新 |定期  <br></br>非干擾性 |~ 25 分鐘 |FirstOrderUpdate|
 | 2A. |KB4011841 <br> KB4011842 |LSI 驅動程式與韌體更新 <br> USM 韌體更新 (3.38 版) |定期  <br></br>非干擾性 |~ 3 小時 <br> (包括 2A. 2B. + 2C.)|SecondOrderUpdate|
-| 2B. |KB3139398、KB3108381 <br> KB3205400、KB3142030 <br> KB3197873、KB3197873 <br> KB3192392、KB3153704 <br> KB3174644、KB3139914  |OS 安全性更新套件 |定期  <br></br>非干擾性 |- |SecondOrderUpdate|
-| 2C. |KB3210083、KB3103616 <br> KB3146621、KB3121261 <br> KB3123538 |OS 更新套件 |定期  <br></br>非干擾性 |- |SecondOrderUpdate|
+| 2B. |KB3139398、KB3108381 <br> KB3205400、KB3142030 <br> KB3197873、KB3197873 <br> KB3192392、KB3153704 <br> KB3174644、KB3139914  |OS 安全性更新套件 <br> 下載 Windows Server 2012 R2 |定期  <br></br>非干擾性 |- |SecondOrderUpdate|
+| 2C. |KB3210083、KB3103616 <br> KB3146621、KB3121261 <br> KB3123538 |OS 更新套件 <br> 下載 Windows Server 2012 R2 |定期  <br></br>非干擾性 |- |SecondOrderUpdate|
 
 除了前面表格所示的所有更新之外，您可能還需要安裝磁碟韌體更新。 您可以執行 `Get-HcsFirmwareVersion` Cmdlet 來確認是否需要進行磁碟韌體更新。 如果您執行的是這些韌體版本：`XMGJ`、`XGEG`、`KZ50`、`F6C2`、`VR08`、`N002`、`0106`，您就不需要安裝這些更新。
 

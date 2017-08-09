@@ -13,20 +13,19 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/03/2017
+ms.date: 07/24/2017
 ms.author: jgao
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 3bbc9e9a22d962a6ee20ead05f728a2b706aee19
-ms.openlocfilehash: 7a16a1c2a10279b5e7fb523addfdfcd433c8937e
+ms.translationtype: HT
+ms.sourcegitcommit: bfd49ea68c597b109a2c6823b7a8115608fa26c3
+ms.openlocfilehash: 4d5bb90c0e7573afb75282810c9ba58e7163e127
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/10/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a>使用 HDInsight 中的 HBase 分析即時的 Twitter 情感
 了解如何使用 HDInsight 中的 HBase 叢集，從 Twitter 進行巨量資料的即時[情感分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
 
-社交網站是巨量資料採用的主要驅使力之一。 像 Twitter 之類的網站所提供的公開 API，是分析和了解流行趨勢的一項實用的資料來源。 在本教學課程中，您將開發主控台串流服務應用程式和 ASP.NET Web 應用程式，來執行下列作業：
+社交網站是巨量資料採用的主要驅使力之一。 像 Twitter 之類的網站所提供的公開 API，是分析和了解流行趨勢的一項實用的資料來源。 在本教學課程中，您會開發主控台串流服務應用程式和 ASP.NET Web 應用程式，來執行下列作業：
 
 ![HDInsight HBase Analyze Twitter sentiment][img-app-arch]
 
@@ -37,25 +36,18 @@ ms.lasthandoff: 06/10/2017
   * 使用 Microsoft HBase SDK 將情感資訊儲存於 HBase 中
 * Azure 網站應用程式
 
-  * 使用 ASP.NET Web 應用程式將即時統計結果繪製在 Bing 地圖上。 以視覺方式呈現推文的結果與以下範例相似：
+  * 使用 ASP.NET Web 應用程式將即時統計結果繪製在 Bing 地圖上。 推文的視覺效果會類似於下列螢幕擷取畫面：
 
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
 
-    您將可以利用某些關鍵字來查詢推文，藉此感知推文中表達的意見是肯定、否定或中性。
+    您可以利用某些關鍵字來查詢推文，藉此感知推文中表達的意見是肯定、否定或中性。
 
 如需完整的 Visual Studio 方案範例，請前往 GitHub： [即時社交情感分析應用程式](https://github.com/maxluk/tweet-sentiment)。
 
 ### <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
 
-* **HDInsight 中的 HBase 叢集**。 如需有關建立叢集的指示，請參閱[開始在 HDInsight 中搭配使用 HBase 與 Hadoop][hbase-get-started]。 進行教學課程時，您將需要下列資料：
-
-    <table border="1">
-    <tr><th>叢集屬性</th><th>說明</th></tr>
-    <tr><td>HBase 叢集名稱</td><td>您的 HDInsight HBase 叢集名稱。 例如：https://myhbase.azurehdinsight.net/</td></tr>
-    <tr><td>叢集使用者名稱</td><td>Hadoop 使用者帳戶名稱。 預設 Hadoop 使用者名稱為 <strong>admin</strong>。</td></tr>
-    <tr><td>叢集使用者密碼</td><td>Hadoop 叢集使用者密碼。</td></tr>
-    </table>
+* **HDInsight 中的 HBase 叢集**。 如需有關建立叢集的指示，請參閱[開始在 HDInsight 中搭配使用 HBase 與 Hadoop][hbase-get-started]。 
 
 * 安裝 Visual Studio 2013/2015/2017 的**工作站**。 如需指示，請參閱 [安裝 Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx)。
 
@@ -68,13 +60,12 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。 使用 O
 2. 按一下 [建立新的應用程式] 。
 3. 輸入 [名稱]、[描述] 和 [網站]。 Twitter 應用程式名稱必須是唯一的名稱。 我們實際上不會用到 [網站] 欄位。 因此您不必輸入有效的 URL。
 4. 核取 [是，我同意] 然後按一下 [建立 Twitter 應用程式]。
-5. 按一下 [權限]  索引標籤。 預設權限為 [唯讀] 。 本教學課程使用預設值即可。
+5. 按一下 [權限] 索引標籤，然後按一下 [唯讀]。 唯讀權限就足以完成本教學課程。
 6. 按一下 **[金鑰和存取權杖** ] 索引標籤。
-7. 按一下 [Create my access token] 。
-8. 按一下位於頁面右上角的 [測試 OAuth]  。
-9. 複製 [消費者金鑰]、[消費者密碼]、[存取權杖] 和 [存取權杖密碼] 等值。 稍後會在教學課程中使用這些值。
+7. 按一下頁面底部的 [建立我的存取權杖]。
+9. 複製 [取用者金鑰 (API 金鑰)]、[取用者祕密 (API 祕密)]、[存取權杖] 和 [存取權杖祕密] 等值。 在本教學課程後續的內容中，您會需要這些值。
 
-    ![hdi.hbase.twitter.sentiment.twitter.app][img-twitter-app]
+    > ![注意] [測試 OAuth] 按鈕已沒有作用。
 
 ## <a name="create-twitter-streaming-service"></a>建立 Twitter 串流服務
 您必須建立應用程式來取得推文、計算推文情感分數，以及將處理過的推文文字傳送到 HBase。
@@ -386,7 +377,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。 使用 O
                         {
                             HBaseWriter hbase = new HBaseWriter();
                             var stream = Stream.CreateFilteredStream();
-                            stream.AddLocation(new Coordinates(-180, -90), new Coordinates(180, 90));
+                            stream.AddLocation(new Coordinates(90, -180), new Coordinates(-90,180));
 
                             var tweetCount = 0;
                             var timer = Stopwatch.StartNew();
@@ -435,7 +426,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。 使用 O
 開發 Web 應用程式時，請保持串流主控台應用程式的執行狀態，如此一來，您將有更多的資料可使用。 若要檢查插入資料格中的資料，您可以使用 HBase 殼層。 請參閱 [開始在 HDInsight 中使用 HBase](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data)。
 
 ## <a name="visualize-real-time-sentiment"></a>將即時情感視覺化
-在本節中，您將建立 ASP.NET MVC Web 應用程式，以便從 HBase 讀取即時情感資料，並將資料繪製在 Bing 地圖上。
+在本節中，您會建立 ASP.NET MVC Web 應用程式，以便從 HBase 讀取即時情感資料，並將資料繪製在 Bing 地圖上。
 
 **建立 ASP.NET MVC Web 應用程式**
 
@@ -451,7 +442,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。 使用 O
 5. 在 [選取範本] 中按一下 **MVC**。
 6. 在 [Microsoft Azure] 中按一下 [管理訂用帳戶]。
 7. 在 [管理 Microsoft Azure 訂用帳戶] 中按一下 [登入]。
-8. 輸入您的 Azure 認證。 您的 Azure 訂用帳戶資訊將顯示於 [帳戶]  索引標籤中。
+8. 輸入您的 Azure 認證。 您的 Azure 訂用帳戶資訊會顯示於 [帳戶] 索引標籤中。
 9. 按一下 [關閉] 以關閉 [管理 Microsoft Azure 訂用帳戶] 視窗。
 10. 在 [新增 ASP.NET 專案 - TweetSentimentWeb] 中按一下 [確定]。
 11. 在 [設定 Microsoft Azure 網站設定] 中，選取與您最接近的 [區域]。 您不需要指定資料庫伺服器。

@@ -12,14 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/09/2017
+ms.date: 07/27/2017
 ms.author: magoedte
 ms.translationtype: HT
-ms.sourcegitcommit: d941879aee6042b38b7f5569cd4e31cb78b4ad33
-ms.openlocfilehash: 8f83f5d13cb61709653f255c756dc78453073626
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: e463102a4b21253e28b01d6d149aba55bab18674
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/10/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
 # <a name="update-management-solution-in-oms"></a>OMS 中的更新管理方案
@@ -65,10 +64,10 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
     > [!NOTE]
     > Windows 代理程式不可由 System Center Configuration Manager 並行管理。  
     >
-* CentOS 6 (x86/x64) 和 7 (x64)
-* Red Hat Enterprise 6 (x86/x64) 和 7 (x64)
-* SUSE Linux Enterprise Server 11 (x86/x64) 和 12 (x64)
-* Ubuntu 12.04 LTS 和更新的 x86/x64  
+* CentOS 6 (x86/x64) 和 7 (x64)  
+* Red Hat Enterprise 6 (x86/x64) 和 7 (x64)  
+* SUSE Linux Enterprise Server 11 (x86/x64) 和 12 (x64)  
+* Ubuntu 12.04 LTS 和更新的 x86/x64   
     > [!NOTE]  
     > 若要避免在 Ubuntu 維護期間以外套用更新，請將自動安裝升級套件重新設定為停用自動更新。 如需設定方式的資訊，請參閱 [Ubuntu Server 指南中的自動更新主題](https://help.ubuntu.com/lts/serverguide/automatic-updates.html)。
 
@@ -79,6 +78,9 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
     >
 
 如需有關如何安裝適用於 Linux 的 OMS 代理程式及下載最新版本的詳細資訊，請參閱[適用於 Linux 的 Operations Management Suite 代理程式](https://github.com/microsoft/oms-agent-for-linux)。  如需有關如何安裝適用於 Windows 的 OMS 代理程式，請檢閱[適用於 Windows 的 Operations Management Suite 代理程式](../log-analytics/log-analytics-windows-agents.md)。  
+
+### <a name="permissions"></a>權限
+若要建立更新部署，您必須被授與自動化帳戶和 Log Analytics 工作區的參與者角色。  
 
 ## <a name="solution-components"></a>方案元件
 此解決方案包含下列已新增到自動化帳戶的資源，以及直接連線的代理程式或 Operations Manager 連線的管理群組。
@@ -156,7 +158,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 ## <a name="viewing-update-assessments"></a>檢視更新評估
 按一下 [更新管理] 圖格以開啟 [更新管理] 儀表板。<br><br> ![更新管理摘要儀表板](./media/oms-solution-update-management/update-management-dashboard.png)<br>
 
-此儀表板會提供依照作業系統類型和更新類別分類之更新狀態的詳細明細 - 嚴重、安全性或其他 (例如定義更新)。 選取 [更新部署] 圖格後，系統會將您重新導向至 [更新部署] 頁面，您可以在其中檢視排程、目前正在執行的部署、已完成的部署，或排程新的部署。  
+此儀表板會提供依照作業系統類型和更新類別分類之更新狀態的詳細明細 - 嚴重、安全性或其他 (例如定義更新)。 此儀表板上每個圖格中的結果都只會反映獲准部署 (以電腦同步處理來源為基礎) 的更新。   選取 [更新部署] 圖格後，系統會將您重新導向至 [更新部署] 頁面，您可以在其中檢視排程、目前正在執行的部署、已完成的部署，或排程新的部署。  
 
 您可藉由按一下特定圖格來執行可傳回所有記錄的記錄搜尋，或執行特定類別和預先定義之準則的查詢，從 [一般更新查詢] 資料行下可用的清單中選取其中一項。    
 
@@ -310,6 +312,17 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 ## <a name="troubleshooting"></a>疑難排解
 
 本節提供的資訊有助於排解更新管理解決方案的疑難問題。  
+
+### <a name="how-do-i-troubleshoot-onboarding-issues"></a>我該如何進行上架問題的疑難排解？
+如果您在嘗試將解決方案或虛擬機器上架時遇到問題，請檢查**應用程式和服務記錄\Operations Manager** 事件記錄中具有事件識別碼 4502 和事件訊息內含 **Microsoft.EnterpriseManagement.HealthService.AzureAutomation.HybridAgent** 的事件。  下表特別說明特定錯誤訊息及各自的可能解決方式。  
+
+| 訊息 | 原因 | 方案 |   
+|----------|----------|----------|  
+| 無法註冊電腦進行修補程式管理，<br>註冊失敗並發生例外狀況<br>System.InvalidOperationException：{"Message":"電腦已經<br>註冊至不同的帳戶。 "} | 電腦已經上架到另一個工作區進行更新管理 | [刪除混合式 Runbook 群組](../automation/automation-hybrid-runbook-worker.md#remove-hybrid-worker-groups)以執行舊構件的清除|  
+| 無法註冊電腦進行修補程式管理，<br>註冊失敗並發生例外狀況<br>System.Net.Http.HttpRequestException：傳送要求時發生錯誤。 ---><br>System.Net.WebException：基礎連線<br>已關閉：接收時發生<br>意外的錯誤。 ---> System.ComponentModel.Win32Exception：<br>用戶端和伺服器無法通訊，<br>因為它們沒有共同的演算法 | Proxy/閘道/防火牆封鎖通訊 | [檢閱網路需求](../automation/automation-offering-get-started.md#network-planning)|  
+| 無法註冊電腦進行修補程式管理，<br>註冊失敗並發生例外狀況<br>Newtonsoft.Json.JsonReaderException：剖析正無限值時發生錯誤。 | Proxy/閘道/防火牆封鎖通訊 | [檢閱網路需求](../automation/automation-offering-get-started.md#network-planning)| 
+| 服務 <wsid>.oms.opinsights.azure.com<br>所提供的憑證不是由 Microsoft 服務所用的<br>憑證授權單位發出。 請連絡<br>您的網路管理員，以查看它們是否正在執行可攔截 TLS/SSL 通訊的<br>Proxy。 |Proxy/閘道/防火牆封鎖通訊 | [檢閱網路需求](../automation/automation-offering-get-started.md#network-planning)|  
+| 無法註冊電腦進行修補程式管理，<br>註冊失敗並發生例外狀況<br>AgentService.HybridRegistration。<br>PowerShell.Certificates.CertificateCreationException：<br>無法建立自我簽署憑證。 ---><br>System.UnauthorizedAccessException：存取遭到拒絕。 | 自我簽署的憑證產生失敗 | 確認系統帳戶具有<br>以下資料夾的讀取權限：<br>**C:\ProgramData\Microsoft\**<br>**Crypto\RSA**|  
 
 ### <a name="how-do-i-troubleshoot-update-deployments"></a>如何針對更新部署進行疑難排解？
 您可以從與支援此解決方案的 OMS 工作區連結之自動化帳戶的 [作業] 刀鋒視窗，檢視負責部署排定更新部署內含更新之 Runbook 的結果。  **Patch-MicrosoftOMSComputer** Runbook是以特定受管理電腦為目標的子 Runbook，而檢閱詳細資訊串流將呈現該部署的詳細資訊。  輸出會顯示適用的必要更新、下載狀態、安裝狀態，以及其他詳細資料。<br><br> ![更新部署作業狀態](media/oms-solution-update-management/update-la-patchrunbook-outputstream.png)<br>

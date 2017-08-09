@@ -94,12 +94,10 @@
 #### [寫入 Data Lake Store](hdinsight-storm-write-data-lake-store.md)
 #### [使用 Maven 開發 Java 型拓撲](hdinsight-storm-develop-java-topology.md)
 #### [使用 Hadoop 工具開發 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)
-#### [判斷 Twitter 的趨勢主題](hdinsight-storm-twitter-trending.md)
 #### [以 C# 拓撲處理事件](hdinsight-storm-develop-csharp-event-hub-topology.md)
 #### [以 Java 拓撲處理事件](hdinsight-storm-develop-java-event-hub-topology.md)
 #### [搭配拓撲使用 Power BI](hdinsight-storm-power-bi-topology.md)
 #### [分析即時感應器資料](hdinsight-storm-sensor-data-analysis.md)
-#### [處理車輛感應器資料](hdinsight-storm-iot-eventhub-documentdb.md)
 #### [相互關聯一段時間的事件](hdinsight-storm-correlation-topology.md)
 #### [使用 Python 開發拓撲](hdinsight-storm-develop-python-topology.md)
 ## 使用已加入網域的 HDInsight (預覽)
@@ -137,6 +135,7 @@
 ### [使用 Hive 分析網站記錄](hdinsight-hive-analyze-website-log.md)
 ### [分析 Application Insights 遙測記錄](hdinsight-spark-analyze-application-insight-logs.md)
 ## 擴充叢集
+### [使用安全的儲存體帳戶](hdinsight-hadoop-create-linux-clusters-with-secure-transfer-storage.md)
 ### [使用啟動程序自訂叢集](hdinsight-hadoop-customize-cluster-bootstrap.md)
 ### [使用指令碼動作來自訂叢集](hdinsight-hadoop-customize-cluster-linux.md)
 ### [將 HDInsight 連線至內部部署網](connect-on-premises-network.md)
@@ -207,6 +206,7 @@
 #### [最佳化 Hive 查詢](hdinsight-hadoop-optimize-hive-query.md)
 
 # 參考
+## [程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=hdinsight)
 ## [PowerShell](/powershell/module/azurerm.hdinsight)
 ## [.NET (Hadoop)](https://docs.microsoft.com/dotnet/api/overview/azure/hd-insight?view=azure-dotnet)
 ## [.NET (HBase)](https://www.nuget.org/packages/Microsoft.HBase.Client/)
@@ -240,4 +240,5 @@
 ## [在論壇上取得協助](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=hdinsight)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
 ## [Microsoft 專業巨量資料方案](https://academy.microsoft.com/en-us/professional-program/big-data/)
+## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 ## [適用於 HDInsight 的 Windows 工具](hdinsight-hadoop-windows-tools.md)

@@ -11,13 +11,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/22/2017
+ms.date: 07/21/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 93b36891c960582563a4ff9c622cd5ac3198dfeb
-ms.lasthandoff: 04/17/2017
-
+ms.reviewer: harshja
+ms.custom: it-pro
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 97eeec3b3936bcbef6ac3966b890332901bcb153
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/24/2017
 
 ---
 
@@ -29,13 +31,11 @@ ms.lasthandoff: 04/17/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-本文假設您的環境中已設定和執行 SharePoint 2013 或更新版本。 此外，請考慮下列必要條件︰
+本文假設您的環境中已經有 SharePoint 2013 或更新版本。 此外，請考慮下列必要條件︰
 
-* 在升級至 Premium 或 Basic 版本的 Azure Active Directory (Azure AD) 後，才能使用應用程式 Proxy 功能。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
+* SharePoint 包含 Kerberos 的原生支援。 因此，透過 Azure AD 應用程式 Proxy 遠端存取內部網站的使用者，應該可以有單一登入 (SSO) 體驗。
 
-* SharePoint 包含 Kerberos 的原生支援。 因此，透過 Azure AD 應用程式 Proxy 遠端存取內部網站的使用者，應該可以有順暢的單一登入 (SSO) 體驗。
-
-* 您必須對 SharePoint Server 進行一些組態變更。 建議您使用預備環境。 如此一來，您可以先更新預備伺服器，以便在進行測試週期後再進入生產環境。
+* 您必須對 SharePoint Server 進行一些設定變更。 建議您使用預備環境。 如此一來，您可以先更新預備伺服器，以便在進行測試週期後再進入生產環境。
 
 * 我們假設您已設定 SharePoint 的 SSL，因為已發佈的 URL 需要使用 SSL。 必須啟用內部網站的 SSL，才能確保可正確傳送/對應連結。 如果您尚未設定 SSL，請參閱[設定 SharePoint 2013 的 SSL](https://blogs.msdn.microsoft.com/fabdulwahab/2013/01/20/configure-ssl-for-sharepoint-2013) 以取得相關指示。 另外，請確定連接器電腦可信任您發出的憑證  (此憑證不需公開發行。)
 
@@ -45,13 +45,13 @@ ms.lasthandoff: 04/17/2017
 
 對於需要或使用 Windows 驗證的內部部署應用程式來說，您可以使用 Kerberos 驗證通訊協定和稱為 Kerberos 限制委派 (KCD) 的功能來達成 SSO。 KCD 一經設定，即可讓應用程式 Proxy 連接器為使用者取得 Windows 票證/權杖，即使使用者並未直接登入 Windows 也是如此。 若要深入了解 KCD，請參閱 [Kerberos 限制委派概觀](https://technet.microsoft.com/library/jj553400.aspx)。
 
-若要設定 SharePoint 伺服器的 KCD，請使用下列後續章節中的程序。
+若要設定 SharePoint 伺服器的 KCD，請使用下列後續章節中的程序：
 
 ### <a name="ensure-that-sharepoint-is-running-under-a-service-account"></a>確定 SharePoint 是在服務帳戶下執行
 
 首先，確定 SharePoint 是在定義的服務帳戶下執行，而不是本機系統、本機服務或網路服務帳戶下。 請務必確定這一點，您才可以將服務主體名稱 (SPN) 附加至有效的帳戶。 SPN 是 Kerberos 通訊協定用來識別不同服務的方法。 稍候您需要使用該帳戶來設定 KCD。
 
-若要確定網站是根據所定義的服務帳戶來執行，請執行下列作業︰
+若要確定網站是根據所定義的服務帳戶來執行，請執行下列步驟︰
 
 1. 開啟 [SharePoint 2013 管理中心] 網站。
 2. 移至 [安全性]，然後選取 [設定服務帳戶]。
@@ -99,7 +99,7 @@ SPN 格式如下︰
 
 * service class 是服務的唯一名稱。 針對 SharePoint，您會使用 **HTTP**。
 
-* _host_ 是服務執行所在之主機的完整網域或 NetBIOS 名稱。 在 SharePoint 網站的案例中，這可能必須是網站的 URL，視您使用的 IIS 版本而定。
+* _host_ 是服務執行所在之主機的完整網域或 NetBIOS 名稱。 對於 SharePoint 網站，此文字可能必須是網站的 URL，視您使用的 IIS 版本而定。
 
 * port 是選擇性的。
 
@@ -181,15 +181,15 @@ Klist
 5. 應用程式發佈後，按一下 [設定] 索引標籤。
 6. 向下捲動至 [轉譯標頭中的 URL] 選項。 預設值為 [是]。 將它變更為 [否]。
 
- SharePoint 會使用 [主機標頭] 值來查閱網站。 它也會根據此值產生連結。 最後的結果是可確保 SharePoint 所產生的任何連結，都是已正確設定為使用外部 URL 的已發佈 URL。 將值設定為 [是] 也可讓連接器將要求轉送至後端應用程式。 不過，將值設定為 [否] 表示連接器不會傳送內部主機名稱。 相反地，連接器會傳送主機標頭做為對後端應用程式發佈的 URL。
+ SharePoint 會使用 [主機標頭] 值來查閱網站。 它也會根據此值產生連結。 最後的結果是可確保 SharePoint 所產生的任何連結，都是已正確設定為使用外部 URL 的已發佈 URL。 將值設定為 [是] 也可讓連接器將要求轉送至後端應用程式。 不過，將值設定為 [否] 表示連接器不會傳送內部主機名稱。 相反地，連接器會傳送主機標頭作為對後端應用程式發佈的 URL。
 
- 此外，若要確保 SharePoint 會接受此 URL，您必須於 SharePoint Server 上再完成一項組態。 您將在下一節中執行該動作。
+ 此外，若要確保 SharePoint 會接受此 URL，您必須於 SharePoint Server 上再完成一項設定。 您將在下一節中執行該動作。
 
 7. 將 [內部驗證方法] 變更為 [整合式 Windows 驗證]。 如果 Azure AD 租用戶在雲端所使用的 UPN 不同於內部部署 UPN，請記得一併更新 [委派的登入識別]。
 8. 將**內部應用程式 SPN** 設定為您先前設定的值。 例如，使用 **http/sharepoint.demo.o365identity.us**。
 9. 將應用程式指派給目標使用者。
 
-您的應用程式看起來應該像下面這樣：
+您的應用程式看起來應該像下面範例：
 
   ![完成的應用程式](./media/application-proxy-remote-sharepoint/remote-sharepoint-internal-application-spn.png)
 

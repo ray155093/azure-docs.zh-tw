@@ -14,14 +14,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/25/2017
+ms.date: 07/21/2017
 ms.author: nitinme
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
-ms.openlocfilehash: 7acd83cf477f9294c75e1bf11f093be50c32e786
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 952fa15162a40bccb3f8c7a88508556757ca6675
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 07/24/2017
 
 ---
 # <a name="manage-resources-for-apache-spark-cluster-on-azure-hdinsight"></a>在 Azure HDInsight 上管理 Apache Spark 叢集的資源 
@@ -32,7 +31,7 @@ ms.lasthandoff: 06/07/2017
 
 您必須滿足以下條件：
 
-* Azure 訂用帳戶。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 ## <a name="how-do-i-launch-the-ambari-web-ui"></a>如何啟動 Ambari Web UI？
@@ -135,14 +134,14 @@ Spark Thrift 伺服器驅動程式記憶體是設定為前端節點 RAM 大小�
 5. 對其他前端節點重複這些步驟。
 
 ## <a name="my-jupyter-notebooks-are-not-running-as-expected-how-can-i-restart-the-service"></a>我的 Jupyter Notebook 並未如預期般執行。 如何重新啟動服務？
-1. 如上所示啟動 Ambari Web UI。 從左側導覽窗格，依序按一下 [Jupyter]、[服務動作] 和 [全部重新啟動]。 這會在所有前端節點上啟動 Jupyter 服務。
+如上所示啟動 Ambari Web UI。 從左側導覽窗格，依序按一下 [Jupyter]、[服務動作] 和 [全部重新啟動]。 這會在所有前端節點上啟動 Jupyter 服務。
 
-    ![重新啟動 Jupyter](./media/hdinsight-apache-spark-resource-manager/restart-jupyter.png "重新啟動 Jupyter")
+    ![Restart Jupyter](./media/hdinsight-apache-spark-resource-manager/restart-jupyter.png "Restart Jupyter")
 
-## <a name="how-do-i-know-if-i-am-running-out-of-resource"></a>如何知道我是否用盡資源？
-1. 如上所示啟動 Yarn UI。 在螢幕頂端的叢集計量資料表中，檢查[使用的記憶體] 的值和 [記憶體總計] 資料行。 如果非常接近 2 的值，資源可能不足以啟動下一個應用程式。 這同樣適用於 [使用的 VCores] 和 [VCores 總計] 資料行。 此外，在主要檢視中，如果應用程式一直維持在 [已接受] 狀態並未轉換成 [執行中] 或 [失敗] 狀態時，這也可能是表示其未取得足夠的資源來啟動。
+## <a name="how-do-i-know-if-i-am-running-out-of-resources"></a>如何知道我是否用盡資源？
+如上所示啟動 Yarn UI。 在螢幕頂端的叢集計量資料表中，檢查[使用的記憶體] 的值和 [記憶體總計] 資料行。 如果非常接近 2 的值，資源可能不足以啟動下一個應用程式。 這同樣適用於 [使用的 VCores] 和 [VCores 總計] 資料行。 此外，在主要檢視中，如果應用程式一直維持在 [已接受] 狀態並未轉換成 [執行中] 或 [失敗] 狀態時，這也可能是表示其未取得足夠的資源來啟動。
 
-    ![資源限制](./media/hdinsight-apache-spark-resource-manager/resource-limit.png "資源限制")
+    ![Resource Limit](./media/hdinsight-apache-spark-resource-manager/resource-limit.png "Resource Limit")
 
 ## <a name="how-do-i-kill-a-running-application-to-free-up-resource"></a>如何終止執行中的應用程式以釋出資源？
 1. 在 Yarn UI 中，從左窗格中，按一下 [執行中]。 從執行中應用程式的清單，決定要終止的應用程式，然後按一下 [識別碼]。
@@ -153,38 +152,26 @@ Spark Thrift 伺服器驅動程式記憶體是設定為前端節點 RAM 大小�
 
     ![終止 App2](./media/hdinsight-apache-spark-resource-manager/kill-app2.png "終止 App2")
 
-## <a name="seealso"></a>另請參閱
-* [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
+## <a name="see-also"></a>另請參閱
+* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-### <a name="scenarios"></a>案例
-* [Spark 和 BI：在 HDInsight 中搭配使用 Spark 和 BI 工具執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
+### <a name="for-data-analysts"></a>針對資料分析師
+
 * [Spark 和機器學習服務：使用 HDInsight 中的 Spark，利用 HVAC 資料來分析建築物溫度](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
 * [Spark 和機器學習服務：使用 HDInsight 中的 Spark 來預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
-* [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 * [使用 HDInsight 中的 Spark 進行網站記錄分析](hdinsight-apache-spark-custom-library-website-log-analysis.md)
+* [HDInsight 中使用 Spark 的 Application Insight 遙測資料分析](hdinsight-spark-analyze-application-insight-logs.md)
+* [在 Azure HDInsight Spark 上使用 Caffe 進行分散式深入學習](hdinsight-deep-learning-caffe-spark.md)
 
-### <a name="create-and-run-applications"></a>建立及執行應用程式
+### <a name="for-spark-developers"></a>針對 Spark 開發人員
+
 * [使用 Scala 建立獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
 * [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
-
-### <a name="tools-and-extensions"></a>工具和擴充功能
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 * [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-zeppelin-notebook.md)
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
 * [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
-
-### <a name="manage-resources"></a>管理資源
-* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
-
-[hdinsight-versions]: hdinsight-component-versioning.md
-[hdinsight-upload-data]: hdinsight-upload-data.md
-[hdinsight-storage]: hdinsight-hadoop-use-blob-storage.md
-
-
-[azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
-[azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/
-[azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-[azure-create-storageaccount]: storage-create-storage-account.md
 

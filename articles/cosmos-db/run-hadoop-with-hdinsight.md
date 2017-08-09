@@ -15,12 +15,11 @@ ms.topic: article
 ms.date: 06/08/2017
 ms.author: denlee
 ms.custom: H1Hack27Feb2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 245ce9261332a3d36a36968f7c9dbc4611a019b2
-ms.openlocfilehash: dc947bb132b14278f38b378bc80ca232c94fcdb7
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 427864fc4e494c19fcda4cfd454a9923499f6337
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/09/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="Azure Cosmos DB-HDInsight"></a>使用 Azure Cosmos DB 和 HDInsight 執行 Apache Hive、Pig 或 Hadoop 作業
@@ -57,7 +56,7 @@ ms.lasthandoff: 06/09/2017
     <tr><th>支援的 HDInsight 版本</th>
         <td>3.1、3.2</td></tr>
     <tr><th>變更記錄檔</th>
-        <td>將 DocumentDB Java SDK 更新為 1.6.0</br>
+        <td>將 Azure Cosmos DB Java SDK 更新至 1.6.0</br>
             將已分割的集合支援同時加入為來源和接收</br>
         </td></tr>
 </table>
@@ -178,9 +177,9 @@ DNS 名稱的開頭與結尾都必須是英數字元，且可包含連字號。<
 
         # Provide the HDInsight cluster name where you want to run the Hive job.
         $clusterName = "<HDInsightClusterName>"
-2. <p>首先我們要建構查詢字串。 我們將撰寫執行下列動作的 Hive 查詢：接受所有文件從 DocumentDB 集合系統產生的時間戳記 (_ts) 和唯一識別碼 (_rid) ，並計算所有文件 (以分鐘為單位)，然後將結果存回新的 DocumentDB 集合。</p>
+2. <p>首先我們要建構查詢字串。 我們將撰寫執行下列動作的 Hive 查詢：接受所有文件從 Azure Cosmos DB 集合系統產生的時間戳記 (_ts) 和唯一識別碼 (_rid) ，並計算所有文件 (以分鐘為單位)，然後將結果存回新的 Azure Cosmos DB 集合。</p>
 
-    <p>首先，我們要在 DocumentDB 集合中建立 Hive 資料表。 將下列程式碼片段加入 [PowerShell 指令碼] 窗格中 # 1 的程式碼片段<strong>後面</strong>。 請確定包含選擇性的 DocumentDB.query 參數，將文件整理成只有 _ts 和 _rid。</p>
+    <p>首先，我們要在 Azure Cosmos DB 集合中建立 Hive 資料表。 將下列程式碼片段加入 [PowerShell 指令碼] 窗格中 # 1 的程式碼片段<strong>後面</strong>。 請確定包含選擇性的 DocumentDB.query 參數，將文件整理成只有 _ts 和 _rid。</p>
 
    > [!NOTE]
    > **命名 DocumentDB.inputCollections 是正確的選擇。** 沒錯，我們允許在一筆輸入中加入多個集合： </br>
@@ -256,8 +255,8 @@ DNS 名稱的開頭與結尾都必須是英數字元，且可包含連字號。<
 
    1. 按一下左側面板上的 [<strong>瀏覽</strong>]。 </br>
    2. 按一下 [瀏覽] 面板右上方的 [<strong>所有項目</strong>]。 </br>
-   3. 尋找並按一下 [<strong>DocumentDB 帳戶</strong>]。 </br>
-   4. 接下來，依序尋找您的 [DocumentDB 帳戶]<strong></strong>、[DocumentDB 資料庫]<strong></strong> 和與 Hive 查詢中指定輸出集合相關聯的 [DocumentDB 集合]<strong></strong>。</br>
+   3. 尋找並按一下 [Azure Cosmos DB 帳戶]<strong></strong>。 </br>
+   4. 接下來，依序尋找您的 [Azure Cosmos DB 帳戶]<strong></strong>、[Azure Cosmos DB 資料庫]<strong></strong> 和與 Hive 查詢中指定輸出集合相關聯的 [Azure Cosmos DB 集合]<strong></strong>。</br>
    5. 最後，按一下 [<strong>開發人員工具</strong>] 底下的 <strong>Document Explorer</strong>。</br></p>
 
    您將會看到 Hive 查詢的結果。
@@ -277,7 +276,7 @@ DNS 名稱的開頭與結尾都必須是英數字元，且可包含連字號。<
 
         # Provide HDInsight cluster name where you want to run the Pig job.
         $clusterName = "Azure HDInsight Cluster Name"
-2. <p>首先我們要建構查詢字串。 我們將撰寫執行下列動作的 Pig 查詢：接受所有文件從 DocumentDB 集合系統產生的時間戳記 (_ts) 和唯一識別碼 (_rid) ，並計算所有文件 (以分鐘為單位)，然後將結果存回新的 DocumentDB 集合。</p>
+2. <p>首先我們要建構查詢字串。 我們將撰寫執行下列動作的 Pig 查詢：接受所有文件從 Azure Cosmos DB 集合系統產生的時間戳記 (_ts) 和唯一識別碼 (_rid) ，並計算所有文件 (以分鐘為單位)，然後將結果存回新的 Azure Cosmos DB 集合。</p>
     <p>首先，將文件從 Cosmos DB 載入 HDInsight。 將下列程式碼片段加入 [PowerShell 指令碼] 窗格中 # 1 的程式碼片段<strong>後面</strong>。 請務必將 DocumentDB 查詢加入選擇性的 DocumentDB 查詢參數，以將文件整理成只有 _ts 和 _rid。</p>
 
    > [!NOTE]
@@ -343,20 +342,20 @@ DNS 名稱的開頭與結尾都必須是英數字元，且可包含連字號。<
 
     1. 按一下左側面板上的 [<strong>瀏覽</strong>]。 </br>
     2. 按一下 [瀏覽] 面板右上方的 [<strong>所有項目</strong>]。 </br>
-    3. 尋找並按一下 [<strong>DocumentDB 帳戶</strong>]。 </br>
-    4. 接下來，依序尋找您的 [DocumentDB 帳戶]<strong></strong>、[DocumentDB 資料庫]<strong></strong> 和與 Pig 查詢中指定輸出集合相關聯的 [DocumentDB 集合]<strong></strong>。</br>
+    3. 尋找並按一下 [Azure Cosmos DB 帳戶]<strong></strong>。 </br>
+    4. 接下來，依序尋找您的 [Azure Cosmos DB 帳戶]<strong></strong>、[Azure Cosmos DB 資料庫]<strong></strong> 和與 Pig 查詢中指定輸出集合相關聯的 [Azure Cosmos DB 集合]<strong></strong>。</br>
     5. 最後，按一下 [<strong>開發人員工具</strong>] 底下的 <strong>Document Explorer</strong>。</br></p>
 
     您將會看到 Pig 查詢的結果。
 
     ![Pig 查詢結果][image-pig-query-results]
 
-## <a name="RunMapReduce"></a>步驟 5：使用 DocumentDB 和 HDInsight 執行 MapReduce 作業
+## <a name="RunMapReduce"></a>步驟 5：使用 Azure Cosmos DB 和 HDInsight 執行 MapReduce 作業
 1. 在 [PowerShell 指令碼] 窗格中設定下列變數。
 
         $subscriptionName = "<SubscriptionName>"   # Azure subscription name
         $clusterName = "<ClusterName>"             # HDInsight cluster name
-2. 我們將執行 MapReduce 工作，針對您 DocumentDB 集合中每一個文件屬性的發生次數進行計算。 在上述程式碼片段 **之後** 加入此指令碼程式碼片段。
+2. 我們將執行 MapReduce 工作，針對您 Azure Cosmos DB 集合中每一個文件屬性的發生次數進行計算。 在上述程式碼片段 **之後** 加入此指令碼程式碼片段。
 
         # Define the MapReduce job.
         $TallyPropertiesJobDefinition = New-AzureHDInsightMapReduceJobDefinition -JarFile "wasb:///example/jars/TallyProperties-v01.jar" -ClassName "TallyProperties" -Arguments "<DocumentDB Endpoint>","<DocumentDB Primary Key>", "<DocumentDB Database Name>","<DocumentDB Input Collection Name>","<DocumentDB Output Collection Name>","<[Optional] DocumentDB Query>"
@@ -384,8 +383,8 @@ DNS 名稱的開頭與結尾都必須是英數字元，且可包含連字號。<
 
    1. 按一下左側面板上的 [<strong>瀏覽</strong>]。
    2. 按一下 [瀏覽] 面板右上方的 [<strong>所有項目</strong>]。
-   3. 尋找並按一下 [Cosmos DB 帳戶]<strong></strong>。
-   4. 接下來，依序尋找您的 [Cosmos DB 帳戶]<strong></strong>、[Cosmos DB 資料庫]<strong></strong> 和與 MapReduce 作業中指定輸出集合相關聯的 [DocumentDB 集合]<strong></strong>。
+   3. 尋找並按一下 [Azure Cosmos DB 帳戶]<strong></strong>。
+   4. 接下來，依序尋找您的 [Azure Cosmos DB 帳戶]<strong></strong>、[Azure Cosmos DB 資料庫]<strong></strong> 和與 MapReduce 作業中指定輸出集合相關聯的 [Azure Cosmos DB 集合]<strong></strong>。
    5. 最後，按一下 [<strong>開發人員工具</strong>] 底下的 <strong>Document Explorer</strong>。
 
       您將會看到 MapReduce 工作的結果。

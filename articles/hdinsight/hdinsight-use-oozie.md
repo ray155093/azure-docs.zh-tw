@@ -17,12 +17,11 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 67ee6932f417194d6d9ee1e18bb716f02cf7605d
-ms.openlocfilehash: 10726bdaf1aa0a98276747868771999625ccf5e5
+ms.translationtype: HT
+ms.sourcegitcommit: 54774252780bd4c7627681d805f498909f171857
+ms.openlocfilehash: 220f2806849e59e8799017a2d7558f1ae622a755
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/26/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="use-oozie-with-hadoop-to-define-and-run-a-workflow-in-hdinsight"></a>在 HDInsight 上搭配 Hadoop 使用 Oozie 來定義並執行工作流程
@@ -134,7 +133,7 @@ RunHiveScript 有數個變數。 當您使用 Azure PowerShell 從工作站提�
 <table border = "1">
 <tr><th>工作流程變數</th><th>說明</th></tr>
 <tr><td>${jobTracker}</td><td>指定 Hadoop 工作追蹤器的 URL。 在 HDInsight 3.0 和 2.1 版中使用 <strong>jobtrackerhost:9010</strong>。</td></tr>
-<tr><td>${nameNode}</td><td>指定 Hadoop 名稱節點的 URL。 使用預設檔案系統位址，例如 <i>wasbs://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>。</td></tr>
+<tr><td>${nameNode}</td><td>指定 Hadoop 名稱節點的 URL。 使用預設檔案系統位址，例如 <i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>。</td></tr>
 <tr><td>${queueName}</td><td>指定要將工作提交至其中的佇列名稱。 使用<strong>預設值</strong>。</td></tr>
 </table>
 
@@ -191,9 +190,9 @@ Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。 
    
     這兩個檔案會儲存在公用 Blob 容器。
    
-   * 將 HiveQL 指令碼 (useoozie.hql) 複製到 Azure 儲存體 (wasbs:///tutorials/useoozie/useoozie.hql)。
-   * 將 workflow.xml 複製到 wasbs:///tutorials/useoozie/workflow.xml。
-   * 將資料檔案 (/example/data/sample.log) 複製到 wasbs:///tutorials/useoozie/data/sample.log。
+   * 將 HiveQL 指令碼 (useoozie.hql) 複製到 Azure 儲存體 (wasb:///tutorials/useoozie/useoozie.hql)。
+   * 將 workflow.xml 複製到 wasb:///tutorials/useoozie/workflow.xml。
+   * 將資料檔案 (/example/data/sample.log) 複製到 wasb:///tutorials/useoozie/data/sample.log。
 6. 提交 Oozie 工作。
    
     若要檢查 Oozie 工作的結果，請使用 Visual Studio 或其他工具來連接到 Azure SQL Database。
@@ -448,7 +447,7 @@ Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。 
 
     #region - submit Oozie job
 
-    $storageUri="wasbs://$defaultBlobContainerName@$defaultStorageAccountName.blob.core.windows.net"
+    $storageUri="wasb://$defaultBlobContainerName@$defaultStorageAccountName.blob.core.windows.net"
 
     $oozieJobName = $namePrefix + "OozieJob"
 

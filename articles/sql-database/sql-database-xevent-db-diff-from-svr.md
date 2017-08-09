@@ -126,7 +126,7 @@ Azure SQL Database 具有支援擴充事件的 [動態管理檢視 (DMV)](http:/
 
 您可以執行簡單 SQL **SELECT** 以取得可用事件、動作和目標的清單。
 
-```tsql
+```sql
 SELECT
         o.object_type,
         p.name         AS [package_name],

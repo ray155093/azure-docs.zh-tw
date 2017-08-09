@@ -15,12 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/03/2017
 ms.author: gwallace
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: 224aa0db2feb7a83bec5b4ec46140046d10f012e
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 3ee146a0be3c3338cf0037e2ec92a3b8d0c05a4e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
-
+ms.lasthandoff: 07/28/2017
 
 ---
 
@@ -113,7 +112,7 @@ Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應
 
    ![選擇虛擬網路][2]
 
-1. 在 [建立虛擬網路] 刀鋒視窗中輸入下列值，然後按一下 [確定]。 這將會關閉 [建立虛擬網路] 和 [選擇虛擬網路] 刀鋒視窗。 這也會使用所選的子網路，填入 [設定] 刀鋒視窗的 [子網路] 欄位。
+1. 在 [建立虛擬網路] 刀鋒視窗中輸入下列值，然後按一下 [確定]。 這會關閉 [建立虛擬網路] 和 [選擇虛擬網路] 刀鋒視窗。 這也會使用所選的子網路，填入 [設定] 刀鋒視窗的 [子網路] 欄位。
 
    |**設定** | **值** | **詳細資料** |
    |---|---|---|
@@ -128,7 +127,7 @@ Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應
 
    ![選擇公用 IP][3]
 
-1. 在 [建立公用 IP 位址] 刀鋒視窗中，接受預設值，並按一下 [確定]。 這將會關閉 [選擇公用 IP 位址] 刀鋒視窗、[建立公用 IP 位址] 刀鋒視窗，並使用所選的公用 IP 位址填入 [公用 IP 位址]。
+1. 在 [建立公用 IP 位址] 刀鋒視窗中，接受預設值，並按一下 [確定]。 這會關閉 [選擇公用 IP 位址] 刀鋒視窗、[建立公用 IP 位址] 刀鋒視窗，並使用所選的公用 IP 位址填入 [公用 IP 位址]。
 
 1. 在 [接聽程式設定] 底下的 [設定] 刀鋒視窗中，按一下 [通訊協定] 底下的 [HTTP]。 若要使用 **https**，必須提供憑證。 需要有憑證的私密金鑰，因此必須提供憑證的 .pfx 匯出及檔案的密碼。
 
@@ -152,6 +151,8 @@ Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應
 > 基於保護的目的，使用基本 Web 應用程式防火牆設定建立的應用程式閘道，是使用 CRS 3.0 所設定。
 
 ## <a name="next-steps"></a>後續步驟
+
+接下來，您可以了解如何使用 Azure DNS 或其他 DNS 提供者，為[公用 IP 位址](../dns/dns-custom-domain.md#public-ip-address)設定自訂網域別名。
 
 請參閱[應用程式閘道診斷](application-gateway-diagnostics.md)，以了解如何設定診斷記錄，以及如何記錄 Web 應用程式防火牆偵測到或防止的事件
 

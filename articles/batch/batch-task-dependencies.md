@@ -69,7 +69,7 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 此程式碼片段會使用工作識別碼 "Flowers" 建立相依工作。 "Flowers" 工作相依於 "Rain" 和 "Sun" 工作。 "Flowers" 工作將排定為只會在 "Rain" 和 "Sun" 工作順利完成後，才於計算節點上執行。
 
 > [!NOTE]
-> 當工作處於**已完成**狀態且其**結束代碼`0` 是 ** 時，才會將其視為已順利完成。 在 Batch .NET 中，這表示 [CloudTask][net_cloudtask].[State][net_taskstate] 屬性值為 `Completed`，而 CloudTask 的 [TaskExecutionInformation][net_taskexecutioninformation].[ExitCode][net_exitcode] 屬性值為 `0`。
+> 當工作處於**已完成**狀態且其**結束代碼** 是 `0` 時，才會將其視為已順利完成。 在 Batch .NET 中，這表示 [CloudTask][net_cloudtask].[State][net_taskstate] 屬性值為 `Completed`，而 CloudTask 的 [TaskExecutionInformation][net_taskexecutioninformation].[ExitCode][net_exitcode] 屬性值為 `0`。
 > 
 > 
 

@@ -143,7 +143,7 @@ ms.lasthandoff: 05/26/2017
    
     b. 選取 [服務提供者識別碼]。
    
-    c. 將 **SAML 單一登入服務 URL** 貼入 [Login Portal URL] (登入入口網站 URL) 文字方塊。
+    c. 將 **SAML 單一登入服務 URL** 貼入 [Login Portal URL] \(登入入口網站 URL) 文字方塊。
    
     d. 將**單一登出服務 URL** 貼入 [登出 URL] 文字方塊。
    

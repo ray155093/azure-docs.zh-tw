@@ -13,7 +13,7 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 06/27/2017
+ms.date: 08/07/2017
 ms.author: jroth
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 857267f46f6a2d545fc402ebf3a12f21c62ecd21
@@ -21,11 +21,8 @@ ms.openlocfilehash: f0100423550046d18642180ce98e93ce3609749b
 ms.contentlocale: zh-tw
 ms.lasthandoff: 06/28/2017
 
-
 ---
-<a id="overview-of-sql-server-on-azure-virtual-machines" class="xliff"></a>
-
-# Azure 虛擬機器上的 SQL Server 概觀
+# <a name="overview-of-sql-server-on-azure-virtual-machines"></a>Azure 虛擬機器上的 SQL Server 概觀
 本主題說明在 Azure 虛擬機器 (VM) 上執行 SQL Server 的選項，以及提供[入口網站映像的連結](#option-1-create-a-sql-vm-with-per-minute-licensing)和[常見工作](#manage-your-sql-vm)的概觀。
 
 > [!NOTE]
@@ -33,9 +30,7 @@ ms.lasthandoff: 06/28/2017
 > 
 > 
 
-<a id="overview" class="xliff"></a>
-
-## Overview
+## <a name="overview"></a>Overview
 如果您是資料庫管理員或開發人員，Azure VM 提供您將內部部署 SQL Server 工作負載和應用程式移動到雲端的方式。 下列影片提供 SQL Server Azure VM 的技術概觀。
 
 > [!VIDEO https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016/player]
@@ -61,9 +56,7 @@ ms.lasthandoff: 06/28/2017
 > 
 > 
 
-<a id="scenarios" class="xliff"></a>
-
-## 案例
+## <a name="scenarios"></a>案例
 可能會有許多原因讓您選擇主控 Azure 中的資料。 如果您的應用程式移至 Azure，則也會改善移動資料的效能。 但是還有其他好處。 您會自動取得多個資料中心的存取權，以獲得全域支援和災害復原。 資料也是高度安全且具有持久性。
 
 在 Azure VM 上執行的 SQL Server，是用來將關聯式資料儲存到 Azure 的選項之一。 它在數個案例中是很好的選擇。 例如，您可能要盡可能以類似方法將 Azure VM 設定為內部部署 SQL Server 的電腦。 或者，您可能要在相同的資料庫伺服器上執行其他應用程式和服務。 有兩個主要資源可協助您思考更多的案例和考量︰
@@ -71,16 +64,12 @@ ms.lasthandoff: 06/28/2017
 * [Azure 虛擬機器上的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/) 提供在 Azure VM 上使用 SQL Server 的最佳案例概觀。 
 * [選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md) 可提供 SQL Database 和在 VM 上執行之 SQL Server 的完整比較。
 
-<a id="create-a-new-sql-vm" class="xliff"></a>
-
-## 建立新的 SQL VM
+## <a name="create-a-new-sql-vm"></a>建立新的 SQL VM
 下列各節提供 Azure 入口網站中 SQL Server 虛擬機器資源庫映像的直接連結。 視您選取的映像而定，您可以按分鐘支付 SQL Server 授權成本，或者可以自備授權 (BYOL)。
 
 在[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)教學課程中尋找適用於建立新 SQL VM 的逐步指引。 此外，檢閱 [SQL Server VM 的效能最佳作法](virtual-machines-windows-sql-performance.md)，該文說明如何選取適當的機器大小和佈建期間其他可用的功能。
 
-<a id="option-1-create-a-sql-vm-with-per-minute-licensing" class="xliff"></a>
-
-## 選項 1︰利用每分鐘授權建立 SQL VM
+## <a name="option-1-create-a-sql-vm-with-per-minute-licensing"></a>選項 1︰利用每分鐘授權建立 SQL VM
 下表提供虛擬機器資源庫中最新的 SQL Server 映像對照表。 按一下任何連結，即可開始建立採用您指定的版本和作業系統的新 SQL VM。 
 
 > [!TIP]
@@ -114,48 +103,32 @@ ms.lasthandoff: 06/28/2017
 > [!NOTE]
 > 不可能將支付 SQL Server VM 的每分鐘付費授權模式變更成使用自己的授權。 在此情況下，您必須建立新的 BYOL VM，並將資料庫移轉到新的 VM。 
 
-<a id="manage-your-sql-vm" class="xliff"></a>
-
-## 管理您的 SQL VM
+## <a name="manage-your-sql-vm"></a>管理您的 SQL VM
 佈建之後您的 SQL Server VM 之後，有幾個選用的管理工作。 在許多方面，您設定和管理 SQL Server 的方式，完全如同您管理內部部署 SQL Server 執行個體。 不過，有些是 Azure 特有的工作。 下列各節強調上述某些領域並提供詳細資訊的連結。
 
-<a id="connect-to-the-vm" class="xliff"></a>
-
-### 連接至 VM
+### <a name="connect-to-the-vm"></a>連接至 VM
 最基本的管理步驟之一，是透過工具連接到您的 SQL Server VM，例如 SQL Server Management Studio (SSMS)。 如需如何連接至新 SQL Server VM 的指示，請參閱[連接 Azure 上的 SQL Server 虛擬機器](virtual-machines-windows-sql-connect.md)。
 
-<a id="migrate-your-data" class="xliff"></a>
-
-### 遷移資料
+### <a name="migrate-your-data"></a>遷移資料
 如果您有現有的資料庫，您會想要將該資料庫移到新佈建的 SQL VM。 如需移轉選項的清單和指引，請參閱 [將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)。
 
-<a id="configure-high-availability" class="xliff"></a>
-
-### 設定高可用性
+### <a name="configure-high-availability"></a>設定高可用性
 如果您需要高可用性，請考慮設定 SQL Server 可用性群組。 這牽涉到虛擬網路中多個 Azure VM。 Azure 入口網站有一個範本，己經有您需要的設定。 如需詳細資訊，請參閱 [在 Azure Resource Manager 虛擬機器中設定 AlwaysOn 可用性群組](virtual-machines-windows-portal-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 如果您想要手動設定「可用性群組」及關聯的接聽程式，請參閱 [在 Azure VM 中設定 AlwaysOn 可用性群組](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)。
 
 如需其他高可用性注意事項，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md)。
 
-<a id="back-up-your-data" class="xliff"></a>
-
-### 備份您的資料
+### <a name="back-up-your-data"></a>備份您的資料
 Azure VM 可以利用 [自動備份](virtual-machines-windows-sql-automated-backup.md)，以定期建立資料庫的備份至 Blob 儲存體。 您也可以手動使用此技術。 如需詳細資訊，請參閱 [使用 Azure 儲存體進行 SQL Server 備份與還原](virtual-machines-windows-use-storage-sql-server-backup-restore.md)。 如需所有備份與還原選項的概觀，請參閱 [Azure 虛擬機器中的 SQL Server 備份和還原](virtual-machines-windows-sql-backup-recovery.md)。
 
-<a id="automate-updates" class="xliff"></a>
-
-### 自動更新
+### <a name="automate-updates"></a>自動更新
 Azure VM 可以使用 [自動修補](virtual-machines-windows-sql-automated-patching.md) 來排程維護期間，以便自動安裝重要的 Windows 和 SQL Server 更新。
 
-<a id="customer-experience-improvement-program-ceip" class="xliff"></a>
-
-### 客戶經驗改進計畫 (CEIP)
+### <a name="customer-experience-improvement-program-ceip"></a>客戶經驗改進計畫 (CEIP)
 預設會啟用「客戶經驗改進計畫」(CEIP)。 這會定期將報表傳送至 Microsoft 以協助改進 SQL Server。 CEIP 不需要管理工作，除非您要在佈建之後將它停用。 您可以透過遠端桌面連接到 VM，以自訂或停用 CEIP。 然後執行 [SQL Server 錯誤和使用情況報告]  公用程式。 請遵循指示來停用報告功能。 
 
 如需詳細資訊，請參閱[接受授權條款](https://msdn.microsoft.com/library/ms143343.aspx) CEIP 一節。 
 
-<a id="next-steps" class="xliff"></a>
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 若有定價方面的問題，請參閱 [SQL Server Azure VM 的定價指導方針](virtual-machines-windows-sql-server-pricing-guidance.md)和 [Azure 定價頁面](https://azure.microsoft.com/pricing/details/virtual-machines/windows/)。 在 **OS/軟體**清單中選取 SQL Server 的目標版本。 然後檢視不同大小的虛擬機器價格。
 

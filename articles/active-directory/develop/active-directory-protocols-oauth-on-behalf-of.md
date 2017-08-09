@@ -87,7 +87,7 @@ https://login.microsoftonline.com/<tenant>/oauth2/token
 | scope |必要 | 權杖要求範圍的清單，各項目之間以空格分隔。 若為 OpenID connect，則必須指定 **openid** 範圍。|
 
 #### 範例
-下列 HTTP POST 會要求對https://graph.windows.net Web API 的存取權杖。 `client_id` 會識別要求存取權杖的服務。
+下列 HTTP POST 會要求對 https://graph.windows.net Web API 的存取權杖。 `client_id` 會識別要求存取權杖的服務。
 
 ```
 // line breaks for legibility only
@@ -122,7 +122,7 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 請注意，在透過共用祕密要求的情況中，參數幾乎相同，不同之處在於使用下列兩個參數來取代 client_secret 參數：client_assertion_type 和 client_assertion。
 
 #### 範例
-下列 HTTP POST 會使用憑證來要求對https://graph.windows.net Web API 的存取權杖。 `client_id` 會識別要求存取權杖的服務。
+下列 HTTP POST 會使用憑證來要求對 https://graph.windows.net Web API 的存取權杖。 `client_id` 會識別要求存取權杖的服務。
 
 ```
 // line breaks for legibility only

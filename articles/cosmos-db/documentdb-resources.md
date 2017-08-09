@@ -17,10 +17,10 @@ ms.date: 05/24/2017
 ms.author: anhoh
 ms.custom: H1Hack27Feb2017
 ms.translationtype: HT
-ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
-ms.openlocfilehash: f632d94222590f97b7a95edf9d4941a66b0710e6
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 8051742c7c368d1ed84bcd90ab75b20f62105e2f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/18/2017
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="azure-cosmos-db-hierarchical-resource-model-and-core-concepts"></a>Azure Cosmos DB 階層式資源模型和核心概念
@@ -38,7 +38,7 @@ Azure Cosmos DB 管理的資料庫實體稱為「資源」。 每個資源可透
 如下圖所示，Cosmos DB 的階層式「資源模型」包含某個資料庫帳戶下的多組資源，而每組資源都可透過邏輯和穩定 URI 加以定址。 在本文中，一組資源稱為 **摘要** 。 
 
 > [!NOTE]
-> Cosmos DB 提供高效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 [DocumentDB .NET 用戶端 API](documentdb-sdk-dotnet.md) 取得。
+> Azure Cosmos DB 提供高效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 [DocumentDB .NET 用戶端 API](documentdb-sdk-dotnet.md) 取得。
 > 
 > 
 

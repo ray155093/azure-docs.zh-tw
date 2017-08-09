@@ -15,12 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/29/2017
 ms.author: mimig
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a643f139be40b9b11f865d528622bafbe7dec939
-ms.openlocfilehash: 0691d6730fddbf9b6145d4a39da94a1762516c2c
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: c77357b2cefc8081728cb20d08b00656ba60bea6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/31/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="going-social-with-azure-cosmos-db"></a>使用 Azure Cosmos DB 跨足社交
@@ -201,7 +200,7 @@ Azure Cosmos DB 可利用自身的自動索引編製作業，確保所有屬性�
 ## <a name="the-search-box"></a>搜尋方塊
 一般來說，使用者都能很幸運地產生許多內容。 即使內容不是直接在本身的內容串流中，我們也應該可以提供搜尋及尋找這些內容的功能，因為有時我們可能不想關注建立者，或只是想要尋找 6 個月前的舊貼文。
 
-幸好，我們使用的是 Azure DocumentDB，因此可以透過 [Azure 搜尋服務](https://azure.microsoft.com/services/search/) ，輕鬆地在幾分鐘的時間內實作搜尋引擎，而不需要輸入任何一行程式碼 (當然除了搜尋程序和 UI 以外)。
+幸好，我們使用的是 Azure Cosmos DB，因此可以透過 [Azure 搜尋服務](https://azure.microsoft.com/services/search/) ，輕鬆地在幾分鐘的時間內實作搜尋引擎，而不需要輸入任何一行程式碼 (當然除了搜尋程序和 UI 以外)。
 
 為什麼可以這麼輕鬆？
 

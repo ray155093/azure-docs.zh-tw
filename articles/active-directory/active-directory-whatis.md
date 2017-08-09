@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.custom: it-pro
 ms.translationtype: HT
-ms.sourcegitcommit: 94d1d4c243bede354ae3deba7fbf5da0652567cb
-ms.openlocfilehash: 6e4c1cdac51664d83805252cf178e705042e76ca
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: b6746afd508832afbd54153851b6f2ae404af147
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/18/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="what-is-azure-active-directory"></a>什麼是 Azure Active Directory？
@@ -68,7 +68,7 @@ Azure AD 經悉心設計，不但支援多租用戶、地理分布周全，更�
 
 * [立即試用！](https://azure.microsoft.com/trial/get-started-active-directory/) - 您可以立即註冊免費的 30 天試用版，並使用此連結在 5 分鐘內部署第一個雲端解決方案
 
-* 閱讀〈開始使用 Azure AD〉了解秘訣和訣竅，獲得 Azure AD 租用戶並快速執行
+* 閱讀[開始使用 Azure AD](https://docs.microsoft.com/azure/active-directory/active-directory-get-started-premium) 以取得獲得 Azure AD 租用戶並快速執行的秘訣和訣竅
 
 **如果您是開發人員：**
  

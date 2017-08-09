@@ -1,6 +1,6 @@
 ---
 title: "在 Azure Active Directory 中指派系統管理員角色 | Microsoft Docs"
-description: "說明 Azure Active Directory 可用的系統管理員角色和其指派方式。"
+description: "系統管理員角色可用來建立或編輯使用者、指派系統管理角色、重設使用者密碼、管理使用者授權或管理網域。 指派系統管理員角色的使用者在您組織所訂閱的所有雲端服務中都擁有相同的權限。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,24 +12,30 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/14/2017
+ms.date: 07/25/2017
 ms.author: curtand
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 5bbeb9d4516c2b1be4f5e076a7f63c35e4176b36
-ms.openlocfilehash: 1d3c9023ff4d3a722363d38d3c927fb7f4304448
+ms.reviewer: Vince.Smith
+ms.custom: oldportal;it-pro;
+robots: NOINDEX
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 042e2f4117a35e80694a1643dd95fa54d508f1f7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/13/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="assigning-administrator-roles-in-azure-active-directory"></a>在 Azure Active Directory 中指派系統管理員角色
 > [!div class="op_single_selector"]
-> * [Azure 入口網站](active-directory-assign-admin-roles-azure-portal.md)
+> * [Azure 入口網站]()
 > * [Azure 傳統入口網站](active-directory-assign-admin-roles.md)
 >
 >
 
-使用 Azure Active Directory (Azure AD) 時，您可以指定個別的系統管理員來執行不同的功能。 這些系統管理員可以存取 Azure 入口網站或 Azure 傳統入口網站中的各種功能，此外，根據其角色，將可以建立或編輯使用者、將系統管理角色指派給其他人、重設使用者密碼、管理使用者授權，以及管理網域。 不論您是在 Office 365 入口網站還是 Azure 傳統入口網站中指派角色，或是使用適用於 Windows PowerShell 的 Azure AD 模組來指派角色，獲指派系統管理員角色的使用者在您組織所訂閱的所有雲端服務中都擁有相同的權限。
+使用 Azure Active Directory (Azure AD)，針對不同功能指定個別的系統管理員。 這些系統管理員可以存取 Azure 入口網站或 Azure 傳統入口網站中選取的功能，此外，根據其角色而定，將能建立或編輯使用者、將系統管理角色指派給其他人、重設使用者密碼、管理使用者授權，以及管理網域。 不論您是在 Office 365 入口網站還是 Azure 傳統入口網站中指派角色，或是使用適用於 Microsoft PowerShell 的 Azure AD 模組來指派角色，獲指派系統管理員角色的使用者在您組織所訂閱的所有雲端服務中都擁有相同的權限。
+
+> [!IMPORTANT]
+> Microsoft 建議您使用 Azure 入口網站中的 [Azure AD 系統管理中心](https://aad.portal.azure.com)來管理 Azure AD，而不要使用本文所提及的 Azure 傳統入口網站。 如需如何在 Azure AD 系統管理中心指派系統管理員角色的相關資訊，請參閱[在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles-azure-portal.md)。
+
 
 可用的系統管理員角色如下：
 
@@ -79,7 +85,7 @@ ms.lasthandoff: 06/13/2017
 
 * **特殊權限角色管理員**：具備此角色的使用者可以管理 Azure Active Directory 中，以及 Azure AD Privileged Identity Management 內的角色指派。 此外，這個角色允許各個層面的 Privileged Identity Management 管理。
 
-* **安全性系統管理員**︰具有此角色的使用者擁有安全性讀取者角色的所有唯讀權限，再加上管理與安全性相關之服務組態的能力︰Azure Active Directory 身分識別保護、Privileged Identity Management 和 Office 365 安全性與法規遵循中心。 關於 Office 365 權限的詳細資訊可在 [Office 365 安全性與法規遵循中心的權限](https://support.office.com/en-us/article/Permissions-in-the-Office-365-Security-Compliance-Center-d10608af-7934-490a-818e-e68f17d0e9c1)中取得。
+* **安全性系統管理員**︰具有此角色的使用者擁有安全性讀取者角色的所有唯讀權限，再加上管理與安全性相關之服務設定的能力︰Azure Active Directory Identity Protection、Azure 資訊保護、Privileged Identity Management 和 Office 365 安全與規範中心。 關於 Office 365 權限的詳細資訊可在 [Office 365 安全性與法規遵循中心的權限](https://support.office.com/en-us/article/Permissions-in-the-Office-365-Security-Compliance-Center-d10608af-7934-490a-818e-e68f17d0e9c1)中取得。
 
 * **安全性讀取者**︰具有此角色的使用者具有全域唯讀存取權，包括 Azure Active Directory、身分識別保護、Privileged Identity Management，以及能夠讀取 Azure Active Directory 登入報表和稽核記錄檔的所有資訊。 角色也會在 Office 365 安全性與法規遵循中心授與唯讀權限。 關於 Office 365 權限的詳細資訊可在 [Office 365 安全性與法規遵循中心的權限](https://support.office.com/en-us/article/Permissions-in-the-Office-365-Security-Compliance-Center-d10608af-7934-490a-818e-e68f17d0e9c1)中取得。
 

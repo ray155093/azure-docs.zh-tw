@@ -14,14 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/03/2017
+ms.date: 07/31/2017
 ms.author: larryfr
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: b7a4772180225fc6be48ab5c75dcc334d3431e75
+ms.translationtype: HT
+ms.sourcegitcommit: 6e76ac40e9da2754de1d1aa50af3cd4e04c067fe
+ms.openlocfilehash: a86864a779b0de1c6d5669cfbba0f3e1a27f1ff1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/31/2017
 
 ---
 # <a name="run-pig-jobs-with-hadoop-on-hdinsight-by-using-rest"></a>使用 REST 在 HDInsight 上搭配 Hadoop 執行 Pig 作業
@@ -106,7 +105,7 @@ ms.lasthandoff: 07/08/2017
 
 ## <a id="results"></a>檢視結果
 
-當作業狀態變更為 [成功] 時，您就可以從叢集使用的預設儲存體擷取作業結果。 與查詢一起傳遞的 `statusdir` 參數包含輸出檔案的位置；在此案例中為 `/example/pigcurl`。
+工作狀態變更為 [成功] 之後，即可擷取工作結果。 與查詢一起傳遞的 `statusdir` 參數包含輸出檔案的位置；在此案例中為 `/example/pigcurl`。
 
 HDInsight 可以使用 Azure 儲存體或 Azure Data Lake Store 作為預設資料存放區。 視您使用何者而定，有各種方式可存取資料。 如需詳細資訊，請參閱[以 Linux 為基礎的 HDInsight 資訊](hdinsight-hadoop-linux-information.md#hdfs-azure-storage-and-data-lake-store)文件的儲存體一節。
 

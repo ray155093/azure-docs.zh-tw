@@ -1,37 +1,37 @@
 ---
 title: "使用 C# 從 Azure Time Series Insights 環境查詢資料 | Microsoft Docs"
-description: "本教學課程說明如何使用 C# 從 Time Series Insights 環境查詢資料。"
+description: "本教學課程說明如何使用 C# 從 Time Series Insights 環境查詢資料 (含範例程式碼)。"
 keywords: 
-services: time-series-insights
+services: tsi
 documentationcenter: 
 author: ankryach
-manager: almineev
-editor: cgronlun
+manager: jhubbard
+editor: 
 ms.assetid: 
-ms.service: time-series-insights
+ms.service: tsi
 ms.devlang: na
 ms.topic: how-to-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/25/2017
+ms.date: 07/20/2017
 ms.author: ankryach
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 6dbb88577733d5ec0dc17acf7243b2ba7b829b38
-ms.openlocfilehash: 81d16b4093a4eef77e5a9c88cb39f2dd36bcba4e
+ms.translationtype: HT
+ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
+ms.openlocfilehash: 99507a7bf9ca332f0b7adc56c2d8df0240f29b06
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/04/2017
+ms.lasthandoff: 07/24/2017
 
 ---
-# <a name="query-data-from-the-azure-time-series-insights-environment-by-using-c"></a>使用 C# 從 Azure Time Series Insights 環境查詢資料
+# <a name="query-data-from-the-azure-time-series-insights-environment-using-c"></a>使用 C# 從 Azure Time Series Insights 環境查詢資料
 
 此 C# 範例示範如何從 Azure Time Series Insights 環境查詢資料。
 範例會顯示查詢 API 使用方式的數個基本範例︰
-1. 在準備步驟中，透過 Azure Active Directory API 取得存取權杖。 此權杖應傳入每個查詢 API 要求的 `Authorization` 標頭。 如需設定非互動式應用程式，請參閱[驗證與授權](time-series-insights-authentication-and-authorization.md)文章。
+1. 在準備步驟中，透過 Azure Active Directory API 取得存取權杖。 在每個「查詢」API 要求的 `Authorization` 標頭中傳遞此權杖。 若要了解如何設定非互動式應用程式，請參閱[驗證與授權](time-series-insights-authentication-and-authorization.md)。
 2. 取得使用者可存取的環境清單。 挑選其中一個環境作為使用環境，並針對此環境查詢進一步資料。
 3. 在 HTTPS 要求的範例中，要求感興趣環境的可用性資料。
 4. 在 Web 通訊端要求的範例中，要求感興趣環境的事件彙總資料。 要求整個可用性時間範圍內的資料。
 
-## <a name="c-sample"></a>C# 範例
+## <a name="c-example"></a>C# 範例
 
 ```csharp
 using System;

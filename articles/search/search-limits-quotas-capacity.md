@@ -15,12 +15,11 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 06/07/2017
 ms.author: heidist
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 9edcaee4d051c3dc05bfe23eecc9c22818cf967c
-ms.openlocfilehash: d41a02b837d2cd0c478abdcf3068a5ccf7ed1b6f
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 60e63401e3915e62e1ec5ac03cd548c291580b24
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/08/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="service-limits-in-azure-search"></a>Azure 搜尋中的服務限制
@@ -49,13 +48,15 @@ ms.lasthandoff: 06/08/2017
 | 索引：每個索引的評分設定檔上限 |100 |100 |100 |100 |100 |100 |
 | 索引：每個設定檔的函式上限 |8 |8 |8 |8 |8 |8 |
 | 索引子︰每次叫用的索引編製負載上限 |10,000 份文件 |僅限制文件上限 |僅限制文件上限 |僅限制文件上限 |僅限制文件上限 |N/A <sup>2</sup> |
-| 索引子︰執行時間上限 |3 分鐘 |24 小時 |24 小時 |24 小時 |24 小時 |N/A <sup>2</sup> |
+| 索引子︰執行時間上限 | 1-3 分鐘 <sup>3</sup> |24 小時 |24 小時 |24 小時 |24 小時 |N/A <sup>2</sup> |
 | Blob 索引子︰Blob 大小上限，MB |16 |16 |128 |256 |256 |N/A <sup>2</sup> |
 | Blob 索引子︰從 Blob 擷取的內容字元數上限 |32,000 |64,000 |4 百萬 |4 百萬 |4 百萬 |N/A <sup>2</sup> |
 
 <sup>1</sup> 基本層是唯一具有較低限制 (每個索引 100 個欄位) 的 SKU。
 
 <sup>2</sup> S3 HD 目前不支援索引子。 如果您對此功能有迫切的需求，請連絡 Azure 支援。
+
+<sup>3</sup> 免費層的索引子執行時間上限，針對 Blob 來源為 3 分鐘，針對其他所有資料來源為 1 分鐘。
 
 ## <a name="document-size-limits"></a>文件大小限制
 | 資源 | 免費 | 基本 | S1 | S2 | S3 | S3 HD |

@@ -13,14 +13,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/07/2016
+ms.date: 07/25/2016
 ms.author: mimig
-ms.translationtype: Human Translation
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.openlocfilehash: 6221f5fa113bf58ed3f5e0767b79b2b647005c71
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: 398abb0a56f1a12ad563dce889c602af4a5b9bcf
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/08/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="power-bi-tutorial-for-azure-cosmos-db-visualize-data-using-the-power-bi-connector"></a>Azure Cosmos DB 的 Power BI 教學課程：使用 Power BI 連接器將資料視覺化
@@ -37,7 +36,7 @@ ms.lasthandoff: 07/08/2017
 * 如何在 PowerBI.com 中發佈及共用我的報告？
 
 ## <a name="prerequisites"></a>必要條件
-在依照本 Power BI 教學課程中的指示進行之前，請先確定您已備妥下列項目：
+在依照本 Power BI 教學課程中的指示進行之前，請先確定您可以存取下列資源：
 
 * [最新版的 Power BI Desktop](https://powerbi.microsoft.com/desktop)
 * 我們的示範帳戶或您的 Azure Cosmos DB 帳戶中資料的存取權。
@@ -49,7 +48,7 @@ ms.lasthandoff: 07/08/2017
 若要在 PowerBI.com 上共用您的報告，您必須有 PowerBI.com 中的帳戶。  若要深入了解 Power BI for Free 和 Power BI Pro，請造訪 [https://powerbi.microsoft.com/pricing](https://powerbi.microsoft.com/pricing)。
 
 ## <a name="lets-get-started"></a>現在就開始吧
-在本教學課程中，我們假設您是研究世界各地火山的地質學家。  火山資料儲存在 Cosmos DB 帳戶中，JSON 文件看起來如下。
+在本教學課程中，我們假設您是研究世界各地火山的地質學家。  火山資料儲存在 Cosmos DB 帳戶中，JSON 文件看起來有如下列範例文件。
 
     {
         "Volcano Name": "Rainier",
@@ -68,7 +67,7 @@ ms.lasthandoff: 07/08/2017
           "Last Known Eruption": "Last known eruption from 1800-1899, inclusive"
     }
 
-您想要從 Cosmos DB 帳戶擷取火山資料，並在互動式 Power BI 報告中將資料視覺化，如下所示。
+您想要從 Cosmos DB 帳戶擷取火山資料，並在互動式 Power BI 報告中將資料視覺化，如下列報告所示。
 
 ![藉由使用 Power BI 連接器完成這個 Power BI 教學課程，您將可以使用 Power BI Desktop 火山報告將資料視覺化](./media/powerbi-visualize/power_bi_connector_pbireportfinal.png)
 
@@ -82,30 +81,35 @@ ms.lasthandoff: 07/08/2017
    
     ![Power BI Desktop 報告檢視 - Power BI 連接器](./media/powerbi-visualize/power_bi_connector_pbireportview.png)
 4. 選取 [首頁] 功能區，然後按一下 [取得資料]。  此時應會出現 [取得資料]  視窗。
-5. 按一下 [Azure]、選取 [Microsoft Azure Cosmos DB (Beta)]，然後按一下 [連接]。  此時應會出現 [Microsoft Azure Cosmos DB 連接] 視窗。
-   
-    ![Power BI Desktop 取得資料 - Power BI 連接器](./media/powerbi-visualize/power_bi_connector_pbigetdata.png)
-6. 依照下列方式指定您要從中擷取資料的 Cosmos DB 帳戶端點 URL，然後按一下 [確定]。 您可以從 Azure 入口網站 [[金鑰](manage-account.md#keys)] 刀鋒視窗的 [URI] 方塊中擷取 URL，示範中是 `https://analytics.documents.azure.com`。 
+5. 按一下 [Azure]、選取 [Microsoft Azure DocumentDB (Beta)]，然後按一下 [連接]。 
+
+    ![Power BI Desktop 取得資料 - Power BI 連接器](./media/powerbi-visualize/power_bi_connector_pbigetdata.png)   
+6. 在 [預覽版連接器] 頁面上，按一下 [繼續]。 此時會出現 [Microsoft Azure DocumentDB 連接] 視窗。
+7. 依照下列方式指定您要從中擷取資料的 Cosmos DB 帳戶端點 URL，然後按一下 [確定]。 若要使用您的帳戶，可以從 Azure 入口網站 [[金鑰](manage-account.md#keys)] 刀鋒視窗的 [URI] 方塊中擷取 URL。 若要使用示範帳戶，請輸入 `https://analytics.documents.azure.com` 作為 URL。 
    
     資料庫名稱、集合名稱、SQL 陳述式皆保留空白，這些欄位是選用的。  我們將使用「瀏覽器」來選取資料庫和集合，以識別資料來自何處。
    
     ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 桌面連接視窗](./media/powerbi-visualize/power_bi_connector_pbiconnectwindow.png)
-7. 如果您是第一次連接到此端點，系統會提示您提供帳戶金鑰。  您可以從 Azure 入口網站 [[唯讀金鑰](manage-account.md#keys)] 刀鋒視窗的 [主要金鑰] 方塊中擷取金鑰，示範中是 `MSr6kt7Gn0YRQbjd6RbTnTt7VHc5ohaAFu7osF0HdyQmfR+YhwCH2D2jcczVIR1LNK3nMPNBD31losN7lQ/fkw==`。 輸入帳戶金鑰，然後按一下 [連接] 。
+8. 如果是第一次連接到此端點，系統會提示您提供帳戶金鑰。 如果是您自己的帳戶，請從 Azure 入口網站 [[唯讀金鑰](manage-account.md#keys)] 刀鋒視窗的 [主要金鑰] 方塊中擷取金鑰。 如果是示範帳戶，金鑰是 `MSr6kt7Gn0YRQbjd6RbTnTt7VHc5ohaAFu7osF0HdyQmfR+YhwCH2D2jcczVIR1LNK3nMPNBD31losN7lQ/fkw==`。 輸入適當的金鑰，然後按一下 [連接]。
    
     建議您在建置報告時使用唯讀金鑰。  這樣可避免非必要地將主要金鑰暴露於潛在的安全性風險下。 唯讀金鑰可從 Azure 入口網站的 [[金鑰](manage-account.md#keys)] 刀鋒視窗取得，或使用上面提供的示範帳戶資訊。
    
     ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 帳戶金鑰](./media/powerbi-visualize/power_bi_connector_pbidocumentdbkey.png)
-8. 順利連接帳戶後，會出現 [瀏覽器]  。  [瀏覽器]  會顯示帳戶下的資料庫清單。
-9. 按一下並展開作為報告資料來源的資料庫，如果您使用示範帳戶，請選取 [volcanodb] 。   
-10. 現在，選取您要從中擷取資料的集合。 如果您使用示範帳戶，請選取 **volcano1**。
+    
+    > [!NOTE] 
+    > 如果您收到指出「找不到指定的資料庫」的錯誤， 請參閱此 [Power BI 問題](https://community.powerbi.com/t5/Issues/Document-DB-Power-BI/idi-p/208200) \(英文\) 中的因應措施步驟。
+    
+9. 順利連接帳戶後，會出現 [瀏覽器]  。  [瀏覽器]  會顯示帳戶下的資料庫清單。
+10. 按一下並展開作為報告資料來源的資料庫，如果您使用示範帳戶，請選取 [volcanodb] 。   
+11. 現在，選取您要從中擷取資料的集合。 如果您使用示範帳戶，請選取 **volcano1**。
     
     [預覽] 窗格會顯示 [記錄]  項目的清單。  一份文件會顯示為 Power BI 中的 [記錄]  類型。 同樣地，文件內的巢狀 JSON 區塊也是 [記錄] 。
     
     ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 瀏覽器視窗](./media/powerbi-visualize/power_bi_connector_pbinavigator.png)
-11. 按一下 [編輯]  以啟動 [查詢編輯器]，以便轉換資料。
+12. 按一下 [編輯] 以在新視窗中啟動 [查詢編輯器] 來轉換資料。
 
 ## <a name="flattening-and-transforming-json-documents"></a>簡維化和轉換 JSON 文件
-1. 在 Power BI 查詢編輯器中，您應該會在中央窗格內看到 [文件]  資料行。
+1. 切換至 [Power BI 查詢編輯器] 視窗，中央窗格內會顯示 [文件] 資料行。
    ![Power BI Desktop 查詢編輯器](./media/powerbi-visualize/power_bi_connector_pbiqueryeditor.png)
 2. 按一下位於 [文件]  資料行標頭右側的展開器。  此時會出現含有欄位清單的內容功能表。  選取您的報告所需的欄位，例如火山名稱、國家、區域、位置、高度、類型、狀態和已知的上次爆發時間，然後按一下 [確定]。
    

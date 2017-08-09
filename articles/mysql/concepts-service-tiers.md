@@ -9,16 +9,16 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/23/2017
-ms.translationtype: Human Translation
-ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
-ms.openlocfilehash: 20ca0abab5e17f82b94a31c1b2c9a0942ba9508a
+ms.translationtype: HT
+ms.sourcegitcommit: 349fe8129b0f98b3ed43da5114b9d8882989c3b2
+ms.openlocfilehash: d9ec4556d57ff1975a93d806237ad0c7416b9988
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/25/2017
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="azure-database-for-mysql-options-and-performance-understand-whats-available-in-each-pricing-tier"></a>適用於 MySQL 的 Azure 資料庫選項和效能：了解每個定價層中可用的項目
 當您建立適用於 MySQL 伺服器的 Azure 資料庫時，有三個主要選項可供您決定如何設定配置給該伺服器的資源。 這些選項會影響伺服器的效能和規模。
-- 定價層
+- 定價層 
 - 計算單位
 - 儲存體 (GB)
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 05/25/2017
 
 下表提供最適用於不同應用程式工作負載的定價層範例。
 
-| 定價層 | 目標工作負載 |
+| 定價層  | 目標工作負載 |
 | :----------- | :----------------|
 | 基本 | 最適合需要可調整計算和儲存體而不需 IOPS 保證的小型工作負載。 範例包括用於開發或測試的伺服器，或者不常使用的小規模應用程式。 |
 | 標準 | 雲端應用程式的這個進階選項需要高輸送量的 IOPS 保證。 範例包括 Web 或分析應用程式。 |
@@ -51,6 +51,9 @@ ms.lasthandoff: 05/25/2017
 | 資料庫備份的保留期限 | 7 天 | 35 天 | 
 
 在預覽時間範圍內，一旦建立伺服器，就無法變更定價層。 未來能將伺服器從某個定價層升級或降級至另一個定價層。
+
+## <a name="understand-the-price"></a>了解價格
+在 [Azure 入口網站](https://portal.azure.com/#create/Microsoft.MySQLServer)內部建立適用於 MySQL 的新 Azure 資料庫時，請按一下 [定價層] 刀鋒視窗，便會根據您選取的選項顯示每月成本。 如果您沒有 Azure 訂用帳戶，請使用 Azure 價格計算機取得估計的價格。 請瀏覽 [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/)網站，然後按一下 [新增項目]，展開 [資料庫] 類別，並選擇 [適用於 MySQL 的 Azure 資料庫] 以自訂選項。
 
 ## <a name="choose-a-performance-level-compute-units"></a>選擇效能等級 (計算單位)
 在您決定適用於 MySQL 伺服器的 Azure 資料庫的定價層之後，您就可以選取所需的計算單位數來決定效能等級。 對於其 Web 或分析工作負載需要更高使用者並行處理的應用程式而言，200 或 400 個計算單位會是很好的起點。 
@@ -80,9 +83,9 @@ ms.lasthandoff: 05/25/2017
 ## <a name="storage"></a>儲存體 
 儲存體設定會定義適用於 MySQL 伺服器的 Azure 資料庫可用的儲存體容量。 此服務所使用的儲存體包括資料庫檔案、交易記錄和 MySQL 伺服器記錄檔。 選取儲存體設定時，請考慮裝載資料庫和效能需求 (IOPS) 所需的儲存體大小。
 
-每個定價層至少會內含一些儲存體容量，也就是上表中註明的「內含的儲存體大小」。 您可以在建立伺服器時，以 125 GB 為增量來增加額外的儲存體容量，最高可達允許的儲存體上限。 您可以在計算單位設定之外，獨立設定此額外的儲存體容量。 價格會根據選取的儲存體數量而變更。
+每個定價層至少會內含一些儲存體容量，也就是上表中註明的「內含的儲存體大小」。 您可以在建立伺服器時，以 125GB 為增量來增加額外的儲存體容量，最高可達允許的儲存體上限。 您可以在計算單位設定之外，獨立設定此額外的儲存體容量。 價格會根據選取的儲存體數量而變更。
 
-每個效能等級中的 IOPS 設定與定價層和選擇的儲存體大小相關。 基本層不提供 IOPS 保證。 在標準定價層內，IOPS 會以固定 3:1 比例，按比例調整至儲存體大小上限。 125 GB 的內含儲存體可為 375 已佈建的 IOPS 提供保證，每個的 IO 大小可高達 256 KB。 您最多可以選擇 1 TB 的額外儲存體，以保證有 3,000 個已佈建的 IOPS。
+每個效能等級中的 IOPS 設定與定價層和選擇的儲存體大小相關。 基本層不提供 IOPS 保證。 在標準定價層內，IOPS 會以固定 3:1 比例，按比例調整至儲存體大小上限。 125 GB 的內含儲存體可為 375 已佈建的 IOPS 提供保證，每個的 IO 大小可高達 256 KB。 您最多可以選擇 1TB 的額外儲存體，以保證有 3,000 個已佈建的 IOPS。
 
 在 Azure 入口網站中監視計量圖表，或是撰寫 Azure CLI 命令來測量儲存體和 IOPS 的使用情況。 要監視的相關計量包括儲存體限制、儲存體百分比、使用的儲存體和 IO 百分比。
 

@@ -12,12 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/17/2017
 ms.author: cfreeman
-ms.translationtype: Human Translation
-ms.sourcegitcommit: e22bd56e0d111add6ab4c08b6cc6e51c364c7f22
-ms.openlocfilehash: 9b26ade6c3a90e6ebe49bfbc6f3fa801dc7f8d20
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: d8b466caba7201a5bb8612e773ad61943f6d1cf2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/19/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="monitor-multi-component-applications-with-application-insights-preview"></a>使用 Application Insights (預覽) 監視多元件應用程式
@@ -30,7 +29,9 @@ ms.lasthandoff: 05/19/2017
 
 ### <a name="sharing-a-single-application-insights-resource"></a>共用單一 Application Insights 資源 
 
-此處的重要技術是將您應用程式中每個元件的遙測傳送至相同的 Application Insights 資源，但必要時會使用 `cloud_RoleName` 屬性來區別元件。 
+此處的重要技術是將您應用程式中每個元件的遙測傳送至相同的 Application Insights 資源，但必要時會使用 `cloud_RoleName` 屬性來區別元件。 Application Insights SDK 將 `cloud_RoleName` 屬性新增至遙測元件發出。 例如，SDK 會將網站名稱或服務角色名稱新增至 `cloud_RoleName` 屬性。 您可以使用 telemetryinitializer 覆寫這個值。 應用程式對應會使用 `cloud_RoleName` 屬性以識別地圖上的元件。
+
+如需有關如何覆寫 `cloud_RoleName` 屬性的詳細資訊，請參閱[新增屬性：ITelemetryInitializer](app-insights-api-filtering-sampling.md#add-properties-itelemetryinitializer)。  
 
 在某些情況下，這可能不適當，而且您可能寧願將不同的資源用於不同的元件群組。 例如，您可能需要將不同的資源用於管理或計費目的。 使用不同的資源表示您未看到單一應用程式對應上顯示的所有元件；而且您無法在[分析](app-insights-analytics.md)中跨元件進行查詢。 您也必須設定不同的資源。
 

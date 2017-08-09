@@ -12,14 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/27/2017
+ms.date: 07/25/2017
 ms.author: tomfitz
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 1500c02fa1e6876b47e3896c40c7f3356f8f1eed
-ms.openlocfilehash: f27bc3689f228809e9db8f61485ea0c8b4b302d1
+ms.translationtype: HT
+ms.sourcegitcommit: 74b75232b4b1c14dbb81151cdab5856a1e4da28c
+ms.openlocfilehash: ce19c24905c9ea93a7a35134fe6035b788d8af22
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/30/2017
-
+ms.lasthandoff: 07/26/2017
 
 ---
 # <a name="resource-policy-overview"></a>資源原則概觀
@@ -195,7 +194,7 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 
 當使用 **like**條件時，您可以在值中提供萬用字元 (*)。
 
-使用**符合**條件時，請提供 `#` 來表示數字、`?` 來表示字母，以及任何其他字元來表示該實際字元。 例如，請參閱[設定命名慣例](#set-naming-convention)。
+使用**符合**條件時，請提供 `#` 來表示數字、`?` 來表示字母，以及任何其他字元來表示該實際字元。 例如，請參閱[為名稱和文字套用資源原則](resource-manager-policy-naming-convention.md)。
 
 ### <a name="fields"></a>欄位
 條件是透過欄位所形成。 欄位會顯示用來描述資源狀態的資源要求裝載屬性。  

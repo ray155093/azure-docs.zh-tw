@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 06/26/2017
+ms.date: 07/23/2017
 ms.author: mahi
 ms.translationtype: HT
-ms.sourcegitcommit: c3ea7cfba9fbf1064e2bd58344a7a00dc81eb148
-ms.openlocfilehash: d4e4bb5e18b63a9d9494a2294743fa9f45b64fa1
+ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
+ms.openlocfilehash: b79f6dd20d2e8e298b8d1824b70ff9f0d0fde9aa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/20/2017
+ms.lasthandoff: 08/01/2017
 
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-powershell"></a>使用 Azure PowerShell 管理 Azure Data Lake Analytics
@@ -128,8 +128,6 @@ Get-AdlAnalyticsAccount -ResourceGroupName $rg
 
 ## <a name="managing-firewall-rules"></a>管理防火牆規則
 
-### <a name="add-or-remove-firewall-rules"></a>新增或移除防火牆規則
-
 列出防火牆規則。
 
 ```powershell
@@ -158,13 +156,7 @@ Set-AdlAnalyticsFirewallRule -Account $adla -Name $ruleName -StartIpAddress $sta
 Remove-AdlAnalyticsFirewallRule -Account $adla -Name $ruleName
 ```
 
-### <a name="enable-or-disable-firewall-rules"></a>啟用或停用防火牆規則
 
-啟用防火牆規則。
-
-```powershell
-Set-AdlAnalyticsAccount -Name $adla -FirewallState Enabled
-```
 
 允許 Azure IP 位址。
 
@@ -172,9 +164,8 @@ Set-AdlAnalyticsAccount -Name $adla -FirewallState Enabled
 Set-AdlAnalyticsAccount -Name $adla -AllowAzureIpState Enabled
 ```
 
-停用防火牆規則。
-
 ```powershell
+Set-AdlAnalyticsAccount -Name $adla -FirewallState Enabled
 Set-AdlAnalyticsAccount -Name $adla -FirewallState Disabled
 ```
 
@@ -193,26 +184,22 @@ $adla_acct = Get-AdlAnalyticsAccount -Name $adla
 $dataLakeStoreName = $adla_acct.DefaultDataLakeAccount
 ```
 
-或者，如果您要列舉資料來源清單， 您可以使用下列模式來尋找預設的 Data Lake Store 帳戶：
+您可以用 `IsDefault` 屬性篩選資料來源清單，藉此方式尋找預設的 Data Lake Store 帳戶：
 
 ```powershell
 Get-AdlAnalyticsDataSource -Account $adla  | ? { $_.IsDefault } 
 ```
 
-### <a name="add-data-sources"></a>新增資料來源
-
-新增其他儲存體 (Blob) 帳戶。
+### <a name="add-a-data-source"></a>建立資料來源
 
 ```powershell
+
+# Add an additional Storage (Blob) account.
 $AzureStorageAccountName = "<AzureStorageAccountName>"
 $AzureStorageAccountKey = "<AzureStorageAccountKey>"
-
 Add-AdlAnalyticsDataSource -Account $adla -Blob $AzureStorageAccountName -AccessKey $AzureStorageAccountKey
-```
 
-新增其他 Data Lake Store 帳戶。
-
-```powershell
+# Add an additional Data Lake Store account.
 $AzureDataLakeStoreName = "<AzureDataLakeStoreAccountName"
 Add-AdlAnalyticsDataSource -Account $adla -DataLakeStore $AzureDataLakeStoreName 
 ```
@@ -230,11 +217,9 @@ Get-AdlAnalyticsDataSource -Name $adla | where -Property Type -EQ "DataLakeStore
 Get-AdlAnalyticsDataSource -Name $adla | where -Property Type -EQ "Blob"
 ```
 
-## <a name="managing-jobs"></a>管理作業
+## <a name="submit-u-sql-jobs"></a>提交 U-SQL 作業
 
-### <a name="submit-a-u-sql-job"></a>提交 U-SQL 作業
-
-以 U-SQL 指令碼形式提交字串。
+### <a name="submit-a-string-as-a-u-sql-script"></a>以 U-SQL 指令碼形式提交字串
 
 ```powershell
 $script = @"
@@ -256,7 +241,7 @@ Submit-AdlJob -AccountName $adla -Script $script -Name "Demo"
 ```
 
 
-以 U-SQL 指令碼形式提交檔案。
+### <a name="submit-a-file-as-a-u-sql-script"></a>以 U-SQL 指令碼形式提交檔案
 
 ```powershell
 $scriptpath = "d:\test.usql"
@@ -264,13 +249,16 @@ $script | Out-File $scriptpath
 Submit-AdlJob -AccountName $adla –ScriptPath $scriptpath -Name "Demo"
 ```
 
-### <a name="list-jobs"></a>列出工作
+## <a name="list-jobs-in-an-account"></a>列出帳戶中的作業
 
-列出帳戶中的所有作業。 輸出包含目前執行中作業和最近完成的作業。
+### <a name="list-all-the-jobs-in-the-account"></a>列出帳戶中的所有作業。 
+
+輸出包含目前執行中作業和最近完成的作業。
 
 ```powershell
 Get-AdlJob -Account $adla
 ```
+
 
 ### <a name="list-a-specific-number-of-jobs"></a>列出特定數目的作業
 
@@ -280,44 +268,83 @@ Get-AdlJob -Account $adla
 $jobs = Get-AdlJob -Account $adla -Top 10
 ```
 
+
 ### <a name="list-jobs-based-on-the-value-of-job-property"></a>根據作業屬性的值列出作業
 
-列出過去一天提交的作業。
+使用 `-State` 參數。 您可以結合以下這些值：
 
-```
-$d = [DateTime]::Now.AddDays(-1)
-Get-AdlJob -Account $adla -SubmittedAfter $d
-```
-
-列出過去五天提交且成功完成的作業。
-
-```
-$d = (Get-Date).AddDays(-5)
-Get-AdlJob -Account $adla -SubmittedAfter $d -State Ended -Result Succeeded
-```
-
-列出成功的作業。
-
-```
-Get-AdlJob -Account $adla -State Ended -Result Succeeded
-```
-
-列出失敗的作業。
+* `Accepted`
+* `Compiling`
+* `Ended`
+* `New`
+* `Paused`
+* `Queued`
+* `Running`
+* `Scheduling`
+* `Start`
 
 ```powershell
+# List the running jobs
+Get-AdlJob -Account $adla -State Running
+
+# List the jobs that have completed
+Get-AdlJob -Account $adla -State Ended
+
+# List the jobs that have not started yet
+Get-AdlJob -Account $adla -State Accepted,Compiling,New,Paused,Scheduling,Start
+```
+
+使用 `-Result` 參數來偵測已結束的工作是否順利完成。 它有下列值：
+
+* Cancelled
+* Failed
+* None
+* Succeeded
+
+``` powershell
+# List Successful jobs.
+Get-AdlJob -Account $adla -State Ended -Result Succeeded
+
+# List Failed jobs.
 Get-AdlJob -Account $adla -State Ended -Result Failed
 ```
 
-列出過去七天由 "joe@contoso.com" 提交的所有失敗作業。
+
+`-Submitter` 參數可協助您識別由誰提交工作。
 
 ```powershell
+Get-AdlJob -Account $adla -Submitter "joe@contoso.com"
+```
+
+`-SubmittedAfter` 用於篩選時間範圍。
+
+
+```powershell
+# List  jobs submitted in the last day.
+$d = [DateTime]::Now.AddDays(-1)
+Get-AdlJob -Account $adla -SubmittedAfter $d
+
+# List  jobs submitted in the last seven day.
+$d = [DateTime]::Now.AddDays(-7)
+Get-AdlJob -Account $adla -SubmittedAfter $d
+```
+
+### <a name="common-scenarios-for-listing-jobs"></a>列出作業的常見案例
+
+
+```
+# List jobs submitted in the last five days and that successfully completed.
+$d = (Get-Date).AddDays(-5)
+Get-AdlJob -Account $adla -SubmittedAfter $d -State Ended -Result Succeeded
+
+# List all failed jobs submitted by "joe@contoso.com" within the past seven days.
 Get-AdlJob -Account $adla `
     -Submitter "joe@contoso.com" `
     -SubmittedAfter (Get-Date).AddDays(-7) `
     -Result Failed
 ```
 
-### <a name="filtering-a-list-of-jobs"></a>篩選作業清單
+## <a name="filtering-a-list-of-jobs"></a>篩選作業清單
 
 在您取得目前 PowerShell 工作階段中的作業清單之後， 您可以使用標準 PowerShell Cmdlet 來篩選該清單。
 
@@ -383,18 +410,32 @@ $jobs = Get-AdlJob -Account $adla -Top 10
 $jobs = $jobs | %{ annotate_job( $_ ) }
 ```
 
-### <a name="get-information-about-a-job"></a>取得作業的相關資訊
+## <a name="get-information-about-pipelines-and-recurrences"></a>取得管線和週期的相關資訊
+
+使用 `Get-AdlJobPipeline` Cmdlet 來查看先前提交作業的管線資訊。
+
+```powershell
+$pipelines = Get-AdlJobPipeline -Account $adla
+
+$pipeline = Get-AdlJobPipeline -Account $adla -PipelineId "<pipeline ID>"
+```
+
+使用 `Get-AdlJobRecurrence` Cmdlet 來查看先前提交作業的週期資訊。
+
+```powershell
+$recurrences = Get-AdlJobRecurrence -Account $adla
+
+$recurrence = Get-AdlJobRecurrence -Account $adla -RecurrenceId "<recurrence ID>"
+```
+
+## <a name="get-information-about-a-job"></a>取得作業的相關資訊
+
+### <a name="get-job-status"></a>取得作業狀態
 
 取得特定作業的狀態。
 
 ```powershell
 Get-AdlJob -AccountName $adla -JobId $job.JobId
-```
-
-您可以不重複執行 `Get-AdlAnalyticsJob` 直到作業結束，而是使用 `Wait-AdlJob` Cmdlet 來等候作業結束。
-
-```powershell
-Wait-AdlJob -Account $adla -JobId $job.JobId
 ```
 
 ### <a name="examine-the-job-outputs"></a>檢查作業輸出
@@ -405,16 +446,46 @@ Wait-AdlJob -Account $adla -JobId $job.JobId
 Get-AdlStoreChildItem -Account $adls -Path "/"
 ```
 
-檢查檔案是否存在。
-
-```powershell
-Test-AdlStoreItem -Account $adls -Path "/data.csv"
-```
+## <a name="manage-running-jobs"></a>管理執行中的作業
 
 ### <a name="cancel-a-job"></a>取消工作
 
 ```powershell
 Stop-AdlJob -Account $adls -JobID $jobID
+```
+
+### <a name="wait-for-a-job-to-finish"></a>等候作業結束
+
+您可以不重複執行 `Get-AdlAnalyticsJob` 直到作業結束，而是使用 `Wait-AdlJob` Cmdlet 來等候作業結束。
+
+```powershell
+Wait-AdlJob -Account $adla -JobId $job.JobId
+```
+
+## <a name="manage-compute-policies"></a>管理計算原則
+
+### <a name="list-existing-compute-policies"></a>列出現有的計算原則
+
+`Get-AdlAnalyticsComputePolicy` Cmdlet 會擷取 Data Lake Analytics 帳戶的計算原則清單。
+
+```powershell
+$policies = Get-AdlAnalyticsComputePolicy -Account $adla
+```
+
+### <a name="create-a-compute-policy"></a>建立計算原則
+
+`New-AdlAnalyticsComputePolicy` Cmdlet 會為 Data Lake Analytics 帳戶建立新的計算原則。 這個範例會將指定使用者的可用 AU 上限設定為 50，將最低作業優先權設為 250。
+
+```powershell
+$userObjectId = (Get-AzureRmAdUser -SearchString "garymcdaniel@contoso.com").Id
+
+New-AdlAnalyticsComputePolicy -Account $adla -Name "GaryMcDaniel" -ObjectId $objectId -ObjectType User -MaxDegreeOfParallelismPerJob 50 -MinPriorityPerJob 250
+```
+
+## <a name="check-for-the-existence-of-a-file"></a>檢查檔案是否存在。
+
+```powershell
+Test-AdlStoreItem -Account $adls -Path "/data.csv"
 ```
 
 ## <a name="uploading-and-downloading"></a>上傳和下載
@@ -447,10 +518,10 @@ Export-AdlStoreItem -AccountName $adls -Path "/" -Destination "c:\myData\" -Recu
 > 如果上傳或下載程序中斷，您可以搭配 ``-Resume`` 旗標來重新執行該 Cmdlet，以嘗試繼續該程序。
 
 ## <a name="manage-catalog-items"></a>管理目錄項目
+
 U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用它們。 目錄可以讓 Azure Data Lake 中的資料具有可能的最高效能。 如需詳細資訊，請參閱 [使用 U-SQL 目錄](data-lake-analytics-use-u-sql-catalog.md)。
 
 ### <a name="list-items-in-the-u-sql-catalog"></a>列出 U-SQL 目錄中的項目
-
 
 ```powershell
 # List U-SQL databases
@@ -530,6 +601,7 @@ Write-Host '$subid' " = ""$adla_subid"" "
 Write-Host '$adla' " = ""$adla_name"" "
 Write-Host '$adls' " = ""$adla_defadlsname"" "
 ```
+
 ## <a name="working-with-azure"></a>使用 Azure
 
 ### <a name="get-details-of-azurerm-errors"></a>取得 AzureRm 錯誤詳細資料

@@ -8,6 +8,7 @@
 ## [多網站](application-gateway-multi-site-overview.md)
 ## [端對端 SSL](application-gateway-backend-ssl.md)
 ## [重新導向](application-gateway-redirect-overview.md)
+## [多租用戶支援](application-gateway-web-app-overview.md)
 ## [WebSocket](application-gateway-websocket.md)
 ## [服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#application-gateway-limits)
 # 開始使用
@@ -16,7 +17,8 @@
 #### [入口網站](application-gateway-create-gateway-portal.md)
 #### [PowerShell](application-gateway-create-gateway-arm.md)
 #### [Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
-#### [Azure CLI](application-gateway-create-gateway-cli.md)
+#### [Azure CLI 1.0](application-gateway-create-gateway-cli-nodejs.md)
+#### [Azure CLI 2.0](application-gateway-create-gateway-cli.md)
 #### [PowerShell (傳統)](application-gateway-create-gateway.md)
 ### 內部對向
 #### [PowerShell](application-gateway-ilb-arm.md)
@@ -25,21 +27,27 @@
 ## 設定 Web 應用程式防火牆
 ### [入口網站](application-gateway-web-application-firewall-portal.md)
 ### [PowerShell](application-gateway-web-application-firewall-powershell.md)
+### [Azure CLI 2.0](application-gateway-web-application-firewall-cli.md)
 ## 自訂 Web 應用程式防火牆規則
 ### [入口網站](application-gateway-customize-waf-rules-portal.md)
+### [Azure CLI 2.0](application-gateway-customize-waf-rules-cli.md)
 ## 設定 SSL 卸載
 ### [入口網站](application-gateway-ssl-portal.md)
 ### [PowerShell](application-gateway-ssl-arm.md)
 ### [PowerShell (傳統)](application-gateway-ssl.md)
+### [Azure CLI 2.0](application-gateway-ssl.md)
 ### [原則和端對端](application-gateway-end-to-end-ssl-powershell.md)
 ## 設定 URL 路徑型路由
 ### [入口網站](application-gateway-create-url-route-portal.md)
 ### [PowerShell](application-gateway-create-url-route-arm-ps.md)
+### [Azure CLI 2.0](application-gateway-create-url-route-cli.md)
 ## 設定多網站主控
 ### [入口網站](application-gateway-create-multisite-portal.md)
 ### [PowerShell](application-gateway-create-multisite-azureresourcemanager-powershell.md)
 ## 設定重新導向
 ### [PowerShell](application-gateway-configure-redirect-powershell.md)
+## 將 Web 應用程式設定為後端集區成員
+### [PowerShell](application-gateway-web-app-powershell.md)
 ## 設定健全狀態探查
 ### [入口網站](application-gateway-create-probe-portal.md)
 ### [PowerShell](application-gateway-create-probe-ps.md)
@@ -70,6 +78,7 @@
 ## [Azure 藍圖](https://azure.microsoft.com/roadmap/?category=networking)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
 ## [價格](https://azure.microsoft.com/pricing/details/application-gateway/)
+## [定價計算機](https://azure.microsoft.com/pricing/calculator/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=application-gateway)
 ## [SLA](https://azure.microsoft.com/support/legal/sla/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-application-gateway)

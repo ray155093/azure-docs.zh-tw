@@ -15,12 +15,11 @@ ms.devlang: node
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: anhoh
-ms.translationtype: Human Translation
-ms.sourcegitcommit: 80be19618bd02895d953f80e5236d1a69d0811af
-ms.openlocfilehash: fef21c512aa8a6af32cec20e2e44cf4e20ac24ae
+ms.translationtype: HT
+ms.sourcegitcommit: 141270c353d3fe7341dfad890162ed74495d48ac
+ms.openlocfilehash: 04b147d98a6d9d508deea40e68a68d3e421f51fa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 06/07/2017
-
+ms.lasthandoff: 07/25/2017
 
 ---
 # <a name="nodejs-tutorial-documentdb-nodejs-console-application"></a>Node.js 教學課程：DocumentDB Node.js 主控台應用程式
@@ -84,19 +83,19 @@ ms.lasthandoff: 06/07/2017
 ## <a id="Config"></a>步驟 3：設定您的應用程式設定
 在您慣用的文字編輯器中開啟 ```config.js```。
 
-然後，複製並貼上以下的程式碼片段，以及將屬性 ```config.endpoint``` 和 ```config.primaryKey``` 設定為您的 DocumentDB 端點 uri 和主要金鑰。 您可以在 [Azure 入口網站](https://portal.azure.com)找到這兩個設定。
+然後，複製並貼上以下的程式碼片段，以及將屬性 ```config.endpoint``` 和 ```config.primaryKey``` 設定為您的 Azure Cosmos DB 端點 uri 和主要金鑰。 您可以在 [Azure 入口網站](https://portal.azure.com)找到這兩個設定。
 
 ![node.js 教學課程 - 顯示 Azure Cosmos DB 帳戶的 Azure 入口網站螢幕擷取畫面，內含反白顯示的 [主動式] 集線器、[Azure Cosmos DB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值 - 節點資料庫][keys]
 
     // ADD THIS PART TO YOUR CODE
     var config = {}
 
-    config.endpoint = "~your DocumentDB endpoint uri here~";
+    config.endpoint = "~your Azure Cosmos DB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
 在您設定 ```config.endpoint``` 和 ```config.authKey``` 屬性的位置下面，複製 ```database id```、```collection id``` 和 ```JSON documents``` 並貼到您的 ```config``` 物件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 Azure Cosmos DB 的 [資料移轉工具](import-data.md)，而不用新增文件定義。
 
-    config.endpoint = "~your DocumentDB endpoint uri here~";
+    config.endpoint = "~your Azure Cosmos DB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
     // ADD THIS PART TO YOUR CODE
@@ -166,7 +165,7 @@ ms.lasthandoff: 06/07/2017
     };
 
 
-資料庫、集合和文件定義會作為您 DocumentDB 的 ```database id```、```collection id``` 和文件的資料。
+資料庫、集合和文件定義將作為您 Azure Cosmos DB 的 ```database id```、```collection id``` 和文件的資料。
 
 最後，匯出您的 ```config``` 物件，如此就可以在 ```app.js``` 檔案中參考它。
 
@@ -196,10 +195,10 @@ ms.lasthandoff: 06/07/2017
     // ADD THIS PART TO YOUR CODE
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
-您現在有程式碼可初始化 documentdb，讓我們看看如何使用 DocumentDB 資源。
+您現在具有程式碼，可將 Azure Cosmos DB 用戶端初始化，讓我們看看如何使用 Azure Cosmos DB 資源。
 
 ## <a name="step-5-create-a-node-database"></a>步驟 5：建立節點資料庫
-複製並貼上以下的程式碼，以設定 [找不到] 的HTTP 狀態、資料庫 url 和集合 url。 這些 url 可讓 DocumentDB 用戶端尋找正確的資料庫和集合。
+複製並貼上以下的程式碼，以設定 [找不到] 的HTTP 狀態、資料庫 url 和集合 url。 這些 url 可讓 Azure Cosmos DB 用戶端尋找正確的資料庫和集合。
 
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
@@ -314,10 +313,10 @@ ms.lasthandoff: 06/07/2017
 
 在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
 
-恭喜！ 您已成功建立 DocumentDB 集合。
+恭喜！ 您已成功建立 Azure Cosmos DB 集合。
 
 ## <a id="CreateDoc"></a>步驟 7：建立文件
-可以使用 **DocumentClient** 類別的 [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函式來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 您現在可以將文件插入至 DocumentDB。
+可以使用 **DocumentClient** 類別的 [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函式來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 您現在可以將文件插入 Azure Cosmos DB。
 
 將 **getFamilyDocument** 函式複製並貼到 **getCollection** 函式之下，以便建立包含 ```config``` 物件中儲存之 JSON 資料文件。 同樣地，我們會檢查以確定具有相同識別碼的文件不存在。
 
@@ -366,14 +365,14 @@ ms.lasthandoff: 06/07/2017
 
 在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
 
-恭喜！ 您已成功建立 DocumentDB 文件。
+恭喜！ 您已成功建立 Azure Cosmos DB 文件。
 
 ![node.js 教學課程 - 說明帳戶、資料庫、集合和文件之間階層式關聯性的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-account-database.png)
 
 ## <a id="Query"></a>步驟 8︰查詢 Azure Cosmos DB 資源
 Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行[豐富查詢](documentdb-sql-query.md)。 下列範例程式碼示範您可以針對集合中之文件執行的查詢。
 
-將 **queryCollection** 函式複製並貼到 app.js 檔案中的 **getFamilyDocument** 函式之下。 DocumentDB 支援類 SQL 查詢，如下所示。 如需建立複雜查詢的詳細資訊，請參閱[查詢遊樂場](https://www.documentdb.com/sql/demo)和[查詢文件](documentdb-sql-query.md)。
+將 **queryCollection** 函式複製並貼到 app.js 檔案中的 **getFamilyDocument** 函式之下。 Azure Cosmos DB 支援類 SQL 查詢，如下所示。 如需建立複雜查詢的詳細資訊，請參閱[查詢遊樂場](https://www.documentdb.com/sql/demo)和[查詢文件](documentdb-sql-query.md)。
 
                 } else {
                     resolve(result);
@@ -405,11 +404,11 @@ Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行[豐富查
     };
 
 
-下圖說明如何針對您所建立的集合呼叫 DocumentDB SQL 查詢語法。
+下圖說明如何針對您所建立的集合呼叫 Azure Cosmos DB SQL 查詢語法。
 
 ![node.js 教學課程 - 說明查詢範圍和意義的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
 
-因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#FromClause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
+因為 Azure Cosmos DB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#FromClause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，Azure Cosmos DB 會推斷該 Families、root 或您選擇的變數名稱來參考目前的集合。
 
 將以下的程式碼複製並貼到對 **getFamilyDocument** 的呼叫之下，以執行 **queryCollection** 函式。
 

@@ -12,14 +12,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/16/2017
+ms.date: 08/02/2017
 ms.author: markvi
 ms.translationtype: Human Translation
 ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
 ms.openlocfilehash: 5c60fa737c0133482af8b653f795bf9086c39969
 ms.contentlocale: zh-tw
 ms.lasthandoff: 03/28/2017
-
 
 ---
 # <a name="understand-azure-active-directory-architecture"></a>了解 Azure Active Directory 架構
@@ -31,10 +30,10 @@ Azure Active Directory (Azure AD) 可讓您安全地管理您使用者的 Azure 
 Azure AD 分佈各地的架構結合了廣泛監視、自動化重設路徑、容錯移轉和復原功能，可讓我們為客戶提供企業層級的可用性和效能。
 
 本文涵蓋下列架構元素︰
- *    服務架構設計
- *    延展性 
- *    持續可用性
- *    資料中心
+ *  服務架構設計
+ *  延展性 
+ *  持續可用性
+ *  資料中心
 
 ### <a name="service-architecture-design"></a>服務架構設計
 若要建置可調整、高度可用、資料豐富的系統，最常見方式就是透過 Azure AD 資料層的獨立建置組塊或縮放單位 (稱之為「資料分割」)。 
@@ -87,7 +86,7 @@ Azure AD 跨越具下列特性的資料中心運作︰
 
  * 驗證、圖表和其他 AD 服務位於閘道服務後面。 閘道會管理這些服務的負載平衡。 如果使用交易健康狀態探查偵測到任何狀況不良的伺服器，它就會自動容錯移轉。 根據這些健康狀態探查，閘道會以動態方式將流量路由傳送至狀況良好的資料中心。
  * 對於「讀取」，在多個資料中心運作的主動-主動組態中，目錄有次要複本和對應的前端服務。 在整個資料中心發生失敗的情況下，流量將會自動路由傳送至不同的資料中心。
- *    對於「寫入」，目錄會透過計劃性 (新的主要複本會同步處理至舊的主要複本) 或緊急容錯移轉程序，將主要複本容錯移轉至各資料中心。 將任何認可複寫到至少兩個資料中心，即可達成資料持續性。
+ *  對於「寫入」，目錄會透過計劃性 (新的主要複本會同步處理至舊的主要複本) 或緊急容錯移轉程序，將主要複本容錯移轉至各資料中心。 將任何認可複寫到至少兩個資料中心，即可達成資料持續性。
 
 **資料一致性**
 

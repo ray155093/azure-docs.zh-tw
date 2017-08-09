@@ -1,5 +1,5 @@
 ---
-title: "了解 OMS Log Analytics 中的警示 | Microsoft Docs"
+title: "了解 Azure Log Analytics 中的警示 | Microsoft Docs"
 description: "Log Analytics 中的警示會識別您的 OMS 儲存機制中的重要資訊，並可主動通知您相關問題或叫用動作以嘗試更正問題。  本文說明不同種類的警示規則和其定義方式。"
 services: log-analytics
 documentationcenter: 
@@ -12,20 +12,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/23/2017
+ms.date: 07/26/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 76db33674c5a3b9e323a1890c0d48d98dc3f03cf
-ms.lasthandoff: 03/29/2017
-
+ms.translationtype: HT
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 951e76d3fb18d9e433b148e82d4d6cee9417ce6d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="understanding-alerts-in-log-analytics"></a>了解 Log Analytics 中的警示
 
 Log Analytics 中的警示會識別您的 Log Analytics 儲存機制中的重要資訊。  本文詳述警示規則在 Log Analytics 中的運作方式，並說明不同類型的警示規則之間的差異。
 
-如需建立警示規則的程序，請參閱下列文章。
+如需建立警示規則的程序，請參閱下列文章：
 
 - 使用 [Azure 入口網站](log-analytics-alerts-creating.md)建立警示規則
 - 使用 [Resource Manager 範本](../operations-management-suite/operations-management-suite-solutions-resources-searches-alerts.md)建立叢集規則
@@ -38,17 +38,17 @@ Log Analytics 中的警示會識別您的 Log Analytics 儲存機制中的重要
 
 ![Log Analytics 警示](media/log-analytics-alerts/overview.png)
 
-警示規則會由下列詳細資料定義。
+警示規則會由下列詳細資料定義：
 
-- **記錄搜尋**。  這是每次引發警示規則都會執行的查詢。  此查詢所傳回的記錄將會用來判斷是否要建立警示。
+- **記錄搜尋**。  每次引發警示規則都會執行的查詢。  此查詢所傳回的記錄將是用來判斷是否要建立警示。
 - **時間範圍**。  指定查詢的時間範圍。  查詢只會傳回在此目前時間範圍內建立的記錄。  可以是介於 5 分鐘與 24 小時之間的任何值。 例如，如果時間範圍設定為 60 分鐘，則查詢會在下午 1:15 執行，只會傳回在下午 12:15 與下午 1:15 之間建立的記錄。
 - **頻率**。  指定應執行查詢的頻率。 可以是介於 5 分鐘與 24 小時之間的任何值。 應等於或小於此時間範圍。  如果值大於時間範圍，則您可能有遺漏記錄的風險。<br>例如，請考慮 30 分鐘的時間範圍，以及 60 分鐘的頻率。  如果在 1:00 執行查詢，它會傳回 12:30 到下午 1:00 之間的記錄。  下一次執行查詢就是 2:00 時，它會傳回 1:30 至 2:00 之間的記錄。  1:00 和 1:30 之間建立的任何記錄一律不會評估。
 - **閾值**。  系統會評估記錄搜尋的結果，以判斷是否應該建立警示。  不同類型的警示規則會有不同的閾值。
 
-Log Analytics 中的每個警示規則會是下列兩種類型之一。  下列各節會詳細說明這兩個類型。
+Log Analytics 中的各個警示規則是兩種類型其中之一。  下列各節會詳細說明這兩個類型。
 
 - **[結果數目](#number-of-results-alert-rules)**。 當記錄搜尋所傳回的數目記錄超過指定數目時，系統會建立單一警示。
-- **[計量測量](#metric-measurement-alert-rules)**。  針對記錄搜尋結果中的每個物件，若其值超過指定的閾值，系統就會為其建立警示。 
+- **[計量測量](#metric-measurement-alert-rules)**。  針對記錄搜尋結果中的每個物件，若其值超過指定的閾值，系統就會為其建立警示。
 
 警示規則類型之間的差異如下所示。
 
@@ -56,7 +56,7 @@ Log Analytics 中的每個警示規則會是下列兩種類型之一。  下列�
 - **結果數目**警示規則會在閾值超過一次時建立警示。 **計量測量**警示規則會在閾值於特定時間間隔內超過一定次數時建立警示。
 
 ## <a name="number-of-results-alert-rules"></a>結果數目警示規則
-**結果數目**警示規則會在搜尋查詢所傳回的記錄數目超過指定閾值時建立單一警示。 
+**結果數目**警示規則會在搜尋查詢所傳回的記錄數目超過指定閾值時建立單一警示。
 
 ### <a name="threshold"></a>閾值
 **結果數目**警示規則的閾值只會大於或小於特定值。  如果記錄搜尋所傳回的記錄數目符合此準則，則會建立警示。
@@ -64,7 +64,7 @@ Log Analytics 中的每個警示規則會是下列兩種類型之一。  下列�
 ### <a name="scenarios"></a>案例
 
 #### <a name="events"></a>事件
-這種類型的警示規則適用於處理 Windows 事件記錄檔、Syslog 和自訂記錄檔等事件。  您可能希望在建立特定的錯誤事件時，或是在特定時間範圍內建立多個錯誤事件時建立警示。
+這種類型的警示規則適用於處理例如 Windows 事件記錄、Syslog 和自訂記錄的事件。  您可能希望在建立特定的錯誤事件時，或是在特定時間範圍內建立多個錯誤事件時建立警示。
 
 若要對單一事件發出警示，請將結果數目設為大於 0 並將頻率與時間範圍設為 5 分鐘。  如此一來，將會每隔 5 分鐘執行一次查詢，並檢查在上次執行查詢後是否發生所建立的單一事件。  較長的頻率可能會延遲收集事件和建立警示的時間。
 
@@ -79,11 +79,16 @@ Log Analytics 中的每個警示規則會是下列兩種類型之一。  下列�
 
     Type=Perf ObjectName=Processor CounterName="% Processor Time" CounterValue>90
 
-如果您想要針對特定的時間範圍在處理器平均超過 90% 時發出警示，您會利用如下的[測量命令](log-analytics-search-reference.md#commands)來使用查詢，且警示規則的臨界值**大於 0**。 
+如果您想要針對特定的時間範圍在處理器平均超過 90% 時發出警示，您會利用如下的[測量命令](log-analytics-search-reference.md#commands)來使用查詢，且警示規則的臨界值**大於 0**。
 
     Type=Perf ObjectName=Processor CounterName="% Processor Time" | measure avg(CounterValue) by Computer | where AggregatedValue>90
 
-## <a name="metric-measurement-alert-rules"></a>計量測量警示規則
+>[!NOTE]
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下：`Perf | where ObjectName=="Processor" and CounterName=="% Processor Time" and CounterValue>90`
+> `Perf | where ObjectName=="Processor" and CounterName=="% Processor Time" | summarize avg(CounterValue) by Computer | where CounterValue>90`
+
+
+## <a name="metric-measurement-alert-rules"></a>公制度量單位的警示規則
 
 >[!NOTE]
 > 計量測量警示規則目前處於公開預覽狀態。
@@ -93,7 +98,7 @@ Log Analytics 中的每個警示規則會是下列兩種類型之一。  下列�
 #### <a name="log-search"></a>記錄搜尋
 您可以對**結果數目**警示規則使用任何查詢，但是對計量測量警示規則使用查詢時則有特定需求。  它必須包含[測量命令](log-analytics-search-reference.md#commands)以將結果群組在特定欄位上。 此命令必須包含下列元素。
 
-- **彙總函式**。  決定將要執行的計算，並可能決定要彙總的數值欄位。  例如，**count()** 會在查詢中傳回記錄數目，**avg(CounterValue)** 則會傳回 CounterValue 欄位在一段間隔內的平均值。
+- **彙總函式**。  決定要執行的計算，並可能決定要彙總的數值欄位。  例如，**count()** 會在查詢中傳回記錄數目，**avg(CounterValue)** 則會傳回 CounterValue 欄位在一段間隔內的平均值。
 - **群組欄位**。  系統會為這個欄位中的每個執行個體建立帶有彙總值的記錄，而且每個執行個體都可產生警示。  例如，如果您想要為每部電腦產生警示，您可以使用**依電腦**。   
 - **間隔**。  定義用來彙總資料的時間間隔。  例如，如果您指定 **5 分鐘**，則系統會為群組欄位的每個執行個體建立記錄，而這些執行個體是在針對警示所指定的時間範圍內以每 5 分鐘為間隔進行彙總的。
 
@@ -137,9 +142,8 @@ Log Analytics 中的每個警示規則會是下列兩種類型之一。  下列�
 
 
 ## <a name="next-steps"></a>後續步驟
-* 安裝 [警示管理解決方案](log-analytics-solution-alert-management.md) ，以分析在 Log Analytics 中建立的警示以及從 System Center Operations Manager (SCOM) 收集的警示。
+* 安裝[警示管理解決方案](log-analytics-solution-alert-management.md)，以分析在 Log Analytics 中建立的警示以及從 System Center Operations Manager 收集的警示。
 * 深入了解可產生警示的 [記錄檔搜尋](log-analytics-log-searches.md) 。
 * 完成 [設定 Webook](log-analytics-alerts-webhooks.md) 和警示規則的逐步解說。  
 * 了解如何在 [Azure 自動化中撰寫 Runbook](https://azure.microsoft.com/documentation/services/automation) 以補救警示所識別的問題。
-
 

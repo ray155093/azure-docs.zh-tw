@@ -16,10 +16,10 @@ ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: HT
-ms.sourcegitcommit: 22aa82e5cbce5b00f733f72209318c901079b665
-ms.openlocfilehash: 346e7abf862330afe64dc5685737a9301d7d861a
+ms.sourcegitcommit: 137671152878e6e1ee5ba398dd5267feefc435b7
+ms.openlocfilehash: 824f900545136428f6e377c52e2dda7e3ab97cfe
 ms.contentlocale: zh-tw
-ms.lasthandoff: 07/24/2017
+ms.lasthandoff: 07/28/2017
 
 ---
 # <a name="develop-large-scale-parallel-compute-solutions-with-batch"></a>使用 Batch 開發大規模的平行運算解決方案
@@ -177,10 +177,14 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
 若要使用自訂映像來佈建虛擬機器集區，請以「使用者訂用帳戶」集區配置模式來建立 Batch 帳戶。 使用此模式時，Batch 集區會配置到帳戶所在的訂用帳戶。 如需有關在建立 Batch 帳戶時設定集區配置模式的資訊，請參閱[帳戶](#account)一節。
 
-若要使用自訂映像，您必須將映像一般化來備妥映像。 如需有關從 Azure VM 準備自訂 Linux 映像的資訊，請參閱[擷取 Azure Linux VM 作為範本](../virtual-machines/linux/capture-image-nodejs.md)。 如需有關從 Azure VM 準備自訂 Windows 映像的資訊，請參閱[使用 Azure PowerShell 建立自訂 VM 映像](../virtual-machines/windows/tutorial-custom-images.md)。 準備您的映像時，請記住下列事項：
+若要使用自訂映像，您必須將映像一般化來備妥映像。 如需有關從 Azure VM 準備自訂 Linux 映像的資訊，請參閱[擷取 Azure Linux VM 作為範本](../virtual-machines/linux/capture-image-nodejs.md)。 如需有關從 Azure VM 準備自訂 Windows 映像的資訊，請參閱[使用 Azure PowerShell 建立自訂 VM 映像](../virtual-machines/windows/tutorial-custom-images.md)。 
 
-- 請確認您用來佈建 Batch 集區的基本 OS 映像沒有任何預先安裝的 Azure 擴充，例如自訂指令碼擴充。 如果映像包含預先安裝的擴充，Azure 在部署 VM 時可能會遇到問題。
-- 請確定您提供的基本 OS 映像使用預設的暫存磁碟機，因為 Batch 節點代理程式目前需要有預設的暫存磁碟機。
+> [!IMPORTANT]
+> 準備您的自訂映像時，請記住下列事項：
+> - 請確認您用來佈建 Batch 集區的基本 OS 映像沒有任何預先安裝的 Azure 擴充，例如自訂指令碼擴充。 如果映像包含預先安裝的擴充，Azure 在部署 VM 時可能會遇到問題。
+> - 請確定您提供的基本 OS 映像使用預設的暫存磁碟機，因為 Batch 節點代理程式目前需要有預設的暫存磁碟機。
+>
+>
 
 若要使用自訂映像來建立虛擬機器設定集區，您需要一或多個標準 Azure 儲存體帳戶來儲存自訂的 VHD 映像。 自訂映像會儲存為 blob。 建立集區時若要參考自訂映像，請針對 [virtualMachineConfiguration](https://docs.microsoft.com/rest/api/batchservice/add-a-pool-to-an-account#bk_vmconf) 屬性的 [osDisk](https://docs.microsoft.com/rest/api/batchservice/add-a-pool-to-an-account#bk_osdisk) 屬性，指定自訂映像 VHD blob 的 URI。
 
