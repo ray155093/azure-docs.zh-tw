@@ -55,7 +55,7 @@ git clone https://github.com/Azure-Samples/python-docs-hello-world
 變更為包含範例程式碼的目錄。
 
 ```bash
-cd Python-docs-hello-world
+cd python-docs-hello-world
 ```
 
 ## <a name="run-the-app-locally"></a>在本機執行應用程式
