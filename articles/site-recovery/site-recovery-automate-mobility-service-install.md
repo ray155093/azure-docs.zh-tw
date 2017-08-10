@@ -12,7 +12,7 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 08/01/2017
 ms.author: krnese
 ms.translationtype: HT
 ms.sourcegitcommit: fff84ee45818e4699df380e1536f71b2a4003c71
@@ -60,8 +60,7 @@ ms.lasthandoff: 08/01/2017
 
   > [!NOTE]
   > 如果您想要針對已安裝 WMF 4.0 的 Windows 機器使用 DSC，請參閱[在中斷連線的環境中使用 DSC](## Use DSC in disconnected environments)。
-  >
-  >
+  
 
 行動服務可以透過命令列來安裝並接受數個引數。 這就是為什麼您需要有二進位檔 (在從您的設定擷取它們之後)，並將它們儲存在您能夠使用 DSC 組態進行擷取的地方。
 
